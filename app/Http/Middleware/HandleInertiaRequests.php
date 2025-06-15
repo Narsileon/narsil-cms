@@ -2,11 +2,17 @@
 
 namespace App\Http\Middleware;
 
+#region USE
+
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
-class HandleInertiaRequests extends Middleware
+#endregion
+
+final class HandleInertiaRequests extends Middleware
 {
+    #region PROPERTIES
+
     /**
      * The root template that's loaded on the first page visit.
      *
@@ -15,6 +21,10 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'app';
+
+    #endreion
+
+    #region PUBLIC METHODS
 
     /**
      * Determines the current asset version.
@@ -40,4 +50,6 @@ class HandleInertiaRequests extends Middleware
             //
         ];
     }
+
+    #endregion
 }
