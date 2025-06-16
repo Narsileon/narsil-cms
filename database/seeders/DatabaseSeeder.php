@@ -2,22 +2,30 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+#region USE
+
 use Illuminate\Database\Seeder;
 
+#endregion
+
+/**
+ * @version 1.0.0
+ *
+ * @author Jonathan Rigaux
+ */
 class DatabaseSeeder extends Seeder
 {
+    #region PUBLIC METHODS
+
     /**
      * Seed the application's database.
+     *
+     * @return void
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        //
     }
+
+    #endregion
 }

@@ -9,7 +9,12 @@ use Inertia\Middleware;
 
 #endregion
 
-final class HandleInertiaRequests extends Middleware
+/**
+ * @version 1.0.0
+ *
+ * @author Jonathan Rigaux
+ */
+class HandleInertiaRequests extends Middleware
 {
     #region PROPERTIES
 

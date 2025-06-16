@@ -1,5 +1,11 @@
 <?php
 
+#region USE
+
+use App\Providers\AppServiceProvider;
+
+#endregion
+
 return [
-    App\Providers\AppServiceProvider::class,
+    AppServiceProvider::class,
 ];

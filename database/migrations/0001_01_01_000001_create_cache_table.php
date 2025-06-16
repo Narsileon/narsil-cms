@@ -1,35 +1,85 @@
 <?php
 
+#region USE
+
+use App\Models\Cache;
+use App\Models\CacheLock;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+#endregion
+
 return new class extends Migration
 {
+    #region PUBLIC METHODS
+
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up(): void
     {
-        Schema::create('cache', function (Blueprint $table) {
-            $table->string('key')->primary();
-            $table->mediumText('value');
-            $table->integer('expiration');
-        });
+        if (!Schema::hasTable(Cache::TABLE))
+        {
+            $this->createCacheTable();
+        }
 
-        Schema::create('cache_locks', function (Blueprint $table) {
-            $table->string('key')->primary();
-            $table->string('owner');
-            $table->integer('expiration');
-        });
+        if (!Schema::hasTable(CacheLock::TABLE))
+        {
+            $this->createCacheLocksTable();
+        }
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down(): void
     {
-        Schema::dropIfExists('cache');
-        Schema::dropIfExists('cache_locks');
+        Schema::dropIfExists(CacheLock::TABLE);
+        Schema::dropIfExists(Cache::TABLE);
     }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @return void
+     */
+    private function createCacheTable(): void
+    {
+        Schema::create(Cache::TABLE, function (Blueprint $table)
+        {
+            $table
+                ->string(Cache::KEY)
+                ->primary();
+            $table
+                ->mediumText(Cache::VALUE);
+            $table
+                ->integer(Cache::EXPIRATION);
+        });
+    }
+
+    /**
+     * @return void
+     */
+    private function createCacheLocksTable(): void
+    {
+        Schema::create(CacheLock::TABLE, function (Blueprint $table)
+        {
+            $table
+                ->string(CacheLock::KEY)
+                ->primary();
+            $table
+                ->string(CacheLock::OWNER);
+            $table
+                ->integer(CacheLock::EXPIRATION);
+        });
+    }
+
+    #endregion
 };

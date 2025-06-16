@@ -10,7 +10,12 @@ use Inertia\Response;
 
 #endregion
 
-final class HomeController
+/**
+ * @version 1.0.0
+ *
+ * @author Jonathan Rigaux
+ */
+class HomeController
 {
     #region PUBLIC METHODS
 
