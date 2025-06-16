@@ -57,26 +57,26 @@ return new class extends Migration
     /**
      * @return void
      */
-    private function createJobsTable(): void
+    private function createFailedJobsTable(): void
     {
-        Schema::create(Job::TABLE, function (Blueprint $table)
+        Schema::create(FailedJob::TABLE, function (Blueprint $table)
         {
             $table
-                ->id(Job::ID);
+                ->id(FailedJob::ID);
             $table
-                ->string(Job::QUEUE)
-                ->index();
+                ->string(FailedJob::UUID)
+                ->unique();
             $table
-                ->longText(Job::PAYLOAD);
+                ->text(FailedJob::CONNECTION);
             $table
-                ->unsignedTinyInteger(Job::ATTEMPTS);
+                ->text(FailedJob::QUEUE);
             $table
-                ->unsignedInteger(Job::RESERVED_AT)
-                ->nullable();
+                ->longText(FailedJob::PAYLOAD);
             $table
-                ->unsignedInteger(Job::AVAILABLE_AT);
+                ->longText(FailedJob::EXCEPTION);
             $table
-                ->unsignedInteger(Job::CREATED_AT);
+                ->timestamp(FailedJob::FAILED_AT)
+                ->useCurrent();
         });
     }
 
@@ -114,29 +114,30 @@ return new class extends Migration
         });
     }
 
+
     /**
      * @return void
      */
-    private function createFailedJobsTable(): void
+    private function createJobsTable(): void
     {
-        Schema::create(FailedJob::TABLE, function (Blueprint $table)
+        Schema::create(Job::TABLE, function (Blueprint $table)
         {
             $table
-                ->id(FailedJob::ID);
+                ->id(Job::ID);
             $table
-                ->string(FailedJob::UUID)
-                ->unique();
+                ->string(Job::QUEUE)
+                ->index();
             $table
-                ->text(FailedJob::CONNECTION);
+                ->longText(Job::PAYLOAD);
             $table
-                ->text(FailedJob::QUEUE);
+                ->unsignedTinyInteger(Job::ATTEMPTS);
             $table
-                ->longText(FailedJob::PAYLOAD);
+                ->unsignedInteger(Job::RESERVED_AT)
+                ->nullable();
             $table
-                ->longText(FailedJob::EXCEPTION);
+                ->unsignedInteger(Job::AVAILABLE_AT);
             $table
-                ->timestamp(FailedJob::FAILED_AT)
-                ->useCurrent();
+                ->unsignedInteger(Job::CREATED_AT);
         });
     }
 

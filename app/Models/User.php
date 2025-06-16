@@ -4,6 +4,7 @@ namespace App\Models;
 
 #region USE
 
+use App\Interfaces\IEnable;
 use App\Models\Session;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +16,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @author Jonathan Rigaux
  */
-class User extends Authenticatable
+class User extends Authenticatable implements IEnable
 {
     #region CONSTRUCTOR
 
@@ -30,8 +31,8 @@ class User extends Authenticatable
         $this->table = self::TABLE;
 
         $this->casts = array_merge([
-            self::ACTIVE => 'boolean',
             self::EMAIL_VERIFIED_AT => 'datetime',
+            self::ENABLED => 'boolean',
             self::PASSWORD => 'hashed',
         ], $this->casts);
 
@@ -54,10 +55,6 @@ class User extends Authenticatable
 
     #region CONSTANTS
 
-    /**
-     * @var string
-     */
-    public const ACTIVE = 'active';
     /**
      * @var string
      */

@@ -110,7 +110,7 @@ return new class extends Migration
             $table
                 ->id(User::ID);
             $table
-                ->boolean(User::ACTIVE)
+                ->boolean(User::ENABLED)
                 ->default(true);
             $table
                 ->string(User::LAST_NAME);
