@@ -1,0 +1,14 @@
+import { cn } from "@/Components";
+
+export type SkeletonProps = React.ComponentProps<"div"> & {};
+
+function Skeleton({ className, ...props }: SkeletonProps) {
+  return (
+    <div
+      className={cn("bg-primary/10 animate-pulse rounded-md", className)}
+      {...props}
+    />
+  );
+}
+
+export default Skeleton;

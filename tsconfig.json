@@ -8,6 +8,10 @@
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"noEmit": true,
+		"noFallthroughCasesInSwitch": true,
+		"paths": {
+			"@/*": ["./resources/js/*"]
+		},
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "esnext",

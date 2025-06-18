@@ -1,0 +1,24 @@
+import { ChevronRight } from "lucide-react";
+import { cn } from "@/Components";
+
+export type BreadcrumbSeparatorProps = React.ComponentProps<"li"> & {};
+
+function BreadcrumbSeparator({
+  children,
+  className,
+  ...props
+}: BreadcrumbSeparatorProps) {
+  return (
+    <li
+      className={cn("[&>svg]:size-3.5", className)}
+      aria-hidden="true"
+      data-slot="breadcrumb-separator"
+      role="presentation"
+      {...props}
+    >
+      {children ?? <ChevronRight />}
+    </li>
+  );
+}
+
+export default BreadcrumbSeparator;
