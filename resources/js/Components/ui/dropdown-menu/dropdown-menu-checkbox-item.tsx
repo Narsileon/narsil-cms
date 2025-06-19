@@ -7,9 +7,9 @@ export type DropdownMenuCheckboxItemProps = React.ComponentProps<
 > & {};
 
 function DropdownMenuCheckboxItem({
-  className,
-  children,
   checked,
+  children,
+  className,
   ...props
 }: DropdownMenuCheckboxItemProps) {
   return (

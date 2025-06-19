@@ -7,9 +7,9 @@ export type ContextMenuCheckboxItemProps = React.ComponentProps<
 > & {};
 
 function ContextMenuCheckboxItem({
-  className,
-  children,
   checked,
+  children,
+  className,
   ...props
 }: ContextMenuCheckboxItemProps) {
   return (

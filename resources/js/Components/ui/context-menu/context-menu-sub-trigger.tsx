@@ -9,9 +9,9 @@ export type ContextMenuSubTriggerProps = React.ComponentProps<
 };
 
 function ContextMenuSubTrigger({
+  children,
   className,
   inset,
-  children,
   ...props
 }: ContextMenuSubTriggerProps) {
   return (

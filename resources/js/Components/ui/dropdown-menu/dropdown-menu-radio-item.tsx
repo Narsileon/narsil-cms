@@ -7,8 +7,8 @@ export type DropdownMenuRadioItemProps = React.ComponentProps<
 > & {};
 
 function DropdownMenuRadioItem({
-  className,
   children,
+  className,
   ...props
 }: DropdownMenuRadioItemProps) {
   return (

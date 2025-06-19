@@ -9,9 +9,9 @@ export type DropdownMenuSubTriggerProps = React.ComponentProps<
 };
 
 function DropdownMenuSubTrigger({
+  children,
   className,
   inset,
-  children,
   ...props
 }: DropdownMenuSubTriggerProps) {
   return (

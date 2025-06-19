@@ -7,8 +7,8 @@ export type ContextMenuRadioItemProps = React.ComponentProps<
 > & {};
 
 function ContextMenuRadioItem({
-  className,
   children,
+  className,
   ...props
 }: ContextMenuRadioItemProps) {
   return (
