@@ -30,8 +30,8 @@ export type AlertProps = React.ComponentProps<"div"> &
 function Alert({ className, variant, ...props }: AlertProps) {
   return (
     <div
-      className={cn(alertVariants({ variant }), className)}
       data-slot="alert"
+      className={cn(alertVariants({ variant }), className)}
       role="alert"
       {...props}
     />

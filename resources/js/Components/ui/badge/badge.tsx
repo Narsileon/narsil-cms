@@ -4,9 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 
 const badgeVariants = cva(
   cn(
-    "inline-flex items-center justify-center rounded-md border px-2 py-0.5 w-fit shrink-0",
-    "text-xs font-medium whitespace-nowrap",
-    "transition-[color,box-shadow] overflow-hidden",
+    "inline-flex items-center justify-center rounded-md border px-2 py-0.5 w-fit shrink-0 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] overflow-hidden",
     "aria-invalid:ring-destructive/20 aria-invalid:border-destructive",
     "dark:aria-invalid:ring-destructive/40",
     "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
@@ -49,8 +47,8 @@ function Badge({ asChild = false, className, variant, ...props }: BadgeProps) {
 
   return (
     <Comp
-      className={cn(badgeVariants({ variant }), className)}
       data-slot="badge"
+      className={cn(badgeVariants({ variant }), className)}
       {...props}
     />
   );

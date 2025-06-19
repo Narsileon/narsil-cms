@@ -11,8 +11,8 @@ function AlertDialogDescription({
 }: AlertDialogDescriptionProps) {
   return (
     <Description
-      className={cn("text-muted-foreground text-sm", className)}
       data-slot="alert-dialog-description"
+      className={cn("text-muted-foreground text-sm", className)}
       {...props}
     />
   );

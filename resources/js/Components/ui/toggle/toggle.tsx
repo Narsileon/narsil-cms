@@ -41,6 +41,7 @@ export type ToggleProps = React.ComponentProps<typeof Root> &
 function Toggle({ className, variant, size, ...props }: ToggleProps) {
   return (
     <Root
+      data-slot="toggle"
       className={cn(
         toggleVariants({
           className: className,
@@ -48,7 +49,6 @@ function Toggle({ className, variant, size, ...props }: ToggleProps) {
           variant: variant,
         }),
       )}
-      data-slot="toggle"
       {...props}
     />
   );

@@ -6,8 +6,8 @@ export type AccordionItemProps = React.ComponentProps<typeof Item> & {};
 function AccordionItem({ className, ...props }: AccordionItemProps) {
   return (
     <Item
-      className={cn("border-b last:border-b-0", className)}
       data-slot="accordion-item"
+      className={cn("border-b", "last:border-b-0", className)}
       {...props}
     />
   );

@@ -1,5 +1,5 @@
-import { cn } from "@/Components";
 import { Arrow, Content, Portal } from "@radix-ui/react-tooltip";
+import { cn } from "@/Components";
 
 export type TooltipContentProps = React.ComponentProps<typeof Content> & {};
 
@@ -12,6 +12,7 @@ function TooltipContent({
   return (
     <Portal>
       <Content
+        data-slot="tooltip-content"
         className={cn(
           "bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 z-50 w-fit rounded-md px-3 py-1.5 text-xs text-balance",
           "data-[side=bottom]:slide-in-from-top-2",
@@ -22,7 +23,6 @@ function TooltipContent({
           "origin-(--radix-tooltip-content-transform-origin)",
           className,
         )}
-        data-slot="tooltip-content"
         sideOffset={sideOffset}
         {...props}
       >

@@ -21,14 +21,14 @@ function ToggleGroup({
 }: ToggleGroupProps) {
   return (
     <Root
+      data-slot="toggle-group"
+      data-size={size}
+      data-variant={variant}
       className={cn(
         "group/toggle-group flex w-fit items-center rounded-md",
         "data-[variant=outline]:shadow-xs",
         className,
       )}
-      data-size={size}
-      data-slot="toggle-group"
-      data-variant={variant}
       {...props}
     >
       <ToggleGroupContext.Provider

@@ -6,8 +6,8 @@ export type AlertDialogTitleProps = React.ComponentProps<typeof Title> & {};
 function AlertDialogTitle({ className, ...props }: AlertDialogTitleProps) {
   return (
     <Title
-      className={cn("text-lg font-semibold", className)}
       data-slot="alert-dialog-title"
+      className={cn("text-lg font-semibold", className)}
       {...props}
     />
   );

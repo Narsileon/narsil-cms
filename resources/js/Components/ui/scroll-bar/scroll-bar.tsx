@@ -15,6 +15,7 @@ const ScrollBar = ({
 }: ScrollBarProp) => {
   return (
     <ScrollAreaScrollbar
+      data-slot="scroll-area-scrollbar"
       className={cn(
         "flex touch-none p-px transition-colors select-none",
         orientation === "vertical" &&
@@ -23,13 +24,12 @@ const ScrollBar = ({
           "h-2.5 flex-col border-t border-t-transparent",
         className,
       )}
-      data-slot="scroll-area-scrollbar"
       orientation={orientation}
       {...props}
     >
       <ScrollAreaThumb
-        className="bg-border relative flex-1 rounded-full"
         data-slot="scroll-area-thumb"
+        className="bg-border relative flex-1 rounded-full"
         {...props}
       />
     </ScrollAreaScrollbar>

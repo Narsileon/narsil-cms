@@ -10,9 +10,9 @@ function BreadcrumbSeparator({
 }: BreadcrumbSeparatorProps) {
   return (
     <li
+      data-slot="breadcrumb-separator"
       className={cn("[&>svg]:size-3.5", className)}
       aria-hidden="true"
-      data-slot="breadcrumb-separator"
       role="presentation"
       {...props}
     >

@@ -10,13 +10,12 @@ function AccordionContent({
 }: AccordionContentProps) {
   return (
     <Content
+      data-slot="accordion-content"
       className={cn(
-        "text-sm",
-        "overflow-hidden transition-all",
+        "overflow-hidden text-sm transition-all",
         "data-[state=closed]:animate-accordion-up",
         "data-[state=open]:animate-accordion-down",
       )}
-      data-slot="accordion-content"
       {...props}
     >
       <div className={cn("pt-0 pb-4", className)}>{children}</div>

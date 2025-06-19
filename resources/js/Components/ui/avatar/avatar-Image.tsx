@@ -6,8 +6,8 @@ export type AvatarImageProps = React.ComponentProps<typeof Image> & {};
 function AvatarImage({ className, ...props }: AvatarImageProps) {
   return (
     <Image
-      className={cn("aspect-square size-full", className)}
       data-slot="avatar-image"
+      className={cn("aspect-square size-full", className)}
       {...props}
     />
   );
