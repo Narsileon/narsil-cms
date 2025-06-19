@@ -43,13 +43,11 @@ function ToggleGroup({
   );
 }
 
-export function useToggleGroupContext() {
+export function useToggleGroup() {
   const context = useContext(ToggleGroupContext);
 
   if (!context) {
-    throw new Error(
-      "useToggleGroupContext must be used within a <ToggleGroup />",
-    );
+    throw new Error("useToggleGroup must be used within a ToggleGroup");
   }
 
   return context;
