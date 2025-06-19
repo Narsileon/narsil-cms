@@ -8,7 +8,7 @@ function PopoverContent({
   align = "center",
   sideOffset = 4,
   ...props
-}: React.ComponentProps<typeof Content>) {
+}: PopoverContentProps) {
   return (
     <Portal>
       <Content

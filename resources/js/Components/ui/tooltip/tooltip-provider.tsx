@@ -5,7 +5,7 @@ export type TooltipProviderProps = React.ComponentProps<typeof Provider> & {};
 function TooltipProvider({
   delayDuration = 0,
   ...props
-}: React.ComponentProps<typeof Provider>) {
+}: TooltipProviderProps) {
   return (
     <Provider
       data-slot="tooltip-provider"

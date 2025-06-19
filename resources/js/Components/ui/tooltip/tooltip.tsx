@@ -3,7 +3,7 @@ import TooltipProvider from "./tooltip-provider";
 
 export type TooltipProps = React.ComponentProps<typeof Root> & {};
 
-function Tooltip({ ...props }: React.ComponentProps<typeof Root>) {
+function Tooltip({ ...props }: TooltipProps) {
   return (
     <TooltipProvider>
       <Root data-slot="tooltip" {...props} />

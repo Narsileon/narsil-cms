@@ -5,7 +5,7 @@ export type ContextMenuShortcutProps = React.ComponentProps<"span"> & {};
 function ContextMenuShortcut({
   className,
   ...props
-}: React.ComponentProps<"span">) {
+}: ContextMenuShortcutProps) {
   return (
     <span
       data-slot="context-menu-shortcut"

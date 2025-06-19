@@ -2,10 +2,7 @@ import { cn } from "@/Components";
 
 export type MenubarShortcutProps = React.ComponentProps<"span"> & {};
 
-function MenubarShortcut({
-  className,
-  ...props
-}: React.ComponentProps<"span">) {
+function MenubarShortcut({ className, ...props }: MenubarShortcutProps) {
   return (
     <span
       data-slot="menubar-shortcut"

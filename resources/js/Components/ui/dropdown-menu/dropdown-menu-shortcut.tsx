@@ -5,7 +5,7 @@ export type DropdownMenuShortcutProps = React.ComponentProps<"span"> & {};
 function DropdownMenuShortcut({
   className,
   ...props
-}: React.ComponentProps<"span">) {
+}: DropdownMenuShortcutProps) {
   return (
     <span
       data-slot="dropdown-menu-shortcut"
