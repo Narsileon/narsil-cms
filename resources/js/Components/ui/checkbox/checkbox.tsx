@@ -4,7 +4,7 @@ import { Indicator, Root } from "@radix-ui/react-checkbox";
 
 export type CheckboxProps = React.ComponentProps<typeof Root> & {};
 
-function Checkbox({ className, ...props }: React.ComponentProps<typeof Root>) {
+function Checkbox({ className, ...props }: CheckboxProps) {
   return (
     <Root
       data-slot="checkbox"
