@@ -26,7 +26,7 @@ class HomeController
      */
     public function __invoke(Request $request): Response
     {
-        return Inertia::render('Index');
+        return Inertia::render('index');
     }
 
     #endregion
