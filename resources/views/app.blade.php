@@ -8,8 +8,11 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     />
     @routes
-    @vite('resources/css/app.scss')
-    @vite('resources/js/app.tsx')
+    @viteReactRefresh
+    @vite([
+        'resources/css/app.css',
+        'resources/js/app.tsx'
+    ])
     @inertiaHead
   </head>
   <body>

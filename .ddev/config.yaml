@@ -1,16 +1,16 @@
 name: narsil-cms
 type: laravel
 docroot: public
-php_version: '8.3'
+php_version: "8.3"
 webserver_type: nginx-fpm
 xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 database:
   type: mysql
-  version: '8.0'
+  version: "8.0"
 use_dns_when_possible: true
-composer_version: '2'
+composer_version: "2"
 web_environment: []
 corepack_enable: false
 # Key features of DDEV's config.yaml:
@@ -224,7 +224,12 @@ corepack_enable: false
 # The default time that DDEV waits for all containers to become ready can be increased from
 # the default 120. This helps in importing huge databases, for example.
 
-#web_extra_exposed_ports:
+web_extra_exposed_ports:
+  - name: vite
+    container_port: 5173
+    http_port: 5172
+    https_port: 5173
+    expose: true
 #- name: nodejs
 #  container_port: 3000
 #  http_port: 2999

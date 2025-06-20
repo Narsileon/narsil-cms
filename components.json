@@ -8,13 +8,14 @@
     "utils": "@/lib/utils"
   },
   "iconLibrary": "lucide",
-  "rsc": false,
+  "rsc": true,
   "style": "default",
   "tailwind": {
     "baseColor": "neutral",
-    "config": "tailwind.config.ts",
-    "css": "resources/css/app.css",
-    "cssVariables": true
+    "config": "",
+    "css": "resources/css/global.css",
+    "cssVariables": true,
+    "prefix": ""
   },
   "tsx": true
 }
