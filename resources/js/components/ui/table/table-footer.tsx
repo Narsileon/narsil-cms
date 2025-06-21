@@ -1,0 +1,19 @@
+import { cn } from "@/components";
+
+export type TableFooterProps = React.ComponentProps<"tfoot"> & {};
+
+function TableFooter({ className, ...props }: TableFooterProps) {
+  return (
+    <tfoot
+      data-slot="table-footer"
+      className={cn(
+        "bg-muted/50 border-t font-medium",
+        "[&>tr]:last:border-b-0",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+export default TableFooter;
