@@ -1,0 +1,8 @@
+
+<?php
+
+return [
+    'dark'   => 'Dark',
+    'light'  => 'Light',
+    'system' => 'System',
+];
