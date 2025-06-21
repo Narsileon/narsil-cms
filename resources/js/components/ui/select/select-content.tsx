@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
 import SelectScrollDownButton from "./select-scroll-down-button";
 import SelectScrollUpButton from "./select-scroll-up-button";

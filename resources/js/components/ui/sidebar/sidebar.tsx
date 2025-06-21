@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { useSidebar } from "./sidebar-provider";
 import {
   Sheet,

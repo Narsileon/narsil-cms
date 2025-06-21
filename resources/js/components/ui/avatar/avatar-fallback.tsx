@@ -1,5 +1,5 @@
 import { Avatar as AvatarPrimitive } from "radix-ui";
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 
 export type AvatarFallbackProps = React.ComponentProps<
   typeof AvatarPrimitive.Fallback

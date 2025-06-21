@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { XIcon } from "lucide-react";
 import DialogOverlay from "./dialog-overlay";

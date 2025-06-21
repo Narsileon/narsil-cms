@@ -1,4 +1,4 @@
-import { cn } from "@/components/utils";
+import { cn } from "@/lib/utils";
 import { useSidebar } from "./sidebar-provider";
 
 export type SidebarRailProps = React.ComponentProps<"button"> & {};

@@ -1,5 +1,5 @@
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import AlertDialogPortal from "./alert-dialog-portal";
 import AlertDialogOverlay from "./alert-dialog-overlay";
 

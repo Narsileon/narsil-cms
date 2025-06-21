@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@/components/ui/button";
-import { cn } from "@/components/utils";
+import { cn } from "@/lib/utils";
 import { PanelLeftIcon } from "lucide-react";
 import { useSidebar } from "./sidebar-provider";
 

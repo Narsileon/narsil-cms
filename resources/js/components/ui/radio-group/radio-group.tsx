@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
 export type RadioGroupProps = React.ComponentProps<

@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "lucide-react";
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
 export type MenubarSubTriggerProps = React.ComponentProps<

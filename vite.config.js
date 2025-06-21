@@ -36,6 +36,10 @@ export default defineConfig(({ mode }) => {
       headers: {
         "Access-Control-Allow-Private-Network": "true",
       },
+      hmr: {
+        host: "narsil-cms.ddev.site",
+        protocol: "wss",
+      },
       host: "0.0.0.0",
       origin: env.APP_URL + ":5173",
       port: 5173,

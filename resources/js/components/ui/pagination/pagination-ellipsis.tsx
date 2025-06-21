@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { MoreHorizontalIcon } from "lucide-react";
 
 export type PaginationEllipsisProps = React.ComponentProps<"span"> & {};

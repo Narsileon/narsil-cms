@@ -1,5 +1,5 @@
+import { Link } from "@inertiajs/react";
 import { useRoute } from "ziggy-js";
-
 import {
   Sidebar,
   SidebarContent,
@@ -7,11 +7,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarProps,
   SidebarRail,
-  SidebarSeparator,
 } from "@/components/ui/sidebar";
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ ...props }: SidebarProps) {
   const route = useRoute();
 
   const data = {
@@ -27,14 +27,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader className="h-12 border-b text-xl font-bold">
-        NARSIL
+        <Link href="/">NARSIL</Link>
       </SidebarHeader>
       <SidebarContent className="gap-0">
         {data.navMain.map((item) => (
           <SidebarMenu>
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url}>{item.title}</a>
+                <Link href={item.url}>{item.title}</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

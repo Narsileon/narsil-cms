@@ -1,4 +1,4 @@
-import { cn } from "@/components/utils";
+import { cn } from "@/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
 
 export type SidebarGroupLabelProps = React.ComponentProps<"div"> & {

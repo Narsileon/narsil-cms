@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Slider as SliderPrimitive } from "radix-ui";
 import { useMemo } from "react";
 

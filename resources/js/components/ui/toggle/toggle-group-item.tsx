@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 import { toggleVariants } from "./toggle";
 import { useToggleGroup } from "./toggle-group";

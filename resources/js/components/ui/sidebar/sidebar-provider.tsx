@@ -1,4 +1,4 @@
-import { cn } from "@/components/utils";
+import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useMediaQuery } from "react-responsive";
 import {

@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Switch as SwitchPrimitive } from "radix-ui";
 
 export type SwitchProps = React.ComponentProps<

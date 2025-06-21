@@ -1,4 +1,4 @@
-import { cn } from "@/components/utils";
+import { cn } from "@/lib/utils";
 
 export type SidebarContentProps = React.ComponentProps<"div"> & {};
 

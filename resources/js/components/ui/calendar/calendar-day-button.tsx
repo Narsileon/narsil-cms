@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { DayButton, getDefaultClassNames } from "react-day-picker";
 import { useEffect, useRef } from "react";
 

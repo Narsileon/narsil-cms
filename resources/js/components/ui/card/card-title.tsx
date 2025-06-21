@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 
 export type CardTitleProps = React.ComponentProps<"div"> & {};
 

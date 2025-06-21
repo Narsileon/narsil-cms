@@ -1,6 +1,8 @@
 import { AppSidebar } from "@/components/app/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Link } from "@inertiajs/react";
 import { Separator } from "@/components/ui/separator";
+import ThemeToggle from "@/components/theme/theme-toggle";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -35,8 +37,8 @@ function Layout({ children }: LayoutProps) {
           <Breadcrumb className="grow">
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
+                <BreadcrumbLink asChild>
+                  <Link href="#">Building Your Application</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
@@ -45,6 +47,7 @@ function Layout({ children }: LayoutProps) {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild={true}>
               <Avatar>

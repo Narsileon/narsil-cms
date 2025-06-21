@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { GripVerticalIcon } from "lucide-react";
 import { PanelResizeHandle } from "react-resizable-panels";
 

@@ -1,5 +1,5 @@
 import { ButtonProps, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/components/utils";
+import { cn } from "@/lib/utils";
 
 export type PaginationLinkProps = React.ComponentProps<"a"> &
   Pick<ButtonProps, "size"> & { isActive?: boolean };

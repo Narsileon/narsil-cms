@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
 
 export type TabsListProps = React.ComponentProps<

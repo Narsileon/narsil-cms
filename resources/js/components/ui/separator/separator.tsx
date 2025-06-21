@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Separator as SeparatorPrimitive } from "radix-ui";
 
 export type SeparatorProps = React.ComponentProps<

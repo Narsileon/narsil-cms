@@ -1,4 +1,4 @@
-import { cn } from "@/components/utils";
+import { cn } from "@/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
 
 export type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root> & {};

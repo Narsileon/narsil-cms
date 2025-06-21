@@ -1,6 +1,6 @@
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 
 export type AccordionTriggerProps = React.ComponentProps<
   typeof AccordionPrimitive.Trigger

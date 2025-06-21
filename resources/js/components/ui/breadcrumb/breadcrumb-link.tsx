@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
 
 export type BreadcrumbLinkProps = React.ComponentProps<"a"> & {

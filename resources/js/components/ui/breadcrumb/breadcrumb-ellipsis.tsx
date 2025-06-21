@@ -1,4 +1,4 @@
-import { cn } from "@/components";
+import { cn } from "@/lib/utils";
 import { MoreHorizontal } from "lucide-react";
 
 export type BreadcrumbEllipsisProps = React.ComponentProps<"span"> & {};
