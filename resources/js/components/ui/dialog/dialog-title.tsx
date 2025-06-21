@@ -1,11 +1,13 @@
 import { cn } from "@/components";
-import { Title } from "@radix-ui/react-dialog";
+import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogTitleProps = React.ComponentProps<typeof Title> & {};
+export type DialogTitleProps = React.ComponentProps<
+  typeof DialogPrimitive.Title
+> & {};
 
 function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (
-    <Title
+    <DialogPrimitive.Title
       data-slot="dialog-title"
       className={cn("text-lg leading-none font-semibold", className)}
       {...props}

@@ -1,11 +1,13 @@
 import { cn } from "@/components";
-import { Overlay } from "@radix-ui/react-dialog";
+import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogOverlayProps = React.ComponentProps<typeof Overlay> & {};
+export type DialogOverlayProps = React.ComponentProps<
+  typeof DialogPrimitive.Overlay
+> & {};
 
 function DialogOverlay({ className, ...props }: DialogOverlayProps) {
   return (
-    <Overlay
+    <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
         "fixed inset-0 z-50 bg-black/50",

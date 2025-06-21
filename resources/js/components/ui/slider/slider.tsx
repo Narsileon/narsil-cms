@@ -1,8 +1,10 @@
 import { cn } from "@/components";
-import { Range, Root, Thumb, Track } from "@radix-ui/react-slider";
+import { Slider as SliderPrimitive } from "radix-ui";
 import { useMemo } from "react";
 
-export type SliderProps = React.ComponentProps<typeof Root> & {};
+export type SliderProps = React.ComponentProps<
+  typeof SliderPrimitive.Root
+> & {};
 
 function Slider({
   className,
@@ -22,7 +24,7 @@ function Slider({
     [value, defaultValue, min, max],
   );
   return (
-    <Root
+    <SliderPrimitive.Root
       data-slot="slider"
       defaultValue={defaultValue}
       value={value}
@@ -36,7 +38,7 @@ function Slider({
       )}
       {...props}
     >
-      <Track
+      <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
           "bg-muted relative grow overflow-hidden rounded-full",
@@ -44,7 +46,7 @@ function Slider({
           "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
         )}
       >
-        <Range
+        <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(
             "bg-primary absolute",
@@ -52,9 +54,9 @@ function Slider({
             "data-[orientation=vertical]:w-full",
           )}
         />
-      </Track>
+      </SliderPrimitive.Track>
       {Array.from({ length: _values.length }, (_, index) => (
-        <Thumb
+        <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           className={cn(
             "border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow]",
@@ -65,7 +67,7 @@ function Slider({
           key={index}
         />
       ))}
-    </Root>
+    </SliderPrimitive.Root>
   );
 }
 

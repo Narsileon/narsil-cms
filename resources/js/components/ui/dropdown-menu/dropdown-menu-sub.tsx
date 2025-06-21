@@ -1,9 +1,11 @@
-import { Sub } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
-export type DropdownMenuSubProps = React.ComponentProps<typeof Sub> & {};
+export type DropdownMenuSubProps = React.ComponentProps<
+  typeof DropdownMenuPrimitive.Sub
+> & {};
 
 function DropdownMenuSub({ ...props }: DropdownMenuSubProps) {
-  return <Sub data-slot="dropdown-menu-sub" {...props} />;
+  return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />;
 }
 
 export default DropdownMenuSub;

@@ -1,9 +1,9 @@
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/components";
-import { ScrollDownButton } from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 
 export type SelectScrollDownButtonProps = React.ComponentProps<
-  typeof ScrollDownButton
+  typeof SelectPrimitive.ScrollDownButton
 > & {};
 
 function SelectScrollDownButton({
@@ -11,7 +11,7 @@ function SelectScrollDownButton({
   ...props
 }: SelectScrollDownButtonProps) {
   return (
-    <ScrollDownButton
+    <SelectPrimitive.ScrollDownButton
       data-slot="select-scroll-down-button"
       className={cn(
         "flex cursor-default items-center justify-center py-1",
@@ -20,7 +20,7 @@ function SelectScrollDownButton({
       {...props}
     >
       <ChevronDownIcon className="size-4" />
-    </ScrollDownButton>
+    </SelectPrimitive.ScrollDownButton>
   );
 }
 

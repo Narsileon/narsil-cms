@@ -1,9 +1,11 @@
-import { Root } from "@radix-ui/react-accordion";
+import { Accordion as AccordionPrimitive } from "radix-ui";
 
-export type AccordionProps = React.ComponentProps<typeof Root> & {};
+export type AccordionProps = React.ComponentProps<
+  typeof AccordionPrimitive.Root
+> & {};
 
 function Accordion({ ...props }: AccordionProps) {
-  return <Root data-slot="accordion" {...props} />;
+  return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
 }
 
 export default Accordion;

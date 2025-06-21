@@ -1,9 +1,9 @@
 import { CircleIcon } from "lucide-react";
 import { cn } from "@/components";
-import { ItemIndicator, RadioItem } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 export type DropdownMenuRadioItemProps = React.ComponentProps<
-  typeof RadioItem
+  typeof DropdownMenuPrimitive.RadioItem
 > & {};
 
 function DropdownMenuRadioItem({
@@ -12,7 +12,7 @@ function DropdownMenuRadioItem({
   ...props
 }: DropdownMenuRadioItemProps) {
   return (
-    <RadioItem
+    <DropdownMenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       className={cn(
         "relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
@@ -24,12 +24,12 @@ function DropdownMenuRadioItem({
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ItemIndicator>
+        <DropdownMenuPrimitive.ItemIndicator>
           <CircleIcon className="size-2 fill-current" />
-        </ItemIndicator>
+        </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
-    </RadioItem>
+    </DropdownMenuPrimitive.RadioItem>
   );
 }
 

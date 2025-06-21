@@ -1,11 +1,16 @@
-import { RadioGroup } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
 export type ContextMenuRadioGroupProps = React.ComponentProps<
-  typeof RadioGroup
+  typeof ContextMenuPrimitive.RadioGroup
 > & {};
 
 function ContextMenuRadioGroup({ ...props }: ContextMenuRadioGroupProps) {
-  return <RadioGroup data-slot="context-menu-radio-group" {...props} />;
+  return (
+    <ContextMenuPrimitive.RadioGroup
+      data-slot="context-menu-radio-group"
+      {...props}
+    />
+  );
 }
 
 export default ContextMenuRadioGroup;

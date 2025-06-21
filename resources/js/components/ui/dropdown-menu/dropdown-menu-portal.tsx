@@ -1,9 +1,13 @@
-import { Portal } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
-export type DropdownMenuPortalProps = React.ComponentProps<typeof Portal> & {};
+export type DropdownMenuPortalProps = React.ComponentProps<
+  typeof DropdownMenuPrimitive.Portal
+> & {};
 
 function DropdownMenuPortal({ ...props }: DropdownMenuPortalProps) {
-  return <Portal data-slot="dropdown-menu-portal" {...props} />;
+  return (
+    <DropdownMenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />
+  );
 }
 
 export default DropdownMenuPortal;

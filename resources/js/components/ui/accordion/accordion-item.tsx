@@ -1,11 +1,16 @@
+import { Accordion as AccordionPrimitive } from "radix-ui";
 import { cn } from "@/components";
-import { Item } from "@radix-ui/react-accordion";
 
-export type AccordionItemProps = React.ComponentProps<typeof Item> & {};
+export type AccordionItemProps = React.ComponentProps<
+  typeof AccordionPrimitive.Item
+> & {};
 
-function AccordionItem({ className, ...props }: AccordionItemProps) {
+function AccordionItem({
+  className,
+  ...props
+}: AccordionPrimitive.AccordionItemProps) {
   return (
-    <Item
+    <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn("border-b", "last:border-b-0", className)}
       {...props}

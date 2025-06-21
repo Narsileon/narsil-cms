@@ -1,8 +1,10 @@
+import { Accordion as AccordionPrimitive } from "radix-ui";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/components";
-import { Header, Trigger } from "@radix-ui/react-accordion";
 
-export type AccordionTriggerProps = React.ComponentProps<typeof Trigger> & {};
+export type AccordionTriggerProps = React.ComponentProps<
+  typeof AccordionPrimitive.Trigger
+> & {};
 
 function AccordionTrigger({
   className,
@@ -10,8 +12,8 @@ function AccordionTrigger({
   ...props
 }: AccordionTriggerProps) {
   return (
-    <Header className="flex">
-      <Trigger
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
           "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none",
@@ -30,8 +32,8 @@ function AccordionTrigger({
             "translate-y-0.5 transition-transform duration-200",
           )}
         />
-      </Trigger>
-    </Header>
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
   );
 }
 

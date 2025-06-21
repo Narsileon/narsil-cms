@@ -1,8 +1,8 @@
 import { cn } from "@/components";
-import { Content, Portal } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 export type DropdownMenuContentProps = React.ComponentProps<
-  typeof Content
+  typeof DropdownMenuPrimitive.Content
 > & {};
 
 function DropdownMenuContent({
@@ -11,8 +11,8 @@ function DropdownMenuContent({
   ...props
 }: DropdownMenuContentProps) {
   return (
-    <Portal>
-      <Content
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.Content
         data-slot="dropdown-menu-content"
         className={cn(
           "bg-popover text-popover-foreground min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md",
@@ -30,7 +30,7 @@ function DropdownMenuContent({
         sideOffset={sideOffset}
         {...props}
       />
-    </Portal>
+    </DropdownMenuPrimitive.Portal>
   );
 }
 

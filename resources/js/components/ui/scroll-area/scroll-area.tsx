@@ -1,17 +1,19 @@
 import { cn } from "@/components";
-import { Corner, Root, Viewport } from "@radix-ui/react-scroll-area";
-import { ScrollBar } from "@/components/ui/scroll-bar";
+import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
+import ScrollAreaScrollBar from "./scroll-area-scrollbar";
 
-export type ScrollAreaProps = React.ComponentProps<typeof Root> & {};
+export type ScrollAreaProps = React.ComponentProps<
+  typeof ScrollAreaPrimitive.Root
+> & {};
 
 const ScrollArea = ({ className, children, ...props }: ScrollAreaProps) => {
   return (
-    <Root
+    <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
       className={cn("relative overflow-hidden", className)}
       {...props}
     >
-      <Viewport
+      <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
         className={cn(
           "size-full rounded-[inherit] transition-[color,box-shadow] outline-none",
@@ -19,10 +21,10 @@ const ScrollArea = ({ className, children, ...props }: ScrollAreaProps) => {
         )}
       >
         {children}
-      </Viewport>
-      <ScrollBar />
-      <Corner />
-    </Root>
+      </ScrollAreaPrimitive.Viewport>
+      <ScrollAreaScrollBar />
+      <ScrollAreaPrimitive.Corner />
+    </ScrollAreaPrimitive.Root>
   );
 };
 

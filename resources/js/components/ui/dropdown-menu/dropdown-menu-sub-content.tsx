@@ -1,8 +1,8 @@
 import { cn } from "@/components";
-import { SubContent } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 export type DropdownMenuSubContentProps = React.ComponentProps<
-  typeof SubContent
+  typeof DropdownMenuPrimitive.SubContent
 > & {};
 
 function DropdownMenuSubContent({
@@ -10,7 +10,7 @@ function DropdownMenuSubContent({
   ...props
 }: DropdownMenuSubContentProps) {
   return (
-    <SubContent
+    <DropdownMenuPrimitive.SubContent
       data-slot="dropdown-menu-sub-content"
       className={cn(
         "bg-popover text-popover-foregroundoverflow-hidden z-50 min-w-[8rem] rounded-md border p-1 shadow-lg",

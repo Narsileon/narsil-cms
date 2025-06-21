@@ -1,7 +1,9 @@
 import { cn } from "@/components";
-import { Item } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
-export type DropdownMenuItemProps = React.ComponentProps<typeof Item> & {
+export type DropdownMenuItemProps = React.ComponentProps<
+  typeof DropdownMenuPrimitive.Item
+> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };
@@ -13,7 +15,7 @@ function DropdownMenuItem({
   ...props
 }: DropdownMenuItemProps) {
   return (
-    <Item
+    <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"
       data-inset={inset}
       data-variant={variant}

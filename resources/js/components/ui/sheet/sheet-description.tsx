@@ -1,13 +1,13 @@
 import { cn } from "@/components";
-import { Description } from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 
 export type SheetDescriptionProps = React.ComponentProps<
-  typeof Description
+  typeof SheetPrimitive.Description
 > & {};
 
 function SheetDescription({ className, ...props }: SheetDescriptionProps) {
   return (
-    <Description
+    <SheetPrimitive.Description
       data-slot="sheet-description"
       className={cn("text-muted-foreground text-sm", className)}
       {...props}

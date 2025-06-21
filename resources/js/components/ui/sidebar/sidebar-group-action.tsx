@@ -1,5 +1,5 @@
 import { cn } from "@/components/utils";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot as SlotPrimitive } from "radix-ui";
 
 export type SidebarGroupActionProps = React.ComponentProps<"button"> & {
   asChild?: boolean;
@@ -10,7 +10,7 @@ function SidebarGroupAction({
   className,
   ...props
 }: SidebarGroupActionProps) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
 
   return (
     <Comp

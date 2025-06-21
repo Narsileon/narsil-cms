@@ -1,8 +1,8 @@
 import { cn } from "@/components";
-import { SubContent } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
 export type ContextMenuSubContentProps = React.ComponentProps<
-  typeof SubContent
+  typeof ContextMenuPrimitive.SubContent
 > & {};
 
 function ContextMenuSubContent({
@@ -10,7 +10,7 @@ function ContextMenuSubContent({
   ...props
 }: ContextMenuSubContentProps) {
   return (
-    <SubContent
+    <ContextMenuPrimitive.SubContent
       data-slot="context-menu-sub-content"
       className={cn(
         "bg-popover text-popover-foreground z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-lg",

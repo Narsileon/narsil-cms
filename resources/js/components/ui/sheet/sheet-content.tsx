@@ -1,10 +1,12 @@
 import { cn } from "@/components";
-import { Close, Content } from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 import { XIcon } from "lucide-react";
 import SheetPortal from "./sheet-portal";
 import SheetOverlay from "./sheet-overlay";
 
-export type SheetContentProps = React.ComponentProps<typeof Content> & {
+export type SheetContentProps = React.ComponentProps<
+  typeof SheetPrimitive.Content
+> & {
   side?: "top" | "right" | "bottom" | "left";
 };
 
@@ -17,7 +19,7 @@ function SheetContent({
   return (
     <SheetPortal>
       <SheetOverlay />
-      <Content
+      <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
           "bg-background fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out",
@@ -48,7 +50,7 @@ function SheetContent({
         {...props}
       >
         {children}
-        <Close
+        <SheetPrimitive.Close
           className={cn(
             "ring-offset-background absolute top-4 right-4 rounded-xs opacity-70 transition-opacity",
             "disabled:pointer-events-none",
@@ -59,8 +61,8 @@ function SheetContent({
         >
           <XIcon className="size-4" />
           <span className="sr-only">Close</span>
-        </Close>
-      </Content>
+        </SheetPrimitive.Close>
+      </SheetPrimitive.Content>
     </SheetPortal>
   );
 }

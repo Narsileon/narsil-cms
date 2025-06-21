@@ -1,13 +1,15 @@
-import { Provider } from "@radix-ui/react-tooltip";
+import { Tooltip as TooltipPrimitive } from "radix-ui";
 
-export type TooltipProviderProps = React.ComponentProps<typeof Provider> & {};
+export type TooltipProviderProps = React.ComponentProps<
+  typeof TooltipPrimitive.Provider
+> & {};
 
 function TooltipProvider({
   delayDuration = 0,
   ...props
 }: TooltipProviderProps) {
   return (
-    <Provider
+    <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
       delayDuration={delayDuration}
       {...props}

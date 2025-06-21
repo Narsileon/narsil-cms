@@ -1,7 +1,9 @@
 import { cn } from "@/components";
-import { Item } from "@radix-ui/react-menubar";
+import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarItemProps = React.ComponentProps<typeof Item> & {
+export type MenubarItemProps = React.ComponentProps<
+  typeof MenubarPrimitive.Item
+> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };
@@ -13,7 +15,7 @@ function MenubarItem({
   ...props
 }: MenubarItemProps) {
   return (
-    <Item
+    <MenubarPrimitive.Item
       data-slot="menubar-item"
       data-inset={inset}
       data-variant={variant}

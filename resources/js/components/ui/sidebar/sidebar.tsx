@@ -15,11 +15,11 @@ export type SidebarProps = React.ComponentProps<"div"> & {
 };
 
 function Sidebar({
+  children,
+  className,
+  collapsible = "offcanvas",
   side = "left",
   variant = "sidebar",
-  collapsible = "offcanvas",
-  className,
-  children,
   ...props
 }: SidebarProps) {
   const { isMobile, mobileWidth, openMobile, state, setOpenMobile } =

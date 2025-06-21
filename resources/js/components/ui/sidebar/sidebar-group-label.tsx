@@ -1,5 +1,5 @@
 import { cn } from "@/components/utils";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot as SlotPrimitive } from "radix-ui";
 
 export type SidebarGroupLabelProps = React.ComponentProps<"div"> & {
   asChild?: boolean;
@@ -10,7 +10,7 @@ function SidebarGroupLabel({
   asChild = false,
   ...props
 }: SidebarGroupLabelProps) {
-  const Comp = asChild ? Slot : "div";
+  const Comp = asChild ? SlotPrimitive.Slot : "div";
 
   return (
     <Comp

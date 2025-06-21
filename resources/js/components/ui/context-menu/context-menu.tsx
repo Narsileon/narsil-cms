@@ -1,9 +1,11 @@
-import { Root } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuProps = React.ComponentProps<typeof Root> & {};
+export type ContextMenuProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.Root
+> & {};
 
 function ContextMenu({ ...props }: ContextMenuProps) {
-  return <Root data-slot="context-menu" {...props} />;
+  return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
 }
 
 export default ContextMenu;

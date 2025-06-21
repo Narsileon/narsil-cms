@@ -1,8 +1,10 @@
-import { Trigger } from "@radix-ui/react-dialog";
+import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogTriggerProps = React.ComponentProps<typeof Trigger> & {};
+export type DialogTriggerProps = React.ComponentProps<
+  typeof DialogPrimitive.Trigger
+> & {};
 
 function DialogTrigger({ ...props }: DialogTriggerProps) {
-  return <Trigger data-slot="dialog-trigger" {...props} />;
+  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 export default DialogTrigger;

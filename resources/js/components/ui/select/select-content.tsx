@@ -1,9 +1,11 @@
 import { cn } from "@/components";
-import { Content, Portal, Viewport } from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 import SelectScrollDownButton from "./select-scroll-down-button";
 import SelectScrollUpButton from "./select-scroll-up-button";
 
-export type SelectContentProps = React.ComponentProps<typeof Content> & {};
+export type SelectContentProps = React.ComponentProps<
+  typeof SelectPrimitive.Content
+> & {};
 
 function SelectContent({
   children,
@@ -12,8 +14,8 @@ function SelectContent({
   ...props
 }: SelectContentProps) {
   return (
-    <Portal>
-      <Content
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(
           "bg-popover text-popover-foreground relative z-50 min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-md border shadow-md",
@@ -39,7 +41,7 @@ function SelectContent({
         {...props}
       >
         <SelectScrollUpButton />
-        <Viewport
+        <SelectPrimitive.Viewport
           className={cn(
             "p-1",
             position === "popper" &&
@@ -47,10 +49,10 @@ function SelectContent({
           )}
         >
           {children}
-        </Viewport>
+        </SelectPrimitive.Viewport>
         <SelectScrollDownButton />
-      </Content>
-    </Portal>
+      </SelectPrimitive.Content>
+    </SelectPrimitive.Portal>
   );
 }
 

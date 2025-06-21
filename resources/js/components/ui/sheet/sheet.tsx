@@ -1,9 +1,9 @@
-import { Root } from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetProps = React.ComponentProps<typeof Root> & {};
+export type SheetProps = React.ComponentProps<typeof SheetPrimitive.Root> & {};
 
 function Sheet({ ...props }: SheetProps) {
-  return <Root data-slot="sheet" {...props} />;
+  return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
 export default Sheet;

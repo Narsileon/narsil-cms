@@ -1,9 +1,13 @@
-import { Trigger } from "@radix-ui/react-alert-dialog";
+import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 
-export type AlertDialogTriggerProps = React.ComponentProps<typeof Trigger> & {};
+export type AlertDialogTriggerProps = React.ComponentProps<
+  typeof AlertDialogPrimitive.Trigger
+> & {};
 
 function AlertDialogTrigger({ ...props }: AlertDialogTriggerProps) {
-  return <Trigger data-slot="alert-dialog-trigger" {...props} />;
+  return (
+    <AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />
+  );
 }
 
 export default AlertDialogTrigger;

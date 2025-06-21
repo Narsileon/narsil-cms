@@ -1,11 +1,11 @@
 import { cn } from "@/components/utils";
-import { Root } from "@radix-ui/react-tabs";
+import { Tabs as TabsPrimitive } from "radix-ui";
 
-export type TabsProps = React.ComponentProps<typeof Root> & {};
+export type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root> & {};
 
 function Tabs({ className, ...props }: TabsProps) {
   return (
-    <Root
+    <TabsPrimitive.Root
       data-slot="tabs"
       className={cn("flex flex-col gap-2", className)}
       {...props}

@@ -47,7 +47,7 @@ function SidebarProvider({
   onOpenChange: setOpenProp,
   open: openProp,
   style,
-  width = "16rem",
+  width = "14rem",
   ...props
 }: SidebarProviderProps) {
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });

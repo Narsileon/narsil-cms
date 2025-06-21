@@ -1,7 +1,9 @@
 import { cn } from "@/components";
-import { Item } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuItemProps = React.ComponentProps<typeof Item> & {
+export type ContextMenuItemProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.Item
+> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };
@@ -13,7 +15,7 @@ function ContextMenuItem({
   ...props
 }: ContextMenuItemProps) {
   return (
-    <Item
+    <ContextMenuPrimitive.Item
       data-slot="context-menu-item"
       data-inset={inset}
       data-variant={variant}

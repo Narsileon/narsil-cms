@@ -1,8 +1,10 @@
-import { cn } from "@/components";
-import { SubTrigger } from "@radix-ui/react-menubar";
 import { ChevronRightIcon } from "lucide-react";
+import { cn } from "@/components";
+import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarSubTriggerProps = React.ComponentProps<typeof SubTrigger> & {
+export type MenubarSubTriggerProps = React.ComponentProps<
+  typeof MenubarPrimitive.SubTrigger
+> & {
   inset?: boolean;
 };
 
@@ -13,7 +15,7 @@ function MenubarSubTrigger({
   ...props
 }: MenubarSubTriggerProps) {
   return (
-    <SubTrigger
+    <MenubarPrimitive.SubTrigger
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
@@ -27,7 +29,7 @@ function MenubarSubTrigger({
     >
       {children}
       <ChevronRightIcon className="ml-auto size-4" />
-    </SubTrigger>
+    </MenubarPrimitive.SubTrigger>
   );
 }
 

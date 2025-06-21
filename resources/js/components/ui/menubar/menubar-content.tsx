@@ -1,8 +1,10 @@
 import { cn } from "@/components";
-import { Content } from "@radix-ui/react-menubar";
+import { Menubar as MenubarPrimitive } from "radix-ui";
 import MenubarPortal from "./menubar-portal";
 
-export type MenubarContentProps = React.ComponentProps<typeof Content> & {};
+export type MenubarContentProps = React.ComponentProps<
+  typeof MenubarPrimitive.Content
+> & {};
 
 function MenubarContent({
   className,
@@ -13,7 +15,7 @@ function MenubarContent({
 }: MenubarContentProps) {
   return (
     <MenubarPortal>
-      <Content
+      <MenubarPrimitive.Content
         data-slot="menubar-content"
         className={cn(
           "bg-popover text-popover-foreground z-50 min-w-[12rem] overflow-hidden rounded-md border p-1 shadow-md",

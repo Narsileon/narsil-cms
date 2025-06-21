@@ -1,11 +1,13 @@
+import { Avatar as AvatarPrimitive } from "radix-ui";
 import { cn } from "@/components";
-import { Fallback } from "@radix-ui/react-avatar";
 
-export type AvatarFallbackProps = React.ComponentProps<typeof Fallback> & {};
+export type AvatarFallbackProps = React.ComponentProps<
+  typeof AvatarPrimitive.Fallback
+> & {};
 
 function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
   return (
-    <Fallback
+    <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
         "bg-muted flex size-full items-center justify-center rounded-full",

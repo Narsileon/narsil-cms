@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/components";
 import { cva } from "class-variance-authority";
-import { Trigger } from "@radix-ui/react-navigation-menu";
+import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
 const navigationMenuTriggerStyle = cva(
   cn(
@@ -17,7 +17,7 @@ const navigationMenuTriggerStyle = cva(
 );
 
 export type NavigationMenuTriggerProps = React.ComponentProps<
-  typeof Trigger
+  typeof NavigationMenuPrimitive.Trigger
 > & {};
 
 function NavigationMenuTrigger({
@@ -26,7 +26,7 @@ function NavigationMenuTrigger({
   ...props
 }: NavigationMenuTriggerProps) {
   return (
-    <Trigger
+    <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
@@ -39,7 +39,7 @@ function NavigationMenuTrigger({
         )}
         aria-hidden="true"
       />
-    </Trigger>
+    </NavigationMenuPrimitive.Trigger>
   );
 }
 

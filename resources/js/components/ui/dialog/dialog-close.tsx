@@ -1,9 +1,11 @@
-import { Close } from "@radix-ui/react-dialog";
+import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogCloseProps = React.ComponentProps<typeof Close> & {};
+export type DialogCloseProps = React.ComponentProps<
+  typeof DialogPrimitive.Close
+> & {};
 
 function DialogClose({ ...props }: DialogCloseProps) {
-  return <Close data-slot="dialog-close" {...props} />;
+  return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
 export default DialogClose;

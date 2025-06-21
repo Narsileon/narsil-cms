@@ -1,8 +1,8 @@
 import { cn } from "@/components";
-import { Content } from "@radix-ui/react-navigation-menu";
+import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
 export type NavigationMenuContentProps = React.ComponentProps<
-  typeof Content
+  typeof NavigationMenuPrimitive.Content
 > & {};
 
 function NavigationMenuContent({
@@ -10,7 +10,7 @@ function NavigationMenuContent({
   ...props
 }: NavigationMenuContentProps) {
   return (
-    <Content
+    <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
       className={cn(
         "top-0 left-0 w-full p-2 pr-2.5 md:absolute md:w-auto",

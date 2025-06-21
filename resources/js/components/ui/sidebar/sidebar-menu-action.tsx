@@ -1,5 +1,5 @@
 import { cn } from "@/components/utils";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot as SlotPrimitive } from "radix-ui";
 
 export type SidebarMenuActionProps = React.ComponentProps<"button"> & {
   asChild?: boolean;
@@ -12,7 +12,7 @@ function SidebarMenuAction({
   showOnHover = false,
   ...props
 }: SidebarMenuActionProps) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
 
   return (
     <Comp

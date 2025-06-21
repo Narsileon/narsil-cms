@@ -1,9 +1,11 @@
-import { Root } from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectProps = React.ComponentProps<typeof Root> & {};
+export type SelectProps = React.ComponentProps<
+  typeof SelectPrimitive.Root
+> & {};
 
 function Select({ ...props }: SelectProps) {
-  return <Root data-slot="select" {...props} />;
+  return <SelectPrimitive.Root data-slot="select" {...props} />;
 }
 
 export default Select;

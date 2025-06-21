@@ -1,8 +1,8 @@
 import { cn } from "@/components";
-import { Separator } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
 export type ContextMenuSeparatorProps = React.ComponentProps<
-  typeof Separator
+  typeof ContextMenuPrimitive.Separator
 > & {};
 
 function ContextMenuSeparator({
@@ -10,7 +10,7 @@ function ContextMenuSeparator({
   ...props
 }: ContextMenuSeparatorProps) {
   return (
-    <Separator
+    <ContextMenuPrimitive.Separator
       data-slot="context-menu-separator"
       className={cn("bg-border -mx-1 my-1 h-px", className)}
       {...props}

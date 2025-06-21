@@ -1,7 +1,9 @@
 import { cn } from "@/components";
-import { Content, Portal } from "@radix-ui/react-hover-card";
+import { HoverCard as HoverCardPrimitive } from "radix-ui";
 
-export type HoverCardContentProps = React.ComponentProps<typeof Content> & {};
+export type HoverCardContentProps = React.ComponentProps<
+  typeof HoverCardPrimitive.Content
+> & {};
 
 function HoverCardContent({
   align = "center",
@@ -10,8 +12,8 @@ function HoverCardContent({
   ...props
 }: HoverCardContentProps) {
   return (
-    <Portal data-slot="hover-card-portal">
-      <Content
+    <HoverCardPrimitive.Portal data-slot="hover-card-portal">
+      <HoverCardPrimitive.Content
         data-slot="hover-card-content"
         className={cn(
           "bg-popover text-popover-foreground z-50 w-64 rounded-md border p-4 shadow-md outline-hidden",
@@ -29,7 +31,7 @@ function HoverCardContent({
         sideOffset={sideOffset}
         {...props}
       />
-    </Portal>
+    </HoverCardPrimitive.Portal>
   );
 }
 

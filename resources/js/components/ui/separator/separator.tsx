@@ -1,7 +1,9 @@
 import { cn } from "@/components";
-import { Root } from "@radix-ui/react-separator";
+import { Separator as SeparatorPrimitive } from "radix-ui";
 
-export type SeparatorProps = React.ComponentProps<typeof Root> & {};
+export type SeparatorProps = React.ComponentProps<
+  typeof SeparatorPrimitive.Root
+> & {};
 
 function Separator({
   className,
@@ -10,7 +12,7 @@ function Separator({
   ...props
 }: SeparatorProps) {
   return (
-    <Root
+    <SeparatorPrimitive.Root
       data-slot="separator"
       className={cn(
         "bg-border shrink-0",

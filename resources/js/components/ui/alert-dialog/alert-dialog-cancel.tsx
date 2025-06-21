@@ -1,12 +1,14 @@
+import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 import { buttonVariants } from "@/components/ui/button";
-import { Cancel } from "@radix-ui/react-alert-dialog";
 import { cn } from "@/components";
 
-export type AlertDialogCancelProps = React.ComponentProps<typeof Cancel> & {};
+export type AlertDialogCancelProps = React.ComponentProps<
+  typeof AlertDialogPrimitive.Cancel
+> & {};
 
 function AlertDialogCancel({ className, ...props }: AlertDialogCancelProps) {
   return (
-    <Cancel
+    <AlertDialogPrimitive.Cancel
       className={cn(
         buttonVariants({
           variant: "outline",

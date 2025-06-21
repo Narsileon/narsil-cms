@@ -1,20 +1,17 @@
 import { cn } from "@/components";
-import {
-  ScrollAreaScrollbar,
-  ScrollAreaThumb,
-} from "@radix-ui/react-scroll-area";
+import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
 
-export type ScrollBarProp = React.ComponentProps<
-  typeof ScrollAreaScrollbar
+export type ScrollAreaScrollbarProp = React.ComponentProps<
+  typeof ScrollAreaPrimitive.ScrollAreaScrollbar
 > & {};
 
-const ScrollBar = ({
+const ScrollAreaScrollBar = ({
   className,
   orientation = "vertical",
   ...props
-}: ScrollBarProp) => {
+}: ScrollAreaScrollbarProp) => {
   return (
-    <ScrollAreaScrollbar
+    <ScrollAreaPrimitive.ScrollAreaScrollbar
       data-slot="scroll-area-scrollbar"
       className={cn(
         "flex touch-none p-px transition-colors select-none",
@@ -27,13 +24,13 @@ const ScrollBar = ({
       orientation={orientation}
       {...props}
     >
-      <ScrollAreaThumb
+      <ScrollAreaPrimitive.ScrollAreaThumb
         data-slot="scroll-area-thumb"
         className="bg-border relative flex-1 rounded-full"
         {...props}
       />
-    </ScrollAreaScrollbar>
+    </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );
 };
 
-export default ScrollBar;
+export default ScrollAreaScrollBar;

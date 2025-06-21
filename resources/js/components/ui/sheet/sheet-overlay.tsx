@@ -1,11 +1,13 @@
 import { cn } from "@/components";
-import { Overlay } from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetOverlayProps = React.ComponentProps<typeof Overlay> & {};
+export type SheetOverlayProps = React.ComponentProps<
+  typeof SheetPrimitive.Overlay
+> & {};
 
 function SheetOverlay({ className, ...props }: SheetOverlayProps) {
   return (
-    <Overlay
+    <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
         "fixed inset-0 z-50 bg-black/50",

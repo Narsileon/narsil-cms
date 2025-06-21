@@ -1,11 +1,13 @@
 import { cn } from "@/components";
-import { Content } from "@radix-ui/react-tabs";
+import { Tabs as TabsPrimitive } from "radix-ui";
 
-export type TabsContentProps = React.ComponentProps<typeof Content> & {};
+export type TabsContentProps = React.ComponentProps<
+  typeof TabsPrimitive.Content
+> & {};
 
 function TabsContent({ className, ...props }: TabsContentProps) {
   return (
-    <Content
+    <TabsPrimitive.Content
       data-slot="tabs-content"
       className={cn("flex-1 outline-none", className)}
       {...props}

@@ -1,9 +1,9 @@
 import { ChevronUpIcon } from "lucide-react";
 import { cn } from "@/components";
-import { ScrollUpButton } from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 
 export type SelectScrollUpButtonProps = React.ComponentProps<
-  typeof ScrollUpButton
+  typeof SelectPrimitive.ScrollUpButton
 > & {};
 
 function SelectScrollUpButton({
@@ -11,7 +11,7 @@ function SelectScrollUpButton({
   ...props
 }: SelectScrollUpButtonProps) {
   return (
-    <ScrollUpButton
+    <SelectPrimitive.ScrollUpButton
       data-slot="select-scroll-up-button"
       className={cn(
         "flex cursor-default items-center justify-center py-1",
@@ -20,7 +20,7 @@ function SelectScrollUpButton({
       {...props}
     >
       <ChevronUpIcon className="size-4" />
-    </ScrollUpButton>
+    </SelectPrimitive.ScrollUpButton>
   );
 }
 

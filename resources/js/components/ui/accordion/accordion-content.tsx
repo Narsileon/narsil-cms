@@ -1,7 +1,9 @@
+import { Accordion as AccordionPrimitive } from "radix-ui";
 import { cn } from "@/components";
-import { Content } from "@radix-ui/react-accordion";
 
-export type AccordionContentProps = React.ComponentProps<typeof Content> & {};
+export type AccordionContentProps = React.ComponentProps<
+  typeof AccordionPrimitive.Content
+> & {};
 
 function AccordionContent({
   className,
@@ -9,7 +11,7 @@ function AccordionContent({
   ...props
 }: AccordionContentProps) {
   return (
-    <Content
+    <AccordionPrimitive.Content
       data-slot="accordion-content"
       className={cn(
         "overflow-hidden text-sm transition-all",
@@ -19,7 +21,7 @@ function AccordionContent({
       {...props}
     >
       <div className={cn("pt-0 pb-4", className)}>{children}</div>
-    </Content>
+    </AccordionPrimitive.Content>
   );
 }
 

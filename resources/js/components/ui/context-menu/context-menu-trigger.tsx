@@ -1,9 +1,13 @@
-import { Trigger } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuTriggerProps = React.ComponentProps<typeof Trigger> & {};
+export type ContextMenuTriggerProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.Trigger
+> & {};
 
 function ContextMenuTrigger({ ...props }: ContextMenuTriggerProps) {
-  return <Trigger data-slot="context-menu-trigger" {...props} />;
+  return (
+    <ContextMenuPrimitive.Trigger data-slot="context-menu-trigger" {...props} />
+  );
 }
 
 export default ContextMenuTrigger;

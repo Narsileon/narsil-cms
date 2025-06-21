@@ -1,8 +1,10 @@
 import { cn } from "@/components";
-import { Root } from "@radix-ui/react-navigation-menu";
+import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 import NavigationMenuViewport from "./navigation-menu-viewport";
 
-export type NavigationMenuProps = React.ComponentProps<typeof Root> & {
+export type NavigationMenuProps = React.ComponentProps<
+  typeof NavigationMenuPrimitive.Root
+> & {
   viewport?: boolean;
 };
 
@@ -13,7 +15,7 @@ function NavigationMenu({
   ...props
 }: NavigationMenuProps) {
   return (
-    <Root
+    <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
       data-viewport={viewport}
       className={cn(
@@ -24,7 +26,7 @@ function NavigationMenu({
     >
       {children}
       {viewport && <NavigationMenuViewport />}
-    </Root>
+    </NavigationMenuPrimitive.Root>
   );
 }
 

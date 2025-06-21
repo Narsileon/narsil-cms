@@ -1,6 +1,6 @@
 import { cn } from "@/components/utils";
 import { cva, VariantProps } from "class-variance-authority";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot as SlotPrimitive } from "radix-ui";
 import { useSidebar } from "./sidebar-provider";
 import {
   Tooltip,
@@ -61,7 +61,7 @@ function SidebarMenuButton({
   className,
   ...props
 }: SidebarMenuButtonProps) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
 
   const { isMobile, state } = useSidebar();
 

@@ -1,9 +1,9 @@
-import { cn } from "@/components";
-import { CheckboxItem, ItemIndicator } from "@radix-ui/react-dropdown-menu";
 import { CheckIcon } from "lucide-react";
+import { cn } from "@/components";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 export type DropdownMenuCheckboxItemProps = React.ComponentProps<
-  typeof CheckboxItem
+  typeof DropdownMenuPrimitive.CheckboxItem
 > & {};
 
 function DropdownMenuCheckboxItem({
@@ -13,7 +13,7 @@ function DropdownMenuCheckboxItem({
   ...props
 }: DropdownMenuCheckboxItemProps) {
   return (
-    <CheckboxItem
+    <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(
         "relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
@@ -26,12 +26,12 @@ function DropdownMenuCheckboxItem({
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ItemIndicator>
+        <DropdownMenuPrimitive.ItemIndicator>
           <CheckIcon className="size-4" />
-        </ItemIndicator>
+        </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
-    </CheckboxItem>
+    </DropdownMenuPrimitive.CheckboxItem>
   );
 }
 

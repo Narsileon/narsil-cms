@@ -1,9 +1,11 @@
-import { Group } from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectGroupProps = React.ComponentProps<typeof Group> & {};
+export type SelectGroupProps = React.ComponentProps<
+  typeof SelectPrimitive.Group
+> & {};
 
 function SelectGroup({ ...props }: SelectGroupProps) {
-  return <Group data-slot="select-group" {...props} />;
+  return <SelectPrimitive.Group data-slot="select-group" {...props} />;
 }
 
 export default SelectGroup;

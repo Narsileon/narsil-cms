@@ -1,9 +1,11 @@
-import { Root } from "@radix-ui/react-alert-dialog";
+import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 
-export type AlertDialogProps = React.ComponentProps<typeof Root> & {};
+export type AlertDialogProps = React.ComponentProps<
+  typeof AlertDialogPrimitive.Root
+> & {};
 
 function AlertDialog({ ...props }: AlertDialogProps) {
-  return <Root data-slot="alert-dialog" {...props} />;
+  return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
 }
 
 export default AlertDialog;

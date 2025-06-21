@@ -1,9 +1,11 @@
-import { Value } from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectValueProps = React.ComponentProps<typeof Value> & {};
+export type SelectValueProps = React.ComponentProps<
+  typeof SelectPrimitive.Value
+> & {};
 
 function SelectValue({ ...props }: SelectValueProps) {
-  return <Value data-slot="select-value" {...props} />;
+  return <SelectPrimitive.Value data-slot="select-value" {...props} />;
 }
 
 export default SelectValue;

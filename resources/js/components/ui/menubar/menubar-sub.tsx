@@ -1,9 +1,11 @@
-import { Sub } from "@radix-ui/react-menubar";
+import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarSubProps = React.ComponentProps<typeof Sub> & {};
+export type MenubarSubProps = React.ComponentProps<
+  typeof MenubarPrimitive.Sub
+> & {};
 
 function MenubarSub({ ...props }: MenubarSubProps) {
-  return <Sub data-slot="menubar-sub" {...props} />;
+  return <MenubarPrimitive.Sub data-slot="menubar-sub" {...props} />;
 }
 
 export default MenubarSub;

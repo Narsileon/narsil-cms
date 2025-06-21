@@ -2,8 +2,6 @@
 
 #region USE
 
-use App\Models\Cache;
-use App\Models\CacheLock;
 use App\Models\Sites\Site;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -22,7 +20,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(Cache::TABLE))
+        if (!Schema::hasTable(Site::TABLE))
         {
             $this->createSitesTable();
         }
@@ -64,23 +62,6 @@ return new class extends Migration
                 ->boolean(Site::PRIMARY);
             $table
                 ->timestamps();
-        });
-    }
-
-    /**
-     * @return void
-     */
-    private function createCacheLocksTable(): void
-    {
-        Schema::create(CacheLock::TABLE, function (Blueprint $table)
-        {
-            $table
-                ->string(CacheLock::KEY)
-                ->primary();
-            $table
-                ->string(CacheLock::OWNER);
-            $table
-                ->integer(CacheLock::EXPIRATION);
         });
     }
 

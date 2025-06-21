@@ -1,8 +1,8 @@
 import { cn } from "@/components";
-import { Separator } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 export type DropdownMenuSeparatorProps = React.ComponentProps<
-  typeof Separator
+  typeof DropdownMenuPrimitive.Separator
 > & {};
 
 function DropdownMenuSeparator({
@@ -10,7 +10,7 @@ function DropdownMenuSeparator({
   ...props
 }: DropdownMenuSeparatorProps) {
   return (
-    <Separator
+    <DropdownMenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
       className={cn("bg-border -mx-1 my-1 h-px", className)}
       {...props}

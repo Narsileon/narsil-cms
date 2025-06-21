@@ -1,9 +1,9 @@
 import { cn } from "@/components";
-import { SubTrigger } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 import { ChevronRightIcon } from "lucide-react";
 
 export type ContextMenuSubTriggerProps = React.ComponentProps<
-  typeof SubTrigger
+  typeof ContextMenuPrimitive.SubTrigger
 > & {
   inset?: boolean;
 };
@@ -15,7 +15,7 @@ function ContextMenuSubTrigger({
   ...props
 }: ContextMenuSubTriggerProps) {
   return (
-    <SubTrigger
+    <ContextMenuPrimitive.SubTrigger
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
@@ -30,7 +30,7 @@ function ContextMenuSubTrigger({
     >
       {children}
       <ChevronRightIcon className="ml-auto" />
-    </SubTrigger>
+    </ContextMenuPrimitive.SubTrigger>
   );
 }
 

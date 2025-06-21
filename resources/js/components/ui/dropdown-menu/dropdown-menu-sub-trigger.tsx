@@ -1,9 +1,9 @@
-import { cn } from "@/components";
-import { SubTrigger } from "@radix-ui/react-dropdown-menu";
 import { ChevronRightIcon } from "lucide-react";
+import { cn } from "@/components";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 export type DropdownMenuSubTriggerProps = React.ComponentProps<
-  typeof SubTrigger
+  typeof DropdownMenuPrimitive.SubTrigger
 > & {
   inset?: boolean;
 };
@@ -15,7 +15,7 @@ function DropdownMenuSubTrigger({
   ...props
 }: DropdownMenuSubTriggerProps) {
   return (
-    <SubTrigger
+    <DropdownMenuPrimitive.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
@@ -29,7 +29,7 @@ function DropdownMenuSubTrigger({
     >
       {children}
       <ChevronRightIcon className="ml-auto size-4" />
-    </SubTrigger>
+    </DropdownMenuPrimitive.SubTrigger>
   );
 }
 

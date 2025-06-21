@@ -1,8 +1,10 @@
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/components";
-import { Icon, Trigger } from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectTriggerProps = React.ComponentProps<typeof Trigger> & {
+export type SelectTriggerProps = React.ComponentProps<
+  typeof SelectPrimitive.Trigger
+> & {
   size?: "sm" | "default";
 };
 
@@ -13,7 +15,7 @@ function SelectTrigger({
   ...props
 }: SelectTriggerProps) {
   return (
-    <Trigger
+    <SelectPrimitive.Trigger
       data-slot="select-trigger"
       data-size={size}
       className={cn(
@@ -33,10 +35,10 @@ function SelectTrigger({
       {...props}
     >
       {children}
-      <Icon asChild>
+      <SelectPrimitive.Icon asChild>
         <ChevronDownIcon className="size-4 opacity-50" />
-      </Icon>
-    </Trigger>
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
   );
 }
 

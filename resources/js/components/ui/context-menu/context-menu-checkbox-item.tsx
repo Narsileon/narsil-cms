@@ -1,9 +1,9 @@
 import { cn } from "@/components";
-import { CheckboxItem, ItemIndicator } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 import { CheckIcon } from "lucide-react";
 
 export type ContextMenuCheckboxItemProps = React.ComponentProps<
-  typeof CheckboxItem
+  typeof ContextMenuPrimitive.CheckboxItem
 > & {};
 
 function ContextMenuCheckboxItem({
@@ -13,7 +13,7 @@ function ContextMenuCheckboxItem({
   ...props
 }: ContextMenuCheckboxItemProps) {
   return (
-    <CheckboxItem
+    <ContextMenuPrimitive.CheckboxItem
       data-slot="context-menu-checkbox-item"
       className={cn(
         "relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
@@ -26,12 +26,12 @@ function ContextMenuCheckboxItem({
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ItemIndicator>
+        <ContextMenuPrimitive.ItemIndicator>
           <CheckIcon className="size-4" />
-        </ItemIndicator>
+        </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}
-    </CheckboxItem>
+    </ContextMenuPrimitive.CheckboxItem>
   );
 }
 

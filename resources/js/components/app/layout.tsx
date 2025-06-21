@@ -1,4 +1,5 @@
 import { AppSidebar } from "@/components/app/sidebar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import {
   Breadcrumb,
@@ -8,6 +9,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarInset,
   SidebarProvider,
@@ -23,10 +29,10 @@ function Layout({ children }: LayoutProps) {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="bg-background sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b px-4">
-          <SidebarTrigger className="-ml-1" />
+        <header className="bg-background sticky top-0 flex h-12 shrink-0 items-center gap-2 border-b pr-4 pl-3">
+          <SidebarTrigger className="" />
           <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb>
+          <Breadcrumb className="grow">
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
                 <BreadcrumbLink href="#">
@@ -39,16 +45,16 @@ function Layout({ children }: LayoutProps) {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild={true}>
+              <Avatar>
+                <AvatarFallback>FL</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">User Menu</DropdownMenuContent>
+          </DropdownMenu>
         </header>
-        {children}
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          {Array.from({ length: 24 }).map((_, index) => (
-            <div
-              key={index}
-              className="bg-muted/50 aspect-video h-12 w-full rounded-lg"
-            />
-          ))}
-        </div>
+        <div className="p-5">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

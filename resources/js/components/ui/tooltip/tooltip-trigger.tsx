@@ -1,9 +1,11 @@
-import { Trigger } from "@radix-ui/react-tooltip";
+import { Tooltip as TooltipPrimitive } from "radix-ui";
 
-export type TooltipTriggerProps = React.ComponentProps<typeof Trigger> & {};
+export type TooltipTriggerProps = React.ComponentProps<
+  typeof TooltipPrimitive.Trigger
+> & {};
 
 function TooltipTrigger({ ...props }: TooltipTriggerProps) {
-  return <Trigger data-slot="tooltip-trigger" {...props} />;
+  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
 export default TooltipTrigger;

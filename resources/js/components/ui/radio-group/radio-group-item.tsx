@@ -1,12 +1,14 @@
 import { CircleIcon } from "lucide-react";
 import { cn } from "@/components";
-import { Indicator, Item } from "@radix-ui/react-radio-group";
+import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
-export type RadioGroupItemProps = React.ComponentProps<typeof Item> & {};
+export type RadioGroupItemProps = React.ComponentProps<
+  typeof RadioGroupPrimitive.Item
+> & {};
 
 function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
   return (
-    <Item
+    <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
       className={cn(
         "border-input text-primary aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none",
@@ -18,13 +20,13 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
       )}
       {...props}
     >
-      <Indicator
+      <RadioGroupPrimitive.Indicator
         data-slot="radio-group-indicator"
         className="relative flex items-center justify-center"
       >
         <CircleIcon className="fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
-      </Indicator>
-    </Item>
+      </RadioGroupPrimitive.Indicator>
+    </RadioGroupPrimitive.Item>
   );
 }
 

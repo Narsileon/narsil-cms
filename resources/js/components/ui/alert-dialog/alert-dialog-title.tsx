@@ -1,11 +1,13 @@
+import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 import { cn } from "@/components";
-import { Title } from "@radix-ui/react-alert-dialog";
 
-export type AlertDialogTitleProps = React.ComponentProps<typeof Title> & {};
+export type AlertDialogTitleProps = React.ComponentProps<
+  typeof AlertDialogPrimitive.Title
+> & {};
 
 function AlertDialogTitle({ className, ...props }: AlertDialogTitleProps) {
   return (
-    <Title
+    <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
       className={cn("text-lg font-semibold", className)}
       {...props}

@@ -1,11 +1,13 @@
 import { cn } from "@/components";
-import { Separator } from "@radix-ui/react-menubar";
+import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarSeparatorProps = React.ComponentProps<typeof Separator> & {};
+export type MenubarSeparatorProps = React.ComponentProps<
+  typeof MenubarPrimitive.Separator
+> & {};
 
 function MenubarSeparator({ className, ...props }: MenubarSeparatorProps) {
   return (
-    <Separator
+    <MenubarPrimitive.Separator
       data-slot="menubar-separator"
       className={cn("bg-border -mx-1 my-1 h-px", className)}
       {...props}

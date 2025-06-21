@@ -1,12 +1,14 @@
 import { cn } from "@/components";
-import { Content, Portal } from "@radix-ui/react-context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuContentProps = React.ComponentProps<typeof Content> & {};
+export type ContextMenuContentProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.Content
+> & {};
 
 function ContextMenuContent({ className, ...props }: ContextMenuContentProps) {
   return (
-    <Portal>
-      <Content
+    <ContextMenuPrimitive.Portal>
+      <ContextMenuPrimitive.Content
         data-slot="context-menu-content"
         className={cn(
           "bg-popover text-popover-foreground z-50 min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md",
@@ -23,7 +25,7 @@ function ContextMenuContent({ className, ...props }: ContextMenuContentProps) {
         )}
         {...props}
       />
-    </Portal>
+    </ContextMenuPrimitive.Portal>
   );
 }
 

@@ -1,9 +1,11 @@
-import { Trigger } from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetTriggerProps = React.ComponentProps<typeof Trigger> & {};
+export type SheetTriggerProps = React.ComponentProps<
+  typeof SheetPrimitive.Trigger
+> & {};
 
 function SheetTrigger({ ...props }: SheetTriggerProps) {
-  return <Trigger data-slot="sheet-trigger" {...props} />;
+  return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
 export default SheetTrigger;

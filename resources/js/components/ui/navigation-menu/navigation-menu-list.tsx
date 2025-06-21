@@ -1,11 +1,13 @@
 import { cn } from "@/components";
-import { List } from "@radix-ui/react-navigation-menu";
+import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
-export type NavigationMenuListProps = React.ComponentProps<typeof List> & {};
+export type NavigationMenuListProps = React.ComponentProps<
+  typeof NavigationMenuPrimitive.List
+> & {};
 
 function NavigationMenuList({ className, ...props }: NavigationMenuListProps) {
   return (
-    <List
+    <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
       className={cn(
         "group flex flex-1 list-none items-center justify-center gap-1",

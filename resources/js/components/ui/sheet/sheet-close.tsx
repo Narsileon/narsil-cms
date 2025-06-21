@@ -1,9 +1,11 @@
-import { Close } from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetCloseProps = React.ComponentProps<typeof Close> & {};
+export type SheetCloseProps = React.ComponentProps<
+  typeof SheetPrimitive.Close
+> & {};
 
 function SheetClose({ ...props }: SheetCloseProps) {
-  return <Close data-slot="sheet-close" {...props} />;
+  return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
 export default SheetClose;
