@@ -22,7 +22,9 @@ function FormLabel({
       data-slot="form-label"
       data-error={!!error}
       className={cn(
-        "flex items-center gap-x-1",
+        "flex items-center text-sm leading-none font-medium select-none",
+        "group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50",
+        "peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
         "data-[error=true]:text-destructive",
         className,
       )}

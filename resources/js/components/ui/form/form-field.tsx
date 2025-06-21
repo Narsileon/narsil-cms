@@ -9,18 +9,26 @@ const FormFieldContext = createContext<FormFieldState>({
 });
 
 export type FormFieldProps = {
-  children: React.ReactNode;
   name: string;
+  render: (field: {
+    id: string;
+    value: any;
+    onChange: (value: any) => void;
+  }) => React.ReactNode;
 };
 
-const FormField = ({ children, name }: FormFieldProps) => {
-  const { errors } = useForm();
+const FormField = ({ name, render }: FormFieldProps) => {
+  const { data, errors, setData } = useForm();
 
   const error = errors?.[name];
 
   return (
     <FormFieldContext.Provider value={{ error: error, name: name }}>
-      {children}
+      {render({
+        id: name,
+        value: data?.[name],
+        onChange: (value) => setData?.(name, value),
+      })}
     </FormFieldContext.Provider>
   );
 };

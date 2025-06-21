@@ -17,12 +17,18 @@ const FormProviderContext = createContext<ThemeProviderState>({
 });
 
 export type FormProps = React.ComponentProps<"form"> & {
-  attributes: Record<string, any>;
+  attributes?: Record<string, any>;
   children: React.ReactNode;
   url: string;
 };
 
-function Form({ children, attributes, method, url, ...props }: FormProps) {
+function Form({
+  children,
+  attributes = {},
+  method = "post",
+  url,
+  ...props
+}: FormProps) {
   const {
     data,
     errors,
@@ -75,7 +81,6 @@ function Form({ children, attributes, method, url, ...props }: FormProps) {
         setDefaults: setDefaults,
         setError: setError,
         submit: submit,
-
         transform: transform,
       }}
     >

@@ -9,16 +9,27 @@ const FormItemContext = createContext<FormItemContextValue>(
   {} as FormItemContextValue,
 );
 
-export type FormItemProps = React.ComponentProps<"div"> & {};
+export type FormItemProps = React.ComponentProps<"div"> & {
+  orientation?: "horizontal" | "vertical";
+};
 
-function FormItem({ className, ...props }: FormItemProps) {
+function FormItem({
+  className,
+  orientation = "vertical",
+  ...props
+}: FormItemProps) {
   const id = useId();
 
   return (
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("grid gap-2", className)}
+        data-orientation={orientation}
+        className={cn(
+          "flex gap-2",
+          "data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col",
+          className,
+        )}
         {...props}
       />
     </FormItemContext.Provider>
