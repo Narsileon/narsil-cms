@@ -35,28 +35,28 @@ class Site extends Model implements IEnable
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "handle" column.
      */
     public const HANDLE = 'handle';
     /**
-     * @var string
+     * @var string The name of the "id" column.
      */
     public const ID = 'id';
     /**
-     * @var string
+     * @var string The name of the "language" column.
      */
     public const LANGUAGE = 'language';
     /**
-     * @var string
+     * @var string The name of the "name" column.
      */
     public const NAME = 'name';
     /**
-     * @var string
+     * @var string The name of the "primary" column.
      */
     public const PRIMARY = 'primary';
 
     /**
-     * @var string
+     * @var string The name of the "sites" table.
      */
     public const TABLE = 'sites';
 

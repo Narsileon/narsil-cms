@@ -1,14 +1,11 @@
 export type GlobalProps = {
   breadcrumbs: BreadcrumbType;
   shared: {
-    localization: {
-      locale: string;
-      locales: string[];
-      translations: Record<string, string>;
-    };
+    locale: string;
     redirect: {
       success: string;
       error: string;
     };
+    translations: Record<string, string>;
   };
 };

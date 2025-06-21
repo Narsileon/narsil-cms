@@ -34,44 +34,44 @@ class JobBatch extends Model
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "cancelled at" column.
      */
     public const CANCELLED_AT = 'cancelled_at';
     /**
-     * @var string
+     * @var string The name of the "failed job ids" column.
      */
     public const FAILED_JOB_IDS = 'failed_job_ids';
     /**
-     * @var string
+     * @var string The name of the "failed jobs" column.
      */
     public const FAILED_JOBS = 'failed_jobs';
     /**
-     * @var string
+     * @var string The name of the "finished at" column.
      */
     public const FINISHED_AT = 'finished_at';
     /**
-     * @var string
+     * @var string The name of the "id" column.
      */
     public const ID = 'id';
     /**
-     * @var string
+     * @var string The name of the "name" column.
      */
     public const NAME = 'name';
     /**
-     * @var string
+     * @var string The name of the "options" column.
      */
     public const OPTIONS = 'options';
     /**
-     * @var string
+     * @var string The name of the "pending jobs" column.
      */
     public const PENDING_JOBS = 'pending_jobs';
     /**
-     * @var string
+     * @var string The name of the "total jobs" column.
      */
     public const TOTAL_JOBS = 'total_jobs';
 
     /**
-     * @var string
+     * @var string The name of the "job batches" table.
      */
     public const TABLE = 'job_batches';
 

@@ -27,8 +27,8 @@ export const useTranslationsStore = create<TranslationStoreState>(
       }),
     trans: (key, options = {}) => {
       const { replacements = {} } = options;
-
-      let text = get().translations[key] ?? key.split(".").pop() ?? key;
+      console.log(get().translations);
+      let text = get().translations?.[key] ?? key.split(".").pop() ?? key;
 
       Object.entries(replacements).map(([replacementKey, replacementValue]) => {
         if (text.includes(replacementKey)) {

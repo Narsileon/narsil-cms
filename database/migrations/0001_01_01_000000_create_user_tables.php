@@ -113,9 +113,11 @@ return new class extends Migration
                 ->boolean(User::ENABLED)
                 ->default(true);
             $table
-                ->string(User::LAST_NAME);
+                ->string(User::LAST_NAME)
+                ->nullable();
             $table
-                ->string(User::FIRST_NAME);
+                ->string(User::FIRST_NAME)
+                ->nullable();
             $table
                 ->string(User::EMAIL)
                 ->unique();
@@ -124,6 +126,15 @@ return new class extends Migration
                 ->nullable();
             $table
                 ->string(User::PASSWORD);
+            $table
+                ->text(User::TWO_FACTOR_SECRET)
+                ->nullable();
+            $table
+                ->text(User::TWO_FACTOR_RECOVERY_CODES)
+                ->nullable();
+            $table
+                ->timestamp(User::TWO_FACTOR_CONFIRMED_AT)
+                ->nullable();
             $table
                 ->rememberToken();
             $table

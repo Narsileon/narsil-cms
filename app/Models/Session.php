@@ -36,37 +36,37 @@ class Session extends Model
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "id" column.
      */
     public const ID = 'id';
     /**
-     * @var string
+     * @var string The name of the "ip address" column.
      */
     public const IP_ADDRESS = 'ip_address';
     /**
-     * @var string
+     * @var string The name of the "last activity" column.
      */
     public const LAST_ACTIVITY = 'last_activity';
     /**
-     * @var string
+     * @var string The name of the "payload" column.
      */
     public const PAYLOAD = 'payload';
     /**
-     * @var string
+     * @var string The name of the "user agent" column.
      */
     public const USER_AGENT = 'user_agent';
     /**
-     * @var string
+     * @var string The name of the "user id" column.
      */
     public const USER_ID = 'user_id';
 
     /**
-     * @var string
+     * @var string The name of the "user" relation.
      */
     public const RELATION_USER = 'user';
 
     /**
-     * @var string
+     * @var string The name of the "sessions" table.
      */
     public const TABLE = 'sessions';
 

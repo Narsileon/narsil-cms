@@ -30,15 +30,15 @@ export function AppSidebar({ ...props }: SidebarProps) {
         <Link href="/">NARSIL</Link>
       </SidebarHeader>
       <SidebarContent className="gap-0">
-        {data.navMain.map((item) => (
-          <SidebarMenu>
+        <SidebarMenu>
+          {data.navMain.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <Link href={item.url}>{item.title}</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          </SidebarMenu>
-        ))}
+          ))}
+        </SidebarMenu>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

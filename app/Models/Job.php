@@ -34,32 +34,32 @@ class Job extends Model
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "attempts" column.
      */
     public const ATTEMPTS = 'attempts';
     /**
-     * @var string
+     * @var string The name of the "available at" column.
      */
     public const AVAILABLE_AT = 'available_at';
     /**
-     * @var string
+     * @var string The name of the "id" column.
      */
     public const ID = 'id';
     /**
-     * @var string
+     * @var string The name of the "payload" column.
      */
     public const PAYLOAD = 'payload';
     /**
-     * @var string
+     * @var string The name of the "queue" column.
      */
     public const QUEUE = 'queue';
     /**
-     * @var string
+     * @var string The name of the "reserved at" column.
      */
     public const RESERVED_AT = 'reserved_at';
 
     /**
-     * @var string
+     * @var string The name of the "jobs" table.
      */
     public const TABLE = 'jobs';
 

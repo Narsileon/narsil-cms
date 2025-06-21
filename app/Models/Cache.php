@@ -34,20 +34,20 @@ class Cache extends Model
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "expiration" column.
      */
     public const EXPIRATION = 'expiration';
     /**
-     * @var string
+     * @var string The name of the "key" column.
      */
     public const KEY = 'key';
     /**
-     * @var string
+     * @var string The name of the "value" column.
      */
     public const VALUE = 'value';
 
     /**
-     * @var string
+     * @var string The name of the "cache" table.
      */
     public const TABLE = 'cache';
 

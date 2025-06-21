@@ -34,20 +34,20 @@ class CacheLock extends Model
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "expiration" column.
      */
     public const EXPIRATION = 'expiration';
     /**
-     * @var string
+     * @var string The name of the "key" column.
      */
     public const KEY = 'key';
     /**
-     * @var string
+     * @var string The name of the "owner" column.
      */
     public const OWNER = 'owner';
 
     /**
-     * @var string
+     * @var string The name of the "cache locks" table.
      */
     public const TABLE = 'cache_locks';
 

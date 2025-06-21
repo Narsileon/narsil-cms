@@ -35,15 +35,12 @@ function Layout({ children }: LayoutProps) {
 
   const shared = usePage<GlobalProps>().props.shared;
 
-  const { error, success } = shared?.redirect ?? {};
-  const { locale, translations } = shared?.localization ?? {};
+  const { locale, redirect, translations } = shared ?? {};
+  const { error, success } = redirect ?? {};
 
   useEffect(() => {
-    if (translations) {
-      translationStore.setTranslations(translations);
-    }
-
     translationStore.setLocale(locale);
+    translationStore.setTranslations(translations);
   }, [locale, translations]);
 
   useEffect(() => {

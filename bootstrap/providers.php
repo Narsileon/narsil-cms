@@ -1,11 +1,6 @@
 <?php
 
-#region USE
-
-use App\Providers\AppServiceProvider;
-
-#endregion
-
 return [
-    AppServiceProvider::class,
+    App\Providers\AppServiceProvider::class,
+    App\Providers\FortifyServiceProvider::class,
 ];

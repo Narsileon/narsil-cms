@@ -8,7 +8,7 @@ const index = () => {
 
   return (
     <div className="flex flex-col">
-      <Card>
+      <Card className="rounded-b-none">
         <CardHeader>
           <CardTitle>System</CardTitle>
         </CardHeader>
@@ -18,7 +18,7 @@ const index = () => {
           </Button>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="rounded-t-none">
         <CardHeader>
           <CardTitle>Content</CardTitle>
           <CardContent></CardContent>

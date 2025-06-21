@@ -34,36 +34,36 @@ class FailedJob extends Model
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "connection" column.
      */
     public const CONNECTION = 'connection';
     /**
-     * @var string
+     * @var string The name of the "exception" column.
      */
     public const EXCEPTION = 'exception';
     /**
-     * @var string
+     * @var string The name of the "failed at" column.
      */
     public const FAILED_AT = 'failed_at';
     /**
-     * @var string
+     * @var string The name of the "id" column.
      */
     public const ID = 'id';
     /**
-     * @var string
+     * @var string The name of the "payload" column.
      */
     public const PAYLOAD = 'payload';
     /**
-     * @var string
+     * @var string The name of the "queue" column.
      */
     public const QUEUE = 'queue';
     /**
-     * @var string
+     * @var string The name of the "uuid" column.
      */
     public const UUID = 'uuid';
 
     /**
-     * @var string
+     * @var string The name of the "failed jobs" table.
      */
     public const TABLE = 'failed_jobs';
 

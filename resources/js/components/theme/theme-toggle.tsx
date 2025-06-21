@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
+import { useTranslationsStore } from "@/stores/translations-store";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +12,7 @@ import {
 
 function ThemeToggle() {
   const { setTheme } = useTheme();
+  const { trans } = useTranslationsStore();
 
   return (
     <DropdownMenu>
@@ -33,13 +35,13 @@ function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+          {trans("ui.light")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
+          {trans("ui.dark")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
+          {trans("ui.system")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

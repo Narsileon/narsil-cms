@@ -1,6 +1,6 @@
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
-import Layout from "./components/app/layout";
+import Layout from "./layouts/layout";
 import React from "react";
 import ThemeProvider from "./components/theme/theme-provider";
 

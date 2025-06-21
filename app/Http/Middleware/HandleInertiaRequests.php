@@ -4,7 +4,9 @@ namespace App\Http\Middleware;
 
 #region USE
 
+use App\Services\TranslationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Inertia\Middleware;
 
 #endregion
@@ -16,6 +18,19 @@ use Inertia\Middleware;
  */
 class HandleInertiaRequests extends Middleware
 {
+    #region CONSTANTS
+
+    /**
+     * @var string The name of the "shared" prop.
+     */
+    private const SHARED = "shared";
+    /**
+     * @var string The name of the "translations" prop.
+     */
+    private const TRANSLATIONS = "translations";
+
+    #endregion
+
     #region PROPERTIES
 
     /**
@@ -52,7 +67,10 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            //
+
+            self::SHARED => [
+                self::TRANSLATIONS => TranslationService::getTranslations(App::getLocale())
+            ],
         ];
     }
 
