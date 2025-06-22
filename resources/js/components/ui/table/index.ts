@@ -1,3 +1,5 @@
+// https://ui.shadcn.com/docs/components/table
+
 import Table from "./table";
 import TableBody from "./table-body";
 import TableCaption from "./table-caption";

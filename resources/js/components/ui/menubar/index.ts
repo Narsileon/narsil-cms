@@ -1,3 +1,5 @@
+// https://ui.shadcn.com/docs/components/menubar
+
 import Menubar from "./menubar";
 import MenubarCheckboxItem from "./menubar-checkbox-item";
 import MenubarContent from "./menubar-content";

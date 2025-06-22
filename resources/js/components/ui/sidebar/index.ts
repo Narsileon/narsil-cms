@@ -1,3 +1,5 @@
+// https://ui.shadcn.com/docs/components/sidebar
+
 import { useSidebar } from "./sidebar-provider";
 import Sidebar from "./sidebar";
 import SidebarContent from "./sidebar-content";

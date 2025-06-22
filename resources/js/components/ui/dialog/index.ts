@@ -1,3 +1,5 @@
+// https://ui.shadcn.com/docs/components/dialog
+
 import Dialog from "./dialog";
 import DialogClose from "./dialog-close";
 import DialogCloseButton from "./dialog-close-button";

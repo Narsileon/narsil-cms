@@ -1,3 +1,5 @@
+// https://ui.shadcn.com/docs/components/pagination
+
 import Pagination from "./pagination";
 import PaginationContent from "./pagination-content";
 import PaginationEllipsis from "./pagination-ellipsis";
