@@ -1,11 +1,11 @@
 import { AppSidebar } from "@/components/app/sidebar";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Link, usePage } from "@inertiajs/react";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
 import ThemeToggle from "@/components/theme/theme-toggle";
+import UserMenu from "@/components/app/user-menu";
 import type { GlobalProps } from "@/types/global";
 import {
   Breadcrumb,
@@ -15,11 +15,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   SidebarInset,
   SidebarProvider,
@@ -72,14 +67,7 @@ function Layout({ children }: LayoutProps) {
             </BreadcrumbList>
           </Breadcrumb>
           <ThemeToggle />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild={true}>
-              <Avatar>
-                <AvatarFallback>FL</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">User Menu</DropdownMenuContent>
-          </DropdownMenu>
+          <UserMenu />
         </header>
         <div className="p-5">{children}</div>
       </SidebarInset>

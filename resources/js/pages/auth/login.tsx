@@ -28,7 +28,7 @@ const Index = ({ status }: LoginProps) => {
             name="email"
             render={(field) => (
               <FormItem>
-                <FormLabel required={true}>Email</FormLabel>
+                <FormLabel required={true} />
                 <Input
                   autoComplete="email"
                   type="email"
@@ -43,19 +43,18 @@ const Index = ({ status }: LoginProps) => {
             name="password"
             render={(field) => (
               <FormItem>
-                <FormLabel required={true}>Password</FormLabel>
+                <div className="flex items-center justify-between">
+                  <FormLabel required={true} />
+                  <Link className="text-xs" href={route("password.request")}>
+                    Mot de passe oublié?
+                  </Link>
+                </div>
                 <Input
                   autoComplete="new-password"
                   type="password"
                   value={field.value}
                   onChange={(e) => field.onChange(e.target.value)}
                 />
-
-                <FormDescription>
-                  <Link className="text-xs" href={route("password.request")}>
-                    Mot de passe oublié?
-                  </Link>
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -63,13 +62,12 @@ const Index = ({ status }: LoginProps) => {
           <FormField
             name="remember"
             render={(field) => (
-              <FormItem orientation="horizontal">
+              <FormItem className="flex-row">
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={(checked) => field.onChange(checked)}
                 />
                 <FormDescription>Remember</FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />

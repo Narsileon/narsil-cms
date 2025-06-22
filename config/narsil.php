@@ -4,5 +4,6 @@ return [
     'translations' => [
         'models',
         'ui',
+        'validation',
     ],
 ];

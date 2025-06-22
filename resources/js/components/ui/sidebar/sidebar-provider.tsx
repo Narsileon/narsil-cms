@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useMediaQuery } from "react-responsive";
+import { useMaxLg } from "@/hooks/use-breakpoints";
 import {
   createContext,
   useCallback,
@@ -50,7 +50,7 @@ function SidebarProvider({
   width = "14rem",
   ...props
 }: SidebarProviderProps) {
-  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+  const isMobile = useMaxLg();
 
   const [_open, _setOpen] = useState(defaultOpen);
   const [openMobile, setOpenMobile] = useState(false);
