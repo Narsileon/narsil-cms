@@ -2,6 +2,7 @@
 
 return [
     'locales' => [
+        'de',
         'en',
     ],
     'translations' => [

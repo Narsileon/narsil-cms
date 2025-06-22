@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { get, isString } from "lodash";
+import { get, isString, lowerCase } from "lodash";
 import { SelectOption } from "@/types/global";
 import { useState } from "react";
 import {
@@ -61,6 +61,25 @@ const Combobox = ({
     return optionValue === value;
   });
 
+  function filter(value: string, search: string) {
+    const option = options?.find((option) => {
+      return (
+        getSelectOptionValue(option, valueKey) === value ||
+        getSelectOptionLabel(option, labelKey) === value
+      );
+    });
+
+    if (option) {
+      const optionLabel = getSelectOptionLabel(option, labelKey);
+
+      if (lowerCase(optionLabel).includes(lowerCase(search))) {
+        return 1;
+      }
+    }
+
+    return 0;
+  }
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -77,7 +96,7 @@ const Combobox = ({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
-        <Command>
+        <Command filter={filter}>
           <CommandInput placeholder="Search framework..." />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>

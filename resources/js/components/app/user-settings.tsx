@@ -1,10 +1,12 @@
+import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { SettingsIcon, UserIcon } from "lucide-react";
 import { TabsList, Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { useMinMd } from "@/hooks/use-breakpoints";
 import { useRoute } from "ziggy-js";
-import { useTheme } from "@/components/theme/theme-provider";
+import { useTheme } from "@/components/app/theme-provider";
 import { useTranslationsStore } from "@/stores/translations-store";
 import {
   Dialog,
@@ -44,6 +46,11 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
   const { locale, locales, trans } = useTranslationsStore();
 
   const minMd = useMinMd();
+
+  const languageOptions = locales.map((code) => ({
+    value: code,
+    label: trans(`locales.${code}`),
+  }));
 
   return (
     <>
@@ -112,7 +119,7 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
                           <FormLabel />
                           <Combobox
                             value={locale}
-                            options={locales}
+                            options={languageOptions}
                             setValue={() => {}}
                           />
                           <FormMessage />
@@ -136,7 +143,24 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
                 <SectionHeader>
                   <SectionTitle level="h2">{trans("ui.security")}</SectionTitle>
                 </SectionHeader>
-                <SectionContent>Content</SectionContent>
+                <SectionContent className="grid gap-2">
+                  <div className="flex items-center justify-between">
+                    <Label>{trans("Log out of this device.")}</Label>
+                    <Button variant="outline">{trans("ui.log_out")}</Button>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                    <Label>{trans("Log out of others devices.")}</Label>
+                    <Button variant="outline">
+                      {trans("ui.log_out_others")}
+                    </Button>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                    <Label>{trans("Log out of all devices.")}</Label>
+                    <Button variant="outline">{trans("ui.log_out_all")}</Button>
+                  </div>
+                </SectionContent>
               </Section>
             </TabsContent>
           </Tabs>

@@ -4,7 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
-import ThemeToggle from "@/components/theme/theme-toggle";
 import UserMenu from "@/components/app/user-menu";
 import type { GlobalProps } from "@/types/global";
 import {
