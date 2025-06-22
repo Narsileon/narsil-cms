@@ -10,3 +10,9 @@ export type GlobalProps = {
     translations: Record<string, string>;
   };
 };
+
+export type SelectOption = {
+  label: string;
+  options?: SelectOption[];
+  [key: string]: any;
+};
