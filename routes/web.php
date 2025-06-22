@@ -3,8 +3,10 @@
 #region USE
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Sessions\SessionDeleteController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Sites\SiteController;
+use App\Http\Controllers\Users\UserConfigurationUpdateController;
 use Illuminate\Support\Facades\Route;
 
 #endregion
@@ -18,3 +20,9 @@ Route::resource('/sites', SiteController::class)
     ->except([
         'show'
     ]);
+
+Route::delete('/sessions', SessionDeleteController::class)
+    ->name('sessions.delete');
+
+Route::patch('/user-configuration', UserConfigurationUpdateController::class)
+    ->name('user-configuration.update');

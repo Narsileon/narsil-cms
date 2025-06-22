@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Users;
 
 #region USE
 
-use App\Http\Requests\Users\UserConfigurationRequest;
+use App\Http\Requests\Users\UserConfigurationUpdateRequest;
 use App\Models\User;
 use App\Models\Users\UserConfiguration;
 use Illuminate\Http\RedirectResponse;
@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Auth;
  *
  * @author Jonathan Rigaux
  */
-class UserConfigurationController
+class UserConfigurationUpdateController
 {
     #region PUBLIC METHODS
 
     /**
      * @return RedirectResponse
      */
-    public function __invoke(UserConfigurationRequest $request): RedirectResponse
+    public function __invoke(UserConfigurationUpdateRequest $request): RedirectResponse
     {
         $attributes = $request->validated();
 

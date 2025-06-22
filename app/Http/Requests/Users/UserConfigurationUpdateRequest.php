@@ -9,7 +9,7 @@ use App\Models\Users\UserConfiguration;
 
 #endregion
 
-final class UserConfigurationRequest extends AbstractFormRequest
+class UserConfigurationUpdateRequest extends AbstractFormRequest
 {
     #region PUBLIC METHODS
 

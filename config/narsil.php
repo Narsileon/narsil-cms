@@ -6,7 +6,6 @@ return [
     ],
     'translations' => [
         'locales',
-        'models',
         'ui',
         'validation',
     ],
