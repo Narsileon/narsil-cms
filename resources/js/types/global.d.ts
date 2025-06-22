@@ -2,6 +2,7 @@ export type GlobalProps = {
   breadcrumbs: BreadcrumbType;
   shared: {
     locale: string;
+    locales: string[];
     redirect: {
       success: string;
       error: string;

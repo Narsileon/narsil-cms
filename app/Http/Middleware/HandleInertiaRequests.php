@@ -7,6 +7,7 @@ namespace App\Http\Middleware;
 use App\Services\TranslationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Inertia\Middleware;
 
 #endregion
@@ -18,19 +19,6 @@ use Inertia\Middleware;
  */
 class HandleInertiaRequests extends Middleware
 {
-    #region CONSTANTS
-
-    /**
-     * @var string The name of the "shared" prop.
-     */
-    private const SHARED = "shared";
-    /**
-     * @var string The name of the "translations" prop.
-     */
-    private const TRANSLATIONS = "translations";
-
-    #endregion
-
     #region PROPERTIES
 
     /**
@@ -65,11 +53,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $locale = App::getLocale();
+
         return [
             ...parent::share($request),
 
-            self::SHARED => [
-                self::TRANSLATIONS => TranslationService::getTranslations(App::getLocale())
+            'shared' => [
+                'locale'       => $locale,
+                'locales'      => Config::get('narsil.locales'),
+                'translations' => TranslationService::getTranslations($locale),
             ],
         ];
     }

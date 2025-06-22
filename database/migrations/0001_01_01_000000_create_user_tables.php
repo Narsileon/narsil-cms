@@ -5,6 +5,7 @@
 use App\Models\PasswordResetToken;
 use App\Models\Session;
 use App\Models\User;
+use App\Models\Users\UserConfiguration;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -36,6 +37,11 @@ return new class extends Migration
         {
             $this->createSessionsTable();
         }
+
+        if (!Schema::hasTable(UserConfiguration::TABLE))
+        {
+            $this->createUserConfigurationsTable();
+        }
     }
 
     /**
@@ -45,6 +51,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(UserConfiguration::TABLE);
         Schema::dropIfExists(Session::TABLE);
         Schema::dropIfExists(PasswordResetToken::TABLE);
         Schema::dropIfExists(User::TABLE);
@@ -85,7 +92,8 @@ return new class extends Migration
             $table
                 ->foreignId(Session::USER_ID)
                 ->nullable()
-                ->index();
+                ->constrained(User::TABLE, User::ID)
+                ->cascadeOnDelete();
             $table
                 ->string(Session::IP_ADDRESS, 45)
                 ->nullable();
@@ -97,6 +105,29 @@ return new class extends Migration
             $table
                 ->integer(Session::LAST_ACTIVITY)
                 ->index();
+        });
+    }
+
+    /**
+     * @return void
+     */
+    private function createUserConfigurationsTable(): void
+    {
+        Schema::create(UserConfiguration::TABLE, function (Blueprint $table)
+        {
+            $table
+                ->foreignId(UserConfiguration::USER_ID)
+                ->primary()
+                ->constrained(User::TABLE, User::ID)
+                ->cascadeOnDelete();
+            $table
+                ->string(UserConfiguration::LANGUAGE)
+                ->default('en');
+            $table
+                ->string(UserConfiguration::THEME)
+                ->default('system');
+            $table
+                ->json(UserConfiguration::PREFERENCES);
         });
     }
 

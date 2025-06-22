@@ -23,17 +23,17 @@ const Index = ({ status }: LoginProps) => {
   return (
     <Card className="max-w-[20rem]">
       <CardContent>
-        <Form className="grid gap-4" method="post" url={route("login")}>
+        <Form method="post" url={route("login")}>
           <FormField
             name="email"
-            render={(field) => (
+            render={({ onChange, ...field }) => (
               <FormItem>
                 <FormLabel required={true} />
                 <Input
                   autoComplete="email"
                   type="email"
-                  value={field.value}
-                  onChange={(e) => field.onChange(e.target.value)}
+                  onChange={(e) => onChange(e.target.value)}
+                  {...field}
                 />
                 <FormMessage />
               </FormItem>
@@ -41,7 +41,7 @@ const Index = ({ status }: LoginProps) => {
           />
           <FormField
             name="password"
-            render={(field) => (
+            render={({ onChange, ...field }) => (
               <FormItem>
                 <div className="flex items-center justify-between">
                   <FormLabel required={true} />
@@ -52,8 +52,8 @@ const Index = ({ status }: LoginProps) => {
                 <Input
                   autoComplete="new-password"
                   type="password"
-                  value={field.value}
-                  onChange={(e) => field.onChange(e.target.value)}
+                  onChange={(e) => onChange(e.target.value)}
+                  {...field}
                 />
                 <FormMessage />
               </FormItem>
@@ -61,11 +61,12 @@ const Index = ({ status }: LoginProps) => {
           />
           <FormField
             name="remember"
-            render={(field) => (
+            render={({ value, onChange, ...field }) => (
               <FormItem className="flex-row">
                 <Checkbox
-                  checked={field.value}
-                  onCheckedChange={(checked) => field.onChange(checked)}
+                  checked={value}
+                  onCheckedChange={(checked) => onChange(checked)}
+                  {...field}
                 />
                 <FormDescription>Remember</FormDescription>
               </FormItem>

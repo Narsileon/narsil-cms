@@ -15,30 +15,45 @@ const Index = () => {
     <Form method="post" url={route("register.store")}>
       <FormField
         name="email"
-        render={(field) => (
+        render={({ onChange, ...field }) => (
           <FormItem>
             <FormLabel required={true}>Email</FormLabel>
-            <Input autoComplete="email" type="email" {...field} />
+            <Input
+              autoComplete="email"
+              type="email"
+              onChange={(e) => onChange(e.target.value)}
+              {...field}
+            />
             <FormMessage />
           </FormItem>
         )}
       />
       <FormField
         name="password"
-        render={(field) => (
+        render={({ onChange, ...field }) => (
           <FormItem>
             <FormLabel required={true}>Password</FormLabel>
-            <Input autoComplete="new-password" type="password" {...field} />
+            <Input
+              autoComplete="new-password"
+              type="password"
+              onChange={(e) => onChange(e.target.value)}
+              {...field}
+            />
             <FormMessage />
           </FormItem>
         )}
       />
       <FormField
         name="password_confirmation"
-        render={(field) => (
+        render={({ onChange, ...field }) => (
           <FormItem>
             <FormLabel required={true}>Password Confirmation</FormLabel>
-            <Input autoComplete="new-password" type="password" {...field} />
+            <Input
+              autoComplete="new-password"
+              type="password"
+              onChange={(e) => onChange(e.target.value)}
+              {...field}
+            />
             <FormMessage />
           </FormItem>
         )}

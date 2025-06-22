@@ -6,7 +6,9 @@ namespace App\Models;
 
 use App\Interfaces\IEnable;
 use App\Models\Session;
+use App\Models\Users\UserConfiguration;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 #endregion
@@ -110,6 +112,10 @@ class User extends Authenticatable implements IEnable
     public const ATTRIBUTE_PASSWORD_CONFIRMATION = 'password_confirmation';
 
     /**
+     * @var string The name of the "configuration" relation.
+     */
+    public const RELATION_CONFIGURATION = 'configuration';
+    /**
      * @var string The name of the "sessions" relation.
      */
     public const RELATION_SESSIONS = 'sessions';
@@ -122,6 +128,18 @@ class User extends Authenticatable implements IEnable
     #endregion
 
     #region RELATIONSHIPS
+
+    /**
+     * @return HasOne
+     */
+    public function configuration(): HasOne
+    {
+        return $this->hasOne(
+            UserConfiguration::class,
+            UserConfiguration::USER_ID,
+            self::ID
+        );
+    }
 
     /**
      * @return HasMany
