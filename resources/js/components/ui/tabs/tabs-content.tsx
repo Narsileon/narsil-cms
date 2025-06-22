@@ -11,7 +11,7 @@ function TabsContent({ className, ...props }: TabsContentProps) {
       data-slot="tabs-content"
       className={cn(
         "flex-1 outline-none",
-        "data-[orientation=vertical]:px-2",
+        "data-[orientation=vertical]:px-4",
         className,
       )}
       {...props}

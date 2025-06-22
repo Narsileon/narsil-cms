@@ -5,8 +5,8 @@ export type CardContentProps = React.ComponentProps<"div"> & {};
 function CardContent({ className, ...props }: CardContentProps) {
   return (
     <div
-      data-slot="card-description"
-      className={cn("px-6", className)}
+      data-slot="card-content"
+      className={cn("px-4", className)}
       {...props}
     />
   );

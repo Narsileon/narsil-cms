@@ -6,7 +6,7 @@ const Section = ({ className, ...props }: SectionProps) => {
   return (
     <section
       data-slot="section"
-      className={cn("flex flex-col gap-6 py-6", className)}
+      className={cn("flex flex-col gap-4 py-4", className)}
       {...props}
     />
   );

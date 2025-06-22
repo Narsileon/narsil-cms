@@ -1,10 +1,11 @@
 import { cn } from "@/lib/utils";
+import { Heading, HeadingProps } from "@/components/ui/heading";
 
-export type SectionTitleProps = React.ComponentProps<"div"> & {};
+export type SectionTitleProps = HeadingProps & {};
 
 function SectionTitle({ className, ...props }: SectionTitleProps) {
   return (
-    <div
+    <Heading
       data-slot="section-title"
       className={cn("leading-none font-semibold", className)}
       {...props}

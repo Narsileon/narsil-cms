@@ -8,6 +8,12 @@ import {
   DialogContent,
   DialogProps,
 } from "@/components/ui/dialog";
+import {
+  Section,
+  SectionContent,
+  SectionHeader,
+  SectionTitle,
+} from "../ui/section";
 
 type UserSettingsProps = {
   open: DialogProps["open"];
@@ -32,7 +38,14 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
               <TabsTrigger value="account">Account</TabsTrigger>
             </TabsList>
             <Separator orientation={minMd ? "vertical" : "horizontal"} />
-            <TabsContent value="general">General</TabsContent>
+            <TabsContent value="general">
+              <Section>
+                <SectionHeader>
+                  <SectionTitle level="h2">General</SectionTitle>
+                </SectionHeader>
+                <SectionContent>Content</SectionContent>
+              </Section>
+            </TabsContent>
             <TabsContent value="account">Account</TabsContent>
           </Tabs>
         </DialogContent>
