@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Combobox } from "@/components/ui/combobox";
 import { Separator } from "@/components/ui/separator";
 import { SettingsIcon, UserIcon } from "lucide-react";
 import { TabsList, Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
@@ -110,20 +110,11 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
                       render={() => (
                         <FormItem className="flex-row justify-between">
                           <FormLabel />
-                          <Select value={locale}>
-                            <SelectTrigger className="w-[180px]">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {locales.map((locale) => {
-                                return (
-                                  <SelectItem value={locale}>
-                                    {trans(`locales.${locale}`)}
-                                  </SelectItem>
-                                );
-                              })}
-                            </SelectContent>
-                          </Select>
+                          <Combobox
+                            value={locale}
+                            options={locales}
+                            setValue={() => {}}
+                          />
                           <FormMessage />
                         </FormItem>
                       )}

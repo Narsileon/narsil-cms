@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { get, isString } from "lodash";
 import { SelectOption } from "@/types/global";
 import { useState } from "react";
 import {
@@ -19,11 +20,29 @@ import {
 
 export type ComboboxProps = {
   labelKey?: string;
-  options: SelectOption[];
+  options: SelectOption[] | string[];
   value: string | number;
   valueKey?: string;
   setValue: (value: number | string) => void;
 };
+
+function getSelectOptionLabel(
+  option: SelectOption | string,
+  labelKey: string,
+): string {
+  const label = isString(option) ? option : get(option, labelKey);
+
+  return label;
+}
+
+function getSelectOptionValue(
+  option: SelectOption | string,
+  valueKey: string,
+): any {
+  const value = isString(option) ? option : get(option, valueKey);
+
+  return value;
+}
 
 const Combobox = ({
   labelKey = "label",
@@ -34,17 +53,23 @@ const Combobox = ({
 }: ComboboxProps) => {
   const [open, setOpen] = useState(false);
 
+  const option = options.find((option) => {
+    const optionValue = getSelectOptionValue(option, valueKey);
+
+    return optionValue === value;
+  });
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          className="w-[200px] justify-between"
+          className="w-[180px] justify-between"
           aria-expanded={open}
           role="combobox"
           variant="outline"
         >
-          {value
-            ? options.find((option) => option[valueKey] === value)?.[labelKey]
+          {option
+            ? getSelectOptionLabel(option, labelKey)
             : "Select framework..."}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -55,24 +80,29 @@ const Combobox = ({
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {options.map((option) => (
-                <CommandItem
-                  value={option[valueKey]}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    setOpen(false);
-                  }}
-                  key={option[valueKey]}
-                >
-                  <CheckIcon
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value === option[valueKey] ? "opacity-100" : "opacity-0",
-                    )}
-                  />
-                  {option[labelKey]}
-                </CommandItem>
-              ))}
+              {options.map((option) => {
+                const optionLabel = getSelectOptionLabel(option, labelKey);
+                const optionValue = getSelectOptionValue(option, valueKey);
+
+                return (
+                  <CommandItem
+                    value={optionValue}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      setOpen(false);
+                    }}
+                    key={optionValue}
+                  >
+                    <CheckIcon
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === optionValue ? "opacity-100" : "opacity-0",
+                      )}
+                    />
+                    {optionLabel}
+                  </CommandItem>
+                );
+              })}
             </CommandGroup>
           </CommandList>
         </Command>

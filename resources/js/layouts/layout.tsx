@@ -67,7 +67,6 @@ function Layout({ children }: LayoutProps) {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <ThemeToggle />
           <UserMenu />
         </header>
         <div className="p-5">{children}</div>
