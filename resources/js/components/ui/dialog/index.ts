@@ -1,5 +1,6 @@
 import Dialog from "./dialog";
 import DialogClose from "./dialog-close";
+import DialogCloseButton from "./dialog-close-button";
 import DialogContent from "./dialog-content";
 import DialogDescription from "./dialog-description";
 import DialogFooter from "./dialog-footer";
@@ -9,6 +10,7 @@ import DialogPortal from "./dialog-portal";
 import DialogTitle from "./dialog-title";
 import DialogTrigger from "./dialog-trigger";
 import type { DialogCloseProps } from "./dialog-close";
+import type { DialogCloseButtonProps } from "./dialog-close-button";
 import type { DialogContentProps } from "./dialog-content";
 import type { DialogDescriptionProps } from "./dialog-description";
 import type { DialogFooterProps } from "./dialog-footer";
@@ -22,6 +24,7 @@ import type { DialogTriggerProps } from "./dialog-trigger";
 export {
   Dialog,
   DialogClose,
+  DialogCloseButton,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -34,6 +37,7 @@ export {
 
 export type {
   DialogCloseProps,
+  DialogCloseButtonProps,
   DialogContentProps,
   DialogDescriptionProps,
   DialogFooterProps,

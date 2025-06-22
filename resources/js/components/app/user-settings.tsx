@@ -1,8 +1,13 @@
-import { Dialog, DialogContent, DialogProps } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { TabsList, Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { useMinMd } from "@/hooks/use-breakpoints";
 import { useRoute } from "ziggy-js";
+import {
+  Dialog,
+  DialogCloseButton,
+  DialogContent,
+  DialogProps,
+} from "@/components/ui/dialog";
 
 type UserSettingsProps = {
   open: DialogProps["open"];
@@ -16,12 +21,13 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent>
+        <DialogContent className="md:p-0" showCloseButton={false}>
           <Tabs
             defaultValue="general"
             orientation={minMd ? "vertical" : "horizontal"}
           >
             <TabsList className="md:border-r">
+              {minMd ? <DialogCloseButton /> : null}
               <TabsTrigger value="general">General</TabsTrigger>
               <TabsTrigger value="account">Account</TabsTrigger>
             </TabsList>
