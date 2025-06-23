@@ -18,8 +18,6 @@ use Laravel\Fortify\Contracts\UpdatesUserPasswords;
  */
 class UpdateUserPassword implements UpdatesUserPasswords
 {
-    use PasswordValidationRules;
-
     #region CONSTANTS
 
     /**

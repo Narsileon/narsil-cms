@@ -28,6 +28,9 @@ class Session extends Model
     {
         $this->table = self::TABLE;
 
+        $this->keyType = 'string';
+        $this->incrementing = false;
+
         parent::__construct($attributes);
     }
 

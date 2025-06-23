@@ -21,7 +21,7 @@ const Index = ({ status }: LoginProps) => {
   const route = useRoute();
 
   return (
-    <Card className="max-w-[20rem]">
+    <Card className="absolute top-1/2 left-1/2 w-[20rem] -translate-x-1/2 -translate-y-1/2 transform">
       <CardContent>
         <Form method="post" url={route("login")}>
           <FormField

@@ -41,7 +41,7 @@ class SessionDeleteController
 
         return match ($type)
         {
-            SessionEnum::ALL->value     => $this->deleteAllSessions($user),
+            SessionEnum::ALL->value     => $this->deleteAllSessions($request, $user),
             SessionEnum::CURRENT->value => $this->deleteCurrentSession($request),
             SessionEnum::OTHERS->value  => $this->deleteOtherSessions($request, $user),
         };
@@ -52,15 +52,24 @@ class SessionDeleteController
     #region PRIVATE METHODS
 
     /**
+     * @param Request $request
      * @param User $user
      *
      * @return RedirectResponse
      */
-    private function deleteAllSessions(User $user): RedirectResponse
+    private function deleteAllSessions(Request $request, User $user): RedirectResponse
     {
-        $sessions = $user->{User::RELATION_SESSIONS};
+        $currentSessionId = $request->session()->getId();
+
+        $sessions = $user->{User::RELATION_SESSIONS}
+            ->where(Session::ID, '!=', $currentSessionId);
 
         $sessions->each->delete();
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect()
             ->route('login')
@@ -85,7 +94,7 @@ class SessionDeleteController
     }
 
     /**
-
+     * @param Request $request
      * @param User $user
      *
      * @return RedirectResponse

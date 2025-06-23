@@ -1,24 +1,10 @@
-import { AppSidebar } from "@/components/app/sidebar";
-import { Link, usePage } from "@inertiajs/react";
-import { Separator } from "@/components/ui/separator";
+import { usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
-import UserMenu from "@/components/app/user-menu";
 import type { GlobalProps } from "@/types/global";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import AuthLayout from "./auth-layout";
+import GuestLayout from "./guest-layout";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -27,10 +13,10 @@ type LayoutProps = {
 function Layout({ children }: LayoutProps) {
   const translationStore = useTranslationsStore();
 
-  const shared = usePage<GlobalProps>().props.shared;
+  const { auth, redirect, shared } = usePage<GlobalProps>().props;
 
-  const { locale, locales, redirect, translations } = shared ?? {};
   const { error, success } = redirect ?? {};
+  const { locale, locales, translations } = shared ?? {};
 
   useEffect(() => {
     translationStore.setLocale(locale);
@@ -46,31 +32,10 @@ function Layout({ children }: LayoutProps) {
     }
   }, [success, error]);
 
-  return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="bg-background sticky top-0 flex h-12 shrink-0 items-center gap-2 border-b pr-4 pl-3">
-          <SidebarTrigger />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb className="grow">
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink asChild>
-                  <Link href="#">Building Your Application</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-          <UserMenu />
-        </header>
-        <div className="p-5">{children}</div>
-      </SidebarInset>
-    </SidebarProvider>
+  return auth ? (
+    <AuthLayout>{children}</AuthLayout>
+  ) : (
+    <GuestLayout>{children}</GuestLayout>
   );
 }
 

@@ -1,0 +1,56 @@
+import { Link } from "@inertiajs/react";
+import { Separator } from "@/components/ui/separator";
+import { Toaster } from "@/components/ui/toaster";
+import AppSidebar from "@/components/app/app-sidebar";
+import UserMenu from "@/components/app/user/menu/user-menu";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+
+type AuthLayoutProps = {
+  children: React.ReactNode;
+};
+
+function AuthLayout({ children }: AuthLayoutProps) {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="bg-background sticky top-0 flex h-12 shrink-0 items-center gap-2 border-b pr-4 pl-3">
+          <SidebarTrigger />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Breadcrumb className="grow">
+            <BreadcrumbList>
+              <BreadcrumbItem className="hidden md:block">
+                <BreadcrumbLink asChild>
+                  <Link href="#">Building Your Application</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <UserMenu />
+        </header>
+        <div className="p-5">
+          {children}
+          <Toaster />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+
+export default AuthLayout;

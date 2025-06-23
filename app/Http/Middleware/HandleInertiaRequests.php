@@ -4,10 +4,13 @@ namespace App\Http\Middleware;
 
 #region USE
 
+use App\Models\User;
 use App\Services\TranslationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
 
 #endregion
@@ -58,11 +61,47 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
 
+            'auth' => $this->getAuth(),
+            'redirect' => $this->getRedirect(),
             'shared' => [
                 'locale'       => $locale,
                 'locales'      => Config::get('narsil.locales'),
                 'translations' => TranslationService::getTranslations($locale),
             ],
+        ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array|null
+     */
+    protected function getAuth(): array | null
+    {
+        $user = Auth::user();
+
+        if (!$user)
+        {
+            return null;
+        }
+
+        return [
+            User::EMAIL => $user->{User::EMAIL},
+            User::FIRST_NAME => $user->{User::FIRST_NAME},
+            User::LAST_NAME => $user->{User::LAST_NAME},
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getRedirect(): array
+    {
+        return [
+            'error' => Session::get('error'),
+            'success' => Session::get('success')
         ];
     }
 

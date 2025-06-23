@@ -11,18 +11,26 @@ use Illuminate\Support\Facades\Route;
 
 #endregion
 
-Route::get('/', HomeController::class)
-    ->name('home');
-Route::get('/settings', SettingsController::class)
-    ->name('settings');
+Route::middleware([
+    'web',
+    'auth',
+])->group(
+    function ()
+    {
+        Route::get('/', HomeController::class)
+            ->name('home');
+        Route::get('/settings', SettingsController::class)
+            ->name('settings');
 
-Route::resource('/sites', SiteController::class)
-    ->except([
-        'show'
-    ]);
+        Route::resource('/sites', SiteController::class)
+            ->except([
+                'show'
+            ]);
 
-Route::delete('/sessions', SessionDeleteController::class)
-    ->name('sessions.delete');
+        Route::delete('/sessions', SessionDeleteController::class)
+            ->name('sessions.delete');
 
-Route::patch('/user-configuration', UserConfigurationUpdateController::class)
-    ->name('user-configuration.update');
+        Route::patch('/user-configuration', UserConfigurationUpdateController::class)
+            ->name('user-configuration.update');
+    }
+);

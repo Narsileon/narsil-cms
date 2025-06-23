@@ -28,8 +28,8 @@ class UserConfiguration extends Model
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = 'user_id';
         $this->incrementing = false;
+        $this->primaryKey = 'user_id';
 
         parent::__construct($attributes);
     }

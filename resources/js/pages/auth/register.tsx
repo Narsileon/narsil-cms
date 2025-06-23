@@ -7,6 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const route = useRoute();
@@ -58,6 +59,7 @@ const Index = () => {
           </FormItem>
         )}
       />
+      <Button type="submit">Submit</Button>
     </Form>
   );
 };

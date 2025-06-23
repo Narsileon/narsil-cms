@@ -19,8 +19,6 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
  */
 class CreateNewUser implements CreatesNewUsers
 {
-    use PasswordValidationRules;
-
     #region PUBLIC METHODS
 
     /**

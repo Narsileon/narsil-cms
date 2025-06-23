@@ -1,9 +1,10 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { CogIcon, LogOutIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
 import { useRoute } from "ziggy-js";
 import { useState } from "react";
-import UserSettings from "./user-settings";
+import { useTranslationsStore } from "@/stores/translations-store";
+import UserAvatar from "../avatar/user-avatar";
+import UserSettings from "../settings/user-settings";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,32 +13,30 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-type UserMenuProps = {};
-
-function UserMenu({}: UserMenuProps) {
+function UserMenu() {
   const route = useRoute();
+
+  const { trans } = useTranslationsStore();
 
   const [openSettings, setOpenSettings] = useState(false);
 
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild={true}>
-          <Avatar>
-            <AvatarFallback>FL</AvatarFallback>
-          </Avatar>
+        <DropdownMenuTrigger>
+          <UserAvatar />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuItem onClick={() => setOpenSettings(true)}>
             <CogIcon />
-            Settings
+            {trans("ui.settings")}
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild={true}>
             <Link as="button" href={route("logout")} method="post">
               <LogOutIcon />
-              Sign Out
+              {trans("ui.log_out")}
             </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>

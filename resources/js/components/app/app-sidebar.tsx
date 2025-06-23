@@ -10,8 +10,9 @@ import {
   SidebarProps,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import AppLogo from "./app-logo";
 
-export function AppSidebar({ ...props }: SidebarProps) {
+function AppSidebar({ ...props }: SidebarProps) {
   const route = useRoute();
 
   const data = {
@@ -26,8 +27,8 @@ export function AppSidebar({ ...props }: SidebarProps) {
 
   return (
     <Sidebar {...props}>
-      <SidebarHeader className="h-12 border-b text-xl font-bold">
-        <Link href="/">NARSIL</Link>
+      <SidebarHeader className="h-12 border-b">
+        <AppLogo />
       </SidebarHeader>
       <SidebarContent className="gap-0">
         <SidebarMenu>
@@ -44,3 +45,5 @@ export function AppSidebar({ ...props }: SidebarProps) {
     </Sidebar>
   );
 }
+
+export default AppSidebar;
