@@ -6,7 +6,6 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 
 #endregion
@@ -38,7 +37,7 @@ class TranslationService
 
             $phpTranslations = [];
 
-            $files = Config::get("narsil.translations", []);
+            $files = Config::get("narsil-cms.translations", []);
 
             foreach ($files as $file)
             {

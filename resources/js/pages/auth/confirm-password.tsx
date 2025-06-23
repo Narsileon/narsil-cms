@@ -12,44 +12,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const Register = () => {
+const ConfirmPassword = () => {
   const route = useRoute();
   const { trans } = useTranslationsStore();
 
   return (
     <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
       <Heading className="text-center" level="h1" variant="h4">
-        {trans("ui.register")}
+        {trans("passwords.confirming")}
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
           <Form
             className="grid gap-6"
             method="post"
-            url={route("register.store")}
+            url={route("password.confirm")}
           >
-            <FormField
-              name="email"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel required={true} />
-                  <Input
-                    autoComplete="email"
-                    type="email"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               name="password"
               render={({ onChange, ...field }) => (
                 <FormItem>
                   <FormLabel required={true} />
                   <Input
-                    autoComplete="new-password"
+                    autoComplete="current-password"
                     type="password"
                     onChange={(e) => onChange(e.target.value)}
                     {...field}
@@ -58,22 +43,7 @@ const Register = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              name="password_confirmation"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel required={true} />
-                  <Input
-                    autoComplete="new-password"
-                    type="password"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit">{trans("ui.register")}</Button>
+            <Button type="submit">{trans("ui.confirm")}</Button>
           </Form>
         </CardContent>
       </Card>
@@ -81,4 +51,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ConfirmPassword;

@@ -6,7 +6,9 @@ return [
         'en',
     ],
     'translations' => [
+        'auth',
         'locales',
+        'passwords',
         'ui',
         'validation',
     ],

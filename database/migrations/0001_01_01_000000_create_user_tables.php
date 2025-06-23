@@ -142,7 +142,7 @@ return new class extends Migration
                 ->id(User::ID);
             $table
                 ->boolean(User::ENABLED)
-                ->default(true);
+                ->default(false);
             $table
                 ->string(User::LAST_NAME)
                 ->nullable();

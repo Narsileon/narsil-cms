@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Fortify;
+namespace App\Http\Controllers\Auth;
 
 #region USE
 
@@ -14,7 +14,7 @@ use Inertia\Response;
  *
  * @author Jonathan Rigaux
  */
-class LoginController
+class ResetPasswordController
 {
     #region PUBLIC METHODS
 
@@ -23,11 +23,11 @@ class LoginController
      */
     public function __invoke(): Response
     {
-        $status = session('status');
+        $token = request()->route('token');
 
-        return Inertia::render('auth/login', compact(
-            'status',
-        ));
+        return Inertia::render('auth/reset-password', [
+            'token' => $token,
+        ]);
     }
 
     #endregion

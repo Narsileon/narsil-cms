@@ -8,8 +8,12 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-use App\Http\Controllers\Fortify\LoginController;
-use App\Http\Controllers\Fortify\RegisterController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -83,8 +87,12 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function bootViews(): void
     {
+        Fortify::confirmPasswordView(new ConfirmPasswordController());
         Fortify::loginView(new LoginController());
         Fortify::registerView(new RegisterController());
+        Fortify::requestPasswordResetLinkView(new ForgotPasswordController());
+        Fortify::resetPasswordView(new ResetPasswordController());
+        Fortify::verifyEmailView(new VerifyEmailController());
     }
 
     #endregion

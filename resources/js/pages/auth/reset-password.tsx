@@ -12,37 +12,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const Register = () => {
+type ResetPasswordProps = {
+  token: string;
+};
+
+const ResetPassword = ({ token }: ResetPasswordProps) => {
   const route = useRoute();
   const { trans } = useTranslationsStore();
 
   return (
     <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
       <Heading className="text-center" level="h1" variant="h4">
-        {trans("ui.register")}
+        {trans("passwords.resetting")}
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
           <Form
             className="grid gap-6"
             method="post"
-            url={route("register.store")}
+            url={route("password.update")}
+            attributes={{ token: token }}
           >
-            <FormField
-              name="email"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel required={true} />
-                  <Input
-                    autoComplete="email"
-                    type="email"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               name="password"
               render={({ onChange, ...field }) => (
@@ -73,7 +63,7 @@ const Register = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">{trans("ui.register")}</Button>
+            <Button type="submit">{trans("ui.reset")}</Button>
           </Form>
         </CardContent>
       </Card>
@@ -81,4 +71,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ResetPassword;

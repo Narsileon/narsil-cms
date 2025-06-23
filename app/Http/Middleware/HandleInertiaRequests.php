@@ -65,7 +65,7 @@ class HandleInertiaRequests extends Middleware
             'redirect' => $this->getRedirect(),
             'shared' => [
                 'locale'       => $locale,
-                'locales'      => Config::get('narsil.locales'),
+                'locales'      => Config::get('narsil-cms.locales'),
                 'translations' => TranslationService::getTranslations($locale),
             ],
         ];

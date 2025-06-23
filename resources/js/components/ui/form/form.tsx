@@ -25,7 +25,6 @@ export type FormProps = React.ComponentProps<"form"> & {
 
 function Form({
   children,
-  className,
   attributes = {},
   method = "post",
   url,
@@ -86,12 +85,7 @@ function Form({
         transform: transform,
       }}
     >
-      <form
-        className={cn("grid gap-4", className)}
-        method={method}
-        onSubmit={onSubmit}
-        {...props}
-      >
+      <form method={method} onSubmit={onSubmit} {...props}>
         {children}
       </form>
     </FormProviderContext.Provider>

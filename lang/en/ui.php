@@ -2,6 +2,8 @@
 
 return [
     'account'         => 'Account',
+    'back'            => 'Back',
+    'confirm'         => 'Confirm',
     'dark'            => 'Dark',
     'light'           => 'Light',
     'log_in'          => 'Log in',
@@ -10,7 +12,11 @@ return [
     'log_out'         => 'Log out',
     'new_site'        => 'New site',
     'personalization' => 'Personalization',
+    'register'        => 'Register',
+    'reset'           => 'Reset',
     'security'        => 'Security',
+    'send_again'      => 'Send again',
+    'send'            => 'Send',
     'settings'        => 'Settings',
     'system'          => 'System',
 ];

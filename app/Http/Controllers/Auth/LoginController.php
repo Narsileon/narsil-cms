@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Fortify;
+namespace App\Http\Controllers\Auth;
 
 #region USE
 
@@ -14,7 +14,7 @@ use Inertia\Response;
  *
  * @author Jonathan Rigaux
  */
-class RegisterController
+class LoginController
 {
     #region PUBLIC METHODS
 
@@ -23,7 +23,11 @@ class RegisterController
      */
     public function __invoke(): Response
     {
-        return Inertia::render('auth/register');
+        $status = session('status');
+
+        return Inertia::render('auth/login', [
+            'status' => $status,
+        ]);
     }
 
     #endregion

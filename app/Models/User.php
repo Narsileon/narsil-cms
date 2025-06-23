@@ -7,9 +7,11 @@ namespace App\Models;
 use App\Interfaces\IEnable;
 use App\Models\Session;
 use App\Models\Users\UserConfiguration;
+use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 #endregion
 
@@ -20,6 +22,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable implements IEnable
 {
+    use MustVerifyEmail;
+    use Notifiable;
+
     #region CONSTRUCTOR
 
     /**
