@@ -11,7 +11,7 @@ type VerifyEmailProps = {
   status: string;
 };
 
-const VerifyEmail = ({ status }: VerifyEmailProps) => {
+function VerifyEmail({ status }: VerifyEmailProps) {
   const { trans } = useTranslationsStore();
 
   const hasStatus = useRef<boolean>(false);
@@ -32,6 +32,7 @@ const VerifyEmail = ({ status }: VerifyEmailProps) => {
       <Card className="w-[18rem]">
         <CardContent className="grid gap-4">
           <p>{trans("auth.verifying_description")}</p>
+          <p>{trans("auth.sent_description")}</p>
           <Button asChild={true}>
             <Link href={route("verification.send")} method="post">
               {trans("ui.send_again")}
@@ -41,6 +42,6 @@ const VerifyEmail = ({ status }: VerifyEmailProps) => {
       </Card>
     </div>
   );
-};
+}
 
 export default VerifyEmail;

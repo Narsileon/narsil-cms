@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 import { useTranslationsStore } from "@/stores/translations-store";
 import {
   Form,
@@ -16,8 +16,7 @@ type ResetPasswordProps = {
   token: string;
 };
 
-const ResetPassword = ({ token }: ResetPasswordProps) => {
-  const route = useRoute();
+function ResetPassword({ token }: ResetPasswordProps) {
   const { trans } = useTranslationsStore();
 
   return (
@@ -69,6 +68,6 @@ const ResetPassword = ({ token }: ResetPasswordProps) => {
       </Card>
     </div>
   );
-};
+}
 
 export default ResetPassword;

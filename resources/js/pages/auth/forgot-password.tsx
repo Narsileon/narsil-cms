@@ -20,7 +20,7 @@ type ForgotPasswordProps = {
   status: string;
 };
 
-const ForgotPassword = ({ status }: ForgotPasswordProps) => {
+function ForgotPassword({ status }: ForgotPasswordProps) {
   const { trans } = useTranslationsStore();
 
   const hasStatus = useRef<boolean>(false);
@@ -74,6 +74,6 @@ const ForgotPassword = ({ status }: ForgotPasswordProps) => {
       </Card>
     </div>
   );
-};
+}
 
 export default ForgotPassword;

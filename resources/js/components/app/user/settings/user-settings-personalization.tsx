@@ -1,6 +1,6 @@
 import { Combobox } from "@/components/ui/combobox";
+import { route } from "ziggy-js";
 import { TabsContent } from "@/components/ui/tabs";
-import { useRoute } from "ziggy-js";
 import { useTheme } from "@/components/app/theme/theme-provider";
 import { useTranslationsStore } from "@/stores/translations-store";
 import {
@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/select";
 
 function UserSettingsPersonalization() {
-  const route = useRoute();
   const { theme, setTheme } = useTheme();
   const { locale, locales, trans } = useTranslationsStore();
 
@@ -41,7 +40,7 @@ function UserSettingsPersonalization() {
           <SectionTitle level="h2">{trans("ui.personalization")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
-          <Form method="post" url={route("login")}>
+          <Form className="grid gap-4" method="post" url={route("login")}>
             <FormField
               name="theme"
               render={() => (

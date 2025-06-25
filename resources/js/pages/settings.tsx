@@ -1,11 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@inertiajs/react";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 
-const index = () => {
-  const route = useRoute();
-
+function Settings() {
   return (
     <div className="flex flex-col">
       <Card className="rounded-b-none">
@@ -26,6 +24,6 @@ const index = () => {
       </Card>
     </div>
   );
-};
+}
 
-export default index;
+export default Settings;

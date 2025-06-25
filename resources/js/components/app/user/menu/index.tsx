@@ -1,10 +1,10 @@
 import { CogIcon, LogOutIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 import { useState } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
-import UserAvatar from "../avatar/user-avatar";
-import UserSettings from "../settings/user-settings";
+import UserAvatar from "@/components/app/user/avatar";
+import UserSettings from "@/components/app/user/settings";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 function UserMenu() {
-  const route = useRoute();
-
   const { trans } = useTranslationsStore();
 
   const [openSettings, setOpenSettings] = useState(false);

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 import { useTranslationsStore } from "@/stores/translations-store";
 import {
   Form,
@@ -12,8 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const ConfirmPassword = () => {
-  const route = useRoute();
+function ConfirmPassword() {
   const { trans } = useTranslationsStore();
 
   return (
@@ -49,6 +48,6 @@ const ConfirmPassword = () => {
       </Card>
     </div>
   );
-};
+}
 
 export default ConfirmPassword;

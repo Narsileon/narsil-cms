@@ -2,6 +2,7 @@
 
 return [
     'success' => [
+        'logged_in' => 'You have been successfully logged in.',
         'logged_out' => 'You have been successfully logged out.',
         'sessions' => [
             'deleted_all' => 'You have been logged out from all devices.',

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Link } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 import { useTranslationsStore } from "@/stores/translations-store";
 import {
   Form,
@@ -21,8 +21,7 @@ type LoginProps = {
   status?: string;
 };
 
-const Login = ({ status }: LoginProps) => {
-  const route = useRoute();
+function Login({ status }: LoginProps) {
   const { trans } = useTranslationsStore();
 
   const hasStatus = useRef<boolean>(false);
@@ -100,6 +99,6 @@ const Login = ({ status }: LoginProps) => {
       </Card>
     </div>
   );
-};
+}
 
 export default Login;

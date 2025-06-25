@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
+import AppLogo from "./app-logo";
 import {
   Sidebar,
   SidebarContent,
@@ -10,11 +11,8 @@ import {
   SidebarProps,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import AppLogo from "./app-logo";
 
 function AppSidebar({ ...props }: SidebarProps) {
-  const route = useRoute();
-
   const data = {
     versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
     navMain: [

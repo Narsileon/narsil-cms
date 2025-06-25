@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 import { useTranslationsStore } from "@/stores/translations-store";
 import {
   Form,
@@ -12,8 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const Register = () => {
-  const route = useRoute();
+function Register() {
   const { trans } = useTranslationsStore();
 
   return (
@@ -21,17 +20,17 @@ const Register = () => {
       <Heading className="text-center" level="h1" variant="h4">
         {trans("ui.register")}
       </Heading>
-      <Card className="w-[18rem]">
+      <Card className="w-[18rem] md:w-[26rem]">
         <CardContent>
           <Form
-            className="grid gap-6"
+            className="grid gap-6 md:grid-cols-2"
             method="post"
             url={route("register.store")}
           >
             <FormField
               name="email"
               render={({ onChange, ...field }) => (
-                <FormItem>
+                <FormItem className="col-span-full">
                   <FormLabel required={true} />
                   <Input
                     autoComplete="email"
@@ -46,7 +45,7 @@ const Register = () => {
             <FormField
               name="password"
               render={({ onChange, ...field }) => (
-                <FormItem>
+                <FormItem className="col-span-1">
                   <FormLabel required={true} />
                   <Input
                     autoComplete="new-password"
@@ -61,7 +60,7 @@ const Register = () => {
             <FormField
               name="password_confirmation"
               render={({ onChange, ...field }) => (
-                <FormItem>
+                <FormItem className="col-span-1">
                   <FormLabel required={true} />
                   <Input
                     autoComplete="new-password"
@@ -73,12 +72,42 @@ const Register = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">{trans("ui.register")}</Button>
+            <FormField
+              name="first_name"
+              render={({ onChange, ...field }) => (
+                <FormItem className="col-span-1">
+                  <FormLabel required={true} />
+                  <Input
+                    autoComplete="given-name"
+                    onChange={(e) => onChange(e.target.value)}
+                    {...field}
+                  />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="last_name"
+              render={({ onChange, ...field }) => (
+                <FormItem className="col-span-1">
+                  <FormLabel required={true} />
+                  <Input
+                    autoComplete="family-name"
+                    onChange={(e) => onChange(e.target.value)}
+                    {...field}
+                  />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button className="col-span-full" type="submit">
+              {trans("ui.register")}
+            </Button>
           </Form>
         </CardContent>
       </Card>
     </div>
   );
-};
+}
 
 export default Register;

@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { createContext, FormEvent, useContext } from "react";
+import { VisitOptions } from "@inertiajs/core";
 import {
   InertiaFormProps,
   useForm as useFormPrimitive,
@@ -20,6 +20,7 @@ const FormProviderContext = createContext<ThemeProviderState>({
 export type FormProps = React.ComponentProps<"form"> & {
   attributes?: Record<string, any>;
   children: React.ReactNode;
+  options?: Omit<VisitOptions, "data">;
   url: string;
 };
 
@@ -27,6 +28,7 @@ function Form({
   children,
   attributes = {},
   method = "post",
+  options,
   url,
   ...props
 }: FormProps) {
@@ -53,13 +55,13 @@ function Form({
 
     switch (method) {
       case "patch":
-        patch(url);
+        patch(url, options);
         break;
       case "post":
-        post(url);
+        post(url, options);
         break;
       case "put":
-        post(url);
+        put(url, options);
         break;
     }
   }

@@ -18,15 +18,6 @@ use Laravel\Fortify\Contracts\UpdatesUserPasswords;
  */
 class UpdateUserPassword implements UpdatesUserPasswords
 {
-    #region CONSTANTS
-
-    /**
-     * @var string
-     */
-    private const CURRENT_PASSWORD_WEB = "current_password:web";
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -40,8 +31,8 @@ class UpdateUserPassword implements UpdatesUserPasswords
         $password = Validator::make($input, [
             User::ATTRIBUTE_CURRENT_PASSWORD => [
                 AbstractFormRequest::STRING,
-                self::CURRENT_PASSWORD_WEB,
                 AbstractFormRequest::REQUIRED,
+                'current_password:web'
             ],
             User::PASSWORD => [
                 AbstractFormRequest::STRING,

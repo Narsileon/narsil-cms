@@ -1,5 +1,5 @@
 import { TabsContent } from "@/components/ui/tabs";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 import { useTranslationsStore } from "@/stores/translations-store";
 import {
   Section,
@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/section";
 
 function UserSettingsAccount() {
-  const route = useRoute();
-
   const { trans } = useTranslationsStore();
 
   return (

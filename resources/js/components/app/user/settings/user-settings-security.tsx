@@ -4,8 +4,9 @@ import { Label } from "@/components/ui/label";
 import { Link } from "@inertiajs/react";
 import { Separator } from "@/components/ui/separator";
 import { TabsContent } from "@/components/ui/tabs";
-import { useRoute } from "ziggy-js";
+import { route } from "ziggy-js";
 import { useTranslationsStore } from "@/stores/translations-store";
+import UserSettingsSecurityTwoFactor from "./user-settings-security-two-factor";
 import {
   Section,
   SectionContent,
@@ -14,17 +15,17 @@ import {
 } from "@/components/ui/section";
 
 function UserSettingsSecurity() {
-  const route = useRoute();
-
   const { trans } = useTranslationsStore();
 
   return (
     <TabsContent value="security">
-      <Section>
+      <Section className="gap-2">
         <SectionHeader>
           <SectionTitle level="h2">{trans("ui.security")}</SectionTitle>
         </SectionHeader>
         <SectionContent className="grid gap-2">
+          <UserSettingsSecurityTwoFactor />
+          <Separator />
           <div className="flex items-center justify-between">
             <Label>{trans("Log out of this device.")}</Label>
             <DialogClose asChild={true}>

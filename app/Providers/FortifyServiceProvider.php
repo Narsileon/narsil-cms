@@ -17,9 +17,12 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Fortify;
 
 #endregion
@@ -40,7 +43,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->registerLoginResponse();
+        $this->registerLogoutResponse();
     }
 
     /**
@@ -55,25 +59,31 @@ class FortifyServiceProvider extends ServiceProvider
 
         RateLimiter::for('login', function (Request $request)
         {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
+            $throttleKey = Str::transliterate(
+                Str::lower(
+                    $request->input(Fortify::username())
+                ) . '|' . $request->ip()
+            );
 
-            return Limit::perMinute(5)->by($throttleKey);
+            return Limit::perMinute(5)
+                ->by($throttleKey);
         });
 
         RateLimiter::for('two-factor', function (Request $request)
         {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
+            return Limit::perMinute(5)
+                ->by($request->session()->get('login.id'));
         });
     }
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
     /**
      * @return void
      */
-    private function bootActions(): void
+    protected function bootActions(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
@@ -85,7 +95,7 @@ class FortifyServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    private function bootViews(): void
+    protected function bootViews(): void
     {
         Fortify::confirmPasswordView(new ConfirmPasswordController());
         Fortify::loginView(new LoginController());
@@ -93,6 +103,44 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::requestPasswordResetLinkView(new ForgotPasswordController());
         Fortify::resetPasswordView(new ResetPasswordController());
         Fortify::verifyEmailView(new VerifyEmailController());
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerLoginResponse(): void
+    {
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
+            public function toResponse($request)
+            {
+                if (Session::get('url.intended'))
+                {
+                    return redirect()->intended()
+                        ->with('success', trans('toasts.success.logged_in'));
+                }
+                else
+                {
+                    return redirect(route('home'))
+                        ->with('success', trans('toasts.success.logged_in'));
+                }
+            }
+        });
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerLogoutResponse(): void
+    {
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
+        {
+            public function toResponse($request)
+            {
+                return redirect(route('home'))
+                    ->with('success', trans('toasts.success.logged_out'));
+            }
+        });
     }
 
     #endregion

@@ -2,7 +2,7 @@ import { Link } from "@inertiajs/react";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
 import AppSidebar from "@/components/app/app-sidebar";
-import UserMenu from "@/components/app/user/menu/user-menu";
+import UserMenu from "@/components/app/user/menu";
 import {
   Breadcrumb,
   BreadcrumbItem,

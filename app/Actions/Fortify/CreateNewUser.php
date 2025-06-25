@@ -40,13 +40,13 @@ class CreateNewUser implements CreatesNewUsers
                 AbstractFormRequest::STRING,
                 AbstractFormRequest::min(1),
                 AbstractFormRequest::max(255),
-                AbstractFormRequest::SOMETIMES,
+                AbstractFormRequest::REQUIRED,
             ],
             User::LAST_NAME => [
                 AbstractFormRequest::STRING,
                 AbstractFormRequest::min(1),
                 AbstractFormRequest::max(255),
-                AbstractFormRequest::SOMETIMES,
+                AbstractFormRequest::REQUIRED,
             ],
             User::PASSWORD => [
                 AbstractFormRequest::STRING,
