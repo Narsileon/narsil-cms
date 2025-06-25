@@ -33,6 +33,21 @@ function ResetPassword({ token }: ResetPasswordProps) {
             attributes={{ token: token }}
           >
             <FormField
+              name="email"
+              render={({ onChange, ...field }) => (
+                <FormItem>
+                  <FormLabel required={true} />
+                  <Input
+                    autoComplete="email"
+                    type="email"
+                    onChange={(e) => onChange(e.target.value)}
+                    {...field}
+                  />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
               name="password"
               render={({ onChange, ...field }) => (
                 <FormItem>

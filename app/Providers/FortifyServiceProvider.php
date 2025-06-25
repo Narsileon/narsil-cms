@@ -23,6 +23,7 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Contracts\PasswordConfirmedResponse;
 use Laravel\Fortify\Fortify;
 
 #endregion
@@ -45,6 +46,7 @@ class FortifyServiceProvider extends ServiceProvider
     {
         $this->registerLoginResponse();
         $this->registerLogoutResponse();
+        $this->registerPasswordConfirmedResponse();
     }
 
     /**
@@ -103,6 +105,21 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::requestPasswordResetLinkView(new ForgotPasswordController());
         Fortify::resetPasswordView(new ResetPasswordController());
         Fortify::verifyEmailView(new VerifyEmailController());
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerPasswordConfirmedResponse(): void
+    {
+        $this->app->instance(PasswordConfirmedResponse::class, new class implements PasswordConfirmedResponse
+        {
+            public function toResponse($request)
+            {
+                return redirect()->intended()
+                    ->with('success', trans('toasts.success.password_confirmed'));
+            }
+        });
     }
 
     /**

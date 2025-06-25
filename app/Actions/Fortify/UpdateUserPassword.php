@@ -28,7 +28,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
      */
     public function update(User $user, array $input): void
     {
-        $password = Validator::make($input, [
+        $attributes = Validator::make($input, [
             User::ATTRIBUTE_CURRENT_PASSWORD => [
                 AbstractFormRequest::STRING,
                 AbstractFormRequest::REQUIRED,
@@ -45,7 +45,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
 
         $user
             ->forceFill([
-                User::PASSWORD => $password,
+                User::PASSWORD => $attributes[User::PASSWORD],
             ])
             ->save();
     }

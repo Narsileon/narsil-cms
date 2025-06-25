@@ -28,7 +28,7 @@ class ResetUserPassword implements ResetsUserPasswords
      */
     public function reset(User $user, array $input): void
     {
-        $password = Validator::make($input, [
+        $attributes = Validator::make($input, [
             User::PASSWORD => [
                 AbstractFormRequest::STRING,
                 AbstractFormRequest::min(8),
@@ -36,12 +36,10 @@ class ResetUserPassword implements ResetsUserPasswords
                 AbstractFormRequest::REQUIRED,
                 AbstractFormRequest::CONFIRMED,
             ],
-        ])->validated(User::PASSWORD);
+        ])->validated();
 
         $user
-            ->forceFill([
-                User::PASSWORD => $password,
-            ])
+            ->forceFill($attributes)
             ->save();
     }
 
