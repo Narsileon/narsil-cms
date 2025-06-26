@@ -24,6 +24,7 @@ use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\PasswordConfirmedResponse;
+use Laravel\Fortify\Contracts\ProfileInformationUpdatedResponse;
 use Laravel\Fortify\Fortify;
 
 #endregion
@@ -47,6 +48,7 @@ class FortifyServiceProvider extends ServiceProvider
         $this->registerLoginResponse();
         $this->registerLogoutResponse();
         $this->registerPasswordConfirmedResponse();
+        $this->registerProfileInformationUpdatedResponse();
     }
 
     /**
@@ -110,21 +112,6 @@ class FortifyServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    protected function registerPasswordConfirmedResponse(): void
-    {
-        $this->app->instance(PasswordConfirmedResponse::class, new class implements PasswordConfirmedResponse
-        {
-            public function toResponse($request)
-            {
-                return redirect()->intended()
-                    ->with('success', trans('toasts.success.password_confirmed'));
-            }
-        });
-    }
-
-    /**
-     * @return void
-     */
     protected function registerLoginResponse(): void
     {
         $this->app->instance(LoginResponse::class, new class implements LoginResponse
@@ -156,6 +143,36 @@ class FortifyServiceProvider extends ServiceProvider
             {
                 return redirect(route('home'))
                     ->with('success', trans('toasts.success.logged_out'));
+            }
+        });
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerPasswordConfirmedResponse(): void
+    {
+        $this->app->instance(PasswordConfirmedResponse::class, new class implements PasswordConfirmedResponse
+        {
+            public function toResponse($request)
+            {
+                return redirect()->intended()
+                    ->with('success', trans('toasts.success.password.confirmed'));
+            }
+        });
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerProfileInformationUpdatedResponse(): void
+    {
+        $this->app->instance(ProfileInformationUpdatedResponse::class, new class implements ProfileInformationUpdatedResponse
+        {
+            public function toResponse($request)
+            {
+                return back()
+                    ->with('success', trans('toasts.success.profile.updated'));
             }
         });
     }

@@ -4,6 +4,7 @@ return [
     'account'         => 'Account',
     'back'            => 'Back',
     'confirm'         => 'Confirm',
+    'create'          => 'Create',
     'dark'            => 'Dark',
     'light'           => 'Light',
     'log_in'          => 'Log in',
@@ -14,9 +15,11 @@ return [
     'personalization' => 'Personalization',
     'register'        => 'Register',
     'reset'           => 'Reset',
+    'save'            => 'Save',
     'security'        => 'Security',
     'send_again'      => 'Send again',
     'send'            => 'Send',
     'settings'        => 'Settings',
     'system'          => 'System',
+    'update'          => 'Update'
 ];

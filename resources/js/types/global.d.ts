@@ -1,4 +1,9 @@
 export type GlobalProps = {
+  auth: {
+    email: string;
+    first_name: string | undefined | null;
+    last_name: string | undefined | null;
+  };
   breadcrumbs: BreadcrumbType;
   redirect: {
     success: string;

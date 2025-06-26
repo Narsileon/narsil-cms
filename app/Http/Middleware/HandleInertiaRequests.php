@@ -76,15 +76,15 @@ class HandleInertiaRequests extends Middleware
     #region PROTECTED METHODS
 
     /**
-     * @return array|null
+     * @return array
      */
-    protected function getAuth(): array | null
+    protected function getAuth(): array
     {
         $user = Auth::user();
 
         if (!$user)
         {
-            return null;
+            return [];
         }
 
         return [

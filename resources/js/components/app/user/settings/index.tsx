@@ -35,22 +35,23 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
               {minMd ? (
                 <DialogCloseButton className="h-12 pl-2 [&_svg:not([class*='size-'])]:size-5" />
               ) : null}
-              <TabsTrigger value="personalization">
-                <SettingsIcon />
-                {trans("ui.personalization")}
-              </TabsTrigger>
               <TabsTrigger value="account">
                 <UserIcon />
                 {trans("ui.account")}
               </TabsTrigger>
+              <TabsTrigger value="personalization">
+                <SettingsIcon />
+                {trans("ui.personalization")}
+              </TabsTrigger>
+
               <TabsTrigger value="security">
                 <UserIcon />
                 {trans("ui.security")}
               </TabsTrigger>
             </TabsList>
             <Separator orientation={minMd ? "vertical" : "horizontal"} />
-            <UserSettingsPersonalization />
             <UserSettingsAccount />
+            <UserSettingsPersonalization />
             <UserSettingsSecurity />
           </Tabs>
         </DialogContent>

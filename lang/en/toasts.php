@@ -4,7 +4,13 @@ return [
     'success' => [
         'logged_in'          => 'You have been successfully logged in.',
         'logged_out'         => 'You have been successfully logged out.',
-        'password_confirmed' => 'You have successfully confirmed your password.',
+        'password' => [
+            'confirmed' => 'Your password has been successfully confirmed.',
+            'updated' => 'Your password has been successfully updated.',
+        ],
+        'profile' => [
+            'updated' => 'Your profile has been successfully updated.'
+        ],
         'sessions'           => [
             'deleted_all'     => 'You have been logged out from all devices.',
             'deleted_current' => 'You have been logged out from this device.',
