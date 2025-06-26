@@ -118,16 +118,8 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                if (Session::get('url.intended'))
-                {
-                    return redirect()->intended()
-                        ->with('success', trans('toasts.success.logged_in'));
-                }
-                else
-                {
-                    return redirect(route('home'))
-                        ->with('success', trans('toasts.success.logged_in'));
-                }
+                return redirect()->intended(route('home'))
+                    ->with('success', trans('toasts.success.logged_in'));
             }
         });
     }
@@ -156,7 +148,7 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                return redirect()->intended()
+                return redirect()->intended(route('home'))
                     ->with('success', trans('toasts.success.password.confirmed'));
             }
         });
