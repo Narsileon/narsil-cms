@@ -129,7 +129,10 @@ function UserSettingsSecurityTwoFactor() {
                         setActive(true);
                       },
                       onError() {
-                        setError?.("code", trans("validation.code"));
+                        setError?.(
+                          "code",
+                          trans("validation.custom.code.invalid"),
+                        );
                       },
                     }}
                   >

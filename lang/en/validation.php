@@ -34,7 +34,6 @@ return [
     ],
     'boolean'           => 'The :attribute field must be true or false.',
     'can'               => 'The :attribute field contains an unauthorized value.',
-    'code'              => 'The code is incorrect.',
     'confirmed'         => 'The :attribute field confirmation does not match.',
     'contains'          => 'The :attribute field is missing a required value.',
     'current_password'  => 'The password is incorrect.',
@@ -178,8 +177,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'code' => [
+            'invalid' => 'The code is invalid.',
         ],
     ],
 
