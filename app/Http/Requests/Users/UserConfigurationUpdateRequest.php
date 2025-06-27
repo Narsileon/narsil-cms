@@ -23,7 +23,7 @@ class UserConfigurationUpdateRequest extends AbstractFormRequest
     public function rules(): array
     {
         return [
-            UserConfiguration::LANGUAGE => [
+            UserConfiguration::LOCALE => [
                 self::STRING,
                 self::min(1),
                 self::SOMETIMES,

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 #region USE
 
 use App\Models\User;
+use App\Models\Users\UserConfiguration;
 use App\Services\TranslationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -91,6 +92,26 @@ class HandleInertiaRequests extends Middleware
             User::FIRST_NAME => $user->{User::FIRST_NAME},
             User::LAST_NAME => $user->{User::LAST_NAME},
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getLocale(): string
+    {
+        $locale = Session::get('locale');
+
+        if (!$locale)
+        {
+            $locale = Auth::user()?->{User::RELATION_CONFIGURATION}?->{UserConfiguration::LOCALE};
+        }
+
+        if (!$locale)
+        {
+            $locale = App::getLocale();
+        }
+
+        return $locale;
     }
 
     /**

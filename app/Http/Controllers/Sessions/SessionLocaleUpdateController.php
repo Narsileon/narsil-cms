@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Sessions;
 #region USE
 
 use App\Http\Requests\Sessions\SessionLocaleUpdateRequest;
+use App\Models\User;
+use App\Models\Users\UserConfiguration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 #endregion
@@ -29,6 +32,15 @@ class SessionLocaleUpdateController extends Controller
         $locale = $request->validated(SessionLocaleUpdateRequest::LOCALE);
 
         Session::put(SessionLocaleUpdateRequest::LOCALE, $locale);
+
+        if ($user = Auth::user())
+        {
+            $userConfiguration = $user->{User::RELATION_CONFIGURATION};
+
+            $userConfiguration->update([
+                UserConfiguration::LOCALE => $locale,
+            ]);
+        }
 
         return back();
     }

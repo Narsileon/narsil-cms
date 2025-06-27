@@ -38,9 +38,9 @@ class UserConfiguration extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "language" column.
+     * @var string The name of the "locale" column.
      */
-    public const LANGUAGE = 'language';
+    public const LOCALE = 'locale';
     /**
      * @var string The name of the "preferences" column.
      */

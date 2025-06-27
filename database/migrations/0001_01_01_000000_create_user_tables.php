@@ -121,7 +121,7 @@ return new class extends Migration
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
             $table
-                ->string(UserConfiguration::LANGUAGE)
+                ->string(UserConfiguration::LOCALE)
                 ->default('en');
             $table
                 ->string(UserConfiguration::THEME)
