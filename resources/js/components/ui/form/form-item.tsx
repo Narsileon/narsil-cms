@@ -1,13 +1,6 @@
 import { cn } from "@/lib/utils";
-import { createContext, useId } from "react";
-
-type FormItemContextValue = {
-  id: string;
-};
-
-const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
+import { useId } from "react";
+import { FormItemContext } from "./form-item-context";
 
 export type FormItemProps = React.ComponentProps<"div"> & {};
 

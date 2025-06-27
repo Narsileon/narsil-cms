@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@/components/ui/button";
-import { useForm } from "./form-provider";
+import useForm from "./form-context";
 
 export type FormSubmitProps = ButtonProps;
 

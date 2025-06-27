@@ -1,14 +1,8 @@
 import { cn } from "@/lib/utils";
+import { SidebarContext, SidebarContextProps } from "./sidebar-context";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useMaxLg } from "@/hooks/use-breakpoints";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
 
 export type SidebarProviderProps = React.ComponentProps<"div"> & {
   cookieMaxAge?: number;
@@ -21,19 +15,6 @@ export type SidebarProviderProps = React.ComponentProps<"div"> & {
   width?: string;
   onOpenChange?: (open: boolean) => void;
 };
-
-type SidebarContextProps = {
-  isMobile: boolean;
-  mobileWidth: string;
-  open: boolean;
-  openMobile: boolean;
-  state: "expanded" | "collapsed";
-  setOpen: (open: boolean) => void;
-  setOpenMobile: (open: boolean) => void;
-  toggleSidebar: () => void;
-};
-
-const SidebarContext = createContext<SidebarContextProps | null>(null);
 
 function SidebarProvider({
   children,
@@ -139,16 +120,6 @@ function SidebarProvider({
       </TooltipProvider>
     </SidebarContext.Provider>
   );
-}
-
-export function useSidebar() {
-  const context = useContext(SidebarContext);
-
-  if (!context) {
-    throw new Error("useSidebar must be used within a SidebarProvider.");
-  }
-
-  return context;
 }
 
 export default SidebarProvider;

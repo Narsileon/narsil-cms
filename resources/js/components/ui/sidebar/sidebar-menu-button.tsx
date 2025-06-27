@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
-import { useSidebar } from "./sidebar-provider";
+import useSidebar from "./sidebar-context";
 import {
   Tooltip,
   TooltipContent,

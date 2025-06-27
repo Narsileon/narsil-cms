@@ -1,23 +1,10 @@
-import { createContext, useContext } from "react";
-import {
-  InertiaFormProps,
-  useForm as useFormPrimitive,
-} from "@inertiajs/react";
-
-export type ThemeProviderState = Partial<
-  InertiaFormProps<Record<string, any>>
-> & {
-  id: string;
-};
-
-const FormProviderContext = createContext<ThemeProviderState>({
-  id: "form",
-});
+import { FormContext, FormContextProps } from "./form-context";
+import { useForm } from "@inertiajs/react";
 
 export type FormProviderProps = {
   id: string;
   initialData?: Record<string, any>;
-  render: (form: ThemeProviderState) => React.ReactNode;
+  render: (form: FormContextProps) => React.ReactNode;
 };
 
 function FormProvider({ id, initialData = {}, render }: FormProviderProps) {
@@ -37,7 +24,7 @@ function FormProvider({ id, initialData = {}, render }: FormProviderProps) {
     setError,
     submit,
     transform,
-  } = useFormPrimitive(initialData);
+  } = useForm(initialData);
 
   const value = {
     id: id,
@@ -57,21 +44,10 @@ function FormProvider({ id, initialData = {}, render }: FormProviderProps) {
     submit: submit,
     transform: transform,
   };
+
   return (
-    <FormProviderContext.Provider value={value}>
-      {render(value)}
-    </FormProviderContext.Provider>
+    <FormContext.Provider value={value}>{render(value)}</FormContext.Provider>
   );
-}
-
-export function useForm() {
-  const context = useContext(FormProviderContext);
-
-  if (!context) {
-    throw new Error("useForm must be used within a Form");
-  }
-
-  return context;
 }
 
 export default FormProvider;

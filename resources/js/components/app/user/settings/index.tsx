@@ -3,10 +3,10 @@ import { Separator } from "@/components/ui/separator";
 import { SettingsIcon, UserIcon } from "lucide-react";
 import { TabsList, Tabs, TabsTrigger } from "@/components/ui/tabs";
 import { useMinMd } from "@/hooks/use-breakpoints";
-import { useTranslationsStore } from "@/stores/translations-store";
 import UserSettingsAccount from "./user-settings-account";
 import UserSettingsPersonalization from "./user-settings-personalization";
 import UserSettingsSecurity from "./user-settings-security";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Dialog,
   DialogCloseButton,

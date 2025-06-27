@@ -1,8 +1,8 @@
 import { AsteriskIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Label as LabelPrimitive } from "radix-ui";
-import { useFormField } from "./form-field";
-import { useTranslationsStore } from "@/stores/translations-store";
+import useFormField from "./form-field-context";
+import useTranslationsStore from "@/stores/translations-store";
 
 export type FormLabelProps = React.ComponentProps<
   typeof LabelPrimitive.Root

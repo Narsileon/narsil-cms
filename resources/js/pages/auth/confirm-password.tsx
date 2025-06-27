@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
 import { route } from "ziggy-js";
-import { useTranslationsStore } from "@/stores/translations-store";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Form,
   FormField,

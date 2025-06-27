@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Link } from "@inertiajs/react";
+import { route } from "ziggy-js";
 import { Separator } from "@/components/ui/separator";
 import { TabsContent } from "@/components/ui/tabs";
-import { route } from "ziggy-js";
-import { useTranslationsStore } from "@/stores/translations-store";
 import UserSettingsSecurityTwoFactor from "./user-settings-security-two-factor";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Section,
   SectionContent,

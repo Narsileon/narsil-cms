@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { VisitOptions } from "@inertiajs/core";
-import { useForm } from "./form-provider";
+import useForm from "./form-context";
 
 export type FormProps = React.ComponentProps<"form"> & {
   options?: Omit<VisitOptions, "data">;

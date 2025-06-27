@@ -1,9 +1,9 @@
 import { Link } from "@inertiajs/react";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
-import { useTranslationsStore } from "@/stores/translations-store";
 import AppSidebar from "@/components/app/app-sidebar";
 import UserMenu from "@/components/app/user/menu";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Breadcrumb,
   BreadcrumbItem,

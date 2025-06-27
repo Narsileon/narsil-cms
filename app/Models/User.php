@@ -47,12 +47,13 @@ class User extends Authenticatable implements IEnable, MustVerifyEmail
             self::EMAIL,
             self::FIRST_NAME,
             self::LAST_NAME,
-            self::PASSWORD,
         ], $this->fillable);
 
         $this->hidden = array_merge([
             self::PASSWORD,
             self::REMEMBER_TOKEN,
+            self::TWO_FACTOR_RECOVERY_CODES,
+            self::TWO_FACTOR_SECRET,
         ], $this->hidden);
 
         parent::__construct($attributes);

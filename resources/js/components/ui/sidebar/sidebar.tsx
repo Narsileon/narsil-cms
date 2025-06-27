@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useSidebar } from "./sidebar-provider";
+import useSidebar from "./sidebar-context";
 import {
   Sheet,
   SheetContent,

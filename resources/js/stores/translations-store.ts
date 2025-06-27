@@ -5,50 +5,56 @@ type TranslationOptions = {
   replacements?: Record<string, string | number>;
 };
 
-type TranslationStoreState = {
+export type TranslationStoreState = {
   locale: string;
   locales: string[];
   translations: Record<string, string>;
+};
+
+export type TranslationStoreActions = {
   setLocale: (locale: string) => void;
   setLocales: (locales: string[]) => void;
   setTranslations: (translations: Record<string, string>) => void;
   trans: (key: string, options?: TranslationOptions) => string;
 };
 
-export const useTranslationsStore = create<TranslationStoreState>(
-  (set, get) => ({
-    locale: "",
-    locales: [],
-    translations: {},
-    setLocale: (locale) =>
-      set({
-        locale: locale,
-      }),
-    setLocales: (locales) =>
-      set({
-        locales: locales,
-      }),
-    setTranslations: (translations) =>
-      set({
-        translations: translations,
-      }),
-    trans: (key, options = {}) => {
-      const { replacements = {} } = options;
+export type TranslationStoreType = TranslationStoreState &
+  TranslationStoreActions;
 
-      let text = get().translations?.[key] ?? key.split(".").pop() ?? key;
+const useTranslationsStore = create<TranslationStoreType>((set, get) => ({
+  locale: "",
+  locales: [],
+  translations: {},
+  setLocale: (locale) =>
+    set({
+      locale: locale,
+    }),
+  setLocales: (locales) =>
+    set({
+      locales: locales,
+    }),
+  setTranslations: (translations) =>
+    set({
+      translations: translations,
+    }),
+  trans: (key, options = {}) => {
+    const { replacements = {} } = options;
 
-      Object.entries(replacements).map(([replacementKey, replacementValue]) => {
-        if (text.includes(replacementKey)) {
-          text = text.replace(`:${replacementKey}`, `${replacementValue}`);
-        } else if (text.includes(upperFirst(replacementKey))) {
-          text = text.replace(
-            `:${upperFirst(replacementKey)}`,
-            upperFirst(`${replacementValue}`),
-          );
-        }
-      });
+    let text = get().translations?.[key] ?? key.split(".").pop() ?? key;
 
-      return text;
-    },
-  }),
-);
+    Object.entries(replacements).map(([replacementKey, replacementValue]) => {
+      if (text.includes(replacementKey)) {
+        text = text.replace(`:${replacementKey}`, `${replacementValue}`);
+      } else if (text.includes(upperFirst(replacementKey))) {
+        text = text.replace(
+          `:${upperFirst(replacementKey)}`,
+          upperFirst(`${replacementValue}`),
+        );
+      }
+    });
+
+    return text;
+  },
+}));
+
+export default useTranslationsStore;

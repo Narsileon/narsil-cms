@@ -6,6 +6,9 @@ import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 import FormProvider from "./form-provider";
 import FormSubmit from "./form-submit";
+import useForm from "./form-context";
+import useFormField from "./form-field-context";
+import useFormItem from "./form-item-context";
 import type { FormDescriptionProps } from "./form-description";
 import type { FormFieldProps } from "./form-field";
 import type { FormItemProps } from "./form-item";
@@ -24,6 +27,9 @@ export {
   FormMessage,
   FormProvider,
   FormSubmit,
+  useForm,
+  useFormField,
+  useFormItem,
 };
 
 export type {

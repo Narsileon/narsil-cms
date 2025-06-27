@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GlobeIcon, SquarePenIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { useTranslationsStore } from "@/stores/translations-store";
+import useTranslationsStore from "@/stores/translations-store";
 
 function Settings() {
   const { trans } = useTranslationsStore();

@@ -1,6 +1,5 @@
 // https://ui.shadcn.com/docs/components/sidebar
 
-import { useSidebar } from "./sidebar-provider";
 import Sidebar from "./sidebar";
 import SidebarContent from "./sidebar-content";
 import SidebarFooter from "./sidebar-footer";
@@ -24,6 +23,7 @@ import SidebarProvider from "./sidebar-provider";
 import SidebarRail from "./sidebar-rail";
 import SidebarSeparator from "./sidebar-separator";
 import SidebarTrigger from "./sidebar-trigger";
+import useSidebar from "./sidebar-context";
 import type { SidebarContentProps } from "./sidebar-content";
 import type { SidebarFooterProps } from "./sidebar-footer";
 import type { SidebarHeaderProps } from "./sidebar-header";
@@ -50,10 +50,13 @@ import type { SidebarSeparatorProps } from "./sidebar-separator";
 
 export {
   Sidebar,
+  SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarInput,
   SidebarInset,
   SidebarMenu,
@@ -65,14 +68,11 @@ export {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  SidebarSeparator,
-  useSidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
   SidebarProvider,
   SidebarRail,
+  SidebarSeparator,
   SidebarTrigger,
+  useSidebar,
 };
 
 export type {

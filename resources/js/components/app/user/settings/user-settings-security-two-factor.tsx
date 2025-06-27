@@ -8,9 +8,9 @@ import { route } from "ziggy-js";
 import { router, usePage } from "@inertiajs/react";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
-import { useTranslationsStore } from "@/stores/translations-store";
 import axios from "axios";
 import UserConfirmPassword from "@/components/app/user/confirm-password";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Form,
   FormField,

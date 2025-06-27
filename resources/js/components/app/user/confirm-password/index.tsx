@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { route } from "ziggy-js";
-import { useTranslationsStore } from "@/stores/translations-store";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Dialog,
   DialogContent,

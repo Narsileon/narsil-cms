@@ -1,12 +1,7 @@
-import { createContext, useContext } from "react";
-import { useForm } from "./form-provider";
+import { FormFieldContext } from "./form-field-context";
+import useForm from "./form-context";
 
-export type FormFieldState = { error: string | undefined; name: string };
-
-const FormFieldContext = createContext<FormFieldState>({
-  error: undefined,
-  name: "",
-});
+export type FormFieldContextProps = { error: string | undefined; name: string };
 
 export type FormFieldProps = {
   name: string;
@@ -32,15 +27,5 @@ const FormField = ({ name, render }: FormFieldProps) => {
     </FormFieldContext.Provider>
   );
 };
-
-export function useFormField() {
-  const context = useContext(FormFieldContext);
-
-  if (!context) {
-    throw new Error("useFormField must be used within a FormField");
-  }
-
-  return context;
-}
 
 export default FormField;

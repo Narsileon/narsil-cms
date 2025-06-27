@@ -2,8 +2,8 @@ import { Combobox } from "@/components/ui/combobox";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
 import { TabsContent } from "@/components/ui/tabs";
-import { useTheme } from "@/components/app/theme/theme-provider";
-import { useTranslationsStore } from "@/stores/translations-store";
+import { useTheme } from "@/components/ui/theme";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Form,
   FormField,

@@ -1,8 +1,8 @@
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
+import { ThemeProvider } from "./components/ui/theme";
 import Layout from "./layouts/layout";
 import React from "react";
-import ThemeProvider from "./components/app/theme/theme-provider";
 
 createInertiaApp({
   resolve: (name) => {

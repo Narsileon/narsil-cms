@@ -1,13 +1,8 @@
 import { cn } from "@/lib/utils";
-import { createContext, useContext } from "react";
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
+import { ToggleGroupContext } from "./toggle-group-context";
 import { toggleVariants } from "./toggle";
 import { VariantProps } from "class-variance-authority";
-
-const ToggleGroupContext = createContext<VariantProps<typeof toggleVariants>>({
-  size: "default",
-  variant: "default",
-});
 
 export type ToggleGroupProps = React.ComponentProps<
   typeof ToggleGroupPrimitive.Root
@@ -43,16 +38,6 @@ function ToggleGroup({
       </ToggleGroupContext.Provider>
     </ToggleGroupPrimitive.Root>
   );
-}
-
-export function useToggleGroup() {
-  const context = useContext(ToggleGroupContext);
-
-  if (!context) {
-    throw new Error("useToggleGroup must be used within a ToggleGroup");
-  }
-
-  return context;
 }
 
 export default ToggleGroup;

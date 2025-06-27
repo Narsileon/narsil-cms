@@ -4,7 +4,7 @@ import { route } from "ziggy-js";
 import { Separator } from "@/components/ui/separator";
 import { TabsContent } from "@/components/ui/tabs";
 import { usePage } from "@inertiajs/react";
-import { useTranslationsStore } from "@/stores/translations-store";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Form,
   FormField,

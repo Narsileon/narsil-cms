@@ -6,7 +6,7 @@ import { Link } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { route } from "ziggy-js";
-import { useTranslationsStore } from "@/stores/translations-store";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Form,
   FormDescription,

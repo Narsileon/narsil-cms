@@ -1,15 +1,10 @@
 import { CogIcon, LogOutIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { useState } from "react";
-import { useTranslationsStore } from "@/stores/translations-store";
 import UserAvatar from "@/components/app/user/avatar";
 import UserSettings from "@/components/app/user/settings";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +12,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 function UserMenu() {
   const { trans } = useTranslationsStore();

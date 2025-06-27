@@ -1,10 +1,10 @@
 import { router, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect } from "react";
-import { useTranslationsStore } from "@/stores/translations-store";
-import type { GlobalProps } from "@/types/global";
 import AuthLayout from "./auth-layout";
 import GuestLayout from "./guest-layout";
+import useTranslationsStore from "@/stores/translations-store";
+import type { GlobalProps } from "@/types/global";
 
 type LayoutProps = {
   children: React.ReactNode;
