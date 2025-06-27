@@ -11,8 +11,8 @@ import {
   Dialog,
   DialogCloseButton,
   DialogContent,
-  DialogProps,
 } from "@/components/ui/dialog";
+import type { DialogProps } from "@/components/ui/dialog";
 
 type UserSettingsProps = {
   open: DialogProps["open"];

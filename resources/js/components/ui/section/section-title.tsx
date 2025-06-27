@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { Heading, HeadingProps } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/heading";
+import type { HeadingProps } from "@/components/ui/heading";
 
 export type SectionTitleProps = HeadingProps & {};
 

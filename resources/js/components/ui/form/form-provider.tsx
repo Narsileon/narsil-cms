@@ -1,5 +1,6 @@
-import { FormContext, FormContextProps } from "./form-context";
+import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
+import type { FormContextProps } from "./form-context";
 
 export type FormProviderProps = {
   id: string;

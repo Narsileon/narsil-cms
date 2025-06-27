@@ -21,6 +21,12 @@ function Settings() {
             </Link>
             {trans("ui.sites")}
           </Button>
+          <Button className="h-32 w-32 flex-col" variant="ghost">
+            <Link href={route("users.index")}>
+              <GlobeIcon className="size-16" />
+            </Link>
+            {trans("ui.users")}
+          </Button>
         </CardContent>
       </Card>
       <Card className="rounded-t-none">

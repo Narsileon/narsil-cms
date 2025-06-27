@@ -8,7 +8,7 @@ import TableFooter from "./table-footer";
 import TableHead from "./table-head";
 import TableHeader from "./table-header";
 import TableRow from "./table-row";
-import type { TableBopyProps } from "./table-body";
+import type { TableBodyProps } from "./table-body";
 import type { TableCaptionProps } from "./table-caption";
 import type { TableCellProps } from "./table-cell";
 import type { TableFooterProps } from "./table-footer";
@@ -29,7 +29,7 @@ export {
 };
 
 export type {
-  TableBopyProps,
+  TableBodyProps,
   TableCaptionProps,
   TableCellProps,
   TableFooterProps,

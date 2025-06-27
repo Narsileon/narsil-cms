@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
-import { SidebarContext, SidebarContextProps } from "./sidebar-context";
+import { SidebarContext } from "./sidebar-context";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useMaxLg } from "@/hooks/use-breakpoints";
+import type { SidebarContextProps } from "./sidebar-context";
 
 export type SidebarProviderProps = React.ComponentProps<"div"> & {
   cookieMaxAge?: number;

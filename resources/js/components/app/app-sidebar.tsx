@@ -17,6 +17,10 @@ function AppSidebar({ ...props }: SidebarProps) {
     versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
     navMain: [
       {
+        title: "Users",
+        url: route("users.index"),
+      },
+      {
         title: "Settings",
         url: route("settings"),
       },

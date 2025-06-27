@@ -1,8 +1,9 @@
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { PanelLeftIcon } from "lucide-react";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import useSidebar from "./sidebar-context";
+import type { ButtonProps } from "@/components/ui/button";
 
 export type SidebarTriggerProps = ButtonProps & {};
 

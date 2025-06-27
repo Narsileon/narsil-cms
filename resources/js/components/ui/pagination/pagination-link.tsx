@@ -1,17 +1,26 @@
 import { ButtonProps, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Slot as SlotPrimitive } from "radix-ui";
 
 export type PaginationLinkProps = React.ComponentProps<"a"> &
-  Pick<ButtonProps, "size"> & { isActive?: boolean };
+  Pick<ButtonProps, "size"> & {
+    asChild?: boolean;
+    isActive?: boolean;
+    isDisabled?: boolean;
+  };
 
 function PaginationLink({
+  asChild = false,
   className,
-  isActive,
+  isActive = false,
+  isDisabled = false,
   size = "icon",
   ...props
 }: PaginationLinkProps) {
+  const Comp = asChild ? SlotPrimitive.Slot : "a";
+
   return (
-    <a
+    <Comp
       data-slot="pagination-link"
       data-active={isActive}
       className={cn(
@@ -19,6 +28,7 @@ function PaginationLink({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
+        isDisabled ? "pointer-events-none opacity-50" : null,
         className,
       )}
       aria-current={isActive ? "page" : undefined}

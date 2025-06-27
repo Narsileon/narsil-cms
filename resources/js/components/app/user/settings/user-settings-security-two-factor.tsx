@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CopyIcon } from "lucide-react";
-import { GlobalProps } from "@/types/global";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { route } from "ziggy-js";
@@ -20,6 +19,7 @@ import {
   FormProvider,
   FormSubmit,
 } from "@/components/ui/form";
+import type { GlobalProps } from "@/types/global";
 
 function UserSettingsSecurityTwoFactor() {
   const { two_factor_confirmed_at } = usePage<GlobalProps>().props.auth;

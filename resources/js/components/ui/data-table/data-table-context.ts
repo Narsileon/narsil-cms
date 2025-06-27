@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
-import { DataTableStoreType } from "@/stores/data-table-store";
 import { Table } from "@tanstack/react-table";
+import type { DataTableStoreType } from "@/stores/data-table-store";
 
 export type DataTableContextProps = {
   table: Table<any>;

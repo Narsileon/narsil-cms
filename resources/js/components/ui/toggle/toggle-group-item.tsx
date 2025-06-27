@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 import { toggleVariants } from "./toggle";
-import { VariantProps } from "class-variance-authority";
 import useToggleGroup from "./toggle-group-context";
+import type { VariantProps } from "class-variance-authority";
 
 export type ToggleGroupItemProps = React.ComponentProps<
   typeof ToggleGroupPrimitive.Item

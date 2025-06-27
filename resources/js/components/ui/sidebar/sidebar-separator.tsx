@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { Separator, SeparatorProps } from "@/components/ui/separator";
+import { Separator } from "@/components/ui/separator";
+import type { SeparatorProps } from "@/components/ui/separator";
 
 export type SidebarSeparatorProps = SeparatorProps & {};
 

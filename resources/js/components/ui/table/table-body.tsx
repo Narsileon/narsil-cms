@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 
-export type TableBopyProps = React.ComponentProps<"tbody"> & {};
+export type TableBodyProps = React.ComponentProps<"tbody"> & {};
 
-function TableBody({ className, ...props }: TableBopyProps) {
+function TableBody({ className, ...props }: TableBodyProps) {
   return (
     <tbody
       data-slot="table-body"

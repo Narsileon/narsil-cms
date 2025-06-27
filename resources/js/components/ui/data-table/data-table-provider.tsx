@@ -1,6 +1,5 @@
 import { arrayMove } from "@dnd-kit/sortable";
 import { DataTableContext } from "./data-table-context";
-import { DataTableStoreType } from "@/stores/data-table-store";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import { Table } from "@tanstack/react-table";
 import {
@@ -12,6 +11,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+import type { DataTableStoreType } from "@/stores/data-table-store";
 import type { DragEndEvent } from "@dnd-kit/core";
 
 export interface DataTableProviderProps {

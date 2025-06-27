@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { cva, VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
 import useSidebar from "./sidebar-context";
 import {
@@ -8,6 +8,7 @@ import {
   TooltipContentProps,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { VariantProps } from "class-variance-authority";
 
 const sidebarMenuButtonVariants = cva(
   cn(

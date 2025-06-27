@@ -8,6 +8,7 @@ use App\Http\Controllers\Sessions\SessionLocaleUpdateController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Sites\SiteController;
 use App\Http\Controllers\Users\UserConfigurationUpdateController;
+use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
 
 #endregion
@@ -25,6 +26,10 @@ Route::middleware([
             ->name('settings');
 
         Route::resource('/sites', SiteController::class)
+            ->except([
+                'show'
+            ]);
+        Route::resource('/users', UserController::class)
             ->except([
                 'show'
             ]);

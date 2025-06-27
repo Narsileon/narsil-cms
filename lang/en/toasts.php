@@ -25,5 +25,10 @@ return [
             'confirmed' => 'Your two factor authentication has been successfully confirmed.',
             'disabled' => 'Your two factor authentication has been successfully disabled.',
         ],
+        'users' => [
+            'created' => 'The user has been successfully created.',
+            'deleted' => 'The user has been successfully deleted.',
+            'updated' => 'The user has been successfully updated.',
+        ],
     ],
 ];

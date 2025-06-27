@@ -25,5 +25,6 @@ return [
     'settings'        => 'Settings',
     'sites'           => 'Sites',
     'system'          => 'System',
-    'update'          => 'Update'
+    'update'          => 'Update',
+    'users'           => 'Users',
 ];

@@ -1,4 +1,3 @@
-import { GlobalProps } from "@/types/global";
 import { Input } from "@/components/ui/input";
 import { route } from "ziggy-js";
 import { Separator } from "@/components/ui/separator";
@@ -20,6 +19,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
+import type { GlobalProps } from "@/types/global";
 
 function UserSettingsAccount() {
   const { trans } = useTranslationsStore();
