@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Lang;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class TranslationService

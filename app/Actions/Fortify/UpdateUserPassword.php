@@ -13,7 +13,6 @@ use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class UpdateUserPassword implements UpdatesUserPasswords

@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class Site extends Model implements IEnable

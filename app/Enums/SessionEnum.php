@@ -2,6 +2,10 @@
 
 namespace App\Enums;
 
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
 enum SessionEnum: string
 {
     case ALL = 'all';

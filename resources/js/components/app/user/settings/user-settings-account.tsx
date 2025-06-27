@@ -19,6 +19,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
+import { Separator } from "@/components/ui/separator";
 
 function UserSettingsAccount() {
   const { trans } = useTranslationsStore();
@@ -33,6 +34,7 @@ function UserSettingsAccount() {
         </SectionHeader>
         <SectionContent>
           <Form
+            id="profile"
             className="grid gap-6"
             method="put"
             url={route("user-profile-information.update")}
@@ -70,7 +72,76 @@ function UserSettingsAccount() {
               )}
             />
 
-            <Button type="submit">{trans("ui.update")}</Button>
+            <Button form="profile" type="submit">
+              {trans("ui.update")}
+            </Button>
+          </Form>
+        </SectionContent>
+      </Section>
+      <Separator />
+      <Section>
+        <SectionHeader>
+          <SectionTitle level="h2">{trans("ui.password")}</SectionTitle>
+        </SectionHeader>
+        <SectionContent>
+          <Form
+            id="password"
+            className="grid gap-6"
+            method="put"
+            url={route("user-password.update")}
+            attributes={{
+              first_name: first_name,
+              last_name: last_name,
+            }}
+          >
+            <FormField
+              name="current_password"
+              render={({ onChange, ...field }) => (
+                <FormItem>
+                  <FormLabel required={true} />
+                  <Input
+                    autoComplete="current-password"
+                    type="password"
+                    onChange={(e) => onChange(e.target.value)}
+                    {...field}
+                  />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="password"
+              render={({ onChange, ...field }) => (
+                <FormItem>
+                  <FormLabel required={true} />
+                  <Input
+                    autoComplete="new-password"
+                    type="password"
+                    onChange={(e) => onChange(e.target.value)}
+                    {...field}
+                  />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="password_confirmation"
+              render={({ onChange, ...field }) => (
+                <FormItem>
+                  <FormLabel required={true} />
+                  <Input
+                    autoComplete="new-password"
+                    type="password"
+                    onChange={(e) => onChange(e.target.value)}
+                    {...field}
+                  />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button form="password" type="submit">
+              {trans("ui.update")}
+            </Button>
           </Form>
         </SectionContent>
       </Section>

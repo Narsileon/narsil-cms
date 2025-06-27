@@ -13,7 +13,6 @@ use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation

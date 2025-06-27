@@ -23,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { router } from "@inertiajs/react";
 
 function UserSettingsPersonalization() {
   const { theme, setTheme } = useTheme();
@@ -70,7 +71,11 @@ function UserSettingsPersonalization() {
                   <Combobox
                     value={locale}
                     options={languageOptions}
-                    setValue={() => {}}
+                    setValue={(value) => {
+                      router.patch(route("sessions-locale.update"), {
+                        locale: value,
+                      });
+                    }}
                   />
                   <FormMessage />
                 </FormItem>

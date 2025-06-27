@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class UserConfigurationUpdateController

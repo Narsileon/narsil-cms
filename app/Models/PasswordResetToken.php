@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class PasswordResetToken extends Model

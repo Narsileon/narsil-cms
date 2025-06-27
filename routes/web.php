@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Sessions\SessionDeleteController;
+use App\Http\Controllers\Sessions\SessionLocaleUpdateController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Sites\SiteController;
 use App\Http\Controllers\Users\UserConfigurationUpdateController;
@@ -28,10 +29,12 @@ Route::middleware([
                 'show'
             ]);
 
+        Route::patch('/sessions/locale', SessionLocaleUpdateController::class)
+            ->name('sessions-locale.update');
         Route::delete('/sessions', SessionDeleteController::class)
             ->name('sessions.delete');
 
-        Route::patch('/user-configuration', UserConfigurationUpdateController::class)
+        Route::patch('/user/configuration', UserConfigurationUpdateController::class)
             ->name('user-configuration.update');
     }
 );

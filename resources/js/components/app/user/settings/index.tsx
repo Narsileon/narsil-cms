@@ -12,6 +12,7 @@ import {
   DialogContent,
   DialogProps,
 } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type UserSettingsProps = {
   open: DialogProps["open"];
@@ -26,9 +27,13 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="md:p-0" showCloseButton={false}>
+        <DialogContent
+          className="h-3/4 sm:h-1/2 md:p-0"
+          showCloseButton={false}
+        >
           <Tabs
-            defaultValue="general"
+            className="h-full overflow-hidden"
+            defaultValue="account"
             orientation={minMd ? "vertical" : "horizontal"}
           >
             <TabsList className="md:border-r">
@@ -50,9 +55,11 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
               </TabsTrigger>
             </TabsList>
             <Separator orientation={minMd ? "vertical" : "horizontal"} />
-            <UserSettingsAccount />
-            <UserSettingsPersonalization />
-            <UserSettingsSecurity />
+            <ScrollArea className="h-full w-full">
+              <UserSettingsAccount />
+              <UserSettingsPersonalization />
+              <UserSettingsSecurity />
+            </ScrollArea>
           </Tabs>
         </DialogContent>
       </Dialog>

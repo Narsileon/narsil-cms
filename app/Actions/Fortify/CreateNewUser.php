@@ -14,7 +14,6 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class CreateNewUser implements CreatesNewUsers

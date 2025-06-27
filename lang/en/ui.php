@@ -12,6 +12,7 @@ return [
     'log_out_others'  => 'Log out others',
     'log_out'         => 'Log out',
     'new_site'        => 'New site',
+    'password'        => 'Password',
     'personalization' => 'Personalization',
     'register'        => 'Register',
     'reset'           => 'Reset',

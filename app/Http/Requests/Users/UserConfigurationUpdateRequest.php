@@ -9,12 +9,16 @@ use App\Models\Users\UserConfiguration;
 
 #endregion
 
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
 class UserConfigurationUpdateRequest extends AbstractFormRequest
 {
     #region PUBLIC METHODS
 
     /**
-     * @return array
+     * @inheritdoc
      */
     public function rules(): array
     {

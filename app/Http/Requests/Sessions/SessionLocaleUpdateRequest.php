@@ -4,9 +4,7 @@ namespace App\Http\Requests\Sessions;
 
 #region USE
 
-use App\Enums\SessionEnum;
 use App\Http\Requests\AbstractFormRequest;
-use Illuminate\Validation\Rule;
 
 #endregion
 
@@ -14,14 +12,14 @@ use Illuminate\Validation\Rule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SessionDeleteRequest extends AbstractFormRequest
+class SessionLocaleUpdateRequest extends AbstractFormRequest
 {
     #region CONSTANTS
 
     /**
-     * @var string The name of the "type" parameter.
+     * @var string The name of the "locale" parameter.
      */
-    public const TYPE = 'type';
+    public const LOCALE = 'locale';
 
     #endregion
 
@@ -33,9 +31,11 @@ class SessionDeleteRequest extends AbstractFormRequest
     public function rules(): array
     {
         return [
-            self::TYPE => [
+            self::LOCALE => [
                 self::STRING,
-                Rule::enum(SessionEnum::class),
+                self::min(2),
+                self::max(2),
+                self::REQUIRED,
             ],
         ];
     }

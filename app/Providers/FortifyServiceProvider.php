@@ -17,13 +17,13 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\PasswordConfirmedResponse;
+use Laravel\Fortify\Contracts\PasswordUpdateResponse;
 use Laravel\Fortify\Contracts\ProfileInformationUpdatedResponse;
 use Laravel\Fortify\Fortify;
 
@@ -31,7 +31,6 @@ use Laravel\Fortify\Fortify;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class FortifyServiceProvider extends ServiceProvider
@@ -48,6 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
         $this->registerLoginResponse();
         $this->registerLogoutResponse();
         $this->registerPasswordConfirmedResponse();
+        $this->registerPasswordUpdatedResponse();
         $this->registerProfileInformationUpdatedResponse();
     }
 
@@ -150,6 +150,21 @@ class FortifyServiceProvider extends ServiceProvider
             {
                 return redirect()->intended(route('home'))
                     ->with('success', trans('toasts.success.password.confirmed'));
+            }
+        });
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerPasswordUpdatedResponse(): void
+    {
+        $this->app->instance(PasswordUpdateResponse::class, new class implements PasswordUpdateResponse
+        {
+            public function toResponse($request)
+            {
+                return back()
+                    ->with('success', trans('toasts.success.password.updated'));
             }
         });
     }

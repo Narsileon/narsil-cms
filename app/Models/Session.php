@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class Session extends Model

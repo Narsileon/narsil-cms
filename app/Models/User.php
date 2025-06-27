@@ -18,7 +18,6 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class User extends Authenticatable implements IEnable, MustVerifyEmail

@@ -13,7 +13,6 @@ use Laravel\Fortify\Contracts\ResetsUserPasswords;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class ResetUserPassword implements ResetsUserPasswords

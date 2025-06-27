@@ -17,7 +17,6 @@ use Inertia\Middleware;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class HandleInertiaRequests extends Middleware
@@ -56,7 +55,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $locale = App::getLocale();
+        $locale = Session::get('locale', App::getLocale());
 
         return [
             ...parent::share($request),

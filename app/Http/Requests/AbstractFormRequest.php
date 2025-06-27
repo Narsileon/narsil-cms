@@ -10,7 +10,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 abstract class AbstractFormRequest extends FormRequest
