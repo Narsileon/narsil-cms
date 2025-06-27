@@ -44,7 +44,7 @@ function UserSettingsSecurity() {
           <Separator />
           <div className="flex items-center justify-between">
             <Label>{trans("Log out of others devices.")}</Label>
-            <DialogClose>
+            <DialogClose asChild={true}>
               <Button asChild={true} variant="outline">
                 <Link
                   method="delete"
@@ -60,7 +60,7 @@ function UserSettingsSecurity() {
           <Separator />
           <div className="flex items-center justify-between">
             <Label>{trans("Log out of all devices.")}</Label>
-            <DialogClose>
+            <DialogClose asChild={true}>
               <Button asChild={true} variant="outline">
                 <Link
                   method="delete"

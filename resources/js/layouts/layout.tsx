@@ -1,4 +1,4 @@
-import { usePage } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
@@ -27,8 +27,14 @@ function Layout({ children }: LayoutProps) {
   useEffect(() => {
     if (success) {
       toast.success(success);
+      router.reload({
+        only: ["redirect"],
+      });
     } else if (error) {
       toast.error(error);
+      router.reload({
+        only: ["redirect"],
+      });
     }
   }, [success, error]);
 

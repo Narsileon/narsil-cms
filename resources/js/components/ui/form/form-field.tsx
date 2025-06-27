@@ -26,7 +26,7 @@ const FormField = ({ name, render }: FormFieldProps) => {
     <FormFieldContext.Provider value={{ error: error, name: name }}>
       {render({
         id: name,
-        value: data?.[name],
+        value: data?.[name] ?? "",
         onChange: (value) => setData?.(name, value),
       })}
     </FormFieldContext.Provider>
