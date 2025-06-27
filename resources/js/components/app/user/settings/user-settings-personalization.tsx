@@ -10,6 +10,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormProvider,
 } from "@/components/ui/form";
 import {
   Section,
@@ -41,52 +42,56 @@ function UserSettingsPersonalization() {
           <SectionTitle level="h2">{trans("ui.personalization")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
-          <Form
+          <FormProvider
             id="user-personalization-form"
-            className="grid gap-4"
-            method="post"
-            url={route("login")}
-          >
-            <FormField
-              name="theme"
-              render={() => (
-                <FormItem className="flex-row justify-between">
-                  <FormLabel />
-                  <Select value={theme} onValueChange={setTheme}>
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="dark">{trans("ui.dark")}</SelectItem>
-                      <SelectItem value="light">{trans("ui.light")}</SelectItem>
-                      <SelectItem value="system">
-                        {trans("ui.system")}
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="language"
-              render={() => (
-                <FormItem className="flex-row justify-between">
-                  <FormLabel />
-                  <Combobox
-                    value={locale}
-                    options={languageOptions}
-                    setValue={(value) => {
-                      router.patch(route("sessions-locale.update"), {
-                        locale: value,
-                      });
-                    }}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </Form>
+            render={() => (
+              <Form className="grid gap-4" method="post" url={route("login")}>
+                <FormField
+                  name="theme"
+                  render={() => (
+                    <FormItem className="flex-row justify-between">
+                      <FormLabel />
+                      <Select value={theme} onValueChange={setTheme}>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="dark">
+                            {trans("ui.dark")}
+                          </SelectItem>
+                          <SelectItem value="light">
+                            {trans("ui.light")}
+                          </SelectItem>
+                          <SelectItem value="system">
+                            {trans("ui.system")}
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="language"
+                  render={() => (
+                    <FormItem className="flex-row justify-between">
+                      <FormLabel />
+                      <Combobox
+                        value={locale}
+                        options={languageOptions}
+                        setValue={(value) => {
+                          router.patch(route("sessions-locale.update"), {
+                            locale: value,
+                          });
+                        }}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </Form>
+            )}
+          />
         </SectionContent>
       </Section>
     </TabsContent>

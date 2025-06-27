@@ -9,6 +9,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormProvider,
   FormSubmit,
 } from "@/components/ui/form";
 
@@ -22,42 +23,46 @@ function TwoFactorChallenge() {
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
-          <Form
+          <FormProvider
             id="two-factor-challenge-form"
-            className="grid gap-6"
-            method="post"
-            url={route("two-factor.login")}
-          >
-            <FormField
-              name="code"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel required={true} />
-                  <Input
-                    autoComplete="one-time-code"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="recovery_code"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel />
-                  <Input
-                    autoComplete="one-time-code"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormSubmit>{trans("ui.confirm")}</FormSubmit>
-          </Form>
+            render={() => (
+              <Form
+                className="grid gap-6"
+                method="post"
+                url={route("two-factor.login")}
+              >
+                <FormField
+                  name="code"
+                  render={({ onChange, ...field }) => (
+                    <FormItem>
+                      <FormLabel required={true} />
+                      <Input
+                        autoComplete="one-time-code"
+                        onChange={(e) => onChange(e.target.value)}
+                        {...field}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="recovery_code"
+                  render={({ onChange, ...field }) => (
+                    <FormItem>
+                      <FormLabel />
+                      <Input
+                        autoComplete="one-time-code"
+                        onChange={(e) => onChange(e.target.value)}
+                        {...field}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormSubmit>{trans("ui.confirm")}</FormSubmit>
+              </Form>
+            )}
+          />
         </CardContent>
       </Card>
     </div>

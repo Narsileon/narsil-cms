@@ -9,6 +9,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormProvider,
   FormSubmit,
 } from "@/components/ui/form";
 
@@ -22,29 +23,33 @@ function ConfirmPassword() {
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
-          <Form
+          <FormProvider
             id="confirm-password-form"
-            className="grid gap-6"
-            method="post"
-            url={route("password.confirm")}
-          >
-            <FormField
-              name="password"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel required={true} />
-                  <Input
-                    autoComplete="one-time-code"
-                    type="password"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormSubmit>{trans("ui.confirm")}</FormSubmit>
-          </Form>
+            render={() => (
+              <Form
+                className="grid gap-6"
+                method="post"
+                url={route("password.confirm")}
+              >
+                <FormField
+                  name="password"
+                  render={({ onChange, ...field }) => (
+                    <FormItem>
+                      <FormLabel required={true} />
+                      <Input
+                        autoComplete="one-time-code"
+                        type="password"
+                        onChange={(e) => onChange(e.target.value)}
+                        {...field}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormSubmit>{trans("ui.confirm")}</FormSubmit>
+              </Form>
+            )}
+          />
         </CardContent>
       </Card>
     </div>

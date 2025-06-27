@@ -14,6 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormProvider,
   FormSubmit,
 } from "@/components/ui/form";
 
@@ -36,37 +37,41 @@ function UserConfirmPassword({
         <DialogHeader>
           <DialogTitle>{trans("passwords.confirming")}</DialogTitle>
         </DialogHeader>
-        <Form
+        <FormProvider
           id="user-confirm-password-form"
-          className="grid gap-6"
-          autoComplete="off"
-          method="post"
-          options={{
-            onSuccess: () => {
-              onConfirmed();
+          render={() => (
+            <Form
+              className="grid gap-6"
+              autoComplete="off"
+              method="post"
+              options={{
+                onSuccess: () => {
+                  onConfirmed();
 
-              onOpenChange(false);
-            },
-          }}
-          url={route("password.confirm")}
-        >
-          <FormField
-            name="password"
-            render={({ onChange, ...field }) => (
-              <FormItem>
-                <FormLabel required={true} />
-                <Input
-                  autoComplete="one-time-code"
-                  type="password"
-                  onChange={(e) => onChange(e.target.value)}
-                  {...field}
-                />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormSubmit>{trans("ui.confirm")}</FormSubmit>
-        </Form>
+                  onOpenChange(false);
+                },
+              }}
+              url={route("password.confirm")}
+            >
+              <FormField
+                name="password"
+                render={({ onChange, ...field }) => (
+                  <FormItem>
+                    <FormLabel required={true} />
+                    <Input
+                      autoComplete="one-time-code"
+                      type="password"
+                      onChange={(e) => onChange(e.target.value)}
+                      {...field}
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormSubmit>{trans("ui.confirm")}</FormSubmit>
+            </Form>
+          )}
+        />
       </DialogContent>
     </Dialog>
   );

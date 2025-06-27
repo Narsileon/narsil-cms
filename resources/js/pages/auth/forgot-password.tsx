@@ -14,6 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormProvider,
   FormSubmit,
 } from "@/components/ui/form";
 
@@ -41,32 +42,36 @@ function ForgotPassword({ status }: ForgotPasswordProps) {
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
-          <Form
+          <FormProvider
             id="forgot-password-form"
-            className="grid gap-6"
-            method="post"
-            url={route("password.email")}
-          >
-            <FormField
-              name="email"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel required={true} />
-                  <Input
-                    autoComplete="email"
-                    type="email"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormDescription>
-                    {trans("passwords.forgot_description")}
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormSubmit>{trans("ui.send")}</FormSubmit>
-          </Form>
+            render={() => (
+              <Form
+                className="grid gap-6"
+                method="post"
+                url={route("password.email")}
+              >
+                <FormField
+                  name="email"
+                  render={({ onChange, ...field }) => (
+                    <FormItem>
+                      <FormLabel required={true} />
+                      <Input
+                        autoComplete="email"
+                        type="email"
+                        onChange={(e) => onChange(e.target.value)}
+                        {...field}
+                      />
+                      <FormDescription>
+                        {trans("passwords.forgot_description")}
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormSubmit>{trans("ui.send")}</FormSubmit>
+              </Form>
+            )}
+          />
         </CardContent>
         <CardFooter className="border-t">
           <Button className="w-full" asChild={true} variant="secondary">

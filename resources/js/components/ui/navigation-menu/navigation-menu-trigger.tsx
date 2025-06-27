@@ -31,7 +31,7 @@ function NavigationMenuTrigger({
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
     >
-      {children}{" "}
+      {children}
       <ChevronDownIcon
         className={cn(
           "relative top-[1px] ml-1 size-3 transition duration-300",

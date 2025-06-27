@@ -17,6 +17,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormProvider,
   FormSubmit,
 } from "@/components/ui/form";
 
@@ -69,31 +70,9 @@ function UserSettingsSecurityTwoFactor() {
   }
 
   function onConfirmed() {
-    router.post(route("two-factor.enable"), undefined, {
-      onSuccess: async () => {
-        await getQrCode();
-        await getRecoveryCodes();
-
-        setEnabled(true);
-      },
-
-      onError: () => {
-        setEnabled(false);
-      },
-    });
-  }
-
-  async function toggleEnabled(enabled: boolean) {
     if (enabled) {
-      await getConfirmed();
-
-      if (!confirmed) {
-        setOpen(true);
-      } else {
-        onConfirmed();
-      }
-    } else {
       router.delete(route("two-factor.disable"), {
+        preserveState: true,
         onSuccess: () => {
           setActive(false);
           setEnabled(false);
@@ -102,6 +81,29 @@ function UserSettingsSecurityTwoFactor() {
           setEnabled(true);
         },
       });
+    } else {
+      router.post(route("two-factor.enable"), undefined, {
+        onSuccess: async () => {
+          await getQrCode();
+          await getRecoveryCodes();
+
+          setEnabled(true);
+        },
+
+        onError: () => {
+          setEnabled(false);
+        },
+      });
+    }
+  }
+
+  async function toggleEnabled() {
+    await getConfirmed();
+
+    if (!confirmed) {
+      setOpen(true);
+    } else {
+      onConfirmed();
     }
   }
 
@@ -115,37 +117,50 @@ function UserSettingsSecurityTwoFactor() {
         {!active && enabled && qrCode ? (
           <Card>
             <CardContent>
-              <Form
+              <FormProvider
                 id="user-two-factor-form"
-                className="grid gap-4"
-                url={route("two-factor.confirm")}
-                options={{
-                  onSuccess: () => {
-                    setActive(true);
-                  },
-                }}
-              >
-                <p>{trans("auth.two_factor_description")}</p>
-                <div
-                  className="[&>svg]:h-auto [&>svg]:w-full"
-                  dangerouslySetInnerHTML={{ __html: qrCode }}
-                />
-                <FormField
-                  name="code"
-                  render={({ onChange, ...field }) => (
-                    <FormItem className="flex-row justify-between">
-                      <FormLabel required={true} />
-                      <Input
-                        autoComplete="one-time-code"
-                        onChange={(e) => onChange(e.target.value)}
-                        {...field}
-                      />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormSubmit>{trans("ui.confirm")}</FormSubmit>
-              </Form>
+                render={({ setError }) => (
+                  <Form
+                    className="grid gap-4"
+                    url={route("two-factor.confirm")}
+                    options={{
+                      onSuccess: () => {
+                        console.log("hallo");
+                        setActive(true);
+                      },
+                      onError() {
+                        setError?.("code", trans("validation.code"));
+                      },
+                    }}
+                  >
+                    <p>{trans("auth.two_factor_description")}</p>
+                    <div
+                      className="[&>svg]:h-auto [&>svg]:w-full"
+                      dangerouslySetInnerHTML={{
+                        __html: qrCode,
+                      }}
+                    />
+                    <FormField
+                      name="code"
+                      render={({ onChange, ...field }) => (
+                        <FormItem>
+                          <div className="flex items-center justify-between gap-4">
+                            <FormLabel required={true} />
+                            <Input
+                              autoComplete="one-time-code"
+                              onChange={(e) => onChange(e.target.value)}
+                              {...field}
+                            />
+                          </div>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormSubmit>{trans("ui.confirm")}</FormSubmit>
+                  </Form>
+                )}
+              />
             </CardContent>
           </Card>
         ) : null}

@@ -14,6 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormProvider,
   FormSubmit,
 } from "@/components/ui/form";
 
@@ -41,64 +42,67 @@ function Login({ status }: LoginProps) {
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
-          <Form
+          <FormProvider
             id="login-form"
-            className="grid gap-6"
-            method="post"
-            url={route("login")}
-          >
-            <FormField
-              name="email"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <FormLabel required={true} />
-                  <Input
-                    autoComplete="email"
-                    type="email"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="password"
-              render={({ onChange, ...field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between">
-                    <FormLabel required={true} />
-                    <Link className="text-xs" href={route("password.request")}>
-                      {trans("passwords.forgot")}
-                    </Link>
-                  </div>
-                  <Input
-                    autoComplete="new-password"
-                    type="password"
-                    onChange={(e) => onChange(e.target.value)}
-                    {...field}
-                  />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="remember"
-              render={({ value, onChange, ...field }) => (
-                <FormItem className="flex-row">
-                  <Checkbox
-                    checked={value}
-                    onCheckedChange={(checked) => onChange(checked)}
-                    {...field}
-                  />
-                  <FormDescription>
-                    {trans("validation.attributes.remember")}
-                  </FormDescription>
-                </FormItem>
-              )}
-            />
-            <FormSubmit>{trans("ui.log_in")}</FormSubmit>
-          </Form>
+            render={() => (
+              <Form className="grid gap-6" method="post" url={route("login")}>
+                <FormField
+                  name="email"
+                  render={({ onChange, ...field }) => (
+                    <FormItem>
+                      <FormLabel required={true} />
+                      <Input
+                        autoComplete="email"
+                        type="email"
+                        onChange={(e) => onChange(e.target.value)}
+                        {...field}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="password"
+                  render={({ onChange, ...field }) => (
+                    <FormItem>
+                      <div className="flex items-center justify-between">
+                        <FormLabel required={true} />
+                        <Link
+                          className="text-xs"
+                          href={route("password.request")}
+                        >
+                          {trans("passwords.forgot")}
+                        </Link>
+                      </div>
+                      <Input
+                        autoComplete="new-password"
+                        type="password"
+                        onChange={(e) => onChange(e.target.value)}
+                        {...field}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="remember"
+                  render={({ value, onChange, ...field }) => (
+                    <FormItem className="flex-row">
+                      <Checkbox
+                        checked={value}
+                        onCheckedChange={(checked) => onChange(checked)}
+                        {...field}
+                      />
+                      <FormDescription>
+                        {trans("validation.attributes.remember")}
+                      </FormDescription>
+                    </FormItem>
+                  )}
+                />
+                <FormSubmit>{trans("ui.log_in")}</FormSubmit>
+              </Form>
+            )}
+          />
           {status}
         </CardContent>
       </Card>
