@@ -9,6 +9,7 @@ return [
         'auth',
         'locales',
         'passwords',
+        'tooltips',
         'ui',
         'validation',
     ],

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { MoreHorizontalIcon } from "lucide-react";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 export type PaginationEllipsisProps = React.ComponentProps<"span"> & {};
 
@@ -12,7 +13,7 @@ function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />
-      <span className="sr-only">More pages</span>
+      <VisuallyHidden>More pages</VisuallyHidden>
     </span>
   );
 }

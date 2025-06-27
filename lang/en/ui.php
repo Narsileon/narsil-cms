@@ -4,8 +4,10 @@ return [
     'account'         => 'Account',
     'back'            => 'Back',
     'confirm'         => 'Confirm',
+    'content'         => 'Content',
     'create'          => 'Create',
     'dark'            => 'Dark',
+    'fields'          => 'Fields',
     'light'           => 'Light',
     'log_in'          => 'Log in',
     'log_out_all'     => 'Log out all',
@@ -21,6 +23,7 @@ return [
     'send_again'      => 'Send again',
     'send'            => 'Send',
     'settings'        => 'Settings',
+    'sites'           => 'Sites',
     'system'          => 'System',
     'update'          => 'Update'
 ];

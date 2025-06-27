@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
 import axios from "axios";
-import UserConfirmPassword from "../confirm-password";
+import UserConfirmPassword from "@/components/app/user/confirm-password";
 import {
   Form,
   FormField,

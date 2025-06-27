@@ -1,6 +1,7 @@
-import { Dialog as DialogPrimitive } from "radix-ui";
-import { XIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Dialog as DialogPrimitive } from "radix-ui";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { XIcon } from "lucide-react";
 
 export type DialogCloseButtonProps = React.ComponentProps<
   typeof DialogPrimitive.Close
@@ -22,7 +23,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
       {...props}
     >
       <XIcon />
-      <span className="sr-only">Close</span>
+      <VisuallyHidden>Close</VisuallyHidden>
     </DialogPrimitive.Close>
   );
 }

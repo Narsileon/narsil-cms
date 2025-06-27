@@ -25,7 +25,7 @@ class SettingsController
      */
     public function __invoke(Request $request): Response
     {
-        return Inertia::render('settings');
+        return Inertia::render('settings/index');
     }
 
     #endregion

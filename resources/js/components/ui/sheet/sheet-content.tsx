@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { XIcon } from "lucide-react";
-import SheetPortal from "./sheet-portal";
 import SheetOverlay from "./sheet-overlay";
+import SheetPortal from "./sheet-portal";
 
 export type SheetContentProps = React.ComponentProps<
   typeof SheetPrimitive.Content
@@ -60,7 +61,7 @@ function SheetContent({
           )}
         >
           <XIcon className="size-4" />
-          <span className="sr-only">Close</span>
+          <VisuallyHidden>Close</VisuallyHidden>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
     </SheetPortal>

@@ -1,6 +1,11 @@
 import { CogIcon, LogOutIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useState } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
 import UserAvatar from "@/components/app/user/avatar";
@@ -20,25 +25,30 @@ function UserMenu() {
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <UserAvatar />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setOpenSettings(true)}>
-            <CogIcon />
-            {trans("ui.settings")}
-          </DropdownMenuItem>
+      <Tooltip>
+        <DropdownMenu>
+          <TooltipTrigger asChild>
+            <DropdownMenuTrigger>
+              <UserAvatar />
+            </DropdownMenuTrigger>
+          </TooltipTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => setOpenSettings(true)}>
+              <CogIcon />
+              {trans("ui.settings")}
+            </DropdownMenuItem>
 
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild={true}>
-            <Link as="button" href={route("logout")} method="post">
-              <LogOutIcon />
-              {trans("ui.log_out")}
-            </Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild={true}>
+              <Link as="button" href={route("logout")} method="post">
+                <LogOutIcon />
+                {trans("ui.log_out")}
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <TooltipContent>{trans("tooltips.toggle.user_menu")}</TooltipContent>
+      </Tooltip>
       <UserSettings open={openSettings} onOpenChange={setOpenSettings} />
     </>
   );

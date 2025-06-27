@@ -2,6 +2,7 @@ import { Button, ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { PanelLeftIcon } from "lucide-react";
 import { useSidebar } from "./sidebar-provider";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 export type SidebarTriggerProps = ButtonProps & {};
 
@@ -23,7 +24,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
       {...props}
     >
       <PanelLeftIcon />
-      <span className="sr-only">Toggle Sidebar</span>
+      <VisuallyHidden>Toggle Sidebar</VisuallyHidden>
     </Button>
   );
 }

@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
+import { useTranslationsStore } from "@/stores/translations-store";
 import AppSidebar from "@/components/app/app-sidebar";
 import UserMenu from "@/components/app/user/menu";
 import {
@@ -16,18 +17,30 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type AuthLayoutProps = {
   children: React.ReactNode;
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
+  const { trans } = useTranslationsStore();
+
   return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="bg-background sticky top-0 flex h-12 shrink-0 items-center gap-2 border-b pr-4 pl-3">
-          <SidebarTrigger />
+          <Tooltip>
+            <TooltipTrigger asChild={true}>
+              <SidebarTrigger />
+            </TooltipTrigger>
+            <TooltipContent>{trans("tooltips.toggle.sidebar")}</TooltipContent>
+          </Tooltip>
           <Separator orientation="vertical" className="mr-2 h-4" />
           <Breadcrumb className="grow">
             <BreadcrumbList>

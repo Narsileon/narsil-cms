@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { MoreHorizontal } from "lucide-react";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 export type BreadcrumbEllipsisProps = React.ComponentProps<"span"> & {};
 
@@ -13,7 +14,7 @@ function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisProps) {
       {...props}
     >
       <MoreHorizontal className="size-4" />
-      <span className="sr-only">More</span>
+      <VisuallyHidden>More</VisuallyHidden>
     </span>
   );
 }
