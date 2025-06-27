@@ -1,31 +1,54 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CopyIcon } from "lucide-react";
+import { GlobalProps } from "@/types/global";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { route } from "ziggy-js";
-import { router } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { useTranslationsStore } from "@/stores/translations-store";
 import axios from "axios";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import UserConfirmPassword from "../confirm-password";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormSubmit,
+} from "@/components/ui/form";
 
 function UserSettingsSecurityTwoFactor() {
+  const { two_factor_confirmed_at } = usePage<GlobalProps>().props.auth;
+
   const { trans } = useTranslationsStore();
 
+  const [active, setActive] = useState<boolean>(
+    two_factor_confirmed_at !== null,
+  );
+  const [open, setOpen] = useState<boolean>(false);
   const [confirmed, setConfirmed] = useState<boolean>(false);
-  const [enabled, setEnabled] = useState<boolean>(false);
+  const [enabled, setEnabled] = useState<boolean>(active);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [recoveryCodes, setRecoveryCodes] = useState<string[] | null>(null);
 
-  async function getConfirmed() {
+  async function getConfirmed(): Promise<boolean> {
     try {
       const response = await axios.get(route("password.confirmation"));
 
       setConfirmed(response.data.confirmed);
+
+      return response.data.confirmed;
     } catch (error) {
       console.error("Error fetching password confirmation:", error);
+
+      return false;
     }
   }
 
-  async function getQrCode() {
+  async function getQrCode(): Promise<void> {
     try {
       const response = await axios.get(route("two-factor.qr-code"));
 
@@ -35,7 +58,7 @@ function UserSettingsSecurityTwoFactor() {
     }
   }
 
-  async function getRecoveryCodes() {
+  async function getRecoveryCodes(): Promise<void> {
     try {
       const response = await axios.get(route("two-factor.recovery-codes"));
 
@@ -45,24 +68,34 @@ function UserSettingsSecurityTwoFactor() {
     }
   }
 
-  function toggleEnabled(enabled: boolean) {
-    if (enabled) {
-      router.post(route("two-factor.enable"), undefined, {
-        preserveScroll: true,
-        onSuccess: async () => {
-          await getQrCode();
-          await getRecoveryCodes();
+  function onConfirmed() {
+    router.post(route("two-factor.enable"), undefined, {
+      onSuccess: async () => {
+        await getQrCode();
+        await getRecoveryCodes();
 
-          setEnabled(true);
-        },
-        onError: () => {
-          setEnabled(false);
-        },
-      });
+        setEnabled(true);
+      },
+
+      onError: () => {
+        setEnabled(false);
+      },
+    });
+  }
+
+  async function toggleEnabled(enabled: boolean) {
+    if (enabled) {
+      await getConfirmed();
+
+      if (!confirmed) {
+        setOpen(true);
+      } else {
+        onConfirmed();
+      }
     } else {
       router.delete(route("two-factor.disable"), {
-        preserveScroll: true,
         onSuccess: () => {
+          setActive(false);
           setEnabled(false);
         },
         onError: () => {
@@ -73,57 +106,81 @@ function UserSettingsSecurityTwoFactor() {
   }
 
   return (
-    <div className="flex h-9 items-center justify-between">
-      <Label>{trans("Enable Two-Factor Authentication")}</Label>
-      <Switch checked={enabled} onCheckedChange={toggleEnabled} />
-      {/* {qrCode ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>{trans("common.confirmation")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <FormProvider {...reactForm}>
-              <Form route={route("two-factor.confirm")}>
-                <p>
-                  {trans(
-                    "Please scan the following QR code using your phone's authenticator application and enter your code.",
+    <>
+      <div className="grid gap-4">
+        <div className="flex h-9 items-center justify-between">
+          <Label>{trans("auth.two_factor")}</Label>
+          <Switch checked={enabled} onCheckedChange={toggleEnabled} />
+        </div>
+        {!active && enabled && qrCode ? (
+          <Card>
+            <CardContent>
+              <Form
+                id="user-two-factor-form"
+                className="grid gap-4"
+                url={route("two-factor.confirm")}
+                options={{
+                  onSuccess: () => {
+                    setActive(true);
+                  },
+                }}
+              >
+                <p>{trans("auth.two_factor_description")}</p>
+                <div
+                  className="[&>svg]:h-auto [&>svg]:w-full"
+                  dangerouslySetInnerHTML={{ __html: qrCode }}
+                />
+                <FormField
+                  name="code"
+                  render={({ onChange, ...field }) => (
+                    <FormItem className="flex-row justify-between">
+                      <FormLabel required={true} />
+                      <Input
+                        autoComplete="one-time-code"
+                        onChange={(e) => onChange(e.target.value)}
+                        {...field}
+                      />
+                      <FormMessage />
+                    </FormItem>
                   )}
-                </p>
-
-                <div>{parse(qrCode)}</div>
-
-                <FormRenderer nodes={form.nodes} />
+                />
+                <FormSubmit>{trans("ui.confirm")}</FormSubmit>
               </Form>
-            </FormProvider>
-          </CardContent>
-          <CardFooter>
-            <Button>{trans("verbs.confirm")}</Button>
-          </CardFooter>
-        </Card>
-      ) : null}
-      {recoveryCodes ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>{trans("common.recovery_codes")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>{trans("Please find below your emergency recovery codes:")}</p>
+            </CardContent>
+          </Card>
+        ) : null}
+        {!active && enabled && recoveryCodes ? (
+          <Card>
+            <CardHeader className="grid-cols-2 items-center border-b">
+              <CardTitle>{trans("auth.recovery_codes")}</CardTitle>
+              <Button
+                className="place-self-end"
+                size="icon"
+                onClick={() => {
+                  navigator.clipboard.writeText(recoveryCodes.join("\n"));
+                }}
+              >
+                <CopyIcon />
+              </Button>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <p>{trans("auth.recovery_codes_description")}</p>
 
-            <ul className="ml-8 list-disc">
-              {recoveryCodes?.map((recoveryCode, index) => {
-                return <li key={index}>{recoveryCode}</li>;
-              })}
-            </ul>
-
-            <p>
-              {trans(
-                "They can be used to recover access to your account if the two-factor authentication cannot be completed.",
-              )}
-            </p>
-          </CardContent>
-        </Card>
-      ) : null} */}
-    </div>
+              <ul className="ml-6 list-disc">
+                {recoveryCodes?.map((recoveryCode, index) => {
+                  return <li key={index}>{recoveryCode}</li>;
+                })}
+              </ul>
+            </CardContent>
+          </Card>
+        ) : null}
+      </div>
+      <UserConfirmPassword
+        open={open}
+        onConfirmed={onConfirmed}
+        onOpenChange={setOpen}
+      />
+    </>
   );
 }
 

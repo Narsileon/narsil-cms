@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Heading } from "@/components/ui/heading";
@@ -15,6 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmit,
 } from "@/components/ui/form";
 
 type LoginProps = {
@@ -41,7 +41,12 @@ function Login({ status }: LoginProps) {
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
-          <Form className="grid gap-6" method="post" url={route("login")}>
+          <Form
+            id="login-form"
+            className="grid gap-6"
+            method="post"
+            url={route("login")}
+          >
             <FormField
               name="email"
               render={({ onChange, ...field }) => (
@@ -92,7 +97,7 @@ function Login({ status }: LoginProps) {
                 </FormItem>
               )}
             />
-            <Button type="submit">{trans("ui.log_in")}</Button>
+            <FormSubmit>{trans("ui.log_in")}</FormSubmit>
           </Form>
           {status}
         </CardContent>

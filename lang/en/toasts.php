@@ -21,5 +21,9 @@ return [
             'deleted' => 'The site has been successfully deleted.',
             'updated' => 'The site has been successfully updated.',
         ],
+        'two_factor' => [
+            'confirmed' => 'Your two factor authentication has been successfully confirmed.',
+            'disabled' => 'Your two factor authentication has been successfully disabled.',
+        ],
     ],
 ];

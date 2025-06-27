@@ -8,10 +8,12 @@ import {
 export type ThemeProviderState = Partial<
   InertiaFormProps<Record<string, any>>
 > & {
-  onSubmit?: (event?: FormEvent) => void;
+  id: string;
+  onSubmit?: (e?: FormEvent) => void;
 };
 
 const FormProviderContext = createContext<ThemeProviderState>({
+  id: "form",
   data: {},
   errors: {},
   processing: false,
@@ -25,8 +27,9 @@ export type FormProps = React.ComponentProps<"form"> & {
 };
 
 function Form({
-  children,
   attributes = {},
+  children,
+  id = "form",
   method = "post",
   options,
   url,
@@ -50,8 +53,8 @@ function Form({
     transform,
   } = useFormPrimitive(attributes);
 
-  function onSubmit(event?: FormEvent) {
-    event?.preventDefault();
+  function onSubmit(e?: FormEvent) {
+    e?.preventDefault();
 
     switch (method) {
       case "patch":
@@ -69,6 +72,7 @@ function Form({
   return (
     <FormProviderContext.Provider
       value={{
+        id: id,
         data: data,
         errors: errors,
         isDirty: isDirty,
@@ -87,7 +91,7 @@ function Form({
         transform: transform,
       }}
     >
-      <form method={method} onSubmit={onSubmit} {...props}>
+      <form id={id} method={method} onSubmit={onSubmit} {...props}>
         {children}
       </form>
     </FormProviderContext.Provider>

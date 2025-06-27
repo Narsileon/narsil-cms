@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { GlobalProps } from "@/types/global";
 import { Input } from "@/components/ui/input";
 import { route } from "ziggy-js";
+import { Separator } from "@/components/ui/separator";
 import { TabsContent } from "@/components/ui/tabs";
 import { usePage } from "@inertiajs/react";
 import { useTranslationsStore } from "@/stores/translations-store";
@@ -11,15 +11,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmit,
 } from "@/components/ui/form";
-
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
-import { Separator } from "@/components/ui/separator";
 
 function UserSettingsAccount() {
   const { trans } = useTranslationsStore();
@@ -34,7 +33,7 @@ function UserSettingsAccount() {
         </SectionHeader>
         <SectionContent>
           <Form
-            id="profile"
+            id="user-profile-form"
             className="grid gap-6"
             method="put"
             url={route("user-profile-information.update")}
@@ -71,10 +70,7 @@ function UserSettingsAccount() {
                 </FormItem>
               )}
             />
-
-            <Button form="profile" type="submit">
-              {trans("ui.update")}
-            </Button>
+            <FormSubmit>{trans("ui.update")}</FormSubmit>
           </Form>
         </SectionContent>
       </Section>
@@ -85,7 +81,7 @@ function UserSettingsAccount() {
         </SectionHeader>
         <SectionContent>
           <Form
-            id="password"
+            id="user-password-form"
             className="grid gap-6"
             method="put"
             url={route("user-password.update")}
@@ -139,9 +135,7 @@ function UserSettingsAccount() {
                 </FormItem>
               )}
             />
-            <Button form="password" type="submit">
-              {trans("ui.update")}
-            </Button>
+            <FormSubmit>{trans("ui.update")}</FormSubmit>
           </Form>
         </SectionContent>
       </Section>

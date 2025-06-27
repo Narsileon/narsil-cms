@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
@@ -10,6 +9,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmit,
 } from "@/components/ui/form";
 
 function Register() {
@@ -23,6 +23,7 @@ function Register() {
       <Card className="w-[18rem] md:w-[26rem]">
         <CardContent>
           <Form
+            id="register-form"
             className="grid gap-6 md:grid-cols-2"
             method="post"
             url={route("register.store")}
@@ -100,9 +101,9 @@ function Register() {
                 </FormItem>
               )}
             />
-            <Button className="col-span-full" type="submit">
+            <FormSubmit className="col-span-full">
               {trans("ui.register")}
-            </Button>
+            </FormSubmit>
           </Form>
         </CardContent>
       </Card>

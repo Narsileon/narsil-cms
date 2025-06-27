@@ -14,6 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmit,
 } from "@/components/ui/form";
 
 type ForgotPasswordProps = {
@@ -41,6 +42,7 @@ function ForgotPassword({ status }: ForgotPasswordProps) {
       <Card className="w-[18rem]">
         <CardContent>
           <Form
+            id="forgot-password-form"
             className="grid gap-6"
             method="post"
             url={route("password.email")}
@@ -63,7 +65,7 @@ function ForgotPassword({ status }: ForgotPasswordProps) {
                 </FormItem>
               )}
             />
-            <Button type="submit">{trans("ui.send")}</Button>
+            <FormSubmit>{trans("ui.send")}</FormSubmit>
           </Form>
         </CardContent>
         <CardFooter className="border-t">

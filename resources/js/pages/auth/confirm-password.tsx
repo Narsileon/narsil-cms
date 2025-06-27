@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
@@ -10,6 +9,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmit,
 } from "@/components/ui/form";
 
 function ConfirmPassword() {
@@ -23,6 +23,7 @@ function ConfirmPassword() {
       <Card className="w-[18rem]">
         <CardContent>
           <Form
+            id="confirm-password-form"
             className="grid gap-6"
             method="post"
             url={route("password.confirm")}
@@ -33,7 +34,7 @@ function ConfirmPassword() {
                 <FormItem>
                   <FormLabel required={true} />
                   <Input
-                    autoComplete="current-password"
+                    autoComplete="one-time-code"
                     type="password"
                     onChange={(e) => onChange(e.target.value)}
                     {...field}
@@ -42,7 +43,7 @@ function ConfirmPassword() {
                 </FormItem>
               )}
             />
-            <Button type="submit">{trans("ui.confirm")}</Button>
+            <FormSubmit>{trans("ui.confirm")}</FormSubmit>
           </Form>
         </CardContent>
       </Card>

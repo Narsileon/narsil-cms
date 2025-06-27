@@ -1,5 +1,6 @@
 import { Combobox } from "@/components/ui/combobox";
 import { route } from "ziggy-js";
+import { router } from "@inertiajs/react";
 import { TabsContent } from "@/components/ui/tabs";
 import { useTheme } from "@/components/app/theme/theme-provider";
 import { useTranslationsStore } from "@/stores/translations-store";
@@ -23,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { router } from "@inertiajs/react";
 
 function UserSettingsPersonalization() {
   const { theme, setTheme } = useTheme();
@@ -41,7 +41,12 @@ function UserSettingsPersonalization() {
           <SectionTitle level="h2">{trans("ui.personalization")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
-          <Form className="grid gap-4" method="post" url={route("login")}>
+          <Form
+            id="user-personalization-form"
+            className="grid gap-4"
+            method="post"
+            url={route("login")}
+          >
             <FormField
               name="theme"
               render={() => (

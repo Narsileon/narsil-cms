@@ -1,3 +1,4 @@
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { SettingsIcon, UserIcon } from "lucide-react";
 import { TabsList, Tabs, TabsTrigger } from "@/components/ui/tabs";
@@ -12,7 +13,6 @@ import {
   DialogContent,
   DialogProps,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 type UserSettingsProps = {
   open: DialogProps["open"];

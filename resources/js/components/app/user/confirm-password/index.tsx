@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { route } from "ziggy-js";
 import { useTranslationsStore } from "@/stores/translations-store";
@@ -15,6 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmit,
 } from "@/components/ui/form";
 
 type UserConfirmPasswordProps = Required<
@@ -32,12 +32,14 @@ function UserConfirmPassword({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogHeader>
-        <DialogTitle>{trans("passwords.confirming")}</DialogTitle>
-      </DialogHeader>
-      <DialogContent>
+      <DialogContent className="sm:w-sm">
+        <DialogHeader>
+          <DialogTitle>{trans("passwords.confirming")}</DialogTitle>
+        </DialogHeader>
         <Form
+          id="user-confirm-password-form"
           className="grid gap-6"
+          autoComplete="off"
           method="post"
           options={{
             onSuccess: () => {
@@ -54,7 +56,7 @@ function UserConfirmPassword({
               <FormItem>
                 <FormLabel required={true} />
                 <Input
-                  autoComplete="current-password"
+                  autoComplete="one-time-code"
                   type="password"
                   onChange={(e) => onChange(e.target.value)}
                   {...field}
@@ -63,7 +65,7 @@ function UserConfirmPassword({
               </FormItem>
             )}
           />
-          <Button type="submit">{trans("ui.confirm")}</Button>
+          <FormSubmit>{trans("ui.confirm")}</FormSubmit>
         </Form>
       </DialogContent>
     </Dialog>

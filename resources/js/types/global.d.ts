@@ -3,6 +3,7 @@ export type GlobalProps = {
     email: string;
     first_name: string | undefined | null;
     last_name: string | undefined | null;
+    two_factor_confirmed_at: string | null;
   };
   breadcrumbs: BreadcrumbType;
   redirect: {

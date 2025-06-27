@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\TwoFactorChallengeController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\PasswordConfirmedResponse;
 use Laravel\Fortify\Contracts\PasswordUpdateResponse;
 use Laravel\Fortify\Contracts\ProfileInformationUpdatedResponse;
+use Laravel\Fortify\Contracts\TwoFactorConfirmedResponse;
+use Laravel\Fortify\Contracts\TwoFactorDisabledResponse;
 use Laravel\Fortify\Fortify;
 
 #endregion
@@ -49,6 +52,8 @@ class FortifyServiceProvider extends ServiceProvider
         $this->registerPasswordConfirmedResponse();
         $this->registerPasswordUpdatedResponse();
         $this->registerProfileInformationUpdatedResponse();
+        $this->registerTwoFactorConfirmedResponse();
+        $this->registerTwoFactorDisabledResponse();
     }
 
     /**
@@ -106,6 +111,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(new RegisterController());
         Fortify::requestPasswordResetLinkView(new ForgotPasswordController());
         Fortify::resetPasswordView(new ResetPasswordController());
+        Fortify::twoFactorChallengeView(new TwoFactorChallengeController());
         Fortify::verifyEmailView(new VerifyEmailController());
     }
 
@@ -180,6 +186,36 @@ class FortifyServiceProvider extends ServiceProvider
             {
                 return back()
                     ->with('success', trans('toasts.success.profile.updated'));
+            }
+        });
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerTwoFactorConfirmedResponse(): void
+    {
+        $this->app->instance(TwoFactorConfirmedResponse::class, new class implements TwoFactorConfirmedResponse
+        {
+            public function toResponse($request)
+            {
+                return back()
+                    ->with('success', trans('toasts.success.two_factor.confirmed'));
+            }
+        });
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerTwoFactorDisabledResponse(): void
+    {
+        $this->app->instance(TwoFactorDisabledResponse::class, new class implements TwoFactorDisabledResponse
+        {
+            public function toResponse($request)
+            {
+                return back()
+                    ->with('success', trans('toasts.success.two_factor.disabled'));
             }
         });
     }

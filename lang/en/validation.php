@@ -203,6 +203,7 @@ return [
         'last_name'             => 'Last name',
         'password'              => 'Password',
         'password_confirmation' => 'Password confirmation',
+        'recovery_code'         => 'Recovery Code',
         'remember'              => 'Remember me',
         'theme'                 => 'Theme',
     ],

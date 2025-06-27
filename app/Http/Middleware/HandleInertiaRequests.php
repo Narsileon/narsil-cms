@@ -91,6 +91,7 @@ class HandleInertiaRequests extends Middleware
             User::EMAIL => $user->{User::EMAIL},
             User::FIRST_NAME => $user->{User::FIRST_NAME},
             User::LAST_NAME => $user->{User::LAST_NAME},
+            User::TWO_FACTOR_CONFIRMED_AT => $user->{User::TWO_FACTOR_CONFIRMED_AT},
         ];
     }
 

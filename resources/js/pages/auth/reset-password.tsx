@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
@@ -10,6 +9,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmit,
 } from "@/components/ui/form";
 
 type ResetPasswordProps = {
@@ -27,6 +27,7 @@ function ResetPassword({ token }: ResetPasswordProps) {
       <Card className="w-[18rem]">
         <CardContent>
           <Form
+            id="reset-password-form"
             className="grid gap-6"
             method="post"
             url={route("password.update")}
@@ -77,7 +78,7 @@ function ResetPassword({ token }: ResetPasswordProps) {
                 </FormItem>
               )}
             />
-            <Button type="submit">{trans("ui.reset")}</Button>
+            <FormSubmit>{trans("ui.reset")}</FormSubmit>
           </Form>
         </CardContent>
       </Card>

@@ -76,9 +76,9 @@ function SidebarProvider({
   }, [isMobile, setOpen, setOpenMobile]);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === keyboardShortcut && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === keyboardShortcut && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
 
         toggleSidebar();
       }

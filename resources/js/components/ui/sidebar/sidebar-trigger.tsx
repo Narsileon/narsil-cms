@@ -13,8 +13,8 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
       data-slot="sidebar-trigger"
       data-sidebar="trigger"
       className={cn("size-7", className)}
-      onClick={(event) => {
-        onClick?.(event);
+      onClick={(e) => {
+        onClick?.(e);
 
         toggleSidebar();
       }}
