@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import {
   ColumnOrderState,
   ColumnSizingState,
+  PaginationState,
   SortingState,
   VisibilityState,
 } from "@tanstack/react-table";
@@ -22,8 +23,9 @@ export type DataTableStoreActions = {
   setColumnSizing: (columnSizing: ColumnSizingState) => void;
   setColumnVisibility: (columnVisibility: VisibilityState) => void;
   setGlobalFilter: (globalFilter: string) => void;
-  setPageIndex: (pageIndex: number) => void;
-  setPageSize: (pageSige: number) => void;
+  setPageIndex: (pageIndex: PaginationState["pageIndex"]) => void;
+  setPageSize: (pageSige: PaginationState["pageSize"]) => void;
+  setPagination: (pagination: PaginationState) => void;
   setSorting: (sorting: SortingState) => void;
 };
 
@@ -31,7 +33,7 @@ export type DataTableStoreType = DataTableStoreState & DataTableStoreActions;
 
 export interface CreateDataTableStoreProps {
   id: string;
-  initialState: Partial<DataTableStoreState>;
+  initialState?: Partial<DataTableStoreState>;
 }
 
 const defaultState: DataTableStoreState = {
@@ -73,6 +75,11 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
         setPageSize: (pageSize) =>
           set({
             pageSize: pageSize,
+          }),
+        setPagination: (pagination) =>
+          set({
+            pageIndex: pagination.pageIndex,
+            pageSize: pagination.pageSize,
           }),
         setSorting: (sorting) =>
           set({

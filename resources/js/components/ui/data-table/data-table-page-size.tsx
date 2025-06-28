@@ -16,12 +16,12 @@ function DataTablePageSize({
   options = ["10", "25", "50", "100"],
   ...props
 }: DataTablePageSizeProps) {
-  const { tableStore } = useDataTable();
+  const { dataTableStore } = useDataTable();
 
   return (
     <Select
-      value={`${tableStore.pageSize}`}
-      onValueChange={(value) => tableStore.setPageSize(Number(value))}
+      value={`${dataTableStore.pageSize}`}
+      onValueChange={(value) => dataTableStore.setPageSize(Number(value))}
     >
       <SelectTrigger {...props}>
         <SelectValue />

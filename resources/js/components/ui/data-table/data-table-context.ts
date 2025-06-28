@@ -3,8 +3,8 @@ import { Table } from "@tanstack/react-table";
 import type { DataTableStoreType } from "@/stores/data-table-store";
 
 export type DataTableContextProps = {
-  table: Table<any>;
-  tableStore: DataTableStoreType;
+  dataTable: Table<any>;
+  dataTableStore: DataTableStoreType;
 };
 
 export const DataTableContext = createContext<DataTableContextProps | null>(

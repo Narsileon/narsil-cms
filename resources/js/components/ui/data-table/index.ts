@@ -1,40 +1,64 @@
 import DataTable from "./data-table";
+import DataTableBody from "./data-table-body";
 import DataTableCell from "./data-table-cell";
-import DataTableContext from "./data-table-context";
+import DataTableColumnVisibility from "./data-table-column-visiblity";
 import DataTableHead from "./data-table-head";
+import DataTableHeader from "./data-table-header";
 import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";
+import DataTablePageResult from "./data-table-page-result";
+import DataTablePageSize from "./data-table-page-size";
 import DataTablePagination from "./data-table-pagination";
 import DataTableProvider from "./data-table-provider";
 import DataTableRow from "./data-table-row";
+import DataTableRowSelect from "./data-table-row-select";
+import useDataTable from "./data-table-context";
+import type { DataTableBodyProps } from "./data-table-body";
 import type { DataTableCellProps } from "./data-table-cell";
+import type { DataTableColumnVisibilityProps } from "./data-table-column-visiblity";
+import type { DataTableHeaderProps } from "./data-table-header";
 import type { DataTableHeadMoveProps } from "./data-table-head-move";
 import type { DataTableHeadProps } from "./data-table-head";
 import type { DataTableHeadSortProps } from "./data-table-head-sort";
+import type { DataTablePageResultProps } from "./data-table-page-result";
+import type { DataTablePageSizeProps } from "./data-table-page-size";
 import type { DataTablePaginationProps } from "./data-table-pagination";
 import type { DataTableProps } from "./data-table";
 import type { DataTableProviderProps } from "./data-table-provider";
 import type { DataTableRowProps } from "./data-table-row";
+import type { DataTableRowSelectProps } from "./data-table-row-select";
 
 export {
   DataTable,
+  DataTableBody,
   DataTableCell,
-  DataTableContext,
+  DataTableColumnVisibility,
   DataTableHead,
+  DataTableHeader,
   DataTableHeadMove,
   DataTableHeadSort,
+  DataTablePageResult,
+  DataTablePageSize,
   DataTablePagination,
   DataTableProvider,
   DataTableRow,
+  DataTableRowSelect,
+  useDataTable,
 };
 
 export type {
-  DataTableProps,
-  DataTableProviderProps,
+  DataTableBodyProps,
+  DataTableCellProps,
+  DataTableColumnVisibilityProps,
+  DataTableHeaderProps,
+  DataTableHeadMoveProps,
   DataTableHeadProps,
   DataTableHeadSortProps,
-  DataTableHeadMoveProps,
-  DataTableRowProps,
-  DataTableCellProps,
+  DataTablePageResultProps,
+  DataTablePageSizeProps,
   DataTablePaginationProps,
+  DataTableProps,
+  DataTableProviderProps,
+  DataTableRowProps,
+  DataTableRowSelectProps,
 };

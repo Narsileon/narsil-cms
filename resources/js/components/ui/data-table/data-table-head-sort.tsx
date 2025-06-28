@@ -13,7 +13,7 @@ export type DataTableHeadSortProps = ButtonProps & {
   header: Header<any, any>;
 };
 
-const DataTableHeadSort = ({ header, ...props }: DataTableHeadSortProps) => {
+function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
   const { trans } = useTranslationsStore();
 
   const isSorted = header.column.getIsSorted();
@@ -40,6 +40,6 @@ const DataTableHeadSort = ({ header, ...props }: DataTableHeadSortProps) => {
       <TooltipContent>{trans("tooltips.column.sort")}</TooltipContent>
     </Tooltip>
   );
-};
+}
 
 export default DataTableHeadSort;

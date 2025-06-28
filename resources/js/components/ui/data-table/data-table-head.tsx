@@ -3,8 +3,8 @@ import type { TableHeadProps } from "@/components/ui/table";
 
 export type DataTableHeadProps = TableHeadProps & {};
 
-function DataHeadTable({ ...props }) {
+function DataTableHead({ ...props }) {
   return <TableHead data-slot="data-table-head" {...props} />;
 }
 
-export default DataHeadTable;
+export default DataTableHead;

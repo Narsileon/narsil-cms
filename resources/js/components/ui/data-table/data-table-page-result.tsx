@@ -2,17 +2,16 @@ import { cn } from "@/lib/utils";
 import useTranslationsStore from "@/stores/translations-store";
 import type { LaravelPagination } from "@/types/global";
 
-export type DataTablePaginationResultProps =
-  React.HTMLAttributes<HTMLDivElement> &
-    Pick<LaravelPagination, "from" | "to" | "total"> & {};
+export type DataTablePageResultProps = React.HTMLAttributes<HTMLDivElement> &
+  Pick<LaravelPagination, "from" | "to" | "total"> & {};
 
-function DataTablePaginationResult({
+function DataTablePageResult({
   className,
   from,
   to,
   total,
   ...props
-}: DataTablePaginationResultProps) {
+}: DataTablePageResultProps) {
   const { trans } = useTranslationsStore();
 
   return (
@@ -30,4 +29,4 @@ function DataTablePaginationResult({
   );
 }
 
-export default DataTablePaginationResult;
+export default DataTablePageResult;

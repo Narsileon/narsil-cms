@@ -8,8 +8,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-function DataTableColumnVisibility() {
-  const { table } = useDataTable();
+export type DataTableColumnVisibilityProps = {};
+
+function DataTableColumnVisibility({}: DataTableColumnVisibilityProps) {
+  const { dataTable } = useDataTable();
 
   return (
     <DropdownMenu>
@@ -19,7 +21,7 @@ function DataTableColumnVisibility() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {table
+        {dataTable
           .getAllColumns()
           .filter((column) => column.getCanHide())
           .map((column) => {

@@ -3,8 +3,8 @@ import type { TableRowProps } from "@/components/ui/table";
 
 export type DataTableRowProps = TableRowProps & {};
 
-function DataRowTable({ ...props }) {
+function DataTableRow({ ...props }) {
   return <TableRow data-slot="data-table-row" {...props} />;
 }
 
-export default DataRowTable;
+export default DataTableRow;

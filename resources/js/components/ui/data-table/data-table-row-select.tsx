@@ -6,8 +6,8 @@ export type DataTableRowSelectProps = CheckboxProps & {
   row: Row<any>;
 };
 
-function DataTableRowAction({ row, ...props }: DataTableRowSelectProps) {
+function DataTableRowSelect({ row, ...props }: DataTableRowSelectProps) {
   return <Checkbox checked={row.getIsSelected()} {...props} />;
 }
 
-export default DataTableRowAction;
+export default DataTableRowSelect;

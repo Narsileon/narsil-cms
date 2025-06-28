@@ -31,14 +31,14 @@ export type DataTablePaginationProps = PaginationProps &
     | "prev_page_url"
   > & {};
 
-const CollectionPagination = ({
+function DataTablePagination({
   first_page_url,
   last_page_url,
   links,
   next_page_url,
   prev_page_url,
   ...props
-}: DataTablePaginationProps) => {
+}: DataTablePaginationProps) {
   const { trans } = useTranslationsStore();
 
   return (
@@ -151,6 +151,6 @@ const CollectionPagination = ({
       </PaginationContent>
     </Pagination>
   );
-};
+}
 
-export default CollectionPagination;
+export default DataTablePagination;
