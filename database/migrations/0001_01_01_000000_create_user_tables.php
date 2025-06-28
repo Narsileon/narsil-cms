@@ -124,10 +124,19 @@ return new class extends Migration
                 ->string(UserConfiguration::LOCALE)
                 ->default('en');
             $table
+                ->string(UserConfiguration::COLOR)
+                ->default('default');
+            $table
+                ->decimal(UserConfiguration::RADIUS, 3, 2)
+                ->default(0.65);
+            $table
                 ->string(UserConfiguration::THEME)
                 ->default('system');
             $table
-                ->json(UserConfiguration::PREFERENCES);
+                ->json(UserConfiguration::PREFERENCES)
+                ->nullable();
+            $table
+                ->timestamps();
         });
     }
 

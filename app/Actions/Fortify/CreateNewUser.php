@@ -56,7 +56,11 @@ class CreateNewUser implements CreatesNewUsers
             ],
         ])->validated();
 
-        return User::create($attributes);
+        $user = new User();
+
+        $user->forceFill($attributes)->save();
+
+        return $user;
     }
 
     #endregion

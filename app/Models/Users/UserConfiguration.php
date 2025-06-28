@@ -42,6 +42,10 @@ class UserConfiguration extends Model
     #region CONSTANTS
 
     /**
+     * @var string The name of the "color" column.
+     */
+    public const COLOR = 'color';
+    /**
      * @var string The name of the "locale" column.
      */
     public const LOCALE = 'locale';
@@ -49,6 +53,10 @@ class UserConfiguration extends Model
      * @var string The name of the "preferences" column.
      */
     public const PREFERENCES = 'preferences';
+    /**
+     * @var string The name of the "radius" column.
+     */
+    public const RADIUS = 'radius';
     /**
      * @var string The name of the "theme" column.
      */
