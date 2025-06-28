@@ -22,8 +22,13 @@ return [
     ],
     'translations' => [
         'auth',
+        'colors',
         'locales',
+        'pagination',
         'passwords',
+        'placeholders',
+        'sr',
+        'themes',
         'tooltips',
         'ui',
         'validation',

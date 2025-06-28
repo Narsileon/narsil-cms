@@ -196,6 +196,7 @@ return [
     'attributes' => [
         'avatar'                  => 'Avatar',
         'code'                    => 'Code',
+        'color'                   => 'Color',
         'created_at'              => 'Created at',
         'current_password'        => 'Current password',
         'email_verified_at'       => 'Email verified at',
@@ -211,6 +212,7 @@ return [
         'password_confirmation'   => 'Password confirmation',
         'password'                => 'Password',
         'primary'                 => 'Primary',
+        'radius'                  => 'Rounding',
         'recovery_code'           => 'Recovery Code',
         'remember'                => 'Remember me',
         'theme'                   => 'Theme',

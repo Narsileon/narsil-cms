@@ -1,17 +1,18 @@
 import { Toaster as Sonner } from "sonner";
-import { useTheme } from "@/components/ui/theme";
+import useThemeStore from "@/stores/theme-store";
+import type { Theme } from "@/stores/theme-store";
 
 export type ToasterProps = React.ComponentProps<typeof Sonner> & {
-  theme?: "light" | "dark" | "system";
+  theme?: Theme;
 };
 
 function Toaster({ ...props }: ToasterProps) {
-  const { theme = "system" } = useTheme();
+  const { theme } = useThemeStore();
 
   return (
     <Sonner
       className="toaster group"
-      theme={theme as ToasterProps["theme"]}
+      theme={theme}
       style={
         {
           "--normal-bg": "var(--popover)",

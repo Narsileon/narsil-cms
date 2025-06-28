@@ -19,6 +19,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import useTranslationsStore from "@/stores/translations-store";
 
 export type ComboboxProps = {
   labelKey?: string;
@@ -46,13 +47,15 @@ function getSelectOptionValue(
   return value;
 }
 
-const Combobox = ({
+function Combobox({
   labelKey = "label",
   value,
   valueKey = "value",
   options,
   setValue,
-}: ComboboxProps) => {
+}: ComboboxProps) {
+  const { trans } = useTranslationsStore();
+
   const [open, setOpen] = useState(false);
 
   const option = options.find((option) => {
@@ -84,20 +87,20 @@ const Combobox = ({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild={true}>
         <Button
-          className="w-[180px] justify-between"
+          className="w-full justify-between font-normal"
           aria-expanded={open}
           role="combobox"
           variant="outline"
         >
           {option
             ? getSelectOptionLabel(option, labelKey)
-            : "Select framework..."}
+            : trans("placeholders.search")}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command filter={filter}>
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder={trans("placeholders.search")} />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
@@ -130,6 +133,6 @@ const Combobox = ({
       </PopoverContent>
     </Popover>
   );
-};
+}
 
 export default Combobox;

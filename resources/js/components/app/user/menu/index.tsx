@@ -1,5 +1,5 @@
-import { CogIcon, LogOutIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
+import { LogOutIcon, SettingsIcon } from "lucide-react";
 import { route } from "ziggy-js";
 import { useState } from "react";
 import UserAvatar from "@/components/app/user/avatar";
@@ -34,7 +34,7 @@ function UserMenu() {
           </TooltipTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem onClick={() => setOpenSettings(true)}>
-              <CogIcon />
+              <SettingsIcon />
               {trans("ui.settings")}
             </DropdownMenuItem>
 

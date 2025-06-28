@@ -30,6 +30,10 @@ class UserConfiguration extends Model
         $this->incrementing = false;
         $this->primaryKey = 'user_id';
 
+        $this->guarded = array_merge([
+            self::USER_ID,
+        ], $this->guarded);
+
         parent::__construct($attributes);
     }
 

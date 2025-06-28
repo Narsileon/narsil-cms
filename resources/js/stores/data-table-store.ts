@@ -31,10 +31,10 @@ export type DataTableStoreActions = {
 
 export type DataTableStoreType = DataTableStoreState & DataTableStoreActions;
 
-export interface CreateDataTableStoreProps {
+export type CreateDataTableStoreProps = {
   id: string;
   initialState?: Partial<DataTableStoreState>;
-}
+};
 
 const defaultState: DataTableStoreState = {
   columnOrder: [],

@@ -7,7 +7,9 @@ namespace App\Models;
 use App\Interfaces\IEnable;
 use App\Models\Session;
 use App\Models\Users\UserConfiguration;
+use App\Observers\UserObserver;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,6 +22,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[ObservedBy([UserObserver::class])]
 class User extends Authenticatable implements IEnable, MustVerifyEmail
 {
     use Notifiable;
