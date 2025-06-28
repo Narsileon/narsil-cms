@@ -1,3 +1,5 @@
+// https://ui.shadcn.com/docs/components/data-table
+
 import DataTable from "./data-table";
 import DataTableBody from "./data-table-body";
 import DataTableCell from "./data-table-cell";

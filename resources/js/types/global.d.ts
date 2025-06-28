@@ -1,3 +1,5 @@
+import { ColumnDef } from "@tanstack/react-table";
+
 export type GlobalProps = {
   auth: {
     email: string;
@@ -18,24 +20,30 @@ export type GlobalProps = {
 };
 
 export type LaravelCollection<T = any> = LaravelPagination & {
+  columns: ColumnDef<T>;
   data: T[];
-  path: string;
+  links: LaravelPaginationLinks;
+  meta: LaravelPaginationMeta;
 };
 
-export type LaravelPagination = {
+export type LaravelPaginationLinks = {
+  first: string;
+  last: string;
+  prev: string | null;
+  next: string | null;
+};
+
+export type LaravelPaginationMeta = {
   current_page: number;
-  first_page_url: string;
   from: number | null;
   last_page: number;
-  last_page_url: string;
   links: {
     url: string | null;
     label: string;
     active: boolean;
   }[];
-  next_page_url: string | null;
+  path: string;
   per_page: number;
-  prev_page_url: string | null;
   to: number | null;
   total: number;
 };

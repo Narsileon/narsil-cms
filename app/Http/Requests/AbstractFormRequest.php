@@ -83,6 +83,11 @@ abstract class AbstractFormRequest extends FormRequest
     #region PUBLIC METHODS
 
     /**
+     * @return array<string,mixed>
+     */
+    abstract public function rules(): array;
+
+    /**
      * @param string $value
      *
      * @return string

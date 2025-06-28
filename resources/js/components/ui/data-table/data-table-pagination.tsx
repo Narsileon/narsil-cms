@@ -18,25 +18,20 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { LaravelPagination } from "@/types/global";
 import type { PaginationProps } from "@/components/ui/pagination";
+import type {
+  LaravelPaginationLinks,
+  LaravelPaginationMeta,
+} from "@/types/global";
 
-export type DataTablePaginationProps = PaginationProps &
-  Pick<
-    LaravelPagination,
-    | "first_page_url"
-    | "last_page_url"
-    | "links"
-    | "next_page_url"
-    | "prev_page_url"
-  > & {};
+export type DataTablePaginationProps = PaginationProps & {
+  links: LaravelPaginationLinks;
+  metaLinks: LaravelPaginationMeta["links"];
+};
 
 function DataTablePagination({
-  first_page_url,
-  last_page_url,
   links,
-  next_page_url,
-  prev_page_url,
+  metaLinks,
   ...props
 }: DataTablePaginationProps) {
   const { trans } = useTranslationsStore();
@@ -45,16 +40,13 @@ function DataTablePagination({
     <Pagination {...props}>
       <PaginationContent>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild={true}>
             <PaginationItem>
-              <PaginationLink
-                asChild={true}
-                isDisabled={!first_page_url === null}
-              >
+              <PaginationLink asChild={true} isDisabled={links.prev === null}>
                 <Link
                   aria-label={trans("tooltips.pagination.first")}
                   as="button"
-                  href={first_page_url}
+                  href={links.first}
                   preserveScroll={true}
                   preserveState={true}
                 >
@@ -66,16 +58,13 @@ function DataTablePagination({
           <TooltipContent>{trans("tooltips.pagination.first")}</TooltipContent>
         </Tooltip>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild={true}>
             <PaginationItem>
-              <PaginationLink
-                asChild={true}
-                isDisabled={prev_page_url === null}
-              >
+              <PaginationLink asChild={true} isDisabled={links.prev === null}>
                 <Link
                   aria-label={trans("tooltips.pagination.previous")}
                   as="button"
-                  href={prev_page_url ?? ""}
+                  href={links.prev ?? ""}
                   preserveScroll={true}
                   preserveState={true}
                 >
@@ -83,12 +72,12 @@ function DataTablePagination({
                 </Link>
               </PaginationLink>
             </PaginationItem>
-            <TooltipContent>
-              {trans("tooltips.pagination.previous")}
-            </TooltipContent>
           </TooltipTrigger>
+          <TooltipContent>
+            {trans("tooltips.pagination.previous")}
+          </TooltipContent>
         </Tooltip>
-        {links.map((link, index) => {
+        {metaLinks.slice(1, -1).map((link, index) => {
           return link.url ? (
             <PaginationItem key={index}>
               <PaginationLink asChild={true} isActive={link.active}>
@@ -107,16 +96,13 @@ function DataTablePagination({
           );
         })}
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild={true}>
             <PaginationItem>
-              <PaginationLink
-                asChild={true}
-                isDisabled={next_page_url === null}
-              >
+              <PaginationLink asChild={true} isDisabled={links.next === null}>
                 <Link
                   aria-label={trans("tooltips.pagination.next")}
                   as="button"
-                  href={next_page_url ?? ""}
+                  href={links.next ?? ""}
                   preserveScroll={true}
                   preserveState={true}
                 >
@@ -128,16 +114,13 @@ function DataTablePagination({
           <TooltipContent>{trans("tooltips.pagination.next")}</TooltipContent>
         </Tooltip>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild={true}>
             <PaginationItem>
-              <PaginationLink
-                asChild={true}
-                isDisabled={last_page_url === null}
-              >
+              <PaginationLink asChild={true} isDisabled={links.next === null}>
                 <Link
                   aria-label={trans("tooltips.pagination.last")}
                   as="button"
-                  href={last_page_url}
+                  href={links.last}
                   preserveScroll={true}
                   preserveState={true}
                 >

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sites;
 
 #region USE
 
+use App\Http\Resources\DataTableCollection;
 use App\Models\Sites\Site;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,8 +28,7 @@ class SiteController
      */
     public function index(Request $request): Response
     {
-        $sites = Site::query()
-            ->paginate(15);
+        $sites = new DataTableCollection(Site::query(), Site::TABLE);
 
         return Inertia::render('sites/index', [
             "sites" => $sites,

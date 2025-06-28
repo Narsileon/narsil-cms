@@ -1,6 +1,6 @@
 import { arrayMove } from "@dnd-kit/sortable";
 import { DataTableContext } from "./data-table-context";
-import { debounce } from "lodash";
+import { compact, debounce } from "lodash";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import { router } from "@inertiajs/react";
@@ -30,8 +30,7 @@ import type {
 } from "@tanstack/react-table";
 
 export type DataTableProviderProps = Partial<TableOptions<any>> & {
-  children: React.ReactNode;
-  columns: ColumnDef<any, any>[];
+  columns: ColumnDef<any>[];
   data: any[];
   id: string;
   initialState: Partial<DataTableStoreType>;
@@ -55,11 +54,16 @@ function DataTableProvider({
   render,
   ...props
 }: DataTableProviderProps) {
+  const columnOrder = compact(columns.map((c) => c.id));
+
   const useCreateDataTableStore = useMemo(
     () =>
       useDataTableStore({
         id: id,
-        initialState: initialState,
+        initialState: {
+          columnOrder: columnOrder,
+          ...initialState,
+        },
       }),
     [id, initialState],
   );
@@ -123,12 +127,6 @@ function DataTableProvider({
     columnResizeMode: "onEnd",
     columns: columns,
     data: data,
-    defaultColumn: {
-      minSize: 100,
-      filterFn: () => {
-        return true;
-      },
-    },
     enableColumnFilters: false,
     enableColumnResizing: true,
     enableExpanding: false,
@@ -204,7 +202,7 @@ function DataTableProvider({
   }, [
     dataTableStore.globalFilter,
     dataTableStore.pageSize,
-    dataTableStore.sorting,
+    JSON.stringify(dataTableStore.sorting),
   ]);
 
   return (

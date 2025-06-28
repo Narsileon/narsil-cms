@@ -20,7 +20,7 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
 
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild={true}>
         <Button
           aria-label={trans("tooltips.column.sort")}
           size="icon"

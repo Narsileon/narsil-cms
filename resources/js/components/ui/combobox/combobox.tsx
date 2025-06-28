@@ -82,7 +82,7 @@ const Combobox = ({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild={true}>
         <Button
           className="w-[180px] justify-between"
           aria-expanded={open}

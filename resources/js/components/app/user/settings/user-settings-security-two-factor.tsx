@@ -125,7 +125,6 @@ function UserSettingsSecurityTwoFactor() {
                     url={route("two-factor.confirm")}
                     options={{
                       onSuccess: () => {
-                        console.log("hallo");
                         setActive(true);
                       },
                       onError() {

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { GripVertical } from "lucide-react";
 import useTranslationsStore from "@/stores/translations-store";
 import {
   Tooltip,
@@ -17,6 +16,7 @@ export type DataTableHeadMoveProps = ButtonProps & {
 
 function DataTableHeadMove({
   attributes,
+  children,
   className,
   listeners,
   ...props
@@ -28,13 +28,12 @@ function DataTableHeadMove({
       <TooltipTrigger asChild={true}>
         <Button
           aria-label={trans("tooltips.column.move")}
-          size="icon"
           variant="ghost"
           {...props}
           {...attributes}
           {...listeners}
         >
-          <GripVertical />
+          {children}
         </Button>
       </TooltipTrigger>
       <TooltipContent>{trans("tooltips.column.move")}</TooltipContent>

@@ -9,7 +9,7 @@ import {
 import type { SelectTriggerProps } from "@/components/ui/select";
 
 export type DataTablePageSizeProps = SelectTriggerProps & {
-  options: string[];
+  options?: string[];
 };
 
 function DataTablePageSize({

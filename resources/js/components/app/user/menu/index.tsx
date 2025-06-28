@@ -27,7 +27,7 @@ function UserMenu() {
     <>
       <Tooltip>
         <DropdownMenu>
-          <TooltipTrigger asChild>
+          <TooltipTrigger asChild={true}>
             <DropdownMenuTrigger>
               <UserAvatar />
             </DropdownMenuTrigger>

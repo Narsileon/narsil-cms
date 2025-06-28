@@ -15,7 +15,7 @@ function DataTableColumnVisibility({}: DataTableColumnVisibilityProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild={true}>
         <Button variant="outline" className="ml-auto">
           Columns <ChevronDown />
         </Button>

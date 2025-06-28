@@ -26,7 +26,7 @@ class SessionLocaleUpdateRequest extends AbstractFormRequest
     #region PUBLIC METHODS
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
