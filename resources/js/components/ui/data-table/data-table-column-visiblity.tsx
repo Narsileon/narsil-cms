@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import { isString } from "lodash";
 import useDataTable from "./data-table-context";
 import {
   DropdownMenu,
@@ -25,14 +26,17 @@ function DataTableColumnVisibility({}: DataTableColumnVisibilityProps) {
           .getAllColumns()
           .filter((column) => column.getCanHide())
           .map((column) => {
+            if (!isString(column.columnDef.header)) {
+              return null;
+            }
+
             return (
               <DropdownMenuCheckboxItem
                 key={column.id}
-                className="capitalize"
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
-                {column.id}
+                {column.columnDef.header}
               </DropdownMenuCheckboxItem>
             );
           })}

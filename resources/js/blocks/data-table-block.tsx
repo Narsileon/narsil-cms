@@ -1,6 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { flexRender } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
+import { TableHead } from "@/components/ui/table";
 import {
   DataTable,
   DataTableBody,
@@ -27,11 +28,15 @@ import {
 import type { DataTableProviderProps } from "@/components/ui/data-table";
 import type { LaravelCollection } from "@/types/global";
 
-type DataTableBlockProps = Omit<DataTableProviderProps, "data" | "render"> &
+type DataTableBlockProps = Omit<
+  DataTableProviderProps,
+  "data" | "initialState" | "render"
+> &
   LaravelCollection & {};
 
 function DataTableBlock({
   columns,
+  columnVisibility,
   from,
   links,
   meta,
@@ -41,7 +46,7 @@ function DataTableBlock({
 }: DataTableBlockProps) {
   const finalColumns = [
     {
-      id: "select",
+      id: "_select",
       cell: ({ row }: any) => (
         <Checkbox
           checked={row.getIsSelected()}
@@ -58,6 +63,9 @@ function DataTableBlock({
   return (
     <DataTableProvider
       columns={finalColumns}
+      initialState={{
+        columnVisibility: columnVisibility,
+      }}
       render={({ dataTable, dataTableStore }) => {
         return (
           <Section>
@@ -78,9 +86,22 @@ function DataTableBlock({
                         strategy={horizontalListSortingStrategy}
                       >
                         {headerGroup.headers.map((header) => {
-                          return !header.isPlaceholder ? (
+                          if (header.isPlaceholder) {
+                            return null;
+                          }
+
+                          if (header.id === "_select") {
+                            return (
+                              <TableHead
+                                data-slot="data-table-head"
+                                className="min-w-10"
+                              />
+                            );
+                          }
+
+                          return (
                             <DataTableHead header={header} key={header.id} />
-                          ) : null;
+                          );
                         })}
                       </SortableContext>
                     </DataTableRow>

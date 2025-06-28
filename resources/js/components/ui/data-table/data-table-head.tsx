@@ -36,7 +36,9 @@ function DataTableHead({ header, ...props }: DataTableHeadProps) {
       <DataTableHeadMove attributes={attributes} listeners={listeners}>
         {flexRender(header.column.columnDef.header, header.getContext())}
       </DataTableHeadMove>
-      <DataTableHeadSort header={header} />
+      {header.column.getCanSort() ? (
+        <DataTableHeadSort header={header} />
+      ) : null}
     </TableHead>
   );
 }

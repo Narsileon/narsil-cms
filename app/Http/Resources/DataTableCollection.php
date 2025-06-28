@@ -5,9 +5,11 @@ namespace App\Http\Resources;
 #region USE
 
 use App\Services\TableService;
+use App\Structures\Column;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Config;
 use JsonSerializable;
 
 #endregion
@@ -98,10 +100,9 @@ class DataTableCollection extends ResourceCollection
      */
     public function with($request): array
     {
-        $columns = $this->getColumns();
-
         return [
-            'columns' => $columns,
+            'columns' => $this->getColumns(),
+            'columnVisibility' => $this->getColumnVisiblity(),
         ];
     }
 
@@ -120,6 +121,26 @@ class DataTableCollection extends ResourceCollection
             ->get()
             ->values()
             ->all();
+    }
+
+    /**
+     * @return array<string,boolean>
+     */
+    protected function getColumnVisiblity(): array
+    {
+        $columnVisibility = [];
+
+        $visible = Config::get("narsil-cms.tables.$this->table", []);
+
+        foreach (TableService::getColumns($this->table) as $columnDefinition)
+        {
+            $name = $columnDefinition->name;
+
+            $columnVisibility[$name] = in_array($name, $visible);
+        }
+
+
+        return $columnVisibility;
     }
 
     #endregion

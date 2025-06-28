@@ -21,6 +21,7 @@ export type GlobalProps = {
 
 export type LaravelCollection<T = any> = LaravelPagination & {
   columns: ColumnDef<T>;
+  columnVisibility: string[];
   data: T[];
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta;
