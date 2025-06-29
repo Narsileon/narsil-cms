@@ -104,7 +104,9 @@ function Combobox({
             placeholder={trans("placeholders.search", "Search...")}
           />
           <CommandList>
-            <CommandEmpty>{trans("ui.empty", "No result.")}</CommandEmpty>
+            <CommandEmpty>
+              {trans("pagination.empty", "No results.")}
+            </CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
                 const optionLabel = getSelectOptionLabel(option, labelKey);

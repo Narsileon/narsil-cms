@@ -9,7 +9,6 @@ return [
     'content'                   => 'Content',
     'create'                    => 'Create',
     'email_verify'              => 'Verify your email',
-    'empty'                     => 'No result.',
     'fields'                    => 'Fields',
     'log_in'                    => 'Log in',
     'log_out'                   => 'Log out',

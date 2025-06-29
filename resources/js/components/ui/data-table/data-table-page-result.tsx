@@ -28,7 +28,7 @@ function DataTablePageResult({
               },
             },
           )
-        : trans("pagination.empty", "No result.")}
+        : trans("pagination.empty", "No results.")}
     </span>
   );
 }

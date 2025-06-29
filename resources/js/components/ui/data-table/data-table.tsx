@@ -10,12 +10,7 @@ function DataTable({ ...props }) {
   const columns = dataTable.getAllColumns();
 
   return (
-    <Table
-      data-slot="data-table"
-      className="w-fit"
-      aria-colcount={columns.length}
-      {...props}
-    />
+    <Table data-slot="data-table" aria-colcount={columns.length} {...props} />
   );
 }
 

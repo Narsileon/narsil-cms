@@ -1,7 +1,9 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { flexRender } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { TableHead } from "@/components/ui/table";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   DataTable,
   DataTableBody,
@@ -44,6 +46,8 @@ function DataTableBlock({
   total,
   ...props
 }: DataTableBlockProps) {
+  const { trans } = useTranslationsStore();
+
   const finalColumns = [
     {
       id: "_select",
@@ -76,71 +80,88 @@ function DataTableBlock({
               />
               <DataTableColumnVisibility />
             </SectionHeader>
-            <SectionContent className="rounded-md border">
-              <DataTable>
-                <DataTableHeader>
-                  {dataTable.getHeaderGroups().map((headerGroup) => (
-                    <DataTableRow key={headerGroup.id}>
-                      <SortableContext
-                        items={dataTable.getState().columnOrder}
-                        strategy={horizontalListSortingStrategy}
-                      >
-                        {headerGroup.headers.map((header) => {
-                          if (header.isPlaceholder) {
-                            return null;
-                          }
+            <SectionContent>
+              <ScrollArea
+                className="rounded-md border"
+                orientation="horizontal"
+              >
+                <DataTable className="min-w-max">
+                  <DataTableHeader>
+                    {dataTable.getHeaderGroups().map((headerGroup) => (
+                      <DataTableRow key={headerGroup.id}>
+                        <SortableContext
+                          items={dataTable.getState().columnOrder}
+                          strategy={horizontalListSortingStrategy}
+                        >
+                          {headerGroup.headers.map((header) => {
+                            if (header.isPlaceholder) {
+                              return null;
+                            }
 
-                          if (header.id === "_select") {
+                            if (header.id === "_select") {
+                              return (
+                                <TableHead
+                                  data-slot="data-table-head"
+                                  className="min-w-10"
+                                />
+                              );
+                            }
+
                             return (
-                              <TableHead
-                                data-slot="data-table-head"
-                                className="min-w-10"
-                              />
+                              <DataTableHead header={header} key={header.id} />
                             );
-                          }
-
-                          return (
-                            <DataTableHead header={header} key={header.id} />
-                          );
-                        })}
-                      </SortableContext>
-                    </DataTableRow>
-                  ))}
-                </DataTableHeader>
-                <DataTableBody>
-                  {dataTable.getRowModel().rows?.length ? (
-                    dataTable.getRowModel().rows.map((row) => (
-                      <DataTableRow
-                        key={row.id}
-                        data-state={row.getIsSelected() && "selected"}
-                      >
-                        {row.getVisibleCells().map((cell) => (
-                          <DataTableCell key={cell.id}>
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
-                          </DataTableCell>
-                        ))}
+                          })}
+                        </SortableContext>
                       </DataTableRow>
-                    ))
-                  ) : (
-                    <DataTableRow>
-                      <DataTableCell
-                        colSpan={finalColumns.length}
-                        className="h-24 text-center"
-                      >
-                        No results.
-                      </DataTableCell>
-                    </DataTableRow>
-                  )}
-                </DataTableBody>
-              </DataTable>
+                    ))}
+                  </DataTableHeader>
+                  <DataTableBody>
+                    {dataTable.getRowModel().rows?.length ? (
+                      dataTable.getRowModel().rows.map((row) => (
+                        <DataTableRow
+                          key={row.id}
+                          data-state={row.getIsSelected() && "selected"}
+                        >
+                          {row.getVisibleCells().map((cell) => (
+                            <DataTableCell key={cell.id}>
+                              {flexRender(
+                                cell.column.columnDef.cell,
+                                cell.getContext(),
+                              )}
+                            </DataTableCell>
+                          ))}
+                        </DataTableRow>
+                      ))
+                    ) : (
+                      <DataTableRow>
+                        <DataTableCell
+                          colSpan={finalColumns.length}
+                          className="h-12"
+                        ></DataTableCell>
+                      </DataTableRow>
+                    )}
+                  </DataTableBody>
+                </DataTable>
+              </ScrollArea>
             </SectionContent>
-            <SectionFooter>
-              <DataTablePageResult from={from} to={to} total={total} />
-              <DataTablePagination links={links} metaLinks={meta.links} />
-              <DataTablePageSize />
+            <SectionFooter className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <DataTablePageResult
+                className="order-2 sm:order-1"
+                from={from}
+                to={to}
+                total={total}
+              />
+              <DataTablePagination
+                className="order-1 col-span-2 sm:order-2"
+                links={links}
+                metaLinks={meta.links}
+              />
+              <div className="order-3 flex items-center justify-end gap-1">
+                <span className="truncate">
+                  {trans("pagination.per_page", "Per page:")}
+                </span>
+                <DataTablePageSize />
+              </div>
             </SectionFooter>
           </Section>
         );
