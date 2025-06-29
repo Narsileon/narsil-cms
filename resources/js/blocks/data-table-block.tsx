@@ -103,6 +103,7 @@ function DataTableBlock({
                                 <TableHead
                                   data-slot="data-table-head"
                                   className="min-w-10"
+                                  key={header.id}
                                 />
                               );
                             }
