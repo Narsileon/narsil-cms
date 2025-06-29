@@ -1,7 +1,8 @@
 import { Link } from "@inertiajs/react";
-import { LogOutIcon, SettingsIcon } from "lucide-react";
+import { LogInIcon, LogOutIcon, MenuIcon, SettingsIcon } from "lucide-react";
 import { route } from "ziggy-js";
 import { useState } from "react";
+import useAuth from "@/hooks/use-auth";
 import UserAvatar from "@/components/app/user/avatar";
 import UserSettings from "@/components/app/user/settings";
 import useTranslationsStore from "@/stores/translations-store";
@@ -21,6 +22,8 @@ import {
 function UserMenu() {
   const { trans } = useTranslationsStore();
 
+  const auth = useAuth();
+
   const [openSettings, setOpenSettings] = useState(false);
 
   return (
@@ -29,7 +32,14 @@ function UserMenu() {
         <DropdownMenu>
           <TooltipTrigger asChild={true}>
             <DropdownMenuTrigger>
-              <UserAvatar />
+              {auth ? (
+                <UserAvatar
+                  firstName={auth.first_name ?? "A"}
+                  lastName={auth.last_name ?? "A"}
+                />
+              ) : (
+                <MenuIcon />
+              )}
             </DropdownMenuTrigger>
           </TooltipTrigger>
           <DropdownMenuContent align="end">
@@ -37,13 +47,19 @@ function UserMenu() {
               <SettingsIcon />
               {trans("ui.settings")}
             </DropdownMenuItem>
-
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild={true}>
-              <Link as="button" href={route("logout")} method="post">
-                <LogOutIcon />
-                {trans("ui.log_out")}
-              </Link>
+              {auth ? (
+                <Link as="button" href={route("logout")} method="post">
+                  <LogOutIcon />
+                  {trans("ui.log_out")}
+                </Link>
+              ) : (
+                <Link as="button" href={route("login")} method="get">
+                  <LogInIcon />
+                  {trans("ui.log_in")}
+                </Link>
+              )}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

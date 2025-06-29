@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import { router, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect } from "react";
@@ -49,10 +50,10 @@ function Layout({ children }: LayoutProps) {
     }
   }, [success, error]);
 
-  return auth ? (
-    <AuthLayout>{children}</AuthLayout>
-  ) : (
+  return isEmpty(auth) ? (
     <GuestLayout>{children}</GuestLayout>
+  ) : (
+    <AuthLayout>{children}</AuthLayout>
   );
 }
 

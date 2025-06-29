@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { SettingsIcon, ShieldCheckIcon, UserPenIcon } from "lucide-react";
 import { TabsList, Tabs, TabsTrigger } from "@/components/ui/tabs";
 import { useMinMd } from "@/hooks/use-breakpoints";
+import useAuth from "@/hooks/use-auth";
 import UserSettingsAccount from "./user-settings-account";
 import UserSettingsPersonalization from "./user-settings-personalization";
 import UserSettingsSecurity from "./user-settings-security";
@@ -23,6 +24,8 @@ type UserSettingsProps = {
 
 function UserSettings({ open, onOpenChange }: UserSettingsProps) {
   const { trans } = useTranslationsStore();
+
+  const auth = useAuth();
 
   const minMd = useMinMd();
 
@@ -45,24 +48,28 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
             {minMd ? (
               <DialogCloseButton className="h-12 w-12 pl-2 [&_svg:not([class*='size-'])]:size-5" />
             ) : null}
-            <TabsTrigger value="account">
-              <UserPenIcon />
-              {trans("ui.account")}
-            </TabsTrigger>
+            {auth ? (
+              <TabsTrigger value="account">
+                <UserPenIcon />
+                {trans("ui.account")}
+              </TabsTrigger>
+            ) : null}
             <TabsTrigger value="personalization">
               <SettingsIcon />
               {trans("ui.personalization")}
             </TabsTrigger>
-            <TabsTrigger value="security">
-              <ShieldCheckIcon />
-              {trans("ui.security")}
-            </TabsTrigger>
+            {auth ? (
+              <TabsTrigger value="security">
+                <ShieldCheckIcon />
+                {trans("ui.security")}
+              </TabsTrigger>
+            ) : null}
           </TabsList>
           <Separator orientation={minMd ? "vertical" : "horizontal"} />
           <ScrollArea className="h-full w-full">
-            <UserSettingsAccount />
+            {auth ? <UserSettingsAccount /> : null}
             <UserSettingsPersonalization />
-            <UserSettingsSecurity />
+            {auth ? <UserSettingsSecurity /> : null}
           </ScrollArea>
         </Tabs>
       </DialogContent>
