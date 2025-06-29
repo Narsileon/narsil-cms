@@ -44,7 +44,7 @@ function DataTablePagination({
             <PaginationItem>
               <PaginationLink asChild={true} isDisabled={links.prev === null}>
                 <Link
-                  aria-label={trans("tooltips.pagination.first")}
+                  aria-label={trans("accessibility.page_first", "First page")}
                   as="button"
                   href={links.first}
                   preserveScroll={true}
@@ -55,14 +55,19 @@ function DataTablePagination({
               </PaginationLink>
             </PaginationItem>
           </TooltipTrigger>
-          <TooltipContent>{trans("tooltips.pagination.first")}</TooltipContent>
+          <TooltipContent>
+            {trans("accessibility.page_first", "First page")}
+          </TooltipContent>
         </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild={true}>
             <PaginationItem>
               <PaginationLink asChild={true} isDisabled={links.prev === null}>
                 <Link
-                  aria-label={trans("tooltips.pagination.previous")}
+                  aria-label={trans(
+                    "accessibility.page_previous",
+                    "Previous page",
+                  )}
                   as="button"
                   href={links.prev ?? ""}
                   preserveScroll={true}
@@ -74,7 +79,7 @@ function DataTablePagination({
             </PaginationItem>
           </TooltipTrigger>
           <TooltipContent>
-            {trans("tooltips.pagination.previous")}
+            {trans("accessibility.page_previous", "Previous page")}
           </TooltipContent>
         </Tooltip>
         {metaLinks.slice(1, -1).map((link, index) => {
@@ -100,7 +105,7 @@ function DataTablePagination({
             <PaginationItem>
               <PaginationLink asChild={true} isDisabled={links.next === null}>
                 <Link
-                  aria-label={trans("tooltips.pagination.next")}
+                  aria-label={trans("accessibility.page_next", "Next page")}
                   as="button"
                   href={links.next ?? ""}
                   preserveScroll={true}
@@ -111,14 +116,16 @@ function DataTablePagination({
               </PaginationLink>
             </PaginationItem>
           </TooltipTrigger>
-          <TooltipContent>{trans("tooltips.pagination.next")}</TooltipContent>
+          <TooltipContent>
+            {trans("accessibility.page_next", "Next page")}
+          </TooltipContent>
         </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild={true}>
             <PaginationItem>
               <PaginationLink asChild={true} isDisabled={links.next === null}>
                 <Link
-                  aria-label={trans("tooltips.pagination.last")}
+                  aria-label={trans("accessibility.page_last", "Last page")}
                   as="button"
                   href={links.last}
                   preserveScroll={true}
@@ -129,7 +136,9 @@ function DataTablePagination({
               </PaginationLink>
             </PaginationItem>
           </TooltipTrigger>
-          <TooltipContent>{trans("tooltips.pagination.last")}</TooltipContent>
+          <TooltipContent>
+            {trans("accessibility.page_last", "Last page")}
+          </TooltipContent>
         </Tooltip>
       </PaginationContent>
     </Pagination>

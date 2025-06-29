@@ -8,7 +8,7 @@ function SectionHeader({ className, ...props }: SectionHeaderProps) {
       data-slot="section-header"
       className={cn(
         "@container/section-header",
-        "grid h-fit auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 border-b pb-4",
+        "grid h-fit auto-rows-min grid-rows-[auto_auto] items-start border-b pb-4",
         className,
       )}
       {...props}

@@ -19,12 +19,19 @@ function Register() {
   return (
     <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
       <Heading className="text-center" level="h1" variant="h4">
-        {trans("ui.register")}
+        {trans("ui.registration", "Registration")}
       </Heading>
       <Card className="w-[18rem] md:w-[26rem]">
         <CardContent>
           <FormProvider
             id="register-form"
+            initialData={{
+              email: "",
+              first_name: "",
+              last_name: "",
+              password_confirmation: "",
+              password: "",
+            }}
             render={() => (
               <Form
                 className="grid gap-6 md:grid-cols-2"
@@ -105,7 +112,7 @@ function Register() {
                   )}
                 />
                 <FormSubmit className="col-span-full">
-                  {trans("ui.register")}
+                  {trans("ui.register", "Register")}
                 </FormSubmit>
               </Form>
             )}

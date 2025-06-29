@@ -35,10 +35,15 @@ function UserConfirmPassword({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:w-sm">
         <DialogHeader>
-          <DialogTitle>{trans("passwords.confirming")}</DialogTitle>
+          <DialogTitle>
+            {trans("ui.password_confirm", "Confirm password")}
+          </DialogTitle>
         </DialogHeader>
         <FormProvider
           id="user-confirm-password-form"
+          initialData={{
+            password: "",
+          }}
           render={() => (
             <Form
               className="grid gap-6"
@@ -68,7 +73,7 @@ function UserConfirmPassword({
                   </FormItem>
                 )}
               />
-              <FormSubmit>{trans("ui.confirm")}</FormSubmit>
+              <FormSubmit>{trans("ui.confirm", "Confirm")}</FormSubmit>
             </Form>
           )}
         />

@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
 import { MoreHorizontal } from "lucide-react";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import useTranslationsStore from "@/stores/translations-store";
 
 export type BreadcrumbEllipsisProps = React.ComponentProps<"span"> & {};
 
 function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisProps) {
+  const { trans } = useTranslationsStore();
+
   return (
     <span
       data-slot="breadcrumb-ellipsis"
@@ -14,7 +17,9 @@ function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisProps) {
       {...props}
     >
       <MoreHorizontal className="size-4" />
-      <VisuallyHidden>More</VisuallyHidden>
+      <VisuallyHidden>
+        {trans("accessibility.more_links", "More links")}
+      </VisuallyHidden>
     </span>
   );
 }

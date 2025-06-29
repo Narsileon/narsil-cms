@@ -19,12 +19,16 @@ function TwoFactorChallenge() {
   return (
     <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
       <Heading className="text-center" level="h1" variant="h4">
-        {trans("auth.two_factor")}
+        {trans("ui.two_factor_authentication", "Two-factor authentication")}
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
           <FormProvider
             id="two-factor-challenge-form"
+            initialData={{
+              code: "",
+              recovery_code: "",
+            }}
             render={() => (
               <Form
                 className="grid gap-6"
@@ -59,7 +63,7 @@ function TwoFactorChallenge() {
                     </FormItem>
                   )}
                 />
-                <FormSubmit>{trans("ui.confirm")}</FormSubmit>
+                <FormSubmit>{trans("ui.confirm", "Confirm")}</FormSubmit>
               </Form>
             )}
           />

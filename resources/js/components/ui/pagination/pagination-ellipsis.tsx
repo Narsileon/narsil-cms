@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
 import { MoreHorizontalIcon } from "lucide-react";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import useTranslationsStore from "@/stores/translations-store";
 
 export type PaginationEllipsisProps = React.ComponentProps<"span"> & {};
 
 function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
+  const { trans } = useTranslationsStore();
+
   return (
     <span
       aria-hidden
@@ -13,7 +16,9 @@ function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />
-      <VisuallyHidden>More pages</VisuallyHidden>
+      <VisuallyHidden>
+        {trans("accessibility.more_pages", "More pages")}
+      </VisuallyHidden>
     </span>
   );
 }

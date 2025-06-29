@@ -94,15 +94,17 @@ function Combobox({
         >
           {option
             ? getSelectOptionLabel(option, labelKey)
-            : trans("placeholders.search")}
+            : trans("placeholders.search", "Search...")}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command filter={filter}>
-          <CommandInput placeholder={trans("placeholders.search")} />
+          <CommandInput
+            placeholder={trans("placeholders.search", "Search...")}
+          />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>{trans("ui.empty", "No result.")}</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
                 const optionLabel = getSelectOptionLabel(option, labelKey);

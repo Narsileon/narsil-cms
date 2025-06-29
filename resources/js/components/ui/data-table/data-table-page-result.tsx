@@ -17,14 +17,18 @@ function DataTablePageResult({
   return (
     <span className={cn("min-w-fit truncate text-sm", className)} {...props}>
       {from && to && total > 0
-        ? trans("pagination.results", {
-            replacements: {
-              from: from,
-              to: to,
-              total: total,
+        ? trans(
+            "pagination.results",
+            "Showing :from to :to of :total results.",
+            {
+              replacements: {
+                from: from,
+                to: to,
+                total: total,
+              },
             },
-          })
-        : trans("pagination.empty")}
+          )
+        : trans("pagination.empty", "No result.")}
     </span>
   );
 }

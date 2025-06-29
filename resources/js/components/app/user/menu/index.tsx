@@ -45,25 +45,27 @@ function UserMenu() {
           <DropdownMenuContent align="end">
             <DropdownMenuItem onClick={() => setOpenSettings(true)}>
               <SettingsIcon />
-              {trans("ui.settings")}
+              {trans("ui.settings", "Settings")}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild={true}>
               {auth ? (
                 <Link as="button" href={route("logout")} method="post">
                   <LogOutIcon />
-                  {trans("ui.log_out")}
+                  {trans("ui.log_out", "Log out")}
                 </Link>
               ) : (
                 <Link as="button" href={route("login")} method="get">
                   <LogInIcon />
-                  {trans("ui.log_in")}
+                  {trans("ui.log_in", "Log in")}
                 </Link>
               )}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <TooltipContent>{trans("tooltips.toggle.user_menu")}</TooltipContent>
+        <TooltipContent>
+          {trans("accessibility.toggle_user_menu", "Toggle user menu")}
+        </TooltipContent>
       </Tooltip>
       <UserSettings open={openSettings} onOpenChange={setOpenSettings} />
     </>

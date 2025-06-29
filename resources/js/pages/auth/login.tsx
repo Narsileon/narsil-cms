@@ -38,12 +38,17 @@ function Login({ status }: LoginProps) {
   return (
     <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
       <Heading className="text-center" level="h1" variant="h4">
-        {trans("ui.log_in")}
+        {trans("ui.connection", "Connection")}
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
           <FormProvider
             id="login-form"
+            initialData={{
+              email: "",
+              password: "",
+              remember: false,
+            }}
             render={() => (
               <Form className="grid gap-6" method="post" url={route("login")}>
                 <FormField
@@ -71,7 +76,7 @@ function Login({ status }: LoginProps) {
                           className="text-xs"
                           href={route("password.request")}
                         >
-                          {trans("passwords.forgot")}
+                          {trans("passwords.link", "Forgot your password?")}
                         </Link>
                       </div>
                       <Input
@@ -93,13 +98,11 @@ function Login({ status }: LoginProps) {
                         onCheckedChange={(checked) => onChange(checked)}
                         {...field}
                       />
-                      <FormDescription>
-                        {trans("validation.attributes.remember")}
-                      </FormDescription>
+                      <FormLabel />
                     </FormItem>
                   )}
                 />
-                <FormSubmit>{trans("ui.log_in")}</FormSubmit>
+                <FormSubmit>{trans("ui.log_in", "Log in")}</FormSubmit>
               </Form>
             )}
           />

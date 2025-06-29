@@ -22,7 +22,7 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
     <Tooltip>
       <TooltipTrigger asChild={true}>
         <Button
-          aria-label={trans("tooltips.column.sort")}
+          aria-label={trans("accessibility.column_sort", "Sort column")}
           size="icon"
           variant="ghost"
           onClick={header.column.getToggleSortingHandler()}
@@ -37,7 +37,9 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
           )}
         </Button>
       </TooltipTrigger>
-      <TooltipContent>{trans("tooltips.column.sort")}</TooltipContent>
+      <TooltipContent>
+        {trans("accessibility.column_sort", "Sort column")}
+      </TooltipContent>
     </Tooltip>
   );
 }

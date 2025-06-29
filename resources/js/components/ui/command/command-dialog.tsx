@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Command } from "cmdk";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +18,7 @@ export type CommandDialogProps = DialogProps & {
 };
 
 function CommandDialog({
-  title = "Command Palette",
+  title = "Command list",
   description = "Search for a command to run...",
   children,
   className,
@@ -26,10 +27,12 @@ function CommandDialog({
 }: CommandDialogProps) {
   return (
     <Dialog {...props}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
+      <VisuallyHidden>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
+      </VisuallyHidden>
       <DialogContent
         className={cn("overflow-hidden p-0", className)}
         showCloseButton={showCloseButton}

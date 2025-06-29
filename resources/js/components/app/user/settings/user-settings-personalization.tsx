@@ -64,7 +64,9 @@ function UserSettingsPersonalization() {
     <TabsContent value="personalization">
       <Section>
         <SectionHeader>
-          <SectionTitle level="h2">{trans("ui.personalization")}</SectionTitle>
+          <SectionTitle level="h2">
+            {trans("ui.personalization", "Personalization")}
+          </SectionTitle>
         </SectionHeader>
         <SectionContent>
           <FormProvider
@@ -93,7 +95,7 @@ function UserSettingsPersonalization() {
                         <SelectContent>
                           {locales.map((locale) => (
                             <SelectItem value={locale} key={locale}>
-                              {trans(`locales.${locale}`)}
+                              {trans(`locales.${locale}`, locale)}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -116,7 +118,7 @@ function UserSettingsPersonalization() {
                         <SelectContent>
                           {themes.map((theme) => (
                             <SelectItem value={theme} key={theme}>
-                              {trans(`themes.${theme}`)}
+                              {trans(`themes.${theme}`, theme)}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -144,7 +146,7 @@ function UserSettingsPersonalization() {
                                   className={`h-3 w-3 rounded-full ${backgroudColors[color]}`}
                                   aria-hidden="true"
                                 />
-                                {trans(`colors.${color}`)}
+                                {trans(`colors.${color}`, color)}
                               </SelectItem>
                             );
                           })}

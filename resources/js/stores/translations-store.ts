@@ -15,7 +15,11 @@ export type TranslationStoreActions = {
   setLocale: (locale: string) => void;
   setLocales: (locales: string[]) => void;
   setTranslations: (translations: Record<string, string>) => void;
-  trans: (key: string, options?: TranslationOptions) => string;
+  trans: (
+    key: string,
+    fallback: string,
+    options?: TranslationOptions,
+  ) => string;
 };
 
 export type TranslationStoreType = TranslationStoreState &
@@ -37,10 +41,10 @@ const useTranslationsStore = create<TranslationStoreType>((set, get) => ({
     set({
       translations: translations,
     }),
-  trans: (key, options = {}) => {
+  trans: (key, fallback, options = {}) => {
     const { replacements = {} } = options;
 
-    let text = get().translations?.[key] ?? key.split(".").pop() ?? key;
+    let text = get().translations?.[key] ?? fallback;
 
     Object.entries(replacements).map(([replacementKey, replacementValue]) => {
       if (text.includes(replacementKey)) {

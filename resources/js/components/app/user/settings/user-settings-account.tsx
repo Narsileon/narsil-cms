@@ -30,7 +30,9 @@ function UserSettingsAccount() {
     <TabsContent value="account">
       <Section>
         <SectionHeader>
-          <SectionTitle level="h2">{trans("ui.account")}</SectionTitle>
+          <SectionTitle level="h2">
+            {trans("ui.account", "Account")}
+          </SectionTitle>
         </SectionHeader>
         <SectionContent>
           <FormProvider
@@ -73,7 +75,7 @@ function UserSettingsAccount() {
                     </FormItem>
                   )}
                 />
-                <FormSubmit>{trans("ui.update")}</FormSubmit>
+                <FormSubmit>{trans("ui.update", "Update")}</FormSubmit>
               </Form>
             )}
           />
@@ -82,11 +84,18 @@ function UserSettingsAccount() {
       <Separator />
       <Section>
         <SectionHeader>
-          <SectionTitle level="h2">{trans("ui.password")}</SectionTitle>
+          <SectionTitle level="h2">
+            {trans("ui.password", "Password")}
+          </SectionTitle>
         </SectionHeader>
         <SectionContent>
           <FormProvider
             id="user-password-form"
+            initialData={{
+              current_password: "",
+              password: "",
+              password_confirmation: "",
+            }}
             render={() => (
               <Form
                 className="grid gap-6"
@@ -138,7 +147,7 @@ function UserSettingsAccount() {
                     </FormItem>
                   )}
                 />
-                <FormSubmit>{trans("ui.update")}</FormSubmit>
+                <FormSubmit>{trans("ui.update", "Update")}</FormSubmit>
               </Form>
             )}
           />

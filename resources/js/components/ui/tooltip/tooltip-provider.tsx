@@ -5,7 +5,7 @@ export type TooltipProviderProps = React.ComponentProps<
 > & {};
 
 function TooltipProvider({
-  delayDuration = 0,
+  delayDuration = 300,
   ...props
 }: TooltipProviderProps) {
   return (

@@ -12,33 +12,33 @@ function Settings() {
     <div className="flex flex-col">
       <Card className="rounded-b-none">
         <CardHeader>
-          <CardTitle>{trans("ui.system")}</CardTitle>
+          <CardTitle>{trans("ui.system", "System")}</CardTitle>
         </CardHeader>
         <CardContent>
           <Button className="h-32 w-32 flex-col" variant="ghost">
             <Link href={route("sites.index")}>
               <GlobeIcon className="size-16" />
             </Link>
-            {trans("ui.sites")}
+            {trans("ui.sites", "Sites")}
           </Button>
           <Button className="h-32 w-32 flex-col" variant="ghost">
             <Link href={route("users.index")}>
               <GlobeIcon className="size-16" />
             </Link>
-            {trans("ui.users")}
+            {trans("ui.users", "Users")}
           </Button>
         </CardContent>
       </Card>
       <Card className="rounded-t-none">
         <CardHeader>
-          <CardTitle>{trans("ui.content")}</CardTitle>
+          <CardTitle>{trans("ui.content", "Content")}</CardTitle>
         </CardHeader>
         <CardContent>
           <Button className="h-32 w-32 flex-col" variant="ghost">
             <Link href={route("sites.index")}>
               <SquarePenIcon className="size-16" />
             </Link>
-            {trans("ui.fields")}
+            {trans("ui.fields", "Fields")}
           </Button>
         </CardContent>
       </Card>

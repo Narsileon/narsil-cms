@@ -38,12 +38,15 @@ function ForgotPassword({ status }: ForgotPasswordProps) {
   return (
     <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
       <Heading className="text-center" level="h1" variant="h4">
-        {trans("passwords.forgot")}
+        {trans("ui.password_reset", "Reset password")}
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
           <FormProvider
             id="forgot-password-form"
+            initialData={{
+              email: "",
+            }}
             render={() => (
               <Form
                 className="grid gap-6"
@@ -62,20 +65,23 @@ function ForgotPassword({ status }: ForgotPasswordProps) {
                         {...field}
                       />
                       <FormDescription>
-                        {trans("passwords.forgot_description")}
+                        {trans(
+                          "passwords.instruction",
+                          "Let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
+                        )}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <FormSubmit>{trans("ui.send")}</FormSubmit>
+                <FormSubmit>{trans("ui.send", "Send")}</FormSubmit>
               </Form>
             )}
           />
         </CardContent>
         <CardFooter className="border-t">
           <Button className="w-full" asChild={true} variant="secondary">
-            <Link href={route("login")}>{trans("ui.back")}</Link>
+            <Link href={route("login")}>{trans("ui.back", "Back")}</Link>
           </Button>
         </CardFooter>
       </Card>

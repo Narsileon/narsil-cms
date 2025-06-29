@@ -23,13 +23,18 @@ function ResetPassword({ token }: ResetPasswordProps) {
   return (
     <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
       <Heading className="text-center" level="h1" variant="h4">
-        {trans("passwords.resetting")}
+        {trans("ui.password_reset", "Reset password")}
       </Heading>
       <Card className="w-[18rem]">
         <CardContent>
           <FormProvider
             id="reset-password-form"
-            initialData={{ token: token }}
+            initialData={{
+              email: "",
+              password_confirmation: "",
+              password: "",
+              token: token,
+            }}
             render={() => (
               <Form
                 className="grid gap-6"
@@ -81,7 +86,7 @@ function ResetPassword({ token }: ResetPasswordProps) {
                     </FormItem>
                   )}
                 />
-                <FormSubmit>{trans("ui.reset")}</FormSubmit>
+                <FormSubmit>{trans("ui.reset", "Reset")}</FormSubmit>
               </Form>
             )}
           />

@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { DialogProps } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 type UserSettingsProps = {
   open: DialogProps["open"];
@@ -31,14 +32,12 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="h-3/4 sm:h-1/2 md:p-0" showCloseButton={false}>
-        <DialogTitle className="sr-only">
-          {trans("ui.userSettingsTitle") || "User Settings"}
+      <VisuallyHidden>
+        <DialogTitle>
+          {trans("accessibility.user_settings", "User settings")}
         </DialogTitle>
-        <DialogDescription className="sr-only">
-          {trans("ui.userSettingsDescription") ||
-            "Manage your account, preferences, and security settings."}
-        </DialogDescription>
+      </VisuallyHidden>
+      <DialogContent className="h-3/4 sm:h-1/2 md:p-0" showCloseButton={false}>
         <Tabs
           className="h-full overflow-hidden"
           defaultValue="account"
@@ -51,17 +50,17 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
             {auth ? (
               <TabsTrigger value="account">
                 <UserPenIcon />
-                {trans("ui.account")}
+                {trans("ui.account", "Account")}
               </TabsTrigger>
             ) : null}
             <TabsTrigger value="personalization">
               <SettingsIcon />
-              {trans("ui.personalization")}
+              {trans("ui.personalization", "Personalization")}
             </TabsTrigger>
             {auth ? (
               <TabsTrigger value="security">
                 <ShieldCheckIcon />
-                {trans("ui.security")}
+                {trans("ui.security", "Security")}
               </TabsTrigger>
             ) : null}
           </TabsList>

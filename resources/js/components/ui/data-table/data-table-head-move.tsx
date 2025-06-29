@@ -27,7 +27,7 @@ function DataTableHeadMove({
     <Tooltip>
       <TooltipTrigger asChild={true}>
         <Button
-          aria-label={trans("tooltips.column.move")}
+          aria-label={trans("accessibility.column_move", "Move column")}
           variant="ghost"
           {...props}
           {...attributes}
@@ -36,7 +36,9 @@ function DataTableHeadMove({
           {children}
         </Button>
       </TooltipTrigger>
-      <TooltipContent>{trans("tooltips.column.move")}</TooltipContent>
+      <TooltipContent>
+        {trans("accessibility.column_move", "Move column")}
+      </TooltipContent>
     </Tooltip>
   );
 }

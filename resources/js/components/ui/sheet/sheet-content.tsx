@@ -4,6 +4,7 @@ import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { XIcon } from "lucide-react";
 import SheetOverlay from "./sheet-overlay";
 import SheetPortal from "./sheet-portal";
+import useTranslationsStore from "@/stores/translations-store";
 
 export type SheetContentProps = React.ComponentProps<
   typeof SheetPrimitive.Content
@@ -17,6 +18,8 @@ function SheetContent({
   side = "right",
   ...props
 }: SheetContentProps) {
+  const { trans } = useTranslationsStore();
+
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -61,7 +64,9 @@ function SheetContent({
           )}
         >
           <XIcon className="size-4" />
-          <VisuallyHidden>Close</VisuallyHidden>
+          <VisuallyHidden>
+            {trans("accessibility.close_sheet", "Close sheet")}
+          </VisuallyHidden>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
     </SheetPortal>

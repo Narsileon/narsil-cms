@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { Separator } from "@/components/ui/separator";
@@ -19,60 +18,80 @@ function UserSettingsSecurity() {
 
   return (
     <TabsContent value="security">
-      <Section className="gap-2">
+      <Section>
         <SectionHeader>
-          <SectionTitle level="h2">{trans("ui.security")}</SectionTitle>
+          <SectionTitle level="h2">
+            {trans("ui.security", "Security")}
+          </SectionTitle>
         </SectionHeader>
-        <SectionContent className="grid gap-2">
+        <SectionContent>
           <UserSettingsSecurityTwoFactor />
+        </SectionContent>
+      </Section>
+      <Separator />
+      <Section>
+        <SectionHeader>
+          <SectionTitle level="h2">
+            {trans("ui.sessions", "Sessions")}
+          </SectionTitle>
+        </SectionHeader>
+        <SectionContent className="grid gap-4 text-sm">
+          <p>
+            {trans(
+              "sessions.sign_out.current.description",
+              "Sign out of this device.",
+            )}
+          </p>
+          <DialogClose asChild={true}>
+            <Button asChild={true} variant="outline">
+              <Link
+                method="delete"
+                href={route("sessions.delete", {
+                  type: "current",
+                })}
+              >
+                {trans("sessions.sign_out.current.button", "Sign out")}
+              </Link>
+            </Button>
+          </DialogClose>
           <Separator />
-          <div className="flex items-center justify-between">
-            <Label>{trans("Log out of this device.")}</Label>
-            <DialogClose asChild={true}>
-              <Button asChild={true} variant="outline">
-                <Link
-                  method="delete"
-                  href={route("sessions.delete", {
-                    type: "current",
-                  })}
-                >
-                  {trans("ui.log_out")}
-                </Link>
-              </Button>
-            </DialogClose>
-          </div>
+          <p>
+            {trans(
+              "sessions.sign_out.others.description",
+              "Sign out of all devices, excluding this one.",
+            )}
+          </p>
+          <DialogClose asChild={true}>
+            <Button asChild={true} variant="outline">
+              <Link
+                method="delete"
+                href={route("sessions.delete", {
+                  type: "others",
+                })}
+              >
+                {trans("sessions.sign_out.others.button", "Sign out elsewhere")}
+              </Link>
+            </Button>
+          </DialogClose>
           <Separator />
-          <div className="flex items-center justify-between">
-            <Label>{trans("Log out of others devices.")}</Label>
-            <DialogClose asChild={true}>
-              <Button asChild={true} variant="outline">
-                <Link
-                  method="delete"
-                  href={route("sessions.delete", {
-                    type: "others",
-                  })}
-                >
-                  {trans("ui.log_out_others")}
-                </Link>
-              </Button>
-            </DialogClose>
-          </div>
-          <Separator />
-          <div className="flex items-center justify-between">
-            <Label>{trans("Log out of all devices.")}</Label>
-            <DialogClose asChild={true}>
-              <Button asChild={true} variant="outline">
-                <Link
-                  method="delete"
-                  href={route("sessions.delete", {
-                    type: "all",
-                  })}
-                >
-                  {trans("ui.log_out_all")}
-                </Link>
-              </Button>
-            </DialogClose>
-          </div>
+          <p>
+            {trans(
+              "sessions.sign_out.all.description",
+              "Sign out of all devices, including this one.",
+            )}
+          </p>
+          <DialogClose asChild={true}>
+            <Button asChild={true} variant="outline">
+              <Link
+                method="delete"
+                href={route("sessions.delete", {
+                  type: "all",
+                })}
+              >
+                {trans("sessions.sign_out.all.button", "Sign out everywhere")}
+              </Link>
+            </Button>
+          </DialogClose>
         </SectionContent>
       </Section>
     </TabsContent>

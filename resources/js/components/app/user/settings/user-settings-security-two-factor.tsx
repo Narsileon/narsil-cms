@@ -111,7 +111,9 @@ function UserSettingsSecurityTwoFactor() {
     <>
       <div className="grid gap-4">
         <div className="flex h-9 items-center justify-between">
-          <Label>{trans("auth.two_factor")}</Label>
+          <Label>
+            {trans("ui.two_factor_authentication", "Two-factor authentication")}
+          </Label>
           <Switch checked={enabled} onCheckedChange={toggleEnabled} />
         </div>
         {!active && enabled && qrCode ? (
@@ -119,6 +121,9 @@ function UserSettingsSecurityTwoFactor() {
             <CardContent>
               <FormProvider
                 id="user-two-factor-form"
+                initialData={{
+                  code: "",
+                }}
                 render={({ setError }) => (
                   <Form
                     className="grid gap-4"
@@ -130,12 +135,20 @@ function UserSettingsSecurityTwoFactor() {
                       onError() {
                         setError?.(
                           "code",
-                          trans("validation.custom.code.invalid"),
+                          trans(
+                            "validation.custom.code.invalid",
+                            "The code is invalid.",
+                          ),
                         );
                       },
                     }}
                   >
-                    <p>{trans("auth.two_factor_description")}</p>
+                    <p>
+                      {trans(
+                        "two-factor.description",
+                        "Please scan the following QR code using your phone's authenticator application and enter your code.",
+                      )}
+                    </p>
                     <div
                       className="[&>svg]:h-auto [&>svg]:w-full"
                       dangerouslySetInnerHTML={{
@@ -159,7 +172,7 @@ function UserSettingsSecurityTwoFactor() {
                         </FormItem>
                       )}
                     />
-                    <FormSubmit>{trans("ui.confirm")}</FormSubmit>
+                    <FormSubmit>{trans("ui.confirm", "Confirm")}</FormSubmit>
                   </Form>
                 )}
               />
@@ -169,7 +182,9 @@ function UserSettingsSecurityTwoFactor() {
         {!active && enabled && recoveryCodes ? (
           <Card>
             <CardHeader className="grid-cols-2 items-center border-b">
-              <CardTitle>{trans("auth.recovery_codes")}</CardTitle>
+              <CardTitle>
+                {trans("ui.recovery_codes", "Recovery codes")}
+              </CardTitle>
               <Button
                 className="place-self-end"
                 size="icon"
@@ -181,8 +196,12 @@ function UserSettingsSecurityTwoFactor() {
               </Button>
             </CardHeader>
             <CardContent className="grid gap-4">
-              <p>{trans("auth.recovery_codes_description")}</p>
-
+              <p>
+                {trans(
+                  "two-factor.prompt",
+                  "Store these recovery codes in a safe place. You can use them to access your account if your two-factor authentication device is lost.",
+                )}
+              </p>
               <ul className="ml-6 list-disc">
                 {recoveryCodes?.map((recoveryCode, index) => {
                   return <li key={index}>{recoveryCode}</li>;
