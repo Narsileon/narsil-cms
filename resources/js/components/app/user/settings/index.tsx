@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { SettingsIcon, ShieldCheckIcon, UserPenIcon } from "lucide-react";
 import { TabsList, Tabs, TabsTrigger } from "@/components/ui/tabs";
 import { useMinMd } from "@/hooks/use-breakpoints";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import useAuth from "@/hooks/use-auth";
 import UserSettingsAccount from "./user-settings-account";
 import UserSettingsPersonalization from "./user-settings-personalization";
@@ -12,11 +13,9 @@ import {
   Dialog,
   DialogCloseButton,
   DialogContent,
-  DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { DialogProps } from "@/components/ui/dialog";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 type UserSettingsProps = {
   open: DialogProps["open"];

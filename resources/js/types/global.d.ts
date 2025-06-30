@@ -1,4 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
+import { DynamicIcon } from "lucide-react/dynamic";
+import React from "react";
 
 export type GlobalProps = {
   auth: {
@@ -7,7 +9,11 @@ export type GlobalProps = {
     last_name: string | undefined | null;
     two_factor_confirmed_at: string | null;
   };
-  breadcrumbs: BreadcrumbType;
+  config: {
+    sidebar: {
+      content: NavigationOption[];
+    };
+  };
   redirect: {
     success: string;
     error: string;
@@ -47,6 +53,13 @@ export type LaravelPaginationMeta = {
   per_page: number;
   to: number | null;
   total: number;
+};
+
+export type NavigationOption = {
+  route: string;
+  icon: React.ComponentProps<typeof DynamicIcon>["name"];
+  label: string;
+  children?: NavigationOption[];
 };
 
 export type SelectOption = {

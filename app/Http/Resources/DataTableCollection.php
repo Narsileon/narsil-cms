@@ -130,7 +130,7 @@ class DataTableCollection extends ResourceCollection
     {
         $columnVisibility = [];
 
-        $visible = Config::get("narsil-cms.tables.$this->table", []);
+        $visible = Config::get("narsil.tables.$this->table", []);
 
         foreach (TableService::getColumns($this->table) as $columnDefinition)
         {

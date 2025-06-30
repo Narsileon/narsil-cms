@@ -1,6 +1,7 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import AppLogo from "./app-logo";
+import useTranslationsStore from "@/stores/translations-store";
 import {
   Sidebar,
   SidebarContent,
@@ -11,21 +12,13 @@ import {
   SidebarProps,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import type { GlobalProps } from "@/types/global";
+import { DynamicIcon } from "lucide-react/dynamic";
 
 function AppSidebar({ ...props }: SidebarProps) {
-  const data = {
-    versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
-    navMain: [
-      {
-        title: "Users",
-        url: route("users.index"),
-      },
-      {
-        title: "Settings",
-        url: route("settings"),
-      },
-    ],
-  };
+  const { trans } = useTranslationsStore();
+
+  const sidebar = usePage<GlobalProps>().props.config.sidebar ?? {};
 
   return (
     <Sidebar {...props}>
@@ -34,10 +27,13 @@ function AppSidebar({ ...props }: SidebarProps) {
       </SidebarHeader>
       <SidebarContent className="gap-0">
         <SidebarMenu>
-          {data.navMain.map((item) => (
-            <SidebarMenuItem key={item.title}>
+          {sidebar.content.map((item, index) => (
+            <SidebarMenuItem key={index}>
               <SidebarMenuButton asChild={true}>
-                <Link href={item.url}>{item.title}</Link>
+                <Link href={route(item.route)}>
+                  <DynamicIcon name={item.icon} />
+                  {trans(item.label, item.label)}
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

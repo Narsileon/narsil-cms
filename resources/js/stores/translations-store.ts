@@ -41,7 +41,7 @@ const useTranslationsStore = create<TranslationStoreType>((set, get) => ({
     set({
       translations: translations,
     }),
-  trans: (key, fallback, options = {}) => {
+  trans: (key, fallback = "Translation not found", options = {}) => {
     const { replacements = {} } = options;
 
     let text = get().translations?.[key] ?? fallback;

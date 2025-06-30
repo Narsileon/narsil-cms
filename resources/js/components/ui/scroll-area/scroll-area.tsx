@@ -6,13 +6,13 @@ import type { ScrollAreaScrollbarProp } from "./scroll-area-scrollbar";
 export type ScrollAreaProps = React.ComponentProps<
   typeof ScrollAreaPrimitive.Root
 > & {
-  orientation: ScrollAreaScrollbarProp["orientation"];
+  orientation?: ScrollAreaScrollbarProp["orientation"];
 };
 
 const ScrollArea = ({
   className,
   children,
-  orientation,
+  orientation = "vertical",
   ...props
 }: ScrollAreaProps) => {
   return (

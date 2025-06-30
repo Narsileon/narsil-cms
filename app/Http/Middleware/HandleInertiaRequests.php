@@ -62,10 +62,11 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
 
             'auth' => $this->getAuth(),
+            'config' => $this->getConfig(),
             'redirect' => $this->getRedirect(),
             'shared' => [
                 'locale'       => $locale,
-                'locales'      => Config::get('narsil-cms.locales'),
+                'locales'      => Config::get('narsil.localization.locales'),
                 'translations' => TranslationService::getTranslations($locale),
             ],
         ];
@@ -92,6 +93,18 @@ class HandleInertiaRequests extends Middleware
             User::FIRST_NAME => $user->{User::FIRST_NAME},
             User::LAST_NAME => $user->{User::LAST_NAME},
             User::TWO_FACTOR_CONFIRMED_AT => $user->{User::TWO_FACTOR_CONFIRMED_AT},
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getConfig(): array
+    {
+        return [
+            'sidebar' => Config::get('narsil.sidebar', [
+                'content' => []
+            ]),
         ];
     }
 

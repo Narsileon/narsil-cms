@@ -36,7 +36,7 @@ class TranslationService
 
             $phpTranslations = [];
 
-            $files = Config::get("narsil-cms.translations", []);
+            $files = Config::get("narsil.localization.translations", []);
 
             foreach ($files as $file)
             {
