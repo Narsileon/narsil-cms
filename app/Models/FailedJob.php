@@ -35,36 +35,36 @@ class FailedJob extends Model
     /**
      * @var string The name of the "connection" column.
      */
-    public const CONNECTION = 'connection';
+    final public const CONNECTION = 'connection';
     /**
      * @var string The name of the "exception" column.
      */
-    public const EXCEPTION = 'exception';
+    final public const EXCEPTION = 'exception';
     /**
      * @var string The name of the "failed at" column.
      */
-    public const FAILED_AT = 'failed_at';
+    final public const FAILED_AT = 'failed_at';
     /**
      * @var string The name of the "id" column.
      */
-    public const ID = 'id';
+    final public const ID = 'id';
     /**
      * @var string The name of the "payload" column.
      */
-    public const PAYLOAD = 'payload';
+    final public const PAYLOAD = 'payload';
     /**
      * @var string The name of the "queue" column.
      */
-    public const QUEUE = 'queue';
+    final public const QUEUE = 'queue';
     /**
      * @var string The name of the "uuid" column.
      */
-    public const UUID = 'uuid';
+    final public const UUID = 'uuid';
 
     /**
      * @var string The name of the "failed jobs" table.
      */
-    public const TABLE = 'failed_jobs';
+    final public const TABLE = 'failed_jobs';
 
     #endregion
 }

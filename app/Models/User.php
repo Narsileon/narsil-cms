@@ -69,70 +69,70 @@ class User extends Authenticatable implements IEnable, MustVerifyEmail
     /**
      * @var string The name of the "email" column.
      */
-    public const EMAIL = 'email';
+    final public const EMAIL = 'email';
     /**
      * @var string The name of the "email verified at" column.
      */
-    public const EMAIL_VERIFIED_AT = 'email_verified_at';
+    final public const EMAIL_VERIFIED_AT = 'email_verified_at';
     /**
      * @var string The name of the "first name" column.
      */
-    public const FIRST_NAME = 'first_name';
+    final public const FIRST_NAME = 'first_name';
     /**
      * @var string The name of the "last name" column.
      */
-    public const LAST_NAME = 'last_name';
+    final public const LAST_NAME = 'last_name';
     /**
      * @var string The name of the "id" column.
      */
-    public const ID = 'id';
+    final public const ID = 'id';
     /**
      * @var string The name of the "password" column.
      */
-    public const PASSWORD = 'password';
+    final public const PASSWORD = 'password';
     /**
      * @var string The name of the "remember" column.
      */
-    public const REMEMBER = 'remember';
+    final public const REMEMBER = 'remember';
     /**
      * @var string The name of the "remember token" column.
      */
-    public const REMEMBER_TOKEN = 'remember_token';
+    final public const REMEMBER_TOKEN = 'remember_token';
     /**
      * @var string The name of the "two factor confirmed at" column.
      */
-    public const TWO_FACTOR_CONFIRMED_AT = 'two_factor_confirmed_at';
+    final public const TWO_FACTOR_CONFIRMED_AT = 'two_factor_confirmed_at';
     /**
      * @var string The name of the "two factor recovery codes" column.
      */
-    public const TWO_FACTOR_RECOVERY_CODES = 'two_factor_recovery_codes';
+    final public const TWO_FACTOR_RECOVERY_CODES = 'two_factor_recovery_codes';
     /**
      * @var string The name of the "two factor secret" column.
      */
-    public const TWO_FACTOR_SECRET = 'two_factor_secret';
+    final public const TWO_FACTOR_SECRET = 'two_factor_secret';
 
     /**
      * @var string The name of the "current password" attribute.
      */
-    public const ATTRIBUTE_CURRENT_PASSWORD = 'current_password';
+    final public const ATTRIBUTE_CURRENT_PASSWORD = 'current_password';
     /**
      * @var string The name of the "password confirmation" attribute.
      */
-    public const ATTRIBUTE_PASSWORD_CONFIRMATION = 'password_confirmation';
+    final public const ATTRIBUTE_PASSWORD_CONFIRMATION = 'password_confirmation';
 
     /**
      * @var string The name of the "configuration" relation.
      */
-    public const RELATION_CONFIGURATION = 'configuration';
+    final public const RELATION_CONFIGURATION = 'configuration';
     /**
      * @var string The name of the "sessions" relation.
      */
-    public const RELATION_SESSIONS = 'sessions';
+    final public const RELATION_SESSIONS = 'sessions';
 
     /**
      * @var string The name of the "users" table.
      */
-    public const TABLE = 'users';
+    final public const TABLE = 'users';
 
     #endregion
 

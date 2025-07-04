@@ -35,20 +35,20 @@ class Cache extends Model
     /**
      * @var string The name of the "expiration" column.
      */
-    public const EXPIRATION = 'expiration';
+    final public const EXPIRATION = 'expiration';
     /**
      * @var string The name of the "key" column.
      */
-    public const KEY = 'key';
+    final public const KEY = 'key';
     /**
      * @var string The name of the "value" column.
      */
-    public const VALUE = 'value';
+    final public const VALUE = 'value';
 
     /**
      * @var string The name of the "cache" table.
      */
-    public const TABLE = 'cache';
+    final public const TABLE = 'cache';
 
     #endregion
 }

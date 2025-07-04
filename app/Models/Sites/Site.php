@@ -6,6 +6,7 @@ namespace App\Models\Sites;
 
 use App\Interfaces\IEnable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #endregion
 
@@ -26,6 +27,10 @@ class Site extends Model implements IEnable
     {
         $this->table = self::TABLE;
 
+        $this->with = array_merge([
+            self::RELATION_GROUP,
+        ], $this->with);
+
         parent::__construct($attributes);
     }
 
@@ -34,30 +39,55 @@ class Site extends Model implements IEnable
     #region CONSTANTS
 
     /**
+     * @var string The name of the "group id" column.
+     */
+    final public const GROUP_ID = 'group_id';
+    /**
      * @var string The name of the "handle" column.
      */
-    public const HANDLE = 'handle';
+    final public const HANDLE = 'handle';
     /**
      * @var string The name of the "id" column.
      */
-    public const ID = 'id';
+    final public const ID = 'id';
     /**
      * @var string The name of the "language" column.
      */
-    public const LANGUAGE = 'language';
+    final public const LANGUAGE = 'language';
     /**
      * @var string The name of the "name" column.
      */
-    public const NAME = 'name';
+    final public const NAME = 'name';
     /**
      * @var string The name of the "primary" column.
      */
-    public const PRIMARY = 'primary';
+    final public const PRIMARY = 'primary';
+
+    /**
+     * @var string The name of the "group" relation.
+     */
+    final public const RELATION_GROUP = 'group';
 
     /**
      * @var string The name of the "sites" table.
      */
-    public const TABLE = 'sites';
+    final public const TABLE = 'sites';
+
+    #endregion
+
+    #region RELATIONS
+
+    /**
+     * @return BelongsTo
+     */
+    public function group(): BelongsTo
+    {
+        return $this->belongsTo(
+            SiteGroup::class,
+            self::GROUP_ID,
+            SiteGroup::ID
+        );
+    }
 
     #endregion
 }

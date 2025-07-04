@@ -3,6 +3,7 @@
 #region USE
 
 use App\Models\Sites\Site;
+use App\Models\Sites\SiteGroup;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable(SiteGroup::TABLE))
+        {
+            $this->createSiteGroupsTable();
+        }
+
         if (!Schema::hasTable(Site::TABLE))
         {
             $this->createSitesTable();
@@ -34,11 +40,28 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists(Site::TABLE);
+        Schema::dropIfExists(SiteGroup::TABLE);
     }
 
     #endregion
 
     #region PRIVATE METHODS
+
+    /**
+     * @return void
+     */
+    private function createSiteGroupsTable(): void
+    {
+        Schema::create(SiteGroup::TABLE, function (Blueprint $table)
+        {
+            $table
+                ->id(SiteGroup::ID);
+            $table
+                ->string(SiteGroup::NAME);
+            $table
+                ->timestamps();
+        });
+    }
 
     /**
      * @return void
@@ -49,6 +72,11 @@ return new class extends Migration
         {
             $table
                 ->id(Site::ID);
+            $table
+                ->foreignId(Site::GROUP_ID)
+                ->nullable()
+                ->constrained(SiteGroup::TABLE, SiteGroup::ID)
+                ->cascadeOnDelete();
             $table
                 ->boolean(Site::ENABLED)
                 ->default(true);

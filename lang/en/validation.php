@@ -203,6 +203,7 @@ return [
         'email'                   => 'Email',
         'enabled'                 => 'Enabled',
         'first_name'              => 'First name',
+        'group'                   => 'Group',
         'handle'                  => 'Handle',
         'id'                      => 'ID',
         'language'                => 'Language',

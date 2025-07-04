@@ -38,6 +38,7 @@ type DataTableBlockProps = Omit<
 
 function DataTableBlock({
   columns,
+  columnOrder,
   columnVisibility,
   from,
   links,
@@ -68,6 +69,7 @@ function DataTableBlock({
     <DataTableProvider
       columns={finalColumns}
       initialState={{
+        columnOrder: columnOrder,
         columnVisibility: columnVisibility,
       }}
       render={({ dataTable, dataTableStore }) => {

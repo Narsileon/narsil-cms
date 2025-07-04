@@ -6,6 +6,7 @@ return [
         'en',
         'fr',
     ],
+
     'translations' => [
         'accessibility',
         'auth',

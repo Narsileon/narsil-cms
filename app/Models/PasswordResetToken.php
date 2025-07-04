@@ -35,16 +35,16 @@ class PasswordResetToken extends Model
     /**
      * @var string The name of the "email" column.
      */
-    public const EMAIL = 'email';
+    final public const EMAIL = 'email';
     /**
      * @var string The name of the "token" column.
      */
-    public const TOKEN = 'token';
+    final public const TOKEN = 'token';
 
     /**
      * @var string The name of the "password reset tokens" table.
      */
-    public const TABLE = 'password_reset_tokens';
+    final public const TABLE = 'password_reset_tokens';
 
     #endregion
 }

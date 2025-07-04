@@ -35,32 +35,32 @@ class Job extends Model
     /**
      * @var string The name of the "attempts" column.
      */
-    public const ATTEMPTS = 'attempts';
+    final public const ATTEMPTS = 'attempts';
     /**
      * @var string The name of the "available at" column.
      */
-    public const AVAILABLE_AT = 'available_at';
+    final public const AVAILABLE_AT = 'available_at';
     /**
      * @var string The name of the "id" column.
      */
-    public const ID = 'id';
+    final public const ID = 'id';
     /**
      * @var string The name of the "payload" column.
      */
-    public const PAYLOAD = 'payload';
+    final public const PAYLOAD = 'payload';
     /**
      * @var string The name of the "queue" column.
      */
-    public const QUEUE = 'queue';
+    final public const QUEUE = 'queue';
     /**
      * @var string The name of the "reserved at" column.
      */
-    public const RESERVED_AT = 'reserved_at';
+    final public const RESERVED_AT = 'reserved_at';
 
     /**
      * @var string The name of the "jobs" table.
      */
-    public const TABLE = 'jobs';
+    final public const TABLE = 'jobs';
 
     #endregion
 }

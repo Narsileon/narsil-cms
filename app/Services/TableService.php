@@ -5,7 +5,6 @@ namespace App\Services;
 #region USE
 
 use App\Structures\Column;
-use App\Structures\ColumnDefinition;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
@@ -16,24 +15,9 @@ use Illuminate\Support\Facades\Schema;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-final class TableService
+abstract class TableService
 {
     #region PUBLIC METHODS
-
-    /**
-     * @param string $table
-     *
-     * @return Collection<ColumnDefinition>
-     */
-    public static function getColumnDefinitions(string $table): Collection
-    {
-        $columns = static::getColumns($table);
-
-        return $columns->map(function (Column $column)
-        {
-            return new ColumnDefinition($column);
-        });
-    }
 
     /**
      * @param string $table
@@ -42,7 +26,7 @@ final class TableService
      */
     public static function getColumns(string $table): Collection
     {
-        return Cache::rememberForever("schema:$table", function () use ($table)
+        return Cache::rememberForever("tables:$table", function () use ($table)
         {
             $tableColumns = collect([]);
 

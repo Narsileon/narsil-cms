@@ -4,12 +4,10 @@ namespace App\Http\Resources;
 
 #region USE
 
-use App\Services\TableService;
-use App\Structures\Column;
+use App\Services\TanStackTableService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Support\Facades\Config;
 use JsonSerializable;
 
 #endregion
@@ -100,47 +98,7 @@ class DataTableCollection extends ResourceCollection
      */
     public function with($request): array
     {
-        return [
-            'columns' => $this->getColumns(),
-            'columnVisibility' => $this->getColumnVisiblity(),
-        ];
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return array
-     */
-    protected function getColumns(): array
-    {
-        $columnDefinitions = TableService::getColumnDefinitions($this->table);
-
-        return $columnDefinitions->map
-            ->get()
-            ->values()
-            ->all();
-    }
-
-    /**
-     * @return array<string,boolean>
-     */
-    protected function getColumnVisiblity(): array
-    {
-        $columnVisibility = [];
-
-        $visible = Config::get("narsil.tables.$this->table", []);
-
-        foreach (TableService::getColumns($this->table) as $columnDefinition)
-        {
-            $name = $columnDefinition->name;
-
-            $columnVisibility[$name] = in_array($name, $visible);
-        }
-
-
-        return $columnVisibility;
+        return TanStackTableService::getColumns($this->table);
     }
 
     #endregion

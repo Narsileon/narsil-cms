@@ -35,44 +35,44 @@ class JobBatch extends Model
     /**
      * @var string The name of the "cancelled at" column.
      */
-    public const CANCELLED_AT = 'cancelled_at';
+    final public const CANCELLED_AT = 'cancelled_at';
     /**
      * @var string The name of the "failed job ids" column.
      */
-    public const FAILED_JOB_IDS = 'failed_job_ids';
+    final public const FAILED_JOB_IDS = 'failed_job_ids';
     /**
      * @var string The name of the "failed jobs" column.
      */
-    public const FAILED_JOBS = 'failed_jobs';
+    final public const FAILED_JOBS = 'failed_jobs';
     /**
      * @var string The name of the "finished at" column.
      */
-    public const FINISHED_AT = 'finished_at';
+    final public const FINISHED_AT = 'finished_at';
     /**
      * @var string The name of the "id" column.
      */
-    public const ID = 'id';
+    final public const ID = 'id';
     /**
      * @var string The name of the "name" column.
      */
-    public const NAME = 'name';
+    final public const NAME = 'name';
     /**
      * @var string The name of the "options" column.
      */
-    public const OPTIONS = 'options';
+    final public const OPTIONS = 'options';
     /**
      * @var string The name of the "pending jobs" column.
      */
-    public const PENDING_JOBS = 'pending_jobs';
+    final public const PENDING_JOBS = 'pending_jobs';
     /**
      * @var string The name of the "total jobs" column.
      */
-    public const TOTAL_JOBS = 'total_jobs';
+    final public const TOTAL_JOBS = 'total_jobs';
 
     /**
      * @var string The name of the "job batches" table.
      */
-    public const TABLE = 'job_batches';
+    final public const TABLE = 'job_batches';
 
     #endregion
 }
