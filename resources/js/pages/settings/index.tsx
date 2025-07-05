@@ -5,6 +5,7 @@ import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import useTranslationsStore from "@/stores/translations-store";
 import type { NavigationOption } from "@/types/global";
+import { Container } from "@/components/ui/container";
 
 type SettingsProps = {
   content: NavigationOption[];
@@ -14,7 +15,7 @@ function Settings({ content }: SettingsProps) {
   const { trans } = useTranslationsStore();
 
   return (
-    <div className="flex flex-col">
+    <Container className="gap-0" variant="centered">
       {content.map((card, index) => (
         <Card
           className="not-first:rounded-t-none not-last:rounded-b-none"
@@ -39,7 +40,7 @@ function Settings({ content }: SettingsProps) {
           </CardContent>
         </Card>
       ))}
-    </div>
+    </Container>
   );
 }
 

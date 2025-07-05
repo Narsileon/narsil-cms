@@ -3,12 +3,12 @@ import { cva, VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
 
 export const containerVariants = cva(
-  cn("mx-auto h-[inherit] w-[inherit] max-w-7xl gap-3 px-3"),
+  cn("mx-auto min-h-[inherit] h-[inherit] w-[inherit] max-w-7xl gap-3 px-3"),
   {
     variants: {
       variant: {
         default: "",
-        centered: "",
+        centered: "flex flex-col items-center justify-center",
       },
     },
     defaultVariants: {

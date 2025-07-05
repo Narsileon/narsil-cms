@@ -24,10 +24,10 @@ function AuthLayout({ children }: AuthLayoutProps) {
           <AppBreadcrumb className="grow" />
           <UserMenu />
         </header>
-        <div className="h-[calc(100vh-3rem)] min-h-fit">
+        <main className="min-h-[calc(100vh-3rem)]">
           {children}
           <Toaster />
-        </div>
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );

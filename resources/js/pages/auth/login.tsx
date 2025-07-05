@@ -43,10 +43,7 @@ function Login({ status }: LoginProps) {
   return (
     <>
       <Head title={trans("ui.connection", "Connection")} />
-      <Container
-        className="flex flex-col items-center justify-center gap-6"
-        asChild={true}
-      >
+      <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
