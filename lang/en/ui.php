@@ -10,6 +10,8 @@ return [
     'create'                    => 'Create',
     'email_verify'              => 'Verify your email',
     'fields'                    => 'Fields',
+    'groups'                    => 'Groups',
+    'home'                      => 'Home',
     'log_in'                    => 'Log in',
     'log_out'                   => 'Log out',
     'password_confirm'          => 'Confirm your password',

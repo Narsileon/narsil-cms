@@ -27,7 +27,6 @@ function Layout({ children }: LayoutProps) {
 
   const { auth, redirect, shared } = usePage<GlobalProps>().props;
 
-  const { error, success } = redirect ?? {};
   const { locale, locales, translations } = shared ?? {};
 
   useEffect(() => {
@@ -35,6 +34,8 @@ function Layout({ children }: LayoutProps) {
     translationStore.setLocales(locales);
     translationStore.setTranslations(translations);
   }, [locale, locales, translations]);
+
+  const { error, success } = redirect ?? {};
 
   useEffect(() => {
     if (success) {

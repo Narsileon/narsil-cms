@@ -10,7 +10,7 @@ function TabsContent({ className, ...props }: TabsContentProps) {
     <TabsPrimitive.Content
       data-slot="tabs-content"
       className={cn(
-        "flex-1 outline-none",
+        "flex flex-1 flex-col gap-4 py-4 outline-none",
         "data-[orientation=vertical]:px-4",
         className,
       )}

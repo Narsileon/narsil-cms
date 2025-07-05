@@ -9,11 +9,11 @@ type GuestLayoutProps = {
 function GuestLayout({ children }: GuestLayoutProps) {
   return (
     <>
-      <header className="bg-background sticky top-0 flex h-12 shrink-0 items-center justify-between gap-2 border-b pr-4 pl-3">
+      <header className="bg-background sticky top-0 flex h-12 items-center justify-between gap-4 border-b px-4">
         <AppLogo />
         <UserMenu />
       </header>
-      <div className="relative min-h-[calc(100vh-3rem)] p-5">
+      <div className="relative min-h-[calc(100vh-3rem)] p-4">
         {children}
         <Toaster />
       </div>

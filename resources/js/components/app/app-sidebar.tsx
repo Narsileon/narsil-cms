@@ -1,3 +1,4 @@
+import { DynamicIcon } from "lucide-react/dynamic";
 import { Link, usePage } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import AppLogo from "./app-logo";
@@ -11,11 +12,12 @@ import {
   SidebarMenuItem,
   SidebarProps,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import type { GlobalProps } from "@/types/global";
-import { DynamicIcon } from "lucide-react/dynamic";
 
 function AppSidebar({ ...props }: SidebarProps) {
+  const { setOpen, setOpenMobile } = useSidebar();
   const { trans } = useTranslationsStore();
 
   const sidebar = usePage<GlobalProps>().props.config.sidebar ?? {};
@@ -30,7 +32,13 @@ function AppSidebar({ ...props }: SidebarProps) {
           {sidebar.content.map((item, index) => (
             <SidebarMenuItem key={index}>
               <SidebarMenuButton asChild={true}>
-                <Link href={route(item.route)}>
+                <Link
+                  href={route(item.route)}
+                  onSuccess={() => {
+                    setOpen(false);
+                    setOpenMobile(false);
+                  }}
+                >
                   <DynamicIcon name={item.icon} />
                   {trans(item.label, item.label)}
                 </Link>

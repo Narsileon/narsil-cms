@@ -10,6 +10,7 @@ export type ScrollAreaProps = React.ComponentProps<
 };
 
 const ScrollArea = ({
+  asChild = false,
   className,
   children,
   orientation = "vertical",
@@ -24,9 +25,11 @@ const ScrollArea = ({
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
         className={cn(
-          "size-full rounded-[inherit] transition-[color,box-shadow] outline-none",
+          "height-[inherit] size-full rounded-[inherit] transition-[color,box-shadow] outline-none",
           "focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-1",
+          asChild && "!block",
         )}
+        asChild={asChild}
       >
         {children}
       </ScrollAreaPrimitive.Viewport>

@@ -33,10 +33,6 @@ function AppBreadcrumb({ ...props }: AppBreadcrumbProps) {
     });
   }, [pathname]);
 
-  if (items.length === 0) {
-    return null;
-  }
-
   return (
     <Breadcrumb {...props}>
       <BreadcrumbList>

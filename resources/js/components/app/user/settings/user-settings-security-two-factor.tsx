@@ -110,7 +110,7 @@ function UserSettingsSecurityTwoFactor() {
   return (
     <>
       <div className="grid gap-4">
-        <div className="flex h-9 items-center justify-between">
+        <div className="flex items-center justify-between">
           <Label>
             {trans("ui.two_factor_authentication", "Two-factor authentication")}
           </Label>

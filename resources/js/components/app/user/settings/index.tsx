@@ -36,15 +36,18 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
           {trans("accessibility.user_settings", "User settings")}
         </DialogTitle>
       </VisuallyHidden>
-      <DialogContent className="h-3/4 sm:h-1/2 md:p-0" showCloseButton={false}>
+      <DialogContent
+        className="h-[calc(100vh-8rem)] pb-0 md:h-1/2 md:p-0"
+        showCloseButton={false}
+      >
         <Tabs
           className="h-full overflow-hidden"
           defaultValue="account"
-          orientation={minMd ? "vertical" : "horizontal"}
+          orientation="vertical"
         >
           <TabsList className="md:border-r">
             {minMd ? (
-              <DialogCloseButton className="h-12 w-12 pl-2 [&_svg:not([class*='size-'])]:size-5" />
+              <DialogCloseButton className="size-10 pl-2 [&_svg:not([class*='size-'])]:size-5" />
             ) : null}
             {auth ? (
               <TabsTrigger value="account">

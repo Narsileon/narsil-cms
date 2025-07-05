@@ -18,8 +18,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { DropdownMenuTriggerProps } from "@/components/ui/dropdown-menu";
 
-function UserMenu() {
+type UserMenuProps = DropdownMenuTriggerProps & {};
+
+function UserMenu({ ...props }: UserMenuProps) {
   const { trans } = useTranslationsStore();
 
   const auth = useAuth();
@@ -31,7 +34,7 @@ function UserMenu() {
       <Tooltip>
         <DropdownMenu>
           <TooltipTrigger asChild={true}>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger {...props}>
               {auth ? (
                 <UserAvatar
                   firstName={auth.first_name ?? "A"}

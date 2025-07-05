@@ -18,13 +18,13 @@ function AuthLayout({ children }: AuthLayoutProps) {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="bg-background sticky top-0 flex h-12 shrink-0 items-center gap-2 border-b pr-4 pl-3">
+        <header className="bg-background sticky top-0 flex h-12 items-center gap-2 border-b px-2">
           <SidebarTrigger />
-          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Separator orientation="vertical" />
           <AppBreadcrumb className="grow" />
           <UserMenu />
         </header>
-        <div className="p-5">
+        <div className="p-4">
           {children}
           <Toaster />
         </div>
