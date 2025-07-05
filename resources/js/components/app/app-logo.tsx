@@ -1,9 +1,17 @@
+import { cn } from "@/lib/utils";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
+import React from "react";
 
-function AppLogo() {
+type AppLogo = Omit<React.ComponentProps<typeof Link>, "href">;
+
+function AppLogo({ className, ...props }: AppLogo) {
   return (
-    <Link className="text-xl font-bold" href={route("home")}>
+    <Link
+      className={cn("text-xl font-bold", className)}
+      href={route("home")}
+      {...props}
+    >
       NARSIL
     </Link>
   );

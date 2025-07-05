@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
 import { isString } from "lodash";
+import { SettingsIcon } from "lucide-react";
 import useDataTable from "./data-table-context";
 import {
   DropdownMenu,
@@ -8,17 +8,20 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import type { ButtonProps } from "@/components/ui/button";
 
-export type DataTableColumnVisibilityProps = {};
+export type DataTableColumnVisibilityProps = ButtonProps & {};
 
-function DataTableColumnVisibility({}: DataTableColumnVisibilityProps) {
+function DataTableColumnVisibility({
+  ...props
+}: DataTableColumnVisibilityProps) {
   const { dataTable } = useDataTable();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild={true}>
-        <Button variant="outline" className="ml-auto">
-          Columns <ChevronDown />
+        <Button size="icon" variant="outline" {...props}>
+          <SettingsIcon />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

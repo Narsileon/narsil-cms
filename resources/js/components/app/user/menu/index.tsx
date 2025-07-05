@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
 import { LogInIcon, LogOutIcon, MenuIcon, SettingsIcon } from "lucide-react";
 import { route } from "ziggy-js";
@@ -34,14 +35,23 @@ function UserMenu({ ...props }: UserMenuProps) {
       <Tooltip>
         <DropdownMenu>
           <TooltipTrigger asChild={true}>
-            <DropdownMenuTrigger {...props}>
+            <DropdownMenuTrigger asChild={true} {...props}>
               {auth ? (
                 <UserAvatar
                   firstName={auth.first_name ?? "A"}
                   lastName={auth.last_name ?? "A"}
                 />
               ) : (
-                <MenuIcon />
+                <Button
+                  aria-label={trans(
+                    "accessibility.toggle_user_menu",
+                    "Toggle user menu",
+                  )}
+                  size="icon"
+                  variant="ghost"
+                >
+                  <MenuIcon />
+                </Button>
               )}
             </DropdownMenuTrigger>
           </TooltipTrigger>

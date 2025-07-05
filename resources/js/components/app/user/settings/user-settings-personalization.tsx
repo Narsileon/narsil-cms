@@ -63,7 +63,7 @@ function UserSettingsPersonalization() {
   return (
     <TabsContent value="personalization">
       <Section>
-        <SectionHeader>
+        <SectionHeader className="border-b">
           <SectionTitle level="h2">
             {trans("ui.personalization", "Personalization")}
           </SectionTitle>

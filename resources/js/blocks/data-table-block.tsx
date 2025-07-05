@@ -11,6 +11,7 @@ import {
   DataTableColumnVisibility,
   DataTableHead,
   DataTableHeader,
+  DataTableInput,
   DataTablePageResult,
   DataTablePageSize,
   DataTablePagination,
@@ -22,6 +23,7 @@ import {
   SectionContent,
   SectionFooter,
   SectionHeader,
+  SectionTitle,
 } from "@/components/ui/section";
 import {
   horizontalListSortingStrategy,
@@ -29,22 +31,34 @@ import {
 } from "@dnd-kit/sortable";
 import type { DataTableProviderProps } from "@/components/ui/data-table";
 import type { LaravelCollection } from "@/types/global";
+import { Button } from "@/components/ui/button";
+import { PlusIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Link } from "@inertiajs/react";
 
 type DataTableBlockProps = Omit<
   DataTableProviderProps,
   "data" | "initialState" | "render"
 > &
-  LaravelCollection & {};
+  LaravelCollection & {
+    className?: string;
+    createHref: string;
+    title: string;
+  };
 
 function DataTableBlock({
+  createHref,
+  className,
   columns,
   columnOrder,
   columnVisibility,
-  from,
   links,
   meta,
-  to,
-  total,
+  title,
   ...props
 }: DataTableBlockProps) {
   const { trans } = useTranslationsStore();
@@ -72,17 +86,33 @@ function DataTableBlock({
         columnOrder: columnOrder,
         columnVisibility: columnVisibility,
       }}
-      render={({ dataTable, dataTableStore }) => {
+      render={({ dataTable }) => {
         return (
-          <Section>
-            <SectionHeader className="flex items-center justify-between gap-4">
-              <Input
-                value={dataTableStore.globalFilter}
-                onChange={(e) => dataTableStore.setGlobalFilter(e.target.value)}
-              />
-              <DataTableColumnVisibility />
+          <Section className={className}>
+            <SectionHeader className="grid grid-cols-4 items-center justify-between gap-4">
+              <SectionTitle className="col-span-full" level="h2">
+                {title}
+              </SectionTitle>
+              <DataTableColumnVisibility className="justify-self-start" />
+              <DataTableInput className="col-span-2" />
+              <Tooltip>
+                <TooltipTrigger asChild={true}>
+                  <Button
+                    aria-label={trans("ui.create", "Create")}
+                    className="justify-self-end"
+                    size="icon"
+                    variant="default"
+                    asChild={true}
+                  >
+                    <Link href={createHref}>
+                      <PlusIcon />
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{trans("ui.create", "Create")}</TooltipContent>
+              </Tooltip>
             </SectionHeader>
-            <SectionContent>
+            <SectionContent className="grow">
               <ScrollArea
                 className="rounded-md border"
                 orientation="horizontal"
@@ -150,9 +180,9 @@ function DataTableBlock({
             <SectionFooter className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <DataTablePageResult
                 className="order-2 sm:order-1"
-                from={from}
-                to={to}
-                total={total}
+                from={meta.from}
+                to={meta.to}
+                total={meta.total}
               />
               <DataTablePagination
                 className="order-1 col-span-2 sm:order-2"

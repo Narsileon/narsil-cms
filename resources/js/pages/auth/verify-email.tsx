@@ -1,11 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heading } from "@/components/ui/heading";
-import { Link } from "@inertiajs/react";
+import { Container } from "@/components/ui/container";
+import { Head, Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import useTranslationsStore from "@/stores/translations-store";
+import {
+  Section,
+  SectionContent,
+  SectionHeader,
+  SectionTitle,
+} from "@/components/ui/section";
 
 type VerifyEmailProps = {
   status: string;
@@ -27,32 +33,44 @@ function VerifyEmail({ status }: VerifyEmailProps) {
   }, [status]);
 
   return (
-    <div className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 transform gap-4">
-      <Heading className="text-center" level="h1" variant="h4">
-        {trans("ui.email_verify", "Verify your email")}
-      </Heading>
-      <Card className="w-[18rem]">
-        <CardContent className="grid gap-4">
-          <p>
-            {trans(
-              "email.instruction",
-              "Please verify your email address by clicking on the link we just emailed to you.",
-            )}
-          </p>
-          <p>
-            {trans(
-              "email.prompt",
-              "If you didn't receive the email, we will gladly send you another.",
-            )}
-          </p>
-          <Button asChild={true}>
-            <Link href={route("verification.send")} method="post">
-              {trans("ui.send_again", "Send again")}
-            </Link>
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+    <>
+      <Head title={trans("ui.email_verify", "Verify your email")} />
+      <Container
+        className="flex flex-col items-center justify-center gap-6"
+        asChild={true}
+      >
+        <Section>
+          <SectionHeader>
+            <SectionTitle level="h1" variant="h4">
+              {trans("ui.email_verify", "Verify your email")}
+            </SectionTitle>
+          </SectionHeader>
+          <SectionContent>
+            <Card className="w-[18rem]">
+              <CardContent className="grid gap-4">
+                <p>
+                  {trans(
+                    "email.instruction",
+                    "Please verify your email address by clicking on the link we just emailed to you.",
+                  )}
+                </p>
+                <p>
+                  {trans(
+                    "email.prompt",
+                    "If you didn't receive the email, we will gladly send you another.",
+                  )}
+                </p>
+                <Button asChild={true}>
+                  <Link href={route("verification.send")} method="post">
+                    {trans("ui.send_again", "Send again")}
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </SectionContent>
+        </Section>
+      </Container>
+    </>
   );
 }
 

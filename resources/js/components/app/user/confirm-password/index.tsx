@@ -36,7 +36,7 @@ function UserConfirmPassword({
       <DialogContent className="sm:w-sm">
         <DialogHeader>
           <DialogTitle>
-            {trans("ui.password_confirm", "Confirm password")}
+            {trans("ui.confirm_password", "Confirm password")}
           </DialogTitle>
         </DialogHeader>
         <FormProvider

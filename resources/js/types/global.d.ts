@@ -1,6 +1,9 @@
-import { ColumnDef } from "@tanstack/react-table";
 import { DynamicIcon } from "lucide-react/dynamic";
-import React from "react";
+import type {
+  ColumnDef,
+  ColumnOrderState,
+  VisibilityState,
+} from "@tanstack/react-table";
 
 export type GlobalProps = {
   auth: {
@@ -25,9 +28,10 @@ export type GlobalProps = {
   };
 };
 
-export type LaravelCollection<T = any> = LaravelPagination & {
-  columns: ColumnDef<T>;
-  columnVisibility: string[];
+export type LaravelCollection<T = any> = {
+  columns: ColumnDef<T>[];
+  columnOrder: ColumnOrderState;
+  columnVisibility: VisibilityState;
   data: T[];
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta;

@@ -10,6 +10,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import type { BreadcrumbProps } from "@/components/ui/breadcrumb";
+import { replace } from "lodash";
 
 type AppBreadcrumbProps = BreadcrumbProps & {};
 
@@ -27,7 +28,7 @@ function AppBreadcrumb({ ...props }: AppBreadcrumbProps) {
       path += `/${part}`;
 
       return {
-        slug: part,
+        slug: replace(part, "-", "_"),
         path: path,
       };
     });

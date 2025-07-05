@@ -17,7 +17,7 @@ import {
 import type { GlobalProps } from "@/types/global";
 
 function AppSidebar({ ...props }: SidebarProps) {
-  const { setOpen, setOpenMobile } = useSidebar();
+  const { setOpenMobile } = useSidebar();
   const { trans } = useTranslationsStore();
 
   const sidebar = usePage<GlobalProps>().props.config.sidebar ?? {};
@@ -35,7 +35,6 @@ function AppSidebar({ ...props }: SidebarProps) {
                 <Link
                   href={route(item.route)}
                   onSuccess={() => {
-                    setOpen(false);
                     setOpenMobile(false);
                   }}
                 >

@@ -8,6 +8,7 @@ import DataTableHead from "./data-table-head";
 import DataTableHeader from "./data-table-header";
 import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";
+import DataTableInput from "./data-table-input";
 import DataTablePageResult from "./data-table-page-result";
 import DataTablePageSize from "./data-table-page-size";
 import DataTablePagination from "./data-table-pagination";
@@ -22,6 +23,7 @@ import type { DataTableHeaderProps } from "./data-table-header";
 import type { DataTableHeadMoveProps } from "./data-table-head-move";
 import type { DataTableHeadProps } from "./data-table-head";
 import type { DataTableHeadSortProps } from "./data-table-head-sort";
+import type { DataTableInputProps } from "./data-table-input";
 import type { DataTablePageResultProps } from "./data-table-page-result";
 import type { DataTablePageSizeProps } from "./data-table-page-size";
 import type { DataTablePaginationProps } from "./data-table-pagination";
@@ -39,6 +41,7 @@ export {
   DataTableHeader,
   DataTableHeadMove,
   DataTableHeadSort,
+  DataTableInput,
   DataTablePageResult,
   DataTablePageSize,
   DataTablePagination,
@@ -56,6 +59,7 @@ export type {
   DataTableHeadMoveProps,
   DataTableHeadProps,
   DataTableHeadSortProps,
+  DataTableInputProps,
   DataTablePageResultProps,
   DataTablePageSizeProps,
   DataTablePaginationProps,

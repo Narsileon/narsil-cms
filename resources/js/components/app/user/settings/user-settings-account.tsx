@@ -29,7 +29,7 @@ function UserSettingsAccount() {
   return (
     <TabsContent value="account">
       <Section>
-        <SectionHeader>
+        <SectionHeader className="border-b">
           <SectionTitle level="h2">
             {trans("ui.account", "Account")}
           </SectionTitle>
@@ -83,7 +83,7 @@ function UserSettingsAccount() {
       </Section>
       <Separator />
       <Section>
-        <SectionHeader>
+        <SectionHeader className="border-b">
           <SectionTitle level="h2">
             {trans("ui.password", "Password")}
           </SectionTitle>

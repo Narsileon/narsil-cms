@@ -19,7 +19,7 @@ function UserSettingsSecurity() {
   return (
     <TabsContent value="security">
       <Section>
-        <SectionHeader>
+        <SectionHeader className="border-b">
           <SectionTitle level="h2">
             {trans("ui.security", "Security")}
           </SectionTitle>
@@ -30,7 +30,7 @@ function UserSettingsSecurity() {
       </Section>
       <Separator />
       <Section>
-        <SectionHeader>
+        <SectionHeader className="border-b">
           <SectionTitle level="h2">
             {trans("ui.sessions", "Sessions")}
           </SectionTitle>

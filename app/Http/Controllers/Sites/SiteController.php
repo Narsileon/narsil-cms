@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Sites;
 
 use App\Http\Resources\DataTableCollection;
 use App\Models\Sites\Site;
+use App\Models\Sites\SiteGroup;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -28,9 +29,11 @@ class SiteController
      */
     public function index(Request $request): Response
     {
+        $groups = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
         $sites = new DataTableCollection(Site::query(), Site::TABLE);
 
         return Inertia::render('sites/index', [
+            "groups" => $groups,
             "sites" => $sites,
         ]);
     }

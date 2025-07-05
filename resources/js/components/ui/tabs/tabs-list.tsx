@@ -21,7 +21,7 @@ function TabsList({ children, className, ...props }: TabsListProps) {
           "data-[orientation=horizontal]:h-9 data-[orientation=vertical]:h-full",
           "data-[orientation=horizontal]:items-center data-[orientation=vertical]:justify-start",
           "data-[orientation=horizontal]:justify-center data-[orientation=vertical]:items-start",
-          "data-[orientation=horizontal]:mb-4",
+          "data-[orientation=horizontal]:mb-6",
           "data-[orientation=horizontal]:p-1 data-[orientation=vertical]:p-2",
           "data-[orientation=vertical]:rounded-r-none",
           className,
