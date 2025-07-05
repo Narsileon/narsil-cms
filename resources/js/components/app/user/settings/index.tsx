@@ -47,7 +47,7 @@ function UserSettings({ open, onOpenChange }: UserSettingsProps) {
         >
           <TabsList className="md:border-r">
             {minMd ? (
-              <DialogCloseButton className="size-10 pl-2 [&_svg:not([class*='size-'])]:size-5" />
+              <DialogCloseButton className="size-14 pl-2 [&_svg:not([class*='size-'])]:size-5" />
             ) : null}
             {auth ? (
               <TabsTrigger value="account">

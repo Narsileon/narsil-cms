@@ -35,7 +35,7 @@ function UserMenu({ ...props }: UserMenuProps) {
       <Tooltip>
         <DropdownMenu>
           <TooltipTrigger asChild={true}>
-            <DropdownMenuTrigger asChild={true} {...props}>
+            <DropdownMenuTrigger asChild={!auth && true} {...props}>
               {auth ? (
                 <UserAvatar
                   firstName={auth.first_name ?? "A"}
