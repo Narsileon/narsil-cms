@@ -38,7 +38,11 @@ export type LaravelCollection<T = any> = {
 };
 
 export type LaravelForm = {
+  action: string;
   inputs: LaravelFormInput[];
+  method: string;
+  submit: string;
+  title: string;
 };
 
 export type LaravelFormInput = {
@@ -46,6 +50,8 @@ export type LaravelFormInput = {
   column?: boolean;
   description?: string;
   id: string;
+  label: string;
+  options?: SelectOption[];
   required?: boolean;
   type?: string;
 };

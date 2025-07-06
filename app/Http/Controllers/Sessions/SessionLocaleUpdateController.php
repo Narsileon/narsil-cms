@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Sessions;
 
 use App\Http\Requests\Sessions\SessionLocaleUpdateRequest;
 use App\Models\User;
-use App\Models\Users\UserConfiguration;
+use App\Models\UserConfiguration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;

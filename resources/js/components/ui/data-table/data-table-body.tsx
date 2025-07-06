@@ -3,7 +3,7 @@ import type { TableBodyProps } from "@/components/ui/table";
 
 export type DataTableBodyProps = TableBodyProps & {};
 
-function DataTableBody({ ...props }) {
+function DataTableBody({ ...props }: DataTableBodyProps) {
   return <TableBody data-slot="data-table-body" {...props} />;
 }
 

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
-use App\Http\Forms\LoginForm;
-use Illuminate\Support\Facades\Config;
+use App\Enums\Forms\MethodEnum;
+use App\Http\Forms\RegisterForm;
+use App\Services\FormService;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -24,10 +25,15 @@ class RegisterController
      */
     public function __invoke(): Response
     {
-        $form = Config::get('narsil.forms.register', LoginForm::class);
+        $form = FormService::getForm("register", RegisterForm::class);
 
         return Inertia::render('fortify/register', [
-            'form' => $form::get(),
+            'form' => $form::get(
+                action: route('register'),
+                method: MethodEnum::POST,
+                submit: trans("ui.register"),
+                title: trans("ui.registration"),
+            ),
         ]);
     }
 

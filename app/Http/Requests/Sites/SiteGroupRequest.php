@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Users;
+namespace App\Http\Requests\Sites;
 
 #region USE
 
 use App\Http\Requests\AbstractFormRequest;
-use App\Models\User;
+use App\Models\SiteGroup;
 
 #endregion
 
@@ -13,7 +13,7 @@ use App\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserPasswordResetRequest extends AbstractFormRequest
+class SiteGroupRequest extends AbstractFormRequest
 {
     #region PUBLIC METHODS
 
@@ -23,12 +23,9 @@ class UserPasswordResetRequest extends AbstractFormRequest
     public function rules(): array
     {
         return [
-            User::PASSWORD => [
+            SiteGroup::NAME => [
                 self::STRING,
-                self::min(8),
-                self::max(255),
                 self::REQUIRED,
-                self::CONFIRMED,
             ],
         ];
     }

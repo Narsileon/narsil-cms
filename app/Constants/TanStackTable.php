@@ -11,33 +11,29 @@ abstract class TanStackTable
     #region CONSTANTS
 
     /**
-     * @var string The name of the "accessor key" attribute.
+     * @var string The name of the "accessor key" prop.
      */
-    final public const ACCESSOR_KEY = 'accessor_key';
+    final public const ACCESSOR_KEY = 'accessorKey';
     /**
-     * @var string The name of the "column order" attribute.
+     * @var string The name of the "column order" prop.
      */
     final public const COLUMN_ORDER = 'column_order';
     /**
-     * @var string The name of the "column visibility" attribute.
+     * @var string The name of the "column visibility" prop.
      */
     final public const COLUMN_VISIBILITY = 'column_visibility';
     /**
-     * @var string The name of the "header" attribute.
+     * @var string The name of the "header" prop.
      */
     final public const HEADER = 'header';
     /**
-     * @var string The name of the "id" attribute.
+     * @var string The name of the "id" prop.
      */
     final public const ID = 'id';
     /**
-     * @var string The name of the "type" attribute.
+     * @var string The name of the "type" prop.
      */
     final public const TYPE = 'type';
-    /**
-     * @var string The name of the "visible" attribute.
-     */
-    final public const VISIBLE = 'visible';
 
     #endregion
 }

@@ -43,5 +43,20 @@ abstract class TableService
         });
     }
 
+    /**
+     * @param string $columnName
+     *
+     * @return string
+     */
+    public static function getHeading(string $columnName): string
+    {
+        if (str_ends_with($columnName, '_id'))
+        {
+            $columnName = str_replace('_id', '', $columnName);
+        }
+
+        return trans("validation.attributes.$columnName");
+    }
+
     #endregion
 }

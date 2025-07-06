@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Enums\Forms\MethodEnum;
 use App\Http\Forms\LoginForm;
-use Illuminate\Support\Facades\Config;
+use App\Services\FormService;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -24,12 +25,17 @@ class LoginController
      */
     public function __invoke(): Response
     {
-        $form = Config::get('narsil.forms.login', LoginForm::class);
+        $form = FormService::getForm("login", LoginForm::class);
 
         $status = session('status');
 
         return Inertia::render('fortify/login', [
-            'form' => $form::get(),
+            'form' => $form::get(
+                action: route('login'),
+                method: MethodEnum::POST,
+                submit: trans("ui.log_in"),
+                title: trans("ui.connection"),
+            ),
             'status' => $status,
         ]);
     }

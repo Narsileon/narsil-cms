@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import useTranslationsStore from "@/stores/translations-store";
 import {
   Tooltip,
@@ -28,6 +29,7 @@ function DataTableHeadMove({
       <TooltipTrigger asChild={true}>
         <Button
           aria-label={trans("accessibility.column_move", "Move column")}
+          className={cn("px-2", className)}
           variant="ghost"
           {...props}
           {...attributes}

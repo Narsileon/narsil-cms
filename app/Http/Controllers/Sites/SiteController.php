@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Sites;
 
 #region USE
 
+use App\Enums\Forms\MethodEnum;
+use App\Http\Controllers\AbstractModelController;
+use App\Http\Forms\SiteForm;
 use App\Http\Resources\DataTableCollection;
-use App\Models\Sites\Site;
-use App\Models\Sites\SiteGroup;
+use App\Models\Site;
+use App\Services\FormService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,7 +21,7 @@ use Inertia\Response;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteController
+class SiteController extends AbstractModelController
 {
     #region PUBLIC METHODS
 
@@ -29,12 +32,10 @@ class SiteController
      */
     public function index(Request $request): Response
     {
-        $groups = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
-        $sites = new DataTableCollection(Site::query(), Site::TABLE);
+        $collection = new DataTableCollection(Site::query(), Site::TABLE);
 
-        return Inertia::render('sites/index', [
-            "groups" => $groups,
-            "sites" => $sites,
+        return Inertia::render('resources/index', [
+            "collection" => $collection,
         ]);
     }
 
@@ -45,7 +46,16 @@ class SiteController
      */
     public function create(Request $request): Response
     {
-        return Inertia::render('sites/form');
+        $form = FormService::getForm(Site::TABLE, SiteForm::class);
+
+        return Inertia::render('resources/form', [
+            'form' => $form::get(
+                action: route('sites.store'),
+                method: MethodEnum::POST,
+                submit: trans("ui.create"),
+                title: trans("ui.site"),
+            ),
+        ]);
     }
 
     /**
@@ -55,12 +65,11 @@ class SiteController
      */
     public function store(Request $request): RedirectResponse
     {
-        $attributes = $request->validated();
+        $attributes = $this->getAttributes(Site::TABLE);
 
         Site::create($attributes);
 
-        return redirect(route('sites.index'))
-            ->with('success', 'models.sites.events.created');
+        return $this->redirectOnStored(Site::TABLE);
     }
 
     /**
@@ -71,8 +80,16 @@ class SiteController
      */
     public function edit(Request $request, Site $site): Response
     {
-        return Inertia::render('sites/form', [
-            'site' => $site,
+        $form = FormService::getForm(Site::TABLE, SiteForm::class);
+
+        return Inertia::render('resources/form', [
+            'data' => $site,
+            'form' => $form::get(
+                action: route('sites.update', $site->{Site::ID}),
+                method: MethodEnum::PATCH,
+                submit: trans("ui.update"),
+                title: trans("ui.site"),
+            ),
         ]);
     }
 
@@ -84,12 +101,11 @@ class SiteController
      */
     public function update(Request $request, Site $site): RedirectResponse
     {
-        $attributes = $request->validated();
+        $attributes = $this->getAttributes(Site::TABLE);
 
         $site->update($attributes);
 
-        return redirect(route('sites.index'))
-            ->with('success', 'models.sites.events.updated');
+        return $this->redirectOnUpdated(Site::TABLE);
     }
 
     /**
@@ -102,8 +118,7 @@ class SiteController
     {
         $site->delete();
 
-        return redirect(route('sites.index'))
-            ->with('success', 'models.sites.events.deleted');
+        return $this->redirectOnDestroyed(Site::TABLE);
     }
 
     #endregion

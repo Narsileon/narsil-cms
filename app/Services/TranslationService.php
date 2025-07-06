@@ -4,9 +4,14 @@ namespace App\Services;
 
 #region USE
 
+use App\Models\User;
+use App\Models\UserConfiguration;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Session;
 
 #endregion
 
@@ -17,6 +22,26 @@ use Illuminate\Support\Facades\Lang;
 class TranslationService
 {
     #region PUBLIC METHODS
+
+    /**
+     * @return string
+     */
+    public static function getLocale(): string
+    {
+        $locale = Session::get('locale');
+
+        if (!$locale)
+        {
+            $locale = Auth::user()?->{User::RELATION_CONFIGURATION}?->{UserConfiguration::LOCALE};
+        }
+
+        if (!$locale)
+        {
+            $locale = App::getLocale();
+        }
+
+        return $locale;
+    }
 
     /**
      * @param string $locale
@@ -36,7 +61,7 @@ class TranslationService
 
             $phpTranslations = [];
 
-            $files = Config::get("narsil.localization.translations", []);
+            $files = Config::get("narsil.translations", []);
 
             foreach ($files as $file)
             {
@@ -49,7 +74,7 @@ class TranslationService
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
     /**
      * @param array|string $translations
@@ -57,7 +82,7 @@ class TranslationService
      *
      * @return array
      */
-    private static function flattenTranslations(array|string $translations, string $prefix): array
+    protected static function flattenTranslations(array|string $translations, string $prefix): array
     {
         if (!is_array($translations))
         {

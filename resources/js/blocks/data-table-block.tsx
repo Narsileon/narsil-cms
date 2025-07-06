@@ -1,8 +1,10 @@
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { flexRender } from "@tanstack/react-table";
-import { Input } from "@/components/ui/input";
+import { Link } from "@inertiajs/react";
+import { PlusIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { TableHead } from "@/components/ui/table";
+import { TableCell, TableHead } from "@/components/ui/table";
 import useTranslationsStore from "@/stores/translations-store";
 import {
   DataTable,
@@ -26,19 +28,16 @@ import {
   SectionTitle,
 } from "@/components/ui/section";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   horizontalListSortingStrategy,
   SortableContext,
 } from "@dnd-kit/sortable";
 import type { DataTableProviderProps } from "@/components/ui/data-table";
 import type { LaravelCollection } from "@/types/global";
-import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Link } from "@inertiajs/react";
 
 type DataTableBlockProps = Omit<
   DataTableProviderProps,
@@ -73,17 +72,20 @@ function DataTableBlock({
           aria-label="Select row"
         />
       ),
+      size: 32,
       enableSorting: false,
       enableHiding: false,
     },
     ...columns,
   ];
 
+  const finalColumnOrder = ["_select", ...columnOrder];
+
   return (
     <DataTableProvider
       columns={finalColumns}
       initialState={{
-        columnOrder: columnOrder,
+        columnOrder: finalColumnOrder,
         columnVisibility: columnVisibility,
       }}
       render={({ dataTable }) => {
@@ -152,25 +154,34 @@ function DataTableBlock({
                     {dataTable.getRowModel().rows?.length ? (
                       dataTable.getRowModel().rows.map((row) => (
                         <DataTableRow
-                          key={row.id}
                           data-state={row.getIsSelected() && "selected"}
+                          onClick={() => row.toggleSelected()}
+                          key={row.id}
                         >
-                          {row.getVisibleCells().map((cell) => (
-                            <DataTableCell key={cell.id}>
-                              {flexRender(
-                                cell.column.columnDef.cell,
-                                cell.getContext(),
-                              )}
-                            </DataTableCell>
-                          ))}
+                          {row.getVisibleCells().map((cell) => {
+                            return (
+                              <SortableContext
+                                items={columnOrder}
+                                strategy={horizontalListSortingStrategy}
+                                key={cell.id}
+                              >
+                                <DataTableCell cell={cell}>
+                                  {flexRender(
+                                    cell.column.columnDef.cell,
+                                    cell.getContext(),
+                                  )}
+                                </DataTableCell>
+                              </SortableContext>
+                            );
+                          })}
                         </DataTableRow>
                       ))
                     ) : (
                       <DataTableRow>
-                        <DataTableCell
+                        <TableCell
                           colSpan={finalColumns.length}
                           className="h-12"
-                        ></DataTableCell>
+                        />
                       </DataTableRow>
                     )}
                   </DataTableBody>

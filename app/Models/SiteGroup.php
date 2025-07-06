@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Sites;
+namespace App\Models;
 
 #region USE
 
@@ -26,6 +26,10 @@ class SiteGroup extends Model implements IEnable
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->fillable = array_merge([
+            self::NAME,
+        ], $this->fillable);
 
         parent::__construct($attributes);
     }

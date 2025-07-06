@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Requests\Users\UserConfigurationUpdateRequest;
 use App\Models\User;
-use App\Models\Users\UserConfiguration;
+use App\Models\UserConfiguration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 

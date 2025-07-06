@@ -24,16 +24,16 @@ class UserProfileUpdateRequest extends AbstractFormRequest
     {
         return [
             User::FIRST_NAME => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(1),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::SOMETIMES,
+                self::STRING,
+                self::min(1),
+                self::max(255),
+                self::SOMETIMES,
             ],
             User::LAST_NAME => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(1),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::SOMETIMES,
+                self::STRING,
+                self::min(1),
+                self::max(255),
+                self::SOMETIMES,
             ],
         ];
     }

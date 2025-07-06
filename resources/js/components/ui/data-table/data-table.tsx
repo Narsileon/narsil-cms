@@ -4,7 +4,7 @@ import type { TableProps } from "@/components/ui/table";
 
 export type DataTableProps = TableProps & {};
 
-function DataTable({ ...props }) {
+function DataTable({ ...props }: DataTableProps) {
   const { dataTable } = useDataTable();
 
   const columns = dataTable.getAllColumns();

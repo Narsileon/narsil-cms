@@ -8,6 +8,7 @@ use App\Services\TanStackTableService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Log;
 use JsonSerializable;
 
 #endregion
@@ -41,11 +42,13 @@ class DataTableCollection extends ResourceCollection
         }
 
         $paginated = $resource->paginate(
-            $pageIndex,
+            $pageSize,
             ['*'],
             'page',
-            $pageSize,
+            $pageIndex,
         );
+
+        Log::info($pageSize);
 
         parent::__construct($paginated);
     }

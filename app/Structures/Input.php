@@ -6,6 +6,7 @@ namespace App\Structures;
 
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
+use App\Services\TableService;
 
 #endregion
 
@@ -25,6 +26,8 @@ class Input
     public function __construct(string $id)
     {
         $this->props[self::ID] = $id;
+
+        $this->label(TableService::getHeading($id));
     }
 
     #endregion
@@ -32,31 +35,39 @@ class Input
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of "autoComplete" prop.
      */
     final public const AUTO_COMPLETE = 'auto_complete';
     /**
-     * @var string
+     * @var string The name of "column" prop.
      */
     final public const COLUMN = 'column';
     /**
-     * @var string
+     * @var string The name of "description" prop.
      */
     final public const DESCRIPTION = 'description';
     /**
-     * @var string
+     * @var string The name of "id" prop.
      */
     final public const ID = 'id';
     /**
-     * @var string
+     * @var string The name of "label" prop.
+     */
+    final public const LABEL = 'label';
+    /**
+     * @var string The name of "options" prop.
+     */
+    final public const OPTIONS = 'options';
+    /**
+     * @var string The name of "placeholder" prop.
      */
     final public const PLACEHOLDER = 'placeholder';
     /**
-     * @var string
+     * @var string The name of "required" prop.
      */
     final public const REQUIRED = 'required';
     /**
-     * @var string
+     * @var string The name of "type" prop.
      */
     final public const TYPE = 'type';
 
@@ -126,6 +137,34 @@ class Input
     }
 
     /**
+     * Sets the label prop.
+     *
+     * @param string $label
+     *
+     * @return static Returns the current object instance.
+     */
+    final public function label(string $label): static
+    {
+        $this->props[self::LABEL] = $label;
+
+        return $this;
+    }
+
+    /**
+     * Sets the options prop.
+     *
+     * @param array $options
+     *
+     * @return static Returns the current object instance.
+     */
+    final public function options(array $options): static
+    {
+        $this->props[self::OPTIONS] = $options;
+
+        return $this;
+    }
+
+    /**
      * Sets the placeholder prop.
      *
      * @param string $placeholder
@@ -140,7 +179,7 @@ class Input
     }
 
     /**
-     * Sets the required props.
+     * Sets the required prop.
      *
      * @param boolean $required
      *
@@ -154,7 +193,7 @@ class Input
     }
 
     /**
-     * Sets the type props.
+     * Sets the type prop.
      *
      * @param TypeEnum $type
      *

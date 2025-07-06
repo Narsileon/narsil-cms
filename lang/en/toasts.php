@@ -16,6 +16,11 @@ return [
             'deleted_current' => 'You have been logged out from this device.',
             'deleted_others'  => 'You have been logged out from other devices.',
         ],
+        'site_groups' => [
+            'created' => 'The group has been successfully created.',
+            'deleted' => 'The group has been successfully deleted.',
+            'updated' => 'The group has been successfully updated.',
+        ],
         'sites' => [
             'created' => 'The site has been successfully created.',
             'deleted' => 'The site has been successfully deleted.',

@@ -23,17 +23,18 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
       <TooltipTrigger asChild={true}>
         <Button
           aria-label={trans("accessibility.column_sort", "Sort column")}
+          className="size-6"
           size="icon"
           variant="ghost"
           onClick={header.column.getToggleSortingHandler()}
           {...props}
         >
           {isSorted === "asc" ? (
-            <ChevronUp />
+            <ChevronUp className="size-4" />
           ) : isSorted === "desc" ? (
-            <ChevronDown />
+            <ChevronDown className="size-4" />
           ) : (
-            <ChevronsUpDown />
+            <ChevronsUpDown className="size-4" />
           )}
         </Button>
       </TooltipTrigger>

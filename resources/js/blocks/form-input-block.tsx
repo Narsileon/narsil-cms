@@ -1,5 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { Combobox } from "@/components/ui/combobox";
 import { Input } from "@/components/ui/input";
 import {
   FormField,
@@ -15,6 +16,8 @@ function FormInputBlock({
   autoComplete,
   column = false,
   id,
+  label,
+  options = [],
   required = false,
   type = "text",
 }: FormBlockProps) {
@@ -28,19 +31,26 @@ function FormInputBlock({
             type === "checkbox" && "flex-row-reverse justify-end",
           )}
         >
-          <FormLabel required={required} />
+          <FormLabel required={required}>{label}</FormLabel>
           {type === "checkbox" ? (
             <Checkbox
               checked={value}
               onCheckedChange={(checked) => onChange(checked)}
               {...field}
             />
+          ) : type === "combobox" ? (
+            <Combobox
+              options={options}
+              value={value}
+              setValue={(value) => onChange(value)}
+              {...field}
+            />
           ) : (
             <Input
               autoComplete={autoComplete}
-              onChange={(e) => onChange(e.target.value)}
-              type={type}
               value={value}
+              type={type}
+              onChange={(e) => onChange(e.target.value)}
               {...field}
             />
           )}

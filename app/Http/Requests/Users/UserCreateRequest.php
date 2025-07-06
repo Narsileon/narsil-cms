@@ -25,30 +25,30 @@ class UserCreateRequest extends AbstractFormRequest
     {
         return [
             User::EMAIL => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::EMAIL,
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::REQUIRED,
+                self::STRING,
+                self::EMAIL,
+                self::max(255),
+                self::REQUIRED,
                 Rule::unique(User::class),
             ],
             User::FIRST_NAME => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(1),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::REQUIRED,
+                self::STRING,
+                self::min(1),
+                self::max(255),
+                self::REQUIRED,
             ],
             User::LAST_NAME => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(1),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::REQUIRED,
+                self::STRING,
+                self::min(1),
+                self::max(255),
+                self::REQUIRED,
             ],
             User::PASSWORD => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(8),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::REQUIRED,
-                AbstractFormRequest::CONFIRMED,
+                self::STRING,
+                self::min(8),
+                self::max(255),
+                self::REQUIRED,
+                self::CONFIRMED,
             ],
         ];
     }

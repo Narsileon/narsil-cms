@@ -25,6 +25,12 @@ Route::middleware([
         Route::get('/settings', SettingsController::class)
             ->name('settings');
 
+        Route::resource('/site-groups', SiteController::class)
+            ->only([
+                'store',
+                'update',
+                'destroy',
+            ]);
         Route::resource('/sites', SiteController::class)
             ->except([
                 'show'

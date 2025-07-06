@@ -24,16 +24,16 @@ class UserPasswordUpdateRequest extends AbstractFormRequest
     {
         return [
             User::ATTRIBUTE_CURRENT_PASSWORD => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::REQUIRED,
+                self::STRING,
+                self::REQUIRED,
                 'current_password:web'
             ],
             User::PASSWORD => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(8),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::REQUIRED,
-                AbstractFormRequest::CONFIRMED,
+                self::STRING,
+                self::min(8),
+                self::max(255),
+                self::REQUIRED,
+                self::CONFIRMED,
             ],
         ];
     }

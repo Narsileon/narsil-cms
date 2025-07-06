@@ -3,8 +3,8 @@
 #region USE
 
 use App\Constants\TanStackTable;
-use App\Models\Sites\Site;
-use App\Models\Sites\SiteGroup;
+use App\Models\Site;
+use App\Models\SiteGroup;
 
 #endregion
 

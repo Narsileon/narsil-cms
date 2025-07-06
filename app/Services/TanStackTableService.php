@@ -37,7 +37,7 @@ abstract class TanStackTableService
             {
                 return [
                     TanStackTable::ACCESSOR_KEY => Arr::get($accessorKeys, $column->name, $column->name),
-                    TanStackTable::HEADER => static::getHeader($column),
+                    TanStackTable::HEADER => TableService::getHeading($column->name),
                     TanStackTable::ID => $column->name,
                     TanStackTable::TYPE => $column->type,
                 ];
@@ -97,23 +97,6 @@ abstract class TanStackTableService
         }
 
         return $columnVisibility;
-    }
-
-    /**
-     * @param Column $column
-     *
-     * @return string
-     */
-    private static function getHeader(Column $column): string
-    {
-        $attribute = $column->name;
-
-        if (str_ends_with($attribute, '_id'))
-        {
-            $attribute = str_replace('_id', '', $attribute);
-        }
-
-        return trans("validation.attributes.$attribute");
     }
 
     #endregion

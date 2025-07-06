@@ -5,7 +5,7 @@ namespace App\Http\Requests\Users;
 #region USE
 
 use App\Http\Requests\AbstractFormRequest;
-use App\Models\Users\UserConfiguration;
+use App\Models\UserConfiguration;
 
 #endregion
 

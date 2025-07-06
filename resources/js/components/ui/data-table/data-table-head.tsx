@@ -9,16 +9,13 @@ import type { TableHeadProps } from "@/components/ui/table";
 export type DataTableHeadProps = TableHeadProps & { header: Header<any, any> };
 
 function DataTableHead({ header, ...props }: DataTableHeadProps) {
-  const { attributes, isDragging, listeners, setNodeRef, transform } =
+  const { attributes, isDragging, listeners, transform, setNodeRef } =
     useSortable({
       id: header.column.id,
     });
 
   const style: React.CSSProperties = {
-    maxWidth: header.column.getSize(),
     opacity: isDragging ? 0.8 : 1,
-    position: "relative",
-    right: 0,
     transform: CSS.Translate.toString(transform),
     transition: "width transform 0.2s ease-in-out",
     width: header.column.getSize(),
@@ -28,17 +25,20 @@ function DataTableHead({ header, ...props }: DataTableHeadProps) {
   return (
     <TableHead
       ref={setNodeRef}
-      className="inline-flex items-center"
       data-slot="data-table-head"
+      className="relative min-w-0 px-0"
+      colSpan={header.colSpan}
       style={style}
       {...props}
     >
-      <DataTableHeadMove attributes={attributes} listeners={listeners}>
-        {flexRender(header.column.columnDef.header, header.getContext())}
-      </DataTableHeadMove>
-      {header.column.getCanSort() ? (
-        <DataTableHeadSort header={header} />
-      ) : null}
+      <div className="flex items-center justify-start">
+        <DataTableHeadMove attributes={attributes} listeners={listeners}>
+          {flexRender(header.column.columnDef.header, header.getContext())}
+        </DataTableHeadMove>
+        {header.column.getCanSort() ? (
+          <DataTableHeadSort header={header} />
+        ) : null}
+      </div>
     </TableHead>
   );
 }

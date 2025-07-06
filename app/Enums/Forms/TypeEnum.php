@@ -9,6 +9,7 @@ namespace App\Enums\Forms;
 enum TypeEnum: string
 {
     case CHECKBOX = 'checkbox';
+    case COMBOBOX = 'combobox';
     case EMAIL = 'email';
     case PASSWORD = 'password';
 }
