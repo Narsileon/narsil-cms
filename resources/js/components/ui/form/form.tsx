@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { FormEvent } from "react";
 import { VisitOptions } from "@inertiajs/core";
 import useForm from "./form-context";
@@ -7,7 +8,13 @@ export type FormProps = React.ComponentProps<"form"> & {
   url: string;
 };
 
-function Form({ method = "post", options, url, ...props }: FormProps) {
+function Form({
+  className,
+  method = "post",
+  options,
+  url,
+  ...props
+}: FormProps) {
   const { id, patch, post, put } = useForm();
 
   function onSubmit(e?: FormEvent) {
@@ -26,7 +33,15 @@ function Form({ method = "post", options, url, ...props }: FormProps) {
     }
   }
 
-  return <form id={id} method={method} onSubmit={onSubmit} {...props} />;
+  return (
+    <form
+      id={id}
+      className={cn("grid gap-6 md:grid-cols-2", className)}
+      method={method}
+      onSubmit={onSubmit}
+      {...props}
+    />
+  );
 }
 
 export default Form;

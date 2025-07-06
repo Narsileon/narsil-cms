@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import useTranslationsStore from "@/stores/translations-store";
 import type { NavigationOption } from "@/types/global";
-import { Container } from "@/components/ui/container";
 
 type SettingsProps = {
   content: NavigationOption[];

@@ -37,6 +37,19 @@ export type LaravelCollection<T = any> = {
   meta: LaravelPaginationMeta;
 };
 
+export type LaravelForm = {
+  inputs: LaravelFormInput[];
+};
+
+export type LaravelFormInput = {
+  autoComplete?: string;
+  column?: boolean;
+  description?: string;
+  id: string;
+  required?: boolean;
+  type?: string;
+};
+
 export type LaravelPaginationLinks = {
   first: string;
   last: string;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Fortify;
 
 #region USE
 
@@ -22,7 +22,7 @@ class TwoFactorChallengeController
      */
     public function __invoke(): Response
     {
-        return Inertia::render('auth/two-factor-challenge');
+        return Inertia::render('fortify/two-factor-challenge');
     }
 
     #endregion

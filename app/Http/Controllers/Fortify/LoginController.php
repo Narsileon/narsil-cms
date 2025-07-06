@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Http\Forms\LoginForm;
+use Illuminate\Support\Facades\Config;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -13,7 +15,7 @@ use Inertia\Response;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ForgotPasswordController
+class LoginController
 {
     #region PUBLIC METHODS
 
@@ -22,9 +24,12 @@ class ForgotPasswordController
      */
     public function __invoke(): Response
     {
+        $form = Config::get('narsil.forms.login', LoginForm::class);
+
         $status = session('status');
 
-        return Inertia::render('auth/forgot-password', [
+        return Inertia::render('fortify/login', [
+            'form' => $form::get(),
             'status' => $status,
         ]);
     }

@@ -23,6 +23,11 @@ class UserConfigurationUpdateRequest extends AbstractFormRequest
     public function rules(): array
     {
         return [
+            UserConfiguration::COLOR => [
+                self::STRING,
+                self::min(1),
+                self::SOMETIMES,
+            ],
             UserConfiguration::LOCALE => [
                 self::STRING,
                 self::min(1),
@@ -30,6 +35,12 @@ class UserConfigurationUpdateRequest extends AbstractFormRequest
             ],
             UserConfiguration::PREFERENCES => [
                 self::ARRAY,
+                self::SOMETIMES,
+            ],
+            UserConfiguration::RADIUS => [
+                self::NUMERIC,
+                self::min(0),
+                self::max(2),
                 self::SOMETIMES,
             ],
             UserConfiguration::THEME => [

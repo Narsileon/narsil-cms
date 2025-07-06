@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 #region USE
 
-use App\Http\Requests\AbstractFormRequest;
+use App\Http\Requests\Users\UserPasswordUpdateRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
@@ -27,20 +27,11 @@ class UpdateUserPassword implements UpdatesUserPasswords
      */
     public function update(User $user, array $input): void
     {
-        $attributes = Validator::make($input, [
-            User::ATTRIBUTE_CURRENT_PASSWORD => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::REQUIRED,
-                'current_password:web'
-            ],
-            User::PASSWORD => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(8),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::REQUIRED,
-                AbstractFormRequest::CONFIRMED,
-            ],
-        ])->validated(User::PASSWORD);
+        $rules = (new UserPasswordUpdateRequest())
+            ->rules();
+
+        $attributes = Validator::make($input, $rules)
+            ->validated();
 
         $user
             ->forceFill([

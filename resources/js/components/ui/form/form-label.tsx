@@ -41,7 +41,7 @@ function FormLabel({
       {children ?? trans(`validation.attributes.${name}`, name)}
       {required && (
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild={true}>
             <AsteriskIcon
               className="text-destructive size-3"
               aria-hidden="true"

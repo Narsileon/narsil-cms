@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 #region USE
 
-use App\Http\Requests\AbstractFormRequest;
+use App\Http\Requests\Users\UserProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
@@ -21,26 +21,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 
     /**
      * @param User $user
-     * @param array<string,string> $input
+     * @param array<string,mixed> $input
      *
      * @return void
      */
     public function update(User $user, array $input): void
     {
-        $attributes = Validator::make($input, [
-            User::FIRST_NAME => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(1),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::SOMETIMES,
-            ],
-            User::LAST_NAME => [
-                AbstractFormRequest::STRING,
-                AbstractFormRequest::min(1),
-                AbstractFormRequest::max(255),
-                AbstractFormRequest::SOMETIMES,
-            ],
-        ])->validated();
+        $rules = (new UserProfileUpdateRequest())
+            ->rules();
+
+        $attributes = Validator::make($input, $rules)
+            ->validated();
 
         $user
             ->forceFill($attributes)

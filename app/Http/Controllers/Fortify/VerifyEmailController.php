@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Fortify;
 
 #region USE
 
@@ -13,7 +13,7 @@ use Inertia\Response;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LoginController
+class VerifyEmailController
 {
     #region PUBLIC METHODS
 
@@ -24,7 +24,7 @@ class LoginController
     {
         $status = session('status');
 
-        return Inertia::render('auth/login', [
+        return Inertia::render('fortify/verify-email', [
             'status' => $status,
         ]);
     }
