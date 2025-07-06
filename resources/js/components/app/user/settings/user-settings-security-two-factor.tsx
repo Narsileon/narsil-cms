@@ -8,7 +8,6 @@ import { router, usePage } from "@inertiajs/react";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import axios from "axios";
-import UserConfirmPassword from "@/components/app/user/confirm-password";
 import useTranslationsStore from "@/stores/translations-store";
 import {
   Form,
@@ -29,25 +28,9 @@ function UserSettingsSecurityTwoFactor() {
   const [active, setActive] = useState<boolean>(
     two_factor_confirmed_at !== null,
   );
-  const [open, setOpen] = useState<boolean>(false);
-  const [confirmed, setConfirmed] = useState<boolean>(false);
   const [enabled, setEnabled] = useState<boolean>(active);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [recoveryCodes, setRecoveryCodes] = useState<string[] | null>(null);
-
-  async function getConfirmed(): Promise<boolean> {
-    try {
-      const response = await axios.get(route("password.confirmation"));
-
-      setConfirmed(response.data.confirmed);
-
-      return response.data.confirmed;
-    } catch (error) {
-      console.error("Error fetching password confirmation:", error);
-
-      return false;
-    }
-  }
 
   async function getQrCode(): Promise<void> {
     try {
@@ -69,7 +52,7 @@ function UserSettingsSecurityTwoFactor() {
     }
   }
 
-  function onConfirmed() {
+  async function toggleEnabled() {
     if (enabled) {
       router.delete(route("two-factor.disable"), {
         preserveState: true,
@@ -94,16 +77,6 @@ function UserSettingsSecurityTwoFactor() {
           setEnabled(false);
         },
       });
-    }
-  }
-
-  async function toggleEnabled() {
-    await getConfirmed();
-
-    if (!confirmed) {
-      setOpen(true);
-    } else {
-      onConfirmed();
     }
   }
 
@@ -211,11 +184,6 @@ function UserSettingsSecurityTwoFactor() {
           </Card>
         ) : null}
       </div>
-      <UserConfirmPassword
-        open={open}
-        onConfirmed={onConfirmed}
-        onOpenChange={setOpen}
-      />
     </>
   );
 }
