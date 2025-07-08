@@ -8,14 +8,6 @@ import TableFooter from "./table-footer";
 import TableHead from "./table-head";
 import TableHeader from "./table-header";
 import TableRow from "./table-row";
-import type { TableBodyProps } from "./table-body";
-import type { TableCaptionProps } from "./table-caption";
-import type { TableCellProps } from "./table-cell";
-import type { TableFooterProps } from "./table-footer";
-import type { TableHeadProps } from "./table-head";
-import type { TableHeaderProps } from "./table-header";
-import type { TableProps } from "./table";
-import type { TableRowProps } from "./table-row";
 
 export {
   Table,
@@ -26,15 +18,4 @@ export {
   TableHead,
   TableHeader,
   TableRow,
-};
-
-export type {
-  TableBodyProps,
-  TableCaptionProps,
-  TableCellProps,
-  TableFooterProps,
-  TableHeadProps,
-  TableHeaderProps,
-  TableProps,
-  TableRowProps,
 };

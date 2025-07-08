@@ -2,9 +2,7 @@ import { cn } from "@/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
 import { ScrollArea } from "../scroll-area";
 
-export type TabsListProps = React.ComponentProps<
-  typeof TabsPrimitive.List
-> & {};
+type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> & {};
 
 function TabsList({ children, className, ...props }: TabsListProps) {
   return (

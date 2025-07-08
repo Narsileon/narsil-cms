@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SkeletonProps = React.ComponentProps<"div"> & {};
+type SkeletonProps = React.ComponentProps<"div"> & {};
 
 function Skeleton({ className, ...props }: SkeletonProps) {
   return (

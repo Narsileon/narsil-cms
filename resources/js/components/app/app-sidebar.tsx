@@ -10,13 +10,14 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarProps,
   SidebarRail,
   useSidebar,
 } from "@/components/ui/sidebar";
 import type { GlobalProps } from "@/types/global";
 
-function AppSidebar({ ...props }: SidebarProps) {
+type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {};
+
+function AppSidebar({ ...props }: AppSidebarProps) {
   const { setOpenMobile } = useSidebar();
   const { trans } = useTranslationsStore();
 

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 import { CheckIcon } from "lucide-react";
 
-export type ContextMenuCheckboxItemProps = React.ComponentProps<
+type ContextMenuCheckboxItemProps = React.ComponentProps<
   typeof ContextMenuPrimitive.CheckboxItem
 > & {};
 

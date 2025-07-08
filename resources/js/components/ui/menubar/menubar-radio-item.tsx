@@ -2,7 +2,7 @@ import { CircleIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarRadioItemProps = React.ComponentProps<
+type MenubarRadioItemProps = React.ComponentProps<
   typeof MenubarPrimitive.RadioItem
 > & {};
 

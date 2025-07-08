@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import type { SeparatorProps } from "@/components/ui/separator";
 
-export type SidebarSeparatorProps = SeparatorProps & {};
+type SidebarSeparatorProps = React.ComponentProps<typeof Separator> & {};
 
 function SidebarSeparator({ className, ...props }: SidebarSeparatorProps) {
   return (

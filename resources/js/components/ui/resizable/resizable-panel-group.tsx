@@ -1,9 +1,7 @@
 import { cn } from "@/lib/utils";
 import { PanelGroup } from "react-resizable-panels";
 
-export type ResizablePanelGroupProps = React.ComponentProps<
-  typeof PanelGroup
-> & {};
+type ResizablePanelGroupProps = React.ComponentProps<typeof PanelGroup> & {};
 
 function ResizablePanelGroup({
   className,

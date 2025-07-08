@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
 import { LogInIcon, LogOutIcon, MenuIcon, SettingsIcon } from "lucide-react";
 import { route } from "ziggy-js";
-import { useState } from "react";
+import React, { useState } from "react";
 import useAuth from "@/hooks/use-auth";
 import UserAvatar from "@/components/app/user/avatar";
 import UserSettings from "@/components/app/user/settings";
@@ -19,9 +19,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { DropdownMenuTriggerProps } from "@/components/ui/dropdown-menu";
 
-type UserMenuProps = DropdownMenuTriggerProps & {};
+type UserMenuProps = React.ComponentProps<typeof DropdownMenuTrigger> & {};
 
 function UserMenu({ ...props }: UserMenuProps) {
   const { trans } = useTranslationsStore();

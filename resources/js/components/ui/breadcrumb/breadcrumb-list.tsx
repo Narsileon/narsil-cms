@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type BreadcrumbListProps = React.ComponentProps<"ol"> & {};
+type BreadcrumbListProps = React.ComponentProps<"ol"> & {};
 
 function BreadcrumbList({ className, ...props }: BreadcrumbListProps) {
   return (

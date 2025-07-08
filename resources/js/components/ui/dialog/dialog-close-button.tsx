@@ -4,7 +4,7 @@ import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { XIcon } from "lucide-react";
 import useTranslationsStore from "@/stores/translations-store";
 
-export type DialogCloseButtonProps = React.ComponentProps<
+type DialogCloseButtonProps = React.ComponentProps<
   typeof DialogPrimitive.Close
 > & {};
 

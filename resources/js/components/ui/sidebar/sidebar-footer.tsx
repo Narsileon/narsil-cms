@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SidebarFooterProps = React.ComponentProps<"div"> & {};
+type SidebarFooterProps = React.ComponentProps<"div"> & {};
 
 function SidebarFooter({ className, ...props }: SidebarFooterProps) {
   return (

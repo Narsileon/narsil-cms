@@ -9,9 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export type FormLabelProps = React.ComponentProps<
-  typeof LabelPrimitive.Root
-> & {
+type FormLabelProps = React.ComponentProps<typeof LabelPrimitive.Root> & {
   required?: boolean;
 };
 

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type CardActionProps = React.ComponentProps<"div"> & {};
+type CardActionProps = React.ComponentProps<"div"> & {};
 
 function CardAction({ className, ...props }: CardActionProps) {
   return (

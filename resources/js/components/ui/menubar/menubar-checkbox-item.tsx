@@ -2,7 +2,7 @@ import { CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarCheckboxItemProps = React.ComponentProps<
+type MenubarCheckboxItemProps = React.ComponentProps<
   typeof MenubarPrimitive.CheckboxItem
 > & {};
 

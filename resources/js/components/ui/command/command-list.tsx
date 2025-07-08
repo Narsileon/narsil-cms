@@ -1,9 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
 
-export type CommandListProps = React.ComponentProps<
-  typeof CommandPrimitive.List
-> & {};
+type CommandListProps = React.ComponentProps<typeof CommandPrimitive.List> & {};
 
 function CommandList({ className, ...props }: CommandListProps) {
   return (

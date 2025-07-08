@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TableCellProps = React.ComponentProps<"td"> & {};
+type TableCellProps = React.ComponentProps<"td"> & {};
 
 function TableCell({ className, ...props }: TableCellProps) {
   return (

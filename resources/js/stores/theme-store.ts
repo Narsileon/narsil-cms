@@ -5,11 +5,11 @@ export const themes = ["system", "light", "dark"] as const;
 
 export type Theme = (typeof themes)[number];
 
-export type ThemeStoreState = {
+type ThemeStoreState = {
   theme: Theme;
 };
 
-export type ThemeStoreActions = {
+type ThemeStoreActions = {
   applyTheme: () => void;
   setTheme: (theme: Theme) => void;
 };

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useMemo } from "react";
 
-export type SidebarMenuSkeletonProps = React.ComponentProps<"div"> & {
+type SidebarMenuSkeletonProps = React.ComponentProps<"div"> & {
   showIcon?: boolean;
 };
 

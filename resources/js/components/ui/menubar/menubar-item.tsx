@@ -1,9 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarItemProps = React.ComponentProps<
-  typeof MenubarPrimitive.Item
-> & {
+type MenubarItemProps = React.ComponentProps<typeof MenubarPrimitive.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };

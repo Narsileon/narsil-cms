@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarSubContentProps = React.ComponentProps<
+type MenubarSubContentProps = React.ComponentProps<
   typeof MenubarPrimitive.SubContent
 > & {};
 

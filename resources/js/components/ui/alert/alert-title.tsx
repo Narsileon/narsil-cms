@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type AlertTitleProps = React.ComponentProps<"div"> & {};
+type AlertTitleProps = React.ComponentProps<"div"> & {};
 
 function AlertTitle({ className, ...props }: AlertTitleProps) {
   return (

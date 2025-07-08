@@ -1,14 +1,11 @@
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 
-export type AccordionItemProps = React.ComponentProps<
+type AccordionItemProps = React.ComponentProps<
   typeof AccordionPrimitive.Item
 > & {};
 
-function AccordionItem({
-  className,
-  ...props
-}: AccordionPrimitive.AccordionItemProps) {
+function AccordionItem({ className, ...props }: AccordionItemProps) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"

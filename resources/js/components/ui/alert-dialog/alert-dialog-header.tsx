@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type AlertDialogHeaderProps = React.ComponentProps<"div"> & {};
+type AlertDialogHeaderProps = React.ComponentProps<"div"> & {};
 
 function AlertDialogHeader({ className, ...props }: AlertDialogHeaderProps) {
   return (

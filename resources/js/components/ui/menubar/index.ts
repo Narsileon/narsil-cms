@@ -16,22 +16,6 @@ import MenubarSub from "./menubar-sub";
 import MenubarSubContent from "./menubar-sub-content";
 import MenubarSubTrigger from "./menubar-sub-trigger";
 import MenubarTrigger from "./menubar-trigger";
-import type { MenubarCheckboxItemProps } from "./menubar-checkbox-item";
-import type { MenubarContentProps } from "./menubar-content";
-import type { MenubarGroupProps } from "./menubar-group";
-import type { MenubarItemProps } from "./menubar-item";
-import type { MenubarLabelProps } from "./menubar-label";
-import type { MenubarMenuProps } from "./menubar-menu";
-import type { MenubarPortalProps } from "./menubar-portal";
-import type { MenubarProps } from "./menubar";
-import type { MenubarRadioGroupProps } from "./menubar-radio-group";
-import type { MenubarRadioItemProps } from "./menubar-radio-item";
-import type { MenubarSeparatorProps } from "./menubar-separator";
-import type { MenubarShortcutProps } from "./menubar-shortcut";
-import type { MenubarSubContentProps } from "./menubar-sub-content";
-import type { MenubarSubProps } from "./menubar-sub";
-import type { MenubarSubTriggerProps } from "./menubar-sub-trigger";
-import type { MenubarTriggerProps } from "./menubar-trigger";
 
 export {
   Menubar,
@@ -50,23 +34,4 @@ export {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-};
-
-export type {
-  MenubarCheckboxItemProps,
-  MenubarContentProps,
-  MenubarGroupProps,
-  MenubarItemProps,
-  MenubarLabelProps,
-  MenubarMenuProps,
-  MenubarPortalProps,
-  MenubarProps,
-  MenubarRadioGroupProps,
-  MenubarRadioItemProps,
-  MenubarSeparatorProps,
-  MenubarShortcutProps,
-  MenubarSubContentProps,
-  MenubarSubProps,
-  MenubarSubTriggerProps,
-  MenubarTriggerProps,
 };

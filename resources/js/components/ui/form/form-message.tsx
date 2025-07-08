@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import useFormField from "./form-field-context";
 
-export type FormMessageProps = React.ComponentProps<"p">;
+type FormMessageProps = React.ComponentProps<"p">;
 
 function FormMessage({ className, ...props }: FormMessageProps) {
   const { error } = useFormField();

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogOverlayProps = React.ComponentProps<
+type DialogOverlayProps = React.ComponentProps<
   typeof DialogPrimitive.Overlay
 > & {};
 

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TableHeadProps = React.ComponentProps<"th"> & {};
+type TableHeadProps = React.ComponentProps<"th"> & {};
 
 function TableHead({ className, ...props }: TableHeadProps) {
   return (

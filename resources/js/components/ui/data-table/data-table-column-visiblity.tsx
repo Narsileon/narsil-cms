@@ -8,9 +8,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { ButtonProps } from "@/components/ui/button";
 
-export type DataTableColumnVisibilityProps = ButtonProps & {};
+type DataTableColumnVisibilityProps = React.ComponentProps<typeof Button> & {};
 
 function DataTableColumnVisibility({
   ...props

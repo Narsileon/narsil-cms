@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SectionFooterProps = React.ComponentProps<"div"> & {};
+type SectionFooterProps = React.ComponentProps<"div"> & {};
 
 function SectionFooter({ className, ...props }: SectionFooterProps) {
   return (

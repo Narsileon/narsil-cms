@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TableBodyProps = React.ComponentProps<"tbody"> & {};
+type TableBodyProps = React.ComponentProps<"tbody"> & {};
 
 function TableBody({ className, ...props }: TableBodyProps) {
   return (

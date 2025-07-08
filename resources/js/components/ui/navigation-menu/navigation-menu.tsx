@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 import NavigationMenuViewport from "./navigation-menu-viewport";
 
-export type NavigationMenuProps = React.ComponentProps<
+type NavigationMenuProps = React.ComponentProps<
   typeof NavigationMenuPrimitive.Root
 > & {
   viewport?: boolean;

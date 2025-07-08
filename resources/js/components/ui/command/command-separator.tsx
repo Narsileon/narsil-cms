@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
 
-export type CommandSeparatorProps = React.ComponentProps<
+type CommandSeparatorProps = React.ComponentProps<
   typeof CommandPrimitive.Separator
 > & {};
 

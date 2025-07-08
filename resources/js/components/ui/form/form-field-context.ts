@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export type FormFieldContextProps = { error: string | undefined; name: string };
+type FormFieldContextProps = { error: string | undefined; name: string };
 
 export const FormFieldContext = createContext<FormFieldContextProps>({
   error: undefined,

@@ -6,9 +6,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { SelectTriggerProps } from "@/components/ui/select";
 
-export type DataTablePageSizeProps = SelectTriggerProps & {
+type DataTablePageSizeProps = React.ComponentProps<typeof SelectTrigger> & {
   options?: string[];
 };
 

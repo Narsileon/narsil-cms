@@ -6,11 +6,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { ButtonProps } from "@/components/ui/button";
 import type { DraggableAttributes } from "@dnd-kit/core";
 import type { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
-export type DataTableHeadMoveProps = ButtonProps & {
+type DataTableHeadMoveProps = React.ComponentProps<typeof Button> & {
   attributes: DraggableAttributes;
   listeners: SyntheticListenerMap | undefined;
 };

@@ -1,9 +1,7 @@
 import { createContext, useContext } from "react";
 import type { InertiaFormProps } from "@inertiajs/react";
 
-export type FormContextProps = Partial<
-  InertiaFormProps<Record<string, any>>
-> & {
+type FormContextProps = Partial<InertiaFormProps<Record<string, any>>> & {
   id: string;
 };
 

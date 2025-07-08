@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import AlertDialogPortal from "./alert-dialog-portal";
 import AlertDialogOverlay from "./alert-dialog-overlay";
 
-export type AlertDialogContentProps = React.ComponentProps<
+type AlertDialogContentProps = React.ComponentProps<
   typeof AlertDialogPrimitive.Content
 > & {};
 

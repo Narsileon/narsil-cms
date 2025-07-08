@@ -1,17 +1,17 @@
 import { create } from "zustand";
 import { upperFirst } from "lodash";
 
-type TranslationOptions = {
+export type TranslationOptions = {
   replacements?: Record<string, string | number>;
 };
 
-export type TranslationStoreState = {
+type TranslationStoreState = {
   locale: string;
   locales: string[];
   translations: Record<string, string>;
 };
 
-export type TranslationStoreActions = {
+type TranslationStoreActions = {
   setLocale: (locale: string) => void;
   setLocales: (locales: string[]) => void;
   setTranslations: (translations: Record<string, string>) => void;

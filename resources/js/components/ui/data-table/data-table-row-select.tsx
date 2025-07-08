@@ -1,8 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Row } from "@tanstack/react-table";
-import type { CheckboxProps } from "@/components/ui/checkbox";
 
-export type DataTableRowSelectProps = CheckboxProps & {
+type DataTableRowSelectProps = React.ComponentProps<typeof Checkbox> & {
   row: Row<any>;
 };
 

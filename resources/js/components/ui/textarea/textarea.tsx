@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TextareaProps = React.ComponentProps<"textarea"> & {};
+type TextareaProps = React.ComponentProps<"textarea"> & {};
 
 function Textarea({ className, ...props }: TextareaProps) {
   return (

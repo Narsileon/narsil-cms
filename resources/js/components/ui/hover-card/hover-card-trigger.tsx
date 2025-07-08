@@ -1,6 +1,6 @@
 import { HoverCard as HoverCardPrimitive } from "radix-ui";
 
-export type HoverCardTriggerProps = React.ComponentProps<
+type HoverCardTriggerProps = React.ComponentProps<
   typeof HoverCardPrimitive.Trigger
 > & {};
 

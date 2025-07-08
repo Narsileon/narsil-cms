@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogDescriptionProps = React.ComponentProps<
+type DialogDescriptionProps = React.ComponentProps<
   typeof DialogPrimitive.Description
 > & {};
 

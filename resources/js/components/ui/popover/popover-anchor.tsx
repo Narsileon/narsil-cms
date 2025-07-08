@@ -1,6 +1,6 @@
 import { Popover as PopoverPrimitive } from "radix-ui";
 
-export type PopoverAnchorProps = React.ComponentProps<
+type PopoverAnchorProps = React.ComponentProps<
   typeof PopoverPrimitive.Anchor
 > & {};
 

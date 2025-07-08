@@ -1,9 +1,9 @@
-import { ButtonProps, buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
 
-export type PaginationLinkProps = React.ComponentProps<"a"> &
-  Pick<ButtonProps, "size"> & {
+type PaginationLinkProps = React.ComponentProps<"a"> &
+  Pick<React.ComponentProps<typeof Button>, "size"> & {
     asChild?: boolean;
     isActive?: boolean;
     isDisabled?: boolean;

@@ -1,9 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetTitleProps = React.ComponentProps<
-  typeof SheetPrimitive.Title
-> & {};
+type SheetTitleProps = React.ComponentProps<typeof SheetPrimitive.Title> & {};
 
 function SheetTitle({ className, ...props }: SheetTitleProps) {
   return (

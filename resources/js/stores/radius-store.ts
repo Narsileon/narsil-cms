@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-export type RadiusStoreState = {
+type RadiusStoreState = {
   radius: number;
 };
 
-export type RadiusStoreActions = {
+type RadiusStoreActions = {
   applyRadius: () => void;
   setRadius: (radius: number) => void;
 };

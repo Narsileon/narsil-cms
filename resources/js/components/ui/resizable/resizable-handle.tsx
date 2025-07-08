@@ -2,9 +2,7 @@ import { cn } from "@/lib/utils";
 import { GripVerticalIcon } from "lucide-react";
 import { PanelResizeHandle } from "react-resizable-panels";
 
-export type ResizableHandleProps = React.ComponentProps<
-  typeof PanelResizeHandle
-> & {
+type ResizableHandleProps = React.ComponentProps<typeof PanelResizeHandle> & {
   withHandle?: boolean;
 };
 

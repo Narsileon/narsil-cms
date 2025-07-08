@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/popover";
 import useTranslationsStore from "@/stores/translations-store";
 
-export type ComboboxProps = {
+type ComboboxProps = {
   labelKey?: string;
   options: SelectOption[] | string[];
   value: string | number;

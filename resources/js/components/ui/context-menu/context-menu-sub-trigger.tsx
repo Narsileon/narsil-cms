@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 import { ChevronRightIcon } from "lucide-react";
 
-export type ContextMenuSubTriggerProps = React.ComponentProps<
+type ContextMenuSubTriggerProps = React.ComponentProps<
   typeof ContextMenuPrimitive.SubTrigger
 > & {
   inset?: boolean;

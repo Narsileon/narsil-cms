@@ -2,7 +2,7 @@ import { ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarSubTriggerProps = React.ComponentProps<
+type MenubarSubTriggerProps = React.ComponentProps<
   typeof MenubarPrimitive.SubTrigger
 > & {
   inset?: boolean;

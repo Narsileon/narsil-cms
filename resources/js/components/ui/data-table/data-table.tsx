@@ -1,8 +1,7 @@
 import { Table } from "@/components/ui/table";
 import useDataTable from "./data-table-context";
-import type { TableProps } from "@/components/ui/table";
 
-export type DataTableProps = TableProps & {};
+type DataTableProps = React.ComponentProps<typeof Table> & {};
 
 function DataTable({ ...props }: DataTableProps) {
   const { dataTable } = useDataTable();

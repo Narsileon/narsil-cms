@@ -36,11 +36,10 @@ import {
   horizontalListSortingStrategy,
   SortableContext,
 } from "@dnd-kit/sortable";
-import type { DataTableProviderProps } from "@/components/ui/data-table";
 import type { LaravelCollection } from "@/types/global";
 
 type DataTableBlockProps = Omit<
-  DataTableProviderProps,
+  React.ComponentProps<typeof DataTableProvider>,
   "data" | "initialState" | "render"
 > &
   LaravelCollection & {

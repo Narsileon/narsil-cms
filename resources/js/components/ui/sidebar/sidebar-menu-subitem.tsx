@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SidebarMenuSubItemProps = React.ComponentProps<"li"> & {};
+type SidebarMenuSubItemProps = React.ComponentProps<"li"> & {};
 
 function SidebarMenuSubItem({ className, ...props }: SidebarMenuSubItemProps) {
   return (

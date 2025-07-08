@@ -7,9 +7,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { ButtonProps } from "@/components/ui/button";
 
-export type DataTableHeadSortProps = ButtonProps & {
+type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
   header: Header<any, any>;
 };
 

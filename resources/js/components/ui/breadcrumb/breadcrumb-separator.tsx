@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type BreadcrumbSeparatorProps = React.ComponentProps<"li"> & {};
+type BreadcrumbSeparatorProps = React.ComponentProps<"li"> & {};
 
 function BreadcrumbSeparator({
   children,

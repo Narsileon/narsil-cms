@@ -9,7 +9,7 @@ import {
   ChevronRightIcon,
 } from "lucide-react";
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+type CalendarProps = React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
 };
 

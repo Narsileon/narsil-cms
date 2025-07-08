@@ -1,7 +1,6 @@
 import { TableHeader } from "@/components/ui/table";
-import type { TableHeaderProps } from "@/components/ui/table";
 
-export type DataTableHeaderProps = TableHeaderProps & {};
+type DataTableHeaderProps = React.ComponentProps<typeof TableHeader> & {};
 
 function DataTableHeader({ ...props }: DataTableHeaderProps) {
   return <TableHeader data-slot="data-table-header" {...props} />;

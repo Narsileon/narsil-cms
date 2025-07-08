@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import useTranslationsStore from "@/stores/translations-store";
 import type { LaravelPaginationMeta } from "@/types/global";
 
-export type DataTablePageResultProps = React.HTMLAttributes<HTMLDivElement> &
+type DataTablePageResultProps = React.HTMLAttributes<HTMLDivElement> &
   Pick<LaravelPaginationMeta, "from" | "to" | "total"> & {};
 
 function DataTablePageResult({

@@ -6,9 +6,7 @@ import SheetOverlay from "./sheet-overlay";
 import SheetPortal from "./sheet-portal";
 import useTranslationsStore from "@/stores/translations-store";
 
-export type SheetContentProps = React.ComponentProps<
-  typeof SheetPrimitive.Content
-> & {
+type SheetContentProps = React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: "top" | "right" | "bottom" | "left";
 };
 

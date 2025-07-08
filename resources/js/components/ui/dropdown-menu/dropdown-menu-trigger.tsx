@@ -1,6 +1,6 @@
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
-export type DropdownMenuTriggerProps = React.ComponentProps<
+type DropdownMenuTriggerProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.Trigger
 > & {};
 

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type FormDescriptionProps = React.ComponentProps<"p"> & {};
+type FormDescriptionProps = React.ComponentProps<"p"> & {};
 
 function FormDescription({ className, ...props }: FormDescriptionProps) {
   return (

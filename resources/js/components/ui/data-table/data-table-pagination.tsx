@@ -18,13 +18,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { PaginationProps } from "@/components/ui/pagination";
 import type {
   LaravelPaginationLinks,
   LaravelPaginationMeta,
 } from "@/types/global";
 
-export type DataTablePaginationProps = PaginationProps & {
+type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
   links: LaravelPaginationLinks;
   metaLinks: LaravelPaginationMeta["links"];
 };

@@ -2,9 +2,7 @@ import { CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectItemProps = React.ComponentProps<
-  typeof SelectPrimitive.Item
-> & {};
+type SelectItemProps = React.ComponentProps<typeof SelectPrimitive.Item> & {};
 
 function SelectItem({ children, className, ...props }: SelectItemProps) {
   return (

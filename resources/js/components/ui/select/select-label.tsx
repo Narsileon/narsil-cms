@@ -1,9 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectLabelProps = React.ComponentProps<
-  typeof SelectPrimitive.Label
-> & {};
+type SelectLabelProps = React.ComponentProps<typeof SelectPrimitive.Label> & {};
 
 function SelectLabel({ className, ...props }: SelectLabelProps) {
   return (

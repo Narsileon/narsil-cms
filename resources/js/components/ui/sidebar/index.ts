@@ -24,29 +24,6 @@ import SidebarRail from "./sidebar-rail";
 import SidebarSeparator from "./sidebar-separator";
 import SidebarTrigger from "./sidebar-trigger";
 import useSidebar from "./sidebar-context";
-import type { SidebarContentProps } from "./sidebar-content";
-import type { SidebarFooterProps } from "./sidebar-footer";
-import type { SidebarHeaderProps } from "./sidebar-header";
-import type { SidebarProps } from "./sidebar";
-import type { SidebarProviderProps } from "./sidebar-provider";
-import type { SidebarRailProps } from "./sidebar-rail";
-import type { SidebarTriggerProps } from "./sidebar-trigger";
-import type { SidebarGroupProps } from "./sidebar-group";
-import type { SidebarGroupActionProps } from "./sidebar-group-action";
-import type { SidebarGroupContentProps } from "./sidebar-group-content";
-import type { SidebarGroupLabelProps } from "./sidebar-group-label";
-import type { SidebarInputProps } from "./sidebar-input";
-import type { SidebarInsetProps } from "./sidebar-inset";
-import type { SidebarMenuProps } from "./sidebar-menu";
-import type { SidebarMenuActionProps } from "./sidebar-menu-action";
-import type { SidebarMenuBadgeProps } from "./sidebar-menu-badge";
-import type { SidebarMenuButtonProps } from "./sidebar-menu-button";
-import type { SidebarMenuItemProps } from "./sidebar-menu-item";
-import type { SidebarMenuSkeletonProps } from "./sidebar-menu-skeleton";
-import type { SidebarMenuSubProps } from "./sidebar-menu-sub";
-import type { SidebarMenuSubButtonProps } from "./sidebar-menu-sub-button";
-import type { SidebarMenuSubItemProps } from "./sidebar-menu-subitem";
-import type { SidebarSeparatorProps } from "./sidebar-separator";
 
 export {
   Sidebar,
@@ -73,30 +50,4 @@ export {
   SidebarSeparator,
   SidebarTrigger,
   useSidebar,
-};
-
-export type {
-  SidebarGroupActionProps,
-  SidebarGroupContentProps,
-  SidebarGroupLabelProps,
-  SidebarGroupProps,
-  SidebarInputProps,
-  SidebarInsetProps,
-  SidebarMenuActionProps,
-  SidebarMenuBadgeProps,
-  SidebarMenuButtonProps,
-  SidebarMenuItemProps,
-  SidebarMenuProps,
-  SidebarMenuSkeletonProps,
-  SidebarMenuSubButtonProps,
-  SidebarMenuSubItemProps,
-  SidebarMenuSubProps,
-  SidebarSeparatorProps,
-  SidebarTriggerProps,
-  SidebarContentProps,
-  SidebarFooterProps,
-  SidebarHeaderProps,
-  SidebarProps,
-  SidebarProviderProps,
-  SidebarRailProps,
 };

@@ -1,9 +1,9 @@
 import { FormFieldContext } from "./form-field-context";
 import useForm from "./form-context";
 
-export type FormFieldContextProps = { error: string | undefined; name: string };
+type FormFieldContextProps = { error: string | undefined; name: string };
 
-export type FormFieldProps = {
+type FormFieldProps = {
   name: string;
   render: (field: {
     id: string;

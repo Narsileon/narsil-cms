@@ -1,6 +1,6 @@
 import { Command as CommandPrimitive } from "cmdk";
 
-export type CommandEmptyProps = React.ComponentProps<
+type CommandEmptyProps = React.ComponentProps<
   typeof CommandPrimitive.Empty
 > & {};
 

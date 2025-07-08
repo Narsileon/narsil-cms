@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type DialogFooterProps = React.ComponentProps<"div"> & {};
+type DialogFooterProps = React.ComponentProps<"div"> & {};
 
 function DialogFooter({ className, ...props }: DialogFooterProps) {
   return (

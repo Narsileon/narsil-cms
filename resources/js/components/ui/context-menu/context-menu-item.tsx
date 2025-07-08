@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuItemProps = React.ComponentProps<
+type ContextMenuItemProps = React.ComponentProps<
   typeof ContextMenuPrimitive.Item
 > & {
   inset?: boolean;

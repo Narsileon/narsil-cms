@@ -1,9 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
 
-export type TabsTriggerProps = React.ComponentProps<
-  typeof TabsPrimitive.Trigger
-> & {};
+type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger> & {};
 
 function TabsTrigger({ className, ...props }: TabsTriggerProps) {
   return (

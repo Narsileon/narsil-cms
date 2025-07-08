@@ -1,6 +1,6 @@
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuProps = React.ComponentProps<
+type ContextMenuProps = React.ComponentProps<
   typeof ContextMenuPrimitive.Root
 > & {};
 

@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import type { InputProps } from "@/components/ui/input";
 
-export type SidebarInputProps = InputProps & {};
+type SidebarInputProps = React.ComponentProps<typeof Input> & {};
 
 function SidebarInput({ className, ...props }: SidebarInputProps) {
   return (

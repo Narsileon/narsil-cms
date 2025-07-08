@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useForm from "./form-context";
-import type { ButtonProps } from "@/components/ui/button";
 
-export type FormSubmitProps = ButtonProps;
+type FormSubmitProps = React.ComponentProps<typeof Button> & {};
 
 function FormSubmit({ className, ...props }: FormSubmitProps) {
   const { id } = useForm();

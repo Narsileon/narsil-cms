@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SidebarGroupProps = React.ComponentProps<"div"> & {};
+type SidebarGroupProps = React.ComponentProps<"div"> & {};
 
 function SidebarGroup({ className, ...props }: SidebarGroupProps) {
   return (

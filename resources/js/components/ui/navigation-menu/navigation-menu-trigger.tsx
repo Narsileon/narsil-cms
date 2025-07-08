@@ -16,7 +16,7 @@ const navigationMenuTriggerStyle = cva(
   ),
 );
 
-export type NavigationMenuTriggerProps = React.ComponentProps<
+type NavigationMenuTriggerProps = React.ComponentProps<
   typeof NavigationMenuPrimitive.Trigger
 > & {};
 

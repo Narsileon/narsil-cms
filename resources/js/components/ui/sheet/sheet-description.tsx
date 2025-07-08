@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetDescriptionProps = React.ComponentProps<
+type SheetDescriptionProps = React.ComponentProps<
   typeof SheetPrimitive.Description
 > & {};
 

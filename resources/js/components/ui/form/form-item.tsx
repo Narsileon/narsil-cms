@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { useId } from "react";
 import { FormItemContext } from "./form-item-context";
 
-export type FormItemProps = React.ComponentProps<"div"> & {};
+type FormItemProps = React.ComponentProps<"div"> & {};
 
 function FormItem({ className, ...props }: FormItemProps) {
   const id = useId();

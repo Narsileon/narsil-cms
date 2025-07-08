@@ -7,6 +7,7 @@ use App\Http\Controllers\Sessions\SessionDeleteController;
 use App\Http\Controllers\Sessions\SessionLocaleUpdateController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Sites\SiteController;
+use App\Http\Controllers\Sites\SiteGroupController;
 use App\Http\Controllers\Users\UserConfigurationUpdateController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,11 +26,9 @@ Route::middleware([
         Route::get('/settings', SettingsController::class)
             ->name('settings');
 
-        Route::resource('/site-groups', SiteController::class)
-            ->only([
-                'store',
-                'update',
-                'destroy',
+        Route::resource('/site-groups', SiteGroupController::class)
+            ->except([
+                'show'
             ]);
         Route::resource('/sites', SiteController::class)
             ->except([

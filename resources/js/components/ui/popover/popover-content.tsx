@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Popover as PopoverPrimitive } from "radix-ui";
 
-export type PopoverContentProps = React.ComponentProps<
+type PopoverContentProps = React.ComponentProps<
   typeof PopoverPrimitive.Content
 > & {};
 

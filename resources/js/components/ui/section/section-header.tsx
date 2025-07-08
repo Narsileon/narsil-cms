@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SectionHeaderProps = React.ComponentProps<"div"> & {};
+type SectionHeaderProps = React.ComponentProps<"div"> & {};
 
 function SectionHeader({ className, ...props }: SectionHeaderProps) {
   return (

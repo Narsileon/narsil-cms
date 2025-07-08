@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SidebarHeaderProps = React.ComponentProps<"div"> & {};
+type SidebarHeaderProps = React.ComponentProps<"div"> & {};
 
 function SidebarHeader({ className, ...props }: SidebarHeaderProps) {
   return (

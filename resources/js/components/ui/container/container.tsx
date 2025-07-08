@@ -17,7 +17,7 @@ export const containerVariants = cva(
   },
 );
 
-export type ContainerProps = React.ComponentProps<"div"> &
+type ContainerProps = React.ComponentProps<"div"> &
   VariantProps<typeof containerVariants> & { asChild?: boolean };
 
 function Container({

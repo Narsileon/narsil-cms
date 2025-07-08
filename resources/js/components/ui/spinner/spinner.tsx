@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
-export type SpinnerProps = React.ComponentProps<typeof Loader2> & {};
+type SpinnerProps = React.ComponentProps<typeof Loader2> & {};
 
 function Spinner({ className, ...props }: SpinnerProps) {
   return (

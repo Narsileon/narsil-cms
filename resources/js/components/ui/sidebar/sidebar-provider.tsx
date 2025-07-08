@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useMaxLg } from "@/hooks/use-breakpoints";
 import type { SidebarContextProps } from "./sidebar-context";
 
-export type SidebarProviderProps = React.ComponentProps<"div"> & {
+type SidebarProviderProps = React.ComponentProps<"div"> & {
   cookieMaxAge?: number;
   cookieName?: string;
   defaultOpen?: boolean;

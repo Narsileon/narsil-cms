@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type CardDescriptionProps = React.ComponentProps<"div"> & {};
+type CardDescriptionProps = React.ComponentProps<"div"> & {};
 
 function CardDescription({ className, ...props }: CardDescriptionProps) {
   return (

@@ -2,7 +2,7 @@ import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
 import type { FormContextProps } from "./form-context";
 
-export type FormProviderProps = {
+type FormProviderProps = {
   id: string;
   initialData?: Record<string, any>;
   render: (form: FormContextProps) => React.ReactNode;

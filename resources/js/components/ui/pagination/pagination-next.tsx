@@ -1,9 +1,8 @@
 import { ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PaginationLink from "./pagination-link";
-import type { PaginationLinkProps } from "./pagination-link";
 
-export type PaginationNextProps = PaginationLinkProps & {};
+type PaginationNextProps = React.ComponentProps<typeof PaginationLink> & {};
 
 function PaginationNext({ className, ...props }: PaginationNextProps) {
   return (

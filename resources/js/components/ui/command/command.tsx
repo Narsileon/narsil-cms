@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
 
-export type CommandProps = React.ComponentProps<typeof CommandPrimitive> & {};
+type CommandProps = React.ComponentProps<typeof CommandPrimitive> & {};
 
 function Command({ className, ...props }: CommandProps) {
   return (

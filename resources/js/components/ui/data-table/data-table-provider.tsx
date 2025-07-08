@@ -29,7 +29,7 @@ import type {
   VisibilityState,
 } from "@tanstack/react-table";
 
-export type DataTableProviderProps = Partial<TableOptions<any>> & {
+type DataTableProviderProps = Partial<TableOptions<any>> & {
   columns: ColumnDef<any>[];
   data: any[];
   id: string;

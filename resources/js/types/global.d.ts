@@ -5,7 +5,7 @@ import type {
   VisibilityState,
 } from "@tanstack/react-table";
 
-export type GlobalProps = {
+type GlobalProps = {
   auth: {
     email: string;
     first_name: string | undefined | null;
@@ -28,7 +28,7 @@ export type GlobalProps = {
   };
 };
 
-export type LaravelCollection<T = any> = {
+type LaravelCollection<T = any> = {
   columns: ColumnDef<T>[];
   columnOrder: ColumnOrderState;
   columnVisibility: VisibilityState;
@@ -37,7 +37,7 @@ export type LaravelCollection<T = any> = {
   meta: LaravelPaginationMeta;
 };
 
-export type LaravelForm = {
+type LaravelForm = {
   action: string;
   inputs: LaravelFormInput[];
   method: string;
@@ -45,7 +45,7 @@ export type LaravelForm = {
   title: string;
 };
 
-export type LaravelFormInput = {
+type LaravelFormInput = {
   autoComplete?: string;
   column?: boolean;
   description?: string;
@@ -56,14 +56,14 @@ export type LaravelFormInput = {
   type?: string;
 };
 
-export type LaravelPaginationLinks = {
+type LaravelPaginationLinks = {
   first: string;
   last: string;
   prev: string | null;
   next: string | null;
 };
 
-export type LaravelPaginationMeta = {
+type LaravelPaginationMeta = {
   current_page: number;
   from: number | null;
   last_page: number;
@@ -78,14 +78,14 @@ export type LaravelPaginationMeta = {
   total: number;
 };
 
-export type NavigationOption = {
+type NavigationOption = {
   route: string;
   icon: React.ComponentProps<typeof DynamicIcon>["name"];
   label: string;
   children?: NavigationOption[];
 };
 
-export type SelectOption = {
+type SelectOption = {
   label: string;
   options?: SelectOption[];
   [key: string]: any;

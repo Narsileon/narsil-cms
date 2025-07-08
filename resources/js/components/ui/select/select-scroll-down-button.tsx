@@ -2,7 +2,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectScrollDownButtonProps = React.ComponentProps<
+type SelectScrollDownButtonProps = React.ComponentProps<
   typeof SelectPrimitive.ScrollDownButton
 > & {};
 

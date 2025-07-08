@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type DialogHeaderProps = React.ComponentProps<"div"> & {};
+type DialogHeaderProps = React.ComponentProps<"div"> & {};
 
 function DialogHeader({ className, ...props }: DialogHeaderProps) {
   return (

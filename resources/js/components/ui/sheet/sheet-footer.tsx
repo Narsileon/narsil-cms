@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SheetFooterProps = React.ComponentProps<"div"> & {};
+type SheetFooterProps = React.ComponentProps<"div"> & {};
 
 function SheetFooter({ className, ...props }: SheetFooterProps) {
   return (

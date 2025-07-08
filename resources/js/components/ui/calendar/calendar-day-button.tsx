@@ -3,9 +3,7 @@ import { cn } from "@/lib/utils";
 import { DayButton, getDefaultClassNames } from "react-day-picker";
 import { useEffect, useRef } from "react";
 
-export type CalendarDayButtonProps = React.ComponentProps<
-  typeof DayButton
-> & {};
+type CalendarDayButtonProps = React.ComponentProps<typeof DayButton> & {};
 
 function CalendarDayButton({
   className,

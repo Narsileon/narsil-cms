@@ -9,9 +9,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { ButtonProps } from "@/components/ui/button";
 
-export type SidebarTriggerProps = ButtonProps & {};
+type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};
 
 function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
   const { trans } = useTranslationsStore();

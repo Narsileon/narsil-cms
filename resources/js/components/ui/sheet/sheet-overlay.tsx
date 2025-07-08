@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetOverlayProps = React.ComponentProps<
+type SheetOverlayProps = React.ComponentProps<
   typeof SheetPrimitive.Overlay
 > & {};
 

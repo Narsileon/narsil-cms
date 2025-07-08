@@ -2,7 +2,7 @@ import { CircleIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuRadioItemProps = React.ComponentProps<
+type ContextMenuRadioItemProps = React.ComponentProps<
   typeof ContextMenuPrimitive.RadioItem
 > & {};
 

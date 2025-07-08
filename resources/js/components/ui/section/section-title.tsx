@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Heading } from "@/components/ui/heading";
-import type { HeadingProps } from "@/components/ui/heading";
 
-export type SectionTitleProps = HeadingProps & {};
+type SectionTitleProps = React.ComponentProps<typeof Heading> & {};
 
 function SectionTitle({ className, ...props }: SectionTitleProps) {
   return (

@@ -5,7 +5,6 @@ import useSidebar from "./sidebar-context";
 import {
   Tooltip,
   TooltipContent,
-  TooltipContentProps,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import type { VariantProps } from "class-variance-authority";
@@ -46,11 +45,11 @@ const sidebarMenuButtonVariants = cva(
   },
 );
 
-export type SidebarMenuButtonProps = React.ComponentProps<"button"> &
+type SidebarMenuButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof sidebarMenuButtonVariants> & {
     asChild?: boolean;
     isActive?: boolean;
-    tooltip?: string | TooltipContentProps;
+    tooltip?: string | React.ComponentProps<typeof TooltipContent>;
   };
 
 function SidebarMenuButton({

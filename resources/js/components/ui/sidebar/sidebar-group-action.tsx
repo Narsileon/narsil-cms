@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
 
-export type SidebarGroupActionProps = React.ComponentProps<"button"> & {
+type SidebarGroupActionProps = React.ComponentProps<"button"> & {
   asChild?: boolean;
 };
 

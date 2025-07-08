@@ -2,9 +2,8 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 import useDataTable from "./data-table-context";
-import type { InputProps } from "@/components/ui/input";
 
-export type DataTableInputProps = InputProps & {};
+type DataTableInputProps = React.ComponentProps<typeof Input> & {};
 
 function DataTableInput({ className, ...props }: DataTableInputProps) {
   const { dataTableStore } = useDataTable();

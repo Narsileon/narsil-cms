@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TableCaptionProps = React.ComponentProps<"caption"> & {};
+type TableCaptionProps = React.ComponentProps<"caption"> & {};
 
 function TableCaption({ className, ...props }: TableCaptionProps) {
   return (

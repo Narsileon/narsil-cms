@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SectionProps = React.ComponentProps<"section"> & {};
+type SectionProps = React.ComponentProps<"section"> & {};
 
 const Section = ({ className, ...props }: SectionProps) => {
   return (

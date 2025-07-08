@@ -3,7 +3,7 @@ import { Select as SelectPrimitive } from "radix-ui";
 import SelectScrollDownButton from "./select-scroll-down-button";
 import SelectScrollUpButton from "./select-scroll-up-button";
 
-export type SelectContentProps = React.ComponentProps<
+type SelectContentProps = React.ComponentProps<
   typeof SelectPrimitive.Content
 > & {};
 

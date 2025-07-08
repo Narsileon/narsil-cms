@@ -1,4 +1,4 @@
-export type BreadcrumbProps = React.ComponentProps<"nav"> & {};
+type BreadcrumbProps = React.ComponentProps<"nav"> & {};
 
 function Breadcrumb({ ...props }: BreadcrumbProps) {
   return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />;

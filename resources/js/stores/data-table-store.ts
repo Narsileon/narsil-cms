@@ -8,7 +8,7 @@ import {
   VisibilityState,
 } from "@tanstack/react-table";
 
-export type DataTableStoreState = {
+type DataTableStoreState = {
   columnOrder: ColumnOrderState;
   columnSizing: ColumnSizingState;
   columnVisibility: VisibilityState;
@@ -18,7 +18,7 @@ export type DataTableStoreState = {
   sorting: SortingState;
 };
 
-export type DataTableStoreActions = {
+type DataTableStoreActions = {
   setColumnOrder: (columnOrder: ColumnOrderState) => void;
   setColumnSizing: (columnSizing: ColumnSizingState) => void;
   setColumnVisibility: (columnVisibility: VisibilityState) => void;
@@ -31,7 +31,7 @@ export type DataTableStoreActions = {
 
 export type DataTableStoreType = DataTableStoreState & DataTableStoreActions;
 
-export type CreateDataTableStoreProps = {
+type CreateDataTableStoreProps = {
   id: string;
   initialState?: Partial<DataTableStoreState>;
 };

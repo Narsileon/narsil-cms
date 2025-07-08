@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
 
-export type ScrollAreaScrollbarProp = React.ComponentProps<
+type ScrollAreaScrollbarProp = React.ComponentProps<
   typeof ScrollAreaPrimitive.ScrollAreaScrollbar
 > & {};
 

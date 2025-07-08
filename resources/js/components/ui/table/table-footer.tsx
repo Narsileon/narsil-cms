@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TableFooterProps = React.ComponentProps<"tfoot"> & {};
+type TableFooterProps = React.ComponentProps<"tfoot"> & {};
 
 function TableFooter({ className, ...props }: TableFooterProps) {
   return (

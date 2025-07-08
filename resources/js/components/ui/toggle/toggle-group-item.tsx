@@ -4,7 +4,7 @@ import { toggleVariants } from "./toggle";
 import useToggleGroup from "./toggle-group-context";
 import type { VariantProps } from "class-variance-authority";
 
-export type ToggleGroupItemProps = React.ComponentProps<
+type ToggleGroupItemProps = React.ComponentProps<
   typeof ToggleGroupPrimitive.Item
 > &
   VariantProps<typeof toggleVariants> & {};

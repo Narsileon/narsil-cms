@@ -15,12 +15,11 @@ import {
   DialogContent,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { DialogProps } from "@/components/ui/dialog";
 
-type UserSettingsProps = {
-  open: DialogProps["open"];
-  onOpenChange: DialogProps["onOpenChange"];
-};
+type UserSettingsProps = Pick<
+  React.ComponentProps<typeof Dialog>,
+  "open" | "onOpenChange"
+> & {};
 
 function UserSettings({ open, onOpenChange }: UserSettingsProps) {
   const { trans } = useTranslationsStore();

@@ -1,5 +1,6 @@
-import { Link } from "@inertiajs/react";
 import { Fragment, useMemo } from "react";
+import { Link } from "@inertiajs/react";
+import { replace } from "lodash";
 import useTranslationsStore from "@/stores/translations-store";
 import {
   Breadcrumb,
@@ -9,10 +10,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import type { BreadcrumbProps } from "@/components/ui/breadcrumb";
-import { replace } from "lodash";
 
-type AppBreadcrumbProps = BreadcrumbProps & {};
+type AppBreadcrumbProps = React.ComponentProps<typeof Breadcrumb> & {};
 
 function AppBreadcrumb({ ...props }: AppBreadcrumbProps) {
   const { trans } = useTranslationsStore();

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SidebarMenuBadgeProps = React.ComponentProps<"div"> & {};
+type SidebarMenuBadgeProps = React.ComponentProps<"div"> & {};
 
 function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
   return (

@@ -1,9 +1,7 @@
 import { Avatar as AvatarPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 
-export type AvatarProps = React.ComponentProps<
-  typeof AvatarPrimitive.Root
-> & {};
+type AvatarProps = React.ComponentProps<typeof AvatarPrimitive.Root> & {};
 
 function Avatar({ className, ...props }: AvatarProps) {
   return (

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type ContextMenuShortcutProps = React.ComponentProps<"span"> & {};
+type ContextMenuShortcutProps = React.ComponentProps<"span"> & {};
 
 function ContextMenuShortcut({
   className,

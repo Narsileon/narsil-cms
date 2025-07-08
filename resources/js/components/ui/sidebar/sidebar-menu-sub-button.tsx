@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
 
-export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
+type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
   asChild?: boolean;
   isActive?: boolean;
   size?: "sm" | "md";

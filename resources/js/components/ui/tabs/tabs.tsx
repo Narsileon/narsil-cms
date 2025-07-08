@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
 import { useMinMd } from "@/hooks/use-breakpoints";
 
-export type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root> & {};
+type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root> & {};
 
 function Tabs({ className, orientation, ...props }: TabsProps) {
   const minMd = useMinMd();

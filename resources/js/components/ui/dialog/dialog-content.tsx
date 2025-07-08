@@ -4,7 +4,7 @@ import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
 import DialogCloseButton from "./dialog-close-button";
 
-export type DialogContentProps = React.ComponentPropsWithoutRef<
+type DialogContentProps = React.ComponentPropsWithoutRef<
   typeof DialogPrimitive.Content
 > & {
   showCloseButton?: boolean;

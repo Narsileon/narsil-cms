@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
-export type NavigationMenuIndicatorProps = React.ComponentProps<
+type NavigationMenuIndicatorProps = React.ComponentProps<
   typeof NavigationMenuPrimitive.Indicator
 > & {};
 

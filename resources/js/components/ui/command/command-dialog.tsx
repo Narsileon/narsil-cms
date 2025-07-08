@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-export type CommandDialogProps = DialogProps & {
+type CommandDialogProps = DialogProps & {
   className?: string;
   description?: string;
   showCloseButton?: boolean;

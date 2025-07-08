@@ -1,6 +1,6 @@
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
-export type DropdownMenuGroupProps = React.ComponentProps<
+type DropdownMenuGroupProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.Group
 > & {};
 

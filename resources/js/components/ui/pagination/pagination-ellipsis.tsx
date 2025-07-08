@@ -3,7 +3,7 @@ import { MoreHorizontalIcon } from "lucide-react";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import useTranslationsStore from "@/stores/translations-store";
 
-export type PaginationEllipsisProps = React.ComponentProps<"span"> & {};
+type PaginationEllipsisProps = React.ComponentProps<"span"> & {};
 
 function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
   const { trans } = useTranslationsStore();

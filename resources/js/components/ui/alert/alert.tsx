@@ -25,7 +25,7 @@ const alertVariants = cva(
   },
 );
 
-export type AlertProps = React.ComponentProps<"div"> &
+type AlertProps = React.ComponentProps<"div"> &
   VariantProps<typeof alertVariants> & {};
 
 function Alert({ className, variant, ...props }: AlertProps) {

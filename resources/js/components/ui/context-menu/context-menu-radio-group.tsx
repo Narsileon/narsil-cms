@@ -1,6 +1,6 @@
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
-export type ContextMenuRadioGroupProps = React.ComponentProps<
+type ContextMenuRadioGroupProps = React.ComponentProps<
   typeof ContextMenuPrimitive.RadioGroup
 > & {};
 

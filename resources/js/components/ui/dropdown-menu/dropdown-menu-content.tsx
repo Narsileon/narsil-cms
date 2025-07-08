@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
-export type DropdownMenuContentProps = React.ComponentProps<
+type DropdownMenuContentProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.Content
 > & {};
 

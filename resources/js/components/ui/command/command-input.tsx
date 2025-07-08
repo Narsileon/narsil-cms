@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
 import { SearchIcon } from "lucide-react";
 
-export type CommandInputProps = React.ComponentProps<
+type CommandInputProps = React.ComponentProps<
   typeof CommandPrimitive.Input
 > & {};
 

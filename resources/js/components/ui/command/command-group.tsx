@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
 
-export type CommandGroupProps = React.ComponentProps<
+type CommandGroupProps = React.ComponentProps<
   typeof CommandPrimitive.Group
 > & {};
 

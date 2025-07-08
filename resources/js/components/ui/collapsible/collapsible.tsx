@@ -1,6 +1,6 @@
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 
-export type CollapsibleProps = React.ComponentProps<
+type CollapsibleProps = React.ComponentProps<
   typeof CollapsiblePrimitive.Root
 > & {};
 

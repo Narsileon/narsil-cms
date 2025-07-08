@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type PaginationProps = React.ComponentProps<"nav"> & {};
+type PaginationProps = React.ComponentProps<"nav"> & {};
 
 function Pagination({ className, ...props }: PaginationProps) {
   return (

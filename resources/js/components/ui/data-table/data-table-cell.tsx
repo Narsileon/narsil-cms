@@ -2,9 +2,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { TableCell } from "@/components/ui/table";
 import { useSortable } from "@dnd-kit/sortable";
 import type { Cell } from "@tanstack/react-table";
-import type { TableCellProps } from "@/components/ui/table";
 
-export type DataTableCellProps = TableCellProps & {
+type DataTableCellProps = React.ComponentProps<typeof TableCell> & {
   cell: Cell<any, any>;
 };
 

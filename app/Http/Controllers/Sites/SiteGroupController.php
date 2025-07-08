@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Sites;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
+use App\Http\Controllers\AbstractModelController;
 use App\Http\Forms\SiteGroupForm;
 use App\Http\Resources\DataTableCollection;
 use App\Models\SiteGroup;
+use App\Narsil;
 use App\Services\FormService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,7 +23,7 @@ use Inertia\Response;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteController
+class SiteGroupController extends AbstractModelController
 {
     #region PUBLIC METHODS
 
@@ -41,13 +44,13 @@ class SiteController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function create(Request $request): Response
+    public function create(Request $request): JsonResponse|Response
     {
         $form = FormService::getForm(SiteGroup::TABLE, SiteGroupForm::class);
 
-        return Inertia::render('resources/form', [
+        return Narsil::render('resources/form', [
             'form' => $form::get(
                 action: route('site-groups.store'),
                 method: MethodEnum::POST,
@@ -75,13 +78,13 @@ class SiteController
      * @param Request $request
      * @param SiteGroup $siteGroup
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function edit(Request $request, SiteGroup $siteGroup): Response
+    public function edit(Request $request, SiteGroup $siteGroup): JsonResponse|Response
     {
         $form = FormService::getForm(SiteGroup::TABLE, SiteGroupForm::class);
 
-        return Inertia::render('resources/form', [
+        return Narsil::render('resources/form', [
             'data' => $siteGroup,
             'form' => $form::get(
                 action: route('site_groups.update', $siteGroup->{SiteGroup::ID}),

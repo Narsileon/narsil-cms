@@ -1,7 +1,7 @@
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 
-export type AccordionContentProps = React.ComponentProps<
+type AccordionContentProps = React.ComponentProps<
   typeof AccordionPrimitive.Content
 > & {};
 

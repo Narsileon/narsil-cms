@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TableRowProps = React.ComponentProps<"tr"> & {};
+type TableRowProps = React.ComponentProps<"tr"> & {};
 
 function TableRow({ className, ...props }: TableRowProps) {
   return (

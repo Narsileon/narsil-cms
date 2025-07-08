@@ -8,7 +8,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-export type SidebarProps = React.ComponentProps<"div"> & {
+type SidebarProps = React.ComponentProps<"div"> & {
   collapsible?: "offcanvas" | "icon" | "none";
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";

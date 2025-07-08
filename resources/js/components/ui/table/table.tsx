@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type TableProps = React.ComponentProps<"table"> & {};
+type TableProps = React.ComponentProps<"table"> & {};
 
 function Table({ className, ...props }: TableProps) {
   return (

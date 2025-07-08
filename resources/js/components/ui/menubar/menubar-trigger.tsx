@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarTriggerProps = React.ComponentProps<
+type MenubarTriggerProps = React.ComponentProps<
   typeof MenubarPrimitive.Trigger
 > & {};
 

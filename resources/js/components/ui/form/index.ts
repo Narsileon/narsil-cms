@@ -9,14 +9,6 @@ import FormSubmit from "./form-submit";
 import useForm from "./form-context";
 import useFormField from "./form-field-context";
 import useFormItem from "./form-item-context";
-import type { FormDescriptionProps } from "./form-description";
-import type { FormFieldProps } from "./form-field";
-import type { FormItemProps } from "./form-item";
-import type { FormLabelProps } from "./form-label";
-import type { FormMessageProps } from "./form-message";
-import type { FormProps } from "./form";
-import type { FormProviderProps } from "./form-provider";
-import type { FormSubmitProps } from "./form-submit";
 
 export {
   Form,
@@ -30,15 +22,4 @@ export {
   useForm,
   useFormField,
   useFormItem,
-};
-
-export type {
-  FormDescriptionProps,
-  FormFieldProps,
-  FormItemProps,
-  FormLabelProps,
-  FormMessageProps,
-  FormProps,
-  FormProviderProps,
-  FormSubmitProps,
 };

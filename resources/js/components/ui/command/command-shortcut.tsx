@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type CommandShortcutProps = React.ComponentProps<"span"> & {};
+type CommandShortcutProps = React.ComponentProps<"span"> & {};
 
 function CommandShortcut({ className, ...props }: CommandShortcutProps) {
   return (

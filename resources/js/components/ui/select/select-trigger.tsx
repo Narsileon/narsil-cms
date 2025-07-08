@@ -2,7 +2,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectTriggerProps = React.ComponentProps<
+type SelectTriggerProps = React.ComponentProps<
   typeof SelectPrimitive.Trigger
 > & {
   size?: "sm" | "default";

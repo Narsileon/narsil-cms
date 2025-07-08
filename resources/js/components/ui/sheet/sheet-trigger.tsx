@@ -1,6 +1,6 @@
 import { Dialog as SheetPrimitive } from "radix-ui";
 
-export type SheetTriggerProps = React.ComponentProps<
+type SheetTriggerProps = React.ComponentProps<
   typeof SheetPrimitive.Trigger
 > & {};
 

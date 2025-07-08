@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type SidebarInsetProps = React.ComponentProps<"main"> & {};
+type SidebarInsetProps = React.ComponentProps<"main"> & {};
 
 function SidebarInset({ className, ...props }: SidebarInsetProps) {
   return (

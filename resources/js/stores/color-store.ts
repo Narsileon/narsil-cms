@@ -24,11 +24,11 @@ export const colors = [
 
 export type Color = (typeof colors)[number];
 
-export type ColorStoreState = {
+type ColorStoreState = {
   color: Color;
 };
 
-export type ColorStoreActions = {
+type ColorStoreActions = {
   applyColor: () => void;
   setColor: (color: Color) => void;
 };

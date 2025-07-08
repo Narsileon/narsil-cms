@@ -1,6 +1,6 @@
 import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogTriggerProps = React.ComponentProps<
+type DialogTriggerProps = React.ComponentProps<
   typeof DialogPrimitive.Trigger
 > & {};
 

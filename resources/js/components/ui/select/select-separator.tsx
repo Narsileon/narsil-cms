@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
 
-export type SelectSeparatorProps = React.ComponentProps<
+type SelectSeparatorProps = React.ComponentProps<
   typeof SelectPrimitive.Separator
 > & {};
 

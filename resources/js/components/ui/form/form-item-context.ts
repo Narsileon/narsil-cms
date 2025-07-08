@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export type FormItemContextProps = {
+type FormItemContextProps = {
   id: string;
 };
 

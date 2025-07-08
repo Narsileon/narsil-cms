@@ -1,6 +1,6 @@
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarPortalProps = React.ComponentProps<
+type MenubarPortalProps = React.ComponentProps<
   typeof MenubarPrimitive.Portal
 > & {};
 

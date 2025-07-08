@@ -1,6 +1,6 @@
 import { Dialog as DialogPrimitive } from "radix-ui";
 
-export type DialogPortalProps = React.ComponentProps<
+type DialogPortalProps = React.ComponentProps<
   typeof DialogPrimitive.Portal
 > & {};
 

@@ -1,6 +1,6 @@
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
-export type MenubarGroupProps = React.ComponentProps<
+type MenubarGroupProps = React.ComponentProps<
   typeof MenubarPrimitive.Group
 > & {};
 
