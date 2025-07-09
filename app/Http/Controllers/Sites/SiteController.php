@@ -9,7 +9,9 @@ use App\Http\Controllers\AbstractModelController;
 use App\Http\Forms\SiteForm;
 use App\Http\Resources\DataTableCollection;
 use App\Models\Site;
+use App\Narsil;
 use App\Services\FormService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -28,13 +30,13 @@ class SiteController extends AbstractModelController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function index(Request $request): Response
+    public function index(Request $request): JsonResponse|Response
     {
         $collection = new DataTableCollection(Site::query(), Site::TABLE);
 
-        return Inertia::render('resources/index', [
+        return Narsil::render('resources/index', [
             "collection" => $collection,
         ]);
     }
@@ -42,13 +44,13 @@ class SiteController extends AbstractModelController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function create(Request $request): Response
+    public function create(Request $request): JsonResponse|Response
     {
         $form = FormService::getForm(Site::TABLE, SiteForm::class);
 
-        return Inertia::render('resources/form', [
+        return Narsil::render('resources/form', [
             'form' => $form::get(
                 action: route('sites.store'),
                 method: MethodEnum::POST,
@@ -76,13 +78,13 @@ class SiteController extends AbstractModelController
      * @param Request $request
      * @param Site $site
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function edit(Request $request, Site $site): Response
+    public function edit(Request $request, Site $site): JsonResponse|Response
     {
         $form = FormService::getForm(Site::TABLE, SiteForm::class);
 
-        return Inertia::render('resources/form', [
+        return Narsil::render('resources/form', [
             'data' => $site,
             'form' => $form::get(
                 action: route('sites.update', $site->{Site::ID}),

@@ -6,11 +6,10 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogProps,
   DialogTitle,
 } from "@/components/ui/dialog";
 
-type CommandDialogProps = DialogProps & {
+type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
   className?: string;
   description?: string;
   showCloseButton?: boolean;

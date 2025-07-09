@@ -1,69 +1,38 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ModalState } from "@/stores/modal-store";
 import { useEffect, useState } from "react";
+import type { ComponentProps, ComponentType } from "react";
 
-type ModalResponse = {
-  component: string;
-  props: Record<string, any>;
-};
+type ModalProps = ComponentProps<typeof Dialog> &
+  ModalState & {
+    onClose: () => void;
+  };
 
-function Modal({
-  href,
-  open,
-  onClose,
-}: {
-  href: string;
-  open: boolean;
-  onClose: () => void;
-}) {
-  const [Component, setComponent] = useState<React.ComponentType<any> | null>(
-    null,
-  );
-  const [props, setProps] = useState<Record<string, any>>({});
+function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
+  const [Component, setComponent] = useState<ComponentType<any> | null>(null);
 
   useEffect(() => {
-    if (!open) return;
+    const load = async () => {
+      const pages = import.meta.glob("/resources/js/pages/**/*.tsx");
 
-    const fetchModal = async () => {
-      try {
-        const url = new URL(href, window.location.origin);
-        url.searchParams.set("modal", "1");
+      const loader = pages[`/resources/js/pages/${component}.tsx`];
 
-        const response = await fetch(url.toString(), {
-          headers: {
-            Accept: "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Modal fetch failed");
-        }
-
-        const data = (await response.json()) as ModalResponse;
-
-        if (!!data.component) {
-          throw new Error("Invalid modal response");
-        }
-
-        const pages = import.meta.glob("/resources/js/pages/**/*.tsx");
-
-        const loader: any = pages[`/resources/js/pages/${data.component}.tsx`];
-
-        const mod = await loader();
-        setComponent(() => mod.default);
-        setProps(data.props);
-      } catch (err) {
-        console.error("Modal loading error:", err);
-        onClose();
+      if (!loader) {
+        return onClose();
       }
+
+      const mod = await (loader as () => Promise<any>)();
+
+      setComponent(() => mod.default);
     };
 
-    fetchModal();
-  }, [href, open]);
+    load();
+  }, [component]);
 
   return (
-    <Dialog open={open} onOpenChange={(open) => !open && onClose()}>
+    <Dialog open={true} onOpenChange={(open) => !open && onClose()} {...props}>
       <DialogContent className="max-w-2xl p-6">
-        {Component && <Component {...props} />}
+        {Component ? <Component modal={true} {...componentProps} /> : null}
       </DialogContent>
     </Dialog>
   );

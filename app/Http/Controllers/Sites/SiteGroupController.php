@@ -30,13 +30,13 @@ class SiteGroupController extends AbstractModelController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function index(Request $request): Response
+    public function index(Request $request): JsonResponse|Response
     {
         $collection = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
 
-        return Inertia::render('resources/index', [
+        return Narsil::render('resources/index', [
             "collection" => $collection,
         ]);
     }
