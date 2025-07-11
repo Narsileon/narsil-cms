@@ -15,7 +15,6 @@ use JsonSerializable;
 
 /**
  * @version 1.0.0
- *
  * @author Jonathan Rigaux
  */
 class DataTableCollection extends ResourceCollection
@@ -95,9 +94,7 @@ class DataTableCollection extends ResourceCollection
     }
 
     /**
-     * @param Request $request
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function with($request): array
     {

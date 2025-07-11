@@ -14,7 +14,6 @@ use App\Services\FormService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -34,10 +33,10 @@ class SiteGroupController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $collection = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
+        $dataTable = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
 
         return Narsil::render('resources/index', [
-            "collection" => $collection,
+            "dataTable" => $dataTable,
         ]);
     }
 
@@ -87,7 +86,7 @@ class SiteGroupController extends AbstractModelController
         return Narsil::render('resources/form', [
             'data' => $siteGroup,
             'form' => $form::get(
-                action: route('site_groups.update', $siteGroup->{SiteGroup::ID}),
+                action: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
                 method: MethodEnum::PATCH,
                 submit: trans("ui.update"),
                 title: trans("ui.site_group"),

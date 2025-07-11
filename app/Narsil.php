@@ -24,11 +24,11 @@ class Narsil
      */
     public static function render(string $component, array $props = []): JsonResponse|Response
     {
-        if (request()->boolean('modal'))
+        if (request()->boolean('_modal'))
         {
             return response()->json([
                 'component' => $component,
-                'props' => $props,
+                'props' => array_merge(['_modal' => true], $props),
             ]);
         }
 

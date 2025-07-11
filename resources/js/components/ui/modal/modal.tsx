@@ -3,7 +3,7 @@ import { ModalState } from "@/stores/modal-store";
 import { useEffect, useState } from "react";
 import type { ComponentProps, ComponentType } from "react";
 
-type ModalProps = ComponentProps<typeof Dialog> &
+type ModalProps = ComponentProps<typeof DialogContent> &
   ModalState & {
     onClose: () => void;
   };
@@ -30,8 +30,11 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
   }, [component]);
 
   return (
-    <Dialog open={true} onOpenChange={(open) => !open && onClose()} {...props}>
-      <DialogContent className="max-w-2xl p-6">
+    <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent
+        className="absolute h-[calc(100%-4rem)] min-w-[calc(100%-4rem)]"
+        {...props}
+      >
         {Component ? <Component modal={true} {...componentProps} /> : null}
       </DialogContent>
     </Dialog>

@@ -1,9 +1,12 @@
 import { useModalStore } from "@/stores/modal-store";
 import Modal from "./modal";
 
-type ModalRendererProps = {};
+type ModalRendererProps = Pick<
+  React.ComponentProps<typeof Modal>,
+  "container"
+> & {};
 
-function ModalRenderer({}: ModalRendererProps) {
+function ModalRenderer({ ...props }: ModalRendererProps) {
   const { modals, closeModal } = useModalStore();
 
   return (
@@ -15,6 +18,7 @@ function ModalRenderer({}: ModalRendererProps) {
           href={modal.href}
           onClose={() => closeModal(modal.href)}
           key={modal.href}
+          {...props}
         />
       ))}
     </>

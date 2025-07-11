@@ -20,7 +20,7 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "relative flex w-full cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none",
+        "relative flex w-full cursor-default items-center justify-start gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none",
         "focus:bg-accent focus:text-accent-foreground",
         "dark:data-[variant=destructive]:focus:bg-destructive/20",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",

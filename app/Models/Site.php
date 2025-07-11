@@ -27,6 +27,10 @@ class Site extends Model implements IEnable
     {
         $this->table = self::TABLE;
 
+        $this->casts = array_merge([
+            self::PRIMARY => 'boolean',
+        ], $this->casts);
+
         $this->fillable = array_merge([
             self::GROUP_ID,
             self::HANDLE,

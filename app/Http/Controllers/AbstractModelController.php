@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 #endregion
 
@@ -42,8 +43,17 @@ abstract class AbstractModelController
      */
     protected function redirectOnDestroyed(string $table): RedirectResponse
     {
-        return redirect(route("$table.index"))
-            ->with('success', trans("toasts.success.$table.deleted"));
+        $toast = trans("toasts.success.$table.deleted");
+
+        if (request()->get('_back'))
+        {
+            return back()->with('success', $toast);
+        }
+        else
+        {
+            return redirect(route(Str::slug($table) .  '.index'))
+                ->with('success', $toast);
+        }
     }
 
     /**
@@ -53,8 +63,17 @@ abstract class AbstractModelController
      */
     protected function redirectOnStored(string $table): RedirectResponse
     {
-        return redirect(route("$table.index"))
-            ->with('success', trans("toasts.success.$table.created"));
+        $toast = trans("toasts.success.$table.created");
+
+        if (request()->get('_back'))
+        {
+            return back()->with('success', $toast);
+        }
+        else
+        {
+            return redirect(route(Str::slug($table) .  '.index'))
+                ->with('success', $toast);
+        }
     }
 
     /**
@@ -64,8 +83,17 @@ abstract class AbstractModelController
      */
     protected function redirectOnUpdated(string $table): RedirectResponse
     {
-        return redirect(route("$table.index"))
-            ->with('success', trans("toasts.success.$table.updated"));
+        $toast = trans("toasts.success.$table.updated");
+
+        if (request()->get('_back'))
+        {
+            return back()->with('success', $toast);
+        }
+        else
+        {
+            return redirect(route(Str::slug($table) .  '.index'))
+                ->with('success', $toast);
+        }
     }
 
     #endregion

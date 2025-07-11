@@ -28,7 +28,19 @@ type GlobalProps = {
   };
 };
 
-type LaravelCollection<T = any> = {
+type CategoriesCollection = {
+  data: {
+    destroy_href: string;
+    edit_href: string;
+    id: number;
+    label: string;
+  }[];
+  meta: {
+    create_href: string;
+  };
+};
+
+type DataTableCollection<T = any> = {
   columns: ColumnDef<T>[];
   columnOrder: ColumnOrderState;
   columnVisibility: VisibilityState;

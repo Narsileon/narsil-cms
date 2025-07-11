@@ -7,14 +7,15 @@ namespace App\Http\Controllers\Sites;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Forms\SiteForm;
+use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\DataTableCollection;
 use App\Models\Site;
+use App\Models\SiteGroup;
 use App\Narsil;
 use App\Services\FormService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -34,10 +35,12 @@ class SiteController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $collection = new DataTableCollection(Site::query(), Site::TABLE);
+        $categories = new CategoryCollection(SiteGroup::all(), SiteGroup::TABLE, SiteGroup::NAME);
+        $dataTable = new DataTableCollection(Site::query(), Site::TABLE);
 
         return Narsil::render('resources/index', [
-            "collection" => $collection,
+            'categories' => $categories,
+            'dataTable' => $dataTable,
         ]);
     }
 

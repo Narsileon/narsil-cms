@@ -4,20 +4,20 @@ import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
 import DialogCloseButton from "./dialog-close-button";
 
-type DialogContentProps = React.ComponentPropsWithoutRef<
-  typeof DialogPrimitive.Content
-> & {
-  showCloseButton?: boolean;
-};
+type DialogContentProps = React.ComponentProps<typeof DialogPrimitive.Content> &
+  Pick<React.ComponentProps<typeof DialogPortal>, "container"> & {
+    showCloseButton?: boolean;
+  };
 
 function DialogContent({
   className,
   children,
+  container,
   showCloseButton = true,
   ...props
 }: DialogContentProps) {
   return (
-    <DialogPortal data-slot="dialog-portal">
+    <DialogPortal data-slot="dialog-portal" container={container}>
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"

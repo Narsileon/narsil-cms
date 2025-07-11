@@ -1,5 +1,7 @@
+import { ModalRenderer } from "@/components/ui/modal";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
+import { useRef } from "react";
 import AppBreadcrumb from "@/components/app/app-breadcrumb";
 import AppSidebar from "@/components/app/app-sidebar";
 import UserMenu from "@/components/app/user/menu";
@@ -14,6 +16,8 @@ type AuthLayoutProps = {
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
+  const mainRef = useRef<HTMLDivElement>(null);
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -24,7 +28,8 @@ function AuthLayout({ children }: AuthLayoutProps) {
           <AppBreadcrumb className="grow" />
           <UserMenu />
         </header>
-        <main className="min-h-[calc(100vh-3rem)]">
+        <main ref={mainRef} className="relative min-h-[calc(100vh-3rem)]">
+          <ModalRenderer container={mainRef.current} />
           {children}
           <Toaster />
         </main>

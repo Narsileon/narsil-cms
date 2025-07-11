@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { FormProvider, Form, FormSubmit } from "@/components/ui/form";
+import { useModalStore } from "@/stores/modal-store";
 import FormInputBlock from "@/blocks/form-input-block";
 import {
   ResizableHandle,
@@ -14,9 +15,11 @@ import {
 } from "@/components/ui/section";
 import type { LaravelForm } from "@/types/global";
 
-type FormProps = { form: LaravelForm };
+type FormProps = { _modal: boolean; data: any; form: LaravelForm };
 
-function ResourceForm({ form }: FormProps) {
+function ResourceForm({ _modal = false, data, form }: FormProps) {
+  const { closeTopModal } = useModalStore();
+
   return (
     <ResizablePanelGroup autoSaveId="resource-form" direction="horizontal">
       <ResizablePanel collapsible={true} defaultSize={80} minSize={40}>
@@ -30,12 +33,21 @@ function ResourceForm({ form }: FormProps) {
             <FormProvider
               id="login-form"
               initialData={{
-                email: "",
-                password: "",
-                remember: false,
+                _back: _modal,
+                ...data,
               }}
               render={() => (
-                <Form method={form.method} url={form.action}>
+                <Form
+                  method={form.method}
+                  url={form.action}
+                  options={{
+                    onSuccess: () => {
+                      if (_modal) {
+                        closeTopModal();
+                      }
+                    },
+                  }}
+                >
                   {form.inputs.map((input, index) => (
                     <FormInputBlock {...input} key={index} />
                   ))}

@@ -36,13 +36,13 @@ import {
   horizontalListSortingStrategy,
   SortableContext,
 } from "@dnd-kit/sortable";
-import type { LaravelCollection } from "@/types/global";
+import type { DataTableCollection } from "@/types/global";
 
 type DataTableBlockProps = Omit<
   React.ComponentProps<typeof DataTableProvider>,
   "data" | "initialState" | "render"
 > &
-  LaravelCollection & {
+  DataTableCollection & {
     className?: string;
     createHref: string;
     title: string;
@@ -90,7 +90,7 @@ function DataTableBlock({
       render={({ dataTable }) => {
         return (
           <Section className={className}>
-            <SectionHeader className="grid grid-cols-4 items-center justify-between gap-4">
+            <SectionHeader className="grid-cols-4 grid-rows-[2.25rem_2.25rem] items-center justify-between gap-x-4 gap-y-2">
               <SectionTitle className="col-span-full" level="h2">
                 {title}
               </SectionTitle>

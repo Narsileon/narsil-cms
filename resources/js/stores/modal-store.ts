@@ -32,7 +32,7 @@ export const useModalStore = create<ModalStoreType>((set) => ({
   openModal: async (href) => {
     const fullUrl = new URL(href, window.location.origin);
 
-    fullUrl.searchParams.set("modal", "1");
+    fullUrl.searchParams.set("_modal", "1");
 
     const response = await fetch(fullUrl.toString(), {
       headers: {
