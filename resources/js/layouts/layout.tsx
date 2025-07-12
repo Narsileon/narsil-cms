@@ -35,21 +35,23 @@ function Layout({ children }: LayoutProps) {
     translationStore.setTranslations(translations);
   }, [locale, locales, translations]);
 
-  const { error, success } = redirect ?? {};
+  const { error, info, success, warning } = redirect ?? {};
 
   useEffect(() => {
-    if (success) {
-      toast.success(success);
-      router.reload({
-        only: ["redirect"],
-      });
-    } else if (error) {
+    if (error) {
       toast.error(error);
-      router.reload({
-        only: ["redirect"],
-      });
+    } else if (info) {
+      toast.info(info);
+    } else if (success) {
+      toast.success(success);
+    } else if (warning) {
+      toast.warning(warning);
     }
-  }, [success, error]);
+
+    router.reload({
+      only: ["redirect"],
+    });
+  }, [error, info, success, warning]);
 
   return isEmpty(auth) ? (
     <GuestLayout>{children}</GuestLayout>

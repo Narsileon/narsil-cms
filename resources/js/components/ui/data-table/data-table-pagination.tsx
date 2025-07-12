@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import { Tooltip } from "@/components/ui/tooltip";
 import useTranslationsStore from "@/stores/translations-store";
 import {
   ChevronLeft,
@@ -13,11 +14,6 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import type {
   LaravelPaginationLinks,
   LaravelPaginationMeta,
@@ -38,48 +34,40 @@ function DataTablePagination({
   return (
     <Pagination {...props}>
       <PaginationContent>
-        <Tooltip>
-          <TooltipTrigger asChild={true}>
-            <PaginationItem>
-              <PaginationLink asChild={true} isDisabled={links.prev === null}>
-                <Link
-                  aria-label={trans("accessibility.page_first", "First page")}
-                  as="button"
-                  href={links.first}
-                  preserveScroll={true}
-                  preserveState={true}
-                >
-                  <ChevronsLeft />
-                </Link>
-              </PaginationLink>
-            </PaginationItem>
-          </TooltipTrigger>
-          <TooltipContent>
-            {trans("accessibility.page_first", "First page")}
-          </TooltipContent>
+        <Tooltip tooltip={trans("accessibility.page_first", "First page")}>
+          <PaginationItem>
+            <PaginationLink asChild={true} isDisabled={links.prev === null}>
+              <Link
+                aria-label={trans("accessibility.page_first", "First page")}
+                as="button"
+                href={links.first}
+                preserveScroll={true}
+                preserveState={true}
+              >
+                <ChevronsLeft />
+              </Link>
+            </PaginationLink>
+          </PaginationItem>
         </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild={true}>
-            <PaginationItem>
-              <PaginationLink asChild={true} isDisabled={links.prev === null}>
-                <Link
-                  aria-label={trans(
-                    "accessibility.page_previous",
-                    "Previous page",
-                  )}
-                  as="button"
-                  href={links.prev ?? ""}
-                  preserveScroll={true}
-                  preserveState={true}
-                >
-                  <ChevronLeft />
-                </Link>
-              </PaginationLink>
-            </PaginationItem>
-          </TooltipTrigger>
-          <TooltipContent>
-            {trans("accessibility.page_previous", "Previous page")}
-          </TooltipContent>
+        <Tooltip
+          tooltip={trans("accessibility.page_previous", "Previous page")}
+        >
+          <PaginationItem>
+            <PaginationLink asChild={true} isDisabled={links.prev === null}>
+              <Link
+                aria-label={trans(
+                  "accessibility.page_previous",
+                  "Previous page",
+                )}
+                as="button"
+                href={links.prev ?? ""}
+                preserveScroll={true}
+                preserveState={true}
+              >
+                <ChevronLeft />
+              </Link>
+            </PaginationLink>
+          </PaginationItem>
         </Tooltip>
         {metaLinks.slice(1, -1).map((link, index) => {
           return link.url ? (
@@ -99,45 +87,35 @@ function DataTablePagination({
             <PaginationEllipsis key={index} />
           );
         })}
-        <Tooltip>
-          <TooltipTrigger asChild={true}>
-            <PaginationItem>
-              <PaginationLink asChild={true} isDisabled={links.next === null}>
-                <Link
-                  aria-label={trans("accessibility.page_next", "Next page")}
-                  as="button"
-                  href={links.next ?? ""}
-                  preserveScroll={true}
-                  preserveState={true}
-                >
-                  <ChevronRight />
-                </Link>
-              </PaginationLink>
-            </PaginationItem>
-          </TooltipTrigger>
-          <TooltipContent>
-            {trans("accessibility.page_next", "Next page")}
-          </TooltipContent>
+        <Tooltip tooltip={trans("accessibility.page_next", "Next page")}>
+          <PaginationItem>
+            <PaginationLink asChild={true} isDisabled={links.next === null}>
+              <Link
+                aria-label={trans("accessibility.page_next", "Next page")}
+                as="button"
+                href={links.next ?? ""}
+                preserveScroll={true}
+                preserveState={true}
+              >
+                <ChevronRight />
+              </Link>
+            </PaginationLink>
+          </PaginationItem>
         </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild={true}>
-            <PaginationItem>
-              <PaginationLink asChild={true} isDisabled={links.next === null}>
-                <Link
-                  aria-label={trans("accessibility.page_last", "Last page")}
-                  as="button"
-                  href={links.last}
-                  preserveScroll={true}
-                  preserveState={true}
-                >
-                  <ChevronsRight />
-                </Link>
-              </PaginationLink>
-            </PaginationItem>
-          </TooltipTrigger>
-          <TooltipContent>
-            {trans("accessibility.page_last", "Last page")}
-          </TooltipContent>
+        <Tooltip tooltip={trans("accessibility.page_last", "Last page")}>
+          <PaginationItem>
+            <PaginationLink asChild={true} isDisabled={links.next === null}>
+              <Link
+                aria-label={trans("accessibility.page_last", "Last page")}
+                as="button"
+                href={links.last}
+                preserveScroll={true}
+                preserveState={true}
+              >
+                <ChevronsRight />
+              </Link>
+            </PaginationLink>
+          </PaginationItem>
         </Tooltip>
       </PaginationContent>
     </Pagination>

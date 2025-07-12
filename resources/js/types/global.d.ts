@@ -18,8 +18,10 @@ type GlobalProps = {
     };
   };
   redirect: {
-    success: string;
     error: string;
+    info: string;
+    success: string;
+    warning: string;
   };
   shared: {
     locale: string;

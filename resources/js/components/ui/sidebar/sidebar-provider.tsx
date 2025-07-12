@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { SidebarContext } from "./sidebar-context";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SidebarContextProps } from "./sidebar-context";
 
@@ -99,25 +98,23 @@ function SidebarProvider({
 
   return (
     <SidebarContext.Provider value={contextValue}>
-      <TooltipProvider delayDuration={0}>
-        <div
-          data-slot="sidebar-wrapper"
-          className={cn(
-            "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
-            className,
-          )}
-          style={
-            {
-              "--sidebar-width": width,
-              "--sidebar-width-icon": iconWidth,
-              ...style,
-            } as React.CSSProperties
-          }
-          {...props}
-        >
-          {children}
-        </div>
-      </TooltipProvider>
+      <div
+        data-slot="sidebar-wrapper"
+        className={cn(
+          "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
+          className,
+        )}
+        style={
+          {
+            "--sidebar-width": width,
+            "--sidebar-width-icon": iconWidth,
+            ...style,
+          } as React.CSSProperties
+        }
+        {...props}
+      >
+        {children}
+      </div>
     </SidebarContext.Provider>
   );
 }

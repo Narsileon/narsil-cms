@@ -18,28 +18,23 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
   const isSorted = header.column.getIsSorted();
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild={true}>
-        <Button
-          aria-label={trans("accessibility.column_sort", "Sort column")}
-          className="size-6"
-          size="icon"
-          variant="ghost"
-          onClick={header.column.getToggleSortingHandler()}
-          {...props}
-        >
-          {isSorted === "asc" ? (
-            <ChevronUp className="size-4" />
-          ) : isSorted === "desc" ? (
-            <ChevronDown className="size-4" />
-          ) : (
-            <ChevronsUpDown className="size-4" />
-          )}
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        {trans("accessibility.column_sort", "Sort column")}
-      </TooltipContent>
+    <Tooltip tooltip={trans("accessibility.column_sort", "Sort column")}>
+      <Button
+        aria-label={trans("accessibility.column_sort", "Sort column")}
+        className="size-6"
+        size="icon"
+        variant="ghost"
+        onClick={header.column.getToggleSortingHandler()}
+        {...props}
+      >
+        {isSorted === "asc" ? (
+          <ChevronUp className="size-4" />
+        ) : isSorted === "desc" ? (
+          <ChevronDown className="size-4" />
+        ) : (
+          <ChevronsUpDown className="size-4" />
+        )}
+      </Button>
     </Tooltip>
   );
 }

@@ -9,7 +9,7 @@ type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Content> & {
 };
 
 function Tooltip({
-  asChild = false,
+  asChild = true,
   children,
   tooltip,
   ...props

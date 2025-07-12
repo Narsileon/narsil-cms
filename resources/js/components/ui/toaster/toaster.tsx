@@ -13,6 +13,12 @@ function Toaster({ ...props }: ToasterProps) {
     <Sonner
       className="toaster group"
       theme={theme}
+      toastOptions={{
+        classNames: {
+          toast: "group",
+          icon: "group-data-[type=error]:text-red-500 group-data-[type=success]:text-green-500 group-data-[type=warning]:text-amber-500 group-data-[type=info]:text-blue-500",
+        },
+      }}
       style={
         {
           "--normal-bg": "var(--popover)",

@@ -1,13 +1,9 @@
 import { AsteriskIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Label as LabelPrimitive } from "radix-ui";
+import { Tooltip } from "@/components/ui/tooltip";
 import useFormField from "./form-field-context";
 import useTranslationsStore from "@/stores/translations-store";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 type FormLabelProps = React.ComponentProps<typeof LabelPrimitive.Root> & {
   required?: boolean;
@@ -38,16 +34,13 @@ function FormLabel({
     >
       {children ?? trans(`validation.attributes.${name}`, name)}
       {required && (
-        <Tooltip>
-          <TooltipTrigger asChild={true}>
-            <AsteriskIcon
-              className="text-destructive size-3"
-              aria-hidden="true"
-            />
-          </TooltipTrigger>
-          <TooltipContent>
-            {trans("accessibility.required", "This field is required.")}
-          </TooltipContent>
+        <Tooltip
+          tooltip={trans("accessibility.required", "This field is required.")}
+        >
+          <AsteriskIcon
+            className="text-destructive size-3"
+            aria-hidden="true"
+          />
         </Tooltip>
       )}
     </LabelPrimitive.Label>
