@@ -7,7 +7,7 @@ function SidebarHeader({ className, ...props }: SidebarHeaderProps) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn("grid items-center gap-3 px-3", className)}
+      className={cn("grid items-center gap-2 px-2", className)}
       {...props}
     />
   );

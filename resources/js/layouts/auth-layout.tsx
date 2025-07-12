@@ -10,6 +10,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { useMaxLg } from "@/hooks/use-breakpoints";
 
 type AuthLayoutProps = {
   children: React.ReactNode;
@@ -18,13 +19,20 @@ type AuthLayoutProps = {
 function AuthLayout({ children }: AuthLayoutProps) {
   const mainRef = useRef<HTMLDivElement>(null);
 
+  const isMobile = useMaxLg();
+
   return (
-    <SidebarProvider>
+    <SidebarProvider isMobile={isMobile}>
       <AppSidebar />
       <SidebarInset>
         <header className="bg-background sticky top-0 flex h-12 items-center gap-3 border-b px-3">
-          <SidebarTrigger />
-          <Separator orientation="vertical" />
+          {isMobile ? (
+            <>
+              <SidebarTrigger />
+              <Separator orientation="vertical" />
+            </>
+          ) : null}
+
           <AppBreadcrumb className="grow" />
           <UserMenu />
         </header>

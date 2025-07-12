@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import { SidebarContext } from "./sidebar-context";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useMaxLg } from "@/hooks/use-breakpoints";
 import type { SidebarContextProps } from "./sidebar-context";
 
 type SidebarProviderProps = React.ComponentProps<"div"> & {
@@ -10,6 +9,7 @@ type SidebarProviderProps = React.ComponentProps<"div"> & {
   cookieName?: string;
   defaultOpen?: boolean;
   iconWidth?: string;
+  isMobile: boolean;
   keyboardShortcut?: string;
   mobileWidth?: string;
   open?: boolean;
@@ -24,6 +24,7 @@ function SidebarProvider({
   cookieName = "sidebar_state",
   defaultOpen = true,
   iconWidth = "3rem",
+  isMobile,
   keyboardShortcut = "b",
   mobileWidth = "18rem",
   onOpenChange: setOpenProp,
@@ -32,8 +33,6 @@ function SidebarProvider({
   width = "14rem",
   ...props
 }: SidebarProviderProps) {
-  const isMobile = useMaxLg();
-
   const [_open, _setOpen] = useState(defaultOpen);
   const [openMobile, setOpenMobile] = useState(false);
 

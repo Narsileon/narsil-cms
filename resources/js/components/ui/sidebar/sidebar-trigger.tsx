@@ -1,14 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { PanelLeftIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
+import { Tooltip } from "@/components/ui/tooltip";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import useSidebar from "./sidebar-context";
 import useTranslationsStore from "@/stores/translations-store";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};
 
@@ -18,30 +14,25 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
   const { toggleSidebar } = useSidebar();
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild={true}>
-        <Button
-          data-slot="sidebar-trigger"
-          data-sidebar="trigger"
-          className={cn("size-8", className)}
-          onClick={(e) => {
-            onClick?.(e);
+    <Tooltip tooltip={trans("accessibility.toggle_sidebar", "Toggle sidebar")}>
+      <Button
+        data-slot="sidebar-trigger"
+        data-sidebar="trigger"
+        className={cn("size-8", className)}
+        onClick={(e) => {
+          onClick?.(e);
 
-            toggleSidebar();
-          }}
-          size="icon"
-          variant="ghost"
-          {...props}
-        >
-          <PanelLeftIcon className="size-5" />
-          <VisuallyHidden>
-            {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
-          </VisuallyHidden>
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
-      </TooltipContent>
+          toggleSidebar();
+        }}
+        size="icon"
+        variant="ghost"
+        {...props}
+      >
+        <MenuIcon className="size-5" />
+        <VisuallyHidden>
+          {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
+        </VisuallyHidden>
+      </Button>
     </Tooltip>
   );
 }

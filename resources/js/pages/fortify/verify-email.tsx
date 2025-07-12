@@ -25,7 +25,7 @@ function VerifyEmail({ status }: VerifyEmailProps) {
   useEffect(() => {
     if (status && !hasStatus.current) {
       toast.success(
-        trans("email.sent", "We have emailed your verification link."),
+        trans("verify-email.sent", "We have emailed your verification link."),
       );
 
       hasStatus.current = true;
@@ -47,13 +47,13 @@ function VerifyEmail({ status }: VerifyEmailProps) {
               <CardContent className="grid gap-4">
                 <p>
                   {trans(
-                    "email.instruction",
+                    "verify-email.instruction",
                     "Please verify your email address by clicking on the link we just emailed to you.",
                   )}
                 </p>
                 <p>
                   {trans(
-                    "email.prompt",
+                    "verify-email.prompt",
                     "If you didn't receive the email, we will gladly send you another.",
                   )}
                 </p>

@@ -1,12 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
 import { ModalLink } from "@/components/ui/modal";
-import {
-  DeleteIcon,
-  EditIcon,
-  MoreHorizontalIcon,
-  PlusIcon,
-} from "lucide-react";
+import { Tooltip } from "@/components/ui/tooltip";
 import useTranslationsStore from "@/stores/translations-store";
 import {
   DropdownMenu,
@@ -22,12 +17,13 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
-import type { CategoriesCollection } from "@/types/global";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  DeleteIcon,
+  EditIcon,
+  MoreHorizontalIcon,
+  PlusIcon,
+} from "lucide-react";
+import type { CategoriesCollection } from "@/types/global";
 
 type CategoriesBlockProps = React.ComponentProps<typeof Section> &
   CategoriesCollection & {};
@@ -39,15 +35,12 @@ function CategoriesBlock({ data, meta, ...props }: CategoriesBlockProps) {
     <Section {...props}>
       <SectionHeader className="flex items-center justify-between gap-4">
         <SectionTitle level="h2">{trans("ui.groups", "Groups")}</SectionTitle>
-        <Tooltip>
-          <TooltipTrigger asChild={true}>
-            <Button asChild={true} size="icon">
-              <ModalLink href={meta.create_href}>
-                <PlusIcon />
-              </ModalLink>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>{trans("ui.create", "Create")}</TooltipContent>
+        <Tooltip tooltip={trans("ui.create", "Create")}>
+          <Button asChild={true} size="icon">
+            <ModalLink href={meta.create_href}>
+              <PlusIcon />
+            </ModalLink>
+          </Button>
         </Tooltip>
       </SectionHeader>
       <SectionContent>

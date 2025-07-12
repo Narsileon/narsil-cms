@@ -3,10 +3,12 @@
 return [
     'close_dialog'     => 'Close dialog',
     'close_sheet'      => 'Close sheet',
+    'close_sidebar'    => 'Close sidebar',
     'column_move'      => 'Move column',
     'column_sort'      => 'Sort column',
     'more_links'       => 'More links',
     'more_pages'       => 'More pages',
+    'open_sidebar'     => 'Open sidebar',
     'page_first'       => 'First page',
     'page_last'        => 'Last page',
     'page_next'        => 'Next page',

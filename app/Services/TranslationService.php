@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Session;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TranslationService
+abstract class TranslationService
 {
     #region PUBLIC METHODS
 

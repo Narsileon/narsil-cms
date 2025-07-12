@@ -46,7 +46,10 @@ type DataTableCollection<T = any> = {
   columnVisibility: VisibilityState;
   data: T[];
   links: LaravelPaginationLinks;
-  meta: LaravelPaginationMeta;
+  meta: LaravelPaginationMeta & {
+    routes: RouteNames;
+    title: string;
+  };
 };
 
 type LaravelForm = {
@@ -95,6 +98,16 @@ type NavigationOption = {
   icon: React.ComponentProps<typeof DynamicIcon>["name"];
   label: string;
   children?: NavigationOption[];
+};
+
+type RouteNames = {
+  create?: string;
+  destroy?: string;
+  edit?: string;
+  index?: string;
+  show?: string;
+  store?: string;
+  update?: string;
 };
 
 type SelectOption = {

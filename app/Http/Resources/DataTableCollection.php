@@ -4,11 +4,13 @@ namespace App\Http\Resources;
 
 #region USE
 
+use App\Services\RouteService;
 use App\Services\TanStackTableService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use JsonSerializable;
 
 #endregion
@@ -98,7 +100,15 @@ class DataTableCollection extends ResourceCollection
      */
     public function with($request): array
     {
-        return TanStackTableService::getColumns($this->table);
+        return array_merge(
+            TanStackTableService::getColumns($this->table),
+            [
+                'meta' => [
+                    'routes' => RouteService::getRouteNames($this->table),
+                    'title' => trans('ui.' . $this->table),
+                ],
+            ]
+        );
     }
 
     #endregion
