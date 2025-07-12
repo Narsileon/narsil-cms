@@ -96,16 +96,44 @@ class DataTableCollection extends ResourceCollection
     }
 
     /**
+     *
+
      * {@inheritdoc}
      */
     public function with($request): array
     {
+        $from = $this->resource->firstItem();
+        $to = $this->resource->lastItem();
+        $total = $this->resource->total();
+
+        $results = $total === 0 ? trans('pagination.empty') : trans('pagination.results', [
+            'from' => $from,
+            'to' => $to,
+            'total' => $total,
+        ]);
+
+        $translations = [
+            'columns'         => trans('table.columns'),
+            'first_page'      => trans('accessibility.page_first'),
+            'last_page'       => trans('accessibility.page_last'),
+            'more_pages'      => trans('accessibility.more_pages'),
+            'move_column'     => trans('accessibility.column_move'),
+            'next_page'       => trans('accessibility.page_next'),
+            'pagination'      => trans('pagination.pagination'),
+            'previous_page'   => trans('accessibility.page_previous'),
+            'results'         => $results,
+            'sort_column'     => trans('accessibility.column_sort'),
+            'title'           => trans('ui.' . $this->table),
+            'toggle_settings' => trans('accessibility.toggle_table_settings'),
+        ];
+
         return array_merge(
             TanStackTableService::getColumns($this->table),
             [
+                'translations' => $translations,
                 'meta' => [
-                    'routes' => RouteService::getRouteNames($this->table),
-                    'title' => trans('ui.' . $this->table),
+                    'id'           => Str::slug($this->table),
+                    'routes'       => RouteService::getRouteNames($this->table),
                 ],
             ]
         );

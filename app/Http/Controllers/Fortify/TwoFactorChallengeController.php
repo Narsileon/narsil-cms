@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Fortify;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Services\FormService;
+use App\Interfaces\Forms\ITwoFactorChallengeForm;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -17,6 +17,29 @@ use Inertia\Response;
  */
 class TwoFactorChallengeController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param ITwoFactorChallengeForm $form
+     *
+     * @return void
+     */
+    public function __construct(ITwoFactorChallengeForm $form)
+    {
+        $this->form = $form;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var ITwoFactorChallengeForm
+     */
+    protected readonly ITwoFactorChallengeForm $form;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -24,7 +47,7 @@ class TwoFactorChallengeController
      */
     public function __invoke(): Response
     {
-        $form = (FormService::getForm('confirm-password'))::get(
+        $form = $this->form::get(
             action: route('two-factor.login'),
             method: MethodEnum::POST,
             submit: trans('ui.confirm'),

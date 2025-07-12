@@ -33,12 +33,17 @@ abstract class AbstractForm
     ): array
     {
         return [
-            'action' => $action,
-            'method' => $method->value,
-            'submit' => $submit,
-            'id' => static::id(),
-            'inputs' => static::inputs(),
-            'options' => static::options(),
+            'action'       => $action,
+            'method'       => $method->value,
+            'id'           => static::id(),
+            'inputs'       => static::inputs(),
+            'options'      => static::options(),
+            'translations' => [
+                'back'     => trans('ui.back'),
+                'empty'    => trans('pagination.empty'),
+                'required' => trans('accessibility.required'),
+                'submit'   => $submit,
+            ],
         ];
     }
 

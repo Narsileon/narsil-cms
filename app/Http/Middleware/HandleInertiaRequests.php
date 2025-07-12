@@ -5,11 +5,12 @@ namespace App\Http\Middleware;
 #region USE
 
 use App\Models\User;
-use App\Services\TranslationService;
+use App\Services\LangService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Inertia\Middleware;
 
 #endregion
@@ -54,18 +55,18 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $locale = TranslationService::getLocale();
+        $locale = LangService::getLocale();
 
         return [
             ...parent::share($request),
 
             'auth' => $this->getAuth(),
-            'config' => $this->getConfig(),
+            'breadcrumb' => $this->getBreadcrumb(),
             'redirect' => $this->getRedirect(),
+            'sidebar' => $this->getSidebar(),
             'shared' => [
                 'locale'       => $locale,
                 'locales'      => Config::get('narsil.locales', []),
-                'translations' => TranslationService::getTranslations($locale),
             ],
         ];
     }
@@ -97,13 +98,25 @@ class HandleInertiaRequests extends Middleware
     /**
      * @return array
      */
-    protected function getConfig(): array
+    protected function getBreadcrumb(): array
     {
-        return [
-            'sidebar' => Config::get('narsil.sidebar', [
-                'content' => []
-            ]),
-        ];
+        $segments = request()->segments();
+
+        $breadcrumbs = [];
+
+        $path = '';
+
+        foreach ($segments as $segment)
+        {
+            $path .= '/' . $segment;
+
+            $breadcrumbs[] = [
+                'label' => trans('ui.' . Str::snake($segment)),
+                'href'  => $path,
+            ];
+        }
+
+        return $breadcrumbs;
     }
 
     /**
@@ -115,6 +128,21 @@ class HandleInertiaRequests extends Middleware
             'error' => Session::get('error'),
             'success' => Session::get('success')
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getSidebar(): array
+    {
+        return array_merge(Config::get('narsil.sidebar', [
+            'content' => []
+        ]), [
+            'translations' => [
+                'open' => trans('accessibility.open_sidebar'),
+                'close' => trans('accessibility.close_sidebar'),
+            ],
+        ]);
     }
 
     #endregion

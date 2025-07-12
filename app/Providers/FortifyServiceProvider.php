@@ -38,6 +38,7 @@ use Laravel\Fortify\Fortify;
  */
 class FortifyServiceProvider extends ServiceProvider
 {
+
     #region PUBLIC METHODS
 
     /**
@@ -106,13 +107,34 @@ class FortifyServiceProvider extends ServiceProvider
      */
     protected function bootViews(): void
     {
-        Fortify::confirmPasswordView(new ConfirmPasswordController());
-        Fortify::loginView(new LoginController());
-        Fortify::registerView(new RegisterController());
-        Fortify::requestPasswordResetLinkView(new ForgotPasswordController());
-        Fortify::resetPasswordView(new ResetPasswordController());
-        Fortify::twoFactorChallengeView(new TwoFactorChallengeController());
-        Fortify::verifyEmailView(new VerifyEmailController());
+        Fortify::confirmPasswordView(function ()
+        {
+            return app(ConfirmPasswordController::class)->__invoke(request());
+        });
+        Fortify::loginView(function ()
+        {
+            return app(LoginController::class)->__invoke(request());
+        });
+        Fortify::registerView(function ()
+        {
+            return app(RegisterController::class)->__invoke(request());
+        });
+        Fortify::requestPasswordResetLinkView(function ()
+        {
+            return app(ForgotPasswordController::class)->__invoke(request());
+        });
+        Fortify::resetPasswordView(function ()
+        {
+            return app(ResetPasswordController::class)->__invoke(request());
+        });
+        Fortify::twoFactorChallengeView(function ()
+        {
+            return app(TwoFactorChallengeController::class)->__invoke(request());
+        });
+        Fortify::verifyEmailView(function ()
+        {
+            return app(VerifyEmailController::class)->__invoke(request());
+        });
     }
 
     /**

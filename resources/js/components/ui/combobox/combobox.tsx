@@ -19,11 +19,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import useTranslationsStore from "@/stores/translations-store";
 
 type ComboboxProps = {
+  emptyLabel?: string;
   labelKey?: string;
   options: SelectOption[] | string[];
+  placeholder?: string;
   value: string | number;
   valueKey?: string;
   setValue: (value: number | string) => void;
@@ -48,14 +49,14 @@ function getSelectOptionValue(
 }
 
 function Combobox({
+  emptyLabel,
   labelKey = "label",
+  placeholder,
   value,
   valueKey = "value",
   options,
   setValue,
 }: ComboboxProps) {
-  const { trans } = useTranslationsStore();
-
   const [open, setOpen] = useState(false);
 
   const option = options.find((option) => {
@@ -94,19 +95,15 @@ function Combobox({
         >
           {option
             ? getSelectOptionLabel(option, labelKey)
-            : trans("placeholders.search", "Search...")}
+            : (placeholder ?? "Search...")}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command filter={filter}>
-          <CommandInput
-            placeholder={trans("placeholders.search", "Search...")}
-          />
+          <CommandInput placeholder={placeholder ?? "Search..."} />
           <CommandList>
-            <CommandEmpty>
-              {trans("pagination.empty", "No results.")}
-            </CommandEmpty>
+            <CommandEmpty>{emptyLabel ?? "No results found."}</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
                 const optionLabel = getSelectOptionLabel(option, labelKey);

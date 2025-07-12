@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Fortify;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Services\FormService;
+use App\Interfaces\Forms\IConfirmPasswordForm;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -17,6 +17,29 @@ use Inertia\Response;
  */
 class ConfirmPasswordController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param IConfirmPasswordForm $form
+     *
+     * @return void
+     */
+    public function __construct(IConfirmPasswordForm $form)
+    {
+        $this->form = $form;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var IConfirmPasswordForm
+     */
+    protected readonly IConfirmPasswordForm $form;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -24,7 +47,7 @@ class ConfirmPasswordController
      */
     public function __invoke(): Response
     {
-        $form = (FormService::getForm('confirm-password'))::get(
+        $form = $this->form::get(
             action: route('password.confirm'),
             method: MethodEnum::POST,
             submit: trans('ui.confirm'),

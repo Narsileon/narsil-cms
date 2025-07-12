@@ -6,13 +6,12 @@ namespace App\Http\Controllers\Sites;
 
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
-use App\Http\Forms\SiteForm;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\DataTableCollection;
+use App\Interfaces\Forms\ISiteForm;
 use App\Models\Site;
 use App\Models\SiteGroup;
 use App\Narsil;
-use App\Services\FormService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,6 +25,29 @@ use Inertia\Response;
  */
 class SiteController extends AbstractModelController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param ISiteForm $form
+     *
+     * @return void
+     */
+    public function __construct(ISiteForm $form)
+    {
+        $this->form = $form;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var ISiteForm
+     */
+    protected readonly ISiteForm $form;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -51,7 +73,7 @@ class SiteController extends AbstractModelController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = (FormService::getForm(Site::TABLE))::get(
+        $form = $this->form::get(
             action: route('sites.store'),
             method: MethodEnum::POST,
             submit: trans('ui.create'),
@@ -84,7 +106,7 @@ class SiteController extends AbstractModelController
      */
     public function edit(Request $request, Site $site): JsonResponse|Response
     {
-        $form = (FormService::getForm(Site::TABLE))::get(
+        $form = $this->form::get(
             action: route('sites.update', $site->{Site::ID}),
             method: MethodEnum::PATCH,
             submit: trans('ui.update'),

@@ -1,12 +1,5 @@
 import { Link } from "@inertiajs/react";
 import { Tooltip } from "@/components/ui/tooltip";
-import useTranslationsStore from "@/stores/translations-store";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-} from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -14,31 +7,45 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 import type {
   LaravelPaginationLinks,
   LaravelPaginationMeta,
 } from "@/types/global";
 
 type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
+  ellipsisLabel?: string;
+  firstPageLabel?: string;
+  lastPageLabel?: string;
   links: LaravelPaginationLinks;
   metaLinks: LaravelPaginationMeta["links"];
+  nextPageLabel?: string;
+  previousPageLabel?: string;
 };
 
 function DataTablePagination({
+  ellipsisLabel,
+  firstPageLabel,
+  lastPageLabel,
   links,
   metaLinks,
+  nextPageLabel,
+  previousPageLabel,
   ...props
 }: DataTablePaginationProps) {
-  const { trans } = useTranslationsStore();
-
   return (
     <Pagination {...props}>
       <PaginationContent>
-        <Tooltip tooltip={trans("accessibility.page_first", "First page")}>
+        <Tooltip tooltip={firstPageLabel ?? "First page"}>
           <PaginationItem>
             <PaginationLink asChild={true} isDisabled={links.prev === null}>
               <Link
-                aria-label={trans("accessibility.page_first", "First page")}
+                aria-label={firstPageLabel ?? "First page"}
                 as="button"
                 href={links.first}
                 preserveScroll={true}
@@ -49,16 +56,11 @@ function DataTablePagination({
             </PaginationLink>
           </PaginationItem>
         </Tooltip>
-        <Tooltip
-          tooltip={trans("accessibility.page_previous", "Previous page")}
-        >
+        <Tooltip tooltip={previousPageLabel ?? "Previous page"}>
           <PaginationItem>
             <PaginationLink asChild={true} isDisabled={links.prev === null}>
               <Link
-                aria-label={trans(
-                  "accessibility.page_previous",
-                  "Previous page",
-                )}
+                aria-label={previousPageLabel ?? "Previous page"}
                 as="button"
                 href={links.prev ?? ""}
                 preserveScroll={true}
@@ -84,14 +86,14 @@ function DataTablePagination({
               </PaginationLink>
             </PaginationItem>
           ) : (
-            <PaginationEllipsis key={index} />
+            <PaginationEllipsis ellipsisLabel={ellipsisLabel} key={index} />
           );
         })}
-        <Tooltip tooltip={trans("accessibility.page_next", "Next page")}>
+        <Tooltip tooltip={nextPageLabel ?? "Next page"}>
           <PaginationItem>
             <PaginationLink asChild={true} isDisabled={links.next === null}>
               <Link
-                aria-label={trans("accessibility.page_next", "Next page")}
+                aria-label={nextPageLabel ?? "Next page"}
                 as="button"
                 href={links.next ?? ""}
                 preserveScroll={true}
@@ -102,11 +104,11 @@ function DataTablePagination({
             </PaginationLink>
           </PaginationItem>
         </Tooltip>
-        <Tooltip tooltip={trans("accessibility.page_last", "Last page")}>
+        <Tooltip tooltip={lastPageLabel ?? "Last page"}>
           <PaginationItem>
             <PaginationLink asChild={true} isDisabled={links.next === null}>
               <Link
-                aria-label={trans("accessibility.page_last", "Last page")}
+                aria-label={lastPageLabel ?? "Last page"}
                 as="button"
                 href={links.last}
                 preserveScroll={true}

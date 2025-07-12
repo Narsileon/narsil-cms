@@ -3,20 +3,20 @@ import { cn } from "@/lib/utils";
 import { Label as LabelPrimitive } from "radix-ui";
 import { Tooltip } from "@/components/ui/tooltip";
 import useFormField from "./form-field-context";
-import useTranslationsStore from "@/stores/translations-store";
 
 type FormLabelProps = React.ComponentProps<typeof LabelPrimitive.Root> & {
   required?: boolean;
+  requiredLabel?: string;
 };
 
 function FormLabel({
   children,
   className,
   required = false,
+  requiredLabel,
   ...props
 }: FormLabelProps) {
   const { error, name } = useFormField();
-  const { trans } = useTranslationsStore();
 
   return (
     <LabelPrimitive.Label
@@ -32,11 +32,9 @@ function FormLabel({
       htmlFor={name}
       {...props}
     >
-      {children ?? trans(`validation.attributes.${name}`, name)}
+      {children}
       {required && (
-        <Tooltip
-          tooltip={trans("accessibility.required", "This field is required.")}
-        >
+        <Tooltip tooltip={requiredLabel ?? "This field is required."}>
           <AsteriskIcon
             className="text-destructive size-3"
             aria-hidden="true"

@@ -1,7 +1,5 @@
-import { Fragment, useMemo } from "react";
-import { Link } from "@inertiajs/react";
-import { replace } from "lodash";
-import useTranslationsStore from "@/stores/translations-store";
+import { Fragment } from "react";
+import { Link, usePage } from "@inertiajs/react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,47 +8,28 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import type { GlobalProps } from "@/types/global";
 
 type AppBreadcrumbProps = React.ComponentProps<typeof Breadcrumb> & {};
 
 function AppBreadcrumb({ ...props }: AppBreadcrumbProps) {
-  const { trans } = useTranslationsStore();
-
-  const pathname = window.location.pathname;
-
-  const items = useMemo(() => {
-    const parts = pathname.split("/").filter(Boolean);
-
-    let path = "";
-
-    return parts.map((part) => {
-      path += `/${part}`;
-
-      return {
-        slug: replace(part, "-", "_"),
-        path: path,
-      };
-    });
-  }, [pathname]);
+  const { breadcrumb } = usePage<GlobalProps>().props;
 
   return (
     <Breadcrumb {...props}>
       <BreadcrumbList>
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
+        {breadcrumb.map((item, index) => {
+          const isLast = index === breadcrumb.length - 1;
+
           return isLast ? (
             <BreadcrumbItem key={index}>
-              <BreadcrumbPage>
-                {trans(`ui.${item.slug}`, item.slug)}
-              </BreadcrumbPage>
+              <BreadcrumbPage>{item.label}</BreadcrumbPage>
             </BreadcrumbItem>
           ) : (
             <Fragment key={index}>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={item.path}>
-                    {trans(`ui.${item.slug}`, item.slug)}
-                  </Link>
+                  <Link href={item.href}>{item.label}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />

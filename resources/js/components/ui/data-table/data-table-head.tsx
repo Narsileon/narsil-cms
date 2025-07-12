@@ -7,9 +7,16 @@ import DataTableHeadSort from "./data-table-head-sort";
 
 type DataTableHeadProps = React.ComponentProps<typeof TableHead> & {
   header: Header<any, any>;
+  moveLabel?: string;
+  sortLabel?: string;
 };
 
-function DataTableHead({ header, ...props }: DataTableHeadProps) {
+function DataTableHead({
+  header,
+  moveLabel,
+  sortLabel,
+  ...props
+}: DataTableHeadProps) {
   const { attributes, isDragging, listeners, transform, setNodeRef } =
     useSortable({
       id: header.column.id,
@@ -33,11 +40,15 @@ function DataTableHead({ header, ...props }: DataTableHeadProps) {
       {...props}
     >
       <div className="flex items-center justify-start">
-        <DataTableHeadMove attributes={attributes} listeners={listeners}>
+        <DataTableHeadMove
+          attributes={attributes}
+          listeners={listeners}
+          moveLabel={moveLabel}
+        >
           {flexRender(header.column.columnDef.header, header.getContext())}
         </DataTableHeadMove>
         {header.column.getCanSort() ? (
-          <DataTableHeadSort header={header} />
+          <DataTableHeadSort header={header} sortLabel={sortLabel} />
         ) : null}
       </div>
     </TableHead>

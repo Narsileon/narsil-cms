@@ -6,6 +6,7 @@ namespace App\Http\Forms;
 
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
+use App\Interfaces\Forms\ILoginForm;
 use App\Models\User;
 use App\Structures\Input;
 
@@ -15,7 +16,7 @@ use App\Structures\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LoginForm extends AbstractForm
+class LoginForm extends AbstractForm implements ILoginForm
 {
     #region PROTECTED METHODS
 

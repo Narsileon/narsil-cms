@@ -11,16 +11,22 @@ import {
 } from "@/components/ui/form";
 import type { LaravelFormInput } from "@/types/global";
 
-type FormBlockProps = LaravelFormInput & {};
+type FormBlockProps = LaravelFormInput & {
+  emptyLabel?: string;
+  requiredLabel?: string;
+};
 
 function FormInputBlock({
   autoComplete,
   column = false,
   description,
+  emptyLabel,
   id,
   label,
+  placeholder,
   options = [],
   required = false,
+  requiredLabel,
   type = "text",
 }: FormBlockProps) {
   return (
@@ -33,7 +39,9 @@ function FormInputBlock({
             type === "checkbox" && "flex-row-reverse justify-end",
           )}
         >
-          <FormLabel required={required}>{label}</FormLabel>
+          <FormLabel required={required} requiredLabel={requiredLabel}>
+            {label}
+          </FormLabel>
           {type === "checkbox" ? (
             <Checkbox
               checked={value}
@@ -43,6 +51,8 @@ function FormInputBlock({
           ) : type === "combobox" ? (
             <Combobox
               options={options}
+              emptyLabel={emptyLabel}
+              placeholder={placeholder}
               value={value}
               setValue={(value) => onChange(value)}
               {...field}
@@ -50,8 +60,9 @@ function FormInputBlock({
           ) : (
             <Input
               autoComplete={autoComplete}
-              value={value}
+              placeholder={placeholder}
               type={type}
+              value={value}
               onChange={(e) => onChange(e.target.value)}
               {...field}
             />

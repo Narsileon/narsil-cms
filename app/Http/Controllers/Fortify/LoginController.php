@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Fortify;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Http\Forms\LoginForm;
-use App\Services\FormService;
+use App\Interfaces\Forms\ILoginForm;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,6 +17,29 @@ use Inertia\Response;
  */
 class LoginController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param ILoginForm $form
+     *
+     * @return void
+     */
+    public function __construct(ILoginForm $form)
+    {
+        $this->form = $form;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var ILoginForm
+     */
+    protected readonly ILoginForm $form;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -25,7 +47,7 @@ class LoginController
      */
     public function __invoke(): Response
     {
-        $form = (FormService::getForm('login'))::get(
+        $form = $this->form::get(
             action: route('login'),
             method: MethodEnum::POST,
             submit: trans('ui.log_in'),

@@ -5,6 +5,7 @@ namespace App\Http\Forms;
 #region USE
 
 use App\Enums\Forms\AutoCompleteEnum;
+use App\Interfaces\Forms\ITwoFactorChallengeForm;
 use App\Structures\Input;
 
 #endregion
@@ -13,7 +14,7 @@ use App\Structures\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TwoFactorChallengeForm extends AbstractForm
+class TwoFactorChallengeForm extends AbstractForm implements ITwoFactorChallengeForm
 {
     #region PROTECTED METHODS
 

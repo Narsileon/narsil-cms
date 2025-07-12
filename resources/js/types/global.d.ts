@@ -12,10 +12,14 @@ type GlobalProps = {
     last_name: string | undefined | null;
     two_factor_confirmed_at: string | null;
   };
-  config: {
-    sidebar: {
-      content: NavigationOption[];
-    };
+  breadcrumb: {
+    href: string;
+    label: string;
+  }[];
+
+  sidebar: {
+    content: NavigationOption[];
+    translations: Record<string, string>;
   };
   redirect: {
     error: string;
@@ -49,9 +53,11 @@ type DataTableCollection<T = any> = {
   data: T[];
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta & {
+    id: string;
     routes: RouteNames;
     title: string;
   };
+  translations: Record<string, string>;
 };
 
 type LaravelForm = {
@@ -59,7 +65,7 @@ type LaravelForm = {
   id: string;
   inputs: LaravelFormInput[];
   method: string;
-  submit: string;
+  translations: Record<string, string>;
 };
 
 type LaravelFormInput = {
@@ -69,6 +75,7 @@ type LaravelFormInput = {
   id: string;
   label: string;
   options?: SelectOption[];
+  placeholder?: string;
   required?: boolean;
   type?: string;
   value: any;

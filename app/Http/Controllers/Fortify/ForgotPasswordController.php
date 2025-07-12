@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Fortify;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Http\Forms\ForgotPasswordForm;
-use App\Services\FormService;
+use App\Interfaces\Forms\IForgotPasswordForm;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,6 +17,29 @@ use Inertia\Response;
  */
 class ForgotPasswordController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param IForgotPasswordForm $form
+     *
+     * @return void
+     */
+    public function __construct(IForgotPasswordForm $form)
+    {
+        $this->form = $form;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var IForgotPasswordForm
+     */
+    protected readonly IForgotPasswordForm $form;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -25,7 +47,7 @@ class ForgotPasswordController
      */
     public function __invoke(): Response
     {
-        $form = (FormService::getForm('forgot-password'))::get(
+        $form = $this->form::get(
             action: route('password.email'),
             method: MethodEnum::POST,
             submit: trans('ui.send'),

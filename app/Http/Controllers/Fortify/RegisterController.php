@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Fortify;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Http\Forms\RegisterForm;
-use App\Services\FormService;
+use App\Interfaces\Forms\IRegisterForm;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,6 +17,29 @@ use Inertia\Response;
  */
 class RegisterController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param IRegisterForm $form
+     *
+     * @return void
+     */
+    public function __construct(IRegisterForm $form)
+    {
+        $this->form = $form;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var IRegisterForm
+     */
+    protected readonly IRegisterForm $form;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -25,7 +47,7 @@ class RegisterController
      */
     public function __invoke(): Response
     {
-        $form = (FormService::getForm('register'))::get(
+        $form = $this->form::get(
             action: route('register'),
             method: MethodEnum::POST,
             submit: trans('ui.register'),

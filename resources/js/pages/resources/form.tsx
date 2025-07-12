@@ -50,9 +50,14 @@ function ResourceForm({ _modal = false, data, form }: FormProps) {
                   }}
                 >
                   {form.inputs.map((input, index) => (
-                    <FormInputBlock {...input} key={index} />
+                    <FormInputBlock
+                      emptyLabel={form.translations.empty}
+                      requiredLabel={form.translations.required}
+                      {...input}
+                      key={index}
+                    />
                   ))}
-                  <FormSubmit>{form.submit}</FormSubmit>
+                  <FormSubmit>{form.translations.submit}</FormSubmit>
                 </Form>
               )}
             />

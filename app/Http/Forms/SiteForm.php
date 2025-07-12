@@ -5,8 +5,9 @@ namespace App\Http\Forms;
 #region USE
 
 use App\Enums\Forms\TypeEnum;
+use App\Interfaces\Forms\ISiteForm;
 use App\Models\Site;
-use App\Services\TranslationService;
+use App\Services\LangService;
 use App\Structures\Input;
 use Locale;
 use ResourceBundle;
@@ -17,7 +18,7 @@ use ResourceBundle;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteForm extends AbstractForm
+class SiteForm extends AbstractForm implements ISiteForm
 {
     #region PROTECTED METHODS
 
@@ -29,22 +30,22 @@ class SiteForm extends AbstractForm
         $locales = static::getLanguageOptions();
 
         return [
-            (new Input(Site::NAME))
+            (new Input(Site::NAME, ''))
                 ->required(true)
                 ->get(),
-            (new Input(Site::PRIMARY))
+            (new Input(Site::PRIMARY, false))
                 ->type(TypeEnum::CHECKBOX)
                 ->required(true)
                 ->get(),
-            (new Input(Site::HANDLE))
+            (new Input(Site::HANDLE, ''))
                 ->required(true)
                 ->get(),
-            (new Input(Site::LANGUAGE))
+            (new Input(Site::LANGUAGE, ''))
                 ->type(TypeEnum::COMBOBOX)
                 ->options($locales)
                 ->required(true)
                 ->get(),
-            (new Input(Site::GROUP_ID))
+            (new Input(Site::GROUP_ID, ''))
                 ->get(),
         ];
     }
@@ -60,7 +61,7 @@ class SiteForm extends AbstractForm
     {
         $locales = ResourceBundle::getLocales('');
 
-        $currentLocale = TranslationService::getLocale();
+        $currentLocale = LangService::getLocale();
 
         $options = [];
 

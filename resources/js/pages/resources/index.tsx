@@ -8,12 +8,10 @@ import CategoriesBlock from "@/blocks/categories-block";
 import DataTableBlock from "@/blocks/data-table-block";
 import useTranslationsStore from "@/stores/translations-store";
 import {
-  DataTableColumnVisibility,
   DataTableInput,
-  DataTablePageResult,
-  DataTablePageSize,
   DataTablePagination,
   DataTableProvider,
+  DataTableSettings,
 } from "@/components/ui/data-table";
 import {
   ResizableHandle,
@@ -58,7 +56,7 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
 
   return (
     <DataTableProvider
-      id=""
+      id={dataTable.meta.id}
       data={dataTable.data}
       columns={finalColumns}
       initialState={{
@@ -70,30 +68,30 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
           <Section className="h-full p-4">
             <SectionHeader>
               <SectionTitle level="h2" variant="h4">
-                {dataTable.meta.title}
+                {dataTable.translations.title}
               </SectionTitle>
             </SectionHeader>
             <SectionContent className="grow">
               <ResizablePanelGroup
-                autoSaveId={dataTable.meta.title}
+                autoSaveId={dataTable.meta.id}
                 direction="horizontal"
               >
                 <ResizablePanel
+                  className="px-4 py-1"
                   collapsible={true}
                   defaultSize={20}
                   minSize={10}
                 >
                   <CategoriesBlock {...categories} />
                 </ResizablePanel>
-                <ResizableHandle withHandle={true} className="mx-3" />
+                <ResizableHandle withHandle={true} />
                 <ResizablePanel
-                  className="flex flex-col gap-3"
+                  className="flex flex-col gap-3 px-4 py-1"
                   collapsible={true}
                   defaultSize={80}
-                  minSize={40}
+                  minSize={10}
                 >
-                  <div className="flex items-center justify-between gap-3 py-1">
-                    <DataTableColumnVisibility />
+                  <div className="flex items-center justify-between gap-3">
                     <DataTableInput className="grow" />
                     {dataTable.meta.routes.create ? (
                       <Tooltip tooltip={trans("ui.create", "Create")}>
@@ -109,29 +107,34 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                         </Button>
                       </Tooltip>
                     ) : null}
+                    <DataTableSettings
+                      columnsLabel={dataTable.translations.columns}
+                      paginationLabel={dataTable.translations.pagination}
+                      triggerTooltip={dataTable.translations.toggle_settings}
+                    />
                   </div>
-                  <DataTableBlock dataTable={table} />
+                  <DataTableBlock
+                    dataTable={table}
+                    moveLabel={dataTable.translations.move_columns}
+                    sortLabel={dataTable.translations.sort_columns}
+                  />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </SectionContent>
             <SectionFooter className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              <DataTablePageResult
-                className="order-2 sm:order-1"
-                from={dataTable.meta.from}
-                to={dataTable.meta.to}
-                total={dataTable.meta.total}
-              />
+              <span className="order-2 min-w-fit truncate text-sm sm:order-1">
+                {dataTable.translations.results}
+              </span>
               <DataTablePagination
                 className="order-1 col-span-2 sm:order-2"
+                ellipsisLabel={dataTable.translations.more_pages}
+                firstPageLabel={dataTable.translations.first_page}
+                lastPageLabel={dataTable.translations.last_page}
                 links={dataTable.links}
                 metaLinks={dataTable.meta.links}
+                nextPageLabel={dataTable.translations.next_page}
+                previousPageLabel={dataTable.translations.previous_page}
               />
-              <div className="order-3 flex items-center justify-end gap-1">
-                <span className="truncate">
-                  {trans("pagination.per_page", "Per page:")}
-                </span>
-                <DataTablePageSize />
-              </div>
             </SectionFooter>
           </Section>
         );

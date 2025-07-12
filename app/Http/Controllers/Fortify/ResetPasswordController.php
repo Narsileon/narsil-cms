@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Fortify;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Services\FormService;
+use App\Interfaces\Forms\IResetPasswordForm;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -17,6 +17,29 @@ use Inertia\Response;
  */
 class ResetPasswordController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param IResetPasswordForm $form
+     *
+     * @return void
+     */
+    public function __construct(IResetPasswordForm $form)
+    {
+        $this->form = $form;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var IResetPasswordForm
+     */
+    protected readonly IResetPasswordForm $form;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -30,7 +53,7 @@ class ResetPasswordController
             'token' => $token,
         ];
 
-        $form = (FormService::getForm('reset-password'))::get(
+        $form = $this->form::get(
             action: route('password.update'),
             method: MethodEnum::POST,
             submit: trans('ui.reset'),

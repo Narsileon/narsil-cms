@@ -24,7 +24,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 
-  const sidebar = usePage<GlobalProps>().props.config.sidebar ?? {};
+  const { content, translations } = usePage<GlobalProps>().props.sidebar ?? {};
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -39,7 +39,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       <SidebarContent className="gap-0">
         <SidebarGroup>
           <SidebarMenu>
-            {sidebar.content.map((item, index) => (
+            {content.map((item, index) => (
               <SidebarMenuItem key={index}>
                 <SidebarMenuButton
                   asChild={true}
@@ -62,13 +62,13 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       </SidebarContent>
       <SidebarFooter className="border-t">
         <SidebarMenuButton
-          tooltip={trans("accessibility.open_sidebar", "Open sidebar")}
+          tooltip={translations.open ?? "Open sidebar"}
           onClick={toggleSidebar}
         >
           {open ? (
             <>
               <ChevronLeftIcon />
-              {trans("accessibility.close_sidebar", "Close sidebar")}
+              {translations.close ?? "Close sidebar"}
             </>
           ) : (
             <ChevronRightIcon />

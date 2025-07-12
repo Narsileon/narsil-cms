@@ -208,6 +208,11 @@ class Input
     {
         $this->props[self::TYPE] = $type->value;
 
+        if ($type === TypeEnum::COMBOBOX)
+        {
+            $this->placeholder(trans("placeholders.search"));
+        }
+
         return $this;
     }
 
