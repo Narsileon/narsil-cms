@@ -26,6 +26,10 @@ class ResetPasswordController
     {
         $token = request()->route('token');
 
+        $data = [
+            'token' => $token,
+        ];
+
         $form = (FormService::getForm('reset-password'))::get(
             action: route('password.update'),
             method: MethodEnum::POST,
@@ -36,9 +40,9 @@ class ResetPasswordController
             'title' => trans('ui.reset_password'),
         ];
 
-        return Inertia::render('fortify/reset-password', [
+        return Inertia::render('fortify/form', [
+            'data'         => $data,
             'form'         => $form,
-            'token'        => $token,
             'translations' => $translations,
         ]);
     }

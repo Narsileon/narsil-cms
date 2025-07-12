@@ -36,7 +36,7 @@ class SiteGroupController extends AbstractModelController
         $dataTable = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
 
         return Narsil::render('resources/index', [
-            "dataTable" => $dataTable,
+            'dataTable' => $dataTable,
         ]);
     }
 
@@ -50,7 +50,7 @@ class SiteGroupController extends AbstractModelController
         $form = (FormService::getForm(SiteGroup::TABLE))::get(
             action: route('site-groups.store'),
             method: MethodEnum::POST,
-            submit: trans("ui.create"),
+            submit: trans('ui.create'),
         );
 
         return Narsil::render('resources/form', [
@@ -83,7 +83,7 @@ class SiteGroupController extends AbstractModelController
         $form = (FormService::getForm(SiteGroup::TABLE))::get(
             action: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
             method: MethodEnum::PATCH,
-            submit: trans("ui.update"),
+            submit: trans('ui.update'),
         );
 
         return Narsil::render('resources/form', [

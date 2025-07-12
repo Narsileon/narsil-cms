@@ -39,7 +39,7 @@ function VerifyEmail({ status, translations }: VerifyEmailProps) {
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
-            <Card className="w-[18rem]">
+            <Card>
               <CardContent className="grid gap-4">
                 <p>{translations.instruction}</p>
                 <p>{translations.prompt}</p>

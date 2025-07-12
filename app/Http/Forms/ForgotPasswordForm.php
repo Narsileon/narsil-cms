@@ -28,7 +28,7 @@ class ForgotPasswordForm extends AbstractForm
             (new Input(User::EMAIL, ''))
                 ->type(TypeEnum::EMAIL)
                 ->autoComplete(AutoCompleteEnum::EMAIL)
-                ->description(trans("passwords.instruction"))
+                ->description(trans('passwords.instruction'))
                 ->required(true)
                 ->get(),
         ];

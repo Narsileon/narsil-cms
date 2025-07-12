@@ -54,7 +54,7 @@ class SiteController extends AbstractModelController
         $form = (FormService::getForm(Site::TABLE))::get(
             action: route('sites.store'),
             method: MethodEnum::POST,
-            submit: trans("ui.create"),
+            submit: trans('ui.create'),
         );
 
         return Narsil::render('resources/form', [
@@ -87,7 +87,7 @@ class SiteController extends AbstractModelController
         $form = (FormService::getForm(Site::TABLE))::get(
             action: route('sites.update', $site->{Site::ID}),
             method: MethodEnum::PATCH,
-            submit: trans("ui.update"),
+            submit: trans('ui.update'),
         );
 
         return Narsil::render('resources/form', [

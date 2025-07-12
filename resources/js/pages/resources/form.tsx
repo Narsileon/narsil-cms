@@ -31,8 +31,9 @@ function ResourceForm({ _modal = false, data, form }: FormProps) {
           </SectionHeader>
           <SectionContent>
             <FormProvider
-              id="login-form"
-              initialData={{
+              id={form.id}
+              inputs={form.inputs}
+              initialValues={{
                 _back: _modal,
                 ...data,
               }}

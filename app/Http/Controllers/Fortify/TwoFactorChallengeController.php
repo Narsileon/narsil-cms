@@ -34,7 +34,7 @@ class TwoFactorChallengeController
             'title' => trans('ui.two_factor_authentication'),
         ];
 
-        return Inertia::render('fortify/two-factor-challenge', [
+        return Inertia::render('fortify/form', [
             'form'         => $form,
             'translations' => $translations,
         ]);

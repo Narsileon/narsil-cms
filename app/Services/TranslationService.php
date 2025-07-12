@@ -61,7 +61,7 @@ abstract class TranslationService
 
             $phpTranslations = [];
 
-            $files = Config::get("narsil.translations", []);
+            $files = Config::get('narsil.translations', []);
 
             foreach ($files as $file)
             {

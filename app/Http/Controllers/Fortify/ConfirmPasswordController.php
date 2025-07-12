@@ -34,7 +34,7 @@ class ConfirmPasswordController
             'title' => trans('ui.confirm_password'),
         ];
 
-        return Inertia::render('fortify/confirm-password', [
+        return Inertia::render('fortify/form', [
             'form'         => $form,
             'translations' => $translations,
         ]);

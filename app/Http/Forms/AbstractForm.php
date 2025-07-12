@@ -58,7 +58,7 @@ abstract class AbstractForm
     {
         $name = (new ReflectionClass(static::class))->getShortName();
 
-        return Str::slug($name);
+        return Str::slug(Str::snake($name));
     }
 
     /**

@@ -39,7 +39,7 @@ class ForgotPasswordController
             'title'         => trans('ui.reset_password'),
         ];
 
-        return Inertia::render('fortify/forgot-password', [
+        return Inertia::render('fortify/form', [
             'form'         => $form,
             'status'       => $status,
             'translations' => $translations,

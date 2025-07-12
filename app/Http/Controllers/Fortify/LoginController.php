@@ -38,7 +38,7 @@ class LoginController
             'title'         => trans('ui.connection'),
         ];
 
-        return Inertia::render('fortify/login', [
+        return Inertia::render('fortify/form', [
             'form'         => $form,
             'status'       => $status,
             'translations' => $translations

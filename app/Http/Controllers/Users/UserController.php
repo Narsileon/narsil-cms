@@ -31,7 +31,7 @@ class UserController
             ->paginate(15);
 
         return Inertia::render('users/index', [
-            "users" => $users,
+            'users' => $users,
         ]);
     }
 
