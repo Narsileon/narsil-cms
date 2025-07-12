@@ -25,15 +25,19 @@ class RegisterController
      */
     public function __invoke(): Response
     {
-        $form = FormService::getForm("register", RegisterForm::class);
+        $form = (FormService::getForm("register"))::get(
+            action: route('register'),
+            method: MethodEnum::POST,
+            submit: trans("ui.register"),
+        );
+
+        $translations = [
+            'title' => trans('ui.registration'),
+        ];
 
         return Inertia::render('fortify/register', [
-            'form' => $form::get(
-                action: route('register'),
-                method: MethodEnum::POST,
-                submit: trans("ui.register"),
-                title: trans("ui.registration"),
-            ),
+            'form'         => $form,
+            'translations' => $translations,
         ]);
     }
 

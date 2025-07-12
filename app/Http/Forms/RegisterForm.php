@@ -25,29 +25,29 @@ class RegisterForm extends AbstractForm
     protected static function inputs(): array
     {
         return [
-            (new Input(User::EMAIL))
+            (new Input(User::EMAIL, ''))
                 ->type(TypeEnum::EMAIL)
                 ->autoComplete(AutoCompleteEnum::EMAIL)
                 ->required(true)
                 ->get(),
-            (new Input(User::PASSWORD))
+            (new Input(User::PASSWORD, ''))
                 ->type(TypeEnum::PASSWORD)
                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
                 ->column(true)
                 ->required(true)
                 ->get(),
-            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION))
+            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, ''))
                 ->type(TypeEnum::PASSWORD)
                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
                 ->column(true)
                 ->required(true)
                 ->get(),
-            (new Input(User::FIRST_NAME))
+            (new Input(User::FIRST_NAME, ''))
                 ->autoComplete(AutoCompleteEnum::GIVEN_NAME)
                 ->column(true)
                 ->required(true)
                 ->get(),
-            (new Input(User::LAST_NAME))
+            (new Input(User::LAST_NAME, ''))
                 ->type(TypeEnum::PASSWORD)
                 ->autoComplete(AutoCompleteEnum::FAMILY_NAME)
                 ->column(true)

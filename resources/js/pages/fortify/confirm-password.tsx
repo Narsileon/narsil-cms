@@ -1,68 +1,44 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
+import { Form, FormProvider, FormSubmit } from "@/components/ui/form";
 import { Head } from "@inertiajs/react";
-import { Input } from "@/components/ui/input";
-import { route } from "ziggy-js";
-import useTranslationsStore from "@/stores/translations-store";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  FormProvider,
-  FormSubmit,
-} from "@/components/ui/form";
+import FormInputBlock from "@/blocks/form-input-block";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
+import type { LaravelForm } from "@/types/global";
 
-function ConfirmPassword() {
-  const { trans } = useTranslationsStore();
+type ConfirmPasswordProps = {
+  form: LaravelForm;
+  translations: Record<string, string>;
+};
 
+function ConfirmPassword({ form, translations }: ConfirmPasswordProps) {
   return (
     <>
-      <Head title={trans("ui.confirm_password", "Confirm password")} />
+      <Head title={translations.title} />
       <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {trans("ui.confirm_password", "Confirm password")}
+              {translations.title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
-            <Card className="w-[18rem]">
+            <Card>
               <CardContent>
                 <FormProvider
-                  id="confirm-password-form"
-                  initialData={{
-                    password: "",
-                  }}
+                  id={form.id}
+                  inputs={form.inputs}
                   render={() => (
-                    <Form
-                      className="grid gap-6"
-                      method="post"
-                      url={route("password.confirm")}
-                    >
-                      <FormField
-                        name="password"
-                        render={({ onChange, ...field }) => (
-                          <FormItem>
-                            <FormLabel required={true} />
-                            <Input
-                              autoComplete="one-time-code"
-                              type="password"
-                              onChange={(e) => onChange(e.target.value)}
-                              {...field}
-                            />
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormSubmit>{trans("ui.confirm", "Confirm")}</FormSubmit>
+                    <Form method={form.method} url={form.action}>
+                      {form.inputs.map((input, index) => (
+                        <FormInputBlock {...input} key={index} />
+                      ))}
+                      <FormSubmit>{form.submit}</FormSubmit>
                     </Form>
                   )}
                 />

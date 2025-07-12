@@ -1,90 +1,44 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Head } from "@inertiajs/react";
-import { Input } from "@/components/ui/input";
-import { route } from "ziggy-js";
-import useTranslationsStore from "@/stores/translations-store";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  FormProvider,
-  FormSubmit,
-} from "@/components/ui/form";
+import { Form, FormProvider, FormSubmit } from "@/components/ui/form";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
+import type { LaravelForm } from "@/types/global";
+import FormInputBlock from "@/blocks/form-input-block";
 
-function TwoFactorChallenge() {
-  const { trans } = useTranslationsStore();
+type TwoFactorChallengeProps = {
+  form: LaravelForm;
+  translations: Record<string, string>;
+};
 
+function TwoFactorChallenge({ form, translations }: TwoFactorChallengeProps) {
   return (
     <>
-      <Head
-        title={trans(
-          "ui.two_factor_authentication",
-          "Two-factor authentication",
-        )}
-      />
+      <Head title={translations.title} />
       <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {trans(
-                "ui.two_factor_authentication",
-                "Two-factor authentication",
-              )}
+              {translations.title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
-            <Card className="w-[18rem]">
+            <Card>
               <CardContent>
                 <FormProvider
-                  id="two-factor-challenge-form"
-                  initialData={{
-                    code: "",
-                    recovery_code: "",
-                  }}
+                  id={form.id}
+                  inputs={form.inputs}
                   render={() => (
-                    <Form
-                      className="grid gap-6"
-                      method="post"
-                      url={route("two-factor.login")}
-                    >
-                      <FormField
-                        name="code"
-                        render={({ onChange, ...field }) => (
-                          <FormItem>
-                            <FormLabel required={true} />
-                            <Input
-                              autoComplete="one-time-code"
-                              onChange={(e) => onChange(e.target.value)}
-                              {...field}
-                            />
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        name="recovery_code"
-                        render={({ onChange, ...field }) => (
-                          <FormItem>
-                            <FormLabel />
-                            <Input
-                              autoComplete="one-time-code"
-                              onChange={(e) => onChange(e.target.value)}
-                              {...field}
-                            />
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormSubmit>{trans("ui.confirm", "Confirm")}</FormSubmit>
+                    <Form method={form.method} url={form.action}>
+                      {form.inputs.map((input, index) => (
+                        <FormInputBlock {...input} key={index} />
+                      ))}
+                      <FormSubmit>{form.submit}</FormSubmit>
                     </Form>
                   )}
                 />

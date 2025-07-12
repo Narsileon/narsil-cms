@@ -51,15 +51,14 @@ class SiteController extends AbstractModelController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = FormService::getForm(Site::TABLE, SiteForm::class);
+        $form = (FormService::getForm(Site::TABLE))::get(
+            action: route('sites.store'),
+            method: MethodEnum::POST,
+            submit: trans("ui.create"),
+        );
 
         return Narsil::render('resources/form', [
-            'form' => $form::get(
-                action: route('sites.store'),
-                method: MethodEnum::POST,
-                submit: trans("ui.create"),
-                title: trans("ui.site"),
-            ),
+            'form' => $form,
         ]);
     }
 
@@ -85,16 +84,15 @@ class SiteController extends AbstractModelController
      */
     public function edit(Request $request, Site $site): JsonResponse|Response
     {
-        $form = FormService::getForm(Site::TABLE, SiteForm::class);
+        $form = (FormService::getForm(Site::TABLE))::get(
+            action: route('sites.update', $site->{Site::ID}),
+            method: MethodEnum::PATCH,
+            submit: trans("ui.update"),
+        );
 
         return Narsil::render('resources/form', [
             'data' => $site,
-            'form' => $form::get(
-                action: route('sites.update', $site->{Site::ID}),
-                method: MethodEnum::PATCH,
-                submit: trans("ui.update"),
-                title: trans("ui.site"),
-            ),
+            'form' => $form,
         ]);
     }
 

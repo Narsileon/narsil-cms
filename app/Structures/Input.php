@@ -23,11 +23,12 @@ class Input
      *
      * @return void
      */
-    public function __construct(string $id)
+    public function __construct(string $id, mixed $defaultValue)
     {
         $this->props[self::ID] = $id;
 
         $this->label(TableService::getHeading($id));
+        $this->value($defaultValue);
     }
 
     #endregion
@@ -70,6 +71,10 @@ class Input
      * @var string The name of "type" prop.
      */
     final public const TYPE = 'type';
+    /**
+     * @var string The name of "value" prop.
+     */
+    final public const VALUE = 'value';
 
     #endregion
 
@@ -202,6 +207,20 @@ class Input
     final public function type(TypeEnum $type): static
     {
         $this->props[self::TYPE] = $type->value;
+
+        return $this;
+    }
+
+    /**
+     * Sets the value prop.
+     *
+     * @param mixed $value
+     *
+     * @return static Returns the current object instance.
+     */
+    final public function value(mixed $value): static
+    {
+        $this->props[self::VALUE] = $value;
 
         return $this;
     }

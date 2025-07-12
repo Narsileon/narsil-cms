@@ -56,10 +56,10 @@ type DataTableCollection<T = any> = {
 
 type LaravelForm = {
   action: string;
+  id: string;
   inputs: LaravelFormInput[];
   method: string;
   submit: string;
-  title: string;
 };
 
 type LaravelFormInput = {
@@ -71,6 +71,7 @@ type LaravelFormInput = {
   options?: SelectOption[];
   required?: boolean;
   type?: string;
+  value: any;
 };
 
 type LaravelPaginationLinks = {

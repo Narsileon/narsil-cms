@@ -25,18 +25,23 @@ class LoginController
      */
     public function __invoke(): Response
     {
-        $form = FormService::getForm("login", LoginForm::class);
+        $form = (FormService::getForm('login'))::get(
+            action: route('login'),
+            method: MethodEnum::POST,
+            submit: trans('ui.log_in'),
+        );
 
         $status = session('status');
 
+        $translations = [
+            'password_link' => trans('passwords.link'),
+            'title'         => trans('ui.connection'),
+        ];
+
         return Inertia::render('fortify/login', [
-            'form' => $form::get(
-                action: route('login'),
-                method: MethodEnum::POST,
-                submit: trans("ui.log_in"),
-                title: trans("ui.connection"),
-            ),
-            'status' => $status,
+            'form'         => $form,
+            'status'       => $status,
+            'translations' => $translations
         ]);
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Enums\Forms\MethodEnum;
+use App\Services\FormService;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -22,7 +24,20 @@ class ConfirmPasswordController
      */
     public function __invoke(): Response
     {
-        return Inertia::render('fortify/confirm-password');
+        $form = (FormService::getForm('confirm-password'))::get(
+            action: route('password.confirm'),
+            method: MethodEnum::POST,
+            submit: trans('ui.confirm'),
+        );
+
+        $translations = [
+            'title' => trans('ui.confirm_password'),
+        ];
+
+        return Inertia::render('fortify/confirm-password', [
+            'form'         => $form,
+            'translations' => $translations,
+        ]);
     }
 
     #endregion

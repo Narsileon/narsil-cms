@@ -15,7 +15,7 @@ use App\Structures\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LoginForm extends AbstractForm
+class ConfirmPasswordForm extends AbstractForm
 {
     #region PROTECTED METHODS
 
@@ -25,18 +25,10 @@ class LoginForm extends AbstractForm
     protected static function inputs(): array
     {
         return [
-            (new Input(User::EMAIL, ''))
-                ->type(TypeEnum::EMAIL)
-                ->autoComplete(AutoCompleteEnum::EMAIL)
-                ->required(true)
-                ->get(),
             (new Input(user::PASSWORD, ''))
                 ->type(TypeEnum::PASSWORD)
-                ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
+                ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE)
                 ->required(true)
-                ->get(),
-            (new Input(User::REMEMBER, false))
-                ->type(TypeEnum::CHECKBOX)
                 ->get(),
         ];
     }

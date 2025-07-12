@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Combobox } from "@/components/ui/combobox";
 import { Input } from "@/components/ui/input";
 import {
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,6 +16,7 @@ type FormBlockProps = LaravelFormInput & {};
 function FormInputBlock({
   autoComplete,
   column = false,
+  description,
   id,
   label,
   options = [],
@@ -54,6 +56,9 @@ function FormInputBlock({
               {...field}
             />
           )}
+          {description ? (
+            <FormDescription>{description}</FormDescription>
+          ) : null}
           <FormMessage />
         </FormItem>
       )}

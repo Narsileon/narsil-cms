@@ -15,7 +15,7 @@ use App\Structures\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LoginForm extends AbstractForm
+class ForgotPasswordForm extends AbstractForm
 {
     #region PROTECTED METHODS
 
@@ -28,15 +28,8 @@ class LoginForm extends AbstractForm
             (new Input(User::EMAIL, ''))
                 ->type(TypeEnum::EMAIL)
                 ->autoComplete(AutoCompleteEnum::EMAIL)
+                ->description(trans("passwords.instruction"))
                 ->required(true)
-                ->get(),
-            (new Input(user::PASSWORD, ''))
-                ->type(TypeEnum::PASSWORD)
-                ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
-                ->required(true)
-                ->get(),
-            (new Input(User::REMEMBER, false))
-                ->type(TypeEnum::CHECKBOX)
                 ->get(),
         ];
     }

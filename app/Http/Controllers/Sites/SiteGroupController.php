@@ -47,15 +47,14 @@ class SiteGroupController extends AbstractModelController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = FormService::getForm(SiteGroup::TABLE, SiteGroupForm::class);
+        $form = (FormService::getForm(SiteGroup::TABLE))::get(
+            action: route('site-groups.store'),
+            method: MethodEnum::POST,
+            submit: trans("ui.create"),
+        );
 
         return Narsil::render('resources/form', [
-            'form' => $form::get(
-                action: route('site-groups.store'),
-                method: MethodEnum::POST,
-                submit: trans("ui.create"),
-                title: trans("ui.site_group"),
-            ),
+            'form' => $form,
         ]);
     }
 
@@ -81,16 +80,15 @@ class SiteGroupController extends AbstractModelController
      */
     public function edit(Request $request, SiteGroup $siteGroup): JsonResponse|Response
     {
-        $form = FormService::getForm(SiteGroup::TABLE, SiteGroupForm::class);
+        $form = (FormService::getForm(SiteGroup::TABLE))::get(
+            action: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
+            method: MethodEnum::PATCH,
+            submit: trans("ui.update"),
+        );
 
         return Narsil::render('resources/form', [
             'data' => $siteGroup,
-            'form' => $form::get(
-                action: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
-                method: MethodEnum::PATCH,
-                submit: trans("ui.update"),
-                title: trans("ui.site_group"),
-            ),
+            'form' => $form,
         ]);
     }
 

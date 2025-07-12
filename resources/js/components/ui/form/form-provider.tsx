@@ -1,14 +1,26 @@
 import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
 import type { FormContextProps } from "./form-context";
+import type { LaravelFormInput } from "@/types/global";
 
 type FormProviderProps = {
+  initialValues?: Record<string, any>;
   id: string;
-  initialData?: Record<string, any>;
+  inputs: LaravelFormInput[];
   render: (form: FormContextProps) => React.ReactNode;
 };
 
-function FormProvider({ id, initialData = {}, render }: FormProviderProps) {
+function FormProvider({
+  initialValues = {},
+  id,
+  inputs,
+  render,
+}: FormProviderProps) {
+  const mergedInitialValues = Object.assign(
+    Object.fromEntries(inputs.map(({ id, value }) => [id, value])),
+    initialValues,
+  );
+
   const {
     data,
     errors,
@@ -25,7 +37,7 @@ function FormProvider({ id, initialData = {}, render }: FormProviderProps) {
     setError,
     submit,
     transform,
-  } = useForm(initialData);
+  } = useForm<Record<string, any>>(mergedInitialValues);
 
   const value = {
     id: id,

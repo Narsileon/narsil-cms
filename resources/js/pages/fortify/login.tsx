@@ -6,7 +6,6 @@ import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { route } from "ziggy-js";
 import FormInputBlock from "@/blocks/form-input-block";
-import useTranslationsStore from "@/stores/translations-store";
 import {
   Form,
   FormField,
@@ -27,11 +26,10 @@ import type { LaravelForm } from "@/types/global";
 type LoginProps = {
   form: LaravelForm;
   status?: string;
+  translations: Record<string, string>;
 };
 
-function Login({ form, status }: LoginProps) {
-  const { trans } = useTranslationsStore();
-
+function Login({ form, status, translations }: LoginProps) {
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
@@ -44,42 +42,35 @@ function Login({ form, status }: LoginProps) {
 
   return (
     <>
-      <Head title={trans("ui.connection", "Connection")} />
+      <Head title={translations.title} />
       <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {trans("ui.connection", "Connection")}
+              {translations.title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
             <Card>
               <CardContent>
                 <FormProvider
-                  id="login-form"
-                  initialData={{
-                    email: "",
-                    password: "",
-                    remember: false,
-                  }}
+                  id={form.id}
+                  inputs={form.inputs}
                   render={() => (
-                    <Form method="post" url={route("login")}>
+                    <Form method={form.method} url={form.action}>
                       {form.inputs.map((input, index) =>
                         input.id === "password" ? (
                           <FormField
                             name={input.id}
                             render={({ onChange, ...field }) => (
-                              <FormItem>
+                              <FormItem className="col-span-full">
                                 <div className="flex items-center justify-between gap-3">
                                   <FormLabel required={true} />
                                   <Link
                                     className="text-xs"
                                     href={route("password.request")}
                                   >
-                                    {trans(
-                                      "passwords.link",
-                                      "Forgot your password?",
-                                    )}
+                                    {translations.password_link}
                                   </Link>
                                 </div>
                                 <Input
@@ -91,12 +82,13 @@ function Login({ form, status }: LoginProps) {
                                 <FormMessage />
                               </FormItem>
                             )}
+                            key={index}
                           />
                         ) : (
                           <FormInputBlock {...input} key={index} />
                         ),
                       )}
-                      <FormSubmit>{trans("ui.log_in", "Log in")}</FormSubmit>
+                      <FormSubmit>{form.submit}</FormSubmit>
                     </Form>
                   )}
                 />

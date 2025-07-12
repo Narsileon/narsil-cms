@@ -9,5 +9,5 @@ namespace App\Enums\Forms;
 enum MethodEnum: string
 {
     case PATCH = 'patch';
-    case POST = 'post';
+    case POST  = 'post';
 }

@@ -5,7 +5,6 @@ import { Head, Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
-import useTranslationsStore from "@/stores/translations-store";
 import {
   Section,
   SectionContent,
@@ -15,18 +14,15 @@ import {
 
 type VerifyEmailProps = {
   status: string;
+  translations: Record<string, string>;
 };
 
-function VerifyEmail({ status }: VerifyEmailProps) {
-  const { trans } = useTranslationsStore();
-
+function VerifyEmail({ status, translations }: VerifyEmailProps) {
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
     if (status && !hasStatus.current) {
-      toast.success(
-        trans("verify-email.sent", "We have emailed your verification link."),
-      );
+      toast.success(translations.sent);
 
       hasStatus.current = true;
     }
@@ -34,32 +30,22 @@ function VerifyEmail({ status }: VerifyEmailProps) {
 
   return (
     <>
-      <Head title={trans("ui.email_verify", "Verify your email")} />
+      <Head title={translations.title} />
       <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {trans("ui.email_verify", "Verify your email")}
+              {translations.title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
             <Card className="w-[18rem]">
               <CardContent className="grid gap-4">
-                <p>
-                  {trans(
-                    "verify-email.instruction",
-                    "Please verify your email address by clicking on the link we just emailed to you.",
-                  )}
-                </p>
-                <p>
-                  {trans(
-                    "verify-email.prompt",
-                    "If you didn't receive the email, we will gladly send you another.",
-                  )}
-                </p>
+                <p>{translations.instruction}</p>
+                <p>{translations.prompt}</p>
                 <Button asChild={true}>
                   <Link href={route("verification.send")} method="post">
-                    {trans("ui.send_again", "Send again")}
+                    {translations.send_again}
                   </Link>
                 </Button>
               </CardContent>
