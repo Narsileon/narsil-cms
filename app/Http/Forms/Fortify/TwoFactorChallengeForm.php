@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Http\Forms\Fortify;
 
 #region USE
 
 use App\Enums\Forms\AutoCompleteEnum;
-use App\Interfaces\Forms\ITwoFactorChallengeForm;
+use App\Http\Forms\AbstractForm;
+use App\Interfaces\Forms\Fortify\ITwoFactorChallengeForm;
 use App\Structures\Input;
 
 #endregion

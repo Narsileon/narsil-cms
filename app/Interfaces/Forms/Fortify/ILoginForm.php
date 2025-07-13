@@ -1,6 +1,12 @@
 <?php
 
-namespace App\Interfaces\Forms;
+namespace App\Interfaces\Forms\Fortify;
+
+#region USE
+
+use App\Interfaces\Forms\IForm;
+
+#endregion
 
 /**
  * @version 1.0.0

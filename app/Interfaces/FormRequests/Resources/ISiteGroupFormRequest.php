@@ -1,6 +1,12 @@
 <?php
 
-namespace App\Interfaces\FormRequests;
+namespace App\Interfaces\FormRequests\Resources;
+
+#region USE
+
+use App\Interfaces\FormRequests\IFormRequest;
+
+#endregion
 
 /**
  * @version 1.0.0

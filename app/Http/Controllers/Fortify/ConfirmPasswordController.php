@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Fortify;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\IConfirmPasswordForm;
+use App\Interfaces\Forms\Fortify\IConfirmPasswordForm;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;

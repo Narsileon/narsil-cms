@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Sites;
+namespace App\Http\Requests\Resources;
 
 #region USE
 
-use App\Http\Requests\AbstractFormRequest;
-use App\Interfaces\FormRequests\ISiteGroupFormRequest;
+use App\Interfaces\FormRequests\Resources\ISiteGroupFormRequest;
 use App\Models\SiteGroup;
 use App\Validation\FormRule;
 

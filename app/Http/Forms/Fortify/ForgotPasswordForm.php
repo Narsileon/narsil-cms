@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Http\Forms\Fortify;
 
 #region USE
 
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
-use App\Interfaces\Forms\IConfirmPasswordForm;
+use App\Http\Forms\AbstractForm;
+use App\Interfaces\Forms\Fortify\IForgotPasswordForm;
 use App\Models\User;
 use App\Structures\Input;
 
@@ -16,7 +17,7 @@ use App\Structures\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ConfirmPasswordForm extends AbstractForm implements IConfirmPasswordForm
+class ForgotPasswordForm extends AbstractForm implements IForgotPasswordForm
 {
     #region PROTECTED METHODS
 
@@ -26,9 +27,10 @@ class ConfirmPasswordForm extends AbstractForm implements IConfirmPasswordForm
     protected function getInputs(): array
     {
         return [
-            (new Input(user::PASSWORD, ''))
-                ->type(TypeEnum::PASSWORD)
-                ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE)
+            (new Input(User::EMAIL, ''))
+                ->type(TypeEnum::EMAIL)
+                ->autoComplete(AutoCompleteEnum::EMAIL)
+                ->description(trans('passwords.instruction'))
                 ->required(true)
                 ->get(),
         ];

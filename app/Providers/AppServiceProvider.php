@@ -4,26 +4,26 @@ namespace App\Providers;
 
 #region USE
 
-use App\Http\Forms\ConfirmPasswordForm;
-use App\Http\Forms\ForgotPasswordForm;
-use App\Http\Forms\LoginForm;
-use App\Http\Forms\RegisterForm;
-use App\Http\Forms\ResetPasswordForm;
-use App\Http\Forms\SiteForm;
-use App\Http\Forms\SiteGroupForm;
-use App\Http\Forms\TwoFactorChallengeForm;
-use App\Http\Requests\Sites\SiteFormRequest;
-use App\Http\Requests\Sites\SiteGroupFormRequest;
-use App\Interfaces\FormRequests\ISiteFormRequest;
-use App\Interfaces\FormRequests\ISiteGroupFormRequest;
-use App\Interfaces\Forms\IConfirmPasswordForm;
-use App\Interfaces\Forms\IForgotPasswordForm;
-use App\Interfaces\Forms\ILoginForm;
-use App\Interfaces\Forms\IRegisterForm;
-use App\Interfaces\Forms\IResetPasswordForm;
-use App\Interfaces\Forms\ISiteForm;
-use App\Interfaces\Forms\ISiteGroupForm;
-use App\Interfaces\Forms\ITwoFactorChallengeForm;
+use App\Http\Forms\Fortify\ConfirmPasswordForm;
+use App\Http\Forms\Fortify\ForgotPasswordForm;
+use App\Http\Forms\Fortify\LoginForm;
+use App\Http\Forms\Fortify\RegisterForm;
+use App\Http\Forms\Fortify\ResetPasswordForm;
+use App\Http\Forms\Fortify\TwoFactorChallengeForm;
+use App\Http\Forms\Resources\SiteForm;
+use App\Http\Forms\Resources\SiteGroupForm;
+use App\Http\Requests\Resources\SiteFormRequest;
+use App\Http\Requests\Resources\SiteGroupFormRequest;
+use App\Interfaces\FormRequests\Resources\ISiteFormRequest;
+use App\Interfaces\FormRequests\Resources\ISiteGroupFormRequest;
+use App\Interfaces\Forms\Fortify\IConfirmPasswordForm;
+use App\Interfaces\Forms\Fortify\IForgotPasswordForm;
+use App\Interfaces\Forms\Fortify\ILoginForm;
+use App\Interfaces\Forms\Fortify\IRegisterForm;
+use App\Interfaces\Forms\Fortify\IResetPasswordForm;
+use App\Interfaces\Forms\Fortify\ITwoFactorChallengeForm;
+use App\Interfaces\Forms\Resources\ISiteForm;
+use App\Interfaces\Forms\Resources\ISiteGroupForm;
 use Illuminate\Support\ServiceProvider;
 
 #endregion

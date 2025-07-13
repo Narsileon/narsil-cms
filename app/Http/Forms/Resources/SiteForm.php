@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Http\Forms\Resources;
 
 #region USE
 
 use App\Enums\Forms\TypeEnum;
-use App\Interfaces\Forms\ISiteForm;
+use App\Http\Forms\AbstractForm;
+use App\Interfaces\Forms\Resources\ISiteForm;
 use App\Models\Site;
 use App\Services\LangService;
 use App\Structures\Input;

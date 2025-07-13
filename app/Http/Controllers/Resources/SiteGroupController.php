@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Sites;
+namespace App\Http\Controllers\Resources;
 
 #region USE
 
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
-use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\DataTableCollection;
-use App\Interfaces\FormRequests\ISiteFormRequest;
-use App\Interfaces\Forms\ISiteForm;
-use App\Models\Site;
+use App\Interfaces\FormRequests\Resources\ISiteGroupFormRequest;
+use App\Interfaces\Forms\Resources\ISiteGroupForm;
 use App\Models\SiteGroup;
 use App\Narsil;
 use Illuminate\Http\JsonResponse;
@@ -24,17 +22,17 @@ use Inertia\Response;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteController extends AbstractModelController
+class SiteGroupController extends AbstractModelController
 {
     #region CONSTRUCTOR
 
     /**
-     * @param ISiteForm $form
-     * @param ISiteFormRequest $formRequest
+     * @param ISiteGroupForm $form
+     * @param ISiteGroupFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(ISiteForm $form, ISiteFormRequest $formRequest)
+    public function __construct(ISiteGroupForm $form, ISiteGroupFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -45,13 +43,13 @@ class SiteController extends AbstractModelController
     #region PROPERTIES
 
     /**
-     * @var ISiteForm
+     * @var ISiteGroupForm
      */
-    protected readonly ISiteForm $form;
+    protected readonly ISiteGroupForm $form;
     /**
      * @var ISiteFormRequest
      */
-    protected readonly ISiteFormRequest $formRequest;
+    protected readonly ISiteGroupFormRequest $formRequest;
 
     #endregion
 
@@ -64,11 +62,9 @@ class SiteController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $categories = new CategoryCollection(SiteGroup::all(), SiteGroup::TABLE, SiteGroup::NAME);
-        $dataTable = new DataTableCollection(Site::query(), Site::TABLE);
+        $dataTable = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
 
         return Narsil::render('resources/index', [
-            'categories' => $categories,
             'dataTable' => $dataTable,
         ]);
     }
@@ -81,7 +77,7 @@ class SiteController extends AbstractModelController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('sites.store'),
+            action: route('site-groups.store'),
             method: MethodEnum::POST,
             submit: trans('ui.create'),
         );
@@ -100,57 +96,57 @@ class SiteController extends AbstractModelController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        Site::create($attributes);
+        SiteGroup::create($attributes);
 
-        return $this->redirectOnStored(Site::TABLE);
+        return $this->redirectOnStored(SiteGroup::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param Site $site
+     * @param SiteGroup $siteGroup
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, Site $site): JsonResponse|Response
+    public function edit(Request $request, SiteGroup $siteGroup): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('sites.update', $site->{Site::ID}),
+            action: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
             method: MethodEnum::PATCH,
             submit: trans('ui.update'),
         );
 
         return Narsil::render('resources/form', [
-            'data' => $site,
+            'data' => $siteGroup,
             'form' => $form,
         ]);
     }
 
     /**
      * @param Request $request
-     * @param Site $site
+     * @param SiteGroup $siteGroup
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, Site $site): RedirectResponse
+    public function update(Request $request, SiteGroup $siteGroup): RedirectResponse
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        $site->update($attributes);
+        $siteGroup->update($attributes);
 
-        return $this->redirectOnUpdated(Site::TABLE);
+        return $this->redirectOnUpdated(SiteGroup::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param Site $site
+     * @param SiteGroup $siteGroup
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, Site $site): RedirectResponse
+    public function destroy(Request $request, SiteGroup $siteGroup): RedirectResponse
     {
-        $site->delete();
+        $siteGroup->delete();
 
-        return $this->redirectOnDestroyed(Site::TABLE);
+        return $this->redirectOnDestroyed(SiteGroup::TABLE);
     }
 
     #endregion

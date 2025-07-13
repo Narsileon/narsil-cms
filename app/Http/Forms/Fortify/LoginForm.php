@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Http\Forms\Fortify;
 
 #region USE
 
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
-use App\Interfaces\Forms\ILoginForm;
+use App\Http\Forms\AbstractForm;
+use App\Interfaces\Forms\Fortify\ILoginForm;
 use App\Models\User;
 use App\Structures\Input;
 

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Http\Forms\Resources;
 
 #region USE
 
-use App\Interfaces\Forms\ISiteGroupForm;
+use App\Http\Forms\AbstractForm;
+use App\Interfaces\Forms\Resources\ISiteGroupForm;
 use App\Models\SiteGroup;
 use App\Structures\Input;
 

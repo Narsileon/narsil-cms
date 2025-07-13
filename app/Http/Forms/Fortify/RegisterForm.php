@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Http\Forms\Fortify;
 
 #region USE
 
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
-use App\Interfaces\Forms\IResetPasswordForm;
+use App\Http\Forms\AbstractForm;
+use App\Interfaces\Forms\Fortify\IRegisterForm;
 use App\Models\User;
 use App\Structures\Input;
 
@@ -16,7 +17,7 @@ use App\Structures\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ResetPasswordForm extends AbstractForm implements IResetPasswordForm
+class RegisterForm extends AbstractForm implements IRegisterForm
 {
     #region PROTECTED METHODS
 
@@ -34,11 +35,24 @@ class ResetPasswordForm extends AbstractForm implements IResetPasswordForm
             (new Input(User::PASSWORD, ''))
                 ->type(TypeEnum::PASSWORD)
                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                ->column(true)
                 ->required(true)
                 ->get(),
             (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, ''))
                 ->type(TypeEnum::PASSWORD)
                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                ->column(true)
+                ->required(true)
+                ->get(),
+            (new Input(User::FIRST_NAME, ''))
+                ->autoComplete(AutoCompleteEnum::GIVEN_NAME)
+                ->column(true)
+                ->required(true)
+                ->get(),
+            (new Input(User::LAST_NAME, ''))
+                ->type(TypeEnum::PASSWORD)
+                ->autoComplete(AutoCompleteEnum::FAMILY_NAME)
+                ->column(true)
                 ->required(true)
                 ->get(),
         ];
