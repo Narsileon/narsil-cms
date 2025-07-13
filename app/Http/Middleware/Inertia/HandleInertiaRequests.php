@@ -5,6 +5,7 @@ namespace App\Http\Middleware\Inertia;
 #region USE
 
 use App\Http\Resources\Inertia\UserInertiaResource;
+use App\Support\LabelsBag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -54,6 +55,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $this->registerLabels();
+
         return [
             ...parent::share($request),
 
@@ -119,6 +122,17 @@ class HandleInertiaRequests extends Middleware
                 'close' => trans('accessibility.close_sidebar'),
             ],
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function registerLabels(): void
+    {
+        app(LabelsBag::class)
+            ->add('ui.log_in')
+            ->add('ui.log_out')
+            ->add('ui.settings');
     }
 
     #endregion

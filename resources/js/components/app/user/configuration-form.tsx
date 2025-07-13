@@ -2,6 +2,7 @@ import { Form, FormProvider } from "@/components/ui/form";
 import { getSelectOption } from "@/lib/utils";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
+import { useLabels } from "@/components/ui/labels";
 import { useModalStore } from "@/stores/modal-store";
 import FormInputBlock from "@/blocks/form-input-block";
 import useColorStore from "@/stores/color-store";
@@ -23,13 +24,12 @@ import {
 import type { LaravelForm } from "@/types/global";
 
 type ConfigurationFormProps = {
-  labels: {
-    personalization: string;
-  };
   form: LaravelForm;
 };
 
-function ConfigurationForm({ form, labels }: ConfigurationFormProps) {
+function ConfigurationForm({ form }: ConfigurationFormProps) {
+  const { getLabel } = useLabels();
+
   const locale = useLocale();
 
   const { reloadTopModal } = useModalStore();
@@ -100,9 +100,7 @@ function ConfigurationForm({ form, labels }: ConfigurationFormProps) {
   return (
     <Section>
       <SectionHeader className="border-b">
-        <SectionTitle level="h2">
-          {labels.personalization ?? "Personalization"}
-        </SectionTitle>
+        <SectionTitle level="h2">{getLabel("ui.personalization")}</SectionTitle>
       </SectionHeader>
       <SectionContent>
         <FormProvider

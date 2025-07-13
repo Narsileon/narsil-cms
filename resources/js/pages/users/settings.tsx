@@ -11,7 +11,6 @@ import useAuth from "@/hooks/use-auth";
 import type { LaravelForm } from "@/types/global";
 
 type UserSettingsProps = {
-  labels: Record<string, string>;
   profileForm: LaravelForm;
   twoFactorForm: LaravelForm;
   updatePasswordForm: LaravelForm;
@@ -19,15 +18,15 @@ type UserSettingsProps = {
 };
 
 function UserSettings({
-  labels,
   profileForm,
   twoFactorForm,
   updatePasswordForm,
   userConfigurationForm,
 }: UserSettingsProps) {
+  const { getLabel } = useLabels();
+
   const auth = useAuth();
   const minMd = useMinMd();
-  const { getLabel } = useLabels();
 
   return (
     <Tabs

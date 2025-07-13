@@ -4,7 +4,6 @@ namespace App;
 
 #region USE
 
-use App\Services\TranslationService;
 use App\Support\LabelsBag;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;

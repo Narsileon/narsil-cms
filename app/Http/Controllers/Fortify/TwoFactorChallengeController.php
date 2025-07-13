@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Fortify;
 
 use App\Enums\Forms\MethodEnum;
 use App\Interfaces\Forms\Fortify\ITwoFactorChallengeForm;
+use App\Narsil;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -56,7 +56,7 @@ class TwoFactorChallengeController
             submit: trans('ui.confirm'),
         );
 
-        return Inertia::render('fortify/form', [
+        return Narsil::render('fortify/form', [
             'form'  => $form,
             'title' => trans('ui.two_factor_authentication'),
         ]);

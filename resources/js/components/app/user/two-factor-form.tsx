@@ -6,18 +6,21 @@ import { Label } from "@/components/ui/label";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
 import { Switch } from "@/components/ui/switch";
+import { toast } from "sonner";
+import { useLabels } from "@/components/ui/labels";
 import { useState } from "react";
 import axios from "axios";
 import FormInputBlock from "@/blocks/form-input-block";
 import useAuth from "@/hooks/use-auth";
 import type { LaravelForm } from "@/types/global";
-import { toast } from "sonner";
 
 type TwoFactorFormProps = {
   form: LaravelForm;
 };
 
 function TwoFactorForm({ form }: TwoFactorFormProps) {
+  const { getLabel } = useLabels();
+
   const { two_factor_confirmed_at } = useAuth() ?? {};
 
   const [active, setActive] = useState<boolean>(
@@ -79,10 +82,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
     <>
       <div className="grid gap-4">
         <div className="flex items-center justify-between">
-          <Label>
-            {form.labels.two_factor_authentication ??
-              "Two-factor authentication"}
-          </Label>
+          <Label>{getLabel("two-factor.two_factor_authentication")}</Label>
           <Switch checked={enabled} onCheckedChange={toggleEnabled} />
         </div>
         {!active && enabled && qrCode ? (
@@ -102,7 +102,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                       onError() {
                         setError?.(
                           "code",
-                          form.labels.code_invalid ?? "The code is invalid.",
+                          getLabel("validation.custom.code.invalid"),
                         );
                       },
                     }}
@@ -127,27 +127,22 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
           <Card>
             <CardHeader className="grid-cols-2 items-center border-b">
               <CardTitle>
-                {form.labels.recovery_codes_title ?? "Recovery codes"}
+                {getLabel("two-factor.recovery_codes_title")}
               </CardTitle>
               <Button
                 className="place-self-end"
                 size="icon"
                 onClick={() => {
                   navigator.clipboard.writeText(recoveryCodes.join("\n"));
-                  toast.success(
-                    form.labels.recovery_codes_copied ??
-                      "The recovery codes have been successfully copied to clipboard.",
-                  );
+
+                  toast.success(getLabel("two-factor.recovery_codes_copied"));
                 }}
               >
                 <CopyIcon />
               </Button>
             </CardHeader>
             <CardContent className="grid gap-4 text-sm">
-              <p>
-                {form.labels.recovery_codes_description ??
-                  "Store these recovery codes in a safe place. You can use them to access your account if your two-factor authentication device is lost."}
-              </p>
+              <p>{getLabel("two-factor.recovery_codes_description")}</p>
               <ul className="ml-6 list-disc">
                 {recoveryCodes?.map((recoveryCode, index) => {
                   return <li key={index}>{recoveryCode}</li>;

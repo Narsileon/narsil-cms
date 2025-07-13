@@ -1,5 +1,6 @@
 import { Form, FormProvider, FormSubmit } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
+import { useLabels } from "@/components/ui/labels";
 import FormInputBlock from "@/blocks/form-input-block";
 import useAuth from "@/hooks/use-auth";
 import {
@@ -11,26 +12,20 @@ import {
 import type { LaravelForm } from "@/types/global";
 
 type ProfileFormProps = {
-  labels: {
-    account: string;
-    password: string;
-  };
   profileForm: LaravelForm;
   updatePasswordForm: LaravelForm;
 };
 
-function ProfileForm({
-  labels,
-  profileForm,
-  updatePasswordForm,
-}: ProfileFormProps) {
+function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
+  const { getLabel } = useLabels();
+
   const auth = useAuth();
 
   return (
     <>
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">{labels.account ?? "Account"}</SectionTitle>
+          <SectionTitle level="h2">{getLabel("ui.account")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
           <FormProvider
@@ -54,9 +49,7 @@ function ProfileForm({
       <Separator />
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">
-            {labels.password ?? "Password"}
-          </SectionTitle>
+          <SectionTitle level="h2">{getLabel("ui.password")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
           <FormProvider

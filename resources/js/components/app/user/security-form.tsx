@@ -3,6 +3,7 @@ import { DialogClose } from "@/components/ui/dialog";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { Separator } from "@/components/ui/separator";
+import { useLabels } from "@/components/ui/labels";
 import TwoFactorForm from "./two-factor-form";
 import {
   Section,
@@ -13,27 +14,17 @@ import {
 import type { LaravelForm } from "@/types/global";
 
 type SecurityFormProps = {
-  labels: {
-    security: string;
-    sessions: string;
-    sign_out_current_description: string;
-    sign_out_current: string;
-    sign_out_elsewhere_description: string;
-    sign_out_elsewhere: string;
-    sign_out_everywhere_description: string;
-    sign_out_everywhere: string;
-  };
   twoFactorForm: LaravelForm;
 };
 
-function SecurityForm({ labels, twoFactorForm }: SecurityFormProps) {
+function SecurityForm({ twoFactorForm }: SecurityFormProps) {
+  const { getLabel } = useLabels();
+
   return (
     <>
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">
-            {labels.security ?? "Security"}
-          </SectionTitle>
+          <SectionTitle level="h2">{getLabel("ui.security")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
           <TwoFactorForm form={twoFactorForm} />
@@ -42,14 +33,10 @@ function SecurityForm({ labels, twoFactorForm }: SecurityFormProps) {
       <Separator />
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">
-            {labels.sessions ?? "Sessions"}
-          </SectionTitle>
+          <SectionTitle level="h2">{getLabel("ui.sessions")}</SectionTitle>
         </SectionHeader>
         <SectionContent className="grid gap-4 text-sm">
-          <p>
-            {labels.sign_out_current_description ?? "Sign out of this device."}
-          </p>
+          <p>{getLabel("sessions.sign_out_current_description")}</p>
           <DialogClose asChild={true}>
             <Button asChild={true} variant="outline">
               <Link
@@ -58,15 +45,12 @@ function SecurityForm({ labels, twoFactorForm }: SecurityFormProps) {
                   type: "current",
                 })}
               >
-                {labels.sign_out_current ?? "Sign out"}
+                {getLabel("sessions.sign_out_current")}
               </Link>
             </Button>
           </DialogClose>
           <Separator />
-          <p>
-            {labels.sign_out_elsewhere_description ??
-              "Sign out of all devices, excluding this one."}
-          </p>
+          <p>{getLabel("sessions.sign_out_elsewhere_description")}</p>
           <Button asChild={true} variant="outline">
             <Link
               method="delete"
@@ -75,14 +59,11 @@ function SecurityForm({ labels, twoFactorForm }: SecurityFormProps) {
               })}
               preserveState={true}
             >
-              {labels.sign_out_elsewhere ?? "Sign out elsewhere"}
+              {getLabel("sessions.sign_out_elsewhere")}
             </Link>
           </Button>
           <Separator />
-          <p>
-            {labels.sign_out_everywhere_description ??
-              "Sign out of all devices, including this one."}
-          </p>
+          <p>{getLabel("sessions.sign_out_everywhere_description")}</p>
           <DialogClose asChild={true}>
             <Button asChild={true} variant="outline">
               <Link
@@ -91,7 +72,7 @@ function SecurityForm({ labels, twoFactorForm }: SecurityFormProps) {
                   type: "all",
                 })}
               >
-                {labels.sign_out_everywhere ?? "Sign out everywhere"}
+                {getLabel("sessions.sign_out_everywhere")}
               </Link>
             </Button>
           </DialogClose>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 #region USE
 
+use App\Narsil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Inertia\Inertia;
@@ -28,7 +29,7 @@ class SettingsController
     {
         $settings = Config::get('narsil.settings', []);
 
-        return Inertia::render('settings/index', $settings);
+        return Narsil::render('settings/index', $settings);
     }
 
     #endregion

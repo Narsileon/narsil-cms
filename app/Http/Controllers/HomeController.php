@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 #region USE
 
+use App\Narsil;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -25,7 +25,7 @@ class HomeController
      */
     public function __invoke(Request $request): Response
     {
-        return Inertia::render('index');
+        return Narsil::render('index');
     }
 
     #endregion

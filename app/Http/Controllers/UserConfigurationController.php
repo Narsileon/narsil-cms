@@ -14,6 +14,7 @@ use App\Interfaces\Forms\IUserConfigurationForm;
 use App\Models\User;
 use App\Models\UserConfiguration;
 use App\Narsil;
+use App\Support\LabelsBag;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -90,6 +91,8 @@ class UserConfigurationController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $this->registerLabels();
+
         $profileForm = $this->profileForm->get(
             action: route('user-profile-information.update'),
             method: MethodEnum::PUT,
@@ -115,7 +118,6 @@ class UserConfigurationController extends AbstractModelController
         );
 
         return Narsil::render('users/settings', [
-            'labels'                => $this->getLabels(),
             'profileForm'           => $profileForm,
             'twoFactorForm'         => $twoFactorForm,
             'updatePasswordForm'    => $updatePasswordForm,
@@ -153,22 +155,22 @@ class UserConfigurationController extends AbstractModelController
     #region PROTECTED METHODS
 
     /**
-     * @return array<string,string>
+     * @return void
      */
-    protected function getLabels(): array
+    protected function registerLabels(): void
     {
-        return [
-            'account'                         => trans('ui.account'),
-            'personalization'                 => trans('ui.personalization'),
-            'security'                        => trans('ui.security'),
-            'sessions'                        => trans('ui.sessions'),
-            'sign_out_current_description'    => trans('sessions.sign_out_current_description'),
-            'sign_out_current'                => trans('sessions.sign_out_current'),
-            'sign_out_elsewhere_description'  => trans('sessions.sign_out_elsewhere_description'),
-            'sign_out_elsewhere'              => trans('sessions.sign_out_elsewhere'),
-            'sign_out_everywhere_description' => trans('sessions.sign_out_everywhere_description'),
-            'sign_out_everywhere'             => trans('sessions.sign_out_everywhere'),
-        ];
+        app(LabelsBag::class)
+            ->add('sessions.sign_out_current_description')
+            ->add('sessions.sign_out_current')
+            ->add('sessions.sign_out_elsewhere_description')
+            ->add('sessions.sign_out_elsewhere')
+            ->add('sessions.sign_out_everywhere_description')
+            ->add('sessions.sign_out_everywhere')
+            ->add('ui.account')
+            ->add('ui.password')
+            ->add('ui.personalization')
+            ->add('ui.security')
+            ->add('ui.sessions');
     }
 
     #endregion

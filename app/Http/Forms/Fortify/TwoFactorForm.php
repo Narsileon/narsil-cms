@@ -8,6 +8,7 @@ use App\Enums\Forms\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\Fortify\ITwoFactorForm;
 use App\Support\Input;
+use App\Support\LabelsBag;
 
 #endregion
 
@@ -35,17 +36,18 @@ class TwoFactorForm extends AbstractForm implements ITwoFactorForm
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
-    protected function getLabels(): array
+    protected function registerLabels(): void
     {
-        return array_merge(parent::getLabels(), [
-            'code_invalid'               => trans('validation.custom.code.invalid'),
-            'recovery_codes_copied'      => trans('two-factor.recovery_codes_copied'),
-            'recovery_codes_description' => trans('two-factor.recovery_codes_description'),
-            'recovery_codes_title'       => trans('two-factor.recovery_codes_title'),
-            'two_factor_authentication'  => trans('two-factor.two_factor_authentication'),
-        ]);
+        parent::registerLabels();
+
+        app(LabelsBag::class)
+            ->add('validation.custom.code.invalid')
+            ->add('two-factor.recovery_codes_copied')
+            ->add('two-factor.recovery_codes_description')
+            ->add('two-factor.recovery_codes_title')
+            ->add('two-factor.two_factor_authentication');
     }
 
     #endregion

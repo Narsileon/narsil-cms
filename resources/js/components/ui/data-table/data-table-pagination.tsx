@@ -20,13 +20,11 @@ import type {
 } from "@/types/global";
 
 type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
-  labels: Record<string, string>;
   links: LaravelPaginationLinks;
   metaLinks: LaravelPaginationMeta["links"];
 };
 
 function DataTablePagination({
-  labels,
   links,
   metaLinks,
   ...props

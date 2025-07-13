@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Fortify;
 
 use App\Enums\Forms\MethodEnum;
 use App\Interfaces\Forms\Fortify\IRegisterForm;
+use App\Narsil;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -56,7 +56,7 @@ class RegisterController
             submit: trans('ui.register'),
         );
 
-        return Inertia::render('fortify/form', [
+        return Narsil::render('fortify/form', [
             'form'  => $form,
             'title' => trans('ui.registration'),
         ]);

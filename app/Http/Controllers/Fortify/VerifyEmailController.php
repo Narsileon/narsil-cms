@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Narsil;
 use App\Support\LabelsBag;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -28,7 +28,7 @@ class VerifyEmailController
     {
         $this->registerLabels();
 
-        return Inertia::render('fortify/verify-email', [
+        return Narsil::render('fortify/verify-email', [
             'status' => session('status'),
             'title'  => trans('ui.email_verify'),
         ]);

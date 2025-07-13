@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Fortify;
 
 use App\Enums\Forms\MethodEnum;
 use App\Interfaces\Forms\Fortify\IResetPasswordForm;
+use App\Narsil;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -56,7 +56,7 @@ class ResetPasswordController
             submit: trans('ui.reset'),
         );
 
-        return Inertia::render('fortify/form', [
+        return Narsil::render('fortify/form', [
             'data'  => $this->getData(),
             'form'  => $form,
             'title' => trans('ui.reset_password'),
