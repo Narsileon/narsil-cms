@@ -3,13 +3,12 @@
 #region USE
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Sessions\SessionDeleteController;
-use App\Http\Controllers\Sessions\SessionLocaleUpdateController;
-use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Resources\SiteController;
 use App\Http\Controllers\Resources\SiteGroupController;
-use App\Http\Controllers\Users\UserConfigurationUpdateController;
-use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Resources\UserController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserConfigurationController;
 use Illuminate\Support\Facades\Route;
 
 #endregion
@@ -26,6 +25,8 @@ Route::middleware([
         Route::get('/settings', SettingsController::class)
             ->name('settings');
 
+        #region RESOURCES
+
         Route::resource('/site-groups', SiteGroupController::class)
             ->except([
                 'show'
@@ -39,12 +40,26 @@ Route::middleware([
                 'show'
             ]);
 
-        Route::patch('/sessions/locale', SessionLocaleUpdateController::class)
-            ->name('sessions-locale.update');
-        Route::delete('/sessions', SessionDeleteController::class)
+        #endregion
+
+        #region SESSIONS
+
+        Route::delete('/sessions', SessionController::class)
             ->name('sessions.delete');
 
-        Route::patch('/user/configuration', UserConfigurationUpdateController::class)
-            ->name('user-configuration.update');
+        #endregion
+    }
+);
+
+Route::middleware([
+    'web',
+])->group(
+    function ()
+    {
+        Route::resource('/user-configuration', UserConfigurationController::class)
+            ->only([
+                'index',
+                'store',
+            ]);
     }
 );

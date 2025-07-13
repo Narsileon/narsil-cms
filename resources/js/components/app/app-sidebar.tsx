@@ -2,7 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link, usePage } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import useTranslationsStore from "@/stores/translations-store";
+import { useLabels } from "@/components/ui/labels";
 import {
   Sidebar,
   SidebarContent,
@@ -20,7 +20,7 @@ import type { GlobalProps } from "@/types/global";
 type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {};
 
 function AppSidebar({ ...props }: AppSidebarProps) {
-  const { trans } = useTranslationsStore();
+  const { getLabel } = useLabels();
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 
@@ -41,10 +41,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
           <SidebarMenu>
             {content.map((item, index) => (
               <SidebarMenuItem key={index}>
-                <SidebarMenuButton
-                  asChild={true}
-                  tooltip={trans(item.label, item.label)}
-                >
+                <SidebarMenuButton asChild={true} tooltip={item.label}>
                   <Link
                     href={route(item.route)}
                     onSuccess={() => {
@@ -52,7 +49,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
                     }}
                   >
                     <DynamicIcon name={item.icon} />
-                    {trans(item.label, item.label)}
+                    {item.label}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -62,13 +59,13 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       </SidebarContent>
       <SidebarFooter className="border-t">
         <SidebarMenuButton
-          tooltip={translations.open ?? "Open sidebar"}
+          tooltip={getLabel("accessibility.open_sidebar")}
           onClick={toggleSidebar}
         >
           {open ? (
             <>
               <ChevronLeftIcon />
-              {translations.close ?? "Close sidebar"}
+              {getLabel("accessibility.close_sidebar")}
             </>
           ) : (
             <ChevronRightIcon />

@@ -25,6 +25,7 @@ import {
   SectionTitle,
 } from "@/components/ui/section";
 import type { CategoriesCollection, DataTableCollection } from "@/types/global";
+import LabelsProvider from "@/components/ui/labels/labels-provider";
 
 type ResourceIndexProps = {
   categories: CategoriesCollection;
@@ -65,7 +66,7 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
           <Section className="h-full p-4">
             <SectionHeader>
               <SectionTitle level="h2" variant="h4">
-                {dataTable.labels.title}
+                {getLabel("title")}
               </SectionTitle>
             </SectionHeader>
             <SectionContent className="grow">
@@ -91,9 +92,13 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                   <div className="flex items-center justify-between gap-3">
                     <DataTableInput className="grow" />
                     {dataTable.meta.routes.create ? (
-                      <Tooltip tooltip={dataTable.labels.create ?? "Create"}>
+                      <Tooltip tooltip={getLabel(dataTable.labels, "create")}>
                         <Button
-                          aria-label={dataTable.labels.create ?? "Create"}
+                          aria-label={getLabel(
+                            dataTable.labels,
+                            "create",
+                            "Create",
+                          )}
                           size="icon"
                           variant="default"
                           asChild={true}
@@ -105,32 +110,24 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                       </Tooltip>
                     ) : null}
                     <DataTableSettings
-                      columnsLabel={dataTable.labels.columns}
-                      paginationLabel={dataTable.labels.pagination}
-                      triggerTooltip={dataTable.labels.toggle_settings}
+                      columnsLabel={getLabel("columns")}
+                      paginationLabel={getLabel("pagination")}
+                      triggerTooltip={getLabel("settings")}
                     />
                   </div>
-                  <DataTableBlock
-                    dataTable={table}
-                    moveLabel={dataTable.labels.move_column}
-                    sortLabel={dataTable.labels.sort_column}
-                  />
+                  <DataTableBlock dataTable={table} />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </SectionContent>
             <SectionFooter className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <span className="order-2 min-w-fit truncate text-sm sm:order-1">
-                {dataTable.labels.results}
+                {getLabel("results")}
               </span>
               <DataTablePagination
                 className="order-1 col-span-2 sm:order-2"
-                ellipsisLabel={dataTable.labels.more_pages}
-                firstPageLabel={dataTable.labels.first_page}
-                lastPageLabel={dataTable.labels.last_page}
+                labels={dataTable.labels}
                 links={dataTable.links}
                 metaLinks={dataTable.meta.links}
-                nextPageLabel={dataTable.labels.next_page}
-                previousPageLabel={dataTable.labels.previous_page}
               />
             </SectionFooter>
           </Section>

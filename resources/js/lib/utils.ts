@@ -1,6 +1,18 @@
-import { clsx, type ClassValue } from "clsx";
+import { clsx } from "clsx";
+import { get, isString } from "lodash";
 import { twMerge } from "tailwind-merge";
+import type { ClassValue } from "clsx";
+import type { SelectOption } from "@/types/global";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function getSelectOption(
+  option: SelectOption | string,
+  key: string,
+): string {
+  const label = isString(option) ? option : get(option, key);
+
+  return label;
 }

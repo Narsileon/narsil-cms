@@ -6,6 +6,7 @@ namespace App\Http\Resources;
 
 use App\Services\RouteService;
 use App\Services\TanStackTableService;
+use App\Support\LabelsBag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -49,6 +50,8 @@ class DataTableCollection extends ResourceCollection
         );
 
         parent::__construct($paginated);
+
+        $this->registerLabels();
     }
 
     #endregion
@@ -97,13 +100,9 @@ class DataTableCollection extends ResourceCollection
      */
     public function with($request): array
     {
-        return array_merge(
-            TanStackTableService::getColumns($this->table),
-            [
-                'labels' => $this->getLabels(),
-                'meta'   => $this->getMeta(),
-            ]
-        );
+        return array_merge(TanStackTableService::getColumns($this->table), [
+            'meta' => $this->getMeta(),
+        ]);
     }
 
     #endregion
@@ -111,35 +110,32 @@ class DataTableCollection extends ResourceCollection
     #region PROTECTED METHODS
 
     /**
-     * @return array<string,string>
+     * @return void
      */
-    protected function getLabels(): array
+    protected function registerLabels(): void
     {
         $from = $this->resource->firstItem();
         $to = $this->resource->lastItem();
         $total = $this->resource->total();
 
-        $results = $total === 0 ? trans('pagination.empty') : trans('pagination.results', [
-            'from'  => $from,
-            'to'    => $to,
-            'total' => $total,
-        ]);
-
-        return [
-            'create'          => trans('ui.create'),
-            'columns'         => trans('table.columns'),
-            'first_page'      => trans('accessibility.page_first'),
-            'last_page'       => trans('accessibility.page_last'),
-            'more_pages'      => trans('accessibility.more_pages'),
-            'move_column'     => trans('accessibility.column_move'),
-            'next_page'       => trans('accessibility.page_next'),
-            'pagination'      => trans('pagination.pagination'),
-            'previous_page'   => trans('accessibility.page_previous'),
-            'results'         => $results,
-            'sort_column'     => trans('accessibility.column_sort'),
-            'title'           => trans('ui.' . $this->table),
-            'toggle_settings' => trans('accessibility.toggle_table_settings'),
-        ];
+        app(LabelsBag::class)
+            ->add('accessibility.first_page')
+            ->add('accessibility.last_page')
+            ->add('accessibility.more_pages')
+            ->add('accessibility.move_column')
+            ->add('accessibility.next_page')
+            ->add('accessibility.previous_page')
+            ->add('accessibility.sort_column')
+            ->add('accessibility.toggle_table_settings')
+            ->add('pagination.empty')
+            ->add('pagination.pagination')
+            ->add('table.columns')
+            ->add('ui.create')
+            ->add('pagination.results', [
+                'from'  => $from,
+                'to'    => $to,
+                'total' => $total,
+            ]);
     }
 
     /**
@@ -150,6 +146,7 @@ class DataTableCollection extends ResourceCollection
         return [
             'id'     => Str::slug($this->table),
             'routes' => RouteService::getRouteNames($this->table),
+            'title'  => trans('ui.' . $this->table),
         ];
     }
 

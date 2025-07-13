@@ -7,7 +7,7 @@ namespace App\Http\Forms\Resources;
 use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\Resources\ISiteGroupForm;
 use App\Models\SiteGroup;
-use App\Structures\Input;
+use App\Support\Input;
 
 #endregion
 

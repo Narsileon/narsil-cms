@@ -1,5 +1,5 @@
 import { arrayMove } from "@dnd-kit/sortable";
-import { DataTableContext } from "./data-table-context";
+import { DataTableContext, DataTableContextProps } from "./data-table-context";
 import { compact, debounce } from "lodash";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
@@ -34,10 +34,7 @@ type DataTableProviderProps = Partial<TableOptions<any>> & {
   data: any[];
   id: string;
   initialState: Partial<DataTableStoreType>;
-  render: (context: {
-    dataTable: Table<any>;
-    dataTableStore: DataTableStoreType;
-  }) => React.ReactNode;
+  render: (context: DataTableContextProps) => React.ReactNode;
 };
 
 function formatSorting(sorting: SortingState) {

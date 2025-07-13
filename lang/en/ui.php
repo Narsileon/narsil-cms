@@ -33,7 +33,6 @@ return [
     'site'                      => 'Site',
     'sites'                     => 'Sites',
     'system'                    => 'System',
-    'two_factor_authentication' => 'Two-Factor authentication',
     'update'                    => 'Update',
     'user'                      => 'User',
     'users'                     => 'Users',

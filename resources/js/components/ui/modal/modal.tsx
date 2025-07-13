@@ -1,4 +1,5 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { LabelsProvider } from "@/components/ui/labels";
 import { ModalState } from "@/stores/modal-store";
 import { useEffect, useState } from "react";
 import type { ComponentProps, ComponentType } from "react";
@@ -35,7 +36,9 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
         className="absolute h-[calc(100%-4rem)] min-w-[calc(100%-4rem)]"
         {...props}
       >
-        {Component ? <Component modal={true} {...componentProps} /> : null}
+        <LabelsProvider labels={componentProps.labels}>
+          {Component ? <Component modal={true} {...componentProps} /> : null}
+        </LabelsProvider>
       </DialogContent>
     </Dialog>
   );

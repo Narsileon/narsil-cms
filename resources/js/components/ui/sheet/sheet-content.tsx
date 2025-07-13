@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
+import { useLabels } from "@/components/ui/labels";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { XIcon } from "lucide-react";
 import SheetOverlay from "./sheet-overlay";
 import SheetPortal from "./sheet-portal";
-import useTranslationsStore from "@/stores/translations-store";
 
 type SheetContentProps = React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: "top" | "right" | "bottom" | "left";
@@ -16,7 +16,7 @@ function SheetContent({
   side = "right",
   ...props
 }: SheetContentProps) {
-  const { trans } = useTranslationsStore();
+  const { getLabel } = useLabels();
 
   return (
     <SheetPortal>
@@ -63,7 +63,7 @@ function SheetContent({
         >
           <XIcon className="size-4" />
           <VisuallyHidden>
-            {trans("accessibility.close_sheet", "Close sheet")}
+            {getLabel("accessibility.close_sheet", "Close sheet")}
           </VisuallyHidden>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>

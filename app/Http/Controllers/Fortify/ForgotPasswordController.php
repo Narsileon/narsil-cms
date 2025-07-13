@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Fortify;
 
 use App\Enums\Forms\MethodEnum;
 use App\Interfaces\Forms\Fortify\IForgotPasswordForm;
+use App\Narsil;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -56,29 +56,11 @@ class ForgotPasswordController
             submit: trans('ui.send'),
         );
 
-        $status = session('status');
-
-        return Inertia::render('fortify/form', [
+        return Narsil::render('fortify/form', [
             'form'   => $form,
-            'labels' => $this->getLabels(),
-            'status' => $status,
+            'status' => session('status'),
+            'title'  => trans('ui.reset_password'),
         ]);
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return array<string,string>
-     */
-    protected function getLabels(): array
-    {
-        return [
-            'back'          => trans('ui.back'),
-            'password_link' => trans('passwords.link'),
-            'title'         => trans('ui.reset_password'),
-        ];
     }
 
     #endregion

@@ -57,9 +57,9 @@ class ResetPasswordController
         );
 
         return Inertia::render('fortify/form', [
-            'data'   => $this->getData(),
-            'form'   => $form,
-            'labels' => $this->getLabels(),
+            'data'  => $this->getData(),
+            'form'  => $form,
+            'title' => trans('ui.reset_password'),
         ]);
     }
 
@@ -74,16 +74,6 @@ class ResetPasswordController
     {
         return [
             'token' => request()->route('token'),
-        ];
-    }
-
-    /**
-     * @return array<string,string>
-     */
-    protected function getLabels(): array
-    {
-        return [
-            'title' => trans('ui.reset_password'),
         ];
     }
 

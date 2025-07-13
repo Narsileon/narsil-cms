@@ -9,7 +9,7 @@ use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\Fortify\IRegisterForm;
 use App\Models\User;
-use App\Structures\Input;
+use App\Support\Input;
 
 #endregion
 
@@ -50,7 +50,6 @@ class RegisterForm extends AbstractForm implements IRegisterForm
                 ->required(true)
                 ->get(),
             (new Input(User::LAST_NAME, ''))
-                ->type(TypeEnum::PASSWORD)
                 ->autoComplete(AutoCompleteEnum::FAMILY_NAME)
                 ->column(true)
                 ->required(true)

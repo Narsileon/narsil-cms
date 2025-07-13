@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Support\LabelsBag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -25,11 +26,11 @@ class VerifyEmailController
      */
     public function __invoke(Request $request): Response
     {
-        $status = session('status');
+        $this->registerLabels();
 
         return Inertia::render('fortify/verify-email', [
-            'labels' => $this->getLabels(),
-            'status' => $status,
+            'status' => session('status'),
+            'title'  => trans('ui.email_verify'),
         ]);
     }
 
@@ -38,17 +39,15 @@ class VerifyEmailController
     #region PROTECTED METHODS
 
     /**
-     * @return array<string,string>
+     * @return void
      */
-    protected function getLabels(): array
+    protected function registerLabels(): void
     {
-        return [
-            'instruction' => trans('verify-email.instruction'),
-            'prompt'      => trans('verify-email.prompt'),
-            'send_again'  => trans('verify-email.send_again'),
-            'sent'        => trans('verify-email.sent'),
-            'title'       => trans('ui.email_verify'),
-        ];
+        app(LabelsBag::class)
+            ->add('verify-email.instruction')
+            ->add('verify-email.prompt')
+            ->add('verify-email.send_again')
+            ->add('verify-email.sent');
     }
 
     #endregion

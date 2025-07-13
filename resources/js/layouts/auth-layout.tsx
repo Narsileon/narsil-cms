@@ -1,25 +1,47 @@
 import { ModalRenderer } from "@/components/ui/modal";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useMaxLg } from "@/hooks/use-breakpoints";
 import AppBreadcrumb from "@/components/app/app-breadcrumb";
 import AppSidebar from "@/components/app/app-sidebar";
+import useAuth from "@/hooks/use-auth";
+import useColorStore from "@/stores/color-store";
+import useRadiusStore from "@/stores/radius-store";
 import UserMenu from "@/components/app/user/menu";
+import useThemeStore from "@/stores/theme-store";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { useMaxLg } from "@/hooks/use-breakpoints";
 
 type AuthLayoutProps = {
   children: React.ReactNode;
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
+  const auth = useAuth();
+  const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
 
-  const isMobile = useMaxLg();
+  const { setColor } = useColorStore();
+  const { setRadius } = useRadiusStore();
+  const { setTheme } = useThemeStore();
+
+  const { color, radius, theme } = auth?.configuration ?? {};
+
+  useEffect(() => {
+    if (color) {
+      setColor(color);
+    }
+    if (radius) {
+      setRadius(radius);
+    }
+    if (theme) {
+      setTheme(theme);
+    }
+  }, [color, radius, theme]);
 
   return (
     <SidebarProvider isMobile={isMobile}>

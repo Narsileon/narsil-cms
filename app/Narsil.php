@@ -4,6 +4,8 @@ namespace App;
 
 #region USE
 
+use App\Services\TranslationService;
+use App\Support\LabelsBag;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -24,14 +26,21 @@ class Narsil
      */
     public static function render(string $component, array $props = []): JsonResponse|Response
     {
+        $labels = app(LabelsBag::class)->get();
+
         if (request()->boolean('_modal'))
         {
             return response()->json([
                 'component' => $component,
-                'props' => array_merge(['_modal' => true], $props),
+                'props' => array_merge([
+                    '_modal' => true,
+                    'labels' => $labels,
+                ], $props),
             ]);
         }
 
-        return Inertia::render($component, $props);
+        return Inertia::render($component, array_merge([
+            'labels' => $labels,
+        ], $props));
     }
 }

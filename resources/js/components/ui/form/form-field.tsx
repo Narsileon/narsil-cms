@@ -1,14 +1,12 @@
 import { FormFieldContext } from "./form-field-context";
 import useForm from "./form-context";
 
-type FormFieldContextProps = { error: string | undefined; name: string };
-
 type FormFieldProps = {
   name: string;
   render: (field: {
     id: string;
     value: any;
-    onChange: (value: any) => void;
+    onFieldChange: (value: any) => void;
   }) => React.ReactNode;
 };
 
@@ -22,7 +20,7 @@ const FormField = ({ name, render }: FormFieldProps) => {
       {render({
         id: name,
         value: data?.[name] ?? "",
-        onChange: (value) => setData?.(name, value),
+        onFieldChange: (value) => setData?.(name, value),
       })}
     </FormFieldContext.Provider>
   );

@@ -6,7 +6,8 @@ namespace App\Http\Forms;
 
 use App\Enums\Forms\MethodEnum;
 use App\Interfaces\Forms\IForm;
-use App\Structures\Input;
+use App\Support\Input;
+use App\Support\LabelsBag;
 use Illuminate\Support\Str;
 use ReflectionClass;
 
@@ -33,13 +34,15 @@ abstract class AbstractForm implements IForm
         $this->method = $method->value;
         $this->submit = $submit;
 
+        $this->registerLabels();
+
         return [
             'action'       => $this->action,
             'method'       => $this->method,
             'id'           => $this->getId(),
             'inputs'       => $this->getInputs(),
             'options'      => $this->getOptions(),
-            'labels'       => $this->getLabels(),
+            'submit'       => $this->submit,
         ];
     }
 
@@ -81,16 +84,14 @@ abstract class AbstractForm implements IForm
     }
 
     /**
-     * @return array<string,string>
+     * @return void
      */
-    protected function getLabels(): array
+    protected function registerLabels(): void
     {
-        return [
-            'back'     => trans('ui.back'),
-            'empty'    => trans('pagination.empty'),
-            'required' => trans('accessibility.required'),
-            'submit'   => $this->submit,
-        ];
+        app(LabelsBag::class)
+            ->add('ui.back')
+            ->add('pagination.empty')
+            ->add('accessibility.required');
     }
 
     /**

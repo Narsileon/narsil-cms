@@ -8,8 +8,8 @@ use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\Resources\ISiteForm;
 use App\Models\Site;
-use App\Services\LangService;
-use App\Structures\Input;
+use App\Support\Input;
+use Illuminate\Support\Facades\App;
 use Locale;
 use ResourceBundle;
 
@@ -28,7 +28,7 @@ class SiteForm extends AbstractForm implements ISiteForm
      */
     protected function getInputs(): array
     {
-        $locales = static::getLanguageOptions();
+        $languageOptions = static::getLanguageOptions();
 
         return [
             (new Input(Site::NAME, ''))
@@ -43,7 +43,7 @@ class SiteForm extends AbstractForm implements ISiteForm
                 ->get(),
             (new Input(Site::LANGUAGE, ''))
                 ->type(TypeEnum::COMBOBOX)
-                ->options($locales)
+                ->options($languageOptions)
                 ->required(true)
                 ->get(),
             (new Input(Site::GROUP_ID, ''))
@@ -58,11 +58,9 @@ class SiteForm extends AbstractForm implements ISiteForm
     /**
      * @return array<string>
      */
-    protected static function getLanguageOptions(): array
+    protected function getLanguageOptions(): array
     {
         $locales = ResourceBundle::getLocales('');
-
-        $currentLocale = LangService::getLocale();
 
         $options = [];
 
@@ -70,7 +68,7 @@ class SiteForm extends AbstractForm implements ISiteForm
         {
             $options[] = [
                 'value' => $locale,
-                'label' => Locale::getDisplayName($locale, $currentLocale),
+                'label' => Locale::getDisplayName($locale, App::getLocale()),
             ];
         }
 
@@ -80,7 +78,7 @@ class SiteForm extends AbstractForm implements ISiteForm
         });
 
 
-        return $options;
+        return array_values($options);
     }
 
     #endregion

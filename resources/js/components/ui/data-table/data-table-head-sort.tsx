@@ -2,23 +2,21 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
 import { Header } from "@tanstack/react-table";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useLabels } from "@/components/ui/labels";
 
 type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
   header: Header<any, any>;
-  sortLabel?: string;
 };
 
-function DataTableHeadSort({
-  header,
-  sortLabel,
-  ...props
-}: DataTableHeadSortProps) {
+function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
+  const { getLabel } = useLabels();
+
   const isSorted = header.column.getIsSorted();
 
   return (
-    <Tooltip tooltip={sortLabel ?? "Sort column"}>
+    <Tooltip tooltip={getLabel("accessibility.sort_column")}>
       <Button
-        aria-label={sortLabel ?? "Sort column"}
+        aria-label={getLabel("accessibility.sort_column", "Sort column")}
         className="size-6"
         size="icon"
         variant="ghost"

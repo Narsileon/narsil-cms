@@ -57,23 +57,9 @@ class ConfirmPasswordController
         );
 
         return Inertia::render('fortify/form', [
-            'form'   => $form,
-            'labels' => $this->getLabels(),
-        ]);
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return array<string,string>
-     */
-    protected function getLabels(): array
-    {
-        return [
+            'form'  => $form,
             'title' => trans('ui.confirm_password'),
-        ];
+        ]);
     }
 
     #endregion

@@ -14,11 +14,46 @@ type ModalStoreActions = {
   closeModal: (href: string) => void;
   closeTopModal: () => void;
   openModal: (href: string) => Promise<void>;
+  reloadTopModal: () => Promise<void>;
 };
 
 export type ModalStoreType = ModalStoreState & ModalStoreActions;
 
-export const useModalStore = create<ModalStoreType>((set) => ({
+async function fetchModalProps(href: string): Promise<ModalState | null> {
+  try {
+    const url = new URL(href, window.location.origin);
+
+    url.searchParams.set("_modal", "1");
+
+    const response = await fetch(url.toString(), {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch modal");
+    }
+
+    const data = await response.json();
+
+    if (!data?.component) {
+      throw new Error("Invalid modal response");
+    }
+
+    return {
+      component: data.component,
+      componentProps: data.props ?? {},
+      href: href,
+    };
+  } catch (error) {
+    console.error(error);
+
+    return null;
+  }
+}
+
+export const useModalStore = create<ModalStoreType>((set, get) => ({
   modals: [],
 
   closeModal: (href) =>
@@ -30,39 +65,34 @@ export const useModalStore = create<ModalStoreType>((set) => ({
       modals: state.modals.slice(0, -1),
     })),
   openModal: async (href) => {
-    const fullUrl = new URL(href, window.location.origin);
+    const modal = await fetchModalProps(href);
 
-    fullUrl.searchParams.set("_modal", "1");
-
-    const response = await fetch(fullUrl.toString(), {
-      headers: {
-        Accept: "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      console.error("Failed to fetch modal");
-
-      return;
-    }
-
-    const data = await response.json();
-
-    if (!data || !data.component) {
-      console.error("Invalid modal response");
-
+    if (!modal) {
       return;
     }
 
     set((state) => ({
-      modals: [
-        ...state.modals,
-        {
-          component: data.component,
-          componentProps: data.props,
-          href: href,
-        },
-      ],
+      modals: [...state.modals, modal],
     }));
+  },
+  reloadTopModal: async () => {
+    const topModal = get().modals.at(-1);
+
+    if (!topModal) {
+      return;
+    }
+    const modal = await fetchModalProps(topModal.href);
+
+    if (!modal) {
+      return;
+    }
+
+    set((state) => {
+      const updated = [...state.modals];
+
+      updated[updated.length - 1] = modal;
+
+      return { modals: updated };
+    });
   },
 }));

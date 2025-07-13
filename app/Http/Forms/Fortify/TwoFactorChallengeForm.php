@@ -7,7 +7,7 @@ namespace App\Http\Forms\Fortify;
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\Fortify\ITwoFactorChallengeForm;
-use App\Structures\Input;
+use App\Support\Input;
 
 #endregion
 

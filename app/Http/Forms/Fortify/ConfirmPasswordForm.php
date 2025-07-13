@@ -9,7 +9,7 @@ use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\Fortify\IConfirmPasswordForm;
 use App\Models\User;
-use App\Structures\Input;
+use App\Support\Input;
 
 #endregion
 

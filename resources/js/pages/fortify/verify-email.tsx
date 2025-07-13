@@ -5,6 +5,7 @@ import { Head, Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
+import { useLabels } from "@/components/ui/labels";
 import {
   Section,
   SectionContent,
@@ -13,16 +14,18 @@ import {
 } from "@/components/ui/section";
 
 type VerifyEmailProps = {
-  labels: Record<string, string>;
   status: string;
+  title: string;
 };
 
-function VerifyEmail({ labels, status }: VerifyEmailProps) {
+function VerifyEmail({ status, title }: VerifyEmailProps) {
+  const { getLabel } = useLabels();
+
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
     if (status && !hasStatus.current) {
-      toast.success(labels.sent);
+      toast.success(getLabel("verify-email.sent"));
 
       hasStatus.current = true;
     }
@@ -30,22 +33,22 @@ function VerifyEmail({ labels, status }: VerifyEmailProps) {
 
   return (
     <>
-      <Head title={labels.title} />
+      <Head title={title} />
       <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {labels.title}
+              {title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
             <Card>
               <CardContent className="grid gap-4">
-                <p>{labels.instruction}</p>
-                <p>{labels.prompt}</p>
+                <p>{getLabel("verify-email.instruction")}</p>
+                <p>{getLabel("verify-email.prompt")}</p>
                 <Button asChild={true}>
                   <Link href={route("verification.send")} method="post">
-                    {labels.send_again}
+                    {getLabel("verify-email.send_again")}
                   </Link>
                 </Button>
               </CardContent>

@@ -1,21 +1,28 @@
 <?php
 
+#region USE
+
+use App\Enums\ColorEnum;
+
+#endregion
+
 return [
-    'amber'   => 'Ambre',
-    'blue'    => 'Bleu',
-    'cyan'    => 'Cyan',
-    'emerald' => 'Émeraude',
-    'fuchsia' => 'Fuchsia',
-    'green'   => 'Vert',
-    'indigo'  => 'Indigo',
-    'lime'    => 'Citron',
-    'orange'  => 'Orange',
-    'pink'    => 'Rose',
-    'purple'  => 'Pourpre',
-    'red'     => 'Rouge',
-    'rose'    => 'Rose',
-    'sky'     => 'Ciel',
-    'teal'    => 'Turquoise',
-    'violet'  => 'Violet',
-    'yellow'  => 'Jaune',
+    ColorEnum::AMBER->value   => 'Ambre',
+    ColorEnum::BLUE->value    => 'Bleu',
+    ColorEnum::CYAN->value    => 'Cyan',
+    ColorEnum::EMERALD->value => 'Émeraude',
+    ColorEnum::FUCHSIA->value => 'Fuchsia',
+    ColorEnum::GREEN->value   => 'Vert',
+    ColorEnum::INDIGO->value  => 'Indigo',
+    ColorEnum::LIME->value    => 'Citron',
+    ColorEnum::NEUTRAL->value => 'Défaut',
+    ColorEnum::ORANGE->value  => 'Orange',
+    ColorEnum::PINK->value    => 'Rose',
+    ColorEnum::PURPLE->value  => 'Pourpre',
+    ColorEnum::RED->value     => 'Rouge',
+    ColorEnum::ROSE->value    => 'Rose',
+    ColorEnum::SKY->value     => 'Ciel',
+    ColorEnum::TEAL->value    => 'Turquoise',
+    ColorEnum::VIOLET->value  => 'Violet',
+    ColorEnum::YELLOW->value  => 'Jaune',
 ];

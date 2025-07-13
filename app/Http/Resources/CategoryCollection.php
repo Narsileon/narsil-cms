@@ -5,6 +5,8 @@ namespace App\Http\Resources;
 #region USE
 
 use App\Services\RouteService;
+use App\Services\TranslationService;
+use App\Support\LabelsBag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use JsonSerializable;
@@ -32,6 +34,8 @@ class CategoryCollection extends ResourceCollection
         $this->table = $table;
 
         parent::__construct($resource);
+
+        $this->registerLabels();
     }
 
     #endregion
@@ -96,8 +100,7 @@ class CategoryCollection extends ResourceCollection
     public function with($request): array
     {
         return [
-            'labels' => $this->getLabels(),
-            'meta'   => $this->getMeta(),
+            'meta' => $this->getMeta(),
         ];
     }
 
@@ -106,16 +109,14 @@ class CategoryCollection extends ResourceCollection
     #region PROTECTED METHODS
 
     /**
-     * @return array<string,string>
+     * @return void
      */
-    protected function getLabels(): array
+    protected function registerLabels(): void
     {
-        return [
-            'create' => trans('ui.create'),
-            'delete' => trans('ui.delete'),
-            'edit'   => trans('ui.edit'),
-            'title'  => trans('ui.' . $this->table),
-        ];
+        app(LabelsBag::class)
+            ->add('ui.create')
+            ->add('ui.delete')
+            ->add('ui.edit');
     }
 
     /**
@@ -125,6 +126,7 @@ class CategoryCollection extends ResourceCollection
     {
         return [
             'routes' => RouteService::getRouteNames($this->table),
+            'title' => trans('ui.' . $this->table)
         ];
     }
 

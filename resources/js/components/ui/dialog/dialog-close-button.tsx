@@ -1,15 +1,15 @@
 import { cn } from "@/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
+import { useLabels } from "@/components/ui/labels";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { XIcon } from "lucide-react";
-import useTranslationsStore from "@/stores/translations-store";
 
 type DialogCloseButtonProps = React.ComponentProps<
   typeof DialogPrimitive.Close
 > & {};
 
 function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
-  const { trans } = useTranslationsStore();
+  const { getLabel } = useLabels();
 
   return (
     <DialogPrimitive.Close
@@ -27,7 +27,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
     >
       <XIcon />
       <VisuallyHidden>
-        {trans("accessibility.close_dialog", "Close dialog")}
+        {getLabel("accessibility.close_dialog", "Close dialog")}
       </VisuallyHidden>
     </DialogPrimitive.Close>
   );

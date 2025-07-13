@@ -9,7 +9,7 @@ use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\Fortify\ILoginForm;
 use App\Models\User;
-use App\Structures\Input;
+use App\Support\Input;
 
 #endregion
 
@@ -32,7 +32,7 @@ class LoginForm extends AbstractForm implements ILoginForm
                 ->autoComplete(AutoCompleteEnum::EMAIL)
                 ->required(true)
                 ->get(),
-            (new Input(user::PASSWORD, ''))
+            (new Input(User::PASSWORD, ''))
                 ->type(TypeEnum::PASSWORD)
                 ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
                 ->required(true)

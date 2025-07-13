@@ -8,7 +8,7 @@ namespace App\Enums;
  */
 enum SessionEnum: string
 {
-    case ALL = 'all';
+    case ALL     = 'all';
     case CURRENT = 'current';
-    case OTHERS = 'others';
+    case OTHERS  = 'others';
 }

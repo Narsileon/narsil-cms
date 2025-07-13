@@ -4,7 +4,7 @@ namespace App\Services;
 
 #region USE
 
-use App\Structures\Column;
+use App\Support\Column;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;

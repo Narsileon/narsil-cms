@@ -12,4 +12,6 @@ enum TypeEnum: string
     case COMBOBOX = 'combobox';
     case EMAIL    = 'email';
     case PASSWORD = 'password';
+    case SELECT   = 'select';
+    case SLIDER   = 'slider';
 }

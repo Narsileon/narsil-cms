@@ -5,7 +5,7 @@ namespace App\Services;
 #region USE
 
 use App\Constants\TanStackTable;
-use App\Structures\Column;
+use App\Support\Column;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;

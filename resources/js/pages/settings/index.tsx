@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/container";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import useTranslationsStore from "@/stores/translations-store";
 import type { NavigationOption } from "@/types/global";
 
 type SettingsProps = {
@@ -12,8 +11,6 @@ type SettingsProps = {
 };
 
 function Settings({ content }: SettingsProps) {
-  const { trans } = useTranslationsStore();
-
   return (
     <Container className="gap-0" variant="centered">
       {content.map((card, index) => (
@@ -22,7 +19,7 @@ function Settings({ content }: SettingsProps) {
           key={index}
         >
           <CardHeader>
-            <CardTitle>{trans(card.label, card.label)}</CardTitle>
+            <CardTitle>{card.label}</CardTitle>
           </CardHeader>
           <CardContent>
             {card.children?.map((child, index) => (
@@ -34,7 +31,7 @@ function Settings({ content }: SettingsProps) {
                 <Link href={route(child.route)}>
                   <DynamicIcon className="size-16" name={child.icon} />
                 </Link>
-                {trans(child.label, child.label)}
+                {child.label}
               </Button>
             ))}
           </CardContent>

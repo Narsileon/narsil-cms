@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { get, isString, lowerCase } from "lodash";
+import { cn, getSelectOption } from "@/lib/utils";
+import { lowerCase } from "lodash";
 import { SelectOption } from "@/types/global";
+import { useLabels } from "@/components/ui/labels";
 import { useState } from "react";
 import {
   Command,
@@ -21,46 +22,32 @@ import {
 } from "@/components/ui/popover";
 
 type ComboboxProps = {
-  emptyLabel?: string;
   labelKey?: string;
   options: SelectOption[] | string[];
   placeholder?: string;
-  value: string | number;
+  search?: boolean;
+  value: number | string;
   valueKey?: string;
-  setValue: (value: number | string) => void;
+  renderOption?: (value: SelectOption | string) => React.ReactNode;
+  setValue: (value: SelectOption | string) => void;
 };
 
-function getSelectOptionLabel(
-  option: SelectOption | string,
-  labelKey: string,
-): string {
-  const label = isString(option) ? option : get(option, labelKey);
-
-  return label;
-}
-
-function getSelectOptionValue(
-  option: SelectOption | string,
-  valueKey: string,
-): any {
-  const value = isString(option) ? option : get(option, valueKey);
-
-  return value;
-}
-
 function Combobox({
-  emptyLabel,
   labelKey = "label",
   placeholder,
+  search = true,
   value,
   valueKey = "value",
   options,
+  renderOption,
   setValue,
 }: ComboboxProps) {
+  const { getLabel } = useLabels();
+
   const [open, setOpen] = useState(false);
 
   const option = options.find((option) => {
-    const optionValue = getSelectOptionValue(option, valueKey);
+    const optionValue = getSelectOption(option, valueKey);
 
     return optionValue === value;
   });
@@ -68,13 +55,13 @@ function Combobox({
   function filter(value: string, search: string) {
     const option = options?.find((option) => {
       return (
-        getSelectOptionValue(option, valueKey) === value ||
-        getSelectOptionLabel(option, labelKey) === value
+        getSelectOption(option, valueKey) === value ||
+        getSelectOption(option, labelKey) === value
       );
     });
 
     if (option) {
-      const optionLabel = getSelectOptionLabel(option, labelKey);
+      const optionLabel = getSelectOption(option, labelKey);
 
       if (lowerCase(optionLabel).includes(lowerCase(search))) {
         return 1;
@@ -85,7 +72,7 @@ function Combobox({
   }
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} modal={true}>
       <PopoverTrigger asChild={true}>
         <Button
           className="w-full justify-between font-normal"
@@ -94,20 +81,22 @@ function Combobox({
           variant="outline"
         >
           {option
-            ? getSelectOptionLabel(option, labelKey)
+            ? getSelectOption(option, labelKey)
             : (placeholder ?? "Search...")}
-          <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDownIcon className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command filter={filter}>
-          <CommandInput placeholder={placeholder ?? "Search..."} />
+          {search ? (
+            <CommandInput placeholder={placeholder ?? "Search..."} />
+          ) : null}
           <CommandList>
-            <CommandEmpty>{emptyLabel ?? "No results found."}</CommandEmpty>
+            <CommandEmpty>{getLabel("pagination.empty")}</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
-                const optionLabel = getSelectOptionLabel(option, labelKey);
-                const optionValue = getSelectOptionValue(option, valueKey);
+                const optionLabel = getSelectOption(option, labelKey);
+                const optionValue = getSelectOption(option, valueKey);
 
                 return (
                   <CommandItem
@@ -124,7 +113,7 @@ function Combobox({
                         value === optionValue ? "opacity-100" : "opacity-0",
                       )}
                     />
-                    {optionLabel}
+                    {renderOption ? renderOption(option) : optionLabel}
                   </CommandItem>
                 );
               })}

@@ -57,23 +57,9 @@ class TwoFactorChallengeController
         );
 
         return Inertia::render('fortify/form', [
-            'form'   => $form,
-            'labels' => $this->getLabels(),
-        ]);
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return array<string,string>
-     */
-    protected function getLabels(): array
-    {
-        return [
+            'form'  => $form,
             'title' => trans('ui.two_factor_authentication'),
-        ];
+        ]);
     }
 
     #endregion

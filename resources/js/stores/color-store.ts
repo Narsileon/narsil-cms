@@ -1,36 +1,13 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-export const colors = [
-  "default",
-  "red",
-  "orange",
-  "amber",
-  "yellow",
-  "lime",
-  "green",
-  "emerald",
-  "teal",
-  "cyan",
-  "sky",
-  "blue",
-  "indigo",
-  "violet",
-  "purple",
-  "fuchsia",
-  "pink",
-  "rose",
-] as const;
-
-export type Color = (typeof colors)[number];
-
 type ColorStoreState = {
-  color: Color;
+  color: string;
 };
 
 type ColorStoreActions = {
   applyColor: () => void;
-  setColor: (color: Color) => void;
+  setColor: (color: string) => void;
 };
 
 export type ColorStoreType = ColorStoreState & ColorStoreActions;
@@ -38,7 +15,7 @@ export type ColorStoreType = ColorStoreState & ColorStoreActions;
 const useColorStore = create<ColorStoreType>()(
   persist(
     (set, get) => ({
-      color: "default",
+      color: "neutral",
       applyColor: () => {
         const root = window.document.documentElement;
 

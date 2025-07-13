@@ -26,7 +26,7 @@ function ResourceForm({ _modal = false, data, form }: FormProps) {
         <Section className="p-4">
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {form.title}
+              {getLabel(form.labels, "title")}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
@@ -50,14 +50,9 @@ function ResourceForm({ _modal = false, data, form }: FormProps) {
                   }}
                 >
                   {form.inputs.map((input, index) => (
-                    <FormInputBlock
-                      emptyLabel={form.labels.empty}
-                      requiredLabel={form.labels.required}
-                      {...input}
-                      key={index}
-                    />
+                    <FormInputBlock {...input} key={index} />
                   ))}
-                  <FormSubmit>{form.labels.submit}</FormSubmit>
+                  <FormSubmit>{form.submit}</FormSubmit>
                 </Form>
               )}
             />

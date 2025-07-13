@@ -1,7 +1,13 @@
 <?php
 
+#region USE
+
+use App\Enums\ThemeEnum;
+
+#endregion
+
 return [
-    'dark'   => 'Dark',
-    'light'  => 'Light',
-    'system' => 'System',
+    ThemeEnum::DARK->value   => 'Dark',
+    ThemeEnum::LIGHT->value  => 'Light',
+    ThemeEnum::SYSTEM->value => 'System',
 ];

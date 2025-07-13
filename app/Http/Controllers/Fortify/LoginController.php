@@ -6,8 +6,9 @@ namespace App\Http\Controllers\Fortify;
 
 use App\Enums\Forms\MethodEnum;
 use App\Interfaces\Forms\Fortify\ILoginForm;
+use App\Narsil;
+use App\Support\LabelsBag;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -50,18 +51,18 @@ class LoginController
      */
     public function __invoke(Request $request): Response
     {
+        $this->registerLabels();
+
         $form = $this->form->get(
             action: route('login'),
             method: MethodEnum::POST,
             submit: trans('ui.log_in'),
         );
 
-        $status = session('status');
-
-        return Inertia::render('fortify/form', [
+        return Narsil::render('fortify/form', [
             'form'   => $form,
-            'labels' => $this->getLabels(),
-            'status' => $status,
+            'status' => session('status'),
+            'title'  => trans('ui.connection'),
         ]);
     }
 
@@ -70,14 +71,12 @@ class LoginController
     #region PROTECTED METHODS
 
     /**
-     * @return array<string,string>
+     * @return void
      */
-    protected function getLabels(): array
+    protected function registerLabels(): void
     {
-        return [
-            'password_link' => trans('passwords.link'),
-            'title'         => trans('ui.connection'),
-        ];
+        app(LabelsBag::class)
+            ->add('passwords.link');
     }
 
     #endregion

@@ -10,4 +10,5 @@ enum MethodEnum: string
 {
     case PATCH = 'patch';
     case POST  = 'post';
+    case PUT   = 'put';
 }

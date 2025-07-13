@@ -16,15 +16,9 @@ import {
 
 type DataTableBlockProps = {
   dataTable: Table<any>;
-  moveLabel?: string;
-  sortLabel?: string;
 };
 
-function DataTableBlock({
-  dataTable,
-  moveLabel,
-  sortLabel,
-}: DataTableBlockProps) {
+function DataTableBlock({ dataTable }: DataTableBlockProps) {
   return (
     <ScrollArea className="rounded-md border" orientation="horizontal">
       <DataTable className="min-w-max">
@@ -50,14 +44,7 @@ function DataTableBlock({
                     );
                   }
 
-                  return (
-                    <DataTableHead
-                      header={header}
-                      moveLabel={moveLabel}
-                      sortLabel={sortLabel}
-                      key={header.id}
-                    />
-                  );
+                  return <DataTableHead header={header} key={header.id} />;
                 })}
               </SortableContext>
             </DataTableRow>

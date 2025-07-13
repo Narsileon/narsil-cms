@@ -1,4 +1,5 @@
 import { isEmpty } from "lodash";
+import { LabelsProvider } from "@/components/ui/labels";
 import { router, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect } from "react";
@@ -7,7 +8,6 @@ import GuestLayout from "./guest-layout";
 import useColorStore from "@/stores/color-store";
 import useRadiusStore from "@/stores/radius-store";
 import useThemeStore from "@/stores/theme-store";
-import useTranslationsStore from "@/stores/translations-store";
 import type { GlobalProps } from "@/types/global";
 
 type LayoutProps = {
@@ -15,8 +15,6 @@ type LayoutProps = {
 };
 
 function Layout({ children }: LayoutProps) {
-  const translationStore = useTranslationsStore();
-
   const colorStore = useColorStore();
   const radiusStore = useRadiusStore();
   const themeStore = useThemeStore();
@@ -25,14 +23,7 @@ function Layout({ children }: LayoutProps) {
   radiusStore.applyRadius();
   themeStore.applyTheme();
 
-  const { auth, redirect, shared } = usePage<GlobalProps>().props;
-
-  const { locale, locales } = shared ?? {};
-
-  useEffect(() => {
-    translationStore.setLocale(locale);
-    translationStore.setLocales(locales);
-  }, [locale, locales]);
+  const { auth, labels, redirect } = usePage<GlobalProps>().props;
 
   const { error, info, success, warning } = redirect ?? {};
 
@@ -52,10 +43,14 @@ function Layout({ children }: LayoutProps) {
     });
   }, [error, info, success, warning]);
 
-  return isEmpty(auth) ? (
-    <GuestLayout>{children}</GuestLayout>
-  ) : (
-    <AuthLayout>{children}</AuthLayout>
+  return (
+    <LabelsProvider labels={labels}>
+      {isEmpty(auth) ? (
+        <GuestLayout>{children}</GuestLayout>
+      ) : (
+        <AuthLayout>{children}</AuthLayout>
+      )}
+    </LabelsProvider>
   );
 }
 

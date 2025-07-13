@@ -1,4 +1,5 @@
 import { DynamicIcon } from "lucide-react/dynamic";
+import type { Theme } from "@/stores/theme-store";
 import type {
   ColumnDef,
   ColumnOrderState,
@@ -11,11 +12,17 @@ type GlobalProps = {
     first_name: string | undefined | null;
     last_name: string | undefined | null;
     two_factor_confirmed_at: string | null;
+    configuration: {
+      color: string;
+      radius: number;
+      theme: Theme;
+    };
   };
   breadcrumb: {
     href: string;
     label: string;
   }[];
+  labels: Record<string, string>;
   sidebar: {
     content: NavigationOption[];
     translations: Record<string, string>;
@@ -28,7 +35,6 @@ type GlobalProps = {
   };
   shared: {
     locale: string;
-    locales: string[];
   };
 };
 
@@ -37,14 +43,9 @@ type CategoriesCollection = {
     id: number;
     label: string;
   }[];
-  labels: Record<string, string> & {
-    create: string;
-    delete: string;
-    edit: string;
-    title: string;
-  };
   meta: {
     routes: RouteNames;
+    title: string;
   };
 };
 
@@ -53,21 +54,6 @@ type DataTableCollection<T = any> = {
   columnOrder: ColumnOrderState;
   columnVisibility: VisibilityState;
   data: T[];
-  labels: Record<string, string> & {
-    create: string;
-    columns: string;
-    first_page: string;
-    last_page: string;
-    more_pages: string;
-    move_column: string;
-    next_page: string;
-    pagination: string;
-    previous_page: string;
-    results: string;
-    sort_column: string;
-    title: string;
-    toggle_settings: string;
-  };
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta & {
     id: string;
@@ -80,13 +66,8 @@ type LaravelForm = {
   action: string;
   id: string;
   inputs: LaravelFormInput[];
-  labels: Record<string, string> & {
-    back: string;
-    empty: string;
-    required: string;
-    submit: string;
-  };
   method: string;
+  submit: string;
 };
 
 type LaravelFormInput = {
@@ -95,9 +76,12 @@ type LaravelFormInput = {
   description?: string;
   id: string;
   label: string;
+  max?: number;
+  min?: number;
   options?: SelectOption[];
   placeholder?: string;
   required?: boolean;
+  step?: number;
   type?: string;
   value: any;
 };

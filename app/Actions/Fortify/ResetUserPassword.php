@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 #region USE
 
-use App\Http\Requests\Users\UserPasswordResetRequest;
+use App\Interfaces\FormRequests\Fortify\IResetUserPasswordFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
@@ -17,6 +17,29 @@ use Laravel\Fortify\Contracts\ResetsUserPasswords;
  */
 class ResetUserPassword implements ResetsUserPasswords
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param IResetUserPasswordFormRequest $formRequest
+     *
+     * @return void
+     */
+    public function __construct(IResetUserPasswordFormRequest $formRequest)
+    {
+        $this->formRequest = $formRequest;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var IResetUserPasswordFormRequest
+     */
+    protected readonly IResetUserPasswordFormRequest $formRequest;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -27,8 +50,7 @@ class ResetUserPassword implements ResetsUserPasswords
      */
     public function reset(User $user, array $input): void
     {
-        $rules = (new UserPasswordResetRequest())
-            ->rules();
+        $rules = $this->formRequest->rules();
 
         $attributes = Validator::make($input, $rules)
             ->validated();
