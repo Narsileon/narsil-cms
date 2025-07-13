@@ -15,9 +15,14 @@ import {
 } from "@/components/ui/section";
 import type { LaravelForm } from "@/types/global";
 
-type FormProps = { _modal: boolean; data: any; form: LaravelForm };
+type FormProps = {
+  _modal: boolean;
+  data: any;
+  form: LaravelForm;
+  title: string;
+};
 
-function ResourceForm({ _modal = false, data, form }: FormProps) {
+function ResourceForm({ _modal = false, data, form, title }: FormProps) {
   const { closeTopModal } = useModalStore();
 
   return (
@@ -26,7 +31,7 @@ function ResourceForm({ _modal = false, data, form }: FormProps) {
         <Section className="p-4">
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {getLabel(form.labels, "title")}
+              {title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>

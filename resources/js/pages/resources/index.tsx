@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/react";
 import { PlusIcon } from "lucide-react";
 import { route } from "ziggy-js";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useLabels } from "@/components/ui/labels";
 import CategoriesBlock from "@/blocks/categories-block";
 import DataTableBlock from "@/blocks/data-table-block";
 import {
@@ -25,7 +26,6 @@ import {
   SectionTitle,
 } from "@/components/ui/section";
 import type { CategoriesCollection, DataTableCollection } from "@/types/global";
-import LabelsProvider from "@/components/ui/labels/labels-provider";
 
 type ResourceIndexProps = {
   categories: CategoriesCollection;
@@ -33,6 +33,8 @@ type ResourceIndexProps = {
 };
 
 function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
+  const { getLabel } = useLabels();
+
   const finalColumns = [
     {
       id: "_select",
@@ -66,7 +68,7 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
           <Section className="h-full p-4">
             <SectionHeader>
               <SectionTitle level="h2" variant="h4">
-                {getLabel("title")}
+                {dataTable.meta.title}
               </SectionTitle>
             </SectionHeader>
             <SectionContent className="grow">
@@ -92,13 +94,9 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                   <div className="flex items-center justify-between gap-3">
                     <DataTableInput className="grow" />
                     {dataTable.meta.routes.create ? (
-                      <Tooltip tooltip={getLabel(dataTable.labels, "create")}>
+                      <Tooltip tooltip={getLabel("ui.create")}>
                         <Button
-                          aria-label={getLabel(
-                            dataTable.labels,
-                            "create",
-                            "Create",
-                          )}
+                          aria-label={getLabel("ui.create", "Create")}
                           size="icon"
                           variant="default"
                           asChild={true}
@@ -109,11 +107,7 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                         </Button>
                       </Tooltip>
                     ) : null}
-                    <DataTableSettings
-                      columnsLabel={getLabel("columns")}
-                      paginationLabel={getLabel("pagination")}
-                      triggerTooltip={getLabel("settings")}
-                    />
+                    <DataTableSettings />
                   </div>
                   <DataTableBlock dataTable={table} />
                 </ResizablePanel>
@@ -121,11 +115,10 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
             </SectionContent>
             <SectionFooter className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <span className="order-2 min-w-fit truncate text-sm sm:order-1">
-                {getLabel("results")}
+                {getLabel("pagination.results")}
               </span>
               <DataTablePagination
                 className="order-1 col-span-2 sm:order-2"
-                labels={dataTable.labels}
                 links={dataTable.links}
                 metaLinks={dataTable.meta.links}
               />

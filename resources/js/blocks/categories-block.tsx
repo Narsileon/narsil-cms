@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/react";
 import { ModalLink } from "@/components/ui/modal";
 import { route } from "ziggy-js";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useLabels } from "@/components/ui/labels";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,18 +29,15 @@ import type { CategoriesCollection } from "@/types/global";
 type CategoriesBlockProps = React.ComponentProps<typeof Section> &
   CategoriesCollection & {};
 
-function CategoriesBlock({
-  data,
-  labels,
-  meta,
-  ...props
-}: CategoriesBlockProps) {
+function CategoriesBlock({ data, meta, ...props }: CategoriesBlockProps) {
+  const { getLabel } = useLabels();
+
   return (
     <Section {...props}>
       <SectionHeader className="flex items-center justify-between gap-4">
-        <SectionTitle level="h2">{labels.title}</SectionTitle>
+        <SectionTitle level="h2">{meta.title}</SectionTitle>
         {meta.routes.create ? (
-          <Tooltip tooltip={labels.create ?? "Create"}>
+          <Tooltip tooltip={getLabel("ui.create")}>
             <Button asChild={true} size="icon">
               <ModalLink href={route(meta.routes.create)}>
                 <PlusIcon />
@@ -69,7 +67,7 @@ function CategoriesBlock({
                     <DropdownMenuItem asChild={true}>
                       <ModalLink href={route(meta.routes.edit, category.id)}>
                         <EditIcon />
-                        {labels.edit ?? "Edit"}
+                        {getLabel("ui.edit")}
                       </ModalLink>
                     </DropdownMenuItem>
                   ) : null}
@@ -85,7 +83,7 @@ function CategoriesBlock({
                         }}
                       >
                         <DeleteIcon />
-                        {labels.delete ?? "Delete"}
+                        {getLabel("ui.delete")}
                       </Link>
                     </DropdownMenuItem>
                   ) : null}

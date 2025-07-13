@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { isString } from "lodash";
 import { SettingsIcon } from "lucide-react";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useLabels } from "@/components/ui/labels";
 import useDataTable from "./data-table-context";
 import {
   DropdownMenu,
@@ -17,27 +18,26 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 type DataTableSettingsProps = React.ComponentProps<typeof Button> & {
-  columnsLabel?: string;
   options?: string[];
-  paginationLabel?: string;
-  triggerTooltip?: string;
 };
 
 function DataTableSettings({
-  columnsLabel,
   options = ["10", "25", "50", "100"],
-  paginationLabel,
-  triggerTooltip,
   ...props
 }: DataTableSettingsProps) {
+  const { getLabel } = useLabels();
+
   const { dataTable, dataTableStore } = useDataTable();
 
   return (
     <DropdownMenu>
-      <Tooltip tooltip={triggerTooltip ?? "Toggle table settings"}>
+      <Tooltip tooltip={getLabel("accessibility.toggle_table_settings")}>
         <DropdownMenuTrigger asChild={true}>
           <Button
-            aria-label={triggerTooltip ?? "Toggle table settings"}
+            aria-label={
+              getLabel("accessibility.toggle_table_settings") ??
+              "Toggle table settings"
+            }
             size="icon"
             variant="outline"
             {...props}
@@ -49,7 +49,7 @@ function DataTableSettings({
       <DropdownMenuContent align="end">
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
-            {columnsLabel ?? "Columns"}
+            {getLabel("table.columns")}
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
@@ -79,7 +79,7 @@ function DataTableSettings({
         </DropdownMenuSub>
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
-            {paginationLabel ?? "Pagination"}
+            {getLabel("pagination.pagination")}
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>

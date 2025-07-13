@@ -9,6 +9,7 @@ return [
     'connection'                => 'Connection',
     'content'                   => 'Content',
     'create'                    => 'Create',
+    'delete'                    => 'Delete',
     'edit'                      => 'Edit',
     'email_verify'              => 'Verify your email',
     'fields'                    => 'Fields',

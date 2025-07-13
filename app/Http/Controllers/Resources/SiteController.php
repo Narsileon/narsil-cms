@@ -88,6 +88,7 @@ class SiteController extends AbstractModelController
 
         return Narsil::render('resources/form', [
             'form' => $form,
+            'title' => trans('ui.site'),
         ]);
     }
 
@@ -122,6 +123,7 @@ class SiteController extends AbstractModelController
         return Narsil::render('resources/form', [
             'data' => $site,
             'form' => $form,
+            'title' => trans('ui.site'),
         ]);
     }
 

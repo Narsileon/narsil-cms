@@ -84,6 +84,7 @@ class SiteGroupController extends AbstractModelController
 
         return Narsil::render('resources/form', [
             'form' => $form,
+            'title' => trans('ui.site_group'),
         ]);
     }
 
@@ -118,6 +119,7 @@ class SiteGroupController extends AbstractModelController
         return Narsil::render('resources/form', [
             'data' => $siteGroup,
             'form' => $form,
+            'title' => trans('ui.site_group'),
         ]);
     }
 

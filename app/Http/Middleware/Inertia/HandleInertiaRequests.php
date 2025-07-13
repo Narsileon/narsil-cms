@@ -130,6 +130,7 @@ class HandleInertiaRequests extends Middleware
     protected function registerLabels(): void
     {
         app(LabelsBag::class)
+            ->add('accessibility.toggle_user_menu')
             ->add('ui.log_in')
             ->add('ui.log_out')
             ->add('ui.settings');
