@@ -4,8 +4,9 @@ namespace App\Http\Requests\Users;
 
 #region USE
 
-use App\Http\Requests\AbstractFormRequest;
+use App\Interfaces\FormRequests\IFormRequest;
 use App\Models\User;
+use App\Validation\FormRule;
 
 #endregion
 
@@ -13,7 +14,7 @@ use App\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserProfileUpdateRequest extends AbstractFormRequest
+class UserProfileUpdateRequest implements IFormRequest
 {
     #region PUBLIC METHODS
 
@@ -24,16 +25,16 @@ class UserProfileUpdateRequest extends AbstractFormRequest
     {
         return [
             User::FIRST_NAME => [
-                self::STRING,
-                self::min(1),
-                self::max(255),
-                self::SOMETIMES,
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::max(255),
+                FormRule::SOMETIMES,
             ],
             User::LAST_NAME => [
-                self::STRING,
-                self::min(1),
-                self::max(255),
-                self::SOMETIMES,
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::max(255),
+                FormRule::SOMETIMES,
             ],
         ];
     }

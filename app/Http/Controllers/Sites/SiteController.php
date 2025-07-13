@@ -8,6 +8,7 @@ use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\DataTableCollection;
+use App\Interfaces\FormRequests\ISiteFormRequest;
 use App\Interfaces\Forms\ISiteForm;
 use App\Models\Site;
 use App\Models\SiteGroup;
@@ -29,12 +30,14 @@ class SiteController extends AbstractModelController
 
     /**
      * @param ISiteForm $form
+     * @param ISiteFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(ISiteForm $form)
+    public function __construct(ISiteForm $form, ISiteFormRequest $formRequest)
     {
         $this->form = $form;
+        $this->formRequest = $formRequest;
     }
 
     #endregion
@@ -45,6 +48,10 @@ class SiteController extends AbstractModelController
      * @var ISiteForm
      */
     protected readonly ISiteForm $form;
+    /**
+     * @var ISiteFormRequest
+     */
+    protected readonly ISiteFormRequest $formRequest;
 
     #endregion
 
@@ -91,7 +98,7 @@ class SiteController extends AbstractModelController
      */
     public function store(Request $request): RedirectResponse
     {
-        $attributes = $this->getAttributes(Site::TABLE);
+        $attributes = $this->getAttributes($this->formRequest->rules());
 
         Site::create($attributes);
 
@@ -126,7 +133,7 @@ class SiteController extends AbstractModelController
      */
     public function update(Request $request, Site $site): RedirectResponse
     {
-        $attributes = $this->getAttributes(Site::TABLE);
+        $attributes = $this->getAttributes($this->formRequest->rules());
 
         $site->update($attributes);
 

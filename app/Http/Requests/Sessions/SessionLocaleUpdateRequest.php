@@ -5,6 +5,7 @@ namespace App\Http\Requests\Sessions;
 #region USE
 
 use App\Http\Requests\AbstractFormRequest;
+use App\Validation\FormRule;
 
 #endregion
 
@@ -32,10 +33,10 @@ class SessionLocaleUpdateRequest extends AbstractFormRequest
     {
         return [
             self::LOCALE => [
-                self::STRING,
-                self::min(2),
-                self::max(2),
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::min(2),
+                FormRule::max(2),
+                FormRule::REQUIRED,
             ],
         ];
     }

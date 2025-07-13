@@ -5,8 +5,9 @@ namespace App\Http\Requests\Users;
 #region USE
 
 use App\Http\Requests\AbstractFormRequest;
+use App\Interfaces\FormRequests\IFormRequest;
 use App\Models\User;
-use Illuminate\Validation\Rule;
+use App\Validation\FormRule;
 
 #endregion
 
@@ -14,7 +15,7 @@ use Illuminate\Validation\Rule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserCreateRequest extends AbstractFormRequest
+class UserCreateRequest implements IFormRequest
 {
     #region PUBLIC METHODS
 
@@ -25,30 +26,30 @@ class UserCreateRequest extends AbstractFormRequest
     {
         return [
             User::EMAIL => [
-                self::STRING,
-                self::EMAIL,
-                self::max(255),
-                self::REQUIRED,
-                Rule::unique(User::class),
+                FormRule::STRING,
+                FormRule::EMAIL,
+                FormRule::max(255),
+                FormRule::REQUIRED,
+                FormRule::unique(User::class),
             ],
             User::FIRST_NAME => [
-                self::STRING,
-                self::min(1),
-                self::max(255),
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::max(255),
+                FormRule::REQUIRED,
             ],
             User::LAST_NAME => [
-                self::STRING,
-                self::min(1),
-                self::max(255),
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::max(255),
+                FormRule::REQUIRED,
             ],
             User::PASSWORD => [
-                self::STRING,
-                self::min(8),
-                self::max(255),
-                self::REQUIRED,
-                self::CONFIRMED,
+                FormRule::STRING,
+                FormRule::min(8),
+                FormRule::max(255),
+                FormRule::REQUIRED,
+                FormRule::CONFIRMED,
             ],
         ];
     }

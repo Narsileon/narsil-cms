@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Fortify;
 
 use App\Enums\Forms\MethodEnum;
 use App\Interfaces\Forms\IResetPasswordForm;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -43,9 +44,11 @@ class ResetPasswordController
     #region PUBLIC METHODS
 
     /**
+     * @param Request $request
+     *
      * @return Response
      */
-    public function __invoke(): Response
+    public function __invoke(Request $request): Response
     {
         $form = $this->form->get(
             action: route('password.update'),

@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
-    private function createSuperAdminUser(): void
+    protected function createSuperAdminUser(): void
     {
         User::create([
             User::EMAIL => 'admin@narsil.io',

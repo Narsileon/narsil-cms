@@ -5,6 +5,7 @@ namespace App\Http\Forms;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
+use App\Interfaces\Forms\IForm;
 use App\Structures\Input;
 use Illuminate\Support\Str;
 use ReflectionClass;
@@ -15,16 +16,12 @@ use ReflectionClass;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractForm
+abstract class AbstractForm implements IForm
 {
     #region PUBLIC METHODS
 
     /**
-     * @param string $action,
-     * @param MethodEnum $method,
-     * @param string $submit,
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function get(
         string $action,

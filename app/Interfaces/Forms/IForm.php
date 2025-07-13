@@ -17,7 +17,11 @@ interface IForm
     #region PUBLIC METHODS
 
     /**
-     * @var string
+     * @param string $action,
+     * @param MethodEnum $method,
+     * @param string $submit,
+     *
+     * @return array
      */
     public function get(string $action, MethodEnum $method, string $submit): array;
 

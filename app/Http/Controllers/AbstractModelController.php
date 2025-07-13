@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -20,16 +19,13 @@ abstract class AbstractModelController
     #region PROTECTED METHODS
 
     /**
-     * @param string $table
+     * @param array $rules
      *
      * @return array
      */
-    protected function getAttributes(string $table): array
+    protected function getAttributes(array $rules): array
     {
-        $formRequest = Config::get("narsil.validation.$table");
-
         $data = request()->all();
-        $rules = (new $formRequest())->rules();
 
         $validator = Validator::make($data, $rules);
 

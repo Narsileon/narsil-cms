@@ -48,7 +48,7 @@ class SessionDeleteController
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
     /**
      * @param Request $request
@@ -56,7 +56,7 @@ class SessionDeleteController
      *
      * @return RedirectResponse
      */
-    private function deleteAllSessions(Request $request, User $user): RedirectResponse
+    protected function deleteAllSessions(Request $request, User $user): RedirectResponse
     {
         $currentSessionId = $request->session()->getId();
 
@@ -80,7 +80,7 @@ class SessionDeleteController
      *
      * @return RedirectResponse
      */
-    private function deleteCurrentSession(Request $request): RedirectResponse
+    protected function deleteCurrentSession(Request $request): RedirectResponse
     {
         Auth::logout();
 
@@ -98,7 +98,7 @@ class SessionDeleteController
      *
      * @return RedirectResponse
      */
-    private function deleteOtherSessions(Request $request, User $user): RedirectResponse
+    protected function deleteOtherSessions(Request $request, User $user): RedirectResponse
     {
         $currentSessionId = $request->session()->getId();
 

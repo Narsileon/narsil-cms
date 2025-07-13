@@ -4,8 +4,9 @@ namespace App\Http\Requests\Sites;
 
 #region USE
 
-use App\Http\Requests\AbstractFormRequest;
+use App\Interfaces\FormRequests\ISiteFormRequest;
 use App\Models\Site;
+use App\Validation\FormRule;
 
 #endregion
 
@@ -13,7 +14,7 @@ use App\Models\Site;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteRequest extends AbstractFormRequest
+class SiteFormRequest implements ISiteFormRequest
 {
     #region PUBLIC METHODS
 
@@ -24,24 +25,24 @@ class SiteRequest extends AbstractFormRequest
     {
         return [
             Site::GROUP_ID => [
-                self::INTEGER,
-                self::NULLABLE,
+                FormRule::INTEGER,
+                FormRule::NULLABLE,
             ],
             Site::HANDLE => [
-                self::STRING,
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::REQUIRED,
             ],
             Site::LANGUAGE => [
-                self::STRING,
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::REQUIRED,
             ],
             Site::NAME => [
-                self::STRING,
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::REQUIRED,
             ],
             Site::PRIMARY => [
-                self::BOOLEAN,
-                self::REQUIRED,
+                FormRule::BOOLEAN,
+                FormRule::REQUIRED,
             ],
         ];
     }

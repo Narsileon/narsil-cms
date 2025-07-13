@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Validation;
 
-#region USE
-
-use Illuminate\Foundation\Http\FormRequest;
-
-#endregion
+use Illuminate\Validation\Rule;
 
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractFormRequest
+abstract class FormRule extends Rule
 {
     #region CONSTANTS
 

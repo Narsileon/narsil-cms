@@ -4,8 +4,9 @@ namespace App\Http\Requests\Users;
 
 #region USE
 
-use App\Http\Requests\AbstractFormRequest;
+use App\Interfaces\FormRequests\IFormRequest;
 use App\Models\UserConfiguration;
+use App\Validation\FormRule;
 
 #endregion
 
@@ -13,7 +14,7 @@ use App\Models\UserConfiguration;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserConfigurationUpdateRequest extends AbstractFormRequest
+class UserConfigurationUpdateRequest implements IFormRequest
 {
     #region PUBLIC METHODS
 
@@ -24,29 +25,29 @@ class UserConfigurationUpdateRequest extends AbstractFormRequest
     {
         return [
             UserConfiguration::COLOR => [
-                self::STRING,
-                self::min(1),
-                self::SOMETIMES,
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::SOMETIMES,
             ],
             UserConfiguration::LOCALE => [
-                self::STRING,
-                self::min(1),
-                self::SOMETIMES,
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::SOMETIMES,
             ],
             UserConfiguration::PREFERENCES => [
-                self::ARRAY,
-                self::SOMETIMES,
+                FormRule::ARRAY,
+                FormRule::SOMETIMES,
             ],
             UserConfiguration::RADIUS => [
-                self::NUMERIC,
-                self::min(0),
-                self::max(2),
-                self::SOMETIMES,
+                FormRule::NUMERIC,
+                FormRule::min(0),
+                FormRule::max(2),
+                FormRule::SOMETIMES,
             ],
             UserConfiguration::THEME => [
-                self::STRING,
-                self::min(1),
-                self::SOMETIMES,
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::SOMETIMES,
             ],
         ];
     }

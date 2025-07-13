@@ -4,8 +4,9 @@ namespace App\Http\Requests\Users;
 
 #region USE
 
-use App\Http\Requests\AbstractFormRequest;
+use App\Interfaces\FormRequests\IFormRequest;
 use App\Models\User;
+use App\Validation\FormRule;
 
 #endregion
 
@@ -13,7 +14,7 @@ use App\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserPasswordUpdateRequest extends AbstractFormRequest
+class UserPasswordUpdateRequest implements IFormRequest
 {
     #region PUBLIC METHODS
 
@@ -24,16 +25,16 @@ class UserPasswordUpdateRequest extends AbstractFormRequest
     {
         return [
             User::ATTRIBUTE_CURRENT_PASSWORD => [
-                self::STRING,
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::REQUIRED,
                 'current_password:web'
             ],
             User::PASSWORD => [
-                self::STRING,
-                self::min(8),
-                self::max(255),
-                self::REQUIRED,
-                self::CONFIRMED,
+                FormRule::STRING,
+                FormRule::min(8),
+                FormRule::max(255),
+                FormRule::REQUIRED,
+                FormRule::CONFIRMED,
             ],
         ];
     }

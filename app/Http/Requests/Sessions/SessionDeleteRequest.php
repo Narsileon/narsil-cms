@@ -5,16 +5,15 @@ namespace App\Http\Requests\Sessions;
 #region USE
 
 use App\Enums\SessionEnum;
-use App\Http\Requests\AbstractFormRequest;
-use Illuminate\Validation\Rule;
-
+use App\Validation\FormRule;
+use Illuminate\Foundation\Http\FormRequest;
 #endregion
 
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SessionDeleteRequest extends AbstractFormRequest
+class SessionDeleteRequest extends FormRequest
 {
     #region CONSTANTS
 
@@ -34,8 +33,8 @@ class SessionDeleteRequest extends AbstractFormRequest
     {
         return [
             self::TYPE => [
-                self::STRING,
-                Rule::enum(SessionEnum::class),
+                FormRule::STRING,
+                FormRule::enum(SessionEnum::class),
             ],
         ];
     }

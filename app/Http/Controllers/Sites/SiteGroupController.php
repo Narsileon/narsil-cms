@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Sites;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Resources\DataTableCollection;
+use App\Interfaces\FormRequests\ISiteGroupFormRequest;
 use App\Interfaces\Forms\ISiteGroupForm;
 use App\Models\SiteGroup;
 use App\Narsil;
@@ -27,12 +28,14 @@ class SiteGroupController extends AbstractModelController
 
     /**
      * @param ISiteGroupForm $form
+     * @param ISiteGroupFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(ISiteGroupForm $form)
+    public function __construct(ISiteGroupForm $form, ISiteGroupFormRequest $formRequest)
     {
         $this->form = $form;
+        $this->formRequest = $formRequest;
     }
 
     #endregion
@@ -43,6 +46,10 @@ class SiteGroupController extends AbstractModelController
      * @var ISiteGroupForm
      */
     protected readonly ISiteGroupForm $form;
+    /**
+     * @var ISiteFormRequest
+     */
+    protected readonly ISiteGroupFormRequest $formRequest;
 
     #endregion
 
@@ -87,7 +94,7 @@ class SiteGroupController extends AbstractModelController
      */
     public function store(Request $request): RedirectResponse
     {
-        $attributes = $this->getAttributes(SiteGroup::TABLE);
+        $attributes = $this->getAttributes($this->formRequest->rules());
 
         SiteGroup::create($attributes);
 
@@ -122,7 +129,7 @@ class SiteGroupController extends AbstractModelController
      */
     public function update(Request $request, SiteGroup $siteGroup): RedirectResponse
     {
-        $attributes = $this->getAttributes(SiteGroup::TABLE);
+        $attributes = $this->getAttributes($this->formRequest->rules());
 
         $siteGroup->update($attributes);
 

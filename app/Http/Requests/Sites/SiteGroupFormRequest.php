@@ -5,7 +5,9 @@ namespace App\Http\Requests\Sites;
 #region USE
 
 use App\Http\Requests\AbstractFormRequest;
+use App\Interfaces\FormRequests\ISiteGroupFormRequest;
 use App\Models\SiteGroup;
+use App\Validation\FormRule;
 
 #endregion
 
@@ -13,7 +15,7 @@ use App\Models\SiteGroup;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroupRequest extends AbstractFormRequest
+class SiteGroupFormRequest implements ISiteGroupFormRequest
 {
     #region PUBLIC METHODS
 
@@ -24,8 +26,8 @@ class SiteGroupRequest extends AbstractFormRequest
     {
         return [
             SiteGroup::NAME => [
-                self::STRING,
-                self::REQUIRED,
+                FormRule::STRING,
+                FormRule::REQUIRED,
             ],
         ];
     }
