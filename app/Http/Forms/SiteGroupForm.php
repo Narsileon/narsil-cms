@@ -21,7 +21,7 @@ class SiteGroupForm extends AbstractForm implements ISiteGroupForm
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         return [
             (new Input(SiteGroup::NAME, ''))

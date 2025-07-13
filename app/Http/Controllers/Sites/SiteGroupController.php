@@ -69,7 +69,7 @@ class SiteGroupController extends AbstractModelController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('site-groups.store'),
             method: MethodEnum::POST,
             submit: trans('ui.create'),
@@ -102,7 +102,7 @@ class SiteGroupController extends AbstractModelController
      */
     public function edit(Request $request, SiteGroup $siteGroup): JsonResponse|Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
             method: MethodEnum::PATCH,
             submit: trans('ui.update'),

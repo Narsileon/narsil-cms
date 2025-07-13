@@ -25,7 +25,7 @@ class SiteForm extends AbstractForm implements ISiteForm
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         $locales = static::getLanguageOptions();
 

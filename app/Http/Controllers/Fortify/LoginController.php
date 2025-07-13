@@ -47,7 +47,7 @@ class LoginController
      */
     public function __invoke(): Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('login'),
             method: MethodEnum::POST,
             submit: trans('ui.log_in'),
@@ -55,16 +55,26 @@ class LoginController
 
         $status = session('status');
 
-        $translations = [
+        return Inertia::render('fortify/form', [
+            'form'   => $form,
+            'labels' => $this->getLabels(),
+            'status' => $status,
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
+    {
+        return [
             'password_link' => trans('passwords.link'),
             'title'         => trans('ui.connection'),
         ];
-
-        return Inertia::render('fortify/form', [
-            'form'         => $form,
-            'status'       => $status,
-            'translations' => $translations
-        ]);
     }
 
     #endregion

@@ -26,26 +26,42 @@ abstract class AbstractForm
      *
      * @return array
      */
-    public static function get(
+    public function get(
         string $action,
         MethodEnum $method,
         string $submit,
     ): array
     {
+        $this->action = $action;
+        $this->method = $method->value;
+        $this->submit = $submit;
+
         return [
-            'action'       => $action,
-            'method'       => $method->value,
-            'id'           => static::id(),
-            'inputs'       => static::inputs(),
-            'options'      => static::options(),
-            'translations' => [
-                'back'     => trans('ui.back'),
-                'empty'    => trans('pagination.empty'),
-                'required' => trans('accessibility.required'),
-                'submit'   => $submit,
-            ],
+            'action'       => $this->action,
+            'method'       => $this->method,
+            'id'           => $this->getId(),
+            'inputs'       => $this->getInputs(),
+            'options'      => $this->getOptions(),
+            'labels'       => $this->getLabels(),
         ];
     }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var string
+     */
+    public readonly string $action;
+    /**
+     * @var string
+     */
+    public readonly string $method;
+    /**
+     * @var string
+     */
+    public readonly string $submit;
 
     #endregion
 
@@ -54,12 +70,13 @@ abstract class AbstractForm
     /**
      * @return array<Input>
      */
-    abstract protected static function inputs(): array;
+    abstract protected function getInputs(): array;
+
 
     /**
      * @return string
      */
-    protected static function id(): string
+    protected function getId(): string
     {
         $name = (new ReflectionClass(static::class))->getShortName();
 
@@ -67,9 +84,22 @@ abstract class AbstractForm
     }
 
     /**
-     * @return array<string>
+     * @return array<string,string>
      */
-    protected static function options(): array
+    protected function getLabels(): array
+    {
+        return [
+            'back'     => trans('ui.back'),
+            'empty'    => trans('pagination.empty'),
+            'required' => trans('accessibility.required'),
+            'submit'   => $this->submit,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getOptions(): array
     {
         return [];
     }

@@ -47,27 +47,41 @@ class ResetPasswordController
      */
     public function __invoke(): Response
     {
-        $token = request()->route('token');
-
-        $data = [
-            'token' => $token,
-        ];
-
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('password.update'),
             method: MethodEnum::POST,
             submit: trans('ui.reset'),
         );
 
-        $translations = [
+        return Inertia::render('fortify/form', [
+            'data'   => $this->getData(),
+            'form'   => $form,
+            'labels' => $this->getLabels(),
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,mixed>
+     */
+    protected function getData(): array
+    {
+        return [
+            'token' => request()->route('token'),
+        ];
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
+    {
+        return [
             'title' => trans('ui.reset_password'),
         ];
-
-        return Inertia::render('fortify/form', [
-            'data'         => $data,
-            'form'         => $form,
-            'translations' => $translations,
-        ]);
     }
 
     #endregion

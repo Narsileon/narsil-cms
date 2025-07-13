@@ -13,16 +13,16 @@ import {
 } from "@/components/ui/section";
 
 type VerifyEmailProps = {
+  labels: Record<string, string>;
   status: string;
-  translations: Record<string, string>;
 };
 
-function VerifyEmail({ status, translations }: VerifyEmailProps) {
+function VerifyEmail({ labels, status }: VerifyEmailProps) {
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
     if (status && !hasStatus.current) {
-      toast.success(translations.sent);
+      toast.success(labels.sent);
 
       hasStatus.current = true;
     }
@@ -30,22 +30,22 @@ function VerifyEmail({ status, translations }: VerifyEmailProps) {
 
   return (
     <>
-      <Head title={translations.title} />
+      <Head title={labels.title} />
       <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {translations.title}
+              {labels.title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
             <Card>
               <CardContent className="grid gap-4">
-                <p>{translations.instruction}</p>
-                <p>{translations.prompt}</p>
+                <p>{labels.instruction}</p>
+                <p>{labels.prompt}</p>
                 <Button asChild={true}>
                   <Link href={route("verification.send")} method="post">
-                    {translations.send_again}
+                    {labels.send_again}
                   </Link>
                 </Button>
               </CardContent>

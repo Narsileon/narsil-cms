@@ -47,20 +47,30 @@ class ConfirmPasswordController
      */
     public function __invoke(): Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('password.confirm'),
             method: MethodEnum::POST,
             submit: trans('ui.confirm'),
         );
 
-        $translations = [
+        return Inertia::render('fortify/form', [
+            'form'   => $form,
+            'labels' => $this->getLabels(),
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
+    {
+        return [
             'title' => trans('ui.confirm_password'),
         ];
-
-        return Inertia::render('fortify/form', [
-            'form'         => $form,
-            'translations' => $translations,
-        ]);
     }
 
     #endregion

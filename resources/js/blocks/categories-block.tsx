@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
 import { ModalLink } from "@/components/ui/modal";
+import { route } from "ziggy-js";
 import { Tooltip } from "@/components/ui/tooltip";
-import useTranslationsStore from "@/stores/translations-store";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,20 +28,25 @@ import type { CategoriesCollection } from "@/types/global";
 type CategoriesBlockProps = React.ComponentProps<typeof Section> &
   CategoriesCollection & {};
 
-function CategoriesBlock({ data, meta, ...props }: CategoriesBlockProps) {
-  const { trans } = useTranslationsStore();
-
+function CategoriesBlock({
+  data,
+  labels,
+  meta,
+  ...props
+}: CategoriesBlockProps) {
   return (
     <Section {...props}>
       <SectionHeader className="flex items-center justify-between gap-4">
-        <SectionTitle level="h2">{trans("ui.groups", "Groups")}</SectionTitle>
-        <Tooltip tooltip={trans("ui.create", "Create")}>
-          <Button asChild={true} size="icon">
-            <ModalLink href={meta.create_href}>
-              <PlusIcon />
-            </ModalLink>
-          </Button>
-        </Tooltip>
+        <SectionTitle level="h2">{labels.title}</SectionTitle>
+        {meta.routes.create ? (
+          <Tooltip tooltip={labels.create ?? "Create"}>
+            <Button asChild={true} size="icon">
+              <ModalLink href={route(meta.routes.create)}>
+                <PlusIcon />
+              </ModalLink>
+            </Button>
+          </Tooltip>
+        ) : null}
       </SectionHeader>
       <SectionContent>
         <ul className="grid gap-2">
@@ -60,26 +65,30 @@ function CategoriesBlock({ data, meta, ...props }: CategoriesBlockProps) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem asChild={true}>
-                    <ModalLink href={category.edit_href}>
-                      <EditIcon />
-                      {trans("ui.edit", "Edit")}
-                    </ModalLink>
-                  </DropdownMenuItem>
+                  {meta.routes.edit ? (
+                    <DropdownMenuItem asChild={true}>
+                      <ModalLink href={route(meta.routes.edit, category.id)}>
+                        <EditIcon />
+                        {labels.edit ?? "Edit"}
+                      </ModalLink>
+                    </DropdownMenuItem>
+                  ) : null}
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild={true}>
-                    <Link
-                      as="button"
-                      href={category.destroy_href}
-                      method="delete"
-                      data={{
-                        _back: true,
-                      }}
-                    >
-                      <DeleteIcon />
-                      {trans("ui.delete", "Delete")}
-                    </Link>
-                  </DropdownMenuItem>
+                  {meta.routes.destroy ? (
+                    <DropdownMenuItem asChild={true}>
+                      <Link
+                        as="button"
+                        href={route(meta.routes.destroy, category.id)}
+                        method="delete"
+                        data={{
+                          _back: true,
+                        }}
+                      >
+                        <DeleteIcon />
+                        {labels.delete ?? "Delete"}
+                      </Link>
+                    </DropdownMenuItem>
+                  ) : null}
                 </DropdownMenuContent>
               </DropdownMenu>
             </li>

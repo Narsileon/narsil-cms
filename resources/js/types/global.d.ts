@@ -16,7 +16,6 @@ type GlobalProps = {
     href: string;
     label: string;
   }[];
-
   sidebar: {
     content: NavigationOption[];
     translations: Record<string, string>;
@@ -30,19 +29,22 @@ type GlobalProps = {
   shared: {
     locale: string;
     locales: string[];
-    translations: Record<string, string>;
   };
 };
 
 type CategoriesCollection = {
   data: {
-    destroy_href: string;
-    edit_href: string;
     id: number;
     label: string;
   }[];
+  labels: Record<string, string> & {
+    create: string;
+    delete: string;
+    edit: string;
+    title: string;
+  };
   meta: {
-    create_href: string;
+    routes: RouteNames;
   };
 };
 
@@ -51,21 +53,40 @@ type DataTableCollection<T = any> = {
   columnOrder: ColumnOrderState;
   columnVisibility: VisibilityState;
   data: T[];
+  labels: Record<string, string> & {
+    create: string;
+    columns: string;
+    first_page: string;
+    last_page: string;
+    more_pages: string;
+    move_column: string;
+    next_page: string;
+    pagination: string;
+    previous_page: string;
+    results: string;
+    sort_column: string;
+    title: string;
+    toggle_settings: string;
+  };
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta & {
     id: string;
     routes: RouteNames;
     title: string;
   };
-  translations: Record<string, string>;
 };
 
 type LaravelForm = {
   action: string;
   id: string;
   inputs: LaravelFormInput[];
+  labels: Record<string, string> & {
+    back: string;
+    empty: string;
+    required: string;
+    submit: string;
+  };
   method: string;
-  translations: Record<string, string>;
 };
 
 type LaravelFormInput = {

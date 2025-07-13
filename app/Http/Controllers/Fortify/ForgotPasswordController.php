@@ -47,7 +47,7 @@ class ForgotPasswordController
      */
     public function __invoke(): Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('password.email'),
             method: MethodEnum::POST,
             submit: trans('ui.send'),
@@ -55,17 +55,27 @@ class ForgotPasswordController
 
         $status = session('status');
 
-        $translations = [
+        return Inertia::render('fortify/form', [
+            'form'   => $form,
+            'labels' => $this->getLabels(),
+            'status' => $status,
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
+    {
+        return [
             'back'          => trans('ui.back'),
             'password_link' => trans('passwords.link'),
             'title'         => trans('ui.reset_password'),
         ];
-
-        return Inertia::render('fortify/form', [
-            'form'         => $form,
-            'status'       => $status,
-            'translations' => $translations,
-        ]);
     }
 
     #endregion

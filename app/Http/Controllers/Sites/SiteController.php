@@ -73,7 +73,7 @@ class SiteController extends AbstractModelController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('sites.store'),
             method: MethodEnum::POST,
             submit: trans('ui.create'),
@@ -106,7 +106,7 @@ class SiteController extends AbstractModelController
      */
     public function edit(Request $request, Site $site): JsonResponse|Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('sites.update', $site->{Site::ID}),
             method: MethodEnum::PATCH,
             submit: trans('ui.update'),

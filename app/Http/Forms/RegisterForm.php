@@ -23,7 +23,7 @@ class RegisterForm extends AbstractForm implements IRegisterForm
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         return [
             (new Input(User::EMAIL, ''))

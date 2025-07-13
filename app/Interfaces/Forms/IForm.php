@@ -14,12 +14,12 @@ use App\Enums\Forms\MethodEnum;
  */
 interface IForm
 {
-    #region CONSTANTS
+    #region PUBLIC METHODS
 
     /**
      * @var string
      */
-    public static function get(string $action, MethodEnum $method, string $submit): array;
+    public function get(string $action, MethodEnum $method, string $submit): array;
 
     #endregion
 }

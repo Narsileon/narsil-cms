@@ -23,7 +23,7 @@ class LoginForm extends AbstractForm implements ILoginForm
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         return [
             (new Input(User::EMAIL, ''))

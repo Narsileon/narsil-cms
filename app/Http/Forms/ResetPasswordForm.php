@@ -23,7 +23,7 @@ class ResetPasswordForm extends AbstractForm implements IResetPasswordForm
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         return [
             (new Input(User::EMAIL, ''))

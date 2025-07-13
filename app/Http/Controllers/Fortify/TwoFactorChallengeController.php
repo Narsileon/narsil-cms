@@ -47,20 +47,30 @@ class TwoFactorChallengeController
      */
     public function __invoke(): Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('two-factor.login'),
             method: MethodEnum::POST,
             submit: trans('ui.confirm'),
         );
 
-        $translations = [
+        return Inertia::render('fortify/form', [
+            'form'   => $form,
+            'labels' => $this->getLabels(),
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
+    {
+        return [
             'title' => trans('ui.two_factor_authentication'),
         ];
-
-        return Inertia::render('fortify/form', [
-            'form'         => $form,
-            'translations' => $translations,
-        ]);
     }
 
     #endregion

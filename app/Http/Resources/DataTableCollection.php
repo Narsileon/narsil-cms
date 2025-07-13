@@ -9,7 +9,6 @@ use App\Services\TanStackTableService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use JsonSerializable;
 
@@ -48,8 +47,6 @@ class DataTableCollection extends ResourceCollection
             'page',
             $pageIndex,
         );
-
-        Log::info($pageSize);
 
         parent::__construct($paginated);
     }
@@ -96,23 +93,40 @@ class DataTableCollection extends ResourceCollection
     }
 
     /**
-     *
-
      * {@inheritdoc}
      */
     public function with($request): array
+    {
+        return array_merge(
+            TanStackTableService::getColumns($this->table),
+            [
+                'labels' => $this->getLabels(),
+                'meta'   => $this->getMeta(),
+            ]
+        );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
     {
         $from = $this->resource->firstItem();
         $to = $this->resource->lastItem();
         $total = $this->resource->total();
 
         $results = $total === 0 ? trans('pagination.empty') : trans('pagination.results', [
-            'from' => $from,
-            'to' => $to,
+            'from'  => $from,
+            'to'    => $to,
             'total' => $total,
         ]);
 
-        $translations = [
+        return [
+            'create'          => trans('ui.create'),
             'columns'         => trans('table.columns'),
             'first_page'      => trans('accessibility.page_first'),
             'last_page'       => trans('accessibility.page_last'),
@@ -126,17 +140,17 @@ class DataTableCollection extends ResourceCollection
             'title'           => trans('ui.' . $this->table),
             'toggle_settings' => trans('accessibility.toggle_table_settings'),
         ];
+    }
 
-        return array_merge(
-            TanStackTableService::getColumns($this->table),
-            [
-                'translations' => $translations,
-                'meta' => [
-                    'id'           => Str::slug($this->table),
-                    'routes'       => RouteService::getRouteNames($this->table),
-                ],
-            ]
-        );
+    /**
+     * @return array<string,mixed>
+     */
+    protected function getMeta(): array
+    {
+        return [
+            'id'     => Str::slug($this->table),
+            'routes' => RouteService::getRouteNames($this->table),
+        ];
     }
 
     #endregion

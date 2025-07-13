@@ -27,13 +27,12 @@ function Layout({ children }: LayoutProps) {
 
   const { auth, redirect, shared } = usePage<GlobalProps>().props;
 
-  const { locale, locales, translations } = shared ?? {};
+  const { locale, locales } = shared ?? {};
 
   useEffect(() => {
     translationStore.setLocale(locale);
     translationStore.setLocales(locales);
-    translationStore.setTranslations(translations);
-  }, [locale, locales, translations]);
+  }, [locale, locales]);
 
   const { error, info, success, warning } = redirect ?? {};
 

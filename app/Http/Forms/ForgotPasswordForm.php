@@ -23,7 +23,7 @@ class ForgotPasswordForm extends AbstractForm implements IForgotPasswordForm
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         return [
             (new Input(User::EMAIL, ''))

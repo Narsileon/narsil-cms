@@ -23,7 +23,7 @@ class ConfirmPasswordForm extends AbstractForm implements IConfirmPasswordForm
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         return [
             (new Input(user::PASSWORD, ''))

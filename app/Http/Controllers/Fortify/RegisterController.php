@@ -47,20 +47,30 @@ class RegisterController
      */
     public function __invoke(): Response
     {
-        $form = $this->form::get(
+        $form = $this->form->get(
             action: route('register'),
             method: MethodEnum::POST,
             submit: trans('ui.register'),
         );
 
-        $translations = [
+        return Inertia::render('fortify/form', [
+            'form'   => $form,
+            'labels' => $this->getLabels(),
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
+    {
+        return [
             'title' => trans('ui.registration'),
         ];
-
-        return Inertia::render('fortify/form', [
-            'form'         => $form,
-            'translations' => $translations,
-        ]);
     }
 
     #endregion

@@ -21,7 +21,7 @@ class TwoFactorChallengeForm extends AbstractForm implements ITwoFactorChallenge
     /**
      * {@inheritdoc}
      */
-    protected static function inputs(): array
+    protected function getInputs(): array
     {
         return [
             (new Input('code', ''))

@@ -6,7 +6,6 @@ import { route } from "ziggy-js";
 import { Tooltip } from "@/components/ui/tooltip";
 import CategoriesBlock from "@/blocks/categories-block";
 import DataTableBlock from "@/blocks/data-table-block";
-import useTranslationsStore from "@/stores/translations-store";
 import {
   DataTableInput,
   DataTablePagination,
@@ -33,8 +32,6 @@ type ResourceIndexProps = {
 };
 
 function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
-  const { trans } = useTranslationsStore();
-
   const finalColumns = [
     {
       id: "_select",
@@ -68,7 +65,7 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
           <Section className="h-full p-4">
             <SectionHeader>
               <SectionTitle level="h2" variant="h4">
-                {dataTable.translations.title}
+                {dataTable.labels.title}
               </SectionTitle>
             </SectionHeader>
             <SectionContent className="grow">
@@ -94,9 +91,9 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                   <div className="flex items-center justify-between gap-3">
                     <DataTableInput className="grow" />
                     {dataTable.meta.routes.create ? (
-                      <Tooltip tooltip={trans("ui.create", "Create")}>
+                      <Tooltip tooltip={dataTable.labels.create ?? "Create"}>
                         <Button
-                          aria-label={trans("ui.create", "Create")}
+                          aria-label={dataTable.labels.create ?? "Create"}
                           size="icon"
                           variant="default"
                           asChild={true}
@@ -108,32 +105,32 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                       </Tooltip>
                     ) : null}
                     <DataTableSettings
-                      columnsLabel={dataTable.translations.columns}
-                      paginationLabel={dataTable.translations.pagination}
-                      triggerTooltip={dataTable.translations.toggle_settings}
+                      columnsLabel={dataTable.labels.columns}
+                      paginationLabel={dataTable.labels.pagination}
+                      triggerTooltip={dataTable.labels.toggle_settings}
                     />
                   </div>
                   <DataTableBlock
                     dataTable={table}
-                    moveLabel={dataTable.translations.move_columns}
-                    sortLabel={dataTable.translations.sort_columns}
+                    moveLabel={dataTable.labels.move_column}
+                    sortLabel={dataTable.labels.sort_column}
                   />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </SectionContent>
             <SectionFooter className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <span className="order-2 min-w-fit truncate text-sm sm:order-1">
-                {dataTable.translations.results}
+                {dataTable.labels.results}
               </span>
               <DataTablePagination
                 className="order-1 col-span-2 sm:order-2"
-                ellipsisLabel={dataTable.translations.more_pages}
-                firstPageLabel={dataTable.translations.first_page}
-                lastPageLabel={dataTable.translations.last_page}
+                ellipsisLabel={dataTable.labels.more_pages}
+                firstPageLabel={dataTable.labels.first_page}
+                lastPageLabel={dataTable.labels.last_page}
                 links={dataTable.links}
                 metaLinks={dataTable.meta.links}
-                nextPageLabel={dataTable.translations.next_page}
-                previousPageLabel={dataTable.translations.previous_page}
+                nextPageLabel={dataTable.labels.next_page}
+                previousPageLabel={dataTable.labels.previous_page}
               />
             </SectionFooter>
           </Section>

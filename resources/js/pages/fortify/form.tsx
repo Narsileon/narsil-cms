@@ -27,16 +27,11 @@ import type { LaravelForm } from "@/types/global";
 type FortifyFormProps = {
   data: Record<string, any>;
   form: LaravelForm;
+  labels: Record<string, string>;
   status?: string;
-  translations: Record<string, string>;
 };
 
-function FortifyForm({
-  data = {},
-  form,
-  status,
-  translations,
-}: FortifyFormProps) {
+function FortifyForm({ data = {}, form, labels, status }: FortifyFormProps) {
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
@@ -49,12 +44,12 @@ function FortifyForm({
 
   return (
     <>
-      <Head title={translations.title} />
+      <Head title={labels.title} />
       <Container className="gap-6" asChild={true} variant="centered">
         <Section>
           <SectionHeader>
             <SectionTitle level="h1" variant="h4">
-              {translations.title}
+              {labels.title}
             </SectionTitle>
           </SectionHeader>
           <SectionContent>
@@ -78,7 +73,7 @@ function FortifyForm({
                                     className="text-xs"
                                     href={route("password.request")}
                                   >
-                                    {translations.password_link}
+                                    {labels.password_link}
                                   </Link>
                                 </div>
                                 <Input
@@ -94,14 +89,14 @@ function FortifyForm({
                           />
                         ) : (
                           <FormInputBlock
-                            emptyLabel={form.translations.empty}
-                            requiredLabel={form.translations.required}
+                            emptyLabel={form.labels.empty}
+                            requiredLabel={form.labels.required}
                             {...input}
                             key={index}
                           />
                         ),
                       )}
-                      <FormSubmit>{form.translations.submit}</FormSubmit>
+                      <FormSubmit>{form.labels.submit}</FormSubmit>
                     </Form>
                   )}
                 />
@@ -109,7 +104,7 @@ function FortifyForm({
               {form.id === "forgot-password-form" ? (
                 <CardFooter className="border-t">
                   <Button className="w-full" asChild={true} variant="secondary">
-                    <Link href={route("login")}>{translations.back}</Link>
+                    <Link href={route("login")}>{labels.back ?? "Back"}</Link>
                   </Button>
                 </CardFooter>
               ) : null}

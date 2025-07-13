@@ -4,9 +4,9 @@ namespace App\Http\Resources;
 
 #region USE
 
+use App\Services\RouteService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Support\Str;
 use JsonSerializable;
 
 #endregion
@@ -86,9 +86,6 @@ class CategoryCollection extends ResourceCollection
             return [
                 self::ID => $item->id,
                 self::LABEL => $item->{$this->label},
-                self::EDIT_HREF => route(Str::slug($this->table) . '.edit', $item->id),
-                self::DESTROY_HREF => route(Str::slug($this->table) . '.destroy', $item->id),
-
             ];
         });
     }
@@ -99,9 +96,35 @@ class CategoryCollection extends ResourceCollection
     public function with($request): array
     {
         return [
-            'meta' => [
-                self::CREATE_HREF => route(Str::slug($this->table) . '.create'),
-            ],
+            'labels' => $this->getLabels(),
+            'meta'   => $this->getMeta(),
+        ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function getLabels(): array
+    {
+        return [
+            'create' => trans('ui.create'),
+            'delete' => trans('ui.delete'),
+            'edit'   => trans('ui.edit'),
+            'title'  => trans('ui.' . $this->table),
+        ];
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    protected function getMeta(): array
+    {
+        return [
+            'routes' => RouteService::getRouteNames($this->table),
         ];
     }
 
