@@ -5,15 +5,15 @@ namespace App\Http\Middleware\Inertia;
 #region USE
 
 use App\Http\Resources\Inertia\UserInertiaResource;
+use App\Interfaces\Components\ISidebarComponent;
 use App\Support\LabelsBag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Inertia\Middleware;
 
-#endregion
+#endregions
 
 /**
  * @version 1.0.0
@@ -114,14 +114,9 @@ class HandleInertiaRequests extends Middleware
      */
     protected function getSidebar(): array
     {
-        return array_merge(Config::get('narsil.sidebar', [
-            'content' => []
-        ]), [
-            'translations' => [
-                'open' => trans('accessibility.open_sidebar'),
-                'close' => trans('accessibility.close_sidebar'),
-            ],
-        ]);
+        $sidebar = app(ISidebarComponent::class)->get();
+
+        return $sidebar;
     }
 
     /**

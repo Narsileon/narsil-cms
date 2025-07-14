@@ -4,6 +4,7 @@ namespace App\Providers;
 
 #region USE
 
+use App\Http\Components\SidebarComponent;
 use App\Http\Forms\Fortify\ConfirmPasswordForm;
 use App\Http\Forms\Fortify\ForgotPasswordForm;
 use App\Http\Forms\Fortify\LoginForm;
@@ -25,6 +26,7 @@ use App\Http\Requests\Resources\SiteFormRequest;
 use App\Http\Requests\Resources\SiteGroupFormRequest;
 use App\Http\Requests\Resources\UserFormRequest;
 use App\Http\Requests\UserConfigurationFormRequest;
+use App\Interfaces\Components\ISidebarComponent;
 use App\Interfaces\FormRequests\Fortify\ICreateNewUserFormRequest;
 use App\Interfaces\FormRequests\Fortify\IResetUserPasswordFormRequest;
 use App\Interfaces\FormRequests\Fortify\IUpdateUserPasswordFormRequest;
@@ -71,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
             return new LabelsBag();
         });
 
+        $this->bindComponents();
         $this->bindFormRequests();
         $this->bindForms();
     }
@@ -88,6 +91,14 @@ class AppServiceProvider extends ServiceProvider
     #endregion
 
     #region PRIVATE METHODS
+
+    /**
+     * @return void
+     */
+    private function bindComponents(): void
+    {
+        $this->app->bind(ISidebarComponent::class, SidebarComponent::class);
+    }
 
     /**
      * @return void

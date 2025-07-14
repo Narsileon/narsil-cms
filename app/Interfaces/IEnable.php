@@ -11,7 +11,7 @@ interface IEnable
     #region CONSTANTS
 
     /**
-     * @var string
+     * @var string The name of the "enabled" column.
      */
     public const ENABLED = 'enabled';
 

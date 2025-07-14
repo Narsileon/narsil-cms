@@ -24,7 +24,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 
-  const { content, translations } = usePage<GlobalProps>().props.sidebar ?? {};
+  const { content } = usePage<GlobalProps>().props.sidebar ?? {};
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -43,7 +43,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
               <SidebarMenuItem key={index}>
                 <SidebarMenuButton asChild={true} tooltip={item.label}>
                   <Link
-                    href={route(item.route)}
+                    href={item.route}
                     onSuccess={() => {
                       setOpenMobile(false);
                     }}

@@ -2,14 +2,6 @@
 
 namespace App\Support;
 
-#region USE
-
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
-use App\Services\TableService;
-
-#endregion
-
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
