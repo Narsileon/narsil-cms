@@ -11,8 +11,10 @@ use App\Http\Forms\AbstractForm;
 use App\Interfaces\Forms\IUserConfigurationForm;
 use App\Models\UserConfiguration;
 use App\Support\Input;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Locale;
 use ResourceBundle;
@@ -90,7 +92,8 @@ class UserConfigurationForm extends AbstractForm implements IUserConfigurationFo
     protected function getLocaleOptions(): array
     {
         $locales = ResourceBundle::getLocales('');
-        $allowedLocales = Config::get('narsil.locales', ['en']);
+
+        $allowedLocales = explode(',', Config::get('app.locales', 'de,en,fr'));
 
         $options = [];
 

@@ -39,7 +39,7 @@ function FormLabel({
       {required && (
         <Tooltip tooltip={getLabel("accessibility.required")}>
           <AsteriskIcon
-            className="text-destructive size-3"
+            className="text-destructive !size-3"
             aria-hidden="true"
           />
         </Tooltip>

@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Resources;
 
 #region USE
 
+use App\Enums\Forms\MethodEnum;
+use App\Http\Controllers\AbstractModelController;
+use App\Http\Resources\DataTableCollection;
+use App\Interfaces\FormRequests\Resources\IUserFormRequest;
+use App\Interfaces\Forms\Resources\IUserForm;
 use App\Models\User;
+use App\Narsil;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Response;
 
 #endregion
@@ -16,33 +22,70 @@ use Inertia\Response;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserController
+class UserController extends AbstractModelController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param IUserForm $form
+     * @param IUserFormRequest $formRequest
+     *
+     * @return void
+     */
+    public function __construct(IUserForm $form, IUserFormRequest $formRequest)
+    {
+        $this->form = $form;
+        $this->formRequest = $formRequest;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var IUserForm
+     */
+    protected readonly IUserForm $form;
+    /**
+     * @var IUserFormRequest
+     */
+    protected readonly IUserFormRequest $formRequest;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function index(Request $request): Response
+    public function index(Request $request): JsonResponse|Response
     {
-        $users = User::query()
-            ->paginate(15);
+        $dataTable = new DataTableCollection(User::query(), User::TABLE);
 
-        return Inertia::render('users/index', [
-            'users' => $users,
+        return Narsil::render('resources/index', [
+            'dataTable' => $dataTable,
         ]);
     }
 
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function create(Request $request): Response
+    public function create(Request $request): JsonResponse|Response
     {
-        return Inertia::render('users/form');
+        $form = $this->form->get(
+            action: route('users.store'),
+            method: MethodEnum::POST,
+            submit: trans('ui.create'),
+        );
+
+        return Narsil::render('resources/form', [
+            'form' => $form,
+            'title' => trans('ui.user'),
+        ]);
     }
 
     /**
@@ -52,24 +95,31 @@ class UserController
      */
     public function store(Request $request): RedirectResponse
     {
-        $attributes = $request->validated();
+        $attributes = $this->getAttributes($this->formRequest->rules());
 
         User::create($attributes);
 
-        return redirect(route('users.index'))
-            ->with('success', 'models.users.events.created');
+        return $this->redirectOnStored(User::TABLE);
     }
 
     /**
      * @param Request $request
      * @param User $user
      *
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user): JsonResponse|Response
     {
-        return Inertia::render('users/form', [
-            'user' => $user,
+        $form = $this->form->get(
+            action: route('users.update', $user->{User::ID}),
+            method: MethodEnum::PATCH,
+            submit: trans('ui.update'),
+        );
+
+        return Narsil::render('resources/form', [
+            'data' => $user,
+            'form' => $form,
+            'title' => trans('ui.user'),
         ]);
     }
 
@@ -81,12 +131,11 @@ class UserController
      */
     public function update(Request $request, User $user): RedirectResponse
     {
-        $attributes = $request->validated();
+        $attributes = $this->getAttributes($this->formRequest->rules());
 
         $user->update($attributes);
 
-        return redirect(route('users.index'))
-            ->with('success', 'models.users.events.updated');
+        return $this->redirectOnUpdated(User::TABLE);
     }
 
     /**
@@ -99,8 +148,7 @@ class UserController
     {
         $user->delete();
 
-        return redirect(route('users.index'))
-            ->with('success', 'models.users.events.deleted');
+        return $this->redirectOnDestroyed(User::TABLE);
     }
 
     #endregion

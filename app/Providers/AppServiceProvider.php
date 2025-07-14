@@ -15,6 +15,7 @@ use App\Http\Forms\Fortify\TwoFactorForm;
 use App\Http\Forms\Fortify\UpdatePasswordForm;
 use App\Http\Forms\Resources\SiteForm;
 use App\Http\Forms\Resources\SiteGroupForm;
+use App\Http\Forms\Resources\UserForm;
 use App\Http\Forms\UserConfigurationForm;
 use App\Http\Requests\Fortify\CreateNewUserFormRequest;
 use App\Http\Requests\Fortify\ResetUserPasswordFormRequest;
@@ -22,6 +23,7 @@ use App\Http\Requests\Fortify\UpdateUserPasswordFormRequest;
 use App\Http\Requests\Fortify\UpdateUserProfileInformationFormRequest;
 use App\Http\Requests\Resources\SiteFormRequest;
 use App\Http\Requests\Resources\SiteGroupFormRequest;
+use App\Http\Requests\Resources\UserFormRequest;
 use App\Http\Requests\UserConfigurationFormRequest;
 use App\Interfaces\FormRequests\Fortify\ICreateNewUserFormRequest;
 use App\Interfaces\FormRequests\Fortify\IResetUserPasswordFormRequest;
@@ -30,6 +32,7 @@ use App\Interfaces\FormRequests\Fortify\IUpdateUserProfileInformationFormRequest
 use App\Interfaces\FormRequests\IUserConfigurationFormRequest;
 use App\Interfaces\FormRequests\Resources\ISiteFormRequest;
 use App\Interfaces\FormRequests\Resources\ISiteGroupFormRequest;
+use App\Interfaces\FormRequests\Resources\IUserFormRequest;
 use App\Interfaces\Forms\Fortify\IConfirmPasswordForm;
 use App\Interfaces\Forms\Fortify\IForgotPasswordForm;
 use App\Interfaces\Forms\Fortify\ILoginForm;
@@ -42,6 +45,7 @@ use App\Interfaces\Forms\Fortify\IUpdatePasswordForm;
 use App\Interfaces\Forms\IUserConfigurationForm;
 use App\Interfaces\Forms\Resources\ISiteForm;
 use App\Interfaces\Forms\Resources\ISiteGroupForm;
+use App\Interfaces\Forms\Resources\IUserForm;
 use App\Support\LabelsBag;
 use Illuminate\Support\ServiceProvider;
 
@@ -97,6 +101,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IUpdateUserPasswordFormRequest::class, UpdateUserPasswordFormRequest::class);
         $this->app->bind(IUpdateUserProfileInformationFormRequest::class, UpdateUserProfileInformationFormRequest::class);
         $this->app->bind(IUserConfigurationFormRequest::class, UserConfigurationFormRequest::class);
+        $this->app->bind(IUserFormRequest::class, UserFormRequest::class);
     }
 
     /**
@@ -116,6 +121,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ITwoFactorChallengeForm::class, TwoFactorChallengeForm::class);
         $this->app->bind(IUpdatePasswordForm::class, UpdatePasswordForm::class);
         $this->app->bind(IUserConfigurationForm::class, UserConfigurationForm::class);
+        $this->app->bind(IUserForm::class, UserForm::class);
     }
 
     #endregion

@@ -31,7 +31,7 @@ abstract class TanStackTableService
         {
             $columns = TableService::getColumns($table);
 
-            $accessorKeys =  Config::get("narsil.tables.$table.accessor_keys", []);
+            $accessorKeys =  Config::get("tables.$table.accessor_keys", []);
 
             $columns = $columns->map(function (Column $column) use ($accessorKeys)
             {
@@ -65,7 +65,7 @@ abstract class TanStackTableService
      */
     private static function getColumnOrder(string $table, array $columnNames): array
     {
-        $columnOrder = Config::get("narsil.tables.$table.column_order", []);
+        $columnOrder = Config::get("tables.$table.column_order", []);
 
         foreach ($columnNames as $columnName)
         {
@@ -86,7 +86,7 @@ abstract class TanStackTableService
      */
     private static function getColumnVisibility(string $table, array $columnNames): array
     {
-        $columnVisibility = Config::get("narsil.tables.$table.column_visibility", []);
+        $columnVisibility = Config::get("tables.$table.column_visibility", []);
 
         foreach ($columnNames as $columnName)
         {

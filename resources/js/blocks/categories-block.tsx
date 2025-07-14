@@ -14,7 +14,6 @@ import {
 import {
   Section,
   SectionContent,
-  SectionFooter,
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
@@ -93,7 +92,6 @@ function CategoriesBlock({ data, meta, ...props }: CategoriesBlockProps) {
           ))}
         </ul>
       </SectionContent>
-      <SectionFooter></SectionFooter>
     </Section>
   );
 }

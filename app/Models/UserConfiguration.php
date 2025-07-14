@@ -68,7 +68,7 @@ class UserConfiguration extends Model
     /**
      * @var string The name of the "user" relation.
      */
-    final  public const RELATION_USER = 'user';
+    final public const RELATION_USER = 'user';
 
     /**
      * @var string The name of the "user configurations" table.

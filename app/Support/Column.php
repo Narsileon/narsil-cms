@@ -12,7 +12,7 @@ use Illuminate\Support\Arr;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-final class Column
+class Column
 {
     #region CONSTRUCTOR
 
