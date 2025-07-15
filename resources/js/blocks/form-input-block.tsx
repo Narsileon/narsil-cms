@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import type { LaravelFormInput, SelectOption } from "@/types/global";
+import type { LaravelFormInput, SelectOption } from "@/types";
 
 type FormBlockProps = LaravelFormInput & {
   className?: string;

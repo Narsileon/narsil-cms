@@ -7,7 +7,8 @@ namespace App\Http\Components\Navigation;
 use App\Contracts\Components\Navigation\UserMenu as Contract;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Components\AbstractComponent;
-use App\Support\Components\Navigationitem;
+use App\Support\Components\NavigationItem;
+use App\Support\Components\Separator;
 use App\Support\LabelsBag;
 
 #endregion
@@ -29,6 +30,8 @@ class AuthMenu extends AbstractComponent implements Contract
             (new NavigationItem(route('user-configuration.index'), trans('ui.settings')))
                 ->setIcon('settings')
                 ->setModal(true)
+                ->get(),
+            (new Separator)
                 ->get(),
             (new NavigationItem(route('logout'), trans('ui.log_out')))
                 ->setIcon('log-out')

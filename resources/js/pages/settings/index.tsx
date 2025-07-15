@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/container";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import type { NavigationOption } from "@/types/global";
+import type { NavigationOption } from "@/types";
 
 type SettingsProps = {
   content: NavigationOption[];

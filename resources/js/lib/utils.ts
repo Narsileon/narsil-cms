@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 import { get, isString } from "lodash";
 import { twMerge } from "tailwind-merge";
 import type { ClassValue } from "clsx";
-import type { SelectOption } from "@/types/global";
+import type { SelectOption } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

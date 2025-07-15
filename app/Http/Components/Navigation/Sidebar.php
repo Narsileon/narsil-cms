@@ -7,7 +7,7 @@ namespace App\Http\Components\Navigation;
 use App\Contracts\Components\Navigation\Sidebar as Contract;
 use App\Http\Components\AbstractComponent;
 use App\Support\LabelsBag;
-use App\Support\Components\Navigationitem;
+use App\Support\Components\NavigationItem;
 
 #endregion
 
@@ -26,7 +26,7 @@ class Sidebar extends AbstractComponent implements Contract
     {
         return [
             (new NavigationItem(route('sites.index'), trans('ui.sites')))
-                ->setIcon('sites')
+                ->setIcon('globe')
                 ->get(),
             (new NavigationItem(route('users.index'), trans('ui.users')))
                 ->setIcon('users')

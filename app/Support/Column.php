@@ -23,22 +23,9 @@ class Column
      */
     public function __construct(array $column)
     {
-        $this->name = Arr::get($column, self::NAME, '');
-        $this->type = Arr::get($column, self::TYPE_NAME, '');
+        $this->name = Arr::get($column, 'name', '');
+        $this->type = Arr::get($column, 'type_name', '');
     }
-
-    #endregion
-
-    #region CONSTANTS
-
-    /**
-     * @var string
-     */
-    private const NAME = 'name';
-    /**
-     * @var string
-     */
-    private const TYPE_NAME = 'type_name';
 
     #endregion
 

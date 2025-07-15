@@ -1,7 +1,7 @@
 import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
 import type { FormContextProps } from "./form-context";
-import type { LaravelFormInput } from "@/types/global";
+import type { LaravelFormInput } from "@/types";
 
 type FormProviderProps = {
   content?: LaravelFormInput[];

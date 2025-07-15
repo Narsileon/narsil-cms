@@ -1,7 +1,8 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
-import { Link, usePage } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
+import { useComponents } from "@/hooks/use-props";
 import { useLabels } from "@/components/ui/labels";
 import {
   Sidebar,
@@ -15,7 +16,6 @@ import {
   SidebarRail,
   useSidebar,
 } from "@/components/ui/sidebar";
-import type { GlobalProps } from "@/types/global";
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {};
 
@@ -24,7 +24,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 
-  const { content } = usePage<GlobalProps>().props.sidebar ?? {};
+  const { sidebar } = useComponents();
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -39,11 +39,11 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       <SidebarContent className="gap-0">
         <SidebarGroup>
           <SidebarMenu>
-            {content.map((item, index) => (
+            {sidebar?.content.map((item, index) => (
               <SidebarMenuItem key={index}>
                 <SidebarMenuButton asChild={true} tooltip={item.label}>
                   <Link
-                    href={item.route}
+                    href={item.href}
                     onSuccess={() => {
                       setOpenMobile(false);
                     }}

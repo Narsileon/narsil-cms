@@ -12,7 +12,7 @@ import { useLabels } from "@/components/ui/labels";
 import { useState } from "react";
 import axios from "axios";
 import FormInputBlock from "@/blocks/form-input-block";
-import type { LaravelForm } from "@/types/global";
+import type { LaravelForm } from "@/types";
 
 type TwoFactorFormProps = {
   form: LaravelForm;

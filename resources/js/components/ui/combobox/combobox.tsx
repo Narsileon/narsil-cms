@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { cn, getSelectOption } from "@/lib/utils";
 import { lowerCase } from "lodash";
-import { SelectOption } from "@/types/global";
+import { SelectOption } from "@/types";
 import { useLabels } from "@/components/ui/labels";
 import { useState } from "react";
 import {

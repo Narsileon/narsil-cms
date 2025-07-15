@@ -12,7 +12,7 @@ use App\Enums\Forms\MethodEnum;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class NavigationItem
+class NavigationItem extends AbstractComponent
 {
     #region CONSTRUCTOR
 
@@ -31,24 +31,7 @@ class NavigationItem
 
     #endregion
 
-    #region PROPERTIES
-
-    /**
-     * @var array<string,mixed>
-     */
-    protected array $props = [];
-
-    #endregion
-
     #region PUBLIC METHODS
-
-    /**
-     * @return array Returns the props.
-     */
-    final public function get(): array
-    {
-        return $this->props;
-    }
 
     /**
      * @param string $href

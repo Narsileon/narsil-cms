@@ -8,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import type { GlobalProps } from "@/types/global";
+import type { GlobalProps } from "@/types";
 
 type AppBreadcrumbProps = React.ComponentProps<typeof Breadcrumb> & {};
 

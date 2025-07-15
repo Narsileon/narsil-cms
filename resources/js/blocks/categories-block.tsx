@@ -23,7 +23,7 @@ import {
   MoreHorizontalIcon,
   PlusIcon,
 } from "lucide-react";
-import type { CategoriesCollection } from "@/types/global";
+import type { CategoriesCollection } from "@/types";
 
 type CategoriesBlockProps = React.ComponentProps<typeof Section> &
   CategoriesCollection & {};

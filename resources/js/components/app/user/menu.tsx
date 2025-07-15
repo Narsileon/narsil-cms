@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { MenuIcon } from "lucide-react";
 import { ModalLink } from "@/components/ui/modal";
@@ -10,9 +11,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DynamicIcon } from "lucide-react/dynamic";
 
 type UserMenuProps = React.ComponentProps<typeof DropdownMenuTrigger> & {};
 
@@ -47,23 +48,28 @@ function UserMenu({ ...props }: UserMenuProps) {
       </Tooltip>
       <DropdownMenuContent align="end">
         {user_menu.content.map((item, index) => {
-          const icon = item.icon ? <DynamicIcon name={item.icon} /> : null;
+          switch (item.component) {
+            case "separator":
+              return <DropdownMenuSeparator key={index} />;
+            default:
+              const icon = item.icon ? <DynamicIcon name={item.icon} /> : null;
 
-          return (
-            <DropdownMenuItem key={index} asChild={true}>
-              {item.modal ? (
-                <ModalLink href={item.href}>
-                  {icon}
-                  {item.label}
-                </ModalLink>
-              ) : (
-                <Link href={item.href}>
-                  {icon}
-                  {item.label}
-                </Link>
-              )}
-            </DropdownMenuItem>
-          );
+              return (
+                <DropdownMenuItem asChild={true} key={index}>
+                  {item.modal ? (
+                    <ModalLink href={item.href}>
+                      {icon}
+                      {item.label}
+                    </ModalLink>
+                  ) : (
+                    <Link as="button" href={item.href} method={item.method}>
+                      {icon}
+                      {item.label}
+                    </Link>
+                  )}
+                </DropdownMenuItem>
+              );
+          }
         })}
       </DropdownMenuContent>
     </DropdownMenu>

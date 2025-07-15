@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
 import { usePage } from "@inertiajs/react";
-import type { LaravelNavigationItem } from "@/types/global";
+import type { LaravelNavigationItem } from "@/types";
 import type { Theme } from "@/stores/theme-store";
 
 type AuthProps = {
@@ -8,6 +8,10 @@ type AuthProps = {
   first_name: string | undefined | null;
   last_name: string | undefined | null;
   two_factor_confirmed_at: string | null;
+};
+
+type ComponentProps = Record<string, any> & {
+  components: string;
 };
 
 type ConfigurationProps = {
@@ -37,10 +41,10 @@ type GlobalProps = {
   shared: {
     components: {
       sidebar?: {
-        content: LaravelNavigationItem[];
+        content: ComponentProps[];
       };
       user_menu: {
-        content: LaravelNavigationItem[];
+        content: ComponentProps[];
       };
     };
   };

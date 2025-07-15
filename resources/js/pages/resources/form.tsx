@@ -13,7 +13,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
-import type { LaravelForm } from "@/types/global";
+import type { LaravelForm } from "@/types";
 
 type FormProps = {
   _modal: boolean;

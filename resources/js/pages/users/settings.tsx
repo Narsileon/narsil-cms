@@ -8,7 +8,7 @@ import { useMinMd } from "@/hooks/use-breakpoints";
 import ConfigurationForm from "@/components/app/user/configuration-form";
 import ProfileForm from "@/components/app/user/profile-form";
 import SecurityForm from "@/components/app/user/security-form";
-import type { LaravelForm } from "@/types/global";
+import type { LaravelForm } from "@/types";
 
 type UserSettingsProps = {
   profileForm: LaravelForm;

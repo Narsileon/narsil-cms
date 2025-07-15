@@ -4,8 +4,8 @@ namespace App\Http\Middleware\Inertia;
 
 #region USE
 
-use App\Contracts\Components\Sidebar;
-use App\Contracts\Components\UserMenu;
+use App\Contracts\Components\Navigation\Sidebar;
+use App\Contracts\Components\Navigation\UserMenu;
 use App\Http\Resources\Inertia\UserInertiaResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;

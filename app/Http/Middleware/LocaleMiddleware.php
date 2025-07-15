@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Session;
  *
  * @author Jonathan Rigaux
  */
-final class LocaleMiddleware
+class LocaleMiddleware
 {
     #region CONSTANTS
 

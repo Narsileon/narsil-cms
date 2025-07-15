@@ -25,7 +25,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
-import type { CategoriesCollection, DataTableCollection } from "@/types/global";
+import type { CategoriesCollection, DataTableCollection } from "@/types";
 
 type ResourceIndexProps = {
   categories: CategoriesCollection;

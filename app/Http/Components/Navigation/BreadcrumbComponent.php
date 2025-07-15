@@ -6,7 +6,7 @@ namespace App\Http\Components\Navigation;
 
 use App\Http\Components\AbstractComponent;
 use App\Support\LabelsBag;
-use App\Support\Components\Navigationitem;
+use App\Support\Components\NavigationItem;
 
 #endregion
 

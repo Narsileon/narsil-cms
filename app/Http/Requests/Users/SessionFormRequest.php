@@ -4,7 +4,7 @@ namespace App\Http\Requests\Users;
 
 #region USE
 
-use App\Contracts\FormRequest as Contract;
+use App\Contracts\FormRequests\FormRequest as Contract;
 use App\Enums\SessionEnum;
 use App\Validation\FormRule;
 use Illuminate\Foundation\Http\FormRequest;

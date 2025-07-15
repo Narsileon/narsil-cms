@@ -14,10 +14,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
-import type {
-  LaravelPaginationLinks,
-  LaravelPaginationMeta,
-} from "@/types/global";
+import type { LaravelPaginationLinks, LaravelPaginationMeta } from "@/types";
 
 type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
   links: LaravelPaginationLinks;

@@ -7,7 +7,8 @@ namespace App\Http\Components\Navigation;
 use App\Contracts\Components\Navigation\UserMenu as Contract;
 use App\Http\Components\AbstractComponent;
 use App\Support\LabelsBag;
-use App\Support\Components\Navigationitem;
+use App\Support\Components\NavigationItem;
+use App\Support\Components\Separator;
 
 #endregion
 
@@ -28,6 +29,8 @@ class GuestMenu extends AbstractComponent implements Contract
             (new NavigationItem(route('user-configuration.index'), trans('ui.settings')))
                 ->setIcon('settings')
                 ->setModal(true)
+                ->get(),
+            (new Separator)
                 ->get(),
             (new NavigationItem(route('login'), trans('ui.log_in')))
                 ->setIcon('log-in')
