@@ -4,7 +4,7 @@ namespace App\Http\Requests\Resources;
 
 #region USE
 
-use App\Interfaces\FormRequests\Resources\IUserFormRequest;
+use App\Contracts\FormRequests\Resources\UserFormRequest as Contract;
 use App\Models\User;
 use App\Validation\FormRule;
 
@@ -14,7 +14,7 @@ use App\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserFormRequest implements IUserFormRequest
+class UserFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

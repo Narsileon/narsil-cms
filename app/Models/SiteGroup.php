@@ -4,7 +4,7 @@ namespace App\Models;
 
 #region USE
 
-use App\Interfaces\IEnable;
+use App\Contracts\Enable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroup extends Model implements IEnable
+class SiteGroup extends Model implements Enable
 {
     #region CONSTRUCTOR
 

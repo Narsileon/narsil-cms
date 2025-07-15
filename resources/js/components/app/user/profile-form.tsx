@@ -1,8 +1,8 @@
 import { Form, FormProvider, FormSubmit } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
+import { useAuth } from "@/hooks/use-props";
 import { useLabels } from "@/components/ui/labels";
 import FormInputBlock from "@/blocks/form-input-block";
-import useAuth from "@/hooks/use-auth";
 import {
   Section,
   SectionContent,
@@ -30,14 +30,14 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={profileForm.id}
-            inputs={profileForm.inputs}
+            content={profileForm.content}
             initialValues={{
               first_name: auth?.first_name,
               last_name: auth?.last_name,
             }}
             render={() => (
               <Form method={profileForm.method} url={profileForm.action}>
-                {profileForm.inputs.map((input, index) => (
+                {profileForm.content.map((input, index) => (
                   <FormInputBlock {...input} key={index} />
                 ))}
                 <FormSubmit>{profileForm.submit}</FormSubmit>
@@ -54,13 +54,13 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={updatePasswordForm.id}
-            inputs={updatePasswordForm.inputs}
+            content={updatePasswordForm.content}
             render={() => (
               <Form
                 method={updatePasswordForm.method}
                 url={updatePasswordForm.action}
               >
-                {updatePasswordForm.inputs.map((input, index) => (
+                {updatePasswordForm.content.map((input, index) => (
                   <FormInputBlock {...input} key={index} />
                 ))}
                 <FormSubmit>{updatePasswordForm.submit}</FormSubmit>

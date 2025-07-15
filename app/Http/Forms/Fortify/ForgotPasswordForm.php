@@ -4,12 +4,12 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\ForgotPasswordForm as Contract;
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Interfaces\Forms\Fortify\IForgotPasswordForm;
 use App\Models\User;
-use App\Support\Input;
+use App\Support\Forms\Input;
 
 #endregion
 
@@ -17,21 +17,20 @@ use App\Support\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ForgotPasswordForm extends AbstractForm implements IForgotPasswordForm
+class ForgotPasswordForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritdoc}
      */
-    protected function getInputs(): array
+    protected function getContent(): array
     {
         return [
-            (new Input(User::EMAIL, ''))
-                ->type(TypeEnum::EMAIL)
-                ->autoComplete(AutoCompleteEnum::EMAIL)
-                ->description(trans('passwords.instruction'))
-                ->required(true)
+            (new Input(User::EMAIL, TypeEnum::EMAIL, ''))
+                ->setAutoComplete(AutoCompleteEnum::EMAIL)
+                ->setDescription(trans('passwords.instruction'))
+                ->setRequired(true)
                 ->get(),
         ];
     }

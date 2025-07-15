@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 #region USE
 
-use App\Interfaces\FormRequests\Fortify\ICreateNewUserFormRequest;
+use App\Contracts\FormRequests\Fortify\CreateNewUserFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -20,11 +20,11 @@ class CreateNewUser implements CreatesNewUsers
     #region CONSTRUCTOR
 
     /**
-     * @param ICreateNewUserFormRequest $formRequest
+     * @param CreateNewUserFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(ICreateNewUserFormRequest $formRequest)
+    public function __construct(CreateNewUserFormRequest $formRequest)
     {
         $this->formRequest = $formRequest;
     }
@@ -34,9 +34,9 @@ class CreateNewUser implements CreatesNewUsers
     #region PROPERTIES
 
     /**
-     * @var ICreateNewUserFormRequest
+     * @var CreateNewUserFormRequest
      */
-    protected readonly ICreateNewUserFormRequest $formRequest;
+    protected readonly CreateNewUserFormRequest $formRequest;
 
     #endregion
 

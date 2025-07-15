@@ -4,10 +4,11 @@ namespace App\Http\Forms\Resources;
 
 #region USE
 
+use App\Contracts\Forms\Resources\SiteGroupForm as Contract;
+use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Interfaces\Forms\Resources\ISiteGroupForm;
 use App\Models\SiteGroup;
-use App\Support\Input;
+use App\Support\Forms\Input;
 
 #endregion
 
@@ -15,18 +16,18 @@ use App\Support\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroupForm extends AbstractForm implements ISiteGroupForm
+class SiteGroupForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritdoc}
      */
-    protected function getInputs(): array
+    protected function getContent(): array
     {
         return [
-            (new Input(SiteGroup::NAME, ''))
-                ->required(true)
+            (new Input(SiteGroup::NAME, TypeEnum::TEXT, ''))
+                ->setRequired(true)
                 ->get(),
         ];
     }

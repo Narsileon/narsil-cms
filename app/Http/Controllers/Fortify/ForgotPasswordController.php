@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\ForgotPasswordForm;
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\Fortify\IForgotPasswordForm;
 use App\Narsil;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -21,11 +21,11 @@ class ForgotPasswordController
     #region CONSTRUCTOR
 
     /**
-     * @param IForgotPasswordForm $form
+     * @param ForgotPasswordForm $form
      *
      * @return void
      */
-    public function __construct(IForgotPasswordForm $form)
+    public function __construct(ForgotPasswordForm $form)
     {
         $this->form = $form;
     }
@@ -35,9 +35,9 @@ class ForgotPasswordController
     #region PROPERTIES
 
     /**
-     * @var IForgotPasswordForm
+     * @var ForgotPasswordForm
      */
-    protected readonly IForgotPasswordForm $form;
+    protected readonly ForgotPasswordForm $form;
 
     #endregion
 

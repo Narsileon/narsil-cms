@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\RegisterForm;
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\Fortify\IRegisterForm;
 use App\Narsil;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -21,11 +21,11 @@ class RegisterController
     #region CONSTRUCTOR
 
     /**
-     * @param IRegisterForm $form
+     * @param RegisterForm $form
      *
      * @return void
      */
-    public function __construct(IRegisterForm $form)
+    public function __construct(RegisterForm $form)
     {
         $this->form = $form;
     }
@@ -35,9 +35,9 @@ class RegisterController
     #region PROPERTIES
 
     /**
-     * @var IRegisterForm
+     * @var RegisterForm
      */
-    protected readonly IRegisterForm $form;
+    protected readonly RegisterForm $form;
 
     #endregion
 

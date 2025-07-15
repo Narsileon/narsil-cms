@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Resources;
 
 #region USE
 
+use App\Contracts\FormRequests\Resources\SiteGroupFormRequest;
+use App\Contracts\Forms\Resources\SiteGroupForm;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Resources\DataTableCollection;
-use App\Interfaces\FormRequests\Resources\ISiteGroupFormRequest;
-use App\Interfaces\Forms\Resources\ISiteGroupForm;
 use App\Models\SiteGroup;
 use App\Narsil;
 use Illuminate\Http\JsonResponse;
@@ -27,12 +27,12 @@ class SiteGroupController extends AbstractModelController
     #region CONSTRUCTOR
 
     /**
-     * @param ISiteGroupForm $form
-     * @param ISiteGroupFormRequest $formRequest
+     * @param SiteGroupForm $form
+     * @param SiteGroupFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(ISiteGroupForm $form, ISiteGroupFormRequest $formRequest)
+    public function __construct(SiteGroupForm $form, SiteGroupFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -43,13 +43,13 @@ class SiteGroupController extends AbstractModelController
     #region PROPERTIES
 
     /**
-     * @var ISiteGroupForm
+     * @var SiteGroupForm
      */
-    protected readonly ISiteGroupForm $form;
+    protected readonly SiteGroupForm $form;
     /**
-     * @var ISiteFormRequest
+     * @var SiteFormRequest
      */
-    protected readonly ISiteGroupFormRequest $formRequest;
+    protected readonly SiteGroupFormRequest $formRequest;
 
     #endregion
 

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\LoginForm;
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\Fortify\ILoginForm;
 use App\Narsil;
 use App\Support\LabelsBag;
 use Illuminate\Http\Request;
@@ -22,11 +22,11 @@ class LoginController
     #region CONSTRUCTOR
 
     /**
-     * @param ILoginForm $form
+     * @param LoginForm $form
      *
      * @return void
      */
-    public function __construct(ILoginForm $form)
+    public function __construct(LoginForm $form)
     {
         $this->form = $form;
     }
@@ -36,9 +36,9 @@ class LoginController
     #region PROPERTIES
 
     /**
-     * @var ILoginForm
+     * @var LoginForm
      */
-    protected readonly ILoginForm $form;
+    protected readonly LoginForm $form;
 
     #endregion
 

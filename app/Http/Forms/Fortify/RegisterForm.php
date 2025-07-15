@@ -4,12 +4,12 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\RegisterForm as Contract;
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Interfaces\Forms\Fortify\IRegisterForm;
 use App\Models\User;
-use App\Support\Input;
+use App\Support\Forms\Input;
 
 #endregion
 
@@ -17,42 +17,39 @@ use App\Support\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RegisterForm extends AbstractForm implements IRegisterForm
+class RegisterForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritdoc}
      */
-    protected function getInputs(): array
+    protected function getContent(): array
     {
         return [
-            (new Input(User::EMAIL, ''))
-                ->type(TypeEnum::EMAIL)
-                ->autoComplete(AutoCompleteEnum::EMAIL)
-                ->required(true)
+            (new Input(User::EMAIL, TypeEnum::EMAIL, ''))
+                ->setAutoComplete(AutoCompleteEnum::EMAIL)
+                ->setRequired(true)
                 ->get(),
-            (new Input(User::PASSWORD, ''))
-                ->type(TypeEnum::PASSWORD)
-                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->column(true)
-                ->required(true)
+            (new Input(User::PASSWORD, TypeEnum::PASSWORD, ''))
+                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                ->setColumn(true)
+                ->setRequired(true)
                 ->get(),
-            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, ''))
-                ->type(TypeEnum::PASSWORD)
-                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->column(true)
-                ->required(true)
+            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, TypeEnum::PASSWORD, ''))
+                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                ->setColumn(true)
+                ->setRequired(true)
                 ->get(),
-            (new Input(User::FIRST_NAME, ''))
-                ->autoComplete(AutoCompleteEnum::GIVEN_NAME)
-                ->column(true)
-                ->required(true)
+            (new Input(User::FIRST_NAME, TypeEnum::TEXT, ''))
+                ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
+                ->setColumn(true)
+                ->setRequired(true)
                 ->get(),
-            (new Input(User::LAST_NAME, ''))
-                ->autoComplete(AutoCompleteEnum::FAMILY_NAME)
-                ->column(true)
-                ->required(true)
+            (new Input(User::LAST_NAME, TypeEnum::TEXT, ''))
+                ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
+                ->setColumn(true)
+                ->setRequired(true)
                 ->get(),
         ];
     }

@@ -4,9 +4,9 @@ namespace App\Http\Middleware\Inertia;
 
 #region USE
 
+use App\Contracts\Components\Sidebar;
+use App\Contracts\Components\UserMenu;
 use App\Http\Resources\Inertia\UserInertiaResource;
-use App\Interfaces\Components\ISidebarComponent;
-use App\Support\LabelsBag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -55,17 +55,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $this->registerLabels();
-
         return [
             ...parent::share($request),
 
             'auth'       => new UserInertiaResource(),
             'breadcrumb' => $this->getBreadcrumb(),
+            'locale' => App::getLocale(),
             'redirect'   => $this->getRedirect(),
-            'sidebar'    => $this->getSidebar(),
             'shared'     => [
-                'locale' => App::getLocale(),
+                'components' => $this->getComponents(),
             ],
         ];
     }
@@ -112,23 +110,12 @@ class HandleInertiaRequests extends Middleware
     /**
      * @return array
      */
-    protected function getSidebar(): array
+    protected function getComponents(): array
     {
-        $sidebar = app(ISidebarComponent::class)->get();
-
-        return $sidebar;
-    }
-
-    /**
-     * @return void
-     */
-    protected function registerLabels(): void
-    {
-        app(LabelsBag::class)
-            ->add('accessibility.toggle_user_menu')
-            ->add('ui.log_in')
-            ->add('ui.log_out')
-            ->add('ui.settings');
+        return [
+            'sidebar' => app(Sidebar::class)->get(),
+            'user_menu' => app(UserMenu::class)->get(),
+        ];
     }
 
     #endregion

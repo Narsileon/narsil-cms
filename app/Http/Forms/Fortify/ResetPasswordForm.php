@@ -7,9 +7,9 @@ namespace App\Http\Forms\Fortify;
 use App\Enums\Forms\AutoCompleteEnum;
 use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Interfaces\Forms\Fortify\IResetPasswordForm;
+use App\Contracts\Forms\Fortify\ResetPasswordForm as Contract;
 use App\Models\User;
-use App\Support\Input;
+use App\Support\Forms\Input;
 
 #endregion
 
@@ -17,30 +17,27 @@ use App\Support\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ResetPasswordForm extends AbstractForm implements IResetPasswordForm
+class ResetPasswordForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritdoc}
      */
-    protected function getInputs(): array
+    protected function getContent(): array
     {
         return [
-            (new Input(User::EMAIL, ''))
-                ->type(TypeEnum::EMAIL)
-                ->autoComplete(AutoCompleteEnum::EMAIL)
-                ->required(true)
+            (new Input(User::EMAIL, TypeEnum::EMAIL, ''))
+                ->setAutoComplete(AutoCompleteEnum::EMAIL)
+                ->setRequired(true)
                 ->get(),
-            (new Input(User::PASSWORD, ''))
-                ->type(TypeEnum::PASSWORD)
-                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->required(true)
+            (new Input(User::PASSWORD, TypeEnum::PASSWORD, ''))
+                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                ->setRequired(true)
                 ->get(),
-            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, ''))
-                ->type(TypeEnum::PASSWORD)
-                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->required(true)
+            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, TypeEnum::PASSWORD, ''))
+                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                ->setRequired(true)
                 ->get(),
         ];
     }

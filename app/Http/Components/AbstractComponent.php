@@ -4,7 +4,7 @@ namespace App\Http\Components;
 
 #region USE
 
-use App\Interfaces\Components\IComponent;
+use App\Contracts\Components\Component;
 
 #endregion
 
@@ -12,7 +12,7 @@ use App\Interfaces\Components\IComponent;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractComponent implements IComponent
+abstract class AbstractComponent implements Component
 {
     #region CONSTRUCTOR
 

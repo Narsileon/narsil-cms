@@ -4,7 +4,7 @@ namespace App\Models;
 
 #region USE
 
-use App\Interfaces\IEnable;
+use App\Contracts\Enable;
 use App\Observers\UserObserver;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -21,7 +21,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @author Jonathan Rigaux
  */
 #[ObservedBy([UserObserver::class])]
-class User extends Authenticatable implements IEnable, MustVerifyEmail
+class User extends Authenticatable implements Enable, MustVerifyEmail
 {
     use Notifiable;
     use TwoFactorAuthenticatable;

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Resources;
 
 #region USE
 
-use App\Interfaces\FormRequests\Resources\ISiteFormRequest;
+use App\Contracts\FormRequests\Resources\SiteFormRequest as Contract;
 use App\Models\Site;
 use App\Validation\FormRule;
 
@@ -14,7 +14,7 @@ use App\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteFormRequest implements ISiteFormRequest
+class SiteFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

@@ -60,11 +60,11 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
               <CardContent>
                 <FormProvider
                   id={form.id}
-                  inputs={form.inputs}
+                  content={form.content}
                   initialValues={data}
                   render={() => (
                     <Form method={form.method} url={form.action}>
-                      {form.inputs.map((input, index) =>
+                      {form.content.map((input, index) =>
                         form.id === "login-form" && input.id === "password" ? (
                           <FormField
                             name={input.id}

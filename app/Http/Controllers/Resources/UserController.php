@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Resources;
 
 #region USE
 
+use App\Contracts\FormRequests\Resources\UserFormRequest;
+use App\Contracts\Forms\Resources\UserForm;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Resources\DataTableCollection;
-use App\Interfaces\FormRequests\Resources\IUserFormRequest;
-use App\Interfaces\Forms\Resources\IUserForm;
 use App\Models\User;
 use App\Narsil;
 use Illuminate\Http\JsonResponse;
@@ -27,12 +27,12 @@ class UserController extends AbstractModelController
     #region CONSTRUCTOR
 
     /**
-     * @param IUserForm $form
-     * @param IUserFormRequest $formRequest
+     * @param UserForm $form
+     * @param UserFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(IUserForm $form, IUserFormRequest $formRequest)
+    public function __construct(UserForm $form, UserFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -43,13 +43,13 @@ class UserController extends AbstractModelController
     #region PROPERTIES
 
     /**
-     * @var IUserForm
+     * @var UserForm
      */
-    protected readonly IUserForm $form;
+    protected readonly UserForm $form;
     /**
-     * @var IUserFormRequest
+     * @var UserFormRequest
      */
-    protected readonly IUserFormRequest $formRequest;
+    protected readonly UserFormRequest $formRequest;
 
     #endregion
 

@@ -37,7 +37,7 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
           <SectionContent>
             <FormProvider
               id={form.id}
-              inputs={form.inputs}
+              content={form.content}
               initialValues={{
                 _back: _modal,
                 ...data,
@@ -54,7 +54,7 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                     },
                   }}
                 >
-                  {form.inputs.map((input, index) => (
+                  {form.content.map((input, index) => (
                     <FormInputBlock {...input} key={index} />
                   ))}
                   <FormSubmit>{form.submit}</FormSubmit>

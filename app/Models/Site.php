@@ -4,7 +4,7 @@ namespace App\Models;
 
 #region USE
 
-use App\Interfaces\IEnable;
+use App\Contracts\Enable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Site extends Model implements IEnable
+class Site extends Model implements Enable
 {
     #region CONSTRUCTOR
 

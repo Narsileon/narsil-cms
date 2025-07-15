@@ -8,6 +8,7 @@ namespace App\Enums\Forms;
  */
 enum MethodEnum: string
 {
+    case GET   = 'get';
     case PATCH = 'patch';
     case POST  = 'post';
     case PUT   = 'put';

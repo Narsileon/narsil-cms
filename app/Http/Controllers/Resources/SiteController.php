@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Resources;
 
 #region USE
 
+use App\Contracts\FormRequests\Resources\SiteFormRequest;
+use App\Contracts\Forms\Resources\SiteForm;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\DataTableCollection;
-use App\Interfaces\FormRequests\Resources\ISiteFormRequest;
-use App\Interfaces\Forms\Resources\ISiteForm;
 use App\Models\Site;
 use App\Models\SiteGroup;
 use App\Narsil;
@@ -29,12 +29,12 @@ class SiteController extends AbstractModelController
     #region CONSTRUCTOR
 
     /**
-     * @param ISiteForm $form
-     * @param ISiteFormRequest $formRequest
+     * @param SiteForm $form
+     * @param SiteFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(ISiteForm $form, ISiteFormRequest $formRequest)
+    public function __construct(SiteForm $form, SiteFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -45,13 +45,13 @@ class SiteController extends AbstractModelController
     #region PROPERTIES
 
     /**
-     * @var ISiteForm
+     * @var SiteForm
      */
-    protected readonly ISiteForm $form;
+    protected readonly SiteForm $form;
     /**
-     * @var ISiteFormRequest
+     * @var SiteFormRequest
      */
-    protected readonly ISiteFormRequest $formRequest;
+    protected readonly SiteFormRequest $formRequest;
 
     #endregion
 

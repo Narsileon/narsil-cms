@@ -4,7 +4,7 @@ namespace App\Http\Requests\Fortify;
 
 #region USE
 
-use App\Interfaces\FormRequests\Fortify\ICreateNewUserFormRequest;
+use App\Contracts\FormRequests\Fortify\CreateNewUserFormRequest as Contract;
 use App\Models\User;
 use App\Validation\FormRule;
 
@@ -14,7 +14,7 @@ use App\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class CreateNewUserFormRequest implements ICreateNewUserFormRequest
+class CreateNewUserFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

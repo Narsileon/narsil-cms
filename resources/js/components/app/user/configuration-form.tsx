@@ -3,10 +3,10 @@ import { getSelectOption } from "@/lib/utils";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
 import { useLabels } from "@/components/ui/labels";
+import { useLocale } from "@/hooks/use-props";
 import { useModalStore } from "@/stores/modal-store";
 import FormInputBlock from "@/blocks/form-input-block";
 import useColorStore from "@/stores/color-store";
-import useLocale from "@/hooks/use-locale";
 import useRadiusStore from "@/stores/radius-store";
 import useThemeStore from "@/stores/theme-store";
 import {
@@ -29,8 +29,7 @@ type ConfigurationFormProps = {
 
 function ConfigurationForm({ form }: ConfigurationFormProps) {
   const { getLabel } = useLabels();
-
-  const locale = useLocale();
+  const { locale } = useLocale();
 
   const { reloadTopModal } = useModalStore();
 
@@ -105,7 +104,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
       <SectionContent>
         <FormProvider
           id="user-personalization-form"
-          inputs={form.inputs}
+          content={form.content}
           initialValues={{
             color: color,
             locale: locale,
@@ -114,7 +113,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
           }}
           render={() => (
             <Form method="post" url={route("login")}>
-              {form.inputs.map(({ value, ...input }, index) => (
+              {form.content.map(({ value, ...input }, index) => (
                 <FormInputBlock
                   className="grid grid-cols-2"
                   icon={getIcon(input.id)}

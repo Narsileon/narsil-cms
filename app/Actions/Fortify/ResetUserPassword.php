@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 #region USE
 
-use App\Interfaces\FormRequests\Fortify\IResetUserPasswordFormRequest;
+use App\Contracts\FormRequests\Fortify\ResetUserPasswordFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
@@ -20,11 +20,11 @@ class ResetUserPassword implements ResetsUserPasswords
     #region CONSTRUCTOR
 
     /**
-     * @param IResetUserPasswordFormRequest $formRequest
+     * @param ResetUserPasswordFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(IResetUserPasswordFormRequest $formRequest)
+    public function __construct(ResetUserPasswordFormRequest $formRequest)
     {
         $this->formRequest = $formRequest;
     }
@@ -34,9 +34,9 @@ class ResetUserPassword implements ResetsUserPasswords
     #region PROPERTIES
 
     /**
-     * @var IResetUserPasswordFormRequest
+     * @var ResetUserPasswordFormRequest
      */
-    protected readonly IResetUserPasswordFormRequest $formRequest;
+    protected readonly ResetUserPasswordFormRequest $formRequest;
 
     #endregion
 

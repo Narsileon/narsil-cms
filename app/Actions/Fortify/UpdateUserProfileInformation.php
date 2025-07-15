@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 #region USE
 
-use App\Interfaces\FormRequests\Fortify\IUpdateUserProfileInformationFormRequest;
+use App\Contracts\FormRequests\Fortify\UpdateUserProfileInformationFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
@@ -20,11 +20,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     #region CONSTRUCTOR
 
     /**
-     * @param IUpdateUserProfileInformationFormRequest $formRequest
+     * @param UpdateUserProfileInformationFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(IUpdateUserProfileInformationFormRequest $formRequest)
+    public function __construct(UpdateUserProfileInformationFormRequest $formRequest)
     {
         $this->formRequest = $formRequest;
     }
@@ -34,9 +34,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     #region PROPERTIES
 
     /**
-     * @var IUpdateUserProfileInformationFormRequest
+     * @var UpdateUserProfileInformationFormRequest
      */
-    protected readonly IUpdateUserProfileInformationFormRequest $formRequest;
+    protected readonly UpdateUserProfileInformationFormRequest $formRequest;
 
     #endregion
 

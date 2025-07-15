@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\ConfirmPasswordForm;
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\Fortify\IConfirmPasswordForm;
 use App\Narsil;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -21,11 +21,11 @@ class ConfirmPasswordController
     #region CONSTRUCTOR
 
     /**
-     * @param IConfirmPasswordForm $form
+     * @param ConfirmPasswordForm $form
      *
      * @return void
      */
-    public function __construct(IConfirmPasswordForm $form)
+    public function __construct(ConfirmPasswordForm $form)
     {
         $this->form = $form;
     }
@@ -35,9 +35,9 @@ class ConfirmPasswordController
     #region PROPERTIES
 
     /**
-     * @var IConfirmPasswordForm
+     * @var ConfirmPasswordForm
      */
-    protected readonly IConfirmPasswordForm $form;
+    protected readonly ConfirmPasswordForm $form;
 
     #endregion
 

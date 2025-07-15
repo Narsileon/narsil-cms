@@ -1,11 +1,11 @@
 import { ModalRenderer } from "@/components/ui/modal";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
+import { useAuth } from "@/hooks/use-props";
 import { useEffect, useRef } from "react";
 import { useMaxLg } from "@/hooks/use-breakpoints";
 import AppBreadcrumb from "@/components/app/app-breadcrumb";
 import AppSidebar from "@/components/app/app-sidebar";
-import useAuth from "@/hooks/use-auth";
 import useColorStore from "@/stores/color-store";
 import useRadiusStore from "@/stores/radius-store";
 import UserMenu from "@/components/app/user/menu";

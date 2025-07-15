@@ -5,8 +5,8 @@ namespace App\Http\Forms;
 #region USE
 
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\IForm;
-use App\Support\Input;
+use App\Contracts\Forms\Form;
+use App\Support\Forms\Input;
 use App\Support\LabelsBag;
 use Illuminate\Support\Str;
 use ReflectionClass;
@@ -17,7 +17,7 @@ use ReflectionClass;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractForm implements IForm
+abstract class AbstractForm implements Form
 {
     #region PUBLIC METHODS
 
@@ -37,12 +37,12 @@ abstract class AbstractForm implements IForm
         $this->registerLabels();
 
         return [
-            'action'       => $this->action,
-            'method'       => $this->method,
-            'id'           => $this->getId(),
-            'inputs'       => $this->getInputs(),
-            'options'      => $this->getOptions(),
-            'submit'       => $this->submit,
+            'action'  => $this->action,
+            'content' => $this->getContent(),
+            'id'      => $this->getId(),
+            'method'  => $this->method,
+            'options' => $this->getOptions(),
+            'submit'  => $this->submit,
         ];
     }
 
@@ -70,8 +70,7 @@ abstract class AbstractForm implements IForm
     /**
      * @return array<Input>
      */
-    abstract protected function getInputs(): array;
-
+    abstract protected function getContent(): array;
 
     /**
      * @return string
@@ -84,6 +83,14 @@ abstract class AbstractForm implements IForm
     }
 
     /**
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        return [];
+    }
+
+    /**
      * @return void
      */
     protected function registerLabels(): void
@@ -92,14 +99,6 @@ abstract class AbstractForm implements IForm
             ->add('ui.back')
             ->add('pagination.empty')
             ->add('accessibility.required');
-    }
-
-    /**
-     * @return array
-     */
-    protected function getOptions(): array
-    {
-        return [];
     }
 
     #endregion

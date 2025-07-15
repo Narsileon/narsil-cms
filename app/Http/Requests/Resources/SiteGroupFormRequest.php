@@ -4,7 +4,7 @@ namespace App\Http\Requests\Resources;
 
 #region USE
 
-use App\Interfaces\FormRequests\Resources\ISiteGroupFormRequest;
+use App\Contracts\FormRequests\Resources\SiteGroupFormRequest as Contract;
 use App\Models\SiteGroup;
 use App\Validation\FormRule;
 
@@ -14,7 +14,7 @@ use App\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroupFormRequest implements ISiteGroupFormRequest
+class SiteGroupFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

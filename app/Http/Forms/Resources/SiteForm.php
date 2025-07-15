@@ -4,11 +4,11 @@ namespace App\Http\Forms\Resources;
 
 #region USE
 
+use App\Contracts\Forms\Resources\SiteForm as Contract;
 use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Interfaces\Forms\Resources\ISiteForm;
 use App\Models\Site;
-use App\Support\Input;
+use App\Support\Forms\Input;
 use Illuminate\Support\Facades\App;
 use Locale;
 use ResourceBundle;
@@ -19,34 +19,34 @@ use ResourceBundle;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteForm extends AbstractForm implements ISiteForm
+class SiteForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritdoc}
      */
-    protected function getInputs(): array
+    protected function getContent(): array
     {
         $languageOptions = static::getLanguageOptions();
 
         return [
-            (new Input(Site::NAME, ''))
-                ->required(true)
+            (new Input(Site::NAME, TypeEnum::TEXT, ''))
+                ->setRequired(true)
                 ->get(),
-            (new Input(Site::PRIMARY, false))
-                ->type(TypeEnum::CHECKBOX)
-                ->required(true)
+            (new Input(Site::PRIMARY, TypeEnum::CHECKBOX, false))
+                ->setRequired(true)
                 ->get(),
-            (new Input(Site::HANDLE, ''))
-                ->required(true)
+            (new Input(Site::HANDLE, TypeEnum::TEXT, ''))
+                ->setRequired(true)
                 ->get(),
-            (new Input(Site::LANGUAGE, ''))
-                ->type(TypeEnum::COMBOBOX)
-                ->options($languageOptions)
-                ->required(true)
+            (new Input(Site::LANGUAGE, TypeEnum::COMBOBOX, ''))
+                ->setOptions($languageOptions)
+                ->setPlaceholder(trans('ui.search'))
+                ->setRequired(true)
                 ->get(),
-            (new Input(Site::GROUP_ID, ''))
+            (new Input(Site::GROUP_ID, TypeEnum::COMBOBOX, ''))
+                ->setPlaceholder(trans('ui.search'))
                 ->get(),
         ];
     }

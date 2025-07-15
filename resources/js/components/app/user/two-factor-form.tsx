@@ -7,11 +7,11 @@ import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/use-props";
 import { useLabels } from "@/components/ui/labels";
 import { useState } from "react";
 import axios from "axios";
 import FormInputBlock from "@/blocks/form-input-block";
-import useAuth from "@/hooks/use-auth";
 import type { LaravelForm } from "@/types/global";
 
 type TwoFactorFormProps = {
@@ -90,7 +90,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
             <CardContent>
               <FormProvider
                 id={form.id}
-                inputs={form.inputs}
+                content={form.content}
                 render={({ setError }) => (
                   <Form
                     method={form.method}
@@ -107,7 +107,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                       },
                     }}
                   >
-                    {form.inputs.map((input, index) => (
+                    {form.content.map((input, index) => (
                       <FormInputBlock {...input} key={index} />
                     ))}
                     <div

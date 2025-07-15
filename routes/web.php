@@ -6,9 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Resources\SiteController;
 use App\Http\Controllers\Resources\SiteGroupController;
 use App\Http\Controllers\Resources\UserController;
-use App\Http\Controllers\SessionController;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\UserConfigurationController;
+use App\Http\Controllers\Users\SessionController;
+use App\Http\Controllers\Users\UserConfigurationController;
 use Illuminate\Support\Facades\Route;
 
 #endregion
@@ -22,8 +21,6 @@ Route::middleware([
     {
         Route::get('/', HomeController::class)
             ->name('home');
-        Route::get('/settings', SettingsController::class)
-            ->name('settings');
 
         #region RESOURCES
 
@@ -42,7 +39,7 @@ Route::middleware([
 
         #endregion
 
-        #region SESSIONS
+        #region USERS
 
         Route::delete('/sessions', SessionController::class)
             ->name('sessions.delete');
@@ -56,10 +53,14 @@ Route::middleware([
 ])->group(
     function ()
     {
+        #region USERS
+
         Route::resource('/user-configuration', UserConfigurationController::class)
             ->only([
                 'index',
                 'store',
             ]);
+
+        #endregion
     }
 );

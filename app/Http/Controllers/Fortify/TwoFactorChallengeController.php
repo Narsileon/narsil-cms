@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\TwoFactorChallengeForm;
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\Fortify\ITwoFactorChallengeForm;
 use App\Narsil;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -21,11 +21,11 @@ class TwoFactorChallengeController
     #region CONSTRUCTOR
 
     /**
-     * @param ITwoFactorChallengeForm $form
+     * @param TwoFactorChallengeForm $form
      *
      * @return void
      */
-    public function __construct(ITwoFactorChallengeForm $form)
+    public function __construct(TwoFactorChallengeForm $form)
     {
         $this->form = $form;
     }
@@ -35,9 +35,9 @@ class TwoFactorChallengeController
     #region PROPERTIES
 
     /**
-     * @var ITwoFactorChallengeForm
+     * @var TwoFactorChallengeForm
      */
-    protected readonly ITwoFactorChallengeForm $form;
+    protected readonly TwoFactorChallengeForm $form;
 
     #endregion
 

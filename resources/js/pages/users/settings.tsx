@@ -2,12 +2,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { SettingsIcon, ShieldCheckIcon, UserPenIcon } from "lucide-react";
 import { TabsList, Tabs, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { useAuth } from "@/hooks/use-props";
 import { useLabels } from "@/components/ui/labels";
 import { useMinMd } from "@/hooks/use-breakpoints";
 import ConfigurationForm from "@/components/app/user/configuration-form";
 import ProfileForm from "@/components/app/user/profile-form";
 import SecurityForm from "@/components/app/user/security-form";
-import useAuth from "@/hooks/use-auth";
 import type { LaravelForm } from "@/types/global";
 
 type UserSettingsProps = {

@@ -1,14 +1,14 @@
 import { isEmpty } from "lodash";
 import { LabelsProvider } from "@/components/ui/labels";
-import { router, usePage } from "@inertiajs/react";
+import { router } from "@inertiajs/react";
 import { toast } from "sonner";
+import { useAuth, useLabels, useRedirect } from "@/hooks/use-props";
 import { useEffect } from "react";
 import AuthLayout from "./auth-layout";
 import GuestLayout from "./guest-layout";
 import useColorStore from "@/stores/color-store";
 import useRadiusStore from "@/stores/radius-store";
 import useThemeStore from "@/stores/theme-store";
-import type { GlobalProps } from "@/types/global";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -23,9 +23,10 @@ function Layout({ children }: LayoutProps) {
   radiusStore.applyRadius();
   themeStore.applyTheme();
 
-  const { auth, labels, redirect } = usePage<GlobalProps>().props;
+  const auth = useAuth();
+  const labels = useLabels();
 
-  const { error, info, success, warning } = redirect ?? {};
+  const { error, info, success, warning } = useRedirect();
 
   useEffect(() => {
     if (error) {

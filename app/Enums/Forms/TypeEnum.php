@@ -14,4 +14,5 @@ enum TypeEnum: string
     case PASSWORD = 'password';
     case SELECT   = 'select';
     case SLIDER   = 'slider';
+    case TEXT     = 'text';
 }

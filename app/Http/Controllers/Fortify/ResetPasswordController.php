@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Fortify;
 
 #region USE
 
+use App\Contracts\Forms\Fortify\ResetPasswordForm;
 use App\Enums\Forms\MethodEnum;
-use App\Interfaces\Forms\Fortify\IResetPasswordForm;
 use App\Narsil;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -21,11 +21,11 @@ class ResetPasswordController
     #region CONSTRUCTOR
 
     /**
-     * @param IResetPasswordForm $form
+     * @param ResetPasswordForm $form
      *
      * @return void
      */
-    public function __construct(IResetPasswordForm $form)
+    public function __construct(ResetPasswordForm $form)
     {
         $this->form = $form;
     }
@@ -35,9 +35,9 @@ class ResetPasswordController
     #region PROPERTIES
 
     /**
-     * @var IResetPasswordForm
+     * @var ResetPasswordForm
      */
-    protected readonly IResetPasswordForm $form;
+    protected readonly ResetPasswordForm $form;
 
     #endregion
 

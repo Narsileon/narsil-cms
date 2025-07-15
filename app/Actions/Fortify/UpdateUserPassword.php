@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 #region USE
 
-use App\Interfaces\FormRequests\Fortify\IUpdateUserPasswordFormRequest;
+use App\Contracts\FormRequests\Fortify\UpdateUserPasswordFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
@@ -20,11 +20,11 @@ class UpdateUserPassword implements UpdatesUserPasswords
     #region CONSTRUCTOR
 
     /**
-     * @param IUpdateUserPasswordFormRequest $formRequest
+     * @param UpdateUserPasswordFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(IUpdateUserPasswordFormRequest $formRequest)
+    public function __construct(UpdateUserPasswordFormRequest $formRequest)
     {
         $this->formRequest = $formRequest;
     }
@@ -34,9 +34,9 @@ class UpdateUserPassword implements UpdatesUserPasswords
     #region PROPERTIES
 
     /**
-     * @var IResetUserPasswordFormRequest
+     * @var UpdateUserPasswordFormRequest
      */
-    protected readonly IUpdateUserPasswordFormRequest $formRequest;
+    protected readonly UpdateUserPasswordFormRequest $formRequest;
 
     #endregion
 
