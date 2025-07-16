@@ -27,9 +27,9 @@ class SiteGroup extends Model implements Enable
     {
         $this->table = self::TABLE;
 
-        $this->fillable = array_merge([
-            self::NAME,
-        ], $this->fillable);
+        $this->guarded = array_merge([
+            self::ID,
+        ], $this->guarded);
 
         parent::__construct($attributes);
     }

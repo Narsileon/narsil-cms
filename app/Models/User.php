@@ -44,11 +44,15 @@ class User extends Authenticatable implements Enable, MustVerifyEmail
             self::PASSWORD => 'hashed',
         ], $this->casts);
 
-        $this->fillable = array_merge([
-            self::EMAIL,
-            self::FIRST_NAME,
-            self::LAST_NAME,
-        ], $this->fillable);
+        $this->guarded = array_merge([
+            self::EMAIL_VERIFIED_AT,
+            self::ID,
+            self::PASSWORD,
+            self::REMEMBER_TOKEN,
+            self::TWO_FACTOR_CONFIRMED_AT,
+            self::TWO_FACTOR_RECOVERY_CODES,
+            self::TWO_FACTOR_SECRET,
+        ], $this->guarded);
 
         $this->hidden = array_merge([
             self::PASSWORD,

@@ -31,13 +31,9 @@ class Site extends Model implements Enable
             self::PRIMARY => 'boolean',
         ], $this->casts);
 
-        $this->fillable = array_merge([
-            self::GROUP_ID,
-            self::HANDLE,
-            self::LANGUAGE,
-            self::NAME,
-            self::PRIMARY,
-        ], $this->fillable);
+        $this->guarded = array_merge([
+            self::ID,
+        ], $this->guarded);
 
         $this->with = array_merge([
             self::RELATION_GROUP,
