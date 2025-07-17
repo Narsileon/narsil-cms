@@ -25,7 +25,6 @@ return new class extends Migration
         {
             $this->createCacheTable();
         }
-
         if (!Schema::hasTable(CacheLock::TABLE))
         {
             $this->createCacheLocksTable();

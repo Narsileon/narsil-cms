@@ -27,17 +27,14 @@ return new class extends Migration
         {
             $this->createUsersTable();
         }
-
         if (!Schema::hasTable(PasswordResetToken::TABLE))
         {
             $this->createPasswordResetTokensTable();
         }
-
         if (!Schema::hasTable(Session::TABLE))
         {
             $this->createSessionsTable();
         }
-
         if (!Schema::hasTable(UserConfiguration::TABLE))
         {
             $this->createUserConfigurationsTable();

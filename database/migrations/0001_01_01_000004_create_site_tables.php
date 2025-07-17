@@ -25,7 +25,6 @@ return new class extends Migration
         {
             $this->createSiteGroupsTable();
         }
-
         if (!Schema::hasTable(Site::TABLE))
         {
             $this->createSitesTable();

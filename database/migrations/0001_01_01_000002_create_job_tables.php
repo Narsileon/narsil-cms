@@ -2,9 +2,9 @@
 
 #region USE
 
-use App\Models\FailedJob;
-use App\Models\Job;
-use App\Models\JobBatch;
+use App\Models\Jobs\FailedJob;
+use App\Models\Jobs\Job;
+use App\Models\Jobs\JobBatch;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -26,12 +26,10 @@ return new class extends Migration
         {
             $this->createJobsTable();
         }
-
         if (!Schema::hasTable(JobBatch::TABLE))
         {
             $this->createJobBatchesTable();
         }
-
         if (!Schema::hasTable(FailedJob::TABLE))
         {
             $this->createFailedJobsTable();
