@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { Editor, useEditorState } from "@tiptap/react";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { UnderlineIcon } from "lucide-react";
@@ -14,18 +14,32 @@ function RichTextEditorUnderline({
 }: RichTextEditorUnderlineProps) {
   const { getLabel } = useLabels();
 
+  const { canUnderline, isUnderline } = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        canUnderline: ctx.editor.can().chain().focus().toggleUnderline().run(),
+        isUnderline: ctx.editor.isActive("underline"),
+      };
+    },
+  });
+
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_underline`)}>
+    <Tooltip
+      tooltip={getLabel(`accessibility.toggle_underline`)}
+      asChild={false}
+    >
       <Toggle
         aria-label={getLabel(
           `accessibility.toggle_underline`,
           `Toggle underline`,
         )}
-        pressed={editor.isActive("underline")}
+        disabled={!canUnderline}
+        pressed={isUnderline}
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         {...props}
       >
-        <UnderlineIcon className="size-4" />
+        <UnderlineIcon className="size-5" />
       </Toggle>
     </Tooltip>
   );

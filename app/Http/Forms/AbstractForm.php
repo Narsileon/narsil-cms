@@ -96,9 +96,30 @@ abstract class AbstractForm implements Form
     protected function registerLabels(): void
     {
         app(LabelsBag::class)
-            ->add('ui.back')
+            ->add('accessibility.align_center')
+            ->add('accessibility.align_justify')
+            ->add('accessibility.align_left')
+            ->add('accessibility.align_right')
+            ->add('accessibility.redo')
+            ->add('accessibility.required')
+            ->add('accessibility.toggle_bold')
+            ->add('accessibility.toggle_bullet_list')
+            ->add('accessibility.toggle_heading_1')
+            ->add('accessibility.toggle_heading_2')
+            ->add('accessibility.toggle_heading_3')
+            ->add('accessibility.toggle_heading_4')
+            ->add('accessibility.toggle_heading_5')
+            ->add('accessibility.toggle_heading_6')
+            ->add('accessibility.toggle_heading_menu')
+            ->add('accessibility.toggle_italic')
+            ->add('accessibility.toggle_ordered_list')
+            ->add('accessibility.toggle_strike')
+            ->add('accessibility.toggle_subscript')
+            ->add('accessibility.toggle_superscript')
+            ->add('accessibility.toggle_underline')
+            ->add('accessibility.undo')
             ->add('pagination.empty')
-            ->add('accessibility.required');
+            ->add('ui.back');
     }
 
     #endregion

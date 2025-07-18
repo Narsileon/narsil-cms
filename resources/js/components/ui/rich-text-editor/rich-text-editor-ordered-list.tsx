@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { Editor, useEditorState } from "@tiptap/react";
 import { ListOrderedIcon } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -14,18 +14,30 @@ function RichTextEditorOrderedList({
 }: RichTextEditorOrderedListProps) {
   const { getLabel } = useLabels();
 
+  const { isOrderedList } = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        isOrderedList: ctx.editor.isActive("orderedList"),
+      };
+    },
+  });
+
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_ordered_list`)}>
+    <Tooltip
+      tooltip={getLabel(`accessibility.toggle_ordered_list`)}
+      asChild={false}
+    >
       <Toggle
         aria-label={getLabel(
           `accessibility.toggle_ordered_list`,
           `Toggle ordered list`,
         )}
-        pressed={editor.isActive("orderedList")}
+        pressed={isOrderedList}
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         {...props}
       >
-        <ListOrderedIcon className="size-4" />
+        <ListOrderedIcon className="size-5" />
       </Toggle>
     </Tooltip>
   );

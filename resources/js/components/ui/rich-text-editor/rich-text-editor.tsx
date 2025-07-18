@@ -32,7 +32,18 @@ function RichTextEditor({
         "before:pointer-events-none before:float-left before:h-0 before:text-muted-foreground before:content-[attr(data-placeholder)]",
       placeholder: placeholder,
     }),
-    StarterKit,
+    StarterKit.configure({
+      bulletList: {
+        HTMLAttributes: {
+          class: "list-disc list-outside ml-6",
+        },
+      },
+      orderedList: {
+        HTMLAttributes: {
+          class: "list-decimal list-outside ml-6",
+        },
+      },
+    }),
     Subscript,
     Superscript,
     TextAlign.configure({
@@ -48,7 +59,7 @@ function RichTextEditor({
       attributes: {
         class: cn(
           "prose max-w-none text-foreground !whitespace-normal",
-          "rounded-md border border-border bg-background px-3 py-2 text-sm ring-offset-background",
+          "rounded-md bg-background px-3 py-2 text-sm ring-offset-background",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-50",
           className,
@@ -68,7 +79,7 @@ function RichTextEditor({
   }, [value]);
 
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="border-color m-4 flex flex-col rounded-md border">
       {toolbar && editor?.isEditable ? (
         <RichTextEditorToolbar editor={editor} />
       ) : null}

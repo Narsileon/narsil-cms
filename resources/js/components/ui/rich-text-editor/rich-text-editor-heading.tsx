@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { Editor, useEditorState } from "@tiptap/react";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { useLabels } from "@/components/ui/labels";
@@ -23,31 +23,43 @@ function RichTextEditorHeading({
 }: RichTextEditorHeadingProps) {
   const { getLabel } = useLabels();
 
+  const { isHeading } = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        isHeading: ctx.editor.isActive("heading", { level: level }),
+      };
+    },
+  });
+
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_heading_${level}`)}>
+    <Tooltip
+      tooltip={getLabel(`accessibility.toggle_heading_${level}`)}
+      asChild={false}
+    >
       <Toggle
         aria-label={getLabel(
           `accessibility.toggle_heading_${level}`,
           `Toggle heading ${level}`,
         )}
-        pressed={editor.isActive("heading")}
+        pressed={isHeading}
         onClick={() =>
           editor.chain().focus().toggleHeading({ level: level }).run()
         }
         {...props}
       >
         {level === 1 ? (
-          <Heading1Icon className="size-4" />
+          <Heading1Icon className="size-5" />
         ) : level === 2 ? (
-          <Heading2Icon className="size-4" />
+          <Heading2Icon className="size-5" />
         ) : level === 3 ? (
-          <Heading3Icon className="size-4" />
+          <Heading3Icon className="size-5" />
         ) : level === 4 ? (
-          <Heading4Icon className="size-4" />
+          <Heading4Icon className="size-5" />
         ) : level === 5 ? (
-          <Heading5Icon className="size-4" />
+          <Heading5Icon className="size-5" />
         ) : level === 6 ? (
-          <Heading6Icon className="size-4" />
+          <Heading6Icon className="size-5" />
         ) : null}
       </Toggle>
     </Tooltip>

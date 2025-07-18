@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { Editor, useEditorState } from "@tiptap/react";
 import { ListIcon } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -14,18 +14,30 @@ function RichTextEditorBulletList({
 }: RichTextEditorBulletListProps) {
   const { getLabel } = useLabels();
 
+  const { isBulletList } = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        isBulletList: ctx.editor.isActive("bulletList"),
+      };
+    },
+  });
+
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_bullet_list`)}>
+    <Tooltip
+      tooltip={getLabel(`accessibility.toggle_bullet_list`)}
+      asChild={false}
+    >
       <Toggle
         aria-label={getLabel(
           `accessibility.toggle_bullet_list`,
           `Toggle bullet list`,
         )}
-        pressed={editor.isActive("bulletList")}
+        pressed={isBulletList}
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         {...props}
       >
-        <ListIcon className="size-4" />
+        <ListIcon className="size-5" />
       </Toggle>
     </Tooltip>
   );

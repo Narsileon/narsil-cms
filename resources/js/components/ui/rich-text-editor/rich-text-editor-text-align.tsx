@@ -22,7 +22,10 @@ function RichTextEditorTextAlign({
   const { getLabel } = useLabels();
 
   return (
-    <Tooltip tooltip={getLabel(`accessibility.align_${alignment}`)}>
+    <Tooltip
+      tooltip={getLabel(`accessibility.align_${alignment}`)}
+      asChild={false}
+    >
       <Toggle
         aria-label={getLabel(
           `accessibility.align_${alignment}`,
@@ -33,13 +36,13 @@ function RichTextEditorTextAlign({
         {...props}
       >
         {alignment === "left" ? (
-          <AlignLeftIcon className="size-4" />
+          <AlignLeftIcon className="size-5" />
         ) : alignment === "center" ? (
-          <AlignCenterIcon className="size-4" />
+          <AlignCenterIcon className="size-5" />
         ) : alignment === "right" ? (
-          <AlignRightIcon className="size-4" />
+          <AlignRightIcon className="size-5" />
         ) : alignment === "justify" ? (
-          <AlignJustifyIcon className="size-4" />
+          <AlignJustifyIcon className="size-5" />
         ) : null}
       </Toggle>
     </Tooltip>

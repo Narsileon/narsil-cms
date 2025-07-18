@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { Editor, useEditorState } from "@tiptap/react";
 import { ItalicIcon } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -11,15 +11,26 @@ type RichTextEditorItalicProps = React.ComponentProps<typeof Toggle> & {
 function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
   const { getLabel } = useLabels();
 
+  const { canItalic, isItalic } = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        canItalic: ctx.editor.can().chain().focus().toggleItalic().run(),
+        isItalic: ctx.editor.isActive("italic"),
+      };
+    },
+  });
+
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_italic`)}>
+    <Tooltip tooltip={getLabel(`accessibility.toggle_italic`)} asChild={false}>
       <Toggle
         aria-label={getLabel(`accessibility.toggle_italic`, `Toggle italic`)}
-        pressed={editor.isActive("italic")}
+        disabled={!canItalic}
+        pressed={isItalic}
         onClick={() => editor.chain().focus().toggleItalic().run()}
         {...props}
       >
-        <ItalicIcon className="size-4" />
+        <ItalicIcon className="size-5" />
       </Toggle>
     </Tooltip>
   );

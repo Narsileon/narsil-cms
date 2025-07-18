@@ -42,14 +42,21 @@ function RichTextEditorToolbar({
   }
 
   return (
-    <div className={cn("flex flex-wrap items-center", className)} {...props}>
+    <div
+      className={cn(
+        "border-color border-color flex h-11 flex-wrap items-center gap-1 border-b px-3",
+        className,
+      )}
+      {...props}
+    >
       <RichTextEditorBold editor={editor} />
       <RichTextEditorItalic editor={editor} />
       <RichTextEditorUnderline editor={editor} />
       <RichTextEditorStrike editor={editor} />
-
-      <Separator className="mx-1 h-9" orientation="vertical" />
-
+      <Separator orientation="vertical" />
+      <RichTextEditorSuperscript editor={editor} />
+      <RichTextEditorSubscript editor={editor} />
+      <Separator orientation="vertical" />
       <DropdownMenu>
         <Tooltip tooltip={getLabel(`accessibility.toggle_heading_menu`)}>
           <DropdownMenuTrigger asChild={true}>
@@ -62,41 +69,29 @@ function RichTextEditorToolbar({
               size="icon"
               variant="ghost"
             >
-              <HeadingIcon className="size-4" />
+              <HeadingIcon className="size-5" />
             </Button>
           </DropdownMenuTrigger>
         </Tooltip>
         <DropdownMenuContent>
           {headings.map((level, index) => {
             return (
-              <DropdownMenuItem asChild={true}>
-                <RichTextEditorHeading
-                  editor={editor}
-                  level={level}
-                  key={index}
-                />
+              <DropdownMenuItem asChild={true} key={index}>
+                <RichTextEditorHeading editor={editor} level={level} />
               </DropdownMenuItem>
             );
           })}
         </DropdownMenuContent>
       </DropdownMenu>
-      <RichTextEditorSuperscript editor={editor} />
-      <RichTextEditorSubscript editor={editor} />
-
-      <Separator className="mx-1 h-9" orientation="vertical" />
-
+      <Separator orientation="vertical" />
       <RichTextEditorTextAlign alignment="left" editor={editor} />
       <RichTextEditorTextAlign alignment="center" editor={editor} />
       <RichTextEditorTextAlign alignment="right" editor={editor} />
       <RichTextEditorTextAlign alignment="justify" editor={editor} />
-
-      <Separator className="mx-1 h-9" orientation="vertical" />
-
+      <Separator orientation="vertical" />
       <RichTextEditorBulletList editor={editor} />
       <RichTextEditorOrderedList editor={editor} />
-
-      <Separator className="mx-1 h-9" orientation="vertical" />
-
+      <Separator orientation="vertical" />
       <RichTextEditorUndo editor={editor} />
       <RichTextEditorRedo editor={editor} />
     </div>
