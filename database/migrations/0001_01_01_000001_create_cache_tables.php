@@ -2,8 +2,8 @@
 
 #region USE
 
-use App\Models\Cache;
-use App\Models\CacheLock;
+use App\Models\Caches\Cache;
+use App\Models\Caches\CacheLock;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

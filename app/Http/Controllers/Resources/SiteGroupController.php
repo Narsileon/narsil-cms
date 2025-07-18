@@ -9,7 +9,7 @@ use App\Contracts\Forms\Resources\SiteGroupForm;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Resources\DataTableCollection;
-use App\Models\SiteGroup;
+use App\Models\Sites\SiteGroup;
 use App\Narsil;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;

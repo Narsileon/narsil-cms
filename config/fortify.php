@@ -1,7 +1,11 @@
 <?php
 
+#region USE
+
 use App\Models\User;
 use Laravel\Fortify\Features;
+
+#endregion
 
 return [
 

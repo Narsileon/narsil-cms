@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 #region USE
 
 use App\Models\User;
-use App\Models\UserConfiguration;
+use App\Models\Users\UserConfiguration;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;

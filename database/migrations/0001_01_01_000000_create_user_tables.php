@@ -2,10 +2,10 @@
 
 #region USE
 
-use App\Models\PasswordResetToken;
-use App\Models\Session;
 use App\Models\User;
-use App\Models\UserConfiguration;
+use App\Models\Users\PasswordResetToken;
+use App\Models\Users\Session;
+use App\Models\Users\UserConfiguration;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

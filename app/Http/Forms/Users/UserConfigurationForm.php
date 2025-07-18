@@ -9,7 +9,7 @@ use App\Enums\ColorEnum;
 use App\Enums\Forms\TypeEnum;
 use App\Enums\ThemeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Models\UserConfiguration;
+use App\Models\Users\UserConfiguration;
 use App\Support\Forms\Input;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;

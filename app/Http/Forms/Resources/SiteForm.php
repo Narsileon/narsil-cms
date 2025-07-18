@@ -7,7 +7,7 @@ namespace App\Http\Forms\Resources;
 use App\Contracts\Forms\Resources\SiteForm as Contract;
 use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Models\Site;
+use App\Models\Sites\Site;
 use App\Support\Forms\Input;
 use Illuminate\Support\Facades\App;
 use Locale;

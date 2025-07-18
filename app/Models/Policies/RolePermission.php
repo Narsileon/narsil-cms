@@ -4,6 +4,8 @@ namespace App\Models\Policies;
 
 #region USE
 
+use App\Models\Policies\Permission;
+use App\Models\Policies\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 

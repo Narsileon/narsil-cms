@@ -5,7 +5,7 @@ namespace App\Http\Requests\Users;
 #region USE
 
 use App\Contracts\FormRequests\Users\UserConfigurationFormRequest as Contract;
-use App\Models\UserConfiguration;
+use App\Models\Users\UserConfiguration;
 use App\Validation\FormRule;
 
 #endregion

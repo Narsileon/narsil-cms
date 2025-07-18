@@ -5,7 +5,7 @@ namespace App\Http\Requests\Resources;
 #region USE
 
 use App\Contracts\FormRequests\Resources\SiteFormRequest as Contract;
-use App\Models\Site;
+use App\Models\Sites\Site;
 use App\Validation\FormRule;
 
 #endregion

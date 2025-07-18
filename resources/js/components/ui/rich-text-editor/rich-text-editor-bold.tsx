@@ -4,11 +4,11 @@ import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { useLabels } from "@/components/ui/labels";
 
-type BoldToggleProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorBoldProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
-function BoldToggle({ editor, ...props }: BoldToggleProps) {
+function RichTextEditorBold({ editor, ...props }: RichTextEditorBoldProps) {
   const { getLabel } = useLabels();
 
   return (
@@ -19,10 +19,10 @@ function BoldToggle({ editor, ...props }: BoldToggleProps) {
         onClick={() => editor.chain().focus().toggleBold().run()}
         {...props}
       >
-        <BoldIcon className="h-4 w-4" />
+        <BoldIcon className="size-4" />
       </Toggle>
     </Tooltip>
   );
 }
 
-export default BoldToggle;
+export default RichTextEditorBold;

@@ -5,6 +5,8 @@ namespace App\Models;
 #region USE
 
 use App\Contracts\Enable;
+use App\Models\Users\Session;
+use App\Models\Users\UserConfiguration;
 use App\Observers\UserObserver;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;

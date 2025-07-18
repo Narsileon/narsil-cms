@@ -9,16 +9,16 @@ import {
   AlignRightIcon,
 } from "lucide-react";
 
-type TextAlignToggleProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorTextAlignProps = React.ComponentProps<typeof Toggle> & {
   alignment: "left" | "center" | "right" | "justify";
   editor: Editor;
 };
 
-function TextAlignToggle({
+function RichTextEditorTextAlign({
   alignment,
   editor,
   ...props
-}: TextAlignToggleProps) {
+}: RichTextEditorTextAlignProps) {
   const { getLabel } = useLabels();
 
   return (
@@ -33,17 +33,17 @@ function TextAlignToggle({
         {...props}
       >
         {alignment === "left" ? (
-          <AlignLeftIcon className="h-4 w-4" />
+          <AlignLeftIcon className="size-4" />
         ) : alignment === "center" ? (
-          <AlignCenterIcon className="h-4 w-4" />
+          <AlignCenterIcon className="size-4" />
         ) : alignment === "right" ? (
-          <AlignRightIcon className="h-4 w-4" />
+          <AlignRightIcon className="size-4" />
         ) : alignment === "justify" ? (
-          <AlignJustifyIcon className="h-4 w-4" />
+          <AlignJustifyIcon className="size-4" />
         ) : null}
       </Toggle>
     </Tooltip>
   );
 }
 
-export default TextAlignToggle;
+export default RichTextEditorTextAlign;

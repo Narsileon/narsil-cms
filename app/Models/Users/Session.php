@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Users;
 
 #region USE
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserConfiguration extends Model
+class Session extends Model
 {
     #region CONSTRUCTOR
 
@@ -26,12 +27,8 @@ class UserConfiguration extends Model
     {
         $this->table = self::TABLE;
 
+        $this->keyType = 'string';
         $this->incrementing = false;
-        $this->primaryKey = 'user_id';
-
-        $this->guarded = array_merge([
-            self::USER_ID,
-        ], $this->guarded);
 
         parent::__construct($attributes);
     }
@@ -41,25 +38,25 @@ class UserConfiguration extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "color" column.
+     * @var string The name of the "id" column.
      */
-    final public const COLOR = 'color';
+    final public const ID = 'id';
     /**
-     * @var string The name of the "locale" column.
+     * @var string The name of the "ip address" column.
      */
-    final public const LOCALE = 'locale';
+    final public const IP_ADDRESS = 'ip_address';
     /**
-     * @var string The name of the "preferences" column.
+     * @var string The name of the "last activity" column.
      */
-    final public const PREFERENCES = 'preferences';
+    final public const LAST_ACTIVITY = 'last_activity';
     /**
-     * @var string The name of the "radius" column.
+     * @var string The name of the "payload" column.
      */
-    final public const RADIUS = 'radius';
+    final public const PAYLOAD = 'payload';
     /**
-     * @var string The name of the "theme" column.
+     * @var string The name of the "user agent" column.
      */
-    final public const THEME = 'theme';
+    final public const USER_AGENT = 'user_agent';
     /**
      * @var string The name of the "user id" column.
      */
@@ -71,9 +68,9 @@ class UserConfiguration extends Model
     final public const RELATION_USER = 'user';
 
     /**
-     * @var string The name of the "user configurations" table.
+     * @var string The name of the "sessions" table.
      */
-    final public const TABLE = 'user_configurations';
+    final public const TABLE = 'sessions';
 
     #endregion
 

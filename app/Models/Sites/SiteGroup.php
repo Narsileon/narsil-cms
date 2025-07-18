@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Sites;
 
 #region USE
 
 use App\Contracts\Enable;
+use App\Models\Sites\Site;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

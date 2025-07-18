@@ -13,7 +13,7 @@ use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
 use App\Http\Middleware\LocaleMiddleware;
 use App\Models\User;
-use App\Models\UserConfiguration;
+use App\Models\Users\UserConfiguration;
 use App\Narsil;
 use App\Support\LabelsBag;
 use Illuminate\Http\JsonResponse;

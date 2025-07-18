@@ -7,7 +7,7 @@ namespace App\Http\Forms\Resources;
 use App\Contracts\Forms\Resources\SiteGroupForm as Contract;
 use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
-use App\Models\SiteGroup;
+use App\Models\Sites\SiteGroup;
 use App\Support\Forms\Input;
 
 #endregion
