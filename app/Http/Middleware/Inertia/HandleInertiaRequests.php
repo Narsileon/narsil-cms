@@ -7,10 +7,10 @@ namespace App\Http\Middleware\Inertia;
 use App\Contracts\Components\Navigation\Sidebar;
 use App\Contracts\Components\Navigation\UserMenu;
 use App\Http\Resources\Inertia\UserInertiaResource;
+use App\Services\BreadcrumbService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 use Inertia\Middleware;
 
 #endregions
@@ -55,16 +55,19 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $locale = App::getLocale();
+
+        $auth = new UserInertiaResource();
+        $navigation = $this->getNavigation($request);
+        $redirect = $this->getRedirect($request);
+
         return [
             ...parent::share($request),
 
-            'auth'       => new UserInertiaResource(),
-            'breadcrumb' => $this->getBreadcrumb(),
-            'locale' => App::getLocale(),
-            'redirect'   => $this->getRedirect(),
-            'shared'     => [
-                'components' => $this->getComponents(),
-            ],
+            'auth'       => $auth,
+            'navigation' => $navigation,
+            'locale'     => $locale,
+            'redirect'   => $redirect,
         ];
     }
 
@@ -73,48 +76,31 @@ class HandleInertiaRequests extends Middleware
     #region PROTECTED METHODS
 
     /**
+     * @param Request $request
+     *
      * @return array
      */
-    protected function getBreadcrumb(): array
-    {
-        $segments = request()->segments();
-
-        $breadcrumbs = [];
-
-        $path = '';
-
-        foreach ($segments as $segment)
-        {
-            $path .= '/' . $segment;
-
-            $breadcrumbs[] = [
-                'label' => trans('ui.' . Str::snake($segment)),
-                'href'  => $path,
-            ];
-        }
-
-        return $breadcrumbs;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getRedirect(): array
+    protected function getNavigation(Request $request): array
     {
         return [
-            'error' => Session::get('error'),
-            'success' => Session::get('success')
+            'breadcrumb' => BreadcrumbService::getBreadcrumbs($request),
+            'sidebar' => app(Sidebar::class)->get(),
+            'user_menu' => app(UserMenu::class)->get(),
         ];
     }
 
     /**
+     * @param Request $request
+     *
      * @return array
      */
-    protected function getComponents(): array
+    protected function getRedirect(Request $request): array
     {
         return [
-            'sidebar' => app(Sidebar::class)->get(),
-            'user_menu' => app(UserMenu::class)->get(),
+            'error'   => Session::get('error'),
+            'info'    => Session::get('info'),
+            'success' => Session::get('success'),
+            'warning' => Session::get('warning'),
         ];
     }
 

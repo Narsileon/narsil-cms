@@ -31,33 +31,28 @@ type GlobalProps = {
   auth: AuthProps & {
     configuration: ConfigurationProps;
   };
-  breadcrumb: {
-    href: string;
-    label: string;
-  }[];
+  navigation: {
+    breadcrumb: {
+      href: string;
+      label: string;
+    }[];
+    sidebar?: {
+      content: ComponentProps[];
+    };
+    user_menu: {
+      content: ComponentProps[];
+    };
+  };
+
   labels: Record<string, string>;
   locale: string;
   redirect: RedirectProps;
-  shared: {
-    components: {
-      sidebar?: {
-        content: ComponentProps[];
-      };
-      user_menu: {
-        content: ComponentProps[];
-      };
-    };
-  };
 };
 
 export function useAuth() {
   const { auth } = usePage<GlobalProps>().props;
 
   return isEmpty(auth) ? null : auth;
-}
-
-export function useComponents() {
-  return usePage<GlobalProps>().props.shared?.components ?? {};
 }
 
 export function useLabels() {
@@ -68,6 +63,10 @@ export function useLocale() {
   const locale = usePage<GlobalProps>().props.locale ?? "en";
 
   return { locale };
+}
+
+export function useNavigation() {
+  return usePage<GlobalProps>().props.navigation ?? {};
 }
 
 export function useRedirect() {

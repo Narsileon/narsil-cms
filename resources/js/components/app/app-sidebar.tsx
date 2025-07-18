@@ -2,8 +2,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { useComponents } from "@/hooks/use-props";
 import { useLabels } from "@/components/ui/labels";
+import { useNavigation } from "@/hooks/use-props";
 import {
   Sidebar,
   SidebarContent,
@@ -24,7 +24,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 
-  const { sidebar } = useComponents();
+  const { sidebar } = useNavigation();
 
   return (
     <Sidebar collapsible="icon" {...props}>

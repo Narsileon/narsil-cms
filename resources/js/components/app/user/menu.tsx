@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 import { MenuIcon } from "lucide-react";
 import { ModalLink } from "@/components/ui/modal";
 import { Tooltip } from "@/components/ui/tooltip";
-import { useAuth, useComponents } from "@/hooks/use-props";
+import { useAuth, useNavigation } from "@/hooks/use-props";
 import { useLabels } from "@/components/ui/labels";
 import UserAvatar from "@/components/app/user/avatar";
 import {
@@ -18,7 +18,7 @@ import {
 type UserMenuProps = React.ComponentProps<typeof DropdownMenuTrigger> & {};
 
 function UserMenu({ ...props }: UserMenuProps) {
-  const { user_menu } = useComponents();
+  const { user_menu } = useNavigation();
   const { getLabel } = useLabels();
 
   const auth = useAuth();

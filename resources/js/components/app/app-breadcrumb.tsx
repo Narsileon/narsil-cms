@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
+import { useNavigation } from "@/hooks/use-props";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,12 +9,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import type { GlobalProps } from "@/types";
 
 type AppBreadcrumbProps = React.ComponentProps<typeof Breadcrumb> & {};
 
 function AppBreadcrumb({ ...props }: AppBreadcrumbProps) {
-  const { breadcrumb } = usePage<GlobalProps>().props;
+  const { breadcrumb } = useNavigation();
 
   return (
     <Breadcrumb {...props}>
