@@ -27,13 +27,13 @@ abstract class RouteService
         $tableName = Str::slug($table);
 
         $routeNames = [
-            'create' => "$tableName.create",
+            'create'  => "$tableName.create",
             'destroy' => "$tableName.destroy",
-            'edit' => "$tableName.edit",
-            'index' => "$tableName.index",
-            'show' => "$tableName.show",
-            'store' => "$tableName.store",
-            'update' => "$tableName.update",
+            'edit'    => "$tableName.edit",
+            'index'   => "$tableName.index",
+            'show'    => "$tableName.show",
+            'store'   => "$tableName.store",
+            'update'  => "$tableName.update",
         ];
 
         return array_filter($routeNames, function ($routeName)

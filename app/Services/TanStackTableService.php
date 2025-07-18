@@ -37,17 +37,17 @@ abstract class TanStackTableService
             {
                 return [
                     TanStackTable::ACCESSOR_KEY => Arr::get($accessorKeys, $column->name, $column->name),
-                    TanStackTable::HEADER => TableService::getHeading($column->name),
-                    TanStackTable::ID => $column->name,
-                    TanStackTable::TYPE => $column->type,
+                    TanStackTable::HEADER       => TableService::getHeading($column->name),
+                    TanStackTable::ID           => $column->name,
+                    TanStackTable::TYPE         => $column->type,
                 ];
             });
 
             $columnNames = $columns->pluck(TanStackTable::ID)->all();
 
             return [
-                'columns' => $columns->values()->toArray(),
-                'columnOrder' => static::getColumnOrder($table, $columnNames),
+                'columns'          => $columns->values()->toArray(),
+                'columnOrder'      => static::getColumnOrder($table, $columnNames),
                 'columnVisibility' => static::getColumnVisibility($table, $columnNames),
             ];
         });

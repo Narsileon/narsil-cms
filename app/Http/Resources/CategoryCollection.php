@@ -125,7 +125,7 @@ class CategoryCollection extends ResourceCollection
     {
         return [
             'routes' => RouteService::getRouteNames($this->table),
-            'title' => trans('ui.' . $this->table)
+            'title'  => trans('ui.' . $this->table)
         ];
     }
 
