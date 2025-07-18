@@ -145,7 +145,7 @@ function DataTableProvider({
       columnOrder: dataTableStore.columnOrder,
       columnSizing: dataTableStore.columnSizing,
       columnVisibility: dataTableStore.columnVisibility,
-      globalFilter: dataTableStore.globalFilter,
+      globalFilter: dataTableStore.search,
       pagination: {
         pageIndex: dataTableStore.pageIndex,
         pageSize: dataTableStore.pageSize,
@@ -157,7 +157,7 @@ function DataTableProvider({
     onColumnOrderChange: handleColumnOrderChange,
     onColumnSizingChange: handleColumnSizingChange,
     onColumnVisibilityChange: handleColumnVisibilityChange,
-    onGlobalFilterChange: dataTableStore.setGlobalFilter,
+    onGlobalFilterChange: dataTableStore.setSearch,
     onPaginationChange: handlePaginationChange,
     onSortingChange: handleSortingChange,
     ...props,
@@ -190,15 +190,17 @@ function DataTableProvider({
     const href = window.location.origin + window.location.pathname;
 
     update(href, {
-      search: dataTableStore.globalFilter,
+      filter: dataTableStore.filter,
       pageSize: dataTableStore.pageSize,
+      search: dataTableStore.search,
       sorting: formatSorting(dataTableStore.sorting),
     });
 
     return () => update.cancel();
   }, [
-    dataTableStore.globalFilter,
+    dataTableStore.filter,
     dataTableStore.pageSize,
+    dataTableStore.search,
     JSON.stringify(dataTableStore.sorting),
   ]);
 

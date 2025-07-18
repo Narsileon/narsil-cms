@@ -5,8 +5,8 @@ import { PlusIcon } from "lucide-react";
 import { route } from "ziggy-js";
 import { Tooltip } from "@/components/ui/tooltip";
 import { useLabels } from "@/components/ui/labels";
-import CategoriesBlock from "@/blocks/categories-block";
 import DataTableBlock from "@/blocks/data-table-block";
+import DataTableFilter from "@/blocks/data-table-filter";
 import {
   DataTableInput,
   DataTablePagination,
@@ -65,11 +65,27 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
       }}
       render={({ dataTable: table }) => {
         return (
-          <Section className="h-full p-4">
-            <SectionHeader>
-              <SectionTitle level="h2" variant="h4">
+          <Section className="h-full gap-3 p-4">
+            <SectionHeader className="flex items-center justify-between gap-3">
+              <SectionTitle level="h2" variant="h4" className="min-w-1/5">
                 {dataTable.meta.title}
               </SectionTitle>
+              <DataTableInput className="ml-2 grow" />
+              {dataTable.meta.routes.create ? (
+                <Tooltip tooltip={getLabel("ui.create")}>
+                  <Button
+                    aria-label={getLabel("ui.create", "Create")}
+                    size="icon"
+                    variant="default"
+                    asChild={true}
+                  >
+                    <Link href={route(dataTable.meta.routes.create)}>
+                      <PlusIcon />
+                    </Link>
+                  </Button>
+                </Tooltip>
+              ) : null}
+              <DataTableSettings />
             </SectionHeader>
             <SectionContent className="grow">
               <ResizablePanelGroup
@@ -77,38 +93,20 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                 direction="horizontal"
               >
                 <ResizablePanel
-                  className="px-4 py-1"
+                  className="pr-3"
                   collapsible={true}
                   defaultSize={20}
                   minSize={10}
                 >
-                  <CategoriesBlock {...categories} />
+                  <DataTableFilter {...categories} />
                 </ResizablePanel>
                 <ResizableHandle withHandle={true} />
                 <ResizablePanel
-                  className="flex flex-col gap-3 px-4 py-1"
+                  className="flex flex-col gap-3 pl-3"
                   collapsible={true}
                   defaultSize={80}
                   minSize={10}
                 >
-                  <div className="flex items-center justify-between gap-3">
-                    <DataTableInput className="grow" />
-                    {dataTable.meta.routes.create ? (
-                      <Tooltip tooltip={getLabel("ui.create")}>
-                        <Button
-                          aria-label={getLabel("ui.create", "Create")}
-                          size="icon"
-                          variant="default"
-                          asChild={true}
-                        >
-                          <Link href={route(dataTable.meta.routes.create)}>
-                            <PlusIcon />
-                          </Link>
-                        </Button>
-                      </Tooltip>
-                    ) : null}
-                    <DataTableSettings />
-                  </div>
                   <DataTableBlock dataTable={table} />
                 </ResizablePanel>
               </ResizablePanelGroup>

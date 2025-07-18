@@ -12,9 +12,10 @@ type DataTableStoreState = {
   columnOrder: ColumnOrderState;
   columnSizing: ColumnSizingState;
   columnVisibility: VisibilityState;
-  globalFilter: string;
+  filter: string | null;
   pageIndex: number;
   pageSize: number;
+  search: string | null;
   sorting: SortingState;
 };
 
@@ -22,10 +23,11 @@ type DataTableStoreActions = {
   setColumnOrder: (columnOrder: ColumnOrderState) => void;
   setColumnSizing: (columnSizing: ColumnSizingState) => void;
   setColumnVisibility: (columnVisibility: VisibilityState) => void;
-  setGlobalFilter: (globalFilter: string) => void;
+  setFilter: (filter: string | null) => void;
   setPageIndex: (pageIndex: PaginationState["pageIndex"]) => void;
   setPageSize: (pageSige: PaginationState["pageSize"]) => void;
   setPagination: (pagination: PaginationState) => void;
+  setSearch: (search: string | null) => void;
   setSorting: (sorting: SortingState) => void;
 };
 
@@ -40,9 +42,10 @@ const defaultState: DataTableStoreState = {
   columnOrder: [],
   columnSizing: {},
   columnVisibility: {},
-  globalFilter: "",
+  filter: "",
   pageIndex: 0,
   pageSize: 10,
+  search: "",
   sorting: [],
 };
 
@@ -64,9 +67,9 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
           set({
             columnVisibility: columnVisibility,
           }),
-        setGlobalFilter: (globalFilter) =>
+        setFilter: (filter) =>
           set({
-            globalFilter: globalFilter,
+            filter: filter,
           }),
         setPageIndex: (pageIndex) =>
           set({
@@ -80,6 +83,10 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
           set({
             pageIndex: pagination.pageIndex,
             pageSize: pagination.pageSize,
+          }),
+        setSearch: (search) =>
+          set({
+            search: search,
           }),
         setSorting: (sorting) =>
           set({

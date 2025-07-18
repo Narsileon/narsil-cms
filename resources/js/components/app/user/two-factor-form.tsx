@@ -23,10 +23,8 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
 
   const { two_factor_confirmed_at } = useAuth() ?? {};
 
-  const [active, setActive] = useState<boolean>(
-    two_factor_confirmed_at !== null,
-  );
-  const [enabled, setEnabled] = useState<boolean>(active);
+  const [active, setActive] = useState(two_factor_confirmed_at !== null);
+  const [enabled, setEnabled] = useState(active);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [recoveryCodes, setRecoveryCodes] = useState<string[] | null>(null);
 
