@@ -23,6 +23,10 @@ abstract class TanStackTable
      */
     final public const COLUMN_VISIBILITY = 'column_visibility';
     /**
+     * @var string The name of the "filter" prop.
+     */
+    final public const FILTER = 'filter';
+    /**
      * @var string The name of the "header" prop.
      */
     final public const HEADER = 'header';
@@ -30,6 +34,14 @@ abstract class TanStackTable
      * @var string The name of the "id" prop.
      */
     final public const ID = 'id';
+    /**
+     * @var string The name of the "search" prop.
+     */
+    final public const SEARCH = 'search';
+    /**
+     * @var string The name of the "sorting" prop.
+     */
+    final public const SORTING = 'sorting';
     /**
      * @var string The name of the "type" prop.
      */

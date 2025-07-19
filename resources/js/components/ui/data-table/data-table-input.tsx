@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, XIcon } from "lucide-react";
 import useDataTable from "./data-table-context";
 
 type DataTableInputProps = React.ComponentProps<typeof Input> & {};
@@ -17,6 +17,12 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
         onChange={(e) => dataTableStore.setSearch(e.target.value)}
         {...props}
       />
+      {dataTableStore.search ? (
+        <XIcon
+          className="absolute top-1/2 right-3 size-4 -translate-y-1/2"
+          onClick={() => dataTableStore.setSearch(null)}
+        />
+      ) : null}
     </div>
   );
 }

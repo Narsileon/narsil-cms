@@ -62,7 +62,9 @@ class SiteGroupController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $dataTable = new DataTableCollection(SiteGroup::query(), new SiteGroup());
+        $query = SiteGroup::query();
+
+        $dataTable = new DataTableCollection($query, new SiteGroup());
 
         return Narsil::render('resources/index', [
             'dataTable' => $dataTable,

@@ -62,7 +62,9 @@ class UserController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $dataTable = new DataTableCollection(User::query(), new User());
+        $query = User::query();
+
+        $dataTable = new DataTableCollection($query, new User());
 
         return Narsil::render('resources/index', [
             'dataTable' => $dataTable,

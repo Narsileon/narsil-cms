@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Resources;
 
 #region USE
 
+use App\Constants\TanStackTable;
 use App\Contracts\FormRequests\Resources\SiteFormRequest;
 use App\Contracts\Forms\Resources\SiteForm;
 use App\Enums\Forms\MethodEnum;
@@ -13,6 +14,7 @@ use App\Http\Resources\DataTable\DataTableCollection;
 use App\Models\Sites\Site;
 use App\Models\Sites\SiteGroup;
 use App\Narsil;
+use App\Services\QueryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -64,14 +66,18 @@ class SiteController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $query = Site::query();
+
+        $this->filter($query, Site::GROUP_ID);
+
+        $dataTable = new DataTableCollection($query, new Site());
+
         $dataTableFilter = new DataTableFilterCollection(
             SiteGroup::all(),
             addLabel: trans('ui.add'),
             labelKey: SiteGroup::NAME,
             table: SiteGroup::TABLE,
         );
-
-        $dataTable = new DataTableCollection(Site::query(), new Site());
 
         return Narsil::render('resources/index', [
             'dataTable'       => $dataTable,

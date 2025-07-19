@@ -3,6 +3,7 @@
 import DataTable from "./data-table";
 import DataTableBody from "./data-table-body";
 import DataTableCell from "./data-table-cell";
+import DataTableFilter from "./data-table-filter";
 import DataTableHead from "./data-table-head";
 import DataTableHeader from "./data-table-header";
 import DataTableHeadMove from "./data-table-head-move";
@@ -20,6 +21,7 @@ export {
   DataTable,
   DataTableBody,
   DataTableCell,
+  DataTableFilter,
   DataTableHead,
   DataTableHeader,
   DataTableHeadMove,

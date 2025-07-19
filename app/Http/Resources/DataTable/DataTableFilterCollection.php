@@ -22,13 +22,14 @@ class DataTableFilterCollection extends ResourceCollection
 
     /**
      * @param mixed $resource
-     * @param string $table
-     * @param ?string $labelKey
+     * @param string $addLabel
+     * @param string $labelKey
+     * @param ?string $table
      *
      * @return void
      */
     public function __construct(
-        $resource,
+        mixed $resource,
         string $addLabel,
         string $labelKey = 'label',
         ?string $table = null
@@ -99,7 +100,7 @@ class DataTableFilterCollection extends ResourceCollection
     {
         return [
             'addLabel' => $this->addLabel,
-            'routes'    => RouteService::getRouteNames($this->table),
+            'routes'    => RouteService::getNames($this->table),
             'title'     => trans('ui.' . $this->table)
         ];
     }

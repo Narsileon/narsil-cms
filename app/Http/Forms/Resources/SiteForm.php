@@ -8,6 +8,7 @@ use App\Contracts\Forms\Resources\SiteForm as Contract;
 use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
 use App\Models\Sites\Site;
+use App\Models\Sites\SiteGroup;
 use App\Support\Forms\Input;
 use Illuminate\Support\Facades\App;
 use Locale;
@@ -28,7 +29,8 @@ class SiteForm extends AbstractForm implements Contract
      */
     protected function getContent(): array
     {
-        $languageOptions = static::getLanguageOptions();
+        $groupOptions = $this->getGroupOptions();
+        $languageOptions = $this->getLanguageOptions();
 
         return [
             (new Input(Site::NAME, TypeEnum::TEXT, ''))
@@ -42,11 +44,12 @@ class SiteForm extends AbstractForm implements Contract
                 ->get(),
             (new Input(Site::LANGUAGE, TypeEnum::COMBOBOX, ''))
                 ->setOptions($languageOptions)
-                ->setPlaceholder(trans('ui.search'))
+                ->setPlaceholder(trans('placeholders.search'))
                 ->setRequired(true)
                 ->get(),
             (new Input(Site::GROUP_ID, TypeEnum::COMBOBOX, ''))
-                ->setPlaceholder(trans('ui.search'))
+                ->setOptions($groupOptions)
+                ->setPlaceholder(trans('placeholders.search'))
                 ->get(),
         ];
     }
@@ -54,6 +57,28 @@ class SiteForm extends AbstractForm implements Contract
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @return array<string>
+     */
+    protected function getGroupOptions(): array
+    {
+        $groups = SiteGroup::query()
+            ->orderBy(SiteGroup::NAME)
+            ->get();
+
+        $options = [];
+
+        foreach ($groups as $group)
+        {
+            $options[] = [
+                'value' => $group->{SiteGroup::ID},
+                'label' => $group->{SiteGroup::NAME},
+            ];
+        }
+
+        return $options;
+    }
 
     /**
      * @return array<string>

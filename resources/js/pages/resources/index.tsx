@@ -7,8 +7,8 @@ import { route } from "ziggy-js";
 import { Tooltip } from "@/components/ui/tooltip";
 import { useLabels } from "@/components/ui/labels";
 import DataTableBlock from "@/blocks/data-table-block";
-import DataTableFilter from "@/blocks/data-table-filter";
 import {
+  DataTableFilter,
   DataTableInput,
   DataTablePagination,
   DataTableProvider,
@@ -87,7 +87,8 @@ function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
               <SectionTitle level="h2" variant="h4" className="min-w-1/5">
                 {dataTable.meta.title}
               </SectionTitle>
-              <DataTableInput className="ml-2 grow" />
+              <DataTableSettings className="ml-2" />
+              <DataTableInput className="grow" />
               {dataTable.meta.routes.create ? (
                 <Tooltip tooltip={getLabel("ui.create")}>
                   <Button
@@ -102,7 +103,6 @@ function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
                   </Button>
                 </Tooltip>
               ) : null}
-              <DataTableSettings />
             </SectionHeader>
             <SectionContent className="grow">
               <ResizablePanelGroup

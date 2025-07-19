@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 #region USE
 
+use App\Constants\TanStackTable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -17,6 +19,21 @@ use Illuminate\Support\Str;
 abstract class AbstractModelController
 {
     #region PROTECTED METHODS
+
+    protected function filter(Builder $query, string $column, mixed $filter = null): void
+    {
+        if (!$filter)
+        {
+            $filter = request(TanStackTable::FILTER, null);
+        }
+
+        if (!$filter)
+        {
+            return;
+        }
+
+        $query->where($column, '=', $filter);
+    }
 
     /**
      * @param array $rules

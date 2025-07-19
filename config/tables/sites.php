@@ -14,8 +14,7 @@ return [
     | Accessor Keys
     |--------------------------------------------------------------------------
     |
-    | This value overrides the accessor keys of each column.
-    | The default accessor key is the column name.
+    | This value overrides the default accessor keys of each column, which is the column name.
     |
     */
 
@@ -28,8 +27,7 @@ return [
     | Column Order
     |--------------------------------------------------------------------------
     |
-    | The value defines the order of each column.
-    | The default order is the migration order.
+    | The value overrides the default order of each column, which is the migration order.
     |
     */
 
@@ -49,8 +47,7 @@ return [
     | Column Visibility
     |--------------------------------------------------------------------------
     |
-    | This value overrides the visibility of each column.
-    | This default visibility is false.
+    | This value overrides the default visibility of each column, which is false.
     |
     */
 
@@ -60,5 +57,18 @@ return [
         Site::LANGUAGE => true,
         Site::NAME     => true,
         Site::PRIMARY  => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    |
+    | This value defines the default searchable columns.
+    |
+    */
+
+    TanStackTable::SEARCH => [
+        Site::NAME,
     ],
 ];

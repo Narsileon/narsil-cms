@@ -49,14 +49,14 @@ function Combobox({
   const option = options.find((option) => {
     const optionValue = getSelectOption(option, valueKey);
 
-    return optionValue === value;
+    return optionValue == value;
   });
 
   function filter(value: string, search: string) {
     const option = options?.find((option) => {
       return (
-        getSelectOption(option, valueKey) === value ||
-        getSelectOption(option, labelKey) === value
+        getSelectOption(option, valueKey) == value ||
+        getSelectOption(option, labelKey) == value
       );
     });
 
@@ -100,9 +100,9 @@ function Combobox({
 
                 return (
                   <CommandItem
-                    value={optionValue}
+                    value={optionValue.toString()}
                     onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue);
+                      setValue(currentValue == value ? "" : currentValue);
                       setOpen(false);
                     }}
                     key={optionValue}
@@ -110,7 +110,7 @@ function Combobox({
                     <CheckIcon
                       className={cn(
                         "mr-2 h-4 w-4",
-                        value === optionValue ? "opacity-100" : "opacity-0",
+                        value == optionValue ? "opacity-100" : "opacity-0",
                       )}
                     />
                     {renderOption ? renderOption(option) : optionLabel}

@@ -22,11 +22,11 @@ abstract class RouteService
      *
      * @return array
      */
-    public static function getRouteNames(string $table): array
+    public static function getNames(string $table): array
     {
         $tableName = Str::slug($table);
 
-        $routeNames = [
+        $names = [
             'create'  => "$tableName.create",
             'destroy' => "$tableName.destroy",
             'edit'    => "$tableName.edit",
@@ -36,9 +36,9 @@ abstract class RouteService
             'update'  => "$tableName.update",
         ];
 
-        return array_filter($routeNames, function ($routeName)
+        return array_filter($names, function ($name)
         {
-            return Route::has($routeName);
+            return Route::has($name);
         });
     }
 

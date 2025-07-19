@@ -17,6 +17,7 @@ function DataTableFilter({
   ...props
 }: DataTableFilterProps) {
   const { getLabel } = useLabels();
+
   const { dataTableStore } = useDataTable();
 
   return (

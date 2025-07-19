@@ -32,15 +32,10 @@ abstract class TanStackTableService
         {
             $columns = TableService::getColumns($table);
 
-            $accessorKeys =  Config::get("tables.$table.accessor_keys", []);
-
-            $columns = $columns->reject(function (Column $column) use ($hidden)
+            $columns = $columns->map(function (Column $column) use ($table, $hidden)
             {
-                return in_array($column->name, $hidden);
-            });
+                $accessorKeys =  Config::get("tables.$table." . TanStackTable::ACCESSOR_KEY, []);
 
-            $columns = $columns->map(function (Column $column) use ($accessorKeys, $hidden)
-            {
                 if (in_array($column->name, $hidden))
                 {
                     return null;
