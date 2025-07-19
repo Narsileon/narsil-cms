@@ -27,6 +27,7 @@ function RichTextEditorBold({ editor, ...props }: RichTextEditorBoldProps) {
         aria-label={getLabel(`accessibility.toggle_bold`, `Toggle bold`)}
         disabled={!canBold}
         pressed={isBold}
+        size="icon"
         onClick={() => editor.chain().focus().toggleBold().run()}
         {...props}
       >

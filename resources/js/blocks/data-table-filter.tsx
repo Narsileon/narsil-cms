@@ -13,10 +13,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { CategoriesCollection } from "@/types";
+import type { DataTableFilterCollection } from "@/types";
+import { Toggle } from "@/components/ui/toggle";
 
 type DataTableFilterProps = React.ComponentProps<"ul"> &
-  CategoriesCollection & {};
+  DataTableFilterCollection & {};
 
 function DataTableFilter({
   className,
@@ -30,34 +31,34 @@ function DataTableFilter({
   return (
     <ul className={cn("grid gap-2", className)} {...props}>
       <li>
-        <Button
-          className="w-full justify-start"
-          variant="ghost"
+        <Toggle
+          className="w-full justify-start font-normal"
+          pressed={!dataTableStore.filter}
           onClick={() => {
             dataTableStore.setFilter(null);
           }}
         >
-          {"All"}
-        </Button>
+          {getLabel("ui.all")}
+        </Toggle>
       </li>
       {data.map((category) => (
         <li
           className="flex items-center justify-between gap-2"
           key={category.id}
         >
-          <Button className="grow justify-start" variant="ghost">
+          <Toggle
+            className="grow justify-start font-normal"
+            pressed={category.id.toString() === dataTableStore.filter}
+            onClick={() => {
+              dataTableStore.setFilter(category.id.toString());
+            }}
+          >
             {category.label}
-          </Button>
+          </Toggle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                size="icon"
-                variant="ghost"
-                onClick={() => {
-                  dataTableStore.setFilter(category.id.toString());
-                }}
-              >
-                <MoreHorizontalIcon className="h-4 w-4" />
+              <Button size="icon" variant="ghost">
+                <MoreHorizontalIcon className="size-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -91,9 +92,9 @@ function DataTableFilter({
       ))}
       {meta.routes.create ? (
         <li>
-          <Button asChild={true} className="w-full">
+          <Button asChild={true}>
             <ModalLink href={route(meta.routes.create)}>
-              {meta.create}
+              {meta.addLabel}
             </ModalLink>
           </Button>
         </li>

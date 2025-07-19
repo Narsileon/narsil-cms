@@ -35,7 +35,7 @@ abstract class BreadcrumbService
             $path .= '/' . $segment;
 
             $breadcrumbs[] = [
-                'label' => trans('ui.' . Str::snake($segment)),
+                'label' => trans('ui.' . Str::replace('-', '_', $segment)),
                 'href'  => $path,
             ];
         }

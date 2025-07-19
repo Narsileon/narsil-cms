@@ -27,6 +27,7 @@ function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
         aria-label={getLabel(`accessibility.toggle_strike`, `Toggle strike`)}
         disabled={!canStrike}
         pressed={isStrike}
+        size="icon"
         onClick={() => editor.chain().focus().toggleStrike().run()}
         {...props}
       >

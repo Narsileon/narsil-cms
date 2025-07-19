@@ -8,7 +8,7 @@ use App\Contracts\FormRequests\Resources\UserFormRequest;
 use App\Contracts\Forms\Resources\UserForm;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
-use App\Http\Resources\DataTableCollection;
+use App\Http\Resources\DataTable\DataTableCollection;
 use App\Models\User;
 use App\Narsil;
 use Illuminate\Http\JsonResponse;
@@ -62,7 +62,7 @@ class UserController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $dataTable = new DataTableCollection(User::query(), User::TABLE);
+        $dataTable = new DataTableCollection(User::query(), new User());
 
         return Narsil::render('resources/index', [
             'dataTable' => $dataTable,

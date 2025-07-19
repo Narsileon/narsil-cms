@@ -2,6 +2,8 @@
 
 return [
     'account'                   => 'Account',
+    'add'                       => 'Add',
+    'all'                       => 'All',
     'back'                      => 'Back',
     'close'                     => 'Close',
     'confirm_password'          => 'Confirm your password',

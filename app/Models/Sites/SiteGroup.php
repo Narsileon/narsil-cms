@@ -6,6 +6,7 @@ namespace App\Models\Sites;
 
 use App\Contracts\Enable;
 use App\Models\Sites\Site;
+use App\Traits\HasFormattedDatetime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class SiteGroup extends Model implements Enable
 {
+    use HasFormattedDatetime;
+
     #region CONSTRUCTOR
 
     /**

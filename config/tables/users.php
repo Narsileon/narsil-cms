@@ -3,8 +3,7 @@
 #region USE
 
 use App\Constants\TanStackTable;
-use App\Models\Sites\Site;
-use App\Models\Sites\SiteGroup;
+use App\Models\User;
 
 #endregion
 
@@ -19,9 +18,7 @@ return [
     |
     */
 
-    TanStackTable::ACCESSOR_KEY => [
-        Site::GROUP_ID => Site::RELATION_GROUP . '.' . SiteGroup::NAME,
-    ],
+    TanStackTable::ACCESSOR_KEY => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -34,14 +31,12 @@ return [
     */
 
     TanStackTable::COLUMN_ORDER => [
-        Site::ID,
-        Site::NAME,
-        Site::HANDLE,
-        Site::LANGUAGE,
-        Site::PRIMARY,
-        Site::GROUP_ID,
-        Site::CREATED_AT,
-        Site::UPDATED_AT,
+        User::ID,
+        User::EMAIL,
+        User::FIRST_NAME,
+        User::LAST_NAME,
+        User::CREATED_AT,
+        User::UPDATED_AT,
     ],
 
     /*
@@ -55,10 +50,8 @@ return [
     */
 
     TanStackTable::COLUMN_VISIBILITY => [
-        Site::GROUP_ID => true,
-        Site::HANDLE   => true,
-        Site::LANGUAGE => true,
-        Site::NAME     => true,
-        Site::PRIMARY  => true,
+        User::EMAIL      => true,
+        User::FIRST_NAME => true,
+        User::LAST_NAME  => true,
     ],
 ];

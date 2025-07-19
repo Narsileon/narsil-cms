@@ -5,17 +5,6 @@ import type {
   VisibilityState,
 } from "@tanstack/react-table";
 
-export type CategoriesCollection = {
-  data: {
-    id: number;
-    label: string;
-  }[];
-  meta: {
-    routes: RouteNames;
-    title: string;
-  };
-};
-
 export type DataTableCollection<T = any> = {
   columns: ColumnDef<T>[];
   columnOrder: ColumnOrderState;
@@ -24,6 +13,18 @@ export type DataTableCollection<T = any> = {
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta & {
     id: string;
+    routes: RouteNames;
+    title: string;
+  };
+};
+
+export type DataTableFilterCollection = {
+  data: {
+    id: number;
+    label: string;
+  }[];
+  meta: {
+    addLabel: string;
     routes: RouteNames;
     title: string;
   };

@@ -25,14 +25,15 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@/components/ui/section";
-import type { CategoriesCollection, DataTableCollection } from "@/types";
+import type { DataTableCollection, DataTableFilterCollection } from "@/types";
+import { cn } from "@/lib/utils";
 
 type ResourceIndexProps = {
-  categories: CategoriesCollection;
   dataTable: DataTableCollection;
+  dataTableFilter: DataTableFilterCollection;
 };
 
-function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
+function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
   const { getLabel } = useLabels();
 
   const finalColumns = [
@@ -92,17 +93,24 @@ function ResourceIndex({ categories, dataTable }: ResourceIndexProps) {
                 autoSaveId={dataTable.meta.id}
                 direction="horizontal"
               >
+                {dataTableFilter ? (
+                  <>
+                    <ResizablePanel
+                      className="pr-3"
+                      collapsible={true}
+                      defaultSize={20}
+                      minSize={10}
+                    >
+                      <DataTableFilter {...dataTableFilter} />
+                    </ResizablePanel>
+                    <ResizableHandle withHandle={true} />
+                  </>
+                ) : null}
                 <ResizablePanel
-                  className="pr-3"
-                  collapsible={true}
-                  defaultSize={20}
-                  minSize={10}
-                >
-                  <DataTableFilter {...categories} />
-                </ResizablePanel>
-                <ResizableHandle withHandle={true} />
-                <ResizablePanel
-                  className="flex flex-col gap-3 pl-3"
+                  className={cn(
+                    "flex flex-col gap-3",
+                    dataTableFilter && "pl-3",
+                  )}
                   collapsible={true}
                   defaultSize={80}
                   minSize={10}

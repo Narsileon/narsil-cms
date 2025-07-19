@@ -8,8 +8,8 @@ use App\Contracts\FormRequests\Resources\SiteFormRequest;
 use App\Contracts\Forms\Resources\SiteForm;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
-use App\Http\Resources\CategoryCollection;
-use App\Http\Resources\DataTableCollection;
+use App\Http\Resources\DataTable\DataTableFilterCollection;
+use App\Http\Resources\DataTable\DataTableCollection;
 use App\Models\Sites\Site;
 use App\Models\Sites\SiteGroup;
 use App\Narsil;
@@ -64,12 +64,18 @@ class SiteController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $categories = new CategoryCollection(SiteGroup::all(), SiteGroup::TABLE, SiteGroup::NAME);
-        $dataTable = new DataTableCollection(Site::query(), Site::TABLE);
+        $dataTableFilter = new DataTableFilterCollection(
+            SiteGroup::all(),
+            addLabel: trans('ui.add'),
+            labelKey: SiteGroup::NAME,
+            table: SiteGroup::TABLE,
+        );
+
+        $dataTable = new DataTableCollection(Site::query(), new Site());
 
         return Narsil::render('resources/index', [
-            'categories' => $categories,
-            'dataTable' => $dataTable,
+            'dataTable'       => $dataTable,
+            'dataTableFilter' => $dataTableFilter,
         ]);
     }
 

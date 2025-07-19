@@ -41,6 +41,7 @@ function RichTextEditorSuperscript({
         )}
         disabled={!canSuperscript}
         pressed={isSuperscript}
+        size="icon"
         onClick={() => {
           editor.chain().focus().unsetSubscript().run();
           editor.chain().focus().toggleSuperscript().run();

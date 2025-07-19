@@ -36,6 +36,7 @@ function RichTextEditorUnderline({
         )}
         disabled={!canUnderline}
         pressed={isUnderline}
+        size="icon"
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         {...props}
       >

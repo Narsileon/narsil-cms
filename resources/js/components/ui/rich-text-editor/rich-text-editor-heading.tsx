@@ -43,6 +43,7 @@ function RichTextEditorHeading({
           `Toggle heading ${level}`,
         )}
         pressed={isHeading}
+        size="icon"
         onClick={() =>
           editor.chain().focus().toggleHeading({ level: level }).run()
         }

@@ -34,6 +34,7 @@ function RichTextEditorOrderedList({
           `Toggle ordered list`,
         )}
         pressed={isOrderedList}
+        size="icon"
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         {...props}
       >

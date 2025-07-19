@@ -8,7 +8,7 @@ use App\Contracts\FormRequests\Resources\SiteGroupFormRequest;
 use App\Contracts\Forms\Resources\SiteGroupForm;
 use App\Enums\Forms\MethodEnum;
 use App\Http\Controllers\AbstractModelController;
-use App\Http\Resources\DataTableCollection;
+use App\Http\Resources\DataTable\DataTableCollection;
 use App\Models\Sites\SiteGroup;
 use App\Narsil;
 use Illuminate\Http\JsonResponse;
@@ -62,7 +62,7 @@ class SiteGroupController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $dataTable = new DataTableCollection(SiteGroup::query(), SiteGroup::TABLE);
+        $dataTable = new DataTableCollection(SiteGroup::query(), new SiteGroup());
 
         return Narsil::render('resources/index', [
             'dataTable' => $dataTable,

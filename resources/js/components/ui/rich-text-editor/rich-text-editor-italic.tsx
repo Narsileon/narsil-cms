@@ -27,6 +27,7 @@ function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
         aria-label={getLabel(`accessibility.toggle_italic`, `Toggle italic`)}
         disabled={!canItalic}
         pressed={isItalic}
+        size="icon"
         onClick={() => editor.chain().focus().toggleItalic().run()}
         {...props}
       >

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\DataTable;
 
 #region USE
 
@@ -8,6 +8,7 @@ use App\Services\RouteService;
 use App\Services\TanStackTableService;
 use App\Support\LabelsBag;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Str;
@@ -25,13 +26,13 @@ class DataTableCollection extends ResourceCollection
 
     /**
      * @param mixed $resource
-     * @param string $table
+     * @param Model $model
      *
      * @return void
      */
-    public function __construct(Builder $resource, string $table)
+    public function __construct(Builder $resource, Model $model)
     {
-        $this->table = $table;
+        $this->model = $model;
 
         $pageIndex = request(self::PAGE, 1);
         $pageSize = request(self::PAGE_SIZE, 10);
@@ -76,9 +77,9 @@ class DataTableCollection extends ResourceCollection
     #region PROPERTIES
 
     /**
-     * @var string The name of the table.
+     * @var Model The model associated to the collection.
      */
-    private readonly string $table;
+    private readonly Model $model;
 
     #endregion
 
@@ -100,14 +101,36 @@ class DataTableCollection extends ResourceCollection
      */
     public function with($request): array
     {
-        return array_merge(TanStackTableService::getColumns($this->table), [
-            'meta' => $this->getMeta(),
+        $with = TanStackTableService::getColumns($this->model->getTable(), $this->model->getHidden());
+
+        $meta = $this->getMeta();
+
+        return array_merge($with, [
+            'meta' => $meta,
         ]);
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @return array<string,mixed>
+     */
+    protected function getMeta(): array
+    {
+        $table = $this->model->getTable();
+
+        $id = Str::slug($table);
+        $routes = RouteService::getRouteNames($table);
+        $title = trans('ui.' . $table);
+
+        return [
+            'id'     => $id,
+            'routes' => $routes,
+            'title'  => $title,
+        ];
+    }
 
     /**
      * @return void
@@ -136,18 +159,6 @@ class DataTableCollection extends ResourceCollection
                 'to'    => $to,
                 'total' => $total,
             ]);
-    }
-
-    /**
-     * @return array<string,mixed>
-     */
-    protected function getMeta(): array
-    {
-        return [
-            'id'     => Str::slug($this->table),
-            'routes' => RouteService::getRouteNames($this->table),
-            'title'  => trans('ui.' . $this->table),
-        ];
     }
 
     #endregion

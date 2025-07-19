@@ -34,6 +34,7 @@ function RichTextEditorBulletList({
           `Toggle bullet list`,
         )}
         pressed={isBulletList}
+        size="icon"
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         {...props}
       >

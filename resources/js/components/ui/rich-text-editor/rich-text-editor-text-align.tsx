@@ -32,6 +32,7 @@ function RichTextEditorTextAlign({
           `Align ${alignment}`,
         )}
         pressed={editor.isActive({ textAlign: alignment })}
+        size="icon"
         onClick={() => editor.chain().focus().setTextAlign(alignment).run()}
         {...props}
       >

@@ -22,26 +22,37 @@ abstract class TanStackTableService
 
     /**
      * @param string $table
+     * @param array $hidden
      *
      * @return array
      */
-    public static function getColumns(string $table): array
+    public static function getColumns(string $table, array $hidden = []): array
     {
-        return Cache::rememberForever("tan-stack-tables:$table", function () use ($table)
+        return Cache::rememberForever("tan-stack-tables:$table", function () use ($table, $hidden)
         {
             $columns = TableService::getColumns($table);
 
             $accessorKeys =  Config::get("tables.$table.accessor_keys", []);
 
-            $columns = $columns->map(function (Column $column) use ($accessorKeys)
+            $columns = $columns->reject(function (Column $column) use ($hidden)
             {
+                return in_array($column->name, $hidden);
+            });
+
+            $columns = $columns->map(function (Column $column) use ($accessorKeys, $hidden)
+            {
+                if (in_array($column->name, $hidden))
+                {
+                    return null;
+                }
+
                 return [
                     TanStackTable::ACCESSOR_KEY => Arr::get($accessorKeys, $column->name, $column->name),
                     TanStackTable::HEADER       => TableService::getHeading($column->name),
                     TanStackTable::ID           => $column->name,
                     TanStackTable::TYPE         => $column->type,
                 ];
-            });
+            })->filter();
 
             $columnNames = $columns->pluck(TanStackTable::ID)->all();
 
