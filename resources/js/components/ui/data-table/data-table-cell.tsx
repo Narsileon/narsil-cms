@@ -10,10 +10,13 @@ type DataTableCellProps = React.ComponentProps<typeof TableCell> & {
 function DataTableCell({ cell, ...props }: DataTableCellProps) {
   const { isDragging, transform, setNodeRef } = useSortable({
     id: cell.column.id,
+    disabled: cell.column.id.startsWith("_"),
   });
 
   const style: React.CSSProperties = {
     opacity: isDragging ? 0.8 : 1,
+    position: cell.column.id === "_menu" ? "sticky" : "relative",
+    right: 0,
     transform: CSS.Translate.toString(transform),
     transition: "width transform 0.2s ease-in-out",
     width: cell.column.getSize(),
@@ -24,7 +27,7 @@ function DataTableCell({ cell, ...props }: DataTableCellProps) {
     <TableCell
       ref={setNodeRef}
       data-slot="data-table-cell"
-      className="relative"
+      className="relative bg-inherit"
       style={style}
       {...props}
     />

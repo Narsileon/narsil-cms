@@ -11,6 +11,7 @@ import DataTableInput from "./data-table-input";
 import DataTablePagination from "./data-table-pagination";
 import DataTableProvider from "./data-table-provider";
 import DataTableRow from "./data-table-row";
+import DataTableRowMenu from "./data-table-row-menu";
 import DataTableRowSelect from "./data-table-row-select";
 import DataTableSettings from "./data-table-settings";
 import useDataTable from "./data-table-context";
@@ -27,6 +28,7 @@ export {
   DataTablePagination,
   DataTableProvider,
   DataTableRow,
+  DataTableRowMenu,
   DataTableRowSelect,
   DataTableSettings,
   useDataTable,

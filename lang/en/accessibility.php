@@ -30,6 +30,7 @@ return [
     'toggle_heading_menu'   => 'Toggle heading menu',
     'toggle_italic'         => 'Toggle italic',
     'toggle_ordered_list'   => 'Toggle ordered list',
+    'toggle_row_menu'       => 'Toggle row menu',
     'toggle_sidebar'        => 'Toggle sidebar',
     'toggle_strike'         => 'Toggle strike',
     'toggle_subscript'      => 'Toggle subscript',

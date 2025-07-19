@@ -1,20 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { DeleteIcon, EditIcon, MoreHorizontalIcon } from "lucide-react";
-import { Link } from "@inertiajs/react";
+import { DataTableRowMenu, useDataTable } from "@/components/ui/data-table";
 import { ModalLink } from "@/components/ui/modal";
 import { route } from "ziggy-js";
-import { useDataTable } from "@/components/ui/data-table";
-import { useLabels } from "@/components/ui/labels";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import type { DataTableFilterCollection } from "@/types";
 import { Toggle } from "@/components/ui/toggle";
+import { useLabels } from "@/components/ui/labels";
+import type { DataTableFilterCollection } from "@/types";
 
 type DataTableFilterProps = React.ComponentProps<"ul"> &
   DataTableFilterCollection & {};
@@ -55,39 +46,7 @@ function DataTableFilter({
           >
             {category.label}
           </Toggle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button size="icon" variant="ghost">
-                <MoreHorizontalIcon className="size-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {meta.routes.edit ? (
-                <DropdownMenuItem asChild={true}>
-                  <ModalLink href={route(meta.routes.edit, category.id)}>
-                    <EditIcon />
-                    {getLabel("ui.edit")}
-                  </ModalLink>
-                </DropdownMenuItem>
-              ) : null}
-              <DropdownMenuSeparator />
-              {meta.routes.destroy ? (
-                <DropdownMenuItem asChild={true}>
-                  <Link
-                    as="button"
-                    href={route(meta.routes.destroy, category.id)}
-                    method="delete"
-                    data={{
-                      _back: true,
-                    }}
-                  >
-                    <DeleteIcon />
-                    {getLabel("ui.delete")}
-                  </Link>
-                </DropdownMenuItem>
-              ) : null}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <DataTableRowMenu id={category.id} routes={meta.routes} />
         </li>
       ))}
       {meta.routes.create ? (

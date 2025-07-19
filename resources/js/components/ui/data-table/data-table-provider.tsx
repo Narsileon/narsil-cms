@@ -167,6 +167,13 @@ function DataTableProvider({
     const { active, over } = event;
 
     if (active && over && active.id !== over.id) {
+      if (
+        active.id.toString().startsWith("_") ||
+        over.id.toString().startsWith("_")
+      ) {
+        return;
+      }
+
       dataTable.setColumnOrder((columnOrder) => {
         const activeIndex = columnOrder.indexOf(active.id as string);
         const overIndex = columnOrder.indexOf(over.id as string);

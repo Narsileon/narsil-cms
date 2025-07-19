@@ -13,10 +13,13 @@ function DataTableHead({ header, ...props }: DataTableHeadProps) {
   const { attributes, isDragging, listeners, transform, setNodeRef } =
     useSortable({
       id: header.column.id,
+      disabled: header.column.id.startsWith("_"),
     });
 
   const style: React.CSSProperties = {
     opacity: isDragging ? 0.8 : 1,
+    position: header.column.id === "_menu" ? "sticky" : "relative",
+    right: 0,
     transform: CSS.Translate.toString(transform),
     transition: "width transform 0.2s ease-in-out",
     width: header.column.getSize(),

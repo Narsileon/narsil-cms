@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
 import { Link } from "@inertiajs/react";
 import { PlusIcon } from "lucide-react";
 import { route } from "ziggy-js";
@@ -11,6 +12,7 @@ import {
   DataTableInput,
   DataTablePagination,
   DataTableProvider,
+  DataTableRowMenu,
   DataTableSettings,
 } from "@/components/ui/data-table";
 import {
@@ -26,7 +28,6 @@ import {
   SectionTitle,
 } from "@/components/ui/section";
 import type { DataTableCollection, DataTableFilterCollection } from "@/types";
-import { cn } from "@/lib/utils";
 
 type ResourceIndexProps = {
   dataTable: DataTableCollection;
@@ -41,6 +42,7 @@ function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
       id: "_select",
       cell: ({ row }: any) => (
         <Checkbox
+          className="mx-1"
           checked={row.getIsSelected()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
           aria-label="Select row"
@@ -51,6 +53,20 @@ function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
       enableHiding: false,
     },
     ...dataTable.columns,
+    {
+      id: "_menu",
+      cell: ({ row }: any) => (
+        <DataTableRowMenu
+          className="absolute top-1/2 right-1 -translate-y-1/2 transform"
+          id={row.original.id}
+          routes={dataTable.meta.routes}
+        />
+      ),
+      position: "sticky",
+      size: 32,
+      enableSorting: false,
+      enableHiding: false,
+    },
   ];
 
   const finalColumnOrder = ["_select", ...dataTable.columnOrder];

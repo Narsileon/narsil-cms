@@ -110,6 +110,7 @@ class DataTableFilterCollection extends ResourceCollection
     protected function registerLabels(): void
     {
         app(LabelsBag::class)
+            ->add('accessibility.toggle_row_menu')
             ->add('ui.all')
             ->add('ui.delete')
             ->add('ui.edit');

@@ -149,11 +149,14 @@ class DataTableCollection extends ResourceCollection
             ->add('accessibility.next_page')
             ->add('accessibility.previous_page')
             ->add('accessibility.sort_column')
+            ->add('accessibility.toggle_row_menu')
             ->add('accessibility.toggle_table_settings')
             ->add('pagination.empty')
             ->add('pagination.pagination')
             ->add('table.columns')
             ->add('ui.create')
+            ->add('ui.delete')
+            ->add('ui.edit')
             ->add('pagination.results', [
                 'from'  => $from,
                 'to'    => $to,

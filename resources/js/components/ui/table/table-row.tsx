@@ -9,7 +9,6 @@ function TableRow({ className, ...props }: TableRowProps) {
       className={cn(
         "border-b transition-colors",
         "hover:bg-muted/50",
-        "data-[state=selected]:bg-muted",
         className,
       )}
       {...props}

@@ -1,6 +1,6 @@
 import { flexRender, Table } from "@tanstack/react-table";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { TableCell, TableHead } from "@/components/ui/table";
+import { TableCell } from "@/components/ui/table";
 import {
   DataTable,
   DataTableBody,
@@ -32,16 +32,6 @@ function DataTableBlock({ dataTable }: DataTableBlockProps) {
                 {headerGroup.headers.map((header) => {
                   if (header.isPlaceholder) {
                     return null;
-                  }
-
-                  if (header.id === "_select") {
-                    return (
-                      <TableHead
-                        data-slot="data-table-head"
-                        className="min-w-10"
-                        key={header.id}
-                      />
-                    );
                   }
 
                   return <DataTableHead header={header} key={header.id} />;
