@@ -26,7 +26,7 @@ class UserForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getContent(): array
+    protected function content(): array
     {
         return [
             new Field([
@@ -67,6 +67,27 @@ class UserForm extends AbstractForm implements Contract
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
                     ->required(true)
                     ->toArray(),
+            ]),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function meta(): array
+    {
+        return [
+            new Field([
+                Field::HANDLE => User::ID,
+                Field::NAME => trans('validation.attributes.id'),
+            ]),
+            new Field([
+                Field::HANDLE => User::CREATED_AT,
+                Field::NAME => trans('validation.attributes.created_at'),
+            ]),
+            new Field([
+                Field::HANDLE => User::UPDATED_AT,
+                Field::NAME => trans('validation.attributes.updated_at'),
             ]),
         ];
     }

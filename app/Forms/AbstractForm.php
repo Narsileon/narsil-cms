@@ -38,11 +38,11 @@ abstract class AbstractForm implements Form
 
         return [
             'action'  => $this->action,
-            'content' => $this->getContent(),
-            'id'      => $this->getId(),
+            'content' => $this->content(),
+            'id'      => $this->id(),
+            'meta'    => $this->meta(),
             'method'  => $this->method,
-            'options' => $this->getOptions(),
-            'sidebar' => $this->getSidebar(),
+            'sidebar' => $this->sidebar(),
             'submit'  => $this->submit,
         ];
     }
@@ -71,30 +71,20 @@ abstract class AbstractForm implements Form
     /**
      * @return array<Field>
      */
-    abstract protected function getContent(): array;
+    abstract protected function content(): array;
 
     /**
      * @return array<Field>
      */
-    protected function getSidebar(): array
+    protected function meta(): array
     {
         return [];
     }
 
     /**
-     * @return string
+     * @return array<Field>
      */
-    protected function getId(): string
-    {
-        $name = (new ReflectionClass(static::class))->getShortName();
-
-        return Str::slug(Str::snake($name));
-    }
-
-    /**
-     * @return array
-     */
-    protected function getOptions(): array
+    protected function sidebar(): array
     {
         return [];
     }
@@ -129,6 +119,20 @@ abstract class AbstractForm implements Form
             ->add('accessibility.undo')
             ->add('pagination.empty')
             ->add('ui.back');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @return string
+     */
+    private function id(): string
+    {
+        $name = (new ReflectionClass(static::class))->getShortName();
+
+        return Str::slug(Str::snake($name));
     }
 
     #endregion

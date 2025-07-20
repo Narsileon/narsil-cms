@@ -34,7 +34,7 @@ abstract class AbstractComponent implements Component
     public function get(): array
     {
         return [
-            'content' => $this->getContent(),
+            'content' => $this->content(),
         ];
     }
 
@@ -45,7 +45,7 @@ abstract class AbstractComponent implements Component
     /**
      * @return array
      */
-    abstract protected function getContent(): array;
+    abstract protected function content(): array;
 
     /**
      * @return void

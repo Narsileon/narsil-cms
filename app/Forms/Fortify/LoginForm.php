@@ -26,7 +26,7 @@ class LoginForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getContent(): array
+    protected function content(): array
     {
         return [
             new Field([

@@ -23,7 +23,7 @@ class GuestMenu extends AbstractComponent implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getContent(): array
+    protected function content(): array
     {
         return [
             (new NavigationItem(route('user-configuration.index'), trans('ui.settings')))

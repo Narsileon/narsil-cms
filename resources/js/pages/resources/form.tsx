@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { FormProvider, Form, FormSubmit } from "@/components/ui/form";
+import { Fragment } from "react";
 import { useModalStore } from "@/stores/modal-store";
 import FormInputBlock from "@/blocks/form-input-block";
 import {
@@ -57,14 +58,14 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                   </SectionTitle>
                 </SectionHeader>
                 <SectionContent className="grid gap-6 md:grid-cols-2">
-                  {form.content.map((input, index) => (
-                    <FormInputBlock {...input} key={index} />
+                  {form.content.map((field, index) => (
+                    <FormInputBlock {...field} key={index} />
                   ))}
                   <FormSubmit>{form.submit}</FormSubmit>
                 </SectionContent>
               </Section>
             </ResizablePanel>
-            {form.sidebar.length > 0 ? (
+            {data?.id != null && form.sidebar.length > 0 ? (
               <>
                 <ResizableHandle withHandle={true} />
                 <ResizablePanel
@@ -82,9 +83,24 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                         </CardContent>
                       </Card>
                     ) : null}
-                    <Card>
-                      <CardContent></CardContent>
-                    </Card>
+                    {data?.id != null ? (
+                      <Card>
+                        <CardContent className="grid grid-cols-2 justify-between">
+                          {form.meta.map((field, index) => {
+                            return (
+                              <Fragment key={index}>
+                                <div className="place-self-start truncate text-sm">
+                                  {field.name}
+                                </div>
+                                <div className="place-self-end truncate text-sm">
+                                  {data?.[field.handle]}
+                                </div>
+                              </Fragment>
+                            );
+                          })}
+                        </CardContent>
+                      </Card>
+                    ) : null}
                   </div>
                 </ResizablePanel>
               </>

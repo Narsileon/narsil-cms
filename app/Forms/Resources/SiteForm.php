@@ -29,7 +29,7 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getContent(): array
+    protected function content(): array
     {
         $groupOptions = $this->getGroupOptions();
         $languageOptions = $this->getLanguageOptions();
@@ -64,7 +64,6 @@ class SiteForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(SelectFieldSettings::class)
                     ->options($groupOptions)
                     ->placeholder(trans('placeholders.search'))
-                    ->required(true)
                     ->toArray(),
             ]),
         ];
@@ -73,7 +72,28 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getSidebar(): array
+    protected function meta(): array
+    {
+        return [
+            new Field([
+                Field::HANDLE => Site::ID,
+                Field::NAME => trans('validation.attributes.id'),
+            ]),
+            new Field([
+                Field::HANDLE => Site::CREATED_AT,
+                Field::NAME => trans('validation.attributes.created_at'),
+            ]),
+            new Field([
+                Field::HANDLE => Site::UPDATED_AT,
+                Field::NAME => trans('validation.attributes.updated_at'),
+            ]),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function sidebar(): array
     {
         return [
             new Field([
@@ -90,14 +110,6 @@ class SiteForm extends AbstractForm implements Contract
                     ->toArray(),
             ]),
         ];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function getMeta(): array
-    {
-        return [];
     }
 
     #endregion

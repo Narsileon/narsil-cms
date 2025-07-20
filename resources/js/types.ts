@@ -41,6 +41,7 @@ export type LaravelForm = {
   action: string;
   content: FieldModel[];
   id: string;
+  meta: FieldModel[];
   method: string;
   sidebar: FieldModel[];
   submit: string;

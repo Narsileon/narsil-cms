@@ -87,11 +87,11 @@ function FormInputBlock({
               />
             ) : (
               <Input
+                {...props}
                 id={handle}
                 value={value}
                 type={type}
                 onChange={(e) => handleOnChange(e.target.value)}
-                {...props}
                 {...field}
               />
             )}

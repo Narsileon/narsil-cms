@@ -21,7 +21,7 @@ class BreadcrumbComponent extends AbstractComponent
     /**
      * {@inheritDoc}
      */
-    protected function getContent(): array
+    protected function content(): array
     {
         return [
             (new NavigationItem(route('sites.index'), trans('ui.sites')))
