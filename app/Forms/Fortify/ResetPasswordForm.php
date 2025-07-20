@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Forms\Fortify;
+namespace App\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Fields\Text\EmailFieldSettings;
 use App\Contracts\Fields\Text\PasswordFieldSettings;
-use App\Contracts\Forms\Fortify\UpdatePasswordForm as Contract;
 use App\Enums\Fields\AutoCompleteEnum;
-use App\Http\Forms\AbstractForm;
+use App\Forms\AbstractForm;
+use App\Contracts\Forms\Fortify\ResetPasswordForm as Contract;
 use App\Models\Fields\Field;
 use App\Models\User;
 
@@ -17,7 +18,7 @@ use App\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UpdatePasswordForm extends AbstractForm implements Contract
+class ResetPasswordForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 
@@ -28,10 +29,10 @@ class UpdatePasswordForm extends AbstractForm implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
-                Field::NAME => trans('validation.attributes.current_password'),
-                Field::SETTINGS => app(PasswordFieldSettings::class)
-                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
+                Field::HANDLE => User::EMAIL,
+                Field::NAME => trans('validation.attributes.email'),
+                Field::SETTINGS => app(EmailFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::EMAIL->value)
                     ->required(true)
                     ->toArray(),
             ]),

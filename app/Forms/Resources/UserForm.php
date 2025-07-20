@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Forms\Fortify;
+namespace App\Forms\Resources;
 
 #region USE
 
 use App\Contracts\Fields\Text\EmailFieldSettings;
+use App\Contracts\Fields\Text\PasswordFieldSettings;
 use App\Contracts\Fields\Text\TextFieldSettings;
-use App\Contracts\Forms\Fortify\RegisterForm as Contract;
+use App\Contracts\Forms\Resources\UserForm as Contract;
 use App\Enums\Fields\AutoCompleteEnum;
-use App\Fields\Text\PasswordFieldSettings;
-use App\Http\Forms\AbstractForm;
+use App\Forms\AbstractForm;
 use App\Models\Fields\Field;
 use App\Models\User;
 
@@ -19,7 +19,7 @@ use App\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RegisterForm extends AbstractForm implements Contract
+class UserForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 

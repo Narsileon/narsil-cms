@@ -64,21 +64,31 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                 </SectionContent>
               </Section>
             </ResizablePanel>
-            <ResizableHandle withHandle={true} />
-            <ResizablePanel collapsible={true} defaultSize={20} minSize={10}>
-              <div className="grid gap-4 p-4">
-                <Card>
-                  <CardContent className="grid gap-6">
-                    {form.sidebar.map((input, index) => (
-                      <FormInputBlock {...input} key={index} />
-                    ))}
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent></CardContent>
-                </Card>
-              </div>
-            </ResizablePanel>
+            {form.sidebar.length > 0 ? (
+              <>
+                <ResizableHandle withHandle={true} />
+                <ResizablePanel
+                  collapsible={true}
+                  defaultSize={20}
+                  minSize={10}
+                >
+                  <div className="grid gap-4 p-4">
+                    {form.sidebar.length > 0 ? (
+                      <Card>
+                        <CardContent className="grid gap-6">
+                          {form.sidebar.map((input, index) => (
+                            <FormInputBlock {...input} key={index} />
+                          ))}
+                        </CardContent>
+                      </Card>
+                    ) : null}
+                    <Card>
+                      <CardContent></CardContent>
+                    </Card>
+                  </div>
+                </ResizablePanel>
+              </>
+            ) : null}
           </ResizablePanelGroup>
         </Form>
       )}

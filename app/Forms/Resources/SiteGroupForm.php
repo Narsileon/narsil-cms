@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Forms\Resources;
+namespace App\Forms\Resources;
 
 #region USE
 
 use App\Contracts\Fields\Text\TextFieldSettings;
 use App\Contracts\Forms\Resources\SiteGroupForm as Contract;
-use App\Http\Forms\AbstractForm;
+use App\Forms\AbstractForm;
 use App\Models\Fields\Field;
 use App\Models\Sites\SiteGroup;
 

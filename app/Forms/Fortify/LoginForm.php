@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms\Fortify;
+namespace App\Forms\Fortify;
 
 #region USE
 
@@ -9,7 +9,7 @@ use App\Contracts\Fields\Text\EmailFieldSettings;
 use App\Contracts\Fields\Text\PasswordFieldSettings;
 use App\Contracts\Forms\Fortify\LoginForm as Contract;
 use App\Enums\Fields\AutoCompleteEnum;
-use App\Http\Forms\AbstractForm;
+use App\Forms\AbstractForm;
 use App\Models\Fields\Field;
 use App\Models\User;
 

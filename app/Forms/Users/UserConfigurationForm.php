@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms\Users;
+namespace App\Forms\Users;
 
 #region USE
 
@@ -9,7 +9,7 @@ use App\Contracts\Fields\Select\SelectFieldSettings;
 use App\Contracts\Forms\Users\UserConfigurationForm as Contract;
 use App\Enums\Configuration\ColorEnum;
 use App\Enums\Configuration\ThemeEnum;
-use App\Http\Forms\AbstractForm;
+use App\Forms\AbstractForm;
 use App\Models\Fields\Field;
 use App\Models\Users\UserConfiguration;
 use Illuminate\Support\Facades\App;

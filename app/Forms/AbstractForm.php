@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Forms;
 
 #region USE
 
