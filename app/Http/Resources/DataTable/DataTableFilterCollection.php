@@ -66,7 +66,7 @@ class DataTableFilterCollection extends ResourceCollection
     #region PUBLIC METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toArray(Request $request): JsonSerializable
     {
@@ -80,7 +80,7 @@ class DataTableFilterCollection extends ResourceCollection
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function with($request): array
     {

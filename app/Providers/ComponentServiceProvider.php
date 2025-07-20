@@ -23,7 +23,7 @@ class ComponentServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function register(): void
     {
@@ -31,7 +31,7 @@ class ComponentServiceProvider extends ServiceProvider
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function boot(): void
     {

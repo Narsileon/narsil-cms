@@ -2,7 +2,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 import { Combobox } from "@/components/ui/combobox";
 import { Input } from "@/components/ui/input";
+import { isArray } from "lodash";
 import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
 import {
   FormDescription,
   FormField,
@@ -10,9 +12,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import type { LaravelFormInput, SelectOption } from "@/types";
+import type { FieldModel, SelectOption } from "@/types";
 
-type FormBlockProps = LaravelFormInput & {
+type FormBlockProps = FieldModel & {
   className?: string;
   icon?: React.ReactNode | string;
   onChange?: (value: any) => void;
@@ -20,26 +22,18 @@ type FormBlockProps = LaravelFormInput & {
 };
 
 function FormInputBlock({
-  autoComplete,
   className,
-  column = false,
   description,
   icon,
-  id,
-  label,
-  max,
-  min,
-  placeholder,
-  options = [],
-  required = false,
-  step,
-  type = "text",
+  name,
+  handle,
+  settings,
   onChange,
   renderOption,
 }: FormBlockProps) {
   return (
     <FormField
-      name={id}
+      handle={handle}
       render={({ value, onFieldChange, ...field }) => {
         function handleOnChange(value: any) {
           onChange?.(value);
@@ -49,44 +43,50 @@ function FormInputBlock({
         return (
           <FormItem
             className={cn(
-              !column && "col-span-full",
-              type === "checkbox" && "flex-row-reverse justify-end",
+              "col-span-full",
+              settings.type === "checkbox" && "flex-row-reverse justify-end",
+              settings.type === "switch" && "flex-row justify-between",
+              settings.className,
               className,
             )}
           >
-            <FormLabel required={required}>
+            <FormLabel required={settings.required}>
               {icon}
-              {label}
+              {name}
             </FormLabel>
-            {type === "checkbox" ? (
+            {settings.type === "checkbox" ? (
               <Checkbox
+                {...settings}
                 checked={value}
                 onCheckedChange={(checked) => handleOnChange(checked)}
                 {...field}
               />
-            ) : type === "combobox" || type === "select" ? (
+            ) : settings.type === "combobox" || settings.type === "select" ? (
               <Combobox
-                options={options}
-                placeholder={placeholder}
+                {...settings}
+                options={settings.options}
                 renderOption={renderOption}
-                search={type === "combobox"}
+                search={settings.type === "combobox"}
                 value={value}
                 setValue={(value) => handleOnChange(value)}
                 {...field}
               />
-            ) : type === "slider" ? (
+            ) : settings.type === "range" ? (
               <Slider
-                max={max}
-                min={min}
-                step={step}
-                value={[value]}
+                {...settings}
+                value={isArray(value) ? value : [value]}
                 onValueChange={([value]) => handleOnChange(value)}
+              />
+            ) : settings.type === "switch" ? (
+              <Switch
+                {...settings}
+                checked={value}
+                onCheckedChange={(value) => handleOnChange(value)}
               />
             ) : (
               <Input
-                autoComplete={autoComplete}
-                placeholder={placeholder}
-                type={type}
+                {...settings}
+                id={handle}
                 value={value}
                 onChange={(e) => handleOnChange(e.target.value)}
                 {...field}

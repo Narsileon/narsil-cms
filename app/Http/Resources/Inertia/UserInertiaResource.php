@@ -46,7 +46,7 @@ class UserInertiaResource extends JsonResource
     #region PUBLIC METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toArray(Request $request): array
     {

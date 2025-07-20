@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\Forms;
+namespace App\Enums\Fields;
 
 /**
  * @version 1.0.0

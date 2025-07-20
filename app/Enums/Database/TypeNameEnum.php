@@ -9,5 +9,5 @@ namespace App\Enums\Database;
 enum TypeNameEnum: string
 {
     case TIMESTAMP = 'timestamp';
-    case VARCHAR = 'varchar';
+    case VARCHAR   = 'varchar';
 }

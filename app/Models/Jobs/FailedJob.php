@@ -62,7 +62,7 @@ class FailedJob extends Model
     final public const UUID = 'uuid';
 
     /**
-     * @var string The name of the "failed jobs" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'failed_jobs';
 

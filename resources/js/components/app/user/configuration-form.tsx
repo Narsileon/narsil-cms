@@ -112,23 +112,25 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
             theme: theme,
           }}
           render={() => (
-            <Form method="post" url={route("login")}>
-              {form.content.map(({ value, ...input }, index) => (
+            <Form
+              className="gap-6 md:grid-cols-2"
+              method={form.method}
+              url={form.action}
+            >
+              {form.content.map(({ ...input }, index) => (
                 <FormInputBlock
                   className="grid grid-cols-2"
-                  icon={getIcon(input.id)}
-                  onChange={(value) => handleChange(input.id, value)}
-                  value={getValue(input.id)}
+                  icon={getIcon(input.handle)}
+                  onChange={(value) => handleChange(input.handle, value)}
                   renderOption={
-                    input.id === "color"
+                    input.handle === "color"
                       ? (option) => {
                           const color = getSelectOption(option, "bg-color");
 
                           return (
                             <>
                               <span
-                                className={`h-3 w-3 rounded-full ${color}`}
-                                aria-hidden="true"
+                                className={`size-3 rounded-full ${color}`}
                               />
                               {getSelectOption(option, "label")}
                             </>

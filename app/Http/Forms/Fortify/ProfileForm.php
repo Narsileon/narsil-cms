@@ -4,12 +4,12 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Fields\Text\TextFieldSettings;
 use App\Contracts\Forms\Fortify\ProfileForm as Contract;
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
+use App\Enums\Fields\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\User;
-use App\Support\Forms\Input;
 
 #endregion
 
@@ -22,22 +22,27 @@ class ProfileForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input(User::LAST_NAME, TypeEnum::TEXT, ''))
-                ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
-                ->setColumn(true)
-                ->setRequired(true)
-                ->get(),
-            (new Input(User::FIRST_NAME, TypeEnum::TEXT, ''))
-                ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
-                ->setColumn(true)
-                ->setRequired(true)
-                ->get(),
-
+            new Field([
+                Field::HANDLE => User::LAST_NAME,
+                Field::NAME => trans('validation.attributes.last_name'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => User::FIRST_NAME,
+                Field::NAME => trans('validation.attributes.first_name'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
     }
 

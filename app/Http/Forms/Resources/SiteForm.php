@@ -4,12 +4,14 @@ namespace App\Http\Forms\Resources;
 
 #region USE
 
+use App\Contracts\Fields\Enum\SwitchFieldSettings;
+use App\Contracts\Fields\Select\SelectFieldSettings;
+use App\Contracts\Fields\Text\TextFieldSettings;
 use App\Contracts\Forms\Resources\SiteForm as Contract;
-use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\Sites\Site;
 use App\Models\Sites\SiteGroup;
-use App\Support\Forms\Input;
 use Illuminate\Support\Facades\App;
 use Locale;
 use ResourceBundle;
@@ -25,7 +27,7 @@ class SiteForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
@@ -33,25 +35,69 @@ class SiteForm extends AbstractForm implements Contract
         $languageOptions = $this->getLanguageOptions();
 
         return [
-            (new Input(Site::NAME, TypeEnum::TEXT, ''))
-                ->setRequired(true)
-                ->get(),
-            (new Input(Site::PRIMARY, TypeEnum::CHECKBOX, false))
-                ->setRequired(true)
-                ->get(),
-            (new Input(Site::HANDLE, TypeEnum::TEXT, ''))
-                ->setRequired(true)
-                ->get(),
-            (new Input(Site::LANGUAGE, TypeEnum::COMBOBOX, ''))
-                ->setOptions($languageOptions)
-                ->setPlaceholder(trans('placeholders.search'))
-                ->setRequired(true)
-                ->get(),
-            (new Input(Site::GROUP_ID, TypeEnum::COMBOBOX, ''))
-                ->setOptions($groupOptions)
-                ->setPlaceholder(trans('placeholders.search'))
-                ->get(),
+            new Field([
+                Field::HANDLE => Site::NAME,
+                Field::NAME => trans('validation.attributes.name'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => Site::HANDLE,
+                Field::NAME => trans('validation.attributes.handle'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => Site::LANGUAGE,
+                Field::NAME => trans('validation.attributes.language'),
+                Field::SETTINGS => app(SelectFieldSettings::class)
+                    ->options($languageOptions)
+                    ->placeholder(trans('placeholders.search'))
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => Site::GROUP_ID,
+                Field::NAME => trans('validation.attributes.group'),
+                Field::SETTINGS => app(SelectFieldSettings::class)
+                    ->options($groupOptions)
+                    ->placeholder(trans('placeholders.search'))
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getSidebar(): array
+    {
+        return [
+            new Field([
+                Field::HANDLE => Site::ENABLED,
+                Field::NAME => trans('validation.attributes.enabled'),
+                Field::SETTINGS => app(SwitchFieldSettings::class)
+                    ->pressed(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => Site::PRIMARY,
+                Field::NAME => trans('validation.attributes.primary'),
+                Field::SETTINGS => app(SwitchFieldSettings::class)
+                    ->toArray(),
+            ]),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getMeta(): array
+    {
+        return [];
     }
 
     #endregion

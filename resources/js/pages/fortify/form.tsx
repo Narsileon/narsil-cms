@@ -63,16 +63,21 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                   content={form.content}
                   initialValues={data}
                   render={() => (
-                    <Form method={form.method} url={form.action}>
+                    <Form
+                      className="gap-6 md:grid-cols-2"
+                      method={form.method}
+                      url={form.action}
+                    >
                       {form.content.map((input, index) =>
-                        form.id === "login-form" && input.id === "password" ? (
+                        form.id === "login-form" &&
+                        input.handle === "password" ? (
                           <FormField
-                            name={input.id}
+                            handle={input.handle}
                             render={({ onFieldChange, ...field }) => (
                               <FormItem className="col-span-full">
                                 <div className="flex items-center justify-between gap-3">
                                   <FormLabel required={true}>
-                                    {input.label}
+                                    {input.name}
                                   </FormLabel>
                                   <Link
                                     className="text-xs"
@@ -82,8 +87,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                                   </Link>
                                 </div>
                                 <Input
-                                  autoComplete={input.autoComplete}
-                                  type={input.type}
+                                  {...input.settings}
                                   onChange={(e) =>
                                     onFieldChange(e.target.value)
                                   }

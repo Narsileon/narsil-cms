@@ -4,11 +4,11 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Fields\Text\TextFieldSettings;
 use App\Contracts\Forms\Fortify\TwoFactorChallengeForm as Contract;
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
+use App\Enums\Fields\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
-use App\Support\Forms\Input;
+use App\Models\Fields\Field;
 
 #endregion
 
@@ -21,17 +21,25 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input('code', TypeEnum::TEXT, ''))
-                ->setAutoComplete(AutoCompleteEnum::ONE_TIME_CODE)
-                ->get(),
-            (new Input('recovery_code', TypeEnum::TEXT, ''))
-                ->setAutoComplete(AutoCompleteEnum::ONE_TIME_CODE)
-                ->get(),
+            new Field([
+                Field::HANDLE => 'code',
+                Field::NAME => trans('validation.attributes.code'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => 'recovery_code',
+                Field::NAME => trans('validation.attributes.recovery_code'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                    ->toArray(),
+            ]),
         ];
     }
 

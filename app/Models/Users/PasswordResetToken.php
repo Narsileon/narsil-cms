@@ -42,7 +42,7 @@ class PasswordResetToken extends Model
     final public const TOKEN = 'token';
 
     /**
-     * @var string The name of the "password reset tokens" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'password_reset_tokens';
 

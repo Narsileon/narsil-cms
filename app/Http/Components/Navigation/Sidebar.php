@@ -20,7 +20,7 @@ class Sidebar extends AbstractComponent implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
@@ -36,7 +36,7 @@ class Sidebar extends AbstractComponent implements Contract
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function registerLabels(): void
     {

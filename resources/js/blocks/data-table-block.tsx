@@ -45,7 +45,6 @@ function DataTableBlock({ dataTable }: DataTableBlockProps) {
             dataTable.getRowModel().rows.map((row) => (
               <DataTableRow
                 data-state={row.getIsSelected() && "selected"}
-                onClick={() => row.toggleSelected()}
                 key={row.id}
               >
                 {row.getVisibleCells().map((cell) => {

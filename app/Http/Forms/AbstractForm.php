@@ -4,9 +4,9 @@ namespace App\Http\Forms;
 
 #region USE
 
-use App\Enums\Forms\MethodEnum;
 use App\Contracts\Forms\Form;
-use App\Support\Forms\Input;
+use App\Enums\Forms\MethodEnum;
+use App\Models\Fields\Field;
 use App\Support\LabelsBag;
 use Illuminate\Support\Str;
 use ReflectionClass;
@@ -22,7 +22,7 @@ abstract class AbstractForm implements Form
     #region PUBLIC METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function get(
         string $action,
@@ -42,6 +42,7 @@ abstract class AbstractForm implements Form
             'id'      => $this->getId(),
             'method'  => $this->method,
             'options' => $this->getOptions(),
+            'sidebar' => $this->getSidebar(),
             'submit'  => $this->submit,
         ];
     }
@@ -68,9 +69,17 @@ abstract class AbstractForm implements Form
     #region PROTECTED METHODS
 
     /**
-     * @return array<Input>
+     * @return array<Field>
      */
     abstract protected function getContent(): array;
+
+    /**
+     * @return array<Field>
+     */
+    protected function getSidebar(): array
+    {
+        return [];
+    }
 
     /**
      * @return string

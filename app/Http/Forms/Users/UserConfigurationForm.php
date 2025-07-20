@@ -4,13 +4,14 @@ namespace App\Http\Forms\Users;
 
 #region USE
 
+use App\Contracts\Fields\Number\RangeFieldSettings;
+use App\Contracts\Fields\Select\SelectFieldSettings;
 use App\Contracts\Forms\Users\UserConfigurationForm as Contract;
-use App\Enums\ColorEnum;
-use App\Enums\Forms\TypeEnum;
-use App\Enums\ThemeEnum;
+use App\Enums\Configuration\ColorEnum;
+use App\Enums\Configuration\ThemeEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\Users\UserConfiguration;
-use App\Support\Forms\Input;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
@@ -28,7 +29,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
@@ -37,23 +38,40 @@ class UserConfigurationForm extends AbstractForm implements Contract
         $themeOptions = $this->getThemesOptions();
 
         return [
-            (new Input(UserConfiguration::LOCALE, TypeEnum::SELECT, 'en'))
-                ->setOptions($localeOptions)
-                ->setPlaceholder(trans('ui.search'))
-                ->get(),
-            (new Input(UserConfiguration::THEME, TypeEnum::SELECT, 'system'))
-                ->setOptions($themeOptions)
-                ->setPlaceholder(trans('ui.search'))
-                ->get(),
-            (new Input(UserConfiguration::COLOR, TypeEnum::SELECT, 'neutral'))
-                ->setOptions($colorOptions)
-                ->setPlaceholder(trans('ui.search'))
-                ->get(),
-            (new Input(UserConfiguration::RADIUS, TypeEnum::SLIDER, 0.65))
-                ->setMax(2)
-                ->setMin(0)
-                ->setStep(0.05)
-                ->get(),
+            new Field([
+                Field::HANDLE => UserConfiguration::LOCALE,
+                Field::NAME => trans('validation.attributes.locale'),
+                Field::SETTINGS => app(SelectFieldSettings::class)
+                    ->options($localeOptions)
+                    ->value('en')
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => UserConfiguration::THEME,
+                Field::NAME => trans('validation.attributes.theme'),
+                Field::SETTINGS => app(SelectFieldSettings::class)
+                    ->options($themeOptions)
+                    ->value('system')
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => UserConfiguration::COLOR,
+                Field::NAME => trans('validation.attributes.color'),
+                Field::SETTINGS => app(SelectFieldSettings::class)
+                    ->options($colorOptions)
+                    ->value('neutral')
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => UserConfiguration::RADIUS,
+                Field::NAME => trans('validation.attributes.radius'),
+                Field::SETTINGS => app(RangeFieldSettings::class)
+                    ->max('1')
+                    ->min('0')
+                    ->step('0.05')
+                    ->value(['0.65'])
+                    ->toArray(),
+            ]),
         ];
     }
 

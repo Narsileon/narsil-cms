@@ -2,7 +2,7 @@
 
 #region USE
 
-use App\Enums\ThemeEnum;
+use App\Enums\Configuration\ThemeEnum;
 
 #endregion
 

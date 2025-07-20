@@ -4,11 +4,11 @@ namespace App\Http\Forms\Resources;
 
 #region USE
 
+use App\Contracts\Fields\Text\TextFieldSettings;
 use App\Contracts\Forms\Resources\SiteGroupForm as Contract;
-use App\Enums\Forms\TypeEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\Sites\SiteGroup;
-use App\Support\Forms\Input;
 
 #endregion
 
@@ -21,14 +21,18 @@ class SiteGroupForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input(SiteGroup::NAME, TypeEnum::TEXT, ''))
-                ->setRequired(true)
-                ->get(),
+            new Field([
+                Field::HANDLE => SiteGroup::NAME,
+                Field::NAME => trans('validation.attributes.name'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
     }
 

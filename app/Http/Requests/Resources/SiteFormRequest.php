@@ -19,7 +19,7 @@ class SiteFormRequest implements Contract
     #region PUBLIC METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function rules(): array
     {

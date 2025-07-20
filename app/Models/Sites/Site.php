@@ -4,7 +4,6 @@ namespace App\Models\Sites;
 
 #region USE
 
-use App\Contracts\Enable;
 use App\Models\Sites\SiteGroup;
 use App\Traits\HasFormattedDatetime;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Site extends Model implements Enable
+class Site extends Model
 {
     use HasFormattedDatetime;
 
@@ -51,6 +50,10 @@ class Site extends Model implements Enable
     #region CONSTANTS
 
     /**
+     * @var string The name of the "enabled" column.
+     */
+    final public const ENABLED = 'enabled';
+    /**
      * @var string The name of the "group id" column.
      */
     final public const GROUP_ID = 'group_id';
@@ -81,7 +84,7 @@ class Site extends Model implements Enable
     final public const RELATION_GROUP = 'group';
 
     /**
-     * @var string The name of the "sites" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'sites';
 

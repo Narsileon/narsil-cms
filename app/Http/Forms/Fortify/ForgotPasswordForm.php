@@ -4,12 +4,12 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Fields\Text\EmailFieldSettings;
 use App\Contracts\Forms\Fortify\ForgotPasswordForm as Contract;
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
+use App\Enums\Fields\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\User;
-use App\Support\Forms\Input;
 
 #endregion
 
@@ -22,16 +22,20 @@ class ForgotPasswordForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input(User::EMAIL, TypeEnum::EMAIL, ''))
-                ->setAutoComplete(AutoCompleteEnum::EMAIL)
-                ->setDescription(trans('passwords.instruction'))
-                ->setRequired(true)
-                ->get(),
+            new Field([
+                Field::HANDLE => User::EMAIL,
+                Field::NAME => trans('validation.attributes.email'),
+                Field::DESCRIPTION => trans('passwords.instruction'),
+                Field::SETTINGS => app(EmailFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::EMAIL->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
     }
 

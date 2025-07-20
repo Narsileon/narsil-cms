@@ -36,7 +36,11 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               last_name: auth?.last_name,
             }}
             render={() => (
-              <Form method={profileForm.method} url={profileForm.action}>
+              <Form
+                className="gap-6 md:grid-cols-2"
+                method={profileForm.method}
+                url={profileForm.action}
+              >
                 {profileForm.content.map((input, index) => (
                   <FormInputBlock {...input} key={index} />
                 ))}
@@ -57,6 +61,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             content={updatePasswordForm.content}
             render={() => (
               <Form
+                className="gap-6 md:grid-cols-2"
                 method={updatePasswordForm.method}
                 url={updatePasswordForm.action}
               >

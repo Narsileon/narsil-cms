@@ -91,6 +91,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                 content={form.content}
                 render={({ setError }) => (
                   <Form
+                    className="gap-6 md:grid-cols-2"
                     method={form.method}
                     url={form.action}
                     options={{

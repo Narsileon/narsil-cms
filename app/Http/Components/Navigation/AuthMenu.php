@@ -22,7 +22,7 @@ class AuthMenu extends AbstractComponent implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
@@ -41,7 +41,7 @@ class AuthMenu extends AbstractComponent implements Contract
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function registerLabels(): void
     {

@@ -58,7 +58,7 @@ class Job extends Model
     final public const RESERVED_AT = 'reserved_at';
 
     /**
-     * @var string The name of the "jobs" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'jobs';
 

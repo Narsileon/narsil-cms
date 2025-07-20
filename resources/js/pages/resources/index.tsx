@@ -137,7 +137,9 @@ function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
             </SectionContent>
             <SectionFooter className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <span className="order-2 min-w-fit truncate text-sm sm:order-1">
-                {getLabel("pagination.results")}
+                {dataTable.meta.total > 0
+                  ? getLabel("pagination.results")
+                  : getLabel("pagination.empty")}
               </span>
               <DataTablePagination
                 className="order-1 col-span-2 sm:order-2"

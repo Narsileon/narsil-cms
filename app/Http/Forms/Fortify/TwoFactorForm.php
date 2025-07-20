@@ -4,11 +4,11 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Fields\Text\TextFieldSettings;
 use App\Contracts\Forms\Fortify\TwoFactorForm as Contract;
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
+use App\Enums\Fields\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
-use App\Support\Forms\Input;
+use App\Models\Fields\Field;
 use App\Support\LabelsBag;
 
 #endregion
@@ -22,17 +22,21 @@ class TwoFactorForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input('code', TypeEnum::TEXT, ''))
-                ->setAutoComplete(AutoCompleteEnum::ONE_TIME_CODE)
-                ->setColumn(true)
-                ->setDescription(trans('two-factor.code_description'))
-                ->setRequired(true)
-                ->get(),
+            new Field([
+                Field::DESCRIPTION => trans('two-factor.code_description'),
+                Field::HANDLE => 'code',
+                Field::NAME => trans('validation.attributes.code'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                    ->className('col-span-1')
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
     }
 

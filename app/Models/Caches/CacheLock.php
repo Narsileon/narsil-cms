@@ -46,7 +46,7 @@ class CacheLock extends Model
     final public const OWNER = 'owner';
 
     /**
-     * @var string The name of the "cache locks" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'cache_locks';
 

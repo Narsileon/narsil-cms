@@ -64,7 +64,7 @@ class RolePermission extends Pivot
     final public const RELATION_ROLE = 'role';
 
     /**
-     * @var string The name of the "role permission" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'role_permission';
 

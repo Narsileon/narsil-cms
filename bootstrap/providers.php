@@ -1,8 +1,21 @@
 <?php
 
+#region USE
+
+use App\Providers\AppServiceProvider;
+use App\Providers\ComponentServiceProvider;
+use App\Providers\FieldSettingsServiceProvider;
+use App\Providers\FormRequestServiceProvider;
+use App\Providers\FormServiceProvider;
+use App\Providers\FortifyServiceProvider;
+
+#endregion
+
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\ComponentServiceProvider::class,
-    App\Providers\FormServiceProvider::class,
-    App\Providers\FortifyServiceProvider::class,
+    AppServiceProvider::class,
+    ComponentServiceProvider::class,
+    FieldSettingsServiceProvider::class,
+    FormServiceProvider::class,
+    FormRequestServiceProvider::class,
+    FortifyServiceProvider::class,
 ];

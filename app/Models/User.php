@@ -4,7 +4,6 @@ namespace App\Models;
 
 #region USE
 
-use App\Contracts\Enable;
 use App\Models\Users\Session;
 use App\Models\Users\UserConfiguration;
 use App\Observers\UserObserver;
@@ -23,7 +22,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @author Jonathan Rigaux
  */
 #[ObservedBy([UserObserver::class])]
-class User extends Authenticatable implements Enable, MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use TwoFactorAuthenticatable;
@@ -78,6 +77,10 @@ class User extends Authenticatable implements Enable, MustVerifyEmail
      * @var string The name of the "email verified at" column.
      */
     final public const EMAIL_VERIFIED_AT = 'email_verified_at';
+    /**
+     * @var string The name of the "enabled" column.
+     */
+    final public const ENABLED = 'enabled';
     /**
      * @var string The name of the "first name" column.
      */
@@ -134,7 +137,7 @@ class User extends Authenticatable implements Enable, MustVerifyEmail
     final public const RELATION_SESSIONS = 'sessions';
 
     /**
-     * @var string The name of the "users" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'users';
 

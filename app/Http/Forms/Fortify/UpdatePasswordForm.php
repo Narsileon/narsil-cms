@@ -4,12 +4,12 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Fields\Text\PasswordFieldSettings;
 use App\Contracts\Forms\Fortify\UpdatePasswordForm as Contract;
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
+use App\Enums\Fields\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\User;
-use App\Support\Forms\Input;
 
 #endregion
 
@@ -22,23 +22,35 @@ class UpdatePasswordForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input(User::ATTRIBUTE_CURRENT_PASSWORD, TypeEnum::PASSWORD, ''))
-                ->setAutoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
-                ->setRequired(true)
-                ->get(),
-            (new Input(User::PASSWORD, TypeEnum::PASSWORD, ''))
-                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->setRequired(true)
-                ->get(),
-            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, TypeEnum::PASSWORD, ''))
-                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->setRequired(true)
-                ->get(),
+            new Field([
+                Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
+                Field::NAME => trans('validation.attributes.current_password'),
+                Field::SETTINGS => app(PasswordFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => User::PASSWORD,
+                Field::NAME => trans('validation.attributes.password'),
+                Field::SETTINGS => app(PasswordFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
+                Field::NAME => trans('validation.attributes.password_confirmation'),
+                Field::SETTINGS => app(PasswordFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
     }
 

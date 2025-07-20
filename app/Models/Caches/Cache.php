@@ -46,7 +46,7 @@ class Cache extends Model
     final public const VALUE = 'value';
 
     /**
-     * @var string The name of the "cache" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'cache';
 

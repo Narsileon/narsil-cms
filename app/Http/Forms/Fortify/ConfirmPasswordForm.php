@@ -4,12 +4,12 @@ namespace App\Http\Forms\Fortify;
 
 #region USE
 
+use App\Contracts\Fields\Text\PasswordFieldSettings;
 use App\Contracts\Forms\Fortify\ConfirmPasswordForm as Contract;
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
+use App\Enums\Fields\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\User;
-use App\Support\Forms\Input;
 
 #endregion
 
@@ -22,15 +22,19 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input(user::PASSWORD, TypeEnum::PASSWORD, ''))
-                ->setAutoComplete(AutoCompleteEnum::ONE_TIME_CODE)
-                ->setRequired(true)
-                ->get(),
+            new Field([
+                Field::HANDLE => User::PASSWORD,
+                Field::NAME => trans('validation.attributes.password'),
+                Field::SETTINGS => app(PasswordFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
     }
 

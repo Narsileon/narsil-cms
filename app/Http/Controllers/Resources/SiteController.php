@@ -74,7 +74,7 @@ class SiteController extends AbstractModelController
 
         $dataTableFilter = new DataTableFilterCollection(
             SiteGroup::all(),
-            addLabel: trans('ui.add'),
+            addLabel: trans('ui.add_group'),
             labelKey: SiteGroup::NAME,
             table: SiteGroup::TABLE,
         );

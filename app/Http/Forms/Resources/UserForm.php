@@ -4,12 +4,14 @@ namespace App\Http\Forms\Resources;
 
 #region USE
 
+use App\Contracts\Fields\Text\EmailFieldSettings;
+use App\Contracts\Fields\Text\PasswordFieldSettings;
+use App\Contracts\Fields\Text\TextFieldSettings;
 use App\Contracts\Forms\Resources\UserForm as Contract;
-use App\Enums\Forms\AutoCompleteEnum;
-use App\Enums\Forms\TypeEnum;
+use App\Enums\Fields\AutoCompleteEnum;
 use App\Http\Forms\AbstractForm;
+use App\Models\Fields\Field;
 use App\Models\User;
-use App\Support\Forms\Input;
 
 #endregion
 
@@ -22,31 +24,50 @@ class UserForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
         return [
-            (new Input(User::EMAIL, TypeEnum::EMAIL, ''))
-                ->setAutoComplete(AutoCompleteEnum::EMAIL)
-                ->setRequired(true)
-                ->get(),
-            (new Input(User::PASSWORD, TypeEnum::PASSWORD, ''))
-                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->setRequired(true)
-                ->get(),
-            (new Input(User::ATTRIBUTE_PASSWORD_CONFIRMATION, TypeEnum::PASSWORD, ''))
-                ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                ->setRequired(true)
-                ->get(),
-            (new Input(User::FIRST_NAME, TypeEnum::TEXT, ''))
-                ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
-                ->setRequired(true)
-                ->get(),
-            (new Input(User::LAST_NAME, TypeEnum::TEXT, ''))
-                ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
-                ->setRequired(true)
-                ->get(),
+            new Field([
+                Field::HANDLE => User::EMAIL,
+                Field::NAME => trans('validation.attributes.email'),
+                Field::SETTINGS => app(EmailFieldSettings::class)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => User::PASSWORD,
+                Field::NAME => trans('validation.attributes.password'),
+                Field::SETTINGS => app(PasswordFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
+                Field::NAME => trans('validation.attributes.password_confirmation'),
+                Field::SETTINGS => app(PasswordFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => User::FIRST_NAME,
+                Field::NAME => trans('validation.attributes.first_name'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => User::LAST_NAME,
+                Field::NAME => trans('validation.attributes.last_name'),
+                Field::SETTINGS => app(TextFieldSettings::class)
+                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                    ->required(true)
+                    ->toArray(),
+            ]),
         ];
     }
 

@@ -42,7 +42,7 @@ class FortifyServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function register(): void
     {
@@ -56,7 +56,7 @@ class FortifyServiceProvider extends ServiceProvider
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function boot(): void
     {

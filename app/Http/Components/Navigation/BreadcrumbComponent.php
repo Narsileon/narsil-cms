@@ -19,7 +19,7 @@ class BreadcrumbComponent extends AbstractComponent
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
@@ -35,7 +35,7 @@ class BreadcrumbComponent extends AbstractComponent
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function registerLabels(): void
     {

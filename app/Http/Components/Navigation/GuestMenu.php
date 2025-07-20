@@ -21,7 +21,7 @@ class GuestMenu extends AbstractComponent implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getContent(): array
     {
@@ -39,7 +39,7 @@ class GuestMenu extends AbstractComponent implements Contract
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function registerLabels(): void
     {

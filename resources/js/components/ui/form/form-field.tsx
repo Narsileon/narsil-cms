@@ -2,25 +2,25 @@ import { FormFieldContext } from "./form-field-context";
 import useForm from "./form-context";
 
 type FormFieldProps = {
-  name: string;
+  handle: string;
   render: (field: {
-    id: string;
+    handle: string;
     value: any;
     onFieldChange: (value: any) => void;
   }) => React.ReactNode;
 };
 
-const FormField = ({ name, render }: FormFieldProps) => {
+const FormField = ({ handle, render }: FormFieldProps) => {
   const { data, errors, setData } = useForm();
 
-  const error = errors?.[name];
+  const error = errors?.[handle];
 
   return (
-    <FormFieldContext.Provider value={{ error: error, name: name }}>
+    <FormFieldContext.Provider value={{ error: error, handle: handle }}>
       {render({
-        id: name,
-        value: data?.[name] ?? "",
-        onFieldChange: (value) => setData?.(name, value),
+        handle: handle,
+        value: data?.[handle] ?? "",
+        onFieldChange: (value) => setData?.(handle, value),
       })}
     </FormFieldContext.Provider>
   );

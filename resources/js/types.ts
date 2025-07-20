@@ -30,28 +30,20 @@ export type DataTableFilterCollection = {
   };
 };
 
-export type LaravelForm = {
-  action: string;
-  id: string;
-  content: LaravelFormInput[];
-  method: string;
-  submit: string;
+export type FieldModel = {
+  description?: string;
+  handle: string;
+  name: string;
+  settings: Record<string, any>;
 };
 
-export type LaravelFormInput = {
-  autoComplete?: string;
-  column?: boolean;
-  description?: string;
+export type LaravelForm = {
+  action: string;
+  content: FieldModel[];
   id: string;
-  label: string;
-  max?: number;
-  min?: number;
-  options?: SelectOption[];
-  placeholder?: string;
-  required?: boolean;
-  step?: number;
-  type?: string;
-  value: any;
+  method: string;
+  sidebar: FieldModel[];
+  submit: string;
 };
 
 export type LaravelNavigationItem = {

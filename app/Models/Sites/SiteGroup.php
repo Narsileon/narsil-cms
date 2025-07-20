@@ -4,7 +4,6 @@ namespace App\Models\Sites;
 
 #region USE
 
-use App\Contracts\Enable;
 use App\Models\Sites\Site;
 use App\Traits\HasFormattedDatetime;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroup extends Model implements Enable
+class SiteGroup extends Model
 {
     use HasFormattedDatetime;
 
@@ -57,7 +56,7 @@ class SiteGroup extends Model implements Enable
     final public const RELATION_SITES = 'sites';
 
     /**
-     * @var string The name of the "site groups" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'site_groups';
 

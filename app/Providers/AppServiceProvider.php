@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function register(): void
     {
@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function boot(): void
     {

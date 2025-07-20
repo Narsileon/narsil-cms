@@ -70,7 +70,7 @@ class JobBatch extends Model
     final public const TOTAL_JOBS = 'total_jobs';
 
     /**
-     * @var string The name of the "job batches" table.
+     * @var string The table associated with the model.
      */
     final public const TABLE = 'job_batches';
 

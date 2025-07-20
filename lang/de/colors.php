@@ -2,7 +2,7 @@
 
 #region USE
 
-use App\Enums\ColorEnum;
+use App\Enums\Configuration\ColorEnum;
 
 #endregion
 

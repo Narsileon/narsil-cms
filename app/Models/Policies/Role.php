@@ -46,9 +46,9 @@ class Role extends Model
     final public const NAME = 'name';
 
     /**
-     * @var string The name of the "permissions" table.
+     * @var string The table associated with the model.
      */
-    final public const TABLE = 'permissions';
+    final public const TABLE = 'roles';
 
     #endregion
 }

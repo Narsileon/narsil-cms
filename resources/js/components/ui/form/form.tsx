@@ -36,7 +36,7 @@ function Form({
   return (
     <form
       id={id}
-      className={cn("grid gap-6 md:grid-cols-2", className)}
+      className={cn("grid", className)}
       method={method}
       onSubmit={onSubmit}
       {...props}

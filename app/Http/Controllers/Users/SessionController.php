@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Users;
 
 use App\Enums\SessionEnum;
 use App\Http\Requests\Users\SessionFormRequest;
-use App\Models\Session;
 use App\Models\User;
+use App\Models\Users\Session;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
