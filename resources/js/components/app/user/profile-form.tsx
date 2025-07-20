@@ -30,7 +30,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={profileForm.id}
-            content={profileForm.content}
+            fields={profileForm.content}
             initialValues={{
               first_name: auth?.first_name,
               last_name: auth?.last_name,
@@ -58,7 +58,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={updatePasswordForm.id}
-            content={updatePasswordForm.content}
+            fields={updatePasswordForm.content}
             render={() => (
               <Form
                 className="gap-6 md:grid-cols-2"

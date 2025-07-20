@@ -17,7 +17,7 @@ function FormLabel({
   requiredLabel,
   ...props
 }: FormLabelProps) {
-  const { error, name } = useFormField();
+  const { error, handle } = useFormField();
   const { getLabel } = useLabels();
 
   return (
@@ -32,7 +32,7 @@ function FormLabel({
         "[&>svg:first-child]:mr-1 [&>svg:first-child]:size-5",
         className,
       )}
-      htmlFor={name}
+      htmlFor={handle}
       {...props}
     >
       {children}

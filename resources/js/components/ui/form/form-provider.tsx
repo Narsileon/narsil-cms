@@ -4,21 +4,24 @@ import type { FormContextProps } from "./form-context";
 import type { FieldModel } from "@/types";
 
 type FormProviderProps = {
-  content?: FieldModel[];
+  fields?: FieldModel[];
   id: string;
   initialValues?: Record<string, any>;
   render: (props: FormContextProps) => React.ReactNode;
 };
 
 function FormProvider({
-  content = [],
+  fields = [],
   id,
   initialValues = {},
   render,
 }: FormProviderProps) {
   const mergedInitialValues = Object.assign(
     Object.fromEntries(
-      content.map(({ handle, settings }) => [handle, settings.value]),
+      fields.map(({ handle, settings }) => [
+        handle,
+        settings.value ?? settings.checked,
+      ]),
     ),
     initialValues,
   );

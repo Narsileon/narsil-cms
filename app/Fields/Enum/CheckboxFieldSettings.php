@@ -26,7 +26,7 @@ class CheckboxFieldSettings extends FieldSettings implements Contract
     {
         parent::__construct(TypeEnum::CHECKBOX->value);
 
-        $this->value(false);
+        $this->checked(false);
     }
 
     #endregion
@@ -44,9 +44,9 @@ class CheckboxFieldSettings extends FieldSettings implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(bool $value): static
+    final public function checked(bool $checked): static
     {
-        $this->settings[PropEnum::VALUE->value] = $value;
+        $this->settings[PropEnum::CHECKED->value] = $checked;
 
         return $this;
     }

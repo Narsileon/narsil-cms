@@ -9,6 +9,7 @@ namespace App\Enums\Fields;
 enum PropEnum: string
 {
     case AUTO_COMPLETE = 'autoComplete';
+    case CHECKED       = 'checked';
     case CLASS_NAME    = 'className';
     case MAX           = 'max';
     case MAX_LENGTH    = 'maxLength';

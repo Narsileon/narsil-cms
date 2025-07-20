@@ -80,7 +80,7 @@ class SiteForm extends AbstractForm implements Contract
                 Field::HANDLE => Site::ENABLED,
                 Field::NAME => trans('validation.attributes.enabled'),
                 Field::SETTINGS => app(SwitchFieldSettings::class)
-                    ->pressed(true)
+                    ->checked(true)
                     ->toArray(),
             ]),
             new Field([

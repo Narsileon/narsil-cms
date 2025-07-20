@@ -17,11 +17,11 @@ interface SwitchFieldSettings extends FieldSettings
     #region PUBLIC METHODS
 
     /**
-     * @param boolean $pressed
+     * @param boolean $checked
      *
      * @return static Returns the current object instance.
      */
-    public function pressed(bool $pressed): static;
+    public function checked(bool $checked): static;
 
     #endregion
 }

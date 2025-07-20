@@ -88,7 +88,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
             <CardContent>
               <FormProvider
                 id={form.id}
-                content={form.content}
+                fields={form.content}
                 render={({ setError }) => (
                   <Form
                     className="gap-6 md:grid-cols-2"

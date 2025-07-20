@@ -17,11 +17,11 @@ interface CheckboxFieldSettings extends FieldSettings
     #region PUBLIC METHODS
 
     /**
-     * @param boolean $value
+     * @param boolean $checked
      *
      * @return static Returns the current object instance.
      */
-    public function value(bool $value): static;
+    public function checked(bool $checked): static;
 
     #endregion
 }

@@ -28,7 +28,7 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
   return (
     <FormProvider
       id={form.id}
-      content={form.content}
+      fields={[...form.content, ...form.sidebar]}
       initialValues={{
         _back: _modal,
         ...data,

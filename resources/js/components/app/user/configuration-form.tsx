@@ -104,7 +104,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
       <SectionContent>
         <FormProvider
           id="user-personalization-form"
-          content={form.content}
+          fields={form.content}
           initialValues={{
             color: color,
             locale: locale,

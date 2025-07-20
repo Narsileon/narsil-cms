@@ -26,7 +26,7 @@ class SwitchFieldSettings extends FieldSettings implements Contract
     {
         parent::__construct(TypeEnum::SWITCH->value);
 
-        $this->pressed(false);
+        $this->checked(false);
     }
 
     #endregion
@@ -44,9 +44,9 @@ class SwitchFieldSettings extends FieldSettings implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function pressed(bool $value): static
+    final public function checked(bool $value): static
     {
-        $this->settings[PropEnum::VALUE->value] = $value;
+        $this->settings[PropEnum::CHECKED->value] = $value;
 
         return $this;
     }

@@ -31,6 +31,8 @@ function FormInputBlock({
   onChange,
   renderOption,
 }: FormBlockProps) {
+  const { type, ...props } = settings;
+
   return (
     <FormField
       handle={handle}
@@ -56,14 +58,14 @@ function FormInputBlock({
             </FormLabel>
             {settings.type === "checkbox" ? (
               <Checkbox
-                {...settings}
+                {...props}
                 checked={value}
                 onCheckedChange={(checked) => handleOnChange(checked)}
                 {...field}
               />
             ) : settings.type === "combobox" || settings.type === "select" ? (
               <Combobox
-                {...settings}
+                {...props}
                 options={settings.options}
                 renderOption={renderOption}
                 search={settings.type === "combobox"}
@@ -73,22 +75,23 @@ function FormInputBlock({
               />
             ) : settings.type === "range" ? (
               <Slider
-                {...settings}
+                {...props}
                 value={isArray(value) ? value : [value]}
                 onValueChange={([value]) => handleOnChange(value)}
               />
             ) : settings.type === "switch" ? (
               <Switch
-                {...settings}
+                {...props}
                 checked={value}
                 onCheckedChange={(value) => handleOnChange(value)}
               />
             ) : (
               <Input
-                {...settings}
                 id={handle}
                 value={value}
+                type={type}
                 onChange={(e) => handleOnChange(e.target.value)}
+                {...props}
                 {...field}
               />
             )}

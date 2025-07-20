@@ -60,7 +60,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
               <CardContent>
                 <FormProvider
                   id={form.id}
-                  content={form.content}
+                  fields={form.content}
                   initialValues={data}
                   render={() => (
                     <Form
