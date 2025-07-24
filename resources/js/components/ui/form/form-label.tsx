@@ -1,8 +1,8 @@
 import { AsteriskIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Label as LabelPrimitive } from "radix-ui";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import useFormField from "./form-field-context";
 
 type FormLabelProps = React.ComponentProps<typeof LabelPrimitive.Root> & {

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { GripVerticalIcon } from "lucide-react";
 import { PanelResizeHandle } from "react-resizable-panels";
 

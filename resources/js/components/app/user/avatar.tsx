@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@narsil-cms/components/ui/avatar";
 
 type UserAvatarProps = {
   firstName: string;

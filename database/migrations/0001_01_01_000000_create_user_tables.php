@@ -2,13 +2,13 @@
 
 #region USE
 
-use App\Models\User;
-use App\Models\Users\PasswordResetToken;
-use App\Models\Users\Session;
-use App\Models\Users\UserConfiguration;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Models\User;
+use Narsil\Models\Users\PasswordResetToken;
+use Narsil\Models\Users\Session;
+use Narsil\Models\Users\UserConfiguration;
 
 #endregion
 

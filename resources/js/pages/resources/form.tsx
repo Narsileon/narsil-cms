@@ -1,20 +1,20 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { FormProvider, Form, FormSubmit } from "@/components/ui/form";
+import { Card, CardContent } from "@narsil-cms/components/ui/card";
+import { FormProvider, Form, FormSubmit } from "@narsil-cms/components/ui/form";
 import { Fragment } from "react";
-import { useModalStore } from "@/stores/modal-store";
-import FormInputBlock from "@/blocks/form-input-block";
+import { useModalStore } from "@narsil-cms/stores/modal-store";
+import FormInputBlock from "@narsil-cms/blocks/form-input-block";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable";
+} from "@narsil-cms/components/ui/resizable";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@/components/ui/section";
-import type { LaravelForm } from "@/types";
+} from "@narsil-cms/components/ui/section";
+import type { LaravelForm } from "@narsil-cms/types";
 
 type FormProps = {
   _modal: boolean;

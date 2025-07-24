@@ -1,5 +1,5 @@
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@narsil-cms/components/ui/button";
+import { cn } from "@narsil-cms/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
 
 type PaginationLinkProps = React.ComponentProps<"a"> &

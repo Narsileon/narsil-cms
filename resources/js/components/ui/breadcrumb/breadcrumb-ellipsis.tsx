@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { MoreHorizontal } from "lucide-react";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 
 type BreadcrumbEllipsisProps = React.ComponentProps<"span"> & {
   ellipsisLabel?: string;

@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { DialogClose } from "@/components/ui/dialog";
+import { Button } from "@narsil-cms/components/ui/button";
+import { DialogClose } from "@narsil-cms/components/ui/dialog";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { Separator } from "@/components/ui/separator";
-import { useLabels } from "@/components/ui/labels";
+import { Separator } from "@narsil-cms/components/ui/separator";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import TwoFactorForm from "./two-factor-form";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@/components/ui/section";
-import type { LaravelForm } from "@/types";
+} from "@narsil-cms/components/ui/section";
+import type { LaravelForm } from "@narsil-cms/types";
 
 type SecurityFormProps = {
   twoFactorForm: LaravelForm;

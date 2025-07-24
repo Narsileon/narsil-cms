@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@narsil-cms/components/ui/button";
+import { cn } from "@narsil-cms/lib/utils";
 import useForm from "./form-context";
 
 type FormSubmitProps = React.ComponentProps<typeof Button> & {};

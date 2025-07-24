@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@narsil-cms/components/ui/button";
+import { cn } from "@narsil-cms/lib/utils";
 import { MenuIcon } from "lucide-react";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 import useSidebar from "./sidebar-context";
 
 type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};

@@ -1,9 +1,9 @@
-import { Container } from "@/components/ui/container";
-import { ModalRenderer } from "@/components/ui/modal";
-import { Toaster } from "@/components/ui/toaster";
+import { Container } from "@narsil-cms/components/ui/container";
+import { ModalRenderer } from "@narsil-cms/components/ui/modal";
+import { Toaster } from "@narsil-cms/components/ui/toaster";
 import { useRef } from "react";
-import AppLogo from "@/components/app/app-logo";
-import UserMenu from "@/components/app/user/menu";
+import AppLogo from "@narsil-cms/components/app/app-logo";
+import UserMenu from "@narsil-cms/components/app/user/menu";
 
 type GuestLayoutProps = {
   children: React.ReactNode;

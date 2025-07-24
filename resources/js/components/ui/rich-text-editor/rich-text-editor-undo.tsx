@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@narsil-cms/components/ui/button";
 import { Editor, useEditorState } from "@tiptap/react";
-import { Tooltip } from "@/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { UndoIcon } from "lucide-react";
-import { useLabels } from "@/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 
 type RichTextEditorUndoProps = React.ComponentProps<typeof Button> & {
   editor: Editor;

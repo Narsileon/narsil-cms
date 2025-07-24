@@ -5,7 +5,7 @@ import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import { router } from "@inertiajs/react";
 import { useCallback, useEffect, useMemo } from "react";
-import useDataTableStore from "@/stores/data-table-store";
+import useDataTableStore from "@narsil-cms/stores/data-table-store";
 import {
   closestCenter,
   DndContext,
@@ -15,7 +15,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import type { DataTableStoreType } from "@/stores/data-table-store";
+import type { DataTableStoreType } from "@narsil-cms/stores/data-table-store";
 import type { DragEndEvent } from "@dnd-kit/core";
 import type {
   ColumnDef,
@@ -53,7 +53,7 @@ function DataTableProvider({
 }: DataTableProviderProps) {
   const columnOrder = compact(columns.map((c) => c.id));
 
-  const useCreateDataTableStore = useMemo(
+  const createDataTableStore = useMemo(
     () =>
       useDataTableStore({
         id: id,
@@ -65,7 +65,7 @@ function DataTableProvider({
     [id, initialState],
   );
 
-  const dataTableStore = useCreateDataTableStore((state) => state);
+  const dataTableStore = createDataTableStore((state) => state);
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -166,21 +166,23 @@ function DataTableProvider({
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 
-    if (active && over && active.id !== over.id) {
-      if (
-        active.id.toString().startsWith("_") ||
-        over.id.toString().startsWith("_")
-      ) {
-        return;
-      }
-
-      dataTable.setColumnOrder((columnOrder) => {
-        const activeIndex = columnOrder.indexOf(active.id as string);
-        const overIndex = columnOrder.indexOf(over.id as string);
-
-        return arrayMove(columnOrder, activeIndex, overIndex);
-      });
+    if (!active || !over || active.id === over.id) {
+      return;
     }
+
+    if (
+      active.id.toString().startsWith("_") ||
+      over.id.toString().startsWith("_")
+    ) {
+      return;
+    }
+
+    dataTable.setColumnOrder((columnOrder) => {
+      const activeIndex = columnOrder.indexOf(active.id as string);
+      const overIndex = columnOrder.indexOf(over.id as string);
+
+      return arrayMove(columnOrder, activeIndex, overIndex);
+    });
   }
 
   const update = useCallback(

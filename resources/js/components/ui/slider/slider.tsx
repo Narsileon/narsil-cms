@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Slider as SliderPrimitive } from "radix-ui";
 import { useMemo } from "react";
 

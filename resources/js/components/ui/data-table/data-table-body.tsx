@@ -1,4 +1,4 @@
-import { TableBody } from "@/components/ui/table";
+import { TableBody } from "@narsil-cms/components/ui/table";
 
 type DataTableBodyProps = React.ComponentProps<typeof TableBody> & {};
 

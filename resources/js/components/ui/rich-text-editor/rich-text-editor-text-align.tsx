@@ -1,7 +1,7 @@
 import { Editor } from "@tiptap/react";
-import { Toggle } from "@/components/ui/toggle";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Toggle } from "@narsil-cms/components/ui/toggle";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
   AlignCenterIcon,
   AlignJustifyIcon,

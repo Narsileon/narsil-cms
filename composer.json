@@ -1,13 +1,18 @@
 {
   "$schema": "https://getcomposer.org/schema.json",
-  "name": "laravel/laravel",
-  "type": "project",
-  "description": "The skeleton application for the Laravel framework.",
+  "name": "narsil/cms",
+  "type": "library",
+  "description": "Headless CMS based on Laravel and React",
   "keywords": [
+    "cms",
+    "inertia",
     "laravel",
-    "framework"
+    "react",
+    "shadcn",
+    "tailwind",
+    "vite"
   ],
-  "license": "MIT",
+  "license": "proprietary",
   "require": {
     "php": "^8.2",
     "inertiajs/inertia-laravel": "^2.0",
@@ -27,7 +32,7 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
+      "Narsil\\": "src/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
     }
@@ -64,7 +69,9 @@
   },
   "extra": {
     "laravel": {
-      "dont-discover": []
+      "providers": [
+        "Narsil\\NarsilServiceProvider"
+      ]
     }
   },
   "config": {

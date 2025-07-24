@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 #region USE
 
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Narsil\Models\User;
 
 #endregion
 

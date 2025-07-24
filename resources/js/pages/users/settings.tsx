@@ -1,14 +1,19 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
+import { Separator } from "@narsil-cms/components/ui/separator";
 import { SettingsIcon, ShieldCheckIcon, UserPenIcon } from "lucide-react";
-import { TabsList, Tabs, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { useAuth } from "@/hooks/use-props";
-import { useLabels } from "@/components/ui/labels";
-import { useMinMd } from "@/hooks/use-breakpoints";
-import ConfigurationForm from "@/components/app/user/configuration-form";
-import ProfileForm from "@/components/app/user/profile-form";
-import SecurityForm from "@/components/app/user/security-form";
-import type { LaravelForm } from "@/types";
+import {
+  TabsList,
+  Tabs,
+  TabsTrigger,
+  TabsContent,
+} from "@narsil-cms/components/ui/tabs";
+import { useAuth } from "@narsil-cms/hooks/use-props";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
+import ConfigurationForm from "@narsil-cms/components/app/user/configuration-form";
+import ProfileForm from "@narsil-cms/components/app/user/profile-form";
+import SecurityForm from "@narsil-cms/components/app/user/security-form";
+import type { LaravelForm } from "@narsil-cms/types";
 
 type UserSettingsProps = {
   profileForm: LaravelForm;

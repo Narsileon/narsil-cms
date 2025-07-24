@@ -1,20 +1,23 @@
 import { Link } from "@inertiajs/react";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
   Pagination,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-} from "@/components/ui/pagination";
+} from "@narsil-cms/components/ui/pagination";
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
-import type { LaravelPaginationLinks, LaravelPaginationMeta } from "@/types";
+import type {
+  LaravelPaginationLinks,
+  LaravelPaginationMeta,
+} from "@narsil-cms/types";
 
 type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
   links: LaravelPaginationLinks;

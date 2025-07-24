@@ -1,8 +1,8 @@
 import { Editor, useEditorState } from "@tiptap/react";
 import { SuperscriptIcon } from "lucide-react";
-import { Toggle } from "@/components/ui/toggle";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Toggle } from "@narsil-cms/components/ui/toggle";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 
 type RichTextEditorSuperscriptProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;

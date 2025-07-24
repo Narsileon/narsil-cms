@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import useSidebar from "./sidebar-context";
 import {
   Sheet,
@@ -6,7 +6,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
+} from "@narsil-cms/components/ui/sheet";
 
 type SidebarProps = React.ComponentProps<"div"> & {
   collapsible?: "offcanvas" | "icon" | "none";

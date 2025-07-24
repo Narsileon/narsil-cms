@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Container } from "@/components/ui/container";
-import { Input } from "@/components/ui/input";
+import { Button } from "@narsil-cms/components/ui/button";
+import { Card, CardContent, CardFooter } from "@narsil-cms/components/ui/card";
+import { Container } from "@narsil-cms/components/ui/container";
+import { Input } from "@narsil-cms/components/ui/input";
 import { Head, Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
-import { useLabels } from "@/components/ui/labels";
-import FormInputBlock from "@/blocks/form-input-block";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import FormInputBlock from "@narsil-cms/blocks/form-input-block";
 import {
   Form,
   FormField,
@@ -16,14 +16,14 @@ import {
   FormMessage,
   FormProvider,
   FormSubmit,
-} from "@/components/ui/form";
+} from "@narsil-cms/components/ui/form";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@/components/ui/section";
-import type { LaravelForm } from "@/types";
+} from "@narsil-cms/components/ui/section";
+import type { LaravelForm } from "@narsil-cms/types";
 
 type FortifyFormProps = {
   data: Record<string, any>;

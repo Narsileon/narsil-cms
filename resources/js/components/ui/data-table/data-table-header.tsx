@@ -1,4 +1,4 @@
-import { TableHeader } from "@/components/ui/table";
+import { TableHeader } from "@narsil-cms/components/ui/table";
 
 type DataTableHeaderProps = React.ComponentProps<typeof TableHeader> & {};
 

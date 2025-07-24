@@ -1,5 +1,5 @@
 import { Avatar as AvatarPrimitive } from "radix-ui";
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 
 type AvatarFallbackProps = React.ComponentProps<
   typeof AvatarPrimitive.Fallback

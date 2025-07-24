@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import useSidebar from "./sidebar-context";
 
 type SidebarRailProps = React.ComponentProps<"button"> & {};

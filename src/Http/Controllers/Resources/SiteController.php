@@ -1,0 +1,171 @@
+<?php
+
+namespace Narsil\Http\Controllers\Resources;
+
+#region USE
+
+use Narsil\Constants\TanStackTable;
+use Narsil\Contracts\FormRequests\Resources\SiteFormRequest;
+use Narsil\Contracts\Forms\Resources\SiteForm;
+use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Http\Controllers\AbstractModelController;
+use Narsil\Http\Resources\DataTable\DataTableFilterCollection;
+use Narsil\Http\Resources\DataTable\DataTableCollection;
+use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SiteGroup;
+use Narsil\Narsil;
+use Narsil\Services\QueryService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Inertia\Response;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class SiteController extends AbstractModelController
+{
+    #region CONSTRUCTOR
+
+    /**
+     * @param SiteForm $form
+     * @param SiteFormRequest $formRequest
+     *
+     * @return void
+     */
+    public function __construct(SiteForm $form, SiteFormRequest $formRequest)
+    {
+        $this->form = $form;
+        $this->formRequest = $formRequest;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var SiteForm
+     */
+    protected readonly SiteForm $form;
+    /**
+     * @var SiteFormRequest
+     */
+    protected readonly SiteFormRequest $formRequest;
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse|Response
+     */
+    public function index(Request $request): JsonResponse|Response
+    {
+        $query = Site::query();
+
+        $this->filter($query, Site::GROUP_ID);
+
+        $dataTable = new DataTableCollection($query, new Site());
+
+        $dataTableFilter = new DataTableFilterCollection(
+            SiteGroup::all(),
+            addLabel: trans('narsil-cms::ui.add_group'),
+            labelKey: SiteGroup::NAME,
+            table: SiteGroup::TABLE,
+        );
+
+        return Narsil::render('narsil/cms::resources/index', [
+            'dataTable'       => $dataTable,
+            'dataTableFilter' => $dataTableFilter,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse|Response
+     */
+    public function create(Request $request): JsonResponse|Response
+    {
+        $form = $this->form->get(
+            action: route('sites.store'),
+            method: MethodEnum::POST,
+            submit: trans('narsil-cms::ui.create'),
+        );
+
+        return Narsil::render('narsil/cms::resources/form', [
+            'form' => $form,
+            'title' => trans('narsil-cms::ui.site'),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $attributes = $this->getAttributes($this->formRequest->rules());
+
+        Site::create($attributes);
+
+        return $this->redirectOnStored(Site::TABLE);
+    }
+
+    /**
+     * @param Request $request
+     * @param Site $site
+     *
+     * @return JsonResponse|Response
+     */
+    public function edit(Request $request, Site $site): JsonResponse|Response
+    {
+        $form = $this->form->get(
+            action: route('sites.update', $site->{Site::ID}),
+            method: MethodEnum::PATCH,
+            submit: trans('narsil-cms::ui.update'),
+        );
+
+        return Narsil::render('narsil/cms::resources/form', [
+            'data' => $site,
+            'form' => $form,
+            'title' => trans('narsil-cms::ui.site'),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Site $site
+     *
+     * @return RedirectResponse
+     */
+    public function update(Request $request, Site $site): RedirectResponse
+    {
+        $attributes = $this->getAttributes($this->formRequest->rules());
+
+        $site->update($attributes);
+
+        return $this->redirectOnUpdated(Site::TABLE);
+    }
+
+    /**
+     * @param Request $request
+     * @param Site $site
+     *
+     * @return RedirectResponse
+     */
+    public function destroy(Request $request, Site $site): RedirectResponse
+    {
+        $site->delete();
+
+        return $this->redirectOnDestroyed(Site::TABLE);
+    }
+
+    #endregion
+}

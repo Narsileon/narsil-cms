@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
 
 type CommandProps = React.ComponentProps<typeof CommandPrimitive> & {};

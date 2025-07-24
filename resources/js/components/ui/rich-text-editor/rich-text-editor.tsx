@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { EditorContent, EditorOptions, useEditor } from "@tiptap/react";
 import { Placeholder } from "@tiptap/extensions";
 import { useEffect } from "react";

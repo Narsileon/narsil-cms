@@ -2,12 +2,12 @@
 
 #region USE
 
-use App\Models\Policies\Permission;
-use App\Models\Policies\Role;
-use App\Models\Policies\RolePermission;
-use App\Models\Policies\UserPermission;
-use App\Models\Policies\UserRole;
-use App\Models\User;
+use Narsil\Models\Policies\Permission;
+use Narsil\Models\Policies\Role;
+use Narsil\Models\Policies\RolePermission;
+use Narsil\Models\Policies\UserPermission;
+use Narsil\Models\Policies\UserRole;
+use Narsil\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

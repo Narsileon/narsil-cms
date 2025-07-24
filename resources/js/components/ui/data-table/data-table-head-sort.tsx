@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@narsil-cms/components/ui/button";
 import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
 import { Header } from "@tanstack/react-table";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 
 type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
   header: Header<any, any>;

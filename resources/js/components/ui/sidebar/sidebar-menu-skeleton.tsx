@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@narsil-cms/lib/utils";
+import { Skeleton } from "@narsil-cms/components/ui/skeleton";
 import { useMemo } from "react";
 
 type SidebarMenuSkeletonProps = React.ComponentProps<"div"> & {

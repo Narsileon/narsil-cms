@@ -1,5 +1,5 @@
 import { Slot as SlotPrimitive } from "radix-ui";
-import { useModalStore } from "@/stores/modal-store";
+import { useModalStore } from "@narsil-cms/stores/modal-store";
 
 type ModalLinkProps = React.ComponentProps<"button"> & {
   asChild?: boolean;

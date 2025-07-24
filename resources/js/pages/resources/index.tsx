@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { cn } from "@/lib/utils";
+import { Button } from "@narsil-cms/components/ui/button";
+import { Checkbox } from "@narsil-cms/components/ui/checkbox";
+import { cn } from "@narsil-cms/lib/utils";
 import { Link } from "@inertiajs/react";
 import { PlusIcon } from "lucide-react";
 import { route } from "ziggy-js";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
-import DataTableBlock from "@/blocks/data-table-block";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import DataTableBlock from "@narsil-cms/blocks/data-table-block";
 import {
   DataTableFilter,
   DataTableInput,
@@ -14,20 +14,23 @@ import {
   DataTableProvider,
   DataTableRowMenu,
   DataTableSettings,
-} from "@/components/ui/data-table";
+} from "@narsil-cms/components/ui/data-table";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable";
+} from "@narsil-cms/components/ui/resizable";
 import {
   Section,
   SectionContent,
   SectionFooter,
   SectionHeader,
   SectionTitle,
-} from "@/components/ui/section";
-import type { DataTableCollection, DataTableFilterCollection } from "@/types";
+} from "@narsil-cms/components/ui/section";
+import type {
+  DataTableCollection,
+  DataTableFilterCollection,
+} from "@narsil-cms/types";
 
 type ResourceIndexProps = {
   dataTable: DataTableCollection;

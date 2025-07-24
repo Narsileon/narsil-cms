@@ -1,4 +1,4 @@
-import { Table } from "@/components/ui/table";
+import { Table } from "@narsil-cms/components/ui/table";
 import useDataTable from "./data-table-context";
 
 type DataTableProps = React.ComponentProps<typeof Table> & {};

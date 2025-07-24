@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
 
 type SheetOverlayProps = React.ComponentProps<

@@ -1,6 +1,6 @@
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { LabelsProvider } from "@/components/ui/labels";
-import { ModalState } from "@/stores/modal-store";
+import { Dialog, DialogContent } from "@narsil-cms/components/ui/dialog";
+import { LabelsProvider } from "@narsil-cms/components/ui/labels";
+import { ModalState } from "@narsil-cms/stores/modal-store";
 import { useEffect, useState } from "react";
 import type { ComponentProps, ComponentType } from "react";
 
@@ -14,9 +14,25 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
 
   useEffect(() => {
     const load = async () => {
-      const pages = import.meta.glob("/resources/js/pages/**/*.tsx");
+      const [vendorPath, componentPath] = component.includes("::")
+        ? component.split("::")
+        : [null, component];
 
-      const loader = pages[`/resources/js/pages/${component}.tsx`];
+      const pages = (() => {
+        switch (vendorPath) {
+          case "narsil/cms":
+            return import.meta.glob("@narsil-cms/pages/**/*.tsx");
+          default:
+            return import.meta.glob("@/pages/**/*.tsx");
+        }
+      })();
+
+      const loader =
+        pages[
+          vendorPath
+            ? `/vendor/${vendorPath}/resources/js/pages/${componentPath}.tsx`
+            : `/resources/js/pages/${componentPath}.tsx`
+        ];
 
       if (!loader) {
         return onClose();

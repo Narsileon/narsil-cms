@@ -1,18 +1,18 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@narsil-cms/components/ui/button";
 import { DeleteIcon, EditIcon, MoreHorizontalIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
-import { ModalLink } from "@/components/ui/modal";
+import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import type { RouteNames } from "@/types";
+} from "@narsil-cms/components/ui/dropdown-menu";
+import type { RouteNames } from "@narsil-cms/types";
 
 type DataTableRowMenuProps = Omit<
   React.ComponentProps<typeof DropdownMenuTrigger>,

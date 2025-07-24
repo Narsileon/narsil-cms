@@ -1,6 +1,6 @@
 import { CSS } from "@dnd-kit/utilities";
 import { flexRender, Header } from "@tanstack/react-table";
-import { TableHead } from "@/components/ui/table";
+import { TableHead } from "@narsil-cms/components/ui/table";
 import { useSortable } from "@dnd-kit/sortable";
 import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";

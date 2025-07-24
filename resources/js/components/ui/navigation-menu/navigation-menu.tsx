@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 import NavigationMenuViewport from "./navigation-menu-viewport";
 

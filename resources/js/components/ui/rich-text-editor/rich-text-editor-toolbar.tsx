@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@narsil-cms/components/ui/button";
+import { cn } from "@narsil-cms/lib/utils";
 import { Editor } from "@tiptap/react";
 import { HeadingIcon } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Separator } from "@narsil-cms/components/ui/separator";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import RichTextEditorBold from "./rich-text-editor-bold";
 import RichTextEditorBulletList from "./rich-text-editor-bullet-list";
 import RichTextEditorHeading from "./rich-text-editor-heading";
@@ -22,7 +22,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@narsil-cms/components/ui/dropdown-menu";
 
 type RichTextEditorToolbarProps = React.HTMLAttributes<HTMLDivElement> & {
   editor: Editor | null;

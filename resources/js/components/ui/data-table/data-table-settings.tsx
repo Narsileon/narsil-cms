@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@narsil-cms/components/ui/button";
 import { isString } from "lodash";
 import { SettingsIcon } from "lucide-react";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useLabels } from "@/components/ui/labels";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import useDataTable from "./data-table-context";
 import {
   DropdownMenu,
@@ -15,7 +15,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@narsil-cms/components/ui/dropdown-menu";
 
 type DataTableSettingsProps = React.ComponentProps<typeof Button> & {
   options?: string[];

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { SidebarContext } from "./sidebar-context";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SidebarContextProps } from "./sidebar-context";

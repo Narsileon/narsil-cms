@@ -1,18 +1,23 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@narsil-cms/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@narsil-cms/components/ui/card";
 import { CopyIcon } from "lucide-react";
-import { Form, FormProvider, FormSubmit } from "@/components/ui/form";
-import { Label } from "@/components/ui/label";
+import { Form, FormProvider, FormSubmit } from "@narsil-cms/components/ui/form";
+import { Label } from "@narsil-cms/components/ui/label";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
-import { Switch } from "@/components/ui/switch";
+import { Switch } from "@narsil-cms/components/ui/switch";
 import { toast } from "sonner";
-import { useAuth } from "@/hooks/use-props";
-import { useLabels } from "@/components/ui/labels";
+import { useAuth } from "@narsil-cms/hooks/use-props";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useState } from "react";
 import axios from "axios";
-import FormInputBlock from "@/blocks/form-input-block";
-import type { LaravelForm } from "@/types";
+import FormInputBlock from "@narsil-cms/blocks/form-input-block";
+import type { LaravelForm } from "@narsil-cms/types";
 
 type TwoFactorFormProps = {
   form: LaravelForm;

@@ -1,5 +1,5 @@
 import { CSS } from "@dnd-kit/utilities";
-import { TableCell } from "@/components/ui/table";
+import { TableCell } from "@narsil-cms/components/ui/table";
 import { useSortable } from "@dnd-kit/sortable";
 import type { Cell } from "@tanstack/react-table";
 

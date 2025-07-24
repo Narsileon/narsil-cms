@@ -2,12 +2,12 @@
 
 #region USE
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Resources\SiteController;
-use App\Http\Controllers\Resources\SiteGroupController;
-use App\Http\Controllers\Resources\UserController;
-use App\Http\Controllers\Users\SessionController;
-use App\Http\Controllers\Users\UserConfigurationController;
+use Narsil\Http\Controllers\HomeController;
+use Narsil\Http\Controllers\Resources\SiteController;
+use Narsil\Http\Controllers\Resources\SiteGroupController;
+use Narsil\Http\Controllers\Resources\UserController;
+use Narsil\Http\Controllers\Users\SessionController;
+use Narsil\Http\Controllers\Users\UserConfigurationController;
 use Illuminate\Support\Facades\Route;
 
 #endregion

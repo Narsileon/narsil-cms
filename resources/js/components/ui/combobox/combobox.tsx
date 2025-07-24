@@ -1,11 +1,11 @@
 // https://ui.shadcn.com/docs/components/combobox
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@narsil-cms/components/ui/button";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
-import { cn, getSelectOption } from "@/lib/utils";
+import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { lowerCase } from "lodash";
-import { SelectOption } from "@/types";
-import { useLabels } from "@/components/ui/labels";
+import { SelectOption } from "@narsil-cms/types";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useState } from "react";
 import {
   Command,
@@ -14,12 +14,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@narsil-cms/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@narsil-cms/components/ui/popover";
 
 type ComboboxProps = {
   labelKey?: string;

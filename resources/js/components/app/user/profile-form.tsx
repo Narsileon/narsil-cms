@@ -1,15 +1,15 @@
-import { Form, FormProvider, FormSubmit } from "@/components/ui/form";
-import { Separator } from "@/components/ui/separator";
-import { useAuth } from "@/hooks/use-props";
-import { useLabels } from "@/components/ui/labels";
-import FormInputBlock from "@/blocks/form-input-block";
+import { Form, FormProvider, FormSubmit } from "@narsil-cms/components/ui/form";
+import { Separator } from "@narsil-cms/components/ui/separator";
+import { useAuth } from "@narsil-cms/hooks/use-props";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import FormInputBlock from "@narsil-cms/blocks/form-input-block";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@/components/ui/section";
-import type { LaravelForm } from "@/types";
+} from "@narsil-cms/components/ui/section";
+import type { LaravelForm } from "@narsil-cms/types";
 
 type ProfileFormProps = {
   profileForm: LaravelForm;

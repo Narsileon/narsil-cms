@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import PaginationLink from "./pagination-link";
 
 type PaginationPreviousProps = React.ComponentProps<typeof PaginationLink> & {};

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 
 type SectionProps = React.ComponentProps<"section"> & {};
 

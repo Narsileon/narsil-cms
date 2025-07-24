@@ -1,5 +1,5 @@
 import { CircleIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
 type ContextMenuRadioItemProps = React.ComponentProps<

@@ -2,8 +2,8 @@
 
 #region USE
 
-use App\Constants\TanStackTable;
-use App\Models\Sites\SiteGroup;
+use Narsil\Constants\TanStackTable;
+use Narsil\Models\Sites\SiteGroup;
 
 #endregion
 

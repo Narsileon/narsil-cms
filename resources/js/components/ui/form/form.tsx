@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { FormEvent } from "react";
 import { VisitOptions } from "@inertiajs/core";
 import useForm from "./form-context";

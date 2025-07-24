@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Separator as SeparatorPrimitive } from "radix-ui";
 
 type SeparatorProps = React.ComponentProps<typeof SeparatorPrimitive.Root> & {};

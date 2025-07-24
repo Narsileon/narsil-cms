@@ -2,9 +2,9 @@
 
 #region USE
 
-use App\Models\Jobs\FailedJob;
-use App\Models\Jobs\Job;
-use App\Models\Jobs\JobBatch;
+use Narsil\Models\Jobs\FailedJob;
+use Narsil\Models\Jobs\Job;
+use Narsil\Models\Jobs\JobBatch;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

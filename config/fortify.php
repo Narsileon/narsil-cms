@@ -2,8 +2,8 @@
 
 #region USE
 
-use App\Models\User;
 use Laravel\Fortify\Features;
+use Narsil\Models\User;
 
 #endregion
 
@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'prefix' => '',
+    'prefix' => 'narsil',
 
     'domain' => null,
 

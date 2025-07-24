@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 import { ToggleGroupContext } from "./toggle-group-context";
 import { toggleVariants } from "./toggle";

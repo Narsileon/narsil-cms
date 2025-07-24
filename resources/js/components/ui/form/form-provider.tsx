@@ -1,7 +1,7 @@
 import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
 import type { FormContextProps } from "./form-context";
-import type { FieldModel } from "@/types";
+import type { FieldModel } from "@narsil-cms/types";
 
 type FormProviderProps = {
   fields?: FieldModel[];

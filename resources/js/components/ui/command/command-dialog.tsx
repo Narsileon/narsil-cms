@@ -1,13 +1,13 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Command } from "cmdk";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@narsil-cms/components/ui/dialog";
 
 type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
   className?: string;

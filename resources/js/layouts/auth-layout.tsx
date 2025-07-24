@@ -1,20 +1,20 @@
-import { ModalRenderer } from "@/components/ui/modal";
-import { Separator } from "@/components/ui/separator";
-import { Toaster } from "@/components/ui/toaster";
-import { useAuth } from "@/hooks/use-props";
+import { ModalRenderer } from "@narsil-cms/components/ui/modal";
+import { Separator } from "@narsil-cms/components/ui/separator";
+import { Toaster } from "@narsil-cms/components/ui/toaster";
+import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useEffect, useRef } from "react";
-import { useMaxLg } from "@/hooks/use-breakpoints";
-import AppBreadcrumb from "@/components/app/app-breadcrumb";
-import AppSidebar from "@/components/app/app-sidebar";
-import useColorStore from "@/stores/color-store";
-import useRadiusStore from "@/stores/radius-store";
-import UserMenu from "@/components/app/user/menu";
-import useThemeStore from "@/stores/theme-store";
+import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
+import AppBreadcrumb from "@narsil-cms/components/app/app-breadcrumb";
+import AppSidebar from "@narsil-cms/components/app/app-sidebar";
+import useColorStore from "@narsil-cms/stores/color-store";
+import useRadiusStore from "@narsil-cms/stores/radius-store";
+import UserMenu from "@narsil-cms/components/app/user/menu";
+import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from "@narsil-cms/components/ui/sidebar";
 
 type AuthLayoutProps = {
   children: React.ReactNode;

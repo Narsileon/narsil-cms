@@ -2,6 +2,8 @@
   "$schema": "https://json.schemastore.org/package.json",
   "private": true,
   "type": "module",
+  "name": "@narsil/cms",
+  "version": "1.0.0",
   "scripts": {
     "build": "vite build",
     "dev": "CHOKIDAR_USEPOLLING=true vite"

@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
-import { useLabels } from "@/components/ui/labels";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 import { XIcon } from "lucide-react";
 
 type DialogCloseButtonProps = React.ComponentProps<

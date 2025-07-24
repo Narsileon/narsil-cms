@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import useFormField from "./form-field-context";
 
 type FormMessageProps = React.ComponentProps<"p">;

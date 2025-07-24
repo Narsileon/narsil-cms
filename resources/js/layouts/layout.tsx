@@ -1,14 +1,14 @@
 import { isEmpty } from "lodash";
-import { LabelsProvider } from "@/components/ui/labels";
+import { LabelsProvider } from "@narsil-cms/components/ui/labels";
 import { router } from "@inertiajs/react";
 import { toast } from "sonner";
-import { useAuth, useLabels, useRedirect } from "@/hooks/use-props";
+import { useAuth, useLabels, useRedirect } from "@narsil-cms/hooks/use-props";
 import { useEffect } from "react";
 import AuthLayout from "./auth-layout";
 import GuestLayout from "./guest-layout";
-import useColorStore from "@/stores/color-store";
-import useRadiusStore from "@/stores/radius-store";
-import useThemeStore from "@/stores/theme-store";
+import useColorStore from "@narsil-cms/stores/color-store";
+import useRadiusStore from "@narsil-cms/stores/radius-store";
+import useThemeStore from "@narsil-cms/stores/theme-store";
 
 type LayoutProps = {
   children: React.ReactNode;

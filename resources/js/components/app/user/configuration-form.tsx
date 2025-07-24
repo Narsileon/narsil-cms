@@ -1,27 +1,27 @@
-import { Form, FormProvider } from "@/components/ui/form";
-import { getSelectOption } from "@/lib/utils";
+import { Form, FormProvider } from "@narsil-cms/components/ui/form";
+import { getSelectOption } from "@narsil-cms/lib/utils";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
-import { useLabels } from "@/components/ui/labels";
-import { useLocale } from "@/hooks/use-props";
-import { useModalStore } from "@/stores/modal-store";
-import FormInputBlock from "@/blocks/form-input-block";
-import useColorStore from "@/stores/color-store";
-import useRadiusStore from "@/stores/radius-store";
-import useThemeStore from "@/stores/theme-store";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { useModalStore } from "@narsil-cms/stores/modal-store";
+import FormInputBlock from "@narsil-cms/blocks/form-input-block";
+import useColorStore from "@narsil-cms/stores/color-store";
+import useRadiusStore from "@narsil-cms/stores/radius-store";
+import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@/components/ui/section";
+} from "@narsil-cms/components/ui/section";
 import {
   LanguagesIcon,
   PaletteIcon,
   SquareRoundCornerIcon,
   SunMoonIcon,
 } from "lucide-react";
-import type { LaravelForm } from "@/types";
+import type { LaravelForm } from "@narsil-cms/types";
 
 type ConfigurationFormProps = {
   form: LaravelForm;

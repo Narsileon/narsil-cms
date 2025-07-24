@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
+import { cn } from "@narsil-cms/lib/utils";
+import { Separator } from "@narsil-cms/components/ui/separator";
 
 type SidebarSeparatorProps = React.ComponentProps<typeof Separator> & {};
 

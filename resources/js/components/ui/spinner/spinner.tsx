@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Loader2 } from "lucide-react";
 
 type SpinnerProps = React.ComponentProps<typeof Loader2> & {};

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Switch as SwitchPrimitive } from "radix-ui";
 
 type SwitchProps = React.ComponentProps<typeof SwitchPrimitive.Root> & {};

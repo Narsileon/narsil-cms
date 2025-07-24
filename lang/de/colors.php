@@ -2,7 +2,7 @@
 
 #region USE
 
-use App\Enums\Configuration\ColorEnum;
+use Narsil\Enums\Configuration\ColorEnum;
 
 #endregion
 

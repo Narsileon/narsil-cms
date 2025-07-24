@@ -2,8 +2,8 @@
 
 #region USE
 
-use App\Constants\TanStackTable;
-use App\Models\User;
+use Narsil\Constants\TanStackTable;
+use Narsil\Models\User;
 
 #endregion
 

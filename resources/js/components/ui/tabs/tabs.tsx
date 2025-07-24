@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
-import { useMinMd } from "@/hooks/use-breakpoints";
+import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
 
 type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root> & {};
 

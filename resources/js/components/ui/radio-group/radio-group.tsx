@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
 type RadioGroupProps = React.ComponentProps<

@@ -1,19 +1,19 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@narsil-cms/components/ui/button";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { MenuIcon } from "lucide-react";
-import { ModalLink } from "@/components/ui/modal";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useAuth, useNavigation } from "@/hooks/use-props";
-import { useLabels } from "@/components/ui/labels";
-import UserAvatar from "@/components/app/user/avatar";
+import { ModalLink } from "@narsil-cms/components/ui/modal";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useAuth, useNavigation } from "@narsil-cms/hooks/use-props";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import UserAvatar from "@narsil-cms/components/app/user/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@narsil-cms/components/ui/dropdown-menu";
 
 type UserMenuProps = React.ComponentProps<typeof DropdownMenuTrigger> & {};
 

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@narsil-cms/lib/utils";
 import { Label as LabelPrimitive } from "radix-ui";
 
 type LabelProps = React.ComponentProps<typeof LabelPrimitive.Root> & {};

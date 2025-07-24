@@ -1,8 +1,8 @@
 import { Editor, useEditorState } from "@tiptap/react";
-import { Toggle } from "@/components/ui/toggle";
-import { Tooltip } from "@/components/ui/tooltip";
+import { Toggle } from "@narsil-cms/components/ui/toggle";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { UnderlineIcon } from "lucide-react";
-import { useLabels } from "@/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 
 type RichTextEditorUnderlineProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;

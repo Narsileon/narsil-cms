@@ -1,6 +1,6 @@
 import { flexRender, Table } from "@tanstack/react-table";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { TableCell } from "@/components/ui/table";
+import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
+import { TableCell } from "@narsil-cms/components/ui/table";
 import {
   DataTable,
   DataTableBody,
@@ -8,7 +8,7 @@ import {
   DataTableHead,
   DataTableHeader,
   DataTableRow,
-} from "@/components/ui/data-table";
+} from "@narsil-cms/components/ui/data-table";
 import {
   horizontalListSortingStrategy,
   SortableContext,

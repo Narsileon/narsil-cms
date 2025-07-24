@@ -1,11 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { DataTableRowMenu, useDataTable } from "@/components/ui/data-table";
-import { ModalLink } from "@/components/ui/modal";
+import { Button } from "@narsil-cms/components/ui/button";
+import { cn } from "@narsil-cms/lib/utils";
+import {
+  DataTableRowMenu,
+  useDataTable,
+} from "@narsil-cms/components/ui/data-table";
+import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
-import { Toggle } from "@/components/ui/toggle";
-import { useLabels } from "@/components/ui/labels";
-import type { DataTableFilterCollection } from "@/types";
+import { Toggle } from "@narsil-cms/components/ui/toggle";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import type { DataTableFilterCollection } from "@narsil-cms/types";
 
 type DataTableFilterProps = React.ComponentProps<"ul"> &
   DataTableFilterCollection & {};

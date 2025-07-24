@@ -2,8 +2,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { useLabels } from "@/components/ui/labels";
-import { useNavigation } from "@/hooks/use-props";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useNavigation } from "@narsil-cms/hooks/use-props";
 import {
   Sidebar,
   SidebarContent,
@@ -15,7 +15,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
   useSidebar,
-} from "@/components/ui/sidebar";
+} from "@narsil-cms/components/ui/sidebar";
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {};
 

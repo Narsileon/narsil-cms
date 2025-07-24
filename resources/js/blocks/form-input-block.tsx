@@ -1,18 +1,18 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { cn } from "@/lib/utils";
-import { Combobox } from "@/components/ui/combobox";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "@narsil-cms/components/ui/checkbox";
+import { cn } from "@narsil-cms/lib/utils";
+import { Combobox } from "@narsil-cms/components/ui/combobox";
+import { Input } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
+import { Slider } from "@narsil-cms/components/ui/slider";
+import { Switch } from "@narsil-cms/components/ui/switch";
 import {
   FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import type { FieldModel, SelectOption } from "@/types";
+} from "@narsil-cms/components/ui/form";
+import type { FieldModel, SelectOption } from "@narsil-cms/types";
 
 type FormBlockProps = FieldModel & {
   className?: string;
