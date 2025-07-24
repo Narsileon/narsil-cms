@@ -42,6 +42,7 @@ class NarsilServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->bootMigrations();
+        $this->bootPublishes();
         $this->bootRoutes();
         $this->bootTranslations();
     }
@@ -58,6 +59,16 @@ class NarsilServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom([
             __DIR__ . '/../database/migrations',
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    private function bootPublishes(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../config' => config_path(),
+        ], 'narsil-cms');
     }
 
     /**
