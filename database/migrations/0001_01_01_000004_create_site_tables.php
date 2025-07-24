@@ -2,11 +2,11 @@
 
 #region USE
 
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteGroup;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SiteGroup;
 
 #endregion
 

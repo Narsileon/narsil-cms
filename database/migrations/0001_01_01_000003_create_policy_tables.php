@@ -2,15 +2,15 @@
 
 #region USE
 
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Policies\RolePermission;
 use Narsil\Models\Policies\UserPermission;
 use Narsil\Models\Policies\UserRole;
 use Narsil\Models\User;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 #endregion
 
