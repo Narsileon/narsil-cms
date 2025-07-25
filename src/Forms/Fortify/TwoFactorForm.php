@@ -24,10 +24,10 @@ class TwoFactorForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function content(): array
+    public function fields(): array
     {
         return [
-            new Field([
+            [
                 Field::DESCRIPTION => trans('two-factor.code_description'),
                 Field::HANDLE => 'code',
                 Field::NAME => trans('narsil-cms::validation.attributes.code'),
@@ -36,7 +36,7 @@ class TwoFactorForm extends AbstractForm implements Contract
                     ->className('col-span-1')
                     ->required(true)
                     ->toArray(),
-            ]),
+            ],
         ];
     }
 

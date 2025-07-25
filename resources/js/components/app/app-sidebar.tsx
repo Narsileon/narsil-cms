@@ -31,7 +31,9 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       <SidebarHeader className="h-12 border-b">
         <SidebarMenuButton className="truncate" asChild={true}>
           <Link href={route("home")}>
-            <img src="/favicon.svg" width={20} height={20} />
+            <svg width={20} height={20}>
+              <use href="/favicon.svg" width={20} height={20}></use>
+            </svg>
             CMS
           </Link>
         </SidebarMenuButton>

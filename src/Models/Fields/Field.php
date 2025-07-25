@@ -5,7 +5,7 @@ namespace Narsil\Models\Fields;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #endregion
 
@@ -26,9 +26,17 @@ class Field extends Model
     {
         $this->table = self::TABLE;
 
+        $this->casts = array_merge([
+            self::SETTINGS => 'json',
+        ], $this->casts);
+
         $this->guarded = array_merge([
             self::ID,
         ], $this->guarded);
+
+        $this->with = array_merge([
+            self::RELATION_CONDITIONS,
+        ], $this->with);
 
         parent::__construct($attributes);
     }
@@ -41,6 +49,10 @@ class Field extends Model
      * @var string The name of the "description" column.
      */
     final public const DESCRIPTION = 'description';
+    /**
+     * @var string The name of the "field id" column.
+     */
+    final public const FIELD_ID = 'field_id';
     /**
      * @var string The name of the "handle" column.
      */
@@ -61,11 +73,23 @@ class Field extends Model
      * @var string The name of the "type" column.
      */
     final public const TYPE = 'type';
+    /**
+     * @var string The name of the "visibility" column.
+     */
+    final public const VISIBILITY = 'visibility';
+    /**
+     * @var string The name of the "width" column.
+     */
+    final public const WIDTH = 'width';
 
     /**
-     * @var string The name of the "field sets" relation.
+     * @var string The name of the "conditions" relation.
      */
-    final public const RELATION_FIELD_SETS = 'field_sets';
+    final public const RELATION_CONDITIONS = 'conditions';
+    /**
+     * @var string The name of the "fields" relation.
+     */
+    final public const RELATION_FIELDS = 'fields';
 
     /**
      * @var string The table associated with the model.
@@ -77,17 +101,26 @@ class Field extends Model
     #region RELATIONS
 
     /**
-     * @return HasManyThrough
+     * @return HasMany
      */
-    final public function field_sets(): HasManyThrough
+    public function conditions(): HasMany
     {
-        return $this->hasManyThrough(
-            FieldSet::class,
-            FieldSetField::class,
-            FieldSetField::FIELD_ID,
-            FieldSet::ID,
+        return $this->hasMany(
+            FieldCondition::class,
+            FieldCondition::OWNER_ID,
             self::ID,
-            FieldSetField::FIELD_SET_ID
+        );
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function fields(): HasMany
+    {
+        return $this->hasMany(
+            Field::class,
+            Field::FIELD_ID,
+            self::ID,
         );
     }
 

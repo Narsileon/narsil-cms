@@ -213,6 +213,7 @@ return [
         'max'                     => 'Max',
         'min_length'              => 'Min length',
         'min'                     => 'Min',
+        'multiple'                => 'Multiple',
         'name'                    => 'Name',
         'password_confirmation'   => 'Password confirmation',
         'password'                => 'Password',

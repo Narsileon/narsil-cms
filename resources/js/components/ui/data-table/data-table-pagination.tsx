@@ -17,7 +17,7 @@ import {
 import type {
   LaravelPaginationLinks,
   LaravelPaginationMeta,
-} from "@narsil-cms/types";
+} from  "@narsil-cms/types/types";
 
 type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
   links: LaravelPaginationLinks;

@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
 import { usePage } from "@inertiajs/react";
-import type { LaravelNavigationItem } from "@narsil-cms/types";
+import type { LaravelNavigationItem } from  "@narsil-cms/types/types";
 import type { Theme } from "@narsil-cms/stores/theme-store";
 
 type AuthProps = {

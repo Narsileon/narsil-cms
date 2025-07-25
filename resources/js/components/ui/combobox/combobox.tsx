@@ -4,7 +4,7 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { lowerCase } from "lodash";
-import { SelectOption } from "@narsil-cms/types";
+import { SelectOption } from  "@narsil-cms/types/types";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useState } from "react";
 import {

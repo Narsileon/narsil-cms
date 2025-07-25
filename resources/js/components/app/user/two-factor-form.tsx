@@ -17,7 +17,7 @@ import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useState } from "react";
 import axios from "axios";
 import FormInputBlock from "@narsil-cms/blocks/form-input-block";
-import type { LaravelForm } from "@narsil-cms/types";
+import type { LaravelForm } from "@narsil-cms/types/types";
 
 type TwoFactorFormProps = {
   form: LaravelForm;

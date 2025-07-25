@@ -12,9 +12,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@narsil-cms/components/ui/form";
-import type { FieldModel, SelectOption } from "@narsil-cms/types";
+import type { Field } from "@narsil-cms/types/models";
+import type { SelectOption } from "@narsil-cms/types/types";
 
-type FormBlockProps = FieldModel & {
+type FormBlockProps = Field & {
   className?: string;
   icon?: React.ReactNode | string;
   onChange?: (value: any) => void;
@@ -23,19 +24,23 @@ type FormBlockProps = FieldModel & {
 
 function FormInputBlock({
   className,
+  conditions,
   description,
+  handle,
   icon,
   name,
-  handle,
   settings,
+  visibility,
   onChange,
   renderOption,
 }: FormBlockProps) {
-  const { type, ...props } = settings;
+  const { type, ...props } = settings ?? {};
 
-  return (
+  return type ? (
     <FormField
+      conditions={conditions}
       handle={handle}
+      visibility={visibility}
       render={({ value, onFieldChange, ...field }) => {
         function handleOnChange(value: any) {
           onChange?.(value);
@@ -47,7 +52,6 @@ function FormInputBlock({
             className={cn(
               "col-span-full",
               settings.type === "checkbox" && "flex-row-reverse justify-end",
-              settings.type === "switch" && "flex-row justify-between",
               settings.className,
               className,
             )}
@@ -103,7 +107,7 @@ function FormInputBlock({
         );
       }}
     />
-  );
+  ) : null;
 }
 
 export default FormInputBlock;

@@ -21,7 +21,7 @@ import {
   SquareRoundCornerIcon,
   SunMoonIcon,
 } from "lucide-react";
-import type { LaravelForm } from "@narsil-cms/types";
+import type { LaravelForm } from "@narsil-cms/types/types";
 
 type ConfigurationFormProps = {
   form: LaravelForm;

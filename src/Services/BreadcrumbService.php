@@ -34,6 +34,11 @@ abstract class BreadcrumbService
         {
             $path .= '/' . $segment;
 
+            if ($segment === 'narsil')
+            {
+                continue;
+            }
+
             $breadcrumbs[] = [
                 'label' => trans('narsil-cms::ui.' . Str::replace('-', '_', $segment)),
                 'href'  => $path,

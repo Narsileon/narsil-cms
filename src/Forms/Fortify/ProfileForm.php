@@ -24,25 +24,25 @@ class ProfileForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function content(): array
+    public function fields(): array
     {
         return [
-            new Field([
+            [
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
                     ->required(true)
                     ->toArray(),
-            ]),
-            new Field([
+            ],
+            [
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
                     ->required(true)
                     ->toArray(),
-            ]),
+            ],
         ];
     }
 

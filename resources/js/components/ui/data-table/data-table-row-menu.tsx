@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
-import type { RouteNames } from "@narsil-cms/types";
+import type { RouteNames } from  "@narsil-cms/types/types";
 
 type DataTableRowMenuProps = Omit<
   React.ComponentProps<typeof DropdownMenuTrigger>,

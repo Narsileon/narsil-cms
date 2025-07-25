@@ -14,7 +14,8 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { LaravelForm } from "@narsil-cms/types";
+import type { Field } from "@narsil-cms/types/models";
+import type { LaravelForm } from "@narsil-cms/types/types";
 
 type FormProps = {
   _modal: boolean;
@@ -23,13 +24,52 @@ type FormProps = {
   title: string;
 };
 
+const FieldRenderer = ({ field }) => {
+  if (field.fields?.length) {
+    return (
+      <div className="bg-muted/10 space-y-4 rounded-xl border p-4">
+        <div className="text-lg font-semibold">{field.name}</div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {field.fields.map((subField, index) => (
+            <FieldRenderer field={subField} key={index} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return <FormInputBlock {...field} />;
+};
+
 function ResourceForm({ _modal = false, data, form, title }: FormProps) {
   const { closeTopModal } = useModalStore();
+
+  const { dataFields, mainFields, sidebarFields } = form.fields.reduce(
+    (acc, field) => {
+      switch (field.handle) {
+        case "data":
+          acc.dataFields = field.fields;
+          break;
+        case "sidebar":
+          acc.sidebarFields = field.fields;
+          break;
+        default:
+          acc.mainFields.push(field);
+          break;
+      }
+      return acc;
+    },
+    {
+      dataFields: undefined as typeof form.fields | undefined,
+      mainFields: [] as typeof form.fields,
+      sidebarFields: undefined as typeof form.fields | undefined,
+    },
+  );
 
   return (
     <FormProvider
       id={form.id}
-      fields={[...form.content, ...form.sidebar]}
+      fields={form.fields}
       initialValues={{
         _back: _modal,
         ...data,
@@ -58,14 +98,14 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                   </SectionTitle>
                 </SectionHeader>
                 <SectionContent className="grid gap-6 md:grid-cols-2">
-                  {form.content.map((field, index) => (
-                    <FormInputBlock {...field} key={index} />
-                  ))}
+                  {mainFields.map((field, index) => {
+                    return <FieldRenderer field={field} key={index} />;
+                  })}
                   <FormSubmit>{form.submit}</FormSubmit>
                 </SectionContent>
               </Section>
             </ResizablePanel>
-            {data?.id != null && form.sidebar.length > 0 ? (
+            {sidebarFields?.length || (dataFields?.length && data?.id) ? (
               <>
                 <ResizableHandle withHandle={true} />
                 <ResizablePanel
@@ -74,29 +114,20 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                   minSize={10}
                 >
                   <div className="grid gap-4 p-4">
-                    {form.sidebar.length > 0 ? (
+                    {sidebarFields?.length ? (
                       <Card>
                         <CardContent className="grid gap-6">
-                          {form.sidebar.map((input, index) => (
-                            <FormInputBlock {...input} key={index} />
-                          ))}
+                          {sidebarFields.map((field, index) => {
+                            return <FieldRenderer field={field} key={index} />;
+                          })}
                         </CardContent>
                       </Card>
                     ) : null}
-                    {data?.id != null ? (
+                    {dataFields?.length && data?.id ? (
                       <Card>
                         <CardContent className="grid grid-cols-2 justify-between">
-                          {form.meta.map((field, index) => {
-                            return (
-                              <Fragment key={index}>
-                                <div className="place-self-start truncate text-sm">
-                                  {field.name}
-                                </div>
-                                <div className="place-self-end truncate text-sm">
-                                  {data?.[field.handle]}
-                                </div>
-                              </Fragment>
-                            );
+                          {dataFields.map((field, index) => {
+                            return <FieldRenderer field={field} key={index} />;
                           })}
                         </CardContent>
                       </Card>

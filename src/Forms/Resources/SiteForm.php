@@ -29,86 +29,83 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function content(): array
+    public function fields(): array
     {
         $groupOptions = $this->getGroupOptions();
         $languageOptions = $this->getLanguageOptions();
 
         return [
-            new Field([
-                Field::HANDLE => Site::NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true)
-                    ->toArray(),
-            ]),
-            new Field([
-                Field::HANDLE => Site::HANDLE,
-                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true)
-                    ->toArray(),
-            ]),
-            new Field([
-                Field::HANDLE => Site::LANGUAGE,
-                Field::NAME => trans('narsil-cms::validation.attributes.language'),
-                Field::SETTINGS => app(SelectField::class)
-                    ->options($languageOptions)
-                    ->placeholder(trans('placeholders.search'))
-                    ->required(true)
-                    ->toArray(),
-            ]),
-            new Field([
-                Field::HANDLE => Site::GROUP_ID,
-                Field::NAME => trans('narsil-cms::validation.attributes.group'),
-                Field::SETTINGS => app(SelectField::class)
-                    ->options($groupOptions)
-                    ->placeholder(trans('narsil::placeholders.search'))
-                    ->toArray(),
-            ]),
-        ];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function meta(): array
-    {
-        return [
-            new Field([
-                Field::HANDLE => Site::ID,
-                Field::NAME => trans('narsil-cms::validation.attributes.id'),
-            ]),
-            new Field([
-                Field::HANDLE => Site::CREATED_AT,
-                Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-            ]),
-            new Field([
-                Field::HANDLE => Site::UPDATED_AT,
-                Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-            ]),
-        ];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function sidebar(): array
-    {
-        return [
-            new Field([
-                Field::HANDLE => Site::ENABLED,
-                Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
-                Field::SETTINGS => app(SwitchField::class)
-                    ->checked(true)
-                    ->toArray(),
-            ]),
-            new Field([
-                Field::HANDLE => Site::PRIMARY,
-                Field::NAME => trans('narsil-cms::validation.attributes.primary'),
-                Field::SETTINGS => app(SwitchField::class)
-                    ->toArray(),
-            ]),
+            [
+                Field::HANDLE => self::MAIN,
+                Field::RELATION_FIELDS => [
+                    [
+                        Field::HANDLE => Site::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextField::class)
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                    [
+                        Field::HANDLE => Site::HANDLE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::SETTINGS => app(TextField::class)
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                    [
+                        Field::HANDLE => Site::LANGUAGE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.language'),
+                        Field::SETTINGS => app(SelectField::class)
+                            ->options($languageOptions)
+                            ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                    [
+                        Field::HANDLE => Site::GROUP_ID,
+                        Field::NAME => trans('narsil-cms::validation.attributes.group'),
+                        Field::SETTINGS => app(SelectField::class)
+                            ->options($groupOptions)
+                            ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->toArray(),
+                    ],
+                ],
+            ],
+            [
+                Field::HANDLE => self::SIDEBAR,
+                Field::RELATION_FIELDS => [
+                    [
+                        Field::HANDLE => Site::ENABLED,
+                        Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
+                        Field::SETTINGS => app(SwitchField::class)
+                            ->checked(true)
+                            ->toArray(),
+                    ],
+                    [
+                        Field::HANDLE => Site::PRIMARY,
+                        Field::NAME => trans('narsil-cms::validation.attributes.primary'),
+                        Field::SETTINGS => app(SwitchField::class)
+                            ->toArray(),
+                    ],
+                ]
+            ],
+            [
+                Field::HANDLE => self::DATA,
+                Field::RELATION_FIELDS => [
+                    [
+                        Field::HANDLE => Site::ID,
+                        Field::NAME => trans('narsil-cms::validation.attributes.id'),
+                    ],
+                    [
+                        Field::HANDLE => Site::CREATED_AT,
+                        Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
+                    ],
+                    [
+                        Field::HANDLE => Site::UPDATED_AT,
+                        Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
+                    ],
+                ]
+            ],
         ];
     }
 

@@ -1,3 +1,4 @@
+import type { Field } from "./models";
 import type { IconName } from "lucide-react/dynamic";
 import type {
   ColumnDef,
@@ -30,20 +31,11 @@ export type DataTableFilterCollection = {
   };
 };
 
-export type FieldModel = {
-  description?: string;
-  handle: string;
-  name: string;
-  settings: Record<string, any>;
-};
-
 export type LaravelForm = {
   action: string;
-  content: FieldModel[];
+  fields: Field[];
   id: string;
-  meta: FieldModel[];
   method: string;
-  sidebar: FieldModel[];
   submit: string;
 };
 

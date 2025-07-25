@@ -19,6 +19,23 @@ use ReflectionClass;
  */
 abstract class AbstractForm implements Form
 {
+    #region CONSTANTS
+
+    /**
+     * @var string
+     */
+    final protected const DATA = 'data';
+    /**
+     * @var string
+     */
+    final protected const MAIN = 'main';
+    /**
+     * @var string
+     */
+    final protected const SIDEBAR = 'sidebar';
+
+    #endregion
+
     #region PROPERTIES
 
     /**
@@ -41,7 +58,7 @@ abstract class AbstractForm implements Form
     /**
      * @return array<Field>
      */
-    abstract public function content(): array;
+    abstract public function fields(): array;
 
     /**
      * {@inheritDoc}
@@ -60,30 +77,13 @@ abstract class AbstractForm implements Form
 
         return [
             'action'  => $this->action,
-            'content' => $this->content(),
+            'fields'  => $this->fields(),
             'id'      => $this->id(),
-            'meta'    => $this->meta(),
             'method'  => $this->method,
-            'sidebar' => $this->sidebar(),
             'submit'  => $this->submit,
         ];
     }
 
-    /**
-     * @return array<Field>
-     */
-    public function meta(): array
-    {
-        return [];
-    }
-
-    /**
-     * @return array<Field>
-     */
-    public function sidebar(): array
-    {
-        return [];
-    }
 
     #region PROTECTED METHODS
 

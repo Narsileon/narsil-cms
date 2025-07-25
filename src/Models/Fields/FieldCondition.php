@@ -30,6 +30,10 @@ class FieldCondition extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_TARGET,
+        ], $this->with);
+
         parent::__construct($attributes);
     }
 
@@ -61,11 +65,11 @@ class FieldCondition extends Model
     /**
      * @var string The name of the "owner" relation.
      */
-    final public const OWNER = 'owner';
+    final public const RELATION_OWNER = 'owner';
     /**
      * @var string The name of the "target" relation.
      */
-    final public const TARGET = 'target';
+    final public const RELATION_TARGET = 'target';
 
     /**
      * @var string The table associated with the model.
@@ -82,9 +86,9 @@ class FieldCondition extends Model
     final public function owner(): BelongsTo
     {
         return $this->belongsTo(
-            FieldSetField::class,
+            Field::class,
             self::OWNER_ID,
-            FieldSetField::ID,
+            Field::ID,
         );
     }
 
@@ -94,9 +98,9 @@ class FieldCondition extends Model
     final public function target(): BelongsTo
     {
         return $this->belongsTo(
-            FieldSetField::class,
+            Field::class,
             self::TARGET_ID,
-            FieldSetField::ID,
+            Field::ID,
         );
     }
 

@@ -13,7 +13,7 @@ import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
 import ConfigurationForm from "@narsil-cms/components/app/user/configuration-form";
 import ProfileForm from "@narsil-cms/components/app/user/profile-form";
 import SecurityForm from "@narsil-cms/components/app/user/security-form";
-import type { LaravelForm } from "@narsil-cms/types";
+import type { LaravelForm } from "@narsil-cms/types/types";
 
 type UserSettingsProps = {
   profileForm: LaravelForm;

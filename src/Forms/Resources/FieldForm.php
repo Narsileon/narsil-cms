@@ -7,8 +7,7 @@ namespace Narsil\Forms\Resources;
 use Narsil\Contracts\Fields\Select\SelectField;
 use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\FieldForm as Contract;
-use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\VisibilityModeEnum;
+use Narsil\Enums\Fields\VisibilityEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
@@ -22,42 +21,66 @@ use Narsil\Models\Fields\FieldCondition;
  */
 class FieldForm extends AbstractForm implements Contract
 {
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function content(): array
+    public function fields(): array
     {
         $fields = app()->tagged('fields');
 
         $typeOptions = $this->getTypeOptions($fields);
 
         $content = [
-            new Field([
-                Field::HANDLE => Field::NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true)
-                    ->toArray(),
-            ]),
-            new Field([
-                Field::HANDLE => Field::HANDLE,
-                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true)
-                    ->toArray(),
-            ]),
-            new Field([
-                Field::HANDLE => Field::TYPE,
-                Field::NAME => trans('narsil-cms::validation.attributes.type'),
-                Field::SETTINGS => app(SelectField::class)
-                    ->options($typeOptions)
-                    ->placeholder(trans('narsil-cms::placeholders.search'))
-                    ->required(true)
-                    ->toArray(),
-            ]),
+            [
+                Field::HANDLE => self::MAIN,
+                Field::RELATION_FIELDS => [
+                    [
+                        Field::HANDLE => Field::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextField::class)
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                    [
+                        Field::HANDLE => Field::HANDLE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::SETTINGS => app(TextField::class)
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                    [
+                        Field::HANDLE => Field::TYPE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.type'),
+                        Field::SETTINGS => app(SelectField::class)
+                            ->options($typeOptions)
+                            ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                ],
+            ],
+            [
+                Field::HANDLE => self::DATA,
+                Field::RELATION_FIELDS => [
+                    [
+                        Field::HANDLE => Field::ID,
+                        Field::NAME => trans('narsil-cms::validation.attributes.id'),
+                    ],
+                    [
+                        Field::HANDLE => Field::CREATED_AT,
+                        Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
+                    ],
+                    [
+                        Field::HANDLE => Field::UPDATED_AT,
+                        Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
+                    ],
+                ],
+            ],
         ];
+
+        $settings = [];
 
         foreach ($fields as $field)
         {
@@ -65,46 +88,27 @@ class FieldForm extends AbstractForm implements Contract
 
             foreach ($items as $key => $item)
             {
-                $item[Field::SETTINGS] = array_merge(
-                    $item[Field::SETTINGS] ?? [],
-                    [
-                        PropEnum::VISIBILITY_MODE->value => VisibilityModeEnum::HIDDEN_WHEN,
-                        PropEnum::VISIBILITY_CONDITIONS->value => [
-                            Field::HANDLE => Field::TYPE,
-                            FieldCondition::OPERATOR => '=',
-                            FieldCondition::VALUE => $field::class,
-                        ],
-                    ]
-                );
+                $item[Field::VISIBILITY] = VisibilityEnum::HIDDEN_WHEN->value;
+                $item[Field::RELATION_CONDITIONS] = [
+                    new FieldCondition([
+                        FieldCondition::TARGET_ID => Field::TYPE,
+                        FieldCondition::OPERATOR => '=',
+                        FieldCondition::VALUE => $field::class,
+                    ]),
+                ];
 
                 $items[$key] = $item;
             }
 
-            $content = array_merge($content, $items);
+            $settings = array_merge($settings, $items);
         }
 
-        return $content;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function meta(): array
-    {
-        return [
-            new Field([
-                Field::HANDLE => Field::ID,
-                Field::NAME => trans('narsil-cms::validation.attributes.id'),
-            ]),
-            new Field([
-                Field::HANDLE => Field::CREATED_AT,
-                Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-            ]),
-            new Field([
-                Field::HANDLE => Field::UPDATED_AT,
-                Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-            ]),
+        $content[] = [
+            Field::HANDLE => FIELD::SETTINGS,
+            Field::RELATION_FIELDS => $settings,
         ];
+
+        return $content;
     }
 
     #endregion

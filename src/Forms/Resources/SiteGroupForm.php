@@ -18,42 +18,43 @@ use Narsil\Models\Sites\SiteGroup;
  */
 class SiteGroupForm extends AbstractForm implements Contract
 {
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function content(): array
+    public function fields(): array
     {
         return [
-            new Field([
-                Field::HANDLE => SiteGroup::NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true)
-                    ->toArray(),
-            ]),
-        ];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function meta(): array
-    {
-        return [
-            new Field([
-                Field::HANDLE => SiteGroup::ID,
-                Field::NAME => trans('narsil-cms::validation.attributes.id'),
-            ]),
-            new Field([
-                Field::HANDLE => SiteGroup::CREATED_AT,
-                Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-            ]),
-            new Field([
-                Field::HANDLE => SiteGroup::UPDATED_AT,
-                Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-            ]),
+            [
+                Field::HANDLE => self::MAIN,
+                Field::RELATION_FIELDS => [
+                    [
+                        Field::HANDLE => SiteGroup::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextField::class)
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                ],
+            ],
+            [
+                Field::HANDLE => self::DATA,
+                Field::RELATION_FIELDS => [
+                    [
+                        Field::HANDLE => SiteGroup::ID,
+                        Field::NAME => trans('narsil-cms::validation.attributes.id'),
+                    ],
+                    [
+                        Field::HANDLE => SiteGroup::CREATED_AT,
+                        Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
+                    ],
+                    [
+                        Field::HANDLE => SiteGroup::UPDATED_AT,
+                        Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
+                    ],
+                ],
+            ],
         ];
     }
 

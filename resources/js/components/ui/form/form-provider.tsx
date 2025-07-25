@@ -1,10 +1,10 @@
 import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
+import type { Field } from "@narsil-cms/types/models";
 import type { FormContextProps } from "./form-context";
-import type { FieldModel } from "@narsil-cms/types";
 
 type FormProviderProps = {
-  fields?: FieldModel[];
+  fields?: Field[];
   id: string;
   initialValues?: Record<string, any>;
   render: (props: FormContextProps) => React.ReactNode;
@@ -16,11 +16,19 @@ function FormProvider({
   initialValues = {},
   render,
 }: FormProviderProps) {
+  function flattenFields(fields: Field[]): Field[] {
+    return fields.flatMap((field) =>
+      field.fields && field.fields.length > 0
+        ? flattenFields(field.fields)
+        : [field],
+    );
+  }
+
   const mergedInitialValues = Object.assign(
     Object.fromEntries(
-      fields.map(({ handle, settings }) => [
+      flattenFields(fields).map(({ handle, settings }) => [
         handle,
-        settings.value ?? settings.checked,
+        settings?.value ?? settings?.checked ?? "",
       ]),
     ),
     initialValues,

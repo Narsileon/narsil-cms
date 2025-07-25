@@ -9,7 +9,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { LaravelForm } from "@narsil-cms/types";
+import type { LaravelForm } from "@narsil-cms/types/types";
 
 type ProfileFormProps = {
   profileForm: LaravelForm;

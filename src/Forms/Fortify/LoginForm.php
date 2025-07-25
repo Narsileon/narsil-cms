@@ -26,31 +26,31 @@ class LoginForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function content(): array
+    public function fields(): array
     {
         return [
-            new Field([
+            [
                 Field::HANDLE => User::EMAIL,
                 Field::NAME => trans('narsil-cms::validation.attributes.email'),
                 Field::SETTINGS => app(EmailField::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
                     ->required(true)
                     ->toArray(),
-            ]),
-            new Field([
+            ],
+            [
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.password'),
                 Field::SETTINGS => app(PasswordField::class)
                     ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
                     ->required(true)
                     ->toArray(),
-            ]),
-            new Field([
+            ],
+            [
                 Field::HANDLE => User::REMEMBER,
                 Field::NAME => trans('narsil-cms::validation.attributes.remember'),
                 Field::SETTINGS => app(CheckboxField::class)
                     ->toArray(),
-            ]),
+            ],
         ];
     }
 

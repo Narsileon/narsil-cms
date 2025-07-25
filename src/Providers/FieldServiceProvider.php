@@ -14,6 +14,7 @@ use Narsil\Contracts\Fields\Number\RangeField as RangeFieldContract;
 use Narsil\Contracts\Fields\Select\SelectField as SelectFieldContract;
 use Narsil\Contracts\Fields\Text\EmailField as EmailFieldContract;
 use Narsil\Contracts\Fields\Text\PasswordField as PasswordFieldContract;
+use Narsil\Contracts\Fields\Text\RichTextField as RichTextFieldContract;
 use Narsil\Contracts\Fields\Text\TextField as TextFieldContract;
 use Narsil\Fields\Datetime\DateField;
 use Narsil\Fields\Datetime\TimeField;
@@ -24,6 +25,7 @@ use Narsil\Fields\Number\RangeField;
 use Narsil\Fields\Select\SelectField;
 use Narsil\Fields\Text\EmailField;
 use Narsil\Fields\Text\PasswordField;
+use Narsil\Fields\Text\RichTextField;
 use Narsil\Fields\Text\TextField;
 
 #endregion
@@ -75,6 +77,7 @@ class FieldServiceProvider extends ServiceProvider
             SelectFieldContract::class => SelectField::class,
             PasswordFieldContract::class => PasswordField::class,
             RangeFieldContract::class => RangeField::class,
+            RichTextFieldContract::class => RichTextField::class,
             SwitchFieldContract::class => SwitchField::class,
             TextFieldContract::class => TextField::class,
             TimeFieldContract::class => TimeField::class,
