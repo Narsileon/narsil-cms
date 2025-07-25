@@ -5,6 +5,7 @@ namespace Narsil\Models\Fields;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 #endregion
 
@@ -62,9 +63,33 @@ class Field extends Model
     final public const TYPE = 'type';
 
     /**
+     * @var string The name of the "field sets" relation.
+     */
+    final public const RELATION_FIELD_SETS = 'field_sets';
+
+    /**
      * @var string The table associated with the model.
      */
     final public const TABLE = 'fields';
+
+    #endregion
+
+    #region RELATIONS
+
+    /**
+     * @return HasManyThrough
+     */
+    final public function field_sets(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            FieldSet::class,
+            FieldSetField::class,
+            FieldSetField::FIELD_ID,
+            FieldSet::ID,
+            self::ID,
+            FieldSetField::FIELD_SET_ID
+        );
+    }
 
     #endregion
 }

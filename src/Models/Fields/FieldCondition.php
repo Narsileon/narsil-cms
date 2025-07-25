@@ -1,0 +1,104 @@
+<?php
+
+namespace Narsil\Models\Fields;
+
+#region USE
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class FieldCondition extends Model
+{
+    #region CONSTRUCTOR
+
+    /**
+     * @param array $attributes
+     *
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->table = self::TABLE;
+
+        $this->guarded = array_merge([
+            self::ID,
+        ], $this->guarded);
+
+        parent::__construct($attributes);
+    }
+
+    #endregion
+
+    #region CONSTANTS
+
+    /**
+     * @var string The name of the "id" column.
+     */
+    final public const ID = 'id';
+    /**
+     * @var string The name of the "operator" column.
+     */
+    final public const OPERATOR = 'operator';
+    /**
+     * @var string The name of the "owner id" column.
+     */
+    final public const OWNER_ID = 'owner_id';
+    /**
+     * @var string The name of the "target id" column.
+     */
+    final public const TARGET_ID = 'target_id';
+    /**
+     * @var string The name of the "value" column.
+     */
+    final public const VALUE = 'value';
+
+    /**
+     * @var string The name of the "owner" relation.
+     */
+    final public const OWNER = 'owner';
+    /**
+     * @var string The name of the "target" relation.
+     */
+    final public const TARGET = 'target';
+
+    /**
+     * @var string The table associated with the model.
+     */
+    final public const TABLE = 'field_conditions';
+
+    #endregion
+
+    #region RELATIONS
+
+    /**
+     * @return BelongsTo
+     */
+    final public function owner(): BelongsTo
+    {
+        return $this->belongsTo(
+            FieldSetField::class,
+            self::OWNER_ID,
+            FieldSetField::ID,
+        );
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    final public function target(): BelongsTo
+    {
+        return $this->belongsTo(
+            FieldSetField::class,
+            self::TARGET_ID,
+            FieldSetField::ID,
+        );
+    }
+
+    #endregion
+}

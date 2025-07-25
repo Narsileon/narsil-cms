@@ -7,8 +7,12 @@ namespace Narsil\Forms\Resources;
 use Narsil\Contracts\Fields\Select\SelectField;
 use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\FieldForm as Contract;
+use Narsil\Enums\Fields\PropEnum;
+use Narsil\Enums\Fields\VisibilityModeEnum;
+use Narsil\Fields\AbstractField;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
+use Narsil\Models\Fields\FieldCondition;
 
 #endregion
 
@@ -25,9 +29,11 @@ class FieldForm extends AbstractForm implements Contract
      */
     public function content(): array
     {
-        $typeOptions = $this->getTypeOptions();
+        $fields = app()->tagged('fields');
 
-        return [
+        $typeOptions = $this->getTypeOptions($fields);
+
+        $content = [
             new Field([
                 Field::HANDLE => Field::NAME,
                 Field::NAME => trans('narsil-cms::validation.attributes.name'),
@@ -52,6 +58,32 @@ class FieldForm extends AbstractForm implements Contract
                     ->toArray(),
             ]),
         ];
+
+        foreach ($fields as $field)
+        {
+            $items = $field->getForm();
+
+            foreach ($items as $key => $item)
+            {
+                $item[Field::SETTINGS] = array_merge(
+                    $item[Field::SETTINGS] ?? [],
+                    [
+                        PropEnum::VISIBILITY_MODE->value => VisibilityModeEnum::HIDDEN_WHEN,
+                        PropEnum::VISIBILITY_CONDITIONS->value => [
+                            Field::HANDLE => Field::TYPE,
+                            FieldCondition::OPERATOR => '=',
+                            FieldCondition::VALUE => $field::class,
+                        ],
+                    ]
+                );
+
+                $items[$key] = $item;
+            }
+
+            $content = array_merge($content, $items);
+        }
+
+        return $content;
     }
 
     /**
@@ -80,12 +112,12 @@ class FieldForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
+     * @param iterable<AbstractField> $fields
+     *
      * @return array<string>
      */
-    protected function getTypeOptions(): array
+    protected function getTypeOptions(iterable $fields): array
     {
-        $fields = app()->tagged('fields');
-
         $options = [];
 
         foreach ($fields as $field)

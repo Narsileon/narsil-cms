@@ -6,6 +6,7 @@ namespace Narsil\Fields;
 
 use Narsil\Contracts\Fields\AbstractField as Contract;
 use Narsil\Enums\Fields\PropEnum;
+use Narsil\Models\Fields\FieldCondition;
 
 #endregion
 
@@ -59,6 +60,14 @@ abstract class AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    public function toArray(): array
+    {
+        return $this->settings;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function className(string $className): static
     {
         $this->settings[PropEnum::CLASS_NAME->value] = $className;
@@ -69,9 +78,21 @@ abstract class AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public function toArray(): array
+    public function visiblityConditions(array $conditions): static
     {
-        return $this->settings;
+        $this->settings[PropEnum::VISIBILITY_CONDITIONS] = $conditions;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function visiblityMode(string $mode): static
+    {
+        $this->settings[PropEnum::VISIBILITY_MODE] = $mode;
+
+        return $this;
     }
 
     #endregion

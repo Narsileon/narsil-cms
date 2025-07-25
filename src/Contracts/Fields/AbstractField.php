@@ -5,6 +5,7 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Models\Fields\Field;
+use Narsil\Models\Fields\FieldCondition;
 
 #endregion
 
@@ -17,13 +18,6 @@ interface AbstractField
     #region PUBLIC METHODS
 
     /**
-     * @param string $className
-     *
-     * @return static Returns the current object instance.
-     */
-    public function className(string $className): static;
-
-    /**
      * @return array<Field>
      */
     public function getForm(): array;
@@ -32,6 +26,27 @@ interface AbstractField
      * @return array<string,mixed>
      */
     public function toArray(): array;
+
+    /**
+     * @param string $className
+     *
+     * @return static Returns the current object instance.
+     */
+    public function className(string $className): static;
+
+    /**
+     * @param array<FieldCondition> $conditions
+     *
+     * @return static Returns the current object instance.
+     */
+    public function visiblityConditions(array $conditions): static;
+
+    /**
+     * @param string $mode
+     *
+     * @return static Returns the current object instance.
+     */
+    public function visiblityMode(string $mode): static;
 
     #endregion
 }
