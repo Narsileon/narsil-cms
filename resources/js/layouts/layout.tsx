@@ -9,6 +9,7 @@ import GuestLayout from "./guest-layout";
 import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
 import useThemeStore from "@narsil-cms/stores/theme-store";
+import "@narsil-cms/../css/app.css";
 
 type LayoutProps = {
   children: React.ReactNode;
