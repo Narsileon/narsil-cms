@@ -4,6 +4,10 @@ namespace Narsil\Http\Controllers\Resources;
 
 #region USE
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Inertia\Response;
 use Narsil\Contracts\FormRequests\Resources\UserFormRequest;
 use Narsil\Contracts\Forms\Resources\UserForm;
 use Narsil\Enums\Forms\MethodEnum;
@@ -11,10 +15,6 @@ use Narsil\Http\Controllers\AbstractModelController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
 use Narsil\Models\User;
 use Narsil\Narsil;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Inertia\Response;
 
 #endregion
 

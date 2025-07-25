@@ -4,16 +4,16 @@ namespace Narsil\Forms\Resources;
 
 #region USE
 
-use Narsil\Contracts\Fields\Enum\SwitchFieldSettings;
-use Narsil\Contracts\Fields\Select\SelectFieldSettings;
-use Narsil\Contracts\Fields\Text\TextFieldSettings;
+use Illuminate\Support\Facades\App;
+use Locale;
+use Narsil\Contracts\Fields\Select\SelectField;
+use Narsil\Contracts\Fields\Select\SwitchField;
+use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\SiteForm as Contract;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
-use Illuminate\Support\Facades\App;
-use Locale;
 use ResourceBundle;
 
 #endregion
@@ -24,12 +24,12 @@ use ResourceBundle;
  */
 class SiteForm extends AbstractForm implements Contract
 {
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function content(): array
+    public function content(): array
     {
         $groupOptions = $this->getGroupOptions();
         $languageOptions = $this->getLanguageOptions();
@@ -37,22 +37,22 @@ class SiteForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => Site::NAME,
-                Field::NAME => trans('validation.attributes.name'),
-                Field::SETTINGS => app(TextFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                Field::SETTINGS => app(TextField::class)
                     ->required(true)
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => Site::HANDLE,
-                Field::NAME => trans('validation.attributes.handle'),
-                Field::SETTINGS => app(TextFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                Field::SETTINGS => app(TextField::class)
                     ->required(true)
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => Site::LANGUAGE,
-                Field::NAME => trans('validation.attributes.language'),
-                Field::SETTINGS => app(SelectFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.language'),
+                Field::SETTINGS => app(SelectField::class)
                     ->options($languageOptions)
                     ->placeholder(trans('placeholders.search'))
                     ->required(true)
@@ -60,8 +60,8 @@ class SiteForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => Site::GROUP_ID,
-                Field::NAME => trans('validation.attributes.group'),
-                Field::SETTINGS => app(SelectFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.group'),
+                Field::SETTINGS => app(SelectField::class)
                     ->options($groupOptions)
                     ->placeholder(trans('narsil::placeholders.search'))
                     ->toArray(),
@@ -72,20 +72,20 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function meta(): array
+    public function meta(): array
     {
         return [
             new Field([
                 Field::HANDLE => Site::ID,
-                Field::NAME => trans('validation.attributes.id'),
+                Field::NAME => trans('narsil-cms::validation.attributes.id'),
             ]),
             new Field([
                 Field::HANDLE => Site::CREATED_AT,
-                Field::NAME => trans('validation.attributes.created_at'),
+                Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
             ]),
             new Field([
                 Field::HANDLE => Site::UPDATED_AT,
-                Field::NAME => trans('validation.attributes.updated_at'),
+                Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
             ]),
         ];
     }
@@ -93,20 +93,20 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function sidebar(): array
+    public function sidebar(): array
     {
         return [
             new Field([
                 Field::HANDLE => Site::ENABLED,
-                Field::NAME => trans('validation.attributes.enabled'),
-                Field::SETTINGS => app(SwitchFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
+                Field::SETTINGS => app(SwitchField::class)
                     ->checked(true)
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => Site::PRIMARY,
-                Field::NAME => trans('validation.attributes.primary'),
-                Field::SETTINGS => app(SwitchFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.primary'),
+                Field::SETTINGS => app(SwitchField::class)
                     ->toArray(),
             ]),
         ];

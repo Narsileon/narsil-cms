@@ -26,7 +26,7 @@ abstract class TableService
      */
     public static function getColumns(string $table): Collection
     {
-        return Cache::rememberForever("tables:$table", function () use ($table)
+        return Cache::rememberForever("narsil.tables:$table", function () use ($table)
         {
             $tableColumns = collect([]);
 
@@ -55,7 +55,7 @@ abstract class TableService
             $columnName = str_replace('_id', '', $columnName);
         }
 
-        return trans("validation.attributes.$columnName");
+        return trans("narsil-cms::validation.attributes.$columnName");
     }
 
     #endregion

@@ -4,18 +4,18 @@ namespace Narsil\Forms\Users;
 
 #region USE
 
-use Narsil\Contracts\Fields\Number\RangeFieldSettings;
-use Narsil\Contracts\Fields\Select\SelectFieldSettings;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
+use Locale;
+use Narsil\Contracts\Fields\Number\RangeField;
+use Narsil\Contracts\Fields\Select\SelectField;
 use Narsil\Contracts\Forms\Users\UserConfigurationForm as Contract;
 use Narsil\Enums\Configuration\ColorEnum;
 use Narsil\Enums\Configuration\ThemeEnum;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Users\UserConfiguration;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Str;
-use Locale;
 use ResourceBundle;
 
 #endregion
@@ -26,12 +26,12 @@ use ResourceBundle;
  */
 class UserConfigurationForm extends AbstractForm implements Contract
 {
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function content(): array
+    public function content(): array
     {
         $colorOptions = $this->getColorOptions();
         $localeOptions = $this->getLocaleOptions();
@@ -40,32 +40,32 @@ class UserConfigurationForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => UserConfiguration::LOCALE,
-                Field::NAME => trans('validation.attributes.locale'),
-                Field::SETTINGS => app(SelectFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.locale'),
+                Field::SETTINGS => app(SelectField::class)
                     ->options($localeOptions)
                     ->value('en')
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::THEME,
-                Field::NAME => trans('validation.attributes.theme'),
-                Field::SETTINGS => app(SelectFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.theme'),
+                Field::SETTINGS => app(SelectField::class)
                     ->options($themeOptions)
                     ->value('system')
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::COLOR,
-                Field::NAME => trans('validation.attributes.color'),
-                Field::SETTINGS => app(SelectFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.color'),
+                Field::SETTINGS => app(SelectField::class)
                     ->options($colorOptions)
                     ->value('neutral')
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::RADIUS,
-                Field::NAME => trans('validation.attributes.radius'),
-                Field::SETTINGS => app(RangeFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.radius'),
+                Field::SETTINGS => app(RangeField::class)
                     ->max('1')
                     ->min('0')
                     ->step('0.05')

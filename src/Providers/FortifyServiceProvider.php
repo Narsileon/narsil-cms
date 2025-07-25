@@ -4,21 +4,9 @@ namespace Narsil\Providers;
 
 #region USE
 
-use Narsil\Actions\Fortify\CreateNewUser;
-use Narsil\Actions\Fortify\ResetUserPassword;
-use Narsil\Actions\Fortify\UpdateUserPassword;
-use Narsil\Actions\Fortify\UpdateUserProfileInformation;
-use Narsil\Http\Controllers\Fortify\ConfirmPasswordController;
-use Narsil\Http\Controllers\Fortify\ForgotPasswordController;
-use Narsil\Http\Controllers\Fortify\LoginController;
-use Narsil\Http\Controllers\Fortify\RegisterController;
-use Narsil\Http\Controllers\Fortify\ResetPasswordController;
-use Narsil\Http\Controllers\Fortify\TwoFactorChallengeController;
-use Narsil\Http\Controllers\Fortify\VerifyEmailController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
@@ -30,6 +18,17 @@ use Laravel\Fortify\Contracts\ProfileInformationUpdatedResponse;
 use Laravel\Fortify\Contracts\TwoFactorConfirmedResponse;
 use Laravel\Fortify\Contracts\TwoFactorDisabledResponse;
 use Laravel\Fortify\Fortify;
+use Narsil\Actions\Fortify\CreateNewUser;
+use Narsil\Actions\Fortify\ResetUserPassword;
+use Narsil\Actions\Fortify\UpdateUserPassword;
+use Narsil\Actions\Fortify\UpdateUserProfileInformation;
+use Narsil\Http\Controllers\Fortify\ConfirmPasswordController;
+use Narsil\Http\Controllers\Fortify\ForgotPasswordController;
+use Narsil\Http\Controllers\Fortify\LoginController;
+use Narsil\Http\Controllers\Fortify\RegisterController;
+use Narsil\Http\Controllers\Fortify\ResetPasswordController;
+use Narsil\Http\Controllers\Fortify\TwoFactorChallengeController;
+use Narsil\Http\Controllers\Fortify\VerifyEmailController;
 
 #endregion
 

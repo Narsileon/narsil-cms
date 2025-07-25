@@ -4,6 +4,7 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Support\ServiceProvider;
 use Narsil\Contracts\Forms\Fortify\ConfirmPasswordForm as ConfirmPasswordFormContract;
 use Narsil\Contracts\Forms\Fortify\ForgotPasswordForm as ForgotPasswordFormContract;
 use Narsil\Contracts\Forms\Fortify\LoginForm as LoginFormContract;
@@ -13,6 +14,7 @@ use Narsil\Contracts\Forms\Fortify\ResetPasswordForm as ResetPasswordFormContrac
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm as TwoFactorChallengeFormContract;
 use Narsil\Contracts\Forms\Fortify\TwoFactorForm as TwoFactorFormContract;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm as UpdatePasswordFormContract;
+use Narsil\Contracts\Forms\Resources\FieldForm as FieldFormContract;
 use Narsil\Contracts\Forms\Resources\SiteForm as SiteFormContract;
 use Narsil\Contracts\Forms\Resources\SiteGroupForm as SiteGroupFormContract;
 use Narsil\Contracts\Forms\Resources\UserForm as UserFormContract;
@@ -26,11 +28,11 @@ use Narsil\Forms\Fortify\ResetPasswordForm;
 use Narsil\Forms\Fortify\TwoFactorChallengeForm;
 use Narsil\Forms\Fortify\TwoFactorForm;
 use Narsil\Forms\Fortify\UpdatePasswordForm;
+use Narsil\Forms\Resources\FieldForm;
 use Narsil\Forms\Resources\SiteForm;
 use Narsil\Forms\Resources\SiteGroupForm;
 use Narsil\Forms\Resources\UserForm;
 use Narsil\Forms\Users\UserConfigurationForm;
-use Illuminate\Support\ServiceProvider;
 
 #endregion
 
@@ -48,6 +50,7 @@ class FormServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(ConfirmPasswordFormContract::class, ConfirmPasswordForm::class);
+        $this->app->singleton(FieldFormContract::class, FieldForm::class);
         $this->app->singleton(ForgotPasswordFormContract::class, ForgotPasswordForm::class);
         $this->app->singleton(LoginFormContract::class, LoginForm::class);
         $this->app->singleton(ProfileFormContract::class, ProfileForm::class);

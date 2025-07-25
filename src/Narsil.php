@@ -4,10 +4,10 @@ namespace Narsil;
 
 #region USE
 
-use Narsil\Support\LabelsBag;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Narsil\Support\LabelsBag;
 
 #endregion
 

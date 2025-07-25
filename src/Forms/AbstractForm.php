@@ -4,11 +4,11 @@ namespace Narsil\Forms;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Contracts\Forms\Form;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Models\Fields\Field;
 use Narsil\Support\LabelsBag;
-use Illuminate\Support\Str;
 use ReflectionClass;
 
 #endregion
@@ -19,7 +19,29 @@ use ReflectionClass;
  */
 abstract class AbstractForm implements Form
 {
+    #region PROPERTIES
+
+    /**
+     * @var string
+     */
+    public readonly string $action;
+    /**
+     * @var string
+     */
+    public readonly string $method;
+    /**
+     * @var string
+     */
+    public readonly string $submit;
+
+    #endregion
+
     #region PUBLIC METHODS
+
+    /**
+     * @return array<Field>
+     */
+    abstract public function content(): array;
 
     /**
      * {@inheritDoc}
@@ -47,36 +69,10 @@ abstract class AbstractForm implements Form
         ];
     }
 
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var string
-     */
-    public readonly string $action;
-    /**
-     * @var string
-     */
-    public readonly string $method;
-    /**
-     * @var string
-     */
-    public readonly string $submit;
-
-    #endregion
-
-    #region PROTECTED METHODS
-
     /**
      * @return array<Field>
      */
-    abstract protected function content(): array;
-
-    /**
-     * @return array<Field>
-     */
-    protected function meta(): array
+    public function meta(): array
     {
         return [];
     }
@@ -84,9 +80,21 @@ abstract class AbstractForm implements Form
     /**
      * @return array<Field>
      */
-    protected function sidebar(): array
+    public function sidebar(): array
     {
         return [];
+    }
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return string
+     */
+    protected function id(): string
+    {
+        $name = (new ReflectionClass(static::class))->getShortName();
+
+        return Str::slug(Str::snake($name));
     }
 
     /**
@@ -119,20 +127,6 @@ abstract class AbstractForm implements Form
             ->add('narsil-cms::accessibility.undo')
             ->add('narsil-cms::pagination.empty')
             ->add('narsil-cms::ui.back');
-    }
-
-    #endregion
-
-    #region PRIVATE METHODS
-
-    /**
-     * @return string
-     */
-    private function id(): string
-    {
-        $name = (new ReflectionClass(static::class))->getShortName();
-
-        return Str::slug(Str::snake($name));
     }
 
     #endregion

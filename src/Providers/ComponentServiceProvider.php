@@ -4,13 +4,13 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\ServiceProvider;
 use Narsil\Contracts\Components\Navigation\Sidebar as SidebarContract;
 use Narsil\Contracts\Components\Navigation\UserMenu as UserMenuContract;
 use Narsil\Http\Components\Navigation\AuthMenu;
 use Narsil\Http\Components\Navigation\GuestMenu;
 use Narsil\Http\Components\Navigation\Sidebar;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\ServiceProvider;
 
 #endregion
 

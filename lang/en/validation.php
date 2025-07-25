@@ -224,6 +224,7 @@ return [
         'step'                    => 'Step',
         'theme'                   => 'Theme',
         'two_factor_confirmed_at' => 'Two factor confirmed at',
+        'type'                    => 'Type',
         'updated_at'              => 'Updated at',
     ],
 

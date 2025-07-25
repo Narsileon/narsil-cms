@@ -15,6 +15,7 @@ return [
     'delete'                    => 'Delete',
     'edit'                      => 'Edit',
     'email_verify'              => 'Verify your email',
+    'field'                     => 'Field',
     'fields'                    => 'Fields',
     'home'                      => 'Home',
     'log_in'                    => 'Log in',

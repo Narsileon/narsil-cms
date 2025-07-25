@@ -4,7 +4,7 @@ namespace Narsil\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Fields\Text\TextFieldSettings;
+use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
 use Narsil\Forms\AbstractForm;
@@ -18,25 +18,25 @@ use Narsil\Models\Fields\Field;
  */
 class TwoFactorChallengeForm extends AbstractForm implements Contract
 {
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function content(): array
+    public function content(): array
     {
         return [
             new Field([
                 Field::HANDLE => 'code',
-                Field::NAME => trans('validation.attributes.code'),
-                Field::SETTINGS => app(TextFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.code'),
+                Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => 'recovery_code',
-                Field::NAME => trans('validation.attributes.recovery_code'),
-                Field::SETTINGS => app(TextFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.recovery_code'),
+                Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
                     ->toArray(),
             ]),

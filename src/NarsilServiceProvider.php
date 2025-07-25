@@ -7,7 +7,7 @@ namespace Narsil;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Providers\ComponentServiceProvider;
-use Narsil\Providers\FieldSettingsServiceProvider;
+use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
 use Narsil\Providers\FormServiceProvider;
 use Narsil\Providers\FortifyServiceProvider;
@@ -93,7 +93,7 @@ class NarsilServiceProvider extends ServiceProvider
     private function registerProviders(): void
     {
         $this->app->register(ComponentServiceProvider::class);
-        $this->app->register(FieldSettingsServiceProvider::class);
+        $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);

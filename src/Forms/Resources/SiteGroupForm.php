@@ -4,7 +4,7 @@ namespace Narsil\Forms\Resources;
 
 #region USE
 
-use Narsil\Contracts\Fields\Text\TextFieldSettings;
+use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\SiteGroupForm as Contract;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
@@ -23,13 +23,13 @@ class SiteGroupForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function content(): array
+    public function content(): array
     {
         return [
             new Field([
                 Field::HANDLE => SiteGroup::NAME,
-                Field::NAME => trans('validation.attributes.name'),
-                Field::SETTINGS => app(TextFieldSettings::class)
+                Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                Field::SETTINGS => app(TextField::class)
                     ->required(true)
                     ->toArray(),
             ]),
@@ -39,20 +39,20 @@ class SiteGroupForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function meta(): array
+    public function meta(): array
     {
         return [
             new Field([
                 Field::HANDLE => SiteGroup::ID,
-                Field::NAME => trans('validation.attributes.id'),
+                Field::NAME => trans('narsil-cms::validation.attributes.id'),
             ]),
             new Field([
                 Field::HANDLE => SiteGroup::CREATED_AT,
-                Field::NAME => trans('validation.attributes.created_at'),
+                Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
             ]),
             new Field([
                 Field::HANDLE => SiteGroup::UPDATED_AT,
-                Field::NAME => trans('validation.attributes.updated_at'),
+                Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
             ]),
         ];
     }

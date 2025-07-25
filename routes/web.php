@@ -2,13 +2,14 @@
 
 #region USE
 
+use Illuminate\Support\Facades\Route;
 use Narsil\Http\Controllers\HomeController;
+use Narsil\Http\Controllers\Resources\FieldController;
 use Narsil\Http\Controllers\Resources\SiteController;
 use Narsil\Http\Controllers\Resources\SiteGroupController;
 use Narsil\Http\Controllers\Resources\UserController;
 use Narsil\Http\Controllers\Users\SessionController;
 use Narsil\Http\Controllers\Users\UserConfigurationController;
-use Illuminate\Support\Facades\Route;
 
 #endregion
 
@@ -24,6 +25,10 @@ Route::middleware([
 
         #region RESOURCES
 
+        Route::resource('/fields', FieldController::class)
+            ->except([
+                'show'
+            ]);
         Route::resource('/site-groups', SiteGroupController::class)
             ->except([
                 'show'

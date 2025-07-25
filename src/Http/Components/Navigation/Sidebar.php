@@ -25,6 +25,9 @@ class Sidebar extends AbstractComponent implements Contract
     protected function content(): array
     {
         return [
+            (new NavigationItem(route('fields.index'), trans('narsil-cms::ui.fields')))
+                ->setIcon('globe')
+                ->get(),
             (new NavigationItem(route('sites.index'), trans('narsil-cms::ui.sites')))
                 ->setIcon('globe')
                 ->get(),
