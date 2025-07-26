@@ -77,10 +77,15 @@ class SiteController extends AbstractModelController
             table: SiteGroup::TABLE,
         );
 
-        return Narsil::render('narsil/cms::resources/index', [
-            'dataTable'       => $dataTable,
-            'dataTableFilter' => $dataTableFilter,
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/index',
+            title: trans('narsil-cms::ui.sites'),
+            description: trans('narsil-cms::ui.sites'),
+            props: [
+                'dataTable' => $dataTable,
+                'dataTableFilter' => $dataTableFilter,
+            ]
+        );
     }
 
     /**
@@ -91,15 +96,19 @@ class SiteController extends AbstractModelController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('sites.store'),
+            url: route('sites.store'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.create'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.site'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.site'),
+            description: trans('narsil-cms::ui.site'),
+            props: [
+                'form' => $form,
+            ]
+        );
     }
 
     /**
@@ -125,16 +134,20 @@ class SiteController extends AbstractModelController
     public function edit(Request $request, Site $site): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('sites.update', $site->{Site::ID}),
+            url: route('sites.update', $site->{Site::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'data' => $site,
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.site'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.site'),
+            description: trans('narsil-cms::ui.site'),
+            props: [
+                'data' => $site,
+                'form' => $form,
+            ]
+        );
     }
 
     /**

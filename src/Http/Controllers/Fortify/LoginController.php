@@ -4,12 +4,12 @@ namespace Narsil\Http\Controllers\Fortify;
 
 #region USE
 
+use Illuminate\Http\Request;
+use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\LoginForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Narsil;
 use Narsil\Support\LabelsBag;
-use Illuminate\Http\Request;
-use Inertia\Response;
 
 #endregion
 
@@ -54,16 +54,20 @@ class LoginController
         $this->registerLabels();
 
         $form = $this->form->get(
-            action: route('login'),
+            url: route('login'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.log_in'),
         );
 
-        return Narsil::render('narsil/cms::fortify/form', [
-            'form'   => $form,
-            'status' => session('status'),
-            'title'  => trans('narsil-cms::ui.connection'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::fortify/form',
+            title: trans('narsil-cms::ui.connection'),
+            description: trans('narsil-cms::ui.connection'),
+            props: [
+                'form' => $form,
+                'status' => session('status'),
+            ]
+        );
     }
 
     #endregion
@@ -76,7 +80,7 @@ class LoginController
     protected function registerLabels(): void
     {
         app(LabelsBag::class)
-            ->add('narsil-cms::narsil-cms::passwords.link');
+            ->add('narsil-cms::passwords.link');
     }
 
     #endregion

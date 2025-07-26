@@ -4,11 +4,11 @@ namespace Narsil\Http\Controllers\Fortify;
 
 #region USE
 
+use Illuminate\Http\Request;
+use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Narsil;
-use Illuminate\Http\Request;
-use Inertia\Response;
 
 #endregion
 
@@ -51,15 +51,19 @@ class TwoFactorChallengeController
     public function __invoke(Request $request): Response
     {
         $form = $this->form->get(
-            action: route('two-factor.login'),
+            url: route('two-factor.login'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.confirm'),
         );
 
-        return Narsil::render('narsil/cms::fortify/form', [
-            'form'  => $form,
-            'title' => trans('narsil-cms::ui.two_factor_authentication'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::fortify/form',
+            title: trans('narsil-cms::ui.two_factor_authentication'),
+            description: trans('narsil-cms::ui.two_factor_authentication'),
+            props: [
+                'form' => $form,
+            ]
+        );
     }
 
     #endregion

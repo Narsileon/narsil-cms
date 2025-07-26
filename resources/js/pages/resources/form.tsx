@@ -1,8 +1,11 @@
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
-import { FormProvider, Form, FormSubmit } from "@narsil-cms/components/ui/form";
-import { Fragment } from "react";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
-import FormInputBlock from "@narsil-cms/blocks/form-input-block";
+import {
+  FormProvider,
+  Form,
+  FormSubmit,
+  FormFieldRenderer,
+} from "@narsil-cms/components/ui/form";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -14,31 +17,13 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { Field } from "@narsil-cms/types/models";
-import type { LaravelForm } from "@narsil-cms/types/types";
+import type { FormType } from "@narsil-cms/types/forms";
 
 type FormProps = {
   _modal: boolean;
   data: any;
-  form: LaravelForm;
+  form: FormType;
   title: string;
-};
-
-const FieldRenderer = ({ field }) => {
-  if (field.fields?.length) {
-    return (
-      <div className="bg-muted/10 space-y-4 rounded-xl border p-4">
-        <div className="text-lg font-semibold">{field.name}</div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {field.fields.map((subField, index) => (
-            <FieldRenderer field={subField} key={index} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  return <FormInputBlock {...field} />;
 };
 
 function ResourceForm({ _modal = false, data, form, title }: FormProps) {
@@ -77,7 +62,7 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
       render={() => (
         <Form
           method={form.method}
-          url={form.action}
+          url={form.url}
           options={{
             onSuccess: () => {
               if (_modal) {
@@ -97,9 +82,9 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                     {title}
                   </SectionTitle>
                 </SectionHeader>
-                <SectionContent className="grid gap-6 md:grid-cols-2">
+                <SectionContent className="grid gap-6">
                   {mainFields.map((field, index) => {
-                    return <FieldRenderer field={field} key={index} />;
+                    return <FormFieldRenderer field={field} key={index} />;
                   })}
                   <FormSubmit>{form.submit}</FormSubmit>
                 </SectionContent>
@@ -118,7 +103,9 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                       <Card>
                         <CardContent className="grid gap-6">
                           {sidebarFields.map((field, index) => {
-                            return <FieldRenderer field={field} key={index} />;
+                            return (
+                              <FormFieldRenderer field={field} key={index} />
+                            );
                           })}
                         </CardContent>
                       </Card>
@@ -127,7 +114,9 @@ function ResourceForm({ _modal = false, data, form, title }: FormProps) {
                       <Card>
                         <CardContent className="grid grid-cols-2 justify-between">
                           {dataFields.map((field, index) => {
-                            return <FieldRenderer field={field} key={index} />;
+                            return (
+                              <FormFieldRenderer field={field} key={index} />
+                            );
                           })}
                         </CardContent>
                       </Card>

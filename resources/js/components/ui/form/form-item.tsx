@@ -1,20 +1,38 @@
 import { cn } from "@narsil-cms/lib/utils";
-import { useId } from "react";
-import { FormItemContext } from "./form-item-context";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 
-type FormItemProps = React.ComponentProps<"div"> & {};
+export const formItemVariants = cva(cn("flex flex-col gap-2 col-span-full"), {
+  variants: {
+    width: {
+      25: "md:col-span-3",
+      33: "md:col-span-4",
+      50: "md:col-span-6",
+      67: "md:col-span-8",
+      75: "md:col-span-9",
+      100: "md:col-span-12",
+    },
+  },
+  defaultVariants: {
+    width: 100,
+  },
+});
 
-function FormItem({ className, ...props }: FormItemProps) {
-  const id = useId();
+type FormItemProps = React.ComponentProps<"div"> &
+  VariantProps<typeof formItemVariants> & {};
 
+function FormItem({ className, width = 100, ...props }: FormItemProps) {
   return (
-    <FormItemContext.Provider value={{ id }}>
-      <div
-        data-slot="form-item"
-        className={cn("flex flex-col gap-2", className)}
-        {...props}
-      />
-    </FormItemContext.Provider>
+    <div
+      data-slot="form-item"
+      className={cn(
+        formItemVariants({
+          className: className,
+          width: width,
+        }),
+      )}
+      {...props}
+    />
   );
 }
 

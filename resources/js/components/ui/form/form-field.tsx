@@ -1,12 +1,10 @@
 import { FormFieldContext } from "./form-field-context";
 import { useEffect, useState } from "react";
 import useForm from "./form-context";
-import type { Field, FieldCondition } from "@narsil-cms/types/models";
+import type { FieldType } from "@narsil-cms/types/forms";
 
 type FormFieldProps = {
-  conditions?: FieldCondition[] | null;
-  handle: string;
-  visibility: Field["visibility"];
+  field: FieldType;
   render: (field: {
     handle: string;
     value: any;
@@ -14,19 +12,19 @@ type FormFieldProps = {
   }) => React.ReactNode;
 };
 
-const FormField = ({
-  conditions = null,
-  handle,
-  visibility = "display",
-  render,
-}: FormFieldProps) => {
+const FormField = ({ field, render }: FormFieldProps) => {
   const [visible, setVisible] = useState(true);
 
   const { data, errors, setData } = useForm();
+  const { handle, conditions, settings, visibility } = field;
 
   const error = errors?.[handle];
-  console.log(conditions);
+
   useEffect(() => {
+    if (!visibility) {
+      return;
+    }
+
     if (visibility === "hidden") {
       setVisible(false);
     }
@@ -36,7 +34,6 @@ const FormField = ({
         setVisible(false);
       } else {
         conditions.map((condition) => {
-          console.log(data?.[condition.target_id]);
           if (data?.[condition.target_id] !== condition.value) {
             setVisible(false);
           } else {
@@ -48,11 +45,14 @@ const FormField = ({
   }, [data, visibility]);
 
   return visible ? (
-    <FormFieldContext.Provider value={{ error: error, handle: handle }}>
+    <FormFieldContext.Provider value={{ error: error, ...field }}>
       {render({
         handle: handle,
-        value: data?.[handle] ?? "",
-        onFieldChange: (value) => setData?.(handle, value),
+        value: data?.[handle] ?? settings?.value ?? "",
+        onFieldChange: (value) => {
+          setData?.(handle, value);
+          console.log(data);
+        },
       })}
     </FormFieldContext.Provider>
   ) : null;

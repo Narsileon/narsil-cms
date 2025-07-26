@@ -30,7 +30,7 @@ import {
 import type {
   DataTableCollection,
   DataTableFilterCollection,
-} from  "@narsil-cms/types/types";
+} from "@narsil-cms/types/collection";
 
 type ResourceIndexProps = {
   dataTable: DataTableCollection;

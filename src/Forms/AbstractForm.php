@@ -41,15 +41,15 @@ abstract class AbstractForm implements Form
     /**
      * @var string
      */
-    public readonly string $action;
-    /**
-     * @var string
-     */
     public readonly string $method;
     /**
      * @var string
      */
     public readonly string $submit;
+    /**
+     * @var string
+     */
+    public readonly string $url;
 
     #endregion
 
@@ -64,23 +64,23 @@ abstract class AbstractForm implements Form
      * {@inheritDoc}
      */
     public function get(
-        string $action,
+        string $url,
         MethodEnum $method,
         string $submit,
     ): array
     {
-        $this->action = $action;
         $this->method = $method->value;
         $this->submit = $submit;
+        $this->url = $url;
 
         $this->registerLabels();
 
         return [
-            'action'  => $this->action,
-            'fields'  => $this->fields(),
-            'id'      => $this->id(),
-            'method'  => $this->method,
-            'submit'  => $this->submit,
+            'fields' => $this->fields(),
+            'id'     => $this->id(),
+            'method' => $this->method,
+            'submit' => $this->submit,
+            'url'    => $this->url,
         ];
     }
 

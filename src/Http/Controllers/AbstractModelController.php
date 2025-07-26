@@ -4,11 +4,11 @@ namespace Narsil\Http\Controllers;
 
 #region USE
 
-use Narsil\Constants\TanStackTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Narsil\Constants\TanStackTable;
 
 #endregion
 

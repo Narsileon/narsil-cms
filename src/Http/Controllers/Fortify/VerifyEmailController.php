@@ -4,10 +4,10 @@ namespace Narsil\Http\Controllers\Fortify;
 
 #region USE
 
-use Narsil\Narsil;
-use Narsil\Support\LabelsBag;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Narsil;
+use Narsil\Support\LabelsBag;
 
 #endregion
 
@@ -28,10 +28,14 @@ class VerifyEmailController
     {
         $this->registerLabels();
 
-        return Narsil::render('narsil/cms::fortify/verify-email', [
-            'status' => session('status'),
-            'title'  => trans('narsil-cms::ui.email_verify'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::fortify/verify-email',
+            title: trans('narsil-cms::ui.email_verify'),
+            description: trans('narsil-cms::ui.email_verify'),
+            props: [
+                'status' => session('status'),
+            ]
+        );
     }
 
     #endregion

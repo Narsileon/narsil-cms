@@ -1,7 +1,7 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
 import { Container } from "@narsil-cms/components/ui/container";
-import { Head, Link } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
@@ -32,31 +32,28 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
   }, [status]);
 
   return (
-    <>
-      <Head title={title} />
-      <Container className="gap-6" asChild={true} variant="centered">
-        <Section>
-          <SectionHeader>
-            <SectionTitle level="h1" variant="h4">
-              {title}
-            </SectionTitle>
-          </SectionHeader>
-          <SectionContent>
-            <Card>
-              <CardContent className="grid gap-4">
-                <p>{getLabel("verify-email.instruction")}</p>
-                <p>{getLabel("verify-email.prompt")}</p>
-                <Button asChild={true}>
-                  <Link href={route("verification.send")} method="post">
-                    {getLabel("verify-email.send_again")}
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </SectionContent>
-        </Section>
-      </Container>
-    </>
+    <Container className="gap-6" asChild={true} variant="centered">
+      <Section>
+        <SectionHeader>
+          <SectionTitle level="h1" variant="h4">
+            {title}
+          </SectionTitle>
+        </SectionHeader>
+        <SectionContent>
+          <Card>
+            <CardContent className="grid gap-4">
+              <p>{getLabel("verify-email.instruction")}</p>
+              <p>{getLabel("verify-email.prompt")}</p>
+              <Button asChild={true}>
+                <Link href={route("verification.send")} method="post">
+                  {getLabel("verify-email.send_again")}
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </SectionContent>
+      </Section>
+    </Container>
   );
 }
 

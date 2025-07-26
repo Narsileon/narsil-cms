@@ -1,6 +1,5 @@
 import { isEmpty } from "lodash";
 import { usePage } from "@inertiajs/react";
-import type { LaravelNavigationItem } from  "@narsil-cms/types/types";
 import type { Theme } from "@narsil-cms/stores/theme-store";
 
 type AuthProps = {
@@ -20,17 +19,13 @@ type ConfigurationProps = {
   theme: Theme;
 };
 
-type RedirectProps = {
-  error: string;
-  info: string;
-  success: string;
-  warning: string;
-};
-
 type GlobalProps = {
   auth: AuthProps & {
     configuration: ConfigurationProps;
   };
+  description: string;
+  labels: Record<string, string>;
+  locale: string;
   navigation: {
     breadcrumb: {
       href: string;
@@ -43,10 +38,15 @@ type GlobalProps = {
       content: ComponentProps[];
     };
   };
-
-  labels: Record<string, string>;
-  locale: string;
   redirect: RedirectProps;
+  title: string;
+};
+
+type RedirectProps = {
+  error: string;
+  info: string;
+  success: string;
+  warning: string;
 };
 
 export function useAuth() {
@@ -67,6 +67,12 @@ export function useLocale() {
 
 export function useNavigation() {
   return usePage<GlobalProps>().props.navigation ?? {};
+}
+
+export function useProps() {
+  const props = usePage<GlobalProps>().props;
+
+  return props;
 }
 
 export function useRedirect() {

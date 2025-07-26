@@ -4,7 +4,6 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { lowerCase } from "lodash";
-import { SelectOption } from  "@narsil-cms/types/types";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useState } from "react";
 import {
@@ -20,8 +19,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
+import type { SelectOption } from "@narsil-cms/types/forms";
 
 type ComboboxProps = {
+  id?: string;
   labelKey?: string;
   options: SelectOption[] | string[];
   placeholder?: string;
@@ -33,6 +34,7 @@ type ComboboxProps = {
 };
 
 function Combobox({
+  id,
   labelKey = "label",
   placeholder,
   search = true,
@@ -75,6 +77,7 @@ function Combobox({
     <Popover open={open} onOpenChange={setOpen} modal={true}>
       <PopoverTrigger asChild={true}>
         <Button
+          id={id}
           className="w-full justify-between font-normal"
           aria-expanded={open}
           role="combobox"

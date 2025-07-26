@@ -66,9 +66,14 @@ class FieldController extends AbstractModelController
 
         $dataTable = new DataTableCollection($query, new Field());
 
-        return Narsil::render('narsil/cms::resources/index', [
-            'dataTable' => $dataTable,
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/index',
+            title: trans('narsil-cms::ui.fields'),
+            description: trans('narsil-cms::ui.fields'),
+            props: [
+                'dataTable' => $dataTable,
+            ]
+        );
     }
 
     /**
@@ -79,15 +84,20 @@ class FieldController extends AbstractModelController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('fields.store'),
+            url: route('fields.store'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.create'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.field'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.field'),
+            description: trans('narsil-cms::ui.field'),
+            props: [
+                'form' => $form,
+
+            ]
+        );
     }
 
     /**
@@ -113,16 +123,20 @@ class FieldController extends AbstractModelController
     public function edit(Request $request, Field $field): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('fields.update', $field->{Field::ID}),
+            url: route('fields.update', $field->{Field::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'data' => $field,
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.field'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.field'),
+            description: trans('narsil-cms::ui.field'),
+            props: [
+                'data' => $field,
+                'form' => $form,
+            ]
+        );
     }
 
     /**

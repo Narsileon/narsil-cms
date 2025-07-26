@@ -16,11 +16,10 @@ import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useState } from "react";
 import axios from "axios";
-import FormInputBlock from "@narsil-cms/blocks/form-input-block";
-import type { LaravelForm } from "@narsil-cms/types/types";
+import type { FormType } from "@narsil-cms/types/forms";
 
 type TwoFactorFormProps = {
-  form: LaravelForm;
+  form: FormType;
 };
 
 function TwoFactorForm({ form }: TwoFactorFormProps) {
@@ -93,12 +92,12 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
             <CardContent>
               <FormProvider
                 id={form.id}
-                fields={form.content}
+                fields={form.fields}
                 render={({ setError }) => (
                   <Form
                     className="gap-6 md:grid-cols-2"
                     method={form.method}
-                    url={form.action}
+                    url={form.url}
                     options={{
                       onSuccess: () => {
                         setActive(true);

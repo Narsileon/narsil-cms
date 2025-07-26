@@ -1,4 +1,3 @@
-import type { Field } from "./models";
 import type { IconName } from "lucide-react/dynamic";
 import type {
   ColumnDef,
@@ -29,14 +28,6 @@ export type DataTableFilterCollection = {
     routes: RouteNames;
     title: string;
   };
-};
-
-export type LaravelForm = {
-  action: string;
-  fields: Field[];
-  id: string;
-  method: string;
-  submit: string;
 };
 
 export type LaravelNavigationItem = {
@@ -77,10 +68,4 @@ export type RouteNames = {
   show?: string;
   store?: string;
   update?: string;
-};
-
-export type SelectOption = {
-  label: string;
-  options?: SelectOption[];
-  [key: string]: any;
 };

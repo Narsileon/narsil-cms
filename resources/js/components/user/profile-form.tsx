@@ -2,18 +2,17 @@ import { Form, FormProvider, FormSubmit } from "@narsil-cms/components/ui/form";
 import { Separator } from "@narsil-cms/components/ui/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import FormInputBlock from "@narsil-cms/blocks/form-input-block";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { LaravelForm } from "@narsil-cms/types/types";
+import type { FormType } from "@narsil-cms/types/forms";
 
 type ProfileFormProps = {
-  profileForm: LaravelForm;
-  updatePasswordForm: LaravelForm;
+  profileForm: FormType;
+  updatePasswordForm: FormType;
 };
 
 function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
@@ -30,7 +29,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={profileForm.id}
-            fields={profileForm.content}
+            fields={profileForm.fields}
             initialValues={{
               first_name: auth?.first_name,
               last_name: auth?.last_name,
@@ -39,7 +38,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               <Form
                 className="gap-6 md:grid-cols-2"
                 method={profileForm.method}
-                url={profileForm.action}
+                url={profileForm.url}
               >
                 {profileForm.content.map((input, index) => (
                   <FormInputBlock {...input} key={index} />
@@ -63,7 +62,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               <Form
                 className="gap-6 md:grid-cols-2"
                 method={updatePasswordForm.method}
-                url={updatePasswordForm.action}
+                url={updatePasswordForm.url}
               >
                 {updatePasswordForm.content.map((input, index) => (
                   <FormInputBlock {...input} key={index} />

@@ -8,7 +8,7 @@ import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import type { DataTableFilterCollection } from  "@narsil-cms/types/types";
+import type { DataTableFilterCollection } from "@narsil-cms/types/collection";
 
 type DataTableFilterProps = React.ComponentProps<"ul"> &
   DataTableFilterCollection & {};

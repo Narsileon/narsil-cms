@@ -6,7 +6,7 @@ import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useAuth, useNavigation } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import UserAvatar from "@narsil-cms/components/app/user/avatar";
+import UserAvatar from "@narsil-cms/components/user/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,

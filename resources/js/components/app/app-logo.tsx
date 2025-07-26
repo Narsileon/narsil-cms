@@ -3,9 +3,9 @@ import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import React from "react";
 
-type AppLogo = Omit<React.ComponentProps<typeof Link>, "href">;
+type AppLogoProps = Omit<React.ComponentProps<typeof Link>, "href">;
 
-function AppLogo({ className, ...props }: AppLogo) {
+function AppLogo({ className, ...props }: AppLogoProps) {
   return (
     <Link
       className={cn("text-xl font-bold", className)}

@@ -4,11 +4,11 @@ namespace Narsil\Http\Controllers\Fortify;
 
 #region USE
 
+use Illuminate\Http\Request;
+use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\RegisterForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Narsil;
-use Illuminate\Http\Request;
-use Inertia\Response;
 
 #endregion
 
@@ -51,15 +51,19 @@ class RegisterController
     public function __invoke(Request $request): Response
     {
         $form = $this->form->get(
-            action: route('register'),
+            url: route('register'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.register'),
         );
 
-        return Narsil::render('narsil/cms::fortify/form', [
-            'form'  => $form,
-            'title' => trans('narsil-cms::ui.registration'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::fortify/form',
+            title: trans('narsil-cms::ui.registration'),
+            description: trans('narsil-cms::ui.registration'),
+            props: [
+                'form' => $form,
+            ]
+        );
     }
 
     #endregion

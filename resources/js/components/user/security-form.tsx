@@ -11,10 +11,10 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { LaravelForm } from "@narsil-cms/types/types";
+import type { FormType } from "@narsil-cms/types/forms";
 
 type SecurityFormProps = {
-  twoFactorForm: LaravelForm;
+  twoFactorForm: FormType;
 };
 
 function SecurityForm({ twoFactorForm }: SecurityFormProps) {

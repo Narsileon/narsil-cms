@@ -17,8 +17,9 @@ function FormLabel({
   requiredLabel,
   ...props
 }: FormLabelProps) {
-  const { error, handle } = useFormField();
   const { getLabel } = useLabels();
+
+  const { error, handle } = useFormField();
 
   return (
     <LabelPrimitive.Label

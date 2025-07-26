@@ -2,15 +2,15 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/ui/card";
 import { Container } from "@narsil-cms/components/ui/container";
 import { Input } from "@narsil-cms/components/ui/input";
-import { Head, Link } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import FormInputBlock from "@narsil-cms/blocks/form-input-block";
 import {
   Form,
   FormField,
+  FormFieldRenderer,
   FormItem,
   FormLabel,
   FormMessage,
@@ -23,11 +23,11 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { LaravelForm } from "@narsil-cms/types/types";
+import type { FormType } from "@narsil-cms/types/forms";
 
 type FortifyFormProps = {
   data: Record<string, any>;
-  form: LaravelForm;
+  form: FormType;
   status?: string;
   title: string;
 };
@@ -46,38 +46,37 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
   }, [status]);
 
   return (
-    <>
-      <Head title={title} />
-      <Container className="gap-6" asChild={true} variant="centered">
-        <Section>
-          <SectionHeader>
-            <SectionTitle level="h1" variant="h4">
-              {title}
-            </SectionTitle>
-          </SectionHeader>
-          <SectionContent>
-            <Card className="max-w-md">
-              <CardContent>
-                <FormProvider
-                  id={form.id}
-                  fields={form.content}
-                  initialValues={data}
-                  render={() => (
-                    <Form
-                      className="gap-6 md:grid-cols-2"
-                      method={form.method}
-                      url={form.action}
-                    >
-                      {form.content.map((input, index) =>
-                        form.id === "login-form" &&
-                        input.handle === "password" ? (
-                          <FormField
-                            handle={input.handle}
-                            render={({ onFieldChange, ...field }) => (
+    <Container className="gap-6" asChild={true} variant="centered">
+      <Section>
+        <SectionHeader>
+          <SectionTitle level="h1" variant="h4">
+            {title}
+          </SectionTitle>
+        </SectionHeader>
+        <SectionContent>
+          <Card className="max-w-md">
+            <CardContent>
+              <FormProvider
+                id={form.id}
+                fields={form.fields}
+                initialValues={data}
+                render={() => (
+                  <Form
+                    className="gap-6 md:grid-cols-12"
+                    method={form.method}
+                    url={form.url}
+                  >
+                    {form.fields.map((field, index) =>
+                      form.id === "login-form" &&
+                      field.handle === "password" ? (
+                        <FormField
+                          field={field}
+                          render={({ value, onFieldChange }) => {
+                            return (
                               <FormItem className="col-span-full">
                                 <div className="flex items-center justify-between gap-3">
                                   <FormLabel required={true}>
-                                    {input.name}
+                                    {field.name}
                                   </FormLabel>
                                   <Link
                                     className="text-xs"
@@ -87,38 +86,39 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                                   </Link>
                                 </div>
                                 <Input
-                                  {...input.settings}
-                                  onChange={(e) =>
-                                    onFieldChange(e.target.value)
+                                  {...field.settings}
+                                  id={field.handle}
+                                  value={value}
+                                  onChange={(event) =>
+                                    onFieldChange(event.target.value)
                                   }
-                                  {...field}
                                 />
                                 <FormMessage />
                               </FormItem>
-                            )}
-                            key={index}
-                          />
-                        ) : (
-                          <FormInputBlock {...input} key={index} />
-                        ),
-                      )}
-                      <FormSubmit>{form.submit}</FormSubmit>
-                    </Form>
-                  )}
-                />
-              </CardContent>
-              {form.id === "forgot-password-form" ? (
-                <CardFooter className="border-t">
-                  <Button className="w-full" asChild={true} variant="secondary">
-                    <Link href={route("login")}>{getLabel("ui.back")}</Link>
-                  </Button>
-                </CardFooter>
-              ) : null}
-            </Card>
-          </SectionContent>
-        </Section>
-      </Container>
-    </>
+                            );
+                          }}
+                          key={index}
+                        />
+                      ) : (
+                        <FormFieldRenderer field={field} key={index} />
+                      ),
+                    )}
+                    <FormSubmit>{form.submit}</FormSubmit>
+                  </Form>
+                )}
+              />
+            </CardContent>
+            {form.id === "forgot-password-form" ? (
+              <CardFooter className="border-t">
+                <Button className="w-full" asChild={true} variant="secondary">
+                  <Link href={route("login")}>{getLabel("ui.back")}</Link>
+                </Button>
+              </CardFooter>
+            ) : null}
+          </Card>
+        </SectionContent>
+      </Section>
+    </Container>
   );
 }
 

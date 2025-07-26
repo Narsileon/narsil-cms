@@ -4,13 +4,13 @@ namespace Narsil\Http\Controllers\Users;
 
 #region USE
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Narsil\Enums\SessionEnum;
 use Narsil\Http\Requests\Users\SessionFormRequest;
 use Narsil\Models\User;
 use Narsil\Models\Users\Session;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 #endregion
 

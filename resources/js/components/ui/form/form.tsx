@@ -17,8 +17,8 @@ function Form({
 }: FormProps) {
   const { id, patch, post, put } = useForm();
 
-  function onSubmit(e?: FormEvent) {
-    e?.preventDefault();
+  function onSubmit(event?: FormEvent) {
+    event?.preventDefault();
 
     switch (method) {
       case "patch":

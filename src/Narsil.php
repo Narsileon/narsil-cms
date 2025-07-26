@@ -17,13 +17,15 @@ use Narsil\Support\LabelsBag;
  */
 class Narsil
 {
+    #region PUBLIC METHODS
+
     /**
      * @param string $component
      * @param array $props
      *
      * @return JsonResponse|Response
      */
-    public static function render(string $component, array $props = []): JsonResponse|Response
+    public static function render(string $component, string $title = '', string $description = '', array $props = []): JsonResponse|Response
     {
         $labels = app(LabelsBag::class)->get();
 
@@ -33,13 +35,19 @@ class Narsil
                 'component' => $component,
                 'props' => array_merge([
                     '_modal' => true,
+                    'description' => $description,
                     'labels' => $labels,
+                    'title' => $title,
                 ], $props),
             ]);
         }
 
         return Inertia::render($component, array_merge([
+            'description' => $description,
             'labels' => $labels,
+            'title' => $title,
         ], $props));
     }
+
+    #endregion
 }

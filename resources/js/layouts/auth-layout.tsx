@@ -8,7 +8,7 @@ import AppBreadcrumb from "@narsil-cms/components/app/app-breadcrumb";
 import AppSidebar from "@narsil-cms/components/app/app-sidebar";
 import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
-import UserMenu from "@narsil-cms/components/app/user/menu";
+import UserMenu from "@narsil-cms/components/user/menu";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
   SidebarInset,

@@ -4,6 +4,13 @@ namespace Narsil\Http\Controllers\Users;
 
 #region USE
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Inertia\Response;
 use Narsil\Contracts\FormRequests\Users\UserConfigurationFormRequest;
 use Narsil\Contracts\Forms\Fortify\ProfileForm;
 use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
@@ -16,13 +23,6 @@ use Narsil\Models\User;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Narsil;
 use Narsil\Support\LabelsBag;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Inertia\Response;
 
 #endregion
 
@@ -95,35 +95,40 @@ class UserConfigurationController extends AbstractModelController
         $this->registerLabels();
 
         $profileForm = $this->profileForm->get(
-            action: route('user-profile-information.update'),
+            url: route('user-profile-information.update'),
             method: MethodEnum::PUT,
             submit: trans('narsil-cms::ui.update'),
         );
 
         $twoFactorForm = $this->twoFactorForm->get(
-            action: route('two-factor.confirm'),
+            url: route('two-factor.confirm'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.confirm'),
         );
 
         $updatePasswordForm = $this->updatePasswordForm->get(
-            action: route('user-password.update'),
+            url: route('user-password.update'),
             method: MethodEnum::PUT,
             submit: trans('narsil-cms::ui.update'),
         );
 
         $userConfigurationForm = $this->userConfigurationForm->get(
-            action: route('user-configuration.store'),
+            url: route('user-configuration.store'),
             method: MethodEnum::PUT,
             submit: trans('narsil-cms::ui.save'),
         );
 
-        return Narsil::render('narsil/cms::users/settings', [
-            'profileForm'           => $profileForm,
-            'twoFactorForm'         => $twoFactorForm,
-            'updatePasswordForm'    => $updatePasswordForm,
-            'userConfigurationForm' => $userConfigurationForm,
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::users/settings',
+            title: trans('narsil-cms::ui.settings'),
+            description: trans('narsil-cms::ui.settings'),
+            props: [
+                'profileForm'           => $profileForm,
+                'twoFactorForm'         => $twoFactorForm,
+                'updatePasswordForm'    => $updatePasswordForm,
+                'userConfigurationForm' => $userConfigurationForm,
+            ]
+        );
     }
 
     /**

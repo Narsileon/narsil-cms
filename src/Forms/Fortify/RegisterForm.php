@@ -39,6 +39,7 @@ class RegisterForm extends AbstractForm implements Contract
             [
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::WIDTH => 50,
                 Field::SETTINGS => app(PasswordField::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)
@@ -47,6 +48,7 @@ class RegisterForm extends AbstractForm implements Contract
             [
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                Field::WIDTH => 50,
                 Field::SETTINGS => app(PasswordField::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)
@@ -55,6 +57,7 @@ class RegisterForm extends AbstractForm implements Contract
             [
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                Field::WIDTH => 50,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
                     ->required(true)
@@ -63,6 +66,7 @@ class RegisterForm extends AbstractForm implements Contract
             [
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                Field::WIDTH => 50,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
                     ->required(true)

@@ -1,25 +1,25 @@
 import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
 import { Separator } from "@narsil-cms/components/ui/separator";
 import { SettingsIcon, ShieldCheckIcon, UserPenIcon } from "lucide-react";
+import { useAuth } from "@narsil-cms/hooks/use-props";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
+import ConfigurationForm from "@narsil-cms/components/user/configuration-form";
+import ProfileForm from "@narsil-cms/components/user/profile-form";
+import SecurityForm from "@narsil-cms/components/user/security-form";
 import {
   TabsList,
   Tabs,
   TabsTrigger,
   TabsContent,
 } from "@narsil-cms/components/ui/tabs";
-import { useAuth } from "@narsil-cms/hooks/use-props";
-import { useLabels } from "@narsil-cms/components/ui/labels";
-import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
-import ConfigurationForm from "@narsil-cms/components/app/user/configuration-form";
-import ProfileForm from "@narsil-cms/components/app/user/profile-form";
-import SecurityForm from "@narsil-cms/components/app/user/security-form";
-import type { LaravelForm } from "@narsil-cms/types/types";
+import type { FormType } from "@narsil-cms/types/forms";
 
 type UserSettingsProps = {
-  profileForm: LaravelForm;
-  twoFactorForm: LaravelForm;
-  updatePasswordForm: LaravelForm;
-  userConfigurationForm: LaravelForm;
+  profileForm: FormType;
+  twoFactorForm: FormType;
+  updatePasswordForm: FormType;
+  userConfigurationForm: FormType;
 };
 
 function UserSettings({

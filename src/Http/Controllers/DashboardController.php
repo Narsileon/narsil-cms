@@ -4,9 +4,9 @@ namespace Narsil\Http\Controllers;
 
 #region USE
 
-use Narsil\Narsil;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Narsil;
 
 #endregion
 
@@ -14,7 +14,7 @@ use Inertia\Response;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HomeController
+class DashboardController
 {
     #region PUBLIC METHODS
 

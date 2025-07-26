@@ -1,7 +1,13 @@
-import { Dialog, DialogContent } from "@narsil-cms/components/ui/dialog";
 import { LabelsProvider } from "@narsil-cms/components/ui/labels";
 import { ModalState } from "@narsil-cms/stores/modal-store";
 import { useEffect, useState } from "react";
+import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@narsil-cms/components/ui/dialog";
 import type { ComponentProps, ComponentType } from "react";
 
 type ModalProps = ComponentProps<typeof DialogContent> &
@@ -52,6 +58,12 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
         className="absolute h-[calc(100%-4rem)] min-w-[calc(100%-4rem)]"
         {...props}
       >
+        <VisuallyHidden asChild={true}>
+          <DialogTitle>{componentProps.title}</DialogTitle>
+        </VisuallyHidden>
+        <VisuallyHidden asChild={true}>
+          <DialogDescription>{componentProps.description}</DialogDescription>
+        </VisuallyHidden>
         <LabelsProvider labels={componentProps.labels}>
           {Component ? <Component modal={true} {...componentProps} /> : null}
         </LabelsProvider>

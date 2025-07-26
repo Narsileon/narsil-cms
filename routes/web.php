@@ -3,7 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
-use Narsil\Http\Controllers\HomeController;
+use Narsil\Http\Controllers\DashboardController;
 use Narsil\Http\Controllers\Resources\FieldController;
 use Narsil\Http\Controllers\Resources\SiteController;
 use Narsil\Http\Controllers\Resources\SiteGroupController;
@@ -20,7 +20,7 @@ Route::middleware([
 ])->group(
     function ()
     {
-        Route::get('/', HomeController::class)
+        Route::get('/', DashboardController::class)
             ->name('home');
 
         #region RESOURCES

@@ -10,6 +10,7 @@ import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import "@narsil-cms/../css/app.css";
+import AppHead from "@narsil-cms/components/app/app-head";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -47,6 +48,7 @@ function Layout({ children }: LayoutProps) {
 
   return (
     <LabelsProvider labels={labels}>
+      <AppHead follow={false} index={false} />
       {isEmpty(auth) ? (
         <GuestLayout>{children}</GuestLayout>
       ) : (

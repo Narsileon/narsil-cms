@@ -66,9 +66,14 @@ class SiteGroupController extends AbstractModelController
 
         $dataTable = new DataTableCollection($query, new SiteGroup());
 
-        return Narsil::render('narsil/cms::resources/index', [
-            'dataTable' => $dataTable,
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/index',
+            title: trans('narsil-cms::ui.site_groups'),
+            description: trans('narsil-cms::ui.site_groups'),
+            props: [
+                'dataTable' => $dataTable,
+            ]
+        );
     }
 
     /**
@@ -79,15 +84,19 @@ class SiteGroupController extends AbstractModelController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('site-groups.store'),
+            url: route('site-groups.store'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.create'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.site_group'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.site_group'),
+            description: trans('narsil-cms::ui.site_group'),
+            props: [
+                'form' => $form,
+            ]
+        );
     }
 
     /**
@@ -113,16 +122,20 @@ class SiteGroupController extends AbstractModelController
     public function edit(Request $request, SiteGroup $siteGroup): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
+            url: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'data' => $siteGroup,
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.site_group'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.site_group'),
+            description: trans('narsil-cms::ui.site_group'),
+            props: [
+                'data' => $siteGroup,
+                'form' => $form,
+            ]
+        );
     }
 
     /**

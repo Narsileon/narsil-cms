@@ -58,6 +58,10 @@ class Field extends Model
      */
     final public const HANDLE = 'handle';
     /**
+     * @var string The name of the "icon" column.
+     */
+    final public const ICON = 'icon';
+    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';

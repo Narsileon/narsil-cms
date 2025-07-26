@@ -17,13 +17,13 @@ interface Form
     #region PUBLIC METHODS
 
     /**
-     * @param string $action,
+     * @param string $url,
      * @param MethodEnum $method,
      * @param string $submit,
      *
      * @return array
      */
-    public function get(string $action, MethodEnum $method, string $submit): array;
+    public function get(string $url, MethodEnum $method, string $submit): array;
 
     #endregion
 }

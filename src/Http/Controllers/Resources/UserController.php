@@ -66,9 +66,14 @@ class UserController extends AbstractModelController
 
         $dataTable = new DataTableCollection($query, new User());
 
-        return Narsil::render('narsil/cms::resources/index', [
-            'dataTable' => $dataTable,
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/index',
+            title: trans('narsil-cms::ui.users'),
+            description: trans('narsil-cms::ui.users'),
+            props: [
+                'dataTable' => $dataTable,
+            ]
+        );
     }
 
     /**
@@ -79,15 +84,19 @@ class UserController extends AbstractModelController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('users.store'),
+            url: route('users.store'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.create'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.user'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.user'),
+            description: trans('narsil-cms::ui.user'),
+            props: [
+                'form' => $form,
+            ]
+        );
     }
 
     /**
@@ -113,16 +122,20 @@ class UserController extends AbstractModelController
     public function edit(Request $request, User $user): JsonResponse|Response
     {
         $form = $this->form->get(
-            action: route('users.update', $user->{User::ID}),
+            url: route('users.update', $user->{User::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
 
-        return Narsil::render('narsil/cms::resources/form', [
-            'data' => $user,
-            'form' => $form,
-            'title' => trans('narsil-cms::ui.user'),
-        ]);
+        return Narsil::render(
+            component: 'narsil/cms::resources/form',
+            title: trans('narsil-cms::ui.user'),
+            description: trans('narsil-cms::ui.user'),
+            props: [
+                'data' => $user,
+                'form' => $form,
+            ]
+        );
     }
 
     /**
