@@ -2,6 +2,7 @@ import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { DynamicIcon } from "lucide-react/dynamic";
+import { Heading } from "@narsil-cms/components/ui/heading";
 import { Input } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
@@ -28,14 +29,17 @@ function FormFieldRenderer({
 }: FormFieldRendererProps) {
   if (field.fields?.length) {
     return (
-      <div className="bg-muted/10 space-y-4 rounded-xl border p-4">
-        <div className="text-lg font-semibold">{field.name}</div>
-        <div className="grid gap-6 md:grid-cols-12">
-          {field.fields.map((field, index) => (
-            <FormFieldRenderer field={field} key={index} />
-          ))}
-        </div>
-      </div>
+      <>
+        {field.name ? (
+          <Heading className="text-lg font-semibold" level="h2">
+            {field.name}
+          </Heading>
+        ) : null}
+
+        {field.fields.map((field, index) => (
+          <FormFieldRenderer field={field} key={index} />
+        ))}
+      </>
     );
   }
 

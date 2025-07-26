@@ -9,7 +9,7 @@ function FormSubmit({ className, ...props }: FormSubmitProps) {
 
   return (
     <Button
-      className={cn("col-span-full", className)}
+      className={cn("col-span-12 place-self-end", className)}
       form={id}
       type="submit"
       {...props}

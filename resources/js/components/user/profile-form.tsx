@@ -1,7 +1,12 @@
-import { Form, FormProvider, FormSubmit } from "@narsil-cms/components/ui/form";
 import { Separator } from "@narsil-cms/components/ui/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
+import {
+  Form,
+  FormFieldRenderer,
+  FormProvider,
+  FormSubmit,
+} from "@narsil-cms/components/ui/form";
 import {
   Section,
   SectionContent,
@@ -36,12 +41,12 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             }}
             render={() => (
               <Form
-                className="gap-6 md:grid-cols-2"
+                className="gap-6"
                 method={profileForm.method}
                 url={profileForm.url}
               >
-                {profileForm.content.map((input, index) => (
-                  <FormInputBlock {...input} key={index} />
+                {profileForm.fields.map((field, index) => (
+                  <FormFieldRenderer field={field} key={index} />
                 ))}
                 <FormSubmit>{profileForm.submit}</FormSubmit>
               </Form>
@@ -57,15 +62,15 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={updatePasswordForm.id}
-            fields={updatePasswordForm.content}
+            fields={updatePasswordForm.fields}
             render={() => (
               <Form
-                className="gap-6 md:grid-cols-2"
+                className="gap-6"
                 method={updatePasswordForm.method}
                 url={updatePasswordForm.url}
               >
-                {updatePasswordForm.content.map((input, index) => (
-                  <FormInputBlock {...input} key={index} />
+                {updatePasswordForm.fields.map((field, index) => (
+                  <FormFieldRenderer field={field} key={index} />
                 ))}
                 <FormSubmit>{updatePasswordForm.submit}</FormSubmit>
               </Form>

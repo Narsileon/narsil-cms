@@ -105,6 +105,7 @@ class FieldForm extends AbstractForm implements Contract
 
         $content[] = [
             Field::HANDLE => FIELD::SETTINGS,
+            Field::NAME => trans('narsil-cms::ui.settings'),
             Field::RELATION_FIELDS => $settings,
         ];
 

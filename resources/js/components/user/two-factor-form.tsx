@@ -1,12 +1,5 @@
 import { Button } from "@narsil-cms/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@narsil-cms/components/ui/card";
 import { CopyIcon } from "lucide-react";
-import { Form, FormProvider, FormSubmit } from "@narsil-cms/components/ui/form";
 import { Label } from "@narsil-cms/components/ui/label";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
@@ -16,6 +9,18 @@ import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useState } from "react";
 import axios from "axios";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@narsil-cms/components/ui/card";
+import {
+  Form,
+  FormFieldRenderer,
+  FormProvider,
+  FormSubmit,
+} from "@narsil-cms/components/ui/form";
 import type { FormType } from "@narsil-cms/types/forms";
 
 type TwoFactorFormProps = {
@@ -110,8 +115,8 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                       },
                     }}
                   >
-                    {form.content.map((input, index) => (
-                      <FormInputBlock {...input} key={index} />
+                    {form.fields.map((field, index) => (
+                      <FormFieldRenderer field={field} key={index} />
                     ))}
                     <div
                       className="max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
