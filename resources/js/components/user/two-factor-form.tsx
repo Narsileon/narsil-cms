@@ -139,6 +139,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
               </CardTitle>
               <Button
                 className="place-self-end"
+                variant="outline"
                 size="icon"
                 onClick={() => {
                   navigator.clipboard.writeText(recoveryCodes.join("\n"));

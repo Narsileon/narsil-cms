@@ -6,6 +6,7 @@ return [
     'add_group'                 => 'Add a group',
     'all'                       => 'All',
     'back'                      => 'Back',
+    'cancel'                    => 'Cancel',
     'close'                     => 'Close',
     'confirm_password'          => 'Confirm your password',
     'confirm'                   => 'Confirm',

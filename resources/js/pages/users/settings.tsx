@@ -35,7 +35,7 @@ function UserSettings({
 
   return (
     <Tabs
-      className="h-full overflow-hidden"
+      className="h-screen overflow-hidden"
       defaultValue={auth ? "account" : "configuration"}
       orientation="vertical"
     >
@@ -58,7 +58,7 @@ function UserSettings({
         ) : null}
       </TabsList>
       <Separator orientation={minMd ? "vertical" : "horizontal"} />
-      <ScrollArea className="h-full w-full">
+      <ScrollArea className="w-full">
         {auth ? (
           <TabsContent value="account">
             <ProfileForm

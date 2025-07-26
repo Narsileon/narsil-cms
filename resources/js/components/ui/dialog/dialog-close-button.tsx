@@ -15,7 +15,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
     <DialogPrimitive.Close
       data-slot="dialog-close"
       className={cn(
-        "ring-offset-background rounded-xs opacity-70 transition-opacity",
+        "ring-offset-background rounded-full opacity-75 transition-opacity",
         "disabled:pointer-events-none",
         "focus:ring-ring focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
         "hover:opacity-100",

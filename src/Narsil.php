@@ -27,7 +27,11 @@ class Narsil
      */
     public static function render(string $component, string $title = '', string $description = '', array $props = []): JsonResponse|Response
     {
-        $labels = app(LabelsBag::class)->get();
+        $labelsBag = app(LabelsBag::class)
+            ->add('narsil-cms::accessibility.close_dialog')
+            ->add('narsil-cms::ui.cancel');
+
+        $labels = $labelsBag->get();
 
         if (request()->boolean('_modal'))
         {

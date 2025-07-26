@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogHeader,
   DialogTitle,
 } from "@narsil-cms/components/ui/dialog";
 import type { ComponentProps, ComponentType } from "react";
@@ -55,12 +56,12 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
       <DialogContent
-        className="absolute h-[calc(100%-4rem)] min-w-[calc(100%-4rem)]"
+        className="absolute max-h-[calc(100%-4rem)] max-w-[calc(100%-4rem)] overflow-hidden"
         {...props}
       >
-        <VisuallyHidden asChild={true}>
+        <DialogHeader className="border-b">
           <DialogTitle>{componentProps.title}</DialogTitle>
-        </VisuallyHidden>
+        </DialogHeader>
         <VisuallyHidden asChild={true}>
           <DialogDescription>{componentProps.description}</DialogDescription>
         </VisuallyHidden>
