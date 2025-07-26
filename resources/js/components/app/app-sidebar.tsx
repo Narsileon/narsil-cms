@@ -41,21 +41,27 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       <SidebarContent className="gap-0">
         <SidebarGroup>
           <SidebarMenu>
-            {sidebar?.content.map((item, index) => (
-              <SidebarMenuItem key={index}>
-                <SidebarMenuButton asChild={true} tooltip={item.label}>
-                  <Link
-                    href={item.href}
-                    onSuccess={() => {
-                      setOpenMobile(false);
-                    }}
+            {sidebar?.content.map((item, index) => {
+              return (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton
+                    asChild={true}
+                    isActive={item.href.endsWith(window.location.pathname)}
+                    tooltip={item.label}
                   >
-                    <DynamicIcon name={item.icon} />
-                    {item.label}
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
+                    <Link
+                      href={item.href}
+                      onSuccess={() => {
+                        setOpenMobile(false);
+                      }}
+                    >
+                      <DynamicIcon name={item.icon} />
+                      {item.label}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

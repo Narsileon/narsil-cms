@@ -28,12 +28,11 @@ class TwoFactorForm extends AbstractForm implements Contract
     {
         return [
             [
-                Field::DESCRIPTION => trans('two-factor.code_description'),
+                Field::DESCRIPTION => trans('narsil-cms::two-factor.code_description'),
                 Field::HANDLE => 'code',
                 Field::NAME => trans('narsil-cms::validation.attributes.code'),
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->className('col-span-1')
                     ->required(true)
                     ->toArray(),
             ],

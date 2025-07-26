@@ -78,7 +78,10 @@ function Combobox({
       <PopoverTrigger asChild={true}>
         <Button
           id={id}
-          className="w-full justify-between font-normal"
+          className={cn(
+            "w-full justify-between font-normal",
+            !option && "text-muted-foreground",
+          )}
           aria-expanded={open}
           role="combobox"
           variant="outline"

@@ -100,7 +100,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                 fields={form.fields}
                 render={({ setError }) => (
                   <Form
-                    className="gap-6 md:grid-cols-2"
+                    className="grid-cols-12 gap-6"
                     method={form.method}
                     url={form.url}
                     options={{
@@ -119,7 +119,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                       <FormFieldRenderer field={field} key={index} />
                     ))}
                     <div
-                      className="max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
+                      className="col-span-full max-h-48 max-w-48 [&>svg]:h-auto [&>svg]:w-full"
                       dangerouslySetInnerHTML={{
                         __html: qrCode,
                       }}

@@ -31,7 +31,6 @@ function UserSettings({
   const { getLabel } = useLabels();
 
   const auth = useAuth();
-  const minMd = useMinMd();
 
   return (
     <Tabs
@@ -57,7 +56,6 @@ function UserSettings({
           </TabsTrigger>
         ) : null}
       </TabsList>
-      <Separator orientation={minMd ? "vertical" : "horizontal"} />
       <ScrollArea className="w-full">
         {auth ? (
           <TabsContent value="account">
