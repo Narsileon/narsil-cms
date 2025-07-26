@@ -78,13 +78,12 @@ function FormFieldRenderer({
                 checked={value}
                 onCheckedChange={(checked) => handleOnChange(checked)}
               />
-            ) : settings.type === "combobox" || settings.type === "select" ? (
+            ) : settings.type === "select" ? (
               <Combobox
                 {...props}
                 id={field.handle}
                 options={settings.options}
                 renderOption={renderOption}
-                search={settings.type === "combobox"}
                 value={value}
                 setValue={(value) => handleOnChange(value)}
               />

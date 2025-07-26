@@ -85,8 +85,8 @@ function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
       }}
       render={({ dataTable: table }) => {
         return (
-          <Section className="h-full gap-3 p-4">
-            <SectionHeader className="flex items-center justify-between gap-3">
+          <Section className="h-full gap-4 p-4">
+            <SectionHeader className="flex items-center justify-between gap-4">
               <SectionTitle level="h2" variant="h4" className="min-w-1/5">
                 {dataTable.meta.title}
               </SectionTitle>

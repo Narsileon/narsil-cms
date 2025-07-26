@@ -38,6 +38,13 @@ interface SelectField extends AbstractField
     public function required(bool $required): static;
 
     /**
+     * @param boolean $search
+     *
+     * @return static Returns the current object instance.
+     */
+    public function search(bool $search): static;
+
+    /**
      * @param string $value
      *
      * @return static Returns the current object instance.

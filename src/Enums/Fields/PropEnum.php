@@ -19,6 +19,7 @@ enum PropEnum: string
     case OPTIONS               = 'options';
     case PLACEHOLDER           = 'placeholder';
     case REQUIRED              = 'required';
+    case SEARCH                = 'search';
     case STEP                  = 'step';
     case TYPE                  = 'type';
     case VALUE                 = 'value';

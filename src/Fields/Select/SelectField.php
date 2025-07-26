@@ -78,6 +78,16 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function search(bool $search): static
+    {
+        $this->settings[PropEnum::SEARCH->value] = $search;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function value(string $value): static
     {
         $this->settings[PropEnum::VALUE->value] = $value;

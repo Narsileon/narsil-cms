@@ -61,7 +61,7 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
         {!modal ? <FormSubmit>{form.submit}</FormSubmit> : null}
       </SectionContent>
       {sidebarFields?.length || (dataFields?.length && data?.id) ? (
-        <div className="grid gap-4 p-4">
+        <div className="grid">
           {sidebarFields?.length ? (
             <Card>
               <CardContent className="grid gap-6">

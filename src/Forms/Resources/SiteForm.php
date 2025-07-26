@@ -59,6 +59,7 @@ class SiteForm extends AbstractForm implements Contract
                             ->options($languageOptions)
                             ->placeholder(trans('narsil-cms::placeholders.search'))
                             ->required(true)
+                            ->search(true)
                             ->toArray(),
                     ],
                     [
@@ -67,6 +68,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::SETTINGS => app(SelectField::class)
                             ->options($groupOptions)
                             ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->search(true)
                             ->toArray(),
                     ],
                 ],

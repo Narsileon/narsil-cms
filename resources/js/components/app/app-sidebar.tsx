@@ -28,7 +28,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader className="h-12 border-b">
+      <SidebarHeader className="h-13 border-b">
         <SidebarMenuButton className="truncate" asChild={true}>
           <Link href={route("home")}>
             <svg width={20} height={20}>
@@ -59,7 +59,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="border-t">
+      <SidebarFooter className="h-13 border-t">
         <SidebarMenuButton
           tooltip={getLabel("accessibility.open_sidebar")}
           onClick={toggleSidebar}
