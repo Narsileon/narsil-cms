@@ -10,6 +10,7 @@ use Narsil\Contracts\Fields\Select\SelectField;
 use Narsil\Contracts\Fields\Select\SwitchField;
 use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\SiteForm as Contract;
+use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Sites\Site;
@@ -36,7 +37,8 @@ class SiteForm extends AbstractForm implements Contract
 
         return [
             [
-                Field::HANDLE => self::MAIN,
+                Field::NAME => trans('narsil-cms::ui.main'),
+                Field::TYPE => TypeEnum::TAB->value,
                 Field::RELATION_FIELDS => [
                     [
                         Field::HANDLE => Site::NAME,
@@ -74,7 +76,7 @@ class SiteForm extends AbstractForm implements Contract
                 ],
             ],
             [
-                Field::HANDLE => self::SIDEBAR,
+                Field::TYPE => TypeEnum::SIDEBAR->value,
                 Field::RELATION_FIELDS => [
                     [
                         Field::HANDLE => Site::ENABLED,
@@ -92,7 +94,7 @@ class SiteForm extends AbstractForm implements Contract
                 ]
             ],
             [
-                Field::HANDLE => self::DATA,
+                Field::TYPE => TypeEnum::DATA->value,
                 Field::RELATION_FIELDS => [
                     [
                         Field::HANDLE => Site::ID,

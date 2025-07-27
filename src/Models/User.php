@@ -4,16 +4,21 @@ namespace Narsil\Models;
 
 #region USE
 
-use Narsil\Models\Users\Session;
-use Narsil\Models\Users\UserConfiguration;
-use Narsil\Observers\UserObserver;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Narsil\Models\Policies\Permission;
+use Narsil\Models\Policies\Role;
+use Narsil\Models\Policies\UserPermission;
+use Narsil\Models\Policies\UserRole;
+use Narsil\Models\Users\Session;
+use Narsil\Models\Users\UserConfiguration;
+use Narsil\Observers\UserObserver;
 
 #endregion
 
@@ -132,6 +137,10 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     final public const RELATION_CONFIGURATION = 'configuration';
     /**
+     * @var string The name of the "roles" relation.
+     */
+    final public const RELATION_ROLES = 'roles';
+    /**
      * @var string The name of the "sessions" relation.
      */
     final public const RELATION_SESSIONS = 'sessions';
@@ -150,11 +159,40 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function configuration(): HasOne
     {
-        return $this->hasOne(
-            UserConfiguration::class,
-            UserConfiguration::USER_ID,
-            self::ID
-        );
+        return $this
+            ->hasOne(
+                UserConfiguration::class,
+                UserConfiguration::USER_ID,
+                self::ID
+            );
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function permissions(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Permission::class,
+                UserPermission::TABLE,
+                UserPermission::USER_ID,
+                UserPermission::PERMISSION_ID,
+            );
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Role::class,
+                UserRole::TABLE,
+                UserRole::USER_ID,
+                UserRole::ROLE_ID,
+            );
     }
 
     /**
@@ -162,11 +200,12 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sessions(): HasMany
     {
-        return $this->hasMany(
-            Session::class,
-            Session::USER_ID,
-            self::ID
-        );
+        return $this
+            ->hasMany(
+                Session::class,
+                Session::USER_ID,
+                self::ID
+            );
     }
 
     #endregion

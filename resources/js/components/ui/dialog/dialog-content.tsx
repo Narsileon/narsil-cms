@@ -33,7 +33,7 @@ function DialogContent({
       >
         {children}
         {showCloseButton ? (
-          <DialogCloseButton className="absolute top-6 right-6" />
+          <DialogCloseButton className="absolute top-5.5 right-5.5" />
         ) : null}
       </DialogPrimitive.Content>
     </DialogPortal>

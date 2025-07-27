@@ -41,10 +41,10 @@ function DataTableRowMenu({ id, routes, ...props }: DataTableRowMenuProps) {
       <DropdownMenuContent align="end">
         {routes.edit ? (
           <DropdownMenuItem asChild={true}>
-            <ModalLink href={route(routes.edit, id)}>
+            <Link as="button" href={route(routes.edit, id)}>
               <EditIcon />
               {getLabel("ui.edit")}
-            </ModalLink>
+            </Link>
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuSeparator />

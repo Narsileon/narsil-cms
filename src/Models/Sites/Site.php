@@ -4,10 +4,10 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
-use Narsil\Models\Sites\SiteGroup;
-use Narsil\Traits\HasFormattedDatetime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Narsil\Models\Sites\SiteGroup;
+use Narsil\Traits\HasFormattedDatetime;
 
 #endregion
 
@@ -97,11 +97,12 @@ class Site extends Model
      */
     public function group(): BelongsTo
     {
-        return $this->belongsTo(
-            SiteGroup::class,
-            self::GROUP_ID,
-            SiteGroup::ID
-        );
+        return $this
+            ->belongsTo(
+                SiteGroup::class,
+                self::GROUP_ID,
+                SiteGroup::ID
+            );
     }
 
     #endregion

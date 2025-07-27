@@ -39,10 +39,20 @@ abstract class BreadcrumbService
                 continue;
             }
 
-            $breadcrumbs[] = [
-                'label' => trans('narsil-cms::ui.' . Str::replace('-', '_', $segment)),
-                'href'  => $path,
-            ];
+            if (ctype_digit($segment))
+            {
+                $breadcrumbs[] = [
+                    'label' => $segment,
+                    'href'  => null,
+                ];
+            }
+            else
+            {
+                $breadcrumbs[] = [
+                    'label' => trans('narsil-cms::ui.' . Str::replace('-', '_', $segment)),
+                    'href'  => $path,
+                ];
+            }
         }
 
         return $breadcrumbs;

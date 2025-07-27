@@ -58,7 +58,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
           <AppBreadcrumb className="grow" />
           <UserMenu />
         </header>
-        <main ref={mainRef} className="relative min-h-[calc(100vh-3rem)]">
+        <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
           <ModalRenderer container={mainRef.current} />
           {children}
           <Toaster />

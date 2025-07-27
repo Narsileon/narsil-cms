@@ -13,6 +13,7 @@ import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 import type { FieldType, SelectOption } from "@narsil-cms/types/forms";
+import useForm from "./form-context";
 
 type FormFieldRendererProps = {
   className?: string;
@@ -27,6 +28,8 @@ function FormFieldRenderer({
   onChange,
   renderOption,
 }: FormFieldRendererProps) {
+  const { data } = useForm();
+
   if (field.fields?.length) {
     return (
       <>
@@ -119,7 +122,12 @@ function FormFieldRenderer({
         );
       }}
     />
-  ) : null;
+  ) : (
+    <div className="col-span-full flex items-center justify-between">
+      <span>{field.name}</span>
+      <span>{data?.[field.handle]}</span>
+    </div>
+  );
 }
 
 export default FormFieldRenderer;

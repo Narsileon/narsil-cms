@@ -83,25 +83,27 @@ class FieldCondition extends Model
     /**
      * @return BelongsTo
      */
-    final public function owner(): BelongsTo
+    public function owner(): BelongsTo
     {
-        return $this->belongsTo(
-            Field::class,
-            self::OWNER_ID,
-            Field::ID,
-        );
+        return $this
+            ->belongsTo(
+                Field::class,
+                self::OWNER_ID,
+                Field::ID,
+            );
     }
 
     /**
      * @return BelongsTo
      */
-    final public function target(): BelongsTo
+    public function target(): BelongsTo
     {
-        return $this->belongsTo(
-            Field::class,
-            self::TARGET_ID,
-            Field::ID,
-        );
+        return $this
+            ->belongsTo(
+                Field::class,
+                self::TARGET_ID,
+                Field::ID,
+            );
     }
 
     #endregion

@@ -25,13 +25,18 @@ function AppBreadcrumb({ ...props }: AppBreadcrumbProps) {
             <BreadcrumbItem key={index}>
               <BreadcrumbPage>{item.label}</BreadcrumbPage>
             </BreadcrumbItem>
-          ) : (
+          ) : item.href ? (
             <Fragment key={index}>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
                   <Link href={item.href}>{item.label}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
+              <BreadcrumbSeparator />
+            </Fragment>
+          ) : (
+            <Fragment key={index}>
+              <BreadcrumbItem>{item.label}</BreadcrumbItem>
               <BreadcrumbSeparator />
             </Fragment>
           );

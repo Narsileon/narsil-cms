@@ -5,6 +5,7 @@ namespace Narsil\Models\Policies;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 #endregion
 
@@ -46,9 +47,32 @@ class Role extends Model
     final public const NAME = 'name';
 
     /**
+     * @var string The name of the "permissions" relation.
+     */
+    final public const RELATION_PERMISSIONS = 'permissions';
+
+    /**
      * @var string The table associated with the model.
      */
     final public const TABLE = 'roles';
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * @return BelongsToMany
+     */
+    public function permissions(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Permission::class,
+                RolePermission::TABLE,
+                RolePermission::ROLE_ID,
+                RolePermission::PERMISSION_ID,
+            );
+    }
 
     #endregion
 }

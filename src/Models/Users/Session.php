@@ -4,9 +4,9 @@ namespace Narsil\Models\Users;
 
 #region USE
 
-use Narsil\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Narsil\Models\User;
 
 #endregion
 
@@ -81,11 +81,12 @@ class Session extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(
-            User::class,
-            self::USER_ID,
-            User::ID
-        );
+        return $this
+            ->belongsTo(
+                User::class,
+                self::USER_ID,
+                User::ID
+            );
     }
 
     #endregion

@@ -9,6 +9,7 @@ use Narsil\Contracts\Fields\Text\PasswordField;
 use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\UserForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\User;
@@ -30,7 +31,8 @@ class UserForm extends AbstractForm implements Contract
     {
         return [
             [
-                Field::HANDLE => self::MAIN,
+                Field::NAME => trans('narsil-cms::ui.main'),
+                Field::TYPE => TypeEnum::TAB->value,
                 Field::RELATION_FIELDS => [
                     [
                         Field::HANDLE => User::EMAIL,
@@ -74,7 +76,7 @@ class UserForm extends AbstractForm implements Contract
                 ],
             ],
             [
-                Field::HANDLE => self::DATA,
+                Field::TYPE => TypeEnum::DATA->value,
                 Field::RELATION_FIELDS => [
                     [
                         Field::HANDLE => User::ID,

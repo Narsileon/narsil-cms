@@ -7,7 +7,7 @@ function SectionHeader({ className, ...props }: SectionHeaderProps) {
     <div
       data-slot="section-header"
       className={cn(
-        "grid h-fit auto-rows-min grid-rows-[auto_auto] items-start [.border-b]:pb-6",
+        "flex h-fit items-center justify-between [.border-b]:pb-6",
         className,
       )}
       {...props}

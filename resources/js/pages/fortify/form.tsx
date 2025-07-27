@@ -62,7 +62,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                 initialValues={data}
                 render={() => (
                   <Form
-                    className="gap-6 md:grid-cols-12"
+                    className="grid-cols-12 gap-6"
                     method={form.method}
                     url={form.url}
                   >
@@ -103,7 +103,9 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                         <FormFieldRenderer field={field} key={index} />
                       ),
                     )}
-                    <FormSubmit>{form.submit}</FormSubmit>
+                    <FormSubmit className="w-full place-self-center">
+                      {form.submit}
+                    </FormSubmit>
                   </Form>
                 )}
               />

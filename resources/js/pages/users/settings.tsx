@@ -1,9 +1,7 @@
 import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
-import { Separator } from "@narsil-cms/components/ui/separator";
 import { SettingsIcon, ShieldCheckIcon, UserPenIcon } from "lucide-react";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
 import ConfigurationForm from "@narsil-cms/components/user/configuration-form";
 import ProfileForm from "@narsil-cms/components/user/profile-form";
 import SecurityForm from "@narsil-cms/components/user/security-form";

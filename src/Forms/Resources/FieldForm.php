@@ -7,6 +7,7 @@ namespace Narsil\Forms\Resources;
 use Narsil\Contracts\Fields\Select\SelectField;
 use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\FieldForm as Contract;
+use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Enums\Fields\VisibilityEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Forms\AbstractForm;
@@ -34,7 +35,8 @@ class FieldForm extends AbstractForm implements Contract
 
         $content = [
             [
-                Field::HANDLE => self::MAIN,
+                Field::NAME => trans('narsil-cms::ui.main'),
+                Field::TYPE => TypeEnum::TAB->value,
                 Field::RELATION_FIELDS => [
                     [
                         Field::HANDLE => Field::NAME,
@@ -62,7 +64,7 @@ class FieldForm extends AbstractForm implements Contract
                 ],
             ],
             [
-                Field::HANDLE => self::DATA,
+                Field::TYPE => TypeEnum::DATA->value,
                 Field::RELATION_FIELDS => [
                     [
                         Field::HANDLE => Field::ID,

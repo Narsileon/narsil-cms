@@ -1,13 +1,11 @@
 <?php
 
-namespace Narsil\Models\Policies;
+namespace Narsil\Models\Fields;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\User;
 
 #endregion
 
@@ -15,7 +13,7 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserPermission extends Pivot
+class FieldSet extends Pivot
 {
     #region CONSTRUCTOR
 
@@ -27,8 +25,6 @@ class UserPermission extends Pivot
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->incrementing = true;
 
         $this->guarded = array_merge([
             self::ID,
@@ -46,27 +42,27 @@ class UserPermission extends Pivot
      */
     final public const ID = 'id';
     /**
-     * @var string The name of the "permission id" column.
+     * @var string The name of the "field id" column.
      */
-    final public const PERMISSION_ID = 'permission_id';
+    final public const FIELD_ID = 'field_id';
     /**
-     * @var string The name of the "user id" column.
+     * @var string The name of the "set id" column.
      */
-    final public const USER_ID = 'user_id';
+    final public const SET_ID = 'set_id';
 
     /**
-     * @var string The name of the "permission" relation.
+     * @var string The name of the "field" relation.
      */
-    final public const RELATION_PERMISSION = 'permission';
+    final public const RELATION_FIELD = 'field';
     /**
-     * @var string The name of the "user" relation.
+     * @var string The name of the "set" relation.
      */
-    final public const RELATION_USER = 'user';
+    final public const RELATION_SET = 'set';
 
     /**
      * @var string The table associated with the model.
      */
-    final public const TABLE = 'user_permission';
+    final public const TABLE = 'field_set';
 
     #endregion
 
@@ -75,26 +71,26 @@ class UserPermission extends Pivot
     /**
      * @return BelongsTo
      */
-    public function permission(): BelongsTo
+    public function field(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Permission::class,
-                self::PERMISSION_ID,
-                Permission::ID,
+                Field::class,
+                self::FIELD_ID,
+                Field::ID,
             );
     }
 
     /**
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    public function set(): BelongsTo
     {
         return $this
             ->belongsTo(
-                User::class,
-                self::USER_ID,
-                User::ID,
+                Field::class,
+                self::SET_ID,
+                Field::ID,
             );
     }
 

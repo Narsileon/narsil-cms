@@ -10,6 +10,7 @@ export type FieldType = {
   id: number;
   name: string;
   settings?: Record<string, any>;
+  type: string;
   visibility?: "display" | "display_when" | "hidden" | "hidden_when";
   width?: React.ComponentProps<typeof FormItem>["width"];
 };

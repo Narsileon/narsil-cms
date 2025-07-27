@@ -4,10 +4,10 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
-use Narsil\Models\Sites\Site;
-use Narsil\Traits\HasFormattedDatetime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Models\Sites\Site;
+use Narsil\Traits\HasFormattedDatetime;
 
 #endregion
 
@@ -69,11 +69,12 @@ class SiteGroup extends Model
      */
     public function sites(): HasMany
     {
-        return $this->hasMany(
-            Site::class,
-            Site::GROUP_ID,
-            self::ID
-        );
+        return $this
+            ->hasMany(
+                Site::class,
+                Site::GROUP_ID,
+                self::ID
+            );
     }
 
     #endregion

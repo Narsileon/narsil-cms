@@ -4,10 +4,10 @@ namespace Narsil\Models\Policies;
 
 #region USE
 
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\Policies\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Models\Policies\Permission;
+use Narsil\Models\Policies\Role;
 
 #endregion
 
@@ -75,25 +75,27 @@ class RolePermission extends Pivot
     /**
      * @return BelongsTo
      */
-    final public function permission(): BelongsTo
+    public function permission(): BelongsTo
     {
-        return $this->belongsTo(
-            Permission::class,
-            self::PERMISSION_ID,
-            Permission::ID,
-        );
+        return $this
+            ->belongsTo(
+                Permission::class,
+                self::PERMISSION_ID,
+                Permission::ID,
+            );
     }
 
     /**
      * @return BelongsTo
      */
-    final public function role(): BelongsTo
+    public function role(): BelongsTo
     {
-        return $this->belongsTo(
-            Role::class,
-            self::ROLE_ID,
-            Role::ID,
-        );
+        return $this
+            ->belongsTo(
+                Role::class,
+                self::ROLE_ID,
+                Role::ID,
+            );
     }
 
     #endregion

@@ -30,36 +30,53 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
 
   const { closeTopModal } = useModalStore();
 
-  const { dataFields, mainFields, sidebarFields } = form.fields.reduce(
-    (acc, field) => {
-      switch (field.handle) {
-        case "data":
-          acc.dataFields = field.fields;
-          break;
-        case "sidebar":
-          acc.sidebarFields = field.fields;
-          break;
-        default:
-          acc.mainFields.push(field);
-          break;
-      }
-      return acc;
-    },
-    {
-      dataFields: undefined as typeof form.fields | undefined,
-      mainFields: [] as typeof form.fields,
-      sidebarFields: undefined as typeof form.fields | undefined,
-    },
+  const { dataFields, mainFields, sidebarFields, otherFields } =
+    form.fields.reduce(
+      (acc, field) => {
+        switch (field.type) {
+          case "data":
+            acc.dataFields = field.fields;
+            break;
+          case "sidebar":
+            acc.sidebarFields = field.fields;
+            break;
+          case "tab":
+            acc.mainFields.push(field);
+            break;
+          default:
+            acc.otherFields.push(field);
+            break;
+        }
+        return acc;
+      },
+      {
+        dataFields: undefined as typeof form.fields | undefined,
+        mainFields: [] as typeof form.fields,
+        otherFields: [] as typeof form.fields,
+        sidebarFields: undefined as typeof form.fields | undefined,
+      },
+    );
+
+  console.log(dataFields);
+
+  const mainContent = (
+    <>
+      {mainFields.map((field, index) => {
+        return <FormFieldRenderer field={field} key={index} />;
+      })}
+    </>
+  );
+
+  const sidebarContent = (
+    <>
+      {sidebarFields?.map((field, index) => {
+        return <FormFieldRenderer field={field} key={index} />;
+      })}
+    </>
   );
 
   const content = (
     <>
-      <SectionContent className="grid gap-6">
-        {mainFields.map((field, index) => {
-          return <FormFieldRenderer field={field} key={index} />;
-        })}
-        {!modal ? <FormSubmit>{form.submit}</FormSubmit> : null}
-      </SectionContent>
       {sidebarFields?.length || (dataFields?.length && data?.id) ? (
         <div className="grid">
           {sidebarFields?.length ? (
@@ -123,7 +140,11 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
                 <SectionTitle level="h1" variant="h4">
                   {title}
                 </SectionTitle>
+                <FormSubmit>{form.submit}</FormSubmit>
               </SectionHeader>
+              <SectionContent className="grid gap-6">
+                {mainContent}
+              </SectionContent>
               {content}
             </Section>
           )}
