@@ -24,15 +24,15 @@ abstract class AbstractForm implements Form
     /**
      * @var string
      */
-    final protected const DATA = 'data';
-    /**
-     * @var string
-     */
     final protected const MAIN = 'main';
     /**
      * @var string
      */
     final protected const SIDEBAR = 'sidebar';
+    /**
+     * @var string
+     */
+    final protected const SIDEBAR_INFORMATION = 'sidebar_information';
 
     #endregion
 

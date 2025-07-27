@@ -34,19 +34,5 @@ interface AbstractField
      */
     public function className(string $className): static;
 
-    /**
-     * @param array<FieldCondition> $conditions
-     *
-     * @return static Returns the current object instance.
-     */
-    public function visiblityConditions(array $conditions): static;
-
-    /**
-     * @param string $mode
-     *
-     * @return static Returns the current object instance.
-     */
-    public function visiblityMode(string $mode): static;
-
     #endregion
 }

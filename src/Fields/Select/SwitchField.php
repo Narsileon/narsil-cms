@@ -5,8 +5,8 @@ namespace Narsil\Fields\Select;
 #region USE
 
 use Narsil\Contracts\Fields\Select\SwitchField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 
 #endregion
@@ -27,7 +27,7 @@ class SwitchField extends AbstractField implements Contract
         parent::__construct(
             icon: 'toggle-right',
             label: trans('narsil-cms::fields.switch'),
-            type: TypeEnum::SWITCH->value
+            type: InputTypeEnum::SWITCH->value
         );
 
         $this->checked(false);

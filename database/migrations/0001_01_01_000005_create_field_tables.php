@@ -9,6 +9,7 @@ use Narsil\Enums\Fields\VisibilityEnum;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldCondition;
 use Narsil\Models\Fields\FieldSet;
+use Narsil\Models\Fields\FieldSetItem;
 
 #endregion
 
@@ -33,7 +34,11 @@ return new class extends Migration
         }
         if (!Schema::hasTable(FieldSet::TABLE))
         {
-            $this->createFieldSetTable();
+            $this->createFieldSetsTable();
+        }
+        if (!Schema::hasTable(FieldSetItem::TABLE))
+        {
+            $this->createFieldSetItemTable();
         }
     }
 
@@ -44,6 +49,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(FieldSetItem::TABLE);
         Schema::dropIfExists(FieldSet::TABLE);
         Schema::dropIfExists(FieldCondition::TABLE);
         Schema::dropIfExists(Field::TABLE);
@@ -82,20 +88,39 @@ return new class extends Migration
     /**
      * @return void
      */
-    private function createFieldSetTable(): void
+    private function createFieldSetItemTable(): void
+    {
+        Schema::create(FieldSetItem::TABLE, function (Blueprint $table)
+        {
+            $table
+                ->id(FieldSetItem::ID);
+            $table
+                ->foreignId(FieldSetItem::FIELD_SET_ID)
+                ->constrained(FieldSet::TABLE, FieldSet::ID)
+                ->cascadeOnDelete();
+            $table
+                ->morphs(FieldSetItem::RELATION_ITEM);
+            $table
+                ->integer(FieldSetItem::POSITION)
+                ->nullable();
+        });
+    }
+
+    /**
+     * @return void
+     */
+    private function createFieldSetsTable(): void
     {
         Schema::create(FieldSet::TABLE, function (Blueprint $table)
         {
             $table
                 ->id(FieldSet::ID);
             $table
-                ->foreignId(FieldSet::FIELD_ID)
-                ->constrained(Field::TABLE, Field::ID)
-                ->cascadeOnDelete();
+                ->string(Field::HANDLE);
             $table
-                ->foreignId(FieldSet::SET_ID)
-                ->constrained(Field::TABLE, Field::ID)
-                ->cascadeOnDelete();
+                ->string(Field::NAME);
+            $table
+                ->timestamps();
         });
     }
 
@@ -109,19 +134,15 @@ return new class extends Migration
             $table
                 ->id(Field::ID);
             $table
-                ->foreignId(Field::PARENT_ID)
-                ->nullable()
-                ->constrained(Field::TABLE, Field::ID)
-                ->nullOnDelete();
-            $table
-                ->integer(Field::INDEX)
-                ->nullable();
+                ->string(Field::HANDLE);
             $table
                 ->string(Field::NAME);
             $table
-                ->string(Field::HANDLE);
+                ->string(Field::DESCRIPTION)
+                ->nullable();
             $table
-                ->string(Field::TYPE);
+                ->string(Field::ICON)
+                ->nullable();
             $table
                 ->string(Field::VISIBILITY)
                 ->default(VisibilityEnum::DISPLAY->value);

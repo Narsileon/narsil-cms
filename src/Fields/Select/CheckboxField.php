@@ -5,8 +5,8 @@ namespace Narsil\Fields\Select;
 #region USE
 
 use Narsil\Contracts\Fields\Select\CheckboxField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 
 #endregion
@@ -27,7 +27,7 @@ class CheckboxField extends AbstractField implements Contract
         parent::__construct(
             icon: 'square-mouse-pointer',
             label: trans('narsil-cms::fields.checkbox'),
-            type: TypeEnum::CHECKBOX->value
+            type: InputTypeEnum::CHECKBOX->value
         );
 
         $this->checked(false);

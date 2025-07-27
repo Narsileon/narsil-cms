@@ -5,9 +5,8 @@ namespace Narsil\Models\Fields;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Models\Fields\FieldCondition;
 
 #endregion
 
@@ -60,17 +59,9 @@ class Field extends Model
      */
     final public const ID = 'id';
     /**
-     * @var string The name of the "index" column.
-     */
-    final public const INDEX = 'index';
-    /**
      * @var string The name of the "name" column.
      */
     final public const NAME = 'name';
-    /**
-     * @var string The name of the "parent id" column.
-     */
-    final public const PARENT_ID = 'parent_id';
     /**
      * @var string The name of the "settings" column.
      */
@@ -89,30 +80,9 @@ class Field extends Model
     final public const WIDTH = 'width';
 
     /**
-     * @var string The name of the "fields" count.
-     */
-    final public const COUNT_FIELDS = 'fields_count';
-    /**
-     * @var string The name of the "sets" count.
-     */
-    final public const COUNT_SETS = 'sets_count';
-
-    /**
      * @var string The name of the "conditions" relation.
      */
     final public const RELATION_CONDITIONS = 'conditions';
-    /**
-     * @var string The name of the "fields" relation.
-     */
-    final public const RELATION_FIELDS = 'fields';
-    /**
-     * @var string The name of the "parent" relation.
-     */
-    final public const RELATION_PARENT = 'parent';
-    /**
-     * @var string The name of the "sets" relation.
-     */
-    final public const RELATION_SETS = 'sets';
 
     /**
      * @var string The table associated with the model.
@@ -133,46 +103,6 @@ class Field extends Model
                 FieldCondition::class,
                 FieldCondition::OWNER_ID,
                 self::ID,
-            );
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function fields(): HasMany
-    {
-        return $this
-            ->hasMany(
-                Field::class,
-                Field::PARENT_ID,
-                self::ID,
-            );
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function parent(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Field::class,
-                self::PARENT_ID,
-                Field::ID,
-            );
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function sets(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Field::class,
-                FieldSet::TABLE,
-                FieldSet::FIELD_ID,
-                FieldSet::SET_ID,
             );
     }
 

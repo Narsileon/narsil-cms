@@ -4,7 +4,7 @@ namespace Narsil\Http\Requests\Resources;
 
 #region USE
 
-use Narsil\Contracts\FormRequests\Resources\FieldFormRequest as Contract;
+use Narsil\Contracts\FormRequests\Resources\FieldSetFormRequest as Contract;
 use Narsil\Models\Fields\Field;
 use Narsil\Validation\FormRule;
 
@@ -14,7 +14,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldFormRequest implements Contract
+class FieldSetFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

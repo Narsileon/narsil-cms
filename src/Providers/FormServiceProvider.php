@@ -15,6 +15,7 @@ use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm as TwoFactorChallengeF
 use Narsil\Contracts\Forms\Fortify\TwoFactorForm as TwoFactorFormContract;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm as UpdatePasswordFormContract;
 use Narsil\Contracts\Forms\Resources\FieldForm as FieldFormContract;
+use Narsil\Contracts\Forms\Resources\FieldSetForm as FieldSetFormContract;
 use Narsil\Contracts\Forms\Resources\SiteForm as SiteFormContract;
 use Narsil\Contracts\Forms\Resources\SiteGroupForm as SiteGroupFormContract;
 use Narsil\Contracts\Forms\Resources\UserForm as UserFormContract;
@@ -29,6 +30,7 @@ use Narsil\Forms\Fortify\TwoFactorChallengeForm;
 use Narsil\Forms\Fortify\TwoFactorForm;
 use Narsil\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Forms\Resources\FieldForm;
+use Narsil\Forms\Resources\FieldSetForm;
 use Narsil\Forms\Resources\SiteForm;
 use Narsil\Forms\Resources\SiteGroupForm;
 use Narsil\Forms\Resources\UserForm;
@@ -78,6 +80,7 @@ class FormServiceProvider extends ServiceProvider
         return [
             ConfirmPasswordFormContract::class => ConfirmPasswordForm::class,
             FieldFormContract::class => FieldForm::class,
+            FieldSetFormContract::class => FieldSetForm::class,
             ForgotPasswordFormContract::class => ForgotPasswordForm::class,
             LoginFormContract::class => LoginForm::class,
             ProfileFormContract::class => ProfileForm::class,

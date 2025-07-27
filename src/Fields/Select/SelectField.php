@@ -5,8 +5,8 @@ namespace Narsil\Fields\Select;
 #region USE
 
 use Narsil\Contracts\Fields\Select\SelectField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 
 #endregion
@@ -27,7 +27,7 @@ class SelectField extends AbstractField implements Contract
         parent::__construct(
             icon: 'square-chevron-down',
             label: trans('narsil-cms::fields.select'),
-            type: TypeEnum::SELECT->value
+            type: InputTypeEnum::SELECT->value
         );
 
         $this->value('');

@@ -23,6 +23,4 @@ enum PropEnum: string
     case STEP                  = 'step';
     case TYPE                  = 'type';
     case VALUE                 = 'value';
-    case VISIBILITY_MODE       = 'visibility_mode';
-    case VISIBILITY_CONDITIONS = 'visibility_conditions';
 }

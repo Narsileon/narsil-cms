@@ -5,8 +5,8 @@ namespace Narsil\Fields\Number;
 #region USE
 
 use Narsil\Contracts\Fields\Number\RangeField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Models\Fields\Field;
 
@@ -28,7 +28,7 @@ class RangeField extends AbstractField implements Contract
         parent::__construct(
             icon: 'settings-2',
             label: trans('narsil-cms::fields.range'),
-            type: TypeEnum::RANGE->value
+            type: InputTypeEnum::RANGE->value
         );
 
         $this->value([0]);

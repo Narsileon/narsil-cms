@@ -6,8 +6,8 @@ namespace Narsil\Fields\Text;
 
 use Narsil\Contracts\Fields\Number\NumberField;
 use Narsil\Contracts\Fields\Text\TextField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Models\Fields\Field;
 
@@ -29,7 +29,7 @@ class TextField extends AbstractField implements Contract
         parent::__construct(
             icon: 'text-cursor-input',
             label: trans('narsil-cms::fields.text'),
-            type: TypeEnum::TEXT->value
+            type: InputTypeEnum::TEXT->value
         );
 
         $this->value('');

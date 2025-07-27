@@ -75,25 +75,5 @@ abstract class AbstractField implements Contract
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function visiblityConditions(array $conditions): static
-    {
-        $this->settings[PropEnum::VISIBILITY_CONDITIONS] = $conditions;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function visiblityMode(string $mode): static
-    {
-        $this->settings[PropEnum::VISIBILITY_MODE] = $mode;
-
-        return $this;
-    }
-
     #endregion
 }

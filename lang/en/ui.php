@@ -2,8 +2,8 @@
 
 return [
     'account'          => 'Account',
-    'add'              => 'Add',
     'add_group'        => 'Add a group',
+    'add'              => 'Add',
     'all'              => 'All',
     'back'             => 'Back',
     'cancel'           => 'Cancel',
@@ -16,6 +16,8 @@ return [
     'delete'           => 'Delete',
     'edit'             => 'Edit',
     'email_verify'     => 'Verify your email',
+    'field_set'        => 'Field set',
+    'field_sets'       => 'Field sets',
     'field'            => 'Field',
     'fields'           => 'Fields',
     'home'             => 'Home',

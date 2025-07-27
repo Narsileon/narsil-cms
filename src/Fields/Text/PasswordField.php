@@ -5,8 +5,8 @@ namespace Narsil\Fields\Text;
 #region USE
 
 use Narsil\Contracts\Fields\Text\PasswordField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 
 #endregion
@@ -27,7 +27,7 @@ class PasswordField extends AbstractField implements Contract
         parent::__construct(
             icon: 'rectangle-ellipsis',
             label: trans('narsil-cms::fields.password'),
-            type: TypeEnum::PASSWORD->value
+            type: InputTypeEnum::PASSWORD->value
         );
 
         $this->value('');

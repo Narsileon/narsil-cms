@@ -6,10 +6,12 @@ namespace Narsil\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Narsil\Contracts\Tables\Resources\FieldTable as FieldTableContract;
+use Narsil\Contracts\Tables\Resources\FieldSetTable as FieldSetTableContract;
 use Narsil\Contracts\Tables\Resources\SiteTable as SiteTableContract;
 use Narsil\Contracts\Tables\Resources\SiteGroupTable as SiteGroupTableContract;
 use Narsil\Contracts\Tables\Resources\UserTable as UserTableContract;
 use Narsil\Tables\Resources\FieldTable;
+use Narsil\Tables\Resources\FieldSetTable;
 use Narsil\Tables\Resources\SiteTable;
 use Narsil\Tables\Resources\SiteGroupTable;
 use Narsil\Tables\Resources\UserTable;
@@ -57,6 +59,7 @@ class TableServiceProvider extends ServiceProvider
     {
         return [
             FieldTableContract::class => FieldTable::class,
+            FieldSetTableContract::class => FieldSetTable::class,
             SiteTableContract::class => SiteTable::class,
             SiteGroupTableContract::class => SiteGroupTable::class,
             UserTableContract::class => UserTable::class,

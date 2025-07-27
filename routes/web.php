@@ -4,7 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Narsil\Http\Controllers\DashboardController;
-use Narsil\Http\Controllers\Resources\FieldController;
+use Narsil\Http\Controllers\Resources\FieldSetController;
 use Narsil\Http\Controllers\Resources\SiteController;
 use Narsil\Http\Controllers\Resources\SiteGroupController;
 use Narsil\Http\Controllers\Resources\UserController;
@@ -25,7 +25,7 @@ Route::middleware([
 
         #region RESOURCES
 
-        Route::resource('/fields', FieldController::class)
+        Route::resource('/field-sets', FieldSetController::class)
             ->except([
                 'show'
             ]);

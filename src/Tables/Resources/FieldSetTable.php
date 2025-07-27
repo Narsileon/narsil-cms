@@ -4,8 +4,7 @@ namespace Narsil\Tables\Resources;
 
 #region USE
 
-use Narsil\Contracts\Tables\Resources\FieldTable as Contract;
-use Narsil\Models\Fields\Field;
+use Narsil\Contracts\Tables\Resources\FieldSetTable as Contract;
 use Narsil\Models\Fields\FieldSet;
 use Narsil\Tables\AbstractTable;
 use Narsil\Tables\TableColumn;
@@ -16,7 +15,7 @@ use Narsil\Tables\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldTable extends AbstractTable implements Contract
+class FieldSetTable extends AbstractTable implements Contract
 {
     #region CONSTRUCTOR
 
@@ -39,23 +38,33 @@ class FieldTable extends AbstractTable implements Contract
     {
         return [
             new TableColumn(
-                id: Field::ID,
+                id: FieldSet::ID,
                 visibility: true,
             ),
             new TableColumn(
-                id: Field::NAME,
+                id: FieldSet::NAME,
                 visibility: true,
             ),
             new TableColumn(
-                id: Field::HANDLE,
+                id: FieldSet::HANDLE,
                 visibility: true,
             ),
             new TableColumn(
-                id: Field::CREATED_AT,
+                header: trans('narsil-cms::ui.fields'),
+                id: FieldSet::COUNT_FIELDS,
                 visibility: true,
             ),
             new TableColumn(
-                id: Field::UPDATED_AT,
+                header: trans('narsil-cms::ui.sets'),
+                id: FieldSet::COUNT_FIELD_SETS,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: FieldSet::CREATED_AT,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: FieldSet::UPDATED_AT,
                 visibility: true,
             ),
         ];

@@ -5,11 +5,10 @@ namespace Narsil\Forms\Resources;
 #region USE
 
 use Narsil\Contracts\Fields\Text\TextField;
-use Narsil\Contracts\Forms\Resources\SiteGroupForm as Contract;
+use Narsil\Contracts\Forms\Resources\FieldSetForm as Contract;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldSet;
-use Narsil\Models\Sites\SiteGroup;
 
 #endregion
 
@@ -17,7 +16,7 @@ use Narsil\Models\Sites\SiteGroup;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroupForm extends AbstractForm implements Contract
+class FieldSetForm extends AbstractForm implements Contract
 {
     #region PUBLIC METHODS
 
@@ -32,8 +31,15 @@ class SiteGroupForm extends AbstractForm implements Contract
                 FieldSet::NAME => trans('narsil-cms::ui.main'),
                 FieldSet::RELATION_ITEMS => [
                     [
-                        Field::HANDLE => SiteGroup::NAME,
+                        Field::HANDLE => FieldSet::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextField::class)
+                            ->required(true)
+                            ->toArray(),
+                    ],
+                    [
+                        Field::HANDLE => FieldSet::HANDLE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                         Field::SETTINGS => app(TextField::class)
                             ->required(true)
                             ->toArray(),
@@ -44,15 +50,15 @@ class SiteGroupForm extends AbstractForm implements Contract
                 FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
                 FieldSet::RELATION_ITEMS => [
                     [
-                        Field::HANDLE => SiteGroup::ID,
+                        Field::HANDLE => Field::ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),
                     ],
                     [
-                        Field::HANDLE => SiteGroup::CREATED_AT,
+                        Field::HANDLE => Field::CREATED_AT,
                         Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
                     ],
                     [
-                        Field::HANDLE => SiteGroup::UPDATED_AT,
+                        Field::HANDLE => Field::UPDATED_AT,
                         Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
                     ],
                 ],

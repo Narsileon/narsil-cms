@@ -4,11 +4,10 @@ namespace Narsil\Fields\Text;
 
 #region USE
 
-use Narsil\Contracts\Fields\Select\CheckboxField;
 use Narsil\Contracts\Fields\Select\SwitchField;
 use Narsil\Contracts\Fields\Text\EmailField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Models\Fields\Field;
 
@@ -30,7 +29,7 @@ class EmailField extends AbstractField implements Contract
         parent::__construct(
             icon: 'mail',
             label: trans('narsil-cms::fields.email'),
-            type: TypeEnum::EMAIL->value
+            type: InputTypeEnum::EMAIL->value
         );
 
         $this->autoComplete('email');

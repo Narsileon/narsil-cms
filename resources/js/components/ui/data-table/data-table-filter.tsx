@@ -1,13 +1,13 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
-import {
-  DataTableRowMenu,
-  useDataTable,
-} from "@narsil-cms/components/ui/data-table";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { useLabels } from "@narsil-cms/components/ui/labels";
+import {
+  DataTableRowMenu,
+  useDataTable,
+} from "@narsil-cms/components/ui/data-table";
 import type { DataTableFilterCollection } from "@narsil-cms/types/collection";
 
 type DataTableFilterProps = React.ComponentProps<"ul"> &
@@ -54,7 +54,7 @@ function DataTableFilter({
         </li>
       ))}
       {meta.routes.create ? (
-        <li>
+        <li className="mt-2">
           <Button asChild={true}>
             <ModalLink href={route(meta.routes.create)}>
               {meta.addLabel}

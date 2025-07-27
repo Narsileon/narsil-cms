@@ -10,6 +10,7 @@ use Narsil\Contracts\FormRequests\Fortify\ResetUserPasswordFormRequest as ResetU
 use Narsil\Contracts\FormRequests\Fortify\UpdateUserPasswordFormRequest as UpdateUserPasswordFormRequestContract;
 use Narsil\Contracts\FormRequests\Fortify\UpdateUserProfileInformationFormRequest as UpdateUserProfileInformationFormRequestContract;
 use Narsil\Contracts\FormRequests\Resources\FieldFormRequest as FieldFormRequestContract;
+use Narsil\Contracts\FormRequests\Resources\FieldSetFormRequest as FieldSetFormRequestContract;
 use Narsil\Contracts\FormRequests\Resources\SiteFormRequest as SiteFormRequestContract;
 use Narsil\Contracts\FormRequests\Resources\SiteGroupFormRequest as SiteGroupFormRequestContract;
 use Narsil\Contracts\FormRequests\Resources\UserFormRequest as UserFormRequestContract;
@@ -19,6 +20,7 @@ use Narsil\Http\Requests\Fortify\ResetUserPasswordFormRequest;
 use Narsil\Http\Requests\Fortify\UpdateUserPasswordFormRequest;
 use Narsil\Http\Requests\Fortify\UpdateUserProfileInformationFormRequest;
 use Narsil\Http\Requests\Resources\FieldFormRequest;
+use Narsil\Http\Requests\Resources\FieldSetFormRequest;
 use Narsil\Http\Requests\Resources\SiteFormRequest;
 use Narsil\Http\Requests\Resources\SiteGroupFormRequest;
 use Narsil\Http\Requests\Resources\UserFormRequest;
@@ -68,6 +70,7 @@ class FormRequestServiceProvider extends ServiceProvider
         return [
             CreateNewUserFormRequestContract::class => CreateNewUserFormRequest::class,
             FieldFormRequestContract::class => FieldFormRequest::class,
+            FieldSetFormRequestContract::class => FieldSetFormRequest::class,
             ResetUserPasswordFormRequestContract::class => ResetUserPasswordFormRequest::class,
             SiteFormRequestContract::class => SiteFormRequest::class,
             SiteGroupFormRequestContract::class => SiteGroupFormRequest::class,

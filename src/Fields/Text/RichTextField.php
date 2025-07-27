@@ -5,8 +5,8 @@ namespace Narsil\Fields\Text;
 #region USE
 
 use Narsil\Contracts\Fields\Text\RichTextField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Models\Fields\Field;
 
@@ -28,7 +28,7 @@ class RichTextField extends AbstractField implements Contract
         parent::__construct(
             icon: 'text-cursor-input',
             label: trans('narsil-cms::fields.rich_text'),
-            type: TypeEnum::TEXT->value
+            type: InputTypeEnum::TEXT->value
         );
 
         $this->value('');

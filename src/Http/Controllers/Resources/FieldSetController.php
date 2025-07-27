@@ -8,14 +8,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\FormRequests\Resources\FieldFormRequest;
-use Narsil\Contracts\Forms\Resources\FieldForm;
-use Narsil\Contracts\Tables\Resources\FieldTable;
-use Narsil\Enums\Fields\FieldTypeEnum;
+use Narsil\Contracts\FormRequests\Resources\FieldSetFormRequest;
+use Narsil\Contracts\Forms\Resources\FieldSetForm;
+use Narsil\Contracts\Tables\Resources\FieldSetTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractModelController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
-use Narsil\Models\Fields\Field;
+use Narsil\Models\Fields\FieldSet;
 use Narsil\Narsil;
 
 #endregion
@@ -24,17 +23,17 @@ use Narsil\Narsil;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldController extends AbstractModelController
+class FieldSetController extends AbstractModelController
 {
     #region CONSTRUCTOR
 
     /**
-     * @param FieldForm $form
-     * @param FieldFormRequest $formRequest
+     * @param FieldSetForm $form
+     * @param FieldSetFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(FieldForm $form, FieldFormRequest $formRequest)
+    public function __construct(FieldSetForm $form, FieldSetFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -45,13 +44,13 @@ class FieldController extends AbstractModelController
     #region PROPERTIES
 
     /**
-     * @var FieldForm
+     * @var FieldSetForm
      */
-    protected readonly FieldForm $form;
+    protected readonly FieldSetForm $form;
     /**
-     * @var FieldFormRequest
+     * @var FieldSetFormRequest
      */
-    protected readonly FieldFormRequest $formRequest;
+    protected readonly FieldSetFormRequest $formRequest;
 
     #endregion
 
@@ -64,14 +63,22 @@ class FieldController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $query = Field::query();
+        $query = FieldSet::query()
+            ->with([
+                FieldSet::RELATION_FIELDS,
+                FieldSet::RELATION_FIELD_SETS,
+            ])
+            ->withCount([
+                FieldSet::RELATION_FIELDS,
+                FieldSet::RELATION_FIELD_SETS,
+            ]);
 
-        $dataTable = new DataTableCollection($query, app(FieldTable::class));
+        $dataTable = new DataTableCollection($query, app(FieldSetTable::class));
 
         return Narsil::render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.fields'),
-            description: trans('narsil-cms::ui.fields'),
+            title: trans('narsil-cms::ui.field_sets'),
+            description: trans('narsil-cms::ui.field_sets'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -86,15 +93,15 @@ class FieldController extends AbstractModelController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            url: route('fields.store'),
+            url: route('field-sets.store'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.create'),
         );
 
         return Narsil::render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.field'),
-            description: trans('narsil-cms::ui.field'),
+            title: trans('narsil-cms::ui.field_set'),
+            description: trans('narsil-cms::ui.field_set'),
             props: [
                 'form' => $form,
             ]
@@ -110,31 +117,31 @@ class FieldController extends AbstractModelController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        Field::create($attributes);
+        FieldSet::create($attributes);
 
-        return $this->redirectOnStored(Field::TABLE);
+        return $this->redirectOnStored(FieldSet::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param Field $field
+     * @param FieldSet $field
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, Field $field): JsonResponse|Response
+    public function edit(Request $request, FieldSet $fieldSet): JsonResponse|Response
     {
         $form = $this->form->get(
-            url: route('fields.update', $field->{Field::ID}),
+            url: route('field-sets.update', $fieldSet->{FieldSet::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
 
         return Narsil::render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.field'),
-            description: trans('narsil-cms::ui.field'),
+            title: trans('narsil-cms::ui.field_set'),
+            description: trans('narsil-cms::ui.field_set'),
             props: [
-                'data' => $field,
+                'data' => $fieldSet,
                 'form' => $form,
             ]
         );
@@ -142,30 +149,30 @@ class FieldController extends AbstractModelController
 
     /**
      * @param Request $request
-     * @param Field $field
+     * @param FieldSet $fieldSet
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, Field $field): RedirectResponse
+    public function update(Request $request, FieldSet $fieldSet): RedirectResponse
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        $field->update($attributes);
+        $fieldSet->update($attributes);
 
-        return $this->redirectOnUpdated(Field::TABLE);
+        return $this->redirectOnUpdated(FieldSet::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param Field $field
+     * @param FieldSet $fieldSet
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, Field $field): RedirectResponse
+    public function destroy(Request $request, FieldSet $fieldSet): RedirectResponse
     {
-        $field->delete();
+        $fieldSet->delete();
 
-        return $this->redirectOnDestroyed(Field::TABLE);
+        return $this->redirectOnDestroyed(FieldSet::TABLE);
     }
 
     #endregion

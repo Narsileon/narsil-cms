@@ -6,10 +6,9 @@ namespace Narsil\Enums\Fields;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-enum TypeEnum: string
+enum InputTypeEnum: string
 {
     case CHECKBOX  = 'checkbox';
-    case DATA      = 'data';
     case DATE      = 'date';
     case EMAIL     = 'email';
     case NUMBER    = 'number';
@@ -17,7 +16,6 @@ enum TypeEnum: string
     case RANGE     = 'range';
     case RICH_TEXT = 'rich_text';
     case SELECT    = 'select';
-    case SIDEBAR   = 'sidebar';
     case SWITCH    = 'switch';
     case TAB       = 'tab';
     case TEXT      = 'text';

@@ -35,9 +35,14 @@ import type {
 type ResourceIndexProps = {
   dataTable: DataTableCollection;
   dataTableFilter: DataTableFilterCollection;
+  title: string;
 };
 
-function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
+function ResourceIndex({
+  dataTable,
+  dataTableFilter,
+  title,
+}: ResourceIndexProps) {
   const { getLabel } = useLabels();
 
   const finalColumns = [
@@ -88,7 +93,7 @@ function ResourceIndex({ dataTable, dataTableFilter }: ResourceIndexProps) {
           <Section className="h-full gap-4 p-4">
             <SectionHeader className="flex items-center justify-between gap-4">
               <SectionTitle level="h2" variant="h4" className="min-w-1/5">
-                {dataTable.meta.title}
+                {title}
               </SectionTitle>
               <DataTableSettings className="ml-2" />
               <DataTableInput className="grow" />

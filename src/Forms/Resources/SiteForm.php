@@ -10,9 +10,9 @@ use Narsil\Contracts\Fields\Select\SelectField;
 use Narsil\Contracts\Fields\Select\SwitchField;
 use Narsil\Contracts\Fields\Text\TextField;
 use Narsil\Contracts\Forms\Resources\SiteForm as Contract;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Forms\AbstractForm;
 use Narsil\Models\Fields\Field;
+use Narsil\Models\Fields\FieldSet;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
 use ResourceBundle;
@@ -37,9 +37,9 @@ class SiteForm extends AbstractForm implements Contract
 
         return [
             [
-                Field::NAME => trans('narsil-cms::ui.main'),
-                Field::TYPE => TypeEnum::TAB->value,
-                Field::RELATION_FIELDS => [
+                FieldSet::HANDLE => self::MAIN,
+                FieldSet::NAME => trans('narsil-cms::ui.main'),
+                FieldSet::RELATION_ITEMS => [
                     [
                         Field::HANDLE => Site::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
@@ -76,8 +76,8 @@ class SiteForm extends AbstractForm implements Contract
                 ],
             ],
             [
-                Field::TYPE => TypeEnum::SIDEBAR->value,
-                Field::RELATION_FIELDS => [
+                FieldSet::HANDLE => self::SIDEBAR,
+                FieldSet::RELATION_ITEMS => [
                     [
                         Field::HANDLE => Site::ENABLED,
                         Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
@@ -94,8 +94,8 @@ class SiteForm extends AbstractForm implements Contract
                 ]
             ],
             [
-                Field::TYPE => TypeEnum::DATA->value,
-                Field::RELATION_FIELDS => [
+                FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
+                FieldSet::RELATION_ITEMS => [
                     [
                         Field::HANDLE => Site::ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),

@@ -6,8 +6,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Narsil\Contracts\Fields\Text\RichTextField;
-use Narsil\Enums\Fields\FieldTypeEnum;
 use Narsil\Models\Fields\Field;
+use Narsil\Models\Fields\FieldSet;
+use Narsil\Models\Fields\FieldSetItem;
 
 #endregion
 
@@ -23,7 +24,9 @@ class FieldSeeder extends Seeder
         $contentFieldSet = $this->createContentFieldSet();
         $richTextFieldSet = $this->createRichTextFieldSet();
 
-        $contentFieldSet->sets()->attach($richTextFieldSet->{Field::ID});
+        $contentFieldSet->fieldSets()->attach($richTextFieldSet->{Field::ID}, [
+            FieldSetItem::POSITION => 0,
+        ]);
     }
 
     #endregion
@@ -31,36 +34,36 @@ class FieldSeeder extends Seeder
     #region PROTECTED METHODS
 
     /**
-     * @return Field
+     * @return FieldSet
      */
-    protected function createContentFieldSet(): Field
+    protected function createContentFieldSet(): FieldSet
     {
-        $contentFieldSet = Field::create([
-            Field::NAME => 'Content',
-            Field::HANDLE => 'content',
-            Field::TYPE => FieldTypeEnum::FIELD_SET->value,
+        $contentFieldSet = FieldSet::create([
+            FieldSet::NAME => 'Content',
+            FieldSet::HANDLE => 'content',
         ]);
 
         return $contentFieldSet;
     }
 
     /**
-     * @return Field
+     * @return FieldSet
      */
-    protected function createRichTextFieldSet(): Field
+    protected function createRichTextFieldSet(): FieldSet
     {
-        $richTextFieldSet = Field::create([
+        $richTextField = Field::create([
             Field::NAME => 'Rich text',
             Field::HANDLE => 'rich_text',
-            Field::TYPE => FieldTypeEnum::FIELD_SET->value,
+            Field::SETTINGS => app(RichTextField::class)->toArray(),
         ]);
 
-        Field::create([
-            Field::NAME => 'Rich text',
-            Field::HANDLE => 'rich_text',
-            Field::PARENT_ID => $richTextFieldSet->{Field::ID},
-            Field::TYPE => FieldTypeEnum::FIELD->value,
-            Field::SETTINGS => app(RichTextField::class)->toArray(),
+        $richTextFieldSet = FieldSet::create([
+            FieldSet::NAME => 'Rich text',
+            FieldSet::HANDLE => 'rich_text',
+        ]);
+
+        $richTextFieldSet->fields()->attach($richTextField->{Field::ID}, [
+            FieldSetItem::POSITION => 0,
         ]);
 
         return $richTextFieldSet;

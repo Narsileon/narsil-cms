@@ -5,8 +5,8 @@ namespace Narsil\Fields\Datetime;
 #region USE
 
 use Narsil\Contracts\Fields\Datetime\TimeField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Models\Fields\Field;
 
@@ -28,7 +28,7 @@ class TimeField extends AbstractField implements Contract
         parent::__construct(
             icon: 'clock',
             label: trans('narsil-cms::fields.time'),
-            type: TypeEnum::TIME->value
+            type: InputTypeEnum::TIME->value
         );
 
         $this->value('');

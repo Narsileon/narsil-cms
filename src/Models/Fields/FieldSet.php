@@ -4,8 +4,11 @@ namespace Narsil\Models\Fields;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Narsil\Models\Fields\Field;
+use Narsil\Models\Fields\FieldSetItem;
 
 #endregion
 
@@ -13,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldSet extends Pivot
+class FieldSet extends Model
 {
     #region CONSTRUCTOR
 
@@ -38,60 +41,78 @@ class FieldSet extends Pivot
     #region CONSTANTS
 
     /**
+     * @var string The name of the "handle" column.
+     */
+    final public const HANDLE = 'handle';
+    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
     /**
-     * @var string The name of the "field id" column.
+     * @var string The name of the "name" column.
      */
-    final public const FIELD_ID = 'field_id';
-    /**
-     * @var string The name of the "set id" column.
-     */
-    final public const SET_ID = 'set_id';
+    final public const NAME = 'name';
 
     /**
-     * @var string The name of the "field" relation.
+     * @var string The name of the "field sets" count.
      */
-    final public const RELATION_FIELD = 'field';
+    final public const COUNT_FIELD_SETS = 'field_sets_count';
     /**
-     * @var string The name of the "set" relation.
+     * @var string The name of the "fields" count.
      */
-    final public const RELATION_SET = 'set';
+    final public const COUNT_FIELDS = 'fields_count';
+
+    /**
+     * @var string The name of the "field sets" relation.
+     */
+    final public const RELATION_FIELD_SETS = 'field_sets';
+    /**
+     * @var string The name of the "fields" relation.
+     */
+    final public const RELATION_FIELDS = 'fields';
+    /**
+     * @var string The name of the "items" relation.
+     */
+    final public const RELATION_ITEMS = 'items';
 
     /**
      * @var string The table associated with the model.
      */
-    final public const TABLE = 'field_set';
+    final public const TABLE = 'field_sets';
 
     #endregion
 
     #region RELATIONS
 
-    /**
-     * @return BelongsTo
-     */
-    public function field(): BelongsTo
+    public function fields(): MorphToMany
     {
-        return $this
-            ->belongsTo(
-                Field::class,
-                self::FIELD_ID,
-                Field::ID,
-            );
+        return $this->morphedByMany(
+            Field::class,
+            FieldSetItem::RELATION_ITEM,
+            FieldSetItem::TABLE,
+            FieldSetItem::FIELD_SET_ID,
+            FieldSetItem::ITEM_ID,
+        );
     }
 
-    /**
-     * @return BelongsTo
-     */
-    public function set(): BelongsTo
+    public function field_sets(): MorphToMany
     {
-        return $this
-            ->belongsTo(
-                Field::class,
-                self::SET_ID,
-                Field::ID,
-            );
+        return $this->morphedByMany(
+            FieldSet::class,
+            FieldSetItem::RELATION_ITEM,
+            FieldSetItem::TABLE,
+            FieldSetItem::FIELD_SET_ID,
+            FieldSetItem::ITEM_ID,
+        );
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(
+            FieldSetItem::class,
+            FieldSetItem::FIELD_SET_ID,
+            self::ID,
+        );
     }
 
     #endregion

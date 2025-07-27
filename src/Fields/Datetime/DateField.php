@@ -5,8 +5,8 @@ namespace Narsil\Fields\Datetime;
 #region USE
 
 use Narsil\Contracts\Fields\Datetime\DateField as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
 use Narsil\Enums\Fields\PropEnum;
-use Narsil\Enums\Fields\TypeEnum;
 use Narsil\Fields\AbstractField;
 use Narsil\Models\Fields\Field;
 
@@ -28,7 +28,7 @@ class DateField extends AbstractField implements Contract
         parent::__construct(
             icon: 'calendar',
             label: trans('narsil-cms::fields.date'),
-            type: TypeEnum::DATE->value
+            type: InputTypeEnum::DATE->value
         );
 
         $this->value('');
