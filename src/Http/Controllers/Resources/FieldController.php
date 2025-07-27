@@ -65,8 +65,14 @@ class FieldController extends AbstractModelController
     public function index(Request $request): JsonResponse|Response
     {
         $query = Field::query()
-            ->with(Field::RELATION_FIELDS)
-            ->withCount(Field::RELATION_FIELDS)
+            ->with([
+                Field::RELATION_FIELDS,
+                Field::RELATION_SETS,
+            ])
+            ->withCount([
+                Field::RELATION_FIELDS,
+                Field::RELATION_SETS,
+            ])
             ->where(Field::TYPE, '=', FieldTypeEnum::FIELD_SET->value);
 
         $dataTable = new DataTableCollection($query, app(FieldTable::class));

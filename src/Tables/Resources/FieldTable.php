@@ -55,6 +55,11 @@ class FieldTable extends AbstractTable implements Contract
                 visibility: true,
             ),
             new TableColumn(
+                header: trans('narsil-cms::ui.sets'),
+                id: Field::COUNT_SETS,
+                visibility: true,
+            ),
+            new TableColumn(
                 id: Field::CREATED_AT,
                 visibility: true,
             ),

@@ -92,6 +92,10 @@ class Field extends Model
      * @var string The name of the "fields" count.
      */
     final public const COUNT_FIELDS = 'fields_count';
+    /**
+     * @var string The name of the "sets" count.
+     */
+    final public const COUNT_SETS = 'sets_count';
 
     /**
      * @var string The name of the "conditions" relation.
