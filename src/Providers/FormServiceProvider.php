@@ -49,20 +49,13 @@ class FormServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(ConfirmPasswordFormContract::class, ConfirmPasswordForm::class);
-        $this->app->singleton(FieldFormContract::class, FieldForm::class);
-        $this->app->singleton(ForgotPasswordFormContract::class, ForgotPasswordForm::class);
-        $this->app->singleton(LoginFormContract::class, LoginForm::class);
-        $this->app->singleton(ProfileFormContract::class, ProfileForm::class);
-        $this->app->singleton(RegisterFormContract::class, RegisterForm::class);
-        $this->app->singleton(ResetPasswordFormContract::class, ResetPasswordForm::class);
-        $this->app->singleton(SiteFormContract::class, SiteForm::class);
-        $this->app->singleton(SiteGroupFormContract::class, SiteGroupForm::class);
-        $this->app->singleton(TwoFactorFormContract::class, TwoFactorForm::class);
-        $this->app->singleton(TwoFactorChallengeFormContract::class, TwoFactorChallengeForm::class);
-        $this->app->singleton(UpdatePasswordFormContract::class, UpdatePasswordForm::class);
-        $this->app->singleton(UserConfigurationFormContract::class, UserConfigurationForm::class);
-        $this->app->singleton(UserFormContract::class, UserForm::class);
+        $map = $this->map();
+
+        foreach ($map as $abstract => $concrete)
+        {
+            $this->app->singleton($abstract, $concrete);
+            $this->app->tag($abstract, ['forms']);
+        }
     }
 
     /**
@@ -71,6 +64,33 @@ class FormServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function map(): array
+    {
+        return [
+            ConfirmPasswordFormContract::class => ConfirmPasswordForm::class,
+            FieldFormContract::class => FieldForm::class,
+            ForgotPasswordFormContract::class => ForgotPasswordForm::class,
+            LoginFormContract::class => LoginForm::class,
+            ProfileFormContract::class => ProfileForm::class,
+            RegisterFormContract::class => RegisterForm::class,
+            ResetPasswordFormContract::class => ResetPasswordForm::class,
+            SiteFormContract::class => SiteForm::class,
+            SiteGroupFormContract::class => SiteGroupForm::class,
+            TwoFactorFormContract::class => TwoFactorForm::class,
+            TwoFactorChallengeFormContract::class => TwoFactorChallengeForm::class,
+            UpdatePasswordFormContract::class => UpdatePasswordForm::class,
+            UserConfigurationFormContract::class => UserConfigurationForm::class,
+            UserFormContract::class => UserForm::class,
+        ];
     }
 
     #endregion

@@ -19,10 +19,6 @@ abstract class TanStackTable
      */
     final public const COLUMN_ORDER = 'column_order';
     /**
-     * @var string The name of the "column visibility" prop.
-     */
-    final public const COLUMN_VISIBILITY = 'column_visibility';
-    /**
      * @var string The name of the "filter" prop.
      */
     final public const FILTER = 'filter';
@@ -46,6 +42,10 @@ abstract class TanStackTable
      * @var string The name of the "type" prop.
      */
     final public const TYPE = 'type';
+    /**
+     * @var string The name of the "visibility" prop.
+     */
+    final public const VISIBILITY = 'column_visibility';
 
     #endregion
 }

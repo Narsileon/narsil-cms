@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\Resources\FieldFormRequest;
 use Narsil\Contracts\Forms\Resources\FieldForm;
+use Narsil\Contracts\Tables\Resources\FieldTable;
+use Narsil\Enums\Fields\FieldTypeEnum;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractModelController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
@@ -62,9 +64,12 @@ class FieldController extends AbstractModelController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $query = Field::query();
+        $query = Field::query()
+            ->with(Field::RELATION_FIELDS)
+            ->withCount(Field::RELATION_FIELDS)
+            ->where(Field::TYPE, '=', FieldTypeEnum::FIELD_SET->value);
 
-        $dataTable = new DataTableCollection($query, new Field());
+        $dataTable = new DataTableCollection($query, app(FieldTable::class));
 
         return Narsil::render(
             component: 'narsil/cms::resources/index',

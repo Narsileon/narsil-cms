@@ -4,19 +4,18 @@ namespace Narsil\Http\Resources\DataTable;
 
 #region USE
 
-use Narsil\Constants\TanStackTable;
-use Narsil\Enums\Database\TypeNameEnum;
-use Narsil\Services\RouteService;
-use Narsil\Services\TableService;
-use Narsil\Services\TanStackTableService;
-use Narsil\Support\Column;
-use Narsil\Support\LabelsBag;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Str;
 use JsonSerializable;
+use Narsil\Constants\TanStackTable;
+use Narsil\Contracts\Tables\Table;
+use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Services\RouteService;
+use Narsil\Services\TableService;
+use Narsil\Support\Column;
+use Narsil\Support\LabelsBag;
 
 #endregion
 
@@ -30,13 +29,16 @@ class DataTableCollection extends ResourceCollection
 
     /**
      * @param Builder $query
-     * @param Model $model
+     * @param Table $table
      *
      * @return void
      */
-    public function __construct(Builder $query, Model $model)
+    public function __construct(
+        Builder $query,
+        Table $table,
+    )
     {
-        $this->model = $model;
+        $this->table = $table;
 
         $this->search($query);
         $this->sort($query);
@@ -69,9 +71,9 @@ class DataTableCollection extends ResourceCollection
     #region PROPERTIES
 
     /**
-     * @var Model The model associated to the collection.
+     * @var Table
      */
-    private readonly Model $model;
+    protected readonly Table $table;
 
     #endregion
 
@@ -93,11 +95,12 @@ class DataTableCollection extends ResourceCollection
      */
     public function with($request): array
     {
-        $with = TanStackTableService::getColumns($this->model->getTable(), $this->model->getHidden());
-
         $meta = $this->getMeta();
 
-        return array_merge($with, [
+        return array_merge([
+            'columns' => $this->table->getColumns(),
+            'columnOrder' => $this->table->getColumnOrder(),
+            'columnVisibility' => $this->table->getColumnVisibility(),
             'meta' => $meta,
         ]);
     }
@@ -111,16 +114,11 @@ class DataTableCollection extends ResourceCollection
      */
     protected function getMeta(): array
     {
-        $table = $this->model->getTable();
-
-        $id = Str::slug($table);
-        $routes = RouteService::getNames($table);
-        $title = trans('narsil-cms::ui.' . $table);
+        $id = Str::slug($this->table->name);
 
         return [
             'id'     => $id,
-            'routes' => $routes,
-            'title'  => $title,
+            'routes' => $this->table->getRoutes(),
         ];
     }
 

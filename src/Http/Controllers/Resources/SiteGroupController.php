@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\Resources\SiteGroupFormRequest;
 use Narsil\Contracts\Forms\Resources\SiteGroupForm;
+use Narsil\Contracts\Tables\Resources\SiteGroupTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractModelController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
@@ -64,7 +65,7 @@ class SiteGroupController extends AbstractModelController
     {
         $query = SiteGroup::query();
 
-        $dataTable = new DataTableCollection($query, new SiteGroup());
+        $dataTable = new DataTableCollection($query, app(SiteGroupTable::class));
 
         return Narsil::render(
             component: 'narsil/cms::resources/index',

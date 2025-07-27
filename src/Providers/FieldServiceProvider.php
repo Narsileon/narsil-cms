@@ -43,9 +43,9 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $fields = $this->fields();
+        $map = $this->map();
 
-        foreach ($fields as $abstract => $concrete)
+        foreach ($map as $abstract => $concrete)
         {
             $this->app->bind($abstract, $concrete);
             $this->app->tag($abstract, ['fields']);
@@ -67,7 +67,7 @@ class FieldServiceProvider extends ServiceProvider
     /**
      * @return array<string,string>
      */
-    protected function fields(): array
+    protected function map(): array
     {
         return [
             CheckboxFieldContract::class => CheckboxField::class,

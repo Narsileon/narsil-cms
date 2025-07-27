@@ -39,15 +39,13 @@ class FormRequestServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(CreateNewUserFormRequestContract::class, CreateNewUserFormRequest::class);
-        $this->app->singleton(FieldFormRequestContract::class, FieldFormRequest::class);
-        $this->app->singleton(ResetUserPasswordFormRequestContract::class, ResetUserPasswordFormRequest::class);
-        $this->app->singleton(SiteFormRequestContract::class, SiteFormRequest::class);
-        $this->app->singleton(SiteGroupFormRequestContract::class, SiteGroupFormRequest::class);
-        $this->app->singleton(UpdateUserPasswordFormRequestContract::class, UpdateUserPasswordFormRequest::class);
-        $this->app->singleton(UpdateUserProfileInformationFormRequestContract::class, UpdateUserProfileInformationFormRequest::class);
-        $this->app->singleton(UserConfigurationFormRequestContract::class, UserConfigurationFormRequest::class);
-        $this->app->singleton(UserFormRequestContract::class, UserFormRequest::class);
+        $map = $this->map();
+
+        foreach ($map as $abstract => $concrete)
+        {
+            $this->app->singleton($abstract, $concrete);
+            $this->app->tag($abstract, ['form-requests']);
+        }
     }
 
     /**
@@ -56,6 +54,28 @@ class FormRequestServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,string>
+     */
+    protected function map(): array
+    {
+        return [
+            CreateNewUserFormRequestContract::class => CreateNewUserFormRequest::class,
+            FieldFormRequestContract::class => FieldFormRequest::class,
+            ResetUserPasswordFormRequestContract::class => ResetUserPasswordFormRequest::class,
+            SiteFormRequestContract::class => SiteFormRequest::class,
+            SiteGroupFormRequestContract::class => SiteGroupFormRequest::class,
+            UpdateUserPasswordFormRequestContract::class => UpdateUserPasswordFormRequest::class,
+            UpdateUserProfileInformationFormRequestContract::class => UpdateUserProfileInformationFormRequest::class,
+            UserConfigurationFormRequestContract::class => UserConfigurationFormRequest::class,
+            UserFormRequestContract::class => UserFormRequest::class,
+        ];
     }
 
     #endregion

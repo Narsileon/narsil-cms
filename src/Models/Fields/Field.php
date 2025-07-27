@@ -89,6 +89,11 @@ class Field extends Model
     final public const WIDTH = 'width';
 
     /**
+     * @var string The name of the "fields" count.
+     */
+    final public const COUNT_FIELDS = 'fields_count';
+
+    /**
      * @var string The name of the "conditions" relation.
      */
     final public const RELATION_CONDITIONS = 'conditions';

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\Resources\SiteFormRequest;
 use Narsil\Contracts\Forms\Resources\SiteForm;
+use Narsil\Contracts\Tables\Resources\SiteTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractModelController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
@@ -68,7 +69,7 @@ class SiteController extends AbstractModelController
 
         $this->filter($query, Site::GROUP_ID);
 
-        $dataTable = new DataTableCollection($query, new Site());
+        $dataTable = new DataTableCollection($query, app(SiteTable::class));
 
         $dataTableFilter = new DataTableFilterCollection(
             SiteGroup::all(),

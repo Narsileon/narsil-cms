@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\Resources\UserFormRequest;
 use Narsil\Contracts\Forms\Resources\UserForm;
+use Narsil\Contracts\Tables\Resources\UserTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractModelController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
@@ -64,7 +65,7 @@ class UserController extends AbstractModelController
     {
         $query = User::query();
 
-        $dataTable = new DataTableCollection($query, new User());
+        $dataTable = new DataTableCollection($query, app(UserTable::class));
 
         return Narsil::render(
             component: 'narsil/cms::resources/index',

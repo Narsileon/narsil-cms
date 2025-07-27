@@ -4,10 +4,10 @@ namespace Narsil\Services;
 
 #region USE
 
-use Narsil\Support\Column;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Support\Column;
 
 #endregion
 
@@ -22,7 +22,7 @@ abstract class TableService
     /**
      * @param string $table
      *
-     * @return Collection<Column>
+     * @return Collection<string,Column>
      */
     public static function getColumns(string $table): Collection
     {
