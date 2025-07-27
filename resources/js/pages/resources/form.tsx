@@ -57,8 +57,6 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
       },
     );
 
-  console.log(dataFields);
-
   const mainContent = (
     <>
       {mainFields.map((field, index) => {

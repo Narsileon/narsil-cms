@@ -17,25 +17,25 @@ interface RangeField extends AbstractField
     #region PUBLIC METHODS
 
     /**
-     * @param string $max
+     * @param float|int $max
      *
      * @return static Returns the current object instance.
      */
-    public function max(string $max): static;
+    public function max(float|int $max): static;
 
     /**
-     * @param string $min
+     * @param float|int $min
      *
      * @return static Returns the current object instance.
      */
-    public function min(string $min): static;
+    public function min(float|int $min): static;
 
     /**
-     * @param string $step
+     * @param float|int $step
      *
      * @return static Returns the current object instance.
      */
-    public function step(string $step): static;
+    public function step(float|int $step): static;
 
     /**
      * @param array<float|int> $value

@@ -51,7 +51,6 @@ const FormField = ({ field, render }: FormFieldProps) => {
         value: data?.[handle] ?? settings?.value ?? "",
         onFieldChange: (value) => {
           setData?.(handle, value);
-          console.log(data);
         },
       })}
     </FormFieldContext.Provider>

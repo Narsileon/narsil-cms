@@ -66,10 +66,10 @@ class UserConfigurationForm extends AbstractForm implements Contract
             Field::ICON => 'square-round-corner',
             Field::NAME => trans('narsil-cms::validation.attributes.radius'),
             Field::SETTINGS => app(RangeField::class)
-                ->max('1')
-                ->min('0')
-                ->step('0.05')
-                ->value(['0.65'])
+                ->max(1)
+                ->min(0)
+                ->step(0.05)
+                ->value([0.50])
                 ->toArray(),
         ]];
     }

@@ -69,7 +69,7 @@ class RangeField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function max(string $max): static
+    final public function max(float|int $max): static
     {
         $this->settings[PropEnum::MAX->value] = $max;
 
@@ -79,7 +79,7 @@ class RangeField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function min(string $min): static
+    final public function min(float|int $min): static
     {
         $this->settings[PropEnum::MIN->value] = $min;
 
@@ -89,7 +89,7 @@ class RangeField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function step(string $step): static
+    final public function step(float|int $step): static
     {
         $this->settings[PropEnum::STEP->value] = $step;
 
