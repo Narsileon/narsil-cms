@@ -88,6 +88,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                                 <Input
                                   {...field.settings}
                                   id={field.handle}
+                                  name={field.handle}
                                   value={value}
                                   onChange={(event) =>
                                     onFieldChange(event.target.value)

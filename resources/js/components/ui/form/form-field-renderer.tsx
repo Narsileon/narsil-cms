@@ -109,6 +109,7 @@ function FormFieldRenderer({
               <Input
                 {...props}
                 id={field.handle}
+                name={field.handle}
                 value={value}
                 type={type}
                 onChange={(e) => handleOnChange(e.target.value)}

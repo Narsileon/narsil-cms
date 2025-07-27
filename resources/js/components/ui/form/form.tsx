@@ -37,6 +37,7 @@ function Form({
     <form
       id={id}
       className={cn("grid", className)}
+      action={url}
       method={method}
       onSubmit={onSubmit}
       {...props}

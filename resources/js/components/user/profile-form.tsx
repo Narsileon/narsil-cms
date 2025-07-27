@@ -63,11 +63,17 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           <FormProvider
             id={updatePasswordForm.id}
             fields={updatePasswordForm.fields}
-            render={() => (
+            render={({ reset, setDefaults }) => (
               <Form
                 className="grid-cols-12 gap-6"
                 method={updatePasswordForm.method}
                 url={updatePasswordForm.url}
+                options={{
+                  onSuccess: () => {
+                    reset?.();
+                    setDefaults?.();
+                  },
+                }}
               >
                 {updatePasswordForm.fields.map((field, index) => (
                   <FormFieldRenderer field={field} key={index} />
