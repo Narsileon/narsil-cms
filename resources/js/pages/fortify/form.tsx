@@ -68,7 +68,8 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                   >
                     {form.elements.map((element, index) =>
                       form.id === "login-form" &&
-                      element.handle === "password" ? (
+                      element.handle === "password" &&
+                      !("elements" in element) ? (
                         <FormField
                           field={element as FieldType}
                           render={({ value, onFieldChange }) => {
@@ -86,7 +87,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                                   </Link>
                                 </div>
                                 <Input
-                                  {...element.settings}
+                                  {...(element.settings ?? {})}
                                   id={element.handle}
                                   name={element.handle}
                                   value={value}
