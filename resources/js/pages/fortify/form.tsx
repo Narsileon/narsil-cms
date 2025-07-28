@@ -23,7 +23,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { FormType } from "@narsil-cms/types/forms";
+import type { FieldType, FormType } from "@narsil-cms/types/forms";
 
 type FortifyFormProps = {
   data: Record<string, any>;
@@ -58,7 +58,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
             <CardContent>
               <FormProvider
                 id={form.id}
-                fields={form.fields}
+                items={form.fields}
                 initialValues={data}
                 render={() => (
                   <Form
@@ -66,17 +66,16 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                     method={form.method}
                     url={form.url}
                   >
-                    {form.fields.map((field, index) =>
-                      form.id === "login-form" &&
-                      field.handle === "password" ? (
+                    {form.fields.map((item, index) =>
+                      form.id === "login-form" && item.handle === "password" ? (
                         <FormField
-                          field={field}
+                          field={item as FieldType}
                           render={({ value, onFieldChange }) => {
                             return (
                               <FormItem className="col-span-full">
                                 <div className="flex items-center justify-between gap-3">
                                   <FormLabel required={true}>
-                                    {field.name}
+                                    {item.name}
                                   </FormLabel>
                                   <Link
                                     className="text-xs"
@@ -86,9 +85,9 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                                   </Link>
                                 </div>
                                 <Input
-                                  {...field.settings}
-                                  id={field.handle}
-                                  name={field.handle}
+                                  {...item.settings}
+                                  id={item.handle}
+                                  name={item.handle}
                                   value={value}
                                   onChange={(event) =>
                                     onFieldChange(event.target.value)

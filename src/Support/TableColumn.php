@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Tables;
+namespace Narsil\Support;
 
 /**
  * @version 1.0.0

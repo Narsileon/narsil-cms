@@ -71,7 +71,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
       <SectionContent>
         <FormProvider
           id="user-personalization-form"
-          fields={form.fields}
+          items={form.fields}
           initialValues={{
             color: color,
             locale: locale,
@@ -80,14 +80,14 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
           }}
           render={() => (
             <Form className="gap-6" method={form.method} url={form.url}>
-              {form.fields.map((field, index) => {
+              {form.fields.map((item, index) => {
                 return (
                   <FormFieldRenderer
-                    field={field}
+                    item={item}
                     className="grid grid-cols-2"
-                    onChange={(value) => handleChange(field.handle, value)}
+                    onChange={(value) => handleChange(item.handle, value)}
                     renderOption={
-                      field.handle === "color"
+                      item.handle === "color"
                         ? (option) => {
                             const color = getSelectOption(option, "bg-color");
 

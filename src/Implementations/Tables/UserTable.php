@@ -7,7 +7,7 @@ namespace Narsil\Implementations\Tables;
 use Narsil\Contracts\Tables\FieldTable as Contract;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\User;
-use Narsil\Tables\TableColumn;
+use Narsil\Support\TableColumn;
 
 #endregion
 

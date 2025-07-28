@@ -8,7 +8,7 @@ use Narsil\Contracts\Tables\FieldTable as Contract;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
-use Narsil\Tables\TableColumn;
+use Narsil\Support\TableColumn;
 
 #endregion
 
