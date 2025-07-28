@@ -1,10 +1,11 @@
 <?php
 
-namespace Narsil\Support\Components;
+namespace Narsil\Implementations\Components\Elements;
 
 #region USE
 
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Implementations\Components\Elements\AbstractComponentElement;
 
 #endregion
 
@@ -12,7 +13,7 @@ use Narsil\Enums\Forms\MethodEnum;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class NavigationItem extends AbstractComponent
+class NavigationItem extends AbstractComponentElement
 {
     #region CONSTRUCTOR
 
@@ -24,9 +25,9 @@ class NavigationItem extends AbstractComponent
     public function __construct(string $href, string $label)
     {
         $this
-            ->setHref($href)
-            ->setLabel($label)
-            ->setMethod(MethodEnum::GET);
+            ->href($href)
+            ->label($label)
+            ->method(MethodEnum::GET);
     }
 
     #endregion
@@ -38,7 +39,7 @@ class NavigationItem extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setHref(string $href): static
+    final public function href(string $href): static
     {
         $this->props['href'] = $href;
 
@@ -50,7 +51,7 @@ class NavigationItem extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setIcon(string $icon): static
+    final public function icon(string $icon): static
     {
         $this->props['icon'] = $icon;
 
@@ -62,7 +63,7 @@ class NavigationItem extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setLabel(string $label): static
+    final public function label(string $label): static
     {
         $this->props['label'] = $label;
 
@@ -74,7 +75,7 @@ class NavigationItem extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setMethod(MethodEnum $method): static
+    final public function method(MethodEnum $method): static
     {
         $this->props['method'] = $method->value;
 
@@ -86,7 +87,7 @@ class NavigationItem extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setModal(bool $modal): static
+    final public function modal(bool $modal): static
     {
         $this->props['modal'] = $modal;
 

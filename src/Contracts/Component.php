@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Contracts\Components;
+namespace Narsil\Contracts;
 
 /**
  * @version 1.0.0
@@ -13,7 +13,7 @@ interface Component
     /**
      * @return array
      */
-    public function get(): array;
+    public function toArray(): array;
 
     #endregion
 }

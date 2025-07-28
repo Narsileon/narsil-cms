@@ -21,14 +21,14 @@ export type FieldConditionType = {
 };
 
 export type FieldSetType = {
-  items: (FieldType | FieldSetType)[];
+  elements: (FieldType | FieldSetType)[];
   handle: string;
   id: number;
   name: string;
 };
 
 export type FormType = {
-  fields: (FieldType | FieldSetType)[];
+  elements: (FieldType | FieldSetType)[];
   id: string;
   method: string;
   submit: string;

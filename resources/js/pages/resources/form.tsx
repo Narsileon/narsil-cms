@@ -34,21 +34,21 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
 
   const { closeTopModal } = useModalStore();
 
-  const { sidebar, sidebarInformation, tabs } = form.fields.reduce(
-    (acc, field) => {
-      if (!("items" in field)) {
+  const { sidebar, sidebarInformation, tabs } = form.elements.reduce(
+    (acc, element) => {
+      if (!("elements" in element)) {
         return acc;
       }
 
-      switch (field.handle) {
+      switch (element.handle) {
         case "sidebar":
-          acc.sidebar = field;
+          acc.sidebar = element;
           break;
         case "sidebar_information":
-          acc.sidebarInformation = field;
+          acc.sidebarInformation = element;
           break;
         default:
-          acc.tabs.push(field);
+          acc.tabs.push(element);
           break;
       }
 
@@ -64,20 +64,20 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
   const mainContent = tabs.map((tab, index) => {
     return (
       <Fragment key={index}>
-        {tab.items.map((item, index) => {
-          return <FormFieldRenderer item={item} key={index} />;
+        {tab.elements.map((element, index) => {
+          return <FormFieldRenderer element={element} key={index} />;
         })}
       </Fragment>
     );
   });
 
-  const sidebarContent = sidebar?.items.map((item, index) => {
-    return <FormFieldRenderer item={item} key={index} />;
+  const sidebarContent = sidebar?.elements.map((element, index) => {
+    return <FormFieldRenderer element={element} key={index} />;
   });
 
-  const sidebarInformationContent = sidebarInformation?.items.map(
-    (item, index) => {
-      return <FormFieldRenderer item={item} key={index} />;
+  const sidebarInformationContent = sidebarInformation?.elements.map(
+    (element, index) => {
+      return <FormFieldRenderer element={element} key={index} />;
     },
   );
 
@@ -105,7 +105,7 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
   return (
     <FormProvider
       id={form.id}
-      items={form.fields}
+      elements={form.elements}
       initialValues={{
         _back: modal,
         ...data,

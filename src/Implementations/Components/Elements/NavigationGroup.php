@@ -1,12 +1,18 @@
 <?php
 
-namespace Narsil\Support\Components;
+namespace Narsil\Implementations\Components\Elements;
+
+#region USE
+
+use Narsil\Implementations\Components\Elements\AbstractComponentElement;
+
+#endregion
 
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class NavigationGroup extends AbstractComponent
+class NavigationGroup extends AbstractComponentElement
 {
     #region CONSTRUCTOR
 
@@ -17,8 +23,7 @@ class NavigationGroup extends AbstractComponent
      */
     public function __construct(string $label)
     {
-        $this
-            ->setLabel($label);
+        $this->label($label);
     }
 
     #endregion
@@ -30,7 +35,7 @@ class NavigationGroup extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setChildren(array $children): static
+    final public function children(array $children): static
     {
         $this->props['children'] = $children;
 
@@ -42,7 +47,7 @@ class NavigationGroup extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setIcon(string $icon): static
+    final public function icon(string $icon): static
     {
         $this->props['icon'] = $icon;
 
@@ -54,7 +59,7 @@ class NavigationGroup extends AbstractComponent
      *
      * @return static Returns the current object instance.
      */
-    final public function setLabel(string $label): static
+    final public function label(string $label): static
     {
         $this->props['label'] = $label;
 

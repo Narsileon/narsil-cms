@@ -97,7 +97,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
             <CardContent>
               <FormProvider
                 id={form.id}
-                items={form.fields}
+                elements={form.elements}
                 render={({ setError }) => (
                   <Form
                     className="grid-cols-12 gap-6"
@@ -115,8 +115,8 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                       },
                     }}
                   >
-                    {form.fields.map((item, index) => (
-                      <FormFieldRenderer item={item} key={index} />
+                    {form.elements.map((element, index) => (
+                      <FormFieldRenderer element={element} key={index} />
                     ))}
                     <div
                       className="col-span-full max-h-48 max-w-48 [&>svg]:h-auto [&>svg]:w-full"

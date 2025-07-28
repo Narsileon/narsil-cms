@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Support\Components;
+namespace Narsil\Implementations\Components\Elements;
 
 #region USE
 
@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class AbstractComponent
+class AbstractComponentElement
 {
     #region PROPERTIES
 
@@ -29,7 +29,7 @@ class AbstractComponent
     /**
      * @return array Returns the props.
      */
-    final public function get(): array
+    public function toArray(): array
     {
         return array_merge($this->props, [
             'component' => $this->getComponent(),

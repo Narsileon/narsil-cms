@@ -58,7 +58,7 @@ abstract class AbstractForm implements Form
     /**
      * @return array<Field>
      */
-    abstract public function fields(): array;
+    abstract public function elements(): array;
 
     /**
      * {@inheritDoc}
@@ -76,7 +76,7 @@ abstract class AbstractForm implements Form
         $this->registerLabels();
 
         return [
-            'fields' => $this->fields(),
+            'elements' => $this->elements(),
             'id'     => $this->id(),
             'method' => $this->method,
             'submit' => $this->submit,

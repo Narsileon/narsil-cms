@@ -9,9 +9,9 @@ use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldCondition;
 use Narsil\Models\Fields\FieldSet;
 use Narsil\Models\Fields\FieldSetElement;
-use Narsil\Models\Fields\TemplateSectionElement;
 use Narsil\Models\Templates\Template;
 use Narsil\Models\Templates\TemplateSection;
+use Narsil\Models\Templates\TemplateSectionElement;
 
 #endregion
 

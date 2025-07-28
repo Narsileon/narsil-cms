@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Http\Components\Navigation;
+namespace Narsil\Implementations\Components;
 
 #region USE
 
-use Narsil\Contracts\Components\Navigation\Sidebar as Contract;
-use Narsil\Http\Components\AbstractComponent;
+use Narsil\Contracts\Components\Sidebar as Contract;
+use Narsil\Implementations\AbstractComponent;
+use Narsil\Implementations\Components\Elements\NavigationItem;
 use Narsil\Support\LabelsBag;
-use Narsil\Support\Components\NavigationItem;
 
 #endregion
 
@@ -26,14 +26,14 @@ class Sidebar extends AbstractComponent implements Contract
     {
         return [
             (new NavigationItem(route('field-sets.index'), trans('narsil-cms::ui.fields')))
-                ->setIcon('globe')
-                ->get(),
+                ->icon('globe')
+                ->toArray(),
             (new NavigationItem(route('sites.index'), trans('narsil-cms::ui.sites')))
-                ->setIcon('globe')
-                ->get(),
+                ->icon('globe')
+                ->toArray(),
             (new NavigationItem(route('users.index'), trans('narsil-cms::ui.users')))
-                ->setIcon('users')
-                ->get(),
+                ->icon('users')
+                ->toArray(),
 
         ];
     }

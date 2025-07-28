@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Http\Components;
+namespace Narsil\Implementations;
 
 #region USE
 
-use Narsil\Contracts\Components\Component;
+use Narsil\Contracts\Component;
 
 #endregion
 
@@ -31,7 +31,7 @@ abstract class AbstractComponent implements Component
     /**
      * @return array
      */
-    public function get(): array
+    public function toArray(): array
     {
         return [
             'content' => $this->content(),

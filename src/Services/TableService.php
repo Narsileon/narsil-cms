@@ -7,7 +7,7 @@ namespace Narsil\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Support\Column;
+use Narsil\Support\DatabaseColumn;
 
 #endregion
 
@@ -22,7 +22,7 @@ abstract class TableService
     /**
      * @param string $table
      *
-     * @return Collection<string,Column>
+     * @return Collection<string,DatabaseColumn>
      */
     public static function getColumns(string $table): Collection
     {
@@ -34,7 +34,7 @@ abstract class TableService
 
             foreach ($columns as $column)
             {
-                $tableColumn = new Column($column);
+                $tableColumn = new DatabaseColumn($column);
 
                 $tableColumns->put($tableColumn->name, $tableColumn);
             }

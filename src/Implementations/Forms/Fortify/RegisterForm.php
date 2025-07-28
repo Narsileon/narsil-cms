@@ -26,7 +26,7 @@ class RegisterForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function fields(): array
+    public function elements(): array
     {
         return [
             [

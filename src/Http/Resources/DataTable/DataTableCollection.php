@@ -13,7 +13,6 @@ use Narsil\Constants\TanStackTable;
 use Narsil\Contracts\Table;
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Services\TableService;
-use Narsil\Support\Column;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -171,7 +170,7 @@ class DataTableCollection extends ResourceCollection
 
         $columns = TableService::getColumns($this->model->getTable());
 
-        $columns->each(function (Column $column) use ($query, $search)
+        $columns->each(function ($column) use ($query, $search)
         {
             switch ($column->type)
             {

@@ -21,42 +21,42 @@ import type {
 
 type FormFieldRendererProps = {
   className?: string;
-  item: FieldType | FieldSetType;
+  element: FieldType | FieldSetType;
   onChange?: (value: any) => void;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
 
 function FormFieldRenderer({
   className,
-  item,
+  element,
   onChange,
   renderOption,
 }: FormFieldRendererProps) {
   const { data } = useForm();
 
-  if ("items" in item) {
+  if ("elements" in element) {
     return (
       <>
-        {item.name ? (
+        {element.name ? (
           <Heading className="text-lg font-semibold" level="h2">
-            {item.name}
+            {element.name}
           </Heading>
         ) : null}
 
-        {item.items.map((item, index) => (
-          <FormFieldRenderer item={item} key={index} />
+        {element.elements.map((element, index) => (
+          <FormFieldRenderer element={element} key={index} />
         ))}
       </>
     );
   }
 
-  const settings = item.settings ?? {};
+  const settings = element.settings ?? {};
 
   const { type, ...props } = settings;
 
   return type ? (
     <FormField
-      field={item}
+      field={element}
       render={({ value, onFieldChange }) => {
         function handleOnChange(value: any) {
           onChange?.(value);
@@ -71,24 +71,24 @@ function FormFieldRenderer({
               settings.className,
               className,
             )}
-            width={item.width}
+            width={element.width}
           >
             <FormLabel required={settings.required}>
-              {item.icon ? <DynamicIcon name={item.icon} /> : null}
-              {item.name}
+              {element.icon ? <DynamicIcon name={element.icon} /> : null}
+              {element.name}
             </FormLabel>
             {settings.type === "checkbox" ? (
               <Checkbox
                 {...props}
-                id={item.handle}
-                name={item.handle}
+                id={element.handle}
+                name={element.handle}
                 checked={value}
                 onCheckedChange={(checked) => handleOnChange(checked)}
               />
             ) : settings.type === "select" ? (
               <Combobox
                 {...props}
-                id={item.handle}
+                id={element.handle}
                 options={settings.options}
                 renderOption={renderOption}
                 value={value}
@@ -97,30 +97,30 @@ function FormFieldRenderer({
             ) : settings.type === "range" ? (
               <Slider
                 {...props}
-                id={item.handle}
-                name={item.handle}
+                id={element.handle}
+                name={element.handle}
                 value={isArray(value) ? value : [value]}
                 onValueChange={([value]) => handleOnChange(value)}
               />
             ) : settings.type === "switch" ? (
               <Switch
                 {...props}
-                name={item.handle}
+                name={element.handle}
                 checked={value}
                 onCheckedChange={(value) => handleOnChange(value)}
               />
             ) : (
               <Input
                 {...props}
-                id={item.handle}
-                name={item.handle}
+                id={element.handle}
+                name={element.handle}
                 value={value}
                 type={type}
                 onChange={(e) => handleOnChange(e.target.value)}
               />
             )}
-            {item.description ? (
-              <FormDescription>{item.description}</FormDescription>
+            {element.description ? (
+              <FormDescription>{element.description}</FormDescription>
             ) : null}
             <FormMessage />
           </FormItem>
@@ -129,8 +129,8 @@ function FormFieldRenderer({
     />
   ) : (
     <div className="col-span-full flex items-center justify-between">
-      <span>{item.name}</span>
-      <span>{data?.[item.handle]}</span>
+      <span>{element.name}</span>
+      <span>{data?.[element.handle]}</span>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Fields;
+namespace Narsil\Models\Templates;
 
 #region USE
 

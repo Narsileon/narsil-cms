@@ -95,6 +95,7 @@ class NarsilServiceProvider extends ServiceProvider
     protected function registerConfigs(): void
     {
         $configs = [
+            'narsil.components' => __DIR__ . '/../config/narsil/components.php',
             'narsil.fields' => __DIR__ . '/../config/narsil/fields.php',
             'narsil.form-requests' => __DIR__ . '/../config/narsil/form-requests.php',
             'narsil.forms'  => __DIR__ . '/../config/narsil/forms.php',

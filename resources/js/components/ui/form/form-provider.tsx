@@ -4,27 +4,27 @@ import type { FieldSetType, FieldType } from "@narsil-cms/types/forms";
 import type { FormContextProps } from "./form-context";
 
 type FormProviderProps = {
+  elements?: (FieldType | FieldSetType)[];
   id: string;
   initialValues?: Record<string, any>;
-  items?: (FieldType | FieldSetType)[];
   render: (props: FormContextProps) => React.ReactNode;
 };
 
 function FormProvider({
-  items = [],
+  elements = [],
   id,
   initialValues = {},
   render,
 }: FormProviderProps) {
-  function flattenFields(items: (FieldType | FieldSetType)[]): FieldType[] {
-    return items.flatMap((item) =>
-      "items" in item ? flattenFields(item.items) : [item],
+  function flattenFields(elements: (FieldType | FieldSetType)[]): FieldType[] {
+    return elements.flatMap((element) =>
+      "elements" in element ? flattenFields(element.elements) : [element],
     );
   }
 
   const mergedInitialValues = Object.assign(
     Object.fromEntries(
-      flattenFields(items).map(({ handle, settings }) => [
+      flattenFields(elements).map(({ handle, settings }) => [
         handle,
         settings?.value ?? settings?.checked ?? "",
       ]),

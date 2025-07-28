@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Contracts\Components\Navigation;
+namespace Narsil\Contracts\Components;
 
 #region USE
 
-use Narsil\Contracts\Components\Component;
+use Narsil\Contracts\Component;
 
 #endregion
 

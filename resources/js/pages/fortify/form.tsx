@@ -58,7 +58,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
             <CardContent>
               <FormProvider
                 id={form.id}
-                items={form.fields}
+                elements={form.elements}
                 initialValues={data}
                 render={() => (
                   <Form
@@ -66,16 +66,17 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                     method={form.method}
                     url={form.url}
                   >
-                    {form.fields.map((item, index) =>
-                      form.id === "login-form" && item.handle === "password" ? (
+                    {form.elements.map((element, index) =>
+                      form.id === "login-form" &&
+                      element.handle === "password" ? (
                         <FormField
-                          field={item as FieldType}
+                          field={element as FieldType}
                           render={({ value, onFieldChange }) => {
                             return (
                               <FormItem className="col-span-full">
                                 <div className="flex items-center justify-between gap-3">
                                   <FormLabel required={true}>
-                                    {item.name}
+                                    {element.name}
                                   </FormLabel>
                                   <Link
                                     className="text-xs"
@@ -85,9 +86,9 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                                   </Link>
                                 </div>
                                 <Input
-                                  {...item.settings}
-                                  id={item.handle}
-                                  name={item.handle}
+                                  {...element.settings}
+                                  id={element.handle}
+                                  name={element.handle}
                                   value={value}
                                   onChange={(event) =>
                                     onFieldChange(event.target.value)
@@ -100,7 +101,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                           key={index}
                         />
                       ) : (
-                        <FormFieldRenderer field={field} key={index} />
+                        <FormFieldRenderer element={element} key={index} />
                       ),
                     )}
                     <FormSubmit className="w-full place-self-center">

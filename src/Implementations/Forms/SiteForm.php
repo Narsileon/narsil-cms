@@ -30,7 +30,7 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function fields(): array
+    public function elements(): array
     {
         $groupOptions = $this->getGroupOptions();
         $languageOptions = $this->getLanguageOptions();

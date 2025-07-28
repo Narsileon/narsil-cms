@@ -4,12 +4,14 @@ namespace Narsil\Http\Middleware\Inertia;
 
 #region USE
 
-use Narsil\Contracts\Components\Navigation\Sidebar;
-use Narsil\Contracts\Components\Navigation\UserMenu;
+use Narsil\Contracts\Components\AuthMenu;
+use Narsil\Contracts\Components\GuestMenu;
+use Narsil\Contracts\Components\Sidebar;
 use Narsil\Http\Resources\Inertia\UserInertiaResource;
 use Narsil\Services\BreadcrumbService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
 
@@ -84,8 +86,8 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             'breadcrumb' => BreadcrumbService::getBreadcrumbs($request),
-            'sidebar' => app(Sidebar::class)->get(),
-            'user_menu' => app(UserMenu::class)->get(),
+            'sidebar' => app(Sidebar::class)->toArray(),
+            'user_menu' => app(Auth::check() ? AuthMenu::class : GuestMenu::class)->toArray(),
         ];
     }
 
