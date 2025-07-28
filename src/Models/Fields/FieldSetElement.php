@@ -65,9 +65,9 @@ class FieldSetElement extends Pivot
      */
     final public const RELATION_FIELD_SET = 'field_set';
     /**
-     * @var string The name of the "item" relation.
+     * @var string The name of the "element" relation.
      */
-    final public const RELATION_ELEMENT = 'item';
+    final public const RELATION_ELEMENT = 'element';
 
     /**
      * @var string The table associated with the model.

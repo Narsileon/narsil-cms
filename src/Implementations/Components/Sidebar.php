@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Components;
 
 use Narsil\Contracts\Components\Sidebar as Contract;
 use Narsil\Implementations\AbstractComponent;
+use Narsil\Implementations\Components\Elements\NavigationGroup;
 use Narsil\Implementations\Components\Elements\NavigationItem;
 use Narsil\Support\LabelsBag;
 
@@ -25,14 +26,33 @@ class Sidebar extends AbstractComponent implements Contract
     protected function content(): array
     {
         return [
-            (new NavigationItem(route('field-sets.index'), trans('narsil-cms::ui.fields')))
-                ->icon('globe')
+            (new NavigationGroup(trans('narsil-cms::ui.fields')))
+                ->children([
+                    (new NavigationItem(route('templates.index'), trans('narsil-cms::ui.templates')))
+                        ->icon('layout-template')
+                        ->toArray(),
+                    (new NavigationItem(route('field-sets.index'), trans('narsil-cms::ui.field_sets')))
+                        ->icon('rectangle-ellipsis')
+                        ->toArray(),
+                ])
                 ->toArray(),
-            (new NavigationItem(route('sites.index'), trans('narsil-cms::ui.sites')))
-                ->icon('globe')
+
+            (new NavigationGroup(trans('narsil-cms::ui.users')))
+                ->children([
+                    (new NavigationItem(route('users.index'), trans('narsil-cms::ui.users')))
+                        ->icon('users')
+                        ->toArray(),
+                    (new NavigationItem(route('roles.index'), trans('narsil-cms::ui.roles')))
+                        ->icon('shield')
+                        ->toArray(),
+                ])
                 ->toArray(),
-            (new NavigationItem(route('users.index'), trans('narsil-cms::ui.users')))
-                ->icon('users')
+            (new NavigationGroup(trans('narsil-cms::ui.settings')))
+                ->children([
+                    (new NavigationItem(route('sites.index'), trans('narsil-cms::ui.sites')))
+                        ->icon('globe')
+                        ->toArray(),
+                ])
                 ->toArray(),
 
         ];

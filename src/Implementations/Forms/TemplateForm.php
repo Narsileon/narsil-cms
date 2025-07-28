@@ -5,7 +5,7 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\FormElements\TextInput;
-use Narsil\Contracts\Forms\FieldSetForm as Contract;
+use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldSet;

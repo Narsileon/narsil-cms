@@ -50,11 +50,11 @@ class TemplateSectionElement extends Pivot
     /**
      * @var string The name of the "element id" column.
      */
-    final public const ELEMENT_ID = 'item_id';
+    final public const ELEMENT_ID = 'element_id';
     /**
      * @var string The name of the "element type" column.
      */
-    final public const ELEMENT_TYPE = 'item_type';
+    final public const ELEMENT_TYPE = 'element_type';
     /**
      * @var string The name of the "position" column.
      */
@@ -72,7 +72,7 @@ class TemplateSectionElement extends Pivot
     /**
      * @var string The table associated with the model.
      */
-    final public const TABLE = 'field_set_item';
+    final public const TABLE = 'template_section_element';
 
     #endregion
 

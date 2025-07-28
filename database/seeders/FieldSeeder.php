@@ -24,7 +24,7 @@ class FieldSeeder extends Seeder
         $contentFieldSet = $this->createContentFieldSet();
         $richTextFieldSet = $this->createRichTextFieldSet();
 
-        $contentFieldSet->fieldSets()->attach($richTextFieldSet->{Field::ID}, [
+        $contentFieldSet->field_sets()->attach($richTextFieldSet->{Field::ID}, [
             FieldSetElement::POSITION => 0,
         ]);
     }

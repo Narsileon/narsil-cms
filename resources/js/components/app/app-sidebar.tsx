@@ -9,6 +9,8 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -26,6 +28,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
 
   const { sidebar } = useNavigation();
 
+  console.log(sidebar);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader className="h-13 border-b">
@@ -39,31 +42,53 @@ function AppSidebar({ ...props }: AppSidebarProps) {
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent className="gap-0">
-        <SidebarGroup>
-          <SidebarMenu>
-            {sidebar?.content.map((item, index) => {
+        <SidebarMenu>
+          {sidebar?.content.map((item, index) => {
+            if (item.children?.length > 0) {
               return (
-                <SidebarMenuItem key={index}>
-                  <SidebarMenuButton
-                    asChild={true}
-                    isActive={item.href.endsWith(window.location.pathname)}
-                    tooltip={item.label}
-                  >
-                    <Link
-                      href={item.href}
-                      onSuccess={() => {
-                        setOpenMobile(false);
-                      }}
-                    >
-                      <DynamicIcon name={item.icon} />
-                      {item.label}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                <SidebarGroup key={index}>
+                  <SidebarGroupLabel>{item.label}</SidebarGroupLabel>
+                  <SidebarGroupContent>
+                    {item.children.map((child, childIndex) => (
+                      <SidebarMenuItem key={childIndex}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={child.href.endsWith(
+                            window.location.pathname,
+                          )}
+                          tooltip={child.label}
+                        >
+                          <Link
+                            href={child.href}
+                            onSuccess={() => setOpenMobile(false)}
+                          >
+                            <DynamicIcon name={child.icon} />
+                            {child.label}
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarGroupContent>
+                </SidebarGroup>
               );
-            })}
-          </SidebarMenu>
-        </SidebarGroup>
+            }
+
+            return (
+              <SidebarMenuItem key={index}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={item.href?.endsWith(window.location.pathname)}
+                  tooltip={item.label}
+                >
+                  <Link href={item.href} onSuccess={() => setOpenMobile(false)}>
+                    <DynamicIcon name={item.icon} />
+                    {item.label}
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
+        </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="h-13 border-t">
         <SidebarMenuButton

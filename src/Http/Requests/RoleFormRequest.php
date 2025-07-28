@@ -4,7 +4,7 @@ namespace Narsil\Http\Requests;
 
 #region USE
 
-use Narsil\Contracts\FormRequests\FieldSetFormRequest as Contract;
+use Narsil\Contracts\FormRequests\RoleFormRequest as Contract;
 use Narsil\Models\Policies\Role;
 use Narsil\Validation\FormRule;
 
