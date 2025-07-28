@@ -8,7 +8,6 @@ use Narsil\Contracts\FormElements\TextInput;
 use Narsil\Contracts\Forms\RoleForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Fields\Field;
-use Narsil\Models\Fields\FieldSet;
 use Narsil\Models\Policies\Role;
 
 #endregion
@@ -27,36 +26,29 @@ class RoleForm extends AbstractForm implements Contract
     public function elements(): array
     {
         return [
-            [
-                FieldSet::HANDLE => self::MAIN,
-                FieldSet::NAME => trans('narsil-cms::ui.main'),
-                FieldSet::RELATION_ELEMENTS => [
-                    [
-                        Field::HANDLE => Role::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
-                    ],
+            $this->main([
+                [
+                    Field::HANDLE => Role::NAME,
+                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                    Field::SETTINGS => app(TextInput::class)
+                        ->required(true)
+                        ->toArray(),
                 ],
-            ],
-            [
-                FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
-                FieldSet::RELATION_ELEMENTS => [
-                    [
-                        Field::HANDLE => Role::ID,
-                        Field::NAME => trans('narsil-cms::validation.attributes.id'),
-                    ],
-                    [
-                        Field::HANDLE => Role::CREATED_AT,
-                        Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-                    ],
-                    [
-                        Field::HANDLE => Role::UPDATED_AT,
-                        Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-                    ],
+            ]),
+            $this->information([
+                [
+                    Field::HANDLE => Role::ID,
+                    Field::NAME => trans('narsil-cms::validation.attributes.id'),
                 ],
-            ],
+                [
+                    Field::HANDLE => Role::CREATED_AT,
+                    Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
+                ],
+                [
+                    Field::HANDLE => Role::UPDATED_AT,
+                    Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
+                ],
+            ]),
         ];
     }
 

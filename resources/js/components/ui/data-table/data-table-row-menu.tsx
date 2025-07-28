@@ -19,10 +19,16 @@ type DataTableRowMenuProps = Omit<
   "id"
 > & {
   id: number;
+  modal?: boolean;
   routes: RouteNames;
 };
 
-function DataTableRowMenu({ id, routes, ...props }: DataTableRowMenuProps) {
+function DataTableRowMenu({
+  id,
+  modal = false,
+  routes,
+  ...props
+}: DataTableRowMenuProps) {
   const { getLabel } = useLabels();
 
   if (!routes.edit && !routes.destroy) {
@@ -41,10 +47,17 @@ function DataTableRowMenu({ id, routes, ...props }: DataTableRowMenuProps) {
       <DropdownMenuContent align="end">
         {routes.edit ? (
           <DropdownMenuItem asChild={true}>
-            <Link as="button" href={route(routes.edit, id)}>
-              <EditIcon />
-              {getLabel("ui.edit")}
-            </Link>
+            {modal ? (
+              <ModalLink href={route(routes.edit, id)}>
+                <EditIcon />
+                {getLabel("ui.edit")}
+              </ModalLink>
+            ) : (
+              <Link as="button" href={route(routes.edit, id)}>
+                <EditIcon />
+                {getLabel("ui.edit")}
+              </Link>
+            )}
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuSeparator />

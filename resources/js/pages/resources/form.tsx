@@ -1,7 +1,7 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
-import { Fragment } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import {
   DialogBody,
@@ -20,7 +20,15 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@narsil-cms/components/ui/tabs";
 import type { FieldSetType, FormType } from "@narsil-cms/types/forms";
+import { useState } from "react";
+import { useEffect } from "react";
 
 type FormProps = {
   data: any;
@@ -31,21 +39,32 @@ type FormProps = {
 
 function ResourceForm({ modal = false, data, form, title }: FormProps) {
   const { getLabel } = useLabels();
-
   const { closeTopModal } = useModalStore();
 
-  const { sidebar, sidebarInformation, tabs } = form.elements.reduce(
+  const minLg = useMinLg();
+
+  const { information, sidebar, tabs } = form.elements.reduce(
     (acc, element) => {
       if (!("elements" in element)) {
         return acc;
       }
 
       switch (element.handle) {
-        case "sidebar":
-          acc.sidebar = element;
+        case "information":
+          if (data?.id) {
+            if (!minLg) {
+              acc.tabs.push(element);
+            } else {
+              acc.information = element;
+            }
+          }
           break;
-        case "sidebar_information":
-          acc.sidebarInformation = element;
+        case "sidebar":
+          if (!minLg) {
+            acc.tabs.push(element);
+          } else {
+            acc.sidebar = element;
+          }
           break;
         default:
           acc.tabs.push(element);
@@ -55,52 +74,59 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
       return acc;
     },
     {
+      information: undefined as FieldSetType | undefined,
       sidebar: undefined as FieldSetType | undefined,
-      sidebarInformation: undefined as FieldSetType | undefined,
       tabs: [] as FieldSetType[],
     },
   );
 
-  const mainContent = tabs.map((tab, index) => {
-    return (
-      <Fragment key={index}>
-        {tab.elements.map((element, index) => {
-          return <FormFieldRenderer element={element} key={index} />;
-        })}
-      </Fragment>
-    );
+  const [value, setValue] = useState(tabs[0].handle);
+
+  const informationContent = information?.elements.map((element, index) => {
+    return <FormFieldRenderer element={element} key={index} />;
   });
 
   const sidebarContent = sidebar?.elements.map((element, index) => {
     return <FormFieldRenderer element={element} key={index} />;
   });
 
-  const sidebarInformationContent = sidebarInformation?.elements.map(
-    (element, index) => {
-      return <FormFieldRenderer element={element} key={index} />;
-    },
+  const tabsContent = (
+    <Tabs
+      defaultValue={tabs[0].handle}
+      value={value}
+      onValueChange={setValue}
+      className="gap-4 lg:col-span-8"
+    >
+      {tabs.length > 1 ? (
+        <TabsList className="w-full">
+          {tabs.map((tab, index) => {
+            return (
+              <TabsTrigger value={tab.handle} key={index}>
+                {tab.name}
+              </TabsTrigger>
+            );
+          })}
+        </TabsList>
+      ) : null}
+      {tabs.map((tab, index) => {
+        return (
+          <TabsContent className="p-0" value={tab.handle} key={index}>
+            {tab.elements.map((element, index) => {
+              return <FormFieldRenderer element={element} key={index} />;
+            })}
+          </TabsContent>
+        );
+      })}
+    </Tabs>
   );
 
-  const content = (
-    <>
-      {sidebarContent || (sidebarInformationContent && data?.id) ? (
-        <div className="grid">
-          {sidebarContent ? (
-            <Card>
-              <CardContent className="grid gap-6">{sidebarContent}</CardContent>
-            </Card>
-          ) : null}
-          {sidebarInformationContent && data?.id ? (
-            <Card>
-              <CardContent className="grid grid-cols-2 justify-between">
-                {sidebarInformationContent}
-              </CardContent>
-            </Card>
-          ) : null}
-        </div>
-      ) : null}
-    </>
-  );
+  useEffect(() => {
+    const handles = tabs.map((tab) => tab.handle);
+
+    if (!handles.includes(value)) {
+      setValue(tabs[0]?.handle);
+    }
+  }, [minLg, tabs, value]);
 
   return (
     <FormProvider
@@ -124,7 +150,7 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
         >
           {modal ? (
             <>
-              <DialogBody>{mainContent}</DialogBody>
+              <DialogBody>{tabsContent}</DialogBody>
               <DialogFooter className="h-fit border-t">
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{getLabel("ui.cancel")}</Button>
@@ -142,9 +168,26 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
                 </SectionTitle>
                 <FormSubmit>{form.submit}</FormSubmit>
               </SectionHeader>
-              <SectionContent className="grid gap-6">
-                {mainContent}
-                {content}
+              <SectionContent className="grid gap-6 lg:grid-cols-12">
+                {tabsContent}
+                {minLg && (sidebarContent || informationContent) ? (
+                  <div className="flex flex-col gap-y-4 lg:col-span-4">
+                    {sidebarContent ? (
+                      <Card>
+                        <CardContent className="grid grid-cols-12">
+                          {sidebarContent}
+                        </CardContent>
+                      </Card>
+                    ) : null}
+                    {informationContent ? (
+                      <Card>
+                        <CardContent className="grid grid-cols-12 justify-between text-sm">
+                          {informationContent}
+                        </CardContent>
+                      </Card>
+                    ) : null}
+                  </div>
+                ) : null}
               </SectionContent>
             </Section>
           )}

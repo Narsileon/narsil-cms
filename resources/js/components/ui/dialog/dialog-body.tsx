@@ -7,7 +7,7 @@ function DialogBody({ className, ...props }: DialogBodyProps) {
     <div
       data-slot="dialog-body"
       className={cn(
-        "flex flex-col gap-6 p-6 text-center sm:text-left",
+        "flex flex-col gap-5 p-5 text-center sm:text-left",
         className,
       )}
       {...props}

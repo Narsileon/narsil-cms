@@ -41,7 +41,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             }}
             render={() => (
               <Form
-                className="grid-cols-12 gap-6"
+                className="grid-cols-12 gap-4"
                 method={profileForm.method}
                 url={profileForm.url}
               >
@@ -65,7 +65,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             elements={updatePasswordForm.elements}
             render={({ reset, setDefaults }) => (
               <Form
-                className="grid-cols-12 gap-6"
+                className="grid-cols-12 gap-4"
                 method={updatePasswordForm.method}
                 url={updatePasswordForm.url}
                 options={{

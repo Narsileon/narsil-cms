@@ -12,6 +12,7 @@ import axios from "axios";
 import {
   Card,
   CardContent,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@narsil-cms/components/ui/card";
@@ -93,43 +94,44 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
           <Switch checked={enabled} onCheckedChange={toggleEnabled} />
         </div>
         {!active && enabled && qrCode ? (
-          <Card>
-            <CardContent>
-              <FormProvider
-                id={form.id}
-                elements={form.elements}
-                render={({ setError }) => (
-                  <Form
-                    className="grid-cols-12 gap-6"
-                    method={form.method}
-                    url={form.url}
-                    options={{
-                      onSuccess: () => {
-                        setActive(true);
-                      },
-                      onError() {
-                        setError?.(
-                          "code",
-                          getLabel("validation.custom.code.invalid"),
-                        );
-                      },
-                    }}
-                  >
+          <FormProvider
+            id={form.id}
+            elements={form.elements}
+            render={({ setError }) => (
+              <Form
+                method={form.method}
+                url={form.url}
+                options={{
+                  onSuccess: () => {
+                    setActive(true);
+                  },
+                  onError() {
+                    setError?.(
+                      "code",
+                      getLabel("validation.custom.code.invalid"),
+                    );
+                  },
+                }}
+              >
+                <Card>
+                  <CardContent className="grid grid-cols-12">
                     {form.elements.map((element, index) => (
                       <FormFieldRenderer element={element} key={index} />
                     ))}
                     <div
-                      className="col-span-full max-h-48 max-w-48 [&>svg]:h-auto [&>svg]:w-full"
+                      className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
                       dangerouslySetInnerHTML={{
                         __html: qrCode,
                       }}
                     />
+                  </CardContent>
+                  <CardFooter className="justify-end border-t">
                     <FormSubmit>{form.submit}</FormSubmit>
-                  </Form>
-                )}
-              />
-            </CardContent>
-          </Card>
+                  </CardFooter>
+                </Card>
+              </Form>
+            )}
+          />
         ) : null}
         {!active && enabled && recoveryCodes ? (
           <Card>

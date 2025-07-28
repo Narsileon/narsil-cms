@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Narsil\Contracts\Form;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Models\Fields\Field;
+use Narsil\Models\Fields\FieldSet;
 use Narsil\Support\LabelsBag;
 use ReflectionClass;
 
@@ -19,23 +20,6 @@ use ReflectionClass;
  */
 abstract class AbstractForm implements Form
 {
-    #region CONSTANTS
-
-    /**
-     * @var string
-     */
-    final protected const MAIN = 'main';
-    /**
-     * @var string
-     */
-    final protected const SIDEBAR = 'sidebar';
-    /**
-     * @var string
-     */
-    final protected const SIDEBAR_INFORMATION = 'sidebar_information';
-
-    #endregion
-
     #region PROPERTIES
 
     /**
@@ -97,6 +81,50 @@ abstract class AbstractForm implements Form
 
         return Str::slug(Str::snake($name));
     }
+
+    /**
+     * @param array $elements
+     *
+     * @return array
+     */
+    protected function information(array $elements): array
+    {
+        return [
+            FieldSet::NAME => trans('narsil-cms::ui.information'),
+            FieldSet::HANDLE => 'information',
+            FieldSet::RELATION_ELEMENTS => $elements
+        ];
+    }
+
+    /**
+     * @param array $elements
+     *
+     * @return array
+     */
+    protected function main(array $elements): array
+    {
+        return [
+            FieldSet::NAME => trans('narsil-cms::ui.main'),
+            FieldSet::HANDLE => 'main',
+            FieldSet::RELATION_ELEMENTS => $elements
+        ];
+    }
+
+    /**
+     * @param array $elements
+     *
+     * @return array
+     */
+    protected function sidebar(array $elements): array
+    {
+        return [
+            FieldSet::NAME => trans('narsil-cms::ui.sidebar'),
+            FieldSet::HANDLE => 'sidebar',
+            FieldSet::RELATION_ELEMENTS => $elements
+        ];
+    }
+
+
 
     /**
      * @return void

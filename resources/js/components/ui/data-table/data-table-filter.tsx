@@ -50,7 +50,11 @@ function DataTableFilter({
           >
             {category.label}
           </Toggle>
-          <DataTableRowMenu id={category.id} routes={meta.routes} />
+          <DataTableRowMenu
+            id={category.id}
+            modal={true}
+            routes={meta.routes}
+          />
         </li>
       ))}
       {meta.routes.create ? (

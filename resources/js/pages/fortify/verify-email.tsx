@@ -41,7 +41,7 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
         </SectionHeader>
         <SectionContent>
           <Card>
-            <CardContent className="grid gap-4">
+            <CardContent className="grid">
               <p>{getLabel("verify-email.instruction")}</p>
               <p>{getLabel("verify-email.prompt")}</p>
               <Button asChild={true}>

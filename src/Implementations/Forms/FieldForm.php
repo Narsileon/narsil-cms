@@ -77,58 +77,51 @@ class FieldForm extends AbstractForm implements Contract
         $typeOptions = $this->getTypeOptions();
 
         $content = [
-            [
-                FieldSet::HANDLE => self::MAIN,
-                FieldSet::NAME => trans('narsil-cms::ui.main'),
-                FieldSet::RELATION_ELEMENTS => [
-                    [
-                        Field::HANDLE => Field::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
-                    ],
-                    [
-                        Field::HANDLE => Field::HANDLE,
-                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
-                    ],
-                    [
-                        Field::HANDLE => Field::TYPE,
-                        Field::NAME => trans('narsil-cms::validation.attributes.type'),
-                        Field::SETTINGS => app(SelectInput::class)
-                            ->options($typeOptions)
-                            ->placeholder(trans('narsil-cms::placeholders.search'))
-                            ->required(true)
-                            ->value(TextInput::class)
-                            ->toArray(),
-                    ],
-                    [
-                        FieldSet::HANDLE => FIELD::SETTINGS,
-                        FieldSet::NAME => trans('narsil-cms::ui.settings'),
-                        FieldSet::RELATION_ELEMENTS => $settings,
-                    ]
+            $this->main([
+                [
+                    Field::HANDLE => Field::NAME,
+                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                    Field::SETTINGS => app(TextInput::class)
+                        ->required(true)
+                        ->toArray(),
                 ],
-            ],
-            [
-                FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
-                FieldSet::RELATION_ELEMENTS => [
-                    [
-                        Field::HANDLE => Field::ID,
-                        Field::NAME => trans('narsil-cms::validation.attributes.id'),
-                    ],
-                    [
-                        Field::HANDLE => Field::CREATED_AT,
-                        Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-                    ],
-                    [
-                        Field::HANDLE => Field::UPDATED_AT,
-                        Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-                    ],
+                [
+                    Field::HANDLE => Field::HANDLE,
+                    Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                    Field::SETTINGS => app(TextInput::class)
+                        ->required(true)
+                        ->toArray(),
                 ],
-            ],
+                [
+                    Field::HANDLE => Field::TYPE,
+                    Field::NAME => trans('narsil-cms::validation.attributes.type'),
+                    Field::SETTINGS => app(SelectInput::class)
+                        ->options($typeOptions)
+                        ->placeholder(trans('narsil-cms::placeholders.search'))
+                        ->required(true)
+                        ->value(TextInput::class)
+                        ->toArray(),
+                ],
+                [
+                    FieldSet::HANDLE => FIELD::SETTINGS,
+                    FieldSet::NAME => trans('narsil-cms::ui.settings'),
+                    FieldSet::RELATION_ELEMENTS => $settings,
+                ]
+            ]),
+            $this->information([
+                [
+                    Field::HANDLE => Field::ID,
+                    Field::NAME => trans('narsil-cms::validation.attributes.id'),
+                ],
+                [
+                    Field::HANDLE => Field::CREATED_AT,
+                    Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
+                ],
+                [
+                    Field::HANDLE => Field::UPDATED_AT,
+                    Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
+                ],
+            ]),
         ];
 
         return $content;
