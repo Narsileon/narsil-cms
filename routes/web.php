@@ -24,7 +24,7 @@ Route::middleware([
     function ()
     {
         Route::get('/', DashboardController::class)
-            ->name('home');
+            ->name('dashboard');
 
         #region RESOURCES
 

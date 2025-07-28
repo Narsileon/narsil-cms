@@ -13,6 +13,7 @@ return [
     'connection'       => 'Connection',
     'content'          => 'Content',
     'create'           => 'Create',
+    'dashboard'        => 'Dashboard',
     'delete'           => 'Delete',
     'edit'             => 'Edit',
     'email_verify'     => 'Verify your email',

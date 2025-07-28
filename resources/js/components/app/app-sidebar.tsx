@@ -32,7 +32,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader className="h-13 border-b">
         <SidebarMenuButton className="truncate" asChild={true}>
-          <Link href={route("home")}>
+          <Link href={route("dashboard")}>
             <svg width={20} height={20}>
               <use href="/favicon.svg" width={20} height={20}></use>
             </svg>
@@ -40,8 +40,8 @@ function AppSidebar({ ...props }: AppSidebarProps) {
           </Link>
         </SidebarMenuButton>
       </SidebarHeader>
-      <SidebarContent className="gap-0">
-        <SidebarMenu>
+      <SidebarContent>
+        <SidebarMenu className="gap-2">
           {sidebar?.content.map((item, index) => {
             if (item.children) {
               return (

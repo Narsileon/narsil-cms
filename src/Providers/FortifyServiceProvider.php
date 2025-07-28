@@ -142,7 +142,7 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                return redirect()->intended(route('home'))
+                return redirect()->intended(route('dashboard'))
                     ->with('success', trans('narsil-cms::toasts.success.logged_in'));
             }
         });
@@ -157,7 +157,7 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                return redirect(route('home'))
+                return redirect(route('login'))
                     ->with('success', trans('narsil-cms::toasts.success.logged_out'));
             }
         });
@@ -172,7 +172,7 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                return redirect()->intended(route('home'))
+                return redirect()->intended(route('dashboard'))
                     ->with('success', trans('narsil-cms::toasts.success.password.confirmed'));
             }
         });

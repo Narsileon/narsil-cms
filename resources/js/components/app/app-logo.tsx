@@ -9,7 +9,7 @@ function AppLogo({ className, ...props }: AppLogoProps) {
   return (
     <Link
       className={cn("text-xl font-bold", className)}
-      href={route("home")}
+      href={route("dashboard")}
       {...props}
     >
       NARSIL
