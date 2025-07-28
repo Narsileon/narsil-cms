@@ -22,7 +22,7 @@ function SidebarProvider({
   cookieMaxAge = 60 * 60 * 24 * 7,
   cookieName = "sidebar_state",
   defaultOpen = true,
-  iconWidth = "3rem",
+  iconWidth = "3.25rem",
   isMobile,
   keyboardShortcut = "b",
   mobileWidth = "18rem",

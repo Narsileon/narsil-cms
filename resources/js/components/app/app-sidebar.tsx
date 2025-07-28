@@ -41,7 +41,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu className="gap-2">
+        <SidebarMenu>
           {sidebar?.content.map((item, index) => {
             if (item.children) {
               return (
