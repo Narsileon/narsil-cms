@@ -11,6 +11,7 @@ type AuthProps = {
 
 type ComponentProps = Record<string, any> & {
   components: string;
+  children?: ComponentProps[];
 };
 
 type ConfigurationProps = {

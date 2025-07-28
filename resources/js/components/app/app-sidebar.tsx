@@ -28,7 +28,6 @@ function AppSidebar({ ...props }: AppSidebarProps) {
 
   const { sidebar } = useNavigation();
 
-  console.log(sidebar);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader className="h-13 border-b">
@@ -44,7 +43,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       <SidebarContent className="gap-0">
         <SidebarMenu>
           {sidebar?.content.map((item, index) => {
-            if (item.children?.length > 0) {
+            if (item.children) {
               return (
                 <SidebarGroup key={index}>
                   <SidebarGroupLabel>{item.label}</SidebarGroupLabel>
