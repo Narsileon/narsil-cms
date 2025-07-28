@@ -5,7 +5,7 @@ namespace Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Contracts\Fields\Text\RichTextField;
+use Narsil\Contracts\FormElements\Text\RichTextField;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldSet;
 use Narsil\Models\Fields\FieldSetItem;

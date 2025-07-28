@@ -11,6 +11,7 @@ use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
 use Narsil\Providers\FormServiceProvider;
 use Narsil\Providers\FortifyServiceProvider;
+use Narsil\Providers\TableServiceProvider;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -28,6 +29,7 @@ class NarsilServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->registerConfigs();
         $this->registerProviders();
 
         $this->app->singleton(LabelsBag::class, function ()
@@ -49,12 +51,12 @@ class NarsilServiceProvider extends ServiceProvider
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
     /**
      * @return void
      */
-    private function bootMigrations(): void
+    protected function bootMigrations(): void
     {
         $this->loadMigrationsFrom([
             __DIR__ . '/../database/migrations',
@@ -64,7 +66,7 @@ class NarsilServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    private function bootPublishes(): void
+    protected function bootPublishes(): void
     {
         $this->publishes([
             __DIR__ . '/../config' => config_path(),
@@ -74,7 +76,7 @@ class NarsilServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    private function bootRoutes(): void
+    protected function bootRoutes(): void
     {
         Route::middleware('web')
             ->prefix('narsil')
@@ -84,19 +86,35 @@ class NarsilServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    private function bootTranslations(): void
+    protected function bootTranslations(): void
     {
         $this->loadJsonTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
     }
 
-    private function registerProviders(): void
+    protected function registerConfigs(): void
+    {
+        $configs = [
+            'narsil.fields' => __DIR__ . '/../config/narsil/fields.php',
+            'narsil.form-requests' => __DIR__ . '/../config/narsil/form-requests.php',
+            'narsil.forms'  => __DIR__ . '/../config/narsil/forms.php',
+            'narsil.tables' => __DIR__ . '/../config/narsil/tables.php',
+        ];
+
+        foreach ($configs as $key => $path)
+        {
+            $this->mergeConfigFrom($path, $key);
+        }
+    }
+
+    protected function registerProviders(): void
     {
         $this->app->register(ComponentServiceProvider::class);
         $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);
+        $this->app->register(TableServiceProvider::class);
     }
 
     #endregion

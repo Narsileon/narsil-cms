@@ -4,12 +4,13 @@
 
 use Illuminate\Support\Facades\Route;
 use Narsil\Http\Controllers\DashboardController;
-use Narsil\Http\Controllers\Resources\FieldSetController;
-use Narsil\Http\Controllers\Resources\SiteController;
-use Narsil\Http\Controllers\Resources\SiteGroupController;
-use Narsil\Http\Controllers\Resources\UserController;
-use Narsil\Http\Controllers\Users\SessionController;
-use Narsil\Http\Controllers\Users\UserConfigurationController;
+use Narsil\Http\Controllers\FieldController;
+use Narsil\Http\Controllers\FieldSetController;
+use Narsil\Http\Controllers\SessionController;
+use Narsil\Http\Controllers\SiteController;
+use Narsil\Http\Controllers\SiteGroupController;
+use Narsil\Http\Controllers\UserConfigurationController;
+use Narsil\Http\Controllers\UserController;
 
 #endregion
 
@@ -26,6 +27,10 @@ Route::middleware([
         #region RESOURCES
 
         Route::resource('/field-sets', FieldSetController::class)
+            ->except([
+                'show'
+            ]);
+        Route::resource('/fields', FieldController::class)
             ->except([
                 'show'
             ]);

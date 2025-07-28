@@ -4,7 +4,6 @@ import type { IconName } from "lucide-react/dynamic";
 export type FieldType = {
   conditions?: FieldConditionType[] | null;
   description?: string;
-  fields?: FieldType[];
   handle: string;
   icon?: IconName;
   id: number;
@@ -21,8 +20,15 @@ export type FieldConditionType = {
   value: string;
 };
 
+export type FieldSetType = {
+  items: (FieldType | FieldSetType)[];
+  handle: string;
+  id: number;
+  name: string;
+};
+
 export type FormType = {
-  fields: FieldType[];
+  fields: (FieldType | FieldSetType)[];
   id: string;
   method: string;
   submit: string;

@@ -5,16 +5,6 @@ namespace Narsil\Providers;
 #region USE
 
 use Illuminate\Support\ServiceProvider;
-use Narsil\Contracts\Tables\Resources\FieldTable as FieldTableContract;
-use Narsil\Contracts\Tables\Resources\FieldSetTable as FieldSetTableContract;
-use Narsil\Contracts\Tables\Resources\SiteTable as SiteTableContract;
-use Narsil\Contracts\Tables\Resources\SiteGroupTable as SiteGroupTableContract;
-use Narsil\Contracts\Tables\Resources\UserTable as UserTableContract;
-use Narsil\Tables\Resources\FieldTable;
-use Narsil\Tables\Resources\FieldSetTable;
-use Narsil\Tables\Resources\SiteTable;
-use Narsil\Tables\Resources\SiteGroupTable;
-use Narsil\Tables\Resources\UserTable;
 
 #endregion
 
@@ -31,9 +21,9 @@ class TableServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $map = $this->map();
+        $implementations = config('narsil.tables', []);
 
-        foreach ($map as $abstract => $concrete)
+        foreach ($implementations as $abstract => $concrete)
         {
             $this->app->singleton($abstract, $concrete);
             $this->app->tag($abstract, ['tables']);
@@ -46,24 +36,6 @@ class TableServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return array<string,string>
-     */
-    protected function map(): array
-    {
-        return [
-            FieldTableContract::class => FieldTable::class,
-            FieldSetTableContract::class => FieldSetTable::class,
-            SiteTableContract::class => SiteTable::class,
-            SiteGroupTableContract::class => SiteGroupTable::class,
-            UserTableContract::class => UserTable::class,
-        ];
     }
 
     #endregion

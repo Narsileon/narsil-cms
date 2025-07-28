@@ -12,47 +12,51 @@ import FormField from "./form-field";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
-import type { FieldType, SelectOption } from "@narsil-cms/types/forms";
 import useForm from "./form-context";
+import type {
+  FieldSetType,
+  FieldType,
+  SelectOption,
+} from "@narsil-cms/types/forms";
 
 type FormFieldRendererProps = {
   className?: string;
-  field: FieldType;
+  item: FieldType | FieldSetType;
   onChange?: (value: any) => void;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
 
 function FormFieldRenderer({
   className,
-  field,
+  item,
   onChange,
   renderOption,
 }: FormFieldRendererProps) {
   const { data } = useForm();
 
-  if (field.fields?.length) {
+  if ("items" in item) {
     return (
       <>
-        {field.name ? (
+        {item.name ? (
           <Heading className="text-lg font-semibold" level="h2">
-            {field.name}
+            {item.name}
           </Heading>
         ) : null}
 
-        {field.fields.map((field, index) => (
-          <FormFieldRenderer field={field} key={index} />
+        {item.items.map((item, index) => (
+          <FormFieldRenderer item={item} key={index} />
         ))}
       </>
     );
   }
 
-  const settings = field.settings ?? {};
+  const settings = item.settings ?? {};
 
   const { type, ...props } = settings;
 
   return type ? (
     <FormField
-      field={field}
+      field={item}
       render={({ value, onFieldChange }) => {
         function handleOnChange(value: any) {
           onChange?.(value);
@@ -67,24 +71,24 @@ function FormFieldRenderer({
               settings.className,
               className,
             )}
-            width={field.width}
+            width={item.width}
           >
             <FormLabel required={settings.required}>
-              {field.icon ? <DynamicIcon name={field.icon} /> : null}
-              {field.name}
+              {item.icon ? <DynamicIcon name={item.icon} /> : null}
+              {item.name}
             </FormLabel>
             {settings.type === "checkbox" ? (
               <Checkbox
                 {...props}
-                id={field.handle}
-                name={field.handle}
+                id={item.handle}
+                name={item.handle}
                 checked={value}
                 onCheckedChange={(checked) => handleOnChange(checked)}
               />
             ) : settings.type === "select" ? (
               <Combobox
                 {...props}
-                id={field.handle}
+                id={item.handle}
                 options={settings.options}
                 renderOption={renderOption}
                 value={value}
@@ -93,30 +97,30 @@ function FormFieldRenderer({
             ) : settings.type === "range" ? (
               <Slider
                 {...props}
-                id={field.handle}
-                name={field.handle}
+                id={item.handle}
+                name={item.handle}
                 value={isArray(value) ? value : [value]}
                 onValueChange={([value]) => handleOnChange(value)}
               />
             ) : settings.type === "switch" ? (
               <Switch
                 {...props}
-                name={field.handle}
+                name={item.handle}
                 checked={value}
                 onCheckedChange={(value) => handleOnChange(value)}
               />
             ) : (
               <Input
                 {...props}
-                id={field.handle}
-                name={field.handle}
+                id={item.handle}
+                name={item.handle}
                 value={value}
                 type={type}
                 onChange={(e) => handleOnChange(e.target.value)}
               />
             )}
-            {field.description ? (
-              <FormDescription>{field.description}</FormDescription>
+            {item.description ? (
+              <FormDescription>{item.description}</FormDescription>
             ) : null}
             <FormMessage />
           </FormItem>
@@ -125,8 +129,8 @@ function FormFieldRenderer({
     />
   ) : (
     <div className="col-span-full flex items-center justify-between">
-      <span>{field.name}</span>
-      <span>{data?.[field.handle]}</span>
+      <span>{item.name}</span>
+      <span>{data?.[item.handle]}</span>
     </div>
   );
 }

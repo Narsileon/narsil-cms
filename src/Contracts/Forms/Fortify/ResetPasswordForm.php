@@ -4,7 +4,7 @@ namespace Narsil\Contracts\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Forms\Form;
+use Narsil\Contracts\Form;
 
 #endregion
 

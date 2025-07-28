@@ -1,0 +1,71 @@
+<?php
+
+namespace Narsil\Implementations\FormElements;
+
+#region USE
+
+use Narsil\Contracts\FormElements\SwitchInput as Contract;
+use Narsil\Enums\Fields\InputTypeEnum;
+use Narsil\Enums\Fields\PropEnum;
+use Narsil\Implementations\AbstractFormElement;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class SwitchInput extends AbstractFormElement implements Contract
+{
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct(InputTypeEnum::SWITCH->value);
+
+        $this->checked(false);
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getForm(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getIcon(): string
+    {
+        return 'toggle-right';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getLabel(): string
+    {
+        return trans('narsil-cms::fields.switch');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function checked(bool $value): static
+    {
+        $this->settings[PropEnum::CHECKED->value] = $value;
+
+        return $this;
+    }
+
+    #endregion
+}

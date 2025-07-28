@@ -15,8 +15,9 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { FormType } from "@narsil-cms/types/forms";
+import type { FieldSetType, FormType } from "@narsil-cms/types/forms";
 import DialogBody from "@narsil-cms/components/ui/dialog/dialog-body";
+import { Fragment } from "react/jsx-runtime";
 
 type FormProps = {
   data: any;
@@ -27,71 +28,70 @@ type FormProps = {
 
 function ResourceForm({ modal = false, data, form, title }: FormProps) {
   const { getLabel } = useLabels();
-
+  console.log(form);
   const { closeTopModal } = useModalStore();
 
-  const { dataFields, mainFields, sidebarFields, otherFields } =
-    form.fields.reduce(
-      (acc, field) => {
-        switch (field.type) {
-          case "data":
-            acc.dataFields = field.fields;
-            break;
-          case "sidebar":
-            acc.sidebarFields = field.fields;
-            break;
-          case "tab":
-            acc.mainFields.push(field);
-            break;
-          default:
-            acc.otherFields.push(field);
-            break;
-        }
+  const { sidebar, sidebarInformation, tabs } = form.fields.reduce(
+    (acc, field) => {
+      if (!("items" in field)) {
         return acc;
-      },
-      {
-        dataFields: undefined as typeof form.fields | undefined,
-        mainFields: [] as typeof form.fields,
-        otherFields: [] as typeof form.fields,
-        sidebarFields: undefined as typeof form.fields | undefined,
-      },
-    );
+      }
 
-  const mainContent = (
-    <>
-      {mainFields.map((field, index) => {
-        return <FormFieldRenderer field={field} key={index} />;
-      })}
-    </>
+      switch (field.handle) {
+        case "sidebar":
+          acc.sidebar = field;
+          break;
+        case "sidebar_information":
+          acc.sidebarInformation = field;
+          break;
+        default:
+          acc.tabs.push(field);
+          break;
+      }
+
+      return acc;
+    },
+    {
+      sidebar: undefined as FieldSetType | undefined,
+      sidebarInformation: undefined as FieldSetType | undefined,
+      tabs: [] as FieldSetType[],
+    },
   );
 
-  const sidebarContent = (
-    <>
-      {sidebarFields?.map((field, index) => {
-        return <FormFieldRenderer field={field} key={index} />;
-      })}
-    </>
+  const mainContent = tabs.map((tab, index) => {
+    return (
+      <Fragment key={index}>
+        {tab.items.map((item, index) => {
+          console.log(item);
+          return <FormFieldRenderer item={item} key={index} />;
+        })}
+      </Fragment>
+    );
+  });
+
+  const sidebarContent = sidebar?.items.map((item, index) => {
+    return <FormFieldRenderer item={item} key={index} />;
+  });
+
+  const sidebarInformationContent = sidebarInformation?.items.map(
+    (item, index) => {
+      return <FormFieldRenderer item={item} key={index} />;
+    },
   );
 
   const content = (
     <>
-      {sidebarFields?.length || (dataFields?.length && data?.id) ? (
+      {sidebarContent || (sidebarInformationContent && data?.id) ? (
         <div className="grid">
-          {sidebarFields?.length ? (
+          {sidebarContent ? (
             <Card>
-              <CardContent className="grid gap-6">
-                {sidebarFields.map((field, index) => {
-                  return <FormFieldRenderer field={field} key={index} />;
-                })}
-              </CardContent>
+              <CardContent className="grid gap-6">{sidebarContent}</CardContent>
             </Card>
           ) : null}
-          {dataFields?.length && data?.id ? (
+          {sidebarInformationContent && data?.id ? (
             <Card>
               <CardContent className="grid grid-cols-2 justify-between">
-                {dataFields.map((field, index) => {
-                  return <FormFieldRenderer field={field} key={index} />;
-                })}
+                {sidebarInformationContent}
               </CardContent>
             </Card>
           ) : null}
@@ -103,7 +103,7 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
   return (
     <FormProvider
       id={form.id}
-      fields={form.fields}
+      items={form.fields}
       initialValues={{
         _back: modal,
         ...data,
