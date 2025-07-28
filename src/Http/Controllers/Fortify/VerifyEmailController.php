@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Fortify;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Narsil;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -15,7 +15,7 @@ use Narsil\Support\LabelsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class VerifyEmailController
+class VerifyEmailController extends AbstractController
 {
     #region PUBLIC METHODS
 
@@ -28,7 +28,7 @@ class VerifyEmailController
     {
         $this->registerLabels();
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::fortify/verify-email',
             title: trans('narsil-cms::ui.email_verify'),
             description: trans('narsil-cms::ui.email_verify'),

@@ -80,7 +80,7 @@ class FieldForm extends AbstractForm implements Contract
             [
                 FieldSet::HANDLE => self::MAIN,
                 FieldSet::NAME => trans('narsil-cms::ui.main'),
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => Field::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
@@ -108,13 +108,13 @@ class FieldForm extends AbstractForm implements Contract
                     [
                         FieldSet::HANDLE => FIELD::SETTINGS,
                         FieldSet::NAME => trans('narsil-cms::ui.settings'),
-                        FieldSet::RELATION_ITEMS => $settings,
+                        FieldSet::RELATION_ELEMENTS => $settings,
                     ]
                 ],
             ],
             [
                 FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => Field::ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),

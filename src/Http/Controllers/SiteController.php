@@ -12,12 +12,11 @@ use Narsil\Contracts\FormRequests\SiteFormRequest;
 use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Contracts\Tables\SiteTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractModelController;
+use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
 use Narsil\Http\Resources\DataTable\DataTableFilterCollection;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
-use Narsil\Narsil;
 
 #endregion
 
@@ -25,7 +24,7 @@ use Narsil\Narsil;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteController extends AbstractModelController
+class SiteController extends AbstractResourceController
 {
     #region CONSTRUCTOR
 
@@ -78,7 +77,7 @@ class SiteController extends AbstractModelController
             table: SiteGroup::TABLE,
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::resources/index',
             title: trans('narsil-cms::ui.sites'),
             description: trans('narsil-cms::ui.sites'),
@@ -102,7 +101,7 @@ class SiteController extends AbstractModelController
             submit: trans('narsil-cms::ui.create'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::resources/form',
             title: trans('narsil-cms::ui.site'),
             description: trans('narsil-cms::ui.site'),
@@ -140,7 +139,7 @@ class SiteController extends AbstractModelController
             submit: trans('narsil-cms::ui.update'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::resources/form',
             title: trans('narsil-cms::ui.site'),
             description: trans('narsil-cms::ui.site'),

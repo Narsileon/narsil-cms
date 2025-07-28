@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil;
+namespace Narsil\Http\Controllers;
 
 #region USE
 
@@ -15,9 +15,9 @@ use Narsil\Support\LabelsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Narsil
+abstract class AbstractController
 {
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * @param string $component
@@ -25,16 +25,18 @@ class Narsil
      *
      * @return JsonResponse|Response
      */
-    public static function render(string $component, string $title = '', string $description = '', array $props = []): JsonResponse|Response
+    protected function render(string $component, string $title = '', string $description = '', array $props = []): JsonResponse|Response
     {
-        $labelsBag = app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.close_dialog')
-            ->add('narsil-cms::ui.cancel');
-
-        $labels = $labelsBag->get();
+        $labelsBag = app(LabelsBag::class);
 
         if (request()->boolean('_modal'))
         {
+            $labelsBag
+                ->add('narsil-cms::accessibility.close_dialog')
+                ->add('narsil-cms::ui.cancel');
+
+            $labels = $labelsBag->get();
+
             return response()->json([
                 'component' => $component,
                 'props' => array_merge([
@@ -45,6 +47,8 @@ class Narsil
                 ], $props),
             ]);
         }
+
+        $labels = $labelsBag->get();
 
         return Inertia::render($component, array_merge([
             'description' => $description,

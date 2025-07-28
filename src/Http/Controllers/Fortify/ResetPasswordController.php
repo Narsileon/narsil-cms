@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\ResetPasswordForm;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Narsil;
+use Narsil\Http\Controllers\AbstractController;
 
 #endregion
 
@@ -16,7 +16,7 @@ use Narsil\Narsil;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ResetPasswordController
+class ResetPasswordController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -56,7 +56,7 @@ class ResetPasswordController
             submit: trans('narsil-cms::ui.reset'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::fortify/form',
             title: trans('narsil-cms::ui.reset_password'),
             description: trans('narsil-cms::ui.reset_password'),

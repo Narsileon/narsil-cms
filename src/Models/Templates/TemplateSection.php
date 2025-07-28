@@ -1,14 +1,16 @@
 <?php
 
-namespace Narsil\Models\Fields;
+namespace Narsil\Models\Templates;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Narsil\Models\Fields\TemplateSectionElement;
 use Narsil\Models\Fields\Field;
-use Narsil\Models\Fields\FieldSetElement;
+use Narsil\Models\Fields\FieldSet;
 
 #endregion
 
@@ -16,7 +18,7 @@ use Narsil\Models\Fields\FieldSetElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldSet extends Model
+class TemplateSection extends Model
 {
     #region CONSTRUCTOR
 
@@ -41,6 +43,10 @@ class FieldSet extends Model
     #region CONSTANTS
 
     /**
+     * @var string The name of the "template id" column.
+     */
+    final public const TEMPLATE_ID = 'template_id';
+    /**
      * @var string The name of the "handle" column.
      */
     final public const HANDLE = 'handle';
@@ -52,15 +58,10 @@ class FieldSet extends Model
      * @var string The name of the "name" column.
      */
     final public const NAME = 'name';
-
     /**
-     * @var string The name of the "field sets" count.
+     * @var string The name of the "position" column.
      */
-    final public const COUNT_FIELD_SETS = 'field_sets_count';
-    /**
-     * @var string The name of the "fields" count.
-     */
-    final public const COUNT_FIELDS = 'fields_count';
+    final public const POSITION = 'position';
 
     /**
      * @var string The name of the "elements" relation.
@@ -74,11 +75,15 @@ class FieldSet extends Model
      * @var string The name of the "fields" relation.
      */
     final public const RELATION_FIELDS = 'fields';
+    /**
+     * @var string The name of the "template" relation.
+     */
+    final public const RELATION_TEMPLATE = 'template';
 
     /**
      * @var string The table associated with the model.
      */
-    final public const TABLE = 'field_sets';
+    final public const TABLE = 'template_sections';
 
     #endregion
 
@@ -90,8 +95,8 @@ class FieldSet extends Model
     public function elements(): HasMany
     {
         return $this->hasMany(
-            FieldSetElement::class,
-            FieldSetElement::FIELD_SET_ID,
+            TemplateSectionElement::class,
+            TemplateSectionElement::TEMPLATE_SECTION_ID,
             self::ID,
         );
     }
@@ -103,10 +108,10 @@ class FieldSet extends Model
     {
         return $this->morphedByMany(
             Field::class,
-            FieldSetElement::RELATION_ELEMENT,
-            FieldSetElement::TABLE,
-            FieldSetElement::FIELD_SET_ID,
-            FieldSetElement::ELEMENT_ID,
+            TemplateSectionElement::RELATION_ELEMENT,
+            TemplateSectionElement::TABLE,
+            TemplateSectionElement::TEMPLATE_SECTION_ID,
+            TemplateSectionElement::ELEMENT_ID,
         );
     }
 
@@ -117,10 +122,22 @@ class FieldSet extends Model
     {
         return $this->morphedByMany(
             FieldSet::class,
-            FieldSetElement::RELATION_ELEMENT,
-            FieldSetElement::TABLE,
-            FieldSetElement::FIELD_SET_ID,
-            FieldSetElement::ELEMENT_ID,
+            TemplateSectionElement::RELATION_ELEMENT,
+            TemplateSectionElement::TABLE,
+            TemplateSectionElement::TEMPLATE_SECTION_ID,
+            TemplateSectionElement::ELEMENT_ID,
+        );
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function template(): BelongsTo
+    {
+        return $this->belongsTo(
+            Template::class,
+            self::TEMPLATE_ID,
+            Template::ID,
         );
     }
 

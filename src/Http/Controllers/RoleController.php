@@ -8,13 +8,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\FormRequests\UserFormRequest;
-use Narsil\Contracts\Forms\UserForm;
-use Narsil\Contracts\Tables\UserTable;
+use Narsil\Contracts\FormRequests\RoleFormRequest;
+use Narsil\Contracts\Forms\RoleForm;
+use Narsil\Contracts\Tables\RoleTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
-use Narsil\Models\User;
+use Narsil\Models\Policies\Role;
 
 #endregion
 
@@ -22,17 +22,17 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserController extends AbstractResourceController
+class RoleController extends AbstractResourceController
 {
     #region CONSTRUCTOR
 
     /**
-     * @param UserForm $form
-     * @param UserFormRequest $formRequest
+     * @param RoleForm $form
+     * @param RoleFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(UserForm $form, UserFormRequest $formRequest)
+    public function __construct(RoleForm $form, RoleFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -43,13 +43,13 @@ class UserController extends AbstractResourceController
     #region PROPERTIES
 
     /**
-     * @var UserForm
+     * @var RoleForm
      */
-    protected readonly UserForm $form;
+    protected readonly RoleForm $form;
     /**
-     * @var UserFormRequest
+     * @var RoleFormRequest
      */
-    protected readonly UserFormRequest $formRequest;
+    protected readonly RoleFormRequest $formRequest;
 
     #endregion
 
@@ -62,14 +62,14 @@ class UserController extends AbstractResourceController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $query = User::query();
+        $query = Role::query();
 
-        $dataTable = new DataTableCollection($query, app(UserTable::class));
+        $dataTable = new DataTableCollection($query, app(RoleTable::class));
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.users'),
-            description: trans('narsil-cms::ui.users'),
+            title: trans('narsil-cms::ui.roles'),
+            description: trans('narsil-cms::ui.roles'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -84,15 +84,15 @@ class UserController extends AbstractResourceController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            url: route('users.store'),
+            url: route('roles.store'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.create'),
         );
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.user'),
-            description: trans('narsil-cms::ui.user'),
+            title: trans('narsil-cms::ui.role'),
+            description: trans('narsil-cms::ui.role'),
             props: [
                 'form' => $form,
             ]
@@ -108,31 +108,31 @@ class UserController extends AbstractResourceController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        User::create($attributes);
+        Role::create($attributes);
 
-        return $this->redirectOnStored(User::TABLE);
+        return $this->redirectOnStored(Role::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Role $role
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, User $user): JsonResponse|Response
+    public function edit(Request $request, Role $role): JsonResponse|Response
     {
         $form = $this->form->get(
-            url: route('users.update', $user->{User::ID}),
+            url: route('roles.update', $role->{Role::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.user'),
-            description: trans('narsil-cms::ui.user'),
+            title: trans('narsil-cms::ui.role'),
+            description: trans('narsil-cms::ui.role'),
             props: [
-                'data' => $user,
+                'data' => $role,
                 'form' => $form,
             ]
         );
@@ -140,30 +140,30 @@ class UserController extends AbstractResourceController
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Role $role
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(Request $request, Role $role): RedirectResponse
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        $user->update($attributes);
+        $role->update($attributes);
 
-        return $this->redirectOnUpdated(User::TABLE);
+        return $this->redirectOnUpdated(Role::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Role $role
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, User $user): RedirectResponse
+    public function destroy(Request $request, Role $role): RedirectResponse
     {
-        $user->delete();
+        $role->delete();
 
-        return $this->redirectOnDestroyed(User::TABLE);
+        return $this->redirectOnDestroyed(Role::TABLE);
     }
 
     #endregion

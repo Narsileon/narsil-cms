@@ -9,7 +9,7 @@ use Narsil\Enums\Fields\VisibilityEnum;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldCondition;
 use Narsil\Models\Fields\FieldSet;
-use Narsil\Models\Fields\FieldSetItem;
+use Narsil\Models\Fields\FieldSetElement;
 
 #endregion
 
@@ -36,9 +36,9 @@ return new class extends Migration
         {
             $this->createFieldSetsTable();
         }
-        if (!Schema::hasTable(FieldSetItem::TABLE))
+        if (!Schema::hasTable(FieldSetElement::TABLE))
         {
-            $this->createFieldSetItemTable();
+            $this->createFieldSetElementTable();
         }
     }
 
@@ -49,7 +49,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FieldSetItem::TABLE);
+        Schema::dropIfExists(FieldSetElement::TABLE);
         Schema::dropIfExists(FieldSet::TABLE);
         Schema::dropIfExists(FieldCondition::TABLE);
         Schema::dropIfExists(Field::TABLE);
@@ -88,20 +88,20 @@ return new class extends Migration
     /**
      * @return void
      */
-    private function createFieldSetItemTable(): void
+    private function createFieldSetElementTable(): void
     {
-        Schema::create(FieldSetItem::TABLE, function (Blueprint $table)
+        Schema::create(FieldSetElement::TABLE, function (Blueprint $table)
         {
             $table
-                ->id(FieldSetItem::ID);
+                ->id(FieldSetElement::ID);
             $table
-                ->foreignId(FieldSetItem::FIELD_SET_ID)
+                ->foreignId(FieldSetElement::FIELD_SET_ID)
                 ->constrained(FieldSet::TABLE, FieldSet::ID)
                 ->cascadeOnDelete();
             $table
-                ->morphs(FieldSetItem::RELATION_ITEM);
+                ->morphs(FieldSetElement::RELATION_ELEMENT);
             $table
-                ->integer(FieldSetItem::POSITION)
+                ->integer(FieldSetElement::POSITION)
                 ->nullable();
         });
     }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\LoginForm;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Narsil;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Support\LabelsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LoginController
+class LoginController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -59,7 +59,7 @@ class LoginController
             submit: trans('narsil-cms::ui.log_in'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::fortify/form',
             title: trans('narsil-cms::ui.connection'),
             description: trans('narsil-cms::ui.connection'),

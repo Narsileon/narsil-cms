@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Narsil;
+use Narsil\Http\Controllers\AbstractController;
 
 #endregion
 
@@ -14,7 +14,7 @@ use Narsil\Narsil;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class DashboardController
+class DashboardController extends AbstractController
 {
     #region PUBLIC METHODS
 
@@ -25,7 +25,7 @@ class DashboardController
      */
     public function __invoke(Request $request): Response
     {
-        return Narsil::render('narsil/cms::index');
+        return $this->render('narsil/cms::index');
     }
 
     #endregion

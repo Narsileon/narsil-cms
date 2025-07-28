@@ -33,7 +33,7 @@ class UserForm extends AbstractForm implements Contract
             [
                 FieldSet::HANDLE => self::MAIN,
                 FieldSet::NAME => trans('narsil-cms::ui.main'),
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => User::EMAIL,
                         Field::NAME => trans('narsil-cms::validation.attributes.email'),
@@ -77,7 +77,7 @@ class UserForm extends AbstractForm implements Contract
             ],
             [
                 FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => User::ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),

@@ -16,7 +16,7 @@ use Narsil\Constants\TanStackTable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractModelController
+abstract class AbstractResourceController extends AbstractController
 {
     #region PROTECTED METHODS
 

@@ -5,10 +5,10 @@ namespace Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Contracts\FormElements\Text\RichTextField;
+use Narsil\Contracts\FormElements\RichTextInput;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldSet;
-use Narsil\Models\Fields\FieldSetItem;
+use Narsil\Models\Fields\FieldSetElement;
 
 #endregion
 
@@ -25,7 +25,7 @@ class FieldSeeder extends Seeder
         $richTextFieldSet = $this->createRichTextFieldSet();
 
         $contentFieldSet->fieldSets()->attach($richTextFieldSet->{Field::ID}, [
-            FieldSetItem::POSITION => 0,
+            FieldSetElement::POSITION => 0,
         ]);
     }
 
@@ -54,7 +54,7 @@ class FieldSeeder extends Seeder
         $richTextField = Field::create([
             Field::NAME => 'Rich text',
             Field::HANDLE => 'rich_text',
-            Field::SETTINGS => app(RichTextField::class)->toArray(),
+            Field::SETTINGS => app(RichTextInput::class)->toArray(),
         ]);
 
         $richTextFieldSet = FieldSet::create([
@@ -63,7 +63,7 @@ class FieldSeeder extends Seeder
         ]);
 
         $richTextFieldSet->fields()->attach($richTextField->{Field::ID}, [
-            FieldSetItem::POSITION => 0,
+            FieldSetElement::POSITION => 0,
         ]);
 
         return $richTextFieldSet;

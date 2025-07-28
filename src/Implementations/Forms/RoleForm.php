@@ -9,6 +9,7 @@ use Narsil\Contracts\Forms\FieldSetForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Fields\Field;
 use Narsil\Models\Fields\FieldSet;
+use Narsil\Models\Policies\Role;
 
 #endregion
 
@@ -16,7 +17,7 @@ use Narsil\Models\Fields\FieldSet;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldSetForm extends AbstractForm implements Contract
+class RoleForm extends AbstractForm implements Contract
 {
     #region PUBLIC METHODS
 
@@ -31,15 +32,8 @@ class FieldSetForm extends AbstractForm implements Contract
                 FieldSet::NAME => trans('narsil-cms::ui.main'),
                 FieldSet::RELATION_ELEMENTS => [
                     [
-                        Field::HANDLE => FieldSet::NAME,
+                        Field::HANDLE => Role::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
-                    ],
-                    [
-                        Field::HANDLE => FieldSet::HANDLE,
-                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
@@ -50,15 +44,15 @@ class FieldSetForm extends AbstractForm implements Contract
                 FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
                 FieldSet::RELATION_ELEMENTS => [
                     [
-                        Field::HANDLE => Field::ID,
+                        Field::HANDLE => Role::ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),
                     ],
                     [
-                        Field::HANDLE => Field::CREATED_AT,
+                        Field::HANDLE => Role::CREATED_AT,
                         Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
                     ],
                     [
-                        Field::HANDLE => Field::UPDATED_AT,
+                        Field::HANDLE => Role::UPDATED_AT,
                         Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
                     ],
                 ],

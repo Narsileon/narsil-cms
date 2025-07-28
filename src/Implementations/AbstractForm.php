@@ -84,6 +84,7 @@ abstract class AbstractForm implements Form
         ];
     }
 
+    #endregion
 
     #region PROTECTED METHODS
 

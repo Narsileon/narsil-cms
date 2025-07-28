@@ -7,7 +7,7 @@ namespace Narsil\Models\Fields;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Fields\FieldSet;
+use Narsil\Models\Templates\TemplateSection;
 
 #endregion
 
@@ -15,7 +15,7 @@ use Narsil\Models\Fields\FieldSet;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldSetItem extends Pivot
+class TemplateSectionElement extends Pivot
 {
     #region CONSTRUCTOR
 
@@ -40,34 +40,34 @@ class FieldSetItem extends Pivot
     #region CONSTANTS
 
     /**
-     * @var string The name of the "field set id" column.
+     * @var string The name of the "template section id" column.
      */
-    final public const FIELD_SET_ID = 'field_set_id';
+    final public const TEMPLATE_SECTION_ID = 'template_section_id';
     /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
     /**
-     * @var string The name of the "item id" column.
+     * @var string The name of the "element id" column.
      */
-    final public const ITEM_ID = 'item_id';
+    final public const ELEMENT_ID = 'item_id';
     /**
-     * @var string The name of the "item type" column.
+     * @var string The name of the "element type" column.
      */
-    final public const ITEM_TYPE = 'item_type';
+    final public const ELEMENT_TYPE = 'item_type';
     /**
-     * @var string The name of the "item type" column.
+     * @var string The name of the "position" column.
      */
     final public const POSITION = 'position';
 
     /**
-     * @var string The name of the "field set" relation.
+     * @var string The name of the "template section" relation.
      */
-    final public const RELATION_FIELD_SET = 'field_set';
+    final public const RELATION_TEMPLATE_SECTION = 'template_section';
     /**
-     * @var string The name of the "item" relation.
+     * @var string The name of the "element" relation.
      */
-    final public const RELATION_ITEM = 'item';
+    final public const RELATION_ELEMENT = 'element';
 
     /**
      * @var string The table associated with the model.
@@ -81,25 +81,25 @@ class FieldSetItem extends Pivot
     /**
      * @return BelongsTo
      */
-    public function field_set(): BelongsTo
+    public function template_section(): BelongsTo
     {
         return $this
             ->belongsTo(
-                FieldSet::class,
-                self::FIELD_SET_ID,
-                FieldSet::ID,
+                TemplateSection::class,
+                self::TEMPLATE_SECTION_ID,
+                TemplateSection::ID,
             );
     }
 
     /**
      * @return MorphTo
      */
-    public function item(): MorphTo
+    public function element(): MorphTo
     {
         return $this->morphTo(
-            self::RELATION_ITEM,
-            self::ITEM_TYPE,
-            self::ITEM_ID,
+            self::RELATION_ELEMENT,
+            self::ELEMENT_TYPE,
+            self::ELEMENT_ID,
         );
     }
 

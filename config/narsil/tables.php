@@ -13,7 +13,9 @@ return [
 
     \Narsil\Contracts\Tables\FieldSetTable::class => \Narsil\Implementations\Tables\FieldSetTable::class,
     \Narsil\Contracts\Tables\FieldTable::class => \Narsil\Implementations\Tables\FieldTable::class,
+    \Narsil\Contracts\Tables\RoleTable::class => \Narsil\Implementations\Tables\RoleTable::class,
     \Narsil\Contracts\Tables\SiteGroupTable::class => \Narsil\Implementations\Tables\SiteGroupTable::class,
     \Narsil\Contracts\Tables\SiteTable::class => \Narsil\Implementations\Tables\SiteTable::class,
+    \Narsil\Contracts\Tables\TemplateTable::class => \Narsil\Implementations\Tables\TemplateTable::class,
     \Narsil\Contracts\Tables\UserTable::class => \Narsil\Implementations\Tables\UserTable::class,
 ];

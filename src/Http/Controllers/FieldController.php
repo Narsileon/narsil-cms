@@ -12,10 +12,9 @@ use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Contracts\Tables\FieldTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractModelController;
+use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
 use Narsil\Models\Fields\Field;
-use Narsil\Narsil;
 
 #endregion
 
@@ -23,7 +22,7 @@ use Narsil\Narsil;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldController extends AbstractModelController
+class FieldController extends AbstractResourceController
 {
     #region CONSTRUCTOR
 
@@ -67,7 +66,7 @@ class FieldController extends AbstractModelController
 
         $dataTable = new DataTableCollection($query, app(FieldTable::class));
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::resources/index',
             title: trans('narsil-cms::ui.fields'),
             description: trans('narsil-cms::ui.fields'),
@@ -90,7 +89,7 @@ class FieldController extends AbstractModelController
             submit: trans('narsil-cms::ui.create'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::resources/form',
             title: trans('narsil-cms::ui.field'),
             description: trans('narsil-cms::ui.field'),
@@ -128,7 +127,7 @@ class FieldController extends AbstractModelController
             submit: trans('narsil-cms::ui.update'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::resources/form',
             title: trans('narsil-cms::ui.field'),
             description: trans('narsil-cms::ui.field'),

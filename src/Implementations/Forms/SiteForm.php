@@ -39,7 +39,7 @@ class SiteForm extends AbstractForm implements Contract
             [
                 FieldSet::HANDLE => self::MAIN,
                 FieldSet::NAME => trans('narsil-cms::ui.main'),
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => Site::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
@@ -77,7 +77,7 @@ class SiteForm extends AbstractForm implements Contract
             ],
             [
                 FieldSet::HANDLE => self::SIDEBAR,
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => Site::ENABLED,
                         Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
@@ -95,7 +95,7 @@ class SiteForm extends AbstractForm implements Contract
             ],
             [
                 FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => Site::ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),

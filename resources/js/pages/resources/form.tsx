@@ -1,8 +1,13 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
-import { DialogClose, DialogFooter } from "@narsil-cms/components/ui/dialog";
+import { Fragment } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
+import {
+  DialogBody,
+  DialogClose,
+  DialogFooter,
+} from "@narsil-cms/components/ui/dialog";
 import {
   FormProvider,
   Form,
@@ -16,8 +21,6 @@ import {
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
 import type { FieldSetType, FormType } from "@narsil-cms/types/forms";
-import DialogBody from "@narsil-cms/components/ui/dialog/dialog-body";
-import { Fragment } from "react/jsx-runtime";
 
 type FormProps = {
   data: any;
@@ -28,7 +31,7 @@ type FormProps = {
 
 function ResourceForm({ modal = false, data, form, title }: FormProps) {
   const { getLabel } = useLabels();
-  console.log(form);
+
   const { closeTopModal } = useModalStore();
 
   const { sidebar, sidebarInformation, tabs } = form.fields.reduce(
@@ -62,7 +65,6 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
     return (
       <Fragment key={index}>
         {tab.items.map((item, index) => {
-          console.log(item);
           return <FormFieldRenderer item={item} key={index} />;
         })}
       </Fragment>
@@ -122,7 +124,7 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
         >
           {modal ? (
             <>
-              <DialogBody>{content}</DialogBody>
+              <DialogBody>{mainContent}</DialogBody>
               <DialogFooter className="h-fit border-t">
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{getLabel("ui.cancel")}</Button>
@@ -142,8 +144,8 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
               </SectionHeader>
               <SectionContent className="grid gap-6">
                 {mainContent}
+                {content}
               </SectionContent>
-              {content}
             </Section>
           )}
         </Form>

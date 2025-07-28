@@ -8,13 +8,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\FormRequests\UserFormRequest;
-use Narsil\Contracts\Forms\UserForm;
-use Narsil\Contracts\Tables\UserTable;
+use Narsil\Contracts\FormRequests\TemplateFormRequest;
+use Narsil\Contracts\Forms\TemplateForm;
+use Narsil\Contracts\Tables\TemplateTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
-use Narsil\Models\User;
+use Narsil\Models\Templates\Template;
 
 #endregion
 
@@ -22,17 +22,17 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserController extends AbstractResourceController
+class TemplateController extends AbstractResourceController
 {
     #region CONSTRUCTOR
 
     /**
-     * @param UserForm $form
-     * @param UserFormRequest $formRequest
+     * @param TemplateForm $form
+     * @param TemplateFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(UserForm $form, UserFormRequest $formRequest)
+    public function __construct(TemplateForm $form, TemplateFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -43,13 +43,13 @@ class UserController extends AbstractResourceController
     #region PROPERTIES
 
     /**
-     * @var UserForm
+     * @var TemplateForm
      */
-    protected readonly UserForm $form;
+    protected readonly TemplateForm $form;
     /**
-     * @var UserFormRequest
+     * @var TemplateFormRequest
      */
-    protected readonly UserFormRequest $formRequest;
+    protected readonly TemplateFormRequest $formRequest;
 
     #endregion
 
@@ -62,14 +62,14 @@ class UserController extends AbstractResourceController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $query = User::query();
+        $query = Template::query();
 
-        $dataTable = new DataTableCollection($query, app(UserTable::class));
+        $dataTable = new DataTableCollection($query, app(TemplateTable::class));
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.users'),
-            description: trans('narsil-cms::ui.users'),
+            title: trans('narsil-cms::ui.templates'),
+            description: trans('narsil-cms::ui.templates'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -84,15 +84,15 @@ class UserController extends AbstractResourceController
     public function create(Request $request): JsonResponse|Response
     {
         $form = $this->form->get(
-            url: route('users.store'),
+            url: route('templates.store'),
             method: MethodEnum::POST,
             submit: trans('narsil-cms::ui.create'),
         );
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.user'),
-            description: trans('narsil-cms::ui.user'),
+            title: trans('narsil-cms::ui.template'),
+            description: trans('narsil-cms::ui.template'),
             props: [
                 'form' => $form,
             ]
@@ -108,31 +108,31 @@ class UserController extends AbstractResourceController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        User::create($attributes);
+        Template::create($attributes);
 
-        return $this->redirectOnStored(User::TABLE);
+        return $this->redirectOnStored(Template::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Template $template
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, User $user): JsonResponse|Response
+    public function edit(Request $request, Template $template): JsonResponse|Response
     {
         $form = $this->form->get(
-            url: route('users.update', $user->{User::ID}),
+            url: route('templates.update', $template->{Template::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.user'),
-            description: trans('narsil-cms::ui.user'),
+            title: trans('narsil-cms::ui.template'),
+            description: trans('narsil-cms::ui.template'),
             props: [
-                'data' => $user,
+                'data' => $template,
                 'form' => $form,
             ]
         );
@@ -140,30 +140,30 @@ class UserController extends AbstractResourceController
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Template $template
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(Request $request, Template $template): RedirectResponse
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        $user->update($attributes);
+        $template->update($attributes);
 
-        return $this->redirectOnUpdated(User::TABLE);
+        return $this->redirectOnUpdated(Template::TABLE);
     }
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Template $template
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, User $user): RedirectResponse
+    public function destroy(Request $request, Template $template): RedirectResponse
     {
-        $user->delete();
+        $template->delete();
 
-        return $this->redirectOnDestroyed(User::TABLE);
+        return $this->redirectOnDestroyed(Template::TABLE);
     }
 
     #endregion

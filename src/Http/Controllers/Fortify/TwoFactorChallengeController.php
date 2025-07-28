@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Narsil;
+use Narsil\Http\Controllers\AbstractController;
 
 #endregion
 
@@ -16,7 +16,7 @@ use Narsil\Narsil;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TwoFactorChallengeController
+class TwoFactorChallengeController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -56,7 +56,7 @@ class TwoFactorChallengeController
             submit: trans('narsil-cms::ui.confirm'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::fortify/form',
             title: trans('narsil-cms::ui.two_factor_authentication'),
             description: trans('narsil-cms::ui.two_factor_authentication'),

@@ -30,7 +30,7 @@ class SiteGroupForm extends AbstractForm implements Contract
             [
                 FieldSet::HANDLE => self::MAIN,
                 FieldSet::NAME => trans('narsil-cms::ui.main'),
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => SiteGroup::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
@@ -42,7 +42,7 @@ class SiteGroupForm extends AbstractForm implements Contract
             ],
             [
                 FieldSet::HANDLE => self::SIDEBAR_INFORMATION,
-                FieldSet::RELATION_ITEMS => [
+                FieldSet::RELATION_ELEMENTS => [
                     [
                         Field::HANDLE => SiteGroup::ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),

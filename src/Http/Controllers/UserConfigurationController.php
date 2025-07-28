@@ -17,11 +17,10 @@ use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractModelController;
+use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Middleware\LocaleMiddleware;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserConfiguration;
-use Narsil\Narsil;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -30,7 +29,7 @@ use Narsil\Support\LabelsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserConfigurationController extends AbstractModelController
+class UserConfigurationController extends AbstractResourceController
 {
     #region CONSTRUCTOR
 
@@ -118,7 +117,7 @@ class UserConfigurationController extends AbstractModelController
             submit: trans('narsil-cms::ui.save'),
         );
 
-        return Narsil::render(
+        return $this->render(
             component: 'narsil/cms::users/settings',
             title: trans('narsil-cms::ui.settings'),
             description: trans('narsil-cms::ui.settings'),
