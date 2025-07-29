@@ -56,7 +56,7 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
       <DialogContent
-        className="absolute max-h-[calc(100%-4rem)] max-w-[calc(100%-4rem)] overflow-hidden"
+        className="fixed max-h-[calc(100%-13rem)] max-w-[calc(100%-4rem)] overflow-hidden"
         {...props}
       >
         <DialogHeader className="border-b">

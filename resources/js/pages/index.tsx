@@ -1,5 +1,5 @@
-import { Sortable } from "@narsil-cms/components/ui/sortable";
 import { flatNestedTree } from "@narsil-cms/lib/sortable";
+import { SortableGrid, SortableTree } from "@narsil-cms/components/ui/sortable";
 import { useState } from "react";
 
 function Index() {
@@ -40,7 +40,8 @@ function Index() {
 
   return (
     <div>
-      <Sortable items={items} setItems={setItems}></Sortable>
+      <SortableTree items={items} setItems={setItems} />
+      <SortableGrid />
     </div>
   );
 }

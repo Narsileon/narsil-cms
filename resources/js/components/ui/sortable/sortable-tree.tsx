@@ -1,11 +1,9 @@
 import { createPortal } from "react-dom";
-import { CSS } from "@dnd-kit/utilities";
 import { getProjection } from "@narsil-cms/lib/sortable";
 import { SortableItem } from ".";
 import { useEffect, useRef, useState } from "react";
 import {
   closestCenter,
-  defaultDropAnimation,
   DndContext,
   DragOverlay,
   KeyboardSensor,
@@ -25,49 +23,16 @@ import type {
   DragMoveEvent,
   DragOverEvent,
   DragStartEvent,
-  DropAnimation,
-  Modifier,
   UniqueIdentifier,
 } from "@dnd-kit/core";
 import type { FlatNode } from ".";
 
 type SortableProps = {
-  children?: React.ReactNode;
   items: FlatNode[];
   setItems: (items: FlatNode[]) => void;
 };
 
-const adjustTranslate: Modifier = ({ transform }) => {
-  return {
-    ...transform,
-    y: transform.y - 25,
-  };
-};
-
-const dropAnimationConfig: DropAnimation = {
-  keyframes({ transform }) {
-    return [
-      { opacity: 1, transform: CSS.Transform.toString(transform.initial) },
-      {
-        opacity: 0,
-        transform: CSS.Transform.toString({
-          ...transform.final,
-          x: transform.final.x + 5,
-          y: transform.final.y + 5,
-        }),
-      },
-    ];
-  },
-  easing: "ease-out",
-  sideEffects({ active }) {
-    active.node.animate([{ opacity: 0 }, { opacity: 1 }], {
-      duration: defaultDropAnimation.duration,
-      easing: defaultDropAnimation.easing,
-    });
-  },
-};
-
-function Sortable({ children, items, setItems }: SortableProps) {
+function Sortable({ items, setItems }: SortableProps) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [overId, setOverId] = useState<UniqueIdentifier | null>(null);
   const [offsetLeft, setOffsetLeft] = useState(0);
@@ -160,26 +125,24 @@ function Sortable({ children, items, setItems }: SortableProps) {
       sensors={sensors}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map((item) => (
-          <SortableItem
-            item={{
-              ...item,
-              depth:
-                item.id === activeId && projected
-                  ? projected.depth
-                  : item.depth,
-            }}
-            key={item.id}
-          >
-            {item.id}
-          </SortableItem>
-        ))}
+        {items.map((item) => {
+          const depth =
+            item.id === activeId && projected ? projected.depth : item.depth;
+
+          return (
+            <SortableItem
+              label={item.id.toString()}
+              id={item.id}
+              style={{ marginLeft: `${depth * 16}px` }}
+              key={item.id}
+            />
+          );
+        })}
         {createPortal(
-          <DragOverlay
-            dropAnimation={dropAnimationConfig}
-            modifiers={[adjustTranslate]}
-          >
-            {activeId && activeItem ? <SortableItem item={activeItem} /> : null}
+          <DragOverlay>
+            {activeId && activeItem ? (
+              <SortableItem id={activeItem.id} />
+            ) : null}
           </DragOverlay>,
           document.body,
         )}

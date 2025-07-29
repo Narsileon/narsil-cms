@@ -52,7 +52,7 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
       switch (element.handle) {
         case "information":
           if (data?.id) {
-            if (!minLg) {
+            if (modal || !minLg) {
               acc.tabs.push(element);
             } else {
               acc.information = element;

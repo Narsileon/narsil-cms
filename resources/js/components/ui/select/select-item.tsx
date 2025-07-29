@@ -9,7 +9,7 @@ function SelectItem({ children, className, ...props }: SelectItemProps) {
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none",
+        "relative flex w-full cursor-default items-center gap-2 rounded-md py-1.5 pr-8 pl-2 text-sm outline-hidden select-none",
         "focus:bg-accent focus:text-accent-foreground",
         "[&_svg:not([class*='text-'])]:text-muted-foreground",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
