@@ -6,6 +6,7 @@ import { Heading } from "@narsil-cms/components/ui/heading";
 import { Input } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
+import { SortableGrid } from "@narsil-cms/components/ui/sortable";
 import { Switch } from "@narsil-cms/components/ui/switch";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
@@ -96,6 +97,14 @@ function FormFieldRenderer({
               />
             ) : settings.type === "range" ? (
               <Slider
+                {...props}
+                id={element.handle}
+                name={element.handle}
+                value={isArray(value) ? value : [value]}
+                onValueChange={([value]) => handleOnChange(value)}
+              />
+            ) : settings.type === "relations" ? (
+              <SortableGrid
                 {...props}
                 id={element.handle}
                 name={element.handle}

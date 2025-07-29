@@ -1,5 +1,7 @@
 import { Button } from "@narsil-cms/components/ui/button";
+import { cn } from "@narsil-cms/lib/utils";
 import { createPortal, unstable_batchedUpdates } from "react-dom";
+import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { TrashIcon } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SortableItem from "./sortable-item";
@@ -30,13 +32,20 @@ import {
 type Items = Record<UniqueIdentifier, UniqueIdentifier[]>;
 
 interface Props {
-  cancelDrop?: CancelDrop;
+  columns?: 1 | 2 | 3 | 4;
+  create?: string;
   items?: Items;
+  cancelDrop?: CancelDrop;
 }
 
 const PLACEHOLDER_ID = "placeholder";
 
-export function MultipleContainers({ cancelDrop, items: initialItems }: Props) {
+export function MultipleContainers({
+  cancelDrop,
+  create,
+  columns = 1,
+  items: initialItems,
+}: Props) {
   const [items, setItems] = useState<Items>(
     initialItems ?? {
       A: ["a1", "a2", "a3"],
@@ -282,7 +291,7 @@ export function MultipleContainers({ cancelDrop, items: initialItems }: Props) {
       cancelDrop={cancelDrop}
       onDragCancel={onDragCancel}
     >
-      <div className="grid grid-cols-2 gap-4 p-4">
+      <div className={cn(`grid-cols-${columns} grid gap-4`)}>
         <SortableContext
           items={[...containers, PLACEHOLDER_ID]}
           strategy={rectSortingStrategy}
@@ -327,6 +336,18 @@ export function MultipleContainers({ cancelDrop, items: initialItems }: Props) {
           >
             + Add column
           </SortableItem>
+          {create ? (
+            <ModalLink
+              href={create}
+              options={{
+                onSuccess: (response) => {
+                  console.log(response);
+                },
+              }}
+            >
+              Create
+            </ModalLink>
+          ) : null}
         </SortableContext>
       </div>
       {createPortal(

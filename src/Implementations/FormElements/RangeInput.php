@@ -5,8 +5,6 @@ namespace Narsil\Implementations\FormElements;
 #region USE
 
 use Narsil\Contracts\FormElements\RangeInput as Contract;
-use Narsil\Enums\Fields\InputTypeEnum;
-use Narsil\Enums\Fields\PropEnum;
 use Narsil\Implementations\AbstractFormElement;
 use Narsil\Models\Fields\Field;
 
@@ -25,7 +23,7 @@ class RangeInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct(InputTypeEnum::RANGE->value);
+        parent::__construct('range');
 
         $this->value([0]);
     }
@@ -83,7 +81,7 @@ class RangeInput extends AbstractFormElement implements Contract
      */
     final public function max(float|int $max): static
     {
-        $this->settings[PropEnum::MAX->value] = $max;
+        $this->settings['max'] = $max;
 
         return $this;
     }
@@ -93,7 +91,7 @@ class RangeInput extends AbstractFormElement implements Contract
      */
     final public function min(float|int $min): static
     {
-        $this->settings[PropEnum::MIN->value] = $min;
+        $this->settings['min'] = $min;
 
         return $this;
     }
@@ -103,7 +101,7 @@ class RangeInput extends AbstractFormElement implements Contract
      */
     final public function step(float|int $step): static
     {
-        $this->settings[PropEnum::STEP->value] = $step;
+        $this->settings['step'] = $step;
 
         return $this;
     }
@@ -113,7 +111,7 @@ class RangeInput extends AbstractFormElement implements Contract
      */
     final public function value(array $value): static
     {
-        $this->settings[PropEnum::VALUE->value] = $value;
+        $this->settings['value'] = $value;
 
         return $this;
     }

@@ -5,7 +5,6 @@ namespace Narsil\Implementations;
 #region USE
 
 use Narsil\Contracts\FormElement;
-use Narsil\Enums\Fields\PropEnum;
 
 #endregion
 
@@ -22,11 +21,9 @@ abstract class AbstractFormElement implements FormElement
      *
      * @return void
      */
-    public function __construct(
-        string $type,
-    )
+    public function __construct(string $type)
     {
-        $this->settings[PropEnum::TYPE->value] = $type;
+        $this->settings['type'] = $type;
     }
 
     #endregion
@@ -55,7 +52,7 @@ abstract class AbstractFormElement implements FormElement
      */
     public function className(string $className): static
     {
-        $this->settings[PropEnum::CLASS_NAME->value] = $className;
+        $this->settings['className'] = $className;
 
         return $this;
     }

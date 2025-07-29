@@ -60,7 +60,9 @@ abstract class AbstractResourceController extends AbstractController
 
         if (request()->get('_back'))
         {
-            return back()->with('success', $toast);
+            return back()
+
+                ->with('success', $toast);
         }
         else
         {
@@ -71,16 +73,19 @@ abstract class AbstractResourceController extends AbstractController
 
     /**
      * @param string $table
+     * @param mixed $data
      *
      * @return RedirectResponse
      */
-    protected function redirectOnStored(string $table): RedirectResponse
+    protected function redirectOnStored(string $table, mixed $data = []): RedirectResponse
     {
         $toast = trans("narsil-cms::toasts.success.$table.created");
 
         if (request()->get('_back'))
         {
-            return back()->with('success', $toast);
+            return back()
+                ->with('data', $data)
+                ->with('success', $toast);
         }
         else
         {
@@ -91,16 +96,19 @@ abstract class AbstractResourceController extends AbstractController
 
     /**
      * @param string $table
+     * @param mixed $data
      *
      * @return RedirectResponse
      */
-    protected function redirectOnUpdated(string $table): RedirectResponse
+    protected function redirectOnUpdated(string $table, mixed $data = []): RedirectResponse
     {
         $toast = trans("narsil-cms::toasts.success.$table.updated");
 
         if (request()->get('_back'))
         {
-            return back()->with('success', $toast);
+            return back()
+                ->with('data', $data)
+                ->with('success', $toast);
         }
         else
         {

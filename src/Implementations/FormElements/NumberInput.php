@@ -6,8 +6,6 @@ namespace Narsil\Implementations\FormElements;
 
 use Narsil\Contracts\FormElements\NumberInput as Contract;
 use Narsil\Contracts\FormElements\TextInput;
-use Narsil\Enums\Fields\InputTypeEnum;
-use Narsil\Enums\Fields\PropEnum;
 use Narsil\Implementations\AbstractFormElement;
 use Narsil\Models\Fields\Field;
 
@@ -26,7 +24,7 @@ class NumberInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct(InputTypeEnum::NUMBER->value);
+        parent::__construct('number');
 
         $this->value(0);
     }
@@ -90,7 +88,7 @@ class NumberInput extends AbstractFormElement implements Contract
      */
     final public function max(string $max): static
     {
-        $this->settings[PropEnum::MAX->value] = $max;
+        $this->settings['max'] = $max;
 
         return $this;
     }
@@ -100,7 +98,7 @@ class NumberInput extends AbstractFormElement implements Contract
      */
     final public function min(string $min): static
     {
-        $this->settings[PropEnum::MIN->value] = $min;
+        $this->settings['min'] = $min;
 
         return $this;
     }
@@ -110,7 +108,7 @@ class NumberInput extends AbstractFormElement implements Contract
      */
     final public function placeholder(string $placeholder): static
     {
-        $this->settings[PropEnum::PLACEHOLDER->value] = $placeholder;
+        $this->settings['placeholder'] = $placeholder;
 
         return $this;
     }
@@ -120,7 +118,7 @@ class NumberInput extends AbstractFormElement implements Contract
      */
     final public function required(bool $required): static
     {
-        $this->settings[PropEnum::REQUIRED->value] = $required;
+        $this->settings['required'] = $required;
 
         return $this;
     }
@@ -130,7 +128,7 @@ class NumberInput extends AbstractFormElement implements Contract
      */
     final public function step(string $step): static
     {
-        $this->settings[PropEnum::STEP->value] = $step;
+        $this->settings['step'] = $step;
 
         return $this;
     }
@@ -140,7 +138,7 @@ class NumberInput extends AbstractFormElement implements Contract
      */
     final public function value(float|int $value): static
     {
-        $this->settings[PropEnum::VALUE->value] = $value;
+        $this->settings['value'] = $value;
 
         return $this;
     }

@@ -17,6 +17,7 @@ return [
     \Narsil\Contracts\FormElements\NumberInput::class => \Narsil\Implementations\FormElements\NumberInput::class,
     \Narsil\Contracts\FormElements\PasswordInput::class => \Narsil\Implementations\FormElements\PasswordInput::class,
     \Narsil\Contracts\FormElements\RangeInput::class => \Narsil\Implementations\FormElements\RangeInput::class,
+    \Narsil\Contracts\FormElements\RelationsInput::class => \Narsil\Implementations\FormElements\RelationsInput::class,
     \Narsil\Contracts\FormElements\RichTextInput::class => \Narsil\Implementations\FormElements\RichTextInput::class,
     \Narsil\Contracts\FormElements\SelectInput::class => \Narsil\Implementations\FormElements\SelectInput::class,
     \Narsil\Contracts\FormElements\SwitchInput::class => \Narsil\Implementations\FormElements\SwitchInput::class,

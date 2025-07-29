@@ -6,8 +6,6 @@ namespace Narsil\Implementations\FormElements;
 
 use Narsil\Contracts\FormElements\NumberInput;
 use Narsil\Contracts\FormElements\TextInput as Contract;
-use Narsil\Enums\Fields\InputTypeEnum;
-use Narsil\Enums\Fields\PropEnum;
 use Narsil\Implementations\AbstractFormElement;
 use Narsil\Models\Fields\Field;
 
@@ -26,7 +24,7 @@ class TextInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct(InputTypeEnum::TEXT->value);
+        parent::__construct('text');
 
         $this->value('');
     }
@@ -89,7 +87,7 @@ class TextInput extends AbstractFormElement implements Contract
      */
     final public function autoComplete(string $autoComplete): static
     {
-        $this->settings[PropEnum::AUTO_COMPLETE->value] = $autoComplete;
+        $this->settings['autoComplete'] = $autoComplete;
 
         return $this;
     }
@@ -99,7 +97,7 @@ class TextInput extends AbstractFormElement implements Contract
      */
     final public function maxLength(string $maxLength): static
     {
-        $this->settings[PropEnum::MAX_LENGTH->value] = $maxLength;
+        $this->settings['maxLength'] = $maxLength;
 
         return $this;
     }
@@ -109,7 +107,7 @@ class TextInput extends AbstractFormElement implements Contract
      */
     final public function minLength(string $minLength): static
     {
-        $this->settings[PropEnum::MIN_LENGTH->value] = $minLength;
+        $this->settings['minLength'] = $minLength;
 
         return $this;
     }
@@ -119,7 +117,7 @@ class TextInput extends AbstractFormElement implements Contract
      */
     final public function placeholder(string $placeholder): static
     {
-        $this->settings[PropEnum::PLACEHOLDER->value] = $placeholder;
+        $this->settings['placeholder'] = $placeholder;
 
         return $this;
     }
@@ -129,7 +127,7 @@ class TextInput extends AbstractFormElement implements Contract
      */
     final public function required(bool $required): static
     {
-        $this->settings[PropEnum::REQUIRED->value] = $required;
+        $this->settings['required'] = $required;
 
         return $this;
     }
@@ -139,7 +137,7 @@ class TextInput extends AbstractFormElement implements Contract
      */
     final public function value(string $value): static
     {
-        $this->settings[PropEnum::VALUE->value] = $value;
+        $this->settings['value'] = $value;
 
         return $this;
     }

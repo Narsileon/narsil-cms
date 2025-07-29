@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Enums;
+namespace Narsil\Enums\Database;
 
 /**
  * @version 1.0.0

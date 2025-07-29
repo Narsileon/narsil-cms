@@ -1,9 +1,11 @@
 import { create } from "zustand";
+import type { FormDataConvertible, VisitCallbacks } from "@inertiajs/core";
 
 export type ModalState = {
   component: string;
   componentProps: Record<string, any>;
   href: string;
+  options?: Partial<VisitCallbacks>;
 };
 
 type ModalStoreState = {
@@ -13,7 +15,7 @@ type ModalStoreState = {
 type ModalStoreActions = {
   closeModal: (href: string) => void;
   closeTopModal: () => void;
-  openModal: (href: string) => Promise<void>;
+  openModal: (href: string, options?: Partial<VisitCallbacks>) => Promise<void>;
   reloadTopModal: () => Promise<void>;
 };
 
@@ -64,7 +66,7 @@ export const useModalStore = create<ModalStoreType>((set, get) => ({
     set((state) => ({
       modals: state.modals.slice(0, -1),
     })),
-  openModal: async (href) => {
+  openModal: async (href, options) => {
     const modal = await fetchModalProps(href);
 
     if (!modal) {
@@ -72,7 +74,7 @@ export const useModalStore = create<ModalStoreType>((set, get) => ({
     }
 
     set((state) => ({
-      modals: [...state.modals, modal],
+      modals: [...state.modals, { ...modal, options: options }],
     }));
   },
   reloadTopModal: async () => {

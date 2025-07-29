@@ -4,16 +4,16 @@ namespace Narsil\Http\Middleware\Inertia;
 
 #region USE
 
-use Narsil\Contracts\Components\AuthMenu;
-use Narsil\Contracts\Components\GuestMenu;
-use Narsil\Contracts\Components\Sidebar;
-use Narsil\Http\Resources\Inertia\UserInertiaResource;
-use Narsil\Services\BreadcrumbService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
+use Narsil\Contracts\Components\AuthMenu;
+use Narsil\Contracts\Components\GuestMenu;
+use Narsil\Contracts\Components\Sidebar;
+use Narsil\Http\Resources\Inertia\UserInertiaResource;
+use Narsil\Services\BreadcrumbService;
 
 #endregions
 
@@ -66,10 +66,10 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
 
-            'auth'       => $auth,
+            'auth' => $auth,
             'navigation' => $navigation,
-            'locale'     => $locale,
-            'redirect'   => $redirect,
+            'locale' => $locale,
+            'redirect' => $redirect,
         ];
     }
 
@@ -99,8 +99,9 @@ class HandleInertiaRequests extends Middleware
     protected function getRedirect(Request $request): array
     {
         return [
-            'error'   => Session::get('error'),
-            'info'    => Session::get('info'),
+            'data' => Session::get('data'),
+            'error' => Session::get('error'),
+            'info' => Session::get('info'),
             'success' => Session::get('success'),
             'warning' => Session::get('warning'),
         ];

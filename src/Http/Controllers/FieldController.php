@@ -108,9 +108,9 @@ class FieldController extends AbstractResourceController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        Field::create($attributes);
+        $field = Field::create($attributes);
 
-        return $this->redirectOnStored(Field::TABLE);
+        return $this->redirectOnStored(Field::TABLE, $field);
     }
 
     /**
@@ -150,7 +150,7 @@ class FieldController extends AbstractResourceController
 
         $field->update($attributes);
 
-        return $this->redirectOnUpdated(Field::TABLE);
+        return $this->redirectOnUpdated(Field::TABLE, $field);
     }
 
     /**

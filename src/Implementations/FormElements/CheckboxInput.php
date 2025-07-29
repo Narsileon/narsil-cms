@@ -5,8 +5,6 @@ namespace Narsil\Implementations\FormElements;
 #region USE
 
 use Narsil\Contracts\FormElements\CheckboxInput as Contract;
-use Narsil\Enums\Fields\InputTypeEnum;
-use Narsil\Enums\Fields\PropEnum;
 use Narsil\Implementations\AbstractFormElement;
 
 #endregion
@@ -24,7 +22,7 @@ class CheckboxInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct(InputTypeEnum::CHECKBOX->value);
+        parent::__construct('checkbox');
 
         $this->checked(false);
     }
@@ -62,7 +60,7 @@ class CheckboxInput extends AbstractFormElement implements Contract
      */
     final public function checked(bool $checked): static
     {
-        $this->settings[PropEnum::CHECKED->value] = $checked;
+        $this->settings['checked'] = $checked;
 
         return $this;
     }

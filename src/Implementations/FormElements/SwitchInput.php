@@ -5,8 +5,6 @@ namespace Narsil\Implementations\FormElements;
 #region USE
 
 use Narsil\Contracts\FormElements\SwitchInput as Contract;
-use Narsil\Enums\Fields\InputTypeEnum;
-use Narsil\Enums\Fields\PropEnum;
 use Narsil\Implementations\AbstractFormElement;
 
 #endregion
@@ -24,7 +22,7 @@ class SwitchInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct(InputTypeEnum::SWITCH->value);
+        parent::__construct('switch');
 
         $this->checked(false);
     }
@@ -62,7 +60,7 @@ class SwitchInput extends AbstractFormElement implements Contract
      */
     final public function checked(bool $value): static
     {
-        $this->settings[PropEnum::CHECKED->value] = $value;
+        $this->settings['checked'] = $value;
 
         return $this;
     }

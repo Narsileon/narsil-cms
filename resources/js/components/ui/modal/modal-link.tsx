@@ -1,14 +1,17 @@
 import { Slot as SlotPrimitive } from "radix-ui";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
+import type { VisitCallbacks } from "@inertiajs/core";
 
 type ModalLinkProps = React.ComponentProps<"button"> & {
   asChild?: boolean;
   href: string;
+  options?: Partial<VisitCallbacks>;
 };
 
 function ModalLink({
   asChild = false,
   href,
+  options,
   onClick,
   ...props
 }: ModalLinkProps) {
@@ -18,7 +21,7 @@ function ModalLink({
 
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
-    openModal(href);
+    openModal(href, options);
   }
 
   return (

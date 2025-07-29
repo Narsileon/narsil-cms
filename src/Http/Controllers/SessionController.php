@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Narsil\Enums\SessionEnum;
+use Narsil\Enums\Database\SessionEnum;
 use Narsil\Http\Requests\SessionFormRequest;
 use Narsil\Models\User;
 use Narsil\Models\Users\Session;

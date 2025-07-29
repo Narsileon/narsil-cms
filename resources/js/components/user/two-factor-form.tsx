@@ -114,7 +114,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                 }}
               >
                 <Card>
-                  <CardContent className="grid grid-cols-12">
+                  <CardContent className="grid-cols-12">
                     {form.elements.map((element, index) => (
                       <FormFieldRenderer element={element} key={index} />
                     ))}
@@ -152,7 +152,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                 <CopyIcon />
               </Button>
             </CardHeader>
-            <CardContent className="grid gap-4 text-sm">
+            <CardContent className="gap-4 text-sm">
               <p>{getLabel("two-factor.recovery_codes_description")}</p>
               <ul className="ml-6 list-disc">
                 {recoveryCodes?.map((recoveryCode, index) => {

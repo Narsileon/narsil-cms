@@ -5,8 +5,6 @@ namespace Narsil\Implementations\FormElements;
 #region USE
 
 use Narsil\Contracts\FormElements\TimeInput as Contract;
-use Narsil\Enums\Fields\InputTypeEnum;
-use Narsil\Enums\Fields\PropEnum;
 use Narsil\Implementations\AbstractFormElement;
 use Narsil\Models\Fields\Field;
 
@@ -25,7 +23,7 @@ class TimeInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct(InputTypeEnum::TIME->value);
+        parent::__construct('time');
 
         $this->value('');
     }
@@ -76,7 +74,7 @@ class TimeInput extends AbstractFormElement implements Contract
      */
     final public function max(string $max): static
     {
-        $this->settings[PropEnum::MAX->value] = $max;
+        $this->settings['max'] = $max;
 
         return $this;
     }
@@ -86,7 +84,7 @@ class TimeInput extends AbstractFormElement implements Contract
      */
     final public function min(string $min): static
     {
-        $this->settings[PropEnum::MIN->value] = $min;
+        $this->settings['min'] = $min;
 
         return $this;
     }
@@ -96,7 +94,7 @@ class TimeInput extends AbstractFormElement implements Contract
      */
     final public function required(bool $required): static
     {
-        $this->settings[PropEnum::REQUIRED->value] = $required;
+        $this->settings['required'] = $required;
 
         return $this;
     }
@@ -106,7 +104,7 @@ class TimeInput extends AbstractFormElement implements Contract
      */
     final public function value(string $value): static
     {
-        $this->settings[PropEnum::VALUE->value] = $value;
+        $this->settings['value'] = $value;
 
         return $this;
     }

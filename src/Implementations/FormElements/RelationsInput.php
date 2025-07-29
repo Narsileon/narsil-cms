@@ -4,7 +4,7 @@ namespace Narsil\Implementations\FormElements;
 
 #region USE
 
-use Narsil\Contracts\FormElements\SelectInput as Contract;
+use Narsil\Contracts\FormElements\RelationsInput as Contract;
 use Narsil\Implementations\AbstractFormElement;
 
 #endregion
@@ -13,7 +13,7 @@ use Narsil\Implementations\AbstractFormElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SelectInput extends AbstractFormElement implements Contract
+class RelationsInput extends AbstractFormElement implements Contract
 {
     #region CONSTRUCTOR
 
@@ -22,9 +22,7 @@ class SelectInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct('select');
-
-        $this->value('');
+        parent::__construct('relations');
     }
 
     #endregion
@@ -44,7 +42,7 @@ class SelectInput extends AbstractFormElement implements Contract
      */
     public static function getIcon(): string
     {
-        return 'square-chevron-down';
+        return 'layers';
     }
 
     /**
@@ -52,7 +50,27 @@ class SelectInput extends AbstractFormElement implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.select');
+        return trans('narsil-cms::fields.relations');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function create(string $create): static
+    {
+        $this->settings['create'] = $create;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function columns(int $columns): static
+    {
+        $this->settings['columns'] = $columns;
+
+        return $this;
     }
 
     /**
@@ -68,37 +86,7 @@ class SelectInput extends AbstractFormElement implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->settings['placeholder'] = $placeholder;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function required(bool $required): static
-    {
-        $this->settings['required'] = $required;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function search(bool $search): static
-    {
-        $this->settings['search'] = $search;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function value(string $value): static
+    final public function value(array $value): static
     {
         $this->settings['value'] = $value;
 

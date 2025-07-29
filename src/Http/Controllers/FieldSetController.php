@@ -116,9 +116,9 @@ class FieldSetController extends AbstractResourceController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        FieldSet::create($attributes);
+        $fieldSet = FieldSet::create($attributes);
 
-        return $this->redirectOnStored(FieldSet::TABLE);
+        return $this->redirectOnStored(FieldSet::TABLE, $fieldSet);
     }
 
     /**
@@ -158,7 +158,7 @@ class FieldSetController extends AbstractResourceController
 
         $fieldSet->update($attributes);
 
-        return $this->redirectOnUpdated(FieldSet::TABLE);
+        return $this->redirectOnUpdated(FieldSet::TABLE, $fieldSet);
     }
 
     /**

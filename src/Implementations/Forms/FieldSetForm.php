@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Narsil\Contracts\FormElements\RelationsInput;
 use Narsil\Contracts\FormElements\TextInput;
 use Narsil\Contracts\Forms\FieldSetForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -39,6 +40,13 @@ class FieldSetForm extends AbstractForm implements Contract
                     Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                     Field::SETTINGS => app(TextInput::class)
                         ->required(true)
+                        ->toArray(),
+                ],
+                [
+                    Field::HANDLE => FieldSet::RELATION_ELEMENTS,
+                    Field::NAME => trans('narsil-cms::ui.fields'),
+                    Field::SETTINGS => app(RelationsInput::class)
+                        ->create(route('fields.create'))
                         ->toArray(),
                 ],
             ]),

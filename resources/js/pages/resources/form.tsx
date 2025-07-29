@@ -1,8 +1,10 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
+import { useEffect } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
+import { useState } from "react";
 import {
   DialogBody,
   DialogClose,
@@ -27,17 +29,16 @@ import {
   TabsTrigger,
 } from "@narsil-cms/components/ui/tabs";
 import type { FieldSetType, FormType } from "@narsil-cms/types/forms";
-import { useState } from "react";
-import { useEffect } from "react";
+import type { ModalState } from "@narsil-cms/stores/modal-store";
 
 type FormProps = {
   data: any;
   form: FormType;
-  modal: boolean;
+  modal?: ModalState;
   title: string;
 };
 
-function ResourceForm({ modal = false, data, form, title }: FormProps) {
+function ResourceForm({ data, form, modal, title }: FormProps) {
   const { getLabel } = useLabels();
   const { closeTopModal } = useModalStore();
 
@@ -141,8 +142,10 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
           method={form.method}
           url={form.url}
           options={{
-            onSuccess: () => {
+            onSuccess: (response) => {
               if (modal) {
+                modal.options?.onSuccess?.(response);
+
                 closeTopModal();
               }
             },
@@ -174,14 +177,14 @@ function ResourceForm({ modal = false, data, form, title }: FormProps) {
                   <div className="flex flex-col gap-y-4 lg:col-span-4">
                     {sidebarContent ? (
                       <Card>
-                        <CardContent className="grid grid-cols-12">
+                        <CardContent className="grid-cols-12">
                           {sidebarContent}
                         </CardContent>
                       </Card>
                     ) : null}
                     {informationContent ? (
                       <Card>
-                        <CardContent className="grid grid-cols-12 justify-between text-sm">
+                        <CardContent className="grid-cols-12 justify-between text-sm">
                           {informationContent}
                         </CardContent>
                       </Card>

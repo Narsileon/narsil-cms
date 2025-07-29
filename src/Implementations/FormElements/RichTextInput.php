@@ -5,8 +5,6 @@ namespace Narsil\Implementations\FormElements;
 #region USE
 
 use Narsil\Contracts\FormElements\RichTextInput as Contract;
-use Narsil\Enums\Fields\InputTypeEnum;
-use Narsil\Enums\Fields\PropEnum;
 use Narsil\Implementations\AbstractFormElement;
 use Narsil\Models\Fields\Field;
 
@@ -25,7 +23,7 @@ class RichTextInput extends AbstractFormElement implements Contract
      */
     public function __construct()
     {
-        parent::__construct(InputTypeEnum::TEXT->value);
+        parent::__construct('rich-text');
 
         $this->value('');
     }
@@ -70,7 +68,7 @@ class RichTextInput extends AbstractFormElement implements Contract
      */
     final public function placeholder(string $placeholder): static
     {
-        $this->settings[PropEnum::PLACEHOLDER->value] = $placeholder;
+        $this->settings['placeholder'] = $placeholder;
 
         return $this;
     }
@@ -80,7 +78,7 @@ class RichTextInput extends AbstractFormElement implements Contract
      */
     final public function required(bool $required): static
     {
-        $this->settings[PropEnum::REQUIRED->value] = $required;
+        $this->settings['required'] = $required;
 
         return $this;
     }
@@ -90,7 +88,7 @@ class RichTextInput extends AbstractFormElement implements Contract
      */
     final public function value(string $value): static
     {
-        $this->settings[PropEnum::VALUE->value] = $value;
+        $this->settings['value'] = $value;
 
         return $this;
     }

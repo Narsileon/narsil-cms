@@ -5,7 +5,7 @@ namespace Narsil\Http\Requests;
 #region USE
 
 use Narsil\Contracts\FormRequest as Contract;
-use Narsil\Enums\SessionEnum;
+use Narsil\Enums\Database\SessionEnum;
 use Narsil\Validation\FormRule;
 use Illuminate\Foundation\Http\FormRequest;
 

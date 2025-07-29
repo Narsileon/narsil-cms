@@ -7,6 +7,7 @@ return [
     'number'    => 'Number',
     'password'  => 'Password',
     'range'     => 'Range',
+    'relations' => 'Relations',
     'rich_text' => 'Rich Text',
     'select'    => 'Select',
     'switch'    => 'Switch',

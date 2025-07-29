@@ -11,19 +11,19 @@ import {
 } from "@narsil-cms/components/ui/dialog";
 import type { ComponentProps, ComponentType } from "react";
 
-type ModalProps = ComponentProps<typeof DialogContent> &
-  ModalState & {
-    onClose: () => void;
-  };
+type ModalProps = ComponentProps<typeof DialogContent> & {
+  modal: ModalState;
+  onClose: () => void;
+};
 
-function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
+function Modal({ modal, onClose, ...props }: ModalProps) {
   const [Component, setComponent] = useState<ComponentType<any> | null>(null);
 
   useEffect(() => {
     const load = async () => {
-      const [vendorPath, componentPath] = component.includes("::")
-        ? component.split("::")
-        : [null, component];
+      const [vendorPath, componentPath] = modal.component.includes("::")
+        ? modal.component.split("::")
+        : [null, modal.component];
 
       const pages = (() => {
         switch (vendorPath) {
@@ -51,7 +51,7 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
     };
 
     load();
-  }, [component]);
+  }, [modal.component]);
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
@@ -60,13 +60,17 @@ function Modal({ component, componentProps, onClose, ...props }: ModalProps) {
         {...props}
       >
         <DialogHeader className="border-b">
-          <DialogTitle>{componentProps.title}</DialogTitle>
+          <DialogTitle>{modal.componentProps.title}</DialogTitle>
         </DialogHeader>
         <VisuallyHidden asChild={true}>
-          <DialogDescription>{componentProps.description}</DialogDescription>
+          <DialogDescription>
+            {modal.componentProps.description}
+          </DialogDescription>
         </VisuallyHidden>
-        <LabelsProvider labels={componentProps.labels}>
-          {Component ? <Component modal={true} {...componentProps} /> : null}
+        <LabelsProvider labels={modal.componentProps.labels}>
+          {Component ? (
+            <Component modal={modal} {...modal.componentProps} />
+          ) : null}
         </LabelsProvider>
       </DialogContent>
     </Dialog>
