@@ -12,8 +12,8 @@ use Narsil\Enums\Fields\VisibilityEnum;
 use Narsil\Implementations\AbstractField as ConcreteField;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldCondition;
 
 #endregion
 
@@ -51,7 +51,7 @@ class FieldForm extends AbstractForm implements Contract
      */
     public function elements(): array
     {
-        $Blocktings = [];
+        $settings = [];
 
         foreach ($this->implementations as $abstract => $concrete)
         {
@@ -59,19 +59,19 @@ class FieldForm extends AbstractForm implements Contract
 
             foreach ($items as $key => $item)
             {
-                $item[Field::VISIBILITY] = VisibilityEnum::HIDDEN_WHEN->value;
-                $item[Field::RELATION_CONDITIONS] = [
-                    new FieldCondition([
-                        FieldCondition::TARGET_ID => Field::TYPE,
-                        FieldCondition::OPERATOR => '=',
-                        FieldCondition::VALUE => $abstract,
+                $item['visibility'] = VisibilityEnum::HIDDEN_WHEN->value;
+                $item['conditions'] = [
+                    new BlockElementCondition([
+                        BlockElementCondition::TARGET_ID => Field::TYPE,
+                        BlockElementCondition::OPERATOR => '=',
+                        BlockElementCondition::VALUE => $abstract,
                     ]),
                 ];
 
                 $items[$key] = $item;
             }
 
-            $Blocktings = array_merge($Blocktings, $items);
+            $settings = array_merge($settings, $items);
         }
 
         $typeOptions = $this->getTypeOptions();
@@ -104,8 +104,8 @@ class FieldForm extends AbstractForm implements Contract
                 ],
                 [
                     Block::HANDLE => FIELD::SETTINGS,
-                    Block::NAME => trans('narsil-cms::ui.Blocktings'),
-                    Block::RELATION_ELEMENTS => $Blocktings,
+                    Block::NAME => trans('narsil-cms::ui.blocks'),
+                    Block::RELATION_ELEMENTS => $settings,
                 ]
             ]),
             $this->information([

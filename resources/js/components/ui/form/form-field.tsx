@@ -1,10 +1,10 @@
 import { FormFieldContext } from "./form-field-context";
 import { useEffect, useState } from "react";
 import useForm from "./form-context";
-import type { FieldType } from "@narsil-cms/types/forms";
+import type { Field } from "@narsil-cms/types/forms";
 
 type FormFieldProps = {
-  field: FieldType;
+  field: Field;
   render: (field: {
     handle: string;
     value: any;

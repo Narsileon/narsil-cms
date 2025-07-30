@@ -24,7 +24,7 @@ class FieldSeeder extends Seeder
         $contentBlock = $this->createContentBlock();
         $richTextBlock = $this->createRichTextBlock();
 
-        $contentBlock->Blocks()->attach($richTextBlock->{Field::ID}, [
+        $contentBlock->blocks()->attach($richTextBlock->{Field::ID}, [
             BlockElement::POSITION => 0,
         ]);
     }
@@ -55,6 +55,7 @@ class FieldSeeder extends Seeder
             Field::NAME => 'Rich text',
             Field::HANDLE => 'rich_text',
             Field::SETTINGS => app(RichTextInput::class)->toArray(),
+            Field::TYPE => RichTextInput::class,
         ]);
 
         $richTextBlock = Block::create([

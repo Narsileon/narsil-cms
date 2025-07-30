@@ -1,10 +1,10 @@
 import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
-import type { FieldSetType, FieldType } from "@narsil-cms/types/forms";
+import type { Block, Field } from "@narsil-cms/types/forms";
 import type { FormContextProps } from "./form-context";
 
 type FormProviderProps = {
-  elements?: (FieldType | FieldSetType)[];
+  elements?: (Field | Block)[];
   id: string;
   initialValues?: Record<string, any>;
   render: (props: FormContextProps) => React.ReactNode;
@@ -16,7 +16,7 @@ function FormProvider({
   initialValues = {},
   render,
 }: FormProviderProps) {
-  function flattenFields(elements: (FieldType | FieldSetType)[]): FieldType[] {
+  function flattenFields(elements: (Field | Block)[]): Field[] {
     return elements.flatMap((element) =>
       "elements" in element ? flattenFields(element.elements) : [element],
     );

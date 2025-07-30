@@ -28,7 +28,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@narsil-cms/components/ui/tabs";
-import type { FieldSetType, FormType } from "@narsil-cms/types/forms";
+import type { Block, FormType } from "@narsil-cms/types/forms";
 import type { ModalState } from "@narsil-cms/stores/modal-store";
 
 type FormProps = {
@@ -75,9 +75,9 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
       return acc;
     },
     {
-      information: undefined as FieldSetType | undefined,
-      sidebar: undefined as FieldSetType | undefined,
-      tabs: [] as FieldSetType[],
+      information: undefined as Block | undefined,
+      sidebar: undefined as Block | undefined,
+      tabs: [] as Block[],
     },
   );
 

@@ -39,7 +39,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         return [[
             Field::HANDLE => UserConfiguration::LOCALE,
-            Field::ICON => 'languages',
             Field::NAME => trans('narsil-cms::validation.attributes.locale'),
             Field::SETTINGS => app(SelectInput::class)
                 ->options($localeOptions)
@@ -47,7 +46,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 ->toArray(),
         ], [
             Field::HANDLE => UserConfiguration::THEME,
-            Field::ICON => 'sun-moon',
             Field::NAME => trans('narsil-cms::validation.attributes.theme'),
             Field::SETTINGS => app(SelectInput::class)
                 ->options($themeOptions)
@@ -55,7 +53,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 ->toArray(),
         ], [
             Field::HANDLE => UserConfiguration::COLOR,
-            Field::ICON => 'palette',
             Field::NAME => trans('narsil-cms::validation.attributes.color'),
             Field::SETTINGS => app(SelectInput::class)
                 ->options($colorOptions)
@@ -63,7 +60,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 ->toArray(),
         ], [
             Field::HANDLE => UserConfiguration::RADIUS,
-            Field::ICON => 'square-round-corner',
             Field::NAME => trans('narsil-cms::validation.attributes.radius'),
             Field::SETTINGS => app(RangeInput::class)
                 ->max(1)

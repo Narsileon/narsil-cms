@@ -23,7 +23,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
-import type { FieldType, FormType } from "@narsil-cms/types/forms";
+import type { Field, FormType } from "@narsil-cms/types/forms";
 
 type FortifyFormProps = {
   data: Record<string, any>;
@@ -71,7 +71,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                       element.handle === "password" &&
                       !("elements" in element) ? (
                         <FormField
-                          field={element as FieldType}
+                          field={element as Field}
                           render={({ value, onFieldChange }) => {
                             return (
                               <FormItem className="col-span-full">

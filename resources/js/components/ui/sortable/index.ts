@@ -1,8 +1,14 @@
+import Sortable from "./sortable";
+import SortableAdd from "./sortable-add";
 import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";
 import SortableItem from "./sortable-item";
 import SortableTree from "./sortable-tree";
 import type { UniqueIdentifier } from "@dnd-kit/core";
+
+type AnonymousItem = Record<string, any> & {
+  id: UniqueIdentifier;
+};
 
 type FlatNode = {
   data?: Record<string, any>;
@@ -19,6 +25,13 @@ type NestedNode = {
   type: string;
 };
 
-export { SortableGrid, SortableHandle, SortableItem, SortableTree };
+export {
+  Sortable,
+  SortableAdd,
+  SortableGrid,
+  SortableHandle,
+  SortableItem,
+  SortableTree,
+};
 
-export type { FlatNode, NestedNode };
+export type { AnonymousItem, FlatNode, NestedNode };

@@ -4,10 +4,12 @@ namespace Narsil\Models\Elements;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElementCondition;
 
 #endregion
 
@@ -15,7 +17,7 @@ use Narsil\Models\Elements\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockElement extends Pivot
+class BlockElement extends Model
 {
     #region CONSTRUCTOR
 
@@ -27,6 +29,10 @@ class BlockElement extends Pivot
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->casts = array_merge([
+            self::SETTINGS => 'json',
+        ], $this->casts);
 
         $this->guarded = array_merge([
             self::ID,
@@ -44,6 +50,10 @@ class BlockElement extends Pivot
      */
     final public const BLOCK_ID = 'block_id';
     /**
+     * @var string The name of the "description" column.
+     */
+    final public const DESCRIPTION = 'description';
+    /**
      * @var string The name of the "element id" column.
      */
     final public const ELEMENT_ID = 'element_id';
@@ -52,18 +62,39 @@ class BlockElement extends Pivot
      */
     final public const ELEMENT_TYPE = 'element_type';
     /**
+     * @var string The name of the "handle" column.
+     */
+    final public const HANDLE = 'handle';
+    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
     /**
+     * @var string The name of the "name" column.
+     */
+    final public const NAME = 'name';
+    /**
      * @var string The name of the "position" column.
      */
     final public const POSITION = 'position';
+    /**
+     * @var string The name of the "settings" column.
+     */
+    final public const SETTINGS = 'settings';
+
+    /**
+     * @var string The name of the "counditions" count.
+     */
+    final public const COUNT_CONDITIONS = 'conditions_count';
 
     /**
      * @var string The name of the "block" relation.
      */
-    final public const RELATION_Block = 'block';
+    final public const RELATION_BLOCK = 'block';
+    /**
+     * @var string The name of the "conditions" relation.
+     */
+    final public const RELATION_CONDITIONS = 'conditions';
     /**
      * @var string The name of the "element" relation.
      */
@@ -88,6 +119,19 @@ class BlockElement extends Pivot
                 Block::class,
                 self::BLOCK_ID,
                 Block::ID,
+            );
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function conditions(): HasMany
+    {
+        return $this
+            ->hasMany(
+                BlockElementCondition::class,
+                BlockElementCondition::OWNER_ID,
+                self::ID,
             );
     }
 

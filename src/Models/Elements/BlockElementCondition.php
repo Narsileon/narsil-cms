@@ -14,7 +14,7 @@ use Narsil\Models\Elements\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldCondition extends Model
+class BlockElementCondition extends Model
 {
     #region CONSTRUCTOR
 
@@ -75,7 +75,7 @@ class FieldCondition extends Model
     /**
      * @var string The table associated with the model.
      */
-    final public const TABLE = 'field_conditions';
+    final public const TABLE = 'block_element_conditions';
 
     #endregion
 

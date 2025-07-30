@@ -6,10 +6,8 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\FieldBlock;
-use Narsil\Models\Elements\FieldCondition;
 
 #endregion
 
@@ -32,6 +30,7 @@ class Field extends Model
 
         $this->casts = array_merge([
             self::SETTINGS => 'json',
+            self::TRANSLATABLE => 'boolean',
         ], $this->casts);
 
         $this->guarded = array_merge([
@@ -54,10 +53,6 @@ class Field extends Model
      */
     final public const HANDLE = 'handle';
     /**
-     * @var string The name of the "icon" column.
-     */
-    final public const ICON = 'icon';
-    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
@@ -70,35 +65,23 @@ class Field extends Model
      */
     final public const SETTINGS = 'settings';
     /**
+     * @var string The name of the "translatable" column.
+     */
+    final public const TRANSLATABLE = 'translatable';
+    /**
      * @var string The name of the "type" column.
      */
     final public const TYPE = 'type';
-    /**
-     * @var string The name of the "visibility" column.
-     */
-    final public const VISIBILITY = 'visibility';
-    /**
-     * @var string The name of the "width" column.
-     */
-    final public const WIDTH = 'width';
 
     /**
      * @var string The name of the "blocks" count.
      */
     final public const COUNT_BLOCKS = 'blocks_count';
-    /**
-     * @var string The name of the "counditions" count.
-     */
-    final public const COUNT_CONDITIONS = 'conditions_count';
 
     /**
      * @var string The name of the "blocks" relation.
      */
     final public const RELATION_BLOCKS = 'blocks';
-    /**
-     * @var string The name of the "conditions" relation.
-     */
-    final public const RELATION_CONDITIONS = 'conditions';
 
     /**
      * @var string The table associated with the model.
@@ -120,19 +103,6 @@ class Field extends Model
                 FieldBlock::TABLE,
                 FieldBlock::FIELD_ID,
                 FieldBlock::BLOCK_ID,
-            );
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function conditions(): HasMany
-    {
-        return $this
-            ->hasMany(
-                FieldCondition::class,
-                FieldCondition::OWNER_ID,
-                self::ID,
             );
     }
 

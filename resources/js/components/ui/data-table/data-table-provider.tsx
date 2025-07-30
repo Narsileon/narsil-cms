@@ -1,6 +1,6 @@
 import { arrayMove } from "@dnd-kit/sortable";
-import { DataTableContext, DataTableContextProps } from "./data-table-context";
 import { compact, debounce } from "lodash";
+import { DataTableContext, DataTableContextProps } from "./data-table-context";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import { router } from "@inertiajs/react";
@@ -23,7 +23,6 @@ import type {
   ColumnSizingState,
   PaginationState,
   SortingState,
-  Table,
   TableOptions,
   Updater,
   VisibilityState,

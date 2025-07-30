@@ -1,8 +1,7 @@
-import { FormItem } from "@narsil-cms/components/ui/form";
 import type { IconName } from "lucide-react/dynamic";
 
-export type FieldType = {
-  conditions?: FieldConditionType[] | null;
+export type Field = {
+  conditions?: BlockElementCondition[] | null;
   description?: string;
   handle: string;
   icon?: IconName;
@@ -11,24 +10,23 @@ export type FieldType = {
   settings?: Record<string, any>;
   type: string;
   visibility?: "display" | "display_when" | "hidden" | "hidden_when";
-  width?: React.ComponentProps<typeof FormItem>["width"];
 };
 
-export type FieldConditionType = {
+export type BlockElementCondition = {
   operator: string;
   target_id: string;
   value: string;
 };
 
-export type FieldSetType = {
-  elements: (FieldType | FieldSetType)[];
+export type Block = {
+  elements: (Field | Block)[];
   handle: string;
   id: number;
   name: string;
 };
 
 export type FormType = {
-  elements: (FieldType | FieldSetType)[];
+  elements: (Field | Block)[];
   id: string;
   method: string;
   submit: string;

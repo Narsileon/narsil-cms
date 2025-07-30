@@ -34,7 +34,10 @@ class Sidebar extends AbstractComponent implements Contract
                     (new NavigationItem(route('templates.index'), trans('narsil-cms::ui.templates')))
                         ->icon('layout-template')
                         ->toArray(),
-                    (new NavigationItem(route('blocks.index'), trans('narsil-cms::ui.fields')))
+                    (new NavigationItem(route('blocks.index'), trans('narsil-cms::ui.blocks')))
+                        ->icon('box')
+                        ->toArray(),
+                    (new NavigationItem(route('fields.index'), trans('narsil-cms::ui.fields')))
                         ->icon('rectangle-ellipsis')
                         ->toArray(),
                 ])

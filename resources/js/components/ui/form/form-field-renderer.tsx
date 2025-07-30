@@ -6,7 +6,7 @@ import { Heading } from "@narsil-cms/components/ui/heading";
 import { Input } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
-import { SortableGrid } from "@narsil-cms/components/ui/sortable";
+import { Sortable } from "@narsil-cms/components/ui/sortable";
 import { Switch } from "@narsil-cms/components/ui/switch";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
@@ -14,15 +14,11 @@ import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 import useForm from "./form-context";
-import type {
-  FieldSetType,
-  FieldType,
-  SelectOption,
-} from "@narsil-cms/types/forms";
+import type { Block, Field, SelectOption } from "@narsil-cms/types/forms";
 
 type FormFieldRendererProps = {
   className?: string;
-  element: FieldType | FieldSetType;
+  element: Field | Block;
   onChange?: (value: any) => void;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
@@ -72,7 +68,6 @@ function FormFieldRenderer({
               settings.className,
               className,
             )}
-            width={element.width}
           >
             <FormLabel required={settings.required}>
               {element.icon ? <DynamicIcon name={element.icon} /> : null}
@@ -104,12 +99,10 @@ function FormFieldRenderer({
                 onValueChange={([value]) => handleOnChange(value)}
               />
             ) : settings.type === "relations" ? (
-              <SortableGrid
+              <Sortable
                 {...props}
-                id={element.handle}
-                name={element.handle}
-                value={isArray(value) ? value : [value]}
-                onValueChange={([value]) => handleOnChange(value)}
+                items={value ?? []}
+                setItems={(value) => handleOnChange(value)}
               />
             ) : settings.type === "switch" ? (
               <Switch

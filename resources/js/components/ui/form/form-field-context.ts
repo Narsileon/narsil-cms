@@ -1,7 +1,7 @@
-import { FieldType } from "@narsil-cms/types/forms";
+import { Field } from "@narsil-cms/types/forms";
 import { createContext, useContext } from "react";
 
-export type FormFieldContextProps = FieldType & {
+export type FormFieldContextProps = Field & {
   error: string | undefined;
 };
 

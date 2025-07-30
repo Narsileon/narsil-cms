@@ -23,6 +23,8 @@ class RelationsInput extends AbstractField implements Contract
     public function __construct()
     {
         parent::__construct('relations');
+
+        $this->value([]);
     }
 
     #endregion
