@@ -5,7 +5,7 @@ namespace Narsil\Http\Requests;
 #region USE
 
 use Narsil\Contracts\FormRequests\FieldFormRequest as Contract;
-use Narsil\Models\Fields\Field;
+use Narsil\Models\Elements\Field;
 use Narsil\Validation\FormRule;
 
 #endregion

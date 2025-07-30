@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Contracts\Tables\FieldSetTable as Contract;
+use Narsil\Contracts\Tables\RoleTable as Contract;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Policies\Role;
 use Narsil\Support\TableColumn;

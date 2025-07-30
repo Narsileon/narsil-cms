@@ -11,8 +11,8 @@ return [
     |
     */
 
+    \Narsil\Contracts\Forms\BlockForm::class => \Narsil\Implementations\Forms\BlockForm::class,
     \Narsil\Contracts\Forms\FieldForm::class => \Narsil\Implementations\Forms\FieldForm::class,
-    \Narsil\Contracts\Forms\FieldSetForm::class => \Narsil\Implementations\Forms\FieldSetForm::class,
     \Narsil\Contracts\Forms\RoleForm::class => \Narsil\Implementations\Forms\RoleForm::class,
     \Narsil\Contracts\Forms\SiteForm::class => \Narsil\Implementations\Forms\SiteForm::class,
     \Narsil\Contracts\Forms\SiteGroupForm::class => \Narsil\Implementations\Forms\SiteGroupForm::class,

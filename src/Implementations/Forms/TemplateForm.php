@@ -4,12 +4,12 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\FormElements\TextInput;
+use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Fields\Field;
-use Narsil\Models\Fields\FieldSet;
-use Narsil\Models\Templates\Template;
+use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Template;
 
 #endregion
 
@@ -43,9 +43,9 @@ class TemplateForm extends AbstractForm implements Contract
                         ->toArray(),
                 ],
                 [
-                    FieldSet::HANDLE => FIELD::SETTINGS,
-                    FieldSet::NAME => trans('narsil-cms::ui.fields'),
-                    FieldSet::RELATION_ELEMENTS => [],
+                    Block::HANDLE => FIELD::SETTINGS,
+                    Block::NAME => trans('narsil-cms::ui.fields'),
+                    Block::RELATION_ELEMENTS => [],
                 ]
             ]),
             $this->information([

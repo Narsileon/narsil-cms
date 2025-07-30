@@ -14,7 +14,7 @@ use Narsil\Contracts\Tables\FieldTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
-use Narsil\Models\Fields\Field;
+use Narsil\Models\Elements\Field;
 
 #endregion
 

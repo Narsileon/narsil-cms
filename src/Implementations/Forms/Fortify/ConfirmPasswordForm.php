@@ -4,11 +4,11 @@ namespace Narsil\Implementations\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\FormElements\PasswordInput;
+use Narsil\Contracts\Fields\PasswordInput;
 use Narsil\Contracts\Forms\Fortify\ConfirmPasswordForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Fields\Field;
+use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
 
 #endregion

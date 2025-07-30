@@ -5,7 +5,7 @@ namespace Narsil\Http\Requests;
 #region USE
 
 use Narsil\Contracts\FormRequests\TemplateFormRequest as Contract;
-use Narsil\Models\Templates\Template;
+use Narsil\Models\Elements\Template;
 use Narsil\Validation\FormRule;
 
 #endregion

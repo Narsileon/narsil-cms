@@ -133,6 +133,11 @@ class User extends Authenticatable implements MustVerifyEmail
     final public const ATTRIBUTE_PASSWORD_CONFIRMATION = 'password_confirmation';
 
     /**
+     * @var string The name of the "roles" count.
+     */
+    final public const COUNT_ROLES = 'roles_count';
+
+    /**
      * @var string The name of the "configuration" relation.
      */
     final public const RELATION_CONFIGURATION = 'configuration';

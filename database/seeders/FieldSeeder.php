@@ -5,10 +5,10 @@ namespace Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Contracts\FormElements\RichTextInput;
-use Narsil\Models\Fields\Field;
-use Narsil\Models\Fields\FieldSet;
-use Narsil\Models\Fields\FieldSetElement;
+use Narsil\Contracts\Fields\RichTextInput;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
+use Narsil\Models\Elements\Field;
 
 #endregion
 
@@ -21,11 +21,11 @@ class FieldSeeder extends Seeder
      */
     public function run(): void
     {
-        $contentFieldSet = $this->createContentFieldSet();
-        $richTextFieldSet = $this->createRichTextFieldSet();
+        $contentBlock = $this->createContentBlock();
+        $richTextBlock = $this->createRichTextBlock();
 
-        $contentFieldSet->field_sets()->attach($richTextFieldSet->{Field::ID}, [
-            FieldSetElement::POSITION => 0,
+        $contentBlock->Blocks()->attach($richTextBlock->{Field::ID}, [
+            BlockElement::POSITION => 0,
         ]);
     }
 
@@ -34,22 +34,22 @@ class FieldSeeder extends Seeder
     #region PROTECTED METHODS
 
     /**
-     * @return FieldSet
+     * @return Block
      */
-    protected function createContentFieldSet(): FieldSet
+    protected function createContentBlock(): Block
     {
-        $contentFieldSet = FieldSet::create([
-            FieldSet::NAME => 'Content',
-            FieldSet::HANDLE => 'content',
+        $contentBlock = Block::create([
+            Block::NAME => 'Content',
+            Block::HANDLE => 'content',
         ]);
 
-        return $contentFieldSet;
+        return $contentBlock;
     }
 
     /**
-     * @return FieldSet
+     * @return Block
      */
-    protected function createRichTextFieldSet(): FieldSet
+    protected function createRichTextBlock(): Block
     {
         $richTextField = Field::create([
             Field::NAME => 'Rich text',
@@ -57,16 +57,16 @@ class FieldSeeder extends Seeder
             Field::SETTINGS => app(RichTextInput::class)->toArray(),
         ]);
 
-        $richTextFieldSet = FieldSet::create([
-            FieldSet::NAME => 'Rich text',
-            FieldSet::HANDLE => 'rich_text',
+        $richTextBlock = Block::create([
+            Block::NAME => 'Rich text',
+            Block::HANDLE => 'rich_text',
         ]);
 
-        $richTextFieldSet->fields()->attach($richTextField->{Field::ID}, [
-            FieldSetElement::POSITION => 0,
+        $richTextBlock->fields()->attach($richTextField->{Field::ID}, [
+            BlockElement::POSITION => 0,
         ]);
 
-        return $richTextFieldSet;
+        return $richTextBlock;
     }
 
     #endregion

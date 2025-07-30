@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'builder'   => 'Builder',
     'checkbox'  => 'Checkbox',
     'date'      => 'Date',
     'email'     => 'Email',

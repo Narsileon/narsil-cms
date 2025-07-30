@@ -3,9 +3,9 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
+use Narsil\Http\Controllers\BlockController;
 use Narsil\Http\Controllers\DashboardController;
 use Narsil\Http\Controllers\FieldController;
-use Narsil\Http\Controllers\FieldSetController;
 use Narsil\Http\Controllers\RoleController;
 use Narsil\Http\Controllers\SessionController;
 use Narsil\Http\Controllers\SiteController;
@@ -28,7 +28,7 @@ Route::middleware([
 
         #region RESOURCES
 
-        Route::resource('/field-sets', FieldSetController::class)
+        Route::resource('/blocks', BlockController::class)
             ->except([
                 'show'
             ]);

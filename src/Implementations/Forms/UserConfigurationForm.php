@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Locale;
-use Narsil\Contracts\FormElements\RangeInput;
-use Narsil\Contracts\FormElements\SelectInput;
+use Narsil\Contracts\Fields\RangeInput;
+use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Contracts\Forms\UserConfigurationForm as Contract;
 use Narsil\Enums\Configuration\ColorEnum;
 use Narsil\Enums\Configuration\ThemeEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Fields\Field;
+use Narsil\Models\Elements\Field;
 use Narsil\Models\Users\UserConfiguration;
 use ResourceBundle;
 

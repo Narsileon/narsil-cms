@@ -4,7 +4,7 @@ namespace Narsil\Implementations;
 
 #region USE
 
-use Narsil\Contracts\FormElement;
+use Narsil\Contracts\Field;
 
 #endregion
 
@@ -12,7 +12,7 @@ use Narsil\Contracts\FormElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractFormElement implements FormElement
+abstract class AbstractField implements Field
 {
     #region CONSTRUCTOR
 

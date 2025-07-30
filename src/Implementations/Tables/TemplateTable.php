@@ -4,9 +4,9 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Contracts\Tables\FieldSetTable as Contract;
+use Narsil\Contracts\Tables\TemplateTable as Contract;
 use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Templates\Template;
+use Narsil\Models\Elements\Template;
 use Narsil\Support\TableColumn;
 
 #endregion

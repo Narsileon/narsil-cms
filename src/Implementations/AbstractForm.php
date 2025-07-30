@@ -7,8 +7,8 @@ namespace Narsil\Implementations;
 use Illuminate\Support\Str;
 use Narsil\Contracts\Form;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Models\Fields\Field;
-use Narsil\Models\Fields\FieldSet;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Field;
 use Narsil\Support\LabelsBag;
 use ReflectionClass;
 
@@ -90,9 +90,9 @@ abstract class AbstractForm implements Form
     protected function information(array $elements): array
     {
         return [
-            FieldSet::NAME => trans('narsil-cms::ui.information'),
-            FieldSet::HANDLE => 'information',
-            FieldSet::RELATION_ELEMENTS => $elements
+            Block::NAME => trans('narsil-cms::ui.information'),
+            Block::HANDLE => 'information',
+            Block::RELATION_ELEMENTS => $elements
         ];
     }
 
@@ -104,9 +104,9 @@ abstract class AbstractForm implements Form
     protected function main(array $elements): array
     {
         return [
-            FieldSet::NAME => trans('narsil-cms::ui.main'),
-            FieldSet::HANDLE => 'main',
-            FieldSet::RELATION_ELEMENTS => $elements
+            Block::NAME => trans('narsil-cms::ui.main'),
+            Block::HANDLE => 'main',
+            Block::RELATION_ELEMENTS => $elements
         ];
     }
 
@@ -118,9 +118,9 @@ abstract class AbstractForm implements Form
     protected function sidebar(array $elements): array
     {
         return [
-            FieldSet::NAME => trans('narsil-cms::ui.sidebar'),
-            FieldSet::HANDLE => 'sidebar',
-            FieldSet::RELATION_ELEMENTS => $elements
+            Block::NAME => trans('narsil-cms::ui.sidebar'),
+            Block::HANDLE => 'sidebar',
+            Block::RELATION_ELEMENTS => $elements
         ];
     }
 

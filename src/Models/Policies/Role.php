@@ -47,6 +47,11 @@ class Role extends Model
     final public const NAME = 'name';
 
     /**
+     * @var string The name of the "permissions" count.
+     */
+    final public const COUNT_PERMISSIONS = 'permissions_count';
+
+    /**
      * @var string The name of the "permissions" relation.
      */
     final public const RELATION_PERMISSIONS = 'permissions';

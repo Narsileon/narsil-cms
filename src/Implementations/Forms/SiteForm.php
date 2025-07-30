@@ -6,12 +6,12 @@ namespace Narsil\Implementations\Forms;
 
 use Illuminate\Support\Facades\App;
 use Locale;
-use Narsil\Contracts\FormElements\SelectInput;
-use Narsil\Contracts\FormElements\SwitchInput;
-use Narsil\Contracts\FormElements\TextInput;
+use Narsil\Contracts\Fields\SelectInput;
+use Narsil\Contracts\Fields\SwitchInput;
+use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\SiteForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Fields\Field;
+use Narsil\Models\Elements\Field;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
 use ResourceBundle;

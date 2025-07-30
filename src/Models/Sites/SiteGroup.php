@@ -51,6 +51,11 @@ class SiteGroup extends Model
     final public const NAME = 'name';
 
     /**
+     * @var string The name of the "sites" count.
+     */
+    final public const COUNT_SITES = 'sites_count';
+
+    /**
      * @var string The name of the "sites" relation.
      */
     final public const RELATION_SITES = 'sites';
