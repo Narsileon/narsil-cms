@@ -36,18 +36,18 @@ class EmailInput extends Input implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
         return [
             new Field([
-                Field::HANDLE => 'multiple',
+                Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
                 Field::NAME => trans('narsil-cms::validation.attributes.multiple'),
                 Field::TYPE => SwitchInput::class,
                 Field::SETTINGS => app(SwitchInput::class)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'placeholder',
+                Field::HANDLE => $prefix ? "$prefix.placeholder" : ' placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)

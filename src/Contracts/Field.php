@@ -11,9 +11,11 @@ interface Field
     #region PUBLIC METHODS
 
     /**
+     * @param string|null $prefix
+     *
      * @return array
      */
-    public static function getForm(): array;
+    public static function getForm(?string $prefix = null): array;
     /**
      * @return string
      */

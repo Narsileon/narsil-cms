@@ -1,7 +1,8 @@
+import { cloneDeep, get, unset } from "lodash";
 import { FormFieldContext } from "./form-field-context";
 import { useEffect, useState } from "react";
-import useForm from "./form-context";
 import type { BlockElementCondition, Field } from "@narsil-cms/types/forms";
+import useForm from "./form-context";
 
 type FormFieldProps = {
   conditions?: BlockElementCondition[];
@@ -19,23 +20,38 @@ const FormField = ({ conditions, field, render }: FormFieldProps) => {
   const { data, errors, setData } = useForm();
   const { handle, settings } = field;
 
-  const error = errors?.[handle];
+  const error = get(errors, handle);
 
   useEffect(() => {
-    conditions?.map((condition) => {
+    let nextVisible = true;
+
+    for (const condition of conditions || []) {
       if (data?.[condition.target_id] !== condition.value) {
-        setVisible(false);
-      } else {
-        setVisible(true);
+        nextVisible = false;
+        break;
       }
-    });
+    }
+
+    if (nextVisible && !visible) {
+      setVisible(true);
+    } else if (!nextVisible && visible) {
+      setData?.((data: Record<string, any>) => {
+        const newData = cloneDeep(data);
+
+        unset(newData, field.handle);
+
+        return newData;
+      });
+
+      setVisible(false);
+    }
   }, [data]);
 
   return visible ? (
     <FormFieldContext.Provider value={{ error: error, ...field }}>
       {render({
         handle: handle,
-        value: data?.[handle] ?? settings?.value ?? "",
+        value: get(data, handle) ?? settings?.value ?? "",
         onFieldChange: (value) => {
           setData?.(handle, value);
         },

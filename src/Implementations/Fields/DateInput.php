@@ -34,18 +34,18 @@ class DateInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
         return [
             new Field([
-                Field::HANDLE => 'min',
+                Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'max',
+                Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)

@@ -55,7 +55,7 @@ class FieldForm extends AbstractForm implements Contract
 
         foreach ($this->implementations as $abstract => $concrete)
         {
-            $elements = $concrete::getForm();
+            $elements = $concrete::getForm(Field::SETTINGS);
 
             $conditions = [
                 new BlockElementCondition([

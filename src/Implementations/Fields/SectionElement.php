@@ -22,17 +22,9 @@ class SectionElement extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
-        return [
-            new Field([
-                Field::HANDLE => 'label',
-                Field::NAME => trans('narsil-cms::validation.attributes.label'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
-                    ->toArray(),
-            ]),
-        ];
+        return [];
     }
 
     /**

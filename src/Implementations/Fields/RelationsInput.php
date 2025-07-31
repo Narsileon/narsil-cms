@@ -32,7 +32,7 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
         return [];
     }

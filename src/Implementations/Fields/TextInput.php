@@ -35,31 +35,32 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
         return [
             new Field([
-                Field::HANDLE => 'min_length',
+                Field::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
                 Field::NAME => trans('narsil-cms::validation.attributes.min_length'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->max('255')
-                    ->min('0')
-                    ->step('1')
+                    ->max(255)
+                    ->min(0)
+                    ->step(1)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'max_length',
+                Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
                 Field::NAME => trans('narsil-cms::validation.attributes.max_length'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->max('255')
-                    ->min('0')
-                    ->step('1')
+                    ->max(255)
+                    ->min(0)
+                    ->step(1)
+                    ->value(255)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'placeholder',
+                Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)

@@ -34,29 +34,32 @@ class RangeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
         return [
             new Field([
-                Field::HANDLE => 'min',
+                Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
+                    ->value(0)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'max',
+                Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
+                    ->value(100)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'step',
+                Field::HANDLE => $prefix ? "$prefix.step" : 'step',
                 Field::NAME => trans('narsil-cms::validation.attributes.step'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->min('0')
+                    ->min(0)
+                    ->value(1)
                     ->toArray(),
             ]),
         ];

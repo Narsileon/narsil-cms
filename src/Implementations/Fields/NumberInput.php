@@ -35,33 +35,35 @@ class NumberInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
         return [
             new Field([
-                Field::HANDLE => 'min',
+                Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'max',
+                Field::HANDLE => $prefix ? "$prefix.max" : 'settings.max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
+                    ->value(999999999)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'step',
+                Field::HANDLE => $prefix ? "$prefix.step" : 'settings.step',
                 Field::NAME => trans('narsil-cms::validation.attributes.step'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->min('0')
+                    ->min(0)
+                    ->value(1)
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'placeholder',
+                Field::HANDLE => 'settings.placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)

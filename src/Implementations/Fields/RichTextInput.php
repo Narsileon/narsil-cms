@@ -35,11 +35,11 @@ class RichTextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function getForm(): array
+    public static function getForm(?string $prefix = null): array
     {
         return [
             new Field([
-                Field::HANDLE => 'placeholder',
+                Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
