@@ -7,8 +7,9 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
+use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 
 #endregion
@@ -28,31 +29,33 @@ class TemplateForm extends AbstractForm implements Contract
     {
         return [
             $this->mainBlock([
-                $this->blockElement(
-                    new Field([
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::HANDLE,
                         Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Block::HANDLE => FIELD::SETTINGS,
                         Block::NAME => trans('narsil-cms::ui.fields'),
                         Block::RELATION_ELEMENTS => [],
                     ])
-                ),
+                ]),
             ]),
             $this->informationBlock(),
         ];

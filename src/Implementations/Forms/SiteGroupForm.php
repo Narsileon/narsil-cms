@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\SiteGroupForm as Contract;
 use Narsil\Implementations\AbstractForm;
+use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Sites\SiteGroup;
 
@@ -27,15 +28,16 @@ class SiteGroupForm extends AbstractForm implements Contract
     {
         return [
             $this->mainBlock([
-                $this->blockElement(
-                    new Field([
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => SiteGroup::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
                     ]),
-                ),
+                ]),
             ]),
             $this->informationBlock(),
         ];

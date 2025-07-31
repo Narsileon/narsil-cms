@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
+use Narsil\Contracts\Fields\NumberInput;
 use Narsil\Contracts\Fields\RangeInput as Contract;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
@@ -23,8 +24,6 @@ class RangeInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('range');
-
         $this->value([0]);
     }
 
@@ -41,19 +40,22 @@ class RangeInput extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => 'min',
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
-                Field::SETTINGS => app(Contract::class)
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => 'max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
-                Field::SETTINGS => app(Contract::class)
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => 'step',
                 Field::NAME => trans('narsil-cms::validation.attributes.step'),
-                Field::SETTINGS => app(Contract::class)
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
                     ->min('0')
                     ->toArray(),
             ]),

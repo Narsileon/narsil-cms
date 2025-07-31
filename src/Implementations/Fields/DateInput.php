@@ -23,8 +23,7 @@ class DateInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('date');
-
+        $this->type('date');
         $this->value('');
     }
 
@@ -41,12 +40,14 @@ class DateInput extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => 'min',
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
+                Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->toArray(),
             ]),
             new Field([
                 Field::HANDLE => 'max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
+                Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->toArray(),
             ]),

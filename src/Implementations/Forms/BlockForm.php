@@ -29,34 +29,37 @@ class BlockForm extends AbstractForm implements Contract
     {
         return [
             $this->mainBlock([
-                $this->blockElement(
-                    new Field([
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::HANDLE,
                         Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::RELATION_ELEMENTS,
                         Field::NAME => trans('narsil-cms::ui.fields'),
+                        Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
                             ->create(route('fields.create'))
                             ->labelKey(BlockElement::RELATION_ELEMENT . '.name')
                             ->toArray(),
                     ])
-                ),
+                ]),
             ]),
             $this->informationBlock(),
         ];

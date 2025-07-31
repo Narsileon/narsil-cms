@@ -5,13 +5,13 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Field as AbstractField;
+use Narsil\Contracts\Fields\SectionElement;
 use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\FieldForm as Contract;
-use Narsil\Enums\Fields\VisibilityEnum;
 use Narsil\Implementations\AbstractField as ConcreteField;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
 
@@ -57,20 +57,20 @@ class FieldForm extends AbstractForm implements Contract
         {
             $elements = $concrete::getForm();
 
-            foreach ($elements as $key => $element)
-            {
-                $conditions = [
-                    new BlockElementCondition([
-                        BlockElementCondition::TARGET_ID => Field::TYPE,
-                        BlockElementCondition::OPERATOR => '=',
-                        BlockElementCondition::VALUE => $abstract,
-                    ]),
-                ];
+            $conditions = [
+                new BlockElementCondition([
+                    BlockElementCondition::TARGET_ID => Field::TYPE,
+                    BlockElementCondition::OPERATOR => '=',
+                    BlockElementCondition::VALUE => $abstract,
+                ]),
+            ];
 
-                $blockElement = $this->blockElement(
-                    conditions: $conditions,
-                    element: $element,
-                );
+            foreach ($elements as $element)
+            {
+                $blockElement = new BlockElement([
+                    BlockElement::RELATION_CONDITIONS => $conditions,
+                    BlockElement::RELATION_ELEMENT => $element,
+                ]);
 
                 $settings[] = $blockElement;
             }
@@ -80,28 +80,31 @@ class FieldForm extends AbstractForm implements Contract
 
         $content = [
             $this->mainBlock(array_merge([
-                $this->blockElement(
-                    new Field([
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::HANDLE,
                         Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::TYPE,
                         Field::NAME => trans('narsil-cms::validation.attributes.type'),
+                        Field::TYPE => SelectInput::class,
                         Field::SETTINGS => app(SelectInput::class)
                             ->options($typeOptions)
                             ->placeholder(trans('narsil-cms::placeholders.search'))
@@ -109,8 +112,15 @@ class FieldForm extends AbstractForm implements Contract
                             ->value(TextInput::class)
                             ->toArray(),
                     ])
-                ),
-
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
+                        Field::NAME => trans('narsil-cms::ui.settings'),
+                        Field::TYPE => SectionElement::class,
+                        Field::SETTINGS => app(SectionElement::class)
+                            ->toArray(),
+                    ])
+                ]),
             ], $settings)),
             $this->informationBlock(),
         ];

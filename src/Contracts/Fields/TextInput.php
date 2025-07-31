@@ -52,6 +52,13 @@ interface TextInput extends Field
     public function required(bool $required): static;
 
     /**
+     * @param string $type
+     *
+     * @return static Returns the current object instance.
+     */
+    public function type(string $type): static;
+
+    /**
      * @param string $value
      *
      * @return static Returns the current object instance.

@@ -31,6 +31,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::EMAIL,
                 Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
                     ->required(true)
@@ -39,6 +40,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)
@@ -47,6 +49,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)

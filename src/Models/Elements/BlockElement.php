@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Arr;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElementCondition;
 
@@ -39,6 +40,16 @@ class BlockElement extends Model
         ], $this->guarded);
 
         parent::__construct($attributes);
+
+        if ($conditions = Arr::get($attributes, self::RELATION_CONDITIONS))
+        {
+            $this->setRelation(self::RELATION_CONDITIONS, collect($conditions));
+        }
+
+        if ($element = Arr::get($attributes, self::RELATION_ELEMENT))
+        {
+            $this->setRelation(self::RELATION_ELEMENT, $element);
+        }
     }
 
     #endregion

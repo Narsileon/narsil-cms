@@ -79,7 +79,7 @@ function SortableItem({
         <>
           <CardHeader
             className={cn(
-              "flex min-h-11 items-center justify-between gap-2 !py-0 pr-1 pl-0",
+              "flex min-h-9 items-center justify-between gap-2 !py-0 pr-1 pl-0",
               children && "border-b",
             )}
           >
@@ -89,7 +89,7 @@ function SortableItem({
               {...listeners}
             />
             {label ? (
-              <CardTitle className="grow justify-self-start font-normal">
+              <CardTitle className="grow justify-self-start text-sm font-normal">
                 {label}
               </CardTitle>
             ) : null}

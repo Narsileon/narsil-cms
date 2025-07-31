@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Fields;
 #region USE
 
 use Narsil\Contracts\Fields\RichTextInput as Contract;
+use Narsil\Contracts\Fields\TextInput;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 
@@ -23,8 +24,7 @@ class RichTextInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('rich-text');
-
+        $this->type('text');
         $this->value('');
     }
 
@@ -41,7 +41,8 @@ class RichTextInput extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => 'placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
-                Field::SETTINGS => app(Contract::class)
+                Field::TYPE => TextInput::class,
+                Field::SETTINGS => app(TextInput::class)
                     ->toArray(),
             ]),
         ];

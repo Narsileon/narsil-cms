@@ -54,8 +54,10 @@ class FieldSeeder extends Seeder
         $richTextField = Field::create([
             Field::NAME => 'Rich text',
             Field::HANDLE => 'rich_text',
-            Field::SETTINGS => app(RichTextInput::class)->toArray(),
             Field::TYPE => RichTextInput::class,
+            Field::SETTINGS => app(RichTextInput::class)
+                ->toArray(),
+
         ]);
 
         $richTextBlock = Block::create([

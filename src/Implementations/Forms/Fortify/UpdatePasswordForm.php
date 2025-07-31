@@ -30,6 +30,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.current_password'),
+                Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
                     ->required(true)
@@ -38,6 +39,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)
@@ -46,6 +48,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)

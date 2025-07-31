@@ -14,20 +14,6 @@ use Narsil\Contracts\Field;
  */
 abstract class AbstractField implements Field
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param string $type
-     *
-     * @return void
-     */
-    public function __construct(string $type)
-    {
-        $this->settings['type'] = $type;
-    }
-
-    #endregion
-
     #region PROPERTIES
 
     /**
@@ -50,9 +36,19 @@ abstract class AbstractField implements Field
     /**
      * {@inheritDoc}
      */
-    public function className(string $className): static
+    final public function className(string $className): static
     {
         $this->settings['className'] = $className;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function type(string $type): static
+    {
+        $this->settings['type'] = $type;
 
         return $this;
     }

@@ -41,6 +41,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => UserConfiguration::LOCALE,
                 Field::NAME => trans('narsil-cms::validation.attributes.locale'),
+                Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($localeOptions)
                     ->value('en')
@@ -49,6 +50,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => UserConfiguration::THEME,
                 Field::NAME => trans('narsil-cms::validation.attributes.theme'),
+                Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($themeOptions)
                     ->value('system')
@@ -57,6 +59,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => UserConfiguration::COLOR,
                 Field::NAME => trans('narsil-cms::validation.attributes.color'),
+                Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($colorOptions)
                     ->value('neutral')
@@ -65,6 +68,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => UserConfiguration::RADIUS,
                 Field::NAME => trans('narsil-cms::validation.attributes.radius'),
+                Field::TYPE => RangeInput::class,
                 Field::SETTINGS => app(RangeInput::class)
                     ->max(1)
                     ->min(0)

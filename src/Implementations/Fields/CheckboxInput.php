@@ -22,9 +22,8 @@ class CheckboxInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('checkbox');
-
         $this->checked(false);
+        $this->type('checkbox');
     }
 
     #endregion

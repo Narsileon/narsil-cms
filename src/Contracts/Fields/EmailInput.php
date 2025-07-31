@@ -4,7 +4,7 @@ namespace Narsil\Contracts\Fields;
 
 #region USE
 
-use Narsil\Contracts\Field;
+use Narsil\Contracts\Fields\TextInput;
 
 #endregion
 
@@ -12,16 +12,9 @@ use Narsil\Contracts\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface EmailInput extends Field
+interface EmailInput extends TextInput
 {
     #region PUBLIC METHODS
-
-    /**
-     * @param string $autoComplete
-     *
-     * @return static Returns the current object instance.
-     */
-    public function autoComplete(string $autoComplete): static;
 
     /**
      * @param boolean $multiple
@@ -29,27 +22,6 @@ interface EmailInput extends Field
      * @return static Returns the current object instance.
      */
     public function multiple(bool $multiple): static;
-
-    /**
-     * @param string $placeholder
-     *
-     * @return static Returns the current object instance.
-     */
-    public function placeholder(string $placeholder): static;
-
-    /**
-     * @param boolean $required
-     *
-     * @return static Returns the current object instance.
-     */
-    public function required(bool $required): static;
-
-    /**
-     * @param string $value
-     *
-     * @return static Returns the current object instance.
-     */
-    public function value(string $value): static;
 
     #endregion
 }

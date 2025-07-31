@@ -4,7 +4,7 @@ namespace Narsil\Contracts\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Field;
 
 #endregion
 
@@ -12,7 +12,7 @@ use Narsil\Contracts\Fields\TextInput;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface PasswordInput extends TextInput
+interface SectionElement extends Field
 {
     //
 }

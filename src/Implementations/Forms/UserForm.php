@@ -10,6 +10,7 @@ use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\UserForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
+use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
 
@@ -30,55 +31,60 @@ class UserForm extends AbstractForm implements Contract
     {
         return [
             $this->mainBlock([
-                $this->blockElement(
-                    new Field([
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::EMAIL,
                         Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                        Field::TYPE => EmailInput::class,
                         Field::SETTINGS => app(EmailInput::class)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::PASSWORD,
                         Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                        Field::TYPE => PasswordInput::class,
                         Field::SETTINGS => app(PasswordInput::class)
                             ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                         Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                        Field::TYPE => PasswordInput::class,
                         Field::SETTINGS => app(PasswordInput::class)
                             ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::FIRST_NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::LAST_NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                        Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
                             ->required(true)
                             ->toArray(),
                     ])
-                ),
+                ]),
             ]),
             $this->informationBlock(),
         ];

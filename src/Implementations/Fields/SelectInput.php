@@ -22,8 +22,6 @@ class SelectInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('select');
-
         $this->value('');
     }
 

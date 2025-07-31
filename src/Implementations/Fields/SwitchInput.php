@@ -22,9 +22,8 @@ class SwitchInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('switch');
-
         $this->checked(false);
+        $this->type('checkbox');
     }
 
     #endregion

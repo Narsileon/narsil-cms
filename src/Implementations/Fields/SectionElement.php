@@ -5,9 +5,8 @@ namespace Narsil\Implementations\Fields;
 #region USE
 
 use Narsil\Contracts\Fields\BuilderElement as Contract;
-use Narsil\Contracts\Fields\RelationsInput;
+use Narsil\Contracts\Fields\TextInput;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 
 #endregion
@@ -16,7 +15,7 @@ use Narsil\Models\Elements\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BuilderElement extends AbstractField implements Contract
+class SectionElement extends AbstractField implements Contract
 {
     #region PUBLIC METHODS
 
@@ -27,12 +26,10 @@ class BuilderElement extends AbstractField implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => Field::RELATION_BLOCKS,
-                Field::NAME => trans('narsil-cms::ui.blocks'),
-                Field::TYPE => RelationsInput::class,
-                Field::SETTINGS => app(RelationsInput::class)
-                    ->create(route('fields.create'))
-                    ->labelKey(Block::NAME)
+                Field::HANDLE => 'label',
+                Field::NAME => trans('narsil-cms::validation.attributes.label'),
+                Field::TYPE => TextInput::class,
+                Field::SETTINGS => app(TextInput::class)
                     ->toArray(),
             ]),
         ];
@@ -43,7 +40,7 @@ class BuilderElement extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'square-mouse-pointer';
+        return 'section';
     }
 
     /**
@@ -51,7 +48,7 @@ class BuilderElement extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.builder');
+        return trans('narsil-cms::fields.section');
     }
 
     #endregion

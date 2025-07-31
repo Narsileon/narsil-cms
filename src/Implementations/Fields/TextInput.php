@@ -24,8 +24,7 @@ class TextInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('text');
-
+        $this->type('text');
         $this->value('');
     }
 
@@ -42,6 +41,7 @@ class TextInput extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => 'min_length',
                 Field::NAME => trans('narsil-cms::validation.attributes.min_length'),
+                Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
                     ->max('255')
                     ->min('0')
@@ -51,6 +51,7 @@ class TextInput extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => 'max_length',
                 Field::NAME => trans('narsil-cms::validation.attributes.max_length'),
+                Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
                     ->max('255')
                     ->min('0')
@@ -60,6 +61,7 @@ class TextInput extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => 'placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
+                Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->toArray(),
             ]),

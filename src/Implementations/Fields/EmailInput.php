@@ -4,9 +4,10 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\SwitchInput;
 use Narsil\Contracts\Fields\EmailInput as Contract;
-use Narsil\Implementations\AbstractField;
+use Narsil\Contracts\Fields\SwitchInput;
+use Narsil\Contracts\Fields\TextInput;
+use Narsil\Implementations\Fields\TextInput as Input;
 use Narsil\Models\Elements\Field;
 
 #endregion
@@ -15,7 +16,7 @@ use Narsil\Models\Elements\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EmailInput extends AbstractField implements Contract
+class EmailInput extends Input implements Contract
 {
     #region CONSTRUCTOR
 
@@ -24,9 +25,7 @@ class EmailInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        parent::__construct('email');
-
-        $this->autoComplete('email');
+        $this->type('email');
         $this->value('');
     }
 
@@ -43,7 +42,15 @@ class EmailInput extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => 'multiple',
                 Field::NAME => trans('narsil-cms::validation.attributes.multiple'),
+                Field::TYPE => SwitchInput::class,
                 Field::SETTINGS => app(SwitchInput::class)
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => 'placeholder',
+                Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
+                Field::TYPE => TextInput::class,
+                Field::SETTINGS => app(TextInput::class)
                     ->toArray(),
             ]),
         ];
@@ -68,49 +75,9 @@ class EmailInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function autoComplete(string $autoComplete): static
-    {
-        $this->settings['autoComplete'] = $autoComplete;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function multiple(bool $multiple): static
     {
         $this->settings['multiple'] = $multiple;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->settings['placeholder'] = $placeholder;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function required(bool $required): static
-    {
-        $this->settings['required'] = $required;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function value(string $value): static
-    {
-        $this->settings['value'] = $value;
 
         return $this;
     }

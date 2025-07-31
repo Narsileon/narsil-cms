@@ -28,9 +28,10 @@ class ForgotPasswordForm extends AbstractForm implements Contract
     {
         return [
             new Field([
+                Field::DESCRIPTION => trans('narsil-cms::passwords.instruction'),
                 Field::HANDLE => User::EMAIL,
                 Field::NAME => trans('narsil-cms::validation.attributes.email'),
-                Field::DESCRIPTION => trans('narsil-cms::passwords.instruction'),
+                Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
                     ->required(true)

@@ -30,6 +30,7 @@ class ProfileForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
                     ->required(true)
@@ -38,6 +39,7 @@ class ProfileForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
                     ->required(true)

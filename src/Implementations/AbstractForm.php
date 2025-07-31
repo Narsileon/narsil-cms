@@ -76,42 +76,6 @@ abstract class AbstractForm implements Form
     #region PROTECTED METHODS
 
     /**
-     * @param array $attribute
-     * @param array $elements
-     *
-     * @return Block
-     */
-    protected function block(array $attribute = [], array $elements = []): Block
-    {
-        $block = new Block($attribute);
-
-        $block->setRelation(Block::RELATION_ELEMENTS, collect($elements));
-
-        return $block;
-    }
-
-    /**
-     * @param Model $element
-     * @param array<string,mixed> $attribute
-     * @param array<BlockElementCondition> $conditions
-     *
-     * @return BlockElement
-     */
-    protected function blockElement(
-        Model $element,
-        array $attribute = [],
-        array $conditions = []
-    ): BlockElement
-    {
-        $block = new BlockElement($attribute);
-
-        $block->setRelation(BlockElement::RELATION_CONDITIONS, collect($conditions));
-        $block->setRelation(BlockElement::RELATION_ELEMENT, $element);
-
-        return $block;
-    }
-
-    /**
      * @return string
      */
     protected function id(): string
@@ -128,32 +92,30 @@ abstract class AbstractForm implements Form
      */
     protected function informationBlock(?array $elements = null): Block
     {
-        return $this->block(
-            attribute: [
-                Block::NAME => trans('narsil-cms::ui.information'),
-                Block::HANDLE => 'information',
-            ],
-            elements: [
-                $this->blockElement(
-                    new Field([
+        return new Block([
+            Block::HANDLE => 'information',
+            Block::NAME => trans('narsil-cms::ui.information'),
+            Block::RELATION_ELEMENTS => [
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'id',
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'created_at',
                         Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
                     ])
-                ),
-                $this->blockElement(
-                    new Field([
+                ]),
+                new BlockElement([
+                    BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'updated_at',
                         Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
                     ])
-                ),
-            ],
-        );
+                ]),
+            ]
+        ]);
     }
 
     /**
@@ -163,13 +125,11 @@ abstract class AbstractForm implements Form
      */
     protected function mainBlock(array $elements): Block
     {
-        return $this->block(
-            attribute: [
-                Block::NAME => trans('narsil-cms::ui.main'),
-                Block::HANDLE => 'main',
-            ],
-            elements: $elements
-        );
+        return new Block([
+            Block::HANDLE => 'main',
+            Block::NAME => trans('narsil-cms::ui.main'),
+            Block::RELATION_ELEMENTS => $elements
+        ]);
     }
 
     /**
@@ -179,13 +139,11 @@ abstract class AbstractForm implements Form
      */
     protected function sidebar(array $elements): Block
     {
-        return $this->block(
-            attribute: [
-                Block::NAME => trans('narsil-cms::ui.sidebar'),
-                Block::HANDLE => 'sidebar',
-            ],
-            elements: $elements
-        );
+        return new Block([
+            Block::HANDLE => 'sidebar',
+            Block::NAME => trans('narsil-cms::ui.sidebar'),
+            Block::RELATION_ELEMENTS => $elements
+        ]);
     }
 
     /**
