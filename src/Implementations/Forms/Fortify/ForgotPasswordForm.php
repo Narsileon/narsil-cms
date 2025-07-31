@@ -27,7 +27,7 @@ class ForgotPasswordForm extends AbstractForm implements Contract
     public function elements(): array
     {
         return [
-            [
+            new Field([
                 Field::HANDLE => User::EMAIL,
                 Field::NAME => trans('narsil-cms::validation.attributes.email'),
                 Field::DESCRIPTION => trans('narsil-cms::passwords.instruction'),
@@ -35,7 +35,7 @@ class ForgotPasswordForm extends AbstractForm implements Contract
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
                     ->required(true)
                     ->toArray(),
-            ],
+            ]),
         ];
     }
 

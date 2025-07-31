@@ -26,29 +26,18 @@ class RoleForm extends AbstractForm implements Contract
     public function elements(): array
     {
         return [
-            $this->main([
-                [
-                    Field::HANDLE => Role::NAME,
-                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                    Field::SETTINGS => app(TextInput::class)
-                        ->required(true)
-                        ->toArray(),
-                ],
+            $this->mainBlock([
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Role::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true)
+                            ->toArray(),
+                    ]),
+                ),
             ]),
-            $this->information([
-                [
-                    Field::HANDLE => Role::ID,
-                    Field::NAME => trans('narsil-cms::validation.attributes.id'),
-                ],
-                [
-                    Field::HANDLE => Role::CREATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-                ],
-                [
-                    Field::HANDLE => Role::UPDATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-                ],
-            ]),
+            $this->informationBlock(),
         ];
     }
 

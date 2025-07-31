@@ -26,20 +26,20 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
     public function elements(): array
     {
         return [
-            [
+            new Field([
                 Field::HANDLE => 'code',
                 Field::NAME => trans('narsil-cms::validation.attributes.code'),
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
                     ->toArray(),
-            ],
-            [
+            ]),
+            new Field([
                 Field::HANDLE => 'recovery_code',
                 Field::NAME => trans('narsil-cms::validation.attributes.recovery_code'),
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
                     ->toArray(),
-            ],
+            ]),
         ];
     }
 

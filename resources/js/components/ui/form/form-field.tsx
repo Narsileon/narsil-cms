@@ -1,9 +1,10 @@
 import { FormFieldContext } from "./form-field-context";
 import { useEffect, useState } from "react";
 import useForm from "./form-context";
-import type { Field } from "@narsil-cms/types/forms";
+import type { BlockElementCondition, Field } from "@narsil-cms/types/forms";
 
 type FormFieldProps = {
+  conditions?: BlockElementCondition[];
   field: Field;
   render: (field: {
     handle: string;
@@ -12,37 +13,23 @@ type FormFieldProps = {
   }) => React.ReactNode;
 };
 
-const FormField = ({ field, render }: FormFieldProps) => {
+const FormField = ({ conditions, field, render }: FormFieldProps) => {
   const [visible, setVisible] = useState(true);
 
   const { data, errors, setData } = useForm();
-  const { handle, conditions, settings, visibility } = field;
+  const { handle, settings } = field;
 
   const error = errors?.[handle];
 
   useEffect(() => {
-    if (!visibility) {
-      return;
-    }
-
-    if (visibility === "hidden") {
-      setVisible(false);
-    }
-
-    if (visibility !== "display") {
-      if (!conditions || conditions.length === 0) {
+    conditions?.map((condition) => {
+      if (data?.[condition.target_id] !== condition.value) {
         setVisible(false);
       } else {
-        conditions.map((condition) => {
-          if (data?.[condition.target_id] !== condition.value) {
-            setVisible(false);
-          } else {
-            setVisible(true);
-          }
-        });
+        setVisible(true);
       }
-    }
-  }, [data, visibility]);
+    });
+  }, [data]);
 
   return visible ? (
     <FormFieldContext.Provider value={{ error: error, ...field }}>

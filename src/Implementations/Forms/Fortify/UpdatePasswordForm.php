@@ -27,30 +27,30 @@ class UpdatePasswordForm extends AbstractForm implements Contract
     public function elements(): array
     {
         return [
-            [
+            new Field([
                 Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.current_password'),
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
                     ->required(true)
                     ->toArray(),
-            ],
-            [
+            ]),
+            new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.password'),
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)
                     ->toArray(),
-            ],
-            [
+            ]),
+            new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
                     ->required(true)
                     ->toArray(),
-            ],
+            ]),
         ];
     }
 

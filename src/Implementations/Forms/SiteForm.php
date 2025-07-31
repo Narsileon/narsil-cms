@@ -35,70 +35,69 @@ class SiteForm extends AbstractForm implements Contract
         $languageOptions = $this->getLanguageOptions();
 
         return [
-            $this->main([
-                [
-                    Field::HANDLE => Site::NAME,
-                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                    Field::SETTINGS => app(TextInput::class)
-                        ->required(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Site::HANDLE,
-                    Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                    Field::SETTINGS => app(TextInput::class)
-                        ->required(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Site::LANGUAGE,
-                    Field::NAME => trans('narsil-cms::validation.attributes.language'),
-                    Field::SETTINGS => app(SelectInput::class)
-                        ->options($languageOptions)
-                        ->placeholder(trans('narsil-cms::placeholders.search'))
-                        ->required(true)
-                        ->search(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Site::GROUP_ID,
-                    Field::NAME => trans('narsil-cms::validation.attributes.group'),
-                    Field::SETTINGS => app(SelectInput::class)
-                        ->options($groupOptions)
-                        ->placeholder(trans('narsil-cms::placeholders.search'))
-                        ->search(true)
-                        ->toArray(),
-                ],
+            $this->mainBlock([
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Site::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Site::HANDLE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Site::LANGUAGE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.language'),
+                        Field::SETTINGS => app(SelectInput::class)
+                            ->options($languageOptions)
+                            ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->required(true)
+                            ->search(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Site::GROUP_ID,
+                        Field::NAME => trans('narsil-cms::validation.attributes.group'),
+                        Field::SETTINGS => app(SelectInput::class)
+                            ->options($groupOptions)
+                            ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->search(true)
+                            ->toArray(),
+                    ])
+                ),
             ]),
             $this->sidebar([
-                [
-                    Field::HANDLE => Site::ENABLED,
-                    Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
-                    Field::SETTINGS => app(SwitchInput::class)
-                        ->checked(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Site::PRIMARY,
-                    Field::NAME => trans('narsil-cms::validation.attributes.primary'),
-                    Field::SETTINGS => app(SwitchInput::class)
-                        ->toArray(),
-                ],
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Site::ENABLED,
+                        Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
+                        Field::SETTINGS => app(SwitchInput::class)
+                            ->checked(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Site::PRIMARY,
+                        Field::NAME => trans('narsil-cms::validation.attributes.primary'),
+                        Field::SETTINGS => app(SwitchInput::class)
+                            ->toArray(),
+                    ])
+                ),
             ]),
-            $this->information([
-                [
-                    Field::HANDLE => Site::ID,
-                    Field::NAME => trans('narsil-cms::validation.attributes.id'),
-                ],
-                [
-                    Field::HANDLE => Site::CREATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-                ],
-                [
-                    Field::HANDLE => Site::UPDATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-                ],
-            ]),
+            $this->informationBlock(),
         ];
     }
 

@@ -1,7 +1,6 @@
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
-import { DynamicIcon } from "lucide-react/dynamic";
 import { Heading } from "@narsil-cms/components/ui/heading";
 import { Input } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
@@ -14,10 +13,16 @@ import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 import useForm from "./form-context";
-import type { Block, Field, SelectOption } from "@narsil-cms/types/forms";
+import type {
+  Block,
+  BlockElementCondition,
+  Field,
+  SelectOption,
+} from "@narsil-cms/types/forms";
 
 type FormFieldRendererProps = {
   className?: string;
+  conditions?: BlockElementCondition[];
   element: Field | Block;
   onChange?: (value: any) => void;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
@@ -25,6 +30,7 @@ type FormFieldRendererProps = {
 
 function FormFieldRenderer({
   className,
+  conditions,
   element,
   onChange,
   renderOption,
@@ -39,10 +45,15 @@ function FormFieldRenderer({
             {element.name}
           </Heading>
         ) : null}
-
-        {element.elements.map((element, index) => (
-          <FormFieldRenderer element={element} key={index} />
-        ))}
+        {element.elements.map((element, index) => {
+          return (
+            <FormFieldRenderer
+              conditions={element.conditions}
+              element={element.element}
+              key={index}
+            />
+          );
+        })}
       </>
     );
   }
@@ -53,6 +64,7 @@ function FormFieldRenderer({
 
   return type ? (
     <FormField
+      conditions={conditions}
       field={element}
       render={({ value, onFieldChange }) => {
         function handleOnChange(value: any) {
@@ -69,10 +81,7 @@ function FormFieldRenderer({
               className,
             )}
           >
-            <FormLabel required={settings.required}>
-              {element.icon ? <DynamicIcon name={element.icon} /> : null}
-              {element.name}
-            </FormLabel>
+            <FormLabel required={settings.required}>{element.name}</FormLabel>
             {settings.type === "checkbox" ? (
               <Checkbox
                 {...props}

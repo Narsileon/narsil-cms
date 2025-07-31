@@ -84,11 +84,23 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
   const [value, setValue] = useState(tabs[0].handle);
 
   const informationContent = information?.elements.map((element, index) => {
-    return <FormFieldRenderer element={element} key={index} />;
+    return (
+      <FormFieldRenderer
+        conditions={element.conditions}
+        element={element.element}
+        key={index}
+      />
+    );
   });
 
   const sidebarContent = sidebar?.elements.map((element, index) => {
-    return <FormFieldRenderer element={element} key={index} />;
+    return (
+      <FormFieldRenderer
+        conditions={element.conditions}
+        element={element.element}
+        key={index}
+      />
+    );
   });
 
   const tabsContent = (
@@ -113,7 +125,13 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
         return (
           <TabsContent className="p-0" value={tab.handle} key={index}>
             {tab.elements.map((element, index) => {
-              return <FormFieldRenderer element={element} key={index} />;
+              return (
+                <FormFieldRenderer
+                  conditions={element.conditions}
+                  element={element.element}
+                  key={index}
+                />
+              );
             })}
           </TabsContent>
         );

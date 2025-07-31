@@ -55,12 +55,11 @@ class FieldForm extends AbstractForm implements Contract
 
         foreach ($this->implementations as $abstract => $concrete)
         {
-            $items = $concrete::getForm();
+            $elements = $concrete::getForm();
 
-            foreach ($items as $key => $item)
+            foreach ($elements as $key => $element)
             {
-                $item['visibility'] = VisibilityEnum::HIDDEN_WHEN->value;
-                $item['conditions'] = [
+                $conditions = [
                     new BlockElementCondition([
                         BlockElementCondition::TARGET_ID => Field::TYPE,
                         BlockElementCondition::OPERATOR => '=',
@@ -68,60 +67,52 @@ class FieldForm extends AbstractForm implements Contract
                     ]),
                 ];
 
-                $items[$key] = $item;
-            }
+                $blockElement = $this->blockElement(
+                    conditions: $conditions,
+                    element: $element,
+                );
 
-            $settings = array_merge($settings, $items);
+                $settings[] = $blockElement;
+            }
         }
 
         $typeOptions = $this->getTypeOptions();
 
         $content = [
-            $this->main([
-                [
-                    Field::HANDLE => Field::NAME,
-                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                    Field::SETTINGS => app(TextInput::class)
-                        ->required(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Field::HANDLE,
-                    Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                    Field::SETTINGS => app(TextInput::class)
-                        ->required(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Field::TYPE,
-                    Field::NAME => trans('narsil-cms::validation.attributes.type'),
-                    Field::SETTINGS => app(SelectInput::class)
-                        ->options($typeOptions)
-                        ->placeholder(trans('narsil-cms::placeholders.search'))
-                        ->required(true)
-                        ->value(TextInput::class)
-                        ->toArray(),
-                ],
-                [
-                    Block::HANDLE => FIELD::SETTINGS,
-                    Block::NAME => trans('narsil-cms::ui.blocks'),
-                    Block::RELATION_ELEMENTS => $settings,
-                ]
-            ]),
-            $this->information([
-                [
-                    Field::HANDLE => Field::ID,
-                    Field::NAME => trans('narsil-cms::validation.attributes.id'),
-                ],
-                [
-                    Field::HANDLE => Field::CREATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-                ],
-                [
-                    Field::HANDLE => Field::UPDATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-                ],
-            ]),
+            $this->mainBlock(array_merge([
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Field::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Field::HANDLE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Field::TYPE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.type'),
+                        Field::SETTINGS => app(SelectInput::class)
+                            ->options($typeOptions)
+                            ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->required(true)
+                            ->value(TextInput::class)
+                            ->toArray(),
+                    ])
+                ),
+
+            ], $settings)),
+            $this->informationBlock(),
         ];
 
         return $content;

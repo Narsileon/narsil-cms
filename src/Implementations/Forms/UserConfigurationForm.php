@@ -37,37 +37,42 @@ class UserConfigurationForm extends AbstractForm implements Contract
         $localeOptions = $this->getLocaleOptions();
         $themeOptions = $this->getThemesOptions();
 
-        return [[
-            Field::HANDLE => UserConfiguration::LOCALE,
-            Field::NAME => trans('narsil-cms::validation.attributes.locale'),
-            Field::SETTINGS => app(SelectInput::class)
-                ->options($localeOptions)
-                ->value('en')
-                ->toArray(),
-        ], [
-            Field::HANDLE => UserConfiguration::THEME,
-            Field::NAME => trans('narsil-cms::validation.attributes.theme'),
-            Field::SETTINGS => app(SelectInput::class)
-                ->options($themeOptions)
-                ->value('system')
-                ->toArray(),
-        ], [
-            Field::HANDLE => UserConfiguration::COLOR,
-            Field::NAME => trans('narsil-cms::validation.attributes.color'),
-            Field::SETTINGS => app(SelectInput::class)
-                ->options($colorOptions)
-                ->value('neutral')
-                ->toArray(),
-        ], [
-            Field::HANDLE => UserConfiguration::RADIUS,
-            Field::NAME => trans('narsil-cms::validation.attributes.radius'),
-            Field::SETTINGS => app(RangeInput::class)
-                ->max(1)
-                ->min(0)
-                ->step(0.05)
-                ->value([0.50])
-                ->toArray(),
-        ]];
+        return [
+            new Field([
+                Field::HANDLE => UserConfiguration::LOCALE,
+                Field::NAME => trans('narsil-cms::validation.attributes.locale'),
+                Field::SETTINGS => app(SelectInput::class)
+                    ->options($localeOptions)
+                    ->value('en')
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => UserConfiguration::THEME,
+                Field::NAME => trans('narsil-cms::validation.attributes.theme'),
+                Field::SETTINGS => app(SelectInput::class)
+                    ->options($themeOptions)
+                    ->value('system')
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => UserConfiguration::COLOR,
+                Field::NAME => trans('narsil-cms::validation.attributes.color'),
+                Field::SETTINGS => app(SelectInput::class)
+                    ->options($colorOptions)
+                    ->value('neutral')
+                    ->toArray(),
+            ]),
+            new Field([
+                Field::HANDLE => UserConfiguration::RADIUS,
+                Field::NAME => trans('narsil-cms::validation.attributes.radius'),
+                Field::SETTINGS => app(RangeInput::class)
+                    ->max(1)
+                    ->min(0)
+                    ->step(0.05)
+                    ->value([0.50])
+                    ->toArray(),
+            ]),
+        ];
     }
 
     #endregion

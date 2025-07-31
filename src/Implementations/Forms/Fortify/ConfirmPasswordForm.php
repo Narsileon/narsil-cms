@@ -27,14 +27,14 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
     public function elements(): array
     {
         return [
-            [
+            new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil-cms::validation.attributes.password'),
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
                     ->required(true)
                     ->toArray(),
-            ],
+            ]),
         ];
     }
 

@@ -1,32 +1,42 @@
-import type { IconName } from "lucide-react/dynamic";
-
-export type Field = {
-  conditions?: BlockElementCondition[] | null;
-  description?: string;
+export type Block = {
+  elements: BlockElement[];
   handle: string;
-  icon?: IconName;
   id: number;
   name: string;
-  settings?: Record<string, any>;
-  type: string;
-  visibility?: "display" | "display_when" | "hidden" | "hidden_when";
+};
+
+export type BlockElement = {
+  blocks: Block[];
+  conditions: BlockElementCondition[];
+  description: string | null;
+  element: Block | Field;
+  fields: Field[];
+  handle: string | null;
+  id: number;
+  name: string | null;
+  position: number;
+  settings: Record<string, any> | null;
 };
 
 export type BlockElementCondition = {
+  id: number;
   operator: string;
-  target_id: string;
+  owner_id: number;
+  target_id: number;
   value: string;
 };
 
-export type Block = {
-  elements: (Field | Block)[];
+export type Field = {
+  description: string | null;
   handle: string;
   id: number;
   name: string;
+  settings: Record<string, any> | null;
+  type: string;
 };
 
 export type FormType = {
-  elements: (Field | Block)[];
+  elements: (Block | Field)[];
   id: string;
   method: string;
   submit: string;

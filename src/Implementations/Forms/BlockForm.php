@@ -28,44 +28,37 @@ class BlockForm extends AbstractForm implements Contract
     public function elements(): array
     {
         return [
-            $this->main([
-                [
-                    Field::HANDLE => Block::NAME,
-                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                    Field::SETTINGS => app(TextInput::class)
-                        ->required(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Block::HANDLE,
-                    Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                    Field::SETTINGS => app(TextInput::class)
-                        ->required(true)
-                        ->toArray(),
-                ],
-                [
-                    Field::HANDLE => Block::RELATION_ELEMENTS,
-                    Field::NAME => trans('narsil-cms::ui.fields'),
-                    Field::SETTINGS => app(RelationsInput::class)
-                        ->create(route('fields.create'))
-                        ->labelKey(BlockElement::RELATION_ELEMENT . '.name')
-                        ->toArray(),
-                ],
+            $this->mainBlock([
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Block::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Block::HANDLE,
+                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true)
+                            ->toArray(),
+                    ])
+                ),
+                $this->blockElement(
+                    new Field([
+                        Field::HANDLE => Block::RELATION_ELEMENTS,
+                        Field::NAME => trans('narsil-cms::ui.fields'),
+                        Field::SETTINGS => app(RelationsInput::class)
+                            ->create(route('fields.create'))
+                            ->labelKey(BlockElement::RELATION_ELEMENT . '.name')
+                            ->toArray(),
+                    ])
+                ),
             ]),
-            $this->information([
-                [
-                    Field::HANDLE => Field::ID,
-                    Field::NAME => trans('narsil-cms::validation.attributes.id'),
-                ],
-                [
-                    Field::HANDLE => Field::CREATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
-                ],
-                [
-                    Field::HANDLE => Field::UPDATED_AT,
-                    Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
-                ],
-            ]),
+            $this->informationBlock(),
         ];
     }
 

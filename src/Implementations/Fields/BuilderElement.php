@@ -37,14 +37,14 @@ class BuilderElement extends AbstractField implements Contract
     public static function getForm(): array
     {
         return [
-            [
+            new Field([
                 Field::HANDLE => Field::RELATION_BLOCKS,
                 Field::NAME => trans('narsil-cms::ui.blocks'),
                 Field::SETTINGS => app(RelationsInput::class)
                     ->create(route('fields.create'))
                     ->labelKey(Block::NAME)
                     ->toArray(),
-            ],
+            ]),
         ];
     }
 
