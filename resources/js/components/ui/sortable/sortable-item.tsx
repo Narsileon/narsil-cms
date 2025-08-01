@@ -1,5 +1,8 @@
+import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
+import { EditIcon, TrashIcon } from "lucide-react";
+import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { UniqueIdentifier } from "@dnd-kit/core";
 import SortableHandle from "./sortable-handle";
 import {
@@ -14,8 +17,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@narsil-cms/components/ui/card";
-import { Button } from "../button";
-import { TrashIcon } from "lucide-react";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   asChild?: boolean;
@@ -23,10 +24,11 @@ type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   disabled?: boolean;
   footer?: React.ReactNode;
   header?: React.ReactNode;
+  href?: string;
   id: UniqueIdentifier;
   label?: UniqueIdentifier;
   placeholder?: boolean;
-  onRemove?: (id: UniqueIdentifier) => void;
+  onRemove?: () => void;
 };
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
@@ -40,6 +42,7 @@ function SortableItem({
   disabled,
   footer,
   header,
+  href,
   id,
   label,
   placeholder,
@@ -60,7 +63,7 @@ function SortableItem({
     data: data,
     animateLayoutChanges: animateLayoutChanges,
   });
-
+  console.log(id);
   return (
     <Card
       ref={disabled ? undefined : setNodeRef}
@@ -100,12 +103,26 @@ function SortableItem({
                 {label}
               </CardTitle>
             ) : null}
+            {href ? (
+              <Button
+                className="size-7"
+                size="icon"
+                type="button"
+                variant="ghost"
+                asChild={true}
+              >
+                <ModalLink href={href}>
+                  <EditIcon className="size-5" />
+                </ModalLink>
+              </Button>
+            ) : null}
             {onRemove ? (
               <Button
                 className="size-7"
                 size="icon"
+                type="button"
                 variant="ghost"
-                onClick={() => onRemove(id)}
+                onClick={onRemove}
               >
                 <TrashIcon className="size-5" />
               </Button>

@@ -73,7 +73,7 @@ class SiteController extends AbstractResourceController
         $dataTableFilter = new DataTableFilterCollection(
             SiteGroup::all(),
             addLabel: trans('narsil-cms::ui.add_group'),
-            labelKey: SiteGroup::NAME,
+            labelPath: SiteGroup::NAME,
             table: SiteGroup::TABLE,
         );
 

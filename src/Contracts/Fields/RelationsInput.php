@@ -17,18 +17,19 @@ interface RelationsInput extends Field
     #region PUBLIC METHODS
 
     /**
-     * @param string $createUrl
-     *
-     * @return static Returns the current object instance.
-     */
-    public function createUrl(string $createUrl): static;
-
-    /**
      * @param int $columns
      *
      * @return static Returns the current object instance.
      */
     public function columns(int $columns): static;
+
+    /**
+     * @param string $dataPath
+     *
+     * @return static Returns the current object instance.
+     */
+    public function dataPath(string $dataPath): static;
+
 
     /**
      * @param string $labelKey
@@ -57,13 +58,6 @@ interface RelationsInput extends Field
      * @return static Returns the current object instance.
      */
     public function value(array $value): static;
-
-    /**
-     * @param string $valueKey
-     *
-     * @return static Returns the current object instance.
-     */
-    public function valueKey(string $valueKey): static;
 
     #endregion
 }

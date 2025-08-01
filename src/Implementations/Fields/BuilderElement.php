@@ -9,6 +9,7 @@ use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
+use Narsil\Services\RouteService;
 
 #endregion
 
@@ -30,16 +31,18 @@ class BuilderElement extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::RELATION_BLOCKS,
-                Field::NAME => trans('narsil-cms::ui.blocks'),
+                Field::NAME => trans('narsil-cms::validation.attributes.blocks'),
                 Field::TYPE => RelationsInput::class,
                 Field::SETTINGS => app(RelationsInput::class)
-                    ->createUrl(route('blocks.create'))
                     ->labelKey(Block::NAME)
-                    ->options([[
-                        'label' => trans('narsil-cms::ui.block'),
-                        'href' => route('blocks.create'),
-                        'options' => $blockOptions,
-                    ]])
+                    ->options([
+                        [
+                            'icon'  => 'box',
+                            'label' => trans('narsil-cms::ui.block'),
+                            'options' => $blockOptions,
+                            'routes' => RouteService::getNames(Block::TABLE),
+                        ],
+                    ])
                     ->value([])
                     ->toArray(),
             ]),
@@ -74,8 +77,9 @@ class BuilderElement extends AbstractField implements Contract
             ->map(function (Block $block)
             {
                 return [
-                    'value' => $block->{Block::ID},
+                    'identifier' => $block->{Block::IDENTIFIER},
                     'label' => $block->{Block::NAME},
+                    'value' => $block->{Block::ID},
                 ];
             })
             ->toArray();

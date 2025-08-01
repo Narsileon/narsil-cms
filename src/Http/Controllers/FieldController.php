@@ -114,7 +114,7 @@ class FieldController extends AbstractResourceController
 
         if ($blocks = Arr::get($attributes, Field::RELATION_BLOCKS))
         {
-            $field->blocks()->sync(collect($blocks)->pluck(FieldBlock::ID));
+            $this->syncBlocks($field, $blocks);
         }
 
         return $this->redirectOnStored(Field::TABLE, $field);
@@ -159,7 +159,7 @@ class FieldController extends AbstractResourceController
 
         if ($blocks = Arr::get($attributes, Field::RELATION_BLOCKS))
         {
-            $field->blocks()->sync(collect($blocks)->pluck(FieldBlock::ID));
+            $this->syncBlocks($field, $blocks);
         }
 
         return $this->redirectOnUpdated(Field::TABLE, $field);
@@ -176,6 +176,21 @@ class FieldController extends AbstractResourceController
         $field->delete();
 
         return $this->redirectOnDestroyed(Field::TABLE);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Field $field
+     * @param array $blocks
+     *
+     * @return void
+     */
+    protected function syncBlocks(Field $field, array $blocks): void
+    {
+        $field->blocks()->sync(collect($blocks)->pluck(FieldBlock::ID));
     }
 
     #endregion

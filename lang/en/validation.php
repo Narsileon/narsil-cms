@@ -195,10 +195,12 @@ return [
 
     'attributes' => [
         'avatar'                  => 'Avatar',
+        'blocks'                  => 'Blocks',
         'code'                    => 'Code',
         'color'                   => 'Color',
         'created_at'              => 'Created at',
         'current_password'        => 'Current password',
+        'elements'                => 'Elements',
         'email_verified_at'       => 'Email verified at',
         'email'                   => 'Email',
         'enabled'                 => 'Enabled',

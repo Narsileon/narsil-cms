@@ -23,7 +23,7 @@ class DataTableFilterCollection extends ResourceCollection
     /**
      * @param mixed $resource
      * @param string $addLabel
-     * @param string $labelKey
+     * @param string $labelPath
      * @param ?string $table
      *
      * @return void
@@ -31,12 +31,12 @@ class DataTableFilterCollection extends ResourceCollection
     public function __construct(
         mixed $resource,
         string $addLabel,
-        string $labelKey = 'label',
+        string $labelPath = 'label',
         ?string $table = null
     )
     {
         $this->addLabel = $addLabel;
-        $this->labelKey = $labelKey;
+        $this->labelPath = $labelPath;
         $this->table = $table;
 
         parent::__construct($resource);
@@ -55,7 +55,7 @@ class DataTableFilterCollection extends ResourceCollection
     /**
      * @var string The name of the label key.
      */
-    protected readonly string $labelKey;
+    protected readonly string $labelPath;
     /**
      * @var ?string The name of the table.
      */
@@ -74,7 +74,7 @@ class DataTableFilterCollection extends ResourceCollection
         {
             return [
                 'id'    => $item->id,
-                'label' => $item->{$this->labelKey},
+                'label' => $item->{$this->labelPath},
             ];
         });
     }

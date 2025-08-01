@@ -5,7 +5,7 @@ namespace Narsil\Http\Requests;
 #region USE
 
 use Narsil\Contracts\FormRequests\BlockFormRequest as Contract;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Block;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -24,13 +24,18 @@ class BlockFormRequest implements Contract
     public function rules(): array
     {
         return [
-            Field::HANDLE => [
+            Block::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
-            Field::NAME => [
+            Block::NAME => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
+            ],
+            Block::RELATION_ELEMENTS => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+                FormRule::SOMETIMES,
             ],
         ];
     }

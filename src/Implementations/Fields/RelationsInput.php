@@ -56,9 +56,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function createUrl(string $createUrl): static
+    final public function columns(int $columns): static
     {
-        $this->settings['createUrl'] = $createUrl;
+        $this->settings['columns'] = $columns;
 
         return $this;
     }
@@ -66,9 +66,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function columns(int $columns): static
+    final public function dataPath(string $dataPath): static
     {
-        $this->settings['columns'] = $columns;
+        $this->settings['dataPath'] = $dataPath;
 
         return $this;
     }
@@ -113,15 +113,7 @@ class RelationsInput extends AbstractField implements Contract
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    final public function valueKey(string $valueKey): static
-    {
-        $this->settings['valueKey'] = $valueKey;
 
-        return $this;
-    }
 
     #endregion
 }

@@ -1,10 +1,11 @@
 import { create } from "zustand";
-import type { FormDataConvertible, VisitCallbacks } from "@inertiajs/core";
+import type { VisitCallbacks } from "@inertiajs/core";
 
 export type ModalState = {
   component: string;
   componentProps: Record<string, any>;
   href: string;
+  id: string;
   options?: Partial<VisitCallbacks>;
 };
 
@@ -47,6 +48,7 @@ async function fetchModalProps(href: string): Promise<ModalState | null> {
       component: data.component,
       componentProps: data.props ?? {},
       href: href,
+      id: crypto.randomUUID(),
     };
   } catch (error) {
     console.error(error);

@@ -26,12 +26,12 @@ type ComboboxProps = {
   className?: string;
   disabled?: boolean;
   id?: string;
-  labelKey?: string;
+  labelPath?: string;
   options: SelectOption[] | string[];
   placeholder?: string;
   search?: boolean;
   value: UniqueIdentifier;
-  valueKey?: string;
+  valuePath?: string;
   renderOption?: (value: SelectOption | string) => React.ReactNode;
   setValue: (value: string) => void;
 };
@@ -40,11 +40,11 @@ function Combobox({
   className,
   disabled,
   id,
-  labelKey = "label",
+  labelPath = "label",
   placeholder,
   search = true,
   value,
-  valueKey = "value",
+  valuePath = "value",
   options,
   renderOption,
   setValue,
@@ -54,7 +54,7 @@ function Combobox({
   const [open, setOpen] = useState(false);
 
   const option = options.find((option) => {
-    const optionValue = getSelectOption(option, valueKey);
+    const optionValue = getSelectOption(option, valuePath);
 
     return optionValue == value;
   });
@@ -62,13 +62,13 @@ function Combobox({
   function filter(value: string, search: string) {
     const option = options?.find((option) => {
       return (
-        getSelectOption(option, valueKey) == value ||
-        getSelectOption(option, labelKey) == value
+        getSelectOption(option, valuePath) == value ||
+        getSelectOption(option, labelPath) == value
       );
     });
 
     if (option) {
-      const optionLabel = getSelectOption(option, labelKey);
+      const optionLabel = getSelectOption(option, labelPath);
 
       if (lowerCase(optionLabel).includes(lowerCase(search))) {
         return 1;
@@ -94,7 +94,7 @@ function Combobox({
           variant="outline"
         >
           {option
-            ? getSelectOption(option, labelKey)
+            ? getSelectOption(option, labelPath)
             : (placeholder ?? "Search...")}
           <ChevronsUpDownIcon className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
@@ -108,8 +108,8 @@ function Combobox({
             <CommandEmpty>{getLabel("pagination.empty")}</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
-                const optionLabel = getSelectOption(option, labelKey);
-                const optionValue = getSelectOption(option, valueKey);
+                const optionLabel = getSelectOption(option, labelPath);
+                const optionValue = getSelectOption(option, valuePath);
 
                 return (
                   <CommandItem

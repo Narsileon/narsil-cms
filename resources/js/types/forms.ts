@@ -43,10 +43,15 @@ export type FormType = {
   url: string;
 };
 
+export type GroupedSelectOption = {
+  [key: string]: any;
+  label: string;
+} & {
+  options: SelectOption[];
+};
+
 export type SelectOption = {
   [key: string]: any;
   label: string;
   value: any;
-} & {
-  options?: SelectOption[]; // Grouped select options
 };

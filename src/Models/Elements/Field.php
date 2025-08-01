@@ -6,8 +6,10 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\FieldBlock;
+use Narsil\Traits\Identifiable;
 
 #endregion
 
@@ -15,8 +17,10 @@ use Narsil\Models\Elements\FieldBlock;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Field extends Model
+class Field extends Model implements HasIdentifier
 {
+    use Identifiable;
+
     #region CONSTRUCTOR
 
     /**
@@ -27,6 +31,10 @@ class Field extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->appends = array_merge([
+            self::IDENTIFIER,
+        ], $this->appends);
 
         $this->casts = array_merge([
             self::SETTINGS => 'json',

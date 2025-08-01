@@ -2,25 +2,7 @@ import { isEmpty } from "lodash";
 import { usePage } from "@inertiajs/react";
 import type { Theme } from "@narsil-cms/stores/theme-store";
 
-type AuthProps = {
-  email: string;
-  first_name: string | undefined | null;
-  last_name: string | undefined | null;
-  two_factor_confirmed_at: string | null;
-};
-
-type ComponentProps = Record<string, any> & {
-  components: string;
-  children?: ComponentProps[];
-};
-
-type ConfigurationProps = {
-  color: string;
-  radius: number;
-  theme: Theme;
-};
-
-type GlobalProps = {
+export type GlobalProps = {
   auth: AuthProps & {
     configuration: ConfigurationProps;
   };
@@ -43,7 +25,26 @@ type GlobalProps = {
   title: string;
 };
 
+type AuthProps = {
+  email: string;
+  first_name: string | undefined | null;
+  last_name: string | undefined | null;
+  two_factor_confirmed_at: string | null;
+};
+
+type ComponentProps = Record<string, any> & {
+  components: string;
+  children?: ComponentProps[];
+};
+
+type ConfigurationProps = {
+  color: string;
+  radius: number;
+  theme: Theme;
+};
+
 type RedirectProps = {
+  data?: Record<string, any>;
   error: string;
   info: string;
   success: string;

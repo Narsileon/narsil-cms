@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Arr;
+use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\BlockElement;
+use Narsil\Traits\Identifiable;
 
 #endregion
 
@@ -17,8 +19,10 @@ use Narsil\Models\Elements\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Block extends Model
+class Block extends Model implements HasIdentifier
 {
+    use Identifiable;
+
     #region CONSTRUCTOR
 
     /**
@@ -29,6 +33,10 @@ class Block extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->appends = array_merge([
+            self::IDENTIFIER,
+        ], $this->appends);
 
         $this->guarded = array_merge([
             self::ID,

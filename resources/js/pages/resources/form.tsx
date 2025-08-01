@@ -153,7 +153,7 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
 
   return (
     <FormProvider
-      id={form.id}
+      id={modal ? `${form.id}_${modal.id}` : form.id}
       elements={form.elements}
       initialValues={{
         _back: modal,

@@ -8,6 +8,7 @@ import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type AnonymousItem = Record<string, any> & {
   id: UniqueIdentifier;
+  identifier?: UniqueIdentifier;
 };
 
 type FlatNode = {

@@ -1,4 +1,3 @@
-import { Card, CardContent, CardFooter } from "@narsil-cms/components/ui/card";
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
@@ -6,7 +5,7 @@ import { Heading } from "@narsil-cms/components/ui/heading";
 import { Input } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
-import { Sortable, SortableAdd } from "@narsil-cms/components/ui/sortable";
+import { Sortable } from "@narsil-cms/components/ui/sortable";
 import { Switch } from "@narsil-cms/components/ui/switch";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
@@ -119,31 +118,12 @@ function FormFieldRenderer({
                 onValueChange={([value]) => handleOnChange(value)}
               />
             ) : element.type === "Narsil\\Contracts\\Fields\\RelationsInput" ? (
-              <Card>
-                <CardContent>
-                  <Sortable
-                    {...settings}
-                    items={value ?? []}
-                    setItems={(value) => handleOnChange(value)}
-                  />
-                </CardContent>
-                {settings?.options?.length > 0 ? (
-                  <CardFooter className="flex-col gap-4 border-t">
-                    {settings?.options?.map((option) => {
-                      return (
-                        <SortableAdd
-                          href={option.href}
-                          items={value ?? []}
-                          label={option.label}
-                          labelKey={settings.labelKey}
-                          options={option.options}
-                          setItems={handleOnChange}
-                        />
-                      );
-                    })}
-                  </CardFooter>
-                ) : null}
-              </Card>
+              <Sortable
+                {...settings}
+                initialOptions={settings.options}
+                items={value ?? []}
+                setItems={(value) => handleOnChange(value)}
+              />
             ) : element.type === "Narsil\\Contracts\\Fields\\SwitchInput" ? (
               <Switch
                 {...settings}

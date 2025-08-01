@@ -11,6 +11,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Services\RouteService;
 
 #endregion
 
@@ -27,7 +28,8 @@ class BlockForm extends AbstractForm implements Contract
      */
     public function elements(): array
     {
-        $elementOptions = static::getElementOptions();
+        $blockOptions = static::getBlockOptions();
+        $fieldOptions = static::getFieldOptions();
 
         return [
             $this->mainBlock([
@@ -54,12 +56,25 @@ class BlockForm extends AbstractForm implements Contract
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::RELATION_ELEMENTS,
-                        Field::NAME => trans('narsil-cms::ui.fields'),
+                        Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->createUrl(route('fields.create'))
-                            ->labelKey(BlockElement::RELATION_ELEMENT . '.name')
-                            ->options($elementOptions)
+                            ->dataPath(BlockElement::RELATION_ELEMENT)
+                            ->labelKey(Block::NAME)
+                            ->options([
+                                [
+                                    'icon'  => 'box',
+                                    'label' => trans('narsil-cms::ui.block'),
+                                    'options' => $blockOptions,
+                                    'routes' => RouteService::getNames(Block::TABLE),
+                                ],
+                                [
+                                    'icon'  => 'rectangle-ellipsis',
+                                    'label' => trans('narsil-cms::ui.field'),
+                                    'options' => $fieldOptions,
+                                    'routes' => RouteService::getNames(Field::TABLE),
+                                ],
+                            ])
                             ->toArray(),
                     ])
                 ]),
@@ -72,20 +87,6 @@ class BlockForm extends AbstractForm implements Contract
 
     #region PROTECTED METHODS
 
-    protected static function getElementOptions(): array
-    {
-        return [
-            [
-                'label' => 'blocks',
-                'options' => static::getBlockOptions(),
-            ],
-            [
-                'label' => 'fields',
-                'options' => static::getFieldOptions(),
-            ],
-        ];
-    }
-
     protected static function getBlockOptions(): array
     {
         return Block::query()
@@ -94,8 +95,9 @@ class BlockForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return [
-                    'value' => $block->{Block::ID},
+                    'identifier' => $block->{Block::IDENTIFIER},
                     'label' => $block->{Block::NAME},
+                    'value' => $block->{Block::ID},
                 ];
             })
             ->toArray();
@@ -109,8 +111,9 @@ class BlockForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return [
-                    'value' => $field->{Field::ID},
+                    'identifier' => $field->{Block::IDENTIFIER},
                     'label' => $field->{Field::NAME},
+                    'value' => $field->{Field::ID},
                 ];
             })
             ->toArray();

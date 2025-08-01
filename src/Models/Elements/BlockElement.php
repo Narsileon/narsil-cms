@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Arr;
+use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElementCondition;
 
@@ -18,7 +19,7 @@ use Narsil\Models\Elements\BlockElementCondition;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockElement extends Model
+class BlockElement extends Model implements HasIdentifier
 {
     #region CONSTRUCTOR
 
@@ -30,6 +31,10 @@ class BlockElement extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->appends = array_merge([
+            self::IDENTIFIER,
+        ], $this->appends);
 
         $this->casts = array_merge([
             self::SETTINGS => 'json',
@@ -156,6 +161,20 @@ class BlockElement extends Model
             self::ELEMENT_TYPE,
             self::ELEMENT_ID,
         );
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * @return string
+     */
+    public function getIdentifierAttribute(): string
+    {
+        $element = $this->{self::RELATION_ELEMENT};
+
+        return $element->getTable() . '-' . $element->getKey();
     }
 
     #endregion

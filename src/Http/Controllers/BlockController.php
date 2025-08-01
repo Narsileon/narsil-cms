@@ -7,6 +7,8 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\BlockFormRequest;
 use Narsil\Contracts\Forms\BlockForm;
@@ -14,8 +16,10 @@ use Narsil\Contracts\Tables\BlockTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Resources\DataTableCollection;
+use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
+use Narsil\Models\Elements\Field;
 
 #endregion
 
@@ -117,9 +121,14 @@ class BlockController extends AbstractResourceController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        $Block = Block::create($attributes);
+        $block = Block::create($attributes);
 
-        return $this->redirectOnStored(Block::TABLE, $Block);
+        if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
+        {
+            $this->syncBlockElements($block, $elements);
+        }
+
+        return $this->redirectOnStored(Block::TABLE, $block);
     }
 
     /**
@@ -128,14 +137,14 @@ class BlockController extends AbstractResourceController
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, Block $Block): JsonResponse|Response
+    public function edit(Request $request, Block $block): JsonResponse|Response
     {
-        $Block->loadMissing([
+        $block->loadMissing([
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
 
         $form = $this->form->get(
-            url: route('blocks.update', $Block->{Block::ID}),
+            url: route('blocks.update', $block->{Block::ID}),
             method: MethodEnum::PATCH,
             submit: trans('narsil-cms::ui.update'),
         );
@@ -145,7 +154,7 @@ class BlockController extends AbstractResourceController
             title: trans('narsil-cms::ui.block'),
             description: trans('narsil-cms::ui.block'),
             props: [
-                'data' => $Block,
+                'data' => $block,
                 'form' => $form,
             ]
         );
@@ -153,30 +162,74 @@ class BlockController extends AbstractResourceController
 
     /**
      * @param Request $request
-     * @param Block $Block
+     * @param Block $block
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, Block $Block): RedirectResponse
+    public function update(Request $request, Block $block): RedirectResponse
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        $Block->update($attributes);
+        $block->update($attributes);
 
-        return $this->redirectOnUpdated(Block::TABLE, $Block);
+        if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
+        {
+            $this->syncBlockElements($block, $elements);
+        }
+
+        return $this->redirectOnUpdated(Block::TABLE, $block);
     }
 
     /**
      * @param Request $request
-     * @param Block $Block
+     * @param Block $block
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, Block $Block): RedirectResponse
+    public function destroy(Request $request, Block $block): RedirectResponse
     {
-        $Block->delete();
+        $block->delete();
 
         return $this->redirectOnDestroyed(Block::TABLE);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Block $block
+     * @param array $elements
+     *
+     * @return void
+     */
+    protected function syncBlockElements(Block $block, array $elements): void
+    {
+        $block->blocks()->detach();
+        $block->fields()->detach();
+
+        foreach ($elements as $position => $element)
+        {
+            $identifier = Arr::get($element, BlockElement::IDENTIFIER);
+
+            if (!$identifier || ! Str::contains($identifier, '-'))
+            {
+                continue;
+            }
+
+            [$table, $id] = explode('-', $identifier);
+
+            match ($table)
+            {
+                Block::TABLE => $block->blocks()->attach($id, [
+                    BlockElement::POSITION => $position,
+                ]),
+                Field::TABLE => $block->fields()->attach($id, [
+                    BlockElement::POSITION => $position,
+                ]),
+                default => null,
+            };
+        }
     }
 
     #endregion
