@@ -33,9 +33,13 @@ class BuilderElement extends AbstractField implements Contract
                 Field::NAME => trans('narsil-cms::ui.blocks'),
                 Field::TYPE => RelationsInput::class,
                 Field::SETTINGS => app(RelationsInput::class)
-                    ->create(route('fields.create'))
+                    ->createUrl(route('blocks.create'))
                     ->labelKey(Block::NAME)
-                    ->options($blockOptions)
+                    ->options([[
+                        'label' => trans('narsil-cms::ui.block'),
+                        'href' => route('blocks.create'),
+                        'options' => $blockOptions,
+                    ]])
                     ->value([])
                     ->toArray(),
             ]),

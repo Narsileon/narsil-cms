@@ -8,7 +8,7 @@ function CardHeader({ className, ...props }: CardHeaderProps) {
       data-slot="card-header"
       className={cn(
         "@container/card-header",
-        "grid auto-rows-min grid-rows-[auto_auto] items-start px-6 pt-3 [.border-b]:pb-3",
+        "grid auto-rows-min grid-rows-[auto_auto] items-start px-4 pt-4 [.border-b]:pb-4",
         "has-data-[slot=card-action]:grid-cols-[1fr_auto]",
         className,
       )}

@@ -6,7 +6,7 @@ function CardContent({ className, ...props }: CardContentProps) {
   return (
     <div
       data-slot="card-content"
-      className={cn("grid gap-y-6 p-6", className)}
+      className={cn("grid gap-y-4 p-4", className)}
       {...props}
     />
   );

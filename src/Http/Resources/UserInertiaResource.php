@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Http\Resources\Inertia;
+namespace Narsil\Http\Resources;
 
 #region USE
 
-use Narsil\Models\User;
-use Narsil\Models\Users\UserConfiguration;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
+use Narsil\Models\User;
+use Narsil\Models\Users\UserConfiguration;
 
 #endregion
 

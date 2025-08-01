@@ -12,7 +12,7 @@ use Inertia\Middleware;
 use Narsil\Contracts\Components\AuthMenu;
 use Narsil\Contracts\Components\GuestMenu;
 use Narsil\Contracts\Components\Sidebar;
-use Narsil\Http\Resources\Inertia\UserInertiaResource;
+use Narsil\Http\Resources\UserInertiaResource;
 use Narsil\Services\BreadcrumbService;
 
 #endregions

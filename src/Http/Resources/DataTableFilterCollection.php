@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Http\Resources\DataTable;
+namespace Narsil\Http\Resources;
 
 #region USE
 
-use Narsil\Services\RouteService;
-use Narsil\Support\LabelsBag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use JsonSerializable;
+use Narsil\Services\RouteService;
+use Narsil\Support\LabelsBag;
 
 #endregion
 

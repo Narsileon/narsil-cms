@@ -13,7 +13,7 @@ use Narsil\Contracts\Forms\BlockForm;
 use Narsil\Contracts\Tables\BlockTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
-use Narsil\Http\Resources\DataTable\DataTableCollection;
+use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 

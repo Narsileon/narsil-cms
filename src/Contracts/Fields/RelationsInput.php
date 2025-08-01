@@ -17,11 +17,11 @@ interface RelationsInput extends Field
     #region PUBLIC METHODS
 
     /**
-     * @param string $create
+     * @param string $createUrl
      *
      * @return static Returns the current object instance.
      */
-    public function create(string $create): static;
+    public function createUrl(string $createUrl): static;
 
     /**
      * @param int $columns

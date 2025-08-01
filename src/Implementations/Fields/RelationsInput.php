@@ -56,9 +56,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function create(string $create): static
+    final public function createUrl(string $createUrl): static
     {
-        $this->settings['create'] = $create;
+        $this->settings['createUrl'] = $createUrl;
 
         return $this;
     }

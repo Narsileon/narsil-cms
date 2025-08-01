@@ -1,10 +1,10 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
-import { useEffect } from "react";
+import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
+import { useEffect, useState } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
-import { useState } from "react";
 import {
   DialogBody,
   DialogClose,
@@ -124,15 +124,19 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
       {tabs.map((tab, index) => {
         return (
           <TabsContent className="p-0" value={tab.handle} key={index}>
-            {tab.elements.map((element, index) => {
-              return (
-                <FormFieldRenderer
-                  conditions={element.conditions}
-                  element={element.element}
-                  key={index}
-                />
-              );
-            })}
+            <Card>
+              <CardContent>
+                {tab.elements.map((element, index) => {
+                  return (
+                    <FormFieldRenderer
+                      conditions={element.conditions}
+                      element={element.element}
+                      key={index}
+                    />
+                  );
+                })}
+              </CardContent>
+            </Card>
           </TabsContent>
         );
       })}
@@ -157,6 +161,7 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
       }}
       render={() => (
         <Form
+          className="overflow-hidden"
           method={form.method}
           url={form.url}
           options={{
@@ -170,7 +175,7 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
           }}
         >
           {modal ? (
-            <>
+            <ScrollArea>
               <DialogBody>{tabsContent}</DialogBody>
               <DialogFooter className="h-fit border-t">
                 <DialogClose asChild={true}>
@@ -180,7 +185,7 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
                   {form.submit}
                 </FormSubmit>
               </DialogFooter>
-            </>
+            </ScrollArea>
           ) : (
             <Section className="p-4">
               <SectionHeader>
@@ -189,7 +194,7 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
                 </SectionTitle>
                 <FormSubmit>{form.submit}</FormSubmit>
               </SectionHeader>
-              <SectionContent className="grid gap-6 lg:grid-cols-12">
+              <SectionContent className="grid gap-4 lg:grid-cols-12">
                 {tabsContent}
                 {minLg && (sidebarContent || informationContent) ? (
                   <div className="flex flex-col gap-y-4 lg:col-span-4">

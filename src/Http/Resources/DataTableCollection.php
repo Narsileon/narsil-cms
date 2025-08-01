@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Resources\DataTable;
+namespace Narsil\Http\Resources;
 
 #region USE
 

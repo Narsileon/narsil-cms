@@ -175,8 +175,9 @@ abstract class AbstractForm implements Form
             ->add('narsil-cms::accessibility.toggle_underline')
             ->add('narsil-cms::accessibility.undo')
             ->add('narsil-cms::pagination.empty')
-            ->add('narsil-cms::ui.add')
-            ->add('narsil-cms::ui.back');
+            ->add('narsil-cms::placeholders.choose')
+            ->add('narsil-cms::ui.back')
+            ->add('narsil-cms::ui.create');
     }
 
     #endregion

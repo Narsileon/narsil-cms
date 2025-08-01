@@ -13,7 +13,7 @@ use Narsil\Contracts\Forms\UserForm;
 use Narsil\Contracts\Tables\UserTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
-use Narsil\Http\Resources\DataTable\DataTableCollection;
+use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\User;
 
 #endregion

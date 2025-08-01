@@ -13,8 +13,8 @@ use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Contracts\Tables\SiteTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
-use Narsil\Http\Resources\DataTable\DataTableCollection;
-use Narsil\Http\Resources\DataTable\DataTableFilterCollection;
+use Narsil\Http\Resources\DataTableCollection;
+use Narsil\Http\Resources\DataTableFilterCollection;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
 

@@ -27,6 +27,8 @@ class BlockForm extends AbstractForm implements Contract
      */
     public function elements(): array
     {
+        $elementOptions = static::getElementOptions();
+
         return [
             $this->mainBlock([
                 new BlockElement([
@@ -55,8 +57,9 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::ui.fields'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->create(route('fields.create'))
+                            ->createUrl(route('fields.create'))
                             ->labelKey(BlockElement::RELATION_ELEMENT . '.name')
+                            ->options($elementOptions)
                             ->toArray(),
                     ])
                 ]),
@@ -64,6 +67,55 @@ class BlockForm extends AbstractForm implements Contract
             $this->informationBlock(),
         ];
     }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    protected static function getElementOptions(): array
+    {
+        return [
+            [
+                'label' => 'blocks',
+                'options' => static::getBlockOptions(),
+            ],
+            [
+                'label' => 'fields',
+                'options' => static::getFieldOptions(),
+            ],
+        ];
+    }
+
+    protected static function getBlockOptions(): array
+    {
+        return Block::query()
+            ->orderBy(Block::NAME)
+            ->get()
+            ->map(function (Block $block)
+            {
+                return [
+                    'value' => $block->{Block::ID},
+                    'label' => $block->{Block::NAME},
+                ];
+            })
+            ->toArray();
+    }
+
+    protected static function getFieldOptions(): array
+    {
+        return Field::query()
+            ->orderBy(Field::NAME)
+            ->get()
+            ->map(function (Field $field)
+            {
+                return [
+                    'value' => $field->{Field::ID},
+                    'label' => $field->{Field::NAME},
+                ];
+            })
+            ->toArray();
+    }
+
 
     #endregion
 }

@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@narsil-cms/components/ui/card";
+import { Card, CardContent, CardFooter } from "@narsil-cms/components/ui/card";
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
@@ -71,7 +71,9 @@ function FormFieldRenderer({
   }
 
   return element.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
-    <Heading level="h2">{element.name}</Heading>
+    <Heading className="bg-accent/50 -mx-4 p-4" level="h2">
+      {element.name}
+    </Heading>
   ) : (
     <FormField
       conditions={conditions}
@@ -124,15 +126,23 @@ function FormFieldRenderer({
                     items={value ?? []}
                     setItems={(value) => handleOnChange(value)}
                   />
-                  {settings?.options ? (
-                    <SortableAdd
-                      items={value ?? []}
-                      labelKey={settings.labelKey}
-                      options={settings.options}
-                      setItems={handleOnChange}
-                    />
-                  ) : null}
                 </CardContent>
+                {settings?.options?.length > 0 ? (
+                  <CardFooter className="flex-col gap-4 border-t">
+                    {settings?.options?.map((option) => {
+                      return (
+                        <SortableAdd
+                          href={option.href}
+                          items={value ?? []}
+                          label={option.label}
+                          labelKey={settings.labelKey}
+                          options={option.options}
+                          setItems={handleOnChange}
+                        />
+                      );
+                    })}
+                  </CardFooter>
+                ) : null}
               </Card>
             ) : element.type === "Narsil\\Contracts\\Fields\\SwitchInput" ? (
               <Switch

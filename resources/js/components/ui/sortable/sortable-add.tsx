@@ -1,15 +1,16 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
+import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { set } from "lodash";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { useState } from "react";
 import type { AnonymousItem } from ".";
 import type { SelectOption } from "@narsil-cms/types/forms";
-import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type SortableAddProps = React.ComponentProps<"div"> & {
+  href: string;
   items: AnonymousItem[];
+  label: string;
   labelKey: string;
   options: SelectOption[];
   setItems: (items: AnonymousItem[]) => void;
@@ -17,7 +18,9 @@ type SortableAddProps = React.ComponentProps<"div"> & {
 
 function SortableAdd({
   className,
+  href,
   items,
+  label,
   labelKey,
   options,
   setItems,
@@ -25,47 +28,41 @@ function SortableAdd({
 }: SortableAddProps) {
   const { getLabel } = useLabels();
 
-  const [value, setValue] = useState<UniqueIdentifier>("");
-  const [option, setOption] = useState<SelectOption | undefined>(undefined);
+  const filteredOptions = options.filter(
+    (option) => !items.find((item) => item.id == option.value),
+  );
 
   return (
     <div
       className={cn(
-        "flex w-full items-center justify-between gap-3",
+        "grid w-full grid-cols-4 items-center justify-between gap-6 text-sm",
         className,
       )}
       {...props}
     >
+      <span className="text-left">{label}</span>
       <Combobox
-        className="w-auto grow"
-        options={options.filter(
-          (option) => !items.find((item) => item.id == option.value),
-        )}
-        value={value}
+        className="col-span-2 grow"
+        disabled={filteredOptions.length == 0}
+        placeholder={getLabel("placeholders.choose")}
+        options={filteredOptions}
+        value={""}
         setValue={(value) => {
           const option = options.find((option) => option.value == value);
 
-          setOption(option);
-          setValue(value);
+          if (!option) {
+            return;
+          }
+
+          const item = { id: option.value };
+
+          set(item, labelKey, option.label);
+
+          setItems([...items, item]);
         }}
       />
-      <Button
-        disabled={!option}
-        type="button"
-        onClick={() => {
-          if (option) {
-            const item: AnonymousItem = { id: option.value };
-
-            set(item, labelKey, option.label);
-
-            setItems([...items, item]);
-
-            setOption(undefined);
-            setValue("");
-          }
-        }}
-      >
-        {getLabel("ui.add")}
+      <Button className="justify-self-end" type="button" asChild={true}>
+        <ModalLink href={href}>{getLabel("ui.create")}</ModalLink>
       </Button>
     </div>
   );

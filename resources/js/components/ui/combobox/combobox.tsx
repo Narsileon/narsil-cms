@@ -24,6 +24,7 @@ import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type ComboboxProps = {
   className?: string;
+  disabled?: boolean;
   id?: string;
   labelKey?: string;
   options: SelectOption[] | string[];
@@ -37,6 +38,7 @@ type ComboboxProps = {
 
 function Combobox({
   className,
+  disabled,
   id,
   labelKey = "label",
   placeholder,
@@ -87,6 +89,7 @@ function Combobox({
             className,
           )}
           aria-expanded={open}
+          disabled={disabled}
           role="combobox"
           variant="outline"
         >
