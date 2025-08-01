@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
@@ -15,6 +16,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractResourceController;
 use Narsil\Http\Resources\DataTable\DataTableCollection;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\FieldBlock;
 
 #endregion
 
@@ -110,6 +112,11 @@ class FieldController extends AbstractResourceController
 
         $field = Field::create($attributes);
 
+        if ($blocks = Arr::get($attributes, Field::RELATION_BLOCKS))
+        {
+            $field->blocks()->sync(collect($blocks)->pluck(FieldBlock::ID));
+        }
+
         return $this->redirectOnStored(Field::TABLE, $field);
     }
 
@@ -149,6 +156,11 @@ class FieldController extends AbstractResourceController
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $field->update($attributes);
+
+        if ($blocks = Arr::get($attributes, Field::RELATION_BLOCKS))
+        {
+            $field->blocks()->sync(collect($blocks)->pluck(FieldBlock::ID));
+        }
 
         return $this->redirectOnUpdated(Field::TABLE, $field);
     }

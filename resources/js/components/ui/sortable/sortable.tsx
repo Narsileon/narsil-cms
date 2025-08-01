@@ -18,7 +18,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { SortableAdd, type AnonymousItem } from ".";
+import type { AnonymousItem } from ".";
 import type {
   DragCancelEvent,
   DragEndEvent,
@@ -26,7 +26,6 @@ import type {
 } from "@dnd-kit/core";
 
 type SortableProps = {
-  create?: string;
   direction?: "horizontal" | "vertical";
   labelKey?: string;
   items: AnonymousItem[];
@@ -34,19 +33,12 @@ type SortableProps = {
 };
 
 function Sortable({
-  create,
   direction = "vertical",
   labelKey = "name",
   items,
   setItems,
 }: SortableProps) {
   const [active, setActive] = useState<AnonymousItem | null>(null);
-
-  function getIndex(item: AnonymousItem) {
-    return items.indexOf(item);
-  }
-
-  const activeIndex = active ? getIndex(active) : -1;
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -58,11 +50,12 @@ function Sortable({
     setActive(null);
   }
 
-  function onDragEnd({ over }: DragEndEvent) {
+  function onDragEnd({ active, over }: DragEndEvent) {
     setActive(null);
 
     if (over) {
-      const overIndex = getIndex(over);
+      const activeIndex = items.findIndex((x) => x.id === active.id);
+      const overIndex = items.findIndex((x) => x.id === over.id);
 
       if (activeIndex !== overIndex) {
         setItems(arrayMove(items, activeIndex, overIndex));
@@ -75,7 +68,7 @@ function Sortable({
       return;
     }
 
-    setActive(active);
+    setActive(items.find((x) => x.id === active.id) as AnonymousItem);
   }
 
   return (
@@ -100,6 +93,9 @@ function Sortable({
               key={item.id}
               id={item.id}
               label={get(item, labelKey)}
+              onRemove={() => {
+                setItems(items.filter((x) => x.id !== item.id));
+              }}
             />
           ))}
         </ul>
@@ -112,7 +108,6 @@ function Sortable({
         </DragOverlay>,
         document.body,
       )}
-      {create ? <SortableAdd href={create} /> : null}
     </DndContext>
   );
 }

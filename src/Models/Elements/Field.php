@@ -37,6 +37,11 @@ class Field extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_BLOCKS,
+        ], $this->with);
+
+
         parent::__construct($attributes);
     }
 

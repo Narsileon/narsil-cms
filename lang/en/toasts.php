@@ -2,6 +2,16 @@
 
 return [
     'success' => [
+        'blocks' => [
+            'created' => 'The block has been successfully created.',
+            'deleted' => 'The block has been successfully deleted.',
+            'updated' => 'The block has been successfully updated.',
+        ],
+        'fields' => [
+            'created' => 'The field has been successfully created.',
+            'deleted' => 'The field has been successfully deleted.',
+            'updated' => 'The field has been successfully updated.',
+        ],
         'logged_in'  => 'You have been successfully logged in.',
         'logged_out' => 'You have been successfully logged out.',
         'password'   => [
@@ -25,6 +35,11 @@ return [
             'created' => 'The site has been successfully created.',
             'deleted' => 'The site has been successfully deleted.',
             'updated' => 'The site has been successfully updated.',
+        ],
+        'templates' => [
+            'created' => 'The template has been successfully created.',
+            'deleted' => 'The template has been successfully deleted.',
+            'updated' => 'The template has been successfully updated.',
         ],
         'two_factor' => [
             'confirmed' => 'Your two factor authentication has been successfully confirmed.',

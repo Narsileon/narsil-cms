@@ -20,6 +20,7 @@ const FormField = ({ conditions, field, render }: FormFieldProps) => {
   const { data, errors, setData } = useForm();
   const { handle, settings } = field;
 
+  const value = get(data, handle);
   const error = get(errors, handle);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const FormField = ({ conditions, field, render }: FormFieldProps) => {
     <FormFieldContext.Provider value={{ error: error, ...field }}>
       {render({
         handle: handle,
-        value: get(data, handle) ?? settings?.value ?? "",
+        value: value ?? settings?.value ?? "",
         onFieldChange: (value) => {
           setData?.(handle, value);
         },

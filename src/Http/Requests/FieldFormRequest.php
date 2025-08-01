@@ -37,6 +37,16 @@ class FieldFormRequest implements Contract
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
+            Field::TYPE => [
+                FormRule::STRING,
+                FormRule::REQUIRED,
+            ],
+
+            Field::RELATION_BLOCKS => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+                FormRule::SOMETIMES,
+            ],
         ];
     }
 

@@ -25,6 +25,8 @@ class BuilderElement extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
+        $blockOptions = static::getBlockOptions();
+
         return [
             new Field([
                 Field::HANDLE => Field::RELATION_BLOCKS,
@@ -33,6 +35,8 @@ class BuilderElement extends AbstractField implements Contract
                 Field::SETTINGS => app(RelationsInput::class)
                     ->create(route('fields.create'))
                     ->labelKey(Block::NAME)
+                    ->options($blockOptions)
+                    ->value([])
                     ->toArray(),
             ]),
         ];
@@ -52,6 +56,25 @@ class BuilderElement extends AbstractField implements Contract
     public static function getLabel(): string
     {
         return trans('narsil-cms::fields.builder');
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    protected static function getBlockOptions(): array
+    {
+        return Block::query()
+            ->orderBy(Block::NAME)
+            ->get()
+            ->map(function (Block $block)
+            {
+                return [
+                    'value' => $block->{Block::ID},
+                    'label' => $block->{Block::NAME},
+                ];
+            })
+            ->toArray();
     }
 
     #endregion

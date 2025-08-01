@@ -6,7 +6,7 @@ import { Heading } from "@narsil-cms/components/ui/heading";
 import { Input } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
-import { Sortable } from "@narsil-cms/components/ui/sortable";
+import { Sortable, SortableAdd } from "@narsil-cms/components/ui/sortable";
 import { Switch } from "@narsil-cms/components/ui/switch";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
@@ -60,7 +60,6 @@ function FormFieldRenderer({
   }
 
   const settings = element.settings ?? {};
-  const { type, ...props } = settings;
 
   if (!element.type) {
     return (
@@ -86,8 +85,7 @@ function FormFieldRenderer({
         return (
           <FormItem
             className={cn(
-              type === "checkbox" && "flex-row-reverse justify-end",
-
+              settings.type === "checkbox" && "flex-row-reverse justify-end",
               settings.className,
               className,
             )}
@@ -95,7 +93,7 @@ function FormFieldRenderer({
             <FormLabel required={settings.required}>{element.name}</FormLabel>
             {element.type === "Narsil\\Contracts\\Fields\\CheckboxInput" ? (
               <Checkbox
-                {...props}
+                {...settings}
                 id={element.handle}
                 name={element.handle}
                 checked={value}
@@ -103,7 +101,7 @@ function FormFieldRenderer({
               />
             ) : element.type === "Narsil\\Contracts\\Fields\\SelectInput" ? (
               <Combobox
-                {...props}
+                {...settings}
                 id={element.handle}
                 options={settings.options}
                 renderOption={renderOption}
@@ -112,7 +110,7 @@ function FormFieldRenderer({
               />
             ) : element.type === "Narsil\\Contracts\\Fields\\RangeInput" ? (
               <Slider
-                {...props}
+                {...settings}
                 id={element.handle}
                 name={element.handle}
                 value={isArray(value) ? value : [value]}
@@ -122,27 +120,34 @@ function FormFieldRenderer({
               <Card>
                 <CardContent>
                   <Sortable
-                    {...props}
+                    {...settings}
                     items={value ?? []}
                     setItems={(value) => handleOnChange(value)}
                   />
+                  {settings?.options ? (
+                    <SortableAdd
+                      items={value ?? []}
+                      labelKey={settings.labelKey}
+                      options={settings.options}
+                      setItems={handleOnChange}
+                    />
+                  ) : null}
                 </CardContent>
               </Card>
             ) : element.type === "Narsil\\Contracts\\Fields\\SwitchInput" ? (
               <Switch
-                {...props}
+                {...settings}
                 name={element.handle}
                 checked={value}
                 onCheckedChange={(value) => handleOnChange(value)}
               />
             ) : (
               <Input
-                {...props}
+                {...settings}
                 id={element.handle}
                 name={element.handle}
                 value={value}
-                type={type}
-                onChange={(e) => handleOnChange(e.target.value)}
+                onChange={(event) => handleOnChange(event.target.value)}
               />
             )}
             {element.description ? (

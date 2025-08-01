@@ -17,9 +17,25 @@ function FormProvider({
   render,
 }: FormProviderProps) {
   function flattenFields(elements: (Field | Block)[]): Field[] {
-    return elements.flatMap((element) =>
-      "elements" in element ? flattenFields(element.elements) : [element],
-    );
+    const fields: Field[] = [];
+
+    for (const element of elements) {
+      if ("elements" in element) {
+        for (const blockElement of element.elements) {
+          const childElement = blockElement.element;
+
+          if ("elements" in childElement) {
+            fields.push(...flattenFields([childElement]));
+          } else if (childElement.handle && childElement.type) {
+            fields.push(childElement);
+          }
+        }
+      } else if (element.handle && element.type) {
+        fields.push(element);
+      }
+    }
+
+    return fields;
   }
 
   const mergedInitialValues = Object.assign(

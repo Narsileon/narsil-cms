@@ -10,18 +10,23 @@ import {
 import {
   Card,
   CardContent,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@narsil-cms/components/ui/card";
+import { Button } from "../button";
+import { TrashIcon } from "lucide-react";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   asChild?: boolean;
   data?: any;
   disabled?: boolean;
+  footer?: React.ReactNode;
   header?: React.ReactNode;
   id: UniqueIdentifier;
   label?: UniqueIdentifier;
   placeholder?: boolean;
+  onRemove?: (id: UniqueIdentifier) => void;
 };
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
@@ -33,11 +38,13 @@ function SortableItem({
   className,
   data,
   disabled,
+  footer,
   header,
   id,
   label,
   placeholder,
   style,
+  onRemove,
   ...props
 }: SortableItemProps) {
   const {
@@ -93,10 +100,20 @@ function SortableItem({
                 {label}
               </CardTitle>
             ) : null}
-
+            {onRemove ? (
+              <Button
+                className="size-7"
+                size="icon"
+                variant="ghost"
+                onClick={() => onRemove(id)}
+              >
+                <TrashIcon className="size-5" />
+              </Button>
+            ) : null}
             {header}
           </CardHeader>
           {children ? <CardContent>{children}</CardContent> : null}
+          {footer ? <CardFooter>{footer}</CardFooter> : null}
         </>
       )}
     </Card>

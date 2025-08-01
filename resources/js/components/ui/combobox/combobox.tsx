@@ -20,20 +20,23 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
 import type { SelectOption } from "@narsil-cms/types/forms";
+import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type ComboboxProps = {
+  className?: string;
   id?: string;
   labelKey?: string;
   options: SelectOption[] | string[];
   placeholder?: string;
   search?: boolean;
-  value: number | string;
+  value: UniqueIdentifier;
   valueKey?: string;
   renderOption?: (value: SelectOption | string) => React.ReactNode;
-  setValue: (value: SelectOption | string) => void;
+  setValue: (value: string) => void;
 };
 
 function Combobox({
+  className,
   id,
   labelKey = "label",
   placeholder,
@@ -81,6 +84,7 @@ function Combobox({
           className={cn(
             "w-full justify-between font-normal",
             !option && "text-muted-foreground",
+            className,
           )}
           aria-expanded={open}
           role="combobox"
