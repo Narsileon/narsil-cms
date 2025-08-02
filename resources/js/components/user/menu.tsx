@@ -18,10 +18,10 @@ import {
 type UserMenuProps = React.ComponentProps<typeof DropdownMenuTrigger> & {};
 
 function UserMenu({ ...props }: UserMenuProps) {
-  const { user_menu } = useNavigation();
   const { getLabel } = useLabels();
 
   const auth = useAuth();
+  const { userMenu } = useNavigation();
 
   return (
     <DropdownMenu>
@@ -47,7 +47,7 @@ function UserMenu({ ...props }: UserMenuProps) {
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent align="end">
-        {user_menu.content.map((item, index) => {
+        {userMenu.content.map((item, index) => {
           switch (item.component) {
             case "separator":
               return <DropdownMenuSeparator key={index} />;

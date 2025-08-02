@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
@@ -95,8 +95,8 @@ function AppSidebar({ ...props }: AppSidebarProps) {
           tooltip={getLabel("accessibility.open_sidebar")}
           onClick={toggleSidebar}
         >
-          <ChevronRightIcon
-            className={cn("duration-200", open && "-rotate-180")}
+          <ChevronLeftIcon
+            className={cn("duration-200", open && "rotate-180")}
           />
           {open && getLabel("accessibility.close_sidebar")}
         </SidebarMenuButton>

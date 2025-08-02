@@ -1,7 +1,7 @@
 // https://ui.shadcn.com/docs/components/combobox
 
 import { Button } from "@narsil-cms/components/ui/button";
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
+import { CheckIcon, ChevronDown } from "lucide-react";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { lowerCase } from "lodash";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -96,7 +96,12 @@ function Combobox({
           {option
             ? getSelectOption(option, labelPath)
             : (placeholder ?? "Search...")}
-          <ChevronsUpDownIcon className="ml-2 size-5 shrink-0" />
+          <ChevronDown
+            className={cn(
+              "ml-2 size-5 shrink-0 duration-200",
+              open && "rotate-180",
+            )}
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">

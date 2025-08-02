@@ -17,7 +17,7 @@ export type GlobalProps = {
     sidebar?: {
       content: ComponentProps[];
     };
-    user_menu: {
+    userMenu: {
       content: ComponentProps[];
     };
   };
