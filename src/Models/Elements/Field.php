@@ -6,6 +6,7 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\FieldBlock;
@@ -49,6 +50,7 @@ class Field extends Model implements HasIdentifier
 
         $this->with = array_merge([
             self::RELATION_BLOCKS,
+            self::RELATION_OPTIONS,
         ], $this->with);
 
 
@@ -92,11 +94,19 @@ class Field extends Model implements HasIdentifier
      * @var string The name of the "blocks" count.
      */
     final public const COUNT_BLOCKS = 'blocks_count';
+    /**
+     * @var string The name of the "options" count.
+     */
+    final public const COUNT_OPTIONS = 'options_count';
 
     /**
      * @var string The name of the "blocks" relation.
      */
     final public const RELATION_BLOCKS = 'blocks';
+    /**
+     * @var string The name of the "options" relation.
+     */
+    final public const RELATION_OPTIONS = 'options';
 
     /**
      * @var string The table associated with the model.
@@ -120,6 +130,20 @@ class Field extends Model implements HasIdentifier
                 FieldBlock::BLOCK_ID,
             );
     }
+
+    /**
+     * @return HasMany
+     */
+    public function options(): HasMany
+    {
+        return $this
+            ->hasMany(
+                FieldOption::class,
+                FieldOption::FIELD_ID,
+                self::ID,
+            );
+    }
+
 
     #endregion
 }

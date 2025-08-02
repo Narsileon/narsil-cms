@@ -106,14 +106,22 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function placeholder(string $placeholder): static
+    {
+        $this->settings['placeholder'] = $placeholder;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function value(array $value): static
     {
         $this->settings['value'] = $value;
 
         return $this;
     }
-
-
 
     #endregion
 }

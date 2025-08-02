@@ -23,6 +23,7 @@ return [
     \Narsil\Contracts\Fields\SectionElement::class => \Narsil\Implementations\Fields\SectionElement::class,
     \Narsil\Contracts\Fields\SelectInput::class => \Narsil\Implementations\Fields\SelectInput::class,
     \Narsil\Contracts\Fields\SwitchInput::class => \Narsil\Implementations\Fields\SwitchInput::class,
+    \Narsil\Contracts\Fields\TableInput::class => \Narsil\Implementations\Fields\TableInput::class,
     \Narsil\Contracts\Fields\TextInput::class => \Narsil\Implementations\Fields\TextInput::class,
     \Narsil\Contracts\Fields\TimeInput::class => \Narsil\Implementations\Fields\TimeInput::class,
 ];

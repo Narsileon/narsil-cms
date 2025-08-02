@@ -208,6 +208,7 @@ return [
         'group'                   => 'Group',
         'handle'                  => 'Handle',
         'id'                      => 'ID',
+        'label'                   => 'Label',
         'language'                => 'Language',
         'last_name'               => 'Last name',
         'locale'                  => 'Locale',
@@ -217,6 +218,7 @@ return [
         'min'                     => 'Min',
         'multiple'                => 'Multiple',
         'name'                    => 'Name',
+        'options'                 => 'Options',
         'password_confirmation'   => 'Password confirmation',
         'password'                => 'Password',
         'placeholder'             => 'Placeholder',
@@ -229,6 +231,7 @@ return [
         'two_factor_confirmed_at' => 'Two factor confirmed at',
         'type'                    => 'Type',
         'updated_at'              => 'Updated at',
+        'value'                   => 'Value',
     ],
 
 ];

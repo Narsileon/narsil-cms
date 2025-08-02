@@ -53,6 +53,13 @@ interface RelationsInput extends Field
     public function options(array $options): static;
 
     /**
+     * @param string $placeholder
+     *
+     * @return static Returns the current object instance.
+     */
+    public function placeholder(string $placeholder): static;
+
+    /**
      * @param array $value
      *
      * @return static Returns the current object instance.

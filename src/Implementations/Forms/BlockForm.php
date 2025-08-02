@@ -119,6 +119,5 @@ class BlockForm extends AbstractForm implements Contract
             ->toArray();
     }
 
-
     #endregion
 }

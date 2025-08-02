@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -11,6 +12,7 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Services\RouteService;
 
 #endregion
 
@@ -27,6 +29,9 @@ class TemplateForm extends AbstractForm implements Contract
      */
     public function elements(): array
     {
+        $blockOptions = static::getBlockOptions();
+        $fieldOptions = static::getFieldOptions();
+
         return [
             $this->mainBlock([
                 new BlockElement([
@@ -51,14 +56,68 @@ class TemplateForm extends AbstractForm implements Contract
                 ]),
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Block::HANDLE => FIELD::SETTINGS,
-                        Block::NAME => trans('narsil-cms::ui.fields'),
-                        Block::RELATION_ELEMENTS => [],
+                        Field::HANDLE => TEMPLATE::RELATION_SECTIONS,
+                        Field::NAME => trans('narsil-cms::validation.attributes.elements'),
+                        Field::TYPE => RelationsInput::class,
+                        Field::SETTINGS => app(RelationsInput::class)
+                            ->dataPath(BlockElement::RELATION_ELEMENT)
+                            ->labelKey(Block::NAME)
+                            ->options([
+                                [
+                                    'icon'  => 'box',
+                                    'label' => trans('narsil-cms::ui.block'),
+                                    'options' => $blockOptions,
+                                    'routes' => RouteService::getNames(Block::TABLE),
+                                ],
+                                [
+                                    'icon'  => 'rectangle-ellipsis',
+                                    'label' => trans('narsil-cms::ui.field'),
+                                    'options' => $fieldOptions,
+                                    'routes' => RouteService::getNames(Field::TABLE),
+                                ],
+                            ])
+                            ->toArray(),
                     ])
                 ]),
             ]),
             $this->informationBlock(),
         ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    protected static function getBlockOptions(): array
+    {
+        return Block::query()
+            ->orderBy(Block::NAME)
+            ->get()
+            ->map(function (Block $block)
+            {
+                return [
+                    'identifier' => $block->{Block::IDENTIFIER},
+                    'label' => $block->{Block::NAME},
+                    'value' => $block->{Block::ID},
+                ];
+            })
+            ->toArray();
+    }
+
+    protected static function getFieldOptions(): array
+    {
+        return Field::query()
+            ->orderBy(Field::NAME)
+            ->get()
+            ->map(function (Field $field)
+            {
+                return [
+                    'identifier' => $field->{Block::IDENTIFIER},
+                    'label' => $field->{Field::NAME},
+                    'value' => $field->{Field::ID},
+                ];
+            })
+            ->toArray();
     }
 
     #endregion
