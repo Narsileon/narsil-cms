@@ -16,6 +16,8 @@ type InputDateProps = Omit<React.ComponentProps<typeof Input>, "value"> & {
 function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
   const [open, setOpen] = useState(false);
 
+  const date = value ? new Date(value) : undefined;
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger className="relative">
@@ -31,7 +33,8 @@ function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
         <Calendar
           captionLayout="dropdown"
           mode="single"
-          selected={value ? new Date(value) : undefined}
+          defaultMonth={date}
+          selected={date}
           onSelect={(selected) => {
             const newValue = selected
               ? selected.toLocaleDateString("en-CA")
