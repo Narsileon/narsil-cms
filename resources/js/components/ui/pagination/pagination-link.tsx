@@ -5,15 +5,15 @@ import { Slot as SlotPrimitive } from "radix-ui";
 type PaginationLinkProps = React.ComponentProps<"a"> &
   Pick<React.ComponentProps<typeof Button>, "size"> & {
     asChild?: boolean;
-    isActive?: boolean;
-    isDisabled?: boolean;
+    active?: boolean;
+    disabled?: boolean;
   };
 
 function PaginationLink({
   asChild = false,
   className,
-  isActive = false,
-  isDisabled = false,
+  active = false,
+  disabled = false,
   size = "icon",
   ...props
 }: PaginationLinkProps) {
@@ -22,16 +22,17 @@ function PaginationLink({
   return (
     <Comp
       data-slot="pagination-link"
-      data-active={isActive}
+      data-active={active}
       className={cn(
         buttonVariants({
-          variant: isActive ? "outline" : "ghost",
-          size,
+          size: size,
+          variant: "outline",
         }),
-        isDisabled ? "pointer-events-none opacity-50" : null,
+        active && "bg-accent dark:bg-accent",
+        disabled && "pointer-events-none opacity-50",
         className,
       )}
-      aria-current={isActive ? "page" : undefined}
+      aria-current={active ? "page" : undefined}
       {...props}
     />
   );

@@ -25,8 +25,8 @@ export const buttonVariants = cva(
           "focus-visible:ring-destructive/20",
         ),
         outline: cn(
-          "border bg-background shadow-xs",
-          "dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border-input border bg-background shadow-xs",
+          "dark:bg-input/30 dark:hover:bg-accent",
           "hover:bg-accent hover:text-accent-foreground",
         ),
         secondary: cn(

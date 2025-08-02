@@ -6,7 +6,7 @@ function PaginationContent({ className, ...props }: PaginationContentProps) {
   return (
     <ul
       data-slot="pagination-content"
-      className={cn("flex flex-row items-center gap-1", className)}
+      className={cn("flex flex-row items-center", className)}
       {...props}
     />
   );

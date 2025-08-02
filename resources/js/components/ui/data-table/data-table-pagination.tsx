@@ -36,7 +36,11 @@ function DataTablePagination({
       <PaginationContent>
         <Tooltip tooltip={getLabel("accessibility.first_page")}>
           <PaginationItem>
-            <PaginationLink asChild={true} isDisabled={links.prev === null}>
+            <PaginationLink
+              className="rounded-r-none"
+              asChild={true}
+              disabled={links.prev === null}
+            >
               <Link
                 aria-label={getLabel("accessibility.first_page", "First page")}
                 as="button"
@@ -51,7 +55,11 @@ function DataTablePagination({
         </Tooltip>
         <Tooltip tooltip={getLabel("accessibility.previous_page")}>
           <PaginationItem>
-            <PaginationLink asChild={true} isDisabled={links.prev === null}>
+            <PaginationLink
+              className="rounded-none"
+              asChild={true}
+              disabled={links.prev === null}
+            >
               <Link
                 aria-label={getLabel(
                   "accessibility.previous_page",
@@ -70,7 +78,11 @@ function DataTablePagination({
         {metaLinks.slice(1, -1).map((link, index) => {
           return link.url ? (
             <PaginationItem key={index}>
-              <PaginationLink asChild={true} isActive={link.active}>
+              <PaginationLink
+                className="rounded-none"
+                asChild={true}
+                active={link.active}
+              >
                 <Link
                   as="button"
                   href={link.url}
@@ -82,15 +94,28 @@ function DataTablePagination({
               </PaginationLink>
             </PaginationItem>
           ) : (
-            <PaginationEllipsis
-              label={getLabel("accessibility.more_pages", "More pages")}
-              key={index}
-            />
+            <PaginationItem>
+              <PaginationLink
+                className="rounded-none"
+                asChild={true}
+                disabled={true}
+              >
+                <PaginationEllipsis
+                  className="bg-accent border"
+                  label={getLabel("accessibility.more_pages", "More pages")}
+                  key={index}
+                />
+              </PaginationLink>
+            </PaginationItem>
           );
         })}
         <Tooltip tooltip={getLabel("accessibility.next_page")}>
           <PaginationItem>
-            <PaginationLink asChild={true} isDisabled={links.next === null}>
+            <PaginationLink
+              className="rounded-none"
+              asChild={true}
+              disabled={links.next === null}
+            >
               <Link
                 aria-label={getLabel("accessibility.next_page", "Next page")}
                 as="button"
@@ -105,7 +130,11 @@ function DataTablePagination({
         </Tooltip>
         <Tooltip tooltip={getLabel("accessibility.last_page")}>
           <PaginationItem>
-            <PaginationLink asChild={true} isDisabled={links.next === null}>
+            <PaginationLink
+              className="rounded-l-none"
+              asChild={true}
+              disabled={links.next === null}
+            >
               <Link
                 aria-label={getLabel("accessibility.last_page", "Last page")}
                 as="button"

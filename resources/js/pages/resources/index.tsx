@@ -120,7 +120,7 @@ function ResourceIndex({
                 {dataTableFilter ? (
                   <>
                     <ResizablePanel
-                      className="pr-3"
+                      className="pr-4"
                       collapsible={true}
                       defaultSize={20}
                       minSize={10}
@@ -133,14 +133,14 @@ function ResourceIndex({
                 <ResizablePanel
                   className={cn(
                     "flex flex-col gap-3",
-                    dataTableFilter && "pl-3",
+                    dataTableFilter && "pl-4",
                   )}
                   collapsible={true}
                   defaultSize={80}
                   minSize={10}
                 >
                   <DataTableBlock dataTable={table} />
-                  <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center justify-between gap-4 text-sm">
                     <span>
                       {dataTable.meta.total > 0
                         ? getLabel("pagination.results")
