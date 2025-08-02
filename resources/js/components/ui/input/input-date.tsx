@@ -1,7 +1,5 @@
-import { Button } from "@narsil-cms/components/ui/button";
 import { Calendar } from "@narsil-cms/components/ui/calendar";
-import { ChevronDownIcon } from "lucide-react";
-import { isValid, parseISO } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import { Input } from "@narsil-cms/components/ui/input";
 import { useState } from "react";
 import {
@@ -18,26 +16,22 @@ type InputDateProps = Omit<React.ComponentProps<typeof Input>, "value"> & {
 function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
   const [open, setOpen] = useState(false);
 
-  const date = value ? parseISO(value) : undefined;
-  const validity = date && isValid(date);
-
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          id="date-picker"
-          className="w-full justify-between font-normal"
-        >
-          {validity ? date.toLocaleDateString() : placeholder}
-          <ChevronDownIcon className="size-5" />
-        </Button>
+      <PopoverTrigger className="relative">
+        <Input
+          value={value}
+          type="date"
+          onChange={(event) => onChange(event.target.value)}
+          {...props}
+        />
+        <CalendarIcon className="absolute top-1/2 right-2 size-5 -translate-y-1/2" />
       </PopoverTrigger>
       <PopoverContent className="w-auto overflow-hidden p-0" align="start">
         <Calendar
           captionLayout="dropdown"
           mode="single"
-          selected={date}
+          selected={value ? new Date(value) : undefined}
           onSelect={(selected) => {
             const newValue = selected
               ? selected.toISOString().split("T")[0]
