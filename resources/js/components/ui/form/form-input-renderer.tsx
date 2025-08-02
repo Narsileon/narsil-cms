@@ -1,6 +1,6 @@
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
-import { Input } from "@narsil-cms/components/ui/input";
+import { Input, InputDate } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
 import { SortableTable } from "@narsil-cms/components/ui/sortable";
@@ -20,6 +20,7 @@ function FormInputRenderer({
   renderOption,
   setValue,
 }: FormInputRendererProps) {
+  console.log(element.type);
   switch (element.type) {
     case "Narsil\\Contracts\\Fields\\CheckboxInput":
       return (
@@ -29,6 +30,17 @@ function FormInputRenderer({
           name={element.handle}
           checked={value}
           onCheckedChange={setValue}
+        />
+      );
+    case "Narsil\\Contracts\\Fields\\DateInput":
+      return (
+        <InputDate
+          {...element.settings}
+          id={element.handle}
+          name={element.handle}
+          className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          value={value}
+          onChange={setValue}
         />
       );
     case "Narsil\\Contracts\\Fields\\RangeInput":
@@ -68,6 +80,17 @@ function FormInputRenderer({
           columns={element.settings.columns}
           items={value ?? []}
           setItems={setValue}
+        />
+      );
+    case "Narsil\\Contracts\\Fields\\TimeInput":
+      return (
+        <Input
+          {...element.settings}
+          id={element.handle}
+          name={element.handle}
+          className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
         />
       );
     default:

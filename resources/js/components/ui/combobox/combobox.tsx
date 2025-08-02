@@ -96,7 +96,7 @@ function Combobox({
           {option
             ? getSelectOption(option, labelPath)
             : (placeholder ?? "Search...")}
-          <ChevronsUpDownIcon className="ml-2 size-4 shrink-0 opacity-50" />
+          <ChevronsUpDownIcon className="ml-2 size-5 shrink-0" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">

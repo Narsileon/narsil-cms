@@ -51,6 +51,13 @@ class DateInput extends AbstractField implements Contract
                 Field::SETTINGS => app(Contract::class)
                     ->toArray(),
             ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
+                Field::TYPE => Contract::class,
+                Field::SETTINGS => app(Contract::class)
+                    ->toArray(),
+            ]),
         ];
     }
 

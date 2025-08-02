@@ -200,6 +200,7 @@ return [
         'color'                   => 'Color',
         'created_at'              => 'Created at',
         'current_password'        => 'Current password',
+        'default_value'           => 'Default value',
         'elements'                => 'Elements',
         'email_verified_at'       => 'Email verified at',
         'email'                   => 'Email',

@@ -18,6 +18,7 @@ import {
   SidebarRail,
   useSidebar,
 } from "@narsil-cms/components/ui/sidebar";
+import { cn } from "@narsil-cms/lib/utils";
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {};
 
@@ -94,14 +95,10 @@ function AppSidebar({ ...props }: AppSidebarProps) {
           tooltip={getLabel("accessibility.open_sidebar")}
           onClick={toggleSidebar}
         >
-          {open ? (
-            <>
-              <ChevronLeftIcon />
-              {getLabel("accessibility.close_sidebar")}
-            </>
-          ) : (
-            <ChevronRightIcon />
-          )}
+          <ChevronRightIcon
+            className={cn("duration-200", open && "-rotate-180")}
+          />
+          {open && getLabel("accessibility.close_sidebar")}
         </SidebarMenuButton>
       </SidebarFooter>
       <SidebarRail />

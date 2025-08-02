@@ -62,6 +62,14 @@ class RangeInput extends AbstractField implements Contract
                     ->value(1)
                     ->toArray(),
             ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
+                    ->value(0)
+                    ->toArray(),
+            ]),
         ];
     }
 

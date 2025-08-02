@@ -53,6 +53,13 @@ class TimeInput extends AbstractField implements Contract
                     ->value('23:59')
                     ->toArray(),
             ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
+                Field::TYPE => Contract::class,
+                Field::SETTINGS => app(Contract::class)
+                    ->toArray(),
+            ]),
         ];
     }
 

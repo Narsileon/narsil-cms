@@ -63,10 +63,11 @@ class NumberInput extends AbstractField implements Contract
                     ->toArray(),
             ]),
             new Field([
-                Field::HANDLE => 'settings.placeholder',
-                Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
+                    ->value(0)
                     ->toArray(),
             ]),
         ];

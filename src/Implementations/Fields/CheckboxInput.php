@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\CheckboxInput as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Elements\Field;
 
 #endregion
 
@@ -23,7 +24,6 @@ class CheckboxInput extends AbstractField implements Contract
     public function __construct()
     {
         $this->checked(false);
-        $this->type('checkbox');
     }
 
     #endregion
@@ -35,7 +35,15 @@ class CheckboxInput extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
-        return [];
+        return [
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
+                Field::TYPE => Contract::class,
+                Field::SETTINGS => app(Contract::class)
+                    ->toArray(),
+            ]),
+        ];
     }
 
     /**
