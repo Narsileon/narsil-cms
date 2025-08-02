@@ -3,7 +3,7 @@ import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { Input, InputDate } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
-import { SortableTable } from "@narsil-cms/components/ui/sortable";
+import { Sortable, SortableTable } from "@narsil-cms/components/ui/sortable";
 import { Switch } from "@narsil-cms/components/ui/switch";
 import type { Field, SelectOption } from "@narsil-cms/types/forms";
 
@@ -20,7 +20,6 @@ function FormInputRenderer({
   renderOption,
   setValue,
 }: FormInputRendererProps) {
-  console.log(element.type);
   switch (element.type) {
     case "Narsil\\Contracts\\Fields\\CheckboxInput":
       return (
@@ -53,6 +52,16 @@ function FormInputRenderer({
           onValueChange={([value]) => setValue(value)}
         />
       );
+    case "Narsil\\Contracts\\Fields\\RelationsInput":
+      return (
+        <Sortable
+          {...element.settings}
+          items={value ?? []}
+          options={element.settings.options}
+          setItems={setValue}
+        />
+      );
+
     case "Narsil\\Contracts\\Fields\\SelectInput":
       return (
         <Combobox
