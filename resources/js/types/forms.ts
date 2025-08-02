@@ -31,7 +31,7 @@ export type Field = {
   handle: string;
   id: number;
   name: string;
-  settings: Record<string, any> | null;
+  settings: Record<string, any>;
   type: string;
 };
 

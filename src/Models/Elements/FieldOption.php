@@ -51,6 +51,10 @@ class FieldOption extends Model
      */
     final public const LABEL = 'label';
     /**
+     * @var string The name of the "position" column.
+     */
+    final public const POSITION = 'position';
+    /**
      * @var string The name of the "value" column.
      */
     final public const VALUE = 'value';

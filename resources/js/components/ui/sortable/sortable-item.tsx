@@ -63,7 +63,7 @@ function SortableItem({
     data: data,
     animateLayoutChanges: animateLayoutChanges,
   });
-  console.log(id);
+
   return (
     <Card
       ref={disabled ? undefined : setNodeRef}

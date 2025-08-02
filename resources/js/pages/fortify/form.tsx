@@ -55,7 +55,7 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
         </SectionHeader>
         <SectionContent>
           <Card className="max-w-md">
-            <CardContent>
+            <CardContent className="p-6">
               <FormProvider
                 id={form.id}
                 elements={form.elements}

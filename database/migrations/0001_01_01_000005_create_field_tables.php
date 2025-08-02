@@ -60,6 +60,8 @@ return new class extends Migration
                 ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $table
+                ->integer(FieldOption::POSITION);
+            $table
                 ->string(FieldOption::LABEL);
             $table
                 ->string(FieldOption::VALUE);

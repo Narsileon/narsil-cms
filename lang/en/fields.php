@@ -13,6 +13,7 @@ return [
     'section'   => 'Section',
     'select'    => 'Select',
     'switch'    => 'Switch',
+    'table'     => 'Table',
     'text'      => 'Text',
     'time'      => 'Time',
 ];

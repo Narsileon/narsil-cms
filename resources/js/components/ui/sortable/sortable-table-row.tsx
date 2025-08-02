@@ -11,7 +11,10 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 
-type SortableRowProps = Omit<React.ComponentProps<typeof TableRow>, "id"> & {
+type SortableTableRowProps = Omit<
+  React.ComponentProps<typeof TableRow>,
+  "id"
+> & {
   colSpan?: number;
   disabled?: boolean;
   id: UniqueIdentifier;
@@ -22,7 +25,7 @@ type SortableRowProps = Omit<React.ComponentProps<typeof TableRow>, "id"> & {
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
 
-function SortableRow({
+function SortableTableRow({
   children,
   className,
   colSpan = 3,
@@ -33,7 +36,7 @@ function SortableRow({
   onClick,
   onRemove,
   ...props
-}: SortableRowProps) {
+}: SortableTableRowProps) {
   const {
     attributes,
     isDragging,
@@ -103,4 +106,4 @@ function SortableRow({
   );
 }
 
-export default SortableRow;
+export default SortableTableRow;

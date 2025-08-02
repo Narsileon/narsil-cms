@@ -1,12 +1,5 @@
-import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
-import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { Heading } from "@narsil-cms/components/ui/heading";
-import { Input } from "@narsil-cms/components/ui/input";
-import { isArray } from "lodash";
-import { Slider } from "@narsil-cms/components/ui/slider";
-import { Sortable, SortableTable } from "@narsil-cms/components/ui/sortable";
-import { Switch } from "@narsil-cms/components/ui/switch";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormItem from "./form-item";
@@ -19,11 +12,11 @@ import type {
   Field,
   SelectOption,
 } from "@narsil-cms/types/forms";
+import FormInputRenderer from "./form-input-renderer";
 
 type FormFieldRendererProps = {
   className?: string;
   conditions?: BlockElementCondition[];
-  displayLabel?: boolean;
   element: Field | Block;
   onChange?: (value: any) => void;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
@@ -32,7 +25,6 @@ type FormFieldRendererProps = {
 function FormFieldRenderer({
   className,
   conditions,
-  displayLabel = true,
   element,
   onChange,
   renderOption,
@@ -93,64 +85,13 @@ function FormFieldRenderer({
               className,
             )}
           >
-            {displayLabel ? (
-              <FormLabel required={settings.required}>{element.name}</FormLabel>
-            ) : null}
-
-            {element.type === "Narsil\\Contracts\\Fields\\CheckboxInput" ? (
-              <Checkbox
-                {...settings}
-                id={element.handle}
-                name={element.handle}
-                checked={value}
-                onCheckedChange={(checked) => handleOnChange(checked)}
-              />
-            ) : element.type === "Narsil\\Contracts\\Fields\\RangeInput" ? (
-              <Slider
-                {...settings}
-                id={element.handle}
-                name={element.handle}
-                value={isArray(value) ? value : [value]}
-                onValueChange={([value]) => handleOnChange(value)}
-              />
-            ) : element.type === "Narsil\\Contracts\\Fields\\RelationsInput" ? (
-              <Sortable
-                {...settings}
-                initialOptions={settings.options}
-                items={value ?? []}
-                setItems={(value) => handleOnChange(value)}
-              />
-            ) : element.type === "Narsil\\Contracts\\Fields\\SelectInput" ? (
-              <Combobox
-                {...settings}
-                id={element.handle}
-                options={settings.options}
-                renderOption={renderOption}
-                value={value}
-                setValue={(value) => handleOnChange(value)}
-              />
-            ) : element.type === "Narsil\\Contracts\\Fields\\SwitchInput" ? (
-              <Switch
-                {...settings}
-                name={element.handle}
-                checked={value}
-                onCheckedChange={(value) => handleOnChange(value)}
-              />
-            ) : element.type === "Narsil\\Contracts\\Fields\\TableInput" ? (
-              <SortableTable
-                {...settings}
-                items={value ?? []}
-                setItems={(value) => handleOnChange(value)}
-              />
-            ) : (
-              <Input
-                {...settings}
-                id={element.handle}
-                name={element.handle}
-                value={value}
-                onChange={(event) => handleOnChange(event.target.value)}
-              />
-            )}
+            <FormLabel required={settings.required}>{element.name}</FormLabel>
+            <FormInputRenderer
+              element={element}
+              value={value}
+              renderOption={renderOption}
+              setValue={handleOnChange}
+            />
             {element.description ? (
               <FormDescription>{element.description}</FormDescription>
             ) : null}

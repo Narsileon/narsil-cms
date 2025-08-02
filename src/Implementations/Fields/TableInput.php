@@ -30,7 +30,7 @@ class TableInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return '';
+        return 'table';
     }
 
     /**
@@ -38,7 +38,7 @@ class TableInput extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return '';
+        return trans('narsil-cms::fields.table');
     }
 
     /**

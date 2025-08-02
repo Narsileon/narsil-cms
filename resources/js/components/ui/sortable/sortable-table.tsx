@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
-import { FormFieldRenderer } from "@narsil-cms/components/ui/form";
-import { SortableRow } from "@narsil-cms/components/ui/sortable";
+import { FormInputRenderer } from "@narsil-cms/components/ui/form";
+import { get, set } from "lodash";
+import { SortableTableRow } from "@narsil-cms/components/ui/sortable";
 import { useState } from "react";
 import {
   closestCenter,
@@ -108,7 +109,7 @@ function SortableTable({
             <TableBody>
               {items.map((item) => {
                 return (
-                  <SortableRow
+                  <SortableTableRow
                     className="h-11"
                     id={item.id}
                     onRemove={() => {
@@ -119,17 +120,28 @@ function SortableTable({
                     {columns.map((column, index) => {
                       return (
                         <TableCell className="px-0.5 py-0" key={index}>
-                          <FormFieldRenderer
-                            displayLabel={false}
+                          <FormInputRenderer
+                            value={
+                              get(item, column.handle) ?? column.settings.value
+                            }
                             element={column}
+                            setValue={(value) => {
+                              setItems(
+                                items.map((x) =>
+                                  x.id === item.id
+                                    ? set({ ...x }, column.handle, value)
+                                    : x,
+                                ),
+                              );
+                            }}
                           />
                         </TableCell>
                       );
                     })}
-                  </SortableRow>
+                  </SortableTableRow>
                 );
               })}
-              <SortableRow
+              <SortableTableRow
                 id={"placeholder"}
                 colSpan={columns.length + 2}
                 disabled={true}
@@ -139,17 +151,17 @@ function SortableTable({
                 }}
               >
                 {placeholder}
-              </SortableRow>
+              </SortableTableRow>
             </TableBody>
             {createPortal(
               <DragOverlay>
                 {active ? (
                   <Table>
-                    <SortableRow id={active.id} className="h-11">
+                    <SortableTableRow id={active.id} className="h-11">
                       {columns.map((column, index) => {
                         return <TableCell key={index} />;
                       })}
-                    </SortableRow>
+                    </SortableTableRow>
                   </Table>
                 ) : null}
               </DragOverlay>,

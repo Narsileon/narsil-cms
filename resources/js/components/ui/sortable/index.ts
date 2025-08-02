@@ -3,8 +3,8 @@ import SortableAdd from "./sortable-add";
 import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";
 import SortableItem from "./sortable-item";
-import SortableRow from "./sortable-row";
 import SortableTable from "./sortable-table";
+import SortableTableRow from "./sortable-table-row";
 import SortableTree from "./sortable-tree";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 
@@ -34,8 +34,8 @@ export {
   SortableGrid,
   SortableHandle,
   SortableItem,
-  SortableRow,
   SortableTable,
+  SortableTableRow,
   SortableTree,
 };
 

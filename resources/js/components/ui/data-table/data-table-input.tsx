@@ -14,7 +14,7 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
       <Input
         className={cn("pl-9")}
         value={dataTableStore.search ?? ""}
-        onChange={(e) => dataTableStore.setSearch(e.target.value)}
+        onChange={(event) => dataTableStore.setSearch(event.target.value)}
         {...props}
       />
       {dataTableStore.search ? (

@@ -2,6 +2,7 @@ import Form from "./form";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormFieldRenderer from "./form-field-renderer";
+import FormInputRenderer from "./form-input-renderer";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
@@ -15,6 +16,7 @@ export {
   FormDescription,
   FormField,
   FormFieldRenderer,
+  FormInputRenderer,
   FormItem,
   FormLabel,
   FormMessage,

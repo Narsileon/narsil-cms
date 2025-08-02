@@ -17,6 +17,7 @@ use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldBlock;
+use Narsil\Models\Elements\FieldOption;
 
 #endregion
 
@@ -117,6 +118,11 @@ class FieldController extends AbstractController
             $this->syncBlocks($field, $blocks);
         }
 
+        if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
+        {
+            $this->syncOptions($field, $options);
+        }
+
         return $this
             ->redirect(route('fields.index'), $field)
             ->with('success', trans('narsil-cms::toasts.success.fields.created'));
@@ -164,6 +170,12 @@ class FieldController extends AbstractController
             $this->syncBlocks($field, $blocks);
         }
 
+        if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
+        {
+            $this->syncOptions($field, $options);
+        }
+
+
         return $this
             ->redirect(route('fields.index'), $field)
             ->with('success', trans('narsil-cms::toasts.success.fields.updated'));
@@ -197,6 +209,34 @@ class FieldController extends AbstractController
     protected function syncBlocks(Field $field, array $blocks): void
     {
         $field->blocks()->sync(collect($blocks)->pluck(FieldBlock::ID));
+    }
+
+    /**
+     * @param Field $field
+     * @param array $options
+     *
+     * @return void
+     */
+    protected function syncOptions(Field $field, array $options): void
+    {
+        $ids = [];
+
+        foreach ($options as $key => $option)
+        {
+            $fieldOption = FieldOption::updateOrCreate([
+                FieldOption::FIELD_ID => $field->{Field::ID},
+                FieldOption::VALUE => $option[FieldOption::VALUE],
+            ], [
+                FieldOption::POSITION => $key,
+                FieldOption::LABEL => $option[FieldOption::LABEL],
+            ]);
+
+            $ids[] = $fieldOption->{FieldOption::ID};
+        }
+
+        $field->options()
+            ->whereNotIn(FieldOption::ID, $ids)
+            ->delete();
     }
 
     #endregion

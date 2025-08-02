@@ -141,7 +141,8 @@ class Field extends Model implements HasIdentifier
                 FieldOption::class,
                 FieldOption::FIELD_ID,
                 self::ID,
-            );
+            )
+            ->orderby(FieldOption::POSITION);
     }
 
 
