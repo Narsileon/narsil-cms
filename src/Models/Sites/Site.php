@@ -7,7 +7,7 @@ namespace Narsil\Models\Sites;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\Sites\SiteGroup;
-use Narsil\Traits\HasFormattedDatetime;
+use Narsil\Traits\Formatable;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Traits\HasFormattedDatetime;
  */
 class Site extends Model
 {
-    use HasFormattedDatetime;
+    use Formatable;
 
     #region CONSTRUCTOR
 

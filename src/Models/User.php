@@ -19,6 +19,7 @@ use Narsil\Models\Policies\UserRole;
 use Narsil\Models\Users\Session;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Observers\UserObserver;
+use Narsil\Traits\Formatable;
 
 #endregion
 
@@ -29,6 +30,7 @@ use Narsil\Observers\UserObserver;
 #[ObservedBy([UserObserver::class])]
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use Formatable;
     use Notifiable;
     use TwoFactorAuthenticatable;
 

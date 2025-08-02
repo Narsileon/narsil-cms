@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\BlockElement;
+use Narsil\Traits\Formatable;
 use Narsil\Traits\Identifiable;
 
 #endregion
@@ -21,6 +22,7 @@ use Narsil\Traits\Identifiable;
  */
 class Block extends Model implements HasIdentifier
 {
+    use Formatable;
     use Identifiable;
 
     #region CONSTRUCTOR

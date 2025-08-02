@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\FieldBlock;
+use Narsil\Traits\Formatable;
 use Narsil\Traits\Identifiable;
 
 #endregion
@@ -19,6 +20,7 @@ use Narsil\Traits\Identifiable;
  */
 class Field extends Model implements HasIdentifier
 {
+    use Formatable;
     use Identifiable;
 
     #region CONSTRUCTOR
