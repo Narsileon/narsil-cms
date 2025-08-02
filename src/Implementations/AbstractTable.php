@@ -4,7 +4,6 @@ namespace Narsil\Implementations;
 
 #region USE
 
-use Narsil\Constants\TanStackTable;
 use Narsil\Contracts\Table;
 use Narsil\Services\RouteService;
 use Narsil\Services\TableService;
@@ -58,10 +57,10 @@ abstract class AbstractTable implements Table
             $tableColumn = $tableColumns->get($column->id);
 
             $columns[] = [
-                TanStackTable::ACCESSOR_KEY => $column->accessorKey ?? $column->id,
-                TanStackTable::HEADER       => $column->header ?? TableService::getHeading($column->id),
-                TanStackTable::ID           => $column->id,
-                TanStackTable::TYPE         => $column->type ?? $tableColumn?->type,
+                'accessorKey' => $column->accessorKey ?? $column->id,
+                'header' => $column->header ?? TableService::getHeading($column->id),
+                'id' => $column->id,
+                'type' => $column->type ?? $tableColumn?->type,
             ];
         }
 

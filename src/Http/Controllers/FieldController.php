@@ -13,7 +13,7 @@ use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Contracts\Tables\FieldTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldBlock;
@@ -24,7 +24,7 @@ use Narsil\Models\Elements\FieldBlock;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldController extends AbstractResourceController
+class FieldController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -117,7 +117,9 @@ class FieldController extends AbstractResourceController
             $this->syncBlocks($field, $blocks);
         }
 
-        return $this->redirectOnStored(Field::TABLE, $field);
+        return $this
+            ->redirect(route('fields.index'), $field)
+            ->with('success', trans('narsil-cms::toasts.success.fields.created'));
     }
 
     /**
@@ -162,7 +164,9 @@ class FieldController extends AbstractResourceController
             $this->syncBlocks($field, $blocks);
         }
 
-        return $this->redirectOnUpdated(Field::TABLE, $field);
+        return $this
+            ->redirect(route('fields.index'), $field)
+            ->with('success', trans('narsil-cms::toasts.success.fields.updated'));
     }
 
     /**
@@ -175,7 +179,9 @@ class FieldController extends AbstractResourceController
     {
         $field->delete();
 
-        return $this->redirectOnDestroyed(Field::TABLE);
+        return $this
+            ->redirect(route('fields.index'))
+            ->with('success', trans('narsil-cms::toasts.success.fields.deleted'));
     }
 
     #endregion

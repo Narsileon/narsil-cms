@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Str;
 use JsonSerializable;
-use Narsil\Constants\TanStackTable;
 use Narsil\Contracts\Table;
 use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Http\Requests\QueryRequest;
 use Narsil\Services\TableService;
 use Narsil\Support\LabelsBag;
 
@@ -161,7 +161,7 @@ class DataTableCollection extends ResourceCollection
      */
     protected function search(Builder $query): void
     {
-        $search = request(TanStackTable::SEARCH, null);
+        $search = request(QueryRequest::SEARCH, null);
 
         if (!$search)
         {
@@ -191,7 +191,7 @@ class DataTableCollection extends ResourceCollection
      */
     protected function sort(Builder $query): void
     {
-        $sortings = request(TanStackTable::SORTING, []);
+        $sortings = request(QueryRequest::SORTING, []);
 
         foreach ($sortings as $key => $value)
         {

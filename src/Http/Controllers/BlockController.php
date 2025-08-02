@@ -14,9 +14,8 @@ use Narsil\Contracts\FormRequests\BlockFormRequest;
 use Narsil\Contracts\Forms\BlockForm;
 use Narsil\Contracts\Tables\BlockTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
-use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
@@ -27,7 +26,7 @@ use Narsil\Models\Elements\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockController extends AbstractResourceController
+class BlockController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -128,7 +127,9 @@ class BlockController extends AbstractResourceController
             $this->syncBlockElements($block, $elements);
         }
 
-        return $this->redirectOnStored(Block::TABLE, $block);
+        return $this
+            ->redirect(route('blocks.index'), $block)
+            ->with('success', trans('narsil-cms::toasts.success.blocks.created'));
     }
 
     /**
@@ -177,7 +178,9 @@ class BlockController extends AbstractResourceController
             $this->syncBlockElements($block, $elements);
         }
 
-        return $this->redirectOnUpdated(Block::TABLE, $block);
+        return $this
+            ->redirect(route('blocks.index'), $block)
+            ->with('success', trans("narsil-cms::toasts.success.blocks.updated"));
     }
 
     /**
@@ -190,7 +193,9 @@ class BlockController extends AbstractResourceController
     {
         $block->delete();
 
-        return $this->redirectOnDestroyed(Block::TABLE);
+        return $this
+            ->redirect(route('blocks.index'))
+            ->with('success', trans('narsil-cms::toasts.success.blocks.deleted'));
     }
 
     #endregion

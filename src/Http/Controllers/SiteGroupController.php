@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequests\SiteGroupFormRequest;
 use Narsil\Contracts\Forms\SiteGroupForm;
 use Narsil\Contracts\Tables\SiteGroupTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Sites\SiteGroup;
 
@@ -22,7 +22,7 @@ use Narsil\Models\Sites\SiteGroup;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroupController extends AbstractResourceController
+class SiteGroupController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -110,7 +110,9 @@ class SiteGroupController extends AbstractResourceController
 
         SiteGroup::create($attributes);
 
-        return $this->redirectOnStored(SiteGroup::TABLE);
+        return $this
+            ->redirect(route('site_groups.index'))
+            ->with('success', trans('narsil-cms::toasts.success.site_groups.created'));
     }
 
     /**
@@ -150,7 +152,9 @@ class SiteGroupController extends AbstractResourceController
 
         $siteGroup->update($attributes);
 
-        return $this->redirectOnUpdated(SiteGroup::TABLE);
+        return $this
+            ->redirect(route('site_groups.index'))
+            ->with('success', trans('narsil-cms::toasts.success.site_groups.updated'));
     }
 
     /**
@@ -163,7 +167,9 @@ class SiteGroupController extends AbstractResourceController
     {
         $siteGroup->delete();
 
-        return $this->redirectOnDestroyed(SiteGroup::TABLE);
+        return $this
+            ->redirect(route('site_groups.index'))
+            ->with('success', trans('narsil-cms::toasts.success.site_groups.deleted'));
     }
 
     #endregion

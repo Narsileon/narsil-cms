@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequests\TemplateFormRequest;
 use Narsil\Contracts\Forms\TemplateForm;
 use Narsil\Contracts\Tables\TemplateTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Template;
 
@@ -22,7 +22,7 @@ use Narsil\Models\Elements\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateController extends AbstractResourceController
+class TemplateController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -110,7 +110,9 @@ class TemplateController extends AbstractResourceController
 
         Template::create($attributes);
 
-        return $this->redirectOnStored(Template::TABLE);
+        return $this
+            ->redirect(route('templates.index'))
+            ->with('success', trans('narsil-cms::toasts.success.templates.created'));
     }
 
     /**
@@ -150,7 +152,9 @@ class TemplateController extends AbstractResourceController
 
         $template->update($attributes);
 
-        return $this->redirectOnUpdated(Template::TABLE);
+        return $this
+            ->redirect(route('templates.index'))
+            ->with('success', trans('narsil-cms::toasts.success.templates.updated'));
     }
 
     /**
@@ -163,7 +167,9 @@ class TemplateController extends AbstractResourceController
     {
         $template->delete();
 
-        return $this->redirectOnDestroyed(Template::TABLE);
+        return $this
+            ->redirect(route('templates.index'))
+            ->with('success', trans('narsil-cms::toasts.success.templates.deleted'));
     }
 
     #endregion

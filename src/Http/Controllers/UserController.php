@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequests\UserFormRequest;
 use Narsil\Contracts\Forms\UserForm;
 use Narsil\Contracts\Tables\UserTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\User;
 
@@ -22,7 +22,7 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserController extends AbstractResourceController
+class UserController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -110,7 +110,9 @@ class UserController extends AbstractResourceController
 
         User::create($attributes);
 
-        return $this->redirectOnStored(User::TABLE);
+        return $this
+            ->redirect(route('users.index'))
+            ->with('success', trans('narsil-cms::toasts.success.users.created'));
     }
 
     /**
@@ -150,7 +152,9 @@ class UserController extends AbstractResourceController
 
         $user->update($attributes);
 
-        return $this->redirectOnUpdated(User::TABLE);
+        return $this
+            ->redirect(route('users.index'))
+            ->with('success', trans('narsil-cms::toasts.success.users.updated'));
     }
 
     /**
@@ -163,7 +167,9 @@ class UserController extends AbstractResourceController
     {
         $user->delete();
 
-        return $this->redirectOnDestroyed(User::TABLE);
+        return $this
+            ->redirect(route('users.index'))
+            ->with('success', trans('narsil-cms::toasts.success.users.deleted'));
     }
 
     #endregion

@@ -4,9 +4,13 @@ namespace Narsil\Http\Controllers;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
+use Narsil\Http\Requests\QueryRequest;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -20,7 +24,64 @@ abstract class AbstractController
     #region PROTECTED METHODS
 
     /**
+     * @param Builder $query
+     * @param string $column
+     * @param mixed $filter
+     *
+     * @return void
+     */
+    protected function filter(Builder $query, string $column, mixed $filter = null): void
+    {
+        if (!$filter)
+        {
+            $filter = request(QueryRequest::FILTER, null);
+        }
+
+        if (!$filter)
+        {
+            return;
+        }
+
+        $query->where($column, '=', $filter);
+    }
+
+    /**
+     * @param array $rules
+     *
+     * @return array
+     */
+    protected function getAttributes(array $rules): array
+    {
+        $data = request()->all();
+
+        $validator = Validator::make($data, $rules);
+
+        return $validator->validated();
+    }
+
+    /**
+     * @param string|null $to
+     * @param mixed $data
+     *
+     * @return RedirectResponse
+     */
+    protected function redirect(?string $to = null, mixed $data = []): RedirectResponse
+    {
+        if (request()->get('_back'))
+        {
+            return back()
+                ->with('data', $data);
+        }
+        else
+        {
+            return redirect($to);
+        }
+    }
+
+    /**
      * @param string $component
+     * @param string $title
+     * @param string $description
      * @param array $props
      *
      * @return JsonResponse|Response

@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequests\SiteFormRequest;
 use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Contracts\Tables\SiteTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Http\Resources\DataTableFilterCollection;
 use Narsil\Models\Sites\Site;
@@ -24,7 +24,7 @@ use Narsil\Models\Sites\SiteGroup;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteController extends AbstractResourceController
+class SiteController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -122,7 +122,9 @@ class SiteController extends AbstractResourceController
 
         Site::create($attributes);
 
-        return $this->redirectOnStored(Site::TABLE);
+        return $this
+            ->redirect(route('sites.index'))
+            ->with('success', trans('narsil-cms::toasts.success.sites.created'));
     }
 
     /**
@@ -162,7 +164,9 @@ class SiteController extends AbstractResourceController
 
         $site->update($attributes);
 
-        return $this->redirectOnUpdated(Site::TABLE);
+        return $this
+            ->redirect(route('sites.index'))
+            ->with('success', trans('narsil-cms::toasts.success.sites.updated'));
     }
 
     /**
@@ -175,7 +179,9 @@ class SiteController extends AbstractResourceController
     {
         $site->delete();
 
-        return $this->redirectOnDestroyed(Site::TABLE);
+        return $this
+            ->redirect(route('sites.index'))
+            ->with('success', trans('narsil-cms::toasts.success.sites.deleted'));
     }
 
     #endregion

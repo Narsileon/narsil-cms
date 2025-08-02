@@ -17,7 +17,7 @@ use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Middleware\LocaleMiddleware;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserConfiguration;
@@ -29,7 +29,7 @@ use Narsil\Support\LabelsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserConfigurationController extends AbstractResourceController
+class UserConfigurationController extends AbstractController
 {
     #region CONSTRUCTOR
 

@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequests\RoleFormRequest;
 use Narsil\Contracts\Forms\RoleForm;
 use Narsil\Contracts\Tables\RoleTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Http\Controllers\AbstractResourceController;
+use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Policies\Role;
 
@@ -22,7 +22,7 @@ use Narsil\Models\Policies\Role;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RoleController extends AbstractResourceController
+class RoleController extends AbstractController
 {
     #region CONSTRUCTOR
 
@@ -110,7 +110,9 @@ class RoleController extends AbstractResourceController
 
         Role::create($attributes);
 
-        return $this->redirectOnStored(Role::TABLE);
+        return $this
+            ->redirect(route('roles.index'))
+            ->with('success', trans('narsil-cms::toasts.success.roles.updated'));
     }
 
     /**
@@ -150,7 +152,9 @@ class RoleController extends AbstractResourceController
 
         $role->update($attributes);
 
-        return $this->redirectOnUpdated(Role::TABLE);
+        return $this
+            ->redirect(route('roles.index'))
+            ->with('success', trans('narsil-cms::toasts.success.roles.updated'));
     }
 
     /**
@@ -163,7 +167,9 @@ class RoleController extends AbstractResourceController
     {
         $role->delete();
 
-        return $this->redirectOnDestroyed(Role::TABLE);
+        return $this
+            ->redirect(route('roles.index'))
+            ->with('success', trans('narsil-cms::toasts.success.roles.deleted'));
     }
 
     #endregion
