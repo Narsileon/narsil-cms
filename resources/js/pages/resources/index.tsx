@@ -23,10 +23,10 @@ import {
 import {
   Section,
   SectionContent,
-  SectionFooter,
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
+import type { ColumnDef } from "@tanstack/react-table";
 import type {
   DataTableCollection,
   DataTableFilterCollection,
@@ -45,10 +45,24 @@ function ResourceIndex({
 }: ResourceIndexProps) {
   const { getLabel } = useLabels();
 
-  const finalColumns = [
+  const finalColumns: ColumnDef<any>[] = [
     {
       id: "_select",
-      cell: ({ row }: any) => (
+      header: ({ table }) =>
+        dataTable.data.length > 0 ? (
+          <Checkbox
+            className="mx-1"
+            checked={
+              table.getIsAllPageRowsSelected() ||
+              (table.getIsSomePageRowsSelected() && "indeterminate")
+            }
+            onCheckedChange={(value) =>
+              table.toggleAllPageRowsSelected(!!value)
+            }
+            aria-label="Select all"
+          />
+        ) : null,
+      cell: ({ row }) => (
         <Checkbox
           className="mx-1"
           checked={row.getIsSelected()}

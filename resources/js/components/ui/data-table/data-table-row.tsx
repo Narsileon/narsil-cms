@@ -7,7 +7,7 @@ function DataTableRow({ className, ...props }: DataTableRowProps) {
   return (
     <TableRow
       data-slot="data-table-row"
-      className={cn("data-[state=selected]:bg-muted bg-background", className)}
+      className={cn("data-[state=selected]:bg-accent bg-background", className)}
       {...props}
     />
   );

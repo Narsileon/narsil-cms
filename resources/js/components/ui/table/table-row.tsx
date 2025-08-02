@@ -6,11 +6,7 @@ function TableRow({ className, ...props }: TableRowProps) {
   return (
     <tr
       data-slot="table-row"
-      className={cn(
-        "border-b transition-colors",
-        "hover:bg-muted/50",
-        className,
-      )}
+      className={cn("border-b transition-colors", "hover:bg-accent", className)}
       {...props}
     />
   );
