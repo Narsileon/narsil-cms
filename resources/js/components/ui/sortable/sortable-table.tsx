@@ -92,10 +92,10 @@ function SortableTable({
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         <div className="overflow-hidden rounded-md border">
-          <Table className="w-full">
+          <Table className="w-full table-fixed">
             <TableHeader>
               <TableRow>
-                <TableHead />
+                <TableHead className="w-9" />
                 {columns.map((column, index) => {
                   return (
                     <TableHead className="px-3" key={index}>
@@ -103,7 +103,7 @@ function SortableTable({
                     </TableHead>
                   );
                 })}
-                <TableHead />
+                <TableHead className="w-9" />
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -143,7 +143,7 @@ function SortableTable({
               })}
               <SortableTableRow
                 id={"placeholder"}
-                colSpan={columns.length + 2}
+                colSpan={columns.length}
                 disabled={true}
                 placeholder={true}
                 onClick={() => {

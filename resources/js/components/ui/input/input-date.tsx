@@ -20,8 +20,8 @@ function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger className="relative">
         <Input
-          value={value}
           type="date"
+          value={value}
           onChange={(event) => onChange(event.target.value)}
           {...props}
         />
@@ -34,7 +34,7 @@ function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
           selected={value ? new Date(value) : undefined}
           onSelect={(selected) => {
             const newValue = selected
-              ? selected.toISOString().split("T")[0]
+              ? selected.toLocaleDateString("en-CA")
               : undefined;
             onChange?.(newValue);
             setOpen(false);

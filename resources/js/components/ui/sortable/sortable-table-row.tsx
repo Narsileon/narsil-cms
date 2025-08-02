@@ -69,39 +69,41 @@ function SortableTableRow({
       onClick={onClick}
       {...props}
     >
-      {placeholder ? (
-        <TableCell colSpan={colSpan}>
-          <div className="flex items-center justify-center gap-1">
-            <PlusIcon className="size-5" />
-            <span>{children}</span>
-          </div>
-        </TableCell>
-      ) : (
-        <>
-          <TableCell className="size-8 py-0 pr-0.5 pl-1">
+      <>
+        <TableCell className="px-1 py-0">
+          {!placeholder ? (
             <SortableHandle
               ref={setActivatorNodeRef}
               className="rounded-md bg-transparent"
               {...attributes}
               {...listeners}
             />
+          ) : null}
+        </TableCell>
+        {placeholder ? (
+          <TableCell colSpan={colSpan}>
+            <div className="flex items-center justify-center gap-1">
+              <PlusIcon className="size-5" />
+              <span>{children}</span>
+            </div>
           </TableCell>
-          {children}
-          <TableCell className="size-9 py-0 pr-1 pl-0.5">
-            {onRemove ? (
-              <Button
-                className="size-7"
-                size="icon"
-                type="button"
-                variant="ghost"
-                onClick={onRemove}
-              >
-                <TrashIcon className="size-5" />
-              </Button>
-            ) : null}
-          </TableCell>
-        </>
-      )}
+        ) : (
+          children
+        )}
+        <TableCell className="px-1 py-0">
+          {!placeholder && onRemove ? (
+            <Button
+              className="size-7"
+              size="icon"
+              type="button"
+              variant="ghost"
+              onClick={onRemove}
+            >
+              <TrashIcon className="size-5" />
+            </Button>
+          ) : null}
+        </TableCell>
+      </>
     </TableRow>
   );
 }
