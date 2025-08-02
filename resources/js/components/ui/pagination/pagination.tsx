@@ -1,12 +1,9 @@
-import { cn } from "@narsil-cms/lib/utils";
-
 type PaginationProps = React.ComponentProps<"nav"> & {};
 
-function Pagination({ className, ...props }: PaginationProps) {
+function Pagination({ ...props }: PaginationProps) {
   return (
     <nav
       data-slot="pagination"
-      className={cn("mx-auto flex w-full justify-center", className)}
       aria-label="pagination"
       role="navigation"
       {...props}
