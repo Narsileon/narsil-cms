@@ -78,11 +78,12 @@ function ResourceIndex({
     {
       id: "_menu",
       header: ({ table }) =>
-        dataTable.data.length > 0 ? (
+        table.getIsSomePageRowsSelected() ||
+        table.getIsAllPageRowsSelected() ? (
           <DataTableRowMenu
             className="absolute top-1/2 right-1 -translate-y-1/2 transform"
-            id={1}
             routes={dataTable.meta.routes}
+            table={table}
           />
         ) : null,
       cell: ({ row }: any) => (

@@ -15,6 +15,7 @@ use Narsil\Contracts\Forms\BlockForm;
 use Narsil\Contracts\Tables\BlockTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
@@ -196,6 +197,22 @@ class BlockController extends AbstractController
         return $this
             ->redirect(route('blocks.index'))
             ->with('success', trans('narsil-cms::toasts.success.blocks.deleted'));
+    }
+
+    /**
+     * @param DestroyManyRequest $request
+     *
+     * @return RedirectResponse
+     */
+    public function destroyMany(DestroyManyRequest $request): RedirectResponse
+    {
+        $ids = $request->validated(DestroyManyRequest::IDS);
+
+        Block::whereIn(Block::ID, $ids)->delete();
+
+        return $this
+            ->redirect(route('blocks.index'))
+            ->with('success', trans('narsil-cms::toasts.success.blocks.deleted_many'));
     }
 
     #endregion

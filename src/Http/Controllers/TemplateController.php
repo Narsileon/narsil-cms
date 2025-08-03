@@ -13,6 +13,7 @@ use Narsil\Contracts\Forms\TemplateForm;
 use Narsil\Contracts\Tables\TemplateTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Template;
 
@@ -170,6 +171,22 @@ class TemplateController extends AbstractController
         return $this
             ->redirect(route('templates.index'))
             ->with('success', trans('narsil-cms::toasts.success.templates.deleted'));
+    }
+
+    /**
+     * @param DestroyManyRequest $request
+     *
+     * @return RedirectResponse
+     */
+    public function destroyMany(DestroyManyRequest $request): RedirectResponse
+    {
+        $ids = $request->validated(DestroyManyRequest::IDS);
+
+        Template::whereIn(Template::ID, $ids)->delete();
+
+        return $this
+            ->redirect(route('templates.index'))
+            ->with('success', trans('narsil-cms::toasts.success.templates.deleted_many'));
     }
 
     #endregion

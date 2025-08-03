@@ -13,6 +13,7 @@ use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Contracts\Tables\SiteTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Http\Resources\DataTableFilterCollection;
 use Narsil\Models\Sites\Site;
@@ -182,6 +183,22 @@ class SiteController extends AbstractController
         return $this
             ->redirect(route('sites.index'))
             ->with('success', trans('narsil-cms::toasts.success.sites.deleted'));
+    }
+
+    /**
+     * @param DestroyManyRequest $request
+     *
+     * @return RedirectResponse
+     */
+    public function destroyMany(DestroyManyRequest $request): RedirectResponse
+    {
+        $ids = $request->validated(DestroyManyRequest::IDS);
+
+        Site::whereIn(Site::ID, $ids)->delete();
+
+        return $this
+            ->redirect(route('sites.index'))
+            ->with('success', trans('narsil-cms::toasts.success.sites.deleted_many'));
     }
 
     #endregion

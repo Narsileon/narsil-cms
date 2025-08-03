@@ -14,6 +14,7 @@ use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Contracts\Tables\FieldTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldBlock;
@@ -194,6 +195,22 @@ class FieldController extends AbstractController
         return $this
             ->redirect(route('fields.index'))
             ->with('success', trans('narsil-cms::toasts.success.fields.deleted'));
+    }
+
+    /**
+     * @param DestroyManyRequest $request
+     *
+     * @return RedirectResponse
+     */
+    public function destroyMany(DestroyManyRequest $request): RedirectResponse
+    {
+        $ids = $request->validated(DestroyManyRequest::IDS);
+
+        Field::whereIn(Field::ID, $ids)->delete();
+
+        return $this
+            ->redirect(route('fields.index'))
+            ->with('success', trans('narsil-cms::toasts.success.fields.deleted_many'));
     }
 
     #endregion

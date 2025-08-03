@@ -144,6 +144,8 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil-cms::table.columns')
             ->add('narsil-cms::ui.create')
             ->add('narsil-cms::ui.delete')
+            ->add('narsil-cms::ui.delete_selected')
+            ->add('narsil-cms::ui.deselect_all')
             ->add('narsil-cms::ui.edit')
             ->add('narsil-cms::pagination.results', [
                 'from'  => $from,

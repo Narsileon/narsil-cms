@@ -37,31 +37,37 @@ return [
         Block::TABLE => [
             'created' => 'The block has been successfully created.',
             'deleted' => 'The block has been successfully deleted.',
+            'deleted_many' => 'The blocks have been successfully deleted.',
             'updated' => 'The block has been successfully updated.',
         ],
         Field::TABLE => [
             'created' => 'The field has been successfully created.',
             'deleted' => 'The field has been successfully deleted.',
+            'deleted_many' => 'The fields have been successfully deleted.',
             'updated' => 'The field has been successfully updated.',
         ],
         SiteGroup::TABLE => [
             'created' => 'The group has been successfully created.',
             'deleted' => 'The group has been successfully deleted.',
+            'deleted_many' => 'The groups have been successfully deleted.',
             'updated' => 'The group has been successfully updated.',
         ],
         Site::TABLE => [
             'created' => 'The site has been successfully created.',
             'deleted' => 'The site has been successfully deleted.',
+            'deleted_many' => 'The sites have been successfully deleted.',
             'updated' => 'The site has been successfully updated.',
         ],
         Template::TABLE => [
             'created' => 'The template has been successfully created.',
             'deleted' => 'The template has been successfully deleted.',
+            'deleted_many' => 'The templates have been successfully deleted.',
             'updated' => 'The template has been successfully updated.',
         ],
         User::TABLE => [
             'created' => 'The user has been successfully created.',
             'deleted' => 'The user has been successfully deleted.',
+            'deleted_many' => 'The users have been successfully deleted.',
             'updated' => 'The user has been successfully updated.',
         ],
     ],

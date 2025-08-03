@@ -13,6 +13,7 @@ use Narsil\Contracts\Forms\RoleForm;
 use Narsil\Contracts\Tables\RoleTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Policies\Role;
 
@@ -170,6 +171,22 @@ class RoleController extends AbstractController
         return $this
             ->redirect(route('roles.index'))
             ->with('success', trans('narsil-cms::toasts.success.roles.deleted'));
+    }
+
+    /**
+     * @param DestroyManyRequest $request
+     *
+     * @return RedirectResponse
+     */
+    public function destroyMany(DestroyManyRequest $request): RedirectResponse
+    {
+        $ids = $request->validated(DestroyManyRequest::IDS);
+
+        Role::whereIn(Role::ID, $ids)->delete();
+
+        return $this
+            ->redirect(route('roles.index'))
+            ->with('success', trans('narsil-cms::toasts.success.roles.deleted_many'));
     }
 
     #endregion

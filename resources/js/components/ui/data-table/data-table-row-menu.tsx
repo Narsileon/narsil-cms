@@ -1,5 +1,5 @@
 import { Button } from "@narsil-cms/components/ui/button";
-import { DeleteIcon, EditIcon, MoreHorizontalIcon } from "lucide-react";
+import { DeleteIcon, EditIcon, MoreHorizontalIcon, XIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
@@ -13,20 +13,23 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
 import type { RouteNames } from "@narsil-cms/types/collection";
+import type { Table } from "@tanstack/react-table";
 
 type DataTableRowMenuProps = Omit<
   React.ComponentProps<typeof DropdownMenuTrigger>,
   "id"
 > & {
-  id: number;
+  id?: number;
   modal?: boolean;
   routes: RouteNames;
+  table?: Table<any>;
 };
 
 function DataTableRowMenu({
   id,
   modal = false,
   routes,
+  table,
   ...props
 }: DataTableRowMenuProps) {
   const { getLabel } = useLabels();
@@ -49,37 +52,73 @@ function DataTableRowMenu({
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent align="end">
-        {routes.edit ? (
-          <DropdownMenuItem asChild={true}>
-            {modal ? (
-              <ModalLink href={route(routes.edit, id)}>
-                <EditIcon />
-                {getLabel("ui.edit")}
-              </ModalLink>
-            ) : (
-              <Link as="button" href={route(routes.edit, id)}>
-                <EditIcon />
-                {getLabel("ui.edit")}
-              </Link>
-            )}
-          </DropdownMenuItem>
-        ) : null}
-        <DropdownMenuSeparator />
-        {routes.destroy ? (
-          <DropdownMenuItem asChild={true}>
-            <Link
-              as="button"
-              href={route(routes.destroy, id)}
-              method="delete"
-              data={{
-                _back: true,
+        {id ? (
+          <>
+            {routes.edit ? (
+              <DropdownMenuItem asChild={true}>
+                {modal ? (
+                  <ModalLink href={route(routes.edit, id)}>
+                    <EditIcon />
+                    {getLabel("ui.edit")}
+                  </ModalLink>
+                ) : (
+                  <Link as="button" href={route(routes.edit, id)}>
+                    <EditIcon />
+                    {getLabel("ui.edit")}
+                  </Link>
+                )}
+              </DropdownMenuItem>
+            ) : null}
+            <DropdownMenuSeparator />
+            {routes.destroy ? (
+              <DropdownMenuItem asChild={true}>
+                <Link
+                  as="button"
+                  href={route(routes.destroy, id)}
+                  method="delete"
+                  data={{
+                    _back: true,
+                  }}
+                >
+                  <DeleteIcon />
+                  {getLabel("ui.delete")}
+                </Link>
+              </DropdownMenuItem>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <DropdownMenuItem
+              onClick={() => {
+                table?.resetRowSelection();
               }}
             >
-              <DeleteIcon />
-              {getLabel("ui.delete")}
-            </Link>
-          </DropdownMenuItem>
-        ) : null}
+              <XIcon />
+              {getLabel("ui.deselect_all")}
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            {routes.destroyMany ? (
+              <DropdownMenuItem asChild={true}>
+                <Link
+                  as="button"
+                  href={route(routes.destroyMany, {
+                    ids: table
+                      ?.getSelectedRowModel()
+                      .flatRows.map((row) => row.original.id),
+                  })}
+                  method="delete"
+                  data={{
+                    _back: true,
+                  }}
+                >
+                  <DeleteIcon />
+                  {getLabel("ui.delete_selected")}
+                </Link>
+              </DropdownMenuItem>
+            ) : null}
+          </>
+        )}
+        {}
       </DropdownMenuContent>
     </DropdownMenu>
   );

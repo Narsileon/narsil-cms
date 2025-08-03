@@ -3,6 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Narsil\Http\Controllers\BlockController;
 use Narsil\Http\Controllers\DashboardController;
 use Narsil\Http\Controllers\FieldController;
@@ -13,8 +14,35 @@ use Narsil\Http\Controllers\SiteGroupController;
 use Narsil\Http\Controllers\TemplateController;
 use Narsil\Http\Controllers\UserConfigurationController;
 use Narsil\Http\Controllers\UserController;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Template;
+use Narsil\Models\Policies\Role;
+use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SiteGroup;
+use Narsil\Models\User;
 
 #endregion
+
+/**
+ * @param string $table
+ * @param string $controller
+ * @param array $except
+ *
+ * @return void
+ */
+function resource(string $table, string $controller, array $except = [])
+{
+    $slug = Str::slug($table);
+
+    Route::controller($controller)->group(function () use ($slug, $controller)
+    {
+        Route::delete($slug, 'destroyMany')
+            ->name("$slug.destroyMany");
+        Route::resource($slug, $controller)
+            ->except(['show']);
+    });
+}
 
 Route::middleware([
     'web',
@@ -28,34 +56,27 @@ Route::middleware([
 
         #region RESOURCES
 
-        Route::resource('/blocks', BlockController::class)
-            ->except([
-                'show'
-            ]);
-        Route::resource('/fields', FieldController::class)
-            ->except([
-                'show'
-            ]);
-        Route::resource('/roles', RoleController::class)
-            ->except([
-                'show'
-            ]);
-        Route::resource('/site-groups', SiteGroupController::class)
-            ->except([
-                'show'
-            ]);
-        Route::resource('/sites', SiteController::class)
-            ->except([
-                'show'
-            ]);
-        Route::resource('/templates', TemplateController::class)
-            ->except([
-                'show'
-            ]);
-        Route::resource('/users', UserController::class)
-            ->except([
-                'show'
-            ]);
+        resource(Block::TABLE, BlockController::class, [
+            'show',
+        ]);
+        resource(Field::TABLE, FieldController::class, [
+            'show',
+        ]);
+        resource(Role::TABLE, RoleController::class, [
+            'show',
+        ]);
+        resource(SiteGroup::TABLE, SiteGroupController::class, [
+            'show',
+        ]);
+        resource(Site::TABLE, SiteController::class, [
+            'show',
+        ]);
+        resource(Template::TABLE, TemplateController::class, [
+            'show',
+        ]);
+        resource(User::TABLE, UserController::class, [
+            'show',
+        ]);
 
         #endregion
 

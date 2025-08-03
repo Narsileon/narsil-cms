@@ -63,6 +63,7 @@ export type LaravelPaginationMeta = {
 export type RouteNames = {
   create?: string;
   destroy?: string;
+  destroyMany?: string;
   edit?: string;
   index?: string;
   show?: string;

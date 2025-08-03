@@ -13,6 +13,7 @@ use Narsil\Contracts\Forms\UserForm;
 use Narsil\Contracts\Tables\UserTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\User;
 
@@ -170,6 +171,22 @@ class UserController extends AbstractController
         return $this
             ->redirect(route('users.index'))
             ->with('success', trans('narsil-cms::toasts.success.users.deleted'));
+    }
+
+    /**
+     * @param DestroyManyRequest $request
+     *
+     * @return RedirectResponse
+     */
+    public function destroyMany(DestroyManyRequest $request): RedirectResponse
+    {
+        $ids = $request->validated(DestroyManyRequest::IDS);
+
+        User::whereIn(User::ID, $ids)->delete();
+
+        return $this
+            ->redirect(route('users.index'))
+            ->with('success', trans('narsil-cms::toasts.success.users.deleted_many'));
     }
 
     #endregion

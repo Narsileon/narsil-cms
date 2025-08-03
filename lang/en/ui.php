@@ -17,6 +17,8 @@ return [
     'create'           => 'Create',
     'dashboard'        => 'Dashboard',
     'delete'           => 'Delete',
+    'delete_selected'  => 'Delete selected',
+    'deselect_all'     => 'Deselect all',
     'edit'             => 'Edit',
     'email_verify'     => 'Verify your email',
     'field'            => 'Field',
