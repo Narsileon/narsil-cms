@@ -26,7 +26,6 @@ function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
         aria-label={getLabel(`accessibility.undo`)}
         disabled={!canUndo}
         size="icon"
-        type="button"
         variant="ghost"
         onClick={() => editor.chain().focus().undo().run()}
         {...props}

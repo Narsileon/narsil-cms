@@ -9,7 +9,6 @@ function SortableHandle({ className, ...props }: SortableHandleProps) {
     <Button
       className={cn("bg-accent/50 h-9 w-7 cursor-grab rounded-none", className)}
       size="icon"
-      type="button"
       variant="ghost"
       {...props}
     >

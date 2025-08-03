@@ -107,7 +107,6 @@ function SortableItem({
               <Button
                 className="size-7"
                 size="icon"
-                type="button"
                 variant="ghost"
                 asChild={true}
               >
@@ -120,7 +119,6 @@ function SortableItem({
               <Button
                 className="size-7"
                 size="icon"
-                type="button"
                 variant="ghost"
                 onClick={onRemove}
               >

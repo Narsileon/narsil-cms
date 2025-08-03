@@ -95,7 +95,6 @@ function SortableTableRow({
             <Button
               className="size-7"
               size="icon"
-              type="button"
               variant="ghost"
               onClick={onRemove}
             >

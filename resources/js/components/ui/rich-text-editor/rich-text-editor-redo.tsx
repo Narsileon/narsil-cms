@@ -27,7 +27,6 @@ function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
         aria-label={getLabel(`accessibility.redo`)}
         disabled={!canRedo}
         size="icon"
-        type="button"
         variant="ghost"
         onClick={() => editor.chain().focus().redo().run()}
         {...props}

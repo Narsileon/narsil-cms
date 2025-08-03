@@ -9,7 +9,6 @@ function SortableCreate({ className, ...props }: SortableCreateProps) {
     <Button
       className={cn("h-11 w-fit cursor-grab place-self-center")}
       asChild={true}
-      type="button"
       variant="ghost"
     >
       <ModalLink

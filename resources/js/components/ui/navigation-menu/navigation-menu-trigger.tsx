@@ -34,7 +34,7 @@ function NavigationMenuTrigger({
       {children}
       <ChevronDownIcon
         className={cn(
-          "relative top-[1px] ml-1 size-3 transition duration-300",
+          "relative top-[1px] ml-1 size-3 transition duration-200",
           "group-data-[state=open]:rotate-180",
         )}
         aria-hidden="true"

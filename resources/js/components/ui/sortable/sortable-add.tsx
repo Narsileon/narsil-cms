@@ -89,7 +89,7 @@ function SortableAdd({
         }}
       />
       {href ? (
-        <Button className="justify-self-end" type="button" asChild={true}>
+        <Button className="justify-self-end" asChild={true}>
           <ModalLink
             href={href}
             options={{
