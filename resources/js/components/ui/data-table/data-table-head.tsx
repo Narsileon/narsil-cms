@@ -25,9 +25,10 @@ function DataTableHead({ header, style, ...props }: DataTableHeadProps) {
       ref={setNodeRef}
       data-slot="data-table-head"
       className={cn(
+        "group-hover:to-accent group-data-[selected=true]:to-accent to-background bg-linear-to-r transition-colors",
         !isCustom && "px-0",
         isDragging && "z-10 opacity-80",
-        isMenu ? "sticky right-0" : "relative",
+        isMenu ? "sticky right-0 from-transparent to-20%" : "relative",
       )}
       colSpan={header.colSpan}
       style={{

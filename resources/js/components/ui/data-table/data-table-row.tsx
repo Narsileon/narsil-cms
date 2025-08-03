@@ -1,13 +1,23 @@
-import { TableRow } from "@narsil-cms/components/ui/table";
 import { cn } from "@narsil-cms/lib/utils";
+import { TableRow } from "@narsil-cms/components/ui/table";
 
-type DataTableRowProps = React.ComponentProps<typeof TableRow> & {};
+type DataTableRowProps = React.ComponentProps<typeof TableRow> & {
+  selected?: boolean;
+};
 
-function DataTableRow({ className, ...props }: DataTableRowProps) {
+function DataTableRow({
+  className,
+  selected = false,
+  ...props
+}: DataTableRowProps) {
   return (
     <TableRow
       data-slot="data-table-row"
-      className={cn("data-[state=selected]:bg-accent bg-background", className)}
+      data-selected={selected}
+      className={cn(
+        "group data-[selected=true]:bg-accent bg-background",
+        className,
+      )}
       {...props}
     />
   );

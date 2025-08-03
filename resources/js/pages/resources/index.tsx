@@ -77,6 +77,14 @@ function ResourceIndex({
     ...dataTable.columns,
     {
       id: "_menu",
+      header: ({ table }) =>
+        dataTable.data.length > 0 ? (
+          <DataTableRowMenu
+            className="absolute top-1/2 right-1 -translate-y-1/2 transform"
+            id={1}
+            routes={dataTable.meta.routes}
+          />
+        ) : null,
       cell: ({ row }: any) => (
         <DataTableRowMenu
           className="absolute top-1/2 right-1 -translate-y-1/2 transform"
@@ -85,7 +93,7 @@ function ResourceIndex({
         />
       ),
       position: "sticky",
-      size: 32,
+      size: 45,
       enableSorting: false,
       enableHiding: false,
     },

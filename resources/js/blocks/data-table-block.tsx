@@ -43,10 +43,7 @@ function DataTableBlock({ dataTable }: DataTableBlockProps) {
         <DataTableBody>
           {dataTable.getRowModel().rows?.length ? (
             dataTable.getRowModel().rows.map((row) => (
-              <DataTableRow
-                data-state={row.getIsSelected() && "selected"}
-                key={row.id}
-              >
+              <DataTableRow selected={row.getIsSelected()} key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   return (
                     <SortableContext

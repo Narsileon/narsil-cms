@@ -21,8 +21,9 @@ function DataTableCell({ cell, style, ...props }: DataTableCellProps) {
       ref={setNodeRef}
       data-slot="data-table-cell"
       className={cn(
+        "group-hover:to-accent group-data-[selected=true]:to-accent to-background bg-linear-to-r transition-colors",
         isDragging && "z-10 opacity-80",
-        isMenu ? "sticky right-0 bg-inherit" : "relative",
+        isMenu ? "sticky right-0 from-transparent to-20%" : "relative",
       )}
       style={{
         ...style,

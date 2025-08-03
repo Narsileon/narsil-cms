@@ -39,7 +39,11 @@ function DataTableRowMenu({
     <DropdownMenu>
       <Tooltip tooltip={getLabel("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
-          <Button className="size-8" size="icon" variant="ghost">
+          <Button
+            className="hover:bg-secondary size-7"
+            size="icon"
+            variant="ghost"
+          >
             <MoreHorizontalIcon className="size-5" />
           </Button>
         </DropdownMenuTrigger>
