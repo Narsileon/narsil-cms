@@ -45,7 +45,7 @@ function ResourceIndex({
 }: ResourceIndexProps) {
   const { getLabel } = useLabels();
 
-  const finalColumns: ColumnDef<any>[] = [
+  const finalColumns: (ColumnDef<any> & { position?: string })[] = [
     {
       id: "_select",
       header: ({ table }) =>
@@ -64,7 +64,7 @@ function ResourceIndex({
         ) : null,
       cell: ({ row }) => (
         <Checkbox
-          className="mx-1"
+          className="ml-1"
           checked={row.getIsSelected()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
           aria-label="Select row"

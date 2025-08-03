@@ -1,3 +1,4 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
 import { flexRender, Header } from "@tanstack/react-table";
 import { TableHead } from "@narsil-cms/components/ui/table";
@@ -9,40 +10,47 @@ type DataTableHeadProps = React.ComponentProps<typeof TableHead> & {
   header: Header<any, any>;
 };
 
-function DataTableHead({ header, ...props }: DataTableHeadProps) {
+function DataTableHead({ header, style, ...props }: DataTableHeadProps) {
+  const isCustom = header.column.id.startsWith("_");
+  const isMenu = header.column.id === "_menu";
+
   const { attributes, isDragging, listeners, transform, setNodeRef } =
     useSortable({
       id: header.column.id,
       disabled: header.column.id.startsWith("_"),
     });
 
-  const style: React.CSSProperties = {
-    opacity: isDragging ? 0.8 : 1,
-    position: header.column.id === "_menu" ? "sticky" : "relative",
-    right: 0,
-    transform: CSS.Translate.toString(transform),
-    transition: "width transform 0.2s ease-in-out",
-    width: header.column.getSize(),
-    zIndex: isDragging ? 1 : 0,
-  };
-
   return (
     <TableHead
       ref={setNodeRef}
       data-slot="data-table-head"
-      className="relative min-w-0 px-0"
+      className={cn(
+        !isCustom && "px-0",
+        isDragging && "z-10 opacity-80",
+        isMenu ? "sticky right-0" : "relative",
+      )}
       colSpan={header.colSpan}
-      style={style}
+      style={{
+        ...style,
+        transform: CSS.Translate.toString(transform),
+        transition: "width transform 0.2s ease-in-out",
+        width: header.column.getSize(),
+      }}
       {...props}
     >
-      <div className="flex items-center justify-start">
-        <DataTableHeadMove attributes={attributes} listeners={listeners}>
-          {flexRender(header.column.columnDef.header, header.getContext())}
-        </DataTableHeadMove>
-        {header.column.getCanSort() ? (
-          <DataTableHeadSort header={header} />
-        ) : null}
-      </div>
+      {typeof header.column.columnDef.header === "string" ? (
+        <div className="flex items-center justify-start">
+          <DataTableHeadMove attributes={attributes} listeners={listeners}>
+            {header.column.columnDef.header}
+          </DataTableHeadMove>
+
+          {header.column.getCanSort() ? (
+            <DataTableHeadSort header={header} />
+          ) : null}
+        </div>
+      ) : (
+        flexRender(header.column.columnDef.header, header.getContext())
+      )}
     </TableHead>
   );
 }
