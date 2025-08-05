@@ -78,7 +78,7 @@ class RangeInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'settings-2';
+        return 'range';
     }
 
     /**

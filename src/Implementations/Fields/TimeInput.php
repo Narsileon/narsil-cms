@@ -68,7 +68,7 @@ class TimeInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'clock';
+        return 'time';
     }
 
     /**

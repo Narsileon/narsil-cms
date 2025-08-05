@@ -73,7 +73,7 @@ class SelectInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'square-chevron-down';
+        return 'select';
     }
 
     /**

@@ -51,7 +51,7 @@ class CheckboxInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'square-mouse-pointer';
+        return 'checkbox';
     }
 
     /**

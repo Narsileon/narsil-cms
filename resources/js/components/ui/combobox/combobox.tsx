@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { lowerCase } from "lodash";
+import { isString, lowerCase } from "lodash";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
   Command,
@@ -123,11 +123,15 @@ function Combobox({
                   >
                     <Icon
                       className={cn(
-                        "mr-2 h-4 w-4",
+                        "size-4",
                         value == optionValue ? "opacity-100" : "opacity-0",
                       )}
                       name="check"
                     />
+                    {!isString(option) && option.icon ? (
+                      <Icon className="size-4" name={option.icon} />
+                    ) : null}
+
                     {renderOption ? renderOption(option) : optionLabel}
                   </CommandItem>
                 );

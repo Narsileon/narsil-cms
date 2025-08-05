@@ -66,7 +66,7 @@ class DateInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'calendar';
+        return 'date';
     }
 
     /**

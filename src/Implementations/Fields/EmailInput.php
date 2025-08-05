@@ -61,7 +61,7 @@ class EmailInput extends Input implements Contract
      */
     public static function getIcon(): string
     {
-        return 'mail';
+        return 'email';
     }
 
     /**

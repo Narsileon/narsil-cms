@@ -49,7 +49,7 @@ class RelationsInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'layers';
+        return 'relations';
     }
 
     /**

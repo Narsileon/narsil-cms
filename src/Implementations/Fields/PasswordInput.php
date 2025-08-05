@@ -34,7 +34,7 @@ class PasswordInput extends TextInput implements Contract
      */
     public static function getIcon(): string
     {
-        return 'rectangle-ellipsis';
+        return 'password';
     }
 
     /**

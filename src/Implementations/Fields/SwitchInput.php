@@ -51,7 +51,7 @@ class SwitchInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'toggle-right';
+        return 'switch';
     }
 
     /**

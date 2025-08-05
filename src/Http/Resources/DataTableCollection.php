@@ -170,7 +170,7 @@ class DataTableCollection extends ResourceCollection
             return;
         }
 
-        $columns = TableService::getColumns($this->model->getTable());
+        $columns = TableService::getColumns($this->table->name);
 
         $columns->each(function ($column) use ($query, $search)
         {

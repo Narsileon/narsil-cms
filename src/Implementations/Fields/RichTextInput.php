@@ -53,7 +53,7 @@ class RichTextInput extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'text-cursor-input';
+        return 'rich-text';
     }
 
     /**

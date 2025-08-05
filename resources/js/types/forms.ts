@@ -58,6 +58,7 @@ export type GroupedSelectOption = {
 
 export type SelectOption = {
   [key: string]: any;
+  icon?: IconName;
   label: string;
   value: any;
 };
