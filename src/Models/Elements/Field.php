@@ -36,6 +36,7 @@ class Field extends Model implements HasIdentifier
         $this->table = self::TABLE;
 
         $this->appends = array_merge([
+            self::ICON,
             self::IDENTIFIER,
         ], $this->appends);
 
@@ -69,6 +70,10 @@ class Field extends Model implements HasIdentifier
      * @var string The name of the "handle" column.
      */
     final public const HANDLE = 'handle';
+    /**
+     * @var string The name of the "icon" column.
+     */
+    final public const ICON = 'icon';
     /**
      * @var string The name of the "id" column.
      */
@@ -145,6 +150,25 @@ class Field extends Model implements HasIdentifier
             ->orderby(FieldOption::POSITION);
     }
 
+
+    #endregion
+
+    #region ATTRIBUTES
+
+    /**
+     * @return string|null
+     */
+    public function getIconAttribute(): ?string
+    {
+        if ($type = $this->{self::TYPE})
+        {
+            $class = app()->make($type);
+
+            return $class::getIcon();
+        }
+
+        return null;
+    }
 
     #endregion
 }

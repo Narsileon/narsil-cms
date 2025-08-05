@@ -10,7 +10,7 @@ interface HasIdentifier
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region ATTRIBUTES
 
     /**
      * @return string

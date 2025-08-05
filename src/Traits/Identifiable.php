@@ -4,7 +4,7 @@ namespace Narsil\Traits;
 
 trait Identifiable
 {
-    #region PUBLIC METHODS
+    #region ATTRIBUTES
 
     /**
      * @return string
