@@ -102,15 +102,10 @@ class BlockForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return [
-                    'icon' => 'box',
-                    'identifier' => $block->{Block::IDENTIFIER},
+                    'icon' => $block->{Block::ATTRIBUTE_ICON},
+                    'identifier' => $block->{Block::ATTRIBUTE_IDENTIFIER},
                     'label' => $block->{Block::NAME},
                     'value' => $block->{Block::HANDLE},
-                    'data' => [
-                        'id' => $block->{Block::ID},
-                        'handle' => $block->{Block::HANDLE},
-                        'name' => $block->{Block::NAME},
-                    ],
                 ];
             })
             ->toArray();
@@ -124,15 +119,10 @@ class BlockForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return [
-                    'icon' => $field->{Field::ICON},
-                    'identifier' => $field->{Field::IDENTIFIER},
+                    'icon' => $field->{Field::ATTRIBUTE_ICON},
+                    'identifier' => $field->{Field::ATTRIBUTE_IDENTIFIER},
                     'label' => $field->{Field::NAME},
                     'value' => $field->{Field::HANDLE},
-                    'data' => [
-                        'id' => $field->{Field::ID},
-                        'handle' => $field->{Field::HANDLE},
-                        'name' => $field->{Field::NAME},
-                    ],
                 ];
             })
             ->toArray();

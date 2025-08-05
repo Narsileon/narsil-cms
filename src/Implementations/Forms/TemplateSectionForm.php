@@ -12,7 +12,6 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
-use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Services\RouteService;
 
 #endregion
@@ -61,7 +60,6 @@ class TemplateSectionForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->dataPath(TemplateSectionElement::RELATION_ELEMENT)
                             ->options([
                                 [
                                     'icon'  => 'box',
@@ -96,7 +94,7 @@ class TemplateSectionForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return [
-                    'identifier' => $block->{Block::IDENTIFIER},
+                    'identifier' => $block->{Block::ATTRIBUTE_IDENTIFIER},
                     'label' => $block->{Block::NAME},
                     'value' => $block->{Block::ID},
                 ];
@@ -112,7 +110,7 @@ class TemplateSectionForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return [
-                    'identifier' => $field->{Block::IDENTIFIER},
+                    'identifier' => $field->{Field::ATTRIBUTE_IDENTIFIER},
                     'label' => $field->{Field::NAME},
                     'value' => $field->{Field::ID},
                 ];

@@ -61,7 +61,6 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->dataPath(BlockElement::RELATION_ELEMENT)
                             ->options([
                                 [
                                     'icon'  => 'box',
@@ -96,7 +95,7 @@ class TemplateForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return [
-                    'identifier' => $block->{Block::IDENTIFIER},
+                    'identifier' => $block->{Block::ATTRIBUTE_IDENTIFIER},
                     'label' => $block->{Block::NAME},
                     'value' => $block->{Block::ID},
                 ];
@@ -112,7 +111,7 @@ class TemplateForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return [
-                    'identifier' => $field->{Block::IDENTIFIER},
+                    'identifier' => $field->{Field::ATTRIBUTE_IDENTIFIER},
                     'label' => $field->{Field::NAME},
                     'value' => $field->{Field::ID},
                 ];

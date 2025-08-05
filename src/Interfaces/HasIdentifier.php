@@ -6,7 +6,7 @@ interface HasIdentifier
 {
     #region CONSTANTS
 
-    public const IDENTIFIER = 'identifier';
+    public const ATTRIBUTE_IDENTIFIER = 'identifier';
 
     #endregion
 

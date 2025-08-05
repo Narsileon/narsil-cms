@@ -71,7 +71,7 @@ function SortableAdd({
 
   function transformItemToOption(item: AnonymousItem) {
     const selectOption = {
-      data: item,
+      icon: item.icon,
       id: item.id,
       identifier: item.identifier,
       label: item[group.optionLabel],

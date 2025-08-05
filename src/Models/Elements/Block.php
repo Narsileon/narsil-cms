@@ -37,7 +37,8 @@ class Block extends Model implements HasIdentifier
         $this->table = self::TABLE;
 
         $this->appends = array_merge([
-            self::IDENTIFIER,
+            self::ATTRIBUTE_ICON,
+            self::ATTRIBUTE_IDENTIFIER,
         ], $this->appends);
 
         $this->guarded = array_merge([
@@ -68,6 +69,11 @@ class Block extends Model implements HasIdentifier
      * @var string The name of the "name" column.
      */
     final public const NAME = 'name';
+
+    /**
+     * @var string The name of the "icon" attribute.
+     */
+    final public const ATTRIBUTE_ICON = 'icon';
 
     /**
      * @var string The name of the "blocks" count.
@@ -142,6 +148,18 @@ class Block extends Model implements HasIdentifier
             BlockElement::BLOCK_ID,
             BlockElement::ELEMENT_ID,
         );
+    }
+
+    #endregion
+
+    #region ATTRIBUTES
+
+    /**
+     * @return string
+     */
+    public function getIconAttribute(): string
+    {
+        return 'box';
     }
 
     #endregion

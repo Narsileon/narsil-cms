@@ -232,7 +232,7 @@ class BlockController extends AbstractController
 
         foreach ($elements as $position => $element)
         {
-            $identifier = Arr::get($element, BlockElement::IDENTIFIER);
+            $identifier = Arr::get($element, BlockElement::ATTRIBUTE_IDENTIFIER);
 
             if (!$identifier || ! Str::contains($identifier, '-'))
             {

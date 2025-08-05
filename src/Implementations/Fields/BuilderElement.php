@@ -80,7 +80,7 @@ class BuilderElement extends AbstractField implements Contract
             ->map(function (Block $block)
             {
                 return [
-                    'identifier' => $block->{Block::IDENTIFIER},
+                    'identifier' => $block->{Block::ATTRIBUTE_IDENTIFIER},
                     'label' => $block->{Block::NAME},
                     'value' => $block->{Block::ID},
                     'data' => [

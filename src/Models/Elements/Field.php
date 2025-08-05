@@ -36,8 +36,8 @@ class Field extends Model implements HasIdentifier
         $this->table = self::TABLE;
 
         $this->appends = array_merge([
-            self::ICON,
-            self::IDENTIFIER,
+            self::ATTRIBUTE_ICON,
+            self::ATTRIBUTE_IDENTIFIER,
         ], $this->appends);
 
         $this->casts = array_merge([
@@ -71,10 +71,6 @@ class Field extends Model implements HasIdentifier
      */
     final public const HANDLE = 'handle';
     /**
-     * @var string The name of the "icon" column.
-     */
-    final public const ICON = 'icon';
-    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
@@ -94,6 +90,11 @@ class Field extends Model implements HasIdentifier
      * @var string The name of the "type" column.
      */
     final public const TYPE = 'type';
+
+    /**
+     * @var string The name of the "icon" attribute.
+     */
+    final public const ATTRIBUTE_ICON = 'icon';
 
     /**
      * @var string The name of the "blocks" count.

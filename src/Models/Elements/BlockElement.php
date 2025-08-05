@@ -33,8 +33,8 @@ class BlockElement extends Model implements HasIdentifier
         $this->table = self::TABLE;
 
         $this->appends = array_merge([
-            self::ICON,
-            self::IDENTIFIER,
+            self::ATTRIBUTE_ICON,
+            self::ATTRIBUTE_IDENTIFIER,
         ], $this->appends);
 
         $this->guarded = array_merge([
@@ -79,10 +79,6 @@ class BlockElement extends Model implements HasIdentifier
      */
     final public const HANDLE = 'handle';
     /**
-     * @var string The name of the "icon" column.
-     */
-    final public const ICON = 'icon';
-    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
@@ -98,6 +94,11 @@ class BlockElement extends Model implements HasIdentifier
      * @var string The name of the "width" column.
      */
     final public const WIDTH = 'width';
+
+    /**
+     * @var string The name of the "icon" attribute.
+     */
+    final public const ATTRIBUTE_ICON = 'icon';
 
     /**
      * @var string The name of the "counditions" count.
@@ -175,8 +176,8 @@ class BlockElement extends Model implements HasIdentifier
     {
         return match ($this->{self::ELEMENT_TYPE})
         {
-            Block::class => 'box',
-            Field::class => $this->{self::RELATION_ELEMENT}->{Field::ICON},
+            Block::class => $this->{self::RELATION_ELEMENT}->{Block::ATTRIBUTE_ICON},
+            Field::class => $this->{self::RELATION_ELEMENT}->{Field::ATTRIBUTE_ICON},
             default => null
         };
     }
