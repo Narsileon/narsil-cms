@@ -125,7 +125,7 @@ class BlockController extends AbstractController
 
         if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
         {
-            $this->syncBlockElements($block, $elements);
+            $this->syncElements($block, $elements);
         }
 
         return $this
@@ -176,7 +176,7 @@ class BlockController extends AbstractController
 
         if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
         {
-            $this->syncBlockElements($block, $elements);
+            $this->syncElements($block, $elements);
         }
 
         return $this
@@ -225,7 +225,7 @@ class BlockController extends AbstractController
      *
      * @return void
      */
-    protected function syncBlockElements(Block $block, array $elements): void
+    protected function syncElements(Block $block, array $elements): void
     {
         $block->blocks()->detach();
         $block->fields()->detach();
@@ -241,14 +241,17 @@ class BlockController extends AbstractController
 
             [$table, $id] = explode('-', $identifier);
 
+            $attributes = [
+                BlockElement::HANDLE => Arr::get($element, BlockElement::HANDLE),
+                BlockElement::NAME => Arr::get($element, BlockElement::NAME),
+                BlockElement::POSITION => $position,
+                BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH),
+            ];
+
             match ($table)
             {
-                Block::TABLE => $block->blocks()->attach($id, [
-                    BlockElement::POSITION => $position,
-                ]),
-                Field::TABLE => $block->fields()->attach($id, [
-                    BlockElement::POSITION => $position,
-                ]),
+                Block::TABLE => $block->blocks()->attach($id, $attributes),
+                Field::TABLE => $block->fields()->attach($id, $attributes),
                 default => null,
             };
         }

@@ -110,6 +110,9 @@ return new class extends Migration
             $table
                 ->integer(BlockElement::POSITION)
                 ->nullable();
+            $table
+                ->smallInteger(BlockElement::WIDTH)
+                ->nullable();
         });
     }
 

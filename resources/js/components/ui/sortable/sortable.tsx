@@ -19,7 +19,11 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import type { AnonymousItem } from ".";
-import type { Field, GroupedSelectOption } from "@narsil-cms/types/forms";
+import type {
+  Field,
+  GroupedSelectOption,
+  SelectOption,
+} from "@narsil-cms/types/forms";
 import type {
   DragCancelEvent,
   DragEndEvent,
@@ -32,6 +36,7 @@ type SortableProps = {
   items: AnonymousItem[];
   options: GroupedSelectOption[];
   unique?: boolean;
+  widthOptions?: SelectOption[];
   setItems: (items: AnonymousItem[]) => void;
 };
 
@@ -41,6 +46,7 @@ function Sortable({
   items,
   options,
   unique,
+  widthOptions,
   setItems,
 }: SortableProps) {
   const [active, setActive] = React.useState<AnonymousItem | null>(null);
@@ -134,6 +140,7 @@ function Sortable({
                     group={getGroup(item)}
                     item={item}
                     label={label}
+                    widthOptions={widthOptions}
                     onItemChange={(value: AnonymousItem) => {
                       setItems(
                         items.map((x) =>

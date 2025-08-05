@@ -123,6 +123,17 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function widthOptions(array $widthOptions): static
+    {
+        $this->settings['widthOptions'] = $widthOptions;
+
+        return $this;
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
     final public function unique(bool $unique): static
     {
         $this->settings['unique'] = $unique;

@@ -59,6 +59,13 @@ interface RelationsInput extends Field
     public function value(array $value): static;
 
     /**
+     * @param array $widthOptions
+     *
+     * @return static Returns the current object instance.
+     */
+    public function widthOptions(array $widthOptions): static;
+
+    /**
      * @param boolean $unique
      *
      * @return static Returns the current object instance.

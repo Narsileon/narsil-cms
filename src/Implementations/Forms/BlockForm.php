@@ -30,6 +30,7 @@ class BlockForm extends AbstractForm implements Contract
     {
         $blockOptions = static::getBlockOptions();
         $fieldOptions = static::getFieldOptions();
+        $widthOptions = static::getWidthOptions();
 
         return [
             $this->mainBlock([
@@ -80,6 +81,7 @@ class BlockForm extends AbstractForm implements Contract
                                     'routes' => RouteService::getNames(Field::TABLE),
                                 ],
                             ])
+                            ->widthOptions($widthOptions)
                             ->toArray(),
                     ])
                 ]),
@@ -100,6 +102,7 @@ class BlockForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return [
+                    'icon' => 'box',
                     'identifier' => $block->{Block::IDENTIFIER},
                     'label' => $block->{Block::NAME},
                     'value' => $block->{Block::HANDLE},
@@ -121,6 +124,7 @@ class BlockForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return [
+                    'icon' => $field->{Field::ICON},
                     'identifier' => $field->{Field::IDENTIFIER},
                     'label' => $field->{Field::NAME},
                     'value' => $field->{Field::HANDLE},
@@ -132,6 +136,21 @@ class BlockForm extends AbstractForm implements Contract
                 ];
             })
             ->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    protected static function getWidthOptions(): array
+    {
+        return [
+            ['label' => '25%', 'value' => 25],
+            ['label' => '33%', 'value' => 33],
+            ['label' => '50%', 'value' => 50],
+            ['label' => '67%', 'value' => 67],
+            ['label' => '75%', 'value' => 75],
+            ['label' => '100%', 'value' => 100],
+        ];
     }
 
     #endregion

@@ -94,6 +94,10 @@ class BlockElement extends Model implements HasIdentifier
      * @var string The name of the "position" column.
      */
     final public const POSITION = 'position';
+    /**
+     * @var string The name of the "width" column.
+     */
+    final public const WIDTH = 'width';
 
     /**
      * @var string The name of the "counditions" count.

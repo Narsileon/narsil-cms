@@ -36,8 +36,13 @@ import {
   FormLabel,
 } from "@narsil-cms/components/ui/form";
 import type { AnonymousItem } from ".";
-import type { Field, GroupedSelectOption } from "@narsil-cms/types/forms";
+import type {
+  Field,
+  GroupedSelectOption,
+  SelectOption,
+} from "@narsil-cms/types/forms";
 import type { UniqueIdentifier } from "@dnd-kit/core";
+import WidthSelector from "@narsil-cms/components/cms/width-selector";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   asChild?: boolean;
@@ -50,6 +55,7 @@ type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   label: UniqueIdentifier;
   placeholder?: boolean;
   tooltip?: string;
+  widthOptions?: SelectOption[];
   onItemChange?: (value: AnonymousItem) => void;
   onItemRemove?: () => void;
 };
@@ -70,6 +76,7 @@ function SortableItem({
   label,
   placeholder,
   style,
+  widthOptions,
   onItemChange,
   onItemRemove,
   ...props
@@ -129,9 +136,9 @@ function SortableItem({
               {...attributes}
               {...listeners}
             />
-            {group?.icon ? (
+            {data?.icon ? (
               <Tooltip tooltip={group.label}>
-                <Icon className="size-5" name={group.icon} />
+                <Icon className="size-5" name={data.icon} />
               </Tooltip>
             ) : null}
             {label ? (
@@ -140,6 +147,15 @@ function SortableItem({
               </CardTitle>
             ) : null}
             <div className="flex items-center justify-between gap-1">
+              {widthOptions ? (
+                <WidthSelector
+                  options={widthOptions}
+                  value={item.width}
+                  onValueChange={(value) =>
+                    onItemChange?.({ ...item, width: value })
+                  }
+                />
+              ) : null}
               {form ? (
                 <Dialog open={open} onOpenChange={onOpenChange}>
                   <Tooltip tooltip={getLabel("ui.edit")}>

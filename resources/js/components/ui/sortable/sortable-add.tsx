@@ -59,6 +59,7 @@ function SortableAdd({
     }
 
     const item = {
+      icon: selectOption.icon,
       id: selectOption.id,
       identifier: selectOption.identifier,
       [group.optionLabel]: selectOption.label,
