@@ -1,5 +1,5 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { FormEvent } from "react";
 import { VisitOptions } from "@inertiajs/core";
 import useForm from "./form-context";
 
@@ -17,7 +17,7 @@ function Form({
 }: FormProps) {
   const { id, patch, post, put } = useForm();
 
-  function onSubmit(event?: FormEvent) {
+  function onSubmit(event?: React.FormEvent) {
     event?.preventDefault();
 
     switch (method) {

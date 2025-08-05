@@ -36,10 +36,6 @@ class BlockElement extends Model implements HasIdentifier
             self::IDENTIFIER,
         ], $this->appends);
 
-        $this->casts = array_merge([
-            self::SETTINGS => 'json',
-        ], $this->casts);
-
         $this->guarded = array_merge([
             self::ID,
         ], $this->guarded);
@@ -93,10 +89,6 @@ class BlockElement extends Model implements HasIdentifier
      * @var string The name of the "position" column.
      */
     final public const POSITION = 'position';
-    /**
-     * @var string The name of the "settings" column.
-     */
-    final public const SETTINGS = 'settings';
 
     /**
      * @var string The name of the "counditions" count.

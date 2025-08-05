@@ -1,3 +1,4 @@
+import * as React from "react";
 import { VisuallyHidden as VisuallyHiddenPrimitive } from "radix-ui";
 
 type VisuallyHiddenProps = React.ComponentProps<

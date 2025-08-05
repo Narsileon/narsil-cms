@@ -1,6 +1,7 @@
-import { CircleIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type DropdownMenuRadioItemProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.RadioItem
@@ -25,7 +26,7 @@ function DropdownMenuRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
+          <Icon className="size-2 fill-current" name="circle" />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}

@@ -1,5 +1,6 @@
-import { ChevronDownIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Select as SelectPrimitive } from "radix-ui";
 
 type SelectScrollDownButtonProps = React.ComponentProps<
@@ -19,7 +20,7 @@ function SelectScrollDownButton({
       )}
       {...props}
     >
-      <ChevronDownIcon className="size-4" />
+      <Icon className="size-4" name="chevron-down" />
     </SelectPrimitive.ScrollDownButton>
   );
 }

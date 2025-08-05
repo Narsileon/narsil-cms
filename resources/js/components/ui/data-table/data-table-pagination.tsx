@@ -1,3 +1,5 @@
+import * as React from "react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -8,12 +10,6 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@narsil-cms/components/ui/pagination";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-} from "lucide-react";
 import type {
   LaravelPaginationLinks,
   LaravelPaginationMeta,
@@ -48,7 +44,7 @@ function DataTablePagination({
                 preserveScroll={true}
                 preserveState={true}
               >
-                <ChevronsLeft />
+                <Icon name="chevrons-left" />
               </Link>
             </PaginationLink>
           </PaginationItem>
@@ -70,7 +66,7 @@ function DataTablePagination({
                 preserveScroll={true}
                 preserveState={true}
               >
-                <ChevronLeft />
+                <Icon name="chevron-left" />
               </Link>
             </PaginationLink>
           </PaginationItem>
@@ -123,7 +119,7 @@ function DataTablePagination({
                 preserveScroll={true}
                 preserveState={true}
               >
-                <ChevronRight />
+                <Icon name="chevron-right" />
               </Link>
             </PaginationLink>
           </PaginationItem>
@@ -142,7 +138,7 @@ function DataTablePagination({
                 preserveScroll={true}
                 preserveState={true}
               >
-                <ChevronsRight />
+                <Icon name="chevrons-right" />
               </Link>
             </PaginationLink>
           </PaginationItem>

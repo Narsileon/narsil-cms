@@ -1,5 +1,6 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { MoreHorizontal } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 
 type BreadcrumbEllipsisProps = React.ComponentProps<"span"> & {
@@ -19,7 +20,7 @@ function BreadcrumbEllipsis({
       role="presentation"
       {...props}
     >
-      <MoreHorizontal className="size-4" />
+      <Icon className="size-4" name="more-horizontal" />
       <VisuallyHidden>{ellipsisLabel ?? "More links"}</VisuallyHidden>
     </span>
   );

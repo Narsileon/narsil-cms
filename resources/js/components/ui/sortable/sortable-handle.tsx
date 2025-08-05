@@ -1,18 +1,19 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
-import { GripVertical } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type SortableHandleProps = React.ComponentProps<typeof Button> & {};
 
 function SortableHandle({ className, ...props }: SortableHandleProps) {
   return (
     <Button
-      className={cn("bg-accent/50 h-9 w-7 cursor-grab rounded-none", className)}
+      className={cn("bg-accent/85 h-9 w-7 cursor-grab rounded-none", className)}
       size="icon"
       variant="ghost"
       {...props}
     >
-      <GripVertical className="size-5" />
+      <Icon name="grip-vertical" />
     </Button>
   );
 }

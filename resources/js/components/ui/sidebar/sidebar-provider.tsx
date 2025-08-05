@@ -1,6 +1,6 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { SidebarContext } from "./sidebar-context";
-import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SidebarContextProps } from "./sidebar-context";
 
 type SidebarProviderProps = React.ComponentProps<"div"> & {
@@ -32,12 +32,12 @@ function SidebarProvider({
   width = "14rem",
   ...props
 }: SidebarProviderProps) {
-  const [_open, _setOpen] = useState(defaultOpen);
-  const [openMobile, setOpenMobile] = useState(false);
+  const [_open, _setOpen] = React.useState(defaultOpen);
+  const [openMobile, setOpenMobile] = React.useState(false);
 
   const open = openProp ?? _open;
 
-  const setOpen = useCallback(
+  const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === "function" ? value(open) : value;
       if (setOpenProp) {
@@ -51,11 +51,11 @@ function SidebarProvider({
     [setOpenProp, open],
   );
 
-  const toggleSidebar = useCallback(() => {
+  const toggleSidebar = React.useCallback(() => {
     return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
   }, [isMobile, setOpen, setOpenMobile]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === keyboardShortcut && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -73,7 +73,7 @@ function SidebarProvider({
 
   const state = open ? "expanded" : "collapsed";
 
-  const contextValue = useMemo<SidebarContextProps>(
+  const contextValue = React.useMemo<SidebarContextProps>(
     () => ({
       isMobile: isMobile,
       mobileWidth: mobileWidth,

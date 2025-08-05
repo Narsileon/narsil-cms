@@ -1,7 +1,8 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { Editor } from "@tiptap/react";
-import { HeadingIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Separator } from "@narsil-cms/components/ui/separator";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -69,7 +70,7 @@ function RichTextEditorToolbar({
               size="icon"
               variant="ghost"
             >
-              <HeadingIcon className="size-5" />
+              <Icon name="heading" />
             </Button>
           </DropdownMenuTrigger>
         </Tooltip>

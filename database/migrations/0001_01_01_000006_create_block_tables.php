@@ -101,21 +101,15 @@ return new class extends Migration
             $table
                 ->morphs(BlockElement::RELATION_ELEMENT);
             $table
-                ->string(BlockElement::HANDLE)
-                ->nullable();
+                ->string(BlockElement::HANDLE);
             $table
-                ->string(BlockElement::NAME)
-                ->nullable();
+                ->string(BlockElement::NAME);
             $table
                 ->string(BlockElement::DESCRIPTION)
                 ->nullable();
             $table
                 ->integer(BlockElement::POSITION)
                 ->nullable();
-            $table
-                ->json(BlockElement::SETTINGS)
-                ->nullable()
-                ->default(null);
         });
     }
 

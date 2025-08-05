@@ -1,3 +1,4 @@
+import * as React from "react";
 import { get } from "lodash";
 import { LabelsContext } from "./labels-context";
 

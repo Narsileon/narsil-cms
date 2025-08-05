@@ -1,6 +1,6 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Slider as SliderPrimitive } from "radix-ui";
-import { useMemo } from "react";
 
 type SliderProps = React.ComponentProps<typeof SliderPrimitive.Root> & {};
 
@@ -12,7 +12,7 @@ function Slider({
   max = 100,
   ...props
 }: SliderProps) {
-  const _values = useMemo(
+  const _values = React.useMemo(
     () =>
       Array.isArray(value)
         ? value

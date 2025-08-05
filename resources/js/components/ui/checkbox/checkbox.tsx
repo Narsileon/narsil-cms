@@ -1,6 +1,7 @@
+import * as React from "react";
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
-import { CheckIcon } from "lucide-react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> & {};
 
@@ -24,7 +25,7 @@ function Checkbox({ className, ...props }: CheckboxProps) {
         data-slot="checkbox-indicator"
         className="flex items-center justify-center text-current transition-none"
       >
-        <CheckIcon className="size-3.5" />
+        <Icon className="size-3.5" name="check" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

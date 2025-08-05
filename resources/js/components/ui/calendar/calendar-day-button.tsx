@@ -1,7 +1,7 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { DayButton, getDefaultClassNames } from "react-day-picker";
-import { useEffect, useRef } from "react";
 
 type CalendarDayButtonProps = React.ComponentProps<typeof DayButton> & {};
 
@@ -11,11 +11,11 @@ function CalendarDayButton({
   modifiers,
   ...props
 }: CalendarDayButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = React.useRef<HTMLButtonElement>(null);
 
   const defaultClassNames = getDefaultClassNames();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
 

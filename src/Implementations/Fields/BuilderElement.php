@@ -8,6 +8,7 @@ use Narsil\Contracts\Fields\BuilderElement as Contract;
 use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Services\RouteService;
 
@@ -34,16 +35,18 @@ class BuilderElement extends AbstractField implements Contract
                 Field::NAME => trans('narsil-cms::validation.attributes.blocks'),
                 Field::TYPE => RelationsInput::class,
                 Field::SETTINGS => app(RelationsInput::class)
-                    ->labelKey(Block::NAME)
                     ->options([
                         [
                             'icon'  => 'box',
+                            'identifier' => Block::TABLE,
                             'label' => trans('narsil-cms::ui.block'),
                             'options' => $blockOptions,
+                            'optionLabel' => BlockElement::NAME,
+                            'optionValue' => BlockElement::HANDLE,
                             'routes' => RouteService::getNames(Block::TABLE),
                         ],
                     ])
-                    ->value([])
+                    ->unique(true)
                     ->toArray(),
             ]),
         ];
@@ -80,6 +83,11 @@ class BuilderElement extends AbstractField implements Contract
                     'identifier' => $block->{Block::IDENTIFIER},
                     'label' => $block->{Block::NAME},
                     'value' => $block->{Block::ID},
+                    'data' => [
+                        Block::ID => $block->{Block::ID},
+                        Block::HANDLE => $block->{Block::HANDLE},
+                        Block::NAME => $block->{Block::NAME},
+                    ]
                 ];
             })
             ->toArray();

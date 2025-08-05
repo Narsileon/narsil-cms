@@ -1,6 +1,6 @@
+import * as React from "react";
 import { LabelsProvider } from "@narsil-cms/components/ui/labels";
 import { ModalState } from "@narsil-cms/stores/modal-store";
-import { useEffect, useState } from "react";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 import {
   Dialog,
@@ -9,17 +9,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@narsil-cms/components/ui/dialog";
-import type { ComponentProps, ComponentType } from "react";
 
-type ModalProps = ComponentProps<typeof DialogContent> & {
+type ModalProps = React.ComponentProps<typeof DialogContent> & {
   modal: ModalState;
   onClose: () => void;
 };
 
 function Modal({ modal, onClose, ...props }: ModalProps) {
-  const [Component, setComponent] = useState<ComponentType<any> | null>(null);
+  const [Component, setComponent] =
+    React.useState<React.ComponentType<any> | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const load = async () => {
       const [vendorPath, componentPath] = modal.component.includes("::")
         ? modal.component.split("::")

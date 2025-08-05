@@ -1,5 +1,6 @@
+import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
-import { SubscriptIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -43,7 +44,7 @@ function RichTextEditorSubscript({
         }}
         {...props}
       >
-        <SubscriptIcon className="size-5" />
+        <Icon name="subscript" />
       </Toggle>
     </Tooltip>
   );

@@ -1,9 +1,9 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { createPortal, unstable_batchedUpdates } from "react-dom";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
-import { TrashIcon } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
 import SortableItem from "./sortable-item";
 import {
   CancelDrop,
@@ -46,19 +46,19 @@ export function MultipleContainers({
   columns = 1,
   items: initialItems,
 }: Props) {
-  const [items, setItems] = useState<Items>(
+  const [items, setItems] = React.useState<Items>(
     initialItems ?? {
       A: ["a1", "a2", "a3"],
       B: ["b1", "b2", "b3"],
       C: ["c1", "c2", "c3"],
     },
   );
-  const [containers, setContainers] = useState(
+  const [containers, setContainers] = React.useState(
     Object.keys(items) as UniqueIdentifier[],
   );
-  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
-  const lastOverId = useRef<UniqueIdentifier | null>(null);
-  const recentlyMovedToNewContainer = useRef(false);
+  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
+  const lastOverId = React.useRef<UniqueIdentifier | null>(null);
+  const recentlyMovedToNewContainer = React.useRef(false);
   const isSortingContainer =
     activeId != null ? containers.includes(activeId) : false;
 
@@ -70,7 +70,7 @@ export function MultipleContainers({
    * - If there are no intersecting containers, return the last matched intersection
    *
    */
-  const collisionDetectionStrategy: CollisionDetection = useCallback(
+  const collisionDetectionStrategy: CollisionDetection = React.useCallback(
     (args) => {
       if (activeId && activeId in items) {
         return closestCenter({
@@ -126,7 +126,7 @@ export function MultipleContainers({
     },
     [activeId, items],
   );
-  const [clonedItems, setClonedItems] = useState<Items | null>(null);
+  const [clonedItems, setClonedItems] = React.useState<Items | null>(null);
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -151,7 +151,7 @@ export function MultipleContainers({
     setClonedItems(null);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     requestAnimationFrame(() => {
       recentlyMovedToNewContainer.current = false;
     });
@@ -307,7 +307,7 @@ export function MultipleContainers({
                   variant="ghost"
                   onClick={() => handleRemove(containerId)}
                 >
-                  <TrashIcon className="size-5" />
+                  <Icon name="trash" />
                 </Button>
               }
             >

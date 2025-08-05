@@ -1,9 +1,9 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { Editor, useEditorState } from "@tiptap/react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
-import { RedoIcon } from "lucide-react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { ca } from "date-fns/locale";
 
 type RichTextEditorRedoProps = React.ComponentProps<typeof Button> & {
   editor: Editor;
@@ -31,7 +31,7 @@ function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
         onClick={() => editor.chain().focus().redo().run()}
         {...props}
       >
-        <RedoIcon className="size-5" />
+        <Icon name="redo" />
       </Button>
     </Tooltip>
   );

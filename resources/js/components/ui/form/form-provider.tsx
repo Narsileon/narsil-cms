@@ -1,3 +1,4 @@
+import * as React from "react";
 import { FormContext } from "./form-context";
 import { useForm } from "@inertiajs/react";
 import type { Block, Field } from "@narsil-cms/types/forms";

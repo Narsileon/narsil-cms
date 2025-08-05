@@ -1,5 +1,6 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
-import { DeleteIcon, EditIcon, MoreHorizontalIcon, XIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
@@ -47,7 +48,7 @@ function DataTableRowMenu({
             size="icon"
             variant="ghost"
           >
-            <MoreHorizontalIcon className="size-5" />
+            <Icon name="more-horizontal" />
           </Button>
         </DropdownMenuTrigger>
       </Tooltip>
@@ -58,12 +59,12 @@ function DataTableRowMenu({
               <DropdownMenuItem asChild={true}>
                 {modal ? (
                   <ModalLink href={route(routes.edit, id)}>
-                    <EditIcon />
+                    <Icon name="edit" />
                     {getLabel("ui.edit")}
                   </ModalLink>
                 ) : (
                   <Link as="button" href={route(routes.edit, id)}>
-                    <EditIcon />
+                    <Icon name="edit" />
                     {getLabel("ui.edit")}
                   </Link>
                 )}
@@ -80,7 +81,7 @@ function DataTableRowMenu({
                     _back: true,
                   }}
                 >
-                  <DeleteIcon />
+                  <Icon name="trash" />
                   {getLabel("ui.delete")}
                 </Link>
               </DropdownMenuItem>
@@ -93,7 +94,7 @@ function DataTableRowMenu({
                 table?.resetRowSelection();
               }}
             >
-              <XIcon />
+              <Icon name="x" />
               {getLabel("ui.deselect_all")}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -111,7 +112,7 @@ function DataTableRowMenu({
                     _back: true,
                   }}
                 >
-                  <DeleteIcon />
+                  <Icon name="trash" />
                   {getLabel("ui.delete_selected")}
                 </Link>
               </DropdownMenuItem>

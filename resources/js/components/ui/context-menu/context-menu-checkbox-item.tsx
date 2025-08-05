@@ -1,6 +1,7 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
-import { CheckIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type ContextMenuCheckboxItemProps = React.ComponentProps<
   typeof ContextMenuPrimitive.CheckboxItem
@@ -27,7 +28,7 @@ function ContextMenuCheckboxItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
+          <Icon className="size-4" name="check" />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}

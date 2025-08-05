@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Toaster as Sonner } from "sonner";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import type { Theme } from "@narsil-cms/stores/theme-store";

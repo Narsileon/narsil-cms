@@ -1,6 +1,7 @@
-import { CircleIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type ContextMenuRadioItemProps = React.ComponentProps<
   typeof ContextMenuPrimitive.RadioItem
@@ -25,7 +26,7 @@ function ContextMenuRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
+          <Icon className="size-2 fill-current" name="circle" />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}

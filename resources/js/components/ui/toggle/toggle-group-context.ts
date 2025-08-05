@@ -1,8 +1,8 @@
-import { createContext, useContext } from "react";
+import * as React from "react";
 import { toggleVariants } from "./toggle";
 import type { VariantProps } from "class-variance-authority";
 
-export const ToggleGroupContext = createContext<
+export const ToggleGroupContext = React.createContext<
   VariantProps<typeof toggleVariants>
 >({
   size: "default",
@@ -10,7 +10,7 @@ export const ToggleGroupContext = createContext<
 });
 
 function useToggleGroup() {
-  const context = useContext(ToggleGroupContext);
+  const context = React.useContext(ToggleGroupContext);
 
   if (!context) {
     throw new Error("useToggleGroup must be used within a ToggleGroup");

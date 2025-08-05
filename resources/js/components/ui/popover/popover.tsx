@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Popover as PopoverPrimitive } from "radix-ui";
 
 type PopoverProps = React.ComponentProps<typeof PopoverPrimitive.Root> & {};

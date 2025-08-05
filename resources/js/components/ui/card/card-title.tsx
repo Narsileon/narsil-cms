@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 
 type CardTitleProps = React.ComponentProps<"div"> & {};

@@ -1,6 +1,7 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { isString } from "lodash";
-import { SettingsIcon } from "lucide-react";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import useDataTable from "./data-table-context";
@@ -42,7 +43,7 @@ function DataTableSettings({
             variant="outline"
             {...props}
           >
-            <SettingsIcon />
+            <Icon name="settings" />
           </Button>
         </DropdownMenuTrigger>
       </Tooltip>

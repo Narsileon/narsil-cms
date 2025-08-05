@@ -1,3 +1,4 @@
+import * as React from "react";
 import { AspectRatio as AspectRatioPrimitive } from "radix-ui";
 
 type AspectRatioProps = React.ComponentProps<

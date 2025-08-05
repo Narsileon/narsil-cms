@@ -1,5 +1,6 @@
-import { CircleIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
 type RadioGroupItemProps = React.ComponentProps<
@@ -24,7 +25,10 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
         data-slot="radio-group-indicator"
         className="relative flex items-center justify-center"
       >
-        <CircleIcon className="fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
+        <Icon
+          className="fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2"
+          name="circle"
+        />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );

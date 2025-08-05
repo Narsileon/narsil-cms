@@ -1,8 +1,9 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
-import { XIcon } from "lucide-react";
 
 type DialogCloseButtonProps = React.ComponentProps<
   typeof DialogPrimitive.Close
@@ -25,7 +26,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
       )}
       {...props}
     >
-      <XIcon />
+      <Icon name="x" />
       <VisuallyHidden>
         {getLabel("accessibility.close_dialog", "Close dialog")}
       </VisuallyHidden>

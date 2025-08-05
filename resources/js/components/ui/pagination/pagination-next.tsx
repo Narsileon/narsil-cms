@@ -1,5 +1,6 @@
-import { ChevronRightIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import PaginationLink from "./pagination-link";
 
 type PaginationNextProps = React.ComponentProps<typeof PaginationLink> & {};
@@ -13,7 +14,7 @@ function PaginationNext({ className, ...props }: PaginationNextProps) {
       {...props}
     >
       <span className="hidden sm:block">Next</span>
-      <ChevronRightIcon />
+      <Icon name="chevron-right" />
     </PaginationLink>
   );
 }

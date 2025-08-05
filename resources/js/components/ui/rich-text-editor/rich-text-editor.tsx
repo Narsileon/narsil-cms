@@ -1,7 +1,7 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { EditorContent, EditorOptions, useEditor } from "@tiptap/react";
 import { Placeholder } from "@tiptap/extensions";
-import { useEffect } from "react";
 import RichTextEditorToolbar from "./rich-text-editor-toolbar";
 import StarterKit from "@tiptap/starter-kit";
 import Subscript from "@tiptap/extension-subscript";
@@ -72,7 +72,7 @@ function RichTextEditor({
     ...props,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (editor && editor?.getHTML() !== value) {
       editor?.commands.setContent(value);
     }

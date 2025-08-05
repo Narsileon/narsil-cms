@@ -1,6 +1,7 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Input } from "@narsil-cms/components/ui/input";
-import { SearchIcon, XIcon } from "lucide-react";
 import useDataTable from "./data-table-context";
 
 type DataTableInputProps = React.ComponentProps<typeof Input> & {};
@@ -10,7 +11,10 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
 
   return (
     <div className={cn("relative", className)}>
-      <SearchIcon className="absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+      <Icon
+        className="absolute top-1/2 left-3 size-4 -translate-y-1/2"
+        name="search"
+      />
       <Input
         className={cn("pl-9")}
         value={dataTableStore.search ?? ""}
@@ -18,8 +22,9 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
         {...props}
       />
       {dataTableStore.search ? (
-        <XIcon
+        <Icon
           className="absolute top-1/2 right-3 size-4 -translate-y-1/2"
+          name="x"
           onClick={() => dataTableStore.setSearch(null)}
         />
       ) : null}

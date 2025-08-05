@@ -1,5 +1,6 @@
-import { ChevronUpIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Select as SelectPrimitive } from "radix-ui";
 
 type SelectScrollUpButtonProps = React.ComponentProps<
@@ -19,7 +20,7 @@ function SelectScrollUpButton({
       )}
       {...props}
     >
-      <ChevronUpIcon className="size-4" />
+      <Icon className="size-4" name="chevron-up" />
     </SelectPrimitive.ScrollUpButton>
   );
 }

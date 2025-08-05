@@ -1,3 +1,5 @@
+import * as React from "react";
+
 type PaginationItemProps = React.ComponentProps<"li"> & {};
 
 function PaginationItem({ ...props }: PaginationItemProps) {

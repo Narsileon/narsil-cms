@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Dialog as SheetPrimitive } from "radix-ui";
 
 type SheetPortalProps = React.ComponentProps<typeof SheetPrimitive.Portal> & {};

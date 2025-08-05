@@ -1,3 +1,5 @@
+import * as React from "react";
+
 type PaginationProps = React.ComponentProps<"nav"> & {};
 
 function Pagination({ ...props }: PaginationProps) {

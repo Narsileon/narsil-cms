@@ -1,5 +1,6 @@
+import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
-import { ListIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -38,7 +39,7 @@ function RichTextEditorBulletList({
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         {...props}
       >
-        <ListIcon className="size-5" />
+        <Icon name="list-bullet" />
       </Toggle>
     </Tooltip>
   );

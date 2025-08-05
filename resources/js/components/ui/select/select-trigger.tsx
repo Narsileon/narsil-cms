@@ -1,5 +1,6 @@
-import { ChevronDownIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Select as SelectPrimitive } from "radix-ui";
 
 type SelectTriggerProps = React.ComponentProps<
@@ -36,7 +37,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon className="size-4 opacity-50" />
+        <Icon name="chevron-down" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );

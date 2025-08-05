@@ -1,13 +1,15 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { Loader2 } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
-type SpinnerProps = React.ComponentProps<typeof Loader2> & {};
+type SpinnerProps = Omit<React.ComponentProps<typeof Icon>, "name"> & {};
 
 function Spinner({ className, ...props }: SpinnerProps) {
   return (
-    <Loader2
+    <Icon
       data-slot="spinner"
-      className={cn("size-6 animate-spin", className)}
+      className={cn("animate-spin", className)}
+      name="loader-circle"
       {...props}
     />
   );

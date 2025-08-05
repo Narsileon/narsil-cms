@@ -1,8 +1,9 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
-import { XIcon } from "lucide-react";
 import SheetOverlay from "./sheet-overlay";
 import SheetPortal from "./sheet-portal";
 
@@ -61,7 +62,7 @@ function SheetContent({
             "data-[state=open]:bg-secondary",
           )}
         >
-          <XIcon className="size-4" />
+          <Icon className="size-4" name="x" />
           <VisuallyHidden>
             {getLabel("accessibility.close_sheet", "Close sheet")}
           </VisuallyHidden>

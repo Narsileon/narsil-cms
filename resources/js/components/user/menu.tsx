@@ -1,7 +1,6 @@
 import { Button } from "@narsil-cms/components/ui/button";
-import { DynamicIcon } from "lucide-react/dynamic";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
-import { MenuIcon } from "lucide-react";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useAuth, useNavigation } from "@narsil-cms/hooks/use-props";
@@ -41,7 +40,7 @@ function UserMenu({ ...props }: UserMenuProps) {
               size="icon"
               variant="ghost"
             >
-              <MenuIcon />
+              <Icon name="menu" />
             </Button>
           )}
         </DropdownMenuTrigger>
@@ -52,7 +51,7 @@ function UserMenu({ ...props }: UserMenuProps) {
             case "separator":
               return <DropdownMenuSeparator key={index} />;
             default:
-              const icon = item.icon ? <DynamicIcon name={item.icon} /> : null;
+              const icon = item.icon ? <Icon name={item.icon} /> : null;
 
               return (
                 <DropdownMenuItem asChild={true} key={index}>

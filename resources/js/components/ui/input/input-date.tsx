@@ -1,7 +1,7 @@
+import * as React from "react";
 import { Calendar } from "@narsil-cms/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Input } from "@narsil-cms/components/ui/input";
-import { useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -14,7 +14,7 @@ type InputDateProps = Omit<React.ComponentProps<typeof Input>, "value"> & {
 };
 
 function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const date = value ? new Date(value) : undefined;
 
@@ -27,7 +27,10 @@ function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
           onChange={(event) => onChange(event.target.value)}
           {...props}
         />
-        <CalendarIcon className="absolute top-1/2 right-2 size-5 -translate-y-1/2" />
+        <Icon
+          className="absolute top-1/2 right-2 -translate-y-1/2"
+          name="calendar"
+        />
       </PopoverTrigger>
       <PopoverContent className="w-auto overflow-hidden p-0" align="start">
         <Calendar

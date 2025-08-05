@@ -1,6 +1,7 @@
-import { CheckIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type DropdownMenuCheckboxItemProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.CheckboxItem
@@ -27,7 +28,7 @@ function DropdownMenuCheckboxItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
+          <Icon className="size-4" name="check" />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}

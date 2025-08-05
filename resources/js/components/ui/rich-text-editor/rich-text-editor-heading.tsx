@@ -1,15 +1,9 @@
+import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import {
-  Heading1Icon,
-  Heading2Icon,
-  Heading3Icon,
-  Heading4Icon,
-  Heading5Icon,
-  Heading6Icon,
-} from "lucide-react";
 
 type RichTextEditorHeadingProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
@@ -49,19 +43,7 @@ function RichTextEditorHeading({
         }
         {...props}
       >
-        {level === 1 ? (
-          <Heading1Icon className="size-5" />
-        ) : level === 2 ? (
-          <Heading2Icon className="size-5" />
-        ) : level === 3 ? (
-          <Heading3Icon className="size-5" />
-        ) : level === 4 ? (
-          <Heading4Icon className="size-5" />
-        ) : level === 5 ? (
-          <Heading5Icon className="size-5" />
-        ) : level === 6 ? (
-          <Heading6Icon className="size-5" />
-        ) : null}
+        <Icon name={`heading-${level}`} />
       </Toggle>
     </Tooltip>
   );

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import Modal from "./modal";
 

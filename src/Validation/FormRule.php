@@ -37,6 +37,10 @@ abstract class FormRule extends Rule
      */
     final public const DECIMAL = 'decimal';
     /**
+     * @var string The "distinct" rule.
+     */
+    final public const DISTINCT = 'distinct';
+    /**
      * @var string The "email" rule.
      */
     final public const EMAIL = 'email';

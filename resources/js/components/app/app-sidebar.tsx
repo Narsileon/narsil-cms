@@ -1,5 +1,5 @@
-import { ChevronLeftIcon } from "lucide-react";
-import { DynamicIcon } from "lucide-react/dynamic";
+import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -18,7 +18,6 @@ import {
   SidebarRail,
   useSidebar,
 } from "@narsil-cms/components/ui/sidebar";
-import { cn } from "@narsil-cms/lib/utils";
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {};
 
@@ -49,25 +48,27 @@ function AppSidebar({ ...props }: AppSidebarProps) {
                 <SidebarGroup key={index}>
                   <SidebarGroupLabel>{item.label}</SidebarGroupLabel>
                   <SidebarGroupContent>
-                    {item.children.map((child, childIndex) => (
-                      <SidebarMenuItem key={childIndex}>
-                        <SidebarMenuButton
-                          asChild
-                          isActive={child.href.endsWith(
-                            window.location.pathname,
-                          )}
-                          tooltip={child.label}
-                        >
-                          <Link
-                            href={child.href}
-                            onSuccess={() => setOpenMobile(false)}
+                    {item.children.map((child, childIndex) => {
+                      return (
+                        <SidebarMenuItem key={childIndex}>
+                          <SidebarMenuButton
+                            asChild
+                            isActive={child.href.endsWith(
+                              window.location.pathname,
+                            )}
+                            tooltip={child.label}
                           >
-                            <DynamicIcon name={child.icon} />
-                            {child.label}
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
+                            <Link
+                              href={child.href}
+                              onSuccess={() => setOpenMobile(false)}
+                            >
+                              <Icon name={child.icon} />
+                              {child.label}
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      );
+                    })}
                   </SidebarGroupContent>
                 </SidebarGroup>
               );
@@ -81,7 +82,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
                   tooltip={item.label}
                 >
                   <Link href={item.href} onSuccess={() => setOpenMobile(false)}>
-                    <DynamicIcon name={item.icon} />
+                    <Icon name={item.icon} />
                     {item.label}
                   </Link>
                 </SidebarMenuButton>
@@ -95,8 +96,9 @@ function AppSidebar({ ...props }: AppSidebarProps) {
           tooltip={getLabel("accessibility.open_sidebar")}
           onClick={toggleSidebar}
         >
-          <ChevronLeftIcon
+          <Icon
             className={cn("duration-200", open && "rotate-180")}
+            name="chevron-left"
           />
           {open && getLabel("accessibility.close_sidebar")}
         </SidebarMenuButton>

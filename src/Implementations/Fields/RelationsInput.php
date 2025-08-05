@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\RelationsInput as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Support\LabelsBag;
 
 #endregion
 
@@ -22,6 +23,12 @@ class RelationsInput extends AbstractField implements Contract
      */
     public function __construct()
     {
+        app(LabelsBag::class)
+            ->add('narsil-cms::ui.cancel')
+            ->add('narsil-cms::ui.edit')
+            ->add('narsil-cms::ui.remove')
+            ->add('narsil-cms::ui.save');
+
         $this->value([]);
     }
 
@@ -66,19 +73,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function dataPath(string $dataPath): static
+    final public function form(array $form): static
     {
-        $this->settings['dataPath'] = $dataPath;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function labelKey(string $labelKey): static
-    {
-        $this->settings['labelKey'] = $labelKey;
+        $this->settings['form'] = $form;
 
         return $this;
     }
@@ -119,6 +116,16 @@ class RelationsInput extends AbstractField implements Contract
     final public function value(array $value): static
     {
         $this->settings['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function unique(bool $unique): static
+    {
+        $this->settings['unique'] = $unique;
 
         return $this;
     }

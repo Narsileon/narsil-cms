@@ -1,5 +1,6 @@
-import { AsteriskIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Label as LabelPrimitive } from "radix-ui";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -39,9 +40,10 @@ function FormLabel({
       {children}
       {required && (
         <Tooltip tooltip={getLabel("accessibility.required")}>
-          <AsteriskIcon
+          <Icon
             className="text-destructive !size-3"
             aria-hidden="true"
+            name="asterisk"
           />
         </Tooltip>
       )}

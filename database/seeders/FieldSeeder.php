@@ -5,10 +5,12 @@ namespace Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
+use Narsil\Contracts\Fields\BuilderElement;
 use Narsil\Contracts\Fields\RichTextInput;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\FieldBlock;
 
 #endregion
 
@@ -21,11 +23,15 @@ class FieldSeeder extends Seeder
      */
     public function run(): void
     {
-        $contentBlock = $this->createContentBlock();
+        // Blocks
         $richTextBlock = $this->createRichTextBlock();
 
-        $contentBlock->blocks()->attach($richTextBlock->{Field::ID}, [
-            BlockElement::POSITION => 0,
+        // Fields
+        $builderField = $this->createBuilderField();
+
+        FieldBlock::create([
+            FieldBlock::BLOCK_ID => $richTextBlock->{Block::ID},
+            FieldBlock::FIELD_ID => $builderField->{Field::ID},
         ]);
     }
 
@@ -47,29 +53,44 @@ class FieldSeeder extends Seeder
     }
 
     /**
+     * @return Field
+     */
+    protected function createBuilderField(): Field
+    {
+        $field = Field::create([
+            Field::NAME => 'Builder',
+            Field::HANDLE => 'builder',
+            Field::TYPE => BuilderElement::class,
+            Field::SETTINGS => app(BuilderElement::class)->toArray(),
+        ]);
+
+        return $field;
+    }
+
+    /**
      * @return Block
      */
     protected function createRichTextBlock(): Block
     {
-        $richTextField = Field::create([
+        $field = Field::create([
             Field::NAME => 'Rich text',
             Field::HANDLE => 'rich_text',
             Field::TYPE => RichTextInput::class,
-            Field::SETTINGS => app(RichTextInput::class)
-                ->toArray(),
-
+            Field::SETTINGS => app(RichTextInput::class)->toArray(),
         ]);
 
-        $richTextBlock = Block::create([
+        $block = Block::create([
             Block::NAME => 'Rich text',
             Block::HANDLE => 'rich_text',
         ]);
 
-        $richTextBlock->fields()->attach($richTextField->{Field::ID}, [
+        $block->fields()->attach($field->{Field::ID}, [
+            BlockElement::HANDLE => $field->{Field::HANDLE},
+            BlockElement::NAME => $field->{Field::NAME},
             BlockElement::POSITION => 0,
         ]);
 
-        return $richTextBlock;
+        return $block;
     }
 
     #endregion

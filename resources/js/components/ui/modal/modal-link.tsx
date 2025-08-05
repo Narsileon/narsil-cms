@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Slot as SlotPrimitive } from "radix-ui";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import type { VisitCallbacks } from "@inertiajs/core";

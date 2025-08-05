@@ -1,6 +1,7 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
-import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
 import { Header } from "@tanstack/react-table";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 
@@ -11,7 +12,16 @@ type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
 function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
   const { getLabel } = useLabels();
 
-  const isSorted = header.column.getIsSorted();
+  function getIconName() {
+    switch (header.column.getIsSorted()) {
+      case "asc":
+        return "chevron-up";
+      case "desc":
+        return "chevron-down";
+      default:
+        return "chevrons-up-down";
+    }
+  }
 
   return (
     <Tooltip tooltip={getLabel("accessibility.sort_column")}>
@@ -23,13 +33,7 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
         onClick={header.column.getToggleSortingHandler()}
         {...props}
       >
-        {isSorted === "asc" ? (
-          <ChevronUp className="size-4" />
-        ) : isSorted === "desc" ? (
-          <ChevronDown className="size-4" />
-        ) : (
-          <ChevronsUpDown className="size-4" />
-        )}
+        <Icon className="size-4" name={getIconName()} />
       </Button>
     </Tooltip>
   );

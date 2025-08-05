@@ -1,6 +1,6 @@
+import * as React from "react";
 import { cloneDeep, get, unset } from "lodash";
 import { FormFieldContext } from "./form-field-context";
-import { useEffect, useState } from "react";
 import type { BlockElementCondition, Field } from "@narsil-cms/types/forms";
 import useForm from "./form-context";
 
@@ -15,7 +15,7 @@ type FormFieldProps = {
 };
 
 const FormField = ({ conditions, field, render }: FormFieldProps) => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = React.useState(true);
 
   const { data, errors, setData } = useForm();
   const { handle, settings } = field;
@@ -23,7 +23,7 @@ const FormField = ({ conditions, field, render }: FormFieldProps) => {
   const value = get(data, handle);
   const error = get(errors, handle);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let nextVisible = true;
 
     for (const condition of conditions || []) {

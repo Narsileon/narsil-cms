@@ -1,5 +1,6 @@
+import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
-import { SuperscriptIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -48,7 +49,7 @@ function RichTextEditorSuperscript({
         }}
         {...props}
       >
-        <SuperscriptIcon className="size-5" />
+        <Icon name="superscript" />
       </Toggle>
     </Tooltip>
   );

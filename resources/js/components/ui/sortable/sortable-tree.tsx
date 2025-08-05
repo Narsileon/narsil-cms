@@ -1,7 +1,7 @@
+import * as React from "react";
 import { createPortal } from "react-dom";
 import { getProjection } from "@narsil-cms/lib/sortable";
 import { SortableItem } from ".";
-import { useEffect, useRef, useState } from "react";
 import {
   closestCenter,
   DndContext,
@@ -33,9 +33,9 @@ type SortableProps = {
 };
 
 function Sortable({ items, setItems }: SortableProps) {
-  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
-  const [overId, setOverId] = useState<UniqueIdentifier | null>(null);
-  const [offsetLeft, setOffsetLeft] = useState(0);
+  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
+  const [overId, setOverId] = React.useState<UniqueIdentifier | null>(null);
+  const [offsetLeft, setOffsetLeft] = React.useState(0);
 
   const projected =
     activeId && overId
@@ -49,7 +49,7 @@ function Sortable({ items, setItems }: SortableProps) {
     useSensor(TouchSensor, {}),
     useSensor(KeyboardSensor, {}),
   );
-  const sensorContext = useRef({
+  const sensorContext = React.useRef({
     items: items,
     offset: offsetLeft,
   });
@@ -107,7 +107,7 @@ function Sortable({ items, setItems }: SortableProps) {
     document.body.style.setProperty("cursor", "");
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     sensorContext.current = {
       items: items,
       offset: offsetLeft,

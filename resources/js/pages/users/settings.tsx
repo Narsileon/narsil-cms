@@ -1,5 +1,5 @@
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
-import { SettingsIcon, ShieldCheckIcon, UserPenIcon } from "lucide-react";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import ConfigurationForm from "@narsil-cms/components/user/configuration-form";
@@ -39,17 +39,17 @@ function UserSettings({
       <TabsList className="md:border-r">
         {auth ? (
           <TabsTrigger value="account">
-            <UserPenIcon />
+            <Icon name="user-edit" />
             {getLabel("ui.account")}
           </TabsTrigger>
         ) : null}
         <TabsTrigger value="configuration">
-          <SettingsIcon />
+          <Icon name="settings" />
           {getLabel("ui.personalization")}
         </TabsTrigger>
         {auth ? (
           <TabsTrigger value="security">
-            <ShieldCheckIcon />
+            <Icon name="shield" />
             {getLabel("ui.security")}
           </TabsTrigger>
         ) : null}

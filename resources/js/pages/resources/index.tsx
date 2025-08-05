@@ -1,8 +1,8 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
-import { PlusIcon } from "lucide-react";
 import { route } from "ziggy-js";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -129,7 +129,7 @@ function ResourceIndex({
                     asChild={true}
                   >
                     <Link href={route(dataTable.meta.routes.create)}>
-                      <PlusIcon />
+                      <Icon name="plus" />
                     </Link>
                   </Button>
                 </Tooltip>

@@ -1,8 +1,8 @@
+import * as React from "react";
 import { createPortal } from "react-dom";
 import { FormInputRenderer } from "@narsil-cms/components/ui/form";
 import { get, set } from "lodash";
-import { SortableTableRow } from "@narsil-cms/components/ui/sortable";
-import { useState } from "react";
+import { SortableTableRow } from ".";
 import {
   closestCenter,
   DragOverlay,
@@ -26,8 +26,8 @@ import {
   TableHeader,
   TableRow,
 } from "@narsil-cms/components/ui/table";
-import type { AnonymousItem } from ".";
 import type { Field } from "@narsil-cms/types/forms";
+import type { SortableTableItem } from ".";
 import type {
   DragCancelEvent,
   DragEndEvent,
@@ -36,9 +36,9 @@ import type {
 
 type SortableTableProps = {
   columns: Field[];
-  items: AnonymousItem[];
+  items: SortableTableItem[];
   placeholder?: string;
-  setItems: (items: AnonymousItem[]) => void;
+  setItems: (items: SortableTableItem[]) => void;
 };
 
 function SortableTable({
@@ -47,7 +47,7 @@ function SortableTable({
   placeholder,
   setItems,
 }: SortableTableProps) {
-  const [active, setActive] = useState<AnonymousItem | null>(null);
+  const [active, setActive] = React.useState<SortableTableItem | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -77,7 +77,7 @@ function SortableTable({
       return;
     }
 
-    const item = items.find((x) => x.id === active.id) as AnonymousItem;
+    const item = items.find((x) => x.id === active.id) as SortableTableItem;
 
     setActive(item);
   }

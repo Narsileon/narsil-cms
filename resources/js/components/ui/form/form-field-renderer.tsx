@@ -2,6 +2,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { Heading } from "@narsil-cms/components/ui/heading";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
+import FormInputRenderer from "./form-input-renderer";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
@@ -12,7 +13,6 @@ import type {
   Field,
   SelectOption,
 } from "@narsil-cms/types/forms";
-import FormInputRenderer from "./form-input-renderer";
 
 type FormFieldRendererProps = {
   className?: string;
@@ -64,7 +64,7 @@ function FormFieldRenderer({
   }
 
   return element.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
-    <Heading className="bg-accent/50 -mx-4 p-4" level="h2">
+    <Heading className="bg-input/25 -mx-4 border-t border-b p-4" level="h2">
       {element.name}
     </Heading>
   ) : (

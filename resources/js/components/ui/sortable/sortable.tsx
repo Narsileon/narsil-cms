@@ -1,9 +1,7 @@
+import * as React from "react";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/ui/card";
 import { createPortal } from "react-dom";
-import { get } from "lodash";
-import { route } from "ziggy-js";
 import { SortableAdd, SortableItem } from "@narsil-cms/components/ui/sortable";
-import { useState } from "react";
 import {
   closestCenter,
   DragOverlay,
@@ -21,7 +19,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import type { AnonymousItem } from ".";
-import type { GroupedSelectOption } from "@narsil-cms/types/forms";
+import type { Field, GroupedSelectOption } from "@narsil-cms/types/forms";
 import type {
   DragCancelEvent,
   DragEndEvent,
@@ -29,23 +27,23 @@ import type {
 } from "@dnd-kit/core";
 
 type SortableProps = {
-  dataPath?: string;
   direction?: "horizontal" | "vertical";
-  labelKey?: string;
+  form?: Field[];
   items: AnonymousItem[];
   options: GroupedSelectOption[];
+  unique?: boolean;
   setItems: (items: AnonymousItem[]) => void;
 };
 
 function Sortable({
-  dataPath,
   direction = "vertical",
+  form,
   items,
-  labelKey = "name",
   options,
+  unique,
   setItems,
 }: SortableProps) {
-  const [active, setActive] = useState<AnonymousItem | null>(null);
+  const [active, setActive] = React.useState<AnonymousItem | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -62,10 +60,10 @@ function Sortable({
 
     if (over) {
       const activeIndex = items.findIndex(
-        (x) => x.identifier == active.id || x.id === active.id,
+        (item) => getUniqueIdentifier(item) == active.id,
       );
       const overIndex = items.findIndex(
-        (x) => x.identifier == over.id || x.id === over.id,
+        (item) => getUniqueIdentifier(item) == over.id,
       );
 
       if (activeIndex !== overIndex) {
@@ -80,10 +78,30 @@ function Sortable({
     }
 
     const item = items.find(
-      (x) => x.identifier == active.id || x.id === active.id,
+      (item) => getUniqueIdentifier(item) == active.id,
     ) as AnonymousItem;
 
     setActive(item);
+  }
+
+  function getGroup(item: AnonymousItem) {
+    const group = options.find((x) =>
+      item.identifier.includes(x.identifier),
+    ) as GroupedSelectOption;
+
+    return group;
+  }
+
+  function getFormattedLabel(item: AnonymousItem) {
+    const group = getGroup(item);
+
+    return `${item[group.optionLabel]} (${item[group.optionValue]})`;
+  }
+
+  function getUniqueIdentifier(item: AnonymousItem) {
+    const group = getGroup(item);
+
+    return item[group.optionValue];
   }
 
   return (
@@ -97,7 +115,7 @@ function Sortable({
           onDragStart={onDragStart}
         >
           <SortableContext
-            items={items.map((x) => x.identifier ?? x.id)}
+            items={items.map((item) => getUniqueIdentifier(item))}
             strategy={
               direction === "vertical"
                 ? verticalListSortingStrategy
@@ -106,18 +124,24 @@ function Sortable({
           >
             <ul className="grid gap-2">
               {items.map((item) => {
-                const id = item?.identifier ?? item.id;
-                const label = get(
-                  item,
-                  dataPath ? `${dataPath}.${labelKey}` : labelKey,
-                );
+                const id = getUniqueIdentifier(item);
+                const label = getFormattedLabel(item);
 
                 return (
                   <SortableItem
                     id={id}
-                    data={item}
+                    form={form}
+                    group={getGroup(item)}
+                    item={item}
                     label={label}
-                    onRemove={() => {
+                    onItemChange={(value: AnonymousItem) => {
+                      setItems(
+                        items.map((x) =>
+                          getUniqueIdentifier(x) === id ? value : x,
+                        ),
+                      );
+                    }}
+                    onItemRemove={() => {
                       setItems(items.filter((x) => x !== item));
                     }}
                     key={id}
@@ -130,11 +154,10 @@ function Sortable({
             <DragOverlay>
               {active ? (
                 <SortableItem
-                  id={active.identifier ?? active.id}
-                  label={get(
-                    active,
-                    dataPath ? `${dataPath}.${labelKey}` : labelKey,
-                  )}
+                  id={getUniqueIdentifier(active)}
+                  group={getGroup(active)}
+                  item={active}
+                  label={getFormattedLabel(active)}
                 />
               ) : null}
             </DragOverlay>,
@@ -144,19 +167,12 @@ function Sortable({
       </CardContent>
       {options?.length > 0 ? (
         <CardFooter className="flex-col gap-4 border-t">
-          {options?.map((option, index) => {
+          {options?.map((group, index) => {
             return (
               <SortableAdd
-                dataPath={dataPath}
-                href={
-                  option.routes?.create
-                    ? route(option.routes.create)
-                    : undefined
-                }
-                initialOptions={option.options}
                 items={items}
-                label={option.label}
-                labelKey={labelKey}
+                group={group}
+                unique={unique}
                 setItems={setItems}
                 key={index}
               />

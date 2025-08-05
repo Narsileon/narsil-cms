@@ -1,6 +1,6 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Skeleton } from "@narsil-cms/components/ui/skeleton";
-import { useMemo } from "react";
 
 type SidebarMenuSkeletonProps = React.ComponentProps<"div"> & {
   showIcon?: boolean;
@@ -11,7 +11,7 @@ function SidebarMenuSkeleton({
   showIcon = false,
   ...props
 }: SidebarMenuSkeletonProps) {
-  const width = useMemo(() => {
+  const width = React.useMemo(() => {
     return `${Math.floor(Math.random() * 40) + 50}%`;
   }, []);
 

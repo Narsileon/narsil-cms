@@ -1,5 +1,6 @@
-import { CheckIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Select as SelectPrimitive } from "radix-ui";
 
 type SelectItemProps = React.ComponentProps<typeof SelectPrimitive.Item> & {};
@@ -21,7 +22,7 @@ function SelectItem({ children, className, ...props }: SelectItemProps) {
     >
       <span className="absolute right-2 flex size-3.5 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
+          <Icon className="size-4" name="check" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

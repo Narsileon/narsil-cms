@@ -1,5 +1,6 @@
+import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
-import { ListOrderedIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
@@ -38,7 +39,7 @@ function RichTextEditorOrderedList({
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         {...props}
       >
-        <ListOrderedIcon className="size-5" />
+        <Icon name="list-ordered" />
       </Toggle>
     </Tooltip>
   );

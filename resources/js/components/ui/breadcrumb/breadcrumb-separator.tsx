@@ -1,5 +1,6 @@
-import { ChevronRight } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type BreadcrumbSeparatorProps = React.ComponentProps<"li"> & {};
 
@@ -16,7 +17,7 @@ function BreadcrumbSeparator({
       role="presentation"
       {...props}
     >
-      {children ?? <ChevronRight />}
+      {children ?? <Icon name="chevron-right" />}
     </li>
   );
 }

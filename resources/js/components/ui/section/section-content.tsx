@@ -1,3 +1,5 @@
+import * as React from "react";
+
 type SectionContentProps = React.ComponentProps<"div"> & {};
 
 function SectionContent({ ...props }: SectionContentProps) {

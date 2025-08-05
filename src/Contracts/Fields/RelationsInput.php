@@ -24,19 +24,11 @@ interface RelationsInput extends Field
     public function columns(int $columns): static;
 
     /**
-     * @param string $dataPath
+     * @param array $form
      *
      * @return static Returns the current object instance.
      */
-    public function dataPath(string $dataPath): static;
-
-
-    /**
-     * @param string $labelKey
-     *
-     * @return static Returns the current object instance.
-     */
-    public function labelKey(string $labelKey): static;
+    public function form(array $form): static;
 
     /**
      * @param boolean $multiple
@@ -65,6 +57,13 @@ interface RelationsInput extends Field
      * @return static Returns the current object instance.
      */
     public function value(array $value): static;
+
+    /**
+     * @param boolean $unique
+     *
+     * @return static Returns the current object instance.
+     */
+    public function unique(bool $unique): static;
 
     #endregion
 }

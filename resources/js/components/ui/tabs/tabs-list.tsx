@@ -1,6 +1,7 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
 import { Tabs as TabsPrimitive } from "radix-ui";
-import { ScrollArea } from "../scroll-area";
 
 type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> & {};
 

@@ -1,5 +1,5 @@
 import { Button } from "@narsil-cms/components/ui/button";
-import { CopyIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Label } from "@narsil-cms/components/ui/label";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
@@ -149,7 +149,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                   toast.success(getLabel("two-factor.recovery_codes_copied"));
                 }}
               >
-                <CopyIcon />
+                <Icon name="copy" />
               </Button>
             </CardHeader>
             <CardContent className="gap-4 text-sm">

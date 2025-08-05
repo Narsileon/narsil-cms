@@ -1,11 +1,9 @@
-// https://ui.shadcn.com/docs/components/combobox
-
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
-import { CheckIcon, ChevronDown } from "lucide-react";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { lowerCase } from "lodash";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { useState } from "react";
 import {
   Command,
   CommandEmpty,
@@ -51,7 +49,7 @@ function Combobox({
 }: ComboboxProps) {
   const { getLabel } = useLabels();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const option = options.find((option) => {
     const optionValue = getSelectOption(option, valuePath);
@@ -84,7 +82,7 @@ function Combobox({
         <Button
           id={id}
           className={cn(
-            "w-full justify-between font-normal",
+            "bg-input/25 w-full justify-between font-normal",
             !option && "text-muted-foreground",
             className,
           )}
@@ -96,11 +94,9 @@ function Combobox({
           {option
             ? getSelectOption(option, labelPath)
             : (placeholder ?? "Search...")}
-          <ChevronDown
-            className={cn(
-              "ml-2 size-5 shrink-0 duration-200",
-              open && "rotate-180",
-            )}
+          <Icon
+            className={cn("ml-2 shrink-0 duration-200", open && "rotate-180")}
+            name="chevron-down"
           />
         </Button>
       </PopoverTrigger>
@@ -125,11 +121,12 @@ function Combobox({
                     }}
                     key={optionValue}
                   >
-                    <CheckIcon
+                    <Icon
                       className={cn(
                         "mr-2 h-4 w-4",
                         value == optionValue ? "opacity-100" : "opacity-0",
                       )}
+                      name="check"
                     />
                     {renderOption ? renderOption(option) : optionLabel}
                   </CommandItem>

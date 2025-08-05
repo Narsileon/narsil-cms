@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Table } from "@narsil-cms/components/ui/table";
 import useDataTable from "./data-table-context";
 

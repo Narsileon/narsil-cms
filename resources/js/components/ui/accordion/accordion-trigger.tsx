@@ -1,6 +1,7 @@
+import * as React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
-import { ChevronDown } from "lucide-react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type AccordionTriggerProps = React.ComponentProps<
   typeof AccordionPrimitive.Trigger
@@ -26,11 +27,12 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDown
+        <Icon
           className={cn(
             "text-muted-foreground pointer-events-none size-4 shrink-0",
             "translate-y-0.5 transition-transform duration-200",
           )}
+          name="chevron-down"
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

@@ -1,5 +1,6 @@
-import { CircleIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
 type MenubarRadioItemProps = React.ComponentProps<
@@ -25,7 +26,7 @@ function MenubarRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <MenubarPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
+          <Icon className="size-2 fill-current" name="circle" />
         </MenubarPrimitive.ItemIndicator>
       </span>
       {children}

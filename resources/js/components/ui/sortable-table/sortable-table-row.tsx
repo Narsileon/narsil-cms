@@ -1,10 +1,11 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
+import { Icon } from "@narsil-cms/components/ui/icon";
+import { SortableHandle } from "@narsil-cms/components/ui/sortable";
 import { TableCell, TableRow } from "@narsil-cms/components/ui/table";
-import { PlusIcon, TrashIcon } from "lucide-react";
 import { UniqueIdentifier } from "@dnd-kit/core";
-import SortableHandle from "./sortable-handle";
 import {
   AnimateLayoutChanges,
   defaultAnimateLayoutChanges,
@@ -83,7 +84,7 @@ function SortableTableRow({
         {placeholder ? (
           <TableCell colSpan={colSpan}>
             <div className="flex items-center justify-center gap-1">
-              <PlusIcon className="size-5" />
+              <Icon name="plus" />
               <span>{children}</span>
             </div>
           </TableCell>
@@ -98,7 +99,7 @@ function SortableTableRow({
               variant="ghost"
               onClick={onRemove}
             >
-              <TrashIcon className="size-5" />
+              <Icon name="trash" />
             </Button>
           ) : null}
         </TableCell>

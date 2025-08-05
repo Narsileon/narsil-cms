@@ -1,5 +1,6 @@
-import { ChevronRightIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
 type MenubarSubTriggerProps = React.ComponentProps<
@@ -28,7 +29,7 @@ function MenubarSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto size-4" />
+      <Icon className="ml-auto size-4" name="chevron-right" />
     </MenubarPrimitive.SubTrigger>
   );
 }

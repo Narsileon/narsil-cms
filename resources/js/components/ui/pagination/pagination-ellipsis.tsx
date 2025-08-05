@@ -1,5 +1,6 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { MoreHorizontalIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 
 type PaginationEllipsisProps = React.ComponentProps<"span"> & {
@@ -18,7 +19,7 @@ function PaginationEllipsis({
       className={cn("flex size-9 items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontalIcon className="size-4" />
+      <Icon className="size-4" name="more-horizontal" />
       <VisuallyHidden>{label ?? "More pages"}</VisuallyHidden>
     </span>
   );

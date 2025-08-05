@@ -1,6 +1,7 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
-import { ChevronRightIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type ContextMenuSubTriggerProps = React.ComponentProps<
   typeof ContextMenuPrimitive.SubTrigger
@@ -29,7 +30,7 @@ function ContextMenuSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto" />
+      <Icon className="ml-auto" name="chevron-right" />
     </ContextMenuPrimitive.SubTrigger>
   );
 }

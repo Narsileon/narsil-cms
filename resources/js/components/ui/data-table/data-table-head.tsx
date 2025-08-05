@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
 import { flexRender, Header } from "@tanstack/react-table";

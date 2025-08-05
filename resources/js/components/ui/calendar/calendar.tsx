@@ -1,13 +1,9 @@
+import * as React from "react";
 import { Button, buttonVariants } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import CalendarDayButton from "./calendar-day-button";
-
-import {
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "lucide-react";
 
 type CalendarProps = React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
@@ -137,22 +133,19 @@ function Calendar({
           );
         },
         Chevron: ({ className, orientation, ...props }) => {
-          if (orientation === "left") {
-            return (
-              <ChevronLeftIcon className={cn("size-4", className)} {...props} />
-            );
-          } else if (orientation === "right") {
-            return (
-              <ChevronRightIcon
-                className={cn("size-4", className)}
-                {...props}
-              />
-            );
-          } else {
-            return (
-              <ChevronDownIcon className={cn("size-4", className)} {...props} />
-            );
-          }
+          return (
+            <Icon
+              className={cn("size-4", className)}
+              name={
+                orientation === "left"
+                  ? "chevron-left"
+                  : orientation === "right"
+                    ? "chevron-right"
+                    : "chevron-down"
+              }
+              {...props}
+            />
+          );
         },
         DayButton: CalendarDayButton,
         WeekNumber: ({ children, ...props }) => {

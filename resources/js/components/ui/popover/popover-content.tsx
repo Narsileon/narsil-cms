@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Popover as PopoverPrimitive } from "radix-ui";
 

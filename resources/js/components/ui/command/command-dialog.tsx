@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Command } from "cmdk";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";

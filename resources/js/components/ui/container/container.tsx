@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";

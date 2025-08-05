@@ -1,6 +1,7 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
-import { MenuIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
@@ -28,7 +29,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
         variant="ghost"
         {...props}
       >
-        <MenuIcon className="size-5" />
+        <Icon name="menu" />
         <VisuallyHidden>
           {getLabel("accessibility.toggle_sidebar", "Toggle sidebar")}
         </VisuallyHidden>

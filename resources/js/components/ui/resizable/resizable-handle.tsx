@@ -1,5 +1,6 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { GripVerticalIcon } from "lucide-react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { PanelResizeHandle } from "react-resizable-panels";
 
 type ResizableHandleProps = React.ComponentProps<typeof PanelResizeHandle> & {
@@ -10,9 +11,7 @@ function ResizableHandle({
   className,
   withHandle,
   ...props
-}: React.ComponentProps<typeof PanelResizeHandle> & {
-  withHandle?: boolean;
-}) {
+}: ResizableHandleProps) {
   return (
     <PanelResizeHandle
       data-slot="resizable-handle"
@@ -30,7 +29,7 @@ function ResizableHandle({
     >
       {withHandle && (
         <div className="bg-border z-10 flex h-4 w-3 items-center justify-center rounded-md border">
-          <GripVerticalIcon className="size-2.5" />
+          <Icon className="size-2.5" name="grip-vertical" />
         </div>
       )}
     </PanelResizeHandle>

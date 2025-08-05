@@ -83,7 +83,7 @@ class FieldForm extends AbstractForm implements Contract
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::NAME => trans('narsil-cms::ui.default_name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
@@ -93,7 +93,7 @@ class FieldForm extends AbstractForm implements Contract
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::HANDLE,
-                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::NAME => trans('narsil-cms::ui.default_handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)

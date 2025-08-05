@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
 import ScrollAreaScrollBar from "./scroll-area-scrollbar";

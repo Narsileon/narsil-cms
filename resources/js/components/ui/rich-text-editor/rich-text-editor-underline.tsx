@@ -1,7 +1,8 @@
+import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
-import { UnderlineIcon } from "lucide-react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 
 type RichTextEditorUnderlineProps = React.ComponentProps<typeof Toggle> & {
@@ -40,7 +41,7 @@ function RichTextEditorUnderline({
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         {...props}
       >
-        <UnderlineIcon className="size-5" />
+        <Icon name="underline" />
       </Toggle>
     </Tooltip>
   );

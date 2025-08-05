@@ -1,6 +1,7 @@
-import { ChevronDownIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { cva } from "class-variance-authority";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
 const navigationMenuTriggerStyle = cva(
@@ -32,12 +33,13 @@ function NavigationMenuTrigger({
       {...props}
     >
       {children}
-      <ChevronDownIcon
+      <Icon
         className={cn(
           "relative top-[1px] ml-1 size-3 transition duration-200",
           "group-data-[state=open]:rotate-180",
         )}
         aria-hidden="true"
+        name="chevron-down"
       />
     </NavigationMenuPrimitive.Trigger>
   );

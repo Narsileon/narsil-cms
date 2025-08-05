@@ -3,7 +3,8 @@ import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { Input, InputDate } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
-import { Sortable, SortableTable } from "@narsil-cms/components/ui/sortable";
+import { Sortable } from "@narsil-cms/components/ui/sortable";
+import { SortableTable } from "@narsil-cms/components/ui/sortable-table";
 import { Switch } from "@narsil-cms/components/ui/switch";
 import type { Field, SelectOption } from "@narsil-cms/types/forms";
 

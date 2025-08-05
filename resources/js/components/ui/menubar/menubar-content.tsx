@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 import MenubarPortal from "./menubar-portal";

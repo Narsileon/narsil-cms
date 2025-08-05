@@ -3,14 +3,12 @@ import SortableAdd from "./sortable-add";
 import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";
 import SortableItem from "./sortable-item";
-import SortableTable from "./sortable-table";
-import SortableTableRow from "./sortable-table-row";
 import SortableTree from "./sortable-tree";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type AnonymousItem = Record<string, any> & {
   id: UniqueIdentifier;
-  identifier?: UniqueIdentifier;
+  identifier: string;
 };
 
 type FlatNode = {
@@ -34,8 +32,6 @@ export {
   SortableGrid,
   SortableHandle,
   SortableItem,
-  SortableTable,
-  SortableTableRow,
   SortableTree,
 };
 

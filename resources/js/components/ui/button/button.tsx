@@ -1,3 +1,4 @@
+import * as React from "react";
 import { buttonVariants } from "./button-variants";
 import { cn } from "@narsil-cms/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";

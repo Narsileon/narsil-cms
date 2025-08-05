@@ -1,6 +1,7 @@
-import { ChevronRightIcon } from "lucide-react";
+import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { Icon } from "@narsil-cms/components/ui/icon";
 
 type DropdownMenuSubTriggerProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.SubTrigger
@@ -28,7 +29,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto size-4" />
+      <Icon className="ml-auto size-4" name="chevron-right" />
     </DropdownMenuPrimitive.SubTrigger>
   );
 }

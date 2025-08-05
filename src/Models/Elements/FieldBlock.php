@@ -27,6 +27,7 @@ class FieldBlock extends Pivot
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+        $this->timestamps = false;
 
         $this->guarded = array_merge([
             self::ID,

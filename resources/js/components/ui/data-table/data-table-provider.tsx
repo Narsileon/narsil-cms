@@ -1,10 +1,10 @@
+import * as React from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { compact, debounce } from "lodash";
 import { DataTableContext, DataTableContextProps } from "./data-table-context";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import { router } from "@inertiajs/react";
-import { useCallback, useEffect, useMemo } from "react";
 import useDataTableStore from "@narsil-cms/stores/data-table-store";
 import {
   closestCenter,
@@ -52,7 +52,7 @@ function DataTableProvider({
 }: DataTableProviderProps) {
   const columnOrder = compact(columns.map((c) => c.id));
 
-  const createDataTableStore = useMemo(
+  const createDataTableStore = React.useMemo(
     () =>
       useDataTableStore({
         id: id,
@@ -184,7 +184,7 @@ function DataTableProvider({
     });
   }
 
-  const update = useCallback(
+  const update = React.useCallback(
     debounce((href, params) => {
       router.get(href, params, {
         preserveScroll: true,
@@ -194,7 +194,7 @@ function DataTableProvider({
     [router],
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     const href = window.location.origin + window.location.pathname;
 
     update(href, {

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 import { cn } from "@narsil-cms/lib/utils";
 

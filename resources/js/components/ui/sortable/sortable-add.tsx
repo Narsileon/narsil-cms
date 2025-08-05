@@ -1,64 +1,83 @@
+import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
+import { isNumber } from "lodash";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
-import { get, set } from "lodash";
+import { route } from "ziggy-js";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { useState } from "react";
 import type { AnonymousItem } from ".";
 import type { GlobalProps } from "@narsil-cms/hooks/use-props";
-import type { SelectOption } from "@narsil-cms/types/forms";
+import type {
+  GroupedSelectOption,
+  SelectOption,
+} from "@narsil-cms/types/forms";
 
 type SortableAddProps = React.ComponentProps<"div"> & {
-  dataPath?: string;
-  href?: string;
+  group: GroupedSelectOption;
   items: AnonymousItem[];
-  initialOptions: SelectOption[];
-  label: string;
-  labelKey: string;
+  unique?: boolean;
   setItems: (items: AnonymousItem[]) => void;
 };
 
 function SortableAdd({
   className,
-  dataPath,
-  href,
-  initialOptions,
+  group,
   items,
-  label,
-  labelKey,
+  unique,
   setItems,
   ...props
 }: SortableAddProps) {
   const { getLabel } = useLabels();
 
-  const [options, setOptions] = useState(initialOptions);
+  const [options, setOptions] = React.useState(group.options);
 
   const filteredOptions = options?.filter((option) => {
+    if (!unique) {
+      return true;
+    }
+
     return !items.find((item) => {
-      return item.identifier && option.identifier
-        ? item.identifier === option.identifier
-        : item.id === option.value;
+      return item.identifier === option.identifier;
     });
   });
 
-  function transformOptionToItem(option: SelectOption) {
-    const item = { id: option.value, identifier: option.identifier };
+  function transformOptionToItem(selectOption: SelectOption) {
+    const originalValue = selectOption.value;
 
-    set(item, dataPath ? `${dataPath}.id` : "id", option.value);
-    set(item, dataPath ? `${dataPath}.${labelKey}` : labelKey, option.label);
+    let counter = 1;
+    let value = originalValue;
+
+    while (items.some((item) => item[group.optionValue] == value)) {
+      if (isNumber(value)) {
+        value = originalValue + counter;
+      } else {
+        value = `${originalValue}_${counter}`;
+      }
+
+      counter++;
+    }
+
+    const item = {
+      id: selectOption.id,
+      identifier: selectOption.identifier,
+      [group.optionLabel]: selectOption.label,
+      [group.optionValue]: value,
+    };
 
     return item;
   }
 
   function transformItemToOption(item: AnonymousItem) {
-    const option = {
+    const selectOption = {
+      data: item,
+      id: item.id,
       identifier: item.identifier,
-      label: get(item, labelKey),
-      value: item.id,
+      label: item[group.optionLabel],
+      value: item[group.optionValue],
     };
 
-    return option;
+    return selectOption;
   }
 
   return (
@@ -69,7 +88,7 @@ function SortableAdd({
       )}
       {...props}
     >
-      <span className="text-left">{label}</span>
+      <span className="text-left">{group.label}</span>
       <Combobox
         className="col-span-2 grow"
         disabled={filteredOptions.length == 0}
@@ -88,10 +107,10 @@ function SortableAdd({
           setItems([...items, item]);
         }}
       />
-      {href ? (
+      {group.routes?.create ? (
         <Button className="justify-self-end" asChild={true}>
           <ModalLink
-            href={href}
+            href={route(group.routes.create)}
             options={{
               onSuccess: (response) => {
                 const props = response?.props

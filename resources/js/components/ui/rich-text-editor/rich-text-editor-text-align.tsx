@@ -1,13 +1,9 @@
+import * as React from "react";
 import { Editor } from "@tiptap/react";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import { Toggle } from "@narsil-cms/components/ui/toggle";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import {
-  AlignCenterIcon,
-  AlignJustifyIcon,
-  AlignLeftIcon,
-  AlignRightIcon,
-} from "lucide-react";
 
 type RichTextEditorTextAlignProps = React.ComponentProps<typeof Toggle> & {
   alignment: "left" | "center" | "right" | "justify";
@@ -36,15 +32,7 @@ function RichTextEditorTextAlign({
         onClick={() => editor.chain().focus().setTextAlign(alignment).run()}
         {...props}
       >
-        {alignment === "left" ? (
-          <AlignLeftIcon className="size-5" />
-        ) : alignment === "center" ? (
-          <AlignCenterIcon className="size-5" />
-        ) : alignment === "right" ? (
-          <AlignRightIcon className="size-5" />
-        ) : alignment === "justify" ? (
-          <AlignJustifyIcon className="size-5" />
-        ) : null}
+        <Icon name={`align-${alignment}`} />
       </Toggle>
     </Tooltip>
   );

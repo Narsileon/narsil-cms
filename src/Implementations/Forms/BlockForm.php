@@ -36,7 +36,7 @@ class BlockForm extends AbstractForm implements Contract
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::NAME => trans('narsil-cms::ui.default_name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
@@ -46,7 +46,7 @@ class BlockForm extends AbstractForm implements Contract
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::HANDLE,
-                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                        Field::NAME => trans('narsil-cms::ui.default_handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true)
@@ -59,17 +59,22 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->dataPath(BlockElement::RELATION_ELEMENT)
-                            ->labelKey(Block::NAME)
+                            ->form(app(BlockElementForm::class)->elements())
                             ->options([
                                 [
                                     'icon'  => 'box',
+                                    'optionLabel' => BlockElement::NAME,
+                                    'optionValue' => BlockElement::HANDLE,
+                                    'identifier' => Block::TABLE,
                                     'label' => trans('narsil-cms::ui.block'),
                                     'options' => $blockOptions,
                                     'routes' => RouteService::getNames(Block::TABLE),
                                 ],
                                 [
                                     'icon'  => 'rectangle-ellipsis',
+                                    'optionLabel' => BlockElement::NAME,
+                                    'optionValue' => BlockElement::HANDLE,
+                                    'identifier' => Field::TABLE,
                                     'label' => trans('narsil-cms::ui.field'),
                                     'options' => $fieldOptions,
                                     'routes' => RouteService::getNames(Field::TABLE),
@@ -97,7 +102,12 @@ class BlockForm extends AbstractForm implements Contract
                 return [
                     'identifier' => $block->{Block::IDENTIFIER},
                     'label' => $block->{Block::NAME},
-                    'value' => $block->{Block::ID},
+                    'value' => $block->{Block::HANDLE},
+                    'data' => [
+                        'id' => $block->{Block::ID},
+                        'handle' => $block->{Block::HANDLE},
+                        'name' => $block->{Block::NAME},
+                    ],
                 ];
             })
             ->toArray();
@@ -111,9 +121,14 @@ class BlockForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return [
-                    'identifier' => $field->{Block::IDENTIFIER},
+                    'identifier' => $field->{Field::IDENTIFIER},
                     'label' => $field->{Field::NAME},
-                    'value' => $field->{Field::ID},
+                    'value' => $field->{Field::HANDLE},
+                    'data' => [
+                        'id' => $field->{Field::ID},
+                        'handle' => $field->{Field::HANDLE},
+                        'name' => $field->{Field::NAME},
+                    ],
                 ];
             })
             ->toArray();

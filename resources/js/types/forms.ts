@@ -1,3 +1,6 @@
+import { RouteNames } from "./collection";
+import type { IconName } from "@narsil-cms/plugins/icons";
+
 export type Block = {
   elements: BlockElement[];
   handle: string;
@@ -44,10 +47,13 @@ export type FormType = {
 };
 
 export type GroupedSelectOption = {
-  [key: string]: any;
+  icon?: IconName;
+  identifier: string;
   label: string;
-} & {
+  optionLabel: string;
   options: SelectOption[];
+  optionValue: string;
+  routes: RouteNames;
 };
 
 export type SelectOption = {
