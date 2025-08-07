@@ -34,8 +34,8 @@ class VerifyEmailController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::fortify/verify-email',
-            title: trans('narsil-cms::ui.email_verify'),
             description: trans('narsil-cms::ui.email_verify'),
+            title: trans('narsil-cms::ui.email_verify'),
             props: [
                 'status' => session('status'),
             ]

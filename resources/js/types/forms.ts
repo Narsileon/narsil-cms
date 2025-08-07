@@ -1,4 +1,3 @@
-import { Select } from "radix-ui";
 import { RouteNames } from "./collection";
 import type { IconName } from "@narsil-cms/plugins/icons";
 
@@ -37,7 +36,7 @@ export type Field = {
   name: string;
   settings: {
     [key: string]: any;
-    form?: Field[];
+    relation?: Field;
     options?: GroupedSelectOption[] | SelectOption[];
     label: string;
     value: any;
@@ -46,10 +45,12 @@ export type Field = {
 };
 
 export type FormType = {
-  elements: (Block | Field)[];
+  description: string;
+  form: (Block | Field)[];
   id: string;
   method: string;
   submit: string;
+  title: string;
   url: string;
 };
 

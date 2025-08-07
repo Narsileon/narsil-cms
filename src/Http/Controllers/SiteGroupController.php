@@ -84,19 +84,9 @@ class SiteGroupController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('site-groups.store'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.create'),
-        );
-
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.site_group'),
-            description: trans('narsil-cms::ui.site_group'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 
@@ -124,20 +114,16 @@ class SiteGroupController extends AbstractController
      */
     public function edit(Request $request, SiteGroup $siteGroup): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('site-groups.update', $siteGroup->{SiteGroup::ID}),
-            method: MethodEnum::PATCH,
-            submit: trans('narsil-cms::ui.update'),
-        );
+        $this->form
+            ->method(MethodEnum::PATCH)
+            ->submit(trans('narsil-cms::ui.update'))
+            ->url(route('site-groups.update', $siteGroup->{SiteGroup::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.site_group'),
-            description: trans('narsil-cms::ui.site_group'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $siteGroup,
-                'form' => $form,
-            ]
+            ]),
         );
     }
 

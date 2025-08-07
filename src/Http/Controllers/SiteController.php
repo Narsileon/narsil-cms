@@ -96,19 +96,9 @@ class SiteController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('sites.store'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.create'),
-        );
-
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.site'),
-            description: trans('narsil-cms::ui.site'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 
@@ -136,20 +126,16 @@ class SiteController extends AbstractController
      */
     public function edit(Request $request, Site $site): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('sites.update', $site->{Site::ID}),
-            method: MethodEnum::PATCH,
-            submit: trans('narsil-cms::ui.update'),
-        );
+        $this->form
+            ->method(MethodEnum::PATCH)
+            ->submit(trans('narsil-cms::ui.update'))
+            ->url(route('sites.update', $site->{Site::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.site'),
-            description: trans('narsil-cms::ui.site'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $site,
-                'form' => $form,
-            ]
+            ]),
         );
     }
 

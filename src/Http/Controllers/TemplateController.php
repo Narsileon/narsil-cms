@@ -84,19 +84,9 @@ class TemplateController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('templates.store'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.create'),
-        );
-
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.template'),
-            description: trans('narsil-cms::ui.template'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 
@@ -124,20 +114,16 @@ class TemplateController extends AbstractController
      */
     public function edit(Request $request, Template $template): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('templates.update', $template->{Template::ID}),
-            method: MethodEnum::PATCH,
-            submit: trans('narsil-cms::ui.update'),
-        );
+        $this->form
+            ->method(MethodEnum::PATCH)
+            ->submit(trans('narsil-cms::ui.update'))
+            ->url(route('templates.update', $template->{Template::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.template'),
-            description: trans('narsil-cms::ui.template'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $template,
-                'form' => $form,
-            ]
+            ]),
         );
     }
 

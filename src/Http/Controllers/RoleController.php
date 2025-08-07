@@ -84,19 +84,9 @@ class RoleController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('roles.store'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.create'),
-        );
-
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.role'),
-            description: trans('narsil-cms::ui.role'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 
@@ -124,20 +114,16 @@ class RoleController extends AbstractController
      */
     public function edit(Request $request, Role $role): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('roles.update', $role->{Role::ID}),
-            method: MethodEnum::PATCH,
-            submit: trans('narsil-cms::ui.update'),
-        );
+        $this->form
+            ->method(MethodEnum::PATCH)
+            ->submit(trans('narsil-cms::ui.update'))
+            ->url(route('roles.update', $role->{Role::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.role'),
-            description: trans('narsil-cms::ui.role'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $role,
-                'form' => $form,
-            ]
+            ]),
         );
     }
 

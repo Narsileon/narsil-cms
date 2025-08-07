@@ -7,7 +7,6 @@ namespace Narsil\Http\Controllers\Fortify;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\ResetPasswordForm;
-use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
 
 #endregion
@@ -50,20 +49,11 @@ class ResetPasswordController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $form = $this->form->get(
-            url: route('password.update'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.reset'),
-        );
-
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            title: trans('narsil-cms::ui.reset_password'),
-            description: trans('narsil-cms::ui.reset_password'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $this->getData(),
-                'form' => $form,
-            ]
+            ])
         );
     }
 

@@ -228,6 +228,8 @@ function SortableItem({
                           }
 
                           onItemChange?.(data);
+
+                          onOpenChange(false);
                         }}
                       >
                         {getLabel("ui.save")}

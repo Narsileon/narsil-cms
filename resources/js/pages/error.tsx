@@ -1,10 +1,10 @@
 import { Container } from "@narsil-cms/components/ui/container";
 import { Heading } from "@narsil-cms/components/ui/heading";
 
-interface ErrorProps {
+type ErrorProps = {
   description: string;
   title: string;
-}
+};
 
 const Error = ({ description, title }: ErrorProps) => {
   return (

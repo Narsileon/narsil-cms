@@ -20,12 +20,29 @@ use Narsil\Models\User;
  */
 class ResetPasswordForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.reset_password'));
+        $this->submit(trans('narsil-cms::ui.reset'));
+        $this->title(trans('narsil-cms::ui.reset_password'));
+        $this->url(route('password.update'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

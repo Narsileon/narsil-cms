@@ -190,7 +190,10 @@ class BlockElement extends Model implements HasIdentifier
     {
         $element = $this->{self::RELATION_ELEMENT};
 
-        return $element->getTable() . '-' . $element->getKey();
+        $key = $element->getKey();
+        $table = $element->getTable();
+
+        return !empty($key) ? "$table-$key" : $table;
     }
 
     #endregion

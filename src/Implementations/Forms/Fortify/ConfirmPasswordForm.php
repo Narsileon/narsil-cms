@@ -19,12 +19,29 @@ use Narsil\Models\User;
  */
 class ConfirmPasswordForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.confirm_password'));
+        $this->submit(trans('narsil-cms::ui.confirm'));
+        $this->title(trans('narsil-cms::ui.confirm_password'));
+        $this->url(route('password.confirm'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

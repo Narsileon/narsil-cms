@@ -31,20 +31,27 @@ import {
 import type { Block, FormType } from "@narsil-cms/types/forms";
 import type { ModalState } from "@narsil-cms/stores/modal-store";
 
-type FormProps = {
+type FormProps = FormType & {
   data: any;
-  form: FormType;
   modal?: ModalState;
-  title: string;
 };
 
-function ResourceForm({ data, form, modal, title }: FormProps) {
+function ResourceForm({
+  data,
+  form,
+  id,
+  method,
+  modal,
+  submit,
+  title,
+  url,
+}: FormProps) {
   const { getLabel } = useLabels();
   const { closeTopModal } = useModalStore();
 
   const minLg = useMinLg();
 
-  const { information, sidebar, tabs } = form.elements.reduce(
+  const { information, sidebar, tabs } = form.reduce(
     (acc, element) => {
       if (!("elements" in element)) {
         return acc;
@@ -153,8 +160,8 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
 
   return (
     <FormProvider
-      id={modal ? `${form.id}_${modal.id}` : form.id}
-      elements={form.elements}
+      id={modal ? `${id}_${modal.id}` : id}
+      elements={form}
       initialValues={{
         _back: modal,
         ...data,
@@ -162,8 +169,8 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
       render={() => (
         <Form
           className="overflow-hidden"
-          method={form.method}
-          url={form.url}
+          method={method}
+          url={url}
           options={{
             onSuccess: (response) => {
               if (modal) {
@@ -181,9 +188,7 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{getLabel("ui.cancel")}</Button>
                 </DialogClose>
-                <FormSubmit className="place-self-auto">
-                  {form.submit}
-                </FormSubmit>
+                <FormSubmit className="place-self-auto">{submit}</FormSubmit>
               </DialogFooter>
             </ScrollArea>
           ) : (
@@ -192,7 +197,7 @@ function ResourceForm({ data, form, modal, title }: FormProps) {
                 <SectionTitle level="h1" variant="h4">
                   {title}
                 </SectionTitle>
-                <FormSubmit>{form.submit}</FormSubmit>
+                <FormSubmit>{submit}</FormSubmit>
               </SectionHeader>
               <SectionContent className="grid gap-4 lg:grid-cols-12">
                 {tabsContent}

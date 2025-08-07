@@ -22,15 +22,32 @@ use Narsil\Models\User;
  */
 class UserForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.user'));
+        $this->submit(trans('narsil-cms::ui.create'));
+        $this->title(trans('narsil-cms::ui.user'));
+        $this->url(route('users.store'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
-            $this->mainBlock([
+            static::mainBlock([
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::EMAIL,
@@ -81,7 +98,7 @@ class UserForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            $this->informationBlock(),
+            static::informationBlock(),
         ];
     }
 

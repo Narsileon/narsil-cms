@@ -19,15 +19,32 @@ use Narsil\Models\Policies\Role;
  */
 class RoleForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.role'));
+        $this->submit(trans('narsil-cms::ui.create'));
+        $this->title(trans('narsil-cms::ui.role'));
+        $this->url(route('roles.store'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
-            $this->mainBlock([
+            static::mainBlock([
                 BlockElement::RELATION_ELEMENT => new BlockElement([
                     new Field([
                         Field::HANDLE => Role::NAME,
@@ -38,7 +55,7 @@ class RoleForm extends AbstractForm implements Contract
                     ]),
                 ]),
             ]),
-            $this->informationBlock(),
+            static::informationBlock(),
         ];
     }
 

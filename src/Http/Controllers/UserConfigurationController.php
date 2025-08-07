@@ -16,7 +16,6 @@ use Narsil\Contracts\Forms\Fortify\ProfileForm;
 use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
-use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Middleware\LocaleMiddleware;
 use Narsil\Models\User;
@@ -104,39 +103,15 @@ class UserConfigurationController extends AbstractController
             ->add('narsil-cms::ui.security')
             ->add('narsil-cms::ui.sessions');
 
-        $profileForm = $this->profileForm->get(
-            url: route('user-profile-information.update'),
-            method: MethodEnum::PUT,
-            submit: trans('narsil-cms::ui.update'),
-        );
-
-        $twoFactorForm = $this->twoFactorForm->get(
-            url: route('two-factor.confirm'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.confirm'),
-        );
-
-        $updatePasswordForm = $this->updatePasswordForm->get(
-            url: route('user-password.update'),
-            method: MethodEnum::PUT,
-            submit: trans('narsil-cms::ui.update'),
-        );
-
-        $userConfigurationForm = $this->userConfigurationForm->get(
-            url: route('user-configuration.store'),
-            method: MethodEnum::PUT,
-            submit: trans('narsil-cms::ui.save'),
-        );
-
         return $this->render(
             component: 'narsil/cms::users/settings',
             title: trans('narsil-cms::ui.settings'),
             description: trans('narsil-cms::ui.settings'),
             props: [
-                'profileForm'           => $profileForm,
-                'twoFactorForm'         => $twoFactorForm,
-                'updatePasswordForm'    => $updatePasswordForm,
-                'userConfigurationForm' => $userConfigurationForm,
+                'profileForm'           => $this->profileForm,
+                'twoFactorForm'         => $this->twoFactorForm,
+                'updatePasswordForm'    => $this->updatePasswordForm,
+                'userConfigurationForm' => $this->userConfigurationForm,
             ]
         );
     }

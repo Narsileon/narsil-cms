@@ -54,17 +54,17 @@ function FormInputRenderer({
         />
       );
     case "Narsil\\Contracts\\Fields\\RelationsInput":
-      return element.settings.options ? (
+      return element.settings.intermediate ? (
+        <SortableGrid
+          {...element.settings}
+          items={value ?? []}
+          setItems={setValue}
+        />
+      ) : (
         <SortableList
           {...element.settings}
           items={value ?? []}
           options={element.settings.options}
-          setItems={setValue}
-        />
-      ) : (
-        <SortableGrid
-          {...element.settings}
-          items={value ?? []}
           setItems={setValue}
         />
       );

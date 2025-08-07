@@ -31,17 +31,13 @@ class FieldForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->implementations = config('narsil.fields', []);
+        $this->description(trans('narsil-cms::ui.field'));
+        $this->submit(trans('narsil-cms::ui.create'));
+        $this->title(trans('narsil-cms::ui.field'));
+        $this->url(route('fields.store'));
+
+        parent::__construct();
     }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var array<AbstractField,ConcreteField>
-     */
-    private readonly array $implementations;
 
     #endregion
 
@@ -50,11 +46,11 @@ class FieldForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         $settings = [];
 
-        foreach ($this->implementations as $abstract => $concrete)
+        foreach (config('narsil.fields', []) as $abstract => $concrete)
         {
             $elements = $concrete::getForm(Field::SETTINGS);
 
@@ -77,10 +73,10 @@ class FieldForm extends AbstractForm implements Contract
             }
         }
 
-        $typeOptions = $this->getTypeOptions();
+        $typeOptions = static::getTypeOptions();
 
         $content = [
-            $this->mainBlock(array_merge([
+            static::mainBlock(array_merge([
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
@@ -119,7 +115,7 @@ class FieldForm extends AbstractForm implements Contract
                     ])
                 ]),
             ], $settings)),
-            $this->informationBlock(),
+            static::informationBlock(),
         ];
 
         return $content;
@@ -132,11 +128,11 @@ class FieldForm extends AbstractForm implements Contract
     /**
      * @return array<string>
      */
-    protected function getTypeOptions(): array
+    protected static function getTypeOptions(): array
     {
         $options = [];
 
-        foreach ($this->implementations as $abstract => $concrete)
+        foreach (config('narsil.fields', []) as $abstract => $concrete)
         {
             $options[] = (new SelectOption($concrete::getLabel(), $abstract))
                 ->icon($concrete::getIcon());

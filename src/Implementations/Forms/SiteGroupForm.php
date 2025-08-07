@@ -19,15 +19,32 @@ use Narsil\Models\Sites\SiteGroup;
  */
 class SiteGroupForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.site_group'));
+        $this->submit(trans('narsil-cms::ui.create'));
+        $this->title(trans('narsil-cms::ui.site_group'));
+        $this->url(route('site-groups.store'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
-            $this->mainBlock([
+            static::mainBlock([
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => SiteGroup::NAME,
@@ -38,7 +55,7 @@ class SiteGroupForm extends AbstractForm implements Contract
                     ]),
                 ]),
             ]),
-            $this->informationBlock(),
+            static::informationBlock(),
         ];
     }
 

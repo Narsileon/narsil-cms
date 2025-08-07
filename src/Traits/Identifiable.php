@@ -11,7 +11,10 @@ trait Identifiable
      */
     public function getIdentifierAttribute(): string
     {
-        return $this->getTable() . '-' . $this->getKey();
+        $key = $this->getKey();
+        $table = $this->getTable();
+
+        return !empty($key) ? "$table-$key" : $table;
     }
 
     #endregion

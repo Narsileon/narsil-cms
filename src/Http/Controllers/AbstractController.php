@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
+use JsonSerializable;
 use Narsil\Http\Requests\QueryRequest;
 use Narsil\Support\LabelsBag;
 

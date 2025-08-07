@@ -22,19 +22,36 @@ use Narsil\Support\SelectOption;
  */
 class BlockForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.block'));
+        $this->submit(trans('narsil-cms::ui.create'));
+        $this->title(trans('narsil-cms::ui.block'));
+        $this->url(route('blocks.store'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         $blockOptions = static::getBlockOptions();
         $fieldOptions = static::getFieldOptions();
         $widthOptions = static::getWidthOptions();
 
         return [
-            $this->mainBlock([
+            static::mainBlock([
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::NAME,
@@ -61,14 +78,14 @@ class BlockForm extends AbstractForm implements Contract
                         Field::SETTINGS => app(RelationsInput::class)
                             ->form([
                                 new Field([
-                                    Field::HANDLE => Block::NAME,
+                                    Field::HANDLE => BlockElement::NAME,
                                     Field::NAME => trans('narsil-cms::validation.attributes.name'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
                                         ->required(true),
                                 ]),
                                 new Field([
-                                    Field::HANDLE => Block::HANDLE,
+                                    Field::HANDLE => BlockElement::HANDLE,
                                     Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
@@ -95,7 +112,7 @@ class BlockForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            $this->informationBlock(),
+            static::informationBlock(),
         ];
     }
 

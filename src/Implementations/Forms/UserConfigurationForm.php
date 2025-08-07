@@ -13,6 +13,7 @@ use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Contracts\Forms\UserConfigurationForm as Contract;
 use Narsil\Enums\Configuration\ColorEnum;
 use Narsil\Enums\Configuration\ThemeEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Users\UserConfiguration;
@@ -27,16 +28,32 @@ use ResourceBundle;
  */
 class UserConfigurationForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->method(MethodEnum::PUT);
+        $this->submit(trans('narsil-cms::ui.save'));
+        $this->url(route('user-configuration.store'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
-        $colorOptions = $this->getColorOptions();
-        $localeOptions = $this->getLocaleOptions();
-        $themeOptions = $this->getThemesOptions();
+        $colorOptions = static::getColorOptions();
+        $localeOptions = static::getLocaleOptions();
+        $themeOptions = static::getThemesOptions();
 
         return [
             new Field([
@@ -83,7 +100,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
     /**
      * @return array<string>
      */
-    protected function getColorOptions(): array
+    protected static function getColorOptions(): array
     {
         $options = [];
 
@@ -100,7 +117,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
     /**
      * @return array<string>
      */
-    protected function getLocaleOptions(): array
+    protected static function getLocaleOptions(): array
     {
         $locales = ResourceBundle::getLocales('');
 
@@ -133,7 +150,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
     /**
      * @return array<string>
      */
-    protected function getThemesOptions(): array
+    protected static function getThemesOptions(): array
     {
         $options = [];
 

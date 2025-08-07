@@ -84,19 +84,9 @@ class UserController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('users.store'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.create'),
-        );
-
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.user'),
-            description: trans('narsil-cms::ui.user'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 
@@ -124,20 +114,16 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('users.update', $user->{User::ID}),
-            method: MethodEnum::PATCH,
-            submit: trans('narsil-cms::ui.update'),
-        );
+        $this->form
+            ->method(MethodEnum::PATCH)
+            ->submit(trans('narsil-cms::ui.update'))
+            ->url(route('users.update', $user->{User::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.user'),
-            description: trans('narsil-cms::ui.user'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $user,
-                'form' => $form,
-            ]
+            ]),
         );
     }
 

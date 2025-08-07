@@ -25,14 +25,21 @@ import {
 } from "@narsil-cms/components/ui/section";
 import type { Field, FormType } from "@narsil-cms/types/forms";
 
-type FortifyFormProps = {
+type FortifyFormProps = FormType & {
   data: Record<string, any>;
-  form: FormType;
   status?: string;
-  title: string;
 };
 
-function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
+function FortifyForm({
+  data = {},
+  form,
+  id,
+  method,
+  status,
+  submit,
+  title,
+  url,
+}: FortifyFormProps) {
   const { getLabel } = useLabels();
 
   const hasStatus = useRef<boolean>(false);
@@ -57,17 +64,17 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
           <Card className="max-w-md">
             <CardContent className="p-6">
               <FormProvider
-                id={form.id}
-                elements={form.elements}
+                id={id}
+                elements={form}
                 initialValues={data}
                 render={() => (
                   <Form
                     className="grid-cols-12 gap-6"
-                    method={form.method}
-                    url={form.url}
+                    method={method}
+                    url={url}
                   >
-                    {form.elements.map((element, index) =>
-                      form.id === "login-form" &&
+                    {form.map((element, index) =>
+                      id === "login-form" &&
                       element.handle === "password" &&
                       !("elements" in element) ? (
                         <FormField
@@ -106,13 +113,13 @@ function FortifyForm({ data = {}, form, status, title }: FortifyFormProps) {
                       ),
                     )}
                     <FormSubmit className="w-full place-self-center">
-                      {form.submit}
+                      {submit}
                     </FormSubmit>
                   </Form>
                 )}
               />
             </CardContent>
-            {form.id === "forgot-password-form" ? (
+            {id === "forgot-password-form" ? (
               <CardFooter className="border-t">
                 <Button className="w-full" asChild={true} variant="secondary">
                   <Link href={route("login")}>{getLabel("ui.back")}</Link>

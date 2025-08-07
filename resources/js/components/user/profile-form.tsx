@@ -34,7 +34,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={profileForm.id}
-            elements={profileForm.elements}
+            elements={profileForm.form}
             initialValues={{
               first_name: auth?.first_name,
               last_name: auth?.last_name,
@@ -45,7 +45,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                 method={profileForm.method}
                 url={profileForm.url}
               >
-                {profileForm.elements.map((element, index) => (
+                {profileForm.form.map((element, index) => (
                   <FormFieldRenderer element={element} key={index} />
                 ))}
                 <FormSubmit>{profileForm.submit}</FormSubmit>
@@ -62,7 +62,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         <SectionContent>
           <FormProvider
             id={updatePasswordForm.id}
-            elements={updatePasswordForm.elements}
+            elements={updatePasswordForm.form}
             render={({ reset, setDefaults }) => (
               <Form
                 className="grid-cols-12 gap-4"
@@ -75,7 +75,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                   },
                 }}
               >
-                {updatePasswordForm.elements.map((element, index) => (
+                {updatePasswordForm.form.map((element, index) => (
                   <FormFieldRenderer element={element} key={index} />
                 ))}
                 <FormSubmit>{updatePasswordForm.submit}</FormSubmit>

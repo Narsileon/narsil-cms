@@ -42,43 +42,40 @@ abstract class AbstractForm implements Form
     /**
      * @var string
      */
-    public readonly string $method;
+    public protected(set) string $description = "";
     /**
      * @var string
      */
-    public readonly string $submit;
+    public protected(set) string $method = MethodEnum::POST->value;
     /**
      * @var string
      */
-    public readonly string $url;
+    public protected(set) string $submit = "";
+    /**
+     * @var string
+     */
+    public protected(set) string $title = "";
+    /**
+     * @var string
+     */
+    public protected(set) string $url = "";
 
     #endregion
 
     #region PUBLIC METHODS
 
     /**
-     * @return array<Field>
-     */
-    abstract public function elements(): array;
-
-    /**
      * {@inheritDoc}
      */
-    public function get(
-        string $url,
-        MethodEnum $method,
-        string $submit,
-    ): array
+    public function jsonSerialize(): mixed
     {
-        $this->method = $method->value;
-        $this->submit = $submit;
-        $this->url = $url;
-
         return [
-            'elements' => $this->elements(),
+            'description' => $this->description,
+            'form' => static::form(),
             'id'     => $this->id(),
             'method' => $this->method,
             'submit' => $this->submit,
+            'title'  => $this->title,
             'url'    => $this->url,
         ];
     }
@@ -102,7 +99,7 @@ abstract class AbstractForm implements Form
      *
      * @return Block
      */
-    protected function informationBlock(?array $elements = null): Block
+    protected static function informationBlock(?array $elements = null): Block
     {
         return new Block([
             Block::HANDLE => 'information',
@@ -135,7 +132,7 @@ abstract class AbstractForm implements Form
      *
      * @return Block
      */
-    protected function mainBlock(array $elements): Block
+    protected static function mainBlock(array $elements): Block
     {
         return new Block([
             Block::HANDLE => 'main',
@@ -149,13 +146,67 @@ abstract class AbstractForm implements Form
      *
      * @return Block
      */
-    protected function sidebar(array $elements): Block
+    protected static function sidebar(array $elements): Block
     {
         return new Block([
             Block::HANDLE => 'sidebar',
             Block::NAME => trans('narsil-cms::ui.sidebar'),
             Block::RELATION_ELEMENTS => $elements
         ]);
+    }
+
+    #endregion
+
+    #region FLUENT METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public function description(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function method(MethodEnum $method): static
+    {
+        $this->method = $method->value;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function submit(string $submit): static
+    {
+        $this->submit = $submit;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function title(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function url(string $url): static
+    {
+        $this->url = $url;
+
+        return $this;
     }
 
     #endregion

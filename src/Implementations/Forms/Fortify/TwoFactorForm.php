@@ -26,6 +26,9 @@ class TwoFactorForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
+        $this->submit(trans('narsil-cms::ui.confirm'));
+        $this->url(route('two-factor.confirm'));
+
         app(LabelsBag::class)
             ->add('validation.custom.code.invalid')
             ->add('narsil-cms::two-factor.recovery_codes_copied')
@@ -43,7 +46,7 @@ class TwoFactorForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

@@ -1,7 +1,10 @@
 import * as React from "react";
+import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { createPortal } from "react-dom";
-import { get } from "lodash";
+import { get, set } from "lodash";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 import {
   CancelDrop,
   DndContext,
@@ -22,6 +25,21 @@ import {
   SortableContext,
 } from "@dnd-kit/sortable";
 import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@narsil-cms/components/ui/dialog";
+import {
+  FormInputRenderer,
+  FormItem,
+  FormLabel,
+} from "@narsil-cms/components/ui/form";
+import {
   SortableAdd,
   SortableItem,
   SortableListContext,
@@ -29,14 +47,20 @@ import {
 import type { AnonymousItem } from ".";
 import type { Field, GroupedSelectOption } from "@narsil-cms/types/forms";
 
-interface SortableGridProps {
+type SortableGridProps = {
   columns?: 1 | 2 | 3 | 4;
-  form: Field[];
+  form?: Field[];
   items: AnonymousItem[];
   placeholder: string;
+  intermediate: {
+    label: string;
+    optionLabel: string;
+    optionValue: string;
+    relation: Field;
+  };
   setItems: (items: AnonymousItem[]) => void;
   cancelDrop?: CancelDrop;
-}
+};
 
 const PLACEHOLDER_ID = "placeholder";
 
@@ -45,16 +69,21 @@ function SortableGrid({
   form,
   items,
   placeholder,
+  intermediate,
   cancelDrop,
   setItems,
 }: SortableGridProps) {
-  const [active, setActive] = React.useState<AnonymousItem | null>(null);
+  const { getLabel } = useLabels();
 
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
     useSensor(KeyboardSensor),
   );
+
+  const [active, setActive] = React.useState<AnonymousItem | null>(null);
+  const [data, setData] = React.useState<Record<string, any>>({});
+  const [open, onOpenChange] = React.useState<boolean>(false);
 
   const onDragCancel = () => {
     setActive(null);
@@ -173,16 +202,19 @@ function SortableGrid({
       if (container.id === activeContainer.id) {
         return {
           ...container,
-          [form[0].handle]: getContainerChildren(container).filter(
-            (child) => getChildUniqueIdentifier(child) !== active.id,
-          ),
+          [intermediate.relation.handle]: getContainerChildren(
+            container,
+          ).filter((child) => getChildUniqueIdentifier(child) !== active.id),
         };
       }
 
       if (container.id === overItem.id) {
         return {
           ...container,
-          [form[0].handle]: [...getContainerChildren(container), activeItem],
+          [intermediate.relation.handle]: [
+            ...getContainerChildren(container),
+            activeItem,
+          ],
         };
       }
 
@@ -201,13 +233,17 @@ function SortableGrid({
   }
 
   function getContainerChildren(container: AnonymousItem) {
-    const children: AnonymousItem[] = get(container, form[0].handle, []);
+    const children: AnonymousItem[] = get(
+      container,
+      intermediate.relation.handle,
+      [],
+    );
 
     return children;
   }
 
   function getChildGroup(child: AnonymousItem) {
-    const group = form[0].settings.options?.find((option) =>
+    const group = intermediate.relation.settings.options?.find((option) =>
       child.identifier.includes(option.identifier),
     ) as GroupedSelectOption;
 
@@ -218,6 +254,12 @@ function SortableGrid({
     const group = getChildGroup(child);
 
     return child[group.optionValue];
+  }
+
+  function getFormattedLabel(container: AnonymousItem) {
+    const label = container[intermediate.optionLabel];
+
+    return label;
   }
 
   return (
@@ -235,54 +277,67 @@ function SortableGrid({
           strategy={rectSortingStrategy}
         >
           {items.map((item) => {
-            const children = get(item, form[0].handle, []);
+            const children = get(item, intermediate.relation.handle, []);
 
             return (
               <SortableItem
                 id={item.id}
+                form={form}
                 item={item}
-                label={item.id}
+                label={getFormattedLabel(item)}
+                onItemChange={(value: AnonymousItem) => {
+                  setItems(items.map((x) => (x.id === item.id ? value : x)));
+                }}
                 onItemRemove={() => {
                   setItems(items.filter((x) => x !== item));
                 }}
                 footer={
                   <>
-                    {form[0].settings.options?.map((group, index) => {
-                      return (
-                        <SortableAdd
-                          ids={items
-                            .flatMap((item) => item[form[0].handle] || [])
-                            .map((x) => x.handle)}
-                          items={children}
-                          group={group}
-                          setItems={(groupItems) => {
-                            const updatedItems = items.map((x) =>
-                              x.id === item.id
-                                ? {
-                                    ...x,
-                                    [form[0].handle]: groupItems,
-                                  }
-                                : x,
-                            );
-                            setItems(updatedItems);
-                          }}
-                          key={index}
-                        />
-                      );
-                    })}
+                    {intermediate.relation.settings.options?.map(
+                      (group, index) => {
+                        return (
+                          <SortableAdd
+                            ids={items
+                              .flatMap(
+                                (item) =>
+                                  item[intermediate.relation.handle] || [],
+                              )
+                              .map((x) => x.handle)}
+                            items={children}
+                            group={group as GroupedSelectOption}
+                            setItems={(groupItems) => {
+                              const updatedItems = items.map((x) =>
+                                x.id === item.id
+                                  ? {
+                                      ...x,
+                                      [intermediate.relation.handle]:
+                                        groupItems,
+                                    }
+                                  : x,
+                              );
+                              setItems(updatedItems);
+                            }}
+                            key={index}
+                          />
+                        );
+                      },
+                    )}
                   </>
                 }
                 key={item.id}
               >
                 <SortableListContext
                   items={children}
-                  options={form[0].settings.options}
+                  options={
+                    intermediate.relation.settings
+                      .options as GroupedSelectOption[]
+                  }
                   setItems={(groupItems) => {
                     const updatedItems = items.map((x) =>
                       x.id === item.id
                         ? {
                             ...x,
-                            [form[0].handle]: groupItems,
+                            [intermediate.relation.handle]: groupItems,
                           }
                         : x,
                     );
@@ -292,14 +347,75 @@ function SortableGrid({
               </SortableItem>
             );
           })}
-          <SortableItem
-            id={PLACEHOLDER_ID}
-            placeholder={true}
-            item={{ id: PLACEHOLDER_ID, identifier: PLACEHOLDER_ID }}
-            onClick={handleAddColumn}
-          >
-            {placeholder}
-          </SortableItem>
+          <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogTrigger asChild={true}>
+              <SortableItem
+                id={PLACEHOLDER_ID}
+                placeholder={true}
+                item={{ id: PLACEHOLDER_ID, identifier: PLACEHOLDER_ID }}
+                onClick={() => onOpenChange(true)}
+              >
+                {placeholder}
+              </SortableItem>
+            </DialogTrigger>
+            {form ? (
+              <DialogContent>
+                <DialogHeader className="border-b">
+                  <DialogTitle>{intermediate.label}</DialogTitle>
+                </DialogHeader>
+                <DialogBody>
+                  <VisuallyHidden>
+                    <DialogDescription></DialogDescription>
+                  </VisuallyHidden>
+                  {form.map((field, index) => {
+                    return (
+                      <FormItem key={index}>
+                        <FormLabel required={true}>{field.name}</FormLabel>
+                        <FormInputRenderer
+                          element={field}
+                          value={data[field.handle]}
+                          setValue={(value) => {
+                            const nextData = { ...data };
+
+                            set(nextData, field.handle, value);
+
+                            setData(nextData);
+                          }}
+                        />
+                      </FormItem>
+                    );
+                  })}
+                </DialogBody>
+                <DialogFooter className="border-t">
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      setData({});
+
+                      onOpenChange(false);
+                    }}
+                  >
+                    {getLabel("ui.cancel")}
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setItems([
+                        ...items,
+                        {
+                          ...(data as AnonymousItem),
+                          id: crypto.randomUUID(),
+                        },
+                      ]);
+
+                      onOpenChange(false);
+                    }}
+                  >
+                    {getLabel("ui.save")}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            ) : null}
+          </Dialog>
         </SortableContext>
       </div>
       {createPortal(
@@ -310,7 +426,7 @@ function SortableGrid({
                 id={active.id}
                 item={active}
                 label={`Column ${active.name}`}
-              ></SortableItem>
+              />
             ) : (
               <SortableItem id={active.id} item={active} label={active.name} />
             )
@@ -320,18 +436,6 @@ function SortableGrid({
       )}
     </DndContext>
   );
-
-  function handleAddColumn() {
-    const id = crypto.randomUUID();
-
-    setItems([
-      ...items,
-      {
-        id: id,
-        identifier: "",
-      },
-    ]);
-  }
 }
 
 export default SortableGrid;

@@ -50,19 +50,9 @@ class TwoFactorChallengeController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $form = $this->form->get(
-            url: route('two-factor.login'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.confirm'),
-        );
-
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            title: trans('narsil-cms::ui.two_factor_authentication'),
-            description: trans('narsil-cms::ui.two_factor_authentication'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 

@@ -26,18 +26,35 @@ use ResourceBundle;
  */
 class SiteForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.site'));
+        $this->submit(trans('narsil-cms::ui.create'));
+        $this->title(trans('narsil-cms::ui.site'));
+        $this->url(route('sites.store'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
-        $groupOptions = $this->getGroupOptions();
-        $languageOptions = $this->getLanguageOptions();
+        $groupOptions = static::getGroupOptions();
+        $languageOptions = static::getLanguageOptions();
 
         return [
-            $this->mainBlock([
+            static::mainBlock([
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::NAME,
@@ -78,7 +95,7 @@ class SiteForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            $this->sidebar([
+            static::sidebar([
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::ENABLED,
@@ -97,7 +114,7 @@ class SiteForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            $this->informationBlock(),
+            static::informationBlock(),
         ];
     }
 
@@ -108,7 +125,7 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * @return array<string>
      */
-    protected function getGroupOptions(): array
+    protected static function getGroupOptions(): array
     {
         $groups = SiteGroup::query()
             ->orderBy(SiteGroup::NAME)
@@ -127,7 +144,7 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * @return array<string>
      */
-    protected function getLanguageOptions(): array
+    protected static function getLanguageOptions(): array
     {
         $locales = ResourceBundle::getLocales('');
 

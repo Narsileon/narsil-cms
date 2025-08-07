@@ -1,16 +1,14 @@
 <?php
 
-namespace Narsil\Implementations\Forms\Fortify;
+namespace Narsil\Implementations\Forms;
 
 #region USE
 
 use Narsil\Contracts\Fields\TextInput;
-use Narsil\Contracts\Forms\Fortify\ProfileForm as Contract;
-use Narsil\Enums\Fields\AutoCompleteEnum;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\User;
+use Narsil\Models\Elements\TemplateSection;
 
 #endregion
 
@@ -18,7 +16,7 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ProfileForm extends AbstractForm implements Contract
+class TemplateSectionForm extends AbstractForm implements Contract
 {
     #region CONSTRUCTOR
 
@@ -27,9 +25,7 @@ class ProfileForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->method(MethodEnum::PUT);
-        $this->submit(trans('narsil-cms::ui.update'));
-        $this->url(route('user-profile-information.update'));
+        $this->title(route('narsil-cms::ui.section'));
 
         parent::__construct();
     }
@@ -45,19 +41,17 @@ class ProfileForm extends AbstractForm implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => User::LAST_NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                Field::HANDLE => TemplateSection::NAME,
+                Field::NAME => trans('narsil-cms::validation.attributes.name'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
-                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
                     ->required(true),
             ]),
             new Field([
-                Field::HANDLE => User::FIRST_NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                Field::HANDLE => TemplateSection::HANDLE,
+                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
-                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
                     ->required(true),
             ]),
         ];

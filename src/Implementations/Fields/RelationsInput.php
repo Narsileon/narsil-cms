@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\RelationsInput as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Elements\Field;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -134,6 +135,26 @@ class RelationsInput extends AbstractField implements Contract
     final public function placeholder(string $placeholder): static
     {
         $this->settings['placeholder'] = $placeholder;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function setIntermediate(
+        Field $relation,
+        string $label,
+        string $optionLabel,
+        string $optionValue,
+    ): static
+    {
+        $this->settings['intermediate'] = [
+            'label' => $label,
+            'optionLabel' => $optionLabel,
+            'optionValue' => $optionValue,
+            'relation' => $relation,
+        ];
 
         return $this;
     }

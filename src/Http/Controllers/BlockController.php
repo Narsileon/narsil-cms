@@ -96,19 +96,9 @@ class BlockController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('blocks.store'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.create'),
-        );
-
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.block'),
-            description: trans('narsil-cms::ui.block'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 
@@ -145,20 +135,16 @@ class BlockController extends AbstractController
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
 
-        $form = $this->form->get(
-            url: route('blocks.update', $block->{Block::ID}),
-            method: MethodEnum::PATCH,
-            submit: trans('narsil-cms::ui.update'),
-        );
+        $this->form
+            ->method(MethodEnum::PATCH)
+            ->submit(trans('narsil-cms::ui.update'))
+            ->url(route('blocks.update', $block->{Block::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.block'),
-            description: trans('narsil-cms::ui.block'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $block,
-                'form' => $form,
-            ]
+            ]),
         );
     }
 

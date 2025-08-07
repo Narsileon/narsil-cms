@@ -7,7 +7,6 @@ namespace Narsil\Http\Controllers\Fortify;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\RegisterForm;
-use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
 
 #endregion
@@ -50,19 +49,9 @@ class RegisterController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $form = $this->form->get(
-            url: route('register'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.register'),
-        );
-
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            title: trans('narsil-cms::ui.registration'),
-            description: trans('narsil-cms::ui.registration'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 

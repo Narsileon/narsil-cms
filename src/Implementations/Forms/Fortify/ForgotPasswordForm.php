@@ -19,12 +19,29 @@ use Narsil\Models\User;
  */
 class ForgotPasswordForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.reset_password'));
+        $this->submit(trans('narsil-cms::ui.send'));
+        $this->title(trans('narsil-cms::ui.reset_password'));
+        $this->url(route('password.email'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

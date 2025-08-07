@@ -96,7 +96,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
         {!active && enabled && qrCode ? (
           <FormProvider
             id={form.id}
-            elements={form.elements}
+            elements={form.form}
             render={({ setError }) => (
               <Form
                 method={form.method}
@@ -115,7 +115,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
               >
                 <Card>
                   <CardContent className="grid-cols-12">
-                    {form.elements.map((element, index) => (
+                    {form.form.map((element, index) => (
                       <FormFieldRenderer element={element} key={index} />
                     ))}
                     <div

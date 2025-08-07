@@ -21,12 +21,29 @@ use Narsil\Models\User;
  */
 class RegisterForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.registration'));
+        $this->submit(trans('narsil-cms::ui.register'));
+        $this->title(trans('narsil-cms::ui.registration'));
+        $this->url(route('register'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

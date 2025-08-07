@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 use Narsil\Contracts\Fields\PasswordInput;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -19,12 +20,28 @@ use Narsil\Models\User;
  */
 class UpdatePasswordForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->method(MethodEnum::PUT);
+        $this->submit(trans('narsil-cms::ui.update'));
+        $this->url(route('user-password.update'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

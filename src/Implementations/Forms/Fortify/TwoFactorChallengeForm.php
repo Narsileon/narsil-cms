@@ -18,12 +18,29 @@ use Narsil\Models\Elements\Field;
  */
 class TwoFactorChallengeForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.two_factor_authentication'));
+        $this->submit(trans('narsil-cms::ui.confirm'));
+        $this->title(trans('narsil-cms::ui.two_factor_authentication'));
+        $this->url(route('two-factor.login'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

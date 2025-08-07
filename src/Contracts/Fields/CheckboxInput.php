@@ -4,7 +4,7 @@ namespace Narsil\Contracts\Fields;
 
 #region USE
 
-use Narsil\Contracts\Field;
+use Narsil\Contracts\Field as Contract;
 
 #endregion
 
@@ -12,7 +12,7 @@ use Narsil\Contracts\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface CheckboxInput extends Field
+interface CheckboxInput extends Contract
 {
     #region FLUENT METHODS
 

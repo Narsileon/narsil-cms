@@ -4,7 +4,8 @@ namespace Narsil\Contracts\Fields;
 
 #region USE
 
-use Narsil\Contracts\Field;
+use Narsil\Contracts\Field as Contract;
+use Narsil\Models\Elements\Field;
 
 #endregion
 
@@ -12,7 +13,7 @@ use Narsil\Contracts\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface RelationsInput extends Field
+interface RelationsInput extends Contract
 {
     #region FLUENT METHODS
 
@@ -69,6 +70,21 @@ interface RelationsInput extends Field
      * @return static Returns the current object instance.
      */
     public function placeholder(string $placeholder): static;
+
+    /**
+     * @param Field $relation
+     * @param string $label
+     * @param string $optionLabel
+     * @param string $optionValue
+     *
+     * @return static
+     */
+    public function setIntermediate(
+        Field $relation,
+        string $label,
+        string $optionLabel,
+        string $optionValue,
+    ): static;
 
     /**
      * @param array $value

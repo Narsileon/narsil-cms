@@ -21,12 +21,29 @@ use Narsil\Models\User;
  */
 class LoginForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->description(trans('narsil-cms::ui.connection'));
+        $this->submit(trans('narsil-cms::ui.log_in'));
+        $this->title(trans('narsil-cms::ui.connection'));
+        $this->url(route('login'));
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function elements(): array
+    public static function form(): array
     {
         return [
             new Field([

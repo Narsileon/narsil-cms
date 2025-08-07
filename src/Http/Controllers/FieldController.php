@@ -87,19 +87,9 @@ class FieldController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('fields.store'),
-            method: MethodEnum::POST,
-            submit: trans('narsil-cms::ui.create'),
-        );
-
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.field'),
-            description: trans('narsil-cms::ui.field'),
-            props: [
-                'form' => $form,
-            ]
+            props: $this->form->jsonSerialize(),
         );
     }
 
@@ -137,20 +127,16 @@ class FieldController extends AbstractController
      */
     public function edit(Request $request, Field $field): JsonResponse|Response
     {
-        $form = $this->form->get(
-            url: route('fields.update', $field->{Field::ID}),
-            method: MethodEnum::PATCH,
-            submit: trans('narsil-cms::ui.update'),
-        );
+        $this->form
+            ->method(MethodEnum::PATCH)
+            ->submit(trans('narsil-cms::ui.update'))
+            ->url(route('fields.update', $field->{Field::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            title: trans('narsil-cms::ui.field'),
-            description: trans('narsil-cms::ui.field'),
-            props: [
+            props: array_merge($this->form->jsonSerialize(), [
                 'data' => $field,
-                'form' => $form,
-            ]
+            ]),
         );
     }
 
