@@ -7,7 +7,6 @@ namespace Narsil\Http\Controllers\Fortify;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm;
-use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
 
 #endregion
