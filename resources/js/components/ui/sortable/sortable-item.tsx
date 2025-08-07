@@ -8,6 +8,7 @@ import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 import SortableHandle from "./sortable-handle";
+import WidthSelector from "@narsil-cms/components/cms/width-selector";
 import {
   AnimateLayoutChanges,
   defaultAnimateLayoutChanges,
@@ -42,17 +43,16 @@ import type {
   SelectOption,
 } from "@narsil-cms/types/forms";
 import type { UniqueIdentifier } from "@dnd-kit/core";
-import WidthSelector from "@narsil-cms/components/cms/width-selector";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   asChild?: boolean;
   disabled?: boolean;
   footer?: React.ReactNode;
   form?: Field[];
-  group: GroupedSelectOption;
+  group?: GroupedSelectOption;
   id: UniqueIdentifier;
   item: AnonymousItem;
-  label: UniqueIdentifier;
+  label?: UniqueIdentifier;
   placeholder?: boolean;
   tooltip?: string;
   widthOptions?: SelectOption[];
@@ -137,7 +137,7 @@ function SortableItem({
               {...listeners}
             />
             {data?.icon ? (
-              <Tooltip tooltip={group.label}>
+              <Tooltip tooltip={group?.label}>
                 <Icon className="size-5" name={data.icon} />
               </Tooltip>
             ) : null}
@@ -147,7 +147,7 @@ function SortableItem({
               </CardTitle>
             ) : null}
             <div className="flex items-center justify-between gap-1">
-              {widthOptions ? (
+              {item && widthOptions ? (
                 <WidthSelector
                   options={widthOptions}
                   value={item.width}
@@ -156,7 +156,7 @@ function SortableItem({
                   }
                 />
               ) : null}
-              {form ? (
+              {form && item ? (
                 <Dialog open={open} onOpenChange={onOpenChange}>
                   <Tooltip tooltip={getLabel("ui.edit")}>
                     <DialogTrigger asChild={true}>
@@ -167,7 +167,7 @@ function SortableItem({
                   </Tooltip>
                   <DialogContent>
                     <DialogHeader className="border-b">
-                      <DialogTitle>{group.label}</DialogTitle>
+                      <DialogTitle>{group?.label}</DialogTitle>
                     </DialogHeader>
                     <DialogBody>
                       <VisuallyHidden>
@@ -212,11 +212,11 @@ function SortableItem({
                         onClick={() => {
                           const oldUniqueIdentifier = get(
                             item,
-                            group.optionValue,
+                            group?.optionValue ?? "value",
                           );
                           const newUniqueIdentifier = get(
                             data,
-                            group.optionValue,
+                            group?.optionValue ?? "value",
                           );
 
                           if (oldUniqueIdentifier !== newUniqueIdentifier) {
@@ -250,8 +250,14 @@ function SortableItem({
               ) : null}
             </div>
           </CardHeader>
-          {children ? <CardContent>{children}</CardContent> : null}
-          {footer ? <CardFooter>{footer}</CardFooter> : null}
+          {children ? (
+            <CardContent className="grow">{children}</CardContent>
+          ) : null}
+          {footer ? (
+            <CardFooter className="flex-col gap-4 border-t">
+              {footer}
+            </CardFooter>
+          ) : null}
         </>
       )}
     </Card>

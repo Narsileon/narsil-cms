@@ -86,8 +86,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::ui.default_name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -96,8 +95,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::ui.default_handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -109,16 +107,14 @@ class FieldForm extends AbstractForm implements Contract
                             ->options($typeOptions)
                             ->placeholder(trans('narsil-cms::placeholders.search'))
                             ->required(true)
-                            ->value(TextInput::class)
-                            ->toArray(),
+                            ->value(TextInput::class),
                     ])
                 ]),
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::NAME => trans('narsil-cms::ui.settings'),
                         Field::TYPE => SectionElement::class,
-                        Field::SETTINGS => app(SectionElement::class)
-                            ->toArray(),
+                        Field::SETTINGS => app(SectionElement::class),
                     ])
                 ]),
             ], $settings)),

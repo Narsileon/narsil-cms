@@ -33,8 +33,7 @@ class ProfileForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
@@ -42,8 +41,7 @@ class ProfileForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
         ];
     }

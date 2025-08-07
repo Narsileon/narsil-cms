@@ -1,22 +1,16 @@
 import * as React from "react";
-import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
-import { createPortal, unstable_batchedUpdates } from "react-dom";
-import { Icon } from "@narsil-cms/components/ui/icon";
-import { ModalLink } from "@narsil-cms/components/ui/modal";
-import SortableItem from "./sortable-item";
+import { createPortal } from "react-dom";
+import { get } from "lodash";
 import {
   CancelDrop,
-  closestCenter,
-  CollisionDetection,
   DndContext,
+  DragEndEvent,
+  DragOverEvent,
   DragOverlay,
-  getFirstCollision,
+  DragStartEvent,
   KeyboardSensor,
-  MeasuringStrategy,
   MouseSensor,
-  pointerWithin,
-  rectIntersection,
   TouchSensor,
   UniqueIdentifier,
   useSensor,
@@ -26,341 +20,299 @@ import {
   arrayMove,
   rectSortingStrategy,
   SortableContext,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import {
+  SortableAdd,
+  SortableItem,
+  SortableListContext,
+} from "@narsil-cms/components/ui/sortable";
+import type { AnonymousItem } from ".";
+import type { Field, GroupedSelectOption } from "@narsil-cms/types/forms";
 
-type Items = Record<UniqueIdentifier, UniqueIdentifier[]>;
-
-interface Props {
+interface SortableGridProps {
   columns?: 1 | 2 | 3 | 4;
-  create?: string;
-  items?: Items;
+  form: Field[];
+  items: AnonymousItem[];
+  placeholder: string;
+  setItems: (items: AnonymousItem[]) => void;
   cancelDrop?: CancelDrop;
 }
 
 const PLACEHOLDER_ID = "placeholder";
 
-export function MultipleContainers({
+function SortableGrid({
+  columns = 2,
+  form,
+  items,
+  placeholder,
   cancelDrop,
-  create,
-  columns = 1,
-  items: initialItems,
-}: Props) {
-  const [items, setItems] = React.useState<Items>(
-    initialItems ?? {
-      A: ["a1", "a2", "a3"],
-      B: ["b1", "b2", "b3"],
-      C: ["c1", "c2", "c3"],
-    },
-  );
-  const [containers, setContainers] = React.useState(
-    Object.keys(items) as UniqueIdentifier[],
-  );
-  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
-  const lastOverId = React.useRef<UniqueIdentifier | null>(null);
-  const recentlyMovedToNewContainer = React.useRef(false);
-  const isSortingContainer =
-    activeId != null ? containers.includes(activeId) : false;
+  setItems,
+}: SortableGridProps) {
+  const [active, setActive] = React.useState<AnonymousItem | null>(null);
 
-  /**
-   * Custom collision detection strategy optimized for multiple containers
-   *
-   * - First, find any droppable containers intersecting with the pointer.
-   * - If there are none, find intersecting containers with the active draggable.
-   * - If there are no intersecting containers, return the last matched intersection
-   *
-   */
-  const collisionDetectionStrategy: CollisionDetection = React.useCallback(
-    (args) => {
-      if (activeId && activeId in items) {
-        return closestCenter({
-          ...args,
-          droppableContainers: args.droppableContainers.filter(
-            (container) => container.id in items,
-          ),
-        });
-      }
-
-      // Start by finding any intersecting droppable
-      const pointerIntersections = pointerWithin(args);
-      const intersections =
-        pointerIntersections.length > 0
-          ? // If there are droppables intersecting with the pointer, return those
-            pointerIntersections
-          : rectIntersection(args);
-      let overId = getFirstCollision(intersections, "id");
-
-      if (overId != null) {
-        if (overId in items) {
-          const containerItems = items[overId];
-
-          // If a container is matched and it contains items (columns 'A', 'B', 'C')
-          if (containerItems.length > 0) {
-            // Return the closest droppable within that container
-            overId = closestCenter({
-              ...args,
-              droppableContainers: args.droppableContainers.filter(
-                (container) =>
-                  container.id !== overId &&
-                  containerItems.includes(container.id),
-              ),
-            })[0]?.id;
-          }
-        }
-
-        lastOverId.current = overId;
-
-        return [{ id: overId }];
-      }
-
-      // When a draggable item moves to a new container, the layout may shift
-      // and the `overId` may become `null`. We manually set the cached `lastOverId`
-      // to the id of the draggable item that was moved to the new container, otherwise
-      // the previous `overId` will be returned which can cause items to incorrectly shift positions
-      if (recentlyMovedToNewContainer.current) {
-        lastOverId.current = activeId;
-      }
-
-      // If no droppable is matched, return the last match
-      return lastOverId.current ? [{ id: lastOverId.current }] : [];
-    },
-    [activeId, items],
-  );
-  const [clonedItems, setClonedItems] = React.useState<Items | null>(null);
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
     useSensor(KeyboardSensor),
   );
-  const findContainer = (id: UniqueIdentifier) => {
-    if (id in items) {
-      return id;
-    }
-
-    return Object.keys(items).find((key) => items[key].includes(id));
-  };
 
   const onDragCancel = () => {
-    if (clonedItems) {
-      // Reset items to their original state in case items have been
-      // Dragged across containers
-      setItems(clonedItems);
-    }
-
-    setActiveId(null);
-    setClonedItems(null);
+    setActive(null);
   };
 
-  React.useEffect(() => {
-    requestAnimationFrame(() => {
-      recentlyMovedToNewContainer.current = false;
+  function onDragStart({ active }: DragStartEvent) {
+    const container = items.find((item) => item.id === active.id);
+
+    if (container) {
+      setActive(container);
+    } else {
+      items.map((container) => {
+        const children = getContainerChildren(container);
+
+        children.map((child) => {
+          if (getChildUniqueIdentifier(child) === active.id) {
+            setActive(child);
+
+            return;
+          }
+        });
+      });
+    }
+  }
+
+  function onDragEnd({ active, over }: DragEndEvent) {
+    if (over) {
+      const activeIndex = items.findIndex((x) => x.id === active.id);
+      const overIndex = items.findIndex((x) => x.id === over.id);
+
+      const isContainerSorting = activeIndex !== -1 && overIndex !== -1;
+
+      if (isContainerSorting) {
+        if (activeIndex !== overIndex) {
+          const nextItems = arrayMove(items, activeIndex, overIndex);
+
+          setItems(nextItems);
+
+          setActive(null);
+        }
+
+        return;
+      }
+
+      const activeContainer = findContainerByChildIdentifier(active.id);
+
+      if (!activeContainer) {
+        setActive(null);
+
+        return;
+      }
+
+      const overContainer = findContainerByChildIdentifier(active.id);
+
+      if (activeContainer.id === overContainer?.id) {
+        const oldIndex = getContainerChildren(activeContainer).findIndex(
+          (child) => getChildUniqueIdentifier(child) === active.id,
+        );
+        const newIndex = getContainerChildren(activeContainer).findIndex(
+          (child) => getChildUniqueIdentifier(child) === over.id,
+        );
+
+        if (oldIndex !== newIndex) {
+          const updatedElements = arrayMove(
+            activeContainer.elements,
+            oldIndex,
+            newIndex,
+          );
+
+          const updatedItems = items.map((item) =>
+            item.id === activeContainer.id
+              ? {
+                  ...item,
+                  elements: updatedElements,
+                }
+              : item,
+          );
+
+          setItems(updatedItems);
+        }
+      }
+    }
+
+    setActive(null);
+  }
+
+  function onDragOver({ active, over }: DragOverEvent) {
+    if (!over) {
+      return;
+    }
+
+    if (active.id === over.id) {
+      return;
+    }
+
+    const activeContainer = findContainerByChildIdentifier(active.id);
+
+    const overItem = items.find(
+      (container) =>
+        container.id === over.id ||
+        getContainerChildren(container).some(
+          (child) => getChildUniqueIdentifier(child) === over.id,
+        ),
+    );
+
+    if (!activeContainer || !overItem || activeContainer.id === overItem.id) {
+      return;
+    }
+
+    const activeItemIndex = getContainerChildren(activeContainer).findIndex(
+      (child) => getChildUniqueIdentifier(child) === active.id,
+    );
+    const activeItem = getContainerChildren(activeContainer)[activeItemIndex];
+
+    const nextItems = items.map((container) => {
+      if (container.id === activeContainer.id) {
+        return {
+          ...container,
+          [form[0].handle]: getContainerChildren(container).filter(
+            (child) => getChildUniqueIdentifier(child) !== active.id,
+          ),
+        };
+      }
+
+      if (container.id === overItem.id) {
+        return {
+          ...container,
+          [form[0].handle]: [...getContainerChildren(container), activeItem],
+        };
+      }
+
+      return container;
     });
-  }, [items]);
+
+    setItems(nextItems);
+  }
+
+  function findContainerByChildIdentifier(identifier: UniqueIdentifier) {
+    return items.find((container) =>
+      getContainerChildren(container).some(
+        (child) => getChildUniqueIdentifier(child) === identifier,
+      ),
+    );
+  }
+
+  function getContainerChildren(container: AnonymousItem) {
+    const children: AnonymousItem[] = get(container, form[0].handle, []);
+
+    return children;
+  }
+
+  function getChildGroup(child: AnonymousItem) {
+    const group = form[0].settings.options?.find((option) =>
+      child.identifier.includes(option.identifier),
+    ) as GroupedSelectOption;
+
+    return group;
+  }
+
+  function getChildUniqueIdentifier(child: AnonymousItem) {
+    const group = getChildGroup(child);
+
+    return child[group.optionValue];
+  }
 
   return (
     <DndContext
       sensors={sensors}
-      collisionDetection={collisionDetectionStrategy}
-      measuring={{
-        droppable: {
-          strategy: MeasuringStrategy.Always,
-        },
-      }}
-      onDragStart={({ active }) => {
-        setActiveId(active.id);
-        setClonedItems(items);
-      }}
-      onDragOver={({ active, over }) => {
-        const overId = over?.id;
-
-        if (overId == null || active.id in items) {
-          return;
-        }
-
-        const overContainer = findContainer(overId);
-        const activeContainer = findContainer(active.id);
-
-        if (!overContainer || !activeContainer) {
-          return;
-        }
-
-        if (activeContainer !== overContainer) {
-          setItems((items) => {
-            const activeItems = items[activeContainer];
-            const overItems = items[overContainer];
-            const overIndex = overItems.indexOf(overId);
-            const activeIndex = activeItems.indexOf(active.id);
-
-            let newIndex: number;
-
-            if (overId in items) {
-              newIndex = overItems.length + 1;
-            } else {
-              const isBelowOverItem =
-                over &&
-                active.rect.current.translated &&
-                active.rect.current.translated.top >
-                  over.rect.top + over.rect.height;
-
-              const modifier = isBelowOverItem ? 1 : 0;
-
-              newIndex =
-                overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
-            }
-
-            recentlyMovedToNewContainer.current = true;
-
-            return {
-              ...items,
-              [activeContainer]: items[activeContainer].filter(
-                (item) => item !== active.id,
-              ),
-              [overContainer]: [
-                ...items[overContainer].slice(0, newIndex),
-                items[activeContainer][activeIndex],
-                ...items[overContainer].slice(
-                  newIndex,
-                  items[overContainer].length,
-                ),
-              ],
-            };
-          });
-        }
-      }}
-      onDragEnd={({ active, over }) => {
-        if (active.id in items && over?.id) {
-          setContainers((containers) => {
-            const activeIndex = containers.indexOf(active.id);
-            const overIndex = containers.indexOf(over.id);
-
-            return arrayMove(containers, activeIndex, overIndex);
-          });
-        }
-
-        const activeContainer = findContainer(active.id);
-
-        if (!activeContainer) {
-          setActiveId(null);
-          return;
-        }
-
-        const overId = over?.id;
-
-        if (overId == null) {
-          setActiveId(null);
-          return;
-        }
-
-        if (overId === PLACEHOLDER_ID) {
-          const newContainerId = getNextContainerId();
-
-          unstable_batchedUpdates(() => {
-            setContainers((containers) => [...containers, newContainerId]);
-            setItems((items) => ({
-              ...items,
-              [activeContainer]: items[activeContainer].filter(
-                (id) => id !== activeId,
-              ),
-              [newContainerId]: [active.id],
-            }));
-            setActiveId(null);
-          });
-          return;
-        }
-
-        const overContainer = findContainer(overId);
-
-        if (overContainer) {
-          const activeIndex = items[activeContainer].indexOf(active.id);
-          const overIndex = items[overContainer].indexOf(overId);
-
-          if (activeIndex !== overIndex) {
-            setItems((items) => ({
-              ...items,
-              [overContainer]: arrayMove(
-                items[overContainer],
-                activeIndex,
-                overIndex,
-              ),
-            }));
-          }
-        }
-
-        setActiveId(null);
-      }}
       cancelDrop={cancelDrop}
       onDragCancel={onDragCancel}
+      onDragEnd={onDragEnd}
+      onDragOver={onDragOver}
+      onDragStart={onDragStart}
     >
       <div className={cn(`grid-cols-${columns} grid gap-4`)}>
         <SortableContext
-          items={[...containers, PLACEHOLDER_ID]}
+          items={items.map((item) => item.id)}
           strategy={rectSortingStrategy}
         >
-          {containers.map((containerId) => (
-            <SortableItem
-              key={containerId}
-              id={containerId}
-              label={`Column ${containerId}`}
-              header={
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => handleRemove(containerId)}
-                >
-                  <Icon name="trash" />
-                </Button>
-              }
-            >
-              <SortableContext
-                items={items[containerId]}
-                strategy={verticalListSortingStrategy}
+          {items.map((item) => {
+            const children = get(item, form[0].handle, []);
+
+            return (
+              <SortableItem
+                id={item.id}
+                item={item}
+                label={item.id}
+                onItemRemove={() => {
+                  setItems(items.filter((x) => x !== item));
+                }}
+                footer={
+                  <>
+                    {form[0].settings.options?.map((group, index) => {
+                      return (
+                        <SortableAdd
+                          ids={items
+                            .flatMap((item) => item[form[0].handle] || [])
+                            .map((x) => x.handle)}
+                          items={children}
+                          group={group}
+                          setItems={(groupItems) => {
+                            const updatedItems = items.map((x) =>
+                              x.id === item.id
+                                ? {
+                                    ...x,
+                                    [form[0].handle]: groupItems,
+                                  }
+                                : x,
+                            );
+                            setItems(updatedItems);
+                          }}
+                          key={index}
+                        />
+                      );
+                    })}
+                  </>
+                }
+                key={item.id}
               >
-                {items[containerId].map((value, index) => {
-                  return (
-                    <SortableItem
-                      disabled={isSortingContainer}
-                      key={index}
-                      id={value}
-                      label={value}
-                    />
-                  );
-                })}
-              </SortableContext>
-            </SortableItem>
-          ))}
+                <SortableListContext
+                  items={children}
+                  options={form[0].settings.options}
+                  setItems={(groupItems) => {
+                    const updatedItems = items.map((x) =>
+                      x.id === item.id
+                        ? {
+                            ...x,
+                            [form[0].handle]: groupItems,
+                          }
+                        : x,
+                    );
+                    setItems(updatedItems);
+                  }}
+                />
+              </SortableItem>
+            );
+          })}
           <SortableItem
             id={PLACEHOLDER_ID}
-            disabled={isSortingContainer}
-            onClick={handleAddColumn}
             placeholder={true}
+            item={{ id: PLACEHOLDER_ID, identifier: PLACEHOLDER_ID }}
+            onClick={handleAddColumn}
           >
-            + Add column
+            {placeholder}
           </SortableItem>
-          {create ? (
-            <ModalLink
-              href={create}
-              options={{
-                onSuccess: (response) => {
-                  console.log(response);
-                },
-              }}
-            >
-              Create
-            </ModalLink>
-          ) : null}
         </SortableContext>
       </div>
       {createPortal(
         <DragOverlay>
-          {activeId ? (
-            containers.includes(activeId) ? (
-              <SortableItem id={activeId} label={`Column ${activeId}`}>
-                {items[activeId].map((item, index) => (
-                  <SortableItem key={index} id={item} label={item} />
-                ))}
-              </SortableItem>
+          {active ? (
+            items.some((x) => x.id === active.id) ? (
+              <SortableItem
+                id={active.id}
+                item={active}
+                label={`Column ${active.name}`}
+              ></SortableItem>
             ) : (
-              <SortableItem id={activeId} label={activeId} />
+              <SortableItem id={active.id} item={active} label={active.name} />
             )
           ) : null}
         </DragOverlay>,
@@ -369,30 +321,17 @@ export function MultipleContainers({
     </DndContext>
   );
 
-  function handleRemove(containerID: UniqueIdentifier) {
-    setContainers((containers) =>
-      containers.filter((id) => id !== containerID),
-    );
-  }
-
   function handleAddColumn() {
-    const newContainerId = getNextContainerId();
+    const id = crypto.randomUUID();
 
-    unstable_batchedUpdates(() => {
-      setContainers((containers) => [...containers, newContainerId]);
-      setItems((items) => ({
-        ...items,
-        [newContainerId]: [],
-      }));
-    });
-  }
-
-  function getNextContainerId() {
-    const containerIds = Object.keys(items);
-    const lastContainerId = containerIds[containerIds.length - 1];
-
-    return String.fromCharCode(lastContainerId.charCodeAt(0) + 1);
+    setItems([
+      ...items,
+      {
+        id: id,
+        identifier: "",
+      },
+    ]);
   }
 }
 
-export default MultipleContainers;
+export default SortableGrid;

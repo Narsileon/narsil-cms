@@ -42,23 +42,20 @@ class TimeInput extends AbstractField implements Contract
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->value('00:00')
-                    ->toArray(),
+                    ->value('00:00'),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->value('23:59')
-                    ->toArray(),
+                    ->value('23:59'),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
                 Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class),
             ]),
         ];
     }
@@ -78,6 +75,10 @@ class TimeInput extends AbstractField implements Contract
     {
         return trans('narsil-cms::fields.time');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

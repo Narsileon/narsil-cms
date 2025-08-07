@@ -91,7 +91,18 @@ class UserConfigurationController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $this->registerLabels();
+        app(LabelsBag::class)
+            ->add('narsil-cms::sessions.sign_out_current_description')
+            ->add('narsil-cms::sessions.sign_out_current')
+            ->add('narsil-cms::sessions.sign_out_elsewhere_description')
+            ->add('narsil-cms::sessions.sign_out_elsewhere')
+            ->add('narsil-cms::sessions.sign_out_everywhere_description')
+            ->add('narsil-cms::sessions.sign_out_everywhere')
+            ->add('narsil-cms::ui.account')
+            ->add('narsil-cms::ui.password')
+            ->add('narsil-cms::ui.personalization')
+            ->add('narsil-cms::ui.security')
+            ->add('narsil-cms::ui.sessions');
 
         $profileForm = $this->profileForm->get(
             url: route('user-profile-information.update'),
@@ -153,29 +164,6 @@ class UserConfigurationController extends AbstractController
         }
 
         return back();
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return void
-     */
-    protected function registerLabels(): void
-    {
-        app(LabelsBag::class)
-            ->add('narsil-cms::sessions.sign_out_current_description')
-            ->add('narsil-cms::sessions.sign_out_current')
-            ->add('narsil-cms::sessions.sign_out_elsewhere_description')
-            ->add('narsil-cms::sessions.sign_out_elsewhere')
-            ->add('narsil-cms::sessions.sign_out_everywhere_description')
-            ->add('narsil-cms::sessions.sign_out_everywhere')
-            ->add('narsil-cms::ui.account')
-            ->add('narsil-cms::ui.password')
-            ->add('narsil-cms::ui.personalization')
-            ->add('narsil-cms::ui.security')
-            ->add('narsil-cms::ui.sessions');
     }
 
     #endregion

@@ -44,8 +44,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($localeOptions)
-                    ->value('en')
-                    ->toArray(),
+                    ->value('en'),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::THEME,
@@ -53,8 +52,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($themeOptions)
-                    ->value('system')
-                    ->toArray(),
+                    ->value('system'),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::COLOR,
@@ -62,8 +60,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($colorOptions)
-                    ->value('neutral')
-                    ->toArray(),
+                    ->value('neutral'),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::RADIUS,
@@ -73,8 +70,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                     ->max(1)
                     ->min(0)
                     ->step(0.05)
-                    ->value([0.50])
-                    ->toArray(),
+                    ->value([0.50]),
             ]),
         ];
     }

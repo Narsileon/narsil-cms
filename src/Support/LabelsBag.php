@@ -26,6 +26,18 @@ final class LabelsBag
     #region PUBLIC METHODS
 
     /**
+     * @return array
+     */
+    public function get(): array
+    {
+        return $this->labels;
+    }
+
+    #endregion
+
+    #region FLUENT METHODS
+
+    /**
      * @param string $key
      * @param array $replace
      *
@@ -39,15 +51,6 @@ final class LabelsBag
 
         return $this;
     }
-
-    /**
-     * @return array
-     */
-    public function get(): array
-    {
-        return $this->labels;
-    }
-
 
     #endregion
 }

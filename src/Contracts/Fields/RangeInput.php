@@ -14,31 +14,31 @@ use Narsil\Contracts\Field;
  */
 interface RangeInput extends Field
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
 
     /**
-     * @param float|int $max
+     * @param float|integer $max The maximum number.
      *
      * @return static Returns the current object instance.
      */
     public function max(float|int $max): static;
 
     /**
-     * @param float|int $min
+     * @param float|integer $min The minimum number.
      *
      * @return static Returns the current object instance.
      */
     public function min(float|int $min): static;
 
     /**
-     * @param float|int $step
+     * @param float|integer $step The interval between two numbers.
      *
      * @return static Returns the current object instance.
      */
     public function step(float|int $step): static;
 
     /**
-     * @param array<float|int> $value
+     * @param array<float|integer> $value The default value.
      *
      * @return static Returns the current object instance.
      */

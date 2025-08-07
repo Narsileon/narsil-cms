@@ -14,24 +14,24 @@ use Narsil\Contracts\Field;
  */
 interface RichTextInput extends Field
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
 
     /**
-     * @param string $placeholder
+     * @param string $placeholder The text displayed when the input has no value.
      *
      * @return static Returns the current object instance.
      */
     public function placeholder(string $placeholder): static;
 
     /**
-     * @param boolean $required
+     * @param boolean $required Must the input have a value?
      *
      * @return static Returns the current object instance.
      */
     public function required(bool $required): static;
 
     /**
-     * @param string $value
+     * @param string $value The default value.
      *
      * @return static Returns the current object instance.
      */

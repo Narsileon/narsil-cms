@@ -4,13 +4,11 @@ namespace Narsil\Implementations;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Narsil\Contracts\Form;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
 use Narsil\Support\LabelsBag;
 use ReflectionClass;
@@ -23,6 +21,22 @@ use ReflectionClass;
  */
 abstract class AbstractForm implements Form
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        app(LabelsBag::class)
+            ->add('narsil-cms::pagination.empty')
+            ->add('narsil-cms::placeholders.choose')
+            ->add('narsil-cms::ui.back')
+            ->add('narsil-cms::ui.create');
+    }
+
+    #endregion
+
     #region PROPERTIES
 
     /**
@@ -59,8 +73,6 @@ abstract class AbstractForm implements Form
         $this->method = $method->value;
         $this->submit = $submit;
         $this->url = $url;
-
-        $this->registerLabels();
 
         return [
             'elements' => $this->elements(),
@@ -144,40 +156,6 @@ abstract class AbstractForm implements Form
             Block::NAME => trans('narsil-cms::ui.sidebar'),
             Block::RELATION_ELEMENTS => $elements
         ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function registerLabels(): void
-    {
-        app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.align_center')
-            ->add('narsil-cms::accessibility.align_justify')
-            ->add('narsil-cms::accessibility.align_left')
-            ->add('narsil-cms::accessibility.align_right')
-            ->add('narsil-cms::accessibility.redo')
-            ->add('narsil-cms::accessibility.required')
-            ->add('narsil-cms::accessibility.toggle_bold')
-            ->add('narsil-cms::accessibility.toggle_bullet_list')
-            ->add('narsil-cms::accessibility.toggle_heading_1')
-            ->add('narsil-cms::accessibility.toggle_heading_2')
-            ->add('narsil-cms::accessibility.toggle_heading_3')
-            ->add('narsil-cms::accessibility.toggle_heading_4')
-            ->add('narsil-cms::accessibility.toggle_heading_5')
-            ->add('narsil-cms::accessibility.toggle_heading_6')
-            ->add('narsil-cms::accessibility.toggle_heading_menu')
-            ->add('narsil-cms::accessibility.toggle_italic')
-            ->add('narsil-cms::accessibility.toggle_ordered_list')
-            ->add('narsil-cms::accessibility.toggle_strike')
-            ->add('narsil-cms::accessibility.toggle_subscript')
-            ->add('narsil-cms::accessibility.toggle_superscript')
-            ->add('narsil-cms::accessibility.toggle_underline')
-            ->add('narsil-cms::accessibility.undo')
-            ->add('narsil-cms::pagination.empty')
-            ->add('narsil-cms::placeholders.choose')
-            ->add('narsil-cms::ui.back')
-            ->add('narsil-cms::ui.create');
     }
 
     #endregion

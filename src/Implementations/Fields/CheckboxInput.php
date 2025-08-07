@@ -40,8 +40,7 @@ class CheckboxInput extends AbstractField implements Contract
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
                 Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class),
             ]),
         ];
     }
@@ -61,6 +60,10 @@ class CheckboxInput extends AbstractField implements Contract
     {
         return trans('narsil-cms::fields.checkbox');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

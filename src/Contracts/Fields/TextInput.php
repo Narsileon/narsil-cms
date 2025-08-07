@@ -14,7 +14,7 @@ use Narsil\Contracts\Field;
  */
 interface TextInput extends Field
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
 
     /**
      * @param string $autoComplete
@@ -24,42 +24,42 @@ interface TextInput extends Field
     public function autoComplete(string $autoComplete): static;
 
     /**
-     * @param string $maxLength
+     * @param string $maxLength The maximum length of the string.
      *
      * @return static Returns the current object instance.
      */
     public function maxLength(string $maxLength): static;
 
     /**
-     * @param string $minLength
+     * @param string $minLength The minimum length of the string.
      *
      * @return static Returns the current object instance.
      */
     public function minLength(string $minLength): static;
 
     /**
-     * @param string $placeholder
+     * @param string $placeholder The text displayed when the input has no value.
      *
      * @return static Returns the current object instance.
      */
     public function placeholder(string $placeholder): static;
 
     /**
-     * @param boolean $required
+     * @param boolean $required Must the input have a value?
      *
      * @return static Returns the current object instance.
      */
     public function required(bool $required): static;
 
     /**
-     * @param string $type
+     * @param string $type The type of the input.
      *
      * @return static Returns the current object instance.
      */
     public function type(string $type): static;
 
     /**
-     * @param string $value
+     * @param string $value The default value.
      *
      * @return static Returns the current object instance.
      */

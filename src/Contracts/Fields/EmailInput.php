@@ -14,10 +14,10 @@ use Narsil\Contracts\Fields\TextInput;
  */
 interface EmailInput extends TextInput
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
 
     /**
-     * @param boolean $multiple
+     * @param boolean $multiple Does the input accept comma-separated value?
      *
      * @return static Returns the current object instance.
      */

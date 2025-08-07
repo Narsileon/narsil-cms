@@ -32,6 +32,7 @@ class TemplateForm extends AbstractForm implements Contract
     {
         $blockOptions = static::getBlockOptions();
         $fieldOptions = static::getFieldOptions();
+        $widthOptions = static::getWidthOptions();
 
         return [
             $this->mainBlock([
@@ -41,8 +42,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -50,32 +50,57 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::HANDLE => Template::HANDLE,
                         Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                         Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
+                        Field::SETTINGS => app(TextInput::class),
                     ])
                 ]),
                 new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Block([
-                        Field::HANDLE => TemplateSection::RELATION_ELEMENTS,
+                    BlockElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => Template::RELATION_SECTIONS,
                         Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->options([
-                                [
-                                    'icon'  => 'box',
-                                    'label' => trans('narsil-cms::ui.block'),
-                                    'options' => $blockOptions,
-                                    'routes' => RouteService::getNames(Block::TABLE),
-                                ],
-                                [
-                                    'icon'  => 'rectangle-ellipsis',
-                                    'label' => trans('narsil-cms::ui.field'),
-                                    'options' => $fieldOptions,
-                                    'routes' => RouteService::getNames(Field::TABLE),
-                                ],
+                            ->form([
+                                new Field([
+                                    Field::HANDLE => TemplateSection::RELATION_ELEMENTS,
+                                    Field::NAME => trans('narsil-cms::validation.attributes.elements'),
+                                    Field::TYPE => RelationsInput::class,
+                                    Field::SETTINGS => app(RelationsInput::class)
+                                        ->form([
+                                            new Field([
+                                                Field::HANDLE => Block::NAME,
+                                                Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                                                Field::TYPE => TextInput::class,
+                                                Field::SETTINGS => app(TextInput::class)
+                                                    ->required(true),
+                                            ]),
+                                            new Field([
+                                                Field::HANDLE => Block::HANDLE,
+                                                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                                                Field::TYPE => TextInput::class,
+                                                Field::SETTINGS => app(TextInput::class)
+                                                    ->required(true),
+                                            ]),
+                                        ])
+                                        ->addOption(
+                                            identifier: Block::TABLE,
+                                            label: trans('narsil-cms::ui.block'),
+                                            optionLabel: BlockElement::NAME,
+                                            optionValue: BlockElement::HANDLE,
+                                            options: $blockOptions,
+                                            routes: RouteService::getNames(Block::TABLE),
+                                        )
+                                        ->addOption(
+                                            identifier: Field::TABLE,
+                                            label: trans('narsil-cms::ui.field'),
+                                            optionLabel: BlockElement::NAME,
+                                            optionValue: BlockElement::HANDLE,
+                                            options: $fieldOptions,
+                                            routes: RouteService::getNames(Field::TABLE),
+                                        )
+                                        ->widthOptions($widthOptions),
+                                ])
                             ])
-                            ->toArray(),
+                            ->placeholder(trans('narsil-cms::ui.add_section')),
                     ])
                 ]),
             ]),
@@ -87,6 +112,9 @@ class TemplateForm extends AbstractForm implements Contract
 
     #region PROTECTED METHODS
 
+    /**
+     * @return array
+     */
     protected static function getBlockOptions(): array
     {
         return Block::query()
@@ -95,14 +123,18 @@ class TemplateForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return [
+                    'icon' => $block->{Block::ATTRIBUTE_ICON},
                     'identifier' => $block->{Block::ATTRIBUTE_IDENTIFIER},
                     'label' => $block->{Block::NAME},
-                    'value' => $block->{Block::ID},
+                    'value' => $block->{Block::HANDLE},
                 ];
             })
             ->toArray();
     }
 
+    /**
+     * @return array
+     */
     protected static function getFieldOptions(): array
     {
         return Field::query()
@@ -111,12 +143,28 @@ class TemplateForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return [
+                    'icon' => $field->{Field::ATTRIBUTE_ICON},
                     'identifier' => $field->{Field::ATTRIBUTE_IDENTIFIER},
                     'label' => $field->{Field::NAME},
-                    'value' => $field->{Field::ID},
+                    'value' => $field->{Field::HANDLE},
                 ];
             })
             ->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    protected static function getWidthOptions(): array
+    {
+        return [
+            ['label' => '25%', 'value' => 25],
+            ['label' => '33%', 'value' => 33],
+            ['label' => '50%', 'value' => 50],
+            ['label' => '67%', 'value' => 67],
+            ['label' => '75%', 'value' => 75],
+            ['label' => '100%', 'value' => 100],
+        ];
     }
 
     #endregion

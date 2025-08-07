@@ -35,8 +35,7 @@ class LoginForm extends AbstractForm implements Contract
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
@@ -44,15 +43,13 @@ class LoginForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::REMEMBER,
                 Field::NAME => trans('narsil-cms::validation.attributes.remember'),
                 Field::TYPE => CheckboxInput::class,
-                Field::SETTINGS => app(CheckboxInput::class)
-                    ->toArray(),
+                Field::SETTINGS => app(CheckboxInput::class),
             ]),
         ];
     }

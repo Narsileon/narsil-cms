@@ -4,6 +4,7 @@ namespace Narsil\Implementations;
 
 #region USE
 
+use JsonSerializable;
 use Narsil\Contracts\Field;
 
 #endregion
@@ -12,7 +13,7 @@ use Narsil\Contracts\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractField implements Field
+abstract class AbstractField implements Field, JsonSerializable
 {
     #region PROPERTIES
 
@@ -28,10 +29,12 @@ abstract class AbstractField implements Field
     /**
      * {@inheritDoc}
      */
-    public function toArray(): array
+    public function jsonSerialize(): mixed
     {
         return $this->settings;
     }
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

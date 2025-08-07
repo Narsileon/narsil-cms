@@ -5,7 +5,6 @@ namespace Narsil\Implementations\Fields;
 #region USE
 
 use Narsil\Contracts\Fields\NumberInput as Contract;
-use Narsil\Contracts\Fields\TextInput;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 
@@ -42,16 +41,14 @@ class NumberInput extends AbstractField implements Contract
                 Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'settings.max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->value(999999999)
-                    ->toArray(),
+                    ->value(999999999),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.step" : 'settings.step',
@@ -59,16 +56,14 @@ class NumberInput extends AbstractField implements Contract
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->min(0)
-                    ->value(1)
-                    ->toArray(),
+                    ->value(1),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
                 Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
                 Field::TYPE => NumberInput::class,
-                Field::SETTINGS => app(NumberInput::class)
-                    ->value(0)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class)
+                    ->value(0),
             ]),
         ];
     }
@@ -88,6 +83,10 @@ class NumberInput extends AbstractField implements Contract
     {
         return trans('narsil-cms::fields.number');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

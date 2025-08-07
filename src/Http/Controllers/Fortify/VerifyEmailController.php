@@ -26,7 +26,11 @@ class VerifyEmailController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $this->registerLabels();
+        app(LabelsBag::class)
+            ->add('narsil-cms::verify-email.instruction')
+            ->add('narsil-cms::verify-email.prompt')
+            ->add('narsil-cms::verify-email.send_again')
+            ->add('narsil-cms::verify-email.sent');
 
         return $this->render(
             component: 'narsil/cms::fortify/verify-email',
@@ -36,22 +40,6 @@ class VerifyEmailController extends AbstractController
                 'status' => session('status'),
             ]
         );
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return void
-     */
-    protected function registerLabels(): void
-    {
-        app(LabelsBag::class)
-            ->add('narsil-cms::verify-email.instruction')
-            ->add('narsil-cms::verify-email.prompt')
-            ->add('narsil-cms::verify-email.send_again')
-            ->add('narsil-cms::verify-email.sent');
     }
 
     #endregion

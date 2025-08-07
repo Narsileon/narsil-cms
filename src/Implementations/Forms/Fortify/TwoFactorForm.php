@@ -19,6 +19,25 @@ use Narsil\Support\LabelsBag;
  */
 class TwoFactorForm extends AbstractForm implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        app(LabelsBag::class)
+            ->add('validation.custom.code.invalid')
+            ->add('narsil-cms::two-factor.recovery_codes_copied')
+            ->add('narsil-cms::two-factor.recovery_codes_description')
+            ->add('narsil-cms::two-factor.recovery_codes_title')
+            ->add('narsil-cms::two-factor.two_factor_authentication');
+
+        parent::__construct();
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -34,25 +53,9 @@ class TwoFactorForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
         ];
-    }
-
-    /**
-     * @return void
-     */
-    protected function registerLabels(): void
-    {
-        parent::registerLabels();
-
-        app(LabelsBag::class)
-            ->add('validation.custom.code.invalid')
-            ->add('narsil-cms::two-factor.recovery_codes_copied')
-            ->add('narsil-cms::two-factor.recovery_codes_description')
-            ->add('narsil-cms::two-factor.recovery_codes_title')
-            ->add('narsil-cms::two-factor.two_factor_authentication');
     }
 
     #endregion

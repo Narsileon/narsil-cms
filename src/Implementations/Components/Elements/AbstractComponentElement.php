@@ -4,8 +4,9 @@ namespace Narsil\Implementations\Components\Elements;
 
 #region USE
 
-use ReflectionClass;
 use Illuminate\Support\Str;
+use JsonSerializable;
+use ReflectionClass;
 
 #endregion
 
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class AbstractComponentElement
+class AbstractComponentElement implements JsonSerializable
 {
     #region PROPERTIES
 
@@ -27,9 +28,9 @@ class AbstractComponentElement
     #region PUBLIC METHODS
 
     /**
-     * @return array Returns the props.
+     * {@inheritDoc}
      */
-    public function toArray(): array
+    public function jsonSerialize(): mixed
     {
         return array_merge($this->props, [
             'component' => $this->getComponent(),

@@ -42,16 +42,14 @@ class RangeInput extends AbstractField implements Contract
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->value(0)
-                    ->toArray(),
+                    ->value(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->value(100)
-                    ->toArray(),
+                    ->value(100),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.step" : 'step',
@@ -59,16 +57,14 @@ class RangeInput extends AbstractField implements Contract
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
                     ->min(0)
-                    ->value(1)
-                    ->toArray(),
+                    ->value(1),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
                 Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->value(0)
-                    ->toArray(),
+                    ->value(0),
             ]),
         ];
     }
@@ -88,6 +84,10 @@ class RangeInput extends AbstractField implements Contract
     {
         return trans('narsil-cms::fields.range');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

@@ -34,8 +34,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil-cms::validation.attributes.email'),
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
@@ -44,8 +43,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(PasswordInput::class)
                     ->className('col-span-6')
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
@@ -54,8 +52,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(PasswordInput::class)
                     ->className('col-span-6')
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
@@ -64,8 +61,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::LAST_NAME,
@@ -74,8 +70,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
         ];
     }

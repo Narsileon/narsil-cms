@@ -14,7 +14,7 @@ use Narsil\Contracts\Field;
  */
 interface TableInput extends Field
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
 
     /**
      * @param array $columns
@@ -31,7 +31,7 @@ interface TableInput extends Field
     public function placeholder(string $placeholder): static;
 
     /**
-     * @param array $value
+     * @param array $value The default value.
      *
      * @return static Returns the current object instance.
      */

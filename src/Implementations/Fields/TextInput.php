@@ -45,8 +45,7 @@ class TextInput extends AbstractField implements Contract
                 Field::SETTINGS => app(NumberInput::class)
                     ->max(255)
                     ->min(0)
-                    ->step(1)
-                    ->toArray(),
+                    ->step(1),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
@@ -56,15 +55,13 @@ class TextInput extends AbstractField implements Contract
                     ->max(255)
                     ->min(0)
                     ->step(1)
-                    ->value(255)
-                    ->toArray(),
+                    ->value(255),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class),
             ]),
         ];
     }
@@ -84,6 +81,10 @@ class TextInput extends AbstractField implements Contract
     {
         return trans('narsil-cms::fields.text');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

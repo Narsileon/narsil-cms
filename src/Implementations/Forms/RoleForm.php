@@ -34,8 +34,7 @@ class RoleForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ]),
                 ]),
             ]),

@@ -33,8 +33,7 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
         ];
     }

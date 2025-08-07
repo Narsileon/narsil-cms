@@ -4,6 +4,7 @@ namespace Narsil\Implementations;
 
 #region USE
 
+use JsonSerializable;
 use Narsil\Contracts\Component;
 
 #endregion
@@ -12,26 +13,14 @@ use Narsil\Contracts\Component;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractComponent implements Component
+abstract class AbstractComponent implements Component, JsonSerializable
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->registerLabels();
-    }
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
-    public function toArray(): array
+    public function jsonSerialize(): mixed
     {
         return [
             'content' => $this->content(),
@@ -46,14 +35,6 @@ abstract class AbstractComponent implements Component
      * @return array
      */
     abstract protected function content(): array;
-
-    /**
-     * @return void
-     */
-    protected function registerLabels(): void
-    {
-        //
-    }
 
     #endregion
 }

@@ -12,9 +12,11 @@ import type {
   GroupedSelectOption,
   SelectOption,
 } from "@narsil-cms/types/forms";
+import { UniqueIdentifier } from "@dnd-kit/core";
 
 type SortableAddProps = React.ComponentProps<"div"> & {
   group: GroupedSelectOption;
+  ids: UniqueIdentifier[];
   items: AnonymousItem[];
   unique?: boolean;
   setItems: (items: AnonymousItem[]) => void;
@@ -23,6 +25,7 @@ type SortableAddProps = React.ComponentProps<"div"> & {
 function SortableAdd({
   className,
   group,
+  ids,
   items,
   unique,
   setItems,
@@ -48,7 +51,7 @@ function SortableAdd({
     let counter = 1;
     let value = originalValue;
 
-    while (items.some((item) => item[group.optionValue] == value)) {
+    while (ids.includes(value)) {
       if (isNumber(value)) {
         value = originalValue + counter;
       } else {

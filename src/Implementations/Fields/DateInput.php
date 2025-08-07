@@ -41,22 +41,19 @@ class DateInput extends AbstractField implements Contract
                 Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil-cms::validation.attributes.min'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil-cms::validation.attributes.max'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
                 Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->toArray(),
+                Field::SETTINGS => app(Contract::class),
             ]),
         ];
     }
@@ -76,6 +73,10 @@ class DateInput extends AbstractField implements Contract
     {
         return trans('narsil-cms::fields.date');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

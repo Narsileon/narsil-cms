@@ -25,10 +25,9 @@ interface Field
      */
     public static function getLabel(): string;
 
-    /**
-     * @return array<string,mixed>
-     */
-    public function toArray(): array;
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * @param string $className

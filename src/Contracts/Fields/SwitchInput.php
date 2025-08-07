@@ -14,10 +14,10 @@ use Narsil\Contracts\Field;
  */
 interface SwitchInput extends Field
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
 
     /**
-     * @param boolean $checked
+     * @param boolean $checked The default value.
      *
      * @return static Returns the current object instance.
      */

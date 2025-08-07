@@ -18,6 +18,21 @@ use Narsil\Support\LabelsBag;
  */
 class Sidebar extends AbstractComponent implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        app(LabelsBag::class)
+            ->add('narsil-cms::accessibility.close_sidebar')
+            ->add('narsil-cms::accessibility.open_sidebar')
+            ->add('narsil-cms::accessibility.toggle_sidebar');
+    }
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -27,54 +42,32 @@ class Sidebar extends AbstractComponent implements Contract
     {
         return [
             (new NavigationItem(route('dashboard'), trans('narsil-cms::ui.dashboard')))
-                ->icon('chart-pie')
-                ->toArray(),
+                ->icon('chart-pie'),
             (new NavigationGroup(trans('narsil-cms::ui.structures')))
                 ->children([
                     (new NavigationItem(route('templates.index'), trans('narsil-cms::ui.templates')))
-                        ->icon('layout')
-                        ->toArray(),
+                        ->icon('layout'),
                     (new NavigationItem(route('blocks.index'), trans('narsil-cms::ui.blocks')))
-                        ->icon('box')
-                        ->toArray(),
+                        ->icon('box'),
                     (new NavigationItem(route('fields.index'), trans('narsil-cms::ui.fields')))
-                        ->icon('input')
-                        ->toArray(),
-                ])
-                ->toArray(),
+                        ->icon('input'),
+                ]),
 
             (new NavigationGroup(trans('narsil-cms::ui.users')))
                 ->children([
                     (new NavigationItem(route('users.index'), trans('narsil-cms::ui.users')))
-                        ->icon('users')
-                        ->toArray(),
+                        ->icon('users'),
                     (new NavigationItem(route('roles.index'), trans('narsil-cms::ui.roles')))
-                        ->icon('shield')
-                        ->toArray(),
-                ])
-                ->toArray(),
+                        ->icon('shield'),
+                ]),
             (new NavigationGroup(trans('narsil-cms::ui.settings')))
                 ->children([
                     (new NavigationItem(route('sites.index'), trans('narsil-cms::ui.sites')))
-                        ->icon('globe')
-                        ->toArray(),
-                ])
-                ->toArray(),
+                        ->icon('globe'),
+                ]),
 
         ];
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function registerLabels(): void
-    {
-        app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.close_sidebar')
-            ->add('narsil-cms::accessibility.open_sidebar')
-            ->add('narsil-cms::accessibility.toggle_sidebar');
-    }
-
 
     #endregion
 }

@@ -14,10 +14,10 @@ use Narsil\Contracts\Field;
  */
 interface SelectInput extends Field
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
 
     /**
-     * @param string $placeholder
+     * @param string $placeholder The text displayed when the input has no value.
      *
      * @return static Returns the current object instance.
      */
@@ -31,21 +31,14 @@ interface SelectInput extends Field
     public function options(array $options): static;
 
     /**
-     * @param boolean $required
+     * @param boolean $required Must the input have a value?
      *
      * @return static Returns the current object instance.
      */
     public function required(bool $required): static;
 
     /**
-     * @param boolean $search
-     *
-     * @return static Returns the current object instance.
-     */
-    public function search(bool $search): static;
-
-    /**
-     * @param string $value
+     * @param string $value The default value.
      *
      * @return static Returns the current object instance.
      */

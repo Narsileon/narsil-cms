@@ -86,8 +86,8 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             'breadcrumb' => BreadcrumbService::getBreadcrumbs($request),
-            'sidebar' => app(Sidebar::class)->toArray(),
-            'userMenu' => app(Auth::check() ? AuthMenu::class : GuestMenu::class)->toArray(),
+            'sidebar' => app(Sidebar::class),
+            'userMenu' => app(Auth::check() ? AuthMenu::class : GuestMenu::class),
         ];
     }
 

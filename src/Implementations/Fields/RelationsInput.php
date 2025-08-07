@@ -60,6 +60,34 @@ class RelationsInput extends AbstractField implements Contract
         return trans('narsil-cms::fields.relations');
     }
 
+    #endregion
+
+    #region FLUENT METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function addOption(
+        string $identifier,
+        string $label,
+        string $optionLabel,
+        string $optionValue,
+        array $options = [],
+        array $routes = [],
+    ): static
+    {
+        $this->settings['options'][] = [
+            'identifier' => $identifier,
+            'label' => $label,
+            'optionLabel' => $optionLabel,
+            'optionValue' => $optionValue,
+            'options' => $options,
+            'routes' => $routes,
+        ];
+
+        return $this;
+    }
+
     /**
      * {@inheritDoc}
      */

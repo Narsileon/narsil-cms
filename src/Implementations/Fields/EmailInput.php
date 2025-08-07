@@ -43,15 +43,13 @@ class EmailInput extends Input implements Contract
                 Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
                 Field::NAME => trans('narsil-cms::validation.attributes.multiple'),
                 Field::TYPE => SwitchInput::class,
-                Field::SETTINGS => app(SwitchInput::class)
-                    ->toArray(),
+                Field::SETTINGS => app(SwitchInput::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : ' placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
-                    ->toArray(),
+                Field::SETTINGS => app(TextInput::class),
             ]),
         ];
     }
@@ -71,6 +69,10 @@ class EmailInput extends Input implements Contract
     {
         return trans('narsil-cms::fields.email');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}

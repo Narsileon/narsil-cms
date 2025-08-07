@@ -41,6 +41,10 @@ class TableInput extends AbstractField implements Contract
         return trans('narsil-cms::fields.table');
     }
 
+    #endregion
+
+    #region FLUENT METHODS
+
     /**
      * {@inheritDoc}
      */

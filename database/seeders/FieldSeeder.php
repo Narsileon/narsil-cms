@@ -61,7 +61,7 @@ class FieldSeeder extends Seeder
             Field::NAME => 'Builder',
             Field::HANDLE => 'builder',
             Field::TYPE => BuilderElement::class,
-            Field::SETTINGS => app(BuilderElement::class)->toArray(),
+            Field::SETTINGS => app(BuilderElement::class),
         ]);
 
         return $field;
@@ -76,7 +76,7 @@ class FieldSeeder extends Seeder
             Field::NAME => 'Rich text',
             Field::HANDLE => 'rich_text',
             Field::TYPE => RichTextInput::class,
-            Field::SETTINGS => app(RichTextInput::class)->toArray(),
+            Field::SETTINGS => app(RichTextInput::class),
         ]);
 
         $block = Block::create([

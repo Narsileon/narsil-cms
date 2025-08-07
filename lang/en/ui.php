@@ -3,6 +3,7 @@
 return [
     'account'          => 'Account',
     'add_group'        => 'Add a group',
+    'add_section'      => 'Add a section',
     'add'              => 'Add',
     'all'              => 'All',
     'back'             => 'Back',

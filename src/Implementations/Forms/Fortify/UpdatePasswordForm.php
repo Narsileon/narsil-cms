@@ -33,8 +33,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
@@ -42,8 +41,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
@@ -51,8 +49,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
         ];
     }

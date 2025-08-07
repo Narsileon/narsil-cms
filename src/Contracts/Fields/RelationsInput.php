@@ -14,7 +14,26 @@ use Narsil\Contracts\Field;
  */
 interface RelationsInput extends Field
 {
-    #region PUBLIC METHODS
+    #region FLUENT METHODS
+
+    /**
+     * @param string $identifier
+     * @param string $label
+     * @param string $optionLabel
+     * @param string $optionValue
+     * @param array $options
+     * @param array $routes
+     *
+     * @return static
+     */
+    public function addOption(
+        string $identifier,
+        string $label,
+        string $optionLabel,
+        string $optionValue,
+        array $options = [],
+        array $routes = [],
+    ): static;
 
     /**
      * @param int $columns

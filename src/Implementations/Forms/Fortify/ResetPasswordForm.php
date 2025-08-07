@@ -34,8 +34,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
@@ -43,8 +42,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
@@ -52,8 +50,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true)
-                    ->toArray(),
+                    ->required(true),
             ]),
         ];
     }

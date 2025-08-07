@@ -37,8 +37,7 @@ class UserForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.email'),
                         Field::TYPE => EmailInput::class,
                         Field::SETTINGS => app(EmailInput::class)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -48,8 +47,7 @@ class UserForm extends AbstractForm implements Contract
                         Field::TYPE => PasswordInput::class,
                         Field::SETTINGS => app(PasswordInput::class)
                             ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -59,8 +57,7 @@ class UserForm extends AbstractForm implements Contract
                         Field::TYPE => PasswordInput::class,
                         Field::SETTINGS => app(PasswordInput::class)
                             ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -70,8 +67,7 @@ class UserForm extends AbstractForm implements Contract
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -81,8 +77,7 @@ class UserForm extends AbstractForm implements Contract
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
             ]),

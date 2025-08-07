@@ -49,21 +49,17 @@ class SelectInput extends AbstractField implements Contract
                             Field::NAME => trans('narsil-cms::validation.attributes.value'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
-                                ->required(true)
-                                ->toArray(),
+                                ->required(true),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
                             Field::NAME => trans('narsil-cms::validation.attributes.label'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
-                                ->required(true)
-                                ->toArray(),
+                                ->required(true),
                         ]),
                     ])
-                    ->placeholder(trans('narsil-cms::ui.add'))
-                    ->value([])
-                    ->toArray(),
+                    ->placeholder(trans('narsil-cms::ui.add')),
             ]),
         ];
     }
@@ -83,6 +79,10 @@ class SelectInput extends AbstractField implements Contract
     {
         return trans('narsil-cms::fields.select');
     }
+
+    #endregion
+
+    #region FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -110,16 +110,6 @@ class SelectInput extends AbstractField implements Contract
     final public function required(bool $required): static
     {
         $this->settings['required'] = $required;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function search(bool $search): static
-    {
-        $this->settings['search'] = $search;
 
         return $this;
     }

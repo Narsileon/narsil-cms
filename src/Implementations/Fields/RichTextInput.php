@@ -8,6 +8,7 @@ use Narsil\Contracts\Fields\RichTextInput as Contract;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
+use Narsil\Support\LabelsBag;
 
 #endregion
 
@@ -26,6 +27,30 @@ class RichTextInput extends AbstractField implements Contract
     {
         $this->type('text');
         $this->value('');
+
+        app(LabelsBag::class)
+            ->add('narsil-cms::accessibility.align_center')
+            ->add('narsil-cms::accessibility.align_justify')
+            ->add('narsil-cms::accessibility.align_left')
+            ->add('narsil-cms::accessibility.align_right')
+            ->add('narsil-cms::accessibility.redo')
+            ->add('narsil-cms::accessibility.required')
+            ->add('narsil-cms::accessibility.toggle_bold')
+            ->add('narsil-cms::accessibility.toggle_bullet_list')
+            ->add('narsil-cms::accessibility.toggle_heading_1')
+            ->add('narsil-cms::accessibility.toggle_heading_2')
+            ->add('narsil-cms::accessibility.toggle_heading_3')
+            ->add('narsil-cms::accessibility.toggle_heading_4')
+            ->add('narsil-cms::accessibility.toggle_heading_5')
+            ->add('narsil-cms::accessibility.toggle_heading_6')
+            ->add('narsil-cms::accessibility.toggle_heading_menu')
+            ->add('narsil-cms::accessibility.toggle_italic')
+            ->add('narsil-cms::accessibility.toggle_ordered_list')
+            ->add('narsil-cms::accessibility.toggle_strike')
+            ->add('narsil-cms::accessibility.toggle_subscript')
+            ->add('narsil-cms::accessibility.toggle_superscript')
+            ->add('narsil-cms::accessibility.toggle_underline')
+            ->add('narsil-cms::accessibility.undo');
     }
 
     #endregion
@@ -42,8 +67,7 @@ class RichTextInput extends AbstractField implements Contract
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
                 Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
-                    ->toArray(),
+                Field::SETTINGS => app(TextInput::class),
             ]),
         ];
     }

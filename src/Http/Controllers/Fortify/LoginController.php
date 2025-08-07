@@ -51,7 +51,8 @@ class LoginController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $this->registerLabels();
+        app(LabelsBag::class)
+            ->add('narsil-cms::passwords.link');
 
         $form = $this->form->get(
             url: route('login'),
@@ -68,19 +69,6 @@ class LoginController extends AbstractController
                 'status' => session('status'),
             ]
         );
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return void
-     */
-    protected function registerLabels(): void
-    {
-        app(LabelsBag::class)
-            ->add('narsil-cms::passwords.link');
     }
 
     #endregion

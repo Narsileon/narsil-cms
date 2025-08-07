@@ -43,8 +43,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -53,8 +52,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -65,9 +63,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::SETTINGS => app(SelectInput::class)
                             ->options($languageOptions)
                             ->placeholder(trans('narsil-cms::placeholders.search'))
-                            ->required(true)
-                            ->search(true)
-                            ->toArray(),
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([
@@ -77,9 +73,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::TYPE => SelectInput::class,
                         Field::SETTINGS => app(SelectInput::class)
                             ->options($groupOptions)
-                            ->placeholder(trans('narsil-cms::placeholders.search'))
-                            ->search(true)
-                            ->toArray(),
+                            ->placeholder(trans('narsil-cms::placeholders.search')),
                     ])
                 ]),
             ]),
@@ -90,8 +84,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
                         Field::TYPE => SwitchInput::class,
                         Field::SETTINGS => app(SwitchInput::class)
-                            ->checked(true)
-                            ->toArray(),
+                            ->checked(true),
                     ])
                 ]),
                 new BlockElement([
@@ -99,8 +92,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::HANDLE => Site::PRIMARY,
                         Field::NAME => trans('narsil-cms::validation.attributes.primary'),
                         Field::TYPE => SwitchInput::class,
-                        Field::SETTINGS => app(SwitchInput::class)
-                            ->toArray(),
+                        Field::SETTINGS => app(SwitchInput::class),
                     ])
                 ]),
             ]),

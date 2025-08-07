@@ -1,8 +1,9 @@
-import Sortable from "./sortable";
 import SortableAdd from "./sortable-add";
 import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";
 import SortableItem from "./sortable-item";
+import SortableList from "./sortable-list";
+import SortableListContext from "./sortable-list-context";
 import SortableTree from "./sortable-tree";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 
@@ -27,11 +28,12 @@ type NestedNode = {
 };
 
 export {
-  Sortable,
   SortableAdd,
   SortableGrid,
   SortableHandle,
   SortableItem,
+  SortableList,
+  SortableListContext,
   SortableTree,
 };
 

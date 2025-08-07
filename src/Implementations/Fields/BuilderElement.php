@@ -11,6 +11,7 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Services\RouteService;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -35,19 +36,15 @@ class BuilderElement extends AbstractField implements Contract
                 Field::NAME => trans('narsil-cms::validation.attributes.blocks'),
                 Field::TYPE => RelationsInput::class,
                 Field::SETTINGS => app(RelationsInput::class)
-                    ->options([
-                        [
-                            'icon'  => 'box',
-                            'identifier' => Block::TABLE,
-                            'label' => trans('narsil-cms::ui.block'),
-                            'options' => $blockOptions,
-                            'optionLabel' => BlockElement::NAME,
-                            'optionValue' => BlockElement::HANDLE,
-                            'routes' => RouteService::getNames(Block::TABLE),
-                        ],
-                    ])
-                    ->unique(true)
-                    ->toArray(),
+                    ->addOption(
+                        identifier: Block::TABLE,
+                        label: trans('narsil-cms::ui.block'),
+                        optionLabel: BlockElement::NAME,
+                        optionValue: BlockElement::HANDLE,
+                        options: $blockOptions,
+                        routes: RouteService::getNames(Block::TABLE),
+                    )
+                    ->unique(true),
             ]),
         ];
     }
@@ -79,16 +76,9 @@ class BuilderElement extends AbstractField implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return [
-                    'identifier' => $block->{Block::ATTRIBUTE_IDENTIFIER},
-                    'label' => $block->{Block::NAME},
-                    'value' => $block->{Block::ID},
-                    'data' => [
-                        Block::ID => $block->{Block::ID},
-                        Block::HANDLE => $block->{Block::HANDLE},
-                        Block::NAME => $block->{Block::NAME},
-                    ]
-                ];
+                return (new SelectOption($block->{Block::NAME}, $block->{Block::ID}))
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }

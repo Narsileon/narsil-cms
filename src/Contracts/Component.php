@@ -8,12 +8,5 @@ namespace Narsil\Contracts;
  */
 interface Component
 {
-    #region PUBLIC METHODS
-
-    /**
-     * @return array
-     */
-    public function toArray(): array;
-
-    #endregion
+    //
 }

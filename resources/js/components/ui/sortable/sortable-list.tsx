@@ -1,7 +1,7 @@
 import * as React from "react";
+import { arrayMove } from "@dnd-kit/sortable";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/ui/card";
 import { createPortal } from "react-dom";
-import { SortableAdd, SortableItem } from "@narsil-cms/components/ui/sortable";
 import {
   closestCenter,
   DragOverlay,
@@ -13,41 +13,26 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import {
-  arrayMove,
-  horizontalListSortingStrategy,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+  SortableAdd,
+  SortableItem,
+  SortableListContext,
+} from "@narsil-cms/components/ui/sortable";
 import type { AnonymousItem } from ".";
-import type {
-  Field,
-  GroupedSelectOption,
-  SelectOption,
-} from "@narsil-cms/types/forms";
+import type { GroupedSelectOption } from "@narsil-cms/types/forms";
 import type {
   DragCancelEvent,
   DragEndEvent,
   DragStartEvent,
 } from "@dnd-kit/core";
 
-type SortableProps = {
-  direction?: "horizontal" | "vertical";
-  form?: Field[];
-  items: AnonymousItem[];
-  options: GroupedSelectOption[];
-  unique?: boolean;
-  widthOptions?: SelectOption[];
-  setItems: (items: AnonymousItem[]) => void;
-};
+type SortableProps = React.ComponentProps<typeof SortableListContext> & {};
 
 function Sortable({
-  direction = "vertical",
-  form,
   items,
   options,
   unique,
-  widthOptions,
   setItems,
+  ...props
 }: SortableProps) {
   const [active, setActive] = React.useState<AnonymousItem | null>(null);
 
@@ -62,8 +47,6 @@ function Sortable({
   }
 
   function onDragEnd({ active, over }: DragEndEvent) {
-    setActive(null);
-
     if (over) {
       const activeIndex = items.findIndex(
         (item) => getUniqueIdentifier(item) == active.id,
@@ -76,13 +59,11 @@ function Sortable({
         setItems(arrayMove(items, activeIndex, overIndex));
       }
     }
+
+    setActive(null);
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    if (!active) {
-      return;
-    }
-
     const item = items.find(
       (item) => getUniqueIdentifier(item) == active.id,
     ) as AnonymousItem;
@@ -101,7 +82,10 @@ function Sortable({
   function getFormattedLabel(item: AnonymousItem) {
     const group = getGroup(item);
 
-    return `${item[group.optionLabel]} (${item[group.optionValue]})`;
+    const label = item[group.optionLabel];
+    const value = item[group.optionValue];
+
+    return unique ? label : `${label} (${value})`;
   }
 
   function getUniqueIdentifier(item: AnonymousItem) {
@@ -120,43 +104,13 @@ function Sortable({
           onDragEnd={onDragEnd}
           onDragStart={onDragStart}
         >
-          <SortableContext
-            items={items.map((item) => getUniqueIdentifier(item))}
-            strategy={
-              direction === "vertical"
-                ? verticalListSortingStrategy
-                : horizontalListSortingStrategy
-            }
-          >
-            <ul className="grid gap-2">
-              {items.map((item) => {
-                const id = getUniqueIdentifier(item);
-                const label = getFormattedLabel(item);
-
-                return (
-                  <SortableItem
-                    id={id}
-                    form={form}
-                    group={getGroup(item)}
-                    item={item}
-                    label={label}
-                    widthOptions={widthOptions}
-                    onItemChange={(value: AnonymousItem) => {
-                      setItems(
-                        items.map((x) =>
-                          getUniqueIdentifier(x) === id ? value : x,
-                        ),
-                      );
-                    }}
-                    onItemRemove={() => {
-                      setItems(items.filter((x) => x !== item));
-                    }}
-                    key={id}
-                  />
-                );
-              })}
-            </ul>
-          </SortableContext>
+          <SortableListContext
+            items={items}
+            options={options}
+            unique={unique}
+            setItems={setItems}
+            {...props}
+          />
           {createPortal(
             <DragOverlay>
               {active ? (
@@ -177,6 +131,7 @@ function Sortable({
           {options?.map((group, index) => {
             return (
               <SortableAdd
+                ids={items.map((item) => getUniqueIdentifier(item))}
                 items={items}
                 group={group}
                 unique={unique}

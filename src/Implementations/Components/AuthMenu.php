@@ -19,6 +19,19 @@ use Narsil\Support\LabelsBag;
  */
 class AuthMenu extends AbstractComponent implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        app(LabelsBag::class)
+            ->add('narsil-cms::accessibility.toggle_user_menu');
+    }
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -29,26 +42,13 @@ class AuthMenu extends AbstractComponent implements Contract
         return [
             (new NavigationItem(route('user-configuration.index'), trans('narsil-cms::ui.settings')))
                 ->icon('settings')
-                ->modal(true)
-                ->toArray(),
-            (new Separator)
-                ->toArray(),
+                ->modal(true),
+            (new Separator),
             (new NavigationItem(route('logout'), trans('narsil-cms::ui.log_out')))
                 ->icon('log-out')
-                ->method(MethodEnum::POST)
-                ->toArray()
+                ->method(MethodEnum::POST),
         ];
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function registerLabels(): void
-    {
-        app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.toggle_user_menu');
-    }
-
 
     #endregion
 }
