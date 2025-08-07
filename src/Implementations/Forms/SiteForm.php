@@ -15,6 +15,7 @@ use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
+use Narsil\Support\SelectOption;
 use ResourceBundle;
 
 #endregion
@@ -117,10 +118,7 @@ class SiteForm extends AbstractForm implements Contract
 
         foreach ($groups as $group)
         {
-            $options[] = [
-                'value' => $group->{SiteGroup::ID},
-                'label' => $group->{SiteGroup::NAME},
-            ];
+            $options[] = new SelectOption($group->{SiteGroup::NAME}, $group->{SiteGroup::ID});
         }
 
         return $options;
@@ -137,10 +135,10 @@ class SiteForm extends AbstractForm implements Contract
 
         foreach ($locales as $locale)
         {
-            $options[] = [
-                'value' => $locale,
-                'label' => Locale::getDisplayName($locale, App::getLocale()),
-            ];
+            $options[] = (new SelectOption(
+                label: Locale::getDisplayName($locale, App::getLocale()),
+                value: $locale
+            ))->jsonSerialize();
         }
 
         usort($options, function ($a, $b)

@@ -16,6 +16,7 @@ use Narsil\Enums\Configuration\ThemeEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Users\UserConfiguration;
+use Narsil\Support\SelectOption;
 use ResourceBundle;
 
 #endregion
@@ -88,12 +89,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         foreach (ColorEnum::cases() as $case)
         {
-            $options[] = [
-                'bg-color'   => "bg-$case->value-500",
-                'label'      => trans("narsil-cms::colors.$case->value"),
-                'text-color' => "text-$case->value-500",
-                'value'      => $case->value,
-            ];
+            $options[] = new SelectOption(trans("narsil-cms::colors.$case->value"), $case->value);
         }
 
         return $options;
@@ -119,10 +115,10 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 continue;
             }
 
-            $options[] = [
-                'value' => $locale,
-                'label' => Str::ucfirst(Locale::getDisplayName($locale, App::getLocale())),
-            ];
+            $options[] = (new SelectOption(
+                label: Str::ucfirst(Locale::getDisplayName($locale, App::getLocale())),
+                value: $locale
+            ))->jsonSerialize();
         }
 
         usort($options, function ($a, $b)
@@ -143,10 +139,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         foreach (ThemeEnum::cases() as $case)
         {
-            $options[] = [
-                'value' => $case->value,
-                'label' => trans("narsil-cms::themes.$case->value"),
-            ];
+            $options[] = new SelectOption(trans("narsil-cms::themes.$case->value"), $case->value);
         }
 
         return $options;

@@ -89,12 +89,10 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
                     renderOption={
                       element.handle === "color"
                         ? (option) => {
-                            const color = getSelectOption(option, "bg-color");
-
                             return (
                               <>
                                 <span
-                                  className={`size-3 rounded-full ${color}`}
+                                  className={`size-3 rounded-full bg-${getSelectOption(option, "value")}-500`}
                                 />
                                 {getSelectOption(option, "label")}
                               </>

@@ -14,6 +14,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -137,11 +138,8 @@ class FieldForm extends AbstractForm implements Contract
 
         foreach ($this->implementations as $abstract => $concrete)
         {
-            $options[] = [
-                'icon' => $concrete::getIcon(),
-                'label' => $concrete::getLabel(),
-                'value' => $abstract,
-            ];
+            $options[] = (new SelectOption($concrete::getLabel(), $abstract))
+                ->icon($concrete::getIcon());
         }
 
         return $options;

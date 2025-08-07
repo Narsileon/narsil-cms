@@ -14,6 +14,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Services\RouteService;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -122,12 +123,9 @@ class TemplateForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return [
-                    'icon' => $block->{Block::ATTRIBUTE_ICON},
-                    'identifier' => $block->{Block::ATTRIBUTE_IDENTIFIER},
-                    'label' => $block->{Block::NAME},
-                    'value' => $block->{Block::HANDLE},
-                ];
+                return (new SelectOption($block->{Block::NAME}, $block->{Block::HANDLE}))
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -142,12 +140,9 @@ class TemplateForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Field $field)
             {
-                return [
-                    'icon' => $field->{Field::ATTRIBUTE_ICON},
-                    'identifier' => $field->{Field::ATTRIBUTE_IDENTIFIER},
-                    'label' => $field->{Field::NAME},
-                    'value' => $field->{Field::HANDLE},
-                ];
+                return (new SelectOption($field->{Field::NAME}, $field->{Field::HANDLE}))
+                    ->icon($field->{Field::ATTRIBUTE_ICON})
+                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -158,12 +153,12 @@ class TemplateForm extends AbstractForm implements Contract
     protected static function getWidthOptions(): array
     {
         return [
-            ['label' => '25%', 'value' => 25],
-            ['label' => '33%', 'value' => 33],
-            ['label' => '50%', 'value' => 50],
-            ['label' => '67%', 'value' => 67],
-            ['label' => '75%', 'value' => 75],
-            ['label' => '100%', 'value' => 100],
+            new SelectOption('25%', 25),
+            new SelectOption('33%', 33),
+            new SelectOption('50%', 50),
+            new SelectOption('67%', 67),
+            new SelectOption('75%', 75),
+            new SelectOption('100%', 100),
         ];
     }
 
