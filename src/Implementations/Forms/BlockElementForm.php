@@ -25,7 +25,7 @@ class BlockElementForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->title(route('narsil-cms::ui.element'));
+        $this->title(trans('narsil-cms::ui.element'));
 
         parent::__construct();
     }

@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Forms;
 
 use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Forms\BlockElementForm;
 use Narsil\Contracts\Forms\BlockForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
@@ -76,22 +77,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->form([
-                                new Field([
-                                    Field::HANDLE => BlockElement::NAME,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                                    Field::TYPE => TextInput::class,
-                                    Field::SETTINGS => app(TextInput::class)
-                                        ->required(true),
-                                ]),
-                                new Field([
-                                    Field::HANDLE => BlockElement::HANDLE,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                                    Field::TYPE => TextInput::class,
-                                    Field::SETTINGS => app(TextInput::class)
-                                        ->required(true),
-                                ]),
-                            ])
+                            ->form(app(BlockElementForm::class)->jsonSerialize())
                             ->addOption(
                                 identifier: Block::TABLE,
                                 label: trans('narsil-cms::ui.block'),

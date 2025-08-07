@@ -6,7 +6,9 @@ namespace Narsil\Implementations\Forms;
 
 use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Forms\BlockElementForm;
 use Narsil\Contracts\Forms\TemplateForm as Contract;
+use Narsil\Contracts\Forms\TemplateSectionForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
@@ -77,22 +79,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->form([
-                                new Field([
-                                    Field::HANDLE => TemplateSection::NAME,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                                    Field::TYPE => TextInput::class,
-                                    Field::SETTINGS => app(TextInput::class)
-                                        ->required(true),
-                                ]),
-                                new Field([
-                                    Field::HANDLE => TemplateSection::HANDLE,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                                    Field::TYPE => TextInput::class,
-                                    Field::SETTINGS => app(TextInput::class)
-                                        ->required(true),
-                                ]),
-                            ])
+                            ->form(app(TemplateSectionForm::class)->jsonSerialize())
                             ->setIntermediate(
                                 label: trans('narsil-cms::ui.section'),
                                 optionLabel: TemplateSection::NAME,
@@ -102,22 +89,7 @@ class TemplateForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                                     Field::TYPE => RelationsInput::class,
                                     Field::SETTINGS => app(RelationsInput::class)
-                                        ->form([
-                                            new Field([
-                                                Field::HANDLE => Block::NAME,
-                                                Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                                                Field::TYPE => TextInput::class,
-                                                Field::SETTINGS => app(TextInput::class)
-                                                    ->required(true),
-                                            ]),
-                                            new Field([
-                                                Field::HANDLE => Block::HANDLE,
-                                                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                                                Field::TYPE => TextInput::class,
-                                                Field::SETTINGS => app(TextInput::class)
-                                                    ->required(true),
-                                            ]),
-                                        ])
+                                        ->form(app(BlockElementForm::class)->jsonSerialize())
                                         ->addOption(
                                             identifier: Block::TABLE,
                                             label: trans('narsil-cms::ui.block'),

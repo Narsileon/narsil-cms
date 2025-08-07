@@ -7,13 +7,14 @@ import {
 import type { AnonymousItem } from ".";
 import type {
   Field,
+  FormType,
   GroupedSelectOption,
   SelectOption,
 } from "@narsil-cms/types/forms";
 
 type SortableListContextProps = {
   direction?: "horizontal" | "vertical";
-  form?: Field[];
+  form?: FormType;
   items: AnonymousItem[];
   options: GroupedSelectOption[];
   unique?: boolean;

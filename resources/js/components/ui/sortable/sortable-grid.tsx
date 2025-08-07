@@ -45,11 +45,15 @@ import {
   SortableListContext,
 } from "@narsil-cms/components/ui/sortable";
 import type { AnonymousItem } from ".";
-import type { Field, GroupedSelectOption } from "@narsil-cms/types/forms";
+import type {
+  Field,
+  FormType,
+  GroupedSelectOption,
+} from "@narsil-cms/types/forms";
 
 type SortableGridProps = {
   columns?: 1 | 2 | 3 | 4;
-  form?: Field[];
+  form?: FormType;
   items: AnonymousItem[];
   placeholder: string;
   intermediate: {
@@ -367,23 +371,25 @@ function SortableGrid({
                   <VisuallyHidden>
                     <DialogDescription></DialogDescription>
                   </VisuallyHidden>
-                  {form.map((field, index) => {
-                    return (
-                      <FormItem key={index}>
-                        <FormLabel required={true}>{field.name}</FormLabel>
-                        <FormInputRenderer
-                          element={field}
-                          value={data[field.handle]}
-                          setValue={(value) => {
-                            const nextData = { ...data };
+                  {form.form.map((field, index) => {
+                    if ("settings" in field) {
+                      return (
+                        <FormItem key={index}>
+                          <FormLabel required={true}>{field.name}</FormLabel>
+                          <FormInputRenderer
+                            element={field}
+                            value={data[field.handle]}
+                            setValue={(value) => {
+                              const nextData = { ...data };
 
-                            set(nextData, field.handle, value);
+                              set(nextData, field.handle, value);
 
-                            setData(nextData);
-                          }}
-                        />
-                      </FormItem>
-                    );
+                              setData(nextData);
+                            }}
+                          />
+                        </FormItem>
+                      );
+                    }
                   })}
                 </DialogBody>
                 <DialogFooter className="border-t">

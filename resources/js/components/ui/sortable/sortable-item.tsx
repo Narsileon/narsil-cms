@@ -37,18 +37,18 @@ import {
   FormLabel,
 } from "@narsil-cms/components/ui/form";
 import type { AnonymousItem } from ".";
+import type { UniqueIdentifier } from "@dnd-kit/core";
 import type {
-  Field,
+  FormType,
   GroupedSelectOption,
   SelectOption,
 } from "@narsil-cms/types/forms";
-import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   asChild?: boolean;
   disabled?: boolean;
   footer?: React.ReactNode;
-  form?: Field[];
+  form?: FormType;
   group?: GroupedSelectOption;
   id: UniqueIdentifier;
   item: AnonymousItem;
@@ -167,34 +167,38 @@ function SortableItem({
                   </Tooltip>
                   <DialogContent>
                     <DialogHeader className="border-b">
-                      <DialogTitle>{group?.label}</DialogTitle>
+                      <DialogTitle>{form.title}</DialogTitle>
                     </DialogHeader>
                     <DialogBody>
                       <VisuallyHidden>
                         <DialogDescription></DialogDescription>
                       </VisuallyHidden>
-                      {form.map((field, index) => {
-                        return (
-                          <FormItem key={index}>
-                            <FormLabel required={true}>{field.name}</FormLabel>
-                            <FormInputRenderer
-                              element={field}
-                              value={data[field.handle]}
-                              setValue={(value) => {
-                                const nextData = { ...data };
+                      {form.form.map((field, index) => {
+                        if ("settings" in field) {
+                          return (
+                            <FormItem key={index}>
+                              <FormLabel required={true}>
+                                {field.name}
+                              </FormLabel>
+                              <FormInputRenderer
+                                element={field}
+                                value={data[field.handle]}
+                                setValue={(value) => {
+                                  const nextData = { ...data };
 
-                                set(nextData, field.handle, value);
+                                  set(nextData, field.handle, value);
 
-                                setData(nextData);
-                              }}
-                            />
-                            {error && group?.optionValue === field.handle ? (
-                              <p className="text-destructive text-sm">
-                                {error}
-                              </p>
-                            ) : null}
-                          </FormItem>
-                        );
+                                  setData(nextData);
+                                }}
+                              />
+                              {error && group?.optionValue === field.handle ? (
+                                <p className="text-destructive text-sm">
+                                  {error}
+                                </p>
+                              ) : null}
+                            </FormItem>
+                          );
+                        }
                       })}
                     </DialogBody>
                     <DialogFooter className="border-t">
