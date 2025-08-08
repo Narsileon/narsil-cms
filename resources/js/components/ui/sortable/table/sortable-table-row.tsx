@@ -5,12 +5,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { SortableHandle } from "@narsil-cms/components/ui/sortable";
 import { TableCell, TableRow } from "@narsil-cms/components/ui/table";
-import { UniqueIdentifier } from "@dnd-kit/core";
-import {
-  AnimateLayoutChanges,
-  defaultAnimateLayoutChanges,
-  useSortable,
-} from "@dnd-kit/sortable";
+import { useSortable } from "@dnd-kit/sortable";
+import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type SortableTableRowProps = Omit<
   React.ComponentProps<typeof TableRow>,
@@ -20,11 +16,8 @@ type SortableTableRowProps = Omit<
   disabled?: boolean;
   id: UniqueIdentifier;
   placeholder?: boolean;
-  onRemove?: () => void;
+  onRemove?: (id: UniqueIdentifier) => void;
 };
-
-const animateLayoutChanges: AnimateLayoutChanges = (args) =>
-  defaultAnimateLayoutChanges({ ...args, wasDragging: true });
 
 function SortableTableRow({
   children,
@@ -48,7 +41,6 @@ function SortableTableRow({
     setNodeRef,
   } = useSortable({
     id: id,
-    animateLayoutChanges: animateLayoutChanges,
   });
 
   return (
@@ -70,40 +62,38 @@ function SortableTableRow({
       onClick={onClick}
       {...props}
     >
-      <>
-        <TableCell className="px-1 py-0">
-          {!placeholder ? (
-            <SortableHandle
-              ref={setActivatorNodeRef}
-              className="rounded-md bg-transparent"
-              {...attributes}
-              {...listeners}
-            />
-          ) : null}
+      <TableCell className="px-1 py-0">
+        {!placeholder ? (
+          <SortableHandle
+            ref={setActivatorNodeRef}
+            className="rounded-md bg-transparent"
+            {...attributes}
+            {...listeners}
+          />
+        ) : null}
+      </TableCell>
+      {placeholder ? (
+        <TableCell colSpan={colSpan}>
+          <div className="flex items-center justify-center gap-1">
+            <Icon name="plus" />
+            <span>{children}</span>
+          </div>
         </TableCell>
-        {placeholder ? (
-          <TableCell colSpan={colSpan}>
-            <div className="flex items-center justify-center gap-1">
-              <Icon name="plus" />
-              <span>{children}</span>
-            </div>
-          </TableCell>
-        ) : (
-          children
-        )}
-        <TableCell className="px-1 py-0">
-          {!placeholder && onRemove ? (
-            <Button
-              className="size-7"
-              size="icon"
-              variant="ghost"
-              onClick={onRemove}
-            >
-              <Icon name="trash" />
-            </Button>
-          ) : null}
-        </TableCell>
-      </>
+      ) : (
+        children
+      )}
+      <TableCell className="px-1 py-0">
+        {!placeholder && onRemove ? (
+          <Button
+            className="size-7"
+            size="icon"
+            variant="ghost"
+            onClick={() => onRemove(id)}
+          >
+            <Icon name="trash" />
+          </Button>
+        ) : null}
+      </TableCell>
     </TableRow>
   );
 }

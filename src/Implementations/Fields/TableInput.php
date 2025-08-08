@@ -15,6 +15,19 @@ use Narsil\Implementations\AbstractField;
  */
 class TableInput extends AbstractField implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->type('password');
+        $this->value([]);
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**

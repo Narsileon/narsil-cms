@@ -1,10 +1,7 @@
 import * as React from "react";
-import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { createPortal } from "react-dom";
-import { get, set } from "lodash";
-import { useLabels } from "@narsil-cms/components/ui/labels";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { get } from "lodash";
 import {
   CancelDrop,
   DndContext,
@@ -25,26 +22,12 @@ import {
   SortableContext,
 } from "@dnd-kit/sortable";
 import {
-  Dialog,
-  DialogBody,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@narsil-cms/components/ui/dialog";
-import {
-  FormInputRenderer,
-  FormItem,
-  FormLabel,
-} from "@narsil-cms/components/ui/form";
-import {
   SortableAdd,
   SortableItem,
+  SortableItemForm,
   SortableListContext,
-} from "@narsil-cms/components/ui/sortable";
-import type { AnonymousItem } from ".";
+  type AnonymousItem,
+} from ".";
 import type {
   Field,
   FormType,
@@ -77,8 +60,6 @@ function SortableGrid({
   cancelDrop,
   setItems,
 }: SortableGridProps) {
-  const { getLabel } = useLabels();
-
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -86,8 +67,6 @@ function SortableGrid({
   );
 
   const [active, setActive] = React.useState<AnonymousItem | null>(null);
-  const [data, setData] = React.useState<Record<string, any>>({});
-  const [open, onOpenChange] = React.useState<boolean>(false);
 
   const onDragCancel = () => {
     setActive(null);
@@ -262,9 +241,12 @@ function SortableGrid({
 
   function getFormattedLabel(container: AnonymousItem) {
     const label = container[intermediate.optionLabel];
+    const value = container[intermediate.optionValue];
 
-    return label;
+    return `${label} (${value})`;
   }
+
+  const ids = items.map((item) => get(item, intermediate.optionValue));
 
   return (
     <DndContext
@@ -276,10 +258,7 @@ function SortableGrid({
       onDragStart={onDragStart}
     >
       <div className={cn(`grid-cols-${columns} grid gap-4`)}>
-        <SortableContext
-          items={items.map((item) => item.id)}
-          strategy={rectSortingStrategy}
-        >
+        <SortableContext items={ids} strategy={rectSortingStrategy}>
           {items.map((item) => {
             const children = get(item, intermediate.relation.handle, []);
 
@@ -289,6 +268,7 @@ function SortableGrid({
                 form={form}
                 item={item}
                 label={getFormattedLabel(item)}
+                optionValue={intermediate.optionValue}
                 onItemChange={(value: AnonymousItem) => {
                   setItems(items.map((x) => (x.id === item.id ? value : x)));
                 }}
@@ -351,77 +331,30 @@ function SortableGrid({
               </SortableItem>
             );
           })}
-          <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogTrigger asChild={true}>
+          {form ? (
+            <SortableItemForm
+              form={form}
+              ids={ids}
+              optionValue={intermediate.optionValue}
+              onItemChange={(data) =>
+                setItems([
+                  ...items,
+                  {
+                    ...(data as AnonymousItem),
+                    id: crypto.randomUUID(),
+                  },
+                ])
+              }
+            >
               <SortableItem
                 id={PLACEHOLDER_ID}
                 placeholder={true}
                 item={{ id: PLACEHOLDER_ID, identifier: PLACEHOLDER_ID }}
-                onClick={() => onOpenChange(true)}
               >
                 {placeholder}
               </SortableItem>
-            </DialogTrigger>
-            {form ? (
-              <DialogContent>
-                <DialogHeader className="border-b">
-                  <DialogTitle>{intermediate.label}</DialogTitle>
-                </DialogHeader>
-                <DialogBody>
-                  <VisuallyHidden>
-                    <DialogDescription></DialogDescription>
-                  </VisuallyHidden>
-                  {form.form.map((field, index) => {
-                    if ("settings" in field) {
-                      return (
-                        <FormItem key={index}>
-                          <FormLabel required={true}>{field.name}</FormLabel>
-                          <FormInputRenderer
-                            element={field}
-                            value={data[field.handle]}
-                            setValue={(value) => {
-                              const nextData = { ...data };
-
-                              set(nextData, field.handle, value);
-
-                              setData(nextData);
-                            }}
-                          />
-                        </FormItem>
-                      );
-                    }
-                  })}
-                </DialogBody>
-                <DialogFooter className="border-t">
-                  <Button
-                    variant="ghost"
-                    onClick={() => {
-                      setData({});
-
-                      onOpenChange(false);
-                    }}
-                  >
-                    {getLabel("ui.cancel")}
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setItems([
-                        ...items,
-                        {
-                          ...(data as AnonymousItem),
-                          id: crypto.randomUUID(),
-                        },
-                      ]);
-
-                      onOpenChange(false);
-                    }}
-                  >
-                    {getLabel("ui.save")}
-                  </Button>
-                </DialogFooter>
-              </DialogContent>
-            ) : null}
-          </Dialog>
+            </SortableItemForm>
+          ) : null}
         </SortableContext>
       </div>
       {createPortal(
@@ -431,7 +364,7 @@ function SortableGrid({
               <SortableItem
                 id={active.id}
                 item={active}
-                label={`Column ${active.name}`}
+                label={getFormattedLabel(active)}
               />
             ) : (
               <SortableItem id={active.id} item={active} label={active.name} />

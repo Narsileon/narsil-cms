@@ -28,7 +28,10 @@ class RelationsInput extends AbstractField implements Contract
             ->add('narsil-cms::ui.cancel')
             ->add('narsil-cms::ui.edit')
             ->add('narsil-cms::ui.remove')
-            ->add('narsil-cms::ui.save');
+            ->add('narsil-cms::ui.save')
+            ->add('narsil-cms::validation.unique', [
+                'attribute' => trans('narsil-cms::validation.attributes.identifier'),
+            ]);
 
         $this->value([]);
     }

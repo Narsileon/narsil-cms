@@ -3,20 +3,20 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types/forms";
 
-type WidthSelectorProps = React.ComponentProps<"div"> & {
+type SortableItemWidthProps = React.ComponentProps<"div"> & {
   options: SelectOption[];
   value: number;
   onValueChange: (value: number) => void;
 };
 
-function WidthSelector({
+function SortableItemWidth({
   className,
   defaultValue = 100,
   options,
   value,
   onValueChange,
   ...props
-}: WidthSelectorProps) {
+}: SortableItemWidthProps) {
   const [width, setWidth] = React.useState(value ?? defaultValue);
 
   return (
@@ -48,4 +48,4 @@ function WidthSelector({
   );
 }
 
-export default WidthSelector;
+export default SortableItemWidth;

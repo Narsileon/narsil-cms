@@ -1,4 +1,4 @@
-import { SortableItem } from "@narsil-cms/components/ui/sortable";
+import SortableItem from "./sortable-item";
 import {
   horizontalListSortingStrategy,
   SortableContext,
@@ -6,7 +6,6 @@ import {
 } from "@dnd-kit/sortable";
 import type { AnonymousItem } from ".";
 import type {
-  Field,
   FormType,
   GroupedSelectOption,
   SelectOption,

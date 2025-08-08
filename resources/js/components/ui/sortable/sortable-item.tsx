@@ -2,13 +2,12 @@ import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
-import { get, set } from "lodash";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 import SortableHandle from "./sortable-handle";
-import WidthSelector from "@narsil-cms/components/cms/width-selector";
+import SortableItemWidth from "./sortable-item-width";
+import SortableItemForm from "./sortable-item-form";
 import {
   AnimateLayoutChanges,
   defaultAnimateLayoutChanges,
@@ -21,21 +20,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@narsil-cms/components/ui/card";
-import {
-  Dialog,
-  DialogBody,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@narsil-cms/components/ui/dialog";
-import {
-  FormInputRenderer,
-  FormItem,
-  FormLabel,
-} from "@narsil-cms/components/ui/form";
 import type { AnonymousItem } from ".";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 import type {
@@ -53,6 +37,7 @@ type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   id: UniqueIdentifier;
   item: AnonymousItem;
   label?: UniqueIdentifier;
+  optionValue?: string;
   placeholder?: boolean;
   tooltip?: string;
   widthOptions?: SelectOption[];
@@ -74,6 +59,7 @@ function SortableItem({
   group,
   id,
   label,
+  optionValue,
   placeholder,
   style,
   widthOptions,
@@ -82,11 +68,6 @@ function SortableItem({
   ...props
 }: SortableItemProps) {
   const { getLabel } = useLabels();
-
-  const [open, onOpenChange] = React.useState<boolean>(false);
-
-  const [data, setData] = React.useState<AnonymousItem>(item);
-  const [error, setError] = React.useState<string | null>(null);
 
   const {
     attributes,
@@ -136,9 +117,9 @@ function SortableItem({
               {...attributes}
               {...listeners}
             />
-            {data?.icon ? (
+            {item?.icon ? (
               <Tooltip tooltip={group?.label}>
-                <Icon className="size-5" name={data.icon} />
+                <Icon className="size-5" name={item.icon} />
               </Tooltip>
             ) : null}
             {label ? (
@@ -148,7 +129,7 @@ function SortableItem({
             ) : null}
             <div className="flex items-center justify-between gap-1">
               {item && widthOptions ? (
-                <WidthSelector
+                <SortableItemWidth
                   options={widthOptions}
                   value={item.width}
                   onValueChange={(value) =>
@@ -156,91 +137,18 @@ function SortableItem({
                   }
                 />
               ) : null}
-              {form && item ? (
-                <Dialog open={open} onOpenChange={onOpenChange}>
-                  <Tooltip tooltip={getLabel("ui.edit")}>
-                    <DialogTrigger asChild={true}>
-                      <Button className="size-7" size="icon" variant="ghost">
-                        <Icon name="edit" />
-                      </Button>
-                    </DialogTrigger>
-                  </Tooltip>
-                  <DialogContent>
-                    <DialogHeader className="border-b">
-                      <DialogTitle>{form.title}</DialogTitle>
-                    </DialogHeader>
-                    <DialogBody>
-                      <VisuallyHidden>
-                        <DialogDescription></DialogDescription>
-                      </VisuallyHidden>
-                      {form.form.map((field, index) => {
-                        if ("settings" in field) {
-                          return (
-                            <FormItem key={index}>
-                              <FormLabel required={true}>
-                                {field.name}
-                              </FormLabel>
-                              <FormInputRenderer
-                                element={field}
-                                value={data[field.handle]}
-                                setValue={(value) => {
-                                  const nextData = { ...data };
-
-                                  set(nextData, field.handle, value);
-
-                                  setData(nextData);
-                                }}
-                              />
-                              {error && group?.optionValue === field.handle ? (
-                                <p className="text-destructive text-sm">
-                                  {error}
-                                </p>
-                              ) : null}
-                            </FormItem>
-                          );
-                        }
-                      })}
-                    </DialogBody>
-                    <DialogFooter className="border-t">
-                      <Button
-                        variant="ghost"
-                        onClick={() => {
-                          setData?.(item);
-
-                          onOpenChange(false);
-                        }}
-                      >
-                        {getLabel("ui.cancel")}
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          const oldUniqueIdentifier = get(
-                            item,
-                            group?.optionValue ?? "value",
-                          );
-                          const newUniqueIdentifier = get(
-                            data,
-                            group?.optionValue ?? "value",
-                          );
-
-                          if (oldUniqueIdentifier !== newUniqueIdentifier) {
-                            if (items.includes(newUniqueIdentifier)) {
-                              setError("test");
-
-                              return;
-                            }
-                          }
-
-                          onItemChange?.(data);
-
-                          onOpenChange(false);
-                        }}
-                      >
-                        {getLabel("ui.save")}
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
+              {form && item && optionValue && onItemChange ? (
+                <SortableItemForm
+                  form={form}
+                  ids={items}
+                  item={item}
+                  optionValue={optionValue}
+                  onItemChange={onItemChange}
+                >
+                  <Button className="size-7" size="icon" variant="ghost">
+                    <Icon name="edit" />
+                  </Button>
+                </SortableItemForm>
               ) : null}
               {onItemRemove ? (
                 <Tooltip tooltip={getLabel("ui.remove")}>

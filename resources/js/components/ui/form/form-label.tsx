@@ -37,7 +37,7 @@ function FormLabel({
       htmlFor={handle}
       {...props}
     >
-      {children}
+      <span className="first-letter:uppercase">{children}</span>
       {required && (
         <Tooltip tooltip={getLabel("accessibility.required")}>
           <Icon

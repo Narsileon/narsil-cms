@@ -70,7 +70,8 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::HANDLE => Template::HANDLE,
                         Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                         Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class),
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true),
                     ])
                 ]),
                 new BlockElement([

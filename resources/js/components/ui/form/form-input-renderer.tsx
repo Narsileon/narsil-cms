@@ -3,9 +3,13 @@ import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { Input, InputDate } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { Slider } from "@narsil-cms/components/ui/slider";
-import { SortableList, SortableGrid } from "@narsil-cms/components/ui/sortable";
-import { SortableTable } from "@narsil-cms/components/ui/sortable-table";
 import { Switch } from "@narsil-cms/components/ui/switch";
+import {
+  SortableList,
+  SortableGrid,
+  SortableTable,
+} from "@narsil-cms/components/ui/sortable";
+
 import type { Field, SelectOption } from "@narsil-cms/types/forms";
 
 type FormInputRendererProps = {
@@ -94,8 +98,8 @@ function FormInputRenderer({
         <SortableTable
           {...element.settings}
           columns={element.settings.columns}
-          items={value ?? []}
-          setItems={setValue}
+          rows={value ?? []}
+          setRows={setValue}
         />
       );
     case "Narsil\\Contracts\\Fields\\TimeInput":

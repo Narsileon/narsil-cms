@@ -2,7 +2,7 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import { FormInputRenderer } from "@narsil-cms/components/ui/form";
 import { get, set } from "lodash";
-import { SortableTableRow } from ".";
+import SortableTableRow from "./sortable-table-row";
 import {
   closestCenter,
   DragOverlay,
@@ -27,25 +27,29 @@ import {
   TableRow,
 } from "@narsil-cms/components/ui/table";
 import type { Field } from "@narsil-cms/types/forms";
-import type { SortableTableItem } from ".";
 import type {
   DragCancelEvent,
   DragEndEvent,
   DragStartEvent,
+  UniqueIdentifier,
 } from "@dnd-kit/core";
+
+type SortableTableItem = {
+  id: UniqueIdentifier;
+};
 
 type SortableTableProps = {
   columns: Field[];
-  items: SortableTableItem[];
   placeholder?: string;
-  setItems: (items: SortableTableItem[]) => void;
+  rows: SortableTableItem[];
+  setRows: (rows: SortableTableItem[]) => void;
 };
 
 function SortableTable({
   columns,
-  items,
   placeholder,
-  setItems,
+  rows,
+  setRows,
 }: SortableTableProps) {
   const [active, setActive] = React.useState<SortableTableItem | null>(null);
 
@@ -63,11 +67,11 @@ function SortableTable({
     setActive(null);
 
     if (over) {
-      const activeIndex = items.findIndex((x) => x.id === active.id);
-      const overIndex = items.findIndex((x) => x.id === over.id);
+      const activeIndex = rows.findIndex((row) => row.id === active.id);
+      const overIndex = rows.findIndex((row) => row.id === over.id);
 
       if (activeIndex !== overIndex) {
-        setItems(arrayMove(items, activeIndex, overIndex));
+        setRows(arrayMove(rows, activeIndex, overIndex));
       }
     }
   }
@@ -77,20 +81,29 @@ function SortableTable({
       return;
     }
 
-    const item = items.find((x) => x.id === active.id) as SortableTableItem;
+    const activeRow = rows.find(
+      (row) => row.id === active.id,
+    ) as SortableTableItem;
 
-    setActive(item);
+    setActive(activeRow);
+  }
+
+  function onRemove(id: UniqueIdentifier) {
+    setRows(rows.filter((row) => row.id !== id));
   }
 
   return (
     <DndContext
-      collisionDetection={closestCenter}
       sensors={sensors}
+      collisionDetection={closestCenter}
       onDragCancel={onDragCancel}
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      <SortableContext
+        items={rows.map((row) => row.id)}
+        strategy={verticalListSortingStrategy}
+      >
         <div className="overflow-hidden rounded-md border">
           <Table className="w-full table-fixed">
             <TableHeader>
@@ -107,30 +120,36 @@ function SortableTable({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {items.map((item) => {
+              {rows.map((row) => {
                 return (
                   <SortableTableRow
                     className="h-11"
-                    id={item.id}
-                    onRemove={() => {
-                      setItems(items.filter((x) => x !== item));
-                    }}
-                    key={item.id}
+                    id={row.id}
+                    onRemove={onRemove}
+                    key={row.id}
                   >
                     {columns.map((column, index) => {
+                      const value = get(
+                        row,
+                        column.handle,
+                        column.settings.value,
+                      );
+
                       return (
                         <TableCell className="px-0.5 py-0" key={index}>
                           <FormInputRenderer
-                            value={
-                              get(item, column.handle) ?? column.settings.value
-                            }
                             element={column}
+                            value={value}
                             setValue={(value) => {
-                              setItems(
-                                items.map((x) =>
-                                  x.id === item.id
-                                    ? set({ ...x }, column.handle, value)
-                                    : x,
+                              setRows(
+                                rows.map((originalRow) =>
+                                  originalRow.id === row.id
+                                    ? set(
+                                        { ...originalRow },
+                                        column.handle,
+                                        value,
+                                      )
+                                    : originalRow,
                                 ),
                               );
                             }}
@@ -147,7 +166,7 @@ function SortableTable({
                 disabled={true}
                 placeholder={true}
                 onClick={() => {
-                  setItems([...items, { id: crypto.randomUUID() }]);
+                  setRows([...rows, { id: crypto.randomUUID() }]);
                 }}
               >
                 {placeholder}
