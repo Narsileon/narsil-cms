@@ -66,14 +66,18 @@ function SortableTable({
   function onDragEnd({ active, over }: DragEndEvent) {
     setActive(null);
 
-    if (over) {
-      const activeIndex = rows.findIndex((row) => row.id === active.id);
-      const overIndex = rows.findIndex((row) => row.id === over.id);
-
-      if (activeIndex !== overIndex) {
-        setRows(arrayMove(rows, activeIndex, overIndex));
-      }
+    if (!over) {
+      return;
     }
+
+    const activeIndex = rows.findIndex((row) => row.id === active.id);
+    const overIndex = rows.findIndex((row) => row.id === over.id);
+
+    if (activeIndex === overIndex) {
+      return;
+    }
+
+    setRows(arrayMove(rows, activeIndex, overIndex));
   }
 
   function onDragStart({ active }: DragStartEvent) {
@@ -81,15 +85,27 @@ function SortableTable({
       return;
     }
 
-    const activeRow = rows.find(
-      (row) => row.id === active.id,
-    ) as SortableTableItem;
+    const activeRow = rows.find((row) => row.id === active.id);
+
+    if (!activeRow) {
+      return;
+    }
 
     setActive(activeRow);
   }
 
+  function onAdd(id: UniqueIdentifier) {
+    setRows([...rows, { id: id }]);
+  }
+
   function onRemove(id: UniqueIdentifier) {
     setRows(rows.filter((row) => row.id !== id));
+  }
+
+  function onUpdate(id: UniqueIdentifier, key: string, value: any) {
+    setRows(
+      rows.map((row) => (row.id === id ? set({ ...row }, key, value) : row)),
+    );
   }
 
   return (
@@ -141,17 +157,7 @@ function SortableTable({
                             element={column}
                             value={value}
                             setValue={(value) => {
-                              setRows(
-                                rows.map((originalRow) =>
-                                  originalRow.id === row.id
-                                    ? set(
-                                        { ...originalRow },
-                                        column.handle,
-                                        value,
-                                      )
-                                    : originalRow,
-                                ),
-                              );
+                              onUpdate(row.id, column.handle, value);
                             }}
                           />
                         </TableCell>
@@ -166,7 +172,7 @@ function SortableTable({
                 disabled={true}
                 placeholder={true}
                 onClick={() => {
-                  setRows([...rows, { id: crypto.randomUUID() }]);
+                  onAdd(crypto.randomUUID());
                 }}
               >
                 {placeholder}

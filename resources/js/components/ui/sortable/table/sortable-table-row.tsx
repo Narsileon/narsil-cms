@@ -22,7 +22,7 @@ type SortableTableRowProps = Omit<
 function SortableTableRow({
   children,
   className,
-  colSpan = 3,
+  colSpan = 1,
   disabled,
   id,
   placeholder,

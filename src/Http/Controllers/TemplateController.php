@@ -7,6 +7,8 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\TemplateFormRequest;
 use Narsil\Contracts\Forms\TemplateForm;
@@ -15,7 +17,11 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Elements\TemplateSection;
+use Narsil\Models\Elements\TemplateSectionElement;
 
 #endregion
 
@@ -99,7 +105,9 @@ class TemplateController extends AbstractController
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        Template::create($attributes);
+        $template = Template::create($attributes);
+
+        $this->syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
 
         return $this
             ->redirect(route('templates.index'))
@@ -139,6 +147,8 @@ class TemplateController extends AbstractController
 
         $template->update($attributes);
 
+        $this->syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
+
         return $this
             ->redirect(route('templates.index'))
             ->with('success', trans('narsil-cms::toasts.success.templates.updated'));
@@ -173,6 +183,78 @@ class TemplateController extends AbstractController
         return $this
             ->redirect(route('templates.index'))
             ->with('success', trans('narsil-cms::toasts.success.templates.deleted_many'));
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param TemplateSection $templateSection
+     * @param array $elements
+     *
+     * @return void
+     */
+    protected function syncElements(TemplateSection $templateSection, array $elements): void
+    {
+        $templateSection->blocks()->detach();
+        $templateSection->fields()->detach();
+
+        foreach ($elements as $position => $element)
+        {
+            $identifier = Arr::get($element, TemplateSectionElement::ATTRIBUTE_IDENTIFIER);
+
+            if (!$identifier || ! Str::contains($identifier, '-'))
+            {
+                continue;
+            }
+
+            [$table, $id] = explode('-', $identifier);
+
+            $attributes = [
+                TemplateSectionElement::HANDLE => Arr::get($element, TemplateSectionElement::HANDLE),
+                TemplateSectionElement::NAME => Arr::get($element, TemplateSectionElement::NAME),
+                TemplateSectionElement::POSITION => $position,
+                TemplateSectionElement::WIDTH => Arr::get($element, TemplateSectionElement::WIDTH),
+            ];
+
+            match ($table)
+            {
+                Block::TABLE => $templateSection->blocks()->attach($id, $attributes),
+                Field::TABLE => $templateSection->fields()->attach($id, $attributes),
+                default => null,
+            };
+        }
+    }
+
+    /**
+     * @param Template $block
+     * @param array $sections
+     *
+     * @return void
+     */
+    protected function syncSections(Template $template, array $sections): void
+    {
+        $ids = [];
+
+        foreach ($sections as $key => $section)
+        {
+            $templateSection = TemplateSection::updateOrCreate([
+                TemplateSection::TEMPLATE_ID => $template->{Template::ID},
+                TemplateSection::HANDLE => $section[TemplateSection::HANDLE],
+            ], [
+                TemplateSection::POSITION => $key,
+                TemplateSection::NAME => $section[TemplateSection::NAME],
+            ]);
+
+            $this->syncElements($templateSection, Arr::get($section, TemplateSection::RELATION_ELEMENTS, []));
+
+            $ids[] = $templateSection->{TemplateSection::ID};
+        }
+
+        $template->sections()
+            ->whereNotIn(TemplateSection::ID, $ids)
+            ->delete();
     }
 
     #endregion

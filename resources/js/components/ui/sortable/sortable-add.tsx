@@ -8,11 +8,11 @@ import { route } from "ziggy-js";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import type { AnonymousItem } from ".";
 import type { GlobalProps } from "@narsil-cms/hooks/use-props";
+import type { UniqueIdentifier } from "@dnd-kit/core";
 import type {
   GroupedSelectOption,
   SelectOption,
 } from "@narsil-cms/types/forms";
-import { UniqueIdentifier } from "@dnd-kit/core";
 
 type SortableAddProps = React.ComponentProps<"div"> & {
   group: GroupedSelectOption;

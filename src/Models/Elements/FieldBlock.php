@@ -76,11 +76,12 @@ class FieldBlock extends Pivot
      */
     public function block(): BelongsTo
     {
-        return $this->belongsTo(
-            Block::class,
-            self::BLOCK_ID,
-            Block::ID,
-        );
+        return $this
+            ->belongsTo(
+                Block::class,
+                self::BLOCK_ID,
+                Block::ID,
+            );
     }
 
     /**

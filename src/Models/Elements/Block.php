@@ -115,13 +115,14 @@ class Block extends Model implements HasIdentifier
      */
     public function blocks(): MorphToMany
     {
-        return $this->morphedByMany(
-            Block::class,
-            BlockElement::RELATION_ELEMENT,
-            BlockElement::TABLE,
-            BlockElement::BLOCK_ID,
-            BlockElement::ELEMENT_ID,
-        );
+        return $this
+            ->morphedByMany(
+                Block::class,
+                BlockElement::RELATION_ELEMENT,
+                BlockElement::TABLE,
+                BlockElement::BLOCK_ID,
+                BlockElement::ELEMENT_ID,
+            );
     }
 
     /**
@@ -129,11 +130,13 @@ class Block extends Model implements HasIdentifier
      */
     public function elements(): HasMany
     {
-        return $this->hasMany(
-            BlockElement::class,
-            BlockElement::BLOCK_ID,
-            self::ID,
-        );
+        return $this
+            ->hasMany(
+                BlockElement::class,
+                BlockElement::BLOCK_ID,
+                self::ID,
+            )
+            ->orderBy(BlockElement::POSITION);
     }
 
     /**
@@ -141,13 +144,14 @@ class Block extends Model implements HasIdentifier
      */
     public function fields(): MorphToMany
     {
-        return $this->morphedByMany(
-            Field::class,
-            BlockElement::RELATION_ELEMENT,
-            BlockElement::TABLE,
-            BlockElement::BLOCK_ID,
-            BlockElement::ELEMENT_ID,
-        );
+        return $this
+            ->morphedByMany(
+                Field::class,
+                BlockElement::RELATION_ELEMENT,
+                BlockElement::TABLE,
+                BlockElement::BLOCK_ID,
+                BlockElement::ELEMENT_ID,
+            );
     }
 
     #endregion

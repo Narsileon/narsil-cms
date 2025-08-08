@@ -69,7 +69,14 @@ return new class extends Migration
             $table
                 ->morphs(BlockElement::RELATION_ELEMENT);
             $table
+                ->string(BlockElement::HANDLE);
+            $table
+                ->string(BlockElement::NAME);
+            $table
                 ->integer(BlockElement::POSITION)
+                ->nullable();
+            $table
+                ->smallInteger(BlockElement::WIDTH)
                 ->nullable();
         });
     }

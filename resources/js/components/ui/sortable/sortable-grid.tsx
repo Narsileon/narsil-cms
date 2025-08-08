@@ -3,16 +3,11 @@ import { cn } from "@narsil-cms/lib/utils";
 import { createPortal } from "react-dom";
 import { get } from "lodash";
 import {
-  CancelDrop,
   DndContext,
-  DragEndEvent,
-  DragOverEvent,
   DragOverlay,
-  DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  UniqueIdentifier,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
@@ -26,8 +21,16 @@ import {
   SortableItem,
   SortableItemForm,
   SortableListContext,
-  type AnonymousItem,
 } from ".";
+import type { AnonymousItem } from ".";
+import type {
+  CancelDrop,
+  DragCancelEvent,
+  DragEndEvent,
+  DragOverEvent,
+  DragStartEvent,
+  UniqueIdentifier,
+} from "@dnd-kit/core";
 import type {
   Field,
   FormType,
@@ -68,21 +71,23 @@ function SortableGrid({
 
   const [active, setActive] = React.useState<AnonymousItem | null>(null);
 
-  const onDragCancel = () => {
+  function onDragCancel({}: DragCancelEvent) {
     setActive(null);
-  };
+  }
 
   function onDragStart({ active }: DragStartEvent) {
-    const container = items.find((item) => item.id === active.id);
+    const activeContainer = items.find(
+      (container) => getContainerIdentifier(container) === active.id,
+    );
 
-    if (container) {
-      setActive(container);
+    if (activeContainer) {
+      setActive(activeContainer);
     } else {
       items.map((container) => {
         const children = getContainerChildren(container);
 
         children.map((child) => {
-          if (getChildUniqueIdentifier(child) === active.id) {
+          if (getChildIdentifier(child) === active.id) {
             setActive(child);
 
             return;
@@ -93,64 +98,19 @@ function SortableGrid({
   }
 
   function onDragEnd({ active, over }: DragEndEvent) {
-    if (over) {
-      const activeIndex = items.findIndex((x) => x.id === active.id);
-      const overIndex = items.findIndex((x) => x.id === over.id);
+    setActive(null);
 
-      const isContainerSorting = activeIndex !== -1 && overIndex !== -1;
-
-      if (isContainerSorting) {
-        if (activeIndex !== overIndex) {
-          const nextItems = arrayMove(items, activeIndex, overIndex);
-
-          setItems(nextItems);
-
-          setActive(null);
-        }
-
-        return;
-      }
-
-      const activeContainer = findContainerByChildIdentifier(active.id);
-
-      if (!activeContainer) {
-        setActive(null);
-
-        return;
-      }
-
-      const overContainer = findContainerByChildIdentifier(active.id);
-
-      if (activeContainer.id === overContainer?.id) {
-        const oldIndex = getContainerChildren(activeContainer).findIndex(
-          (child) => getChildUniqueIdentifier(child) === active.id,
-        );
-        const newIndex = getContainerChildren(activeContainer).findIndex(
-          (child) => getChildUniqueIdentifier(child) === over.id,
-        );
-
-        if (oldIndex !== newIndex) {
-          const updatedElements = arrayMove(
-            activeContainer.elements,
-            oldIndex,
-            newIndex,
-          );
-
-          const updatedItems = items.map((item) =>
-            item.id === activeContainer.id
-              ? {
-                  ...item,
-                  elements: updatedElements,
-                }
-              : item,
-          );
-
-          setItems(updatedItems);
-        }
-      }
+    if (!over) {
+      return;
     }
 
-    setActive(null);
+    if (moveContainer(active.id, over.id)) {
+      return;
+    }
+
+    if (moveChild(active.id, over.id, false)) {
+      return;
+    }
   }
 
   function onDragOver({ active, over }: DragOverEvent) {
@@ -158,61 +118,21 @@ function SortableGrid({
       return;
     }
 
-    if (active.id === over.id) {
-      return;
-    }
-
-    const activeContainer = findContainerByChildIdentifier(active.id);
-
-    const overItem = items.find(
-      (container) =>
-        container.id === over.id ||
-        getContainerChildren(container).some(
-          (child) => getChildUniqueIdentifier(child) === over.id,
-        ),
-    );
-
-    if (!activeContainer || !overItem || activeContainer.id === overItem.id) {
-      return;
-    }
-
-    const activeItemIndex = getContainerChildren(activeContainer).findIndex(
-      (child) => getChildUniqueIdentifier(child) === active.id,
-    );
-    const activeItem = getContainerChildren(activeContainer)[activeItemIndex];
-
-    const nextItems = items.map((container) => {
-      if (container.id === activeContainer.id) {
-        return {
-          ...container,
-          [intermediate.relation.handle]: getContainerChildren(
-            container,
-          ).filter((child) => getChildUniqueIdentifier(child) !== active.id),
-        };
-      }
-
-      if (container.id === overItem.id) {
-        return {
-          ...container,
-          [intermediate.relation.handle]: [
-            ...getContainerChildren(container),
-            activeItem,
-          ],
-        };
-      }
-
-      return container;
-    });
-
-    setItems(nextItems);
+    moveChild(active.id, over.id, true);
   }
 
-  function findContainerByChildIdentifier(identifier: UniqueIdentifier) {
-    return items.find((container) =>
-      getContainerChildren(container).some(
-        (child) => getChildUniqueIdentifier(child) === identifier,
-      ),
-    );
+  function getChildGroup(child: AnonymousItem) {
+    const group = intermediate.relation.settings.options?.find((option) =>
+      child.identifier.includes(option.identifier),
+    ) as GroupedSelectOption;
+
+    return group;
+  }
+
+  function getChildIdentifier(child: AnonymousItem) {
+    const group = getChildGroup(child);
+
+    return child[group.optionValue];
   }
 
   function getContainerChildren(container: AnonymousItem) {
@@ -225,18 +145,8 @@ function SortableGrid({
     return children;
   }
 
-  function getChildGroup(child: AnonymousItem) {
-    const group = intermediate.relation.settings.options?.find((option) =>
-      child.identifier.includes(option.identifier),
-    ) as GroupedSelectOption;
-
-    return group;
-  }
-
-  function getChildUniqueIdentifier(child: AnonymousItem) {
-    const group = getChildGroup(child);
-
-    return child[group.optionValue];
+  function getContainerIdentifier(container: AnonymousItem) {
+    return get(container, "handle", container.id);
   }
 
   function getFormattedLabel(container: AnonymousItem) {
@@ -246,8 +156,155 @@ function SortableGrid({
     return `${label} (${value})`;
   }
 
-  const ids = items.map((item) => get(item, intermediate.optionValue));
+  function moveChild(
+    activeChildIdentifier: UniqueIdentifier,
+    overIdentifier: UniqueIdentifier,
+    across: boolean = false,
+  ): boolean {
+    if (activeChildIdentifier === overIdentifier) {
+      return false;
+    }
 
+    let activeChild: AnonymousItem | undefined = undefined;
+    let activeChildIndex: number | undefined = undefined;
+    let activeContainer: AnonymousItem | undefined = undefined;
+    let activeContainerIndex: number | undefined = undefined;
+    let activeContainerIdentifier: UniqueIdentifier | undefined = undefined;
+
+    let overChildIndex: number | undefined = undefined;
+    let overContainer: AnonymousItem | undefined = undefined;
+    let overContainerIndex: number | undefined = undefined;
+    let overContainerIdentifier: UniqueIdentifier | undefined = undefined;
+
+    items.forEach((container, containerIndex) => {
+      const containerIdentifier = getContainerIdentifier(container);
+
+      if (containerIdentifier === overIdentifier) {
+        overContainer = container;
+        overContainerIndex = containerIndex;
+        overContainerIdentifier = containerIdentifier;
+      }
+
+      const children = getContainerChildren(container);
+
+      children.forEach((child, childIndex) => {
+        const childIdentifier = getChildIdentifier(child);
+
+        if (childIdentifier === activeChildIdentifier) {
+          activeChild = child;
+          activeChildIndex = childIndex;
+          activeContainer = container;
+          activeContainerIndex = containerIndex;
+          activeContainerIdentifier = containerIdentifier;
+        }
+        if (childIdentifier === overIdentifier) {
+          overChildIndex = childIndex;
+          overContainer = container;
+          overContainerIndex = containerIndex;
+          overContainerIdentifier = containerIdentifier;
+        }
+      });
+    });
+
+    if (across && activeContainerIdentifier === overContainerIdentifier) {
+      return false;
+    }
+
+    if (
+      activeContainer === undefined ||
+      activeContainerIndex === undefined ||
+      activeChildIndex === undefined ||
+      overContainer === undefined ||
+      overContainerIndex === undefined
+    ) {
+      return false;
+    }
+
+    const nextItems = [...items];
+
+    if (across) {
+      const activeChildren = getContainerChildren(activeContainer);
+      const overChildren = getContainerChildren(overContainer);
+
+      const newActiveChildren = activeChildren.filter(
+        (child, index) => index !== activeChildIndex,
+      );
+
+      const insertIndex = overChildIndex ?? overChildren.length;
+
+      const newOverChildren = [
+        ...overChildren.slice(0, insertIndex),
+        activeChild,
+        ...overChildren.slice(insertIndex),
+      ];
+
+      nextItems[activeContainerIndex] = {
+        ...nextItems[activeContainerIndex],
+        [intermediate.relation.handle]: newActiveChildren,
+      };
+
+      nextItems[overContainerIndex] = {
+        ...nextItems[overContainerIndex],
+        [intermediate.relation.handle]: newOverChildren,
+      };
+    } else {
+      if (activeContainerIdentifier !== overContainerIdentifier) {
+        return false;
+      }
+      if (activeChildIndex === overChildIndex) {
+        return false;
+      }
+
+      const updatedChildren = arrayMove(
+        getContainerChildren(activeContainer),
+        activeChildIndex,
+        overChildIndex ?? activeChildIndex,
+      );
+
+      nextItems[activeContainerIndex] = {
+        ...nextItems[activeContainerIndex],
+        [intermediate.relation.handle]: updatedChildren,
+      };
+    }
+
+    setItems(nextItems);
+
+    return true;
+  }
+
+  function moveContainer(
+    activeIdentifier: UniqueIdentifier,
+    overIdentifier: UniqueIdentifier,
+  ): boolean {
+    if (activeIdentifier === overIdentifier) {
+      return false;
+    }
+
+    let activeIndex: number | undefined = undefined;
+    let overIndex: number | undefined = undefined;
+
+    items.forEach((container, index) => {
+      const identifier = getContainerIdentifier(container);
+
+      if (identifier === activeIdentifier) {
+        activeIndex = index;
+      }
+      if (identifier === overIdentifier) {
+        overIndex = index;
+      }
+    });
+
+    if (activeIndex === undefined || overIndex === undefined) {
+      return false;
+    }
+
+    const nextItems = arrayMove(items, activeIndex, overIndex);
+
+    setItems(nextItems);
+
+    return true;
+  }
+  console.log(intermediate);
   return (
     <DndContext
       sensors={sensors}
@@ -258,22 +315,32 @@ function SortableGrid({
       onDragStart={onDragStart}
     >
       <div className={cn(`grid-cols-${columns} grid gap-4`)}>
-        <SortableContext items={ids} strategy={rectSortingStrategy}>
-          {items.map((item) => {
-            const children = get(item, intermediate.relation.handle, []);
+        <SortableContext
+          items={items.map((container) => getContainerIdentifier(container))}
+          strategy={rectSortingStrategy}
+        >
+          {items.map((container) => {
+            const identifier = getContainerIdentifier(container);
+            const children = getContainerChildren(container);
 
             return (
               <SortableItem
-                id={item.id}
+                id={identifier}
                 form={form}
-                item={item}
-                label={getFormattedLabel(item)}
+                item={container}
+                label={getFormattedLabel(container)}
                 optionValue={intermediate.optionValue}
                 onItemChange={(value: AnonymousItem) => {
-                  setItems(items.map((x) => (x.id === item.id ? value : x)));
+                  setItems(
+                    items.map((container) =>
+                      getContainerIdentifier(container) === identifier
+                        ? value
+                        : container,
+                    ),
+                  );
                 }}
                 onItemRemove={() => {
-                  setItems(items.filter((x) => x !== item));
+                  setItems(items.filter((item) => item !== container));
                 }}
                 footer={
                   <>
@@ -290,14 +357,14 @@ function SortableGrid({
                             items={children}
                             group={group as GroupedSelectOption}
                             setItems={(groupItems) => {
-                              const updatedItems = items.map((x) =>
-                                x.id === item.id
+                              const updatedItems = items.map((container) =>
+                                getContainerIdentifier(container) === identifier
                                   ? {
-                                      ...x,
+                                      ...container,
                                       [intermediate.relation.handle]:
                                         groupItems,
                                     }
-                                  : x,
+                                  : container,
                               );
                               setItems(updatedItems);
                             }}
@@ -308,22 +375,23 @@ function SortableGrid({
                     )}
                   </>
                 }
-                key={item.id}
+                key={identifier}
               >
                 <SortableListContext
+                  {...intermediate.relation.settings}
                   items={children}
                   options={
                     intermediate.relation.settings
                       .options as GroupedSelectOption[]
                   }
                   setItems={(groupItems) => {
-                    const updatedItems = items.map((x) =>
-                      x.id === item.id
+                    const updatedItems = items.map((container) =>
+                      getContainerIdentifier(container) === identifier
                         ? {
-                            ...x,
+                            ...container,
                             [intermediate.relation.handle]: groupItems,
                           }
-                        : x,
+                        : container,
                     );
                     setItems(updatedItems);
                   }}
@@ -334,7 +402,7 @@ function SortableGrid({
           {form ? (
             <SortableItemForm
               form={form}
-              ids={ids}
+              ids={items.map((container) => getContainerIdentifier(container))}
               optionValue={intermediate.optionValue}
               onItemChange={(data) =>
                 setItems([
@@ -360,14 +428,22 @@ function SortableGrid({
       {createPortal(
         <DragOverlay>
           {active ? (
-            items.some((x) => x.id === active.id) ? (
+            items.some(
+              (container) =>
+                getContainerIdentifier(container) ===
+                getContainerIdentifier(active),
+            ) ? (
               <SortableItem
-                id={active.id}
+                id={getContainerIdentifier(active)}
                 item={active}
                 label={getFormattedLabel(active)}
               />
             ) : (
-              <SortableItem id={active.id} item={active} label={active.name} />
+              <SortableItem
+                id={getContainerIdentifier(active)}
+                item={active}
+                label={getFormattedLabel(active)}
+              />
             )
           ) : null}
         </DragOverlay>,

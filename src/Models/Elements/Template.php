@@ -33,6 +33,10 @@ class Template extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_SECTIONS,
+        ], $this->with);
+
         parent::__construct($attributes);
     }
 
@@ -72,11 +76,13 @@ class Template extends Model
      */
     public function sections(): HasMany
     {
-        return $this->hasMany(
-            TemplateSection::class,
-            TemplateSection::TEMPLATE_ID,
-            self::ID,
-        );
+        return $this
+            ->hasMany(
+                TemplateSection::class,
+                TemplateSection::TEMPLATE_ID,
+                self::ID,
+            )
+            ->orderBy(TemplateSection::POSITION);
     }
 
     #endregion

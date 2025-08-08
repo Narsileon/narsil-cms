@@ -57,7 +57,7 @@ function FormFieldRenderer({
   if (!element.type) {
     return (
       <div className="col-span-full flex items-center justify-between text-sm">
-        <span>{element.name}</span>
+        <span className="first-letter:uppercase">{element.name}</span>
         <span>{data?.[element.handle]}</span>
       </div>
     );

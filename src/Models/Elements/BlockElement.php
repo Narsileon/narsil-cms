@@ -158,11 +158,12 @@ class BlockElement extends Model implements HasIdentifier
      */
     public function element(): MorphTo
     {
-        return $this->morphTo(
-            self::RELATION_ELEMENT,
-            self::ELEMENT_TYPE,
-            self::ELEMENT_ID,
-        );
+        return $this
+            ->morphTo(
+                self::RELATION_ELEMENT,
+                self::ELEMENT_TYPE,
+                self::ELEMENT_ID,
+            );
     }
 
     #endregion
@@ -181,7 +182,6 @@ class BlockElement extends Model implements HasIdentifier
             default => null
         };
     }
-
 
     /**
      * @return string

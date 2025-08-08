@@ -5,14 +5,10 @@ import { CSS } from "@dnd-kit/utilities";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useSortable } from "@dnd-kit/sortable";
 import SortableHandle from "./sortable-handle";
 import SortableItemWidth from "./sortable-item-width";
 import SortableItemForm from "./sortable-item-form";
-import {
-  AnimateLayoutChanges,
-  defaultAnimateLayoutChanges,
-  useSortable,
-} from "@dnd-kit/sortable";
 import {
   Card,
   CardContent,
@@ -44,9 +40,6 @@ type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   onItemChange?: (value: AnonymousItem) => void;
   onItemRemove?: () => void;
 };
-
-const animateLayoutChanges: AnimateLayoutChanges = (args) =>
-  defaultAnimateLayoutChanges({ ...args, wasDragging: true });
 
 function SortableItem({
   asChild = false,
@@ -80,7 +73,6 @@ function SortableItem({
     setNodeRef,
   } = useSortable({
     id: id,
-    animateLayoutChanges: animateLayoutChanges,
   });
 
   return (

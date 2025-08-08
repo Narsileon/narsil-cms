@@ -66,14 +66,17 @@ function SortableListContext({
         {items.map((item) => {
           const id = getUniqueIdentifier(item);
           const label = getFormattedLabel(item);
+          const group = getGroup(item);
 
           return (
             <SortableItem
+              className="h-fit"
               id={id}
               form={form}
               group={getGroup(item)}
               item={item}
               label={label}
+              optionValue={group.optionValue}
               widthOptions={widthOptions}
               onItemChange={(value: AnonymousItem) => {
                 setItems(

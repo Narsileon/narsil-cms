@@ -35,6 +35,10 @@ class TemplateSection extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_ELEMENTS,
+        ], $this->with);
+
         parent::__construct($attributes);
     }
 
@@ -94,13 +98,14 @@ class TemplateSection extends Model
      */
     public function blocks(): MorphToMany
     {
-        return $this->morphedByMany(
-            Block::class,
-            TemplateSectionElement::RELATION_ELEMENT,
-            TemplateSectionElement::TABLE,
-            TemplateSectionElement::TEMPLATE_SECTION_ID,
-            TemplateSectionElement::ELEMENT_ID,
-        );
+        return $this
+            ->morphedByMany(
+                Block::class,
+                TemplateSectionElement::RELATION_ELEMENT,
+                TemplateSectionElement::TABLE,
+                TemplateSectionElement::TEMPLATE_SECTION_ID,
+                TemplateSectionElement::ELEMENT_ID,
+            );
     }
 
     /**
@@ -108,11 +113,13 @@ class TemplateSection extends Model
      */
     public function elements(): HasMany
     {
-        return $this->hasMany(
-            TemplateSectionElement::class,
-            TemplateSectionElement::TEMPLATE_SECTION_ID,
-            self::ID,
-        );
+        return $this
+            ->hasMany(
+                TemplateSectionElement::class,
+                TemplateSectionElement::TEMPLATE_SECTION_ID,
+                self::ID,
+            )
+            ->orderBy(TemplateSectionElement::POSITION);
     }
 
     /**
@@ -120,13 +127,14 @@ class TemplateSection extends Model
      */
     public function fields(): MorphToMany
     {
-        return $this->morphedByMany(
-            Field::class,
-            TemplateSectionElement::RELATION_ELEMENT,
-            TemplateSectionElement::TABLE,
-            TemplateSectionElement::TEMPLATE_SECTION_ID,
-            TemplateSectionElement::ELEMENT_ID,
-        );
+        return $this
+            ->morphedByMany(
+                Field::class,
+                TemplateSectionElement::RELATION_ELEMENT,
+                TemplateSectionElement::TABLE,
+                TemplateSectionElement::TEMPLATE_SECTION_ID,
+                TemplateSectionElement::ELEMENT_ID,
+            );
     }
 
     /**
@@ -134,11 +142,12 @@ class TemplateSection extends Model
      */
     public function template(): BelongsTo
     {
-        return $this->belongsTo(
-            Template::class,
-            self::TEMPLATE_ID,
-            Template::ID,
-        );
+        return $this
+            ->belongsTo(
+                Template::class,
+                self::TEMPLATE_ID,
+                Template::ID,
+            );
     }
 
     #endregion
