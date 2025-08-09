@@ -48,7 +48,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         $colorOptions = static::getColorOptions();
         $localeOptions = static::getLocaleOptions();

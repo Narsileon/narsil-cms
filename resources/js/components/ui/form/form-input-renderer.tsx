@@ -2,6 +2,7 @@ import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { Input, InputDate } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
+import { RichTextEditor } from "@narsil-cms/components/ui/rich-text-editor";
 import { Slider } from "@narsil-cms/components/ui/slider";
 import { Switch } from "@narsil-cms/components/ui/switch";
 import {
@@ -72,7 +73,15 @@ function FormInputRenderer({
           setItems={setValue}
         />
       );
-
+    case "Narsil\\Contracts\\Fields\\RichTextInput":
+      return (
+        <RichTextEditor
+          {...element.settings}
+          id={element.handle}
+          value={value}
+          onValueChange={setValue}
+        />
+      );
     case "Narsil\\Contracts\\Fields\\SelectInput":
       return (
         <Combobox

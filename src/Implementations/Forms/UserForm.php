@@ -10,8 +10,8 @@ use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\UserForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\User;
 
 #endregion
@@ -42,12 +42,12 @@ class UserForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         return [
-            static::mainBlock([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+            static::mainSection([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::EMAIL,
                         Field::NAME => trans('narsil-cms::validation.attributes.email'),
                         Field::TYPE => EmailInput::class,
@@ -55,8 +55,8 @@ class UserForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::PASSWORD,
                         Field::NAME => trans('narsil-cms::validation.attributes.password'),
                         Field::TYPE => PasswordInput::class,
@@ -65,8 +65,8 @@ class UserForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                         Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
                         Field::TYPE => PasswordInput::class,
@@ -75,8 +75,8 @@ class UserForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::FIRST_NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
                         Field::TYPE => TextInput::class,
@@ -85,8 +85,8 @@ class UserForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => User::LAST_NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
                         Field::TYPE => TextInput::class,
@@ -96,7 +96,7 @@ class UserForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            static::informationBlock(),
+            static::informationSection(),
         ];
     }
 

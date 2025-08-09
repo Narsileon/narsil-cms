@@ -7,8 +7,8 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\SiteGroupForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Sites\SiteGroup;
 
 #endregion
@@ -39,12 +39,12 @@ class SiteGroupForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         return [
-            static::mainBlock([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+            static::mainSection([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => SiteGroup::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
@@ -53,7 +53,7 @@ class SiteGroupForm extends AbstractForm implements Contract
                     ]),
                 ]),
             ]),
-            static::informationBlock(),
+            static::informationSection(),
         ];
     }
 

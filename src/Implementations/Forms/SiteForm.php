@@ -11,8 +11,8 @@ use Narsil\Contracts\Fields\SwitchInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\SiteForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
 use Narsil\Support\SelectOption;
@@ -46,15 +46,15 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         $groupOptions = static::getGroupOptions();
         $languageOptions = static::getLanguageOptions();
 
         return [
-            static::mainBlock([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+            static::mainSection([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::NAME,
                         Field::NAME => trans('narsil-cms::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
@@ -62,8 +62,8 @@ class SiteForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::HANDLE,
                         Field::NAME => trans('narsil-cms::validation.attributes.handle'),
                         Field::TYPE => TextInput::class,
@@ -71,8 +71,8 @@ class SiteForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::LANGUAGE,
                         Field::NAME => trans('narsil-cms::validation.attributes.language'),
                         Field::TYPE => SelectInput::class,
@@ -82,8 +82,8 @@ class SiteForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::GROUP_ID,
                         Field::NAME => trans('narsil-cms::validation.attributes.group'),
                         Field::TYPE => SelectInput::class,
@@ -93,9 +93,9 @@ class SiteForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            static::sidebar([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+            static::sidebarSection([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::ENABLED,
                         Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
                         Field::TYPE => SwitchInput::class,
@@ -103,8 +103,8 @@ class SiteForm extends AbstractForm implements Contract
                             ->checked(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::PRIMARY,
                         Field::NAME => trans('narsil-cms::validation.attributes.primary'),
                         Field::TYPE => SwitchInput::class,
@@ -112,7 +112,7 @@ class SiteForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            static::informationBlock(),
+            static::informationSection(),
         ];
     }
 

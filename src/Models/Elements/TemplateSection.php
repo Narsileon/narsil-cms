@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Arr;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\TemplateSectionElement;
@@ -40,6 +41,11 @@ class TemplateSection extends Model
         ], $this->with);
 
         parent::__construct($attributes);
+
+        if ($elements = Arr::get($attributes, self::RELATION_ELEMENTS))
+        {
+            $this->setRelation(self::RELATION_ELEMENTS, collect($elements));
+        }
     }
 
     #endregion

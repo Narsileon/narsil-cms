@@ -44,6 +44,11 @@ class Block extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_ELEMENTS,
+        ], $this->with);
+
+
         parent::__construct($attributes);
 
         if ($elements = Arr::get($attributes, self::RELATION_ELEMENTS))

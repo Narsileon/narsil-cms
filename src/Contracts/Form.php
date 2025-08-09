@@ -20,7 +20,7 @@ interface Form extends JsonSerializable
     /**
      * @return array Defines the form template.
      */
-    public static function form(): array;
+    public function form(): array;
 
     #endregion
 

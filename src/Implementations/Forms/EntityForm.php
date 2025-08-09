@@ -30,6 +30,8 @@ class EntityForm extends AbstractForm implements Contract
      */
     public function __construct(Template $template)
     {
+        $this->template = $template;
+
         $this->description($template->{Template::NAME});
         $this->title($template->{Template::NAME});
 
@@ -38,55 +40,23 @@ class EntityForm extends AbstractForm implements Contract
 
     #endregion
 
+    #region PROPERTIES
+
+    /**
+     * @var Template
+     */
+    protected Template $template;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
-        return [
-            static::mainBlock([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
-                    ])
-                ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::HANDLE,
-                        Field::NAME => trans('narsil-cms::validation.attributes.handle'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
-                    ])
-                ]),
-            ]),
-            static::sidebar([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::ENABLED,
-                        Field::NAME => trans('narsil-cms::validation.attributes.enabled'),
-                        Field::TYPE => SwitchInput::class,
-                        Field::SETTINGS => app(SwitchInput::class)
-                            ->checked(true),
-                    ])
-                ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::PRIMARY,
-                        Field::NAME => trans('narsil-cms::validation.attributes.primary'),
-                        Field::TYPE => SwitchInput::class,
-                        Field::SETTINGS => app(SwitchInput::class),
-                    ])
-                ]),
-            ]),
-            static::informationBlock(),
-        ];
+        return $this->template->{Template::RELATION_SECTIONS}->toArray();
     }
 
     #endregion

@@ -41,7 +41,7 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         return [
             new Field([

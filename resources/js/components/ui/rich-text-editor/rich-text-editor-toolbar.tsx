@@ -45,7 +45,7 @@ function RichTextEditorToolbar({
   return (
     <div
       className={cn(
-        "border-color border-color flex h-11 flex-wrap items-center gap-1 border-b px-3",
+        "border-color border-color flex h-11 flex-wrap items-center gap-1 border-b px-1",
         className,
       )}
       {...props}

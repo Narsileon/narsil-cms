@@ -14,7 +14,7 @@ type RichTextEditorProps = Partial<EditorOptions> & {
   placeholder?: string;
   toolbar?: boolean;
   value: string;
-  onChange?: (value: any) => void;
+  onValueChange?: (value: any) => void;
 };
 
 function RichTextEditor({
@@ -23,7 +23,7 @@ function RichTextEditor({
   placeholder,
   toolbar = true,
   value,
-  onChange,
+  onValueChange,
   ...props
 }: RichTextEditorProps) {
   const extensions = [
@@ -59,7 +59,7 @@ function RichTextEditor({
       attributes: {
         class: cn(
           "prose max-w-none text-foreground !whitespace-normal",
-          "rounded-md bg-background px-3 py-2 text-sm ring-offset-background",
+          "rounded-md rounded-t-none bg-background px-3 py-2 text-sm ring-offset-background",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-50",
           className,
@@ -67,7 +67,7 @@ function RichTextEditor({
       },
     },
     onUpdate: ({ editor }) => {
-      onChange?.(editor.getHTML());
+      onValueChange?.(editor.getHTML());
     },
     ...props,
   });
@@ -79,7 +79,7 @@ function RichTextEditor({
   }, [value]);
 
   return (
-    <div className="border-color m-4 flex flex-col rounded-md border">
+    <div className="border-color flex flex-col rounded-md border">
       {toolbar && editor?.isEditable ? (
         <RichTextEditorToolbar editor={editor} />
       ) : null}

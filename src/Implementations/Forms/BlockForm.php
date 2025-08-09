@@ -12,6 +12,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -43,16 +44,16 @@ class BlockForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         $blockOptions = static::getBlockOptions();
         $fieldOptions = static::getFieldOptions();
         $widthOptions = static::getWidthOptions();
 
         return [
-            static::mainBlock([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+            static::mainSection([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::NAME,
                         Field::NAME => trans('narsil-cms::ui.default_name'),
                         Field::TYPE => TextInput::class,
@@ -60,8 +61,8 @@ class BlockForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::HANDLE,
                         Field::NAME => trans('narsil-cms::ui.default_handle'),
                         Field::TYPE => TextInput::class,
@@ -69,8 +70,8 @@ class BlockForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::RELATION_ELEMENTS,
                         Field::NAME => trans('narsil-cms::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
@@ -96,7 +97,7 @@ class BlockForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            static::informationBlock(),
+            static::informationSection(),
         ];
     }
 

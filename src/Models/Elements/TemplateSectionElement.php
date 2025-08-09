@@ -7,6 +7,7 @@ namespace Narsil\Models\Elements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Arr;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Traits\HasIdentifier;
 
@@ -40,7 +41,16 @@ class TemplateSectionElement extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_ELEMENT,
+        ], $this->with);
+
         parent::__construct($attributes);
+
+        if ($element = Arr::get($attributes, self::RELATION_ELEMENT))
+        {
+            $this->setRelation(self::RELATION_ELEMENT, $element);
+        }
     }
 
     #endregion
@@ -84,6 +94,10 @@ class TemplateSectionElement extends Model
      * @var string The name of the "icon" attribute.
      */
     final public const ATTRIBUTE_ICON = 'icon';
+    /**
+     * @var string The name of the "icon" attribute.
+     */
+    final public const ATTRIBUTE_TYPE = 'type';
 
     /**
      * @var string The name of the "template section" relation.

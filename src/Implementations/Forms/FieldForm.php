@@ -12,6 +12,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Support\SelectOption;
 
 #endregion
@@ -42,7 +43,7 @@ class FieldForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         $settings = [];
 
@@ -72,9 +73,9 @@ class FieldForm extends AbstractForm implements Contract
         $typeOptions = static::getTypeOptions();
 
         $content = [
-            static::mainBlock(array_merge([
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+            static::mainSection(array_merge([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
                         Field::NAME => trans('narsil-cms::ui.default_name'),
                         Field::TYPE => TextInput::class,
@@ -82,8 +83,8 @@ class FieldForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::HANDLE,
                         Field::NAME => trans('narsil-cms::ui.default_handle'),
                         Field::TYPE => TextInput::class,
@@ -91,8 +92,8 @@ class FieldForm extends AbstractForm implements Contract
                             ->required(true),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::TYPE,
                         Field::NAME => trans('narsil-cms::validation.attributes.type'),
                         Field::TYPE => SelectInput::class,
@@ -103,15 +104,15 @@ class FieldForm extends AbstractForm implements Contract
                             ->value(TextInput::class),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::NAME => trans('narsil-cms::ui.settings'),
                         Field::TYPE => SectionElement::class,
                         Field::SETTINGS => app(SectionElement::class),
                     ])
                 ]),
             ], $settings)),
-            static::informationBlock(),
+            static::informationSection(),
         ];
 
         return $content;

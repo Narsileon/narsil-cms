@@ -39,7 +39,7 @@ class FormServiceProvider extends ServiceProvider
 
         foreach ($config as $abstract => $concrete)
         {
-            $this->app->singleton($abstract, $concrete);
+            $this->app->bind($abstract, $concrete);
         }
     }
 

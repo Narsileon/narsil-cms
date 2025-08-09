@@ -9,6 +9,7 @@ use Narsil\Contracts\Forms\RoleForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Policies\Role;
 
 #endregion
@@ -39,21 +40,23 @@ class RoleForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public static function form(): array
+    public function form(): array
     {
         return [
-            static::mainBlock([
-                BlockElement::RELATION_ELEMENT => new BlockElement([
-                    new Field([
-                        Field::HANDLE => Role::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+            static::mainSection([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new BlockElement([
+                        new Field([
+                            Field::HANDLE => Role::NAME,
+                            Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                            Field::TYPE => TextInput::class,
+                            Field::SETTINGS => app(TextInput::class)
+                                ->required(true),
+                        ]),
                     ]),
                 ]),
             ]),
-            static::informationBlock(),
+            static::informationSection(),
         ];
     }
 

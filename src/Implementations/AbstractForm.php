@@ -10,6 +10,8 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSection;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Support\LabelsBag;
 use ReflectionClass;
 
@@ -32,7 +34,8 @@ abstract class AbstractForm implements Form
             ->add('narsil-cms::pagination.empty')
             ->add('narsil-cms::placeholders.choose')
             ->add('narsil-cms::ui.back')
-            ->add('narsil-cms::ui.create');
+            ->add('narsil-cms::ui.create')
+            ->add('narsil-cms::ui.save');
     }
 
     #endregion
@@ -97,28 +100,28 @@ abstract class AbstractForm implements Form
     /**
      * @param ?array $elements
      *
-     * @return Block
+     * @return TemplateSection
      */
-    protected static function informationBlock(?array $elements = null): Block
+    protected static function informationSection(?array $elements = null): TemplateSection
     {
-        return new Block([
-            Block::HANDLE => 'information',
-            Block::NAME => trans('narsil-cms::ui.information'),
-            Block::RELATION_ELEMENTS => [
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+        return new TemplateSection([
+            TemplateSection::HANDLE => 'information',
+            TemplateSection::NAME => trans('narsil-cms::ui.information'),
+            TemplateSection::RELATION_ELEMENTS => [
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'id',
                         Field::NAME => trans('narsil-cms::validation.attributes.id'),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'created_at',
                         Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
                     ])
                 ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'updated_at',
                         Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
                     ])
@@ -130,28 +133,28 @@ abstract class AbstractForm implements Form
     /**
      * @param array $elements
      *
-     * @return Block
+     * @return TemplateSection
      */
-    protected static function mainBlock(array $elements): Block
+    protected static function mainSection(array $elements): TemplateSection
     {
-        return new Block([
-            Block::HANDLE => 'main',
-            Block::NAME => trans('narsil-cms::ui.main'),
-            Block::RELATION_ELEMENTS => $elements
+        return new TemplateSection([
+            TemplateSection::HANDLE => 'main',
+            TemplateSection::NAME => trans('narsil-cms::ui.main'),
+            TemplateSection::RELATION_ELEMENTS => $elements
         ]);
     }
 
     /**
      * @param array $elements
      *
-     * @return Block
+     * @return TemplateSection
      */
-    protected static function sidebar(array $elements): Block
+    protected static function sidebarSection(array $elements): TemplateSection
     {
-        return new Block([
-            Block::HANDLE => 'sidebar',
-            Block::NAME => trans('narsil-cms::ui.sidebar'),
-            Block::RELATION_ELEMENTS => $elements
+        return new TemplateSection([
+            TemplateSection::HANDLE => 'sidebar',
+            TemplateSection::NAME => trans('narsil-cms::ui.sidebar'),
+            TemplateSection::RELATION_ELEMENTS => $elements
         ]);
     }
 
