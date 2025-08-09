@@ -78,6 +78,7 @@ function FortifyForm({
                       element.handle === "password" &&
                       !("elements" in element) ? (
                         <FormField
+                          id={element.handle}
                           field={element as Field}
                           render={({ value, onFieldChange }) => {
                             return (

@@ -7,6 +7,7 @@ import useForm from "./form-context";
 type FormFieldProps = {
   conditions?: BlockElementCondition[];
   field: Field;
+  id: string;
   render: (field: {
     handle: string;
     value: any;
@@ -14,14 +15,14 @@ type FormFieldProps = {
   }) => React.ReactNode;
 };
 
-const FormField = ({ conditions, field, render }: FormFieldProps) => {
+const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
   const [visible, setVisible] = React.useState(true);
 
   const { data, errors, setData } = useForm();
-  const { handle, settings } = field;
+  const { settings } = field;
 
-  const value = get(data, handle);
-  const error = get(errors, handle);
+  const value = get(data, id);
+  const error = get(errors, id);
 
   React.useEffect(() => {
     let nextVisible = true;
@@ -49,12 +50,12 @@ const FormField = ({ conditions, field, render }: FormFieldProps) => {
   }, [data]);
 
   return visible ? (
-    <FormFieldContext.Provider value={{ error: error, ...field }}>
+    <FormFieldContext.Provider value={{ ...field, error: error }}>
       {render({
-        handle: handle,
+        handle: id,
         value: value ?? settings?.value ?? "",
         onFieldChange: (value) => {
-          setData?.(handle, value);
+          setData?.(id, value);
         },
       })}
     </FormFieldContext.Provider>
