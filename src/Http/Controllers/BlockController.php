@@ -101,6 +101,10 @@ class BlockController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
+        $this->form
+            ->method(MethodEnum::POST)
+            ->url(route('blocks.store'));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -146,7 +150,6 @@ class BlockController extends AbstractController
 
         $this->form
             ->method(MethodEnum::PATCH)
-            ->submit(trans('narsil-cms::ui.update'))
             ->url(route('blocks.update', $block->{Block::ID}));
 
         return $this->render(

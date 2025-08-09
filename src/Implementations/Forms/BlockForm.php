@@ -31,9 +31,7 @@ class BlockForm extends AbstractForm implements Contract
     public function __construct()
     {
         $this->description(trans('narsil-cms::ui.block'));
-        $this->submit(trans('narsil-cms::ui.create'));
         $this->title(trans('narsil-cms::ui.block'));
-        $this->url(route('blocks.store'));
 
         parent::__construct();
     }

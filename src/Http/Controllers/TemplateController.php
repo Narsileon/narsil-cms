@@ -95,6 +95,10 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
+        $this->form
+            ->method(MethodEnum::POST)
+            ->url(route('templates.store'));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -133,7 +137,6 @@ class TemplateController extends AbstractController
 
         $this->form
             ->method(MethodEnum::PATCH)
-            ->submit(trans('narsil-cms::ui.update'))
             ->url(route('templates.update', $template->{Template::ID}));
 
         return $this->render(

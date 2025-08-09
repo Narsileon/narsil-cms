@@ -92,6 +92,10 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
+        $this->form
+            ->method(MethodEnum::POST)
+            ->url(route('fields.store'));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -138,7 +142,6 @@ class FieldController extends AbstractController
 
         $this->form
             ->method(MethodEnum::PATCH)
-            ->submit(trans('narsil-cms::ui.update'))
             ->url(route('fields.update', $field->{Field::ID}));
 
         return $this->render(

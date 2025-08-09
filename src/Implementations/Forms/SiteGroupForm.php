@@ -27,7 +27,6 @@ class SiteGroupForm extends AbstractForm implements Contract
     public function __construct()
     {
         $this->description(trans('narsil-cms::ui.site_group'));
-        $this->submit(trans('narsil-cms::ui.create'));
         $this->title(trans('narsil-cms::ui.site_group'));
         $this->url(route('site-groups.store'));
 

@@ -34,9 +34,7 @@ class SiteForm extends AbstractForm implements Contract
     public function __construct()
     {
         $this->description(trans('narsil-cms::ui.site'));
-        $this->submit(trans('narsil-cms::ui.create'));
         $this->title(trans('narsil-cms::ui.site'));
-        $this->url(route('sites.store'));
 
         parent::__construct();
     }

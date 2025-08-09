@@ -89,6 +89,10 @@ class UserController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, User::class);
 
+        $this->form
+            ->method(MethodEnum::POST)
+            ->url(route('users.store'));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -125,7 +129,6 @@ class UserController extends AbstractController
 
         $this->form
             ->method(MethodEnum::PATCH)
-            ->submit(trans('narsil-cms::ui.update'))
             ->url(route('users.update', $user->{User::ID}));
 
         return $this->render(

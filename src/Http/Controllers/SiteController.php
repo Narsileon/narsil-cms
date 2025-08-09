@@ -101,6 +101,10 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Site::class);
 
+        $this->form
+            ->method(MethodEnum::POST)
+            ->url(route('sites.store'));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -137,7 +141,6 @@ class SiteController extends AbstractController
 
         $this->form
             ->method(MethodEnum::PATCH)
-            ->submit(trans('narsil-cms::ui.update'))
             ->url(route('sites.update', $site->{Site::ID}));
 
         return $this->render(

@@ -89,6 +89,10 @@ class SiteGroupController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, SiteGroup::class);
 
+        $this->form
+            ->method(MethodEnum::POST)
+            ->url(route('roles.store'));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -125,7 +129,6 @@ class SiteGroupController extends AbstractController
 
         $this->form
             ->method(MethodEnum::PATCH)
-            ->submit(trans('narsil-cms::ui.update'))
             ->url(route('site-groups.update', $siteGroup->{SiteGroup::ID}));
 
         return $this->render(

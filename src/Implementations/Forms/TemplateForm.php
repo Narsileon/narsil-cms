@@ -34,9 +34,7 @@ class TemplateForm extends AbstractForm implements Contract
     public function __construct()
     {
         $this->description(trans('narsil-cms::ui.template'));
-        $this->submit(trans('narsil-cms::ui.create'));
         $this->title(trans('narsil-cms::ui.template'));
-        $this->url(route('templates.store'));
 
         parent::__construct();
     }

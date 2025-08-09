@@ -30,9 +30,7 @@ class UserForm extends AbstractForm implements Contract
     public function __construct()
     {
         $this->description(trans('narsil-cms::ui.user'));
-        $this->submit(trans('narsil-cms::ui.create'));
         $this->title(trans('narsil-cms::ui.user'));
-        $this->url(route('users.store'));
 
         parent::__construct();
     }

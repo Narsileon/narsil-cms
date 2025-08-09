@@ -27,7 +27,6 @@ class RoleForm extends AbstractForm implements Contract
     public function __construct()
     {
         $this->description(trans('narsil-cms::ui.role'));
-        $this->submit(trans('narsil-cms::ui.create'));
         $this->title(trans('narsil-cms::ui.role'));
         $this->url(route('roles.store'));
 

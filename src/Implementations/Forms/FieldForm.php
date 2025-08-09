@@ -4,12 +4,10 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Field as AbstractField;
 use Narsil\Contracts\Fields\SectionElement;
 use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\FieldForm as Contract;
-use Narsil\Implementations\AbstractField as ConcreteField;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
@@ -32,9 +30,7 @@ class FieldForm extends AbstractForm implements Contract
     public function __construct()
     {
         $this->description(trans('narsil-cms::ui.field'));
-        $this->submit(trans('narsil-cms::ui.create'));
         $this->title(trans('narsil-cms::ui.field'));
-        $this->url(route('fields.store'));
 
         parent::__construct();
     }

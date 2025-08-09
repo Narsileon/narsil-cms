@@ -4,6 +4,8 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -100,6 +102,19 @@ class Entity extends Model
                 self::TEMPLATE_ID,
                 Template::ID,
             );
+    }
+
+    #endregion
+
+    #region SCOPES
+
+    /**
+     * Scope a query to only include popular users.
+     */
+    #[Scope]
+    protected function ofType(Builder $query, string $type): void
+    {
+        $query->whereRelation(self::RELATION_TEMPLATE, Template::HANDLE, '=', $type);
     }
 
     #endregion

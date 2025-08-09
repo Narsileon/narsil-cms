@@ -1,6 +1,7 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
 import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
@@ -188,7 +189,9 @@ function ResourceForm({
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{getLabel("ui.cancel")}</Button>
                 </DialogClose>
-                <FormSubmit className="place-self-auto">{submit}</FormSubmit>
+                <FormSubmit className="place-self-auto">
+                  {isEmpty(submit) ? getLabel("ui.save") : submit}
+                </FormSubmit>
               </DialogFooter>
             </ScrollArea>
           ) : (
@@ -197,7 +200,9 @@ function ResourceForm({
                 <SectionTitle level="h1" variant="h4">
                   {title}
                 </SectionTitle>
-                <FormSubmit>{submit}</FormSubmit>
+                <FormSubmit>
+                  {isEmpty(submit) ? getLabel("ui.save") : submit}
+                </FormSubmit>
               </SectionHeader>
               <SectionContent className="grid gap-4 lg:grid-cols-12">
                 {tabsContent}

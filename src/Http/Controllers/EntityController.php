@@ -8,8 +8,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\FormRequests\FieldFormRequest;
-use Narsil\Contracts\Forms\FieldForm;
+use Narsil\Contracts\FormRequests\EntityFormRequest;
+use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Contracts\Tables\EntityTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -30,14 +30,12 @@ class EntityController extends AbstractController
     #region CONSTRUCTOR
 
     /**
-     * @param FieldForm $form
-     * @param FieldFormRequest $formRequest
+     * @param EntityFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(FieldForm $form, FieldFormRequest $formRequest)
+    public function __construct(EntityFormRequest $formRequest)
     {
-        $this->form = $form;
         $this->formRequest = $formRequest;
     }
 
@@ -46,13 +44,9 @@ class EntityController extends AbstractController
     #region PROPERTIES
 
     /**
-     * @var FieldForm
+     * @var EntityFormRequest
      */
-    protected readonly FieldForm $form;
-    /**
-     * @var FieldFormRequest
-     */
-    protected readonly FieldFormRequest $formRequest;
+    protected readonly EntityFormRequest $formRequest;
 
     #endregion
 
@@ -60,6 +54,7 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
+     * @param string $type
      *
      * @return JsonResponse|Response
      */
@@ -87,96 +82,146 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
+     * @param string $type
      *
      * @return JsonResponse|Response
      */
-    public function create(Request $request): JsonResponse|Response
+    public function create(Request $request, string $type): JsonResponse|Response
     {
+        $template = Template::query()
+            ->firstWhere(Template::HANDLE, '=', $type);
+
+        $form = app()->make(EntityForm::class, [
+            'template' => $template
+        ]);
+
+        $form
+            ->method(MethodEnum::POST)
+            ->url(route('entities.store', [
+                'type' => $type,
+            ]));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
     /**
      * @param Request $request
+     * @param string $type
      *
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, string $type): RedirectResponse
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $entity = Entity::create($attributes);
 
         return $this
-            ->redirect(route('entities.index'), $entity)
+            ->redirect(route('entities.index', [
+                'type' => $type,
+            ]), $entity)
             ->with('success', trans('narsil-cms::toasts.success.entities.created'));
     }
 
     /**
      * @param Request $request
-     * @param Field $field
+     * @param integer $id
+     * @param string $type
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, Field $field): JsonResponse|Response
+    public function edit(Request $request, int $id, string $type): JsonResponse|Response
     {
-        $this->form
+        $entity = Entity::ofType($type)
+            ->firstWhere([
+                Entity::ID => $id
+            ]);
+
+        $template = Template::query()
+            ->firstWhere(Template::HANDLE, '=', $type);
+
+        $form = app()->make(EntityForm::class, [
+            'template' => $template,
+        ]);
+
+        $form
             ->method(MethodEnum::PATCH)
-            ->submit(trans('narsil-cms::ui.update'))
-            ->url(route('entities.update', $field->{Field::ID}));
+            ->url(route('entities.update', [
+                'type' => $type,
+            ], $entity->{Field::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
-                'data' => $field,
+            props: array_merge($form->jsonSerialize(), [
+                'data' => $entity,
             ]),
         );
     }
 
     /**
      * @param Request $request
-     * @param Entity $field
+     * @param integer $id
+     * @param string $type
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, Entity $entity): RedirectResponse
+    public function update(Request $request, int $id, string $type): RedirectResponse
     {
         $attributes = $this->getAttributes($this->formRequest->rules());
+
+        $entity = Entity::ofType($type)
+            ->firstWhere([
+                Entity::ID => $id
+            ]);
 
         $entity->update($attributes);
 
         return $this
-            ->redirect(route('entities.index'), $entity)
+            ->redirect(route('entities.index', [
+                'type' => $type
+            ]), $entity)
             ->with('success', trans('narsil-cms::toasts.success.entities.updated'));
     }
 
     /**
      * @param Request $request
-     * @param Entity $entity
+     * @param integer $id
+     * @param string $type
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, Entity $entity): RedirectResponse
+    public function destroy(Request $request, int $id, string $type): RedirectResponse
     {
+        $entity = Entity::ofType($type)
+            ->firstWhere([
+                Entity::ID => $id
+            ]);
+
         $entity->delete();
 
         return $this
-            ->redirect(route('entities.index'))
+            ->redirect(route('entities.index', [
+                'type' => $type,
+            ]))
             ->with('success', trans('narsil-cms::toasts.success.entities.deleted'));
     }
 
     /**
      * @param DestroyManyRequest $request
+     * @param string $type
      *
      * @return RedirectResponse
      */
-    public function destroyMany(DestroyManyRequest $request): RedirectResponse
+    public function destroyMany(DestroyManyRequest $request, string $type): RedirectResponse
     {
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Entity::whereIn(Entity::ID, $ids)->delete();
+        Entity::ofType($type)
+            ->whereIn(Entity::ID, $ids)
+            ->delete();
 
         return $this
             ->redirect(route('entities.index'))
