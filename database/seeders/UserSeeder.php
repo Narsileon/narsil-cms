@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->createSuperAdmin();
+        $this->createSuperAdminUser();
     }
 
     #endregion
@@ -29,15 +29,19 @@ class UserSeeder extends Seeder
     /**
      * @return User
      */
-    protected function createSuperAdmin(): User
+    protected function createSuperAdminUser(): User
     {
-        return User::create([
+        $user = User::create([
             User::EMAIL => 'admin@narsil.io',
             User::EMAIL_VERIFIED_AT => Carbon::now(),
             User::FIRST_NAME => 'Admin',
             User::LAST_NAME => 'Super',
             User::PASSWORD => '123456789',
         ]);
+
+        $user->attachRoles('super_admin');
+
+        return $user;
     }
 
     #endregion

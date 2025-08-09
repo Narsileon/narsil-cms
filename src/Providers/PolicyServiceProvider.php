@@ -6,6 +6,7 @@ namespace Narsil\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Models\User;
 
 #endregion
 
@@ -22,9 +23,12 @@ class PolicyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::before(function ($user, $ability)
+        Gate::before(function (User $user, string $ability)
         {
-            return $user->hasPermission($ability);
+            if ($user->hasRole('super_admin'))
+            {
+                return true;
+            };
         });
 
         $this->bootPolicies();
