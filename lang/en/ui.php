@@ -7,6 +7,8 @@ return [
     'add'               => 'Add',
     'all'               => 'All',
     'back'              => 'Back',
+    'collection'        => 'Collection',
+    'collections'       => 'Collections',
     'element'           => 'Element',
     'elements'          => 'Elements',
     'block'             => 'Block',

@@ -7,11 +7,10 @@ namespace Narsil\Models\Elements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\FieldBlock;
-use Narsil\Traits\Formatable;
-use Narsil\Traits\Identifiable;
+use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasIdentifier;
 
 #endregion
 
@@ -19,10 +18,10 @@ use Narsil\Traits\Identifiable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Field extends Model implements HasIdentifier
+class Field extends Model
 {
-    use Formatable;
-    use Identifiable;
+    use HasDatetimes;
+    use HasIdentifier;
 
     #region CONSTRUCTOR
 

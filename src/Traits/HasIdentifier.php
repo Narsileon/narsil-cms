@@ -2,8 +2,14 @@
 
 namespace Narsil\Traits;
 
-trait Identifiable
+trait HasIdentifier
 {
+    #region CONSTANTS
+
+    public const ATTRIBUTE_IDENTIFIER = 'identifier';
+
+    #endregion
+
     #region ATTRIBUTES
 
     /**

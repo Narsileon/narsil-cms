@@ -13,6 +13,7 @@ use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Contracts\Tables\FieldTable;
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
@@ -66,6 +67,8 @@ class FieldController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::VIEW_ANY, Field::class);
+
         $query = Field::query();
 
         $dataTable = new DataTableCollection($query, app(FieldTable::class));
@@ -87,6 +90,8 @@ class FieldController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::CREATE, Field::class);
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -100,6 +105,8 @@ class FieldController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::CREATE, Field::class);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $field = Field::create($attributes);
@@ -127,6 +134,8 @@ class FieldController extends AbstractController
      */
     public function edit(Request $request, Field $field): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::UPDATE, $field);
+
         $this->form
             ->method(MethodEnum::PATCH)
             ->submit(trans('narsil-cms::ui.update'))
@@ -148,6 +157,8 @@ class FieldController extends AbstractController
      */
     public function update(Request $request, Field $field): RedirectResponse
     {
+        $this->authorize(PermissionEnum::UPDATE, $field);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $field->update($attributes);
@@ -176,6 +187,8 @@ class FieldController extends AbstractController
      */
     public function destroy(Request $request, Field $field): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE, $field);
+
         $field->delete();
 
         return $this
@@ -190,6 +203,8 @@ class FieldController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE_ANY, Field::class);
+
         $ids = $request->validated(DestroyManyRequest::IDS);
 
         Field::whereIn(Field::ID, $ids)->delete();

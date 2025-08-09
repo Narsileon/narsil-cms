@@ -21,21 +21,26 @@ class ComponentServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $implementations = config('narsil.components', []);
-
-        foreach ($implementations as $abstract => $concrete)
-        {
-            $this->app->singleton($abstract, $concrete);
-            $this->app->tag($abstract, ['components']);
-        }
+        $this->registerComponents();
     }
 
+    #endregion
+
+    #region PROTECTED METHODS
+
     /**
-     * {@inheritDoc}
+     * Register the components from the config file as singletons.
+     *
+     * @return void
      */
-    public function boot(): void
+    protected function registerComponents(): void
     {
-        //
+        $config = config('narsil.components', []);
+
+        foreach ($config as $abstract => $concrete)
+        {
+            $this->app->singleton($abstract, $concrete);
+        }
     }
 
     #endregion

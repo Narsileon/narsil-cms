@@ -5,7 +5,6 @@ namespace Narsil\Models;
 #region USE
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,8 +17,9 @@ use Narsil\Models\Policies\UserPermission;
 use Narsil\Models\Policies\UserRole;
 use Narsil\Models\Users\Session;
 use Narsil\Models\Users\UserConfiguration;
-use Narsil\Observers\UserObserver;
-use Narsil\Traits\Formatable;
+use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasPermissions;
+use Narsil\Traits\HasRoles;
 
 #endregion
 
@@ -27,10 +27,11 @@ use Narsil\Traits\Formatable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-#[ObservedBy([UserObserver::class])]
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Formatable;
+    use HasDatetimes;
+    use HasPermissions;
+    use HasRoles;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
@@ -135,18 +136,9 @@ class User extends Authenticatable implements MustVerifyEmail
     final public const ATTRIBUTE_PASSWORD_CONFIRMATION = 'password_confirmation';
 
     /**
-     * @var string The name of the "roles" count.
-     */
-    final public const COUNT_ROLES = 'roles_count';
-
-    /**
      * @var string The name of the "configuration" relation.
      */
     final public const RELATION_CONFIGURATION = 'configuration';
-    /**
-     * @var string The name of the "roles" relation.
-     */
-    final public const RELATION_ROLES = 'roles';
     /**
      * @var string The name of the "sessions" relation.
      */

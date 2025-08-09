@@ -14,6 +14,7 @@ use Narsil\Contracts\FormRequests\BlockFormRequest;
 use Narsil\Contracts\Forms\BlockForm;
 use Narsil\Contracts\Tables\BlockTable;
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
@@ -67,6 +68,8 @@ class BlockController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::VIEW_ANY, Block::class);
+
         $query = Block::query()
             ->with([
                 Block::RELATION_BLOCKS,
@@ -96,6 +99,8 @@ class BlockController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::CREATE, Block::class);
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -109,6 +114,8 @@ class BlockController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::CREATE, Block::class);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $block = Block::create($attributes);
@@ -131,6 +138,8 @@ class BlockController extends AbstractController
      */
     public function edit(Request $request, Block $block): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::UPDATE, $block);
+
         $block->loadMissing([
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
@@ -156,6 +165,8 @@ class BlockController extends AbstractController
      */
     public function update(Request $request, Block $block): RedirectResponse
     {
+        $this->authorize(PermissionEnum::UPDATE, $block);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $block->update($attributes);
@@ -178,6 +189,8 @@ class BlockController extends AbstractController
      */
     public function destroy(Request $request, Block $block): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE, $block);
+
         $block->delete();
 
         return $this
@@ -192,6 +205,8 @@ class BlockController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE_ANY, Block::class);
+
         $ids = $request->validated(DestroyManyRequest::IDS);
 
         Block::whereIn(Block::ID, $ids)->delete();

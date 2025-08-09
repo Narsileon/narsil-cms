@@ -7,8 +7,8 @@ namespace Narsil\Models\Elements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\TemplateSection;
+use Narsil\Traits\HasIdentifier;
 
 #endregion
 
@@ -16,8 +16,10 @@ use Narsil\Models\Elements\TemplateSection;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateSectionElement extends Model implements HasIdentifier
+class TemplateSectionElement extends Model
 {
+    use HasIdentifier;
+
     #region CONSTRUCTOR
 
     /**

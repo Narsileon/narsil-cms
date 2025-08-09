@@ -12,6 +12,7 @@ use Narsil\Contracts\FormRequests\SiteFormRequest;
 use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Contracts\Tables\SiteTable;
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
@@ -65,6 +66,8 @@ class SiteController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::VIEW_ANY, Site::class);
+
         $query = Site::query();
 
         $this->filter($query, Site::GROUP_ID);
@@ -96,6 +99,8 @@ class SiteController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::CREATE, Site::class);
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -109,6 +114,8 @@ class SiteController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::CREATE, Site::class);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         Site::create($attributes);
@@ -126,6 +133,8 @@ class SiteController extends AbstractController
      */
     public function edit(Request $request, Site $site): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::UPDATE, $site);
+
         $this->form
             ->method(MethodEnum::PATCH)
             ->submit(trans('narsil-cms::ui.update'))
@@ -147,6 +156,8 @@ class SiteController extends AbstractController
      */
     public function update(Request $request, Site $site): RedirectResponse
     {
+        $this->authorize(PermissionEnum::UPDATE, $site);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $site->update($attributes);
@@ -164,6 +175,8 @@ class SiteController extends AbstractController
      */
     public function destroy(Request $request, Site $site): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE, $site);
+
         $site->delete();
 
         return $this
@@ -178,6 +191,8 @@ class SiteController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE_ANY, Site::class);
+
         $ids = $request->validated(DestroyManyRequest::IDS);
 
         Site::whereIn(Site::ID, $ids)->delete();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Enums\Resources;
+namespace Narsil\Enums\Entities;
 
 /**
  * @version 1.0.0

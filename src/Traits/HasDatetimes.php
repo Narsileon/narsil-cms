@@ -12,7 +12,7 @@ use DateTimeInterface;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-trait Formatable
+trait HasDatetimes
 {
     #region PROTECTED METHODS
 

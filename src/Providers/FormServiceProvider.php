@@ -21,21 +21,26 @@ class FormServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $implementations = config('narsil.forms', []);
-
-        foreach ($implementations as $abstract => $concrete)
-        {
-            $this->app->singleton($abstract, $concrete);
-            $this->app->tag($abstract, ['forms']);
-        }
+        $this->registerForms();
     }
 
+    #endregion
+
+    #region PROTECTED METHODS
+
     /**
-     * {@inheritDoc}
+     * Register the forms from the config file as singletons.
+     *
+     * @return void
      */
-    public function boot(): void
+    protected function registerForms(): void
     {
-        //
+        $config = config('narsil.forms', []);
+
+        foreach ($config as $abstract => $concrete)
+        {
+            $this->app->singleton($abstract, $concrete);
+        }
     }
 
     #endregion

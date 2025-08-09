@@ -77,6 +77,8 @@ return new class extends Migration
             $table
                 ->string(Permission::NAME);
             $table
+                ->string(Permission::HANDLE);
+            $table
                 ->timestamps();
         });
     }
@@ -92,6 +94,8 @@ return new class extends Migration
                 ->id(Role::ID);
             $table
                 ->string(Role::NAME);
+            $table
+                ->string(Role::HANDLE);
             $table
                 ->timestamps();
         });

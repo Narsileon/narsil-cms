@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Arr;
-use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElementCondition;
+use Narsil\Traits\HasIdentifier;
 
 #endregion
 
@@ -19,8 +19,10 @@ use Narsil\Models\Elements\BlockElementCondition;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockElement extends Model implements HasIdentifier
+class BlockElement extends Model
 {
+    use HasIdentifier;
+
     #region CONSTRUCTOR
 
     /**

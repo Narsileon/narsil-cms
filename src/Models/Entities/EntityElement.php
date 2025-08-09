@@ -1,13 +1,12 @@
 <?php
 
-namespace Narsil\Models\Policies;
+namespace Narsil\Models\Entities;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasPermissions;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Narsil\Models\Entities\Entity;
 
 #endregion
 
@@ -15,11 +14,8 @@ use Narsil\Traits\HasPermissions;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Role extends Model
+class EntityElement extends Model
 {
-    use HasDatetimes;
-    use HasPermissions;
-
     #region CONSTRUCTOR
 
     /**
@@ -43,38 +39,38 @@ class Role extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "handle" column.
-     */
-    final public const HANDLE = 'handle';
-    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
     /**
-     * @var string The name of the "name" column.
+     * @var string The name of the "entity uuid" column.
      */
-    final public const NAME = 'name';
+    final public const ENTITY_UUID = 'entity_uuid';
+
+    /**
+     * @var string The name of the "element" relation.
+     */
+    final public const RELATION_ENTITY = 'entity';
 
     /**
      * @var string The table associated with the model.
      */
-    final public const TABLE = 'roles';
+    final public const TABLE = 'entity_elements';
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region RELATIONS
 
     /**
-     * @return BelongsToMany
+     * @return BelongsTo
      */
-    public function permissions(): BelongsToMany
+    public function entity(): BelongsTo
     {
         return $this
-            ->belongsToMany(
-                Permission::class,
-                RolePermission::TABLE,
-                RolePermission::ROLE_ID,
-                RolePermission::PERMISSION_ID,
+            ->belongsTo(
+                Entity::class,
+                self::ENTITY_UUID,
+                Entity::ID,
             );
     }
 

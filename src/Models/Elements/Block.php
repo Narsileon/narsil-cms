@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Arr;
-use Narsil\Interfaces\HasIdentifier;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\BlockElement;
-use Narsil\Traits\Formatable;
-use Narsil\Traits\Identifiable;
+use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasIdentifier;
 
 #endregion
 
@@ -20,10 +19,10 @@ use Narsil\Traits\Identifiable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Block extends Model implements HasIdentifier
+class Block extends Model
 {
-    use Formatable;
-    use Identifiable;
+    use HasDatetimes;
+    use HasIdentifier;
 
     #region CONSTRUCTOR
 

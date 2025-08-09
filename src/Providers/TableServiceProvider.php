@@ -21,12 +21,11 @@ class TableServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $implementations = config('narsil.tables', []);
+        $config = config('narsil.tables', []);
 
-        foreach ($implementations as $abstract => $concrete)
+        foreach ($config as $abstract => $concrete)
         {
             $this->app->singleton($abstract, $concrete);
-            $this->app->tag($abstract, ['tables']);
         }
     }
 

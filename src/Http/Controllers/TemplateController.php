@@ -14,6 +14,7 @@ use Narsil\Contracts\FormRequests\TemplateFormRequest;
 use Narsil\Contracts\Forms\TemplateForm;
 use Narsil\Contracts\Tables\TemplateTable;
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
@@ -69,6 +70,8 @@ class TemplateController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::VIEW_ANY, Template::class);
+
         $query = Template::query();
 
         $dataTable = new DataTableCollection($query, app(TemplateTable::class));
@@ -90,6 +93,8 @@ class TemplateController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::CREATE, Template::class);
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -103,6 +108,8 @@ class TemplateController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::CREATE, Template::class);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $template = Template::create($attributes);
@@ -122,6 +129,8 @@ class TemplateController extends AbstractController
      */
     public function edit(Request $request, Template $template): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::UPDATE, $template);
+
         $this->form
             ->method(MethodEnum::PATCH)
             ->submit(trans('narsil-cms::ui.update'))
@@ -143,6 +152,8 @@ class TemplateController extends AbstractController
      */
     public function update(Request $request, Template $template): RedirectResponse
     {
+        $this->authorize(PermissionEnum::UPDATE, $template);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $template->update($attributes);
@@ -162,6 +173,8 @@ class TemplateController extends AbstractController
      */
     public function destroy(Request $request, Template $template): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE, $template);
+
         $template->delete();
 
         return $this
@@ -176,6 +189,8 @@ class TemplateController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE_ANY, Template::class);
+
         $ids = $request->validated(DestroyManyRequest::IDS);
 
         Template::whereIn(Template::ID, $ids)->delete();

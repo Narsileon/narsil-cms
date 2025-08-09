@@ -8,15 +8,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\FormRequests\UserFormRequest;
-use Narsil\Contracts\Forms\UserForm;
-use Narsil\Contracts\Tables\UserTable;
+use Narsil\Contracts\FormRequests\FieldFormRequest;
+use Narsil\Contracts\Forms\FieldForm;
+use Narsil\Contracts\Tables\FieldTable;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
-use Narsil\Models\User;
+use Narsil\Models\Elements\Field;
+use Narsil\Models\Entities\Entity;
 
 #endregion
 
@@ -24,17 +24,17 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserController extends AbstractController
+class EntityController extends AbstractController
 {
     #region CONSTRUCTOR
 
     /**
-     * @param UserForm $form
-     * @param UserFormRequest $formRequest
+     * @param FieldForm $form
+     * @param FieldFormRequest $formRequest
      *
      * @return void
      */
-    public function __construct(UserForm $form, UserFormRequest $formRequest)
+    public function __construct(FieldForm $form, FieldFormRequest $formRequest)
     {
         $this->form = $form;
         $this->formRequest = $formRequest;
@@ -45,13 +45,13 @@ class UserController extends AbstractController
     #region PROPERTIES
 
     /**
-     * @var UserForm
+     * @var FieldForm
      */
-    protected readonly UserForm $form;
+    protected readonly FieldForm $form;
     /**
-     * @var UserFormRequest
+     * @var FieldFormRequest
      */
-    protected readonly UserFormRequest $formRequest;
+    protected readonly FieldFormRequest $formRequest;
 
     #endregion
 
@@ -64,16 +64,14 @@ class UserController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, User::class);
+        $query = Field::query();
 
-        $query = User::query();
-
-        $dataTable = new DataTableCollection($query, app(UserTable::class));
+        $dataTable = new DataTableCollection($query, app(FieldTable::class));
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.users'),
-            description: trans('narsil-cms::ui.users'),
+            title: trans('narsil-cms::ui.fields'),
+            description: trans('narsil-cms::ui.fields'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -87,8 +85,6 @@ class UserController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, User::class);
-
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -102,74 +98,66 @@ class UserController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, User::class);
-
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        User::create($attributes);
+        $entity = Entity::create($attributes);
 
         return $this
-            ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.created'));
+            ->redirect(route('entities.index'), $entity)
+            ->with('success', trans('narsil-cms::toasts.success.entities.created'));
     }
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Field $field
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, User $user): JsonResponse|Response
+    public function edit(Request $request, Field $field): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $user);
-
         $this->form
             ->method(MethodEnum::PATCH)
             ->submit(trans('narsil-cms::ui.update'))
-            ->url(route('users.update', $user->{User::ID}));
+            ->url(route('entities.update', $field->{Field::ID}));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: array_merge($this->form->jsonSerialize(), [
-                'data' => $user,
+                'data' => $field,
             ]),
         );
     }
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Entity $field
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(Request $request, Entity $entity): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $user);
-
         $attributes = $this->getAttributes($this->formRequest->rules());
 
-        $user->update($attributes);
+        $entity->update($attributes);
 
         return $this
-            ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.updated'));
+            ->redirect(route('entities.index'), $entity)
+            ->with('success', trans('narsil-cms::toasts.success.entities.updated'));
     }
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param Entity $entity
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, User $user): RedirectResponse
+    public function destroy(Request $request, Entity $entity): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE, $user);
-
-        $user->delete();
+        $entity->delete();
 
         return $this
-            ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.deleted'));
+            ->redirect(route('entities.index'))
+            ->with('success', trans('narsil-cms::toasts.success.entities.deleted'));
     }
 
     /**
@@ -179,15 +167,13 @@ class UserController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE_ANY, User::class);
-
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        User::whereIn(User::ID, $ids)->delete();
+        Entity::whereIn(Entity::ID, $ids)->delete();
 
         return $this
-            ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.deleted_many'));
+            ->redirect(route('entities.index'))
+            ->with('success', trans('narsil-cms::toasts.success.entities.deleted_many'));
     }
 
     #endregion

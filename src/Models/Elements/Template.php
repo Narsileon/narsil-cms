@@ -6,7 +6,7 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Traits\Formatable;
+use Narsil\Traits\HasDatetimes;
 
 #endregion
 
@@ -16,7 +16,7 @@ use Narsil\Traits\Formatable;
  */
 class Template extends Model
 {
-    use Formatable;
+    use HasDatetimes;
 
     #region CONSTRUCTOR
 

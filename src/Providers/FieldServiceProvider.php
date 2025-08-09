@@ -21,21 +21,26 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $implementations = config('narsil.fields', []);
-
-        foreach ($implementations as $abstract => $concrete)
-        {
-            $this->app->bind($abstract, $concrete);
-            $this->app->tag($abstract, ['fields']);
-        }
+        $this->registerFields();
     }
 
+    #endregion
+
+    #region PROTECTED METHODS
+
     /**
-     * {@inheritDoc}
+     * Register the fields from the config file as bindings.
+     *
+     * @return void
      */
-    public function boot(): void
+    protected function registerFields(): void
     {
-        //
+        $config = config('narsil.fields', []);
+
+        foreach ($config as $abstract => $concrete)
+        {
+            $this->app->bind($abstract, $concrete);
+        }
     }
 
     #endregion

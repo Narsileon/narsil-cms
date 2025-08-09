@@ -21,21 +21,26 @@ class FormRequestServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $implementations = config('narsil.form-requests', []);
-
-        foreach ($implementations as $abstract => $concrete)
-        {
-            $this->app->singleton($abstract, $concrete);
-            $this->app->tag($abstract, ['form-requests']);
-        }
+        $this->registerFormRequests();
     }
 
+    #endregion
+
+    #region PROTECTED METHODS
+
     /**
-     * {@inheritDoc}
+     * Register the form requests from the config file as singletons.
+     *
+     * @return void
      */
-    public function boot(): void
+    protected function registerFormRequests(): void
     {
-        //
+        $config = config('narsil.form-requests', []);
+
+        foreach ($config as $abstract => $concrete)
+        {
+            $this->app->singleton($abstract, $concrete);
+        }
     }
 
     #endregion

@@ -5,12 +5,12 @@ namespace Narsil\Http\Controllers;
 #region USE
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
-use JsonSerializable;
 use Narsil\Http\Requests\QueryRequest;
 use Narsil\Support\LabelsBag;
 
@@ -22,6 +22,8 @@ use Narsil\Support\LabelsBag;
  */
 abstract class AbstractController
 {
+    use AuthorizesRequests;
+
     #region PROTECTED METHODS
 
     /**

@@ -12,6 +12,7 @@ use Narsil\Contracts\FormRequests\RoleFormRequest;
 use Narsil\Contracts\Forms\RoleForm;
 use Narsil\Contracts\Tables\RoleTable;
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
@@ -63,6 +64,8 @@ class RoleController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::VIEW_ANY, Role::class);
+
         $query = Role::query();
 
         $dataTable = new DataTableCollection($query, app(RoleTable::class));
@@ -84,6 +87,8 @@ class RoleController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::CREATE, Role::class);
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -97,6 +102,8 @@ class RoleController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::CREATE, Role::class);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         Role::create($attributes);
@@ -114,6 +121,8 @@ class RoleController extends AbstractController
      */
     public function edit(Request $request, Role $role): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::UPDATE, $role);
+
         $this->form
             ->method(MethodEnum::PATCH)
             ->submit(trans('narsil-cms::ui.update'))
@@ -135,6 +144,8 @@ class RoleController extends AbstractController
      */
     public function update(Request $request, Role $role): RedirectResponse
     {
+        $this->authorize(PermissionEnum::UPDATE, $role);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $role->update($attributes);
@@ -152,6 +163,8 @@ class RoleController extends AbstractController
      */
     public function destroy(Request $request, Role $role): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE, $role);
+
         $role->delete();
 
         return $this
@@ -166,6 +179,8 @@ class RoleController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE_ANY, Role::class);
+
         $ids = $request->validated(DestroyManyRequest::IDS);
 
         Role::whereIn(Role::ID, $ids)->delete();

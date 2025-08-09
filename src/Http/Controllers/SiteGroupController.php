@@ -12,6 +12,7 @@ use Narsil\Contracts\FormRequests\SiteGroupFormRequest;
 use Narsil\Contracts\Forms\SiteGroupForm;
 use Narsil\Contracts\Tables\SiteGroupTable;
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
@@ -63,6 +64,8 @@ class SiteGroupController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::VIEW_ANY, SiteGroup::class);
+
         $query = SiteGroup::query();
 
         $dataTable = new DataTableCollection($query, app(SiteGroupTable::class));
@@ -84,6 +87,8 @@ class SiteGroupController extends AbstractController
      */
     public function create(Request $request): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::CREATE, SiteGroup::class);
+
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $this->form->jsonSerialize(),
@@ -97,6 +102,8 @@ class SiteGroupController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::CREATE, SiteGroup::class);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         SiteGroup::create($attributes);
@@ -114,6 +121,8 @@ class SiteGroupController extends AbstractController
      */
     public function edit(Request $request, SiteGroup $siteGroup): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::UPDATE, $siteGroup);
+
         $this->form
             ->method(MethodEnum::PATCH)
             ->submit(trans('narsil-cms::ui.update'))
@@ -135,6 +144,8 @@ class SiteGroupController extends AbstractController
      */
     public function update(Request $request, SiteGroup $siteGroup): RedirectResponse
     {
+        $this->authorize(PermissionEnum::UPDATE, $siteGroup);
+
         $attributes = $this->getAttributes($this->formRequest->rules());
 
         $siteGroup->update($attributes);
@@ -152,6 +163,8 @@ class SiteGroupController extends AbstractController
      */
     public function destroy(Request $request, SiteGroup $siteGroup): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE, $siteGroup);
+
         $siteGroup->delete();
 
         return $this
@@ -166,6 +179,8 @@ class SiteGroupController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE_ANY, SiteGroup::class);
+
         $ids = $request->validated(DestroyManyRequest::IDS);
 
         SiteGroup::whereIn(SiteGroup::ID, $ids)->delete();

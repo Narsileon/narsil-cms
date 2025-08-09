@@ -8,6 +8,7 @@ use Narsil\Contracts\Components\Sidebar as Contract;
 use Narsil\Implementations\AbstractComponent;
 use Narsil\Implementations\Components\Elements\NavigationGroup;
 use Narsil\Implementations\Components\Elements\NavigationItem;
+use Narsil\Models\Elements\Template;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -40,9 +41,23 @@ class Sidebar extends AbstractComponent implements Contract
      */
     protected function content(): array
     {
+        $templates = Template::query()
+            ->orderBy(Template::NAME)
+            ->get();
+
+        $collections = [];
+
+        foreach ($templates as $template)
+        {
+            $collections[] = (new NavigationItem(route('templates.index'), $template->{Template::NAME}))
+                ->icon('layout');
+        }
+
         return [
             (new NavigationItem(route('dashboard'), trans('narsil-cms::ui.dashboard')))
                 ->icon('chart-pie'),
+            (new NavigationGroup(trans('narsil-cms::ui.collections')))
+                ->children($collections),
             (new NavigationGroup(trans('narsil-cms::ui.structures')))
                 ->children([
                     (new NavigationItem(route('templates.index'), trans('narsil-cms::ui.templates')))
@@ -52,7 +67,6 @@ class Sidebar extends AbstractComponent implements Contract
                     (new NavigationItem(route('fields.index'), trans('narsil-cms::ui.fields')))
                         ->icon('input'),
                 ]),
-
             (new NavigationGroup(trans('narsil-cms::ui.users')))
                 ->children([
                     (new NavigationItem(route('users.index'), trans('narsil-cms::ui.users')))
