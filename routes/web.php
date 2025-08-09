@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Narsil\Http\Controllers\BlockController;
 use Narsil\Http\Controllers\DashboardController;
+use Narsil\Http\Controllers\EntityController;
 use Narsil\Http\Controllers\FieldController;
 use Narsil\Http\Controllers\RoleController;
 use Narsil\Http\Controllers\SessionController;
@@ -77,6 +78,28 @@ Route::middleware([
         resource(User::TABLE, UserController::class, [
             'show',
         ]);
+
+        #endregion
+
+        #region ENTITIES
+
+        Route::controller(EntityController::class)->group(function ()
+        {
+            Route::delete('entities/{type}', 'destroyMany')
+                ->name('entities.destroyMany');
+            Route::get('entities/{type}', 'index')
+                ->name('entities.index');
+            Route::post('entities/{type}', 'store')
+                ->name('entities.store');
+            Route::get('entities/{type}/create', 'create')
+                ->name('entities.create');
+            Route::patch('entities/{type}/{entity}', 'update')
+                ->name('entities.update');
+            Route::delete('entities/{type}/{entity}', 'destroy')
+                ->name('entities.destroy');
+            Route::get('entities/{type}/{entity}/edit', 'edit')
+                ->name('entities.edit');
+        });
 
         #endregion
 

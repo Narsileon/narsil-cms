@@ -35,6 +35,7 @@ class Entity extends Model
 
         $this->with = array_merge([
             self::RELATION_ELEMENTS,
+            self::RELATION_TEMPLATE,
         ], $this->with);
 
         parent::__construct($attributes);

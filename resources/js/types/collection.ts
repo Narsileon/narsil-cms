@@ -66,6 +66,7 @@ export type RouteNames = {
   destroyMany?: string;
   edit?: string;
   index?: string;
+  params: Record<string, any>;
   show?: string;
   store?: string;
   update?: string;

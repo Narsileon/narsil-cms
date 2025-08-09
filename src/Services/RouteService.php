@@ -19,10 +19,11 @@ abstract class RouteService
 
     /**
      * @param string $table
+     * @param array $parameters
      *
      * @return array
      */
-    public static function getNames(string $table): array
+    public static function getNames(string $table, array $parameters = []): array
     {
         $tableName = Str::slug($table);
 
@@ -37,10 +38,14 @@ abstract class RouteService
             'update' => "$tableName.update",
         ];
 
-        return array_filter($names, function ($name)
+        $names = array_filter($names, function ($name)
         {
             return Route::has($name);
         });
+
+        $names['params'] = $parameters;
+
+        return $names;
     }
 
     #endregion

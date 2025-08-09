@@ -14,7 +14,7 @@ use Narsil\Providers\FortifyServiceProvider;
 use Narsil\Providers\ObserverServiceProvider;
 use Narsil\Providers\PolicyServiceProvider;
 use Narsil\Providers\TableServiceProvider;
-use Narsil\Support\LabelsBag;
+use Narsil\Providers\TranslationServiceProvider;
 
 #endregion
 
@@ -33,11 +33,6 @@ class NarsilServiceProvider extends ServiceProvider
     {
         $this->registerConfigs();
         $this->registerProviders();
-
-        $this->app->singleton(LabelsBag::class, function ()
-        {
-            return new LabelsBag();
-        });
     }
 
     /**
@@ -48,7 +43,6 @@ class NarsilServiceProvider extends ServiceProvider
         $this->bootMigrations();
         $this->bootPublishes();
         $this->bootRoutes();
-        $this->bootTranslations();
     }
 
     #endregion
@@ -85,15 +79,6 @@ class NarsilServiceProvider extends ServiceProvider
             ->group(__DIR__ . '/../routes/web.php');
     }
 
-    /**
-     * @return void
-     */
-    protected function bootTranslations(): void
-    {
-        $this->loadJsonTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
-    }
-
     protected function registerConfigs(): void
     {
         $configs = [
@@ -122,6 +107,7 @@ class NarsilServiceProvider extends ServiceProvider
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
         $this->app->register(TableServiceProvider::class);
+        $this->app->register(TranslationServiceProvider::class);
     }
 
     #endregion

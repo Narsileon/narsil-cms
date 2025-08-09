@@ -58,12 +58,23 @@ function DataTableRowMenu({
             {routes.edit ? (
               <DropdownMenuItem asChild={true}>
                 {modal ? (
-                  <ModalLink href={route(routes.edit, id)}>
+                  <ModalLink
+                    href={route(routes.edit, {
+                      ...routes.params,
+                      id: id,
+                    })}
+                  >
                     <Icon name="edit" />
                     {getLabel("ui.edit")}
                   </ModalLink>
                 ) : (
-                  <Link as="button" href={route(routes.edit, id)}>
+                  <Link
+                    as="button"
+                    href={route(routes.edit, {
+                      ...routes.params,
+                      id: id,
+                    })}
+                  >
                     <Icon name="edit" />
                     {getLabel("ui.edit")}
                   </Link>
@@ -75,7 +86,10 @@ function DataTableRowMenu({
               <DropdownMenuItem asChild={true}>
                 <Link
                   as="button"
-                  href={route(routes.destroy, id)}
+                  href={route(routes.destroy, {
+                    ...routes.params,
+                    id: id,
+                  })}
                   method="delete"
                   data={{
                     _back: true,
@@ -103,6 +117,7 @@ function DataTableRowMenu({
                 <Link
                   as="button"
                   href={route(routes.destroyMany, {
+                    ...routes.params,
                     ids: table
                       ?.getSelectedRowModel()
                       .flatRows.map((row) => row.original.id),

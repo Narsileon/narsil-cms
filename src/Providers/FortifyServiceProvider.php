@@ -38,22 +38,7 @@ use Narsil\Http\Controllers\Fortify\VerifyEmailController;
  */
 class FortifyServiceProvider extends ServiceProvider
 {
-
     #region PUBLIC METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    public function register(): void
-    {
-        $this->registerLoginResponse();
-        $this->registerLogoutResponse();
-        $this->registerPasswordConfirmedResponse();
-        $this->registerPasswordUpdatedResponse();
-        $this->registerProfileInformationUpdatedResponse();
-        $this->registerTwoFactorConfirmedResponse();
-        $this->registerTwoFactorDisabledResponse();
-    }
 
     /**
      * {@inheritDoc}
@@ -80,6 +65,20 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)
                 ->by($request->session()->get('login.id'));
         });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function register(): void
+    {
+        $this->registerLoginResponse();
+        $this->registerLogoutResponse();
+        $this->registerPasswordConfirmedResponse();
+        $this->registerPasswordUpdatedResponse();
+        $this->registerProfileInformationUpdatedResponse();
+        $this->registerTwoFactorConfirmedResponse();
+        $this->registerTwoFactorDisabledResponse();
     }
 
     #endregion

@@ -128,7 +128,12 @@ function ResourceIndex({
                     variant="default"
                     asChild={true}
                   >
-                    <Link href={route(dataTable.meta.routes.create)}>
+                    <Link
+                      href={route(
+                        dataTable.meta.routes.create,
+                        dataTable.meta.routes.params,
+                      )}
+                    >
                       <Icon name="plus" />
                     </Link>
                   </Button>

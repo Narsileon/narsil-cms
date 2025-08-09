@@ -28,6 +28,8 @@ return [
     'deselect_all'      => 'Deselect all',
     'edit'              => 'Edit',
     'email_verify'      => 'Verify your email',
+    'entity'            => 'Entity',
+    'entities'          => 'Entities',
     'field'             => 'Field',
     'fields'            => 'Fields',
     'home'              => 'Home',

@@ -114,7 +114,7 @@ function SortableAdd({
       {group.routes?.create ? (
         <Button className="justify-self-end" asChild={true}>
           <ModalLink
-            href={route(group.routes.create)}
+            href={route(group.routes.create, group.routes.params)}
             options={{
               onSuccess: (response) => {
                 const props = response?.props

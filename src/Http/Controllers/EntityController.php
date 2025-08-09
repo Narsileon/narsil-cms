@@ -10,12 +10,13 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
-use Narsil\Contracts\Tables\FieldTable;
+use Narsil\Contracts\Tables\EntityTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 
 #endregion
@@ -62,16 +63,22 @@ class EntityController extends AbstractController
      *
      * @return JsonResponse|Response
      */
-    public function index(Request $request): JsonResponse|Response
+    public function index(Request $request, string $type): JsonResponse|Response
     {
-        $query = Field::query();
+        $template = Template::query()
+            ->firstWhere(Template::HANDLE, '=', $type);
 
-        $dataTable = new DataTableCollection($query, app(FieldTable::class));
+        $query = Entity::query()
+            ->whereRelation(Entity::RELATION_TEMPLATE, Template::HANDLE, '=', $type);
+
+        $dataTable = new DataTableCollection($query, app()->make(EntityTable::class, [
+            'type' => $type
+        ]));
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.fields'),
-            description: trans('narsil-cms::ui.fields'),
+            title: $template->{Template::NAME},
+            description: $template->{Template::NAME},
             props: [
                 'dataTable' => $dataTable,
             ]

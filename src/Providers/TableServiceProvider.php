@@ -29,13 +29,5 @@ class TableServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function boot(): void
-    {
-        //
-    }
-
     #endregion
 }

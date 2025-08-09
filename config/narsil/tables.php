@@ -12,6 +12,7 @@ return [
     */
 
     \Narsil\Contracts\Tables\BlockTable::class => \Narsil\Implementations\Tables\BlockTable::class,
+    \Narsil\Contracts\Tables\EntityTable::class => \Narsil\Implementations\Tables\EntityTable::class,
     \Narsil\Contracts\Tables\FieldTable::class => \Narsil\Implementations\Tables\FieldTable::class,
     \Narsil\Contracts\Tables\RoleTable::class => \Narsil\Implementations\Tables\RoleTable::class,
     \Narsil\Contracts\Tables\SiteGroupTable::class => \Narsil\Implementations\Tables\SiteGroupTable::class,
