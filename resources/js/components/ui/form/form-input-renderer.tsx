@@ -15,6 +15,7 @@ import type { Field, SelectOption } from "@narsil-cms/types/forms";
 
 type FormInputRendererProps = {
   element: Field;
+  id: string;
   value: any;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
   setValue: (value: any) => void;
@@ -22,6 +23,7 @@ type FormInputRendererProps = {
 
 function FormInputRenderer({
   element,
+  id,
   value,
   renderOption,
   setValue,
@@ -31,8 +33,8 @@ function FormInputRenderer({
       return (
         <Checkbox
           {...element.settings}
-          id={element.handle}
-          name={element.handle}
+          id={id}
+          name={id}
           checked={value}
           onCheckedChange={setValue}
         />
@@ -41,8 +43,8 @@ function FormInputRenderer({
       return (
         <InputDate
           {...element.settings}
-          id={element.handle}
-          name={element.handle}
+          id={id}
+          name={id}
           className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
           value={value}
           onChange={setValue}
@@ -52,8 +54,8 @@ function FormInputRenderer({
       return (
         <Slider
           {...element.settings}
-          id={element.handle}
-          name={element.handle}
+          id={id}
+          name={id}
           value={isArray(value) ? value : [value]}
           onValueChange={([value]) => setValue(value)}
         />
@@ -77,7 +79,7 @@ function FormInputRenderer({
       return (
         <RichTextEditor
           {...element.settings}
-          id={element.handle}
+          id={id}
           value={value}
           onValueChange={setValue}
         />
@@ -86,7 +88,7 @@ function FormInputRenderer({
       return (
         <Combobox
           {...element.settings}
-          id={element.handle}
+          id={id}
           options={element.settings.options}
           renderOption={renderOption}
           value={value}
@@ -97,7 +99,7 @@ function FormInputRenderer({
       return (
         <Switch
           {...element.settings}
-          name={element.handle}
+          name={id}
           checked={value}
           onCheckedChange={setValue}
         />
@@ -115,8 +117,8 @@ function FormInputRenderer({
       return (
         <Input
           {...element.settings}
-          id={element.handle}
-          name={element.handle}
+          id={id}
+          name={id}
           className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
           value={value}
           onChange={(event) => setValue(event.target.value)}
@@ -126,8 +128,8 @@ function FormInputRenderer({
       return (
         <Input
           {...element.settings}
-          id={element.handle}
-          name={element.handle}
+          id={id}
+          name={id}
           value={value}
           onChange={(event) => setValue(event.target.value)}
         />

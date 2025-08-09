@@ -78,6 +78,7 @@ function SortableItemForm({
                 <FormItem key={index}>
                   <FormLabel required={true}>{field.name}</FormLabel>
                   <FormInputRenderer
+                    id={field.handle}
                     element={field}
                     value={data[field.handle]}
                     setValue={(value) => {

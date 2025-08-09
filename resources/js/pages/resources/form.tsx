@@ -139,6 +139,8 @@ function ResourceForm({
                     <FormFieldRenderer
                       conditions={element.conditions}
                       element={element.element}
+                      handle={element.handle}
+                      name={element.name}
                       key={index}
                     />
                   );

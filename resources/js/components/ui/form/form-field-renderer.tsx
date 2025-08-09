@@ -18,6 +18,8 @@ type FormFieldRendererProps = {
   className?: string;
   conditions?: BlockElementCondition[];
   element: Field | Block;
+  handle?: string | null;
+  name?: string | null;
   onChange?: (value: any) => void;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
@@ -26,17 +28,22 @@ function FormFieldRenderer({
   className,
   conditions,
   element,
+  handle,
+  name,
   onChange,
   renderOption,
 }: FormFieldRendererProps) {
   const { data } = useForm();
 
+  const finalHandle = handle ?? element.handle;
+  const finalName = name ?? element.name;
+
   if ("elements" in element) {
     return (
       <>
-        {element.name ? (
+        {finalName ? (
           <Heading className="text-lg font-semibold" level="h2">
-            {element.name}
+            {finalName}
           </Heading>
         ) : null}
         {element.elements.map((element, index) => {
@@ -44,6 +51,8 @@ function FormFieldRenderer({
             <FormFieldRenderer
               conditions={element.conditions}
               element={element.element}
+              handle={element.handle}
+              name={element.name}
               key={index}
             />
           );
@@ -57,15 +66,15 @@ function FormFieldRenderer({
   if (!element.type) {
     return (
       <div className="col-span-full flex items-center justify-between text-sm">
-        <span className="first-letter:uppercase">{element.name}</span>
-        <span>{data?.[element.handle]}</span>
+        <span className="first-letter:uppercase">{finalName}</span>
+        <span>{data?.[finalHandle]}</span>
       </div>
     );
   }
 
   return element.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
     <Heading className="bg-input/25 -mx-4 border-t border-b p-4" level="h2">
-      {element.name}
+      {finalName}
     </Heading>
   ) : (
     <FormField
@@ -85,8 +94,9 @@ function FormFieldRenderer({
               className,
             )}
           >
-            <FormLabel required={settings.required}>{element.name}</FormLabel>
+            <FormLabel required={settings.required}>{finalName}</FormLabel>
             <FormInputRenderer
+              id={finalHandle}
               element={element}
               value={value}
               renderOption={renderOption}

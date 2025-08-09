@@ -154,6 +154,7 @@ function SortableTable({
                       return (
                         <TableCell className="px-0.5 py-0" key={index}>
                           <FormInputRenderer
+                            id={column.handle}
                             element={column}
                             value={value}
                             setValue={(value) => {
