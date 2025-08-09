@@ -40,25 +40,25 @@ abstract class AbstractForm implements Form
     #region PROPERTIES
 
     /**
-     * @var string
+     * @var string|null
      */
-    public protected(set) string $description = "";
+    public protected(set) ?string $description = null;
     /**
-     * @var string
+     * @var string|null
      */
-    public protected(set) string $method = MethodEnum::POST->value;
+    public protected(set) ?string $method = MethodEnum::POST->value;
     /**
-     * @var string
+     * @var string|null
      */
-    public protected(set) string $submit = "";
+    public protected(set) ?string $submit = null;
     /**
-     * @var string
+     * @var string|null
      */
-    public protected(set) string $title = "";
+    public protected(set) ?string $title = null;
     /**
-     * @var string
+     * @var string|null
      */
-    public protected(set) string $url = "";
+    public protected(set) ?string $url = null;
 
     #endregion
 
