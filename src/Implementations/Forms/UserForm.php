@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\EmailInput;
 use Narsil\Contracts\Fields\FileInput;
 use Narsil\Contracts\Fields\PasswordInput;
@@ -15,6 +16,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\User;
 
@@ -124,6 +126,21 @@ class UserForm extends AbstractForm implements Contract
                         ],
                     ]),
                 ]),
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'roles',
+                TemplateSection::NAME => trans('narsil-cms::ui.roles'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT =>
+                        new Field([
+                            Field::HANDLE => User::RELATION_ROLES,
+                            Field::NAME => trans('narsil-cms::validation.attributes.roles'),
+                            Field::TYPE => CheckboxInput::class,
+                            Field::SETTINGS => app(CheckboxInput::class),
+                        ]),
+                    ]),
+                ],
             ]),
             static::informationSection(),
         ];

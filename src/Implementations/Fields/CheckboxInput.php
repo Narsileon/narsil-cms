@@ -75,5 +75,15 @@ class CheckboxInput extends AbstractField implements Contract
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    final public function options(array $options): static
+    {
+        $this->settings['options'] = $options;
+
+        return $this;
+    }
+
     #endregion
 }

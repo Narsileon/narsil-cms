@@ -4,11 +4,13 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\RoleForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Policies\Role;
 
@@ -45,16 +47,29 @@ class RoleForm extends AbstractForm implements Contract
         return [
             static::mainSection([
                 new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new BlockElement([
-                        new Field([
-                            Field::HANDLE => Role::NAME,
-                            Field::NAME => trans('narsil-cms::validation.attributes.name'),
-                            Field::TYPE => TextInput::class,
-                            Field::SETTINGS => app(TextInput::class)
-                                ->required(true),
-                        ]),
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => Role::NAME,
+                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::TYPE => TextInput::class,
+                        Field::SETTINGS => app(TextInput::class)
+                            ->required(true),
                     ]),
                 ]),
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'roles',
+                TemplateSection::NAME => trans('narsil-cms::ui.roles'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT =>
+                        new Field([
+                            Field::HANDLE => Role::RELATION_PERMISSIONS,
+                            Field::NAME => trans('narsil-cms::validation.attributes.permissions'),
+                            Field::TYPE => CheckboxInput::class,
+                            Field::SETTINGS => app(CheckboxInput::class),
+                        ]),
+                    ]),
+                ],
             ]),
             static::informationSection(),
         ];
