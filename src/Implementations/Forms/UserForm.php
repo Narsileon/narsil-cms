@@ -18,7 +18,9 @@ use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -51,6 +53,8 @@ class UserForm extends AbstractForm implements Contract
     public function form(): array
     {
         $isPost = $this->method === MethodEnum::POST->value;
+
+        $roleOptions = static::getRoleOptions();
 
         return [
             static::mainSection([
@@ -137,13 +141,32 @@ class UserForm extends AbstractForm implements Contract
                             Field::HANDLE => User::RELATION_ROLES,
                             Field::NAME => trans('narsil-cms::validation.attributes.roles'),
                             Field::TYPE => CheckboxInput::class,
-                            Field::SETTINGS => app(CheckboxInput::class),
+                            Field::SETTINGS => app(CheckboxInput::class)
+                                ->options(static::getRoleOptions($roleOptions)),
                         ]),
                     ]),
                 ],
             ]),
             static::informationSection(),
         ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+    /**
+     * @return array
+     */
+    protected static function getRoleOptions(): array
+    {
+        return Role::query()
+            ->orderBy(Role::NAME)
+            ->get()
+            ->map(function (Role $role)
+            {
+                return new SelectOption($role->{Role::NAME}, $role->{Role::HANDLE});
+            })
+            ->toArray();
     }
 
     #endregion

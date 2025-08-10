@@ -19,6 +19,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
+use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 
 #endregion
@@ -132,6 +133,12 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::UPDATE, $user);
+
+        $user->loadMissing([
+            User::RELATION_ROLES,
+        ]);
+
+        $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::HANDLE));
 
         $this->form->method = MethodEnum::PATCH;
         $this->form->url = route('users.update', [

@@ -24,6 +24,13 @@ interface CheckboxInput extends Contract
     public function checked(bool $checked): static;
 
     /**
+     * @param boolean $inline.
+     *
+     * @return static Returns the current object instance.
+     */
+    public function inline(bool $inline): static;
+
+    /**
      * @param array $options.
      *
      * @return static Returns the current object instance.

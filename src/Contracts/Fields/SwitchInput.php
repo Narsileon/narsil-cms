@@ -24,11 +24,11 @@ interface SwitchInput extends Contract
     public function checked(bool $checked): static;
 
     /**
-     * @param array $options.
+     * @param boolean $inline.
      *
      * @return static Returns the current object instance.
      */
-    public function options(array $options): static;
+    public function inline(bool $inline): static;
 
     #endregion
 }

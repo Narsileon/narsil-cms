@@ -1,4 +1,4 @@
-import { Checkbox } from "@narsil-cms/components/ui/checkbox";
+import { Checkbox, CheckboxTable } from "@narsil-cms/components/ui/checkbox";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { Input, InputDate } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
@@ -11,7 +11,11 @@ import {
   SortableTable,
 } from "@narsil-cms/components/ui/sortable";
 
-import type { Field, SelectOption } from "@narsil-cms/types/forms";
+import type {
+  Field,
+  GroupedSelectOption,
+  SelectOption,
+} from "@narsil-cms/types/forms";
 
 type FormInputRendererProps = {
   element: Field;
@@ -30,7 +34,14 @@ function FormInputRenderer({
 }: FormInputRendererProps) {
   switch (element.type) {
     case "Narsil\\Contracts\\Fields\\CheckboxInput":
-      return (
+      return element.settings.options ? (
+        <CheckboxTable
+          {...element.settings}
+          options={element.settings.options as GroupedSelectOption[]}
+          values={isArray(value) ? value : []}
+          setValues={setValue}
+        />
+      ) : (
         <Checkbox
           {...element.settings}
           id={id}

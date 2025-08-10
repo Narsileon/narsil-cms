@@ -56,6 +56,7 @@ export type FormType = {
 };
 
 export type GroupedSelectOption = {
+  [key: string]: any;
   icon?: IconName;
   identifier: string;
   label: string;
@@ -63,6 +64,7 @@ export type GroupedSelectOption = {
   options: SelectOption[];
   optionValue: string;
   routes: RouteNames;
+  value: any;
 };
 
 export type SelectOption = {

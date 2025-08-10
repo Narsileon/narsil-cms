@@ -78,9 +78,9 @@ class SwitchInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function options(array $options): static
+    final public function inline(bool $inline): static
     {
-        $this->settings['options'] = $options;
+        $this->settings['inline'] = $inline;
 
         return $this;
     }
