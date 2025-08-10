@@ -132,7 +132,7 @@ function ResourceForm({
       {tabs.map((tab, index) => {
         return (
           <TabsContent className="p-0" value={tab.handle} key={index}>
-            <Card>
+            <Card className="overflow-hidden">
               <CardContent>
                 {tab.elements.map((element, index) => {
                   return (

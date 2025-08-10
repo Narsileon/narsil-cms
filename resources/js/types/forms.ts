@@ -5,6 +5,7 @@ export type Block = {
   elements: BlockElement[];
   handle: string;
   id: number;
+  identifier: string;
   name: string;
 };
 

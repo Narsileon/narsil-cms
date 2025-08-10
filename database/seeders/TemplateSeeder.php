@@ -14,7 +14,7 @@ use Narsil\Models\Elements\FieldBlock;
 
 #endregion
 
-class FieldSeeder extends Seeder
+class TemplateSeeder extends Seeder
 {
     #region PUBLIC METHODS
 

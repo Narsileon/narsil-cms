@@ -79,7 +79,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
             theme: theme,
           }}
           render={() => (
-            <Form className="gap-6" method={form.method} url={form.url}>
+            <Form className="gap-4" method={form.method} url={form.url}>
               {form.form.map((element, index) => {
                 return (
                   <FormFieldRenderer

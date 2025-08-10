@@ -39,6 +39,7 @@ return [
     'main'              => 'Main',
     'password'          => 'Password',
     'personalization'   => 'Personalization',
+    'profile'           => 'Profile',
     'recovery_codes'    => 'Recovery codes',
     'register'          => 'Register',
     'registration'      => 'Registration',

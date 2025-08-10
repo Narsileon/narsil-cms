@@ -53,36 +53,44 @@ class UserForm extends AbstractForm implements Contract
         return [
             static::mainSection([
                 new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => User::EMAIL,
-                        Field::NAME => trans('narsil-cms::validation.attributes.email'),
-                        Field::TYPE => EmailInput::class,
-                        Field::SETTINGS => app(EmailInput::class)
-                            ->required(true),
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => User::PASSWORD,
-                        Field::NAME => trans('narsil-cms::validation.attributes.password'),
-                        Field::TYPE => PasswordInput::class,
-                        Field::SETTINGS => app(PasswordInput::class)
-                            ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                            ->required($isPost),
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                        Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
-                        Field::TYPE => PasswordInput::class,
-                        Field::SETTINGS => app(PasswordInput::class)
-                            ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                            ->required($isPost),
-                    ])
+                    TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::NAME => trans('narsil-cms::ui.account'),
+                        Block::RELATION_ELEMENTS => [
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => User::EMAIL,
+                                    Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                                    Field::TYPE => EmailInput::class,
+                                    Field::SETTINGS => app(EmailInput::class)
+                                        ->required(true),
+                                ])
+                            ]),
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => User::PASSWORD,
+                                    Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                                    Field::TYPE => PasswordInput::class,
+                                    Field::SETTINGS => app(PasswordInput::class)
+                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                                        ->required($isPost),
+                                ])
+                            ]),
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
+                                    Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                                    Field::TYPE => PasswordInput::class,
+                                    Field::SETTINGS => app(PasswordInput::class)
+                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                                        ->required($isPost),
+                                ])
+                            ]),
+                        ],
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::NAME => trans('narsil-cms::ui.profile'),
                         Block::RELATION_ELEMENTS => [
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([

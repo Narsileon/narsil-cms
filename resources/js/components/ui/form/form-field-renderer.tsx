@@ -1,5 +1,6 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { Heading } from "@narsil-cms/components/ui/heading";
+import { Icon } from "@narsil-cms/components/ui/icon";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormInputRenderer from "./form-input-renderer";
@@ -7,6 +8,11 @@ import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 import useForm from "./form-context";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@narsil-cms/components/ui/collapsible";
 import type {
   Block,
   BlockElementCondition,
@@ -41,22 +47,58 @@ function FormFieldRenderer({
   if ("elements" in element) {
     return (
       <>
-        {finalName ? (
-          <Heading className="text-lg font-semibold" level="h2">
-            {finalName}
-          </Heading>
-        ) : null}
-        {element.elements.map((element, index) => {
-          return (
-            <FormFieldRenderer
-              conditions={element.conditions}
-              element={element.element}
-              handle={element.handle}
-              name={element.name}
-              key={index}
-            />
-          );
-        })}
+        {element.identifier?.startsWith("blocks") ? (
+          <Collapsible
+            className={cn(
+              "group -mx-4 not-first:border-t",
+              "first:-mt-4",
+              "-mb-4",
+              "data-[state=closed]:not-last:border-b",
+            )}
+            defaultOpen={true}
+          >
+            <CollapsibleTrigger
+              className={cn(
+                "bg-accent flex w-full items-center justify-between p-4 text-center",
+                "data-[state=open]:border-b",
+              )}
+            >
+              <Heading level="h2">{finalName}</Heading>
+              <Icon
+                className={cn(
+                  "duration-200",
+                  "group-data-[state=open]:rotate-180",
+                )}
+                name="chevron-down"
+              />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="grid gap-4 p-4 px-4">
+              {element.elements.map((element, index) => {
+                return (
+                  <FormFieldRenderer
+                    conditions={element.conditions}
+                    element={element.element}
+                    handle={element.handle}
+                    name={element.name}
+                    key={index}
+                  />
+                );
+              })}
+            </CollapsibleContent>
+          </Collapsible>
+        ) : (
+          element.elements.map((element, index) => {
+            return (
+              <FormFieldRenderer
+                conditions={element.conditions}
+                element={element.element}
+                handle={element.handle}
+                name={element.name}
+                key={index}
+              />
+            );
+          })
+        )}
       </>
     );
   }
@@ -73,7 +115,7 @@ function FormFieldRenderer({
   }
 
   return element.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
-    <Heading className="bg-input/25 -mx-4 border-t border-b p-4" level="h2">
+    <Heading className="bg-accent -mx-4 border-t border-b p-4" level="h2">
       {finalName}
     </Heading>
   ) : (
