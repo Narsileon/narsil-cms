@@ -49,7 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->table = self::TABLE;
 
         $this->casts = array_merge([
-            self::AVATAR => ImageCast::class,
+            self::AVATAR => ImageCast::class . ':avatars',
             self::EMAIL_VERIFIED_AT => 'datetime',
             self::ENABLED => 'boolean',
             self::PASSWORD => 'hashed',

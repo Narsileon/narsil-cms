@@ -15,7 +15,7 @@ function Form({
   url,
   ...props
 }: FormProps) {
-  const { id, post, setData } = useForm();
+  const { id, post, transform } = useForm();
 
   function onSubmit(event?: React.FormEvent) {
     event?.preventDefault();
@@ -23,7 +23,10 @@ function Form({
     switch (method) {
       case "patch":
       case "put":
-        setData?.("_method", method);
+        transform?.((data) => ({
+          ...data,
+          _method: method,
+        }));
         post?.(url, { ...options, forceFormData: true });
         break;
       case "post":

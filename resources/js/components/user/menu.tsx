@@ -28,6 +28,7 @@ function UserMenu({ ...props }: UserMenuProps) {
         <DropdownMenuTrigger asChild={!auth && true} {...props}>
           {auth ? (
             <UserAvatar
+              avatar={auth.avatar}
               firstName={auth.first_name ?? "A"}
               lastName={auth.last_name ?? "A"}
             />

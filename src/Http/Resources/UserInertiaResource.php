@@ -51,6 +51,7 @@ class UserInertiaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return $this->resource ? [
+            User::AVATAR => $this->{User::AVATAR},
             User::EMAIL => $this->{User::EMAIL},
             User::FIRST_NAME => $this->{User::FIRST_NAME},
             User::LAST_NAME => $this->{User::LAST_NAME},

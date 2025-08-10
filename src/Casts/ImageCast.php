@@ -7,6 +7,7 @@ namespace Narsil\Casts;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 #endregion
@@ -17,6 +18,29 @@ use Illuminate\Support\Facades\Storage;
  */
 class ImageCast implements CastsAttributes
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param string $directory
+     *
+     * @return void
+     */
+    public function __construct(string $directory = '')
+    {
+        $this->directory = trim($directory, '/');
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var string
+     */
+    protected readonly string $directory;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -26,30 +50,62 @@ class ImageCast implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): ?string
     {
-        return $value ? Storage::disk('public')->url($value) : null;
+        return $value ? $value : null;
     }
 
     /**
      * {@inheritDoc}
      *
-     * @return void
+     * @return string|null
      */
-    public function set(Model $model, string $key, mixed $value, array $attributes): void
+    public function set(Model $model, string $key, mixed $value, array $attributes): ?string
     {
-        if ($value instanceof UploadedFile)
+        $path = Arr::get($attributes, $key);
+
+        if (is_null($value) && $path)
         {
-            if (!empty($attributes[$key]) && Storage::disk('public')->exists($attributes[$key]))
+            $this->deleteImage($path);
+
+            return null;
+        }
+        else if ($value instanceof UploadedFile)
+        {
+            if ($oldPath = Arr::get($attributes, $key))
             {
-                Storage::disk('public')->delete($attributes[$key]);
+                $this->deleteImage($oldPath);
             }
 
-            $value->store('avatars', 'public');
+            $contents = file_get_contents($value->getRealPath());
+
+            $fileName = hash('sha256', $contents);
+            $fileExtension = $value->getClientOriginalExtension();
+
+            $path = "{$this->directory}/{$fileName}.{$fileExtension}";
+
+            if (!Storage::disk('images')->exists($path))
+            {
+                Storage::disk('images')->put($path, $contents);
+            }
+
+            return Storage::disk('images')->url($path);
         }
 
-        if (is_null($value) && !empty($attributes[$key]))
-        {
-            Storage::disk('public')->delete($attributes[$key]);
-        }
+        return $value;
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param string $path
+     *
+     * @return boolean
+     */
+    protected function deleteImage(string $path): bool
+    {
+        return Storage::disk('images')
+            ->delete($path);
     }
 
     #endregion

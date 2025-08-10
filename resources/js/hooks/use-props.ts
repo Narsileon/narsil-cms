@@ -26,6 +26,7 @@ export type GlobalProps = {
 };
 
 type AuthProps = {
+  avatar: string | null;
   email: string;
   first_name: string | undefined | null;
   last_name: string | undefined | null;
