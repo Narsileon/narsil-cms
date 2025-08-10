@@ -4,6 +4,7 @@ namespace Narsil\Http\Requests\Fortify;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\Fortify\CreateNewUserFormRequest as Contract;
 use Narsil\Models\User;
 use Narsil\Validation\FormRule;
@@ -21,7 +22,7 @@ class CreateNewUserFormRequest implements Contract
     /**
      * {@inheritDoc}
      */
-    public function rules(): array
+    public function rules(?Model $model = null): array
     {
         return [
             User::EMAIL => [

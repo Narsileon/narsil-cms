@@ -7,6 +7,8 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\SiteFormRequest;
 use Narsil\Contracts\Forms\SiteForm;
@@ -101,9 +103,8 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Site::class);
 
-        $this->form
-            ->method(MethodEnum::POST)
-            ->url(route('sites.store'));
+        $this->form->method = MethodEnum::POST;
+        $this->form->url = route('sites.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -120,7 +121,11 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Site::class);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         Site::create($attributes);
 
@@ -139,9 +144,10 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $site);
 
-        $this->form
-            ->method(MethodEnum::PATCH)
-            ->url(route('sites.update', $site->{Site::ID}));
+        $this->form->method = MethodEnum::PATCH;
+        $this->form->url = route('sites.update', [
+            Str::singular(Site::TABLE) => $site->{Site::ID}
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -161,7 +167,11 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $site);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules($site);
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $site->update($attributes);
 

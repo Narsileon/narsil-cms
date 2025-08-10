@@ -15,20 +15,19 @@ function Form({
   url,
   ...props
 }: FormProps) {
-  const { id, patch, post, put } = useForm();
+  const { id, post, setData } = useForm();
 
   function onSubmit(event?: React.FormEvent) {
     event?.preventDefault();
 
     switch (method) {
       case "patch":
-        patch?.(url, options);
+      case "put":
+        setData?.("_method", method);
+        post?.(url, { ...options, forceFormData: true });
         break;
       case "post":
         post?.(url, options);
-        break;
-      case "put":
-        put?.(url, options);
         break;
     }
   }

@@ -35,10 +35,10 @@ class UserConfigurationForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->method(MethodEnum::PUT);
-        $this->url(route('user-configuration.store'));
-
         parent::__construct();
+
+        $this->method = MethodEnum::PUT;
+        $this->url = route('user-configuration.store');
     }
 
     #endregion

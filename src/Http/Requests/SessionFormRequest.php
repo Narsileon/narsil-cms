@@ -4,7 +4,6 @@ namespace Narsil\Http\Requests;
 
 #region USE
 
-use Narsil\Contracts\FormRequest as Contract;
 use Narsil\Enums\Database\SessionEnum;
 use Narsil\Validation\FormRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -15,7 +14,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SessionFormRequest extends FormRequest implements Contract
+class SessionFormRequest extends FormRequest
 {
     #region CONSTANTS
 

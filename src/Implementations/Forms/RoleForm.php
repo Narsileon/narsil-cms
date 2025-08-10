@@ -27,10 +27,10 @@ class RoleForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->description(trans('narsil-cms::ui.role'));
-        $this->title(trans('narsil-cms::ui.role'));
-
         parent::__construct();
+
+        $this->description = trans('narsil-cms::ui.role');
+        $this->title = trans('narsil-cms::ui.role');
     }
 
     #endregion

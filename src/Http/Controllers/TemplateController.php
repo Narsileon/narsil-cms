@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\TemplateFormRequest;
@@ -95,9 +96,8 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
-        $this->form
-            ->method(MethodEnum::POST)
-            ->url(route('templates.store'));
+        $this->form->method = MethodEnum::POST;
+        $this->form->url = route('templates.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -114,7 +114,11 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $template = Template::create($attributes);
 
@@ -135,9 +139,10 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $template);
 
-        $this->form
-            ->method(MethodEnum::PATCH)
-            ->url(route('templates.update', $template->{Template::ID}));
+        $this->form->method = MethodEnum::PATCH;
+        $this->form->url = route('templates.update', [
+            Str::singular(Template::TABLE) => $template->{Template::ID}
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -157,7 +162,11 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $template);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules($template);
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $template->update($attributes);
 

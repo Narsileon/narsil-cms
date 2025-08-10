@@ -4,6 +4,7 @@ namespace Narsil\Http\Requests;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\SiteFormRequest as Contract;
 use Narsil\Models\Sites\Site;
 use Narsil\Validation\FormRule;
@@ -21,7 +22,7 @@ class SiteFormRequest implements Contract
     /**
      * {@inheritDoc}
      */
-    public function rules(): array
+    public function rules(?Model $model = null): array
     {
         return [
             Site::GROUP_ID => [

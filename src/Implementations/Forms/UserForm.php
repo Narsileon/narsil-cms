@@ -5,11 +5,15 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\EmailInput;
+use Narsil\Contracts\Fields\FileInput;
 use Narsil\Contracts\Fields\PasswordInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\UserForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\User;
@@ -29,10 +33,10 @@ class UserForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->description(trans('narsil-cms::ui.user'));
-        $this->title(trans('narsil-cms::ui.user'));
-
         parent::__construct();
+
+        $this->description = trans('narsil-cms::ui.user');
+        $this->title = trans('narsil-cms::ui.user');
     }
 
     #endregion
@@ -44,6 +48,8 @@ class UserForm extends AbstractForm implements Contract
      */
     public function form(): array
     {
+        $isPost = $this->method === MethodEnum::POST->value;
+
         return [
             static::mainSection([
                 new TemplateSectionElement([
@@ -62,7 +68,7 @@ class UserForm extends AbstractForm implements Contract
                         Field::TYPE => PasswordInput::class,
                         Field::SETTINGS => app(PasswordInput::class)
                             ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                            ->required(true),
+                            ->required($isPost),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -72,28 +78,43 @@ class UserForm extends AbstractForm implements Contract
                         Field::TYPE => PasswordInput::class,
                         Field::SETTINGS => app(PasswordInput::class)
                             ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                            ->required(true),
+                            ->required($isPost),
                     ])
                 ]),
                 new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => User::FIRST_NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
-                            ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                            ->required(true),
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => User::LAST_NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
-                            ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                            ->required(true),
-                    ])
+                    TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::RELATION_ELEMENTS => [
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => User::LAST_NAME,
+                                    Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                                    Field::TYPE => TextInput::class,
+                                    Field::SETTINGS => app(TextInput::class)
+                                        ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                                        ->required(true),
+                                ]),
+                            ]),
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => User::FIRST_NAME,
+                                    Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                                    Field::TYPE => TextInput::class,
+                                    Field::SETTINGS => app(TextInput::class)
+                                        ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                                        ->required(true),
+                                ]),
+                            ]),
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => User::AVATAR,
+                                    Field::NAME => trans('narsil-cms::validation.attributes.avatar'),
+                                    Field::TYPE => FileInput::class,
+                                    Field::SETTINGS => app(FileInput::class)
+                                        ->accept('image/*'),
+                                ]),
+                            ]),
+                        ],
+                    ]),
                 ]),
             ]),
             static::informationSection(),

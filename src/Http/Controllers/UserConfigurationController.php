@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\UserConfigurationFormRequest;
 use Narsil\Contracts\Forms\Fortify\ProfileForm;
@@ -121,7 +122,11 @@ class UserConfigurationController extends AbstractController
      */
     public function store(Request $request): RedirectResponse
     {
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         if ($user = Auth::user())
         {

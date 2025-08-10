@@ -194,6 +194,7 @@ return [
     */
 
     'attributes' => [
+        'accept'                  => 'accept',
         'avatar'                  => 'avatar',
         'blocks'                  => 'blocks',
         'code'                    => 'code',

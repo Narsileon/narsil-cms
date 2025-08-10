@@ -31,10 +31,10 @@ class BlockForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->description(trans('narsil-cms::ui.block'));
-        $this->title(trans('narsil-cms::ui.block'));
-
         parent::__construct();
+
+        $this->description = trans('narsil-cms::ui.block');
+        $this->title = trans('narsil-cms::ui.block');
     }
 
     #endregion

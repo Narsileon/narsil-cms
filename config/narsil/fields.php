@@ -15,6 +15,7 @@ return [
     \Narsil\Contracts\Fields\CheckboxInput::class => \Narsil\Implementations\Fields\CheckboxInput::class,
     \Narsil\Contracts\Fields\DateInput::class => \Narsil\Implementations\Fields\DateInput::class,
     \Narsil\Contracts\Fields\EmailInput::class => \Narsil\Implementations\Fields\EmailInput::class,
+    \Narsil\Contracts\Fields\FileInput::class => \Narsil\Implementations\Fields\FileInput::class,
     \Narsil\Contracts\Fields\NumberInput::class => \Narsil\Implementations\Fields\NumberInput::class,
     \Narsil\Contracts\Fields\PasswordInput::class => \Narsil\Implementations\Fields\PasswordInput::class,
     \Narsil\Contracts\Fields\RangeInput::class => \Narsil\Implementations\Fields\RangeInput::class,

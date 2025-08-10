@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
 use Narsil\Http\Requests\QueryRequest;
@@ -46,20 +45,6 @@ abstract class AbstractController
         }
 
         $query->where($column, '=', $filter);
-    }
-
-    /**
-     * @param array $rules
-     *
-     * @return array
-     */
-    protected function getAttributes(array $rules): array
-    {
-        $data = request()->all();
-
-        $validator = Validator::make($data, $rules);
-
-        return $validator->validated();
     }
 
     /**

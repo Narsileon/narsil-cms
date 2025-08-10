@@ -26,10 +26,10 @@ class SiteGroupForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->description(trans('narsil-cms::ui.site_group'));
-        $this->title(trans('narsil-cms::ui.site_group'));
-
         parent::__construct();
+
+        $this->description = trans('narsil-cms::ui.site_group');
+        $this->title = trans('narsil-cms::ui.site_group');
     }
 
     #endregion

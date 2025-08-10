@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Narsil\Casts\ImageCast;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Policies\UserPermission;
@@ -48,6 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->table = self::TABLE;
 
         $this->casts = array_merge([
+            self::AVATAR => ImageCast::class,
             self::EMAIL_VERIFIED_AT => 'datetime',
             self::ENABLED => 'boolean',
             self::PASSWORD => 'hashed',
@@ -77,6 +79,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     #region CONSTANTS
 
+    /**
+     * @var string The name of the "avatar" column.
+     */
+    final public const AVATAR = 'avatar';
     /**
      * @var string The name of the "email" column.
      */

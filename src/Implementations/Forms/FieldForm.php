@@ -30,10 +30,10 @@ class FieldForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->description(trans('narsil-cms::ui.field'));
-        $this->title(trans('narsil-cms::ui.field'));
-
         parent::__construct();
+
+        $this->description = trans('narsil-cms::ui.field');
+        $this->title = trans('narsil-cms::ui.field');
     }
 
     #endregion

@@ -34,10 +34,10 @@ class TemplateForm extends AbstractForm implements Contract
      */
     public function __construct()
     {
-        $this->description(trans('narsil-cms::ui.template'));
-        $this->title(trans('narsil-cms::ui.template'));
-
         parent::__construct();
+
+        $this->description = trans('narsil-cms::ui.template');
+        $this->title = trans('narsil-cms::ui.template');
     }
 
     #endregion

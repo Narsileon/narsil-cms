@@ -7,6 +7,8 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\RoleFormRequest;
 use Narsil\Contracts\Forms\RoleForm;
@@ -89,9 +91,8 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Role::class);
 
-        $this->form
-            ->method(MethodEnum::POST)
-            ->url(route('roles.store'));
+        $this->form->method = MethodEnum::POST;
+        $this->form->url = route('roles.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -108,7 +109,11 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Role::class);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         Role::create($attributes);
 
@@ -127,9 +132,10 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $role);
 
-        $this->form
-            ->method(MethodEnum::PATCH)
-            ->url(route('roles.update', $role->{Role::ID}));
+        $this->form->method = MethodEnum::PATCH;
+        $this->form->url = route('roles.update', [
+            Str::singular(Role::TABLE) => $role->{Role::ID}
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -149,7 +155,11 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $role);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules($role);
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $role->update($attributes);
 

@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\BlockFormRequest;
@@ -101,9 +102,8 @@ class BlockController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
-        $this->form
-            ->method(MethodEnum::POST)
-            ->url(route('blocks.store'));
+        $this->form->method = MethodEnum::POST;
+        $this->form->url = route('blocks.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -120,7 +120,11 @@ class BlockController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $block = Block::create($attributes);
 
@@ -148,9 +152,10 @@ class BlockController extends AbstractController
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
 
-        $this->form
-            ->method(MethodEnum::PATCH)
-            ->url(route('blocks.update', $block->{Block::ID}));
+        $this->form->method = MethodEnum::PATCH;
+        $this->form->url = route('blocks.update', [
+            Str::singular(Block::TABLE) => $block->{Block::ID}
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -170,7 +175,11 @@ class BlockController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $block);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules($block);
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $block->update($attributes);
 

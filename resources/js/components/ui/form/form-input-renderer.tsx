@@ -50,6 +50,15 @@ function FormInputRenderer({
           onChange={setValue}
         />
       );
+    case "Narsil\\Contracts\\Fields\\FileInput":
+      return (
+        <Input
+          {...element.settings}
+          id={id}
+          name={id}
+          onChange={(event) => setValue(event.target.files?.[0])}
+        />
+      );
     case "Narsil\\Contracts\\Fields\\RangeInput":
       return (
         <Slider

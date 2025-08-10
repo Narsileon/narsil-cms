@@ -8,6 +8,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
@@ -92,9 +94,8 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
-        $this->form
-            ->method(MethodEnum::POST)
-            ->url(route('fields.store'));
+        $this->form->method = MethodEnum::POST;
+        $this->form->url = route('fields.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -111,7 +112,11 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $field = Field::create($attributes);
 
@@ -140,9 +145,10 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $field);
 
-        $this->form
-            ->method(MethodEnum::PATCH)
-            ->url(route('fields.update', $field->{Field::ID}));
+        $this->form->method = MethodEnum::PATCH;
+        $this->form->url = route('fields.update', [
+            Str::singular(Field::TABLE) => $field->{Field::ID}
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -162,7 +168,11 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $field);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules($field);
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $field->update($attributes);
 

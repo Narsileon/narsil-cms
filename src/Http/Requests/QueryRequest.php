@@ -4,8 +4,7 @@ namespace Narsil\Http\Requests;
 
 #region USE
 
-use Narsil\Contracts\FormRequests\RoleFormRequest as Contract;
-use Narsil\Models\Policies\Role;
+use Illuminate\Foundation\Http\FormRequest;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -14,7 +13,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class QueryRequest implements Contract
+class QueryRequest extends FormRequest
 {
     #region CONSTANTS
 
@@ -41,9 +40,10 @@ class QueryRequest implements Contract
     public function rules(): array
     {
         return [
-            Role::NAME => [
+            self::SEARCH => [
                 FormRule::STRING,
-                FormRule::REQUIRED,
+                FormRule::SOMETIMES,
+                FormRule::NULLABLE,
             ],
         ];
     }

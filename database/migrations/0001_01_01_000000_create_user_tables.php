@@ -175,6 +175,9 @@ return new class extends Migration
             $table
                 ->rememberToken();
             $table
+                ->string(User::AVATAR)
+                ->nullable();
+            $table
                 ->timestamps();
         });
     }

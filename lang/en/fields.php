@@ -5,6 +5,7 @@ return [
     'checkbox'  => 'Checkbox',
     'date'      => 'Date',
     'email'     => 'Email',
+    'file'      => 'File',
     'number'    => 'Number',
     'password'  => 'Password',
     'range'     => 'Range',

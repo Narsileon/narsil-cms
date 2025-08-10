@@ -7,8 +7,6 @@ namespace Narsil\Implementations;
 use Illuminate\Support\Str;
 use Narsil\Contracts\Form;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
@@ -30,6 +28,9 @@ abstract class AbstractForm implements Form
      */
     public function __construct()
     {
+        $this->id = $this->getDefaultId();
+        $this->submitLabel = trans('narsil-cms::ui.save');
+
         app(LabelsBag::class)
             ->add('narsil-cms::pagination.empty')
             ->add('narsil-cms::placeholders.choose')
@@ -43,25 +44,58 @@ abstract class AbstractForm implements Form
     #region PROPERTIES
 
     /**
-     * @var string|null
+     * The description of the form.
      */
-    public protected(set) ?string $description = null;
+    public string $description = ''
+    {
+        get => $this->description;
+        set(string $value) => $this->description = $value;
+    }
+
     /**
-     * @var string|null
+     * The id of the form.
      */
-    public protected(set) ?string $method = MethodEnum::POST->value;
+    public string $id = ''
+    {
+        get => $this->id;
+        set(string $value) => $this->id = $value;
+    }
+
     /**
-     * @var string|null
+     * The method of the form.
      */
-    public protected(set) ?string $submit = null;
+    public MethodEnum $method = MethodEnum::POST
+    {
+        get => $this->method;
+        set(MethodEnum $value) => $this->method = $value;
+    }
+
     /**
-     * @var string|null
+     * The label of the submit button.
      */
-    public protected(set) ?string $title = null;
+    public string $submitLabel = ''
+    {
+        get => $this->submitLabel;
+        set(string $value) => $this->submitLabel = $value;
+    }
+
     /**
-     * @var string|null
+     * The title of the form.
      */
-    public protected(set) ?string $url = null;
+    public string $title = ''
+    {
+        get => $this->title;
+        set(string $value) => $this->title = $value;
+    }
+
+    /**
+     * The url of the form.
+     */
+    public string $url = ''
+    {
+        get => $this->url;
+        set(string $value) => $this->url = $value;
+    }
 
     #endregion
 
@@ -75,9 +109,9 @@ abstract class AbstractForm implements Form
         return [
             'description' => $this->description,
             'form' => static::form(),
-            'id'     => $this->id(),
+            'id'     => $this->id,
             'method' => $this->method,
-            'submit' => $this->submit,
+            'submit' => $this->submitLabel,
             'title'  => $this->title,
             'url'    => $this->url,
         ];
@@ -90,7 +124,7 @@ abstract class AbstractForm implements Form
     /**
      * @return string
      */
-    protected function id(): string
+    protected function getDefaultId(): string
     {
         $name = (new ReflectionClass(static::class))->getShortName();
 
@@ -156,60 +190,6 @@ abstract class AbstractForm implements Form
             TemplateSection::NAME => trans('narsil-cms::ui.sidebar'),
             TemplateSection::RELATION_ELEMENTS => $elements
         ]);
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    public function description(string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function method(MethodEnum $method): static
-    {
-        $this->method = $method->value;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function submit(string $submit): static
-    {
-        $this->submit = $submit;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function title(string $title): static
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function url(string $url): static
-    {
-        $this->url = $url;
-
-        return $this;
     }
 
     #endregion

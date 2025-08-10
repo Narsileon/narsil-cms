@@ -7,6 +7,9 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\UserFormRequest;
 use Narsil\Contracts\Forms\UserForm;
@@ -89,9 +92,8 @@ class UserController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, User::class);
 
-        $this->form
-            ->method(MethodEnum::POST)
-            ->url(route('users.store'));
+        $this->form->method = MethodEnum::POST;
+        $this->form->url = route('users.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -108,7 +110,11 @@ class UserController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, User::class);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         User::create($attributes);
 
@@ -127,9 +133,10 @@ class UserController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $user);
 
-        $this->form
-            ->method(MethodEnum::PATCH)
-            ->url(route('users.update', $user->{User::ID}));
+        $this->form->method = MethodEnum::PATCH;
+        $this->form->url = route('users.update', [
+            Str::singular(User::TABLE) => $user->{User::ID}
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -149,7 +156,17 @@ class UserController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $user);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules($user);
+
+        if (empty(Arr::get($data, User::PASSWORD)))
+        {
+            unset($data[User::PASSWORD]);
+            unset($data[User::ATTRIBUTE_PASSWORD_CONFIRMATION]);
+        }
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $user->update($attributes);
 

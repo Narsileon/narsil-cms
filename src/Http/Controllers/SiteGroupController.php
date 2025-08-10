@@ -7,6 +7,8 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\SiteGroupFormRequest;
 use Narsil\Contracts\Forms\SiteGroupForm;
@@ -89,9 +91,8 @@ class SiteGroupController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, SiteGroup::class);
 
-        $this->form
-            ->method(MethodEnum::POST)
-            ->url(route('roles.store'));
+        $this->form->method = MethodEnum::POST;
+        $this->form->url = route('site-groups.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -108,7 +109,11 @@ class SiteGroupController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, SiteGroup::class);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         SiteGroup::create($attributes);
 
@@ -127,9 +132,10 @@ class SiteGroupController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $siteGroup);
 
-        $this->form
-            ->method(MethodEnum::PATCH)
-            ->url(route('site-groups.update', $siteGroup->{SiteGroup::ID}));
+        $this->form->method = MethodEnum::PATCH;
+        $this->form->url = route('site-groups.update', [
+            Str::singular(SiteGroup::TABLE) => $siteGroup->{SiteGroup::ID}
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -149,7 +155,11 @@ class SiteGroupController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $siteGroup);
 
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $data = $request->all();
+        $rules = $this->formRequest->rules($siteGroup);
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $siteGroup->update($attributes);
 

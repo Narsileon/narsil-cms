@@ -30,12 +30,12 @@ class EntityForm extends AbstractForm implements Contract
      */
     public function __construct(Template $template)
     {
+        parent::__construct();
+
         $this->template = $template;
 
-        $this->description($template->{Template::NAME});
-        $this->title($template->{Template::NAME});
-
-        parent::__construct();
+        $this->description = $template->{Template::NAME};
+        $this->title = $template->{Template::NAME};
     }
 
     #endregion

@@ -7,15 +7,17 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Contracts\Tables\EntityTable;
 use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
-use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 
@@ -60,6 +62,8 @@ class EntityController extends AbstractController
      */
     public function index(Request $request, string $type): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
+
         $template = Template::query()
             ->firstWhere(Template::HANDLE, '=', $type);
 
@@ -88,6 +92,8 @@ class EntityController extends AbstractController
      */
     public function create(Request $request, string $type): JsonResponse|Response
     {
+        $this->authorize(PermissionEnum::CREATE, Entity::class);
+
         $template = Template::query()
             ->firstWhere(Template::HANDLE, '=', $type);
 
@@ -95,11 +101,10 @@ class EntityController extends AbstractController
             'template' => $template
         ]);
 
-        $form
-            ->method(MethodEnum::POST)
-            ->url(route('entities.store', [
-                'type' => $type,
-            ]));
+        $form->method = MethodEnum::POST;
+        $form->url = route('entities.store', [
+            'type' => $type
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -115,7 +120,13 @@ class EntityController extends AbstractController
      */
     public function store(Request $request, string $type): RedirectResponse
     {
-        $attributes = $this->getAttributes($this->formRequest->rules());
+        $this->authorize(PermissionEnum::CREATE, Entity::class);
+
+        $data = $request->all();
+        $rules = $this->formRequest->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $entity = Entity::create($attributes);
 
@@ -140,6 +151,8 @@ class EntityController extends AbstractController
                 Entity::ID => $id
             ]);
 
+        $this->authorize(PermissionEnum::UPDATE, $entity);
+
         $template = Template::query()
             ->firstWhere(Template::HANDLE, '=', $type);
 
@@ -147,11 +160,11 @@ class EntityController extends AbstractController
             'template' => $template,
         ]);
 
-        $form
-            ->method(MethodEnum::PATCH)
-            ->url(route('entities.update', [
-                'type' => $type,
-            ], $entity->{Field::ID}));
+        $form->method = MethodEnum::PATCH;
+        $form->url = route('entities.update', [
+            Str::singular(Entity::TABLE) => $entity->{Entity::ID},
+            'type' => $type,
+        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -170,12 +183,18 @@ class EntityController extends AbstractController
      */
     public function update(Request $request, int $id, string $type): RedirectResponse
     {
-        $attributes = $this->getAttributes($this->formRequest->rules());
-
         $entity = Entity::ofType($type)
             ->firstWhere([
                 Entity::ID => $id
             ]);
+
+        $this->authorize(PermissionEnum::UPDATE, $entity);
+
+        $data = $request->all();
+        $rules = $this->formRequest->rules($entity);
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
 
         $entity->update($attributes);
 
@@ -200,6 +219,8 @@ class EntityController extends AbstractController
                 Entity::ID => $id
             ]);
 
+        $this->authorize(PermissionEnum::DELETE, $entity);
+
         $entity->delete();
 
         return $this
@@ -217,6 +238,8 @@ class EntityController extends AbstractController
      */
     public function destroyMany(DestroyManyRequest $request, string $type): RedirectResponse
     {
+        $this->authorize(PermissionEnum::DELETE_ANY, Entity::class);
+
         $ids = $request->validated(DestroyManyRequest::IDS);
 
         Entity::ofType($type)

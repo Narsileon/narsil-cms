@@ -4,6 +4,7 @@ namespace Narsil\Http\Requests;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\UserConfigurationFormRequest as Contract;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Validation\FormRule;
@@ -21,7 +22,7 @@ class UserConfigurationFormRequest implements Contract
     /**
      * {@inheritDoc}
      */
-    public function rules(): array
+    public function rules(?Model $model = null): array
     {
         return [
             UserConfiguration::COLOR => [
