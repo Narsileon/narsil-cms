@@ -18,6 +18,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
+use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 
 #endregion
@@ -74,8 +75,8 @@ class RoleController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.roles'),
-            description: trans('narsil-cms::ui.roles'),
+            title: trans('narsil::ui.roles'),
+            description: trans('narsil::ui.roles'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -119,7 +120,7 @@ class RoleController extends AbstractController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', trans('narsil-cms::toasts.success.roles.updated'));
+            ->with('success', trans('narsil::toasts.success.roles.updated'));
     }
 
     /**
@@ -136,6 +137,8 @@ class RoleController extends AbstractController
         $this->form->url = route('roles.update', [
             Str::singular(Role::TABLE) => $role->{Role::ID}
         ]);
+
+        $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::NAME));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -165,7 +168,7 @@ class RoleController extends AbstractController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', trans('narsil-cms::toasts.success.roles.updated'));
+            ->with('success', trans('narsil::toasts.success.roles.updated'));
     }
 
     /**
@@ -182,7 +185,7 @@ class RoleController extends AbstractController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', trans('narsil-cms::toasts.success.roles.deleted'));
+            ->with('success', trans('narsil::toasts.success.roles.deleted'));
     }
 
     /**
@@ -200,7 +203,7 @@ class RoleController extends AbstractController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', trans('narsil-cms::toasts.success.roles.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.roles.deleted_many'));
     }
 
     #endregion

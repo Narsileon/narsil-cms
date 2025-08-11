@@ -74,8 +74,8 @@ class SiteGroupController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.site_groups'),
-            description: trans('narsil-cms::ui.site_groups'),
+            title: trans('narsil::ui.site_groups'),
+            description: trans('narsil::ui.site_groups'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -119,7 +119,7 @@ class SiteGroupController extends AbstractController
 
         return $this
             ->redirect(route('site_groups.index'))
-            ->with('success', trans('narsil-cms::toasts.success.site_groups.created'));
+            ->with('success', trans('narsil::toasts.success.site_groups.created'));
     }
 
     /**
@@ -165,7 +165,7 @@ class SiteGroupController extends AbstractController
 
         return $this
             ->redirect(route('site_groups.index'))
-            ->with('success', trans('narsil-cms::toasts.success.site_groups.updated'));
+            ->with('success', trans('narsil::toasts.success.site_groups.updated'));
     }
 
     /**
@@ -182,7 +182,7 @@ class SiteGroupController extends AbstractController
 
         return $this
             ->redirect(route('site_groups.index'))
-            ->with('success', trans('narsil-cms::toasts.success.site_groups.deleted'));
+            ->with('success', trans('narsil::toasts.success.site_groups.deleted'));
     }
 
     /**
@@ -200,7 +200,7 @@ class SiteGroupController extends AbstractController
 
         return $this
             ->redirect(route('site-groups.index'))
-            ->with('success', trans('narsil-cms::toasts.success.site_groups.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.site_groups.deleted_many'));
     }
 
     #endregion

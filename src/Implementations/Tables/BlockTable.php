@@ -50,12 +50,12 @@ class BlockTable extends AbstractTable implements Contract
                 visibility: true,
             ),
             new TableColumn(
-                header: trans('narsil-cms::ui.fields'),
+                header: trans('narsil::ui.fields'),
                 id: Block::COUNT_FIELDS,
                 visibility: true,
             ),
             new TableColumn(
-                header: trans('narsil-cms::ui.blocks'),
+                header: trans('narsil::ui.blocks'),
                 id: Block::COUNT_BLOCKS,
                 visibility: true,
             ),

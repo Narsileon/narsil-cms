@@ -101,7 +101,7 @@ class DataTableFilterCollection extends ResourceCollection
         return [
             'addLabel' => $this->addLabel,
             'routes'    => RouteService::getNames($this->table),
-            'title'     => trans('narsil-cms::ui.' . $this->table)
+            'title'     => trans('narsil::ui.' . $this->table)
         ];
     }
 
@@ -111,10 +111,10 @@ class DataTableFilterCollection extends ResourceCollection
     protected function registerLabels(): void
     {
         app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.toggle_row_menu')
-            ->add('narsil-cms::ui.all')
-            ->add('narsil-cms::ui.delete')
-            ->add('narsil-cms::ui.edit');
+            ->add('narsil::accessibility.toggle_row_menu')
+            ->add('narsil::ui.all')
+            ->add('narsil::ui.delete')
+            ->add('narsil::ui.edit');
     }
 
     #endregion

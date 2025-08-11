@@ -78,15 +78,15 @@ class SiteController extends AbstractController
 
         $dataTableFilter = new DataTableFilterCollection(
             SiteGroup::all(),
-            addLabel: trans('narsil-cms::ui.add_group'),
+            addLabel: trans('narsil::ui.add_group'),
             labelPath: SiteGroup::NAME,
             table: SiteGroup::TABLE,
         );
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.sites'),
-            description: trans('narsil-cms::ui.sites'),
+            title: trans('narsil::ui.sites'),
+            description: trans('narsil::ui.sites'),
             props: [
                 'dataTable' => $dataTable,
                 'dataTableFilter' => $dataTableFilter,
@@ -131,7 +131,7 @@ class SiteController extends AbstractController
 
         return $this
             ->redirect(route('sites.index'))
-            ->with('success', trans('narsil-cms::toasts.success.sites.created'));
+            ->with('success', trans('narsil::toasts.success.sites.created'));
     }
 
     /**
@@ -177,7 +177,7 @@ class SiteController extends AbstractController
 
         return $this
             ->redirect(route('sites.index'))
-            ->with('success', trans('narsil-cms::toasts.success.sites.updated'));
+            ->with('success', trans('narsil::toasts.success.sites.updated'));
     }
 
     /**
@@ -194,7 +194,7 @@ class SiteController extends AbstractController
 
         return $this
             ->redirect(route('sites.index'))
-            ->with('success', trans('narsil-cms::toasts.success.sites.deleted'));
+            ->with('success', trans('narsil::toasts.success.sites.deleted'));
     }
 
     /**
@@ -212,7 +212,7 @@ class SiteController extends AbstractController
 
         return $this
             ->redirect(route('sites.index'))
-            ->with('success', trans('narsil-cms::toasts.success.sites.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.sites.deleted_many'));
     }
 
     #endregion

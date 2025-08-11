@@ -1,0 +1,46 @@
+<?php
+
+namespace Narsil\Providers;
+
+#region USE
+
+use Illuminate\Support\ServiceProvider;
+use Narsil\Console\Commands\SyncPermissions;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class CommandServiceProvider extends ServiceProvider
+{
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public function boot(): void
+    {
+        $this->bootCommands();
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return void
+     */
+    protected function bootCommands(): void
+    {
+        if ($this->app->runningInConsole())
+        {
+            $this->commands([
+                SyncPermissions::class,
+            ]);
+        }
+    }
+
+    #endregion
+}

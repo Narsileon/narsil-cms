@@ -42,12 +42,12 @@ abstract class PermissionService
             $permissions[] = self::getName($base, $permission->value);
         }
 
-        $efilteredPermissions = Permission::query()
-            ->whereIn(Permission::HANDLE, $permissions)
-            ->pluck(Permission::HANDLE)
+        $filteredPermissions = Permission::query()
+            ->whereIn(PERMISSION::NAME, $permissions)
+            ->pluck(PERMISSION::NAME)
             ->toArray();
 
-        return $efilteredPermissions;
+        return $filteredPermissions;
     }
 
     #endregion

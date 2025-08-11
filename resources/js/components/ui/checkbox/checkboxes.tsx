@@ -1,0 +1,104 @@
+import * as React from "react";
+import { useLabels } from "@narsil-cms/components/ui/labels";
+import Checkbox from "./checkbox";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@narsil-cms/components/ui/table";
+import type {
+  GroupedSelectOption,
+  SelectOption,
+} from "@narsil-cms/types/forms";
+
+type CheckboxesProps = {
+  options: (GroupedSelectOption | SelectOption)[];
+  values: any[];
+  setValues: (values: any[]) => void;
+};
+
+function Checkboxes({ options, values, setValues }: CheckboxesProps) {
+  const { getLabel } = useLabels();
+
+  function toggleValue(value: any) {
+    if (values.includes(value)) {
+      setValues(values.filter((x) => x !== value));
+    } else {
+      setValues([...values, value]);
+    }
+  }
+
+  function renderCheckboxes(
+    options: (GroupedSelectOption | SelectOption)[],
+  ): React.ReactNode {
+    const checkboxes = options.flatMap((option) => option.value);
+
+    const checkedCheckboxes = checkboxes.filter((value) =>
+      values.includes(value),
+    );
+
+    const allChecked = checkedCheckboxes.length === checkboxes.length;
+    const someChecked = checkedCheckboxes.length > 0 && !allChecked;
+
+    const toggleAll = () => {
+      if (allChecked) {
+        setValues(values.filter((value) => !checkboxes.includes(value)));
+      } else {
+        setValues([...new Set([...values, ...checkboxes])]);
+      }
+    };
+
+    return (
+      <>
+        <TableRow>
+          <TableCell>
+            <div className="flex items-center justify-start gap-2">
+              <Checkbox
+                checked={
+                  allChecked ? true : someChecked ? "indeterminate" : false
+                }
+                onCheckedChange={toggleAll}
+              />
+              <label>{getLabel("ui.all")}</label>
+            </div>
+          </TableCell>
+        </TableRow>
+
+        {options.flatMap((option) => {
+          const checked = values.includes(option.value);
+
+          if ("options" in option) {
+            return renderCheckboxes(
+              option.options as (GroupedSelectOption | SelectOption)[],
+            );
+          }
+
+          return (
+            <TableRow key={option.value}>
+              <TableCell>
+                <div className="flex items-center justify-start gap-2">
+                  <Checkbox
+                    checked={checked}
+                    onCheckedChange={() => toggleValue(option.value)}
+                  />
+                  <label>{option.label}</label>
+                </div>
+              </TableCell>
+            </TableRow>
+          );
+        })}
+      </>
+    );
+  }
+
+  return (
+    <div className="overflow-hidden rounded-md border">
+      <Table>
+        <TableBody>{renderCheckboxes(options)}</TableBody>
+      </Table>
+    </div>
+  );
+}
+
+export default Checkboxes;

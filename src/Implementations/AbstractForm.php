@@ -29,14 +29,16 @@ abstract class AbstractForm implements Form
     public function __construct()
     {
         $this->id = $this->getDefaultId();
-        $this->submitLabel = trans('narsil-cms::ui.save');
+        $this->submitLabel = trans('narsil::ui.save');
 
         app(LabelsBag::class)
-            ->add('narsil-cms::pagination.empty')
-            ->add('narsil-cms::placeholders.choose')
-            ->add('narsil-cms::ui.back')
-            ->add('narsil-cms::ui.create')
-            ->add('narsil-cms::ui.save');
+            ->add('narsil::pagination.empty')
+            ->add('narsil::placeholders.choose')
+            ->add('narsil::placeholders.search')
+            ->add('narsil::ui.all')
+            ->add('narsil::ui.back')
+            ->add('narsil::ui.create')
+            ->add('narsil::ui.save');
     }
 
     #endregion
@@ -140,24 +142,24 @@ abstract class AbstractForm implements Form
     {
         return new TemplateSection([
             TemplateSection::HANDLE => 'information',
-            TemplateSection::NAME => trans('narsil-cms::ui.information'),
+            TemplateSection::NAME => trans('narsil::ui.information'),
             TemplateSection::RELATION_ELEMENTS => [
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'id',
-                        Field::NAME => trans('narsil-cms::validation.attributes.id'),
+                        Field::NAME => trans('narsil::validation.attributes.id'),
                     ])
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'created_at',
-                        Field::NAME => trans('narsil-cms::validation.attributes.created_at'),
+                        Field::NAME => trans('narsil::validation.attributes.created_at'),
                     ])
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'updated_at',
-                        Field::NAME => trans('narsil-cms::validation.attributes.updated_at'),
+                        Field::NAME => trans('narsil::validation.attributes.updated_at'),
                     ])
                 ]),
             ]
@@ -173,7 +175,7 @@ abstract class AbstractForm implements Form
     {
         return new TemplateSection([
             TemplateSection::HANDLE => 'main',
-            TemplateSection::NAME => trans('narsil-cms::ui.main'),
+            TemplateSection::NAME => trans('narsil::ui.main'),
             TemplateSection::RELATION_ELEMENTS => $elements
         ]);
     }
@@ -187,7 +189,7 @@ abstract class AbstractForm implements Form
     {
         return new TemplateSection([
             TemplateSection::HANDLE => 'sidebar',
-            TemplateSection::NAME => trans('narsil-cms::ui.sidebar'),
+            TemplateSection::NAME => trans('narsil::ui.sidebar'),
             TemplateSection::RELATION_ELEMENTS => $elements
         ]);
     }

@@ -39,8 +39,8 @@ class UserForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.user');
-        $this->title = trans('narsil-cms::ui.user');
+        $this->description = trans('narsil::ui.user');
+        $this->title = trans('narsil::ui.user');
     }
 
     #endregion
@@ -60,12 +60,12 @@ class UserForm extends AbstractForm implements Contract
             static::mainSection([
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => trans('narsil-cms::ui.account'),
+                        Block::NAME => trans('narsil::ui.account'),
                         Block::RELATION_ELEMENTS => [
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::EMAIL,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                                    Field::NAME => trans('narsil::validation.attributes.email'),
                                     Field::TYPE => EmailInput::class,
                                     Field::SETTINGS => app(EmailInput::class)
                                         ->required(true),
@@ -74,7 +74,7 @@ class UserForm extends AbstractForm implements Contract
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::PASSWORD,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                                    Field::NAME => trans('narsil::validation.attributes.password'),
                                     Field::TYPE => PasswordInput::class,
                                     Field::SETTINGS => app(PasswordInput::class)
                                         ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
@@ -84,7 +84,7 @@ class UserForm extends AbstractForm implements Contract
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                                    Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                                     Field::TYPE => PasswordInput::class,
                                     Field::SETTINGS => app(PasswordInput::class)
                                         ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
@@ -96,12 +96,12 @@ class UserForm extends AbstractForm implements Contract
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => trans('narsil-cms::ui.profile'),
+                        Block::NAME => trans('narsil::ui.profile'),
                         Block::RELATION_ELEMENTS => [
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::LAST_NAME,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                                    Field::NAME => trans('narsil::validation.attributes.last_name'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
                                         ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
@@ -111,7 +111,7 @@ class UserForm extends AbstractForm implements Contract
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::FIRST_NAME,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                                    Field::NAME => trans('narsil::validation.attributes.first_name'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
                                         ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
@@ -121,7 +121,7 @@ class UserForm extends AbstractForm implements Contract
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::AVATAR,
-                                    Field::NAME => trans('narsil-cms::validation.attributes.avatar'),
+                                    Field::NAME => trans('narsil::validation.attributes.avatar'),
                                     Field::TYPE => FileInput::class,
                                     Field::SETTINGS => app(FileInput::class)
                                         ->accept('image/*'),
@@ -133,13 +133,13 @@ class UserForm extends AbstractForm implements Contract
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'roles',
-                TemplateSection::NAME => trans('narsil-cms::ui.roles'),
+                TemplateSection::NAME => trans('narsil::ui.roles'),
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT =>
                         new Field([
                             Field::HANDLE => User::RELATION_ROLES,
-                            Field::NAME => trans('narsil-cms::validation.attributes.roles'),
+                            Field::NAME => trans('narsil::validation.attributes.roles'),
                             Field::TYPE => CheckboxInput::class,
                             Field::SETTINGS => app(CheckboxInput::class)
                                 ->options(static::getRoleOptions($roleOptions)),

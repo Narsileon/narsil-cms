@@ -85,8 +85,8 @@ class BlockController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.blocks'),
-            description: trans('narsil-cms::ui.blocks'),
+            title: trans('narsil::ui.blocks'),
+            description: trans('narsil::ui.blocks'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -135,7 +135,7 @@ class BlockController extends AbstractController
 
         return $this
             ->redirect(route('blocks.index'), $block)
-            ->with('success', trans('narsil-cms::toasts.success.blocks.created'));
+            ->with('success', trans('narsil::toasts.success.blocks.created'));
     }
 
     /**
@@ -190,7 +190,7 @@ class BlockController extends AbstractController
 
         return $this
             ->redirect(route('blocks.index'), $block)
-            ->with('success', trans("narsil-cms::toasts.success.blocks.updated"));
+            ->with('success', trans("narsil::toasts.success.blocks.updated"));
     }
 
     /**
@@ -207,7 +207,7 @@ class BlockController extends AbstractController
 
         return $this
             ->redirect(route('blocks.index'))
-            ->with('success', trans('narsil-cms::toasts.success.blocks.deleted'));
+            ->with('success', trans('narsil::toasts.success.blocks.deleted'));
     }
 
     /**
@@ -225,7 +225,7 @@ class BlockController extends AbstractController
 
         return $this
             ->redirect(route('blocks.index'))
-            ->with('success', trans('narsil-cms::toasts.success.blocks.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.blocks.deleted_many'));
     }
 
     #endregion

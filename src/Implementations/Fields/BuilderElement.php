@@ -33,12 +33,12 @@ class BuilderElement extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::RELATION_BLOCKS,
-                Field::NAME => trans('narsil-cms::validation.attributes.blocks'),
+                Field::NAME => trans('narsil::validation.attributes.blocks'),
                 Field::TYPE => RelationsInput::class,
                 Field::SETTINGS => app(RelationsInput::class)
                     ->addOption(
                         identifier: Block::TABLE,
-                        label: trans('narsil-cms::ui.block'),
+                        label: trans('narsil::ui.block'),
                         optionLabel: BlockElement::NAME,
                         optionValue: BlockElement::HANDLE,
                         options: $blockOptions,
@@ -62,7 +62,7 @@ class BuilderElement extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.builder');
+        return trans('narsil::fields.builder');
     }
 
     #endregion

@@ -4,15 +4,17 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Support\Collection;
 use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\RoleForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -31,8 +33,8 @@ class RoleForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.role');
-        $this->title = trans('narsil-cms::ui.role');
+        $this->description = trans('narsil::ui.role');
+        $this->title = trans('narsil::ui.role');
     }
 
     #endregion
@@ -44,12 +46,27 @@ class RoleForm extends AbstractForm implements Contract
      */
     public function form(): array
     {
+        $permissionOptions = static::getPermissionOptions();
+
+        $permissionElements = $permissionOptions->map(function ($options, $category)
+        {
+            return new TemplateSectionElement([
+                TemplateSectionElement::RELATION_ELEMENT =>
+                new Field([
+                    Field::HANDLE => Role::RELATION_PERMISSIONS,
+                    Field::NAME => trans("narsil::ui.{$category}"),
+                    Field::TYPE => CheckboxInput::class,
+                    Field::SETTINGS => app(CheckboxInput::class)->options($options),
+                ]),
+            ]);
+        })->values()->toArray();
+
         return [
             static::mainSection([
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Role::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::NAME => trans('narsil::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true),
@@ -57,22 +74,36 @@ class RoleForm extends AbstractForm implements Contract
                 ]),
             ]),
             new TemplateSection([
-                TemplateSection::HANDLE => 'roles',
-                TemplateSection::NAME => trans('narsil-cms::ui.roles'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT =>
-                        new Field([
-                            Field::HANDLE => Role::RELATION_PERMISSIONS,
-                            Field::NAME => trans('narsil-cms::validation.attributes.permissions'),
-                            Field::TYPE => CheckboxInput::class,
-                            Field::SETTINGS => app(CheckboxInput::class),
-                        ]),
-                    ]),
-                ],
+                TemplateSection::HANDLE => Role::RELATION_PERMISSIONS,
+                TemplateSection::NAME => trans('narsil::ui.permissions'),
+                TemplateSection::RELATION_ELEMENTS => $permissionElements,
             ]),
             static::informationSection(),
         ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return Collection<string,array<Permission>>
+     */
+    protected static function getPermissionOptions(): Collection
+    {
+        return Permission::query()
+            ->get()
+            ->groupBy(Permission::CATEGORY)
+            ->map(function ($permissions)
+            {
+                return $permissions->map(function (Permission $permission)
+                {
+                    return new SelectOption(
+                        $permission->{Permission::NAME},
+                        $permission->{Permission::NAME}
+                    );
+                })->toArray();
+            });
     }
 
     #endregion

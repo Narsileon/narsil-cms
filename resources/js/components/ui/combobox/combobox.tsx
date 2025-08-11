@@ -93,7 +93,7 @@ function Combobox({
         >
           {option
             ? getSelectOption(option, labelPath)
-            : (placeholder ?? "Search...")}
+            : (placeholder ?? getLabel("placeholders.search"))}
           <Icon
             className={cn("ml-2 shrink-0 duration-200", open && "rotate-180")}
             name="chevron-down"
@@ -103,7 +103,9 @@ function Combobox({
       <PopoverContent className="w-[200px] p-0">
         <Command filter={filter}>
           {search ? (
-            <CommandInput placeholder={placeholder ?? "Search..."} />
+            <CommandInput
+              placeholder={placeholder ?? getLabel("placeholders.search")}
+            />
           ) : null}
           <CommandList>
             <CommandEmpty>{getLabel("pagination.empty")}</CommandEmpty>

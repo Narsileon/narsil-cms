@@ -72,7 +72,7 @@ class SessionController
 
         return redirect()
             ->route('login')
-            ->with('success', trans('narsil-cms::toasts.success.sessions.deleted_all'));
+            ->with('success', trans('narsil::toasts.success.sessions.deleted_all'));
     }
 
     /**
@@ -89,7 +89,7 @@ class SessionController
 
         return redirect()
             ->route('login')
-            ->with('success', trans('narsil-cms::toasts.success.sessions.deleted_current'));
+            ->with('success', trans('narsil::toasts.success.sessions.deleted_current'));
     }
 
     /**
@@ -108,7 +108,7 @@ class SessionController
         $sessions->each->delete();
 
         return back()
-            ->with('success', trans('narsil-cms::toasts.success.sessions.deleted_others'));
+            ->with('success', trans('narsil::toasts.success.sessions.deleted_others'));
     }
 
     #endregion

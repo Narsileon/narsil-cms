@@ -30,9 +30,9 @@ class LoginForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.connection');
-        $this->submitLabel = trans('narsil-cms::ui.log_in');
-        $this->title = trans('narsil-cms::ui.connection');
+        $this->description = trans('narsil::ui.connection');
+        $this->submitLabel = trans('narsil::ui.log_in');
+        $this->title = trans('narsil::ui.connection');
         $this->url = route('login');
     }
 
@@ -48,7 +48,7 @@ class LoginForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::EMAIL,
-                Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
@@ -56,7 +56,7 @@ class LoginForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
@@ -64,7 +64,7 @@ class LoginForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::REMEMBER,
-                Field::NAME => trans('narsil-cms::validation.attributes.remember'),
+                Field::NAME => trans('narsil::validation.attributes.remember'),
                 Field::TYPE => CheckboxInput::class,
                 Field::SETTINGS => app(CheckboxInput::class),
             ]),

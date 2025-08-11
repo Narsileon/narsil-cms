@@ -77,8 +77,8 @@ class FieldController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.fields'),
-            description: trans('narsil-cms::ui.fields'),
+            title: trans('narsil::ui.fields'),
+            description: trans('narsil::ui.fields'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -132,7 +132,7 @@ class FieldController extends AbstractController
 
         return $this
             ->redirect(route('fields.index'), $field)
-            ->with('success', trans('narsil-cms::toasts.success.fields.created'));
+            ->with('success', trans('narsil::toasts.success.fields.created'));
     }
 
     /**
@@ -189,7 +189,7 @@ class FieldController extends AbstractController
 
         return $this
             ->redirect(route('fields.index'), $field)
-            ->with('success', trans('narsil-cms::toasts.success.fields.updated'));
+            ->with('success', trans('narsil::toasts.success.fields.updated'));
     }
 
     /**
@@ -206,7 +206,7 @@ class FieldController extends AbstractController
 
         return $this
             ->redirect(route('fields.index'))
-            ->with('success', trans('narsil-cms::toasts.success.fields.deleted'));
+            ->with('success', trans('narsil::toasts.success.fields.deleted'));
     }
 
     /**
@@ -224,7 +224,7 @@ class FieldController extends AbstractController
 
         return $this
             ->redirect(route('fields.index'))
-            ->with('success', trans('narsil-cms::toasts.success.fields.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.fields.deleted_many'));
     }
 
     #endregion

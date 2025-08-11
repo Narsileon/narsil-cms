@@ -134,7 +134,7 @@ class EntityController extends AbstractController
             ->redirect(route('entities.index', [
                 'type' => $type,
             ]), $entity)
-            ->with('success', trans('narsil-cms::toasts.success.entities.created'));
+            ->with('success', trans('narsil::toasts.success.entities.created'));
     }
 
     /**
@@ -202,7 +202,7 @@ class EntityController extends AbstractController
             ->redirect(route('entities.index', [
                 'type' => $type
             ]), $entity)
-            ->with('success', trans('narsil-cms::toasts.success.entities.updated'));
+            ->with('success', trans('narsil::toasts.success.entities.updated'));
     }
 
     /**
@@ -227,7 +227,7 @@ class EntityController extends AbstractController
             ->redirect(route('entities.index', [
                 'type' => $type,
             ]))
-            ->with('success', trans('narsil-cms::toasts.success.entities.deleted'));
+            ->with('success', trans('narsil::toasts.success.entities.deleted'));
     }
 
     /**
@@ -248,7 +248,7 @@ class EntityController extends AbstractController
 
         return $this
             ->redirect(route('entities.index'))
-            ->with('success', trans('narsil-cms::toasts.success.entities.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.entities.deleted_many'));
     }
 
     #endregion

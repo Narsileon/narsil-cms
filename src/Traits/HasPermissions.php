@@ -77,7 +77,7 @@ trait HasPermissions
         }
         else if (is_string($permission))
         {
-            $hasPermission = $this->{self::RELATION_PERMISSIONS}->contains(Permission::HANDLE, $permission);
+            $hasPermission = $this->{self::RELATION_PERMISSIONS}->contains(PERMISSION::NAME, $permission);
         }
 
         return $hasPermission;
@@ -129,7 +129,7 @@ trait HasPermissions
         if (!empty($handles))
         {
             $handleIds = Permission::query()
-                ->whereIn(Permission::HANDLE, $handles)
+                ->whereIn(PERMISSION::NAME, $handles)
                 ->pluck(Permission::ID)
                 ->toArray();
 

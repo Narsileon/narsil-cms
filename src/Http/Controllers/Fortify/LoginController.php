@@ -30,7 +30,7 @@ class LoginController extends AbstractController
         $this->form = $form;
 
         app(LabelsBag::class)
-            ->add('narsil-cms::passwords.link');
+            ->add('narsil::passwords.link');
     }
 
     #endregion

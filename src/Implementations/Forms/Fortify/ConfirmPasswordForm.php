@@ -28,9 +28,9 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.confirm_password');
-        $this->submitLabel = trans('narsil-cms::ui.confirm');
-        $this->title = trans('narsil-cms::ui.confirm_password');
+        $this->description = trans('narsil::ui.confirm_password');
+        $this->submitLabel = trans('narsil::ui.confirm');
+        $this->title = trans('narsil::ui.confirm_password');
         $this->url = route('password.confirm');
     }
 
@@ -46,7 +46,7 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)

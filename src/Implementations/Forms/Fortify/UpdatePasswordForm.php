@@ -30,7 +30,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->method = MethodEnum::PUT;
-        $this->submitLabel = trans('narsil-cms::ui.update');
+        $this->submitLabel = trans('narsil::ui.update');
         $this->url = route('user-password.update');
     }
 
@@ -46,7 +46,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
-                Field::NAME => trans('narsil-cms::validation.attributes.current_password'),
+                Field::NAME => trans('narsil::validation.attributes.current_password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
@@ -54,7 +54,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
@@ -62,7 +62,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)

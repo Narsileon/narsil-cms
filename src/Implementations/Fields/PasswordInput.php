@@ -42,7 +42,7 @@ class PasswordInput extends TextInput implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.password');
+        return trans('narsil::fields.password');
     }
 
     #endregion

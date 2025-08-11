@@ -27,8 +27,8 @@ class BlockElementForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.element');
-        $this->title = trans('narsil-cms::ui.element');
+        $this->description = trans('narsil::ui.element');
+        $this->title = trans('narsil::ui.element');
     }
 
     #endregion
@@ -43,14 +43,14 @@ class BlockElementForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => BlockElement::NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                Field::NAME => trans('narsil::validation.attributes.name'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->required(true),
             ]),
             new Field([
                 Field::HANDLE => BlockElement::HANDLE,
-                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                Field::NAME => trans('narsil::validation.attributes.handle'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->required(true),

@@ -32,8 +32,8 @@ class FieldForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.field');
-        $this->title = trans('narsil-cms::ui.field');
+        $this->description = trans('narsil::ui.field');
+        $this->title = trans('narsil::ui.field');
     }
 
     #endregion
@@ -77,7 +77,7 @@ class FieldForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
-                        Field::NAME => trans('narsil-cms::ui.default_name'),
+                        Field::NAME => trans('narsil::ui.default_name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true),
@@ -86,7 +86,7 @@ class FieldForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::HANDLE,
-                        Field::NAME => trans('narsil-cms::ui.default_handle'),
+                        Field::NAME => trans('narsil::ui.default_handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true),
@@ -95,18 +95,18 @@ class FieldForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::TYPE,
-                        Field::NAME => trans('narsil-cms::validation.attributes.type'),
+                        Field::NAME => trans('narsil::validation.attributes.type'),
                         Field::TYPE => SelectInput::class,
                         Field::SETTINGS => app(SelectInput::class)
                             ->options($typeOptions)
-                            ->placeholder(trans('narsil-cms::placeholders.search'))
+                            ->placeholder(trans('narsil::placeholders.search'))
                             ->required(true)
                             ->value(TextInput::class),
                     ])
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::NAME => trans('narsil-cms::ui.settings'),
+                        Field::NAME => trans('narsil::ui.settings'),
                         Field::TYPE => SectionElement::class,
                         Field::SETTINGS => app(SectionElement::class),
                     ])

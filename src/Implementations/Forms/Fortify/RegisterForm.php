@@ -30,9 +30,9 @@ class RegisterForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.registration');
-        $this->submitLabel = trans('narsil-cms::ui.register');
-        $this->title = trans('narsil-cms::ui.registration');
+        $this->description = trans('narsil::ui.registration');
+        $this->submitLabel = trans('narsil::ui.register');
+        $this->title = trans('narsil::ui.registration');
         $this->url = route('register');
     }
 
@@ -48,14 +48,14 @@ class RegisterForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::EMAIL,
-                Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->className('col-span-6')
@@ -64,7 +64,7 @@ class RegisterForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->className('col-span-6')
@@ -73,7 +73,7 @@ class RegisterForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                Field::NAME => trans('narsil::validation.attributes.first_name'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')
@@ -82,7 +82,7 @@ class RegisterForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::LAST_NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                Field::NAME => trans('narsil::validation.attributes.last_name'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')

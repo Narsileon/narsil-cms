@@ -41,13 +41,13 @@ class EmailInput extends Input implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                Field::NAME => trans('narsil-cms::validation.attributes.multiple'),
+                Field::NAME => trans('narsil::validation.attributes.multiple'),
                 Field::TYPE => SwitchInput::class,
                 Field::SETTINGS => app(SwitchInput::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : ' placeholder',
-                Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
+                Field::NAME => trans('narsil::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class),
             ]),
@@ -67,7 +67,7 @@ class EmailInput extends Input implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.email');
+        return trans('narsil::fields.email');
     }
 
     #endregion

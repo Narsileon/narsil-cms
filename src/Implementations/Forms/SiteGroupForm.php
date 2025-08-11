@@ -28,8 +28,8 @@ class SiteGroupForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.site_group');
-        $this->title = trans('narsil-cms::ui.site_group');
+        $this->description = trans('narsil::ui.site_group');
+        $this->title = trans('narsil::ui.site_group');
     }
 
     #endregion
@@ -46,7 +46,7 @@ class SiteGroupForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => SiteGroup::NAME,
-                        Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                        Field::NAME => trans('narsil::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true),

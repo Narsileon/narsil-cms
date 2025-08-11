@@ -25,12 +25,12 @@ class RelationsInput extends AbstractField implements Contract
     public function __construct()
     {
         app(LabelsBag::class)
-            ->add('narsil-cms::ui.cancel')
-            ->add('narsil-cms::ui.edit')
-            ->add('narsil-cms::ui.remove')
-            ->add('narsil-cms::ui.save')
-            ->add('narsil-cms::validation.unique', [
-                'attribute' => trans('narsil-cms::validation.attributes.identifier'),
+            ->add('narsil::ui.cancel')
+            ->add('narsil::ui.edit')
+            ->add('narsil::ui.remove')
+            ->add('narsil::ui.save')
+            ->add('narsil::validation.unique', [
+                'attribute' => trans('narsil::validation.attributes.identifier'),
             ]);
 
         $this->value([]);
@@ -61,7 +61,7 @@ class RelationsInput extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.relations');
+        return trans('narsil::fields.relations');
     }
 
     #endregion

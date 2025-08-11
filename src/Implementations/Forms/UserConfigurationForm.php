@@ -57,7 +57,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => UserConfiguration::LOCALE,
-                Field::NAME => trans('narsil-cms::validation.attributes.locale'),
+                Field::NAME => trans('narsil::validation.attributes.locale'),
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($localeOptions)
@@ -65,7 +65,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::THEME,
-                Field::NAME => trans('narsil-cms::validation.attributes.theme'),
+                Field::NAME => trans('narsil::validation.attributes.theme'),
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($themeOptions)
@@ -73,7 +73,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::COLOR,
-                Field::NAME => trans('narsil-cms::validation.attributes.color'),
+                Field::NAME => trans('narsil::validation.attributes.color'),
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($colorOptions)
@@ -81,7 +81,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::RADIUS,
-                Field::NAME => trans('narsil-cms::validation.attributes.radius'),
+                Field::NAME => trans('narsil::validation.attributes.radius'),
                 Field::TYPE => RangeInput::class,
                 Field::SETTINGS => app(RangeInput::class)
                     ->max(1)
@@ -105,7 +105,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         foreach (ColorEnum::cases() as $case)
         {
-            $options[] = new SelectOption(trans("narsil-cms::colors.$case->value"), $case->value);
+            $options[] = new SelectOption(trans("narsil::colors.$case->value"), $case->value);
         }
 
         return $options;
@@ -155,7 +155,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         foreach (ThemeEnum::cases() as $case)
         {
-            $options[] = new SelectOption(trans("narsil-cms::themes.$case->value"), $case->value);
+            $options[] = new SelectOption(trans("narsil::themes.$case->value"), $case->value);
         }
 
         return $options;

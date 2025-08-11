@@ -27,9 +27,9 @@ class Sidebar extends AbstractComponent implements Contract
     public function __construct()
     {
         app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.close_sidebar')
-            ->add('narsil-cms::accessibility.open_sidebar')
-            ->add('narsil-cms::accessibility.toggle_sidebar');
+            ->add('narsil::accessibility.close_sidebar')
+            ->add('narsil::accessibility.open_sidebar')
+            ->add('narsil::accessibility.toggle_sidebar');
     }
 
     #endregion
@@ -56,29 +56,29 @@ class Sidebar extends AbstractComponent implements Contract
         }
 
         return [
-            (new NavigationItem(route('dashboard'), trans('narsil-cms::ui.dashboard')))
+            (new NavigationItem(route('dashboard'), trans('narsil::ui.dashboard')))
                 ->icon('chart-pie'),
-            (new NavigationGroup(trans('narsil-cms::ui.collections')))
+            (new NavigationGroup(trans('narsil::ui.collections')))
                 ->children($collections),
-            (new NavigationGroup(trans('narsil-cms::ui.structures')))
+            (new NavigationGroup(trans('narsil::ui.structures')))
                 ->children([
-                    (new NavigationItem(route('templates.index'), trans('narsil-cms::ui.templates')))
+                    (new NavigationItem(route('templates.index'), trans('narsil::ui.templates')))
                         ->icon('layout'),
-                    (new NavigationItem(route('blocks.index'), trans('narsil-cms::ui.blocks')))
+                    (new NavigationItem(route('blocks.index'), trans('narsil::ui.blocks')))
                         ->icon('box'),
-                    (new NavigationItem(route('fields.index'), trans('narsil-cms::ui.fields')))
+                    (new NavigationItem(route('fields.index'), trans('narsil::ui.fields')))
                         ->icon('input'),
                 ]),
-            (new NavigationGroup(trans('narsil-cms::ui.users')))
+            (new NavigationGroup(trans('narsil::ui.users')))
                 ->children([
-                    (new NavigationItem(route('users.index'), trans('narsil-cms::ui.users')))
+                    (new NavigationItem(route('users.index'), trans('narsil::ui.users')))
                         ->icon('users'),
-                    (new NavigationItem(route('roles.index'), trans('narsil-cms::ui.roles')))
+                    (new NavigationItem(route('roles.index'), trans('narsil::ui.roles')))
                         ->icon('shield'),
                 ]),
-            (new NavigationGroup(trans('narsil-cms::ui.settings')))
+            (new NavigationGroup(trans('narsil::ui.settings')))
                 ->children([
-                    (new NavigationItem(route('sites.index'), trans('narsil-cms::ui.sites')))
+                    (new NavigationItem(route('sites.index'), trans('narsil::ui.sites')))
                         ->icon('globe'),
                 ]),
 

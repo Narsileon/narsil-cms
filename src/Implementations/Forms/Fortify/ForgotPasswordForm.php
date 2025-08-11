@@ -28,9 +28,9 @@ class ForgotPasswordForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.reset_password');
-        $this->submitLabel = trans('narsil-cms::ui.send');
-        $this->title = trans('narsil-cms::ui.reset_password');
+        $this->description = trans('narsil::ui.reset_password');
+        $this->submitLabel = trans('narsil::ui.send');
+        $this->title = trans('narsil::ui.reset_password');
         $this->url = route('password.email');
     }
 
@@ -45,9 +45,9 @@ class ForgotPasswordForm extends AbstractForm implements Contract
     {
         return [
             new Field([
-                Field::DESCRIPTION => trans('narsil-cms::passwords.instruction'),
+                Field::DESCRIPTION => trans('narsil::passwords.instruction'),
                 Field::HANDLE => User::EMAIL,
-                Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)

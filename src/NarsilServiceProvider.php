@@ -6,6 +6,7 @@ namespace Narsil;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Providers\CommandServiceProvider;
 use Narsil\Providers\ComponentServiceProvider;
 use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
@@ -66,7 +67,11 @@ class NarsilServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config' => config_path(),
-        ], 'narsil-cms');
+        ], 'narsil-cms-configs');
+
+        $this->publishes([
+            __DIR__ . '/../lang' => lang_path('vendor/narsil-cms'),
+        ], 'narsil-cms-translations');
     }
 
     /**
@@ -99,6 +104,7 @@ class NarsilServiceProvider extends ServiceProvider
 
     protected function registerProviders(): void
     {
+        $this->app->register(CommandServiceProvider::class);
         $this->app->register(ComponentServiceProvider::class);
         $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);

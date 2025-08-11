@@ -130,24 +130,24 @@ class DataTableCollection extends ResourceCollection
         $total = $this->resource->total();
 
         app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.first_page')
-            ->add('narsil-cms::accessibility.last_page')
-            ->add('narsil-cms::accessibility.more_pages')
-            ->add('narsil-cms::accessibility.move_column')
-            ->add('narsil-cms::accessibility.next_page')
-            ->add('narsil-cms::accessibility.previous_page')
-            ->add('narsil-cms::accessibility.sort_column')
-            ->add('narsil-cms::accessibility.toggle_row_menu')
-            ->add('narsil-cms::accessibility.toggle_table_settings')
-            ->add('narsil-cms::pagination.empty')
-            ->add('narsil-cms::pagination.pagination')
-            ->add('narsil-cms::table.columns')
-            ->add('narsil-cms::ui.create')
-            ->add('narsil-cms::ui.delete')
-            ->add('narsil-cms::ui.delete_selected')
-            ->add('narsil-cms::ui.deselect_all')
-            ->add('narsil-cms::ui.edit')
-            ->add('narsil-cms::pagination.results', [
+            ->add('narsil::accessibility.first_page')
+            ->add('narsil::accessibility.last_page')
+            ->add('narsil::accessibility.more_pages')
+            ->add('narsil::accessibility.move_column')
+            ->add('narsil::accessibility.next_page')
+            ->add('narsil::accessibility.previous_page')
+            ->add('narsil::accessibility.sort_column')
+            ->add('narsil::accessibility.toggle_row_menu')
+            ->add('narsil::accessibility.toggle_table_settings')
+            ->add('narsil::pagination.empty')
+            ->add('narsil::pagination.pagination')
+            ->add('narsil::table.columns')
+            ->add('narsil::ui.create')
+            ->add('narsil::ui.delete')
+            ->add('narsil::ui.delete_selected')
+            ->add('narsil::ui.deselect_all')
+            ->add('narsil::ui.edit')
+            ->add('narsil::pagination.results', [
                 'from'  => $from,
                 'to'    => $to,
                 'total' => $total,

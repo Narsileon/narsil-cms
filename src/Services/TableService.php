@@ -55,7 +55,7 @@ abstract class TableService
             $columnName = str_replace('_id', '', $columnName);
         }
 
-        return trans("narsil-cms::validation.attributes.$columnName");
+        return trans("narsil::validation.attributes.$columnName");
     }
 
     #endregion

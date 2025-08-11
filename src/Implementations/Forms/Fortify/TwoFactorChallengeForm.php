@@ -27,9 +27,9 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.two_factor_authentication');
-        $this->submitLabel = trans('narsil-cms::ui.confirm');
-        $this->title = trans('narsil-cms::ui.two_factor_authentication');
+        $this->description = trans('narsil::ui.two_factor_authentication');
+        $this->submitLabel = trans('narsil::ui.confirm');
+        $this->title = trans('narsil::ui.two_factor_authentication');
         $this->url = route('two-factor.login');
     }
 
@@ -45,14 +45,14 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => 'code',
-                Field::NAME => trans('narsil-cms::validation.attributes.code'),
+                Field::NAME => trans('narsil::validation.attributes.code'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value),
             ]),
             new Field([
                 Field::HANDLE => 'recovery_code',
-                Field::NAME => trans('narsil-cms::validation.attributes.recovery_code'),
+                Field::NAME => trans('narsil::validation.attributes.recovery_code'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value),

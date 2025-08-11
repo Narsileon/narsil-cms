@@ -40,32 +40,32 @@ class CheckboxInput extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::NAME => trans('narsil-cms::validation.attributes.default_value'),
+                Field::NAME => trans('narsil::validation.attributes.default_value'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class),
             ]),
             new Field([
                 Field::HANDLE => Field::RELATION_OPTIONS,
-                Field::NAME => trans('narsil-cms::validation.attributes.options'),
+                Field::NAME => trans('narsil::validation.attributes.options'),
                 Field::TYPE => TableInput::class,
                 Field::SETTINGS => app(TableInput::class)
                     ->columns([
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
-                            Field::NAME => trans('narsil-cms::validation.attributes.value'),
+                            Field::NAME => trans('narsil::validation.attributes.value'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
                                 ->required(true),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
-                            Field::NAME => trans('narsil-cms::validation.attributes.label'),
+                            Field::NAME => trans('narsil::validation.attributes.label'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
                                 ->required(true),
                         ]),
                     ])
-                    ->placeholder(trans('narsil-cms::ui.add')),
+                    ->placeholder(trans('narsil::ui.add')),
             ]),
         ];
     }
@@ -83,7 +83,7 @@ class CheckboxInput extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.checkbox');
+        return trans('narsil::fields.checkbox');
     }
 
     #endregion

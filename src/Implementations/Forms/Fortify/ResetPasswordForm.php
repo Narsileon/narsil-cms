@@ -29,9 +29,9 @@ class ResetPasswordForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.reset_password');
-        $this->submitLabel = trans('narsil-cms::ui.reset');
-        $this->title = trans('narsil-cms::ui.reset_password');
+        $this->description = trans('narsil::ui.reset_password');
+        $this->submitLabel = trans('narsil::ui.reset');
+        $this->title = trans('narsil::ui.reset_password');
         $this->url = route('password.update');
     }
 
@@ -47,7 +47,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::EMAIL,
-                Field::NAME => trans('narsil-cms::validation.attributes.email'),
+                Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
@@ -55,7 +55,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil-cms::validation.attributes.password'),
+                Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
@@ -63,7 +63,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::NAME => trans('narsil-cms::validation.attributes.password_confirmation'),
+                Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)

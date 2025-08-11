@@ -30,7 +30,7 @@ class ProfileForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->method = MethodEnum::PUT;
-        $this->submitLabel = trans('narsil-cms::ui.update');
+        $this->submitLabel = trans('narsil::ui.update');
         $this->url = route('user-profile-information.update');
     }
 
@@ -46,7 +46,7 @@ class ProfileForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::LAST_NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.last_name'),
+                Field::NAME => trans('narsil::validation.attributes.last_name'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
@@ -54,7 +54,7 @@ class ProfileForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.first_name'),
+                Field::NAME => trans('narsil::validation.attributes.first_name'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)

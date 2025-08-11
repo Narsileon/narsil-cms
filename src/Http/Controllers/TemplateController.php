@@ -79,8 +79,8 @@ class TemplateController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.templates'),
-            description: trans('narsil-cms::ui.templates'),
+            title: trans('narsil::ui.templates'),
+            description: trans('narsil::ui.templates'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -126,7 +126,7 @@ class TemplateController extends AbstractController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', trans('narsil-cms::toasts.success.templates.created'));
+            ->with('success', trans('narsil::toasts.success.templates.created'));
     }
 
     /**
@@ -174,7 +174,7 @@ class TemplateController extends AbstractController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', trans('narsil-cms::toasts.success.templates.updated'));
+            ->with('success', trans('narsil::toasts.success.templates.updated'));
     }
 
     /**
@@ -191,7 +191,7 @@ class TemplateController extends AbstractController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', trans('narsil-cms::toasts.success.templates.deleted'));
+            ->with('success', trans('narsil::toasts.success.templates.deleted'));
     }
 
     /**
@@ -209,7 +209,7 @@ class TemplateController extends AbstractController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', trans('narsil-cms::toasts.success.templates.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.templates.deleted_many'));
     }
 
     #endregion

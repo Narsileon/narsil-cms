@@ -27,15 +27,15 @@ class VerifyEmailController extends AbstractController
     public function __invoke(Request $request): Response
     {
         app(LabelsBag::class)
-            ->add('narsil-cms::verify-email.instruction')
-            ->add('narsil-cms::verify-email.prompt')
-            ->add('narsil-cms::verify-email.send_again')
-            ->add('narsil-cms::verify-email.sent');
+            ->add('narsil::verify-email.instruction')
+            ->add('narsil::verify-email.prompt')
+            ->add('narsil::verify-email.send_again')
+            ->add('narsil::verify-email.sent');
 
         return $this->render(
             component: 'narsil/cms::fortify/verify-email',
-            description: trans('narsil-cms::ui.email_verify'),
-            title: trans('narsil-cms::ui.email_verify'),
+            description: trans('narsil::ui.email_verify'),
+            title: trans('narsil::ui.email_verify'),
             props: [
                 'status' => session('status'),
             ]

@@ -76,8 +76,8 @@ class UserController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil-cms::ui.users'),
-            description: trans('narsil-cms::ui.users'),
+            title: trans('narsil::ui.users'),
+            description: trans('narsil::ui.users'),
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -121,7 +121,7 @@ class UserController extends AbstractController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.created'));
+            ->with('success', trans('narsil::toasts.success.users.created'));
     }
 
     /**
@@ -179,7 +179,7 @@ class UserController extends AbstractController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.updated'));
+            ->with('success', trans('narsil::toasts.success.users.updated'));
     }
 
     /**
@@ -196,7 +196,7 @@ class UserController extends AbstractController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.deleted'));
+            ->with('success', trans('narsil::toasts.success.users.deleted'));
     }
 
     /**
@@ -214,7 +214,7 @@ class UserController extends AbstractController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', trans('narsil-cms::toasts.success.users.deleted_many'));
+            ->with('success', trans('narsil::toasts.success.users.deleted_many'));
     }
 
     #endregion

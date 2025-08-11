@@ -40,7 +40,7 @@ class TextInput extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
-                Field::NAME => trans('narsil-cms::validation.attributes.min_length'),
+                Field::NAME => trans('narsil::validation.attributes.min_length'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
                     ->max(255)
@@ -49,7 +49,7 @@ class TextInput extends AbstractField implements Contract
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
-                Field::NAME => trans('narsil-cms::validation.attributes.max_length'),
+                Field::NAME => trans('narsil::validation.attributes.max_length'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
                     ->max(255)
@@ -59,7 +59,7 @@ class TextInput extends AbstractField implements Contract
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
-                Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
+                Field::NAME => trans('narsil::validation.attributes.placeholder'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class),
             ]),
@@ -79,7 +79,7 @@ class TextInput extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.text');
+        return trans('narsil::fields.text');
     }
 
     #endregion

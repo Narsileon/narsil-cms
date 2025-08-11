@@ -29,28 +29,28 @@ class RichTextInput extends AbstractField implements Contract
         $this->value('');
 
         app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.align_center')
-            ->add('narsil-cms::accessibility.align_justify')
-            ->add('narsil-cms::accessibility.align_left')
-            ->add('narsil-cms::accessibility.align_right')
-            ->add('narsil-cms::accessibility.redo')
-            ->add('narsil-cms::accessibility.required')
-            ->add('narsil-cms::accessibility.toggle_bold')
-            ->add('narsil-cms::accessibility.toggle_bullet_list')
-            ->add('narsil-cms::accessibility.toggle_heading_1')
-            ->add('narsil-cms::accessibility.toggle_heading_2')
-            ->add('narsil-cms::accessibility.toggle_heading_3')
-            ->add('narsil-cms::accessibility.toggle_heading_4')
-            ->add('narsil-cms::accessibility.toggle_heading_5')
-            ->add('narsil-cms::accessibility.toggle_heading_6')
-            ->add('narsil-cms::accessibility.toggle_heading_menu')
-            ->add('narsil-cms::accessibility.toggle_italic')
-            ->add('narsil-cms::accessibility.toggle_ordered_list')
-            ->add('narsil-cms::accessibility.toggle_strike')
-            ->add('narsil-cms::accessibility.toggle_subscript')
-            ->add('narsil-cms::accessibility.toggle_superscript')
-            ->add('narsil-cms::accessibility.toggle_underline')
-            ->add('narsil-cms::accessibility.undo');
+            ->add('narsil::accessibility.align_center')
+            ->add('narsil::accessibility.align_justify')
+            ->add('narsil::accessibility.align_left')
+            ->add('narsil::accessibility.align_right')
+            ->add('narsil::accessibility.redo')
+            ->add('narsil::accessibility.required')
+            ->add('narsil::accessibility.toggle_bold')
+            ->add('narsil::accessibility.toggle_bullet_list')
+            ->add('narsil::accessibility.toggle_heading_1')
+            ->add('narsil::accessibility.toggle_heading_2')
+            ->add('narsil::accessibility.toggle_heading_3')
+            ->add('narsil::accessibility.toggle_heading_4')
+            ->add('narsil::accessibility.toggle_heading_5')
+            ->add('narsil::accessibility.toggle_heading_6')
+            ->add('narsil::accessibility.toggle_heading_menu')
+            ->add('narsil::accessibility.toggle_italic')
+            ->add('narsil::accessibility.toggle_ordered_list')
+            ->add('narsil::accessibility.toggle_strike')
+            ->add('narsil::accessibility.toggle_subscript')
+            ->add('narsil::accessibility.toggle_superscript')
+            ->add('narsil::accessibility.toggle_underline')
+            ->add('narsil::accessibility.undo');
     }
 
     #endregion
@@ -65,7 +65,7 @@ class RichTextInput extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
-                Field::NAME => trans('narsil-cms::validation.attributes.placeholder'),
+                Field::NAME => trans('narsil::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class),
             ]),
@@ -85,7 +85,7 @@ class RichTextInput extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.rich_text');
+        return trans('narsil::fields.rich_text');
     }
 
     /**

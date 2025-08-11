@@ -38,6 +38,8 @@ return [
     'log_out'           => 'Log out',
     'main'              => 'Main',
     'password'          => 'Password',
+    'permission'        => 'Permission',
+    'permissions'       => 'Permissions',
     'personalization'   => 'Personalization',
     'profile'           => 'Profile',
     'recovery_codes'    => 'Recovery codes',

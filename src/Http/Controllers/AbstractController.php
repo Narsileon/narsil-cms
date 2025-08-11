@@ -81,8 +81,8 @@ abstract class AbstractController
         if (request()->boolean('_modal'))
         {
             $labelsBag
-                ->add('narsil-cms::accessibility.close_dialog')
-                ->add('narsil-cms::ui.cancel');
+                ->add('narsil::accessibility.close_dialog')
+                ->add('narsil::ui.cancel');
 
             $labels = $labelsBag->get();
 

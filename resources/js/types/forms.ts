@@ -61,7 +61,7 @@ export type GroupedSelectOption = {
   identifier: string;
   label: string;
   optionLabel: string;
-  options: SelectOption[];
+  options: (GroupedSelectOption | SelectOption)[];
   optionValue: string;
   routes: RouteNames;
   value: any;

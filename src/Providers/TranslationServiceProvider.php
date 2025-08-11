@@ -45,8 +45,8 @@ class TranslationServiceProvider extends ServiceProvider
      */
     protected function bootTranslations(): void
     {
-        $this->loadJsonTranslationsFrom(__DIR__ . '/../../lang', 'narsil-cms');
-        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'narsil-cms');
+        $this->loadJsonTranslationsFrom(__DIR__ . '/../../lang', 'narsil');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'narsil');
     }
 
     #endregion

@@ -15,6 +15,8 @@ use Narsil\Enums\Forms\MethodEnum;
  */
 interface Form extends JsonSerializable
 {
+    #region PROPERTIES
+
     /**
      * The description of the form.
      */
@@ -68,6 +70,8 @@ interface Form extends JsonSerializable
         get;
         set;
     }
+
+    #endregion
 
     #region PUBLIC METHODS
 

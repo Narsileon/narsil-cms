@@ -40,7 +40,7 @@ class FileInput extends Input implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.accept" : 'accept',
-                Field::NAME => trans('narsil-cms::validation.attributes.accept'),
+                Field::NAME => trans('narsil::validation.attributes.accept'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class),
             ]),
@@ -60,7 +60,7 @@ class FileInput extends Input implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.file');
+        return trans('narsil::fields.file');
     }
 
     #endregion

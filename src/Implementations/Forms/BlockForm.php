@@ -33,8 +33,8 @@ class BlockForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.block');
-        $this->title = trans('narsil-cms::ui.block');
+        $this->description = trans('narsil::ui.block');
+        $this->title = trans('narsil::ui.block');
     }
 
     #endregion
@@ -55,7 +55,7 @@ class BlockForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::NAME,
-                        Field::NAME => trans('narsil-cms::ui.default_name'),
+                        Field::NAME => trans('narsil::ui.default_name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true),
@@ -64,7 +64,7 @@ class BlockForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::HANDLE,
-                        Field::NAME => trans('narsil-cms::ui.default_handle'),
+                        Field::NAME => trans('narsil::ui.default_handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->required(true),
@@ -73,13 +73,13 @@ class BlockForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::RELATION_ELEMENTS,
-                        Field::NAME => trans('narsil-cms::validation.attributes.elements'),
+                        Field::NAME => trans('narsil::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
                             ->form(app(BlockElementForm::class)->jsonSerialize())
                             ->addOption(
                                 identifier: Block::TABLE,
-                                label: trans('narsil-cms::ui.block'),
+                                label: trans('narsil::ui.block'),
                                 optionLabel: BlockElement::NAME,
                                 optionValue: BlockElement::HANDLE,
                                 options: $blockOptions,
@@ -87,7 +87,7 @@ class BlockForm extends AbstractForm implements Contract
                             )
                             ->addOption(
                                 identifier: Field::TABLE,
-                                label: trans('narsil-cms::ui.field'),
+                                label: trans('narsil::ui.field'),
                                 optionLabel: BlockElement::NAME,
                                 optionValue: BlockElement::HANDLE,
                                 options: $fieldOptions,

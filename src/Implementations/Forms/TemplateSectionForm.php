@@ -27,8 +27,8 @@ class TemplateSectionForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil-cms::ui.section');
-        $this->title = trans('narsil-cms::ui.section');
+        $this->description = trans('narsil::ui.section');
+        $this->title = trans('narsil::ui.section');
     }
 
     #endregion
@@ -43,14 +43,14 @@ class TemplateSectionForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => TemplateSection::NAME,
-                Field::NAME => trans('narsil-cms::validation.attributes.name'),
+                Field::NAME => trans('narsil::validation.attributes.name'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->required(true),
             ]),
             new Field([
                 Field::HANDLE => TemplateSection::HANDLE,
-                Field::NAME => trans('narsil-cms::validation.attributes.handle'),
+                Field::NAME => trans('narsil::validation.attributes.handle'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->required(true),

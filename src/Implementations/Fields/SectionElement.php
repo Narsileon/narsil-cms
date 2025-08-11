@@ -40,7 +40,7 @@ class SectionElement extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.section');
+        return trans('narsil::fields.section');
     }
 
     #endregion

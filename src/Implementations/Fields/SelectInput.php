@@ -40,26 +40,26 @@ class SelectInput extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::RELATION_OPTIONS,
-                Field::NAME => trans('narsil-cms::validation.attributes.options'),
+                Field::NAME => trans('narsil::validation.attributes.options'),
                 Field::TYPE => TableInput::class,
                 Field::SETTINGS => app(TableInput::class)
                     ->columns([
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
-                            Field::NAME => trans('narsil-cms::validation.attributes.value'),
+                            Field::NAME => trans('narsil::validation.attributes.value'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
                                 ->required(true),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
-                            Field::NAME => trans('narsil-cms::validation.attributes.label'),
+                            Field::NAME => trans('narsil::validation.attributes.label'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
                                 ->required(true),
                         ]),
                     ])
-                    ->placeholder(trans('narsil-cms::ui.add')),
+                    ->placeholder(trans('narsil::ui.add')),
             ]),
         ];
     }
@@ -77,7 +77,7 @@ class SelectInput extends AbstractField implements Contract
      */
     public static function getLabel(): string
     {
-        return trans('narsil-cms::fields.select');
+        return trans('narsil::fields.select');
     }
 
     #endregion

@@ -37,9 +37,9 @@ class Permission extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "handle" column.
+     * @var string The name of the "category" column.
      */
-    final public const HANDLE = 'handle';
+    final public const CATEGORY = 'category';
     /**
      * @var string The name of the "id" column.
      */

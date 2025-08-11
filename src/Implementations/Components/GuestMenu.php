@@ -26,7 +26,7 @@ class GuestMenu extends AbstractComponent implements Contract
     public function __construct()
     {
         app(LabelsBag::class)
-            ->add('narsil-cms::accessibility.toggle_user_menu');
+            ->add('narsil::accessibility.toggle_user_menu');
     }
 
     #endregion
@@ -39,11 +39,11 @@ class GuestMenu extends AbstractComponent implements Contract
     protected function content(): array
     {
         return [
-            (new NavigationItem(route('user-configuration.index'), trans('narsil-cms::ui.settings')))
+            (new NavigationItem(route('user-configuration.index'), trans('narsil::ui.settings')))
                 ->icon('settings')
                 ->modal(true),
             (new Separator),
-            (new NavigationItem(route('login'), trans('narsil-cms::ui.log_in')))
+            (new NavigationItem(route('login'), trans('narsil::ui.log_in')))
                 ->icon('log-in'),
         ];
     }
