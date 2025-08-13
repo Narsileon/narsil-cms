@@ -34,7 +34,6 @@ class RichTextInput extends AbstractField implements Contract
             ->add('narsil::accessibility.align_left')
             ->add('narsil::accessibility.align_right')
             ->add('narsil::accessibility.redo')
-            ->add('narsil::accessibility.required')
             ->add('narsil::accessibility.toggle_bold')
             ->add('narsil::accessibility.toggle_bullet_list')
             ->add('narsil::accessibility.toggle_heading_1')

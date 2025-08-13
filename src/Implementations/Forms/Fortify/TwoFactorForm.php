@@ -56,6 +56,7 @@ class TwoFactorForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                    ->icon('circle-check')
                     ->required(true),
             ]),
         ];

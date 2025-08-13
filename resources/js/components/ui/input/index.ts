@@ -2,5 +2,7 @@
 
 import Input from "./input";
 import InputDate from "./input-date";
+import InputFile from "./input-file";
+import InputPassword from "./input-password";
 
-export { Input, InputDate };
+export { Input, InputDate, InputFile, InputPassword };

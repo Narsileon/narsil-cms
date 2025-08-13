@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 
 #region USE
 
+use Narsil\Contracts\Fields\FileInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\Fortify\ProfileForm as Contract;
 use Narsil\Enums\Fields\AutoCompleteEnum;
@@ -50,6 +51,7 @@ class ProfileForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                    ->icon('circle-user')
                     ->required(true),
             ]),
             new Field([
@@ -58,7 +60,16 @@ class ProfileForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                    ->icon('circle-user')
                     ->required(true),
+            ]),
+            new Field([
+                Field::HANDLE => User::AVATAR,
+                Field::NAME => trans('narsil::validation.attributes.avatar'),
+                Field::TYPE => FileInput::class,
+                Field::SETTINGS => app(FileInput::class)
+                    ->accept('image/*')
+                    ->icon('image'),
             ]),
         ];
     }

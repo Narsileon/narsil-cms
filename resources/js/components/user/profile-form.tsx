@@ -36,6 +36,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             id={profileForm.id}
             elements={profileForm.form}
             initialValues={{
+              avatar: auth?.avatar,
               first_name: auth?.first_name,
               last_name: auth?.last_name,
             }}

@@ -24,6 +24,13 @@ interface TextInput extends Contract
     public function autoComplete(string $autoComplete): static;
 
     /**
+     * @param string $icon The name of the icon.
+     *
+     * @return static Returns the current object instance.
+     */
+    public function icon(string $icon): static;
+
+    /**
      * @param string $maxLength The maximum length of the string.
      *
      * @return static Returns the current object instance.

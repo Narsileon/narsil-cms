@@ -51,6 +51,7 @@ class ForgotPasswordForm extends AbstractForm implements Contract
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
+                    ->icon('email')
                     ->required(true),
             ]),
         ];

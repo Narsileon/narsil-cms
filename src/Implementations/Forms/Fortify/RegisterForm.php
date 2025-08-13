@@ -51,6 +51,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
+                    ->icon('email')
                     ->required(true),
             ]),
             new Field([
@@ -78,6 +79,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                    ->icon('circle-user')
                     ->required(true),
             ]),
             new Field([
@@ -87,6 +89,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                    ->icon('circle-user')
                     ->required(true),
             ]),
         ];

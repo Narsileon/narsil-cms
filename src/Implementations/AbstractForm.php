@@ -32,6 +32,7 @@ abstract class AbstractForm implements Form
         $this->submitLabel = trans('narsil::ui.save');
 
         app(LabelsBag::class)
+            ->add('narsil::accessibility.required')
             ->add('narsil::pagination.empty')
             ->add('narsil::placeholders.choose')
             ->add('narsil::placeholders.search')

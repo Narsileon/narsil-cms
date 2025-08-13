@@ -1,10 +1,15 @@
 import { Checkbox, Checkboxes } from "@narsil-cms/components/ui/checkbox";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
-import { Input, InputDate } from "@narsil-cms/components/ui/input";
 import { isArray } from "lodash";
 import { RichTextEditor } from "@narsil-cms/components/ui/rich-text-editor";
 import { Slider } from "@narsil-cms/components/ui/slider";
 import { Switch } from "@narsil-cms/components/ui/switch";
+import {
+  Input,
+  InputDate,
+  InputFile,
+  InputPassword,
+} from "@narsil-cms/components/ui/input";
 import {
   SortableList,
   SortableGrid,
@@ -16,6 +21,7 @@ import type {
   GroupedSelectOption,
   SelectOption,
 } from "@narsil-cms/types/forms";
+import { Icon } from "../icon";
 
 type FormInputRendererProps = {
   element: Field;
@@ -63,11 +69,26 @@ function FormInputRenderer({
       );
     case "Narsil\\Contracts\\Fields\\FileInput":
       return (
-        <Input
+        <InputFile
           {...element.settings}
           id={id}
           name={id}
-          onChange={(event) => setValue(event.target.files?.[0])}
+          value={value}
+          setValue={setValue}
+        >
+          {element.settings.icon ? (
+            <Icon className="opacity-50" name={element.settings.icon} />
+          ) : null}
+        </InputFile>
+      );
+    case "Narsil\\Contracts\\Fields\\PasswordInput":
+      return (
+        <InputPassword
+          {...element.settings}
+          id={id}
+          name={id}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
         />
       );
     case "Narsil\\Contracts\\Fields\\RangeInput":
@@ -152,7 +173,11 @@ function FormInputRenderer({
           name={id}
           value={value}
           onChange={(event) => setValue(event.target.value)}
-        />
+        >
+          {element.settings.icon ? (
+            <Icon className="opacity-50" name={element.settings.icon} />
+          ) : null}
+        </Input>
       );
   }
 }

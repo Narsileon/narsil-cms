@@ -99,6 +99,16 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function icon(string $icon): static
+    {
+        $this->settings['icon'] = $icon;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function maxLength(string $maxLength): static
     {
         $this->settings['maxLength'] = $maxLength;

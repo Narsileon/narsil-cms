@@ -68,6 +68,7 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.email'),
                                     Field::TYPE => EmailInput::class,
                                     Field::SETTINGS => app(EmailInput::class)
+                                        ->icon('email')
                                         ->required(true),
                                 ])
                             ]),
@@ -105,6 +106,7 @@ class UserForm extends AbstractForm implements Contract
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
                                         ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                                        ->icon('circle-user')
                                         ->required(true),
                                 ]),
                             ]),
@@ -115,6 +117,7 @@ class UserForm extends AbstractForm implements Contract
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
                                         ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                                        ->icon('circle-user')
                                         ->required(true),
                                 ]),
                             ]),
@@ -124,7 +127,8 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.avatar'),
                                     Field::TYPE => FileInput::class,
                                     Field::SETTINGS => app(FileInput::class)
-                                        ->accept('image/*'),
+                                        ->accept('image/*')
+                                        ->icon('image'),
                                 ]),
                             ]),
                         ],

@@ -1,7 +1,7 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/ui/card";
 import { Container } from "@narsil-cms/components/ui/container";
-import { Input } from "@narsil-cms/components/ui/input";
+import { InputPassword } from "@narsil-cms/components/ui/input";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
@@ -94,7 +94,7 @@ function FortifyForm({
                                     {getLabel("passwords.link")}
                                   </Link>
                                 </div>
-                                <Input
+                                <InputPassword
                                   {...(element.settings ?? {})}
                                   id={element.handle}
                                   name={element.handle}

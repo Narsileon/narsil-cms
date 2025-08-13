@@ -24,6 +24,13 @@ interface FileInput extends Contract
     public function accept(string $accept): static;
 
     /**
+     * @param string $icon The name of the icon.
+     *
+     * @return static Returns the current object instance.
+     */
+    public function icon(string $icon): static;
+
+    /**
      * @param boolean $required Must the input have a value?
      *
      * @return static Returns the current object instance.
