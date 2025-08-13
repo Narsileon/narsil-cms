@@ -52,6 +52,7 @@ class LoginForm extends AbstractForm implements Contract
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
                     ->autoComplete(AutoCompleteEnum::EMAIL->value)
+                    ->placeholder('email@example.com')
                     ->icon('email')
                     ->required(true),
             ]),
@@ -67,7 +68,8 @@ class LoginForm extends AbstractForm implements Contract
                 Field::HANDLE => User::REMEMBER,
                 Field::NAME => trans('narsil::validation.attributes.remember'),
                 Field::TYPE => CheckboxInput::class,
-                Field::SETTINGS => app(CheckboxInput::class),
+                Field::SETTINGS => app(CheckboxInput::class)
+                    ->inline(true),
             ]),
         ];
     }

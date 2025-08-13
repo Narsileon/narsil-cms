@@ -7,6 +7,7 @@ namespace Narsil\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 use Narsil\Support\DatabaseColumn;
 
 #endregion
@@ -55,7 +56,7 @@ abstract class TableService
             $columnName = str_replace('_id', '', $columnName);
         }
 
-        return trans("narsil::validation.attributes.$columnName");
+        return Str::ucfirst(trans("narsil::validation.attributes.$columnName"));
     }
 
     #endregion

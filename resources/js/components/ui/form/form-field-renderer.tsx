@@ -132,7 +132,8 @@ function FormFieldRenderer({
         return (
           <FormItem
             className={cn(
-              settings.type === "checkbox" && "flex-row-reverse justify-end",
+              settings.inline && "flex-row",
+              settings.inlineReverse && "flex-row-reverse justify-end",
               settings.className,
               className,
             )}

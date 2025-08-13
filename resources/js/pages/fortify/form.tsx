@@ -87,12 +87,15 @@ function FortifyForm({
                                   <FormLabel required={true}>
                                     {element.name}
                                   </FormLabel>
-                                  <Link
-                                    className="text-xs"
-                                    href={route("password.request")}
+                                  <Button
+                                    className="font-normal"
+                                    size="link"
+                                    variant="link"
                                   >
-                                    {getLabel("passwords.link")}
-                                  </Link>
+                                    <Link href={route("password.request")}>
+                                      {getLabel("passwords.link")}
+                                    </Link>
+                                  </Button>
                                 </div>
                                 <InputPassword
                                   {...(element.settings ?? {})}
@@ -121,7 +124,7 @@ function FortifyForm({
               />
             </CardContent>
             {id === "forgot-password-form" ? (
-              <CardFooter className="border-t">
+              <CardFooter className="border-t px-6">
                 <Button className="w-full" asChild={true} variant="secondary">
                   <Link href={route("login")}>{getLabel("ui.back")}</Link>
                 </Button>
