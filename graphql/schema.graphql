@@ -1,0 +1,114 @@
+scalar DateTime
+  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+extend type Query {
+  block(id: ID! @eq): Block @find
+  blocks: [Block!]! @all
+  entities: [Entity!]! @all
+  entity(id: ID! @eq): Entity @find
+  field(id: ID! @eq): Field @find
+  fields: [Field!]! @all
+  user(id: Int! @eq): User @find
+  users: [User!]! @all
+}
+
+type Block @model(class: "Narsil\\Models\\Elements\\Block") {
+  id: ID!
+  handle: String!
+  name: String!
+  icon: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  blocks: [Block!]! @morphToMany
+  elements: [BlockElement!]! @hasMany
+  fields: [Field!]! @morphToMany
+}
+
+type BlockElement @model(class: "Narsil\\Models\\Elements\\BlockElement") {
+  id: ID!
+  block_id: Int!
+  description: String
+  element_id: Int!
+  element_type: String!
+  handle: String!
+  name: String!
+  position: Int
+  width: Int
+  icon: String
+  conditions: [BlockElementCondition!]! @hasMany
+  block: Block! @belongsTo
+  element: Element! @morphTo
+}
+
+type BlockElementCondition
+  @model(class: "Narsil\\Models\\Elements\\BlockElementCondition") {
+  id: ID!
+  owner_id: Int!
+  key: String!
+  operator: String!
+  value: String
+}
+
+union Element = Block | Field
+
+type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
+  id: ID!
+  uuid: String!
+  template_id: Int!
+  deleted_at: DateTime
+  created_at: DateTime!
+  updated_at: DateTime!
+  template: Template! @belongsTo
+  elements: [EntityElement!]! @hasMany
+}
+
+type EntityElement @model(class: "Narsil\\Models\\Entities\\EntityElement") {
+  id: ID!
+  entity_uuid: String!
+  key: String!
+  value: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Field @model(class: "Narsil\\Models\\Elements\\Field") {
+  id: ID!
+  handle: String!
+  name: String!
+  description: String
+  type: String!
+  settings: String
+  translatable: Boolean!
+  icon: String
+  created_at: DateTime!
+  updated_at: DateTime!
+  blocks: [Block!]! @belongsToMany
+  options: [FieldOption!]! @hasMany
+}
+
+type FieldOption @model(class: "Narsil\\Models\\Elements\\FieldOption") {
+  id: ID!
+  field_id: Int!
+  key: String!
+  value: String!
+  position: Int
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Template @model(class: "Narsil\\Models\\Elements\\Template") {
+  id: ID!
+  handle: String!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type User @model(class: "Narsil\\Models\\User") {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
