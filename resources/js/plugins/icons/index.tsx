@@ -25,6 +25,7 @@ import {
   ClockIcon,
   CombineIcon,
   CopyIcon,
+  DatabaseIcon,
   EditIcon,
   EyeIcon,
   EyeOffIcon,
@@ -78,8 +79,6 @@ import {
 } from "lucide-react";
 import type { ComponentType } from "react";
 
-export type IconName = keyof typeof defaultRegistry;
-
 const defaultRegistry = {
   ["align-center"]: AlignCenterIcon,
   ["align-justify"]: AlignJustifyIcon,
@@ -104,6 +103,7 @@ const defaultRegistry = {
   ["circle-check"]: CircleCheck,
   ["circle-user"]: CircleUserRoundIcon,
   ["copy"]: CopyIcon,
+  ["database"]: DatabaseIcon,
   ["date"]: Calendar1Icon,
   ["edit"]: EditIcon,
   ["email"]: MailIcon,
@@ -157,6 +157,8 @@ const defaultRegistry = {
   ["users"]: UsersIcon,
   ["x"]: XIcon,
 } satisfies Record<string, ComponentType<any>>;
+
+export type IconName = keyof typeof defaultRegistry;
 
 const registry: Record<string, ComponentType<any>> = {
   ...defaultRegistry,

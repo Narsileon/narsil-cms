@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\EntityElement;
 
@@ -20,6 +21,8 @@ use Narsil\Models\Entities\EntityElement;
  */
 class Entity extends Model
 {
+    use SoftDeletes;
+
     #region CONSTRUCTOR
 
     /**
@@ -48,13 +51,17 @@ class Entity extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "template id" column.
+     * @var string The name of the "deleted at" column.
      */
-    final public const TEMPLATE_ID = 'template_id';
+    final public const DELETED_AT = 'deleted_at';
     /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';
+    /**
+     * @var string The name of the "template id" column.
+     */
+    final public const TEMPLATE_ID = 'template_id';
     /**
      * @var string The name of the "uuid" column.
      */

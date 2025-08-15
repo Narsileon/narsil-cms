@@ -8,7 +8,7 @@ type SidebarProviderProps = React.ComponentProps<"div"> & {
   cookieName?: string;
   defaultOpen?: boolean;
   iconWidth?: string;
-  isMobile: boolean;
+  isMobile?: boolean;
   keyboardShortcut?: string;
   mobileWidth?: string;
   open?: boolean;
@@ -23,7 +23,7 @@ function SidebarProvider({
   cookieName = "sidebar_state",
   defaultOpen = true,
   iconWidth = "3.25rem",
-  isMobile,
+  isMobile = false,
   keyboardShortcut = "b",
   mobileWidth = "18rem",
   onOpenChange: setOpenProp,

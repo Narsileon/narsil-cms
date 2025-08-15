@@ -71,6 +71,8 @@ return [
     'template_sections' => 'Templates',
     'template'          => 'Template',
     'templates'         => 'Templates',
+    'tool'              => 'Tool',
+    'tools'             => 'Tools',
     'update'            => 'Update',
     'user'              => 'User',
     'users'             => 'Users',
