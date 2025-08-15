@@ -49,8 +49,6 @@ type BlockElementCondition
   value: String
 }
 
-union Element = Block | Field
-
 type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
   id: ID!
   uuid: String!
@@ -112,3 +110,5 @@ type User @model(class: "Narsil\\Models\\User") {
   created_at: DateTime!
   updated_at: DateTime!
 }
+
+union Element = Block | Field

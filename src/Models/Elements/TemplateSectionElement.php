@@ -31,6 +31,7 @@ class TemplateSectionElement extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+        $this->timestamps = false;
 
         $this->appends = array_merge([
             self::ATTRIBUTE_ICON,

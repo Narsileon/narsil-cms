@@ -48,6 +48,7 @@ class EntityTable extends AbstractTable implements Contract
     public function getRoutes(): array
     {
         return RouteService::getNames($this->name, [
+            'entity' => $this->type,
             'type' => $this->type,
         ]);
     }
