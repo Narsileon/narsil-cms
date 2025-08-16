@@ -16,10 +16,15 @@ use Narsil\Contracts\Fields\TimeInput;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Entities\Entity;
+use Narsil\Services\GraphQLService;
 use Narsil\Services\TemplateService;
 
 #endregion
 
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
 class MigrationService
 {
     #region PUBLIC METHODS
@@ -41,6 +46,8 @@ class MigrationService
         $fields = TemplateService::getFields($template);
 
         static::updateTable($table, $fields);
+
+        GraphQLService::generateTemplatesSchema();
     }
 
     #endregion

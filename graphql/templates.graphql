@@ -1,0 +1,22 @@
+type Query {
+    pages: [Pages!]! @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@all")
+    page(id: ID!): Pages @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@find")
+    products: [Products!]! @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@all")
+    product(id: ID!): Products @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@find")
+}
+
+type Pages {
+    title: String
+    builder: String
+    meta_title: String
+    meta_description: String
+    open_graph_type: String
+    open_graph_title: String
+    open_graph_description: String
+    open_graph_image: String
+    nofollow: Boolean
+    noindex: Boolean
+}
+type Products {
+    title: String
+}

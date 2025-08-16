@@ -16,6 +16,7 @@ use Narsil\Providers\ObserverServiceProvider;
 use Narsil\Providers\PolicyServiceProvider;
 use Narsil\Providers\TableServiceProvider;
 use Narsil\Providers\TranslationServiceProvider;
+use Nuwave\Lighthouse\LighthouseServiceProvider;
 
 #endregion
 
@@ -114,6 +115,7 @@ class NarsilServiceProvider extends ServiceProvider
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);
+        $this->app->register(LighthouseServiceProvider::class);
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
         $this->app->register(TableServiceProvider::class);

@@ -6,6 +6,7 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +24,7 @@ use Narsil\Traits\HasDatetimes;
 class Entity extends Model
 {
     use HasDatetimes;
+    use HasUuids;
     use SoftDeletes;
 
     #region CONSTRUCTOR
@@ -34,6 +36,7 @@ class Entity extends Model
      */
     public function __construct(array $attributes = [])
     {
+        $this->primaryKey = self::UUID;
         $this->table = self::TABLE;
 
         $this->guarded = array_merge([
