@@ -25,7 +25,7 @@ class CheckboxInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->checked(false);
+        $this->value(false);
     }
 
     #endregion
@@ -93,19 +93,9 @@ class CheckboxInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function checked(bool $checked): static
-    {
-        $this->settings['checked'] = $checked;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function inline(bool $inline): static
     {
-        $this->settings['inlineReverse'] = $inline;
+        $this->settings['_inlineReverse'] = $inline;
 
         return $this;
     }
@@ -116,6 +106,26 @@ class CheckboxInput extends AbstractField implements Contract
     final public function options(array $options): static
     {
         $this->settings['options'] = $options;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function required(bool $required): static
+    {
+        $this->settings['required'] = $required;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function value(bool $value): static
+    {
+        $this->settings['value'] = $value;
 
         return $this;
     }

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\EntityElement;
+use Narsil\Traits\HasDatetimes;
 
 #endregion
 
@@ -21,6 +22,7 @@ use Narsil\Models\Entities\EntityElement;
  */
 class Entity extends Model
 {
+    use HasDatetimes;
     use SoftDeletes;
 
     #region CONSTRUCTOR

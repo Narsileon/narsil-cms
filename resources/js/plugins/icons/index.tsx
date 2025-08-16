@@ -79,6 +79,8 @@ import {
 } from "lucide-react";
 import type { ComponentType } from "react";
 
+type Registry = Record<string, ComponentType<any>>;
+
 const defaultRegistry = {
   ["align-center"]: AlignCenterIcon,
   ["align-justify"]: AlignJustifyIcon,
@@ -105,6 +107,7 @@ const defaultRegistry = {
   ["copy"]: CopyIcon,
   ["database"]: DatabaseIcon,
   ["date"]: Calendar1Icon,
+  ["default"]: RabbitIcon,
   ["edit"]: EditIcon,
   ["email"]: MailIcon,
   ["eye"]: EyeIcon,
@@ -156,16 +159,16 @@ const defaultRegistry = {
   ["user-edit"]: UserPenIcon,
   ["users"]: UsersIcon,
   ["x"]: XIcon,
-} satisfies Record<string, ComponentType<any>>;
+} satisfies Registry;
 
 export type IconName = keyof typeof defaultRegistry;
 
-const registry: Record<string, ComponentType<any>> = {
+const registry: Registry = {
   ...defaultRegistry,
 };
 
 export function getIcon(name: IconName): ComponentType<any> {
-  return registry[name] ?? RabbitIcon;
+  return registry[name] ?? registry["default"];
 }
 
 export function setIcon(name: string, component: ComponentType<any>) {

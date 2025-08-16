@@ -100,7 +100,7 @@ function Combobox({
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="max-w-[400px] min-w-[200px] p-0">
         <Command filter={filter}>
           {search ? (
             <CommandInput

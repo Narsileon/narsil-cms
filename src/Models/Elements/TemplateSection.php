@@ -36,6 +36,10 @@ class TemplateSection extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->touches = [
+            self::RELATION_TEMPLATE,
+        ];
+
         $this->with = array_merge([
             self::RELATION_ELEMENTS,
         ], $this->with);

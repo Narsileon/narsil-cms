@@ -3,7 +3,6 @@ import { Heading } from "@narsil-cms/components/ui/heading";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
-import FormInputRenderer from "./form-input-renderer";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
@@ -19,6 +18,7 @@ import type {
   Field,
   SelectOption,
 } from "@narsil-cms/types/forms";
+import { getField } from "@narsil-cms/plugins/fields";
 
 type FormFieldRendererProps = {
   className?: string;
@@ -134,18 +134,18 @@ function FormFieldRenderer({
             className={cn(
               settings.inline && "flex-row",
               settings.inlineReverse && "flex-row-reverse justify-end",
+              settings.type === "hidden" && "hidden",
               settings.className,
               className,
             )}
           >
             <FormLabel required={settings.required}>{finalName}</FormLabel>
-            <FormInputRenderer
-              id={finalHandle}
-              element={element}
-              value={value}
-              renderOption={renderOption}
-              setValue={handleOnChange}
-            />
+            {getField(element.type, {
+              id: finalHandle,
+              element: element,
+              value: value,
+              setValue: handleOnChange,
+            })}
             {element.description ? (
               <FormDescription>{element.description}</FormDescription>
             ) : null}

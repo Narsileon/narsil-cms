@@ -1,6 +1,5 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
-import { FormInputRenderer } from "@narsil-cms/components/ui/form";
 import { get, set } from "lodash";
 import SortableTableRow from "./sortable-table-row";
 import {
@@ -33,6 +32,7 @@ import type {
   DragStartEvent,
   UniqueIdentifier,
 } from "@dnd-kit/core";
+import { getField } from "@narsil-cms/plugins/fields";
 
 type SortableTableItem = {
   id: UniqueIdentifier;
@@ -153,14 +153,14 @@ function SortableTable({
 
                       return (
                         <TableCell className="px-0.5 py-0" key={index}>
-                          <FormInputRenderer
-                            id={column.handle}
-                            element={column}
-                            value={value}
-                            setValue={(value) => {
+                          {getField(column.type, {
+                            id: column.handle,
+                            element: column,
+                            value: value,
+                            setValue: (value) => {
                               onUpdate(row.id, column.handle, value);
-                            }}
-                          />
+                            },
+                          })}
                         </TableCell>
                       );
                     })}

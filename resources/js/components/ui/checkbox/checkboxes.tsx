@@ -15,17 +15,17 @@ import type {
 type CheckboxesProps = {
   options: (GroupedSelectOption | SelectOption)[];
   values: any[];
-  setValues: (values: any[]) => void;
+  onChange: (value: any[]) => void;
 };
 
-function Checkboxes({ options, values, setValues }: CheckboxesProps) {
+function Checkboxes({ options, values, onChange }: CheckboxesProps) {
   const { getLabel } = useLabels();
 
   function toggleValue(value: any) {
     if (values.includes(value)) {
-      setValues(values.filter((x) => x !== value));
+      onChange(values.filter((x) => x !== value));
     } else {
-      setValues([...values, value]);
+      onChange([...values, value]);
     }
   }
 
@@ -43,9 +43,9 @@ function Checkboxes({ options, values, setValues }: CheckboxesProps) {
 
     const toggleAll = () => {
       if (allChecked) {
-        setValues(values.filter((value) => !checkboxes.includes(value)));
+        onChange(values.filter((value) => !checkboxes.includes(value)));
       } else {
-        setValues([...new Set([...values, ...checkboxes])]);
+        onChange([...new Set([...values, ...checkboxes])]);
       }
     };
 

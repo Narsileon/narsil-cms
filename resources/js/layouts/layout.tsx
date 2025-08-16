@@ -11,6 +11,7 @@ import useRadiusStore from "@narsil-cms/stores/radius-store";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import "@narsil-cms/../css/app.css";
 import AppHead from "@narsil-cms/components/app/app-head";
+import { setField } from "@narsil-cms/plugins/fields";
 
 type LayoutProps = {
   children: React.ReactNode;

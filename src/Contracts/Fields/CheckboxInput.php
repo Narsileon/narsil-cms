@@ -17,13 +17,6 @@ interface CheckboxInput extends Contract
     #region FLUENT METHODS
 
     /**
-     * @param boolean $checked The default value.
-     *
-     * @return static Returns the current object instance.
-     */
-    public function checked(bool $checked): static;
-
-    /**
      * @param boolean $inline.
      *
      * @return static Returns the current object instance.
@@ -36,6 +29,20 @@ interface CheckboxInput extends Contract
      * @return static Returns the current object instance.
      */
     public function options(array $options): static;
+
+    /**
+     * @param boolean $required Must the input have a value?
+     *
+     * @return static Returns the current object instance.
+     */
+    public function required(bool $required): static;
+
+    /**
+     * @param boolean $value The default value.
+     *
+     * @return static Returns the current object instance.
+     */
+    public function value(bool $value): static;
 
     #endregion
 }

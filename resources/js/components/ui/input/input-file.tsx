@@ -3,14 +3,14 @@ import Input from "./input";
 
 type InputFileProps = Omit<React.ComponentProps<typeof Input>, "onChange"> & {
   value: File | string | undefined;
-  setValue: (value: any) => void;
+  onChange: (value: any) => void;
 };
 
 function InputFile({
   accept,
   children,
   value,
-  setValue,
+  onChange,
   ...props
 }: InputFileProps) {
   const [preview, setPreview] = React.useState<string | null>(null);
@@ -44,7 +44,7 @@ function InputFile({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setValue(event.target.files[0]);
+      onChange(event.target.files[0]);
     }
   };
 

@@ -22,6 +22,7 @@ function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger className="relative">
         <Input
+          className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
           type="date"
           value={value}
           onChange={(event) => onChange(event.target.value)}

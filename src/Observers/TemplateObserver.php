@@ -6,6 +6,7 @@ namespace Narsil\Observers;
 
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Policies\Permission;
+use Narsil\Services\MigrationService;
 
 #endregion
 
@@ -25,6 +26,11 @@ class TemplateObserver
     public function created(Template $template): void
     {
         $this->createPermissions($template->{Template::HANDLE});
+    }
+
+    public function saved(Template $template): void
+    {
+        MigrationService::syncTable($template);
     }
 
     #endregion

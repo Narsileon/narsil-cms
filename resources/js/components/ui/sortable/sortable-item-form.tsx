@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
+import { FormItem, FormLabel } from "@narsil-cms/components/ui/form";
 import { get, set } from "lodash";
+import { getField } from "@narsil-cms/plugins/fields";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
@@ -14,11 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/ui/dialog";
-import {
-  FormInputRenderer,
-  FormItem,
-  FormLabel,
-} from "@narsil-cms/components/ui/form";
+
 import type { AnonymousItem } from ".";
 import type { FormType } from "@narsil-cms/types/forms";
 import type { UniqueIdentifier } from "@dnd-kit/core";
@@ -77,18 +75,18 @@ function SortableItemForm({
               return (
                 <FormItem key={index}>
                   <FormLabel required={true}>{field.name}</FormLabel>
-                  <FormInputRenderer
-                    id={field.handle}
-                    element={field}
-                    value={data[field.handle]}
-                    setValue={(value) => {
+                  {getField(field.type, {
+                    id: field.handle,
+                    element: field,
+                    value: data[field.handle],
+                    setValue: (value) => {
                       const nextData = { ...data };
 
                       set(nextData, field.handle, value);
 
                       setData(nextData);
-                    }}
-                  />
+                    },
+                  })}
                   {error && optionValue === field.handle ? (
                     <p className="text-destructive text-sm">{error}</p>
                   ) : null}

@@ -14,7 +14,7 @@ type RichTextEditorProps = Partial<EditorOptions> & {
   placeholder?: string;
   toolbar?: boolean;
   value: string;
-  onValueChange?: (value: any) => void;
+  onChange?: (value: any) => void;
 };
 
 function RichTextEditor({
@@ -23,7 +23,7 @@ function RichTextEditor({
   placeholder,
   toolbar = true,
   value,
-  onValueChange,
+  onChange,
   ...props
 }: RichTextEditorProps) {
   const extensions = [
@@ -67,7 +67,7 @@ function RichTextEditor({
       },
     },
     onUpdate: ({ editor }) => {
-      onValueChange?.(editor.getHTML());
+      onChange?.(editor.getHTML());
     },
     ...props,
   });

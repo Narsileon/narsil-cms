@@ -80,9 +80,9 @@ return new class extends Migration
             $table
                 ->id(Field::ID);
             $table
-                ->string(Field::HANDLE);
-            $table
                 ->string(Field::NAME);
+            $table
+                ->string(Field::HANDLE);
             $table
                 ->string(Field::DESCRIPTION)
                 ->nullable();
