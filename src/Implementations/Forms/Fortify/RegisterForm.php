@@ -60,7 +60,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->className('col-span-6')
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
                     ->required(true),
             ]),
             new Field([
@@ -69,7 +69,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
                     ->className('col-span-6')
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
                     ->required(true),
             ]),
             new Field([
@@ -78,7 +78,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')
-                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME)
                     ->icon('circle-user')
                     ->required(true),
             ]),
@@ -88,7 +88,7 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
                     ->className('col-span-6')
-                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME)
                     ->icon('circle-user')
                     ->required(true),
             ]),

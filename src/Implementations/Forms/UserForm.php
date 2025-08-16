@@ -78,7 +78,7 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.password'),
                                     Field::TYPE => PasswordInput::class,
                                     Field::SETTINGS => app(PasswordInput::class)
-                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
                                         ->required($isPost),
                                 ])
                             ]),
@@ -88,7 +88,7 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                                     Field::TYPE => PasswordInput::class,
                                     Field::SETTINGS => app(PasswordInput::class)
-                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
                                         ->required($isPost),
                                 ])
                             ]),
@@ -105,7 +105,7 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.last_name'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
-                                        ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                                        ->autoComplete(AutoCompleteEnum::FAMILY_NAME)
                                         ->icon('circle-user')
                                         ->required(true),
                                 ]),
@@ -116,7 +116,7 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.first_name'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
-                                        ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                                        ->autoComplete(AutoCompleteEnum::GIVEN_NAME)
                                         ->icon('circle-user')
                                         ->required(true),
                                 ]),

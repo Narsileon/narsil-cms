@@ -5,6 +5,7 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
+use Narsil\Enums\Fields\AutoCompleteEnum;
 
 #endregion
 
@@ -17,11 +18,11 @@ interface TextInput extends Contract
     #region FLUENT METHODS
 
     /**
-     * @param string $autoComplete
+     * @param AutoCompleteEnum $autoComplete
      *
      * @return static Returns the current object instance.
      */
-    public function autoComplete(string $autoComplete): static;
+    public function autoComplete(AutoCompleteEnum $autoComplete): static;
 
     /**
      * @param string $icon The name of the icon.

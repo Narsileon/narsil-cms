@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\NumberInput;
 use Narsil\Contracts\Fields\TextInput as Contract;
+use Narsil\Enums\Fields\AutoCompleteEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 
@@ -89,9 +90,9 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function autoComplete(string $autoComplete): static
+    final public function autoComplete(AutoCompleteEnum $autoComplete): static
     {
-        $this->settings['autoComplete'] = $autoComplete;
+        $this->settings['autoComplete'] = $autoComplete->value;
 
         return $this;
     }

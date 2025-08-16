@@ -51,7 +51,7 @@ class LoginForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailInput::class,
                 Field::SETTINGS => app(EmailInput::class)
-                    ->autoComplete(AutoCompleteEnum::EMAIL->value)
+                    ->autoComplete(AutoCompleteEnum::EMAIL)
                     ->placeholder('email@example.com')
                     ->icon('email')
                     ->required(true),
@@ -61,7 +61,7 @@ class LoginForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
-                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
+                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
                     ->required(true),
             ]),
             new Field([
