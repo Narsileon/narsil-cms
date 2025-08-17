@@ -51,15 +51,6 @@ class Entity extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "uuid" column.
-     */
-    final public const UUID = 'uuid';
-
-    /**
      * @var string The table associated with the model.
      */
     final public const TABLE = 'entities';
@@ -72,6 +63,18 @@ class Entity extends Model
      * The table associated with the model.
      */
     public static string $associatedTable = self::TABLE;
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected static function maxRevisions(): ?int
+    {
+        return null;
+    }
 
     #endregion
 }

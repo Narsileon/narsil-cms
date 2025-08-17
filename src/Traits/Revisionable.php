@@ -25,9 +25,17 @@ trait Revisionable
      */
     final public const DELETED_AT = 'deleted_at';
     /**
+     * @var string The name of the "id" column.
+     */
+    final public const ID = 'id';
+    /**
      * @var string The name of the "revision" column.
      */
     final public const REVISION = 'revision';
+    /**
+     * @var string The name of the "uuid" column.
+     */
+    final public const UUID = 'uuid';
 
     /**
      * @var string The name of the "revisions" count.
@@ -53,8 +61,8 @@ trait Revisionable
         return $this
             ->hasMany(
                 self::class,
-                'id',
-                'id',
+                self::ID,
+                self::ID,
             )
             ->whereNotNull(self::DELETED_AT)
             ->orderByDesc(self::REVISION);
@@ -82,7 +90,7 @@ trait Revisionable
             if ($model->trashed())
             {
                 $current = self::query()
-                    ->where('id', $model->id)
+                    ->where(self::ID, $model->{self::ID})
                     ->whereNull(self::DELETED_AT)
                     ->first();
 
@@ -114,6 +122,13 @@ trait Revisionable
         });
     }
 
+    /**
+     * Gets the maximum number of revisions.
+     *
+     * @return integer|null
+     */
+    abstract protected static function maxRevisions(): ?int;
+
     #endregion
 
     #region PRIVATE METHODS
@@ -142,6 +157,38 @@ trait Revisionable
         }
 
         $replicated->saveQuietly();
+
+        static::pruneRevisions($model->{self::ID});
+    }
+
+    /**
+     * @param integer $id
+     *
+     * @return void
+     */
+    private static function pruneRevisions(int $id): void
+    {
+        $max = static::maxRevisions();
+
+        if (!$max)
+        {
+            return;
+        }
+
+        $uuids = self::onlyTrashed()
+            ->where(self::ID, $id)
+            ->orderByDesc(self::REVISION)
+            ->skip($max)
+            ->take(PHP_INT_MAX)
+            ->pluck(self::UUID)
+            ->toArray();
+
+        if (!empty($uuids))
+        {
+            self::query()
+                ->whereIn(self::UUID, $uuids)
+                ->forceDelete();
+        }
     }
 
     #endregion
