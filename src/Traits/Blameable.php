@@ -4,6 +4,7 @@ namespace Narsil\Traits;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use Narsil\Models\User;
@@ -46,53 +47,11 @@ trait Blameable
 
     #endregion
 
-    #region PUBLIC METHODS
-
-    /**
-     * @return void
-     */
-    public static function bootBlameable(): void
-    {
-        static::creating(function ($model)
-        {
-            if (Auth::check())
-            {
-                $model->{self::CREATED_BY} = Auth::id();
-            }
-        });
-
-        static::deleting(function ($model)
-        {
-            if (Auth::check())
-            {
-                $model->{self::DELETED_BY} = Auth::id();
-
-                $model->save();
-            }
-        });
-
-        static::updating(function ($model)
-        {
-            if (Auth::check())
-            {
-                $model->{self::UPDATED_BY} = Auth::id();
-            }
-        });
-
-        static::updated(function ($model)
-        {
-            if (Auth::check())
-            {
-                $model->{self::UPDATED_BY} = Auth::id();
-            }
-        });
-    }
-
-    #endregion
-
     #region RELATIONS
 
     /**
+     * Gets the user who created the model.
+     *
      * @return BelongsTo
      */
     public function creator(): BelongsTo
@@ -106,6 +65,8 @@ trait Blameable
     }
 
     /**
+     * Gets the user who deleted the model.
+     *
      * @return BelongsTo
      */
     public function deleter(): BelongsTo
@@ -119,6 +80,8 @@ trait Blameable
     }
 
     /**
+     * Gets the user who updated the model.
+     *
      * @return BelongsTo
      */
     public function updater(): BelongsTo
@@ -129,6 +92,42 @@ trait Blameable
                 self::UPDATED_BY,
                 User::ID
             );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return void
+     */
+    protected static function bootBlameable(): void
+    {
+        static::creating(function (Model $model)
+        {
+            if (Auth::check())
+            {
+                $model->{self::CREATED_BY} = Auth::id();
+            }
+        });
+
+        static::deleting(function (Model $model)
+        {
+            if (Auth::check())
+            {
+                $model->{self::DELETED_BY} = Auth::id();
+
+                $model->saveQuietly();
+            }
+        });
+
+        static::updating(function (Model $model)
+        {
+            if (Auth::check())
+            {
+                $model->{self::UPDATED_BY} = Auth::id();
+            }
+        });
     }
 
     #endregion

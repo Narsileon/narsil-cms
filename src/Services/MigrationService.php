@@ -100,6 +100,9 @@ class MigrationService
                 ->bigInteger(Entity::ID)
                 ->index();
             $table
+                ->bigInteger(Entity::REVISION)
+                ->default(1);
+            $table
                 ->timestamp(Entity::CREATED_AT);
             $table
                 ->foreignId(Entity::CREATED_BY)

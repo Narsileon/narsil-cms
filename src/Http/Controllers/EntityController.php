@@ -200,7 +200,7 @@ class EntityController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $entity->update($attributes);
+        $entity->update($data);
 
         return $this
             ->redirect(route('collections.index', [

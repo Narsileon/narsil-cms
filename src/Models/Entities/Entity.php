@@ -7,10 +7,10 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Narsil\Policies\EntityPolicy;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\Revisionable;
 
 #endregion
 
@@ -24,7 +24,7 @@ class Entity extends Model
     use Blameable;
     use HasDatetimes;
     use HasUuids;
-    use SoftDeletes;
+    use Revisionable;
 
     #region CONSTRUCTOR
 
@@ -50,10 +50,6 @@ class Entity extends Model
 
     #region CONSTANTS
 
-    /**
-     * @var string The name of the "deleted at" column.
-     */
-    final public const DELETED_AT = 'deleted_at';
     /**
      * @var string The name of the "id" column.
      */

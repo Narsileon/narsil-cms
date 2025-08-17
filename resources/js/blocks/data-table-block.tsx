@@ -54,7 +54,7 @@ function DataTableBlock({ dataTable }: DataTableBlockProps) {
                       <DataTableCell cell={cell}>
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext(),
+                          cell.getContext() ?? "",
                         )}
                       </DataTableCell>
                     </SortableContext>
