@@ -1,8 +1,8 @@
 type Query {
     pages: [Pages!]! @table @all(model: "Narsil\\Models\\Entities\\Entity")
-    page(uuid: String! @eq): Pages @find(model: "Narsil\\Models\\Entities\\Entity")
+    page(uuid: String! @eq): Pages @table @find(model: "Narsil\\Models\\Entities\\Entity")
     products: [Products!]! @table @all(model: "Narsil\\Models\\Entities\\Entity")
-    product(uuid: String! @eq): Products @find(model: "Narsil\\Models\\Entities\\Entity")
+    product(uuid: String! @eq): Products @table @find(model: "Narsil\\Models\\Entities\\Entity")
 }
 
 type Pages {

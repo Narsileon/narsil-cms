@@ -138,7 +138,7 @@ class UserController extends AbstractController
             User::RELATION_ROLES,
         ]);
 
-        $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::HANDLE));
+        $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::NAME));
 
         $this->form->method = MethodEnum::PATCH;
         $this->form->url = route('users.update', [

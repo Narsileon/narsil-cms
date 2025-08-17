@@ -49,8 +49,8 @@ class Sidebar extends AbstractComponent implements Contract
 
         foreach ($templates as $template)
         {
-            $collections[] = (new NavigationItem(route('entities.index', [
-                'type' => $template->{Template::HANDLE},
+            $collections[] = (new NavigationItem(route('collections.index', [
+                'collection' => $template->{Template::HANDLE},
             ]), $template->{Template::NAME}))
                 ->icon('layout');
         }

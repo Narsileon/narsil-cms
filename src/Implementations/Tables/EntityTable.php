@@ -25,18 +25,18 @@ class EntityTable extends AbstractTable implements Contract
      *
      * @return void
      */
-    public function __construct(string $type = "")
+    public function __construct(string $collection = "")
     {
-        $this->type = $type;
+        $this->collection = $collection;
 
-        parent::__construct(Entity::TABLE);
+        parent::__construct($collection);
     }
 
     #endregion
 
     #region PROPERTIES
 
-    protected readonly string $type;
+    protected readonly string $collection;
 
     #endregion
 
@@ -47,9 +47,8 @@ class EntityTable extends AbstractTable implements Contract
      */
     public function getRoutes(): array
     {
-        return RouteService::getNames($this->name, [
-            'entity' => $this->type,
-            'type' => $this->type,
+        return RouteService::getNames('collections', [
+            'collection' => $this->collection,
         ]);
     }
 

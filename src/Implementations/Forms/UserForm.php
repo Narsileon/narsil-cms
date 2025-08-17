@@ -168,7 +168,7 @@ class UserForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Role $role)
             {
-                return new SelectOption($role->{Role::NAME}, $role->{Role::HANDLE});
+                return new SelectOption($role->{Role::NAME}, $role->{Role::NAME});
             })
             ->toArray();
     }

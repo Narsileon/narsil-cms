@@ -95,8 +95,6 @@ return new class extends Migration
             $table
                 ->string(Role::NAME);
             $table
-                ->string(Role::HANDLE);
-            $table
                 ->timestamps();
         });
     }

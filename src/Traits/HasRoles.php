@@ -37,11 +37,11 @@ trait HasRoles
     #region PUBLIC METHODS
 
     /**
-     * @param array<int|string>|int|string $roles
+     * @param string|integer|array<string|integer> $roles
      *
      * @return void
      */
-    final public function attachRoles(array|int|string $roles): void
+    final public function attachRoles(string|int|array $roles): void
     {
         $roleIds = $this->getRoleIds($roles);
 
@@ -49,11 +49,11 @@ trait HasRoles
     }
 
     /**
-     * @param array<int|string>|int|string $roles
+     * @param string|integer|array<string|integer> $roles
      *
      * @return void
      */
-    final public function detachs(array|int|string $roles): void
+    final public function detachRoles(string|int|array $roles): void
     {
         $roleIds = $this->getRoleIds($roles);
 
@@ -61,34 +61,46 @@ trait HasRoles
     }
 
     /**
-     * @param int|string $role
+     * @param string|integer|array<string|integer> $roles
      *
      * @return bool
      */
-    final public function hasRole(int|string $role): bool
+    final public function hasRole(string|int|array $roles): bool
     {
         $this->loadMissing(self::RELATION_ROLES);
 
         $hasRole = false;
 
-        if (is_int($role))
+        if (is_string($roles))
         {
-            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::ID, $role);
+            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::NAME, $roles);
         }
-        else if (is_string($role))
+        else if (is_int($roles))
         {
-            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::HANDLE, $role);
+            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::ID, $roles);
+        }
+        else if (is_array($roles))
+        {
+            foreach ($roles as $role)
+            {
+                if ($this->hasRole($role))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         return $hasRole;
     }
 
     /**
-     * @param array<int|string>|int|string $roles
+     * @param string|integer|array<string|integer> $roles
      *
      * @return void
      */
-    final public function syncRoles(array|int|string $roles): void
+    final public function syncRoles(string|int|array $roles): void
     {
         $roleIds = $this->getRoleIds($roles);
 
@@ -100,40 +112,40 @@ trait HasRoles
     #region PRIVATE METHODS
 
     /**
-     * @param array<int|string>|int|string $roles
+     * @param string|integer|array<string|integer> $roles
      *
      * @return array<int>
      */
-    private function getRoleIds(array|int|string $roles): array
+    private function getRoleIds(string|int|array $roles): array
     {
         if (!is_array($roles))
         {
             $roles = [$roles];
         }
 
+        $names = [];
         $ids = [];
-        $handles = [];
 
         foreach ($roles as $role)
         {
-            if (is_int($role))
+            if (is_string($role))
+            {
+                $names[] = $role;
+            }
+            else if (is_int($role))
             {
                 $ids[] = $role;
             }
-            else if (is_string($role))
-            {
-                $handles[] = $role;
-            }
         }
 
-        if (!empty($handles))
+        if (!empty($names))
         {
-            $handleIds = Role::query()
-                ->whereIn(Role::HANDLE, $handles)
+            $names = Role::query()
+                ->whereIn(Role::NAME, $names)
                 ->pluck(Role::ID)
                 ->toArray();
 
-            $ids = array_merge($ids, $handleIds);
+            $ids = array_merge($ids, $names);
         }
 
         return array_values(array_unique($ids));

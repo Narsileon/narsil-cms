@@ -4,11 +4,11 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Narsil\Models\Entities\EntityElement;
+use Narsil\Policies\EntityPolicy;
 use Narsil\Traits\HasDatetimes;
 
 #endregion
@@ -17,6 +17,7 @@ use Narsil\Traits\HasDatetimes;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UsePolicy(EntityPolicy::class)]
 class Entity extends Model
 {
     use HasDatetimes;
@@ -32,8 +33,9 @@ class Entity extends Model
      */
     public function __construct(array $attributes = [])
     {
+        $this->table = static::$associatedTable;
+
         $this->primaryKey = self::UUID;
-        $this->table = static::$templateTable;
 
         $this->guarded = array_merge([
             self::ID,
@@ -68,24 +70,10 @@ class Entity extends Model
 
     #region PROPERTIES
 
-    public static $templateTable = self::TABLE;
-
-    #endregion
-
-    #region RELATIONS
-
     /**
-     * @return HasMany
+     * The table associated with the model.
      */
-    public function elements(): HasMany
-    {
-        return $this
-            ->hasMany(
-                EntityElement::class,
-                EntityElement::ENTITY_UUID,
-                self::UUID,
-            );
-    }
+    public static string $associatedTable = self::TABLE;
 
     #endregion
 }

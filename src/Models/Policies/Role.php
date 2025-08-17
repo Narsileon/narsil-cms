@@ -43,10 +43,6 @@ class Role extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "handle" column.
-     */
-    final public const HANDLE = 'handle';
-    /**
      * @var string The name of the "id" column.
      */
     final public const ID = 'id';

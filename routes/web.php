@@ -85,20 +85,20 @@ Route::middleware([
 
         Route::controller(EntityController::class)->group(function ()
         {
-            Route::delete('entities/{type}', 'destroyMany')
-                ->name('entities.destroyMany');
-            Route::get('entities/{type}', 'index')
-                ->name('entities.index');
-            Route::post('entities/{type}', 'store')
-                ->name('entities.store');
-            Route::get('entities/{type}/create', 'create')
-                ->name('entities.create');
-            Route::patch('entities/{type}/{entity}', 'update')
-                ->name('entities.update');
-            Route::delete('entities/{type}/{entity}', 'destroy')
-                ->name('entities.destroy');
-            Route::get('entities/{type}/{entity}/edit', 'edit')
-                ->name('entities.edit');
+            Route::delete('collections/{collection}', 'destroyMany')
+                ->name('collections.destroyMany');
+            Route::get('collections/{collection}', 'index')
+                ->name('collections.index');
+            Route::post('collections/{collection}', 'store')
+                ->name('collections.store');
+            Route::get('collections/{collection}/create', 'create')
+                ->name('collections.create');
+            Route::patch('collections/{collection}/{id}', 'update')
+                ->name('collections.update');
+            Route::delete('collections/{collection}/{id}', 'destroy')
+                ->name('collections.destroy');
+            Route::get('collections/{collection}/{id}/edit', 'edit')
+                ->name('collections.edit');
         });
 
         #endregion

@@ -4,8 +4,10 @@ namespace Narsil\Traits;
 
 #region USE
 
+use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Narsil\Models\Policies\Permission;
+use Narsil\Models\Policies\Role;
 
 #endregion
 
@@ -37,11 +39,11 @@ trait HasPermissions
     #region PUBLIC METHODS
 
     /**
-     * @param array<int|string>|int|string $permissions
+     * @param string|integer|array<string|integer> $permissions
      *
      * @return void
      */
-    final public function attachPermissions(array|int|string $permissions): void
+    final public function attachPermissions(string|int|array $permissions): void
     {
         $permissionIds = $this->getPermissionIds($permissions);
 
@@ -49,11 +51,11 @@ trait HasPermissions
     }
 
     /**
-     * @param array<int|string>|int|string $roles
+     * @param string|integer|array<string|integer> $permissions
      *
      * @return void
      */
-    final public function detachPermissions(array|int|string $permissions): void
+    final public function detachPermissions(string|int|array $permissions): void
     {
         $permissionIds = $this->getPermissionIds($permissions);
 
@@ -61,34 +63,56 @@ trait HasPermissions
     }
 
     /**
-     * @param int|string $role
+     * @param string|integer $permission
      *
      * @return bool
      */
-    final public function hasPermission(int|string $permission): bool
+    final public function hasPermission(string|int $permission): bool
     {
-        $this->loadMissing(self::RELATION_PERMISSIONS);
-
-        $hasPermission = false;
-
-        if (is_int($permission))
+        if ($permission = $this->findPermission($permission))
         {
-            $hasPermission = $this->{self::RELATION_PERMISSIONS}->contains(Permission::ID, $permission);
-        }
-        else if (is_string($permission))
-        {
-            $hasPermission = $this->{self::RELATION_PERMISSIONS}->contains(PERMISSION::NAME, $permission);
+            return $this->hasPermissionViaPermissions($permission) || $this->hasPermissionViaRoles($permission);
         }
 
-        return $hasPermission;
+        return true;
     }
 
     /**
-     * @param array<int|string>|int|string $permissions
+     * @param Permission $permission
+     *
+     * @return bool
+     */
+    final public function hasPermissionViaPermissions(Permission $permission): bool
+    {
+        $this->loadMissing(self::RELATION_PERMISSIONS);
+
+        return $this->{self::RELATION_PERMISSIONS}
+            ->contains($permission->getKeyName(), $permission->getKey());
+    }
+
+    /**
+     * @param Permission $permission
+     *
+     * @return bool
+     */
+    final public function hasPermissionViaRoles(Permission $permission): bool
+    {
+        if (!method_exists($this, 'hasRole'))
+        {
+            return false;
+        }
+
+        $roles = $permission->{Permission::RELATION_ROLES}->pluck(Role::NAME)->toArray();
+
+        return $this->hasRole($roles);
+    }
+
+    /**
+     * @param string|integer|array<string|integer> $permissions
      *
      * @return void
      */
-    final public function syncPermissions(array|int|string $permissions): void
+    final public function syncPermissions(string|int|array $permissions): void
     {
         $permissionIds = $this->getPermissionIds($permissions);
 
@@ -100,7 +124,7 @@ trait HasPermissions
     #region PRIVATE METHODS
 
     /**
-     * @param array<int|string>|int|string $permissions
+     * @param string|integer|array<string|integer> $permissions
      *
      * @return array<int>
      */
@@ -112,31 +136,44 @@ trait HasPermissions
         }
 
         $ids = [];
-        $handles = [];
+        $names = [];
 
         foreach ($permissions as $permission)
         {
-            if (is_int($permission))
+            if (is_string($permission))
+            {
+                $names[] = $permission;
+            }
+            else if (is_int($permission))
             {
                 $ids[] = $permission;
-            }
-            else if (is_string($permission))
-            {
-                $handles[] = $permission;
             }
         }
 
         if (!empty($handles))
         {
-            $handleIds = Permission::query()
-                ->whereIn(PERMISSION::NAME, $handles)
+            $names = Permission::query()
+                ->whereIn(Permission::NAME, $names)
                 ->pluck(Permission::ID)
                 ->toArray();
 
-            $ids = array_merge($ids, $handleIds);
+            $ids = array_merge($ids, $names);
         }
 
         return array_values(array_unique($ids));
+    }
+
+    /**
+     * @param string|integer $permission
+     *
+     * @return Permission|null
+     */
+    private function findPermission(string|int $permission): ?Permission
+    {
+        return Permission::query()
+            ->where(Permission::NAME, $permission)
+            ->orWhere(Permission::ID, $permission)
+            ->first();
     }
 
     #endregion

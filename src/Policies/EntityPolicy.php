@@ -26,7 +26,7 @@ class EntityPolicy
      */
     public function create(User $user): bool
     {
-        $permission = PermissionService::getName(Entity::TABLE, PermissionEnum::CREATE->value);
+        $permission = PermissionService::getName(Entity::$associatedTable, PermissionEnum::CREATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -39,7 +39,7 @@ class EntityPolicy
      */
     public function delete(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getName(Entity::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getName(Entity::$associatedTable, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -51,7 +51,7 @@ class EntityPolicy
      */
     public function deleteAny(User $user): bool
     {
-        $permission = PermissionService::getName(Entity::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getName(Entity::$associatedTable, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -64,7 +64,7 @@ class EntityPolicy
      */
     public function update(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getName(Entity::TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getName(Entity::$associatedTable, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -77,7 +77,7 @@ class EntityPolicy
      */
     public function view(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getName(Entity::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getName(Entity::$associatedTable, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -89,7 +89,7 @@ class EntityPolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(Entity::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getName(Entity::$associatedTable, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Contracts\Forms\EntityForm;
@@ -39,6 +38,10 @@ class EntityController extends AbstractController
     public function __construct(EntityFormRequest $formRequest)
     {
         $this->formRequest = $formRequest;
+
+        $collection = request()->route('collection');
+
+        Entity::$associatedTable = $collection;
     }
 
     #endregion
@@ -56,23 +59,21 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $type
+     * @param string $collection
      *
      * @return JsonResponse|Response
      */
-    public function index(Request $request, string $type): JsonResponse|Response
+    public function index(Request $request, string $collection): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
 
         $template = Template::query()
-            ->firstWhere(Template::HANDLE, '=', $type);
-
-        Entity::$templateTable = $type;
+            ->firstWhere(Template::HANDLE, '=', $collection);
 
         $query = Entity::query();
 
         $dataTable = new DataTableCollection($query, app()->make(EntityTable::class, [
-            'type' => $type
+            'collection' => $collection
         ]));
 
         return $this->render(
@@ -87,24 +88,24 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $type
+     * @param string $collection
      *
      * @return JsonResponse|Response
      */
-    public function create(Request $request, string $type): JsonResponse|Response
+    public function create(Request $request, string $collection): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
         $template = Template::query()
-            ->firstWhere(Template::HANDLE, '=', $type);
+            ->firstWhere(Template::HANDLE, '=', $collection);
 
         $form = app()->make(EntityForm::class, [
             'template' => $template
         ]);
 
         $form->method = MethodEnum::POST;
-        $form->url = route('entities.store', [
-            'type' => $type
+        $form->url = route('collections.store', [
+            'collection' => $collection
         ]);
 
         return $this->render(
@@ -115,11 +116,11 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $type
+     * @param string $collection
      *
      * @return RedirectResponse
      */
-    public function store(Request $request, string $type): RedirectResponse
+    public function store(Request $request, string $collection): RedirectResponse
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
@@ -132,22 +133,22 @@ class EntityController extends AbstractController
         $entity = Entity::create($attributes);
 
         return $this
-            ->redirect(route('entities.index', [
-                'type' => $type,
+            ->redirect(route('collections.index', [
+                'collection' => $collection,
             ]), $entity)
             ->with('success', trans('narsil::toasts.success.entities.created'));
     }
 
     /**
      * @param Request $request
+     * @param string $collection
      * @param integer $id
-     * @param string $type
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, int $id, string $type): JsonResponse|Response
+    public function edit(Request $request, string $collection, int $id): JsonResponse|Response
     {
-        $entity = Entity::ofType($type)
+        $entity = Entity::query()
             ->firstWhere([
                 Entity::ID => $id
             ]);
@@ -155,16 +156,16 @@ class EntityController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
         $template = Template::query()
-            ->firstWhere(Template::HANDLE, '=', $type);
+            ->firstWhere(Template::HANDLE, '=', $collection);
 
         $form = app()->make(EntityForm::class, [
             'template' => $template,
         ]);
 
         $form->method = MethodEnum::PATCH;
-        $form->url = route('entities.update', [
-            Str::singular(Entity::TABLE) => $entity->{Entity::ID},
-            'type' => $type,
+        $form->url = route('collections.update', [
+            'id' => $entity->{Entity::ID},
+            'collection' => $collection,
         ]);
 
         return $this->render(
@@ -177,14 +178,14 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
+     * @param string $collection
      * @param integer $id
-     * @param string $type
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, int $id, string $type): RedirectResponse
+    public function update(Request $request, string $collection, int $id): RedirectResponse
     {
-        $entity = Entity::ofType($type)
+        $entity = Entity::query()
             ->firstWhere([
                 Entity::ID => $id
             ]);
@@ -200,22 +201,22 @@ class EntityController extends AbstractController
         $entity->update($attributes);
 
         return $this
-            ->redirect(route('entities.index', [
-                'type' => $type
+            ->redirect(route('collections.index', [
+                'collection' => $collection
             ]), $entity)
             ->with('success', trans('narsil::toasts.success.entities.updated'));
     }
 
     /**
      * @param Request $request
+     * @param string $collection
      * @param integer $id
-     * @param string $type
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, int $id, string $type): RedirectResponse
+    public function destroy(Request $request, string $collection, int $id): RedirectResponse
     {
-        $entity = Entity::ofType($type)
+        $entity = Entity::query()
             ->firstWhere([
                 Entity::ID => $id
             ]);
@@ -225,30 +226,30 @@ class EntityController extends AbstractController
         $entity->delete();
 
         return $this
-            ->redirect(route('entities.index', [
-                'type' => $type,
+            ->redirect(route('collections.index', [
+                'collection' => $collection,
             ]))
             ->with('success', trans('narsil::toasts.success.entities.deleted'));
     }
 
     /**
      * @param DestroyManyRequest $request
-     * @param string $type
+     * @param string $collection
      *
      * @return RedirectResponse
      */
-    public function destroyMany(DestroyManyRequest $request, string $type): RedirectResponse
+    public function destroyMany(DestroyManyRequest $request, string $collection): RedirectResponse
     {
         $this->authorize(PermissionEnum::DELETE_ANY, Entity::class);
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Entity::ofType($type)
+        Entity::query()
             ->whereIn(Entity::ID, $ids)
             ->delete();
 
         return $this
-            ->redirect(route('entities.index'))
+            ->redirect(route('collections.index'))
             ->with('success', trans('narsil::toasts.success.entities.deleted_many'));
     }
 

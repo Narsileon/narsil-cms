@@ -45,7 +45,7 @@ GRAPHQL;
             {
                 $fieldName = $resolveInfo->fieldName;
 
-                Entity::$templateTable = Str::plural($fieldName);
+                Entity::$associatedTable = Str::plural($fieldName);
 
                 $result = $resolver($root, $args, $context, $resolveInfo);
 
