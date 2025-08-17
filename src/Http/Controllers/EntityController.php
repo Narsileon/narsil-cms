@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Contracts\Forms\EntityForm;
-use Narsil\Contracts\Tables\EntityTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -70,7 +69,12 @@ class EntityController extends AbstractController
         $template = Template::query()
             ->firstWhere(Template::HANDLE, '=', $collection);
 
-        $query = Entity::query();
+        $query = Entity::query()
+            ->with([
+                Entity::RELATION_CREATOR,
+                Entity::RELATION_DELETER,
+                Entity::RELATION_UPDATER,
+            ]);
 
         $dataTable = new DataTableCollection($query, $collection);
 

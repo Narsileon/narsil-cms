@@ -48,6 +48,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->table = self::TABLE;
 
+        $this->appends = array_merge([
+            self::ATTRIBUTE_FULL_NAME,
+        ], $this->appends);
+
         $this->casts = array_merge([
             self::AVATAR => ImageCast::class . ':avatars',
             self::EMAIL_VERIFIED_AT => 'datetime',
@@ -137,6 +141,10 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     final public const ATTRIBUTE_CURRENT_PASSWORD = 'current_password';
     /**
+     * @var string The name of the "full name" attribute.
+     */
+    final public const ATTRIBUTE_FULL_NAME = 'full_name';
+    /**
      * @var string The name of the "password confirmation" attribute.
      */
     final public const ATTRIBUTE_PASSWORD_CONFIRMATION = 'password_confirmation';
@@ -211,6 +219,18 @@ class User extends Authenticatable implements MustVerifyEmail
                 Session::USER_ID,
                 self::ID
             );
+    }
+
+    #endregion
+
+    #region ATTRIBUTES
+
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     #endregion

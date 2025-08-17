@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Narsil\Policies\EntityPolicy;
+use Narsil\Traits\Blameable;
 use Narsil\Traits\HasDatetimes;
 
 #endregion
@@ -20,6 +21,7 @@ use Narsil\Traits\HasDatetimes;
 #[UsePolicy(EntityPolicy::class)]
 class Entity extends Model
 {
+    use Blameable;
     use HasDatetimes;
     use HasUuids;
     use SoftDeletes;

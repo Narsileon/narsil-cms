@@ -5,6 +5,7 @@
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Entities\Entity;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
 use Narsil\Models\User;
@@ -33,12 +34,17 @@ return [
         ],
 
         // Models
-
         Block::TABLE => [
             'created' => 'The block has been successfully created.',
             'deleted' => 'The block has been successfully deleted.',
             'deleted_many' => 'The blocks have been successfully deleted.',
             'updated' => 'The block has been successfully updated.',
+        ],
+        Entity::TABLE => [
+            'created' => 'The entity has been successfully created.',
+            'deleted' => 'The entity has been successfully deleted.',
+            'deleted_many' => 'The entities have been successfully deleted.',
+            'updated' => 'The entity has been successfully updated.',
         ],
         Field::TABLE => [
             'created' => 'The field has been successfully created.',

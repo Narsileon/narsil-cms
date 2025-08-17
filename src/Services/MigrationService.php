@@ -16,6 +16,7 @@ use Narsil\Contracts\Fields\TimeInput;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\User;
 use Narsil\Services\GraphQLService;
 use Narsil\Services\TemplateService;
 
@@ -99,10 +100,27 @@ class MigrationService
                 ->bigInteger(Entity::ID)
                 ->index();
             $table
-                ->timestamps();
+                ->timestamp(Entity::CREATED_AT);
+            $table
+                ->foreignId(Entity::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $table
+                ->timestamp(Entity::UPDATED_AT);
+            $table
+                ->foreignId(Entity::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
             $table
                 ->softDeletes()
                 ->index();
+            $table
+                ->foreignId(Entity::DELETED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
         });
     }
 
