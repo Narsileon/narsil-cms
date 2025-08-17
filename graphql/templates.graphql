@@ -1,8 +1,8 @@
 type Query {
-    pages: [Pages!]! @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@all")
-    page(id: ID!): Pages @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@find")
-    products: [Products!]! @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@all")
-    product(id: ID!): Products @field(resolver: "Narsil\\Resolvers\\GraphQLResolver@find")
+    pages: [Pages!]! @table @all(model: "Narsil\\Models\\Entities\\Entity")
+    page(uuid: String! @eq): Pages @find(model: "Narsil\\Models\\Entities\\Entity")
+    products: [Products!]! @table @all(model: "Narsil\\Models\\Entities\\Entity")
+    product(uuid: String! @eq): Products @find(model: "Narsil\\Models\\Entities\\Entity")
 }
 
 type Pages {

@@ -58,10 +58,10 @@ class GraphQLService
 
             $name = $template->{Template::NAME};
 
-            $resolverNamespace = 'Narsil\\\\Resolvers\\\\GraphQLResolver';
+            $model = 'Narsil\\\\Models\\\\Entities\\\\Entity';
 
-            $queries .= "    {$plural}: [$name!]! @field(resolver: \"$resolverNamespace@all\")\n";
-            $queries .= "    {$singular}(id: ID!): $name @field(resolver: \"$resolverNamespace@find\")\n";
+            $queries .= "    {$plural}: [$name!]! @table @all(model: \"$model\")\n";
+            $queries .= "    {$singular}(uuid: String! @eq): $name @table @find(model: \"$model\")\n";
         }
 
         $queries .= "}\n";

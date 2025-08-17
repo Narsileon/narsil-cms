@@ -67,8 +67,9 @@ class EntityController extends AbstractController
         $template = Template::query()
             ->firstWhere(Template::HANDLE, '=', $type);
 
-        $query = Entity::query()
-            ->whereRelation(Entity::RELATION_TEMPLATE, Template::HANDLE, '=', $type);
+        Entity::$templateTable = $type;
+
+        $query = Entity::query();
 
         $dataTable = new DataTableCollection($query, app()->make(EntityTable::class, [
             'type' => $type
