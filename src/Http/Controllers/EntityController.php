@@ -72,9 +72,7 @@ class EntityController extends AbstractController
 
         $query = Entity::query();
 
-        $dataTable = new DataTableCollection($query, app()->make(EntityTable::class, [
-            'collection' => $collection
-        ]));
+        $dataTable = new DataTableCollection($query, $collection);
 
         return $this->render(
             component: 'narsil/cms::resources/index',

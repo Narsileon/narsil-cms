@@ -4,7 +4,6 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Contracts\Tables\FieldTable as Contract;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Sites\SiteGroup;
 use Narsil\Support\TableColumn;
@@ -15,7 +14,7 @@ use Narsil\Support\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteGroupTable extends AbstractTable implements Contract
+class SiteGroupTable extends AbstractTable
 {
     #region CONSTRUCTOR
 

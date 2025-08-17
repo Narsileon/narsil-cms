@@ -75,7 +75,7 @@ class TemplateController extends AbstractController
 
         $query = Template::query();
 
-        $dataTable = new DataTableCollection($query, app(TemplateTable::class));
+        $dataTable = new DataTableCollection($query, Template::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',

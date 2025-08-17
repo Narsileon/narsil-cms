@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\BlockFormRequest;
 use Narsil\Contracts\Forms\BlockForm;
-use Narsil\Contracts\Tables\BlockTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -81,7 +80,7 @@ class BlockController extends AbstractController
                 Block::RELATION_FIELDS,
             ]);
 
-        $dataTable = new DataTableCollection($query, app(BlockTable::class));
+        $dataTable = new DataTableCollection($query, Block::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',

@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Contracts\Tables\EntityTable as Contract;
+use Illuminate\Support\Facades\Schema;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\RouteService;
@@ -16,30 +16,8 @@ use Narsil\Support\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityTable extends AbstractTable implements Contract
+class EntityTable extends AbstractTable
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param string $type
-     *
-     * @return void
-     */
-    public function __construct(string $collection = "")
-    {
-        $this->collection = $collection;
-
-        parent::__construct($collection);
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    protected readonly string $collection;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -48,7 +26,7 @@ class EntityTable extends AbstractTable implements Contract
     public function getRoutes(): array
     {
         return RouteService::getNames('collections', [
-            'collection' => $this->collection,
+            'collection' => $this->name,
         ]);
     }
 
@@ -61,20 +39,25 @@ class EntityTable extends AbstractTable implements Contract
      */
     protected function columns(): array
     {
-        return [
-            new TableColumn(
-                id: Entity::ID,
-                visibility: true,
-            ),
-            new TableColumn(
-                id: Entity::CREATED_AT,
-                visibility: true,
-            ),
-            new TableColumn(
-                id: Entity::UPDATED_AT,
-                visibility: true,
-            ),
+        $columns = [];
+
+        $visibilities = [
+            Entity::ID,
+            Entity::CREATED_AT,
+            Entity::UPDATED_AT,
         ];
+
+        $columnListing = Schema::getColumnListing($this->name);
+
+        foreach ($columnListing as $column)
+        {
+            $columns[] = new TableColumn(
+                id: $column,
+                visibility: in_array($column, $visibilities),
+            );
+        }
+
+        return $columns;
     }
 
     #endregion

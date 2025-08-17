@@ -1,5 +1,26 @@
 <?php
 
+#region USE
+
+use Narsil\Implementations\Tables\BlockTable;
+use Narsil\Implementations\Tables\EntityTable;
+use Narsil\Implementations\Tables\FieldTable;
+use Narsil\Implementations\Tables\RoleTable;
+use Narsil\Implementations\Tables\SiteGroupTable;
+use Narsil\Implementations\Tables\SiteTable;
+use Narsil\Implementations\Tables\TemplateTable;
+use Narsil\Implementations\Tables\UserTable;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Template;
+use Narsil\Models\Entities\Entity;
+use Narsil\Models\Policies\Role;
+use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SiteGroup;
+use Narsil\Models\User;
+
+#endregion
+
 return [
 
     /*
@@ -7,16 +28,16 @@ return [
     | Tables Implementations
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between table contracts and their concrete implementations.
+    | This file defines a mapping between table names and their templates.
     |
     */
 
-    \Narsil\Contracts\Tables\BlockTable::class => \Narsil\Implementations\Tables\BlockTable::class,
-    \Narsil\Contracts\Tables\EntityTable::class => \Narsil\Implementations\Tables\EntityTable::class,
-    \Narsil\Contracts\Tables\FieldTable::class => \Narsil\Implementations\Tables\FieldTable::class,
-    \Narsil\Contracts\Tables\RoleTable::class => \Narsil\Implementations\Tables\RoleTable::class,
-    \Narsil\Contracts\Tables\SiteGroupTable::class => \Narsil\Implementations\Tables\SiteGroupTable::class,
-    \Narsil\Contracts\Tables\SiteTable::class => \Narsil\Implementations\Tables\SiteTable::class,
-    \Narsil\Contracts\Tables\TemplateTable::class => \Narsil\Implementations\Tables\TemplateTable::class,
-    \Narsil\Contracts\Tables\UserTable::class => \Narsil\Implementations\Tables\UserTable::class,
+    Block::TABLE => BlockTable::class,
+    Entity::TABLE => EntityTable::class,
+    Field::TABLE => FieldTable::class,
+    Role::TABLE => RoleTable::class,
+    SiteGroup::TABLE => SiteGroupTable::class,
+    Site::TABLE => SiteTable::class,
+    Template::TABLE => TemplateTable::class,
+    User::TABLE => UserTable::class,
 ];

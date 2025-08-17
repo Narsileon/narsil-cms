@@ -12,6 +12,7 @@ use JsonSerializable;
 use Narsil\Contracts\Table;
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Http\Requests\QueryRequest;
+use Narsil\Implementations\Tables\EntityTable;
 use Narsil\Services\TableService;
 use Narsil\Support\LabelsBag;
 
@@ -27,16 +28,24 @@ class DataTableCollection extends ResourceCollection
 
     /**
      * @param Builder $query
-     * @param Table $table
+     * @param string $table
      *
      * @return void
      */
     public function __construct(
         Builder $query,
-        Table $table,
+        string $table,
     )
     {
-        $this->table = $table;
+        $template = app()->bound("tables.$table")
+            ? app()->make("tables.$table", [
+                'table' => $table,
+            ])
+            : app()->make('tables.entities', [
+                'table' => $table,
+            ]);
+
+        $this->table = $template;
 
         $this->search($query);
         $this->sort($query);

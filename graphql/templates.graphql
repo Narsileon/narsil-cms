@@ -1,10 +1,13 @@
 type Query {
+    events: [Events!]! @table @all(model: "Narsil\\Models\\Entities\\Entity")
+    event(uuid: String! @eq): Events @table @find(model: "Narsil\\Models\\Entities\\Entity")
     pages: [Pages!]! @table @all(model: "Narsil\\Models\\Entities\\Entity")
     page(uuid: String! @eq): Pages @table @find(model: "Narsil\\Models\\Entities\\Entity")
-    products: [Products!]! @table @all(model: "Narsil\\Models\\Entities\\Entity")
-    product(uuid: String! @eq): Products @table @find(model: "Narsil\\Models\\Entities\\Entity")
 }
 
+type Events {
+    title: String
+}
 type Pages {
     title: String
     builder: String
@@ -16,7 +19,4 @@ type Pages {
     open_graph_image: String
     nofollow: Boolean
     noindex: Boolean
-}
-type Products {
-    title: String
 }

@@ -72,7 +72,7 @@ class UserController extends AbstractController
 
         $query = User::query();
 
-        $dataTable = new DataTableCollection($query, app(UserTable::class));
+        $dataTable = new DataTableCollection($query, User::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',

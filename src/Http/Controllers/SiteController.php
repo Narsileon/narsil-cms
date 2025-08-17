@@ -74,7 +74,7 @@ class SiteController extends AbstractController
 
         $this->filter($query, Site::GROUP_ID);
 
-        $dataTable = new DataTableCollection($query, app(SiteTable::class));
+        $dataTable = new DataTableCollection($query, Site::TABLE);
 
         $dataTableFilter = new DataTableFilterCollection(
             SiteGroup::all(),

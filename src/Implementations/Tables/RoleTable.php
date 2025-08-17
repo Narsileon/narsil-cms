@@ -4,7 +4,6 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Contracts\Tables\RoleTable as Contract;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Policies\Role;
 use Narsil\Support\TableColumn;
@@ -15,7 +14,7 @@ use Narsil\Support\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RoleTable extends AbstractTable implements Contract
+class RoleTable extends AbstractTable
 {
     #region CONSTRUCTOR
 

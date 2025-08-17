@@ -4,7 +4,6 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Contracts\Tables\BlockTable as Contract;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Elements\Block;
 use Narsil\Support\TableColumn;
@@ -15,7 +14,7 @@ use Narsil\Support\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockTable extends AbstractTable implements Contract
+class BlockTable extends AbstractTable
 {
     #region CONSTRUCTOR
 

@@ -70,7 +70,7 @@ class SiteGroupController extends AbstractController
 
         $query = SiteGroup::query();
 
-        $dataTable = new DataTableCollection($query, app(SiteGroupTable::class));
+        $dataTable = new DataTableCollection($query, SiteGroup::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',

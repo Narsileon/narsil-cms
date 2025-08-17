@@ -23,9 +23,9 @@ class TableServiceProvider extends ServiceProvider
     {
         $config = config('narsil.tables', []);
 
-        foreach ($config as $abstract => $concrete)
+        foreach ($config as $table => $template)
         {
-            $this->app->singleton($abstract, $concrete);
+            $this->app->singleton("tables.$table", $template);
         }
     }
 
