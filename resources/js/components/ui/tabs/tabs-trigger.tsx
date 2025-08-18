@@ -9,7 +9,7 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "text-foreground inline-flex items-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap transition-[color,box-shadow]",
+        "text-foreground inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap transition-[color,box-shadow]",
         "disabled:pointer-events-none disabled:opacity-50",
         "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring focus-visible:ring-[3px] focus-visible:outline-1",
         "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",

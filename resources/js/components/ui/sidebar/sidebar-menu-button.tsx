@@ -8,7 +8,7 @@ import type { VariantProps } from "class-variance-authority";
 
 const sidebarMenuButtonVariants = cva(
   cn(
-    "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] truncate",
+    "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] truncate cursor-pointer",
     "active:bg-sidebar-accent active:text-sidebar-accent-foreground",
     "aria-disabled:pointer-events-none aria-disabled:opacity-50",
     "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",
