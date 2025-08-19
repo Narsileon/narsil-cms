@@ -17,7 +17,7 @@ function TooltipContent({
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         className={cn(
-          "bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 z-50 w-fit rounded-md px-3 py-1.5 text-xs text-balance",
+          "bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 z-50 w-fit rounded-md border px-3 py-1.5 text-xs text-balance",
           "data-[side=bottom]:slide-in-from-top-2",
           "data-[side=left]:slide-in-from-right-2",
           "data-[side=right]:slide-in-from-left-2",
