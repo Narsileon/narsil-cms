@@ -233,6 +233,8 @@ return [
         'radius'                  => 'rounding',
         'recovery_code'           => 'recovery Code',
         'remember'                => 'remember me',
+        'revision'                => 'revision',
+        'revisions'               => 'revisions',
         'roles'                   => 'roles',
         'step'                    => 'step',
         'theme'                   => 'theme',
