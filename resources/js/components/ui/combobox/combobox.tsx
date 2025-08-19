@@ -55,12 +55,18 @@ function Combobox({
   const parentRef = React.useRef<HTMLDivElement | null>(null);
 
   const [open, setOpen] = React.useState(false);
+  const [input, setInput] = React.useState("");
   const [search, setSearch] = React.useState("");
 
   const debouncedSetSearch = React.useMemo(
     () => debounce((value: string) => setSearch(value), 300),
     [],
   );
+
+  function onValueChange(value: string) {
+    setInput(value);
+    debouncedSetSearch(value);
+  }
 
   const filteredOptions = React.useMemo(() => {
     if (!search) {
@@ -136,7 +142,8 @@ function Combobox({
         <Command shouldFilter={false}>
           {searchable ? (
             <CommandInput
-              onValueChange={debouncedSetSearch}
+              value={input}
+              onValueChange={onValueChange}
               placeholder={placeholder ?? getLabel("placeholders.search")}
             />
           ) : null}
