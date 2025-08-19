@@ -5,6 +5,7 @@ namespace Narsil\Providers;
 #region USE
 
 use Illuminate\Support\ServiceProvider;
+use Narsil\Console\Commands\GenerateSchema;
 use Narsil\Console\Commands\SyncPermissions;
 
 #endregion
@@ -37,6 +38,7 @@ class CommandServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole())
         {
             $this->commands([
+                GenerateSchema::class,
                 SyncPermissions::class,
             ]);
         }
