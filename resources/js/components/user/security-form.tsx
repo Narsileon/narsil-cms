@@ -18,13 +18,13 @@ type SecurityFormProps = {
 };
 
 function SecurityForm({ twoFactorForm }: SecurityFormProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   return (
     <>
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">{getLabel("ui.security")}</SectionTitle>
+          <SectionTitle level="h2">{trans("ui.security")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
           <TwoFactorForm form={twoFactorForm} />
@@ -33,10 +33,10 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
       <Separator />
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">{getLabel("ui.sessions")}</SectionTitle>
+          <SectionTitle level="h2">{trans("ui.sessions")}</SectionTitle>
         </SectionHeader>
         <SectionContent className="grid gap-4 text-sm">
-          <p>{getLabel("sessions.sign_out_current_description")}</p>
+          <p>{trans("sessions.sign_out_current_description")}</p>
           <DialogClose asChild={true}>
             <Button asChild={true} variant="outline">
               <Link
@@ -45,12 +45,12 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
                   type: "current",
                 })}
               >
-                {getLabel("sessions.sign_out_current")}
+                {trans("sessions.sign_out_current")}
               </Link>
             </Button>
           </DialogClose>
           <Separator />
-          <p>{getLabel("sessions.sign_out_elsewhere_description")}</p>
+          <p>{trans("sessions.sign_out_elsewhere_description")}</p>
           <Button asChild={true} variant="outline">
             <Link
               method="delete"
@@ -59,11 +59,11 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               })}
               preserveState={true}
             >
-              {getLabel("sessions.sign_out_elsewhere")}
+              {trans("sessions.sign_out_elsewhere")}
             </Link>
           </Button>
           <Separator />
-          <p>{getLabel("sessions.sign_out_everywhere_description")}</p>
+          <p>{trans("sessions.sign_out_everywhere_description")}</p>
           <DialogClose asChild={true}>
             <Button asChild={true} variant="outline">
               <Link
@@ -72,7 +72,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
                   type: "all",
                 })}
               >
-                {getLabel("sessions.sign_out_everywhere")}
+                {trans("sessions.sign_out_everywhere")}
               </Link>
             </Button>
           </DialogClose>

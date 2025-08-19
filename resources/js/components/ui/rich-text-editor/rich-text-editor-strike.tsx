@@ -10,7 +10,7 @@ type RichTextEditorStrikeProps = React.ComponentProps<typeof Toggle> & {
 };
 
 function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canStrike, isStrike } = useEditorState({
     editor,
@@ -23,9 +23,9 @@ function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
   });
 
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_strike`)} asChild={false}>
+    <Tooltip tooltip={trans(`accessibility.toggle_strike`)} asChild={false}>
       <Toggle
-        aria-label={getLabel(`accessibility.toggle_strike`, `Toggle strike`)}
+        aria-label={trans(`accessibility.toggle_strike`, `Toggle strike`)}
         disabled={!canStrike}
         pressed={isStrike}
         size="icon"

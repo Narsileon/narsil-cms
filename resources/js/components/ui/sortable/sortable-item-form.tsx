@@ -39,7 +39,7 @@ function SortableItemForm({
   onItemChange,
   ...props
 }: SortableItemFormProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const [data, setData] = React.useState<Record<string, any>>(item);
   const [error, setError] = React.useState<string | null>(null);
@@ -57,7 +57,7 @@ function SortableItemForm({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <Tooltip tooltip={getLabel("ui.edit")}>
+      <Tooltip tooltip={trans("ui.edit")}>
         <DialogTrigger asChild={true} {...props}>
           {children}
         </DialogTrigger>
@@ -97,7 +97,7 @@ function SortableItemForm({
         </DialogBody>
         <DialogFooter className="border-t">
           <Button variant="ghost" onClick={() => onOpenChange(false)}>
-            {getLabel("ui.cancel")}
+            {trans("ui.cancel")}
           </Button>
           <Button
             onClick={() => {
@@ -106,7 +106,7 @@ function SortableItemForm({
 
               if (oldUniqueIdentifier !== newUniqueIdentifier) {
                 if (ids.includes(newUniqueIdentifier)) {
-                  setError(getLabel("validation.unique"));
+                  setError(trans("validation.unique"));
 
                   return;
                 }
@@ -117,7 +117,7 @@ function SortableItemForm({
               onOpenChange(false);
             }}
           >
-            {getLabel("ui.save")}
+            {trans("ui.save")}
           </Button>
         </DialogFooter>
       </DialogContent>

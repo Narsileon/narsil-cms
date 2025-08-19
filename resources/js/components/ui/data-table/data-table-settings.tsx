@@ -26,17 +26,17 @@ function DataTableSettings({
   options = ["10", "25", "50", "100"],
   ...props
 }: DataTableSettingsProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { dataTable, dataTableStore } = useDataTable();
 
   return (
     <DropdownMenu>
-      <Tooltip tooltip={getLabel("accessibility.toggle_table_settings")}>
+      <Tooltip tooltip={trans("accessibility.toggle_table_settings")}>
         <DropdownMenuTrigger asChild={true}>
           <Button
             aria-label={
-              getLabel("accessibility.toggle_table_settings") ??
+              trans("accessibility.toggle_table_settings") ??
               "Toggle table settings"
             }
             size="icon"
@@ -50,7 +50,7 @@ function DataTableSettings({
       <DropdownMenuContent align="end">
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
-            {getLabel("table.columns")}
+            {trans("table.columns")}
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
@@ -80,7 +80,7 @@ function DataTableSettings({
         </DropdownMenuSub>
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
-            {getLabel("pagination.pagination")}
+            {trans("pagination.pagination")}
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>

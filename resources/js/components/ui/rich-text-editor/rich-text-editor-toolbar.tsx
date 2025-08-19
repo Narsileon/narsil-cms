@@ -34,7 +34,7 @@ function RichTextEditorToolbar({
   editor,
   ...props
 }: RichTextEditorToolbarProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const headings = [1, 2, 3, 4, 5, 6] as const;
 
@@ -59,11 +59,11 @@ function RichTextEditorToolbar({
       <RichTextEditorSubscript editor={editor} />
       <Separator orientation="vertical" />
       <DropdownMenu>
-        <Tooltip tooltip={getLabel(`accessibility.toggle_heading_menu`)}>
+        <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
           <DropdownMenuTrigger asChild={true}>
             <Button
               className="w-8 min-w-8"
-              aria-label={getLabel(
+              aria-label={trans(
                 `accessibility.toggle_heading_menu`,
                 "Toggle heading menu",
               )}

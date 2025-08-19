@@ -18,7 +18,7 @@ function FormLabel({
   requiredLabel,
   ...props
 }: FormLabelProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { error, handle } = useFormField();
 
@@ -39,7 +39,7 @@ function FormLabel({
     >
       <span className="first-letter:uppercase">{children}</span>
       {required && (
-        <Tooltip tooltip={getLabel("accessibility.required")}>
+        <Tooltip tooltip={trans("accessibility.required")}>
           <Icon
             className="text-destructive !size-3"
             aria-hidden="true"

@@ -13,7 +13,7 @@ function RichTextEditorSubscript({
   editor,
   ...props
 }: RichTextEditorSubscriptProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canSubscript, isSubscript } = useEditorState({
     editor,
@@ -26,15 +26,9 @@ function RichTextEditorSubscript({
   });
 
   return (
-    <Tooltip
-      tooltip={getLabel(`accessibility.toggle_subscript`)}
-      asChild={false}
-    >
+    <Tooltip tooltip={trans(`accessibility.toggle_subscript`)} asChild={false}>
       <Toggle
-        aria-label={getLabel(
-          `accessibility.toggle_subscript`,
-          `Toggle subscript`,
-        )}
+        aria-label={trans(`accessibility.toggle_subscript`, `Toggle subscript`)}
         disabled={!canSubscript}
         pressed={isSubscript}
         size="icon"

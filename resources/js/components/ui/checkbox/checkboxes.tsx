@@ -19,7 +19,7 @@ type CheckboxesProps = {
 };
 
 function Checkboxes({ options, values, onChange }: CheckboxesProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   function toggleValue(value: any) {
     if (values.includes(value)) {
@@ -60,7 +60,7 @@ function Checkboxes({ options, values, onChange }: CheckboxesProps) {
                 }
                 onCheckedChange={toggleAll}
               />
-              <label>{getLabel("ui.all")}</label>
+              <label>{trans("ui.all")}</label>
             </div>
           </TableCell>
         </TableRow>

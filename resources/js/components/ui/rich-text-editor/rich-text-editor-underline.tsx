@@ -13,7 +13,7 @@ function RichTextEditorUnderline({
   editor,
   ...props
 }: RichTextEditorUnderlineProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canUnderline, isUnderline } = useEditorState({
     editor,
@@ -26,15 +26,9 @@ function RichTextEditorUnderline({
   });
 
   return (
-    <Tooltip
-      tooltip={getLabel(`accessibility.toggle_underline`)}
-      asChild={false}
-    >
+    <Tooltip tooltip={trans(`accessibility.toggle_underline`)} asChild={false}>
       <Toggle
-        aria-label={getLabel(
-          `accessibility.toggle_underline`,
-          `Toggle underline`,
-        )}
+        aria-label={trans(`accessibility.toggle_underline`, `Toggle underline`)}
         disabled={!canUnderline}
         pressed={isUnderline}
         size="icon"

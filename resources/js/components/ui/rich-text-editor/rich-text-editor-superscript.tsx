@@ -13,7 +13,7 @@ function RichTextEditorSuperscript({
   editor,
   ...props
 }: RichTextEditorSuperscriptProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canSuperscript, isSuperscript } = useEditorState({
     editor,
@@ -32,11 +32,11 @@ function RichTextEditorSuperscript({
 
   return (
     <Tooltip
-      tooltip={getLabel(`accessibility.toggle_superscript`)}
+      tooltip={trans(`accessibility.toggle_superscript`)}
       asChild={false}
     >
       <Toggle
-        aria-label={getLabel(
+        aria-label={trans(
           `accessibility.toggle_superscript`,
           `Toggle superscript`,
         )}

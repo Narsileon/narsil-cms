@@ -15,15 +15,15 @@ function RichTextEditorTextAlign({
   editor,
   ...props
 }: RichTextEditorTextAlignProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   return (
     <Tooltip
-      tooltip={getLabel(`accessibility.align_${alignment}`)}
+      tooltip={trans(`accessibility.align_${alignment}`)}
       asChild={false}
     >
       <Toggle
-        aria-label={getLabel(
+        aria-label={trans(
           `accessibility.align_${alignment}`,
           `Align ${alignment}`,
         )}

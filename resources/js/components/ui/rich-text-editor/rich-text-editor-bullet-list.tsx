@@ -13,7 +13,7 @@ function RichTextEditorBulletList({
   editor,
   ...props
 }: RichTextEditorBulletListProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { isBulletList } = useEditorState({
     editor,
@@ -26,11 +26,11 @@ function RichTextEditorBulletList({
 
   return (
     <Tooltip
-      tooltip={getLabel(`accessibility.toggle_bullet_list`)}
+      tooltip={trans(`accessibility.toggle_bullet_list`)}
       asChild={false}
     >
       <Toggle
-        aria-label={getLabel(
+        aria-label={trans(
           `accessibility.toggle_bullet_list`,
           `Toggle bullet list`,
         )}

@@ -10,7 +10,7 @@ type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
 };
 
 function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   function getIconName() {
     switch (header.column.getIsSorted()) {
@@ -24,9 +24,9 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
   }
 
   return (
-    <Tooltip tooltip={getLabel("accessibility.sort_column")}>
+    <Tooltip tooltip={trans("accessibility.sort_column")}>
       <Button
-        aria-label={getLabel("accessibility.sort_column", "Sort column")}
+        aria-label={trans("accessibility.sort_column", "Sort column")}
         className="size-6"
         size="icon"
         variant="ghost"

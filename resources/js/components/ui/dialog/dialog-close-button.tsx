@@ -10,7 +10,7 @@ type DialogCloseButtonProps = React.ComponentProps<
 > & {};
 
 function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   return (
     <DialogPrimitive.Close
@@ -28,7 +28,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
     >
       <Icon name="x" />
       <VisuallyHidden>
-        {getLabel("accessibility.close_dialog", "Close dialog")}
+        {trans("accessibility.close_dialog", "Close dialog")}
       </VisuallyHidden>
     </DialogPrimitive.Close>
   );

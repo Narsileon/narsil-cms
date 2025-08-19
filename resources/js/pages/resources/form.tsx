@@ -47,7 +47,7 @@ function ResourceForm({
   title,
   url,
 }: FormProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
   const { closeTopModal } = useModalStore();
 
   const minLg = useMinLg();
@@ -189,10 +189,10 @@ function ResourceForm({
               <DialogBody>{tabsContent}</DialogBody>
               <DialogFooter className="h-fit border-t">
                 <DialogClose asChild={true}>
-                  <Button variant="ghost">{getLabel("ui.cancel")}</Button>
+                  <Button variant="ghost">{trans("ui.cancel")}</Button>
                 </DialogClose>
                 <FormSubmit className="place-self-auto">
-                  {isEmpty(submit) ? getLabel("ui.save") : submit}
+                  {isEmpty(submit) ? trans("ui.save") : submit}
                 </FormSubmit>
               </DialogFooter>
             </ScrollArea>
@@ -203,7 +203,7 @@ function ResourceForm({
                   {title}
                 </SectionTitle>
                 <FormSubmit>
-                  {isEmpty(submit) ? getLabel("ui.save") : submit}
+                  {isEmpty(submit) ? trans("ui.save") : submit}
                 </FormSubmit>
               </SectionHeader>
               <SectionContent className="grid gap-4 lg:grid-cols-12">

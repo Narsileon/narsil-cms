@@ -60,7 +60,7 @@ function SortableItem({
   onItemRemove,
   ...props
 }: SortableItemProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const {
     attributes,
@@ -143,7 +143,7 @@ function SortableItem({
                 </SortableItemForm>
               ) : null}
               {onItemRemove ? (
-                <Tooltip tooltip={getLabel("ui.remove")}>
+                <Tooltip tooltip={trans("ui.remove")}>
                   <Button
                     className="size-7"
                     size="icon"

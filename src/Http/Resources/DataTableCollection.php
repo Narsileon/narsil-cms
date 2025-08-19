@@ -150,6 +150,7 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::accessibility.toggle_table_settings')
             ->add('narsil::pagination.empty')
             ->add('narsil::pagination.pagination')
+            ->add('narsil::placeholders.search')
             ->add('narsil::table.columns')
             ->add('narsil::ui.create')
             ->add('narsil::ui.delete')

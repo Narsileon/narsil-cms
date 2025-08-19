@@ -13,7 +13,7 @@ const LabelsProvider = ({ children, labels }: LabelsProviderProps) => {
   }
 
   return (
-    <LabelsContext.Provider value={{ getLabel: getLabel }}>
+    <LabelsContext.Provider value={{ trans: getLabel }}>
       {children}
     </LabelsContext.Provider>
   );

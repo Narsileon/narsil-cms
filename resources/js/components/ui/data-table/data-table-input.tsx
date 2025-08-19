@@ -2,11 +2,14 @@ import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Input } from "@narsil-cms/components/ui/input";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import useDataTable from "./data-table-context";
 
 type DataTableInputProps = React.ComponentProps<typeof Input> & {};
 
 function DataTableInput({ className, ...props }: DataTableInputProps) {
+  const { trans } = useLabels();
+
   const { dataTableStore } = useDataTable();
 
   return (
@@ -17,6 +20,7 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
       />
       <Input
         className={cn("px-9")}
+        placeholder={trans("placeholders.search")}
         value={dataTableStore.search ?? ""}
         onChange={(event) => dataTableStore.setSearch(event.target.value)}
         {...props}

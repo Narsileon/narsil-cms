@@ -26,7 +26,7 @@ function UserSettings({
   updatePasswordForm,
   userConfigurationForm,
 }: UserSettingsProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const auth = useAuth();
 
@@ -40,17 +40,17 @@ function UserSettings({
         {auth ? (
           <TabsTrigger value="account">
             <Icon name="user-edit" />
-            {getLabel("ui.account")}
+            {trans("ui.account")}
           </TabsTrigger>
         ) : null}
         <TabsTrigger value="configuration">
           <Icon name="settings" />
-          {getLabel("ui.personalization")}
+          {trans("ui.personalization")}
         </TabsTrigger>
         {auth ? (
           <TabsTrigger value="security">
             <Icon name="shield" />
-            {getLabel("ui.security")}
+            {trans("ui.security")}
           </TabsTrigger>
         ) : null}
       </TabsList>

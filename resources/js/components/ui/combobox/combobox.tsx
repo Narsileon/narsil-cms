@@ -50,7 +50,7 @@ function Combobox({
   renderOption,
   setValue,
 }: ComboboxProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const parentRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -131,7 +131,7 @@ function Combobox({
         >
           {option
             ? getSelectOption(option, labelPath)
-            : (placeholder ?? getLabel("placeholders.search"))}
+            : (placeholder ?? trans("placeholders.search"))}
           <Icon
             className={cn("ml-2 shrink-0 duration-200", open && "rotate-180")}
             name="chevron-down"
@@ -144,11 +144,11 @@ function Combobox({
             <CommandInput
               value={input}
               onValueChange={onValueChange}
-              placeholder={placeholder ?? getLabel("placeholders.search")}
+              placeholder={placeholder ?? trans("placeholders.search")}
             />
           ) : null}
           <CommandList ref={parentRef}>
-            <CommandEmpty>{getLabel("pagination.empty")}</CommandEmpty>
+            <CommandEmpty>{trans("pagination.empty")}</CommandEmpty>
             <CommandGroup>
               <div
                 className="relative w-full"

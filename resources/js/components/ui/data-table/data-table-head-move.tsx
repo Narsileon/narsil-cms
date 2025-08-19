@@ -18,12 +18,12 @@ function DataTableHeadMove({
   listeners,
   ...props
 }: DataTableHeadMoveProps) {
-  const getLabel = useLabels().getLabel;
+  const { trans } = useLabels();
 
   return (
-    <Tooltip tooltip={getLabel("accessibility.move_column")}>
+    <Tooltip tooltip={trans("accessibility.move_column")}>
       <Button
-        aria-label={getLabel("accessibility.move_column", "Move column")}
+        aria-label={trans("accessibility.move_column", "Move column")}
         className={cn("px-2", className)}
         variant="ghost"
         {...props}

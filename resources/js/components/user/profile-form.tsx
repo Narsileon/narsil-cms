@@ -21,7 +21,7 @@ type ProfileFormProps = {
 };
 
 function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const auth = useAuth();
 
@@ -29,7 +29,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
     <>
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">{getLabel("ui.account")}</SectionTitle>
+          <SectionTitle level="h2">{trans("ui.account")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
           <FormProvider
@@ -58,7 +58,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
       <Separator />
       <Section>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">{getLabel("ui.password")}</SectionTitle>
+          <SectionTitle level="h2">{trans("ui.password")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
           <FormProvider

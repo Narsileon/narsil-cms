@@ -20,7 +20,7 @@ function DataTableFilter({
   meta,
   ...props
 }: DataTableFilterProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { dataTableStore } = useDataTable();
 
@@ -34,7 +34,7 @@ function DataTableFilter({
             dataTableStore.setFilter(null);
           }}
         >
-          {getLabel("ui.all")}
+          {trans("ui.all")}
         </Toggle>
       </li>
       {data.map((category) => (

@@ -1,11 +1,11 @@
 import * as React from "react";
 
 export type LabelsContextProps = {
-  getLabel: (key: string, fallback?: string) => string;
+  trans: (key: string, fallback?: string) => string;
 };
 
 export const LabelsContext = React.createContext<LabelsContextProps>({
-  getLabel: () => "string",
+  trans: () => "string",
 });
 
 function useLabels() {

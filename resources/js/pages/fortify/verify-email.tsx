@@ -19,13 +19,13 @@ type VerifyEmailProps = {
 };
 
 function VerifyEmail({ status, title }: VerifyEmailProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
     if (status && !hasStatus.current) {
-      toast.success(getLabel("verify-email.sent"));
+      toast.success(trans("verify-email.sent"));
 
       hasStatus.current = true;
     }
@@ -42,11 +42,11 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
         <SectionContent>
           <Card>
             <CardContent>
-              <p>{getLabel("verify-email.instruction")}</p>
-              <p>{getLabel("verify-email.prompt")}</p>
+              <p>{trans("verify-email.instruction")}</p>
+              <p>{trans("verify-email.prompt")}</p>
               <Button asChild={true}>
                 <Link href={route("verification.send")} method="post">
-                  {getLabel("verify-email.send_again")}
+                  {trans("verify-email.send_again")}
                 </Link>
               </Button>
             </CardContent>

@@ -10,7 +10,7 @@ type RichTextEditorItalicProps = React.ComponentProps<typeof Toggle> & {
 };
 
 function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canItalic, isItalic } = useEditorState({
     editor,
@@ -23,9 +23,9 @@ function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
   });
 
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_italic`)} asChild={false}>
+    <Tooltip tooltip={trans(`accessibility.toggle_italic`)} asChild={false}>
       <Toggle
-        aria-label={getLabel(`accessibility.toggle_italic`, `Toggle italic`)}
+        aria-label={trans(`accessibility.toggle_italic`, `Toggle italic`)}
         disabled={!canItalic}
         pressed={isItalic}
         size="icon"

@@ -43,7 +43,7 @@ function ResourceIndex({
   dataTableFilter,
   title,
 }: ResourceIndexProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const finalColumns: (ColumnDef<any> & { position?: string })[] = [
     {
@@ -121,9 +121,9 @@ function ResourceIndex({
               <DataTableSettings className="ml-2" />
               <DataTableInput className="grow" />
               {dataTable.meta.routes.create ? (
-                <Tooltip tooltip={getLabel("ui.create")}>
+                <Tooltip tooltip={trans("ui.create")}>
                   <Button
-                    aria-label={getLabel("ui.create", "Create")}
+                    aria-label={trans("ui.create", "Create")}
                     size="icon"
                     variant="default"
                     asChild={true}
@@ -171,8 +171,8 @@ function ResourceIndex({
                   <div className="flex items-center justify-between gap-4 text-sm">
                     <span>
                       {dataTable.meta.total > 0
-                        ? getLabel("pagination.results")
-                        : getLabel("pagination.empty")}
+                        ? trans("pagination.results")
+                        : trans("pagination.empty")}
                     </span>
                     <DataTablePagination
                       links={dataTable.links}

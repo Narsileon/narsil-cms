@@ -10,7 +10,7 @@ type RichTextEditorBoldProps = React.ComponentProps<typeof Toggle> & {
 };
 
 function RichTextEditorBold({ editor, ...props }: RichTextEditorBoldProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canBold, isBold } = useEditorState({
     editor,
@@ -23,9 +23,9 @@ function RichTextEditorBold({ editor, ...props }: RichTextEditorBoldProps) {
   });
 
   return (
-    <Tooltip tooltip={getLabel(`accessibility.toggle_bold`)} asChild={false}>
+    <Tooltip tooltip={trans(`accessibility.toggle_bold`)} asChild={false}>
       <Toggle
-        aria-label={getLabel(`accessibility.toggle_bold`, `Toggle bold`)}
+        aria-label={trans(`accessibility.toggle_bold`, `Toggle bold`)}
         disabled={!canBold}
         pressed={isBold}
         size="icon"

@@ -10,7 +10,7 @@ type RichTextEditorUndoProps = React.ComponentProps<typeof Button> & {
 };
 
 function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canUndo } = useEditorState({
     editor,
@@ -22,9 +22,9 @@ function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
   });
 
   return (
-    <Tooltip tooltip={getLabel(`accessibility.undo`)}>
+    <Tooltip tooltip={trans(`accessibility.undo`)}>
       <Button
-        aria-label={getLabel(`accessibility.undo`)}
+        aria-label={trans(`accessibility.undo`)}
         disabled={!canUndo}
         size="icon"
         variant="ghost"

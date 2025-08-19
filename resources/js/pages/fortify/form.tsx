@@ -40,7 +40,7 @@ function FortifyForm({
   title,
   url,
 }: FortifyFormProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const hasStatus = useRef<boolean>(false);
 
@@ -93,7 +93,7 @@ function FortifyForm({
                                     variant="link"
                                   >
                                     <Link href={route("password.request")}>
-                                      {getLabel("passwords.link")}
+                                      {trans("passwords.link")}
                                     </Link>
                                   </Button>
                                 </div>
@@ -126,7 +126,7 @@ function FortifyForm({
             {id === "forgot-password-form" ? (
               <CardFooter className="border-t px-6">
                 <Button className="w-full" asChild={true} variant="secondary">
-                  <Link href={route("login")}>{getLabel("ui.back")}</Link>
+                  <Link href={route("login")}>{trans("ui.back")}</Link>
                 </Button>
               </CardFooter>
             ) : null}

@@ -15,7 +15,7 @@ function RichTextEditorHeading({
   level,
   ...props
 }: RichTextEditorHeadingProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { isHeading } = useEditorState({
     editor,
@@ -28,11 +28,11 @@ function RichTextEditorHeading({
 
   return (
     <Tooltip
-      tooltip={getLabel(`accessibility.toggle_heading_${level}`)}
+      tooltip={trans(`accessibility.toggle_heading_${level}`)}
       asChild={false}
     >
       <Toggle
-        aria-label={getLabel(
+        aria-label={trans(
           `accessibility.toggle_heading_${level}`,
           `Toggle heading ${level}`,
         )}

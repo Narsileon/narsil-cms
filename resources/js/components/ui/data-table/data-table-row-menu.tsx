@@ -33,7 +33,7 @@ function DataTableRowMenu({
   table,
   ...props
 }: DataTableRowMenuProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   if (!routes.edit && !routes.destroy) {
     return null;
@@ -41,7 +41,7 @@ function DataTableRowMenu({
 
   return (
     <DropdownMenu>
-      <Tooltip tooltip={getLabel("accessibility.toggle_row_menu")}>
+      <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
             className="hover:bg-secondary size-7"
@@ -65,7 +65,7 @@ function DataTableRowMenu({
                     })}
                   >
                     <Icon name="edit" />
-                    {getLabel("ui.edit")}
+                    {trans("ui.edit")}
                   </ModalLink>
                 ) : (
                   <Link
@@ -76,7 +76,7 @@ function DataTableRowMenu({
                     })}
                   >
                     <Icon name="edit" />
-                    {getLabel("ui.edit")}
+                    {trans("ui.edit")}
                   </Link>
                 )}
               </DropdownMenuItem>
@@ -96,7 +96,7 @@ function DataTableRowMenu({
                   }}
                 >
                   <Icon name="trash" />
-                  {getLabel("ui.delete")}
+                  {trans("ui.delete")}
                 </Link>
               </DropdownMenuItem>
             ) : null}
@@ -109,7 +109,7 @@ function DataTableRowMenu({
               }}
             >
               <Icon name="x" />
-              {getLabel("ui.deselect_all")}
+              {trans("ui.deselect_all")}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             {routes.destroyMany ? (
@@ -128,7 +128,7 @@ function DataTableRowMenu({
                   }}
                 >
                   <Icon name="trash" />
-                  {getLabel("ui.delete_selected")}
+                  {trans("ui.delete_selected")}
                 </Link>
               </DropdownMenuItem>
             ) : null}

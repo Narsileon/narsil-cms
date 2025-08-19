@@ -22,7 +22,7 @@ import {
 type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {};
 
 function AppSidebar({ ...props }: AppSidebarProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 
@@ -93,14 +93,14 @@ function AppSidebar({ ...props }: AppSidebarProps) {
       </SidebarContent>
       <SidebarFooter className="h-13 border-t">
         <SidebarMenuButton
-          tooltip={getLabel("accessibility.open_sidebar")}
+          tooltip={trans("accessibility.open_sidebar")}
           onClick={toggleSidebar}
         >
           <Icon
             className={cn("duration-200", open && "rotate-180")}
             name="chevron-left"
           />
-          {open && getLabel("accessibility.close_sidebar")}
+          {open && trans("accessibility.close_sidebar")}
         </SidebarMenuButton>
       </SidebarFooter>
       <SidebarRail />

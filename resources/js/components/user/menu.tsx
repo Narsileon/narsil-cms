@@ -17,14 +17,14 @@ import {
 type UserMenuProps = React.ComponentProps<typeof DropdownMenuTrigger> & {};
 
 function UserMenu({ ...props }: UserMenuProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const auth = useAuth();
   const { userMenu } = useNavigation();
 
   return (
     <DropdownMenu>
-      <Tooltip tooltip={getLabel("accessibility.toggle_user_menu")}>
+      <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
         <DropdownMenuTrigger asChild={!auth && true} {...props}>
           {auth ? (
             <UserAvatar
@@ -34,7 +34,7 @@ function UserMenu({ ...props }: UserMenuProps) {
             />
           ) : (
             <Button
-              aria-label={getLabel(
+              aria-label={trans(
                 "accessibility.toggle_user_menu",
                 "Toggle user menu",
               )}

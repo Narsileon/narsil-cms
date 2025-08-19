@@ -13,7 +13,7 @@ function RichTextEditorOrderedList({
   editor,
   ...props
 }: RichTextEditorOrderedListProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { isOrderedList } = useEditorState({
     editor,
@@ -26,11 +26,11 @@ function RichTextEditorOrderedList({
 
   return (
     <Tooltip
-      tooltip={getLabel(`accessibility.toggle_ordered_list`)}
+      tooltip={trans(`accessibility.toggle_ordered_list`)}
       asChild={false}
     >
       <Toggle
-        aria-label={getLabel(
+        aria-label={trans(
           `accessibility.toggle_ordered_list`,
           `Toggle ordered list`,
         )}

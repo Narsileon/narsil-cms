@@ -25,7 +25,7 @@ type ConfigurationFormProps = {
 };
 
 function ConfigurationForm({ form }: ConfigurationFormProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
   const { locale } = useLocale();
 
   const { reloadTopModal } = useModalStore();
@@ -66,7 +66,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   return (
     <Section>
       <SectionHeader className="border-b">
-        <SectionTitle level="h2">{getLabel("ui.personalization")}</SectionTitle>
+        <SectionTitle level="h2">{trans("ui.personalization")}</SectionTitle>
       </SectionHeader>
       <SectionContent>
         <FormProvider

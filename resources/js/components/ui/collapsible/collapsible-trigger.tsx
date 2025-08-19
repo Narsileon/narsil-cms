@@ -1,13 +1,18 @@
 import * as React from "react";
+import { cn } from "@narsil-cms/lib/utils";
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 
 type CollapsibleTriggerProps = React.ComponentProps<
   typeof CollapsiblePrimitive.Trigger
 > & {};
 
-function CollapsibleTrigger({ ...props }: CollapsibleTriggerProps) {
+function CollapsibleTrigger({ className, ...props }: CollapsibleTriggerProps) {
   return (
-    <CollapsiblePrimitive.Trigger data-slot="collapsible-trigger" {...props} />
+    <CollapsiblePrimitive.Trigger
+      data-slot="collapsible-trigger"
+      className={cn("cursor-pointer", className)}
+      {...props}
+    />
   );
 }
 

@@ -31,7 +31,7 @@ function SortableAdd({
   setItems,
   ...props
 }: SortableAddProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const [options, setOptions] = React.useState(group.options);
 
@@ -96,7 +96,7 @@ function SortableAdd({
       <Combobox
         className="col-span-2 grow"
         disabled={filteredOptions.length == 0}
-        placeholder={getLabel("placeholders.choose")}
+        placeholder={trans("placeholders.choose")}
         options={filteredOptions}
         value={""}
         setValue={(value) => {
@@ -132,7 +132,7 @@ function SortableAdd({
               },
             }}
           >
-            {getLabel("ui.create")}
+            {trans("ui.create")}
           </ModalLink>
         </Button>
       ) : null}

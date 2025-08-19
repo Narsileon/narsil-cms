@@ -17,7 +17,7 @@ function SheetContent({
   side = "right",
   ...props
 }: SheetContentProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   return (
     <SheetPortal>
@@ -64,7 +64,7 @@ function SheetContent({
         >
           <Icon className="size-4" name="x" />
           <VisuallyHidden>
-            {getLabel("accessibility.close_sheet", "Close sheet")}
+            {trans("accessibility.close_sheet", "Close sheet")}
           </VisuallyHidden>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>

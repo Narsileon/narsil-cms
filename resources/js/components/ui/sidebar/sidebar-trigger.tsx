@@ -10,12 +10,12 @@ import useSidebar from "./sidebar-context";
 type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};
 
 function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { toggleSidebar } = useSidebar();
 
   return (
-    <Tooltip tooltip={getLabel("accessibility.toggle_sidebar")}>
+    <Tooltip tooltip={trans("accessibility.toggle_sidebar")}>
       <Button
         data-slot="sidebar-trigger"
         data-sidebar="trigger"
@@ -31,7 +31,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
       >
         <Icon name="menu" />
         <VisuallyHidden>
-          {getLabel("accessibility.toggle_sidebar", "Toggle sidebar")}
+          {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
         </VisuallyHidden>
       </Button>
     </Tooltip>

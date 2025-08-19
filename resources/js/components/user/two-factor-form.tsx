@@ -29,7 +29,7 @@ type TwoFactorFormProps = {
 };
 
 function TwoFactorForm({ form }: TwoFactorFormProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { two_factor_confirmed_at } = useAuth() ?? {};
 
@@ -90,7 +90,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
     <>
       <div className="grid gap-4">
         <div className="flex items-center justify-between">
-          <Label>{getLabel("two-factor.two_factor_authentication")}</Label>
+          <Label>{trans("two-factor.two_factor_authentication")}</Label>
           <Switch checked={enabled} onCheckedChange={toggleEnabled} />
         </div>
         {!active && enabled && qrCode ? (
@@ -106,10 +106,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                     setActive(true);
                   },
                   onError() {
-                    setError?.(
-                      "code",
-                      getLabel("validation.custom.code.invalid"),
-                    );
+                    setError?.("code", trans("validation.custom.code.invalid"));
                   },
                 }}
               >
@@ -136,9 +133,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
         {!active && enabled && recoveryCodes ? (
           <Card>
             <CardHeader className="grid-cols-2 items-center border-b">
-              <CardTitle>
-                {getLabel("two-factor.recovery_codes_title")}
-              </CardTitle>
+              <CardTitle>{trans("two-factor.recovery_codes_title")}</CardTitle>
               <Button
                 className="place-self-end"
                 variant="outline"
@@ -146,14 +141,14 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                 onClick={() => {
                   navigator.clipboard.writeText(recoveryCodes.join("\n"));
 
-                  toast.success(getLabel("two-factor.recovery_codes_copied"));
+                  toast.success(trans("two-factor.recovery_codes_copied"));
                 }}
               >
                 <Icon name="copy" />
               </Button>
             </CardHeader>
             <CardContent className="gap-4 text-sm">
-              <p>{getLabel("two-factor.recovery_codes_description")}</p>
+              <p>{trans("two-factor.recovery_codes_description")}</p>
               <ul className="ml-6 list-disc">
                 {recoveryCodes?.map((recoveryCode, index) => {
                   return <li key={index}>{recoveryCode}</li>;

@@ -10,7 +10,7 @@ type RichTextEditorRedoProps = React.ComponentProps<typeof Button> & {
 };
 
 function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
-  const { getLabel } = useLabels();
+  const { trans } = useLabels();
 
   const { canRedo } = useEditorState({
     editor,
@@ -22,9 +22,9 @@ function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
   });
 
   return (
-    <Tooltip tooltip={getLabel(`accessibility.redo`)}>
+    <Tooltip tooltip={trans(`accessibility.redo`)}>
       <Button
-        aria-label={getLabel(`accessibility.redo`)}
+        aria-label={trans(`accessibility.redo`)}
         disabled={!canRedo}
         size="icon"
         variant="ghost"
