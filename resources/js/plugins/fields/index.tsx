@@ -134,8 +134,8 @@ const defaultRegistry: Registry = {
       <Combobox
         {...props.element.settings}
         id={props.id}
-        renderOption={props.renderOption}
         value={props.value}
+        renderOption={props.renderOption}
         setValue={props.setValue}
       />
     );
