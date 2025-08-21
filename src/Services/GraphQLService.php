@@ -13,6 +13,7 @@ use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Fields\TimeInput;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Entities\Entity;
 use Narsil\Services\TemplateService;
 
 #endregion
@@ -21,8 +22,27 @@ use Narsil\Services\TemplateService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class GraphQLService
+abstract class GraphQLService
 {
+    #region CONSTANTS
+
+    /**
+     * @var array<string,string>
+     */
+    private const DEFAULT_FIELDS = [
+        Entity::UUID => 'String',
+        Entity::ID => 'Int',
+        Entity::REVISION => 'Int',
+        Entity::CREATED_AT => 'DateTime',
+        Entity::CREATED_BY => 'Int',
+        Entity::UPDATED_AT => 'DateTime',
+        Entity::UPDATED_BY => 'Int',
+        Entity::DELETED_AT => 'DateTime',
+        Entity::DELETED_BY => 'Int',
+    ];
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -82,9 +102,14 @@ class GraphQLService
         {
             $name = $template->{Template::NAME};
 
-            $fields = TemplateService::getFields($template);
-
             $types .= "type $name {\n";
+
+            foreach (static::DEFAULT_FIELDS as $handle => $type)
+            {
+                $types .= "    $handle: $type\n";
+            }
+
+            $fields = TemplateService::getFields($template);
 
             foreach ($fields as $field)
             {

@@ -6,9 +6,27 @@ type Query {
 }
 
 type Events {
+    uuid: String
+    id: Int
+    revision: Int
+    created_at: DateTime
+    created_by: Int
+    updated_at: DateTime
+    updated_by: Int
+    deleted_at: DateTime
+    deleted_by: Int
     title: String
 }
 type Pages {
+    uuid: String
+    id: Int
+    revision: Int
+    created_at: DateTime
+    created_by: Int
+    updated_at: DateTime
+    updated_by: Int
+    deleted_at: DateTime
+    deleted_by: Int
     title: String
     builder: String
     meta_title: String

@@ -18,7 +18,7 @@ use Narsil\Models\Elements\TemplateSectionElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateService
+abstract class TemplateService
 {
     #region PUBLIC METHODS
 

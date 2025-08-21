@@ -26,7 +26,7 @@ use Narsil\Services\TemplateService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MigrationService
+abstract class MigrationService
 {
     #region PUBLIC METHODS
 
