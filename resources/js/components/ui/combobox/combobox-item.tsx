@@ -4,6 +4,7 @@ import { CommandItem } from "@narsil-cms/components/ui/command";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { isString } from "lodash";
 import type { SelectOption } from "@narsil-cms/types/forms";
+import { Tooltip } from "../tooltip";
 
 type ComboboxItemProps = React.ComponentProps<typeof CommandItem> & {
   displayValue?: boolean;
@@ -39,14 +40,18 @@ function ComboboxItem({
       {!isString(item) && item.icon ? (
         <Icon className="size-4" name={item.icon} />
       ) : null}
-      <div className="flex w-full grow items-center justify-between gap-2 truncate">
+      <div className="flex w-full items-center justify-between gap-2 truncate">
         {renderOption ? (
           renderOption(item)
         ) : (
-          <span className="truncate">{optionLabel}</span>
+          <span className="min-w-1/2 grow truncate">{optionLabel}</span>
         )}
         {displayValue && (
-          <span className="text-muted-foreground">{optionValue}</span>
+          <Tooltip tooltip={optionValue}>
+            <span className="text-muted-foreground truncate">
+              {optionValue}
+            </span>
+          </Tooltip>
         )}
       </div>
     </CommandItem>

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Narsil\Policies\EntityPolicy;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\Revisionable;
+use Narsil\Traits\HasRevisions;
 
 #endregion
 
@@ -24,7 +24,7 @@ class Entity extends Model
     use Blameable;
     use HasDatetimes;
     use HasUuids;
-    use Revisionable;
+    use HasRevisions;
 
     #region CONSTRUCTOR
 

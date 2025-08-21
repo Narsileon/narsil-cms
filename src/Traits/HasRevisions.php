@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-trait Revisionable
+trait HasRevisions
 {
     use SoftDeletes;
 
@@ -75,7 +75,7 @@ trait Revisionable
     /**
      * @return void
      */
-    protected static function bootRevisionable(): void
+    protected static function bootHasRevisions(): void
     {
         static::creating(function (Model $model)
         {
