@@ -3,14 +3,19 @@ import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { CommandItem } from "@narsil-cms/components/ui/command";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { isString } from "lodash";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import type { SelectOption } from "@narsil-cms/types/forms";
-import { Tooltip } from "../tooltip";
+import type { UniqueIdentifier } from "@dnd-kit/core";
 
-type ComboboxItemProps = React.ComponentProps<typeof CommandItem> & {
+type ComboboxItemProps = Omit<
+  React.ComponentProps<typeof CommandItem>,
+  "value"
+> & {
   displayValue?: boolean;
   item: SelectOption | string;
   labelPath: string;
   selected?: boolean;
+  value: UniqueIdentifier;
   valuePath: string;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
@@ -29,7 +34,7 @@ function ComboboxItem({
   const optionValue = getSelectOption(item, valuePath);
 
   return (
-    <CommandItem value={optionValue} {...props} key={optionValue}>
+    <CommandItem {...props} value={optionValue.toString()}>
       <Icon
         className={cn(
           "size-4",

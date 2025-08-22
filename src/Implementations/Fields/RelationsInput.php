@@ -5,9 +5,12 @@ namespace Narsil\Implementations\Fields;
 #region USE
 
 use Narsil\Contracts\Fields\RelationsInput as Contract;
+use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Template;
 use Narsil\Support\LabelsBag;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -45,7 +48,17 @@ class RelationsInput extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
-        return [];
+        $templateOptions = static::getTemplateOptions();
+
+        return [
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.min" : 'min',
+                Field::NAME => trans('narsil::validation.attributes.collection'),
+                Field::TYPE => SelectInput::class,
+                Field::SETTINGS => app(SelectInput::class)
+                    ->options($templateOptions),
+            ]),
+        ];
     }
 
     /**
@@ -191,6 +204,22 @@ class RelationsInput extends AbstractField implements Contract
         $this->settings['unique'] = $unique;
 
         return $this;
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    protected static function getTemplateOptions(): array
+    {
+        return Template::query()
+            ->orderBy(Template::NAME)
+            ->get()
+            ->map(function (Template $template)
+            {
+                return (new SelectOption($template->{Template::NAME}, $template->{Template::ID}));
+            })
+            ->toArray();
     }
 
     #endregion
