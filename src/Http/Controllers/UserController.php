@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\UserFormRequest;
 use Narsil\Contracts\Forms\UserForm;
-use Narsil\Contracts\Tables\UserTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -76,8 +75,8 @@ class UserController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil::ui.users'),
-            description: trans('narsil::ui.users'),
+            title: trans('narsil::tables.users'),
+            description: trans('narsil::tables.users'),
             props: [
                 'dataTable' => $dataTable,
             ]

@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\SiteGroupFormRequest;
 use Narsil\Contracts\Forms\SiteGroupForm;
-use Narsil\Contracts\Tables\SiteGroupTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -74,8 +73,8 @@ class SiteGroupController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil::ui.site_groups'),
-            description: trans('narsil::ui.site_groups'),
+            title: trans('narsil::tables.site_groups'),
+            description: trans('narsil::tables.site_groups'),
             props: [
                 'dataTable' => $dataTable,
             ]

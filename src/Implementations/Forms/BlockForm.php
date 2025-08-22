@@ -33,8 +33,8 @@ class BlockForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::ui.block');
-        $this->title = trans('narsil::ui.block');
+        $this->description = trans('narsil::models.block');
+        $this->title = trans('narsil::models.block');
     }
 
     #endregion
@@ -79,7 +79,7 @@ class BlockForm extends AbstractForm implements Contract
                             ->form(app(BlockElementForm::class)->jsonSerialize())
                             ->addOption(
                                 identifier: Block::TABLE,
-                                label: trans('narsil::ui.block'),
+                                label: trans('narsil::models.block'),
                                 optionLabel: BlockElement::NAME,
                                 optionValue: BlockElement::HANDLE,
                                 options: $blockOptions,
@@ -87,7 +87,7 @@ class BlockForm extends AbstractForm implements Contract
                             )
                             ->addOption(
                                 identifier: Field::TABLE,
-                                label: trans('narsil::ui.field'),
+                                label: trans('narsil::models.field'),
                                 optionLabel: BlockElement::NAME,
                                 optionValue: BlockElement::HANDLE,
                                 options: $fieldOptions,

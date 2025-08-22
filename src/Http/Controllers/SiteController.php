@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\SiteFormRequest;
 use Narsil\Contracts\Forms\SiteForm;
-use Narsil\Contracts\Tables\SiteTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -85,8 +84,8 @@ class SiteController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil::ui.sites'),
-            description: trans('narsil::ui.sites'),
+            title: trans('narsil::tables.sites'),
+            description: trans('narsil::tables.sites'),
             props: [
                 'dataTable' => $dataTable,
                 'dataTableFilter' => $dataTableFilter,

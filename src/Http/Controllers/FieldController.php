@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
-use Narsil\Contracts\Tables\FieldTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -77,8 +76,8 @@ class FieldController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil::ui.fields'),
-            description: trans('narsil::ui.fields'),
+            title: trans('narsil::tables.fields'),
+            description: trans('narsil::tables.fields'),
             props: [
                 'dataTable' => $dataTable,
             ]

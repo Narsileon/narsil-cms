@@ -38,7 +38,7 @@ class BuilderElement extends AbstractField implements Contract
                 Field::SETTINGS => app(RelationsInput::class)
                     ->addOption(
                         identifier: Block::TABLE,
-                        label: trans('narsil::ui.block'),
+                        label: trans('narsil::models.block'),
                         optionLabel: BlockElement::NAME,
                         optionValue: BlockElement::HANDLE,
                         options: $blockOptions,

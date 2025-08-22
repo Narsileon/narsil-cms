@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\RoleFormRequest;
 use Narsil\Contracts\Forms\RoleForm;
-use Narsil\Contracts\Tables\RoleTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -75,8 +74,8 @@ class RoleController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil::ui.roles'),
-            description: trans('narsil::ui.roles'),
+            title: trans('narsil::tables.roles'),
+            description: trans('narsil::tables.roles'),
             props: [
                 'dataTable' => $dataTable,
             ]

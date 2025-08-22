@@ -84,8 +84,8 @@ class BlockController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil::ui.blocks'),
-            description: trans('narsil::ui.blocks'),
+            title: trans('narsil::tables.blocks'),
+            description: trans('narsil::tables.blocks'),
             props: [
                 'dataTable' => $dataTable,
             ]

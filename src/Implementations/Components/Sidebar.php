@@ -62,18 +62,18 @@ class Sidebar extends AbstractComponent implements Contract
                 ->children($collections),
             (new NavigationGroup(trans('narsil::ui.structures')))
                 ->children([
-                    (new NavigationItem(route('templates.index'), trans('narsil::ui.templates')))
+                    (new NavigationItem(route('templates.index'), trans('narsil::tables.templates')))
                         ->icon('layout'),
-                    (new NavigationItem(route('blocks.index'), trans('narsil::ui.blocks')))
+                    (new NavigationItem(route('blocks.index'), trans('narsil::tables.blocks')))
                         ->icon('box'),
-                    (new NavigationItem(route('fields.index'), trans('narsil::ui.fields')))
+                    (new NavigationItem(route('fields.index'), trans('narsil::tables.fields')))
                         ->icon('input'),
                 ]),
-            (new NavigationGroup(trans('narsil::ui.users')))
+            (new NavigationGroup(trans('narsil::tables.users')))
                 ->children([
-                    (new NavigationItem(route('users.index'), trans('narsil::ui.users')))
+                    (new NavigationItem(route('users.index'), trans('narsil::tables.users')))
                         ->icon('users'),
-                    (new NavigationItem(route('roles.index'), trans('narsil::ui.roles')))
+                    (new NavigationItem(route('roles.index'), trans('narsil::tables.roles')))
                         ->icon('shield'),
                 ]),
             (new NavigationGroup(trans('narsil::ui.tools')))
@@ -83,7 +83,7 @@ class Sidebar extends AbstractComponent implements Contract
                 ]),
             (new NavigationGroup(trans('narsil::ui.settings')))
                 ->children([
-                    (new NavigationItem(route('sites.index'), trans('narsil::ui.sites')))
+                    (new NavigationItem(route('sites.index'), trans('narsil::tables.sites')))
                         ->icon('globe'),
                 ]),
 

@@ -33,8 +33,8 @@ class RoleForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::ui.role');
-        $this->title = trans('narsil::ui.role');
+        $this->description = trans('narsil::models.role');
+        $this->title = trans('narsil::models.role');
     }
 
     #endregion
@@ -75,7 +75,7 @@ class RoleForm extends AbstractForm implements Contract
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => Role::RELATION_PERMISSIONS,
-                TemplateSection::NAME => trans('narsil::ui.permissions'),
+                TemplateSection::NAME => trans('narsil::tables.permissions'),
                 TemplateSection::RELATION_ELEMENTS => $permissionElements,
             ]),
             static::informationSection(),

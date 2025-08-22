@@ -39,8 +39,8 @@ class UserForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::ui.user');
-        $this->title = trans('narsil::ui.user');
+        $this->description = trans('narsil::models.user');
+        $this->title = trans('narsil::models.user');
     }
 
     #endregion
@@ -137,7 +137,7 @@ class UserForm extends AbstractForm implements Contract
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'roles',
-                TemplateSection::NAME => trans('narsil::ui.roles'),
+                TemplateSection::NAME => trans('narsil::tables.roles'),
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT =>

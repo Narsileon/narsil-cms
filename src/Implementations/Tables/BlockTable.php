@@ -49,12 +49,12 @@ class BlockTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: trans('narsil::ui.fields'),
+                header: trans('narsil::tables.fields'),
                 id: Block::COUNT_FIELDS,
                 visibility: true,
             ),
             new TableColumn(
-                header: trans('narsil::ui.blocks'),
+                header: trans('narsil::tables.blocks'),
                 id: Block::COUNT_BLOCKS,
                 visibility: true,
             ),

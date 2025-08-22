@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\TemplateFormRequest;
 use Narsil\Contracts\Forms\TemplateForm;
-use Narsil\Contracts\Tables\TemplateTable;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
@@ -79,8 +78,8 @@ class TemplateController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: trans('narsil::ui.templates'),
-            description: trans('narsil::ui.templates'),
+            title: trans('narsil::tables.templates'),
+            description: trans('narsil::tables.templates'),
             props: [
                 'dataTable' => $dataTable,
             ]

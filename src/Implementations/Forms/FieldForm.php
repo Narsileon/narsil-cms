@@ -32,8 +32,8 @@ class FieldForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::ui.field');
-        $this->title = trans('narsil::ui.field');
+        $this->description = trans('narsil::models.field');
+        $this->title = trans('narsil::models.field');
     }
 
     #endregion
