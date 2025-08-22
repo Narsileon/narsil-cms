@@ -48,7 +48,7 @@ ncu -u -t minor
 npm install
 ```
 
-# Upgrade dependencies to latest major versions:
+Upgrade dependencies to latest major versions:
 
 ```bash
 npm install -g npm-check-updates
