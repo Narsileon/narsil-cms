@@ -78,7 +78,7 @@ class Sidebar extends AbstractComponent implements Contract
                 ]),
             (new NavigationGroup(trans('narsil::ui.tools')))
                 ->children([
-                    (new NavigationItem(route('graphiql'), 'GraphQL'))
+                    (new NavigationItem(route('graphiql'), trans('narsil::ui.graphiql')))
                         ->icon('database'),
                 ]),
             (new NavigationGroup(trans('narsil::ui.settings')))

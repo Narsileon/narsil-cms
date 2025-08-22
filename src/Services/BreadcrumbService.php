@@ -48,8 +48,18 @@ abstract class BreadcrumbService
             }
             else
             {
+
+                $key = Str::replace('-', '_', $segment);
+
+                $label = trans('narsil::tables.' . $key);
+
+                if (Str::contains($label, '::'))
+                {
+                    $label = trans('narsil::ui.' . $key);
+                }
+
                 $breadcrumbs[] = [
-                    'label' => trans('narsil::ui.' . Str::replace('-', '_', $segment)),
+                    'label' => $label,
                     'href'  => $path,
                 ];
             }
