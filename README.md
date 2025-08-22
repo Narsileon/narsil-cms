@@ -5,19 +5,19 @@
 Install dependencies:
 
 ```bash
-ddev composer install
+composer install
 ```
 
 Update dependencies:
 
 ```bash
-ddev composer update
+composer update
 ```
 
 Check outdated dependencies:
 
 ```bash
-ddev composer outdated
+composer outdated
 ```
 
 ### Node
@@ -25,33 +25,33 @@ ddev composer outdated
 Install dependencies:
 
 ```bash
-npm install
+yarn install
 ```
 
 Update dependencies:
 
 ```bash
-npm update
+yarn upgrade
 ```
 
 Check outdated dependencies:
 
 ```bash
-npm outdated
+yarn outdated
 ```
 
 Upgrade dependencies to latest minor versions:
 
 ```bash
-npm install -g npm-check-updates
+yarn global add npm-check-updates
 ncu -u -t minor
-npm install
+yarn
 ```
 
 Upgrade dependencies to latest major versions:
 
 ```bash
-npm install -g npm-check-updates
-ncu -u -t minor
-npm install
+yarn global add npm-check-updates
+ncu -u -t latest
+yarn
 ```
