@@ -49,6 +49,7 @@ class Field extends Model
         ], $this->guarded);
 
         $this->with = array_merge([
+            self::RELATION_BLOCKS,
             self::RELATION_OPTIONS,
         ], $this->with);
 

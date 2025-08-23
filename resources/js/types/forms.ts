@@ -4,6 +4,7 @@ import type { IconName } from "@narsil-cms/plugins/icons";
 export type Block = {
   elements: BlockElement[];
   handle: string;
+  icon?: IconName;
   id: number;
   identifier: string;
   name: string;
@@ -31,6 +32,7 @@ export type BlockElementCondition = {
 };
 
 export type Field = {
+  blocks: Block[];
   description: string | null;
   handle: string;
   id: number;
