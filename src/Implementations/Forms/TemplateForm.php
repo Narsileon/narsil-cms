@@ -131,7 +131,7 @@ class TemplateForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return (new SelectOption($block->{Block::NAME}, $block->{Block::HANDLE}))
+                return new SelectOption($block->{Block::NAME}, $block->{Block::HANDLE})
                     ->icon($block->{Block::ATTRIBUTE_ICON})
                     ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
@@ -148,7 +148,7 @@ class TemplateForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Field $field)
             {
-                return (new SelectOption($field->{Field::NAME}, $field->{Field::HANDLE}))
+                return new SelectOption($field->{Field::NAME}, $field->{Field::HANDLE})
                     ->icon($field->{Field::ATTRIBUTE_ICON})
                     ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })

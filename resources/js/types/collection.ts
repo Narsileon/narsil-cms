@@ -13,6 +13,7 @@ export type DataTableCollection<T = any> = {
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta & {
     id: string;
+    selectable?: boolean;
     routes: RouteNames;
     title: string;
   };

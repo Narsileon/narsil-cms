@@ -150,10 +150,10 @@ class SiteForm extends AbstractForm implements Contract
 
         foreach ($locales as $locale)
         {
-            $options[] = (new SelectOption(
+            $options[] = new SelectOption(
                 label: Locale::getDisplayName($locale, App::getLocale()),
                 value: $locale
-            ))->jsonSerialize();
+            )->jsonSerialize();
         }
 
         usort($options, function ($a, $b)

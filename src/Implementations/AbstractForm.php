@@ -129,7 +129,7 @@ abstract class AbstractForm implements Form
      */
     protected function getDefaultId(): string
     {
-        $name = (new ReflectionClass(static::class))->getShortName();
+        $name = new ReflectionClass(static::class)->getShortName();
 
         return Str::slug(Str::snake($name));
     }

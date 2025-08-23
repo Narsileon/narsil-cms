@@ -58,6 +58,11 @@ class Template extends Model
     final public const NAME = 'name';
 
     /**
+     * @var string The name of the "entities" count.
+     */
+    final public const COUNT_ENTITIES = 'entities_count';
+
+    /**
      * @var string The name of the "sections" relation.
      */
     final public const RELATION_SECTIONS = 'sections';

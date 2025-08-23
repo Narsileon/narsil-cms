@@ -38,6 +38,60 @@ type ResourceIndexProps = {
   title: string;
 };
 
+function getMenuColumn(dataTable: DataTableCollection): ColumnDef<any> {
+  return {
+    id: "_menu",
+    header: ({ table }) =>
+      table.getIsSomePageRowsSelected() || table.getIsAllPageRowsSelected() ? (
+        <DataTableRowMenu
+          className="absolute top-1/2 right-1 -translate-y-1/2 transform"
+          routes={dataTable.meta.routes}
+          table={table}
+        />
+      ) : null,
+    cell: ({ row }: any) => (
+      <DataTableRowMenu
+        className="absolute top-1/2 right-1 -translate-y-1/2 transform"
+        id={row.original.id}
+        routes={dataTable.meta.routes}
+      />
+    ),
+    position: "sticky",
+    size: 45,
+    enableSorting: false,
+    enableHiding: false,
+  };
+}
+
+function getSelectColumn(dataTable: DataTableCollection): ColumnDef<any> {
+  return {
+    id: "_select",
+    header: ({ table }) =>
+      dataTable.data.length > 0 ? (
+        <Checkbox
+          className="mx-1"
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+        />
+      ) : null,
+    cell: ({ row }) => (
+      <Checkbox
+        className="ml-1"
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    size: 32,
+    enableSorting: false,
+    enableHiding: false,
+  };
+}
+
 function ResourceIndex({
   dataTable,
   dataTableFilter,
@@ -45,62 +99,19 @@ function ResourceIndex({
 }: ResourceIndexProps) {
   const { trans } = useLabels();
 
+  const hasMenu = dataTable.meta.routes.edit || dataTable.meta.routes.destroy;
+
   const finalColumns: (ColumnDef<any> & { position?: string })[] = [
-    {
-      id: "_select",
-      header: ({ table }) =>
-        dataTable.data.length > 0 ? (
-          <Checkbox
-            className="mx-1"
-            checked={
-              table.getIsAllPageRowsSelected() ||
-              (table.getIsSomePageRowsSelected() && "indeterminate")
-            }
-            onCheckedChange={(value) =>
-              table.toggleAllPageRowsSelected(!!value)
-            }
-            aria-label="Select all"
-          />
-        ) : null,
-      cell: ({ row }) => (
-        <Checkbox
-          className="ml-1"
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      ),
-      size: 32,
-      enableSorting: false,
-      enableHiding: false,
-    },
+    ...(dataTable.meta.selectable ? [getSelectColumn(dataTable)] : []),
     ...dataTable.columns,
-    {
-      id: "_menu",
-      header: ({ table }) =>
-        table.getIsSomePageRowsSelected() ||
-        table.getIsAllPageRowsSelected() ? (
-          <DataTableRowMenu
-            className="absolute top-1/2 right-1 -translate-y-1/2 transform"
-            routes={dataTable.meta.routes}
-            table={table}
-          />
-        ) : null,
-      cell: ({ row }: any) => (
-        <DataTableRowMenu
-          className="absolute top-1/2 right-1 -translate-y-1/2 transform"
-          id={row.original.id}
-          routes={dataTable.meta.routes}
-        />
-      ),
-      position: "sticky",
-      size: 45,
-      enableSorting: false,
-      enableHiding: false,
-    },
+    ...(hasMenu ? [getMenuColumn(dataTable)] : []),
   ];
 
-  const finalColumnOrder = ["_select", ...dataTable.columnOrder];
+  const finalColumnOrder = [
+    ...(dataTable.meta.selectable ? ["_select"] : []),
+    ...dataTable.columnOrder,
+    ...(hasMenu ? ["_menu"] : []),
+  ];
 
   return (
     <DataTableProvider

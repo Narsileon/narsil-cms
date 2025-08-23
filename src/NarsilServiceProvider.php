@@ -96,6 +96,7 @@ class NarsilServiceProvider extends ServiceProvider
             'narsil.fields' => __DIR__ . '/../config/narsil/fields.php',
             'narsil.form-requests' => __DIR__ . '/../config/narsil/form-requests.php',
             'narsil.forms'  => __DIR__ . '/../config/narsil/forms.php',
+            'narsil.locales' => __DIR__ . '/../config/narsil/locales.php',
             'narsil.observers' => __DIR__ . '/../config/narsil/observers.php',
             'narsil.policies' => __DIR__ . '/../config/narsil/policies.php',
             'narsil.tables' => __DIR__ . '/../config/narsil/tables.php',

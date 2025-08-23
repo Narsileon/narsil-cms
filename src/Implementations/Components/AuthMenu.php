@@ -40,11 +40,11 @@ class AuthMenu extends AbstractComponent implements Contract
     protected function content(): array
     {
         return [
-            (new NavigationItem(route('user-configuration.index'), trans('narsil::ui.settings')))
+            new NavigationItem(route('user-configuration.index'), trans('narsil::ui.settings'))
                 ->icon('settings')
                 ->modal(true),
-            (new Separator),
-            (new NavigationItem(route('logout'), trans('narsil::ui.log_out')))
+            new Separator(),
+            new NavigationItem(route('logout'), trans('narsil::ui.log_out'))
                 ->icon('log-out')
                 ->method(MethodEnum::POST),
         ];

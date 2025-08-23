@@ -5,6 +5,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Narsil\Http\Controllers\BlockController;
+use Narsil\Http\Controllers\CollectionController;
 use Narsil\Http\Controllers\DashboardController;
 use Narsil\Http\Controllers\EntityController;
 use Narsil\Http\Controllers\FieldController;
@@ -81,7 +82,10 @@ Route::middleware([
 
         #endregion
 
-        #region ENTITIES
+        #region COLLECTIONS
+
+        Route::get('collections', CollectionController::class)
+            ->name('collections.summary');
 
         Route::controller(EntityController::class)->group(function ()
         {

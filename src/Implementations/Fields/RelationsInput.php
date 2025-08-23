@@ -217,7 +217,7 @@ class RelationsInput extends AbstractField implements Contract
             ->get()
             ->map(function (Template $template)
             {
-                return (new SelectOption($template->{Template::NAME}, $template->{Template::ID}));
+                return new SelectOption($template->{Template::NAME}, $template->{Template::ID});
             })
             ->toArray();
     }

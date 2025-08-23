@@ -30,6 +30,8 @@ return [
     'element'           => 'Element',
     'elements'          => 'Elements',
     'email_verify'      => 'Verify your email',
+    'entity'            => 'Entity',
+    'entities'          => 'Entities',
     'graphiql'          => 'GraphQL',
     'home'              => 'Home',
     'information'       => 'Information',

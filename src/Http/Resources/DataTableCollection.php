@@ -12,7 +12,6 @@ use JsonSerializable;
 use Narsil\Contracts\Table;
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Http\Requests\QueryRequest;
-use Narsil\Implementations\Tables\EntityTable;
 use Narsil\Services\TableService;
 use Narsil\Support\LabelsBag;
 
@@ -82,6 +81,11 @@ class DataTableCollection extends ResourceCollection
      */
     protected readonly Table $table;
 
+    /**
+     * @var array<string,mixed>
+     */
+    protected array $options = [];
+
     #endregion
 
     #region PUBLIC METHODS
@@ -114,6 +118,22 @@ class DataTableCollection extends ResourceCollection
 
     #endregion
 
+    #region FLUENT METHODS
+
+    /**
+     * @param boolean $selectable
+     *
+     * @return static Returns the current object instance.
+     */
+    public function setSelectable(bool $selectable): static
+    {
+        $this->options['selectable'] = $selectable;
+
+        return $this;
+    }
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -123,10 +143,10 @@ class DataTableCollection extends ResourceCollection
     {
         $id = Str::slug($this->table->name);
 
-        return [
+        return array_merge($this->options, [
             'id'     => $id,
             'routes' => $this->table->getRoutes(),
-        ];
+        ]);
     }
 
     /**
@@ -210,7 +230,6 @@ class DataTableCollection extends ResourceCollection
             $query->orderBy($key, $value);
         }
     }
-
 
     #endregion
 }

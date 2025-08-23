@@ -76,7 +76,7 @@ class BuilderElement extends AbstractField implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return (new SelectOption($block->{Block::NAME}, $block->{Block::ID}))
+                return new SelectOption($block->{Block::NAME}, $block->{Block::ID})
                     ->icon($block->{Block::ATTRIBUTE_ICON})
                     ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })

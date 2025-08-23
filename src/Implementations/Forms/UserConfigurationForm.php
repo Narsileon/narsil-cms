@@ -120,7 +120,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
     {
         $locales = ResourceBundle::getLocales('');
 
-        $allowedLocales = explode(',', Config::get('app.locales', 'de,en,fr'));
+        $allowedLocales = Config::get('narsil.locales', []);
 
         $options = [];
 
@@ -131,10 +131,10 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 continue;
             }
 
-            $options[] = (new SelectOption(
+            $options[] = new SelectOption(
                 label: Str::ucfirst(Locale::getDisplayName($locale, App::getLocale())),
                 value: $locale
-            ))->jsonSerialize();
+            )->jsonSerialize();
         }
 
         usort($options, function ($a, $b)
