@@ -30,6 +30,7 @@ type BuilderProps = {
   blocks: Block[];
   items: Block[];
   keyPath?: string;
+  name: string;
   setItems: (items: Block[]) => void;
 };
 
@@ -37,6 +38,7 @@ function Builder({
   blocks,
   keyPath = "position",
   items,
+  name,
   setItems,
 }: BuilderProps) {
   const [active, setActive] = useState<Block | null>(null);
@@ -91,24 +93,30 @@ function Builder({
         <div className="flex flex-col items-center justify-center">
           <div className="bg-constructive size-4 rounded-full" />
           <BuilderSeparator />
-          {items.map((item, index) => (
-            <React.Fragment key={get(item, keyPath)}>
-              <BuilderAdd
-                blocks={blocks}
-                keyPath={keyPath}
-                onAdd={(item) => {
-                  const newItems = [...items];
+          {items.map((item, index) => {
+            const key = get(item, keyPath);
 
-                  newItems.splice(index, 0, item);
+            const handle = `${name}.${index}.values.${item.handle}`;
 
-                  setItems(newItems);
-                }}
-              />
-              <BuilderSeparator />
-              <BuilderItem keyPath={keyPath} item={item} />
-              <BuilderSeparator />
-            </React.Fragment>
-          ))}
+            return (
+              <React.Fragment key={key}>
+                <BuilderAdd
+                  blocks={blocks}
+                  keyPath={keyPath}
+                  onAdd={(item) => {
+                    const newItems = [...items];
+
+                    newItems.splice(index, 0, item);
+
+                    setItems(newItems);
+                  }}
+                />
+                <BuilderSeparator />
+                <BuilderItem handle={handle} id={key} item={item} />
+                <BuilderSeparator />
+              </React.Fragment>
+            );
+          })}
           <BuilderAdd
             blocks={blocks}
             keyPath={keyPath}
@@ -119,7 +127,9 @@ function Builder({
         </div>
       </SortableContext>
       <DragOverlay>
-        {active ? <BuilderItem keyPath={keyPath} item={active} /> : null}
+        {active ? (
+          <BuilderItem id={get(active, keyPath)} item={active} />
+        ) : null}
       </DragOverlay>
     </DndContext>
   );

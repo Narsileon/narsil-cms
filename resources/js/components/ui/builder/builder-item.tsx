@@ -1,18 +1,25 @@
 import { Block } from "@narsil-cms/types/forms";
 import { FormFieldRenderer } from "@narsil-cms/components/ui/form";
-import { get } from "lodash";
 import { SortableItem } from "@narsil-cms/components/ui/sortable";
+import React from "react";
 
-type BuilderItemProps = {
-  keyPath: string;
+type BuilderItemProps = Omit<
+  React.ComponentProps<typeof SortableItem>,
+  "item"
+> & {
+  handle?: string;
   item: Block;
 };
 
-function BuilderItem({ keyPath, item }: BuilderItemProps) {
+function BuilderItem({ handle, item, ...props }: BuilderItemProps) {
   return (
-    <SortableItem className="w-full" id={get(item, keyPath)} item={item}>
+    <SortableItem className="w-full" item={item} {...props}>
       {item.elements.map((element, index) => (
-        <FormFieldRenderer element={element.element} key={index} />
+        <FormFieldRenderer
+          element={element.element}
+          handle={handle}
+          key={index}
+        />
       ))}
     </SortableItem>
   );

@@ -36,6 +36,7 @@ const defaultRegistry: Registry = {
       <Builder
         {...props.element.settings}
         blocks={props.element.blocks}
+        name={props.id}
         items={isArray(props.value) ? props.value : []}
         setItems={props.setValue}
       />

@@ -1,5 +1,5 @@
-import { cn } from "@narsil-cms/lib/utils";
 import * as React from "react";
+import { cn } from "@narsil-cms/lib/utils";
 
 type BuilderSeparatorProps = React.ComponentProps<"div"> & {};
 
