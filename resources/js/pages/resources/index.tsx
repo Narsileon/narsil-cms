@@ -102,13 +102,15 @@ function ResourceIndex({
   const hasMenu = dataTable.meta.routes.edit || dataTable.meta.routes.destroy;
 
   const finalColumns: (ColumnDef<any> & { position?: string })[] = [
-    ...(dataTable.meta.selectable ? [getSelectColumn(dataTable)] : []),
+    ...(dataTable.meta.selectable !== false
+      ? [getSelectColumn(dataTable)]
+      : []),
     ...dataTable.columns,
     ...(hasMenu ? [getMenuColumn(dataTable)] : []),
   ];
 
   const finalColumnOrder = [
-    ...(dataTable.meta.selectable ? ["_select"] : []),
+    ...(dataTable.meta.selectable !== false ? ["_select"] : []),
     ...dataTable.columnOrder,
     ...(hasMenu ? ["_menu"] : []),
   ];
