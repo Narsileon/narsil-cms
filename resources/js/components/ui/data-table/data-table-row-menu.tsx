@@ -47,6 +47,7 @@ function DataTableRowMenu({
             className="hover:bg-secondary size-7"
             size="icon"
             variant="ghost"
+            aria-label={trans("accessibility.toggle_row_menu")}
           >
             <Icon name="more-horizontal" />
           </Button>
