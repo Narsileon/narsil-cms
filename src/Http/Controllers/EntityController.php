@@ -17,6 +17,7 @@ use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Entities\Entity;
 
 #endregion
@@ -41,6 +42,13 @@ class EntityController extends AbstractController
         $collection = request()->route('collection');
 
         Entity::$associatedTable = $collection;
+
+        $this->template = Template::query()
+            ->with([
+                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_BlOCKS,
+                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_FIELDS,
+            ])
+            ->firstWhere(Template::HANDLE, '=', $collection);
     }
 
     #endregion
@@ -51,6 +59,10 @@ class EntityController extends AbstractController
      * @var EntityFormRequest
      */
     protected readonly EntityFormRequest $formRequest;
+    /**
+     * @var Template
+     */
+    protected readonly Template $template;
 
     #endregion
 
@@ -66,9 +78,6 @@ class EntityController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
 
-        $template = Template::query()
-            ->firstWhere(Template::HANDLE, '=', $collection);
-
         $query = Entity::query()
             ->with([
                 Entity::RELATION_CREATOR,
@@ -80,8 +89,8 @@ class EntityController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: $template->{Template::NAME},
-            description: $template->{Template::NAME},
+            title: $this->template->{Template::NAME},
+            description: $this->template->{Template::NAME},
             props: [
                 'dataTable' => $dataTable,
             ]
@@ -98,11 +107,8 @@ class EntityController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
-        $template = Template::query()
-            ->firstWhere(Template::HANDLE, '=', $collection);
-
         $form = app()->make(EntityForm::class, [
-            'template' => $template
+            'template' => $this->template
         ]);
 
         $form->method = MethodEnum::POST;
@@ -157,11 +163,8 @@ class EntityController extends AbstractController
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
-        $template = Template::query()
-            ->firstWhere(Template::HANDLE, '=', $collection);
-
         $form = app()->make(EntityForm::class, [
-            'template' => $template,
+            'template' => $this->template,
         ]);
 
         $form->method = MethodEnum::PATCH;

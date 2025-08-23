@@ -4,7 +4,6 @@ namespace Narsil\Traits;
 
 #region USE
 
-use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;

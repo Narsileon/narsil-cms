@@ -48,9 +48,17 @@ abstract class TemplateService
         {
             $element = $blockElement->{BlockElement::RELATION_ELEMENT};
 
-            return $blockElement->{BlockElement::ELEMENT_TYPE} === Field::class
-                ? [$element]
-                : static::getBlockFields($element);
+            if ($blockElement->{BlockElement::ELEMENT_TYPE} === Field::class)
+            {
+                $field = clone $element;
+
+                $field->{Field::HANDLE} = $blockElement->{BlockElement::HANDLE};
+                $field->{Field::NAME} = $blockElement->{BlockElement::NAME};
+
+                return [$field];
+            }
+
+            return static::getBlockFields($element);
         });
     }
 
@@ -65,9 +73,17 @@ abstract class TemplateService
         {
             $element = $templateSectionElement->{TemplateSectionElement::RELATION_ELEMENT};
 
-            return $templateSectionElement->{TemplateSectionElement::ELEMENT_TYPE} === Field::class
-                ? [$element]
-                : static::getBlockFields($element);
+            if ($templateSectionElement->{TemplateSectionElement::ELEMENT_TYPE} === Field::class)
+            {
+                $field = clone $element;
+
+                $field->{Field::HANDLE} = $templateSectionElement->{TemplateSectionElement::HANDLE};
+                $field->{Field::NAME} = $templateSectionElement->{TemplateSectionElement::NAME};
+
+                return [$field];
+            }
+
+            return static::getBlockFields($element);
         });
     }
 
