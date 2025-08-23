@@ -1,4 +1,5 @@
 import * as React from "react";
+import { get } from "lodash";
 import { useState } from "react";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
@@ -28,10 +29,16 @@ import type {
 type BuilderProps = {
   blocks: Block[];
   items: Block[];
+  keyPath?: string;
   setItems: (items: Block[]) => void;
 };
 
-function Builder({ blocks, items, setItems }: BuilderProps) {
+function Builder({
+  blocks,
+  keyPath = "position",
+  items,
+  setItems,
+}: BuilderProps) {
   const [active, setActive] = useState<Block | null>(null);
 
   const sensors = useSensors(
@@ -48,8 +55,12 @@ function Builder({ blocks, items, setItems }: BuilderProps) {
     setActive(null);
 
     if (over) {
-      const activeIndex = items.findIndex((item) => item.id == active.id);
-      const overIndex = items.findIndex((item) => item.id == over.id);
+      const activeIndex = items.findIndex(
+        (item) => get(item, keyPath) == active.id,
+      );
+      const overIndex = items.findIndex(
+        (item) => get(item, keyPath) == over.id,
+      );
 
       if (activeIndex !== overIndex) {
         setItems(arrayMove(items, activeIndex, overIndex));
@@ -58,7 +69,7 @@ function Builder({ blocks, items, setItems }: BuilderProps) {
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const item = items.find((item) => item.id === active.id);
+    const item = items.find((item) => get(item, keyPath) == active.id);
 
     if (item) {
       setActive(item);
@@ -73,14 +84,18 @@ function Builder({ blocks, items, setItems }: BuilderProps) {
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      <SortableContext
+        items={items.map((item) => get(item, keyPath))}
+        strategy={verticalListSortingStrategy}
+      >
         <div className="flex flex-col items-center justify-center">
           <div className="bg-constructive size-4 rounded-full" />
           <BuilderSeparator />
           {items.map((item, index) => (
-            <React.Fragment key={index}>
+            <React.Fragment key={get(item, keyPath)}>
               <BuilderAdd
                 blocks={blocks}
+                keyPath={keyPath}
                 onAdd={(item) => {
                   const newItems = [...items];
 
@@ -90,19 +105,22 @@ function Builder({ blocks, items, setItems }: BuilderProps) {
                 }}
               />
               <BuilderSeparator />
-              <BuilderItem item={item} key={item.id} />
+              <BuilderItem keyPath={keyPath} item={item} />
               <BuilderSeparator />
             </React.Fragment>
           ))}
           <BuilderAdd
             blocks={blocks}
-            onAdd={(block) => setItems([...items, block])}
+            keyPath={keyPath}
+            onAdd={(item) => setItems([...items, item])}
           />
           <BuilderSeparator />
           <div className="bg-destructive size-4 rounded-full" />
         </div>
       </SortableContext>
-      <DragOverlay>{active ? <BuilderItem item={active} /> : null}</DragOverlay>
+      <DragOverlay>
+        {active ? <BuilderItem keyPath={keyPath} item={active} /> : null}
+      </DragOverlay>
     </DndContext>
   );
 }

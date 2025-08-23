@@ -18,10 +18,7 @@ function RichTextEditorTextAlign({
   const { trans } = useLabels();
 
   return (
-    <Tooltip
-      tooltip={trans(`accessibility.align_${alignment}`)}
-      asChild={false}
-    >
+    <Tooltip asChild={true} tooltip={trans(`accessibility.align_${alignment}`)}>
       <Toggle
         aria-label={trans(
           `accessibility.align_${alignment}`,

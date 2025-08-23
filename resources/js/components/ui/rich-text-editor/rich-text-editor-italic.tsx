@@ -23,7 +23,7 @@ function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
   });
 
   return (
-    <Tooltip tooltip={trans(`accessibility.toggle_italic`)} asChild={false}>
+    <Tooltip asChild={true} tooltip={trans(`accessibility.toggle_italic`)}>
       <Toggle
         aria-label={trans(`accessibility.toggle_italic`, `Toggle italic`)}
         disabled={!canItalic}

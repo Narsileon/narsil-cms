@@ -28,8 +28,8 @@ function RichTextEditorHeading({
 
   return (
     <Tooltip
+      asChild={true}
       tooltip={trans(`accessibility.toggle_heading_${level}`)}
-      asChild={false}
     >
       <Toggle
         aria-label={trans(

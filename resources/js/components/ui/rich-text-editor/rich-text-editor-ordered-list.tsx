@@ -26,8 +26,8 @@ function RichTextEditorOrderedList({
 
   return (
     <Tooltip
+      asChild={true}
       tooltip={trans(`accessibility.toggle_ordered_list`)}
-      asChild={false}
     >
       <Toggle
         aria-label={trans(

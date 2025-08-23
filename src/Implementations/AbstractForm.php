@@ -36,6 +36,7 @@ abstract class AbstractForm implements Form
             ->add('narsil::pagination.empty')
             ->add('narsil::placeholders.choose')
             ->add('narsil::placeholders.search')
+            ->add('narsil::ui.add')
             ->add('narsil::ui.all')
             ->add('narsil::ui.back')
             ->add('narsil::ui.create')

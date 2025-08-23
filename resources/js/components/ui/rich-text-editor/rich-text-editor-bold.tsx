@@ -23,7 +23,7 @@ function RichTextEditorBold({ editor, ...props }: RichTextEditorBoldProps) {
   });
 
   return (
-    <Tooltip tooltip={trans(`accessibility.toggle_bold`)} asChild={false}>
+    <Tooltip asChild={true} tooltip={trans(`accessibility.toggle_bold`)}>
       <Toggle
         aria-label={trans(`accessibility.toggle_bold`, `Toggle bold`)}
         disabled={!canBold}
