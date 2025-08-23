@@ -17,7 +17,7 @@ return new class extends Migration
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
+     * {@inheritDoc}
      *
      * @return void
      */
@@ -38,7 +38,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * {@inheritDoc}
      *
      * @return void
      */

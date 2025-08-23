@@ -13,10 +13,9 @@ use Narsil\Contracts\Fields\DateInput;
 use Narsil\Contracts\Fields\RichTextInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Fields\TimeInput;
+use Narsil\Database\Migrations\CollectionMigration;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\User;
 use Narsil\Services\GraphQLService;
 use Narsil\Services\TemplateService;
 
@@ -39,10 +38,7 @@ abstract class MigrationService
     {
         $table = $template->{Template::HANDLE};
 
-        if (!Schema::hasTable($table))
-        {
-            static::createTable($table);
-        }
+        new CollectionMigration($table)->up();
 
         $fields = TemplateService::getFields($template);
 
@@ -82,49 +78,6 @@ abstract class MigrationService
 
         $column->nullable(!Arr::get($field->{Field::SETTINGS}, 'required', false));
         $column->default(Arr::get($field->{Field::SETTINGS}, 'value', null));
-    }
-
-    /**
-     * @param string $table
-     *
-     * @return void
-     */
-    protected static function createTable(string $table): void
-    {
-        Schema::create($table, function (Blueprint $table)
-        {
-            $table
-                ->uuid(Entity::UUID)
-                ->primary();
-            $table
-                ->bigInteger(Entity::ID)
-                ->index();
-            $table
-                ->bigInteger(Entity::REVISION)
-                ->default(1);
-            $table
-                ->timestamp(Entity::CREATED_AT);
-            $table
-                ->foreignId(Entity::CREATED_BY)
-                ->nullable()
-                ->constrained(User::TABLE, User::ID)
-                ->nullOnDelete();
-            $table
-                ->timestamp(Entity::UPDATED_AT);
-            $table
-                ->foreignId(Entity::UPDATED_BY)
-                ->nullable()
-                ->constrained(User::TABLE, User::ID)
-                ->nullOnDelete();
-            $table
-                ->softDeletes()
-                ->index();
-            $table
-                ->foreignId(Entity::DELETED_BY)
-                ->nullable()
-                ->constrained(User::TABLE, User::ID)
-                ->nullOnDelete();
-        });
     }
 
     /**
