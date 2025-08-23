@@ -8,7 +8,7 @@ function TableHead({ className, ...props }: TableHeadProps) {
     <th
       data-slot="table-head"
       className={cn(
-        "text-foreground h-9 px-2 text-left align-middle font-medium whitespace-nowrap",
+        "text-foreground h-9 px-3 text-left align-middle font-medium whitespace-nowrap",
         "[&>[role=checkbox]]:translate-y-[2px]",
         className,
       )}

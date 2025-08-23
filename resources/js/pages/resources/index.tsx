@@ -69,7 +69,6 @@ function getSelectColumn(dataTable: DataTableCollection): ColumnDef<any> {
     header: ({ table }) =>
       dataTable.data.length > 0 ? (
         <Checkbox
-          className="mx-1"
           checked={
             table.getIsAllPageRowsSelected() ||
             (table.getIsSomePageRowsSelected() && "indeterminate")
@@ -80,7 +79,6 @@ function getSelectColumn(dataTable: DataTableCollection): ColumnDef<any> {
       ) : null,
     cell: ({ row }) => (
       <Checkbox
-        className="ml-1"
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
