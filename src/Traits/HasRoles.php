@@ -13,15 +13,27 @@ trait HasRoles
 {
     #region CONSTANTS
 
-    /**
-     * @var string The name of the "roles" count.
-     */
-    public const COUNT_ROLES = 'roles_count';
+    #region • COUNTS
 
     /**
-     * @var string The name of the "roles" relation.
+     * The name of the "roles" count.
+     *
+     * @var string
      */
-    public const RELATION_ROLES = "roles";
+    final public const COUNT_ROLES = 'roles_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "roles" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ROLES = "roles";
+
+    #endregion
 
     #endregion
 

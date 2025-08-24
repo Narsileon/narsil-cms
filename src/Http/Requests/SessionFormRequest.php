@@ -19,7 +19,9 @@ class SessionFormRequest extends FormRequest
     #region CONSTANTS
 
     /**
-     * @var string The name of the "type" parameter.
+     * The name of the "type" parameter.
+     *
+     * @var string
      */
     public const TYPE = 'type';
 

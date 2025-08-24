@@ -17,67 +17,114 @@ abstract class FormRule extends Rule
     #region CONSTANTS
 
     /**
-     * @var string The "array" rule.
+     * The name of the "array" rule.
+     *
+     * @var string
      */
     final public const ARRAY = 'array';
+
     /**
-     * @var string The "boolean" rule.
+     * The name of the "boolean" rule.
+     *
+     * @var string
      */
     final public const BOOLEAN = 'boolean';
+
     /**
-     * @var string The "confirmed" rule.
+     * The name of the "confirmed" rule.
+     *
+     * @var string
      */
     final public const CONFIRMED = 'confirmed';
+
     /**
-     * @var string The "date" rule.
+     * The name of the "date" rule.
+     *
+     * @var string
      */
     final public const DATE = 'date';
+
     /**
-     * @var string The "decimal" rule.
+     * The name of the "decimal" rule.
+     *
+     * @var string
      */
     final public const DECIMAL = 'decimal';
+
     /**
-     * @var string The "distinct" rule.
+     * The name of the "distinct" rule.
+     *
+     * @var string
      */
     final public const DISTINCT = 'distinct';
+
     /**
-     * @var string The "email" rule.
+     * The name of the "email" rule.
+     *
+     * @var string
      */
     final public const EMAIL = 'email';
+
     /**
-     * @var string The "image" rule.
+     * The name of the "image" rule.
+     *
+     * @var string
      */
     final public const IMAGE = 'image';
+
     /**
-     * @var string The "integer" rule.
+     * The name of the "integer" rule.
+     *
+     * @var string
      */
     final public const INTEGER = 'integer';
+
     /**
-     * @var string The "nullable" rule.
+     * The name of the "nullable" rule.
+     *
+     * @var string
      */
     final public const NULLABLE = 'nullable';
+
     /**
-     * @var string The "numeric" rule.
+     * The name of the "numeric" rule.
+     *
+     * @var string
      */
     final public const NUMERIC = 'numeric';
+
     /**
-     * @var string The "required" rule.
+     * The name of the "required" rule.
+     *
+     * @var string
      */
     final public const REQUIRED = 'required';
+
     /**
-     * @var string The "sometimes" rule.
+     * The name of the "sometimes" rule.
+     *
+     * @var string
      */
     final public const SOMETIMES = 'sometimes';
+
     /**
-     * @var string The "string" rule.
+     * The name of the "string" rule.
+     *
+     * @var string
      */
     final public const STRING = 'string';
+
     /**
-     * @var string The "url" rule.
+     * The name of the "url" rule.
+     *
+     * @var string
      */
     final public const URL = 'url';
+
     /**
-     * @var string The "uuid" rule.
+     * The name of the "uuid" rule.
+     *
+     * @var string
      */
     final public const UUID = 'uuid';
 

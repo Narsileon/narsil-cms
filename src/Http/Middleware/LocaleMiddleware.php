@@ -24,7 +24,9 @@ class LocaleMiddleware
     #region CONSTANTS
 
     /**
-     * @var string The name of the "locale" parameter.
+     * The name of the "locale" session key.
+     *
+     * @var string
      */
     public const LOCALE = 'locale';
 

@@ -20,39 +20,66 @@ trait HasRevisions
 
     #region CONSTANTS
 
+    #region • COLUMNS
+
     /**
-     * @var string The name of the "deleted at" column.
+     * The name of the "deleted at" column.
+     *
+     * @var string
      */
     final public const DELETED_AT = 'deleted_at';
+
     /**
-     * @var string The name of the "id" column.
+     * The name of the "id" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "revision" column.
+     * The name of the "revision" column.
+     *
+     * @var string
      */
     final public const REVISION = 'revision';
+
     /**
-     * @var string The name of the "uuid" column.
+     * The name of the "uuid" column.
+     *
+     * @var string
      */
     final public const UUID = 'uuid';
 
+    #endregion
+
+    #region • COUNTS
+
     /**
-     * @var string The name of the "revisions" count.
+     * The name of the "revisions" count.
+     *
+     * @var string
      */
     final public const COUNT_REVISIONS = 'revisions_count';
 
+    #endregion
+
+    #region • RELATIONS
+
     /**
-     * @var string The name of the "revisions" relation.
+     * The name of the "revisions" relation.
+     *
+     * @var string
      */
     final public const RELATION_REVISIONS = 'revisions';
+
+    #endregion
 
     #endregion
 
     #region RELATIONSHIPS
 
     /**
-     * Get the revisions of the model.
+     * Get the associated revisions.
      *
      * @return HasMany
      */

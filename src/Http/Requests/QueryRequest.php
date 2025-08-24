@@ -18,15 +18,23 @@ class QueryRequest extends FormRequest
     #region CONSTANTS
 
     /**
-     * @var string The name of the "filter" parameter.
+     * The name of the "filter" parameter.
+     *
+     * @var string
      */
     final public const FILTER = 'filter';
+
     /**
-     * @var string The name of the "search" parameter.
+     * The name of the "search" parameter.
+     *
+     * @var string
      */
     final public const SEARCH = 'search';
+
     /**
-     * @var string The name of the "sorting" parameter.
+     * The name of the "sorting" parameter.
+     *
+     * @var string
      */
     final public const SORTING = 'sorting';
 

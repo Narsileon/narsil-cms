@@ -39,23 +39,37 @@ class TableColumn
     #region PROPERTIES
 
     /**
-     * @var string The id of the column.
-     */
-    public readonly string $id;
-    /**
-     * @var string|null The accessor key of the column.
+     * The accessor key of the column.
+     *
+     * @var string|null
      */
     public readonly ?string $accessorKey;
+
     /**
-     * @var string|null The header of the column.
+     * The header of the column.
+     *
+     * @var string|null
      */
     public readonly ?string $header;
+
     /**
-     * @var string|null The type of the column.
+     * The id of the column.
+     *
+     * @var string
+     */
+    public readonly string $id;
+
+    /**
+     * The type of the column.
+     *
+     * @var string|null
      */
     public readonly ?string $type;
+
     /**
-     * @var boolean The visibility of the column.
+     * The visibility of the column.
+     *
+     * @var boolean
      */
     public readonly bool $visibility;
 

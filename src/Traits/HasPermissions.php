@@ -14,15 +14,27 @@ trait HasPermissions
 {
     #region CONSTANTS
 
-    /**
-     * @var string The name of the "permissions" count.
-     */
-    public const COUNT_PERMISSIONS = 'permissions_count';
+    #region • COUNTS
 
     /**
-     * @var string The name of the "permissions" relation.
+     * The name of the "permissions" count.
+     *
+     * @var string
      */
-    public const RELATION_PERMISSIONS = "permissions";
+    final public const COUNT_PERMISSIONS = 'permissions_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "permissions" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_PERMISSIONS = "permissions";
+
+    #endregion
 
     #endregion
 

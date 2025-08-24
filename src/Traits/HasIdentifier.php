@@ -6,7 +6,16 @@ trait HasIdentifier
 {
     #region CONSTANTS
 
-    public const ATTRIBUTE_IDENTIFIER = 'identifier';
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "identifier" attribute.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_IDENTIFIER = 'identifier';
+
+    #endregion
 
     #endregion
 

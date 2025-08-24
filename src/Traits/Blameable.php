@@ -19,31 +19,55 @@ trait Blameable
 {
     #region CONSTANTS
 
+    #region • COLUMNS
+
     /**
-     * @var string The name of the "created by" column.
+     * The name of the "created by" column.
+     *
+     * @var string
      */
     final public const CREATED_BY = 'created_by';
+
     /**
-     * @var string The name of the "deleted by" column.
+     * The name of the "deleted by" column.
+     *
+     * @var string
      */
     final public const DELETED_BY = 'deleted_by';
+
     /**
-     * @var string The name of the "updated by" column.
+     * The name of the "updated by" column.
+     *
+     * @var string
      */
     final public const UPDATED_BY = 'updated_by';
 
+    #endregion
+
+    #region • RELATIONS
+
     /**
-     * @var string The name of the "creator" relation.
+     * The name of the "creator" relation.
+     *
+     * @var string
      */
     final public const RELATION_CREATOR = 'creator';
+
     /**
-     * @var string The name of the "deleter" relation.
+     * The name of the "deleter" relation.
+     *
+     * @var string
      */
     final public const RELATION_DELETER = 'deleter';
+
     /**
-     * @var string The name of the "updater" relation.
+     * The name of the "updater" relation.
+     *
+     * @var string
      */
     final public const RELATION_UPDATER = 'updater';
+
+    #endregion
 
     #endregion
 
