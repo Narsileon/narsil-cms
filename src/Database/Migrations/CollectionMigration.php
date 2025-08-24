@@ -7,7 +7,6 @@ namespace Narsil\Database\Migrations;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
@@ -30,25 +29,8 @@ class CollectionMigration extends Migration
      */
     public function __construct(string $table)
     {
-        $singular = Str::singular($table);
-        $plural = Str::plural($table);
-
-        $this->entities_table =  $plural;
-        $this->entity_blocks_table = $singular . '_blocks';
+        Entity::setTableName($table);
     }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var string
-     */
-    protected readonly string $entities_table;
-    /**
-     * @var string
-     */
-    protected readonly string $entity_blocks_table;
 
     #endregion
 
@@ -61,11 +43,11 @@ class CollectionMigration extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable($this->entities_table))
+        if (!Schema::hasTable(Entity::getTableName()))
         {
             $this->createEntitiesTable();
         }
-        if (!Schema::hasTable($this->entity_blocks_table))
+        if (!Schema::hasTable(EntityBlock::getTableName()))
         {
             $this->createEntityBlocksTable();
         }
@@ -78,8 +60,8 @@ class CollectionMigration extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists($this->entity_blocks_table);
-        Schema::dropIfExists($this->entities_table);
+        Schema::dropIfExists(EntityBlock::getTableName());
+        Schema::dropIfExists(Entity::getTableName());
     }
 
     #endregion
@@ -91,7 +73,7 @@ class CollectionMigration extends Migration
      */
     protected function createEntitiesTable(): void
     {
-        Schema::create($this->entities_table, function (Blueprint $table)
+        Schema::create(Entity::getTableName(), function (Blueprint $table)
         {
             $table
                 ->uuid(Entity::UUID)
@@ -132,18 +114,18 @@ class CollectionMigration extends Migration
      */
     protected function createEntityBlocksTable(): void
     {
-        Schema::create($this->entity_blocks_table, function (Blueprint $table)
+        Schema::create(EntityBlock::getTableName(), function (Blueprint $table)
         {
             $table
                 ->id(EntityBlock::ID);
             $table
                 ->foreignUuid(EntityBlock::ENTITY_UUID)
-                ->constrained($this->entities_table, Entity::UUID)
+                ->constrained(Entity::getTableName(), Entity::UUID)
                 ->cascadeOnDelete();
             $table
                 ->foreignId(EntityBlock::PARENT_ID)
                 ->nullable()
-                ->constrained($this->entity_blocks_table, EntityBlock::ID)
+                ->constrained(EntityBlock::getTableName(), EntityBlock::ID)
                 ->nullOnDelete();
             $table
                 ->foreignId(EntityBlock::BLOCK_ID)

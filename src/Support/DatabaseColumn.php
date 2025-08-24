@@ -32,10 +32,14 @@ class DatabaseColumn
     #region PROPERTIES
 
     /**
+     * The name of the column.
+     *
      * @var string
      */
     public readonly string $name;
+
     /**
+     * The type of the column.
      * @var string
      */
     public readonly string $type;

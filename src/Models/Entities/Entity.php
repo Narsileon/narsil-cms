@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasRevisions;
+use Narsil\Traits\HasTableName;
 
 #endregion
 
@@ -23,6 +24,7 @@ class Entity extends Model
     use HasDatetimes;
     use HasUuids;
     use HasRevisions;
+    use HasTableName;
 
     #region CONSTRUCTOR
 
@@ -73,53 +75,18 @@ class Entity extends Model
 
     #endregion
 
-    #region PROPERTIES
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected static string $tableName = self::TABLE;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
-     * @return string
-     */
-    public static function getBlocksTableName(): string
-    {
-        $singular = Str::singular(static::$tableName);
-
-        return $singular . '_blocks';
-    }
-
-    /**
-     * @return string
-     */
-    public static function getEntitiesTableName(): string
-    {
-        $singular = Str::singular(static::$tableName);
-
-        return $singular . '_entities';
-    }
-
-    /**
-     * @return string
-     */
-    public static function getTableName(): string
-    {
-        return static::$tableName;
-    }
-
-    /**
-     * @return void
+     * {@inheritDoc}
      */
     public static function setTableName(string $tableName): void
     {
         static::$tableName = $tableName;
+
+        $singular = Str::singular($tableName);
+
+        EntityBlock::setTableName($singular . '_blocks');
     }
 
     #endregion
