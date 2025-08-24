@@ -57,10 +57,10 @@ type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
   created_at: DateTime!
   updated_at: DateTime!
   template: Template! @belongsTo
-  elements: [EntityElement!]! @hasMany
+  elements: [EntityBlock!]! @hasMany
 }
 
-type EntityElement @model(class: "Narsil\\Models\\Entities\\EntityElement") {
+type EntityBlock @model(class: "Narsil\\Models\\Entities\\EntityBlock") {
   id: ID!
   entity_uuid: String!
   key: String!

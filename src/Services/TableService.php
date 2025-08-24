@@ -13,8 +13,8 @@ use Narsil\Support\DatabaseColumn;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 abstract class TableService
 {

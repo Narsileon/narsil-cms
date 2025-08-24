@@ -18,8 +18,8 @@ use Narsil\Services\BreadcrumbService;
 #endregions
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class HandleInertiaRequests extends Middleware
 {

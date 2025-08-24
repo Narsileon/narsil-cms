@@ -12,17 +12,15 @@ use Narsil\Models\User;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class UserPermission extends Pivot
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -42,37 +40,62 @@ class UserPermission extends Pivot
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "permission id" column.
-     */
-    final public const PERMISSION_ID = 'permission_id';
-    /**
-     * @var string The name of the "user id" column.
-     */
-    final public const USER_ID = 'user_id';
-
-    /**
-     * @var string The name of the "permission" relation.
-     */
-    final public const RELATION_PERMISSION = 'permission';
-    /**
-     * @var string The name of the "user" relation.
-     */
-    final public const RELATION_USER = 'user';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'user_permission';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "permission id" column.
+     *
+     * @var string
+     */
+    final public const PERMISSION_ID = 'permission_id';
+
+    /**
+     * The name of the "user id" column.
+     *
+     * @var string
+     */
+    final public const USER_ID = 'user_id';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "permission" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_PERMISSION = 'permission';
+
+    /**
+     * The name of the "user" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_USER = 'user';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated permission.
+     *
      * @return BelongsTo
      */
     public function permission(): BelongsTo
@@ -86,6 +109,8 @@ class UserPermission extends Pivot
     }
 
     /**
+     * Get the associated user.
+     *
      * @return BelongsTo
      */
     public function user(): BelongsTo

@@ -25,8 +25,8 @@ use Narsil\Traits\HasRoles;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -39,10 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     * @param string $table
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -84,90 +81,171 @@ class User extends Authenticatable implements MustVerifyEmail
     #region CONSTANTS
 
     /**
-     * @var string The name of the "avatar" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'users';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "avatar" column.
+     *
+     * @var string
      */
     final public const AVATAR = 'avatar';
+
     /**
-     * @var string The name of the "email" column.
+     * The name of the "email" column.
+     *
+     * @var string
      */
     final public const EMAIL = 'email';
+
     /**
-     * @var string The name of the "email verified at" column.
+     * The name of the "email verified at" column.
+     *
+     * @var string
      */
     final public const EMAIL_VERIFIED_AT = 'email_verified_at';
+
     /**
-     * @var string The name of the "enabled" column.
+     * The name of the "enabled" column.
+     *
+     * @var string
      */
     final public const ENABLED = 'enabled';
+
     /**
-     * @var string The name of the "first name" column.
+     * The name of the "first name" column.
+     *
+     * @var string
      */
     final public const FIRST_NAME = 'first_name';
+
     /**
-     * @var string The name of the "last name" column.
+     * The name of the "last name" column.
+     *
+     * @var string
      */
     final public const LAST_NAME = 'last_name';
+
     /**
-     * @var string The name of the "id" column.
+     * The name of the "id" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "password" column.
+     * The name of the "password" column.
+     *
+     * @var string
      */
     final public const PASSWORD = 'password';
+
     /**
-     * @var string The name of the "remember" column.
+     * The name of the "remember" column.
+     *
+     * @var string
      */
     final public const REMEMBER = 'remember';
+
     /**
-     * @var string The name of the "remember token" column.
+     * The name of the "remember token" column.
+     *
+     * @var string
      */
     final public const REMEMBER_TOKEN = 'remember_token';
+
     /**
-     * @var string The name of the "two factor confirmed at" column.
+     * The name of the "two factor confirmed at" column.
+     *
+     * @var string
      */
     final public const TWO_FACTOR_CONFIRMED_AT = 'two_factor_confirmed_at';
+
     /**
-     * @var string The name of the "two factor recovery codes" column.
+     * The name of the "two factor recovery codes" column.
+     *
+     * @var string
      */
     final public const TWO_FACTOR_RECOVERY_CODES = 'two_factor_recovery_codes';
+
     /**
-     * @var string The name of the "two factor secret" column.
+     * The name of the "two factor secret" column.
+     *
+     * @var string
      */
     final public const TWO_FACTOR_SECRET = 'two_factor_secret';
 
+    #endregion
+
+    #region • ATTRIBUTES
+
     /**
-     * @var string The name of the "current password" attribute.
+     * The name of the "current password" attribute.
+     *
+     * @var string
      */
     final public const ATTRIBUTE_CURRENT_PASSWORD = 'current_password';
+
     /**
-     * @var string The name of the "full name" attribute.
+     * The name of the "full name" attribute.
+     *
+     * @var string
      */
     final public const ATTRIBUTE_FULL_NAME = 'full_name';
+
     /**
-     * @var string The name of the "password confirmation" attribute.
+     * The name of the "password confirmation" attribute.
+     *
+     * @var string
      */
     final public const ATTRIBUTE_PASSWORD_CONFIRMATION = 'password_confirmation';
 
+    #endregion
+
+    #region • RELATIONS
+
     /**
-     * @var string The name of the "configuration" relation.
+     * The name of the "configuration" relation.
+     *
+     * @var string
      */
     final public const RELATION_CONFIGURATION = 'configuration';
+
     /**
-     * @var string The name of the "sessions" relation.
+     * The name of the "sessions" relation.
+     *
+     * @var string
      */
     final public const RELATION_SESSIONS = 'sessions';
 
+    #endregion
+
+    #endregion
+
+    #region ACCESSORS
+
     /**
-     * @var string The table associated with the model.
+     * Get the full name of the user.
+     *
+     * @return string
      */
-    final public const TABLE = 'users';
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
     #endregion
 
     #region RELATIONSHIPS
 
     /**
+     * Get the associated configuration.
+     *
      * @return HasOne
      */
     public function configuration(): HasOne
@@ -181,7 +259,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return BelongsToMany
+     * {@inheritDoc}
      */
     public function permissions(): BelongsToMany
     {
@@ -195,7 +273,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return BelongsToMany
+     * {@inheritDoc}
      */
     public function roles(): BelongsToMany
     {
@@ -209,6 +287,8 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get the associated sessions.
+     *
      * @return HasMany
      */
     public function sessions(): HasMany
@@ -219,18 +299,6 @@ class User extends Authenticatable implements MustVerifyEmail
                 Session::USER_ID,
                 self::ID
             );
-    }
-
-    #endregion
-
-    #region ATTRIBUTES
-
-    /**
-     * @return string
-     */
-    public function getFullNameAttribute(): string
-    {
-        return $this->first_name . ' ' . $this->last_name;
     }
 
     #endregion

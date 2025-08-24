@@ -9,8 +9,8 @@ use Narsil\Contracts\FormRequest;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 interface FieldFormRequest extends FormRequest
 {

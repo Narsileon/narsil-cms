@@ -12,8 +12,8 @@ use Narsil\Traits\HasIdentifier;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 trait HasElement
 {
@@ -21,69 +21,91 @@ trait HasElement
 
     #region CONSTANTS
 
+    #region • COLUMNS
+
     /**
-     * @var string The name of the "description" column.
+     * The name of the "description" column.
+     *
+     * @var string
      */
     final public const DESCRIPTION = 'description';
+
     /**
-     * @var string The name of the "element id" column.
+     * The name of the "element id" column.
+     *
+     * @var string
      */
     final public const ELEMENT_ID = 'element_id';
+
     /**
-     * @var string The name of the "element type" column.
+     * The name of the "element type" column.
+     *
+     * @var string
      */
     final public const ELEMENT_TYPE = 'element_type';
+
     /**
-     * @var string The name of the "handle" column.
+     * The name of the "handle" column.
+     *
+     * @var string
      */
     final public const HANDLE = 'handle';
+
     /**
-     * @var string The name of the "id" column.
+     * The name of the "id" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "name" column.
+     * The name of the "name" column.
+     *
+     * @var string
      */
     final public const NAME = 'name';
+
     /**
-     * @var string The name of the "position" column.
+     * The name of the "position" column.
+     *
+     * @var string
      */
     final public const POSITION = 'position';
+
     /**
-     * @var string The name of the "width" column.
+     * The name of the "width" column.
+     *
+     * @var string
      */
     final public const WIDTH = 'width';
 
+    #endregion
+
+    #region • ATTRIBUTES
+
     /**
-     * @var string The name of the "icon" attribute.
+     * The name of the "icon" attribute.
+     *
+     * @var string
      */
     final public const ATTRIBUTE_ICON = 'icon';
 
+    #endregion
+
+    #region • RELATIONS
+
     /**
-     * @var string The name of the "element" relation.
+     * The name of the "element" relation.
+     *
+     * @var string
      */
     final public const RELATION_ELEMENT = 'element';
 
     #endregion
 
-    #region RELATIONS
-
-    /**
-     * @return MorphTo
-     */
-    public function element(): MorphTo
-    {
-        return $this
-            ->morphTo(
-                self::RELATION_ELEMENT,
-                self::ELEMENT_TYPE,
-                self::ELEMENT_ID,
-            );
-    }
-
     #endregion
 
-    #region ATTRIBUTES
+    #region ACCESSORS
 
     /**
      * @return string|null
@@ -109,6 +131,25 @@ trait HasElement
         $table = $element->getTable();
 
         return !empty($key) ? "$table-$key" : $table;
+    }
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated element.
+     *
+     * @return MorphTo
+     */
+    public function element(): MorphTo
+    {
+        return $this
+            ->morphTo(
+                self::RELATION_ELEMENT,
+                self::ELEMENT_TYPE,
+                self::ELEMENT_ID,
+            );
     }
 
     #endregion

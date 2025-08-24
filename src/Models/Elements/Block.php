@@ -16,8 +16,8 @@ use Narsil\Traits\HasIdentifier;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class Block extends Model
 {
@@ -27,9 +27,7 @@ class Block extends Model
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -62,59 +60,119 @@ class Block extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "handle" column.
-     */
-    final public const HANDLE = 'handle';
-    /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "name" column.
-     */
-    final public const NAME = 'name';
-
-    /**
-     * @var string The name of the "icon" attribute.
-     */
-    final public const ATTRIBUTE_ICON = 'icon';
-
-    /**
-     * @var string The name of the "blocks" count.
-     */
-    final public const COUNT_BLOCKS = 'blocks_count';
-    /**
-     * @var string The name of the "elements" count.
-     */
-    final public const COUNT_ELEMENTS = 'elements_count';
-    /**
-     * @var string The name of the "fields" count.
-     */
-    final public const COUNT_FIELDS = 'fields_count';
-
-    /**
-     * @var string The name of the "blocks" relation.
-     */
-    final public const RELATION_BLOCKS = 'blocks';
-    /**
-     * @var string The name of the "elements" relation.
-     */
-    final public const RELATION_ELEMENTS = 'elements';
-    /**
-     * @var string The name of the "fields" relation.
-     */
-    final public const RELATION_FIELDS = 'fields';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'blocks';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "name" column.
+     *
+     * @var string
+     */
+    final public const NAME = 'name';
+
+    #endregion
+
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "icon" attribute.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_ICON = 'icon';
+
+    #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "blocks" count.
+     *
+     * @var string
+     */
+    final public const COUNT_BLOCKS = 'blocks_count';
+
+    /**
+     * The name of the "elements" count.
+     *
+     * @var string
+     */
+    final public const COUNT_ELEMENTS = 'elements_count';
+
+    /**
+     * The name of the "fields" count.
+     *
+     * @var string
+     */
+    final public const COUNT_FIELDS = 'fields_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "blocks" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCKS = 'blocks';
+
+    /**
+     * The name of the "elements" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ELEMENTS = 'elements';
+
+    /**
+     * The name of the "fields" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FIELDS = 'fields';
+
+    #endregion
+
+    #endregion
+
+    #region ACCESSORS
+
+    /**
+     * Get the icon of the block.
+     *
+     * @return string
+     */
+    public function getIconAttribute(): string
+    {
+        return 'box';
+    }
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated blocks.
+     *
      * @return MorphToMany
      */
     public function blocks(): MorphToMany
@@ -130,6 +188,8 @@ class Block extends Model
     }
 
     /**
+     * Get the associated elements.
+     *
      * @return HasMany
      */
     public function elements(): HasMany
@@ -144,6 +204,8 @@ class Block extends Model
     }
 
     /**
+     * Get the associated fields.
+     *
      * @return MorphToMany
      */
     public function fields(): MorphToMany
@@ -156,18 +218,6 @@ class Block extends Model
                 BlockElement::BLOCK_ID,
                 BlockElement::ELEMENT_ID,
             );
-    }
-
-    #endregion
-
-    #region ATTRIBUTES
-
-    /**
-     * @return string
-     */
-    public function getIconAttribute(): string
-    {
-        return 'box';
     }
 
     #endregion

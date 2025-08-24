@@ -12,17 +12,15 @@ use Narsil\Models\Policies\Role;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class RolePermission extends Pivot
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -42,37 +40,62 @@ class RolePermission extends Pivot
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "permission id" column.
-     */
-    final public const PERMISSION_ID = 'permission_id';
-    /**
-     * @var string The name of the "role id" column.
-     */
-    final public const ROLE_ID = 'role_id';
-
-    /**
-     * @var string The name of the "permission" relation.
-     */
-    final public const RELATION_PERMISSION = 'permission';
-    /**
-     * @var string The name of the "role" relation.
-     */
-    final public const RELATION_ROLE = 'role';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'role_permission';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "permission id" column.
+     *
+     * @var string
+     */
+    final public const PERMISSION_ID = 'permission_id';
+
+    /**
+     * The name of the "role id" column.
+     *
+     * @var string
+     */
+    final public const ROLE_ID = 'role_id';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "permission" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_PERMISSION = 'permission';
+
+    /**
+     * The name of the "role" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ROLE = 'role';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated permission.
+     *
      * @return BelongsTo
      */
     public function permission(): BelongsTo
@@ -86,6 +109,8 @@ class RolePermission extends Pivot
     }
 
     /**
+     * Get the associated role.
+     *
      * @return BelongsTo
      */
     public function role(): BelongsTo

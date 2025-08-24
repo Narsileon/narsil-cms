@@ -14,8 +14,8 @@ use Narsil\Models\Sites\SiteGroup;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class SiteGroupForm extends AbstractForm implements Contract
 {

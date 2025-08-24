@@ -11,24 +11,22 @@ use Narsil\Models\User;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class Session extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
 
-        $this->keyType = 'string';
         $this->incrementing = false;
+        $this->keyType = 'string';
 
         parent::__construct($attributes);
     }
@@ -38,45 +36,76 @@ class Session extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'sessions';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "ip address" column.
+     * The name of the "ip address" column.
+     *
+     * @var string
      */
     final public const IP_ADDRESS = 'ip_address';
+
     /**
-     * @var string The name of the "last activity" column.
+     * The name of the "last activity" column.
+     *
+     * @var string
      */
     final public const LAST_ACTIVITY = 'last_activity';
+
     /**
-     * @var string The name of the "payload" column.
+     * The name of the "payload" column.
+     *
+     * @var string
      */
     final public const PAYLOAD = 'payload';
+
     /**
-     * @var string The name of the "user agent" column.
+     * The name of the "user agent" column.
+     *
+     * @var string
      */
     final public const USER_AGENT = 'user_agent';
+
     /**
-     * @var string The name of the "user id" column.
+     * The name of the "user id" column.
+     *
+     * @var string
      */
     final public const USER_ID = 'user_id';
 
+    #endregion
+
+    #region • RELATIONS
+
     /**
-     * @var string The name of the "user" relation.
+     * The name of the "user" relation.
+     *
+     * @var string
      */
     final public const RELATION_USER = 'user';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'sessions';
+    #endregion
 
     #endregion
 
     #region RELATIONSHIPS
 
     /**
+     * Get the associated user.
+     *
      * @return BelongsTo
      */
     public function user(): BelongsTo

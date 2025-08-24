@@ -16,8 +16,8 @@ use Narsil\Models\Sites\Site;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class EntityForm extends AbstractForm implements Contract
 {

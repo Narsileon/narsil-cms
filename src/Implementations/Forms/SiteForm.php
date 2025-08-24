@@ -21,8 +21,8 @@ use ResourceBundle;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class SiteForm extends AbstractForm implements Contract
 {

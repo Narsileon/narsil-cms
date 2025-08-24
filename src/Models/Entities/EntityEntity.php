@@ -11,17 +11,15 @@ use Narsil\Models\Entities\Entity;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class EntityEntity extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -39,37 +37,62 @@ class EntityEntity extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "owner uuid" column.
-     */
-    final public const OWNER_UUID = 'owner_uuid';
-    /**
-     * @var string The name of the "target uuid" column.
-     */
-    final public const TARGET_UUID = 'target_uuid';
-
-    /**
-     * @var string The name of the "owner" relation.
-     */
-    final public const RELATION_OWNER = 'owner';
-    /**
-     * @var string The name of the "target" relation.
-     */
-    final public const RELATION_TARGET = 'target';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'entity_entity';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "owner uuid" column.
+     *
+     * @var string
+     */
+    final public const OWNER_UUID = 'owner_uuid';
+
+    /**
+     * The name of the "target uuid" column.
+     *
+     * @var string
+     */
+    final public const TARGET_UUID = 'target_uuid';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
+
+    /**
+     * The name of the "target" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TARGET = 'target';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated owner.
+     *
      * @return BelongsTo
      */
     public function owner(): BelongsTo
@@ -83,6 +106,8 @@ class EntityEntity extends Model
     }
 
     /**
+     * Get the associated target.
+     *
      * @return BelongsTo
      */
     public function target(): BelongsTo

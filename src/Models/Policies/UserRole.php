@@ -12,17 +12,15 @@ use Narsil\Models\User;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class UserRole extends Pivot
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -42,37 +40,62 @@ class UserRole extends Pivot
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "role id" column.
-     */
-    final public const ROLE_ID = 'role_id';
-    /**
-     * @var string The name of the "user id" column.
-     */
-    final public const USER_ID = 'user_id';
-
-    /**
-     * @var string The name of the "role" relation.
-     */
-    final public const RELATION_ROLE = 'role';
-    /**
-     * @var string The name of the "user" relation.
-     */
-    final public const RELATION_USER = 'user';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'user_role';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "role id" column.
+     *
+     * @var string
+     */
+    final public const ROLE_ID = 'role_id';
+
+    /**
+     * The name of the "user id" column.
+     *
+     * @var string
+     */
+    final public const USER_ID = 'user_id';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "role" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ROLE = 'role';
+
+    /**
+     * The name of the "user" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_USER = 'user';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated role.
+     *
      * @return BelongsTo
      */
     public function role(): BelongsTo
@@ -86,6 +109,8 @@ class UserRole extends Pivot
     }
 
     /**
+     * Get the associated user.
+     *
      * @return BelongsTo
      */
     public function user(): BelongsTo

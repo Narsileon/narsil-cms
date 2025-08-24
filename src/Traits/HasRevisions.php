@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 trait HasRevisions
 {
@@ -49,10 +49,10 @@ trait HasRevisions
 
     #endregion
 
-    #region RELATIONS
+    #region RELATIONSHIPS
 
     /**
-     * Gets the revisions of the model.
+     * Get the revisions of the model.
      *
      * @return HasMany
      */
@@ -123,7 +123,7 @@ trait HasRevisions
     }
 
     /**
-     * Gets the maximum number of revisions.
+     * Get the maximum number of revisions.
      *
      * @return integer|null
      */

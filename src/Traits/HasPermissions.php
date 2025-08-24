@@ -26,9 +26,11 @@ trait HasPermissions
 
     #endregion
 
-    #region RELATIONS
+    #region RELATIONSHIPS
 
     /**
+     * Get the associated permissions.
+     *
      * @return BelongsToMany
      */
     abstract public function permissions(): BelongsToMany;

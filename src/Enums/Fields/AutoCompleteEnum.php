@@ -3,8 +3,8 @@
 namespace Narsil\Enums\Fields;
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 enum AutoCompleteEnum: string
 {

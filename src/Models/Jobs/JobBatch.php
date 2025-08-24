@@ -9,17 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class JobBatch extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -33,46 +31,78 @@ class JobBatch extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "cancelled at" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'job_batches';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "cancelled at" column.
+     *
+     * @var string
      */
     final public const CANCELLED_AT = 'cancelled_at';
+
     /**
-     * @var string The name of the "failed job ids" column.
+     * The name of the "failed job ids" column.
+     *
+     * @var string
      */
     final public const FAILED_JOB_IDS = 'failed_job_ids';
+
     /**
-     * @var string The name of the "failed jobs" column.
+     * The name of the "failed jobs" column.
+     *
+     * @var string
      */
     final public const FAILED_JOBS = 'failed_jobs';
+
     /**
-     * @var string The name of the "finished at" column.
+     * The name of the "finished at" column.
+     * s
+     * @var string
      */
     final public const FINISHED_AT = 'finished_at';
+
     /**
-     * @var string The name of the "id" column.
+     * The name of the "ID" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "name" column.
+     * The name of the "name" column.
+     *
+     * @var string
      */
     final public const NAME = 'name';
+
     /**
-     * @var string The name of the "options" column.
+     * The name of the "options" column.
+     *
+     * @var string
      */
     final public const OPTIONS = 'options';
+
     /**
-     * @var string The name of the "pending jobs" column.
+     * The name of the "pending jobs" column.
+     *
+     * @var string
      */
     final public const PENDING_JOBS = 'pending_jobs';
+
     /**
-     * @var string The name of the "total jobs" column.
+     * The name of the "total jobs" column.
+     *
+     * @var string
      */
     final public const TOTAL_JOBS = 'total_jobs';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'job_batches';
+    #endregion
 
     #endregion
 }

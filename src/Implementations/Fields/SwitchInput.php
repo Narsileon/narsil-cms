@@ -11,8 +11,8 @@ use Narsil\Models\Elements\Field;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class SwitchInput extends AbstractField implements Contract
 {

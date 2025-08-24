@@ -18,8 +18,8 @@ use Narsil\Support\SelectOption;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class FieldForm extends AbstractForm implements Contract
 {

@@ -27,8 +27,8 @@ use Narsil\Models\Elements\TemplateSectionElement;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class TemplateController extends AbstractController
 {

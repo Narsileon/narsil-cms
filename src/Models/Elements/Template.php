@@ -11,8 +11,8 @@ use Narsil\Traits\HasDatetimes;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class Template extends Model
 {
@@ -21,9 +21,7 @@ class Template extends Model
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -45,38 +43,66 @@ class Template extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "handle" column.
-     */
-    final public const HANDLE = 'handle';
-    /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "name" column.
-     */
-    final public const NAME = 'name';
-
-    /**
-     * @var string The name of the "entities" count.
-     */
-    final public const COUNT_ENTITIES = 'entities_count';
-
-    /**
-     * @var string The name of the "sections" relation.
-     */
-    final public const RELATION_SECTIONS = 'sections';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'templates';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "name" column.
+     *
+     * @var string
+     */
+    final public const NAME = 'name';
+
+    #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "entities" count.
+     *
+     * @var string
+     */
+    final public const COUNT_ENTITIES = 'entities_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "sections" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SECTIONS = 'sections';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated sections.
+     *
      * @return HasMany
      */
     public function sections(): HasMany

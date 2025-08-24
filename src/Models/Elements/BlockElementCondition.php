@@ -11,17 +11,15 @@ use Narsil\Models\Elements\Field;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class BlockElementCondition extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -43,45 +41,76 @@ class BlockElementCondition extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "operator" column.
-     */
-    final public const OPERATOR = 'operator';
-    /**
-     * @var string The name of the "owner id" column.
-     */
-    final public const OWNER_ID = 'owner_id';
-    /**
-     * @var string The name of the "target id" column.
-     */
-    final public const TARGET_ID = 'target_id';
-    /**
-     * @var string The name of the "value" column.
-     */
-    final public const VALUE = 'value';
-
-    /**
-     * @var string The name of the "owner" relation.
-     */
-    final public const RELATION_OWNER = 'owner';
-    /**
-     * @var string The name of the "target" relation.
-     */
-    final public const RELATION_TARGET = 'target';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'block_element_conditions';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "operator" column.
+     *
+     * @var string
+     */
+    final public const OPERATOR = 'operator';
+
+    /**
+     * The name of the "owner id" column.
+     *
+     * @var string
+     */
+    final public const OWNER_ID = 'owner_id';
+
+    /**
+     * The name of the "target id" column.
+     *
+     * @var string
+     */
+    final public const TARGET_ID = 'target_id';
+
+    /**
+     * The name of the "value" column.
+     *
+     * @var string
+     */
+    final public const VALUE = 'value';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
+
+    /**
+     * The name of the "target" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TARGET = 'target';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated owner.
+     *
      * @return BelongsTo
      */
     public function owner(): BelongsTo
@@ -95,6 +124,8 @@ class BlockElementCondition extends Model
     }
 
     /**
+     * Get the associated target.
+     *
      * @return BelongsTo
      */
     public function target(): BelongsTo

@@ -15,8 +15,8 @@ use Narsil\Traits\HasIdentifier;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class Field extends Model
 {
@@ -26,9 +26,7 @@ class Field extends Model
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -62,67 +60,140 @@ class Field extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "description" column.
-     */
-    final public const DESCRIPTION = 'description';
-    /**
-     * @var string The name of the "handle" column.
-     */
-    final public const HANDLE = 'handle';
-    /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "name" column.
-     */
-    final public const NAME = 'name';
-    /**
-     * @var string The name of the "settings" column.
-     */
-    final public const SETTINGS = 'settings';
-    /**
-     * @var string The name of the "translatable" column.
-     */
-    final public const TRANSLATABLE = 'translatable';
-    /**
-     * @var string The name of the "type" column.
-     */
-    final public const TYPE = 'type';
-
-    /**
-     * @var string The name of the "icon" attribute.
-     */
-    final public const ATTRIBUTE_ICON = 'icon';
-
-    /**
-     * @var string The name of the "blocks" count.
-     */
-    final public const COUNT_BLOCKS = 'blocks_count';
-    /**
-     * @var string The name of the "options" count.
-     */
-    final public const COUNT_OPTIONS = 'options_count';
-
-    /**
-     * @var string The name of the "blocks" relation.
-     */
-    final public const RELATION_BLOCKS = 'blocks';
-    /**
-     * @var string The name of the "options" relation.
-     */
-    final public const RELATION_OPTIONS = 'options';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'fields';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "description" column.
+     *
+     * @var string
+     */
+    final public const DESCRIPTION = 'description';
+
+    /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "name" column.
+     *
+     * @var string
+     */
+    final public const NAME = 'name';
+
+    /**
+     * The name of the "settings" column.
+     *
+     * @var string
+     */
+    final public const SETTINGS = 'settings';
+
+    /**
+     * The name of the "translatable" column.
+     *
+     * @var string
+     */
+    final public const TRANSLATABLE = 'translatable';
+
+    /**
+     * The name of the "type" column.
+     *
+     * @var string
+     */
+    final public const TYPE = 'type';
+
+    #endregion
+
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "icon" attribute.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_ICON = 'icon';
+
+    #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "blocks" count.
+     *
+     * @var string
+     */
+    final public const COUNT_BLOCKS = 'blocks_count';
+
+    /**
+     * The name of the "options" count.
+     *
+     * @var string
+     */
+    final public const COUNT_OPTIONS = 'options_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "blocks" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCKS = 'blocks';
+
+    /**
+     * The name of the "options" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OPTIONS = 'options';
+
+    #endregion
+
+    #endregion
+
+    #region ACCESSORS
+
+    /**
+     * Get the icon of the field.
+     *
+     * @return string|null
+     */
+    public function getIconAttribute(): ?string
+    {
+        if ($type = $this->{self::TYPE})
+        {
+            $class = app()->make($type);
+
+            return $class::getIcon();
+        }
+
+        return null;
+    }
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated blocks.
+     *
      * @return BelongsToMany
      */
     public function blocks(): BelongsToMany
@@ -137,6 +208,8 @@ class Field extends Model
     }
 
     /**
+     * Get the associated options.
+     *
      * @return HasMany
      */
     public function options(): HasMany
@@ -150,25 +223,6 @@ class Field extends Model
             ->orderby(FieldOption::POSITION);
     }
 
-
-    #endregion
-
-    #region ATTRIBUTES
-
-    /**
-     * @return string|null
-     */
-    public function getIconAttribute(): ?string
-    {
-        if ($type = $this->{self::TYPE})
-        {
-            $class = app()->make($type);
-
-            return $class::getIcon();
-        }
-
-        return null;
-    }
 
     #endregion
 

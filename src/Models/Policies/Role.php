@@ -12,8 +12,8 @@ use Narsil\Traits\HasPermissions;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class Role extends Model
 {
@@ -23,9 +23,7 @@ class Role extends Model
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -43,24 +41,36 @@ class Role extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'roles';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "name" column.
+     * The name of the "name" column.
+     *
+     * @var string
      */
     final public const NAME = 'name';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'roles';
+    #endregion
 
     #endregion
 
     #region RELATIONSHIPS
 
     /**
+     * Get the associated permissions.
      * @return BelongsToMany
      */
     public function permissions(): BelongsToMany

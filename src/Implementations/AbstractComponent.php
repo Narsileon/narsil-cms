@@ -10,8 +10,8 @@ use Narsil\Contracts\Component;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 abstract class AbstractComponent implements Component, JsonSerializable
 {

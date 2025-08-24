@@ -16,8 +16,8 @@ use Narsil\Models\User;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class RegisterForm extends AbstractForm implements Contract
 {

@@ -9,17 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class FailedJob extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -33,38 +31,64 @@ class FailedJob extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "connection" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'failed_jobs';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "connection" column.
+     *
+     * @var string
      */
     final public const CONNECTION = 'connection';
+
     /**
-     * @var string The name of the "exception" column.
+     * The name of the "exception" column.
+     *
+     * @var string
      */
     final public const EXCEPTION = 'exception';
+
     /**
-     * @var string The name of the "failed at" column.
+     * The name of the "failed at" column.
+     *
+     * @var string
      */
     final public const FAILED_AT = 'failed_at';
+
     /**
-     * @var string The name of the "id" column.
+     * The name of the "id" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "payload" column.
+     * The name of the "payload" column.
+     *
+     * @var string
      */
     final public const PAYLOAD = 'payload';
+
     /**
-     * @var string The name of the "queue" column.
+     * The name of the "queue" column.
+     *
+     * @var string
      */
     final public const QUEUE = 'queue';
+
     /**
-     * @var string The name of the "uuid" column.
+     * The name of the "uuid" column.
+     *
+     * @var string
      */
     final public const UUID = 'uuid';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'failed_jobs';
+    #endregion
 
     #endregion
 }

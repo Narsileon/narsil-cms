@@ -10,8 +10,8 @@ use Narsil\Enums\Forms\MethodEnum;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 interface Form extends JsonSerializable
 {

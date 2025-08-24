@@ -10,7 +10,7 @@ trait HasIdentifier
 
     #endregion
 
-    #region ATTRIBUTES
+    #region ACCESSORS
 
     /**
      * @return string

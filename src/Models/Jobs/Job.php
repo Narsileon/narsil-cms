@@ -9,17 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class Job extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -33,34 +31,57 @@ class Job extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "attempts" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'jobs';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "attempts" column.
+     *
+     * @var string
      */
     final public const ATTEMPTS = 'attempts';
+
     /**
-     * @var string The name of the "available at" column.
+     * The name of the "available at" column.
+     *
+     * @var string
      */
     final public const AVAILABLE_AT = 'available_at';
+
     /**
-     * @var string The name of the "id" column.
+     * The name of the "id" column.
+     *
+     * @var string
      */
     final public const ID = 'id';
+
     /**
-     * @var string The name of the "payload" column.
+     * The name of the "payload" column.
+     *
+     * @var string
      */
     final public const PAYLOAD = 'payload';
+
     /**
-     * @var string The name of the "queue" column.
+     * The name of the "queue" column.
+     *
+     * @var string
      */
     final public const QUEUE = 'queue';
+
     /**
-     * @var string The name of the "reserved at" column.
+     * The name of the "reserved at" column.
+     *
+     * @var string
      */
     final public const RESERVED_AT = 'reserved_at';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'jobs';
+    #endregion
 
     #endregion
 }

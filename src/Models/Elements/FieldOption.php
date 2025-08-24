@@ -11,17 +11,15 @@ use Narsil\Models\Elements\Field;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class FieldOption extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -39,41 +37,69 @@ class FieldOption extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "field id" column.
-     */
-    final public const FIELD_ID = 'field_id';
-    /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "label" column.
-     */
-    final public const LABEL = 'label';
-    /**
-     * @var string The name of the "position" column.
-     */
-    final public const POSITION = 'position';
-    /**
-     * @var string The name of the "value" column.
-     */
-    final public const VALUE = 'value';
-
-    /**
-     * @var string The name of the "field" relation.
-     */
-    final public const RELATION_FIELD = 'field';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'field_options';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "field id" column.
+     *
+     * @var string
+     */
+    final public const FIELD_ID = 'field_id';
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "label" column.
+     *
+     * @var string
+     */
+    final public const LABEL = 'label';
+
+    /**
+     * The name of the "position" column.
+     *
+     * @var string
+     */
+    final public const POSITION = 'position';
+
+    /**
+     * The name of the "value" column.
+     *
+     * @var string
+     */
+    final public const VALUE = 'value';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "field" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FIELD = 'field';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated field.
+     *
      * @return BelongsTo
      */
     public function field(): BelongsTo

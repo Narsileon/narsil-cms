@@ -10,8 +10,8 @@ use Narsil\Enums\Fields\AutoCompleteEnum;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 interface TextInput extends Contract
 {

@@ -12,8 +12,8 @@ use Narsil\Traits\HasDatetimes;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class Site extends Model
 {
@@ -22,9 +22,7 @@ class Site extends Model
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -50,49 +48,83 @@ class Site extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "enabled" column.
-     */
-    final public const ENABLED = 'enabled';
-    /**
-     * @var string The name of the "group id" column.
-     */
-    final public const GROUP_ID = 'group_id';
-    /**
-     * @var string The name of the "handle" column.
-     */
-    final public const HANDLE = 'handle';
-    /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "language" column.
-     */
-    final public const LANGUAGE = 'language';
-    /**
-     * @var string The name of the "name" column.
-     */
-    final public const NAME = 'name';
-    /**
-     * @var string The name of the "primary" column.
-     */
-    final public const PRIMARY = 'primary';
-
-    /**
-     * @var string The name of the "group" relation.
-     */
-    final public const RELATION_GROUP = 'group';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'sites';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "enabled" column.
+     *
+     * @var string
+     */
+    final public const ENABLED = 'enabled';
+
+    /**
+     * The name of the "group id" column.
+     *
+     * @var string
+     */
+    final public const GROUP_ID = 'group_id';
+
+    /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "language" column.
+     *
+     * @var string
+     */
+    final public const LANGUAGE = 'language';
+
+    /**
+     * The name of the "name" column.
+     *
+     * @var string
+     */
+    final public const NAME = 'name';
+
+    /**
+     * The name of the "primary" column.
+     *
+     * @var string
+     */
+    final public const PRIMARY = 'primary';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "group" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_GROUP = 'group';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated group.
+     *
      * @return BelongsTo
      */
     public function group(): BelongsTo

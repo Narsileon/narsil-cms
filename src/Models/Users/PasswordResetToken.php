@@ -9,17 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class PasswordResetToken extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -33,18 +31,29 @@ class PasswordResetToken extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "email" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'password_reset_tokens';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "email" column.
+     *
+     * @var string
      */
     final public const EMAIL = 'email';
+
     /**
-     * @var string The name of the "token" column.
+     * The name of the "token" column.
+     *
+     * @var string
      */
     final public const TOKEN = 'token';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'password_reset_tokens';
+    #endregion
 
     #endregion
 }

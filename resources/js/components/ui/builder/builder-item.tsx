@@ -13,7 +13,13 @@ type BuilderItemProps = Omit<
 
 function BuilderItem({ handle, item, ...props }: BuilderItemProps) {
   return (
-    <SortableItem className="w-full" item={item} {...props}>
+    <SortableItem
+      className="w-full"
+      collapsible={true}
+      item={item}
+      label={item.name}
+      {...props}
+    >
       {item.elements.map((element, index) => (
         <FormFieldRenderer
           element={element.element}

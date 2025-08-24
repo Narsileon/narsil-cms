@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Storage;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class ImageCast implements CastsAttributes
 {

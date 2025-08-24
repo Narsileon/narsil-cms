@@ -11,17 +11,15 @@ use Narsil\Models\User;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class UserConfiguration extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -42,45 +40,76 @@ class UserConfiguration extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "color" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'user_configurations';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "color" column.
+     *
+     * @var string
      */
     final public const COLOR = 'color';
+
     /**
-     * @var string The name of the "locale" column.
+     * The name of the "locale" column.
+     *
+     * @var string
      */
     final public const LOCALE = 'locale';
+
     /**
-     * @var string The name of the "preferences" column.
+     * The name of the "preferences" column.
+     *
+     * @var string
      */
     final public const PREFERENCES = 'preferences';
+
     /**
-     * @var string The name of the "radius" column.
+     * The name of the "radius" column.
+     *
+     * @var string
      */
     final public const RADIUS = 'radius';
+
     /**
-     * @var string The name of the "theme" column.
+     * The name of the "theme" column.
+     *
+     * @var string
      */
     final public const THEME = 'theme';
+
     /**
-     * @var string The name of the "user id" column.
+     * The name of the "user id" column.
+     *
+     * @var string
      */
     final public const USER_ID = 'user_id';
 
+    #endregion
+
+    #region • RELATIONS
+
     /**
-     * @var string The name of the "user" relation.
+     * The name of the "user" relation.
+     *
+     * @var string
      */
     final public const RELATION_USER = 'user';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'user_configurations';
+    #endregion
 
     #endregion
 
     #region RELATIONSHIPS
 
     /**
+     * Get the associated user.
+     *
      * @return BelongsTo
      */
     public function user(): BelongsTo

@@ -23,8 +23,8 @@ use Narsil\Models\Entities\Entity;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class EntityController extends AbstractController
 {
@@ -41,7 +41,7 @@ class EntityController extends AbstractController
 
         $collection = request()->route('collection');
 
-        Entity::$associatedTable = $collection;
+        Entity::setTableName($collection);
 
         $this->template = Template::query()
             ->with([

@@ -25,9 +25,11 @@ trait HasRoles
 
     #endregion
 
-    #region RELATIONS
+    #region RELATIONSHIPS
 
     /**
+     * Get the associated roles.
+     *
      * @return BelongsToMany
      */
     abstract public function roles(): BelongsToMany;

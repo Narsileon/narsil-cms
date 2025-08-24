@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityElement;
+use Narsil\Models\Entities\EntityBlock;
 use Narsil\Models\User;
 
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class CollectionMigration extends Migration
 {
@@ -34,7 +34,7 @@ class CollectionMigration extends Migration
         $plural = Str::plural($table);
 
         $this->entities_table =  $plural;
-        $this->entity_elements_table = $singular . '_elements';
+        $this->entity_blocks_table = $singular . '_blocks';
     }
 
     #endregion
@@ -48,7 +48,7 @@ class CollectionMigration extends Migration
     /**
      * @var string
      */
-    protected readonly string $entity_elements_table;
+    protected readonly string $entity_blocks_table;
 
     #endregion
 
@@ -65,9 +65,9 @@ class CollectionMigration extends Migration
         {
             $this->createEntitiesTable();
         }
-        if (!Schema::hasTable($this->entity_elements_table))
+        if (!Schema::hasTable($this->entity_blocks_table))
         {
-            $this->createEntityElementsTable();
+            $this->createEntityBlocksTable();
         }
     }
 
@@ -78,7 +78,7 @@ class CollectionMigration extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists($this->entity_elements_table);
+        Schema::dropIfExists($this->entity_blocks_table);
         Schema::dropIfExists($this->entities_table);
     }
 
@@ -130,30 +130,30 @@ class CollectionMigration extends Migration
     /**
      * {@inheritDoc}
      */
-    protected function createEntityElementsTable(): void
+    protected function createEntityBlocksTable(): void
     {
-        Schema::create($this->entity_elements_table, function (Blueprint $table)
+        Schema::create($this->entity_blocks_table, function (Blueprint $table)
         {
             $table
-                ->id(EntityElement::ID);
+                ->id(EntityBlock::ID);
             $table
-                ->foreignUuid(EntityElement::ENTITY_UUID)
+                ->foreignUuid(EntityBlock::ENTITY_UUID)
                 ->constrained($this->entities_table, Entity::UUID)
                 ->cascadeOnDelete();
             $table
-                ->foreignId(EntityElement::PARENT_ID)
+                ->foreignId(EntityBlock::PARENT_ID)
                 ->nullable()
-                ->constrained($this->entity_elements_table, EntityElement::ID)
+                ->constrained($this->entity_blocks_table, EntityBlock::ID)
                 ->nullOnDelete();
             $table
-                ->foreignId(EntityElement::BLOCK_ID)
+                ->foreignId(EntityBlock::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $table
-                ->integer(EntityElement::POSITION)
+                ->integer(EntityBlock::POSITION)
                 ->default(0);
             $table
-                ->json(EntityElement::VALUES)
+                ->json(EntityBlock::VALUES)
                 ->nullable();
         });
     }

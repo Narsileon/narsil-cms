@@ -12,8 +12,8 @@ use Narsil\Traits\HasDatetimes;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class SiteGroup extends Model
 {
@@ -22,9 +22,7 @@ class SiteGroup extends Model
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -42,34 +40,59 @@ class SiteGroup extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "id" column.
-     */
-    final public const ID = 'id';
-    /**
-     * @var string The name of the "name" column.
-     */
-    final public const NAME = 'name';
-
-    /**
-     * @var string The name of the "sites" count.
-     */
-    final public const COUNT_SITES = 'sites_count';
-
-    /**
-     * @var string The name of the "sites" relation.
-     */
-    final public const RELATION_SITES = 'sites';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'site_groups';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "name" column.
+     *
+     * @var string
+     */
+    final public const NAME = 'name';
+
+    #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "sites" count.
+     *
+     * @var string
+     */
+    final public const COUNT_SITES = 'sites_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "sites" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITES = 'sites';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated sites.
+     *
      * @return HasMany
      */
     public function sites(): HasMany

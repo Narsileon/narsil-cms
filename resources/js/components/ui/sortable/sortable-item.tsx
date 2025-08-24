@@ -16,6 +16,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@narsil-cms/components/ui/card";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@narsil-cms/components/ui/collapsible";
 import type { AnonymousItem } from ".";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 import type {
@@ -26,6 +31,7 @@ import type {
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   asChild?: boolean;
+  collapsible?: boolean;
   disabled?: boolean;
   footer?: React.ReactNode;
   form?: FormType;
@@ -45,6 +51,7 @@ function SortableItem({
   asChild = false,
   children,
   className,
+  collapsible = false,
   item,
   disabled,
   footer,
@@ -62,6 +69,8 @@ function SortableItem({
 }: SortableItemProps) {
   const { trans } = useLabels();
 
+  const [open, setCollapsed] = React.useState<boolean>(true);
+
   const {
     attributes,
     isDragging,
@@ -76,7 +85,7 @@ function SortableItem({
   });
 
   return (
-    <Card
+    <Collapsible
       ref={disabled ? undefined : setNodeRef}
       className={cn(
         "overflow-hidden",
@@ -85,88 +94,104 @@ function SortableItem({
           "border-dashed bg-transparent opacity-50 hover:opacity-100",
         className,
       )}
+      open={open}
       style={{
         ...style,
         transform: CSS.Transform.toString(transform),
         transition: transition,
       }}
-      {...props}
     >
-      {placeholder ? (
-        <CardContent className="flex h-full items-center justify-center">
-          {children}
-        </CardContent>
-      ) : (
-        <>
-          <CardHeader
-            className={cn(
-              "flex min-h-9 items-center justify-between gap-2 !py-0 pr-1 pl-0",
-              children && "border-b",
-            )}
-          >
-            <SortableHandle
-              ref={setActivatorNodeRef}
-              {...attributes}
-              {...listeners}
-            />
-            {item?.icon ? (
-              <Tooltip tooltip={group?.label}>
-                <Icon className="size-5" name={item.icon} />
-              </Tooltip>
-            ) : null}
-            {label ? (
-              <CardTitle className="grow justify-self-start text-sm font-normal">
-                {label}
-              </CardTitle>
-            ) : null}
-            <div className="flex items-center justify-between gap-1">
-              {item && widthOptions ? (
-                <SortableItemWidth
-                  options={widthOptions}
-                  value={item.width}
-                  onValueChange={(value) =>
-                    onItemChange?.({ ...item, width: value })
-                  }
-                />
+      <Card {...props}>
+        {placeholder ? (
+          <CardContent className="flex h-full items-center justify-center">
+            {children}
+          </CardContent>
+        ) : (
+          <>
+            <CollapsibleTrigger className={cn(children && open && "border-b")}>
+              <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pr-1 pl-0">
+                <div className="flex items-center justify-start gap-2">
+                  <SortableHandle
+                    ref={setActivatorNodeRef}
+                    {...attributes}
+                    {...listeners}
+                  />
+                  {item?.icon ? (
+                    <Tooltip tooltip={group?.label}>
+                      <Icon className="size-5" name={item.icon} />
+                    </Tooltip>
+                  ) : null}
+                  {label ? (
+                    <CardTitle className="justify-self-start text-sm font-normal">
+                      {label}
+                    </CardTitle>
+                  ) : null}
+                  {collapsible ? (
+                    <Button
+                      className="size-7"
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => setCollapsed(!open)}
+                    >
+                      <Icon
+                        className={cn("duration-200", open && "rotate-180")}
+                        name="chevron-down"
+                      />
+                    </Button>
+                  ) : null}
+                </div>
+                <div className="flex items-center justify-between gap-1 justify-self-end">
+                  {item && widthOptions ? (
+                    <SortableItemWidth
+                      options={widthOptions}
+                      value={item.width}
+                      onValueChange={(value) =>
+                        onItemChange?.({ ...item, width: value })
+                      }
+                    />
+                  ) : null}
+                  {form && item && optionValue && onItemChange ? (
+                    <SortableItemForm
+                      form={form}
+                      ids={items}
+                      item={item}
+                      optionValue={optionValue}
+                      onItemChange={onItemChange}
+                    >
+                      <Button className="size-7" size="icon" variant="ghost">
+                        <Icon name="edit" />
+                      </Button>
+                    </SortableItemForm>
+                  ) : null}
+                  {onItemRemove ? (
+                    <Tooltip tooltip={trans("ui.remove")}>
+                      <Button
+                        className="size-7"
+                        size="icon"
+                        variant="ghost"
+                        onClick={onItemRemove}
+                      >
+                        <Icon name="trash" />
+                      </Button>
+                    </Tooltip>
+                  ) : null}
+                </div>
+              </CardHeader>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {children ? (
+                <CardContent className="grow">{children}</CardContent>
               ) : null}
-              {form && item && optionValue && onItemChange ? (
-                <SortableItemForm
-                  form={form}
-                  ids={items}
-                  item={item}
-                  optionValue={optionValue}
-                  onItemChange={onItemChange}
-                >
-                  <Button className="size-7" size="icon" variant="ghost">
-                    <Icon name="edit" />
-                  </Button>
-                </SortableItemForm>
+              {footer ? (
+                <CardFooter className="flex-col gap-4 border-t">
+                  {footer}
+                </CardFooter>
               ) : null}
-              {onItemRemove ? (
-                <Tooltip tooltip={trans("ui.remove")}>
-                  <Button
-                    className="size-7"
-                    size="icon"
-                    variant="ghost"
-                    onClick={onItemRemove}
-                  >
-                    <Icon name="trash" />
-                  </Button>
-                </Tooltip>
-              ) : null}
-            </div>
-          </CardHeader>
-          {children ? (
-            <CardContent className="grow">{children}</CardContent>
-          ) : null}
-          {footer ? (
-            <CardFooter className="flex-col gap-4 border-t">
-              {footer}
-            </CardFooter>
-          ) : null}
-        </>
-      )}
-    </Card>
+            </CollapsibleContent>
+          </>
+        )}
+      </Card>
+    </Collapsible>
   );
 }
 

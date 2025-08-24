@@ -9,8 +9,8 @@ use Narsil\Contracts\Fields\TextInput;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 interface PasswordInput extends TextInput
 {

@@ -9,8 +9,8 @@ use Narsil\Contracts\Fields\PasswordInput as Contract;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class PasswordInput extends TextInput implements Contract
 {

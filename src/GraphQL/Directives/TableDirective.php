@@ -15,8 +15,8 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class TableDirective extends BaseDirective implements FieldMiddleware
 {
@@ -45,7 +45,7 @@ GRAPHQL;
             {
                 $fieldName = $resolveInfo->fieldName;
 
-                Entity::$associatedTable = Str::plural($fieldName);
+                Entity::setTableName(Str::plural($fieldName));
 
                 $result = $resolver($root, $args, $context, $resolveInfo);
 

@@ -9,17 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class CacheLock extends Model
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -33,22 +31,36 @@ class CacheLock extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "expiration" column.
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'cache_locks';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "expiration" column.
+     *
+     * @var string
      */
     final public const EXPIRATION = 'expiration';
+
     /**
-     * @var string The name of the "key" column.
+     * The name of the "key" column.
+     *
+     * @var string
      */
     final public const KEY = 'key';
+
     /**
-     * @var string The name of the "owner" column.
+     * The name of the "owner" column.
+     *
+     * @var string
      */
     final public const OWNER = 'owner';
 
-    /**
-     * @var string The table associated with the model.
-     */
-    final public const TABLE = 'cache_locks';
+    #endregion
 
     #endregion
 }

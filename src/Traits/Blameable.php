@@ -12,8 +12,8 @@ use Narsil\Models\User;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 trait Blameable
 {
@@ -47,10 +47,10 @@ trait Blameable
 
     #endregion
 
-    #region RELATIONS
+    #region RELATIONSHIPS
 
     /**
-     * Gets the user who created the model.
+     * Get the user who created the model.
      *
      * @return BelongsTo
      */
@@ -65,7 +65,7 @@ trait Blameable
     }
 
     /**
-     * Gets the user who deleted the model.
+     * Get the user who deleted the model.
      *
      * @return BelongsTo
      */
@@ -80,7 +80,7 @@ trait Blameable
     }
 
     /**
-     * Gets the user who updated the model.
+     * Get the user who updated the model.
      *
      * @return BelongsTo
      */

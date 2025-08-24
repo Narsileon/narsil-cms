@@ -13,8 +13,8 @@ use Narsil\Models\Elements\FieldOption;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class CheckboxInput extends AbstractField implements Contract
 {

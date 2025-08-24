@@ -15,8 +15,8 @@ use Narsil\Traits\HasElement;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class BlockElement extends Model
 {
@@ -25,9 +25,7 @@ class BlockElement extends Model
     #region CONSTRUCTOR
 
     /**
-     * @param array $attributes
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function __construct(array $attributes = [])
     {
@@ -60,34 +58,48 @@ class BlockElement extends Model
     #region CONSTANTS
 
     /**
-     * @var string The name of the "block id" column.
-     */
-    final public const BLOCK_ID = 'block_id';
-
-    /**
-     * @var string The name of the "counditions" count.
-     */
-    final public const COUNT_CONDITIONS = 'conditions_count';
-
-    /**
-     * @var string The name of the "block" relation.
-     */
-    final public const RELATION_BLOCK = 'block';
-    /**
-     * @var string The name of the "conditions" relation.
-     */
-    final public const RELATION_CONDITIONS = 'conditions';
-
-    /**
-     * @var string The table associated with the model.
+     * The table associated with the model.
+     *
+     * @var string
      */
     final public const TABLE = 'block_element';
 
-    #endregion
-
-    #region RELATIONS
+    #region • COLUMNS
 
     /**
+     * The name of the "block id" column.
+     *
+     * @var string
+     */
+    final public const BLOCK_ID = 'block_id';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "block" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCK = 'block';
+
+    /**
+     * The name of the "conditions" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_CONDITIONS = 'conditions';
+
+    #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated block.
+     *
      * @return BelongsTo
      */
     public function block(): BelongsTo
@@ -101,6 +113,8 @@ class BlockElement extends Model
     }
 
     /**
+     * Get the associated conditions.
+     *
      * @return HasMany
      */
     public function conditions(): HasMany

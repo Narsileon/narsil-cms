@@ -10,8 +10,8 @@ use Narsil\Services\GraphQLService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class GenerateSchema extends Command
 {
