@@ -1,6 +1,18 @@
+import { Block } from "@narsil-cms/types/forms";
 import Builder from "./builder";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 import BuilderSeparator from "./builder-seperator";
+
+export type BuilderNode = {
+  block: Block;
+  block_id: number;
+  children: BuilderNode[];
+  entity_uuid: string;
+  id: number | string;
+  parent_id: number | null;
+  position: number;
+  values: Record<string, any>;
+};
 
 export { Builder, BuilderAdd, BuilderItem, BuilderSeparator };

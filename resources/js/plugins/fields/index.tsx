@@ -37,8 +37,8 @@ const defaultRegistry: Registry = {
         {...props.element.settings}
         blocks={props.element.blocks}
         name={props.id}
-        items={isArray(props.value) ? props.value : []}
-        setItems={props.setValue}
+        nodes={isArray(props.value) ? props.value : []}
+        setNodes={props.setValue}
       />
     );
   },

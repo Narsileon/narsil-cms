@@ -6,6 +6,7 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Entities\Entity;
 use Narsil\Traits\HasTableName;
@@ -27,11 +28,17 @@ class EntityBlock extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = self::TABLE;
+        $this->table = static::$tableName;
 
         $this->guarded = array_merge([
             self::ID,
         ], $this->guarded);
+
+        $this->with = array_merge([
+            self::RELATION_BLOCK,
+            self::RELATION_CHILDREN,
+        ], $this->with);
+
 
         parent::__construct($attributes);
     }
@@ -103,6 +110,13 @@ class EntityBlock extends Model
     final public const RELATION_BLOCK = 'block';
 
     /**
+     * The name of the "children" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_CHILDREN = 'children';
+
+    /**
      * The name of the "entity" relation.
      *
      * @var string
@@ -138,6 +152,21 @@ class EntityBlock extends Model
     }
 
     /**
+     * Get the children.
+     *
+     * @return BelongsTo
+     */
+    public function children(): HasMany
+    {
+        return $this
+            ->hasMany(
+                self::class,
+                self::PARENT_ID,
+                self::ID
+            );
+    }
+
+    /**
      * Get the associated entity.
      *
      * @return BelongsTo
@@ -153,7 +182,7 @@ class EntityBlock extends Model
     }
 
     /**
-     * Get the associated parent.
+     * Get the parent.
      *
      * @return BelongsTo
      */

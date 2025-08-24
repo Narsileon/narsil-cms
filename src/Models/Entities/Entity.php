@@ -6,6 +6,7 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasDatetimes;
@@ -41,6 +42,10 @@ class Entity extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_BLOCKS,
+        ], $this->with);
+
         parent::__construct($attributes);
     }
 
@@ -72,6 +77,26 @@ class Entity extends Model
     final public const RELATION_ENTITIES = 'entities';
 
     #endregion
+
+    #endregion
+
+    #region RELATIONSHIPS
+
+    /**
+     * Get the associated blocks.
+     *
+     * @return HasMany
+     */
+    final public function blocks(): HasMany
+    {
+        return $this
+            ->hasMany(
+                EntityBlock::class,
+                EntityBlock::ENTITY_UUID,
+                self::UUID,
+            )
+            ->whereNull(EntityBlock::PARENT_ID);
+    }
 
     #endregion
 

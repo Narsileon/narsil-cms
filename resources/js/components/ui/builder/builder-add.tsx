@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { set, uniqueId } from "lodash";
+import { uniqueId } from "lodash";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
@@ -11,14 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
 import type { Block } from "@narsil-cms/types/forms";
+import type { BuilderNode } from ".";
 
 type BuilderAddProps = React.ComponentProps<typeof DropdownMenuTrigger> & {
   blocks: Block[];
-  keyPath: string;
-  onAdd: (block: Block) => void;
+  onAdd: (node: BuilderNode) => void;
 };
 
-function BuilderAdd({ blocks, keyPath, onAdd, ...props }: BuilderAddProps) {
+function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
   const { trans } = useLabels();
 
   return (
@@ -38,11 +38,9 @@ function BuilderAdd({ blocks, keyPath, onAdd, ...props }: BuilderAddProps) {
         {blocks.map((block, index) => (
           <DropdownMenuItem
             onClick={() => {
-              const item = { ...block };
+              const node = { id: uniqueId("id:"), block: block };
 
-              set(item, keyPath, uniqueId(keyPath));
-
-              onAdd(item);
+              onAdd(node as BuilderNode);
             }}
             key={index}
           >

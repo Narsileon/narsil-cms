@@ -1,5 +1,4 @@
 import * as React from "react";
-import { get } from "lodash";
 import { useState } from "react";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
@@ -20,6 +19,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import type { Block } from "@narsil-cms/types/forms";
+import type { BuilderNode } from ".";
 import type {
   DragCancelEvent,
   DragEndEvent,
@@ -28,20 +28,13 @@ import type {
 
 type BuilderProps = {
   blocks: Block[];
-  items: Block[];
-  keyPath?: string;
+  nodes: BuilderNode[];
   name: string;
-  setItems: (items: Block[]) => void;
+  setNodes: (items: BuilderNode[]) => void;
 };
 
-function Builder({
-  blocks,
-  keyPath = "position",
-  items,
-  name,
-  setItems,
-}: BuilderProps) {
-  const [active, setActive] = useState<Block | null>(null);
+function Builder({ blocks, name, nodes, setNodes }: BuilderProps) {
+  const [active, setActive] = useState<BuilderNode | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -57,24 +50,20 @@ function Builder({
     setActive(null);
 
     if (over) {
-      const activeIndex = items.findIndex(
-        (item) => get(item, keyPath) == active.id,
-      );
-      const overIndex = items.findIndex(
-        (item) => get(item, keyPath) == over.id,
-      );
+      const activeIndex = nodes.findIndex((node) => node.id == active.id);
+      const overIndex = nodes.findIndex((node) => node.id == over.id);
 
       if (activeIndex !== overIndex) {
-        setItems(arrayMove(items, activeIndex, overIndex));
+        setNodes(arrayMove(nodes, activeIndex, overIndex));
       }
     }
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const item = items.find((item) => get(item, keyPath) == active.id);
+    const node = nodes.find((node) => node.id == active.id);
 
-    if (item) {
-      setActive(item);
+    if (node) {
+      setActive(node);
     }
   }
 
@@ -86,50 +75,41 @@ function Builder({
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
     >
-      <SortableContext
-        items={items.map((item) => get(item, keyPath))}
-        strategy={verticalListSortingStrategy}
-      >
+      <SortableContext items={nodes} strategy={verticalListSortingStrategy}>
         <div className="flex flex-col items-center justify-center">
           <div className="bg-constructive size-4 rounded-full" />
           <BuilderSeparator />
-          {items.map((item, index) => {
-            const key = get(item, keyPath);
-
-            const handle = `${name}.${index}.values.${item.handle}`;
+          {nodes.map((node, index) => {
+            const baseHandle = `${name}.${index}`;
 
             return (
-              <React.Fragment key={key}>
+              <React.Fragment key={node.id}>
                 <BuilderAdd
                   blocks={blocks}
-                  keyPath={keyPath}
-                  onAdd={(item) => {
-                    const newItems = [...items];
+                  onAdd={(node) => {
+                    const newNodes = [...nodes];
 
-                    newItems.splice(index, 0, item);
+                    newNodes.splice(index, 0, node);
 
-                    setItems(newItems);
+                    setNodes(newNodes);
                   }}
                 />
                 <BuilderSeparator />
-                <BuilderItem handle={handle} id={key} item={item} />
+                <BuilderItem baseHandle={baseHandle} id={node.id} node={node} />
                 <BuilderSeparator />
               </React.Fragment>
             );
           })}
           <BuilderAdd
             blocks={blocks}
-            keyPath={keyPath}
-            onAdd={(item) => setItems([...items, item])}
+            onAdd={(node) => setNodes([...nodes, node])}
           />
           <BuilderSeparator />
           <div className="bg-destructive size-4 rounded-full" />
         </div>
       </SortableContext>
       <DragOverlay>
-        {active ? (
-          <BuilderItem id={get(active, keyPath)} item={active} />
-        ) : null}
+        {active ? <BuilderItem id={active.id} node={active} /> : null}
       </DragOverlay>
     </DndContext>
   );
