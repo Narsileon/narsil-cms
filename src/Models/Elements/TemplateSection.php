@@ -64,13 +64,6 @@ class TemplateSection extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "template id" column.
-     *
-     * @var string
-     */
-    final public const TEMPLATE_ID = 'template_id';
-
-    /**
      * The name of the "handle" column.
      *
      * @var string
@@ -97,6 +90,13 @@ class TemplateSection extends Model
      * @var string
      */
     final public const POSITION = 'position';
+
+    /**
+     * The name of the "template id" column.
+     *
+     * @var string
+     */
+    final public const TEMPLATE_ID = 'template_id';
 
     #endregion
 

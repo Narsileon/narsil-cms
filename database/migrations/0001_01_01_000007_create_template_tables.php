@@ -5,8 +5,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Elements\TemplateBlock;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 
@@ -27,6 +29,10 @@ return new class extends Migration
         {
             $this->createTemplatesTable();
         }
+        if (!Schema::hasTable(TemplateBlock::TABLE))
+        {
+            $this->createTemplateBlocksTable();
+        }
         if (!Schema::hasTable(TemplateSection::TABLE))
         {
             $this->createTemplateSectionsTable();
@@ -46,12 +52,34 @@ return new class extends Migration
     {
         Schema::dropIfExists(TemplateSectionElement::TABLE);
         Schema::dropIfExists(TemplateSection::TABLE);
+        Schema::dropIfExists(TemplateBlock::TABLE);
         Schema::dropIfExists(Template::TABLE);
     }
 
     #endregion
 
     #region PRIVATE METHODS
+
+    /**
+     * @return void
+     */
+    private function createTemplateBlocksTable(): void
+    {
+        Schema::create(TemplateBlock::TABLE, function (Blueprint $table)
+        {
+            $table
+                ->id(TemplateBlock::ID);
+            $table
+                ->foreignId(TemplateBlock::TEMPLATE_ID)
+                ->constrained(Template::TABLE, Template::ID)
+                ->cascadeOnDelete();
+            $table
+                ->foreignId(TemplateBlock::BLOCK_ID)
+                ->constrained(Block::TABLE, Block::ID)
+                ->cascadeOnDelete();
+        });
+    }
+
 
     /**
      * @return void

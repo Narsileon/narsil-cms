@@ -5,6 +5,7 @@ namespace Narsil\Models\Elements;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Traits\HasDatetimes;
 
@@ -32,6 +33,7 @@ class Template extends Model
         ], $this->guarded);
 
         $this->with = array_merge([
+            self::RELATION_BLOCKS,
             self::RELATION_SECTIONS,
         ], $this->with);
 
@@ -88,6 +90,13 @@ class Template extends Model
     #region • RELATIONS
 
     /**
+     * The name of the "blocks" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCKS = 'blocks';
+
+    /**
      * The name of the "sections" relation.
      *
      * @var string
@@ -99,6 +108,22 @@ class Template extends Model
     #endregion
 
     #region RELATIONSHIPS
+
+    /**
+     * Get the associated blocks.
+     *
+     * @return BelongsToMany
+     */
+    public function blocks(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Block::class,
+                TemplateBlock::class,
+                TemplateBlock::TEMPLATE_ID,
+                TemplateBlock::BLOCK_ID,
+            );
+    }
 
     /**
      * Get the associated sections.

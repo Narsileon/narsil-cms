@@ -30,6 +30,10 @@ class EntityBlock extends Model
     {
         $this->table = static::$tableName;
 
+        $this->casts = array_merge([
+            self::VALUES => 'array',
+        ], $this->casts);
+
         $this->guarded = array_merge([
             self::ID,
         ], $this->guarded);

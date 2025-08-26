@@ -4,14 +4,13 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\SwitchInput;
-use Narsil\Contracts\Fields\TextInput;
-use Narsil\Contracts\Forms\SiteForm as Contract;
+use Narsil\Contracts\Fields\BuilderElement;
+use Narsil\Contracts\Forms\EntityForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
-use Narsil\Models\Sites\Site;
+use Narsil\Models\Elements\TemplateSection;
+use Narsil\Models\Elements\TemplateSectionElement;
 
 #endregion
 
@@ -56,7 +55,29 @@ class EntityForm extends AbstractForm implements Contract
      */
     public function form(): array
     {
-        return $this->template->{Template::RELATION_SECTIONS}->toArray();
+        $blocks = $this->template->{Template::RELATION_BLOCKS};
+
+        $sections = $this->template->{Template::RELATION_SECTIONS}->toArray();
+
+        if (count($blocks) > 0)
+        {
+            $sections[] = new TemplateSection([
+                TemplateSection::HANDLE => 'content',
+                TemplateSection::NAME => trans('narsil::ui.content'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => 'content',
+                            Field::NAME => trans('narsil::validation.attributes.content'),
+                            Field::TYPE => BuilderElement::class,
+                            Field::RELATION_BLOCKS => $blocks,
+                        ]),
+                    ]),
+                ],
+            ])->toArray();
+        }
+
+        return $sections;
     }
 
     #endregion

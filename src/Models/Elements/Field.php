@@ -7,6 +7,7 @@ namespace Narsil\Models\Elements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Arr;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\FieldBlock;
 use Narsil\Traits\HasDatetimes;
@@ -51,8 +52,12 @@ class Field extends Model
             self::RELATION_OPTIONS,
         ], $this->with);
 
-
         parent::__construct($attributes);
+
+        if ($blocks = Arr::get($attributes, self::RELATION_BLOCKS))
+        {
+            $this->setRelation(self::RELATION_BLOCKS, collect($blocks));
+        }
     }
 
     #endregion
