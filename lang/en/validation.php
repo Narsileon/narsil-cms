@@ -236,6 +236,8 @@ return [
         'revision'                => 'revision',
         'revisions'               => 'revisions',
         'roles'                   => 'roles',
+        'section'                 => 'section',
+        'sections'                => 'sections',
         'step'                    => 'step',
         'theme'                   => 'theme',
         'title'                   => 'title',

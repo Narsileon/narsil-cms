@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Narsil\Contracts\Fields\BuilderElement;
 use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\BlockElementForm;
@@ -50,7 +51,8 @@ class TemplateForm extends AbstractForm implements Contract
     public function form(): array
     {
         $blockOptions = static::getBlockOptions();
-        $fieldOptions = static::getFieldOptions();
+        $sectionBlockOptions = static::getSectionBlockOptions();
+        $sectionFieldOptions = static::getSectionFieldOptions();
         $widthOptions = static::getWidthOptions();
 
         return [
@@ -76,7 +78,7 @@ class TemplateForm extends AbstractForm implements Contract
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::RELATION_SECTIONS,
-                        Field::NAME => trans('narsil::validation.attributes.elements'),
+                        Field::NAME => trans('narsil::validation.attributes.sections'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
                             ->form(app(TemplateSectionForm::class)->jsonSerialize())
@@ -95,7 +97,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             label: trans('narsil::models.block'),
                                             optionLabel: BlockElement::NAME,
                                             optionValue: BlockElement::HANDLE,
-                                            options: $blockOptions,
+                                            options: $sectionBlockOptions,
                                             routes: RouteService::getNames(Block::TABLE),
                                         )
                                         ->addOption(
@@ -103,7 +105,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             label: trans('narsil::models.field'),
                                             optionLabel: BlockElement::NAME,
                                             optionValue: BlockElement::HANDLE,
-                                            options: $fieldOptions,
+                                            options: $sectionFieldOptions,
                                             routes: RouteService::getNames(Field::TABLE),
                                         )
                                         ->widthOptions($widthOptions),
@@ -111,6 +113,23 @@ class TemplateForm extends AbstractForm implements Contract
                             )
                             ->placeholder(trans('narsil::ui.add_section')),
                     ])
+                ]),
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => Template::RELATION_BLOCKS,
+                        Field::NAME => trans('narsil::validation.attributes.blocks'),
+                        Field::TYPE => RelationsInput::class,
+                        Field::SETTINGS => app(RelationsInput::class)
+                            ->addOption(
+                                identifier: Block::TABLE,
+                                label: trans('narsil::models.block'),
+                                optionLabel: BlockElement::NAME,
+                                optionValue: BlockElement::HANDLE,
+                                options: $blockOptions,
+                                routes: RouteService::getNames(Block::TABLE),
+                            )
+                            ->unique(true),
+                    ]),
                 ]),
             ]),
             static::informationSection(),
@@ -141,9 +160,31 @@ class TemplateForm extends AbstractForm implements Contract
     /**
      * @return array
      */
-    protected static function getFieldOptions(): array
+    protected static function getSectionBlockOptions(): array
+    {
+        return Block::query()
+            ->whereDoesntHave(Block::RELATION_FIELDS, function ($query)
+            {
+                $query->where(Field::TYPE, BuilderElement::class);
+            })
+            ->orderBy(Block::NAME)
+            ->get()
+            ->map(function (Block $block)
+            {
+                return new SelectOption($block->{Block::NAME}, $block->{Block::HANDLE})
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+            })
+            ->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    protected static function getSectionFieldOptions(): array
     {
         return Field::query()
+            ->where(Field::TYPE, '!=', BuilderElement::class)
             ->orderBy(Field::NAME)
             ->get()
             ->map(function (Field $field)
