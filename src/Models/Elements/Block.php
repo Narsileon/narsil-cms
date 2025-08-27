@@ -5,6 +5,7 @@ namespace Narsil\Models\Elements;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Arr;
@@ -44,6 +45,7 @@ class Block extends Model
 
         $this->with = array_merge([
             self::RELATION_ELEMENTS,
+            self::RELATION_SETS,
         ], $this->with);
 
 
@@ -150,6 +152,13 @@ class Block extends Model
      */
     final public const RELATION_FIELDS = 'fields';
 
+    /**
+     * The name of the "sets" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SETS = 'sets';
+
     #endregion
 
     #endregion
@@ -217,6 +226,22 @@ class Block extends Model
                 BlockElement::TABLE,
                 BlockElement::BLOCK_ID,
                 BlockElement::ELEMENT_ID,
+            );
+    }
+
+    /**
+     * Get the associated sets.
+     *
+     * @return BelongsToMany
+     */
+    public function sets(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Block::class,
+                BlockSet::TABLE,
+                BlockSet::BLOCK_ID,
+                BlockSet::SET_ID,
             );
     }
 

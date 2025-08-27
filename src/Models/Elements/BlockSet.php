@@ -6,7 +6,6 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Block;
 
 #endregion
@@ -15,7 +14,7 @@ use Narsil\Models\Elements\Block;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class FieldBlock extends Pivot
+class BlockSet extends Pivot
 {
     #region CONSTRUCTOR
 
@@ -43,7 +42,7 @@ class FieldBlock extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'field_block';
+    final public const TABLE = 'block_set';
 
     #region • COLUMNS
 
@@ -55,18 +54,18 @@ class FieldBlock extends Pivot
     final public const BLOCK_ID = 'block_id';
 
     /**
-     * The name of the "field id" column.
-     *
-     * @var string
-     */
-    final public const FIELD_ID = 'field_id';
-
-    /**
      * The name of the "id" column.
      *
      * @var string
      */
     final public const ID = 'id';
+
+    /**
+     * The name of the "set id" column.
+     *
+     * @var string
+     */
+    final public const SET_ID = 'set_id';
 
     #endregion
 
@@ -80,11 +79,11 @@ class FieldBlock extends Pivot
     final public const RELATION_BLOCK = 'block';
 
     /**
-     * The name of the "field" relation.
+     * The name of the "set" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELD = 'field';
+    final public const RELATION_SET = 'set';
 
     #endregion
 
@@ -112,13 +111,13 @@ class FieldBlock extends Pivot
      *
      * @return BelongsTo
      */
-    public function field(): BelongsTo
+    public function set(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Field::class,
-                self::FIELD_ID,
-                Field::ID,
+                Block::class,
+                self::SET_ID,
+                Block::ID,
             );
     }
 

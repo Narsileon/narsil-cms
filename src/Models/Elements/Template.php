@@ -33,8 +33,8 @@ class Template extends Model
         ], $this->guarded);
 
         $this->with = array_merge([
-            self::RELATION_BLOCKS,
             self::RELATION_SECTIONS,
+            self::RELATION_SETS,
         ], $this->with);
 
         parent::__construct($attributes);
@@ -90,40 +90,24 @@ class Template extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "blocks" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_BLOCKS = 'blocks';
-
-    /**
      * The name of the "sections" relation.
      *
      * @var string
      */
     final public const RELATION_SECTIONS = 'sections';
 
+    /**
+     * The name of the "sets" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SETS = 'sets';
+
     #endregion
 
     #endregion
 
     #region RELATIONSHIPS
-
-    /**
-     * Get the associated blocks.
-     *
-     * @return BelongsToMany
-     */
-    public function blocks(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Block::class,
-                TemplateBlock::class,
-                TemplateBlock::TEMPLATE_ID,
-                TemplateBlock::BLOCK_ID,
-            );
-    }
 
     /**
      * Get the associated sections.
@@ -139,6 +123,22 @@ class Template extends Model
                 self::ID,
             )
             ->orderBy(TemplateSection::POSITION);
+    }
+
+    /**
+     * Get the associated blocks.
+     *
+     * @return BelongsToMany
+     */
+    public function sets(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Block::class,
+                TemplateSet::class,
+                TemplateSet::TEMPLATE_ID,
+                TemplateSet::SET_ID,
+            );
     }
 
     #endregion

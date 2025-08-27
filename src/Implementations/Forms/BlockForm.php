@@ -48,6 +48,7 @@ class BlockForm extends AbstractForm implements Contract
     {
         $blockOptions = static::getBlockOptions();
         $fieldOptions = static::getFieldOptions();
+        $setOptions = static::getSetOptions();
         $widthOptions = static::getWidthOptions();
 
         return [
@@ -96,6 +97,23 @@ class BlockForm extends AbstractForm implements Contract
                             ->widthOptions($widthOptions),
                     ])
                 ]),
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => Block::RELATION_SETS,
+                        Field::NAME => trans('narsil::validation.attributes.sets'),
+                        Field::TYPE => RelationsInput::class,
+                        Field::SETTINGS => app(RelationsInput::class)
+                            ->addOption(
+                                identifier: Block::TABLE,
+                                label: trans('narsil::models.block'),
+                                optionLabel: BlockElement::NAME,
+                                optionValue: BlockElement::HANDLE,
+                                options: $setOptions,
+                                routes: RouteService::getNames(Block::TABLE),
+                            )
+                            ->unique(true),
+                    ]),
+                ]),
             ]),
             static::informationSection(),
         ];
@@ -111,6 +129,7 @@ class BlockForm extends AbstractForm implements Contract
     protected static function getBlockOptions(): array
     {
         return Block::query()
+            ->whereDoesntHave(Block::RELATION_SETS)
             ->orderBy(Block::NAME)
             ->get()
             ->map(function (Block $block)
@@ -135,6 +154,23 @@ class BlockForm extends AbstractForm implements Contract
                 return new SelectOption($field->{Field::NAME}, $field->{Field::HANDLE})
                     ->icon($field->{Field::ATTRIBUTE_ICON})
                     ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
+            })
+            ->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    protected static function getSetOptions(): array
+    {
+        return Block::query()
+            ->orderBy(Block::NAME)
+            ->get()
+            ->map(function (Block $block)
+            {
+                return new SelectOption($block->{Block::NAME}, $block->{Block::HANDLE})
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }

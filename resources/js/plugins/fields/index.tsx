@@ -1,4 +1,3 @@
-import { Builder } from "@narsil-cms/components/ui/builder";
 import { Checkbox, Checkboxes } from "@narsil-cms/components/ui/checkbox";
 import { Combobox } from "@narsil-cms/components/ui/combobox";
 import { Icon } from "@narsil-cms/components/ui/icon";
@@ -31,17 +30,6 @@ export type FieldProps = {
 type Registry = Record<string, ComponentType<FieldProps>>;
 
 const defaultRegistry: Registry = {
-  ["Narsil\\Contracts\\Fields\\BuilderElement"]: (props) => {
-    return (
-      <Builder
-        {...props.element.settings}
-        blocks={props.element.blocks}
-        name={props.id}
-        nodes={isArray(props.value) ? props.value : []}
-        setNodes={props.setValue}
-      />
-    );
-  },
   ["Narsil\\Contracts\\Fields\\CheckboxInput"]: (props) => {
     if (props.element.settings.options) {
       return (

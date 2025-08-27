@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Template;
-use Narsil\Models\Elements\TemplateBlock;
+use Narsil\Models\Elements\TemplateSet;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 
@@ -29,9 +29,9 @@ return new class extends Migration
         {
             $this->createTemplatesTable();
         }
-        if (!Schema::hasTable(TemplateBlock::TABLE))
+        if (!Schema::hasTable(TemplateSet::TABLE))
         {
-            $this->createTemplateBlocksTable();
+            $this->createTemplateSetsTable();
         }
         if (!Schema::hasTable(TemplateSection::TABLE))
         {
@@ -52,7 +52,7 @@ return new class extends Migration
     {
         Schema::dropIfExists(TemplateSectionElement::TABLE);
         Schema::dropIfExists(TemplateSection::TABLE);
-        Schema::dropIfExists(TemplateBlock::TABLE);
+        Schema::dropIfExists(TemplateSet::TABLE);
         Schema::dropIfExists(Template::TABLE);
     }
 
@@ -63,18 +63,18 @@ return new class extends Migration
     /**
      * @return void
      */
-    private function createTemplateBlocksTable(): void
+    private function createTemplateSetsTable(): void
     {
-        Schema::create(TemplateBlock::TABLE, function (Blueprint $table)
+        Schema::create(TemplateSet::TABLE, function (Blueprint $table)
         {
             $table
-                ->id(TemplateBlock::ID);
+                ->id(TemplateSet::ID);
             $table
-                ->foreignId(TemplateBlock::TEMPLATE_ID)
+                ->foreignId(TemplateSet::TEMPLATE_ID)
                 ->constrained(Template::TABLE, Template::ID)
                 ->cascadeOnDelete();
             $table
-                ->foreignId(TemplateBlock::BLOCK_ID)
+                ->foreignId(TemplateSet::SET_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
         });

@@ -19,7 +19,6 @@ use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldBlock;
 use Narsil\Models\Elements\FieldOption;
 
 #endregion
@@ -119,11 +118,6 @@ class FieldController extends AbstractController
 
         $field = Field::create($attributes);
 
-        if ($blocks = Arr::get($attributes, Field::RELATION_BLOCKS))
-        {
-            $this->syncBlocks($field, $blocks);
-        }
-
         if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
         {
             $this->syncOptions($field, $options);
@@ -175,11 +169,6 @@ class FieldController extends AbstractController
 
         $field->update($attributes);
 
-        if ($blocks = Arr::get($attributes, Field::RELATION_BLOCKS))
-        {
-            $this->syncBlocks($field, $blocks);
-        }
-
         if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
         {
             $this->syncOptions($field, $options);
@@ -229,17 +218,6 @@ class FieldController extends AbstractController
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * @param Field $field
-     * @param array $blocks
-     *
-     * @return void
-     */
-    protected function syncBlocks(Field $field, array $blocks): void
-    {
-        $field->blocks()->sync(collect($blocks)->pluck(FieldBlock::ID));
-    }
 
     /**
      * @param Field $field

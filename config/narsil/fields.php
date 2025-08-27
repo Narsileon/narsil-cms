@@ -11,7 +11,6 @@ return [
     |
     */
 
-    \Narsil\Contracts\Fields\BuilderElement::class => \Narsil\Implementations\Fields\BuilderElement::class,
     \Narsil\Contracts\Fields\CheckboxInput::class => \Narsil\Implementations\Fields\CheckboxInput::class,
     \Narsil\Contracts\Fields\DateInput::class => \Narsil\Implementations\Fields\DateInput::class,
     \Narsil\Contracts\Fields\EmailInput::class => \Narsil\Implementations\Fields\EmailInput::class,

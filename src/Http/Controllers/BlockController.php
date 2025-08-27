@@ -132,6 +132,11 @@ class BlockController extends AbstractController
             $this->syncElements($block, $elements);
         }
 
+        if ($sets = Arr::get($attributes, Block::RELATION_SETS))
+        {
+            $this->syncSets($block, $sets);
+        }
+
         return $this
             ->redirect(route('blocks.index'), $block)
             ->with('success', trans('narsil::toasts.success.blocks.created'));
@@ -185,6 +190,11 @@ class BlockController extends AbstractController
         if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
         {
             $this->syncElements($block, $elements);
+        }
+
+        if ($sets = Arr::get($attributes, Block::RELATION_SETS))
+        {
+            $this->syncSets($block, $sets);
         }
 
         return $this
@@ -267,6 +277,17 @@ class BlockController extends AbstractController
                 default => null,
             };
         }
+    }
+
+    /**
+     * @param Block $block
+     * @param array $blocks
+     *
+     * @return void
+     */
+    protected function syncSets(Block $block, array $blocks): void
+    {
+        $block->sets()->sync(collect($blocks)->pluck(Block::ID));
     }
 
     #endregion

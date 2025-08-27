@@ -4,10 +4,8 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\BuilderElement as Contract;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\SectionElement as Contract;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Field;
 
 #endregion
 

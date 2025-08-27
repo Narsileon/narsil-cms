@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
+use Narsil\Models\Elements\BlockSet;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldBlock;
 
@@ -36,9 +37,9 @@ return new class extends Migration
         {
             $this->createBlockElementConditionsTable();
         }
-        if (!Schema::hasTable(FieldBlock::TABLE))
+        if (!Schema::hasTable(BlockSet::TABLE))
         {
-            $this->createFieldBlockTable();
+            $this->createBlockSetTable();
         }
     }
 
@@ -49,7 +50,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FieldBlock::TABLE);
+        Schema::dropIfExists(BlockSet::TABLE);
         Schema::dropIfExists(BlockElementCondition::TABLE);
         Schema::dropIfExists(BlockElement::TABLE);
         Schema::dropIfExists(Block::TABLE);
@@ -126,9 +127,9 @@ return new class extends Migration
             $table
                 ->id(Block::ID);
             $table
-                ->string(Field::HANDLE);
+                ->string(Block::HANDLE);
             $table
-                ->string(Field::NAME);
+                ->string(Block::NAME);
             $table
                 ->timestamps();
         });
@@ -137,18 +138,18 @@ return new class extends Migration
     /**
      * @return void
      */
-    private function createFieldBlockTable(): void
+    private function createBlockSetTable(): void
     {
-        Schema::create(FieldBlock::TABLE, function (Blueprint $table)
+        Schema::create(BlockSet::TABLE, function (Blueprint $table)
         {
             $table
-                ->id(FieldBlock::ID);
+                ->id(BlockSet::ID);
             $table
-                ->foreignId(FieldBlock::FIELD_ID)
-                ->constrained(Field::TABLE, Field::ID)
+                ->foreignId(BlockSet::BLOCK_ID)
+                ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $table
-                ->foreignId(FieldBlock::BLOCK_ID)
+                ->foreignId(BlockSet::SET_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
         });

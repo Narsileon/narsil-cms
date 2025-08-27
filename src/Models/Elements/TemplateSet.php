@@ -14,7 +14,7 @@ use Narsil\Models\Elements\Block;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class TemplateBlock extends Pivot
+class TemplateSet extends Pivot
 {
     #region CONSTRUCTOR
 
@@ -42,16 +42,9 @@ class TemplateBlock extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'template_blocks';
+    final public const TABLE = 'template_set';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "block id" column.
-     *
-     * @var string
-     */
-    final public const BLOCK_ID = 'block_id';
 
     /**
      * The name of the "id" column.
@@ -59,6 +52,13 @@ class TemplateBlock extends Pivot
      * @var string
      */
     final public const ID = 'id';
+
+    /**
+     * The name of the "set id" column.
+     *
+     * @var string
+     */
+    final public const SET_ID = 'set_id';
 
     /**
      * The name of the "template id" column.
@@ -72,11 +72,11 @@ class TemplateBlock extends Pivot
     #region • RELATIONS
 
     /**
-     * The name of the "block" relation.
+     * The name of the "set" relation.
      *
      * @var string
      */
-    final public const RELATION_BlOCK = 'block';
+    final public const RELATION_SET = 'set';
 
     /**
      * The name of the "template" relation.
@@ -92,16 +92,16 @@ class TemplateBlock extends Pivot
     #region RELATIONSHIPS
 
     /**
-     * Get the associated block.
+     * Get the associated set.
      *
      * @return BelongsTo
      */
-    public function block(): BelongsTo
+    public function set(): BelongsTo
     {
         return $this
             ->belongsTo(
                 Block::class,
-                self::BLOCK_ID,
+                self::SET_ID,
                 Block::ID,
             );
     }

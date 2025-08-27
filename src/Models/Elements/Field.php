@@ -5,11 +5,7 @@ namespace Narsil\Models\Elements;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Arr;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\FieldBlock;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
 
@@ -48,16 +44,10 @@ class Field extends Model
         ], $this->guarded);
 
         $this->with = array_merge([
-            self::RELATION_BLOCKS,
             self::RELATION_OPTIONS,
         ], $this->with);
 
         parent::__construct($attributes);
-
-        if ($blocks = Arr::get($attributes, self::RELATION_BLOCKS))
-        {
-            $this->setRelation(self::RELATION_BLOCKS, collect($blocks));
-        }
     }
 
     #endregion
@@ -156,13 +146,6 @@ class Field extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "blocks" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_BLOCKS = 'blocks';
-
-    /**
      * The name of the "options" relation.
      *
      * @var string
@@ -195,22 +178,6 @@ class Field extends Model
     #endregion
 
     #region RELATIONSHIPS
-
-    /**
-     * Get the associated blocks.
-     *
-     * @return BelongsToMany
-     */
-    public function blocks(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Block::class,
-                FieldBlock::TABLE,
-                FieldBlock::FIELD_ID,
-                FieldBlock::BLOCK_ID,
-            );
-    }
 
     /**
      * Get the associated options.
