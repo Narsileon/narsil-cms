@@ -55,6 +55,11 @@ class Block extends Model
         {
             $this->setRelation(self::RELATION_ELEMENTS, collect($elements));
         }
+
+        if ($sets = Arr::get($attributes, self::RELATION_SETS))
+        {
+            $this->setRelation(self::RELATION_SETS, collect($sets));
+        }
     }
 
     #endregion
@@ -172,7 +177,7 @@ class Block extends Model
      */
     public function getIconAttribute(): string
     {
-        return 'box';
+        return count($this->{self::RELATION_SETS}) === 0 ? 'box' : 'builder';
     }
 
     #endregion

@@ -108,7 +108,10 @@ function SortableItem({
           </CardContent>
         ) : (
           <>
-            <CollapsibleTrigger className={cn(children && open && "border-b")}>
+            <CollapsibleTrigger
+              className={cn(children && open && "border-b")}
+              asChild={true}
+            >
               <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pr-1 pl-0">
                 <div className="flex items-center justify-start gap-2">
                   <SortableHandle

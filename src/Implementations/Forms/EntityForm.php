@@ -4,10 +4,9 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\BuilderElement;
 use Narsil\Contracts\Forms\EntityForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
@@ -55,26 +54,35 @@ class EntityForm extends AbstractForm implements Contract
      */
     public function form(): array
     {
-        $blocks = $this->template->{Template::RELATION_BLOCKS};
+        $sets = $this->template->{Template::RELATION_SETS};
 
         $sections = $this->template->{Template::RELATION_SECTIONS}->toArray();
 
-        if (count($blocks) > 0)
+        if (count($sets) > 0)
         {
-            $sections[] = new TemplateSection([
+            $contentSection = new TemplateSection([
                 TemplateSection::HANDLE => 'content',
                 TemplateSection::NAME => trans('narsil::ui.content'),
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => 'content',
-                            Field::NAME => trans('narsil::validation.attributes.content'),
-                            Field::TYPE => BuilderElement::class,
-                            Field::RELATION_BLOCKS => $blocks,
+                        TemplateSectionElement::RELATION_ELEMENT => new Block([
+                            Block::HANDLE => 'blocks',
+                            Block::NAME => trans('narsil::ui.sets'),
+                            Block::RELATION_ELEMENTS => [],
+                            Block::RELATION_SETS => $sets,
                         ]),
                     ]),
                 ],
             ])->toArray();
+
+            if (count($sections) > 0)
+            {
+                array_splice($sections, 1, 0, [$contentSection]);
+            }
+            else
+            {
+                array_unshift($sections, $contentSection);
+            }
         }
 
         return $sections;

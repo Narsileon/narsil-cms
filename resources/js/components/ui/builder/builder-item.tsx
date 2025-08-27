@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormFieldRenderer } from "@narsil-cms/components/ui/form";
 import { SortableItem } from "@narsil-cms/components/ui/sortable";
-import type { BuilderNode } from ".";
+import { Builder, BuilderNode } from ".";
 
 type BuilderItemProps = Omit<
   React.ComponentProps<typeof SortableItem>,
@@ -20,12 +20,8 @@ function BuilderItem({ baseHandle, node, ...props }: BuilderItemProps) {
       label={node.block.name}
       {...props}
     >
-      {node.block.elements.map((element, index) => {
-        const handle =
-          "type" in element.element &&
-          element.element.type === "Narsil\\Contracts\\Fields\\BuilderElement"
-            ? `${baseHandle}.children`
-            : `${baseHandle}.values.${element.handle}`;
+      {node.block.elements?.map((element, index) => {
+        const handle = `${baseHandle}.values.${element.handle}`;
 
         return (
           <FormFieldRenderer
@@ -36,6 +32,9 @@ function BuilderItem({ baseHandle, node, ...props }: BuilderItemProps) {
           />
         );
       })}
+      {node.block.sets ? (
+        <Builder sets={node.block.sets} name={`${baseHandle}.children`} />
+      ) : null}
     </SortableItem>
   );
 }

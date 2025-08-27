@@ -1,3 +1,4 @@
+import { Builder } from "@narsil-cms/components/ui/builder";
 import { cn } from "@narsil-cms/lib/utils";
 import { Heading } from "@narsil-cms/components/ui/heading";
 import { Icon } from "@narsil-cms/components/ui/icon";
@@ -37,17 +38,16 @@ function FormFieldRenderer({
   handle,
   name,
   onChange,
-  renderOption,
 }: FormFieldRendererProps) {
   const { data } = useForm();
 
   const finalHandle = handle ?? element.handle;
   const finalName = name ?? element.name;
 
-  if ("elements" in element) {
+  if ("elements" in element || "sets" in element) {
     return (
       <>
-        {element.identifier?.startsWith("blocks") ? (
+        {element.identifier.startsWith("blocks") ? (
           <Collapsible
             className={cn(
               "group -mx-4 not-first:border-t",
@@ -73,7 +73,7 @@ function FormFieldRenderer({
               />
             </CollapsibleTrigger>
             <CollapsibleContent className="grid gap-4 p-4 px-4">
-              {element.elements.map((element, index) => {
+              {element.elements?.map((element, index) => {
                 return (
                   <FormFieldRenderer
                     conditions={element.conditions}
@@ -84,20 +84,25 @@ function FormFieldRenderer({
                   />
                 );
               })}
+              {element.sets && element.sets.length > 0 ? (
+                <Builder sets={element.sets} name={finalHandle} />
+              ) : null}
             </CollapsibleContent>
           </Collapsible>
         ) : (
-          element.elements.map((element, index) => {
-            return (
-              <FormFieldRenderer
-                conditions={element.conditions}
-                element={element.element}
-                handle={element.handle}
-                name={element.name}
-                key={index}
-              />
-            );
-          })
+          <>
+            {element.elements?.map((element, index) => {
+              return (
+                <FormFieldRenderer
+                  conditions={element.conditions}
+                  element={element.element}
+                  handle={element.handle}
+                  name={element.name}
+                  key={index}
+                />
+              );
+            })}
+          </>
         )}
       </>
     );

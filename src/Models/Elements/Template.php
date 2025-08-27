@@ -126,7 +126,7 @@ class Template extends Model
     }
 
     /**
-     * Get the associated blocks.
+     * Get the associated sets.
      *
      * @return BelongsToMany
      */

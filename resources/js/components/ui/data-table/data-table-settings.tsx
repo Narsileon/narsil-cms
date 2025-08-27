@@ -50,7 +50,7 @@ function DataTableSettings({
       <DropdownMenuContent align="end">
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
-            {trans("table.columns")}
+            {trans("ui.columns")}
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>

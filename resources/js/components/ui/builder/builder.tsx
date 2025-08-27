@@ -1,4 +1,5 @@
 import * as React from "react";
+import { get } from "lodash";
 import { useState } from "react";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
@@ -25,15 +26,22 @@ import type {
   DragEndEvent,
   DragStartEvent,
 } from "@dnd-kit/core";
+import { useForm } from "../form";
 
 type BuilderProps = {
-  blocks: Block[];
-  nodes: BuilderNode[];
   name: string;
-  setNodes: (items: BuilderNode[]) => void;
+  sets: Block[];
 };
 
-function Builder({ blocks, name, nodes, setNodes }: BuilderProps) {
+function Builder({ name, sets }: BuilderProps) {
+  const { data, setData } = useForm();
+
+  const nodes = get(data, name, []) as BuilderNode[];
+
+  function setNodes(nodes: BuilderNode[]) {
+    setData?.(name, nodes);
+  }
+
   const [active, setActive] = useState<BuilderNode | null>(null);
 
   const sensors = useSensors(
@@ -85,7 +93,7 @@ function Builder({ blocks, name, nodes, setNodes }: BuilderProps) {
             return (
               <React.Fragment key={node.id}>
                 <BuilderAdd
-                  blocks={blocks}
+                  sets={sets}
                   onAdd={(node) => {
                     const newNodes = [...nodes];
 
@@ -101,7 +109,7 @@ function Builder({ blocks, name, nodes, setNodes }: BuilderProps) {
             );
           })}
           <BuilderAdd
-            blocks={blocks}
+            sets={sets}
             onAdd={(node) => setNodes([...nodes, node])}
           />
           <BuilderSeparator />

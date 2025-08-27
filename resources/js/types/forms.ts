@@ -2,12 +2,13 @@ import { RouteNames } from "./collection";
 import type { IconName } from "@narsil-cms/plugins/icons";
 
 export type Block = {
-  elements: BlockElement[];
+  elements?: BlockElement[];
   handle: string;
   icon?: IconName;
   id: number;
   identifier: string;
   name: string;
+  sets: Block[];
 };
 
 export type BlockElement = {

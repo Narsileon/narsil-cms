@@ -171,7 +171,7 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::pagination.empty')
             ->add('narsil::pagination.pagination')
             ->add('narsil::placeholders.search')
-            ->add('narsil::table.columns')
+            ->add('narsil::ui.columns')
             ->add('narsil::ui.create')
             ->add('narsil::ui.delete')
             ->add('narsil::ui.delete_selected')

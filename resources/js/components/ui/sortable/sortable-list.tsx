@@ -35,7 +35,7 @@ function Sortable({
   ...props
 }: SortableProps) {
   const [active, setActive] = React.useState<AnonymousItem | null>(null);
-  console.log(items);
+
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),

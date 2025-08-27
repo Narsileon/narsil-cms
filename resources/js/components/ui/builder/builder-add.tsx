@@ -14,11 +14,11 @@ import type { Block } from "@narsil-cms/types/forms";
 import type { BuilderNode } from ".";
 
 type BuilderAddProps = React.ComponentProps<typeof DropdownMenuTrigger> & {
-  blocks: Block[];
+  sets: Block[];
   onAdd: (node: BuilderNode) => void;
 };
 
-function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
+function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
   const { trans } = useLabels();
 
   return (
@@ -35,17 +35,17 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent>
-        {blocks.map((block, index) => (
+        {sets.map((set, index) => (
           <DropdownMenuItem
             onClick={() => {
-              const node = { id: uniqueId("id:"), block: block };
+              const node = { id: uniqueId("id:"), block: set };
 
               onAdd(node as BuilderNode);
             }}
             key={index}
           >
-            {block.icon ? <Icon name={block.icon} /> : null}
-            <span>{block.name}</span>
+            {set.icon ? <Icon name={set.icon} /> : null}
+            <span>{set.name}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
