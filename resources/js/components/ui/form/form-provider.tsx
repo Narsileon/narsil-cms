@@ -17,35 +17,31 @@ function FormProvider({
   initialValues = {},
   render,
 }: FormProviderProps) {
-  function flattenFields(elements: (Field | Block)[]): Field[] {
-    const fields: Field[] = [];
+  function flattenValues(elements: (Field | Block)[]): Record<string, any> {
+    const receivedValues: Record<string, any> = {};
 
-    for (const element of elements) {
+    elements.map((element) => {
       if ("elements" in element) {
-        for (const blockElement of element.elements) {
+        element.elements?.map((blockElement) => {
           const childElement = blockElement.element;
 
           if ("elements" in childElement) {
-            fields.push(...flattenFields([childElement]));
-          } else if (childElement.handle && childElement.type) {
-            fields.push(childElement);
+            Object.assign(receivedValues, flattenValues([childElement]));
+          } else if ("type" in childElement) {
+            receivedValues[blockElement.handle] =
+              childElement.settings?.value ?? "";
           }
-        }
-      } else if (element.handle && element.type) {
-        fields.push(element);
+        });
+      } else if ("type" in element) {
+        receivedValues[element.handle] = element.settings?.value ?? "";
       }
-    }
+    });
 
-    return fields;
+    return receivedValues;
   }
 
   const mergedInitialValues = Object.assign(
-    Object.fromEntries(
-      flattenFields(elements).map(({ handle, settings }) => [
-        handle,
-        settings?.value ?? settings?.checked ?? "",
-      ]),
-    ),
+    flattenValues(elements),
     initialValues,
   );
 

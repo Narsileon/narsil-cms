@@ -121,6 +121,19 @@ class Entity extends Model
     /**
      * {@inheritDoc}
      */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($model)
+        {
+            $model->{self::ID} = static::max(self::ID) + 1;
+        });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     protected static function maxRevisions(): ?int
     {
         return null;

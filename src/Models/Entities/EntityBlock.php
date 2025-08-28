@@ -7,6 +7,7 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Casts\JsonCast;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Entities\Entity;
 use Narsil\Traits\HasTableName;
@@ -30,8 +31,10 @@ class EntityBlock extends Model
     {
         $this->table = static::$tableName;
 
+        $this->timestamps = false;
+
         $this->casts = array_merge([
-            self::VALUES => 'array',
+            self::VALUES => JsonCast::class,
         ], $this->casts);
 
         $this->guarded = array_merge([

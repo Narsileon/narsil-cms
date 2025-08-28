@@ -2,7 +2,7 @@ import { RouteNames } from "./collection";
 import type { IconName } from "@narsil-cms/plugins/icons";
 
 export type Block = {
-  elements?: BlockElement[];
+  elements?: HasElement[];
   handle: string;
   icon?: IconName;
   id: number;
@@ -11,17 +11,15 @@ export type Block = {
   sets: Block[];
 };
 
-export type BlockElement = {
-  blocks: Block[];
-  conditions: BlockElementCondition[];
-  description: string | null;
+export type HasElement = {
+  element_id: number;
+  element_type: "Narsil\\Models\\Elements\\Block" | "Narsil\\Models\\Elements\\Field";
   element: Block | Field;
-  fields: Field[];
-  handle: string | null;
+  handle: string;
   id: number;
-  name: string | null;
+  name: string;
   position: number;
-  settings: Record<string, any> | null;
+  width: number;
 };
 
 export type BlockElementCondition = {

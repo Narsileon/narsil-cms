@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
@@ -16,9 +17,11 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
+use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityBlock;
 
 #endregion
 
@@ -140,6 +143,11 @@ class EntityController extends AbstractController
 
         $entity = Entity::create($attributes);
 
+        if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
+        {
+            $this->syncBlocks($entity, $blocks);
+        }
+
         return $this
             ->redirect(route('collections.index', [
                 'collection' => $collection,
@@ -203,7 +211,12 @@ class EntityController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $entity->update($data);
+        $entity->forceFill($attributes)->save();
+
+        if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
+        {
+            $this->syncBlocks($entity, $blocks);
+        }
 
         return $this
             ->redirect(route('collections.index', [
@@ -256,6 +269,36 @@ class EntityController extends AbstractController
         return $this
             ->redirect(route('collections.index'))
             ->with('success', trans('narsil::toasts.success.entities.deleted_many'));
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Entity $entity
+     * @param array $blocks
+     * @param EntityBlock|null $parent
+     *
+     * @return void
+     */
+    protected function syncBlocks(Entity $entity, array $blocks, ?EntityBlock $parent = null): void
+    {
+        foreach ($blocks as $key => $block)
+        {
+            $entityBlock = EntityBlock::firstOrCreate([
+                EntityBlock::ENTITY_UUID => $entity->{Entity::UUID},
+                EntityBlock::BLOCK_ID => Arr::get($block, EntityBlock::RELATION_BLOCK . '.' . Block::ID),
+                EntityBlock::PARENT_ID => $parent?->{EntityBlock::ID},
+                EntityBlock::POSITION => $key,
+                EntityBlock::VALUES => Arr::get($block, EntityBlock::VALUES, []),
+            ]);
+
+            if ($children = Arr::get($block, EntityBlock::RELATION_CHILDREN))
+            {
+                $this->syncBlocks($entity, $children, $entityBlock);
+            }
+        }
     }
 
     #endregion

@@ -38,7 +38,7 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
         {sets.map((set, index) => (
           <DropdownMenuItem
             onClick={() => {
-              const node = { id: uniqueId("id:"), block: set };
+              const node = { id: uniqueId("id:"), block: set, values: {} };
 
               onAdd(node as BuilderNode);
             }}
