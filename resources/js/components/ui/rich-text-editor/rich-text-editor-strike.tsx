@@ -23,7 +23,7 @@ function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
   });
 
   return (
-    <Tooltip asChild={true} tooltip={trans(`accessibility.toggle_strike`)}>
+    <Tooltip tooltip={trans(`accessibility.toggle_strike`)}>
       <Toggle
         aria-label={trans(`accessibility.toggle_strike`, `Toggle strike`)}
         disabled={!canStrike}

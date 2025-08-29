@@ -14,7 +14,7 @@ import DataTableProvider from "./data-table-provider";
 import DataTableRow from "./data-table-row";
 import DataTableRowMenu from "./data-table-row-menu";
 import DataTableRowSelect from "./data-table-row-select";
-import DataTableSettings from "./data-table-settings";
+import DataTableSize from "./data-table-size";
 import useDataTable from "./data-table-context";
 
 export {
@@ -32,6 +32,6 @@ export {
   DataTableRow,
   DataTableRowMenu,
   DataTableRowSelect,
-  DataTableSettings,
+  DataTableSize,
   useDataTable,
 };

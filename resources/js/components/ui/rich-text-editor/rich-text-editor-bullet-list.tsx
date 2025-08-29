@@ -25,7 +25,7 @@ function RichTextEditorBulletList({
   });
 
   return (
-    <Tooltip asChild={true} tooltip={trans(`accessibility.toggle_bullet_list`)}>
+    <Tooltip tooltip={trans(`accessibility.toggle_bullet_list`)}>
       <Toggle
         aria-label={trans(
           `accessibility.toggle_bullet_list`,

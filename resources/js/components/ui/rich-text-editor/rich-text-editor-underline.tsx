@@ -26,7 +26,7 @@ function RichTextEditorUnderline({
   });
 
   return (
-    <Tooltip asChild={true} tooltip={trans(`accessibility.toggle_underline`)}>
+    <Tooltip tooltip={trans(`accessibility.toggle_underline`)}>
       <Toggle
         aria-label={trans(`accessibility.toggle_underline`, `Toggle underline`)}
         disabled={!canUnderline}

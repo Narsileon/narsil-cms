@@ -17,7 +17,7 @@ import type {
 
 type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
   links: LaravelPaginationLinks;
-  metaLinks: LaravelPaginationMeta["links"];
+  metaLinks?: LaravelPaginationMeta["links"];
 };
 
 function DataTablePagination({
@@ -71,7 +71,7 @@ function DataTablePagination({
             </PaginationLink>
           </PaginationItem>
         </Tooltip>
-        {metaLinks.slice(1, -1).map((link, index) => {
+        {metaLinks?.slice(1, -1).map((link, index) => {
           return link.url ? (
             <PaginationItem key={index}>
               <PaginationLink

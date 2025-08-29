@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'empty'      => 'No results.',
-    'pagination' => 'Pagination',
-    'results'    => ':from-:to of :total results.',
+    'pages_count'    => 'Page :current of :total',
+    'pages_empty'    => 'No results',
+    'pagination'     => 'Rows per page',
+    'selected_count' => 'of :total rows selected',
+    'selected_empty' => 'No row selected',
 ];

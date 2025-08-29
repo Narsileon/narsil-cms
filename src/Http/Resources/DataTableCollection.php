@@ -154,9 +154,9 @@ class DataTableCollection extends ResourceCollection
      */
     protected function registerLabels(): void
     {
-        $from = $this->resource->firstItem();
-        $to = $this->resource->lastItem();
-        $total = $this->resource->total();
+        $currentPage = $this->resource->currentPage();
+        $totalRows = $this->resource->total();
+        $totalPages = $this->resource->lastPage();
 
         app(LabelsBag::class)
             ->add('narsil::accessibility.first_page')
@@ -168,20 +168,23 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::accessibility.sort_column')
             ->add('narsil::accessibility.toggle_row_menu')
             ->add('narsil::accessibility.toggle_table_settings')
-            ->add('narsil::pagination.empty')
+            ->add('narsil::pagination.pages_count', [
+                'current'  => $currentPage,
+                'total'    => $totalPages,
+            ])
+            ->add('narsil::pagination.pages_empty')
             ->add('narsil::pagination.pagination')
+            ->add('narsil::pagination.selected_count', [
+                'total'    => $totalRows,
+            ])
+            ->add('narsil::pagination.selected_empty')
             ->add('narsil::placeholders.search')
             ->add('narsil::ui.columns')
             ->add('narsil::ui.create')
             ->add('narsil::ui.delete')
             ->add('narsil::ui.delete_selected')
             ->add('narsil::ui.deselect_all')
-            ->add('narsil::ui.edit')
-            ->add('narsil::pagination.results', [
-                'from'  => $from,
-                'to'    => $to,
-                'total' => $total,
-            ]);
+            ->add('narsil::ui.edit');
     }
 
 

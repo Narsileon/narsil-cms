@@ -31,7 +31,7 @@ function RichTextEditorSuperscript({
   });
 
   return (
-    <Tooltip asChild={true} tooltip={trans(`accessibility.toggle_superscript`)}>
+    <Tooltip tooltip={trans(`accessibility.toggle_superscript`)}>
       <Toggle
         aria-label={trans(
           `accessibility.toggle_superscript`,

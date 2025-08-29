@@ -26,7 +26,7 @@ function RichTextEditorSubscript({
   });
 
   return (
-    <Tooltip asChild={true} tooltip={trans(`accessibility.toggle_subscript`)}>
+    <Tooltip tooltip={trans(`accessibility.toggle_subscript`)}>
       <Toggle
         aria-label={trans(`accessibility.toggle_subscript`, `Toggle subscript`)}
         disabled={!canSubscript}

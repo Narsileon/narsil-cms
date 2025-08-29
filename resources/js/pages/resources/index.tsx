@@ -1,19 +1,22 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
+import { Filters } from "@narsil-cms/components/ui/filters";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import DataTableBlock from "@narsil-cms/blocks/data-table-block";
+import { DataTableBlock } from "@narsil-cms/blocks/data-table";
+import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
+import DataTableColumns from "@narsil-cms/components/ui/data-table/data-table-columns";
 import {
   DataTableFilter,
   DataTableInput,
   DataTablePagination,
   DataTableProvider,
   DataTableRowMenu,
-  DataTableSettings,
+  DataTableSize,
 } from "@narsil-cms/components/ui/data-table";
 import {
   ResizableHandle,
@@ -97,6 +100,8 @@ function ResourceIndex({
 }: ResourceIndexProps) {
   const { trans } = useLabels();
 
+  const isDesktop = useMinSm();
+
   const hasMenu = dataTable.meta.routes.edit || dataTable.meta.routes.destroy;
 
   const finalColumns: (ColumnDef<any> & { position?: string })[] = [
@@ -113,6 +118,10 @@ function ResourceIndex({
     ...(hasMenu ? ["_menu"] : []),
   ];
 
+  const columnsLabel = trans("ui.columns", "Columns");
+  const createLabel = trans("ui.create", "Create");
+  const filterLabel = trans("ui.filters", "Filters");
+
   return (
     <DataTableProvider
       id={dataTable.meta.id}
@@ -123,21 +132,50 @@ function ResourceIndex({
         columnVisibility: dataTable.columnVisibility,
       }}
       render={({ dataTable: table }) => {
+        const selectedCount = table.getSelectedRowModel().rows.length;
+
         return (
           <Section className="h-full gap-4 p-4">
-            <SectionHeader className="flex items-center justify-between gap-4">
+            <SectionHeader className="flex items-center justify-between gap-2">
               <SectionTitle level="h2" variant="h4" className="min-w-1/5">
                 {title}
               </SectionTitle>
-              <DataTableSettings className="ml-2" />
               <DataTableInput className="grow" />
-              {dataTable.meta.routes.create ? (
-                <Tooltip tooltip={trans("ui.create")}>
+              <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
+                <DataTableColumns>
                   <Button
-                    aria-label={trans("ui.create", "Create")}
-                    size="icon"
-                    variant="default"
+                    aria-label={columnsLabel}
+                    size={isDesktop ? "default" : "icon"}
+                    variant="secondary"
+                  >
+                    <Icon name="eye" />
+                    <span className="sr-only sm:not-sr-only">
+                      {columnsLabel}
+                    </span>
+                  </Button>
+                </DataTableColumns>
+              </Tooltip>
+              <Tooltip hidden={isDesktop} tooltip={filterLabel}>
+                <Filters columns={dataTable.columns}>
+                  <Button
+                    aria-label={filterLabel}
+                    size={isDesktop ? "default" : "icon"}
+                    variant="secondary"
+                  >
+                    <Icon name="filter" />
+                    <span className="sr-only sm:not-sr-only">
+                      {filterLabel}
+                    </span>
+                  </Button>
+                </Filters>
+              </Tooltip>
+              {dataTable.meta.routes.create ? (
+                <Tooltip hidden={isDesktop} tooltip={createLabel}>
+                  <Button
                     asChild={true}
+                    aria-label={createLabel}
+                    size={isDesktop ? "default" : "icon"}
+                    variant="default"
                   >
                     <Link
                       href={route(
@@ -146,6 +184,9 @@ function ResourceIndex({
                       )}
                     >
                       <Icon name="plus" />
+                      <span className="sr-only sm:not-sr-only">
+                        {createLabel}
+                      </span>
                     </Link>
                   </Button>
                 </Tooltip>
@@ -179,16 +220,28 @@ function ResourceIndex({
                   minSize={10}
                 >
                   <DataTableBlock dataTable={table} />
-                  <div className="flex items-center justify-between gap-4 text-sm">
-                    <span>
-                      {dataTable.meta.total > 0
-                        ? trans("pagination.results")
-                        : trans("pagination.empty")}
+                  <div className="flex flex-col items-start justify-between gap-4 text-sm sm:flex-row sm:items-center">
+                    <span className="truncate">
+                      {selectedCount > 0
+                        ? `${selectedCount} ${trans("pagination.selected_count")}`
+                        : trans("pagination.selected_empty")}
                     </span>
-                    <DataTablePagination
-                      links={dataTable.links}
-                      metaLinks={dataTable.meta.links}
-                    />
+                    <div className="flex w-full items-center justify-between gap-4 sm:w-fit sm:justify-end">
+                      <div className="flex flex-col items-start gap-x-4 gap-y-2 sm:flex-row sm:items-center">
+                        <span className="truncate">
+                          {trans("pagination.pagination")}
+                        </span>
+                        <DataTableSize />
+                      </div>
+                      <div className="flex flex-col items-end gap-x-4 gap-y-2 sm:flex-row sm:items-center">
+                        <span className="truncate">
+                          {dataTable.meta.total > 0
+                            ? trans("pagination.pages_count")
+                            : trans("pagination.pages_empty")}
+                        </span>
+                        <DataTablePagination links={dataTable.links} />
+                      </div>
+                    </div>
                   </div>
                 </ResizablePanel>
               </ResizablePanelGroup>

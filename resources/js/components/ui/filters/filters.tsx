@@ -11,15 +11,11 @@ import {
 } from "@narsil-cms/components/ui/popover";
 import type { ColumnDef } from "@tanstack/react-table";
 
-type DataTableFiltersProps = React.ComponentProps<typeof PopoverTrigger> & {
+type FiltersProps = React.ComponentProps<typeof PopoverTrigger> & {
   columns: ColumnDef<any, any>[];
 };
 
-function DataTableFilters({
-  className,
-  columns,
-  ...props
-}: DataTableFiltersProps) {
+function Filters({ children, columns, ...props }: FiltersProps) {
   const { trans } = useLabels();
 
   const { dataTableStore } = useDataTable();
@@ -42,9 +38,7 @@ function DataTableFilters({
   return (
     <Popover>
       <PopoverTrigger asChild={true} {...props}>
-        <Button variant="outline">
-          <Icon name="filter" />
-        </Button>
+        {children}
       </PopoverTrigger>
       <PopoverContent>
         <div className="flex flex-col gap-2">
@@ -65,7 +59,7 @@ function DataTableFilters({
               <span>{trans("ui.add_filter")}</span>
             </Button>
             <Button size="sm" onClick={() => {}}>
-              Apply
+              {trans("ui.apply")}
             </Button>
           </div>
         </div>
@@ -74,4 +68,4 @@ function DataTableFilters({
   );
 }
 
-export default DataTableFilters;
+export default Filters;
