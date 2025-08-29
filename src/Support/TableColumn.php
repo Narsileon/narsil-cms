@@ -2,6 +2,13 @@
 
 namespace Narsil\Support;
 
+#region USE
+
+use Narsil\Enums\Database\OperatorEnum;
+use Narsil\Enums\Database\TypeNameEnum;
+
+#endregion
+
 /**
  * @author Jonathan Rigaux
  * @version 1.0.0
@@ -72,6 +79,78 @@ class TableColumn
      * @var boolean
      */
     public readonly bool $visibility;
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * Get the operators of the column.
+     * 
+     * @param string $type The type of the column.
+     *
+     * @return array
+     */
+    public static function getOperators(string $type): array
+    {
+        $operators = [];
+
+        switch ($type)
+        {
+            case TypeNameEnum::BOOLEAN->value:
+                $operators = [
+                    OperatorEnum::EQUALS->value,
+                    OperatorEnum::NOT_EQUALS->value,
+                ];
+                break;
+            case TypeNameEnum::DATE->value:
+            case TypeNameEnum::DATETIME->value:
+            case TypeNameEnum::TIMESTAMP->value:
+            case TypeNameEnum::TIME->value:
+                $operators = [
+                    OperatorEnum::AFTER->value,
+                    OperatorEnum::AFTER_OR_EQUAL->value,
+                    OperatorEnum::BEFORE->value,
+                    OperatorEnum::BEFORE_OR_EQUAL->value,
+                    OperatorEnum::EQUALS->value,
+                    OperatorEnum::NOT_EQUALS->value,
+                ];
+                break;
+            case TypeNameEnum::INTEGER->value:
+            case TypeNameEnum::BIGINT->value:
+            case TypeNameEnum::SMALLINT->value:
+            case TypeNameEnum::DECIMAL->value:
+            case TypeNameEnum::FLOAT->value:
+            case TypeNameEnum::DOUBLE->value:
+                $operators = [
+                    OperatorEnum::EQUALS->value,
+                    OperatorEnum::GREATER_THAN_OR_EQUAL->value,
+                    OperatorEnum::GREATER_THAN->value,
+                    OperatorEnum::LESS_THAN_OR_EQUAL->value,
+                    OperatorEnum::LESS_THAN->value,
+                    OperatorEnum::NOT_EQUALS->value,
+                ];
+                break;
+            case TypeNameEnum::STRING->value:
+            case TypeNameEnum::TEXT->value:
+            case TypeNameEnum::VARCHAR->value:
+            case TypeNameEnum::UUID->value:
+                $operators = [
+                    OperatorEnum::CONTAINS->value,
+                    OperatorEnum::DOESNT_END_WITH->value,
+                    OperatorEnum::DOESNT_START_WITH->value,
+                    OperatorEnum::ENDS_WITH->value,
+                    OperatorEnum::EQUALS->value,
+                    OperatorEnum::NOT_CONTAINS->value,
+                    OperatorEnum::NOT_EQUALS->value,
+                    OperatorEnum::STARTS_WITH->value,
+                ];
+                break;
+        };
+
+        return $operators;
+    }
+
 
     #endregion
 }

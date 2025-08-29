@@ -7,12 +7,14 @@ import {
   SortingState,
   VisibilityState,
 } from "@tanstack/react-table";
+import type { FilterGroup } from "@narsil-cms/components/ui/filters";
 
 type DataTableStoreState = {
   columnOrder: ColumnOrderState;
   columnSizing: ColumnSizingState;
   columnVisibility: VisibilityState;
   filter: string | null;
+  filters: FilterGroup;
   pageIndex: number;
   pageSize: number;
   search: string | null;
@@ -24,6 +26,7 @@ type DataTableStoreActions = {
   setColumnSizing: (columnSizing: ColumnSizingState) => void;
   setColumnVisibility: (columnVisibility: VisibilityState) => void;
   setFilter: (filter: string | null) => void;
+  setFilters: (filters: FilterGroup) => void;
   setPageIndex: (pageIndex: PaginationState["pageIndex"]) => void;
   setPageSize: (pageSige: PaginationState["pageSize"]) => void;
   setPagination: (pagination: PaginationState) => void;
@@ -43,6 +46,7 @@ const defaultState: DataTableStoreState = {
   columnSizing: {},
   columnVisibility: {},
   filter: "",
+  filters: [],
   pageIndex: 0,
   pageSize: 10,
   search: "",
@@ -70,6 +74,10 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
         setFilter: (filter) =>
           set({
             filter: filter,
+          }),
+        setFilters: (filters) =>
+          set({
+            filters: filters,
           }),
         setPageIndex: (pageIndex) =>
           set({

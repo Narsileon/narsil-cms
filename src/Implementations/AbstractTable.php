@@ -55,12 +55,16 @@ abstract class AbstractTable implements Table
         foreach ($this->columns as $column)
         {
             $tableColumn = $tableColumns->get($column->id);
+            $type = $column->type ?? $tableColumn?->type;
 
             $columns[] = [
                 'accessorKey' => $column->accessorKey ?? $column->id,
                 'header' => $column->header ?? TableService::getHeading($column->id),
                 'id' => $column->id,
-                'type' => $column->type ?? $tableColumn?->type,
+                'meta' => [
+                    'operators' => $column->getOperators($type),
+                    'type' => $type,
+                ],
             ];
         }
 
