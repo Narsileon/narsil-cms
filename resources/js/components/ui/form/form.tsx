@@ -15,7 +15,7 @@ function Form({
   url,
   ...props
 }: FormProps) {
-  const { id, post, transform } = useForm();
+  const { id, isDirty, post, transform } = useForm();
 
   function onSubmit(event?: React.FormEvent) {
     event?.preventDefault();
@@ -25,6 +25,7 @@ function Form({
       case "put":
         transform?.((data) => ({
           ...data,
+          _dirty: isDirty,
           _method: method,
         }));
         post?.(url, { ...options, forceFormData: true });

@@ -4,6 +4,7 @@ namespace Narsil\Http\Controllers;
 
 #region USE
 
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,14 +35,10 @@ class EntityController extends AbstractController
     #region CONSTRUCTOR
 
     /**
-     * @param EntityFormRequest $formRequest
-     *
      * @return void
      */
-    public function __construct(EntityFormRequest $formRequest)
+    public function __construct()
     {
-        $this->formRequest = $formRequest;
-
         $collection = request()->route('collection');
 
         Entity::setTableName($collection);
@@ -52,6 +49,10 @@ class EntityController extends AbstractController
                 Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_FIELDS,
             ])
             ->firstWhere(Template::HANDLE, '=', $collection);
+
+        $this->formRequest = app(EntityFormRequest::class, [
+            'template' => $this->template,
+        ]);
     }
 
     #endregion
@@ -205,13 +206,23 @@ class EntityController extends AbstractController
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
+        if (!$request->get('_dirty'))
+        {
+            return $this
+                ->redirect(route('collections.index', [
+                    'collection' => $collection
+                ]));
+        }
+
         $data = $request->all();
         $rules = $this->formRequest->rules($entity);
 
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $entity->forceFill($attributes)->save();
+        $entity->update($attributes, [
+            Entity::UPDATED_AT => Carbon::now(),
+        ]);
 
         if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
         {

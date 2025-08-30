@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Inertia\Response;
-use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\DataTableCollection;
@@ -23,29 +22,6 @@ use Narsil\Models\Entities\Entity;
  */
 class CollectionController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param EntityFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(EntityFormRequest $formRequest)
-    {
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var EntityFormRequest
-     */
-    protected readonly EntityFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**

@@ -46,7 +46,6 @@ class EntityBlock extends Model
             self::RELATION_CHILDREN,
         ], $this->with);
 
-
         parent::__construct($attributes);
     }
 
