@@ -4,14 +4,17 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\SectionElement;
 use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\FieldForm as Contract;
+use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Support\SelectOption;
 
@@ -70,6 +73,7 @@ class FieldForm extends AbstractForm implements Contract
             }
         }
 
+        $rulesOptions = static::getRulesOptions();
         $typeOptions = static::getTypeOptions();
 
         $content = [
@@ -112,6 +116,21 @@ class FieldForm extends AbstractForm implements Contract
                     ])
                 ]),
             ], $settings)),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'validation',
+                TemplateSection::NAME => trans('narsil::ui.validation'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => 'rules',
+                            Field::NAME => trans("narsil::ui.rules"),
+                            Field::TYPE => CheckboxInput::class,
+                            Field::SETTINGS => app(CheckboxInput::class)
+                                ->options($rulesOptions),
+                        ])
+                    ])
+                ]
+            ]),
             static::informationSection(),
         ];
 
@@ -123,6 +142,28 @@ class FieldForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
+     * Get the rules options.
+     *
+     * @return array<SelectOption>
+     */
+    protected static function getRulesOptions(): array
+    {
+        $options = [];
+
+        foreach (RuleEnum::cases() as $case)
+        {
+            $options[] = new SelectOption(
+                label: trans("narsil::rules.$case->value"),
+                value: $case->value
+            );
+        }
+
+        return $options;
+    }
+
+    /**
+     * Get the type options.
+     *
      * @return array<string>
      */
     protected static function getTypeOptions(): array

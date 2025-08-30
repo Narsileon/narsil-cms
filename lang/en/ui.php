@@ -53,6 +53,8 @@ return [
     'reset'             => 'Reset',
     'row'               => 'Row',
     'rows'              => 'Rows',
+    'rule'              => 'Rule',
+    'rules'             => 'Rules',
     'save'              => 'Save',
     'section'           => 'Section',
     'sections'          => 'Sections',
@@ -70,4 +72,5 @@ return [
     'tool'              => 'Tool',
     'tools'             => 'Tools',
     'update'            => 'Update',
+    'validation'        => 'Validation',
 ];
