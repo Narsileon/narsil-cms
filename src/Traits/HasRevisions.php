@@ -112,6 +112,13 @@ trait HasRevisions
             }
         });
 
+        static::forceDeleting(function (Model $model)
+        {
+            self::onlyTrashed()
+                ->where(self::ID, $model->{self::ID})
+                ->forceDelete();
+        });
+
         static::restoring(function (Model $model)
         {
             if ($model->trashed())
@@ -138,11 +145,13 @@ trait HasRevisions
         {
             if ($model->exists)
             {
-                $model->delete();
-
                 $revision = ($model->{self::REVISION} ?? 0) + 1;
 
                 static::createRevision($model, $revision);
+
+                $model->discardChanges();
+
+                $model->delete();
 
                 return false;
             }
