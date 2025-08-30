@@ -69,17 +69,7 @@ class RelationsInput extends AbstractField implements Contract
         return 'relations';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.relations');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -205,6 +195,8 @@ class RelationsInput extends AbstractField implements Contract
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 

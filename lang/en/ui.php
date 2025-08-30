@@ -40,6 +40,8 @@ return [
     'log_in'            => 'Log in',
     'log_out'           => 'Log out',
     'main'              => 'Main',
+    'module'            => 'Module',
+    'modules'           => 'Modules',
     'password'          => 'Password',
     'personalization'   => 'Personalization',
     'profile'           => 'Profile',

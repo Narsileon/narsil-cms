@@ -66,17 +66,7 @@ class DateInput extends AbstractField implements Contract
         return 'date';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.date');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -117,6 +107,8 @@ class DateInput extends AbstractField implements Contract
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

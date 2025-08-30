@@ -62,17 +62,7 @@ class EmailInput extends Input implements Contract
         return 'email';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.email');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -83,6 +73,8 @@ class EmailInput extends Input implements Contract
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

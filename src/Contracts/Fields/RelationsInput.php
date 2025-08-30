@@ -15,7 +15,9 @@ use Narsil\Models\Elements\Field;
  */
 interface RelationsInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param string $identifier
@@ -106,6 +108,8 @@ interface RelationsInput extends Contract
      * @return static Returns the current object instance.
      */
     public function unique(bool $unique): static;
+
+    #endregion
 
     #endregion
 }

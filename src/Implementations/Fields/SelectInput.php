@@ -72,17 +72,7 @@ class SelectInput extends AbstractField implements Contract
         return 'select';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.select');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -123,6 +113,8 @@ class SelectInput extends AbstractField implements Contract
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

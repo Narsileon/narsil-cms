@@ -14,7 +14,9 @@ use Narsil\Contracts\Field as Contract;
  */
 interface CheckboxInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param boolean $inline.
@@ -38,11 +40,13 @@ interface CheckboxInput extends Contract
     public function required(bool $required): static;
 
     /**
-     * @param boolean $value The default value.
+     * @param array|boolean $value The default value.
      *
      * @return static Returns the current object instance.
      */
-    public function value(bool $value): static;
+    public function value(array|bool $value): static;
+
+    #endregion
 
     #endregion
 }

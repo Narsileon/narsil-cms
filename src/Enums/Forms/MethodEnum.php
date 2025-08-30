@@ -8,8 +8,8 @@ namespace Narsil\Enums\Forms;
  */
 enum MethodEnum: string
 {
-    case GET   = 'get';
+    case GET = 'get';
     case PATCH = 'patch';
-    case POST  = 'post';
-    case PUT   = 'put';
+    case POST = 'post';
+    case PUT = 'put';
 }

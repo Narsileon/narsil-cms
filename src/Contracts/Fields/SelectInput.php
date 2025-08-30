@@ -14,7 +14,9 @@ use Narsil\Contracts\Field as Contract;
  */
 interface SelectInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param string $placeholder The text displayed when the input has no value.
@@ -43,6 +45,8 @@ interface SelectInput extends Contract
      * @return static Returns the current object instance.
      */
     public function value(string $value): static;
+
+    #endregion
 
     #endregion
 }

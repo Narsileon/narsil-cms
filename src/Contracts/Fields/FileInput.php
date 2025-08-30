@@ -14,7 +14,9 @@ use Narsil\Contracts\Field as Contract;
  */
 interface FileInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param string $accept The file types.
@@ -43,6 +45,8 @@ interface FileInput extends Contract
      * @return static Returns the current object instance.
      */
     public function value(string $value): static;
+
+    #endregion
 
     #endregion
 }

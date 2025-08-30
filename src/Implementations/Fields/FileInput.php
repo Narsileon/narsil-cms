@@ -55,17 +55,7 @@ class FileInput extends AbstractField implements Contract
         return 'file';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.file');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -106,6 +96,8 @@ class FileInput extends AbstractField implements Contract
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

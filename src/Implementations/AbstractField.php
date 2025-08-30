@@ -34,7 +34,7 @@ abstract class AbstractField implements Field, JsonSerializable
         return $this->settings;
     }
 
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -55,6 +55,8 @@ abstract class AbstractField implements Field, JsonSerializable
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

@@ -14,7 +14,9 @@ use Narsil\Contracts\Fields\TextInput;
  */
 interface EmailInput extends TextInput
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param boolean $multiple Does the input accept comma-separated value?
@@ -22,6 +24,8 @@ interface EmailInput extends TextInput
      * @return static Returns the current object instance.
      */
     public function multiple(bool $multiple): static;
+
+    #endregion
 
     #endregion
 }

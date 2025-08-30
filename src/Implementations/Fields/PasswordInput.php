@@ -37,13 +37,5 @@ class PasswordInput extends TextInput implements Contract
         return 'password';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.password');
-    }
-
     #endregion
 }

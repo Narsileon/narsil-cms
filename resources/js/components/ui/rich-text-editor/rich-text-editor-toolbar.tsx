@@ -27,11 +27,13 @@ import {
 
 type RichTextEditorToolbarProps = React.HTMLAttributes<HTMLDivElement> & {
   editor: Editor | null;
+  modules: string[];
 };
 
 function RichTextEditorToolbar({
   className,
   editor,
+  modules,
   ...props
 }: RichTextEditorToolbarProps) {
   const { trans } = useLabels();
@@ -42,6 +44,14 @@ function RichTextEditorToolbar({
     return null;
   }
 
+  function hasModule(key: string) {
+    return modules?.includes(key);
+  }
+
+  function hasModules(keys: string[]) {
+    return keys?.some((key) => modules?.includes(key));
+  }
+
   return (
     <div
       className={cn(
@@ -50,51 +60,107 @@ function RichTextEditorToolbar({
       )}
       {...props}
     >
-      <RichTextEditorBold editor={editor} />
-      <RichTextEditorItalic editor={editor} />
-      <RichTextEditorUnderline editor={editor} />
-      <RichTextEditorStrike editor={editor} />
-      <Separator orientation="vertical" />
-      <RichTextEditorSuperscript editor={editor} />
-      <RichTextEditorSubscript editor={editor} />
-      <Separator orientation="vertical" />
-      <DropdownMenu>
-        <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
-          <DropdownMenuTrigger asChild={true}>
-            <Button
-              className="w-8 min-w-8"
-              aria-label={trans(
-                `accessibility.toggle_heading_menu`,
-                "Toggle heading menu",
-              )}
-              size="icon"
-              variant="ghost"
-            >
-              <Icon name="heading" />
-            </Button>
-          </DropdownMenuTrigger>
-        </Tooltip>
-        <DropdownMenuContent>
-          {headings.map((level, index) => {
-            return (
-              <DropdownMenuItem asChild={true} key={index}>
-                <RichTextEditorHeading editor={editor} level={level} />
-              </DropdownMenuItem>
-            );
-          })}
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <Separator orientation="vertical" />
-      <RichTextEditorTextAlign alignment="left" editor={editor} />
-      <RichTextEditorTextAlign alignment="center" editor={editor} />
-      <RichTextEditorTextAlign alignment="right" editor={editor} />
-      <RichTextEditorTextAlign alignment="justify" editor={editor} />
-      <Separator orientation="vertical" />
-      <RichTextEditorBulletList editor={editor} />
-      <RichTextEditorOrderedList editor={editor} />
-      <Separator orientation="vertical" />
-      <RichTextEditorUndo editor={editor} />
-      <RichTextEditorRedo editor={editor} />
+      {/* Basic styles */}
+      {hasModule("bold") && <RichTextEditorBold editor={editor} />}
+      {hasModule("italic") && <RichTextEditorItalic editor={editor} />}
+      {hasModule("underline") && <RichTextEditorUnderline editor={editor} />}
+      {hasModule("strike") && <RichTextEditorStrike editor={editor} />}
+
+      {/* Advanced styles */}
+      {hasModules(["superscript", "subscript"]) && (
+        <>
+          <Separator orientation="vertical" />
+
+          {hasModule("superscript") !== false && (
+            <RichTextEditorSuperscript editor={editor} />
+          )}
+          {hasModule("subscript") !== false && (
+            <RichTextEditorSubscript editor={editor} />
+          )}
+        </>
+      )}
+
+      {/* Headings */}
+      {hasModules(headings.map((level) => `heading_${level}`)) && (
+        <>
+          <Separator orientation="vertical" />
+          <DropdownMenu>
+            <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
+              <DropdownMenuTrigger asChild={true}>
+                <Button
+                  className="w-8 min-w-8"
+                  aria-label={trans(
+                    `accessibility.toggle_heading_menu`,
+                    "Toggle heading menu",
+                  )}
+                  size="icon"
+                  variant="ghost"
+                >
+                  <Icon name="heading" />
+                </Button>
+              </DropdownMenuTrigger>
+            </Tooltip>
+            <DropdownMenuContent className="min-w-9">
+              {headings
+                .filter((level) => hasModule(`heading_${level}`) !== false)
+                .map((level) => (
+                  <DropdownMenuItem asChild={true} key={level}>
+                    <RichTextEditorHeading editor={editor} level={level} />
+                  </DropdownMenuItem>
+                ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </>
+      )}
+
+      {/* Alignment */}
+      {hasModules([
+        "align_left",
+        "align_center",
+        "align_right",
+        "align_justify",
+      ]) && (
+        <>
+          <Separator orientation="vertical" />
+
+          {hasModule("align_left") !== false && (
+            <RichTextEditorTextAlign alignment="left" editor={editor} />
+          )}
+          {hasModule("align_center") !== false && (
+            <RichTextEditorTextAlign alignment="center" editor={editor} />
+          )}
+          {hasModule("align_right") !== false && (
+            <RichTextEditorTextAlign alignment="right" editor={editor} />
+          )}
+          {hasModule("align_justify") !== false && (
+            <RichTextEditorTextAlign alignment="justify" editor={editor} />
+          )}
+        </>
+      )}
+
+      {/* Lists */}
+      {hasModules(["bullet_list", "ordered_list"]) && (
+        <>
+          <Separator orientation="vertical" />
+
+          {hasModule("bullet_list") && (
+            <RichTextEditorBulletList editor={editor} />
+          )}
+          {hasModule("ordered_list") && (
+            <RichTextEditorOrderedList editor={editor} />
+          )}
+        </>
+      )}
+
+      {/* Controls */}
+      {hasModules(["undo", "redo"]) && (
+        <>
+          <Separator orientation="vertical" />
+
+          {hasModule("undo") && <RichTextEditorUndo editor={editor} />}
+          {hasModule("redo") && <RichTextEditorRedo editor={editor} />}
+        </>
+      )}
     </div>
   );
 }

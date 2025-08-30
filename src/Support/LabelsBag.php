@@ -33,9 +33,7 @@ final class LabelsBag
         return $this->labels;
     }
 
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * @param string $key
@@ -51,6 +49,8 @@ final class LabelsBag
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

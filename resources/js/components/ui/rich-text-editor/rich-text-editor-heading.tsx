@@ -43,7 +43,7 @@ function RichTextEditorHeading({
         }
         {...props}
       >
-        <Icon name={`heading-${level}`} />
+        <Icon className="stroke-foreground" name={`heading-${level}`} />
       </Toggle>
     </Tooltip>
   );

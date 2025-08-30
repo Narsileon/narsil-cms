@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\NumberInput;
 use Narsil\Contracts\Fields\TextInput as Contract;
-use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 
@@ -75,17 +75,7 @@ class TextInput extends AbstractField implements Contract
         return 'text';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.text');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -156,6 +146,8 @@ class TextInput extends AbstractField implements Contract
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

@@ -14,7 +14,16 @@ use Narsil\Contracts\Field as Contract;
  */
 interface RichTextInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
+
+    /**
+     * @param array<string> $modules The list of modules available in the toolbar.
+     *
+     * @return static Returns the current object instance.
+     */
+    public function modules(array $modules): static;
 
     /**
      * @param string $placeholder The text displayed when the input has no value.
@@ -36,6 +45,8 @@ interface RichTextInput extends Contract
      * @return static Returns the current object instance.
      */
     public function value(string $value): static;
+
+    #endregion
 
     #endregion
 }

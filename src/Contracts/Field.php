@@ -16,18 +16,13 @@ interface Field
      * @return array
      */
     public static function getForm(?string $prefix = null): array;
+
     /**
      * @return string
      */
     public static function getIcon(): string;
-    /**
-     * @return string
-     */
-    public static function getLabel(): string;
 
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * @param string $className
@@ -35,6 +30,8 @@ interface Field
      * @return static Returns the current object instance.
      */
     public function className(string $className): static;
+
+    #endregion
 
     #endregion
 }

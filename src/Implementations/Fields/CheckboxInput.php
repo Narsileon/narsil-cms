@@ -78,17 +78,7 @@ class CheckboxInput extends AbstractField implements Contract
         return 'checkbox';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.checkbox');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -123,12 +113,14 @@ class CheckboxInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(bool $value): static
+    final public function value(array|bool $value): static
     {
         $this->settings['value'] = $value;
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

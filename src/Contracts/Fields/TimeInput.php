@@ -14,7 +14,9 @@ use Narsil\Contracts\Field as Contract;
  */
 interface TimeInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param string $max The latest time.
@@ -43,6 +45,8 @@ interface TimeInput extends Contract
      * @return static Returns the current object instance.
      */
     public function value(string $value): static;
+
+    #endregion
 
     #endregion
 }

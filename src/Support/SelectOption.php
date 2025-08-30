@@ -51,9 +51,7 @@ class SelectOption implements JsonSerializable
         return $this->option;
     }
 
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * Sets the icon.
@@ -82,6 +80,8 @@ class SelectOption implements JsonSerializable
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

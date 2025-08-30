@@ -8,8 +8,8 @@ namespace Narsil\Enums\Entities;
  */
 enum StatusEnum: string
 {
-    case DRAFT     = 'draft';
-    case EXPIRED   = 'expired';
-    case LIVE      = 'live';
+    case DRAFT = 'draft';
+    case EXPIRED = 'expired';
+    case LIVE = 'live';
     case SCHEDULED = 'scheduled';
 }

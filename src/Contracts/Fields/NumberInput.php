@@ -14,7 +14,9 @@ use Narsil\Contracts\Field as Contract;
  */
 interface NumberInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param string $max The maximum number.
@@ -50,6 +52,8 @@ interface NumberInput extends Contract
      * @return static Returns the current object instance.
      */
     public function value(float|int $value): static;
+
+    #endregion
 
     #endregion
 }

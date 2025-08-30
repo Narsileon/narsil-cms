@@ -33,13 +33,5 @@ class SectionElement extends AbstractField implements Contract
         return 'section';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.section');
-    }
-
     #endregion
 }

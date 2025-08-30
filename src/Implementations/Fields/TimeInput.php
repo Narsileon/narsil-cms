@@ -68,17 +68,7 @@ class TimeInput extends AbstractField implements Contract
         return 'time';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getLabel(): string
-    {
-        return trans('narsil::fields.time');
-    }
-
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * {@inheritDoc}
@@ -119,6 +109,8 @@ class TimeInput extends AbstractField implements Contract
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

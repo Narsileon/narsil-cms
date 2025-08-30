@@ -7,7 +7,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 use Narsil\Contracts\Fields\FileInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\Fortify\ProfileForm as Contract;
-use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;

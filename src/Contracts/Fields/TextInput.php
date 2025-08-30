@@ -5,7 +5,7 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
-use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Forms\AutoCompleteEnum;
 
 #endregion
 
@@ -15,7 +15,9 @@ use Narsil\Enums\Fields\AutoCompleteEnum;
  */
 interface TextInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param AutoCompleteEnum $autoComplete
@@ -72,6 +74,8 @@ interface TextInput extends Contract
      * @return static Returns the current object instance.
      */
     public function value(string $value): static;
+
+    #endregion
 
     #endregion
 }

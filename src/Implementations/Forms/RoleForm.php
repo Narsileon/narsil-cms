@@ -54,7 +54,7 @@ class RoleForm extends AbstractForm implements Contract
                 TemplateSectionElement::RELATION_ELEMENT =>
                 new Field([
                     Field::HANDLE => Role::RELATION_PERMISSIONS,
-                    Field::NAME => trans("narsil::ui.{$category}"),
+                    Field::NAME => trans("narsil::tables.{$category}"),
                     Field::TYPE => CheckboxInput::class,
                     Field::SETTINGS => app(CheckboxInput::class)->options($options),
                 ]),

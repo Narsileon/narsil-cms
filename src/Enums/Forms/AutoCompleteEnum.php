@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Enums\Fields;
+namespace Narsil\Enums\Forms;
 
 /**
  * @author Jonathan Rigaux

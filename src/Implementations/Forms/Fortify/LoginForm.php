@@ -8,7 +8,7 @@ use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\EmailInput;
 use Narsil\Contracts\Fields\PasswordInput;
 use Narsil\Contracts\Forms\Fortify\LoginForm as Contract;
-use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;

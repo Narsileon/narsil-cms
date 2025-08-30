@@ -8,8 +8,8 @@ namespace Narsil\Enums\Fields;
  */
 enum VisibilityEnum: string
 {
-    case DISPLAY      = 'display';
+    case DISPLAY = 'display';
     case DISPLAY_WHEN = 'display_when';
-    case HIDDEN       = 'hidden';
+    case HIDDEN = 'hidden';
     case HIDDEN_WHEN  = 'hidden_when';
 }

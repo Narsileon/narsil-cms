@@ -116,9 +116,7 @@ class DataTableCollection extends ResourceCollection
         ]);
     }
 
-    #endregion
-
-    #region FLUENT METHODS
+    #region • FLUENT METHODS
 
     /**
      * @param boolean $selectable
@@ -131,6 +129,8 @@ class DataTableCollection extends ResourceCollection
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 

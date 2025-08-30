@@ -4,11 +4,14 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
+use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\RichTextInput as Contract;
 use Narsil\Contracts\Fields\TextInput;
+use Narsil\Enums\Forms\RichTextEditorEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 use Narsil\Support\LabelsBag;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -61,12 +64,21 @@ class RichTextInput extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
+        $moduleOptions = static::getModulesOptions();
+
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
                 Field::NAME => trans('narsil::validation.attributes.placeholder'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class),
+            ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.modules" : 'modules',
+                Field::NAME => trans("narsil::ui.modules"),
+                Field::TYPE => CheckboxInput::class,
+                Field::SETTINGS => app(CheckboxInput::class)
+                    ->options($moduleOptions),
             ]),
         ];
     }
@@ -79,12 +91,16 @@ class RichTextInput extends AbstractField implements Contract
         return 'rich-text';
     }
 
+    #region • FLUENT METHODS
+
     /**
      * {@inheritDoc}
      */
-    public static function getLabel(): string
+    final public function modules(array $modules): static
     {
-        return trans('narsil::fields.rich_text');
+        $this->settings['modules'] = $modules;
+
+        return $this;
     }
 
     /**
@@ -115,6 +131,32 @@ class RichTextInput extends AbstractField implements Contract
         $this->settings['value'] = $value;
 
         return $this;
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the modules options.
+     *
+     * @return array<SelectOption>
+     */
+    protected static function getModulesOptions(): array
+    {
+        $options = [];
+
+        foreach (RichTextEditorEnum::cases() as $case)
+        {
+            $options[] = new SelectOption(
+                label: trans("narsil::rich-text-editor.$case->value"),
+                value: $case->value
+            );
+        }
+
+        return $options;
     }
 
     #endregion

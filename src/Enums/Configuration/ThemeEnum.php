@@ -9,6 +9,6 @@ namespace Narsil\Enums\Configuration;
 enum ThemeEnum: string
 {
     case SYSTEM = 'system';
-    case LIGHT  = 'light';
-    case DARK   = 'dark';
+    case LIGHT = 'light';
+    case DARK = 'dark';
 }

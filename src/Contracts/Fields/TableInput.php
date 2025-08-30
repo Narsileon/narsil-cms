@@ -14,7 +14,9 @@ use Narsil\Contracts\Field as Contract;
  */
 interface TableInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param array $columns
@@ -36,6 +38,8 @@ interface TableInput extends Contract
      * @return static Returns the current object instance.
      */
     public function value(array $value): static;
+
+    #endregion
 
     #endregion
 }

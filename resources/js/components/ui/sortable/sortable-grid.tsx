@@ -304,7 +304,7 @@ function SortableGrid({
 
     return true;
   }
-  console.log(intermediate);
+
   return (
     <DndContext
       sensors={sensors}

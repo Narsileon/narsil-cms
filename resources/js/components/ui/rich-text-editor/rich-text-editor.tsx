@@ -11,6 +11,7 @@ import TextAlign from "@tiptap/extension-text-align";
 type RichTextEditorProps = Partial<EditorOptions> & {
   className?: string;
   id?: string;
+  modules: string[];
   placeholder?: string;
   toolbar?: boolean;
   value: string;
@@ -20,6 +21,7 @@ type RichTextEditorProps = Partial<EditorOptions> & {
 function RichTextEditor({
   className,
   id,
+  modules,
   placeholder,
   toolbar = true,
   value,
@@ -81,7 +83,7 @@ function RichTextEditor({
   return (
     <div className="border-color flex flex-col rounded-md border">
       {toolbar && editor?.isEditable ? (
-        <RichTextEditorToolbar editor={editor} />
+        <RichTextEditorToolbar editor={editor} modules={modules} />
       ) : null}
 
       <EditorContent id={id} editor={editor} />

@@ -92,6 +92,13 @@ class Field extends Model
     final public const NAME = 'name';
 
     /**
+     * The name of the "rules" column.
+     *
+     * @var string
+     */
+    final public const RULES = 'rules';
+
+    /**
      * The name of the "settings" column.
      *
      * @var string
@@ -152,6 +159,13 @@ class Field extends Model
      */
     final public const RELATION_OPTIONS = 'options';
 
+    /**
+     * The name of the "rules" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_RULES = 'rules';
+
     #endregion
 
     #endregion
@@ -195,6 +209,20 @@ class Field extends Model
             ->orderby(FieldOption::POSITION);
     }
 
+    /**
+     * Get the associated rules.
+     *
+     * @return HasMany
+     */
+    public function rules(): HasMany
+    {
+        return $this
+            ->hasMany(
+                FieldRule::class,
+                FieldRule::FIELD_ID,
+                self::ID,
+            );
+    }
 
     #endregion
 

@@ -14,7 +14,9 @@ use Narsil\Contracts\Field as Contract;
  */
 interface SwitchInput extends Contract
 {
-    #region FLUENT METHODS
+    #region PUBLIC METHODS
+
+    #region • FLUENT METHODS
 
     /**
      * @param boolean $checked The default value.
@@ -29,6 +31,8 @@ interface SwitchInput extends Contract
      * @return static Returns the current object instance.
      */
     public function inline(bool $inline): static;
+
+    #endregion
 
     #endregion
 }

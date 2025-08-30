@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm as Contract;
-use Narsil\Enums\Fields\AutoCompleteEnum;
+use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 
