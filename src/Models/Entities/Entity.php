@@ -38,9 +38,9 @@ class Entity extends Model
 
         $this->primaryKey = self::UUID;
 
-        $this->guarded = array_merge([
-            self::ID,
-        ], $this->guarded);
+        $this->fillable = array_merge([
+            '*'
+        ], $this->fillable);
 
         $this->with = array_merge([
             self::RELATION_BLOCKS,
@@ -127,7 +127,10 @@ class Entity extends Model
 
         static::creating(function ($model)
         {
-            $model->{self::ID} = static::max(self::ID) + 1;
+            if (empty($model->{self::ID}))
+            {
+                $model->{self::ID} = static::max(self::ID) + 1;
+            }
         });
     }
 

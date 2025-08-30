@@ -25,6 +25,13 @@ class QueryRequest extends FormRequest
     final public const FILTER = 'filter';
 
     /**
+     * The name of the "filters" parameter.
+     *
+     * @var string
+     */
+    final public const FILTERS = 'filters';
+
+    /**
      * The name of the "search" parameter.
      *
      * @var string

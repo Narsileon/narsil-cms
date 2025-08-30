@@ -199,6 +199,7 @@ function DataTableProvider({
 
     update(href, {
       filter: dataTableStore.filter,
+      filters: JSON.stringify(dataTableStore.filters),
       pageSize: dataTableStore.pageSize,
       search: dataTableStore.search,
       sorting: formatSorting(dataTableStore.sorting),
@@ -207,6 +208,7 @@ function DataTableProvider({
     return () => update.cancel();
   }, [
     dataTableStore.filter,
+    JSON.stringify(dataTableStore.filters),
     dataTableStore.pageSize,
     dataTableStore.search,
     JSON.stringify(dataTableStore.sorting),

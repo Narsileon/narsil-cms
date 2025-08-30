@@ -10,9 +10,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Str;
 use JsonSerializable;
 use Narsil\Contracts\Table;
-use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Http\Requests\QueryRequest;
-use Narsil\Services\TableService;
+use Narsil\Services\QueryService;
 use Narsil\Support\LabelsBag;
 
 #endregion
@@ -46,8 +45,20 @@ class DataTableCollection extends ResourceCollection
 
         $this->table = $template;
 
-        $this->search($query);
-        $this->sort($query);
+        if ($search = request(QueryRequest::SEARCH))
+        {
+            QueryService::applySearch($query, $table, $search);
+        }
+
+        if ($filters = request(QueryRequest::FILTERS))
+        {
+            QueryService::applyFilters($query, json_decode($filters, true));
+        }
+
+        if ($sorting = request(QueryRequest::SORTING))
+        {
+            QueryService::applySorting($query, $sorting);
+        }
 
         $paginated = $query->paginate(
             perPage: request(self::PAGE_SIZE, 10),
@@ -201,53 +212,6 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::ui.deselect_all')
             ->add('narsil::ui.edit')
             ->add('narsil::ui.filters');
-    }
-
-
-    /**
-     * @param Builder $query
-     * @param string $search
-     *
-     * @return void
-     */
-    protected function search(Builder $query): void
-    {
-        $search = request(QueryRequest::SEARCH, null);
-
-        if (!$search)
-        {
-            return;
-        }
-
-        $columns = TableService::getColumns($this->table->name);
-
-        $columns->each(function ($column) use ($query, $search)
-        {
-            switch ($column->type)
-            {
-                case TypeNameEnum::VARCHAR->value:
-                    $query->orWhere($column->name, 'like', '%' . $search . '%');
-                    break;
-                default:
-                    $query;
-                    break;
-            }
-        });
-    }
-
-    /**
-     * @param string $table
-     *
-     * @return void
-     */
-    protected function sort(Builder $query): void
-    {
-        $sortings = request(QueryRequest::SORTING, []);
-
-        foreach ($sortings as $key => $value)
-        {
-            $query->orderBy($key, $value);
-        }
     }
 
     #endregion
