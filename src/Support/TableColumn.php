@@ -4,8 +4,13 @@ namespace Narsil\Support;
 
 #region USE
 
+use Narsil\Contracts\Fields\DateInput;
+use Narsil\Contracts\Fields\NumberInput;
+use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\TimeInput;
 use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Models\Elements\Field;
 
 #endregion
 
@@ -85,6 +90,59 @@ class TableColumn
     #region PUBLIC METHODS
 
     /**
+     * Get the field of the column.
+     *
+     * @param string $type The type of the column.
+     *
+     * @return Field
+     */
+    public static function getField(string $type): Field
+    {
+        $field = null;
+
+        switch ($type)
+        {
+            case TypeNameEnum::DATE->value:
+            case TypeNameEnum::DATETIME->value:
+            case TypeNameEnum::TIMESTAMP->value:
+                $field = new Field([
+                    Field::TYPE => DateInput::class,
+                    Field::SETTINGS => app(DateInput::class),
+                ]);
+                break;
+            case TypeNameEnum::TIME->value:
+                $field = new Field([
+                    Field::TYPE => TimeInput::class,
+                    Field::SETTINGS => app(TimeInput::class),
+                ]);
+                break;
+            case TypeNameEnum::INTEGER->value:
+            case TypeNameEnum::BIGINT->value:
+            case TypeNameEnum::SMALLINT->value:
+            case TypeNameEnum::DECIMAL->value:
+            case TypeNameEnum::FLOAT->value:
+            case TypeNameEnum::DOUBLE->value:
+                $field = new Field([
+                    Field::TYPE => NumberInput::class,
+                    Field::SETTINGS => app(NumberInput::class),
+                ]);
+                break;
+            case TypeNameEnum::STRING->value:
+            case TypeNameEnum::TEXT->value:
+            case TypeNameEnum::VARCHAR->value:
+            case TypeNameEnum::UUID->value:
+            default:
+                $field = new Field([
+                    Field::TYPE => TextInput::class,
+                    Field::SETTINGS => app(TextInput::class),
+                ]);
+                break;
+        };
+
+        return $field;
+    }
+
+    /**
      * Get the operators of the column.
      *
      * @param string $type The type of the column.
@@ -136,6 +194,7 @@ class TableColumn
             case TypeNameEnum::TEXT->value:
             case TypeNameEnum::VARCHAR->value:
             case TypeNameEnum::UUID->value:
+            default:
                 $operators = [
                     OperatorEnum::EQUALS->value,
                     OperatorEnum::NOT_EQUALS->value,
@@ -151,7 +210,6 @@ class TableColumn
 
         return $operators;
     }
-
 
     #endregion
 }

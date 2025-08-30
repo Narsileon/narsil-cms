@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Badge } from "@narsil-cms/components/ui/badge";
 import { DropdownMenuTrigger } from "@narsil-cms/components/ui/dropdown-menu";
+import { getField } from "@narsil-cms/plugins/fields";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { isEmpty } from "lodash";
 import { useEffect } from "react";
@@ -19,6 +20,7 @@ import {
   SelectValue,
 } from "@narsil-cms/components/ui/select";
 import type { ColumnFilter } from ".";
+import type { Field } from "@narsil-cms/types/forms";
 
 type DataTableFilterBadgeProps = React.ComponentProps<
   typeof DropdownMenuTrigger
@@ -39,6 +41,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
   }
 
   const meta = column.columnDef.meta as {
+    field: Field;
     operators: string[];
   };
 
@@ -66,7 +69,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
           </button>
         </Badge>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className="flex flex-col gap-4">
         <Select
           value={filter.operator}
           onValueChange={(value) => {
@@ -87,6 +90,13 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
             ))}
           </SelectContent>
         </Select>
+        {getField(meta.field.type, {
+          element: meta.field,
+          id: filter.column,
+          value: filter.value,
+          setValue: (value) =>
+            dataTableStore.updateFilter(filter.column, { value: value }),
+        })}
       </PopoverContent>
     </Popover>
   );

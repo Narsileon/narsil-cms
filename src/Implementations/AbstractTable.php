@@ -62,6 +62,7 @@ abstract class AbstractTable implements Table
                 'header' => $column->header ?? TableService::getHeading($column->id),
                 'id' => $column->id,
                 'meta' => [
+                    'field' => $column->getField($type),
                     'operators' => $column->getOperators($type),
                     'type' => $type,
                 ],

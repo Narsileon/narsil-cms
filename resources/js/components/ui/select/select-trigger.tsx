@@ -20,7 +20,7 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "border-input flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none",
+        "border-input flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent px-2 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none",
         "aria-invalid:ring-destructive/20 aria-invalid:border-destructive",
         "dark:aria-invalid:ring-destructive/40",
         "dark:bg-input/30 dark:hover:bg-input/50",

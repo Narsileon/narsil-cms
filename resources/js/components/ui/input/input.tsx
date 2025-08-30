@@ -32,6 +32,7 @@ function Input({
           "h-full min-w-0 grow bg-transparent py-1 outline-none",
           "file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",
           "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground",
+          "[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none",
         )}
         disabled={disabled}
         type={type}
