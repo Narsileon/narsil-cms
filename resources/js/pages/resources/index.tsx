@@ -220,15 +220,17 @@ function ResourceIndex({
                   defaultSize={80}
                   minSize={10}
                 >
-                  <ul className="flex items-center justify-start gap-2">
-                    {dataTableStore.filters.map((filter, index) => {
-                      return (
-                        <li key={index}>
-                          <DataTableFilterBadge filter={filter} />
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  {dataTableStore.filters.length > 0 ? (
+                    <ul className="flex items-center justify-start gap-2">
+                      {dataTableStore.filters.map((filter, index) => {
+                        return (
+                          <li key={index}>
+                            <DataTableFilterBadge filter={filter} />
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : null}
                   <DataTableBlock dataTable={dataTable} />
                   <div className="flex flex-col items-start justify-between gap-4 text-sm sm:flex-row sm:items-center">
                     <span className="truncate">

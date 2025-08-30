@@ -67,7 +67,7 @@ class EntityForm extends AbstractForm implements Contract
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Block([
                             Block::HANDLE => 'blocks',
-                            Block::NAME => trans('narsil::ui.sets'),
+                            Block::NAME => trans('narsil::tables.blocks'),
                             Block::RELATION_ELEMENTS => [],
                             Block::RELATION_SETS => $sets,
                         ]),
