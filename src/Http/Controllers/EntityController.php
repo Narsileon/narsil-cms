@@ -88,14 +88,14 @@ class EntityController extends AbstractController
                 Entity::RELATION_UPDATER,
             ]);
 
-        $dataTable = new DataTableCollection($query, $collection);
+        $collection = new DataTableCollection($query, $collection);
 
         return $this->render(
             component: 'narsil/cms::resources/index',
             title: $this->template->{Template::NAME},
             description: $this->template->{Template::NAME},
             props: [
-                'dataTable' => $dataTable,
+                'collection' => $collection,
             ]
         );
     }

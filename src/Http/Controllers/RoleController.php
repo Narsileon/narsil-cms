@@ -70,14 +70,14 @@ class RoleController extends AbstractController
 
         $query = Role::query();
 
-        $dataTable = new DataTableCollection($query, Role::TABLE);
+        $collection = new DataTableCollection($query, Role::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',
             title: trans('narsil::tables.roles'),
             description: trans('narsil::tables.roles'),
             props: [
-                'dataTable' => $dataTable,
+                'collection' => $collection,
             ]
         );
     }

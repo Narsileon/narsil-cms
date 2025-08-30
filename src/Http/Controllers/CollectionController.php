@@ -76,7 +76,7 @@ class CollectionController extends AbstractController
             ->select(Template::TABLE . '.*')
             ->selectRaw($caseSql);
 
-        $dataTable = new DataTableCollection($query, 'collections')
+        $collection = new DataTableCollection($query, 'collections')
             ->setSelectable(false);
 
         return $this->render(
@@ -84,7 +84,7 @@ class CollectionController extends AbstractController
             title: trans('narsil::ui.collections'),
             description: trans('narsil::ui.collections'),
             props: [
-                'dataTable' => $dataTable,
+                'collection' => $collection,
             ]
         );
     }

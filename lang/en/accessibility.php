@@ -35,7 +35,6 @@ return [
     'toggle_strike'         => 'Toggle strike',
     'toggle_subscript'      => 'Toggle subscript',
     'toggle_superscript'    => 'Toggle superscript',
-    'toggle_table_settings' => 'Toggle table settings',
     'toggle_underline'      => 'Toggle underline',
     'toggle_user_menu'      => 'Toggle user menu',
     'undo'                  => 'Undo',

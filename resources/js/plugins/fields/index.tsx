@@ -188,9 +188,11 @@ const defaultRegistry: Registry = {
   },
 };
 
+export type FieldName = keyof typeof defaultRegistry;
+
 const registry: Registry = { ...defaultRegistry };
 
-export function getField(name: string, props: FieldProps) {
+export function getField(name: FieldName, props: FieldProps) {
   const FieldComponent = registry[name] ?? registry.default;
 
   return <FieldComponent {...props} />;

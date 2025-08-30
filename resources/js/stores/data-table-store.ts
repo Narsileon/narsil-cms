@@ -7,14 +7,14 @@ import {
   SortingState,
   VisibilityState,
 } from "@tanstack/react-table";
-import type { FilterGroup } from "@narsil-cms/components/ui/filters";
+import type { ColumnFilter } from "@narsil-cms/components/ui/data-table";
 
 type DataTableStoreState = {
   columnOrder: ColumnOrderState;
   columnSizing: ColumnSizingState;
   columnVisibility: VisibilityState;
   filter: string | null;
-  filters: FilterGroup;
+  filters: ColumnFilter[];
   pageIndex: number;
   pageSize: number;
   search: string | null;
@@ -22,11 +22,13 @@ type DataTableStoreState = {
 };
 
 type DataTableStoreActions = {
+  addFilter: (column: string) => void;
+  removeFilter: (column: string) => void;
+  updateFilter: (column: string, attributes: Partial<ColumnFilter>) => void;
   setColumnOrder: (columnOrder: ColumnOrderState) => void;
   setColumnSizing: (columnSizing: ColumnSizingState) => void;
   setColumnVisibility: (columnVisibility: VisibilityState) => void;
   setFilter: (filter: string | null) => void;
-  setFilters: (filters: FilterGroup) => void;
   setPageIndex: (pageIndex: PaginationState["pageIndex"]) => void;
   setPageSize: (pageSige: PaginationState["pageSize"]) => void;
   setPagination: (pagination: PaginationState) => void;
@@ -59,6 +61,29 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
       (set) => ({
         ...defaultState,
         ...initialState,
+        addFilter: (column) =>
+          set((state) => ({
+            filters: state.filters.some((filter) => filter.column === column)
+              ? state.filters
+              : [
+                  ...state.filters,
+                  {
+                    column: column,
+                    operator: "",
+                    value: "",
+                  },
+                ],
+          })),
+        removeFilter: (column) =>
+          set((state) => ({
+            filters: state.filters.filter((filter) => filter.column !== column),
+          })),
+        updateFilter: (column, attributes) =>
+          set((state) => ({
+            filters: state.filters.map((filter) =>
+              filter.column === column ? { ...filter, ...attributes } : filter,
+            ),
+          })),
         setColumnOrder: (columnOrder) =>
           set({
             columnOrder: columnOrder,
@@ -74,10 +99,6 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
         setFilter: (filter) =>
           set({
             filter: filter,
-          }),
-        setFilters: (filters) =>
-          set({
-            filters: filters,
           }),
         setPageIndex: (pageIndex) =>
           set({

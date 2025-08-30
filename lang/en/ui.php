@@ -32,6 +32,8 @@ return [
     'email_verify'      => 'Verify your email',
     'entity'            => 'Entity',
     'entities'          => 'Entities',
+    'filter'            => 'Filter',
+    'filters'           => 'Filters',
     'graphiql'          => 'GraphQL',
     'home'              => 'Home',
     'information'       => 'Information',

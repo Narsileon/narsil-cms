@@ -86,7 +86,7 @@ class TableColumn
 
     /**
      * Get the operators of the column.
-     * 
+     *
      * @param string $type The type of the column.
      *
      * @return array
@@ -108,12 +108,12 @@ class TableColumn
             case TypeNameEnum::TIMESTAMP->value:
             case TypeNameEnum::TIME->value:
                 $operators = [
-                    OperatorEnum::AFTER->value,
-                    OperatorEnum::AFTER_OR_EQUAL->value,
-                    OperatorEnum::BEFORE->value,
-                    OperatorEnum::BEFORE_OR_EQUAL->value,
                     OperatorEnum::EQUALS->value,
                     OperatorEnum::NOT_EQUALS->value,
+                    OperatorEnum::BEFORE->value,
+                    OperatorEnum::BEFORE_OR_EQUAL->value,
+                    OperatorEnum::AFTER->value,
+                    OperatorEnum::AFTER_OR_EQUAL->value,
                 ];
                 break;
             case TypeNameEnum::INTEGER->value:
@@ -124,11 +124,12 @@ class TableColumn
             case TypeNameEnum::DOUBLE->value:
                 $operators = [
                     OperatorEnum::EQUALS->value,
-                    OperatorEnum::GREATER_THAN_OR_EQUAL->value,
-                    OperatorEnum::GREATER_THAN->value,
-                    OperatorEnum::LESS_THAN_OR_EQUAL->value,
-                    OperatorEnum::LESS_THAN->value,
                     OperatorEnum::NOT_EQUALS->value,
+                    OperatorEnum::GREATER_THAN->value,
+                    OperatorEnum::GREATER_THAN_OR_EQUAL->value,
+                    OperatorEnum::LESS_THAN->value,
+                    OperatorEnum::LESS_THAN_OR_EQUAL->value,
+
                 ];
                 break;
             case TypeNameEnum::STRING->value:
@@ -136,14 +137,14 @@ class TableColumn
             case TypeNameEnum::VARCHAR->value:
             case TypeNameEnum::UUID->value:
                 $operators = [
-                    OperatorEnum::CONTAINS->value,
-                    OperatorEnum::DOESNT_END_WITH->value,
-                    OperatorEnum::DOESNT_START_WITH->value,
-                    OperatorEnum::ENDS_WITH->value,
                     OperatorEnum::EQUALS->value,
-                    OperatorEnum::NOT_CONTAINS->value,
                     OperatorEnum::NOT_EQUALS->value,
+                    OperatorEnum::CONTAINS->value,
+                    OperatorEnum::NOT_CONTAINS->value,
                     OperatorEnum::STARTS_WITH->value,
+                    OperatorEnum::ENDS_WITH->value,
+                    OperatorEnum::DOESNT_START_WITH->value,
+                    OperatorEnum::DOESNT_END_WITH->value,
                 ];
                 break;
         };

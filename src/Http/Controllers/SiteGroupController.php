@@ -69,14 +69,14 @@ class SiteGroupController extends AbstractController
 
         $query = SiteGroup::query();
 
-        $dataTable = new DataTableCollection($query, SiteGroup::TABLE);
+        $collection = new DataTableCollection($query, SiteGroup::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',
             title: trans('narsil::tables.site_groups'),
             description: trans('narsil::tables.site_groups'),
             props: [
-                'dataTable' => $dataTable,
+                'collection' => $collection,
             ]
         );
     }

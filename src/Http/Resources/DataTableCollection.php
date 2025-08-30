@@ -167,7 +167,22 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::accessibility.previous_page')
             ->add('narsil::accessibility.sort_column')
             ->add('narsil::accessibility.toggle_row_menu')
-            ->add('narsil::accessibility.toggle_table_settings')
+            ->add('narsil::operators.after_or_equal')
+            ->add('narsil::operators.after')
+            ->add('narsil::operators.before_or_equal')
+            ->add('narsil::operators.before')
+            ->add('narsil::operators.contains')
+            ->add('narsil::operators.doesnt_end_with')
+            ->add('narsil::operators.doesnt_start_with')
+            ->add('narsil::operators.ends_with')
+            ->add('narsil::operators.equals')
+            ->add('narsil::operators.greater_than_or_equal')
+            ->add('narsil::operators.greater_than')
+            ->add('narsil::operators.less_than_or_equal')
+            ->add('narsil::operators.less_than')
+            ->add('narsil::operators.not_contains')
+            ->add('narsil::operators.not_equals')
+            ->add('narsil::operators.starts_with')
             ->add('narsil::pagination.pages_count', [
                 'current'  => $currentPage,
                 'total'    => $totalPages,
@@ -184,7 +199,8 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::ui.delete')
             ->add('narsil::ui.delete_selected')
             ->add('narsil::ui.deselect_all')
-            ->add('narsil::ui.edit');
+            ->add('narsil::ui.edit')
+            ->add('narsil::ui.filters');
     }
 
 

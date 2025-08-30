@@ -1,7 +1,6 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
-import { Filters } from "@narsil-cms/components/ui/filters";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
@@ -9,14 +8,16 @@ import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { DataTableBlock } from "@narsil-cms/blocks/data-table";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
-import DataTableColumns from "@narsil-cms/components/ui/data-table/data-table-columns";
 import {
   DataTableFilter,
+  DataTableFilterBadge,
+  DataTableFilterDropdown,
   DataTableInput,
   DataTablePagination,
   DataTableProvider,
   DataTableRowMenu,
   DataTableSize,
+  DataTableVisibilityDropdown,
 } from "@narsil-cms/components/ui/data-table";
 import {
   ResizableHandle,
@@ -36,19 +37,19 @@ import type {
 } from "@narsil-cms/types/collection";
 
 type ResourceIndexProps = {
-  dataTable: DataTableCollection;
-  dataTableFilter: DataTableFilterCollection;
+  collection: DataTableCollection;
+  collectionFilter: DataTableFilterCollection;
   title: string;
 };
 
-function getMenuColumn(dataTable: DataTableCollection): ColumnDef<any> {
+function getMenuColumn(collection: DataTableCollection): ColumnDef<any> {
   return {
     id: "_menu",
     header: ({ table }) =>
       table.getIsSomePageRowsSelected() || table.getIsAllPageRowsSelected() ? (
         <DataTableRowMenu
           className="absolute top-1/2 right-1 -translate-y-1/2 transform"
-          routes={dataTable.meta.routes}
+          routes={collection.meta.routes}
           table={table}
         />
       ) : null,
@@ -56,7 +57,7 @@ function getMenuColumn(dataTable: DataTableCollection): ColumnDef<any> {
       <DataTableRowMenu
         className="absolute top-1/2 right-1 -translate-y-1/2 transform"
         id={row.original.id}
-        routes={dataTable.meta.routes}
+        routes={collection.meta.routes}
       />
     ),
     position: "sticky",
@@ -66,11 +67,11 @@ function getMenuColumn(dataTable: DataTableCollection): ColumnDef<any> {
   };
 }
 
-function getSelectColumn(dataTable: DataTableCollection): ColumnDef<any> {
+function getSelectColumn(collection: DataTableCollection): ColumnDef<any> {
   return {
     id: "_select",
     header: ({ table }) =>
-      dataTable.data.length > 0 ? (
+      collection.data.length > 0 ? (
         <Checkbox
           checked={
             table.getIsAllPageRowsSelected() ||
@@ -94,27 +95,27 @@ function getSelectColumn(dataTable: DataTableCollection): ColumnDef<any> {
 }
 
 function ResourceIndex({
-  dataTable,
-  dataTableFilter,
+  collection,
+  collectionFilter,
   title,
 }: ResourceIndexProps) {
   const { trans } = useLabels();
 
   const isDesktop = useMinSm();
 
-  const hasMenu = dataTable.meta.routes.edit || dataTable.meta.routes.destroy;
+  const hasMenu = collection.meta.routes.edit || collection.meta.routes.destroy;
 
   const finalColumns: (ColumnDef<any> & { position?: string })[] = [
-    ...(dataTable.meta.selectable !== false
-      ? [getSelectColumn(dataTable)]
+    ...(collection.meta.selectable !== false
+      ? [getSelectColumn(collection)]
       : []),
-    ...dataTable.columns,
-    ...(hasMenu ? [getMenuColumn(dataTable)] : []),
+    ...collection.columns,
+    ...(hasMenu ? [getMenuColumn(collection)] : []),
   ];
 
   const finalColumnOrder = [
-    ...(dataTable.meta.selectable !== false ? ["_select"] : []),
-    ...dataTable.columnOrder,
+    ...(collection.meta.selectable !== false ? ["_select"] : []),
+    ...collection.columnOrder,
     ...(hasMenu ? ["_menu"] : []),
   ];
 
@@ -124,15 +125,15 @@ function ResourceIndex({
 
   return (
     <DataTableProvider
-      id={dataTable.meta.id}
-      data={dataTable.data}
+      id={collection.meta.id}
+      data={collection.data}
       columns={finalColumns}
       initialState={{
         columnOrder: finalColumnOrder,
-        columnVisibility: dataTable.columnVisibility,
+        columnVisibility: collection.columnVisibility,
       }}
-      render={({ dataTable: table }) => {
-        const selectedCount = table.getSelectedRowModel().rows.length;
+      render={({ dataTable, dataTableStore }) => {
+        const selectedCount = dataTable.getSelectedRowModel().rows.length;
 
         return (
           <Section className="h-full gap-4 p-4">
@@ -142,7 +143,7 @@ function ResourceIndex({
               </SectionTitle>
               <DataTableInput className="grow" />
               <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
-                <DataTableColumns>
+                <DataTableVisibilityDropdown>
                   <Button
                     aria-label={columnsLabel}
                     size={isDesktop ? "default" : "icon"}
@@ -153,10 +154,10 @@ function ResourceIndex({
                       {columnsLabel}
                     </span>
                   </Button>
-                </DataTableColumns>
+                </DataTableVisibilityDropdown>
               </Tooltip>
               <Tooltip hidden={isDesktop} tooltip={filterLabel}>
-                <Filters columns={dataTable.columns}>
+                <DataTableFilterDropdown>
                   <Button
                     aria-label={filterLabel}
                     size={isDesktop ? "default" : "icon"}
@@ -167,9 +168,9 @@ function ResourceIndex({
                       {filterLabel}
                     </span>
                   </Button>
-                </Filters>
+                </DataTableFilterDropdown>
               </Tooltip>
-              {dataTable.meta.routes.create ? (
+              {collection.meta.routes.create ? (
                 <Tooltip hidden={isDesktop} tooltip={createLabel}>
                   <Button
                     asChild={true}
@@ -179,8 +180,8 @@ function ResourceIndex({
                   >
                     <Link
                       href={route(
-                        dataTable.meta.routes.create,
-                        dataTable.meta.routes.params,
+                        collection.meta.routes.create,
+                        collection.meta.routes.params,
                       )}
                     >
                       <Icon name="plus" />
@@ -194,10 +195,10 @@ function ResourceIndex({
             </SectionHeader>
             <SectionContent className="grow">
               <ResizablePanelGroup
-                autoSaveId={dataTable.meta.id}
+                autoSaveId={collection.meta.id}
                 direction="horizontal"
               >
-                {dataTableFilter ? (
+                {collectionFilter ? (
                   <>
                     <ResizablePanel
                       className="pr-4"
@@ -205,7 +206,7 @@ function ResourceIndex({
                       defaultSize={20}
                       minSize={10}
                     >
-                      <DataTableFilter {...dataTableFilter} />
+                      <DataTableFilter {...collectionFilter} />
                     </ResizablePanel>
                     <ResizableHandle withHandle={true} />
                   </>
@@ -213,13 +214,22 @@ function ResourceIndex({
                 <ResizablePanel
                   className={cn(
                     "flex flex-col gap-3",
-                    dataTableFilter && "pl-4",
+                    collectionFilter && "pl-4",
                   )}
                   collapsible={true}
                   defaultSize={80}
                   minSize={10}
                 >
-                  <DataTableBlock dataTable={table} />
+                  <ul className="flex items-center justify-start gap-2">
+                    {dataTableStore.filters.map((filter, index) => {
+                      return (
+                        <li key={index}>
+                          <DataTableFilterBadge filter={filter} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <DataTableBlock dataTable={dataTable} />
                   <div className="flex flex-col items-start justify-between gap-4 text-sm sm:flex-row sm:items-center">
                     <span className="truncate">
                       {selectedCount > 0
@@ -235,11 +245,11 @@ function ResourceIndex({
                       </div>
                       <div className="flex flex-col items-end gap-x-4 gap-y-2 sm:flex-row sm:items-center">
                         <span className="truncate">
-                          {dataTable.meta.total > 0
+                          {collection.meta.total > 0
                             ? trans("pagination.pages_count")
                             : trans("pagination.pages_empty")}
                         </span>
-                        <DataTablePagination links={dataTable.links} />
+                        <DataTablePagination links={collection.links} />
                       </div>
                     </div>
                   </div>

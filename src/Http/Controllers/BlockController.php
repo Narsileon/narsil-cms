@@ -80,14 +80,14 @@ class BlockController extends AbstractController
                 Block::RELATION_FIELDS,
             ]);
 
-        $dataTable = new DataTableCollection($query, Block::TABLE);
+        $collection = new DataTableCollection($query, Block::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',
             title: trans('narsil::tables.blocks'),
             description: trans('narsil::tables.blocks'),
             props: [
-                'dataTable' => $dataTable,
+                'collection' => $collection,
             ]
         );
     }

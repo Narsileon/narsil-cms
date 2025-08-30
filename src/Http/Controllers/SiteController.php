@@ -73,9 +73,9 @@ class SiteController extends AbstractController
 
         $this->filter($query, Site::GROUP_ID);
 
-        $dataTable = new DataTableCollection($query, Site::TABLE);
+        $collection = new DataTableCollection($query, Site::TABLE);
 
-        $dataTableFilter = new DataTableFilterCollection(
+        $collectionFilter = new DataTableFilterCollection(
             SiteGroup::all(),
             addLabel: trans('narsil::ui.add_group'),
             labelPath: SiteGroup::NAME,
@@ -87,8 +87,8 @@ class SiteController extends AbstractController
             title: trans('narsil::tables.sites'),
             description: trans('narsil::tables.sites'),
             props: [
-                'dataTable' => $dataTable,
-                'dataTableFilter' => $dataTableFilter,
+                'collection' => $collection,
+                'collectionFilter' => $collectionFilter,
             ]
         );
     }

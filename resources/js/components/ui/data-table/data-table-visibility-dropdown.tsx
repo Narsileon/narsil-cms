@@ -8,13 +8,16 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
 
-type DataTableColumnsProps = React.ComponentProps<
+type DataTableVisibilityDropdownProps = React.ComponentProps<
   typeof DropdownMenuTrigger
 > & {
   options?: string[];
 };
 
-function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
+function DataTableVisibilityDropdown({
+  children,
+  ...props
+}: DataTableVisibilityDropdownProps) {
   const { dataTable } = useDataTable();
 
   return (
@@ -47,4 +50,4 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
   );
 }
 
-export default DataTableColumns;
+export default DataTableVisibilityDropdown;

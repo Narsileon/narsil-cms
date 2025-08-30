@@ -71,14 +71,14 @@ class FieldController extends AbstractController
 
         $query = Field::query();
 
-        $dataTable = new DataTableCollection($query, Field::TABLE);
+        $collection = new DataTableCollection($query, Field::TABLE);
 
         return $this->render(
             component: 'narsil/cms::resources/index',
             title: trans('narsil::tables.fields'),
             description: trans('narsil::tables.fields'),
             props: [
-                'dataTable' => $dataTable,
+                'collection' => $collection,
             ]
         );
     }
