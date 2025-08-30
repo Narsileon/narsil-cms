@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Elements\Block;
 use Narsil\Support\TableColumn;
@@ -51,11 +52,14 @@ class BlockTable extends AbstractTable
             new TableColumn(
                 header: trans('narsil::tables.fields'),
                 id: Block::COUNT_FIELDS,
+                type: TypeNameEnum::INTEGER->value,
                 visibility: true,
+
             ),
             new TableColumn(
                 header: trans('narsil::tables.blocks'),
                 id: Block::COUNT_BLOCKS,
+                type: TypeNameEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
