@@ -20,6 +20,8 @@ class BlockPolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create blocks.
+     *
      * @param User $user
      *
      * @return boolean
@@ -32,6 +34,8 @@ class BlockPolicy
     }
 
     /**
+     * Determine whether the user can delete the block.
+     *
      * @param User $user
      * @param Block $model
      *
@@ -45,6 +49,8 @@ class BlockPolicy
     }
 
     /**
+     * Determine whether the user can delete blocks.
+     *
      * @param User $user
      *
      * @return boolean
@@ -57,6 +63,8 @@ class BlockPolicy
     }
 
     /**
+     * Determine whether the user can update the block.
+     *
      * @param User $user
      * @param Block $model
      *
@@ -70,6 +78,8 @@ class BlockPolicy
     }
 
     /**
+     * Determine whether the user can view the block.
+     *
      * @param User $user
      * @param Block $model
      *
@@ -83,6 +93,8 @@ class BlockPolicy
     }
 
     /**
+     * Determine whether the user can view blocks.
+     *
      * @param User $user
      *
      * @return boolean

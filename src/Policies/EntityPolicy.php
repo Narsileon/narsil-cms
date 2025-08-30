@@ -20,6 +20,8 @@ class EntityPolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create entities.
+     *
      * @param User $user
      *
      * @return boolean
@@ -32,6 +34,8 @@ class EntityPolicy
     }
 
     /**
+     * Determine whether the user can delete the entity.
+     *
      * @param User $user
      * @param Entity $model
      *
@@ -45,6 +49,8 @@ class EntityPolicy
     }
 
     /**
+     * Determine whether the user can delete entities.
+     *
      * @param User $user
      *
      * @return boolean
@@ -57,6 +63,8 @@ class EntityPolicy
     }
 
     /**
+     * Determine whether the user can update the entity.
+     *
      * @param User $user
      * @param Entity $model
      *
@@ -70,6 +78,8 @@ class EntityPolicy
     }
 
     /**
+     * Determine whether the user can view the entity.
+     *
      * @param User $user
      * @param Entity $model
      *
@@ -83,6 +93,8 @@ class EntityPolicy
     }
 
     /**
+     * Determine whether the user can view entities.
+     *
      * @param User $user
      *
      * @return boolean

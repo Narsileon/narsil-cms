@@ -220,9 +220,9 @@ class EntityController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $entity->update($attributes, [
+        $entity->update(array_merge($attributes, [
             Entity::UPDATED_AT => Carbon::now(),
-        ]);
+        ]));
 
         if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
         {
@@ -252,7 +252,7 @@ class EntityController extends AbstractController
 
         $this->authorize(PermissionEnum::DELETE, $entity);
 
-        $entity->delete();
+        $entity->forceDelete();
 
         return $this
             ->redirect(route('collections.index', [
@@ -275,7 +275,7 @@ class EntityController extends AbstractController
 
         Entity::query()
             ->whereIn(Entity::ID, $ids)
-            ->delete();
+            ->forceDelete();
 
         return $this
             ->redirect(route('collections.index'))

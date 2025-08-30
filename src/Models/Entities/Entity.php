@@ -38,9 +38,7 @@ class Entity extends Model
 
         $this->primaryKey = self::UUID;
 
-        $this->fillable = array_merge([
-            '*'
-        ], $this->fillable);
+        $this->guarded = [];
 
         $this->with = array_merge([
             self::RELATION_BLOCKS,

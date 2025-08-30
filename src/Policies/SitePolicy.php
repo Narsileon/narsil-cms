@@ -20,6 +20,8 @@ class SitePolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create sites.
+     *
      * @param User $user
      *
      * @return boolean
@@ -32,6 +34,8 @@ class SitePolicy
     }
 
     /**
+     * Determine whether the user can delete the site.
+     *
      * @param User $user
      * @param Site $model
      *
@@ -45,6 +49,8 @@ class SitePolicy
     }
 
     /**
+     * Determine whether the user can delete sites.
+     *
      * @param User $user
      *
      * @return boolean
@@ -57,6 +63,8 @@ class SitePolicy
     }
 
     /**
+     * Determine whether the user can update the site.
+     *
      * @param User $user
      * @param Site $model
      *
@@ -70,6 +78,8 @@ class SitePolicy
     }
 
     /**
+     * Determine whether the user can view the site.
+     *
      * @param User $user
      * @param Site $model
      *
@@ -83,6 +93,8 @@ class SitePolicy
     }
 
     /**
+     * Determine whether the user can view sites.
+     *
      * @param User $user
      *
      * @return boolean

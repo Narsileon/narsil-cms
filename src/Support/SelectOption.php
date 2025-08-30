@@ -35,7 +35,9 @@ class SelectOption implements JsonSerializable
     #region PROPERTIES
 
     /**
-     * @var array The array representation of the option.
+     * The array representation of the option.
+     *
+     * @var array
      */
     protected array $option;
 

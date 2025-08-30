@@ -19,6 +19,8 @@ class UserPolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create users.
+     *
      * @param User $user
      *
      * @return boolean
@@ -31,6 +33,8 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can delete the user.
+     *
      * @param User $user
      * @param User $model
      *
@@ -44,6 +48,8 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can delete users.
+     *
      * @param User $user
      *
      * @return boolean
@@ -56,6 +62,8 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can update the user.
+     *
      * @param User $user
      * @param User $model
      *
@@ -69,6 +77,8 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can view the user.
+     *
      * @param User $user
      * @param User $model
      *
@@ -82,6 +92,8 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can view users.
+     *
      * @param User $user
      *
      * @return boolean

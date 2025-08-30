@@ -20,6 +20,8 @@ class FieldPolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create fields.
+     *
      * @param User $user
      *
      * @return boolean
@@ -32,6 +34,8 @@ class FieldPolicy
     }
 
     /**
+     * Determine whether the user can delete the field.
+     *
      * @param User $user
      * @param Field $model
      *
@@ -45,6 +49,8 @@ class FieldPolicy
     }
 
     /**
+     * Determine whether the user can delete fields.
+     *
      * @param User $user
      *
      * @return boolean
@@ -57,6 +63,8 @@ class FieldPolicy
     }
 
     /**
+     * Determine whether the user can update the field.
+     *
      * @param User $user
      * @param Field $model
      *
@@ -70,6 +78,8 @@ class FieldPolicy
     }
 
     /**
+     * Determine whether the user can view the field.
+     *
      * @param User $user
      * @param Field $model
      *
@@ -83,6 +93,8 @@ class FieldPolicy
     }
 
     /**
+     * Determine whether the user can view fields.
+     *
      * @param User $user
      *
      * @return boolean

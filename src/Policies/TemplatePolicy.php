@@ -20,6 +20,8 @@ class TemplatePolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create templates.
+     *
      * @param User $user
      *
      * @return boolean
@@ -32,6 +34,8 @@ class TemplatePolicy
     }
 
     /**
+     * Determine whether the user can delete the template.
+     *
      * @param User $user
      * @param Template $model
      *
@@ -45,6 +49,8 @@ class TemplatePolicy
     }
 
     /**
+     * Determine whether the user can delete templates.
+     *
      * @param User $user
      *
      * @return boolean
@@ -57,6 +63,8 @@ class TemplatePolicy
     }
 
     /**
+     * Determine whether the user can update the template.
+     *
      * @param User $user
      * @param Template $model
      *
@@ -70,6 +78,8 @@ class TemplatePolicy
     }
 
     /**
+     * Determine whether the user can view the template.
+     *
      * @param User $user
      * @param Template $model
      *
@@ -83,6 +93,8 @@ class TemplatePolicy
     }
 
     /**
+     * Determine whether the user can view templates.
+     *
      * @param User $user
      *
      * @return boolean

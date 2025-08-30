@@ -40,6 +40,7 @@ class DatabaseColumn
 
     /**
      * The type of the column.
+     *
      * @var string
      */
     public readonly string $type;

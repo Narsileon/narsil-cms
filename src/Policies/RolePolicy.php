@@ -20,6 +20,8 @@ class RolePolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create roles.
+     *
      * @param User $user
      *
      * @return boolean
@@ -32,6 +34,8 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can delete the role.
+     *
      * @param User $user
      * @param Role $model
      *
@@ -45,6 +49,8 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can delete roles.
+     *
      * @param User $user
      *
      * @return boolean
@@ -57,6 +63,8 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can update the role.
+     *
      * @param User $user
      * @param Role $model
      *
@@ -70,6 +78,8 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can view the role.
+     *
      * @param User $user
      * @param Role $model
      *
@@ -83,6 +93,8 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can view roles.
+     *
      * @param User $user
      *
      * @return boolean

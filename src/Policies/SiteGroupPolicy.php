@@ -20,6 +20,8 @@ class SiteGroupPolicy
     #region PUBLIC METHODS
 
     /**
+     * Determine whether the user can create site groups.
+     *
      * @param User $user
      *
      * @return boolean
@@ -32,6 +34,8 @@ class SiteGroupPolicy
     }
 
     /**
+     * Determine whether the user can delete the site group.
+     *
      * @param User $user
      * @param SiteGroup $model
      *
@@ -45,6 +49,8 @@ class SiteGroupPolicy
     }
 
     /**
+     * Determine whether the user can delete site groups.
+     *
      * @param User $user
      *
      * @return boolean
@@ -57,6 +63,8 @@ class SiteGroupPolicy
     }
 
     /**
+     * Determine whether the user can update the site group.
+     *
      * @param User $user
      * @param SiteGroup $model
      *
@@ -70,6 +78,8 @@ class SiteGroupPolicy
     }
 
     /**
+     * Determine whether the user can view the site group.
+     *
      * @param User $user
      * @param SiteGroup $model
      *
@@ -83,6 +93,8 @@ class SiteGroupPolicy
     }
 
     /**
+     * Determine whether the user can view site groups.
+     *
      * @param User $user
      *
      * @return boolean
