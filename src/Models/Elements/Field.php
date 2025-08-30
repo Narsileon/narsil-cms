@@ -6,6 +6,7 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
 
@@ -17,6 +18,7 @@ use Narsil\Traits\HasIdentifier;
  */
 class Field extends Model
 {
+    use HasAuditLogs;
     use HasDatetimes;
     use HasIdentifier;
 

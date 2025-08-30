@@ -123,6 +123,8 @@ trait Blameable
     #region PROTECTED METHODS
 
     /**
+     * Boot the trait.
+     *
      * @return void
      */
     protected static function bootBlameable(): void

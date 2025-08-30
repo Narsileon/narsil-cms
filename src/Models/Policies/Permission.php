@@ -6,6 +6,7 @@ namespace Narsil\Models\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasRoles;
 
 #endregion
@@ -16,6 +17,7 @@ use Narsil\Traits\HasRoles;
  */
 class Permission extends Model
 {
+    use HasAuditLogs;
     use HasRoles;
 
     #region CONSTRUCTOR

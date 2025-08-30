@@ -18,6 +18,7 @@ use Narsil\Models\Policies\UserPermission;
 use Narsil\Models\Policies\UserRole;
 use Narsil\Models\Users\Session;
 use Narsil\Models\Users\UserConfiguration;
+use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasPermissions;
 use Narsil\Traits\HasRoles;
@@ -30,6 +31,7 @@ use Narsil\Traits\HasRoles;
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use HasAuditLogs;
     use HasDatetimes;
     use HasPermissions;
     use HasRoles;

@@ -6,6 +6,7 @@ namespace Narsil\Models\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasPermissions;
 
@@ -17,6 +18,7 @@ use Narsil\Traits\HasPermissions;
  */
 class Role extends Model
 {
+    use HasAuditLogs;
     use HasDatetimes;
     use HasPermissions;
 

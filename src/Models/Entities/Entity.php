@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Narsil\Traits\Blameable;
+use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasRevisions;
 use Narsil\Traits\HasTableName;
@@ -22,6 +23,7 @@ use Narsil\Traits\HasTableName;
 class Entity extends Model
 {
     use Blameable;
+    use HasAuditLogs;
     use HasDatetimes;
     use HasUuids;
     use HasRevisions;
@@ -115,22 +117,6 @@ class Entity extends Model
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(function ($model)
-        {
-            if (empty($model->{self::ID}))
-            {
-                $model->{self::ID} = static::max(self::ID) + 1;
-            }
-        });
-    }
 
     /**
      * {@inheritDoc}

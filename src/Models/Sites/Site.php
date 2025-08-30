@@ -7,6 +7,7 @@ namespace Narsil\Models\Sites;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\Sites\SiteGroup;
+use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 
 #endregion
@@ -17,6 +18,7 @@ use Narsil\Traits\HasDatetimes;
  */
 class Site extends Model
 {
+    use HasAuditLogs;
     use HasDatetimes;
 
     #region CONSTRUCTOR

@@ -100,12 +100,19 @@ trait HasRevisions
     #region PROTECTED METHODS
 
     /**
+     * Boot the trait.
+     *
      * @return void
      */
     protected static function bootHasRevisions(): void
     {
         static::creating(function (Model $model)
         {
+            if (empty($model->{self::ID}))
+            {
+                $model->{self::ID} = self::max(self::ID) + 1;
+            }
+
             if (empty($model->{self::REVISION}))
             {
                 $model->{self::REVISION} = 1;
@@ -130,7 +137,7 @@ trait HasRevisions
 
                 if ($current)
                 {
-                    $current->delete();
+                    $current->deleteQuietly();
                 }
 
                 $revision = ($current->{self::REVISION} ?? $model->{self::REVISION} ?? 0) + 1;
@@ -151,7 +158,7 @@ trait HasRevisions
 
                 $model->discardChanges();
 
-                $model->delete();
+                $model->deleteQuietly();
 
                 return false;
             }
@@ -173,7 +180,7 @@ trait HasRevisions
      * @param Model $model
      * @param integer $revision
      *
-     * @return false
+     * @return void
      */
     private static function createRevision(Model $model, int $revision): void
     {
@@ -192,7 +199,7 @@ trait HasRevisions
             $replicated->deleted_by = null;
         }
 
-        $replicated->saveQuietly();
+        $replicated->save();
 
         static::pruneRevisions($model->{self::ID});
     }
