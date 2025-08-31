@@ -9,8 +9,6 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\BlockSet;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldBlock;
 
 #endregion
 
@@ -20,8 +18,6 @@ return new class extends Migration
 
     /**
      * {@inheritDoc}
-     *
-     * @return void
      */
     public function up(): void
     {
@@ -45,8 +41,6 @@ return new class extends Migration
 
     /**
      * {@inheritDoc}
-     *
-     * @return void
      */
     public function down(): void
     {

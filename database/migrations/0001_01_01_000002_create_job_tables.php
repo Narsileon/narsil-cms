@@ -17,8 +17,6 @@ return new class extends Migration
 
     /**
      * {@inheritDoc}
-     *
-     * @return void
      */
     public function up(): void
     {
@@ -38,8 +36,6 @@ return new class extends Migration
 
     /**
      * {@inheritDoc}
-     *
-     * @return void
      */
     public function down(): void
     {
