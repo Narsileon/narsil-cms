@@ -7,6 +7,12 @@ extend type Query {
   blocks: [Block!]! @all
   field(id: ID! @eq): Field @find
   fields: [Field!]! @all
+  permission(id: Int! @eq): Permission @find
+  permissions: [Permission!]! @all
+  role(id: Int! @eq): Role @find
+  roles: [Role!]! @all
+  template(id: Int! @eq): Template @find
+  templates: [Template!]! @all
   user(id: Int! @eq): User @find
   users: [User!]! @all
 }
@@ -14,28 +20,28 @@ extend type Query {
 type Block @model(class: "Narsil\\Models\\Elements\\Block") {
   id: ID!
   handle: String!
-  name: String!
   icon: String!
+  name: String!
   created_at: DateTime!
   updated_at: DateTime!
   blocks: [Block!]! @morphToMany
   elements: [BlockElement!]! @hasMany
   fields: [Field!]! @morphToMany
+  sets: [Block!]! @belongsToMany
 }
 
 type BlockElement @model(class: "Narsil\\Models\\Elements\\BlockElement") {
   id: ID!
-  block_id: Int!
-  description: String
-  element_id: Int!
+  block_id: ID!
+  element_id: ID!
   element_type: String!
   handle: String!
+  icon: String!
   name: String!
-  position: Int
-  width: Int
-  icon: String
-  conditions: [BlockElementCondition!]! @hasMany
+  position: Int!
+  width: Int!
   block: Block! @belongsTo
+  conditions: [BlockElementCondition!]! @hasMany
   element: Element! @morphTo
 }
 
@@ -68,9 +74,26 @@ type FieldOption @model(class: "Narsil\\Models\\Elements\\FieldOption") {
   field_id: Int!
   key: String!
   value: String!
-  position: Int
+  position: Int!
   created_at: DateTime!
   updated_at: DateTime!
+}
+
+type Permission @model(class: "Narsil\\Models\\Policies\\Permission") {
+  id: ID!
+  category: String!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  roles: [Role!]! @belongsToMany
+}
+
+type Role @model(class: "Narsil\\Models\\Policies\\Role") {
+  id: ID!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  permissions: [Permission!]! @belongsToMany
 }
 
 type Template @model(class: "Narsil\\Models\\Elements\\Template") {
@@ -79,15 +102,50 @@ type Template @model(class: "Narsil\\Models\\Elements\\Template") {
   name: String!
   created_at: DateTime!
   updated_at: DateTime!
+  sets: [Block!]! @belongsToMany
+}
+
+type TemplateSection
+  @model(class: "Narsil\\Models\\Elements\\TemplateSection") {
+  id: ID!
+  handle: String!
+  name: String!
+  position: Int!
+  template_id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  blocks: [Block!]! @morphToMany
+  elements: [TemplateSectionElement!]! @hasMany
+  fields: [Field!]! @morphToMany
+  template: Template! @belongsTo
+}
+
+type TemplateSectionElement
+  @model(class: "Narsil\\Models\\Elements\\TemplateSectionElement") {
+  id: ID!
+  element_id: ID!
+  element_type: String!
+  handle: String!
+  icon: String!
+  name: String!
+  position: Int!
+  template_section_d: ID!
+  width: Int!
+  element: Element! @morphTo
+  templateSection: TemplateSection! @belongsTo
 }
 
 type User @model(class: "Narsil\\Models\\User") {
   id: ID!
-  first_name: String!
-  last_name: String!
+  avatar: String
+  first_name: String
+  full_name: String
+  last_name: String
   email: String!
   created_at: DateTime!
   updated_at: DateTime!
+  permissions: [Permission!]! @belongsToMany
+  roles: [Role!]! @belongsToMany
 }
 
 union Element = Block | Field
