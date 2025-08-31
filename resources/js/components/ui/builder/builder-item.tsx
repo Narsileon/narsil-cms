@@ -32,7 +32,7 @@ function BuilderItem({ baseHandle, node, ...props }: BuilderItemProps) {
           />
         );
       })}
-      {node.block.sets ? (
+      {node.block.sets && node.block.sets.length > 0 ? (
         <Builder sets={node.block.sets} name={`${baseHandle}.children`} />
       ) : null}
     </SortableItem>
