@@ -9,6 +9,10 @@ extend type Query {
   fields: [Field!]! @all
   permission(id: Int! @eq): Permission @find
   permissions: [Permission!]! @all
+  relations(owner_table: String!, owner_uuid: String!): [Relation!]!
+    @field(
+      resolver: "Narsil\\GraphQL\\Resolvers\\RelationResolver@resolveEntities"
+    )
   role(id: Int! @eq): Role @find
   roles: [Role!]! @all
   template(id: Int! @eq): Template @find
@@ -86,6 +90,14 @@ type Permission @model(class: "Narsil\\Models\\Policies\\Permission") {
   created_at: DateTime!
   updated_at: DateTime!
   roles: [Role!]! @belongsToMany
+}
+
+type Relation @model(class: "Narsil\\Models\\Entities\\Relation") {
+  id: ID!
+  owner_table: String!
+  owner_uuid: String!
+  target_table: String!
+  target_uuid: String!
 }
 
 type Role @model(class: "Narsil\\Models\\Policies\\Role") {
