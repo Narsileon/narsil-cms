@@ -6,34 +6,60 @@ type Query {
 }
 
 type Events {
-    uuid: String
-    id: Int
-    revision: Int
-    created_at: DateTime
-    created_by: Int
-    updated_at: DateTime
-    updated_by: Int
-    deleted_at: DateTime
-    deleted_by: Int
-    title: String
+	uuid: String
+	id: Int
+	revision: Int
+	created_at: DateTime
+	created_by: Int
+	updated_at: DateTime
+	updated_by: Int
+	deleted_at: DateTime
+	deleted_by: Int
+	title: String
+	blocks: [EventBlock] @hasMany
 }
+
+type EventBlock {
+	id: ID!
+	entity_uuid: String
+	parent_id: ID!
+	block_id: ID!
+	position: Int!
+	values: JSON
+	block: Block!
+	children: [EventBlock]
+}
+
 type Pages {
-    uuid: String
-    id: Int
-    revision: Int
-    created_at: DateTime
-    created_by: Int
-    updated_at: DateTime
-    updated_by: Int
-    deleted_at: DateTime
-    deleted_by: Int
-    title: String
-    meta_title: String
-    meta_description: String
-    open_graph_type: String
-    open_graph_title: String
-    open_graph_description: String
-    open_graph_image: String
-    nofollow: Boolean
-    noindex: Boolean
+	uuid: String
+	id: Int
+	revision: Int
+	created_at: DateTime
+	created_by: Int
+	updated_at: DateTime
+	updated_by: Int
+	deleted_at: DateTime
+	deleted_by: Int
+	title: String
+	meta_title: String
+	meta_description: String
+	open_graph_type: String
+	open_graph_title: String
+	open_graph_description: String
+	open_graph_image: String
+	nofollow: Boolean
+	noindex: Boolean
+	blocks: [PageBlock] @hasMany
 }
+
+type PageBlock {
+	id: ID!
+	entity_uuid: String
+	parent_id: ID!
+	block_id: ID!
+	position: Int!
+	values: JSON
+	block: Block!
+	children: [PageBlock]
+}
+

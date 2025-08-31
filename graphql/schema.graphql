@@ -1,11 +1,10 @@
 scalar DateTime
   @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar JSON @scalar(class: "Narsil\\GraphQL\\Scalars\\JSON")
 
 extend type Query {
   block(id: ID! @eq): Block @find
   blocks: [Block!]! @all
-  entities: [Entity!]! @all
-  entity(id: ID! @eq): Entity @find
   field(id: ID! @eq): Field @find
   fields: [Field!]! @all
   user(id: Int! @eq): User @find
@@ -47,26 +46,6 @@ type BlockElementCondition
   key: String!
   operator: String!
   value: String
-}
-
-type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
-  id: ID!
-  uuid: String!
-  template_id: Int!
-  deleted_at: DateTime
-  created_at: DateTime!
-  updated_at: DateTime!
-  template: Template! @belongsTo
-  elements: [EntityBlock!]! @hasMany
-}
-
-type EntityBlock @model(class: "Narsil\\Models\\Entities\\EntityBlock") {
-  id: ID!
-  entity_uuid: String!
-  key: String!
-  value: String
-  created_at: DateTime!
-  updated_at: DateTime!
 }
 
 type Field @model(class: "Narsil\\Models\\Elements\\Field") {

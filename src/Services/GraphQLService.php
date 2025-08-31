@@ -67,7 +67,7 @@ abstract class GraphQLService
      *
      * @return string
      */
-    private static function generateQueries(Collection $templates): string
+    protected static function generateQueries(Collection $templates): string
     {
         $queries = "type Query {\n";
 
@@ -94,44 +94,96 @@ abstract class GraphQLService
      *
      * @return string
      */
-    private static function generateTypes(Collection $templates): string
+    protected static function generateTypes(Collection $templates): string
     {
         $types = "";
 
         foreach ($templates as $template)
         {
-            $name = $template->{Template::NAME};
-
-            $types .= "type $name {\n";
-
-            foreach (static::DEFAULT_FIELDS as $handle => $type)
-            {
-                $types .= "    $handle: $type\n";
-            }
-
-            $fields = TemplateService::getFields($template);
-
-            foreach ($fields as $field)
-            {
-                $handle = $field->{Field::HANDLE};
-
-                $type = match ($field->{Field::TYPE})
-                {
-                    CheckboxInput::class => "Boolean",
-                    DateInput::class => "Date",
-                    RichTextInput::class => "String",
-                    TextInput::class => "String",
-                    TimeInput::class => "Time",
-                    default => "String",
-                };
-
-                $types .= "    $handle: $type\n";
-            }
-
-            $types .= "}\n";
+            $types .= static::getCollectionType($template);
+            $types .= static::getCollectionBlockType($template);
         }
 
         return $types;
+    }
+
+    /**
+     * @param Template $template
+     *
+     * @return string
+     */
+    protected static function getCollectionType(Template $template): string
+    {
+        $collectionName = $template->{Template::NAME};
+        $collectionBlockName = static::getCollectionBlockName($template);
+
+        $definition = "";
+
+        $definition .= "type $collectionName {\n";
+
+        foreach (static::DEFAULT_FIELDS as $handle => $type)
+        {
+            $definition .= "\t$handle: $type\n";
+        }
+
+        $fields = TemplateService::getFields($template);
+
+        foreach ($fields as $field)
+        {
+            $handle = $field->{Field::HANDLE};
+
+            $type = match ($field->{Field::TYPE})
+            {
+                CheckboxInput::class => "Boolean",
+                DateInput::class => "Date",
+                RichTextInput::class => "String",
+                TextInput::class => "String",
+                TimeInput::class => "Time",
+                default => "String",
+            };
+
+            $definition .= "\t$handle: $type\n";
+        }
+
+        $definition .= "\tblocks: [$collectionBlockName] @hasMany\n";
+        $definition .= "}\n\n";
+
+        return $definition;
+    }
+
+    /**
+     * @param Template $template
+     *
+     * @return string
+     */
+    protected static function getCollectionBlockName(Template $template): string
+    {
+        return Str::singular($template->{Template::NAME}) . "Block";;
+    }
+
+    /**
+     * @param Template $template
+     *
+     * @return string
+     */
+    protected static function getCollectionBlockType(Template $template): string
+    {
+        $collectionBlockName = static::getCollectionBlockName($template);
+
+        $definition = "";
+
+        $definition .= "type $collectionBlockName {\n";
+        $definition .= "\tid: ID!\n";
+        $definition .= "\tentity_uuid: String\n";
+        $definition .= "\tparent_id: ID!\n";
+        $definition .= "\tblock_id: ID!\n";
+        $definition .= "\tposition: Int!\n";
+        $definition .= "\tvalues: JSON\n";
+        $definition .= "\tblock: Block!\n";
+        $definition .= "\tchildren: [$collectionBlockName]\n";
+        $definition .= "}\n\n";
+
+        return $definition;
     }
 
     #endregion
