@@ -2,12 +2,20 @@
 
 namespace Narsil\Enums\Database;
 
+#region USE
+
+use Narsil\Traits\Enumerable;
+
+#endregion
+
 /**
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
 enum TypeNameEnum: string
 {
+    use Enumerable;
+
     case BIGINT = 'bigint';
     case BINARY = 'binary';
     case BOOLEAN = 'boolean';

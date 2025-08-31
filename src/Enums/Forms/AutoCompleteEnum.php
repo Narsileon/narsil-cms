@@ -2,12 +2,20 @@
 
 namespace Narsil\Enums\Forms;
 
+#region USE
+
+use Narsil\Traits\Enumerable;
+
+#endregion
+
 /**
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
 enum AutoCompleteEnum: string
 {
+    use Enumerable;
+
     case ADDITIONAL_NAME = 'additional-name';
     case ADDRESS_LEVEL1 = 'address-level1';
     case ADDRESS_LEVEL2 = 'address-level2';

@@ -97,6 +97,28 @@ trait HasRevisions
 
     #endregion
 
+    #region PUBLIC METHODS
+
+    public function pruneRevisions(int $max): void
+    {
+        $uuids = self::onlyTrashed()
+            ->where(self::ID, $this->{self::ID})
+            ->orderByDesc(self::REVISION)
+            ->skip($max)
+            ->take(PHP_INT_MAX)
+            ->pluck(self::UUID)
+            ->toArray();
+
+        if (!empty($uuids))
+        {
+            self::query()
+                ->whereIn(self::UUID, $uuids)
+                ->forceDelete();
+        }
+    }
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -126,113 +148,9 @@ trait HasRevisions
                 ->forceDelete();
         });
 
-        static::restoring(function (Model $model)
+        static::replicating(function (Model $model)
         {
-            if ($model->trashed())
-            {
-                $current = self::query()
-                    ->where(self::ID, $model->{self::ID})
-                    ->whereNull(self::DELETED_AT)
-                    ->first();
-
-                if ($current)
-                {
-                    $current->deleteQuietly();
-                }
-
-                $revision = ($current->{self::REVISION} ?? $model->{self::REVISION} ?? 0) + 1;
-
-                static::createRevision($model, $revision);
-
-                return false;
-            }
-        });
-
-        static::updating(function (Model $model)
-        {
-            if ($model->exists)
-            {
-                $revision = ($model->{self::REVISION} ?? 0) + 1;
-
-                static::createRevision($model, $revision);
-
-                $model->discardChanges();
-
-                $model->deleteQuietly();
-
-                return false;
-            }
+            $model->{self::REVISION} = $model->{self::REVISION} + 1;
         });
     }
-
-    /**
-     * Get the maximum number of revisions.
-     *
-     * @return integer|null
-     */
-    abstract protected static function maxRevisions(): ?int;
-
-    #endregion
-
-    #region PRIVATE METHODS
-
-    /**
-     * @param Model $model
-     * @param integer $revision
-     *
-     * @return void
-     */
-    private static function createRevision(Model $model, int $revision): void
-    {
-        $replicated = $model->replicateQuietly();
-
-        $replicated->{Model::CREATED_AT} = $model->{Model::CREATED_AT};
-        $replicated->{self::REVISION} = $revision;
-
-        if ($replicated->deleted_at)
-        {
-            $replicated->deleted_at = null;
-        }
-
-        if ($replicated->deleted_by)
-        {
-            $replicated->deleted_by = null;
-        }
-
-        $replicated->save();
-
-        static::pruneRevisions($model->{self::ID});
-    }
-
-    /**
-     * @param integer $id
-     *
-     * @return void
-     */
-    private static function pruneRevisions(int $id): void
-    {
-        $max = static::maxRevisions();
-
-        if (!$max)
-        {
-            return;
-        }
-
-        $uuids = self::onlyTrashed()
-            ->where(self::ID, $id)
-            ->orderByDesc(self::REVISION)
-            ->skip($max)
-            ->take(PHP_INT_MAX)
-            ->pluck(self::UUID)
-            ->toArray();
-
-        if (!empty($uuids))
-        {
-            self::query()
-                ->whereIn(self::UUID, $uuids)
-                ->forceDelete();
-        }
-    }
-
-    #endregion
 }

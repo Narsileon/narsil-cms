@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
@@ -220,13 +221,25 @@ class EntityController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $entity->update(array_merge($attributes, [
+        $replicated = $entity->replicate();
+
+        $replicated->fill(array_merge($attributes, [
+            Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
+            Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
             Entity::UPDATED_AT => Carbon::now(),
+            Entity::UPDATED_BY => Auth::id(),
         ]));
+
+        $replicated->save();
+
+        $entity->discardChanges();
+        $entity->delete();
+
+        $replicated->pruneRevisions(2);
 
         if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
         {
-            $this->syncBlocks($entity, $blocks);
+            $this->syncBlocks($replicated, $blocks);
         }
 
         return $this
@@ -273,9 +286,7 @@ class EntityController extends AbstractController
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Entity::query()
-            ->whereIn(Entity::ID, $ids)
-            ->forceDelete();
+        Entity::forceDestroy($ids);
 
         return $this
             ->redirect(route('collections.index'))
@@ -297,7 +308,7 @@ class EntityController extends AbstractController
     {
         foreach ($blocks as $key => $block)
         {
-            $entityBlock = EntityBlock::firstOrCreate([
+            $entityBlock = EntityBlock::create([
                 EntityBlock::ENTITY_UUID => $entity->{Entity::UUID},
                 EntityBlock::BLOCK_ID => Arr::get($block, EntityBlock::RELATION_BLOCK . '.' . Block::ID),
                 EntityBlock::PARENT_ID => $parent?->{EntityBlock::ID},

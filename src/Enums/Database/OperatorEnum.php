@@ -2,12 +2,20 @@
 
 namespace Narsil\Enums\Database;
 
+#region USE
+
+use Narsil\Traits\Enumerable;
+
+#endregion
+
 /**
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
 enum OperatorEnum: string
 {
+    use Enumerable;
+
     case AFTER = 'after';
     case AFTER_OR_EQUAL = 'after_or_equal';
     case BEFORE = 'before';
