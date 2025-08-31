@@ -95,7 +95,9 @@ class FieldOption extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated field.
@@ -111,6 +113,8 @@ class FieldOption extends Model
                 Field::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

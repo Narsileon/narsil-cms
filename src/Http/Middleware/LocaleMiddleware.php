@@ -49,14 +49,14 @@ class LocaleMiddleware
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
     /**
      * @param Request $request
      *
      * @return void
      */
-    private function setlocale(Request $request): void
+    protected function setlocale(Request $request): void
     {
         $locale = Session::get(self::LOCALE);
 

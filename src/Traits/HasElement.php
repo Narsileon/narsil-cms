@@ -105,7 +105,9 @@ trait HasElement
 
     #endregion
 
-    #region ACCESSORS
+    #region PUBLIC METHODS
+
+    #region • ACCESSORS
 
     /**
      * @return string|null
@@ -135,7 +137,7 @@ trait HasElement
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated element.
@@ -151,6 +153,8 @@ trait HasElement
                 self::ELEMENT_ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

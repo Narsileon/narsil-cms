@@ -90,7 +90,9 @@ class SiteGroup extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated sites.
@@ -106,6 +108,8 @@ class SiteGroup extends Model
                 self::ID
             );
     }
+
+    #endregion
 
     #endregion
 }

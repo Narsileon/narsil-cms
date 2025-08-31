@@ -81,7 +81,9 @@ class FieldRule extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated field.
@@ -97,6 +99,8 @@ class FieldRule extends Model
                 Field::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

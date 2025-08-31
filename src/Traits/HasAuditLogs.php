@@ -38,21 +38,6 @@ trait HasAuditLogs
 
     #endregion
 
-    #region RELATIONSHIPS
-
-    /**
-     * @return MorphMany
-     */
-    public function audit_logs(): MorphMany
-    {
-        return $this->morphMany(
-            AuditLog::class,
-            AuditLog::RELATION_MODEL,
-        );
-    }
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -92,6 +77,21 @@ trait HasAuditLogs
             });
         });
     }
+
+    #region • RELATIONSHIPS
+
+    /**
+     * @return MorphMany
+     */
+    public function audit_logs(): MorphMany
+    {
+        return $this->morphMany(
+            AuditLog::class,
+            AuditLog::RELATION_MODEL,
+        );
+    }
+
+    #endregion
 
     #endregion
 

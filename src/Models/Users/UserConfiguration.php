@@ -105,7 +105,9 @@ class UserConfiguration extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated user.
@@ -121,6 +123,8 @@ class UserConfiguration extends Model
                 User::ID
             );
     }
+
+    #endregion
 
     #endregion
 }

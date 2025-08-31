@@ -140,7 +140,9 @@ class EntityBlock extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated block.
@@ -201,6 +203,8 @@ class EntityBlock extends Model
                 self::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

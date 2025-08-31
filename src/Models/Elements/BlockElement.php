@@ -95,7 +95,9 @@ class BlockElement extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated block.
@@ -126,6 +128,8 @@ class BlockElement extends Model
                 self::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

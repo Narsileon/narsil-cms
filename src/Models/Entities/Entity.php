@@ -80,7 +80,21 @@ class Entity extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function setTableName(string $tableName): void
+    {
+        static::$tableName = $tableName;
+
+        $singular = Str::singular($tableName);
+
+        EntityBlock::setTableName($singular . '_blocks');
+    }
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated blocks.
@@ -99,20 +113,6 @@ class Entity extends Model
     }
 
     #endregion
-
-    #region PUBLIC METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function setTableName(string $tableName): void
-    {
-        static::$tableName = $tableName;
-
-        $singular = Str::singular($tableName);
-
-        EntityBlock::setTableName($singular . '_blocks');
-    }
 
     #endregion
 

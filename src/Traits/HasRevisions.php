@@ -76,7 +76,32 @@ trait HasRevisions
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    /**
+     * @param integer $max
+     *
+     * @return void
+     */
+    public function pruneRevisions(int $max): void
+    {
+        $uuids = self::onlyTrashed()
+            ->where(self::ID, $this->{self::ID})
+            ->orderByDesc(self::REVISION)
+            ->skip($max)
+            ->take(PHP_INT_MAX)
+            ->pluck(self::UUID)
+            ->toArray();
+
+        if (!empty($uuids))
+        {
+            self::query()
+                ->whereIn(self::UUID, $uuids)
+                ->forceDelete();
+        }
+    }
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated revisions.
@@ -96,26 +121,6 @@ trait HasRevisions
     }
 
     #endregion
-
-    #region PUBLIC METHODS
-
-    public function pruneRevisions(int $max): void
-    {
-        $uuids = self::onlyTrashed()
-            ->where(self::ID, $this->{self::ID})
-            ->orderByDesc(self::REVISION)
-            ->skip($max)
-            ->take(PHP_INT_MAX)
-            ->pluck(self::UUID)
-            ->toArray();
-
-        if (!empty($uuids))
-        {
-            self::query()
-                ->whereIn(self::UUID, $uuids)
-                ->forceDelete();
-        }
-    }
 
     #endregion
 

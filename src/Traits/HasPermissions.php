@@ -38,17 +38,6 @@ trait HasPermissions
 
     #endregion
 
-    #region RELATIONSHIPS
-
-    /**
-     * Get the associated permissions.
-     *
-     * @return BelongsToMany
-     */
-    abstract public function permissions(): BelongsToMany;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -132,16 +121,27 @@ trait HasPermissions
         $this->permissions()->sync($permissionIds);
     }
 
+    #region • RELATIONSHIPS
+
+    /**
+     * Get the associated permissions.
+     *
+     * @return BelongsToMany
+     */
+    abstract public function permissions(): BelongsToMany;
+
     #endregion
 
-    #region PRIVATE METHODS
+    #endregion
+
+    #region PROTECTED METHODS
 
     /**
      * @param string|integer|array<string|integer> $permissions
      *
      * @return array<int>
      */
-    private function getPermissionIds(array|int|string $permissions): array
+    protected function getPermissionIds(array|int|string $permissions): array
     {
         if (!is_array($permissions))
         {
@@ -181,7 +181,7 @@ trait HasPermissions
      *
      * @return Permission|null
      */
-    private function findPermission(string|int $permission): ?Permission
+    protected function findPermission(string|int $permission): ?Permission
     {
         return Permission::query()
             ->where(Permission::NAME, $permission)

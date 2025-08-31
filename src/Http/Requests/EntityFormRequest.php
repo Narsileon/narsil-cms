@@ -37,7 +37,7 @@ class EntityFormRequest implements Contract
     /**
      * @var Template
      */
-    private readonly Template $template;
+    protected readonly Template $template;
 
     #endregion
 

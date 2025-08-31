@@ -91,7 +91,9 @@ class RolePermission extends Pivot
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated permission.
@@ -122,6 +124,8 @@ class RolePermission extends Pivot
                 Role::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

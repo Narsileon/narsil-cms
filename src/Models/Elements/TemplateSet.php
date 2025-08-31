@@ -89,7 +89,9 @@ class TemplateSet extends Pivot
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated set.
@@ -120,6 +122,8 @@ class TemplateSet extends Pivot
                 Template::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

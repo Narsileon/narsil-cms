@@ -91,7 +91,9 @@ class UserRole extends Pivot
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated role.
@@ -122,6 +124,8 @@ class UserRole extends Pivot
                 User::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

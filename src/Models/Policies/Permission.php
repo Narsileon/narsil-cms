@@ -74,7 +74,9 @@ class Permission extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * {@inheritDoc}
@@ -89,6 +91,8 @@ class Permission extends Model
                 RolePermission::ROLE_ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

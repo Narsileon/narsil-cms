@@ -35,9 +35,9 @@ class TemplateObserver
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
-    private function createPermissions(string $handle): void
+    protected function createPermissions(string $handle): void
     {
         $permissions = [
             'view',

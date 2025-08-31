@@ -170,7 +170,9 @@ class Block extends Model
 
     #endregion
 
-    #region ACCESSORS
+    #region PUBLIC METHODS
+
+    #region • ACCESSORS
 
     /**
      * Get the icon of the block.
@@ -184,7 +186,7 @@ class Block extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated blocks.
@@ -251,6 +253,8 @@ class Block extends Model
                 BlockSet::SET_ID,
             );
     }
+
+    #endregion
 
     #endregion
 

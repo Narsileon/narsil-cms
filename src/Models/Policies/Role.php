@@ -69,7 +69,9 @@ class Role extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated permissions.
@@ -85,6 +87,8 @@ class Role extends Model
                 RolePermission::PERMISSION_ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

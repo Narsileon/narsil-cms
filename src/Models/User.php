@@ -229,7 +229,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     #endregion
 
-    #region ACCESSORS
+    #region PUBLIC METHODS
+
+    #region • ACCESSORS
 
     /**
      * Get the full name of the user.
@@ -243,7 +245,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated configuration.
@@ -302,6 +304,8 @@ class User extends Authenticatable implements MustVerifyEmail
                 self::ID
             );
     }
+
+    #endregion
 
     #endregion
 }

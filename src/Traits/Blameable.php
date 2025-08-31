@@ -71,7 +71,9 @@ trait Blameable
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the user who created the model.
@@ -117,6 +119,8 @@ trait Blameable
                 User::ID
             );
     }
+
+    #endregion
 
     #endregion
 

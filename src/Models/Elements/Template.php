@@ -109,7 +109,9 @@ class Template extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated sections.
@@ -142,6 +144,8 @@ class Template extends Model
                 TemplateSet::SET_ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

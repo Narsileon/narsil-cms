@@ -89,7 +89,9 @@ class BlockSet extends Pivot
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated block.
@@ -120,6 +122,8 @@ class BlockSet extends Pivot
                 Block::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

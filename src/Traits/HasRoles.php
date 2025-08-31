@@ -37,17 +37,6 @@ trait HasRoles
 
     #endregion
 
-    #region RELATIONSHIPS
-
-    /**
-     * Get the associated roles.
-     *
-     * @return BelongsToMany
-     */
-    abstract public function roles(): BelongsToMany;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -121,16 +110,27 @@ trait HasRoles
         $this->roles()->sync($roleIds);
     }
 
+    #region • RELATIONSHIPS
+
+    /**
+     * Get the associated roles.
+     *
+     * @return BelongsToMany
+     */
+    abstract public function roles(): BelongsToMany;
+
     #endregion
 
-    #region PRIVATE METHODS
+    #endregion
+
+    #region PROTECTED METHODS
 
     /**
      * @param string|integer|array<string|integer> $roles
      *
      * @return array<int>
      */
-    private function getRoleIds(string|int|array $roles): array
+    protected function getRoleIds(string|int|array $roles): array
     {
         if (!is_array($roles))
         {

@@ -134,7 +134,9 @@ class TemplateSection extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated blocks.
@@ -200,6 +202,8 @@ class TemplateSection extends Model
                 Template::ID,
             );
     }
+
+    #endregion
 
     #endregion
 }

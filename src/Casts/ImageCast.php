@@ -95,7 +95,7 @@ class ImageCast implements CastsAttributes
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
     /**
      * @param string $path

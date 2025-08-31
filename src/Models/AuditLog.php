@@ -124,7 +124,9 @@ class AuditLog extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated model.
@@ -154,6 +156,8 @@ class AuditLog extends Model
                 User::ID
             );
     }
+
+    #endregion
 
     #endregion
 }

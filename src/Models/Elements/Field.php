@@ -193,7 +193,9 @@ class Field extends Model
 
     #endregion
 
-    #region RELATIONSHIPS
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated options.
@@ -225,6 +227,8 @@ class Field extends Model
                 self::ID,
             );
     }
+
+    #endregion
 
     #endregion
 

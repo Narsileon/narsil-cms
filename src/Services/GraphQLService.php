@@ -29,7 +29,7 @@ abstract class GraphQLService
     /**
      * @var array<string,string>
      */
-    private const DEFAULT_FIELDS = [
+    protected const DEFAULT_FIELDS = [
         Entity::UUID => 'String',
         Entity::ID => 'Int',
         Entity::REVISION => 'Int',
