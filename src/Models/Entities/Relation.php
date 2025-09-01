@@ -103,39 +103,67 @@ class Relation extends Model
     public function scopeEntities(Builder $query, string $table, string $uuid): Builder
     {
         $tableName   = self::TABLE;
+
+        $id = self::ID;
         $ownerTable    = self::OWNER_TABLE;
         $ownerUuid = self::OWNER_UUID;
         $targetTable   = self::TARGET_TABLE;
         $targetUuid = self::TARGET_UUID;
 
+        $cte = 'cte';
+        $processed = 'processed';
+        $visited = 'visited';
+
         $rawQuery = <<<SQL
-WITH RECURSIVE relation_chain AS (
+WITH RECURSIVE $cte AS (
     SELECT
-        id,
-        {$ownerTable} AS owner_table,
-        {$ownerUuid} AS owner_uuid,
-        {$targetTable} AS target_table,
-        {$targetUuid} AS target_uuid,
-        CONCAT({$ownerTable}, ':', {$ownerUuid}, '|', {$targetTable}, ':', {$targetUuid}) AS path
-    FROM {$tableName}
-    WHERE {$ownerTable} = ? AND {$ownerUuid} = ?
-
+        $id,
+        $ownerTable,
+        $ownerUuid,
+        $targetTable,
+        $targetUuid,
+        JSON_ARRAY(
+            CONCAT($ownerTable, ':', $ownerUuid), 
+            CONCAT($targetTable, ':', $targetUuid)
+        ) AS $visited,
+        0 AS $processed
+    FROM 
+        $tableName
+    WHERE 
+        $ownerTable = ? 
+        AND $ownerUuid = ?
     UNION ALL
-
     SELECT
-        r.id,
-        r.{$ownerTable} AS owner_table,
-        r.{$ownerUuid} AS owner_uuid,
-        r.{$targetTable} AS target_table,
-        r.{$targetUuid} AS target_uuid,
-        CONCAT(rc.path, '|', r.{$targetTable}, ':', r.{$targetUuid}) AS path
-    FROM {$tableName} r
-    INNER JOIN relation_chain rc
-        ON rc.target_table = r.{$ownerTable} AND rc.target_uuid = r.{$ownerUuid}
-    WHERE NOT FIND_IN_SET(CONCAT(r.{$targetTable}, ':', r.{$targetUuid}), rc.path)
+        r.$id,
+        r.$ownerTable,
+        r.$ownerUuid,
+        r.$targetTable,
+        r.$targetUuid,
+        JSON_ARRAY_APPEND(
+            cte.$visited, 
+            '$', 
+            CONCAT(r.$targetTable, ':', r.$targetUuid)
+        ),
+        JSON_CONTAINS(
+            cte.$visited, 
+            JSON_QUOTE(CONCAT(r.$targetTable, ':', r.$targetUuid))
+        ) AS $processed
+    FROM 
+        {$tableName} r
+    INNER JOIN $cte cte
+        ON cte.$targetTable = r.$ownerTable 
+        AND cte.$targetUuid = r.$ownerUuid
+    WHERE 
+        cte.$processed = 0
 )
-SELECT id, owner_table, owner_uuid, target_table, target_uuid
-FROM relation_chain
+SELECT 
+    $id,
+    $ownerTable,
+    $ownerUuid,
+    $targetTable,
+    $targetUuid
+FROM 
+    $cte
 SQL;
 
         return $query->from(DB::raw("($rawQuery) as relation_chain"))
