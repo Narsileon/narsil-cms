@@ -9,5 +9,5 @@ use Narsil\Enums\Configuration\ThemeEnum;
 return [
     ThemeEnum::DARK->value => 'Dark',
     ThemeEnum::LIGHT->value => 'Light',
-    ThemeEnum::SYSTEM->value => 'System',
+    ThemeEnum::SYSTEM->value => 'Auto',
 ];
