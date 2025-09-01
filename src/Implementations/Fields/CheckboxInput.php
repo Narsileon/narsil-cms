@@ -83,16 +83,6 @@ class CheckboxInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function inline(bool $inline): static
-    {
-        $this->settings['_inlineReverse'] = $inline;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function options(array $options): static
     {
         $this->settings['options'] = $options;

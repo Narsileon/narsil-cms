@@ -65,16 +65,6 @@ class SwitchInput extends AbstractField implements Contract
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    final public function inline(bool $inline): static
-    {
-        $this->settings['inline'] = $inline;
-
-        return $this;
-    }
-
     #endregion
 
     #endregion

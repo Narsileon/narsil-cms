@@ -69,7 +69,7 @@ class LoginForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.remember'),
                 Field::TYPE => CheckboxInput::class,
                 Field::SETTINGS => app(CheckboxInput::class)
-                    ->inline(true),
+                    ->className('flex-row-reverse justify-end'),
             ]),
         ];
     }

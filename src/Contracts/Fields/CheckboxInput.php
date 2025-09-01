@@ -19,13 +19,6 @@ interface CheckboxInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param boolean $inline.
-     *
-     * @return static Returns the current object instance.
-     */
-    public function inline(bool $inline): static;
-
-    /**
      * @param array $options.
      *
      * @return static Returns the current object instance.

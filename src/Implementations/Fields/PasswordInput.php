@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Fields;
 #region USE
 
 use Narsil\Contracts\Fields\PasswordInput as Contract;
+use Narsil\Support\LabelsBag;
 
 #endregion
 
@@ -23,6 +24,10 @@ class PasswordInput extends TextInput implements Contract
     {
         $this->type('password');
         $this->value('');
+
+        app(LabelsBag::class)
+            ->add('narsil::accessibility.hide_password')
+            ->add('narsil::accessibility.show_password');
     }
 
     #endregion

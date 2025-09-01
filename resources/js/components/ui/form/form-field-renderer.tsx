@@ -137,8 +137,6 @@ function FormFieldRenderer({
         return (
           <FormItem
             className={cn(
-              settings.inline && "flex-row",
-              settings.inlineReverse && "flex-row-reverse justify-end",
               settings.type === "hidden" && "hidden",
               settings.className,
               className,

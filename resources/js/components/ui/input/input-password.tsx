@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Icon } from "@narsil-cms/components/ui/icon";
+import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { useLabels } from "@narsil-cms/components/ui/labels";
 import Input from "./input";
 
 type InputPasswordProps = Omit<
@@ -8,15 +10,24 @@ type InputPasswordProps = Omit<
 > & {};
 
 function InputPassword({ type, ...props }: InputPasswordProps) {
+  const { trans } = useLabels();
+
   const [show, setShow] = React.useState(false);
+
+  const tooltip = show
+    ? trans("accessibility.hide_password")
+    : trans("accessibility.show_password");
 
   return (
     <Input type={show ? "text" : type} {...props}>
-      <Icon
-        className="opacity-50"
-        name={show ? "eye-off" : "eye"}
-        onClick={() => setShow(!show)}
-      />
+      <Tooltip tooltip={tooltip}>
+        <Icon
+          className="cursor-pointer opacity-50"
+          aria-label={tooltip}
+          name={show ? "eye-off" : "eye"}
+          onClick={() => setShow(!show)}
+        />
+      </Tooltip>
     </Input>
   );
 }
