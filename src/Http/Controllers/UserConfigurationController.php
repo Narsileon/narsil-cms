@@ -109,10 +109,10 @@ class UserConfigurationController extends AbstractController
             title: trans('narsil::ui.settings'),
             description: trans('narsil::ui.settings'),
             props: [
-                'profileForm'           => $this->profileForm,
-                'twoFactorForm'         => $this->twoFactorForm,
-                'updatePasswordForm'    => $this->updatePasswordForm,
-                'userConfigurationForm' => $this->userConfigurationForm,
+                'profileForm' => $this->profileForm->jsonSerialize(),
+                'twoFactorForm' => $this->twoFactorForm->jsonSerialize(),
+                'updatePasswordForm' => $this->updatePasswordForm->jsonSerialize(),
+                'userConfigurationForm' => $this->userConfigurationForm->jsonSerialize(),
             ]
         );
     }
