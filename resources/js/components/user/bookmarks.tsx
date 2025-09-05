@@ -178,7 +178,7 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
             </CardHeader>
             <CardContent className="text-sm">
               {bookmarks.length > 0 ? (
-                <ul className="flex flex-col gap-1">
+                <ul className="-my-2 flex flex-col gap-1">
                   {bookmarks.map((bookmark) => (
                     <li
                       className="flex items-center justify-between"
