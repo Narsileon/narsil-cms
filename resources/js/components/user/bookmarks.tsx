@@ -48,6 +48,8 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
   const name = breadcrumb.map((item) => item.label).join(" > ");
   const url = window.location.origin + window.location.pathname;
 
+  const currentBookmark = bookmarks.find((bookmark) => bookmark.url === url);
+
   function onAdd() {
     router.post(
       route("user-bookmarks.store"),
@@ -153,6 +155,26 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
           <Card>
             <CardHeader className="flex items-center justify-between border-b">
               <CardTitle> {labels["bookmarks.bookmarks"]}</CardTitle>
+              <Tooltip
+                tooltip={
+                  currentBookmark ? labels["ui.remove"] : labels["ui.add"]
+                }
+              >
+                <Button
+                  className="-my-2 size-8"
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => {
+                    currentBookmark ? onDelete(currentBookmark.id) : onAdd();
+                  }}
+                >
+                  <Icon
+                    className="size-4"
+                    name={"star"}
+                    fill={currentBookmark ? "currentColor" : "none"}
+                  />
+                </Button>
+              </Tooltip>
             </CardHeader>
             <CardContent className="text-sm">
               {bookmarks.length > 0 ? (
@@ -205,16 +227,6 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
                 </p>
               )}
             </CardContent>
-            <CardFooter className="justify-end border-t">
-              <Button
-                disabled={bookmarks.some((bookmark) => bookmark.url === url)}
-                size="sm"
-                onClick={onAdd}
-              >
-                <Icon className="size-4" name="star" />
-                {labels["ui.add"]}
-              </Button>
-            </CardFooter>
           </Card>
         )}
       </PopoverContent>
