@@ -54,8 +54,10 @@ Route::middleware([
 ])->group(
     function ()
     {
-        Route::get('/', DashboardController::class)
+        Route::get('/dashboard', DashboardController::class)
             ->name('dashboard');
+
+        Route::redirect('/', '/narsil/dashboard');
 
         #region RESOURCES
 

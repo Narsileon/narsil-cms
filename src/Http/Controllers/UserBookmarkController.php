@@ -4,7 +4,6 @@ namespace Narsil\Http\Controllers;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,16 +24,18 @@ class UserBookmarkController extends AbstractController
     #region PUBLIC METHODS
 
     /**
-     * @return JsonResponse
+     * @return UserBookmarkCollection
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request): UserBookmarkCollection
     {
         $userBookmarks = Auth::user()->{User::RELATION_BOOKMARKS};
 
-        return response()->json(new UserBookmarkCollection($userBookmarks));
+        return new UserBookmarkCollection($userBookmarks);
     }
 
     /**
+     * @param UserBookmarkRequest $request
+     *
      * @return RedirectResponse
      */
     public function store(UserBookmarkRequest $request): RedirectResponse
@@ -49,12 +50,12 @@ class UserBookmarkController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * @param UserBookmarkRequest $request
      * @param UserBookmark $template
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, UserBookmark $userBookmark): RedirectResponse
+    public function update(UserBookmarkRequest $request, UserBookmark $userBookmark): RedirectResponse
     {
         if ($userBookmark->user_id !== Auth::id())
         {

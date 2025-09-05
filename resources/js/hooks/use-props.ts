@@ -23,6 +23,7 @@ export type GlobalProps = {
   };
   redirect: RedirectProps;
   title: string;
+  url: string;
 };
 
 type AuthProps = {

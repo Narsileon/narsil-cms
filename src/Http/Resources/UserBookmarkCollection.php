@@ -7,6 +7,7 @@ namespace Narsil\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use JsonSerializable;
+use Narsil\Implementations\Forms\UserBookmarkForm;
 use Narsil\Models\Users\UserBookmark;
 
 #endregion
@@ -32,6 +33,38 @@ class UserBookmarkCollection extends ResourceCollection
                 UserBookmark::URL => $item->{UserBookmark::URL},
             ];
         });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function with($request): array
+    {
+        return [
+            'meta' => $this->getMeta(),
+        ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array<string,mixed>
+     */
+    protected function getMeta(): array
+    {
+        return [
+            'form' => app(UserBookmarkForm::class),
+            'labels' => [
+                'bookmarks.bookmarks' => trans('narsil::bookmarks.bookmarks'),
+                'bookmarks.instruction' => trans('narsil::bookmarks.instruction'),
+                'ui.add' => trans('narsil::ui.add'),
+                'ui.cancel' => trans('narsil::ui.cancel'),
+                'ui.edit' => trans('narsil::ui.edit'),
+                'ui.remove' => trans('narsil::ui.remove'),
+            ],
+        ];
     }
 
     #endregion

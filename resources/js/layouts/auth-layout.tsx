@@ -15,6 +15,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@narsil-cms/components/ui/sidebar";
+import UserBookmarks from "@narsil-cms/components/user/bookmarks";
 
 type AuthLayoutProps = {
   children: React.ReactNode & {
@@ -23,7 +24,7 @@ type AuthLayoutProps = {
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
-  const { auth } = children?.props;
+  const { auth, navigation, title } = children?.props;
 
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
@@ -57,8 +58,8 @@ function AuthLayout({ children }: AuthLayoutProps) {
               <Separator orientation="vertical" />
             </>
           ) : null}
-
           <AppBreadcrumb className="grow" />
+          <UserBookmarks breadcrumb={navigation.breadcrumb} title={title} />
           <UserMenu />
         </header>
         <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">

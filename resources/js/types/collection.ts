@@ -72,3 +72,9 @@ export type RouteNames = {
   store?: string;
   update?: string;
 };
+
+export type UserBookmark = {
+  id: number;
+  name: string;
+  url: string;
+};

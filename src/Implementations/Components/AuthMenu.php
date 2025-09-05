@@ -27,6 +27,7 @@ class AuthMenu extends AbstractComponent implements Contract
     public function __construct()
     {
         app(LabelsBag::class)
+            ->add('narsil::bookmarks.tooltip')
             ->add('narsil::accessibility.toggle_user_menu');
     }
 
