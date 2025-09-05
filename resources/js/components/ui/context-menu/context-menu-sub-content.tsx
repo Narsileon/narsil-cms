@@ -22,7 +22,7 @@ function ContextMenuSubContent({
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "origin-(--radix-context-menu-content-transform-origin)",
+        "origin-(--radix-context-menu-content-transform-origin) will-change-transform",
         className,
       )}
       {...props}

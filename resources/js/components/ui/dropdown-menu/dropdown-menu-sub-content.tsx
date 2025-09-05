@@ -22,7 +22,7 @@ function DropdownMenuSubContent({
         "data-[side=left]:slide-in-from-right-2",
         "data-[side=right]:slide-in-from-left-2",
         "data-[side=top]:slide-in-from-bottom-2",
-        "origin-(--radix-dropdown-menu-content-transform-origin)",
+        "origin-(--radix-dropdown-menu-content-transform-origin) will-change-transform",
         className,
       )}
       {...props}

@@ -25,7 +25,7 @@ function DropdownMenuContent({
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "max-h-(--radix-dropdown-menu-content-available-height)",
-          "origin-(--radix-dropdown-menu-content-transform-origin)",
+          "origin-(--radix-dropdown-menu-content-transform-origin) will-change-transform",
           className,
         )}
         sideOffset={sideOffset}

@@ -25,7 +25,7 @@ function HoverCardContent({
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95",
-          "origin-(--radix-hover-card-content-transform-origin)",
+          "origin-(--radix-hover-card-content-transform-origin) will-change-transform",
           className,
         )}
         align={align}
