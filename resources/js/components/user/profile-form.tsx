@@ -14,6 +14,7 @@ import {
   SectionTitle,
 } from "@narsil-cms/components/ui/section";
 import type { FormType } from "@narsil-cms/types/forms";
+import { Icon } from "../ui/icon";
 
 type ProfileFormProps = {
   profileForm: FormType;
@@ -27,20 +28,26 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
 
   return (
     <>
-      <Section>
-        <SectionHeader className="border-b">
-          <SectionTitle level="h2">{trans("ui.account")}</SectionTitle>
-        </SectionHeader>
-        <SectionContent>
-          <FormProvider
-            id={profileForm.id}
-            elements={profileForm.form}
-            initialValues={{
-              avatar: auth?.avatar,
-              first_name: auth?.first_name,
-              last_name: auth?.last_name,
-            }}
-            render={() => (
+      <FormProvider
+        id={profileForm.id}
+        elements={profileForm.form}
+        initialValues={{
+          avatar: auth?.avatar,
+          first_name: auth?.first_name,
+          last_name: auth?.last_name,
+        }}
+        render={() => (
+          <Section>
+            <SectionHeader className="border-b">
+              <SectionTitle level="h2">{trans("ui.account")}</SectionTitle>
+              <FormSubmit>
+                {profileForm.submitIcon ? (
+                  <Icon name={profileForm.submitIcon} />
+                ) : null}
+                {profileForm.submitLabel}
+              </FormSubmit>
+            </SectionHeader>
+            <SectionContent>
               <Form
                 className="grid-cols-12 gap-4"
                 method={profileForm.method}
@@ -49,22 +56,28 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                 {profileForm.form.map((element, index) => (
                   <FormFieldRenderer element={element} key={index} />
                 ))}
-                <FormSubmit>{profileForm.submit}</FormSubmit>
               </Form>
-            )}
-          />
-        </SectionContent>
-      </Section>
+            </SectionContent>
+          </Section>
+        )}
+      />
       <Separator />
-      <Section>
-        <SectionHeader className="border-b">
-          <SectionTitle level="h2">{trans("ui.password")}</SectionTitle>
-        </SectionHeader>
-        <SectionContent>
-          <FormProvider
-            id={updatePasswordForm.id}
-            elements={updatePasswordForm.form}
-            render={({ reset, setDefaults }) => (
+
+      <FormProvider
+        id={updatePasswordForm.id}
+        elements={updatePasswordForm.form}
+        render={({ reset, setDefaults }) => (
+          <Section>
+            <SectionHeader className="border-b">
+              <SectionTitle level="h2">{trans("ui.password")}</SectionTitle>
+              <FormSubmit>
+                {updatePasswordForm.submitIcon ? (
+                  <Icon name={updatePasswordForm.submitIcon} />
+                ) : null}
+                {updatePasswordForm.submitLabel}
+              </FormSubmit>
+            </SectionHeader>
+            <SectionContent>
               <Form
                 className="grid-cols-12 gap-4"
                 method={updatePasswordForm.method}
@@ -79,12 +92,11 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                 {updatePasswordForm.form.map((element, index) => (
                   <FormFieldRenderer element={element} key={index} />
                 ))}
-                <FormSubmit>{updatePasswordForm.submit}</FormSubmit>
               </Form>
-            )}
-          />
-        </SectionContent>
-      </Section>
+            </SectionContent>
+          </Section>
+        )}
+      />
     </>
   );
 }

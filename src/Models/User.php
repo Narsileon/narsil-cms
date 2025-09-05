@@ -17,6 +17,7 @@ use Narsil\Models\Policies\Role;
 use Narsil\Models\Policies\UserPermission;
 use Narsil\Models\Policies\UserRole;
 use Narsil\Models\Users\Session;
+use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -216,6 +217,13 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var string
      */
+    final public const RELATION_BOOKMARKS = 'bookmarks';
+
+    /**
+     * The name of the "configuration" relation.
+     *
+     * @var string
+     */
     final public const RELATION_CONFIGURATION = 'configuration';
 
     /**
@@ -246,6 +254,22 @@ class User extends Authenticatable implements MustVerifyEmail
     #endregion
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated bookmarks.
+     *
+     * @return HasMany
+     */
+    public function bookmarks(): HasMany
+    {
+        return $this
+            ->hasMany(
+                UserBookmark::class,
+                UserBookmark::USER_ID,
+                self::ID
+            );
+    }
+
 
     /**
      * Get the associated configuration.

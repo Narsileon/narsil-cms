@@ -31,7 +31,8 @@ class UpdatePasswordForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->method = MethodEnum::PUT;
-        $this->submitLabel = trans('narsil::ui.update');
+        $this->submitIcon = 'save';
+        $this->submitLabel = trans('narsil::ui.save');
         $this->url = route('user-password.update');
     }
 

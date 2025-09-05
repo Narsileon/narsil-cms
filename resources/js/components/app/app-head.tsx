@@ -1,5 +1,4 @@
 import { Head } from "@inertiajs/react";
-import { useProps } from "@narsil-cms/hooks/use-props";
 import React from "react";
 
 type AppHeadProps = React.ComponentProps<typeof Head> & {
@@ -10,20 +9,15 @@ type AppHeadProps = React.ComponentProps<typeof Head> & {
 
 function AppHead({
   children,
-  description,
+  description = "",
   follow,
   index,
-  title,
+  title = "",
 }: AppHeadProps) {
-  const pageProps = useProps();
-
   return (
     <Head>
-      <title>{pageProps.title ?? title ?? ""}</title>
-      <meta
-        name="description"
-        content={pageProps.description ?? description ?? ""}
-      />
+      <title>{title}</title>
+      <meta name="description" content={description} />
       <meta
         name="robots"
         content={`${index ? "index" : "noindex"}, ${follow ? "follow" : "nofollow"}`}

@@ -13,7 +13,9 @@ export type Block = {
 
 export type HasElement = {
   element_id: number;
-  element_type: "Narsil\\Models\\Elements\\Block" | "Narsil\\Models\\Elements\\Field";
+  element_type:
+    | "Narsil\\Models\\Elements\\Block"
+    | "Narsil\\Models\\Elements\\Field";
   element: Block | Field;
   handle: string;
   id: number;
@@ -51,7 +53,8 @@ export type FormType = {
   form: (Block | Field)[];
   id: string;
   method: string;
-  submit: string;
+  submitIcon?: IconName;
+  submitLabel: string;
   title: string;
   url: string;
 };

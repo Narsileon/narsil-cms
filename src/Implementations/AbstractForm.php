@@ -75,6 +75,15 @@ abstract class AbstractForm implements Form
     }
 
     /**
+     * The label of the submit icon.
+     */
+    public ?string $submitIcon = null
+    {
+        get => $this->submitIcon;
+        set(?string $value) => $this->submitIcon = $value;
+    }
+
+    /**
      * The label of the submit button.
      */
     public string $submitLabel = ''
@@ -115,7 +124,8 @@ abstract class AbstractForm implements Form
             'form' => static::form(),
             'id'     => $this->id,
             'method' => $this->method,
-            'submit' => $this->submitLabel,
+            'submitIcon' => $this->submitIcon,
+            'submitLabel' => $this->submitLabel,
             'title'  => $this->title,
             'url'    => $this->url,
         ];

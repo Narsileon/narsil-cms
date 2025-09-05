@@ -123,7 +123,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                     />
                   </CardContent>
                   <CardFooter className="justify-end border-t">
-                    <FormSubmit>{form.submit}</FormSubmit>
+                    <FormSubmit>{form.submitLabel}</FormSubmit>
                   </CardFooter>
                 </Card>
               </Form>

@@ -57,7 +57,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => UserConfiguration::LOCALE,
-                Field::NAME => trans('narsil::validation.attributes.locale'),
+                Field::NAME => trans('narsil::validation.attributes.language'),
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
                     ->options($localeOptions)

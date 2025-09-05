@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\User;
 use Narsil\Models\Users\PasswordResetToken;
 use Narsil\Models\Users\Session;
+use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
 
 #endregion
@@ -37,6 +38,10 @@ return new class extends Migration
         {
             $this->createUserConfigurationsTable();
         }
+        if (!Schema::hasTable(UserBookmark::TABLE))
+        {
+            $this->createUserBookmarksTable();
+        }
     }
 
     /**
@@ -44,6 +49,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(UserBookmark::TABLE);
         Schema::dropIfExists(UserConfiguration::TABLE);
         Schema::dropIfExists(Session::TABLE);
         Schema::dropIfExists(PasswordResetToken::TABLE);
@@ -98,6 +104,28 @@ return new class extends Migration
             $table
                 ->integer(Session::LAST_ACTIVITY)
                 ->index();
+        });
+    }
+
+    /**
+     * @return void
+     */
+    private function createUserBookmarksTable(): void
+    {
+        Schema::create(UserBookmark::TABLE, function (Blueprint $table)
+        {
+            $table
+                ->id(UserBookmark::ID);
+            $table
+                ->foreignId(UserBookmark::USER_ID)
+                ->constrained(User::TABLE, User::ID)
+                ->cascadeOnDelete();
+            $table
+                ->string(UserBookmark::NAME);
+            $table
+                ->string(UserBookmark::URL);
+            $table
+                ->timestamps();
         });
     }
 

@@ -1,7 +1,7 @@
+import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { ModalRenderer } from "@narsil-cms/components/ui/modal";
 import { Separator } from "@narsil-cms/components/ui/separator";
 import { Toaster } from "@narsil-cms/components/ui/toaster";
-import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useEffect, useRef } from "react";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import AppBreadcrumb from "@narsil-cms/components/app/app-breadcrumb";
@@ -17,11 +17,14 @@ import {
 } from "@narsil-cms/components/ui/sidebar";
 
 type AuthLayoutProps = {
-  children: React.ReactNode;
+  children: React.ReactNode & {
+    props: GlobalProps;
+  };
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
-  const auth = useAuth();
+  const { auth } = children?.props;
+
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
 
