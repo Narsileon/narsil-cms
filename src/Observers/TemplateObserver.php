@@ -4,6 +4,7 @@ namespace Narsil\Observers;
 
 #region USE
 
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\MigrationService;
@@ -28,6 +29,11 @@ class TemplateObserver
         $this->createPermissions($template->{Template::HANDLE});
     }
 
+    /**
+     * @param Template $template
+     *
+     * @return void
+     */
     public function saved(Template $template): void
     {
         MigrationService::syncTable($template);
@@ -40,10 +46,10 @@ class TemplateObserver
     protected function createPermissions(string $handle): void
     {
         $permissions = [
-            'view',
-            'create',
-            'update',
-            'delete',
+            PermissionEnum::VIEW,
+            PermissionEnum::CREATE,
+            PermissionEnum::UPDATE,
+            PermissionEnum::DELETE,
         ];
 
         foreach ($permissions as $permission)

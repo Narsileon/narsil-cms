@@ -40,6 +40,4 @@ return [
     Site::TABLE => SiteTable::class,
     Template::TABLE => TemplateTable::class,
     User::TABLE => UserTable::class,
-
-    'collections' => Narsil\Implementations\Tables\CollectionTable::class,
 ];
