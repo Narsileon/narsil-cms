@@ -14,6 +14,7 @@ use Narsil\Http\Controllers\SessionController;
 use Narsil\Http\Controllers\SiteController;
 use Narsil\Http\Controllers\SiteGroupController;
 use Narsil\Http\Controllers\TemplateController;
+use Narsil\Http\Controllers\UserBookmarkController;
 use Narsil\Http\Controllers\UserConfigurationController;
 use Narsil\Http\Controllers\UserController;
 use Narsil\Models\Elements\Block;
@@ -37,12 +38,12 @@ function resource(string $table, string $controller, array $except = [])
 {
     $slug = Str::slug($table);
 
-    Route::controller($controller)->group(function () use ($slug, $controller)
+    Route::controller($controller)->group(function () use ($controller, $except, $slug)
     {
         Route::delete($slug, 'destroyMany')
             ->name("$slug.destroyMany");
         Route::resource($slug, $controller)
-            ->except(['show']);
+            ->except($except);
     });
 }
 
@@ -108,6 +109,14 @@ Route::middleware([
         #endregion
 
         #region USERS
+
+        Route::resource('/user-bookmarks', UserBookmarkController::class)
+            ->only([
+                'index',
+                'store',
+                'update',
+                'destroy',
+            ]);
 
         Route::delete('/sessions', SessionController::class)
             ->name('sessions.delete');
