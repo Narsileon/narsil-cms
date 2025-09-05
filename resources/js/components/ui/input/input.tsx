@@ -20,8 +20,8 @@ function Input({
     <div
       data-slot="input"
       className={cn(
-        "border-input bg-input/25 flex h-9 w-full items-center justify-between gap-2 rounded-md border px-2 text-sm shadow-xs",
-        "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]",
+        "border-input bg-input/25 flex h-9 w-full items-center justify-between gap-2 rounded-md border px-2 text-sm shadow-xs duration-300",
+        "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-2",
         disabled && "pointer-events-none cursor-not-allowed opacity-50",
         className,
       )}

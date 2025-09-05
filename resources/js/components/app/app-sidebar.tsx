@@ -97,7 +97,7 @@ function AppSidebar({ ...props }: AppSidebarProps) {
           onClick={toggleSidebar}
         >
           <Icon
-            className={cn("duration-200", open && "rotate-180")}
+            className={cn("duration-300", open && "rotate-180")}
             name="chevron-left"
           />
           {open && trans("accessibility.close_sidebar")}

@@ -133,7 +133,7 @@ function Combobox({
             ? getSelectOption(option, labelPath)
             : (placeholder ?? trans("placeholders.search"))}
           <Icon
-            className={cn("ml-2 shrink-0 duration-200", open && "rotate-180")}
+            className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
             name="chevron-down"
           />
         </Button>
@@ -161,7 +161,9 @@ function Combobox({
                   .map(({ index, key, size, start }) => {
                     return (
                       <ComboboxItem
-                        className={cn("absolute top-0 left-0 h-9 w-full")}
+                        className={cn(
+                          "absolute top-0 left-0 h-9 w-full will-change-transform",
+                        )}
                         displayValue={displayValue}
                         item={filteredOptions[index]}
                         labelPath={labelPath}

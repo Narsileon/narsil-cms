@@ -50,7 +50,7 @@ function SortableTableRow({
         "h-9",
         isDragging && "opacity-50",
         placeholder &&
-          "border-dashed bg-transparent opacity-50 hover:opacity-100",
+          "border-dashed bg-transparent opacity-50 will-change-transform hover:opacity-100",
         onClick && "cursor-pointer",
         className,
       )}

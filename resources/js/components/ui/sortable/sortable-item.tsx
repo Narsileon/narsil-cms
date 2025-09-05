@@ -91,7 +91,7 @@ function SortableItem({
         "overflow-hidden",
         isDragging && "opacity-50",
         placeholder &&
-          "border-dashed bg-transparent opacity-50 hover:opacity-100",
+          "border-dashed bg-transparent opacity-50 will-change-transform hover:opacity-100",
         className,
       )}
       open={open}
@@ -137,7 +137,7 @@ function SortableItem({
                       onClick={() => setCollapsed(!open)}
                     >
                       <Icon
-                        className={cn("duration-200", open && "rotate-180")}
+                        className={cn("duration-300", open && "rotate-180")}
                         name="chevron-down"
                       />
                     </Button>

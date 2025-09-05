@@ -27,7 +27,7 @@ function SheetContent({
         className={cn(
           "bg-background fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
-          "data-[state=closed]:duration-300 data-[state=open]:duration-500",
+          "data-[state=closed]:duration-300 data-[state=open]:duration-300",
           side === "right" &&
             cn(
               "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",

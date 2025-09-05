@@ -21,7 +21,7 @@ function ContextMenuContent({ className, ...props }: ContextMenuContentProps) {
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "max-h-(--radix-context-menu-content-available-height)",
-          "origin-(--radix-context-menu-content-transform-origin)",
+          "origin-(--radix-context-menu-content-transform-origin) will-change-transform",
           className,
         )}
         {...props}

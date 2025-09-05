@@ -20,7 +20,7 @@ function SidebarMenuAction({
       data-slot="sidebar-menu-action"
       data-sidebar="menu-action"
       className={cn(
-        "text-sidebar-foreground ring-sidebar-ring absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform",
+        "text-sidebar-foreground ring-sidebar-ring absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform will-change-transform",
         "after:absolute after:-inset-2 md:after:hidden",
         "focus-visible:ring-2",
         "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",

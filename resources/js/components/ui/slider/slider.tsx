@@ -59,8 +59,8 @@ function Slider({
           className={cn(
             "border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow]",
             "disabled:pointer-events-none disabled:opacity-50",
-            "focus-visible:ring-4 focus-visible:outline-hidden",
-            "hover:ring-4",
+            "focus-visible:ring-2 focus-visible:outline-hidden",
+            "hover:ring-2",
           )}
           key={index}
         />

@@ -28,7 +28,7 @@ function SelectContent({
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
           "max-h-(--radix-select-content-available-height)",
-          "origin-(--radix-select-content-transform-origin)",
+          "origin-(--radix-select-content-transform-origin) will-change-transform",
           position === "popper" &&
             cn(
               "data-[side=bottom]:translate-y-1",

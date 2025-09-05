@@ -8,7 +8,7 @@ const navigationMenuTriggerStyle = cva(
   cn(
     "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium outline-none transition-[color,box-shadow]",
     "disabled:pointer-events-none disabled:opacity-50",
-    "focus-visible:ring-[3px] focus-visible:outline-1 focus-visible:ring-ring/50",
+    "focus-visible:ring-2 focus-visible:outline-1 focus-visible:ring-ring/50",
     "focus:text-accent-foreground",
     "hover:bg-accent hover:text-accent-foreground focus:bg-accent",
     "data-[state=open]:focus:bg-accent",
@@ -35,7 +35,7 @@ function NavigationMenuTrigger({
       {children}
       <Icon
         className={cn(
-          "relative top-[1px] ml-1 size-3 transition duration-200",
+          "relative top-[1px] ml-1 size-3 transition duration-300",
           "group-data-[state=open]:rotate-180",
         )}
         aria-hidden="true"

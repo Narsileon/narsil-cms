@@ -16,7 +16,7 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
         "aria-invalid:ring-destructive/20 aria-invalid:border-destructive",
         "dark:aria-invalid:ring-destructive/40 dark:bg-input/30",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
         className,
       )}
       {...props}

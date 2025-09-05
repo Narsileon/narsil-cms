@@ -16,7 +16,7 @@ function Checkbox({ className, ...props }: CheckboxProps) {
         "dark:bg-input/30 data-[state=checked]:bg-primary",
         "data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
         className,
       )}
       {...props}

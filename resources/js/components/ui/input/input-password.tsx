@@ -22,7 +22,7 @@ function InputPassword({ type, ...props }: InputPasswordProps) {
     <Input type={show ? "text" : type} {...props}>
       <Tooltip tooltip={tooltip}>
         <Icon
-          className="cursor-pointer opacity-50"
+          className="cursor-pointer opacity-50 duration-300 hover:opacity-100"
           aria-label={tooltip}
           name={show ? "eye-off" : "eye"}
           onClick={() => setShow(!show)}

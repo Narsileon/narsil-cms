@@ -66,7 +66,7 @@ function FormFieldRenderer({
               <Heading level="h2">{finalName}</Heading>
               <Icon
                 className={cn(
-                  "duration-200",
+                  "duration-300",
                   "group-data-[state=open]:rotate-180",
                 )}
                 name="chevron-down"

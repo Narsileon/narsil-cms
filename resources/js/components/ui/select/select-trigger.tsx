@@ -25,7 +25,7 @@ function SelectTrigger({
         "dark:aria-invalid:ring-destructive/40",
         "dark:bg-input/30 dark:hover:bg-input/50",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
         "data-[placeholder]:text-muted-foreground",
         "data-[size=default]:h-9",
         "data-[size=sm]:h-8",
