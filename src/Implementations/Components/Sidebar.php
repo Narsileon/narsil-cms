@@ -69,7 +69,7 @@ class Sidebar extends AbstractComponent implements Contract
                     new NavigationItem(route('fields.index'), trans('narsil::tables.fields'))
                         ->icon('input'),
                 ]),
-            new NavigationGroup(trans('narsil::tables.users'))
+            new NavigationGroup(trans('narsil::ui.management'))
                 ->children([
                     new NavigationItem(route('users.index'), trans('narsil::tables.users'))
                         ->icon('users'),

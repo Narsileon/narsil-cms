@@ -40,6 +40,7 @@ return [
     'log_in'            => 'Log in',
     'log_out'           => 'Log out',
     'main'              => 'Main',
+    'management'        => 'Management',
     'module'            => 'Module',
     'modules'           => 'Modules',
     'password'          => 'Password',
