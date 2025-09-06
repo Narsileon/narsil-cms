@@ -5,6 +5,7 @@ import { Icon } from "@narsil-cms/components/ui/icon";
 import { debounce, isArray, lowerCase } from "lodash";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useVirtualizer } from "@tanstack/react-virtual";
+import ComboboxBadge from "./combobox-badge";
 import ComboboxItem from "./combobox-item";
 import {
   Command,
@@ -19,8 +20,6 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
 import type { SelectOption } from "@narsil-cms/types/forms";
-import { Badge } from "../badge";
-import ComboboxBadge from "./combobox-badge";
 
 type ComboboxProps = {
   className?: string;
