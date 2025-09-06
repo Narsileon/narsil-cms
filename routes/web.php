@@ -119,12 +119,16 @@ Route::middleware([
                 ->name('collections.store');
             Route::get('collections/{collection}/create', 'create')
                 ->name('collections.create');
+            Route::post('collections/{collection}', 'replicateMany')
+                ->name('collections.replicateMany');
             Route::patch('collections/{collection}/{id}', 'update')
                 ->name('collections.update');
             Route::delete('collections/{collection}/{id}', 'destroy')
                 ->name('collections.destroy');
             Route::get('collections/{collection}/{id}/edit', 'edit')
                 ->name('collections.edit');
+            Route::post('collections/{collection}/{id}/replicate', 'replicate')
+                ->name('collections.replicate');
         });
 
         #endregion
