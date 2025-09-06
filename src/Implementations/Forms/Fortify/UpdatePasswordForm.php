@@ -51,32 +51,32 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => TextInput::class,
                 Field::SETTINGS => app(TextInput::class)
-                    ->autoComplete(AutoCompleteEnum::USERNAME)
-                    ->type('hidden'),
+                    ->setAutoComplete(AutoCompleteEnum::USERNAME)
+                    ->setType('hidden'),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.current_password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
-                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
-                    ->required(true),
+                    ->setAutoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
+                    ->setRequired(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                    ->required(true),
+                    ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                    ->setRequired(true),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                    ->required(true),
+                    ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                    ->setRequired(true),
             ]),
         ];
     }

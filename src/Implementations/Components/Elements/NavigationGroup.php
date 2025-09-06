@@ -33,7 +33,7 @@ class NavigationGroup extends AbstractComponentElement
     /**
      * @param array $children
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function children(array $children): static
     {
@@ -45,7 +45,7 @@ class NavigationGroup extends AbstractComponentElement
     /**
      * @param string $icon
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function icon(string $icon): static
     {
@@ -57,7 +57,7 @@ class NavigationGroup extends AbstractComponentElement
     /**
      * @param string $label
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function label(string $label): static
     {

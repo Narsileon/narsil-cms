@@ -19,25 +19,31 @@ interface TableInput extends Contract
     #region • FLUENT METHODS
 
     /**
+     * Set the columns.
+     *
      * @param array $columns
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
-    public function columns(array $columns): static;
+    public function setColumns(array $columns): static;
 
     /**
+     * Set the default value.
+     *
+     * @param array $value
+     *
+     * @return static
+     */
+    public function setDefaultValue(array $value): static;
+
+    /**
+     * Set the placeholder attribute.
+     *
      * @param string $placeholder
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
-    public function placeholder(string $placeholder): static;
-
-    /**
-     * @param array $value The default value.
-     *
-     * @return static Returns the current object instance.
-     */
-    public function value(array $value): static;
+    public function setPlaceholder(string $placeholder): static;
 
     #endregion
 

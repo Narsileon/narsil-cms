@@ -4,7 +4,6 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\BuilderElement;
 use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\BlockElementForm;
@@ -64,7 +63,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -73,7 +72,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -82,7 +81,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.sections'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->form(app(TemplateSectionForm::class)->jsonSerialize())
+                            ->setForm(app(TemplateSectionForm::class)->jsonSerialize())
                             ->setIntermediate(
                                 label: trans('narsil::ui.section'),
                                 optionLabel: TemplateSection::NAME,
@@ -92,7 +91,7 @@ class TemplateForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.elements'),
                                     Field::TYPE => RelationsInput::class,
                                     Field::SETTINGS => app(RelationsInput::class)
-                                        ->form(app(BlockElementForm::class)->jsonSerialize())
+                                        ->setForm(app(BlockElementForm::class)->jsonSerialize())
                                         ->addOption(
                                             identifier: Block::TABLE,
                                             label: trans('narsil::models.block'),
@@ -109,10 +108,10 @@ class TemplateForm extends AbstractForm implements Contract
                                             options: $fieldOptions,
                                             routes: RouteService::getNames(Field::TABLE),
                                         )
-                                        ->widthOptions($widthOptions),
+                                        ->setWidthOptions($widthOptions),
                                 ])
                             )
-                            ->placeholder(trans('narsil::ui.add_section')),
+                            ->setPlaceholder(trans('narsil::ui.add_section')),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -129,7 +128,7 @@ class TemplateForm extends AbstractForm implements Contract
                                 options: $setOptions,
                                 routes: RouteService::getNames(Block::TABLE),
                             )
-                            ->unique(true),
+                            ->setUnique(true),
                     ]),
                 ]),
             ]),
@@ -199,12 +198,12 @@ class TemplateForm extends AbstractForm implements Contract
     protected static function getWidthOptions(): array
     {
         return [
-            new SelectOption('25%', 25),
-            new SelectOption('33%', 33),
-            new SelectOption('50%', 50),
-            new SelectOption('67%', 67),
-            new SelectOption('75%', 75),
-            new SelectOption('100%', 100),
+            new SelectOption('25%', '25'),
+            new SelectOption('33%', '33'),
+            new SelectOption('50%', '50'),
+            new SelectOption('67%', '67'),
+            new SelectOption('75%', '75'),
+            new SelectOption('100%', '100'),
         ];
     }
 

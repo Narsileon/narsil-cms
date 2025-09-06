@@ -37,7 +37,7 @@ class NavigationItem extends AbstractComponentElement
     /**
      * @param string $href
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function href(string $href): static
     {
@@ -49,7 +49,7 @@ class NavigationItem extends AbstractComponentElement
     /**
      * @param string $icon
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function icon(string $icon): static
     {
@@ -61,7 +61,7 @@ class NavigationItem extends AbstractComponentElement
     /**
      * @param string $label
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function label(string $label): static
     {
@@ -73,7 +73,7 @@ class NavigationItem extends AbstractComponentElement
     /**
      * @param MethodEnum $method
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function method(MethodEnum $method): static
     {
@@ -85,7 +85,7 @@ class NavigationItem extends AbstractComponentElement
     /**
      * @param boolean $modal
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     final public function modal(bool $modal): static
     {

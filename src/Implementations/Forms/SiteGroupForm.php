@@ -50,7 +50,7 @@ class SiteGroupForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ]),
                 ]),
             ]),

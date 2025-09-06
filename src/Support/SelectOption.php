@@ -18,11 +18,11 @@ class SelectOption implements JsonSerializable
 
     /**
      * @param string $label
-     * @param mixed $value
+     * @param string $value
      *
      * @return void
      */
-    public function __construct(string $label, mixed $value)
+    public function __construct(string $label, string $value)
     {
         $this->option = [
             'label' => $label,

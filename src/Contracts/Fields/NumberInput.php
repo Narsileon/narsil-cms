@@ -19,39 +19,49 @@ interface NumberInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param string $max The maximum number.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param float|integer $value
+     *
+     * @return static
      */
-    public function max(string $max): static;
+    public function setDefaultValue(float|int $value): static;
 
     /**
-     * @param string $min The minimum number.
+     * Set the max attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $max e.g. "100".
+     *
+     * @return static
      */
-    public function min(string $min): static;
+    public function setMax(string $max): static;
 
     /**
-     * @param boolean $required Must the input have a value?
+     * Set the min attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $min e.g. "0".
+     *
+     * @return static
      */
-    public function required(bool $required): static;
+    public function setMin(string $min): static;
 
     /**
-     * @param string $step The interval between two numbers.
+     * Set the required attribute.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $required
+     *
+     * @return static
      */
-    public function step(string $step): static;
+    public function setRequired(bool $required): static;
 
     /**
-     * @param float|integer $value The default value
+     * Set the step attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $step e.g. "1".
+     *
+     * @return static
      */
-    public function value(float|int $value): static;
+    public function setStep(string $step): static;
 
     #endregion
 

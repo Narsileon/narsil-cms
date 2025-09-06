@@ -69,8 +69,8 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.email'),
                                     Field::TYPE => EmailInput::class,
                                     Field::SETTINGS => app(EmailInput::class)
-                                        ->icon('email')
-                                        ->required(true),
+                                        ->setIcon('email')
+                                        ->setRequired(true),
                                 ])
                             ]),
                             new BlockElement([
@@ -79,8 +79,8 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.password'),
                                     Field::TYPE => PasswordInput::class,
                                     Field::SETTINGS => app(PasswordInput::class)
-                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                                        ->required($isPost),
+                                        ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                                        ->setRequired($isPost),
                                 ])
                             ]),
                             new BlockElement([
@@ -89,8 +89,8 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                                     Field::TYPE => PasswordInput::class,
                                     Field::SETTINGS => app(PasswordInput::class)
-                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                                        ->required($isPost),
+                                        ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
+                                        ->setRequired($isPost),
                                 ])
                             ]),
                         ],
@@ -106,9 +106,9 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.last_name'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
-                                        ->autoComplete(AutoCompleteEnum::FAMILY_NAME)
-                                        ->icon('circle-user')
-                                        ->required(true),
+                                        ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
+                                        ->setIcon('circle-user')
+                                        ->setRequired(true),
                                 ]),
                             ]),
                             new BlockElement([
@@ -117,9 +117,9 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.first_name'),
                                     Field::TYPE => TextInput::class,
                                     Field::SETTINGS => app(TextInput::class)
-                                        ->autoComplete(AutoCompleteEnum::GIVEN_NAME)
-                                        ->icon('circle-user')
-                                        ->required(true),
+                                        ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
+                                        ->setIcon('circle-user')
+                                        ->setRequired(true),
                                 ]),
                             ]),
                             new BlockElement([
@@ -128,8 +128,8 @@ class UserForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.avatar'),
                                     Field::TYPE => FileInput::class,
                                     Field::SETTINGS => app(FileInput::class)
-                                        ->accept('image/*')
-                                        ->icon('image'),
+                                        ->setAccept('image/*')
+                                        ->setIcon('image'),
                                 ]),
                             ]),
                         ],
@@ -147,7 +147,7 @@ class UserForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.roles'),
                             Field::TYPE => CheckboxInput::class,
                             Field::SETTINGS => app(CheckboxInput::class)
-                                ->options(static::getRoleOptions($roleOptions)),
+                                ->setOptions(static::getRoleOptions($roleOptions)),
                         ]),
                     ]),
                 ],

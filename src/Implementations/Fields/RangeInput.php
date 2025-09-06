@@ -24,7 +24,7 @@ class RangeInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->value([0]);
+        $this->setDefaultValue([0]);
     }
 
     #endregion
@@ -38,33 +38,33 @@ class RangeInput extends AbstractField implements Contract
     {
         return [
             new Field([
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil::validation.attributes.default_value'),
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
+                    ->setDefaultValue(0),
+            ]),
+            new Field([
                 Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil::validation.attributes.min'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->value(0),
+                    ->setDefaultValue(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil::validation.attributes.max'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->value(100),
+                    ->setDefaultValue(100),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.step" : 'step',
                 Field::NAME => trans('narsil::validation.attributes.step'),
                 Field::TYPE => NumberInput::class,
                 Field::SETTINGS => app(NumberInput::class)
-                    ->min(0)
-                    ->value(1),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::NAME => trans('narsil::validation.attributes.default_value'),
-                Field::TYPE => NumberInput::class,
-                Field::SETTINGS => app(NumberInput::class)
-                    ->value(0),
+                    ->setMin(0)
+                    ->setDefaultValue(1),
             ]),
         ];
     }
@@ -82,9 +82,9 @@ class RangeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function max(float|int $max): static
+    final public function setDefaultValue(array $value): static
     {
-        $this->settings['max'] = $max;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -92,9 +92,9 @@ class RangeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function min(float|int $min): static
+    final public function setMax(float|int $max): static
     {
-        $this->settings['min'] = $min;
+        $this->props['max'] = $max;
 
         return $this;
     }
@@ -102,9 +102,9 @@ class RangeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function step(float|int $step): static
+    final public function setMin(float|int $min): static
     {
-        $this->settings['step'] = $step;
+        $this->props['min'] = $min;
 
         return $this;
     }
@@ -112,9 +112,9 @@ class RangeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(array $value): static
+    final public function setStep(float|int $step): static
     {
-        $this->settings['value'] = $value;
+        $this->props['step'] = $step;
 
         return $this;
     }

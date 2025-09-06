@@ -60,7 +60,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::ui.default_name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -69,7 +69,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::ui.default_handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -78,7 +78,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.elements'),
                         Field::TYPE => RelationsInput::class,
                         Field::SETTINGS => app(RelationsInput::class)
-                            ->form(app(BlockElementForm::class)->jsonSerialize())
+                            ->setForm(app(BlockElementForm::class)->jsonSerialize())
                             ->addOption(
                                 identifier: Block::TABLE,
                                 label: trans('narsil::models.block'),
@@ -95,7 +95,7 @@ class BlockForm extends AbstractForm implements Contract
                                 options: $fieldOptions,
                                 routes: RouteService::getNames(Field::TABLE),
                             )
-                            ->widthOptions($widthOptions),
+                            ->setWidthOptions($widthOptions),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -112,7 +112,7 @@ class BlockForm extends AbstractForm implements Contract
                                 options: $setOptions,
                                 routes: RouteService::getNames(Block::TABLE),
                             )
-                            ->unique(true),
+                            ->setUnique(true),
                     ]),
                 ]),
             ]),
@@ -182,12 +182,12 @@ class BlockForm extends AbstractForm implements Contract
     protected static function getWidthOptions(): array
     {
         return [
-            new SelectOption('25%', 25),
-            new SelectOption('33%', 33),
-            new SelectOption('50%', 50),
-            new SelectOption('67%', 67),
-            new SelectOption('75%', 75),
-            new SelectOption('100%', 100),
+            new SelectOption('25%', '25'),
+            new SelectOption('33%', '33'),
+            new SelectOption('50%', '50'),
+            new SelectOption('67%', '67'),
+            new SelectOption('75%', '75'),
+            new SelectOption('100%', '100'),
         ];
     }
 

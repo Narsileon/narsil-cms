@@ -25,7 +25,7 @@ class CheckboxInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->value(false);
+        $this->setDefaultValue(false);
     }
 
     #endregion
@@ -49,23 +49,23 @@ class CheckboxInput extends AbstractField implements Contract
                 Field::NAME => trans('narsil::validation.attributes.options'),
                 Field::TYPE => TableInput::class,
                 Field::SETTINGS => app(TableInput::class)
-                    ->columns([
+                    ->setColumns([
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
                             Field::NAME => trans('narsil::validation.attributes.value'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
-                                ->required(true),
+                                ->setRequired(true),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
                             Field::NAME => trans('narsil::validation.attributes.label'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
-                                ->required(true),
+                                ->setRequired(true),
                         ]),
                     ])
-                    ->placeholder(trans('narsil::ui.add')),
+                    ->setPlaceholder(trans('narsil::ui.add')),
             ]),
         ];
     }
@@ -83,9 +83,9 @@ class CheckboxInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function options(array $options): static
+    final public function setDefaultValue(array|bool $value): static
     {
-        $this->settings['options'] = $options;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -93,9 +93,9 @@ class CheckboxInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function required(bool $required): static
+    final public function setOptions(array $options): static
     {
-        $this->settings['required'] = $required;
+        $this->props['options'] = $options;
 
         return $this;
     }
@@ -103,9 +103,9 @@ class CheckboxInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(array|bool $value): static
+    final public function setRequired(bool $required): static
     {
-        $this->settings['value'] = $value;
+        $this->props['required'] = $required;
 
         return $this;
     }

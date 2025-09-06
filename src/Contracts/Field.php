@@ -25,11 +25,13 @@ interface Field
     #region • FLUENT METHODS
 
     /**
+     * Set the className attribute.
+     *
      * @param string $className
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
-    public function className(string $className): static;
+    public function setClassName(string $className): static;
 
     #endregion
 

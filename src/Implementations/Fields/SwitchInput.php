@@ -23,7 +23,7 @@ class SwitchInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->checked(false);
+        $this->setDefaultValue(false);
     }
 
     #endregion
@@ -58,9 +58,9 @@ class SwitchInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function checked(bool $value): static
+    final public function setDefaultValue(array|bool $value): static
     {
-        $this->settings['checked'] = $value;
+        $this->props['value'] = $value;
 
         return $this;
     }

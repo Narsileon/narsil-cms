@@ -18,9 +18,11 @@ abstract class AbstractField implements Field, JsonSerializable
     #region PROPERTIES
 
     /**
-     * @var array The settings of the field.
+     * The props of the field.
+     *
+     * @var array The props of the field.
      */
-    protected array $settings = [];
+    protected array $props = [];
 
     #endregion
 
@@ -31,7 +33,7 @@ abstract class AbstractField implements Field, JsonSerializable
      */
     public function jsonSerialize(): mixed
     {
-        return $this->settings;
+        return $this->props;
     }
 
     #region • FLUENT METHODS
@@ -39,19 +41,9 @@ abstract class AbstractField implements Field, JsonSerializable
     /**
      * {@inheritDoc}
      */
-    final public function className(string $className): static
+    final public function setClassName(string $className): static
     {
-        $this->settings['className'] = $className;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function type(string $type): static
-    {
-        $this->settings['type'] = $type;
+        $this->props['className'] = $className;
 
         return $this;
     }

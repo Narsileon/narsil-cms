@@ -20,60 +20,76 @@ interface TextInput extends Contract
     #region • FLUENT METHODS
 
     /**
+     * Set the autocomplete attribute.
+     *
      * @param AutoCompleteEnum $autoComplete
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
-    public function autoComplete(AutoCompleteEnum $autoComplete): static;
+    public function setAutoComplete(AutoCompleteEnum $autoComplete): static;
 
     /**
-     * @param string $icon The name of the icon.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param string $value
+     *
+     * @return static
      */
-    public function icon(string $icon): static;
+    public function setDefaultvalue(string $value): static;
 
     /**
-     * @param string $maxLength The maximum length of the string.
+     * Set the icon attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $icon
+     *
+     * @return static
      */
-    public function maxLength(string $maxLength): static;
+    public function setIcon(string $icon): static;
 
     /**
-     * @param string $minLength The minimum length of the string.
+     * Set the max length attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $maxLength e.g. "255"
+     *
+     * @return static
      */
-    public function minLength(string $minLength): static;
+    public function setMaxLength(string $maxLength): static;
 
     /**
-     * @param string $placeholder The text displayed when the input has no value.
+     * Set the min length attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $minLength e.g. "8"
+     *
+     * @return static
      */
-    public function placeholder(string $placeholder): static;
+    public function setMinLength(string $minLength): static;
 
     /**
-     * @param boolean $required Must the input have a value?
+     * Set the placeholder attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $placeholder
+     *
+     * @return static
      */
-    public function required(bool $required): static;
+    public function setPlaceholder(string $placeholder): static;
 
     /**
-     * @param string $type The type of the input.
+     * Set the required attribute.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $required
+     *
+     * @return static
      */
-    public function type(string $type): static;
+    public function setRequired(bool $required): static;
 
     /**
-     * @param string $value The default value.
+     * Set the type attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $type
+     *
+     * @return static
      */
-    public function value(string $value): static;
+    public function setType(string $type): static;
 
     #endregion
 

@@ -22,8 +22,7 @@ class TableInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->type('password');
-        $this->value([]);
+        $this->setDefaultValue([]);
     }
 
     #endregion
@@ -51,9 +50,9 @@ class TableInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function columns(array $columns): static
+    final public function setColumns(array $columns): static
     {
-        $this->settings['columns'] = $columns;
+        $this->props['columns'] = $columns;
 
         return $this;
     }
@@ -61,9 +60,9 @@ class TableInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function placeholder(string $placeholder): static
+    final public function setDefaultValue(array $value): static
     {
-        $this->settings['placeholder'] = $placeholder;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -71,9 +70,9 @@ class TableInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(array $value): static
+    final public function setPlaceholder(string $placeholder): static
     {
-        $this->settings['value'] = $value;
+        $this->props['placeholder'] = $placeholder;
 
         return $this;
     }

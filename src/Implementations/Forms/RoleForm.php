@@ -57,7 +57,8 @@ class RoleForm extends AbstractForm implements Contract
                     Field::HANDLE => Role::RELATION_PERMISSIONS,
                     Field::NAME => trans("narsil::tables.{$category}"),
                     Field::TYPE => CheckboxInput::class,
-                    Field::SETTINGS => app(CheckboxInput::class)->options($options),
+                    Field::SETTINGS => app(CheckboxInput::class)
+                        ->setOptions($options),
                 ]),
             ]);
         })->values()->toArray();
@@ -70,7 +71,7 @@ class RoleForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ]),
                 ]),
             ]),

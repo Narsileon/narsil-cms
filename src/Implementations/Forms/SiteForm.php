@@ -60,7 +60,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -69,7 +69,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -78,9 +78,9 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.language'),
                         Field::TYPE => SelectInput::class,
                         Field::SETTINGS => app(SelectInput::class)
-                            ->options($languageOptions)
-                            ->placeholder(trans('narsil::placeholders.search'))
-                            ->required(true),
+                            ->setOptions($languageOptions)
+                            ->setPlaceholder(trans('narsil::placeholders.search'))
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -89,8 +89,8 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.group'),
                         Field::TYPE => SelectInput::class,
                         Field::SETTINGS => app(SelectInput::class)
-                            ->options($groupOptions)
-                            ->placeholder(trans('narsil::placeholders.search')),
+                            ->setOptions($groupOptions)
+                            ->setPlaceholder(trans('narsil::placeholders.search')),
                     ])
                 ]),
             ]),
@@ -101,7 +101,7 @@ class SiteForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.enabled'),
                         Field::TYPE => SwitchInput::class,
                         Field::SETTINGS => app(SwitchInput::class)
-                            ->checked(true),
+                            ->setDefaultValue(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -134,7 +134,7 @@ class SiteForm extends AbstractForm implements Contract
 
         foreach ($groups as $group)
         {
-            $options[] = new SelectOption($group->{SiteGroup::NAME}, $group->{SiteGroup::ID});
+            $options[] = new SelectOption($group->{SiteGroup::NAME}, (string)$group->{SiteGroup::ID});
         }
 
         return $options;

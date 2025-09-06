@@ -19,32 +19,40 @@ interface TimeInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param string $max The latest time.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param string $value e.g. "12:00"
+     *
+     * @return static
      */
-    public function max(string $max): static;
+    public function setDefaultValue(string $value): static;
 
     /**
-     * @param string $min The earliest time.
+     * Set the max attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $max e.g. "23:59"
+     *
+     * @return static
      */
-    public function min(string $min): static;
+    public function setMax(string $max): static;
 
     /**
-     * @param boolean $required Must the input have a value?
+     * Set the min attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $min e.g. "00:00"
+     *
+     * @return static
      */
-    public function required(bool $required): static;
+    public function setMin(string $min): static;
 
     /**
-     * @param string $value The default value.
+     * Set the required attribute.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $required
+     *
+     * @return static
      */
-    public function value(string $value): static;
+    public function setRequired(bool $required): static;
 
     #endregion
 

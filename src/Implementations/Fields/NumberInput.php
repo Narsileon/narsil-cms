@@ -23,8 +23,9 @@ class NumberInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->type('number');
-        $this->value(0);
+        $this->props['type'] = 'number';
+
+        $this->setDefaultValue(0);
     }
 
     #endregion
@@ -38,32 +39,32 @@ class NumberInput extends AbstractField implements Contract
     {
         return [
             new Field([
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil::validation.attributes.default_value'),
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(Contract::class),
+            ]),
+            new Field([
                 Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil::validation.attributes.min'),
                 Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
+                Field::SETTINGS => app(Contract::class)
+                    ->setDefaultValue(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'settings.max',
                 Field::NAME => trans('narsil::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->value(999999999),
+                    ->setDefaultValue(999999999),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.step" : 'settings.step',
                 Field::NAME => trans('narsil::validation.attributes.step'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->min(0)
-                    ->value(1),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::NAME => trans('narsil::validation.attributes.default_value'),
-                Field::TYPE => NumberInput::class,
-                Field::SETTINGS => app(Contract::class)
-                    ->value(0),
+                    ->setMin(0)
+                    ->setDefaultValue(1),
             ]),
         ];
     }
@@ -81,9 +82,9 @@ class NumberInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function max(string $max): static
+    final public function setDefaultValue(float|int $value): static
     {
-        $this->settings['max'] = $max;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -91,9 +92,9 @@ class NumberInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function min(string $min): static
+    final public function setMax(string $max): static
     {
-        $this->settings['min'] = $min;
+        $this->props['max'] = $max;
 
         return $this;
     }
@@ -101,9 +102,9 @@ class NumberInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function placeholder(string $placeholder): static
+    final public function setMin(string $min): static
     {
-        $this->settings['placeholder'] = $placeholder;
+        $this->props['min'] = $min;
 
         return $this;
     }
@@ -111,9 +112,9 @@ class NumberInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function required(bool $required): static
+    final public function setPlaceholder(string $placeholder): static
     {
-        $this->settings['required'] = $required;
+        $this->props['placeholder'] = $placeholder;
 
         return $this;
     }
@@ -121,9 +122,9 @@ class NumberInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function step(string $step): static
+    final public function setRequired(bool $required): static
     {
-        $this->settings['step'] = $step;
+        $this->props['required'] = $required;
 
         return $this;
     }
@@ -131,9 +132,9 @@ class NumberInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(float|int $value): static
+    final public function setStep(string $step): static
     {
-        $this->settings['value'] = $value;
+        $this->props['step'] = $step;
 
         return $this;
     }

@@ -25,7 +25,7 @@ class SelectInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->value('');
+        $this->setDefaultValue('');
     }
 
     #endregion
@@ -43,23 +43,23 @@ class SelectInput extends AbstractField implements Contract
                 Field::NAME => trans('narsil::validation.attributes.options'),
                 Field::TYPE => TableInput::class,
                 Field::SETTINGS => app(TableInput::class)
-                    ->columns([
+                    ->setColumns([
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
                             Field::NAME => trans('narsil::validation.attributes.value'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
-                                ->required(true),
+                                ->setRequired(true),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
                             Field::NAME => trans('narsil::validation.attributes.label'),
                             Field::TYPE => TextInput::class,
                             Field::SETTINGS => app(TextInput::class)
-                                ->required(true),
+                                ->setRequired(true),
                         ]),
                     ])
-                    ->placeholder(trans('narsil::ui.add')),
+                    ->setPlaceholder(trans('narsil::ui.add')),
             ]),
         ];
     }
@@ -77,9 +77,9 @@ class SelectInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function options(array $options): static
+    final public function setDefaultValue(string $value): static
     {
-        $this->settings['options'] = $options;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -87,9 +87,9 @@ class SelectInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function placeholder(string $placeholder): static
+    final public function setMultiple(bool $multiple): static
     {
-        $this->settings['placeholder'] = $placeholder;
+        $this->props['multiple'] = $multiple;
 
         return $this;
     }
@@ -97,9 +97,9 @@ class SelectInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function required(bool $required): static
+    final public function setOptions(array $options): static
     {
-        $this->settings['required'] = $required;
+        $this->props['options'] = $options;
 
         return $this;
     }
@@ -107,9 +107,19 @@ class SelectInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(string $value): static
+    final public function setPlaceholder(string $placeholder): static
     {
-        $this->settings['value'] = $value;
+        $this->props['placeholder'] = $placeholder;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function setRequired(bool $required): static
+    {
+        $this->props['required'] = $required;
 
         return $this;
     }

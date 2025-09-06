@@ -39,7 +39,7 @@ final class LabelsBag
      * @param string $key
      * @param array $replace
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     public function add(string $key, array $replace = []): static
     {

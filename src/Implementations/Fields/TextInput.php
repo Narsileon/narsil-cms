@@ -25,8 +25,8 @@ class TextInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->type('text');
-        $this->value('');
+        $this->setDefaultValue('');
+        $this->setType('text');
     }
 
     #endregion
@@ -40,29 +40,35 @@ class TextInput extends AbstractField implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
-                Field::NAME => trans('narsil::validation.attributes.min_length'),
-                Field::TYPE => NumberInput::class,
-                Field::SETTINGS => app(NumberInput::class)
-                    ->max(255)
-                    ->min(0)
-                    ->step(1),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
-                Field::NAME => trans('narsil::validation.attributes.max_length'),
-                Field::TYPE => NumberInput::class,
-                Field::SETTINGS => app(NumberInput::class)
-                    ->max(255)
-                    ->min(0)
-                    ->step(1)
-                    ->value(255),
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil::validation.attributes.default_value'),
+                Field::TYPE => Contract::class,
+                Field::SETTINGS => app(Contract::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
                 Field::NAME => trans('narsil::validation.attributes.placeholder'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class),
+            ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
+                Field::NAME => trans('narsil::validation.attributes.min_length'),
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
+                    ->setMax(255)
+                    ->setMin(0)
+                    ->setStep(1),
+            ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
+                Field::NAME => trans('narsil::validation.attributes.max_length'),
+                Field::TYPE => NumberInput::class,
+                Field::SETTINGS => app(NumberInput::class)
+                    ->setMax(255)
+                    ->setMin(0)
+                    ->setStep(1)
+                    ->setDefaultValue(255),
             ]),
         ];
     }
@@ -80,9 +86,9 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function autoComplete(AutoCompleteEnum $autoComplete): static
+    final public function setAutoComplete(AutoCompleteEnum $autoComplete): static
     {
-        $this->settings['autoComplete'] = $autoComplete->value;
+        $this->props['autoComplete'] = $autoComplete->value;
 
         return $this;
     }
@@ -90,9 +96,9 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function icon(string $icon): static
+    final public function setDefaultValue(string $value): static
     {
-        $this->settings['icon'] = $icon;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -100,9 +106,9 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function maxLength(string $maxLength): static
+    final public function setIcon(string $icon): static
     {
-        $this->settings['maxLength'] = $maxLength;
+        $this->props['icon'] = $icon;
 
         return $this;
     }
@@ -110,9 +116,9 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function minLength(string $minLength): static
+    final public function setMaxLength(string $maxLength): static
     {
-        $this->settings['minLength'] = $minLength;
+        $this->props['maxLength'] = $maxLength;
 
         return $this;
     }
@@ -120,9 +126,9 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function placeholder(string $placeholder): static
+    final public function setMinLength(string $minLength): static
     {
-        $this->settings['placeholder'] = $placeholder;
+        $this->props['minLength'] = $minLength;
 
         return $this;
     }
@@ -130,9 +136,9 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function required(bool $required): static
+    final public function setPlaceholder(string $placeholder): static
     {
-        $this->settings['required'] = $required;
+        $this->props['placeholder'] = $placeholder;
 
         return $this;
     }
@@ -140,9 +146,19 @@ class TextInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(string $value): static
+    final public function setRequired(bool $required): static
     {
-        $this->settings['value'] = $value;
+        $this->props['required'] = $required;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function setType(string $type): static
+    {
+        $this->props['type'] = $type;
 
         return $this;
     }

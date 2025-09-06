@@ -4,7 +4,8 @@ namespace Narsil\Contracts\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Field as Contract;
+use Narsil\Enums\Forms\AutoCompleteEnum;
 
 #endregion
 
@@ -12,18 +13,65 @@ use Narsil\Contracts\Fields\TextInput;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-interface EmailInput extends TextInput
+interface EmailInput extends Contract
 {
     #region PUBLIC METHODS
 
     #region • FLUENT METHODS
 
     /**
-     * @param boolean $multiple Does the input accept comma-separated value?
+     * Set the autocomplete attribute.
      *
-     * @return static Returns the current object instance.
+     * @param AutoCompleteEnum $autoComplete
+     *
+     * @return static
      */
-    public function multiple(bool $multiple): static;
+    public function setAutoComplete(AutoCompleteEnum $autoComplete): static;
+
+    /**
+     * Set the default value.
+     *
+     * @param string $value
+     *
+     * @return static
+     */
+    public function setDefaultvalue(string $value): static;
+
+    /**
+     * Set the icon attribute.
+     *
+     * @param string $icon
+     *
+     * @return static
+     */
+    public function setIcon(string $icon): static;
+
+    /**
+     * Set the multiple attribute.
+     *
+     * @param boolean $multiple
+     *
+     * @return static
+     */
+    public function setMultiple(bool $multiple): static;
+
+    /**
+     * Set the placeholder attribute.
+     *
+     * @param string $placeholder
+     *
+     * @return static
+     */
+    public function setPlaceholder(string $placeholder): static;
+
+    /**
+     * Set the required attribute.
+     *
+     * @param boolean $required
+     *
+     * @return static
+     */
+    public function setRequired(bool $required): static;
 
     #endregion
 

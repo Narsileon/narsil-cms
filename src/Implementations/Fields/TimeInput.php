@@ -23,8 +23,9 @@ class TimeInput extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->type('time');
-        $this->value('');
+        $this->props['type'] = 'time';
+
+        $this->setDefaultValue('');
     }
 
     #endregion
@@ -38,24 +39,24 @@ class TimeInput extends AbstractField implements Contract
     {
         return [
             new Field([
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil::validation.attributes.default_value'),
+                Field::TYPE => Contract::class,
+                Field::SETTINGS => app(Contract::class),
+            ]),
+            new Field([
                 Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil::validation.attributes.min'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->value('00:00'),
+                    ->setDefaultValue('00:00'),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->value('23:59'),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::NAME => trans('narsil::validation.attributes.default_value'),
-                Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
+                    ->setDefaultValue('23:59'),
             ]),
         ];
     }
@@ -73,9 +74,9 @@ class TimeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function max(string $max): static
+    final public function setDefaultValue(string $value): static
     {
-        $this->settings['max'] = $max;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -83,9 +84,9 @@ class TimeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function min(string $min): static
+    final public function setMax(string $max): static
     {
-        $this->settings['min'] = $min;
+        $this->props['max'] = $max;
 
         return $this;
     }
@@ -93,9 +94,9 @@ class TimeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function required(bool $required): static
+    final public function setMin(string $min): static
     {
-        $this->settings['required'] = $required;
+        $this->props['min'] = $min;
 
         return $this;
     }
@@ -103,9 +104,9 @@ class TimeInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(string $value): static
+    final public function setRequired(bool $required): static
     {
-        $this->settings['value'] = $value;
+        $this->props['required'] = $required;
 
         return $this;
     }

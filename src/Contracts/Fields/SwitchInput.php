@@ -19,11 +19,13 @@ interface SwitchInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param boolean $checked The default value.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $value
+     *
+     * @return static
      */
-    public function checked(bool $checked): static;
+    public function setDefaultValue(bool $value): static;
 
     #endregion
 

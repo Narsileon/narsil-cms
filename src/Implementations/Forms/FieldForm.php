@@ -85,7 +85,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::ui.default_name'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -94,7 +94,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::ui.default_handle'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
-                            ->required(true),
+                            ->setRequired(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -103,10 +103,11 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.type'),
                         Field::TYPE => SelectInput::class,
                         Field::SETTINGS => app(SelectInput::class)
-                            ->options($typeOptions)
-                            ->placeholder(trans('narsil::placeholders.search'))
-                            ->required(true)
-                            ->value(TextInput::class),
+                            ->setDefaultValue(TextInput::class)
+                            ->setOptions($typeOptions)
+                            ->setPlaceholder(trans('narsil::placeholders.search'))
+                            ->setRequired(true),
+
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -127,7 +128,7 @@ class FieldForm extends AbstractForm implements Contract
                             Field::NAME => trans("narsil::ui.rules"),
                             Field::TYPE => CheckboxInput::class,
                             Field::SETTINGS => app(CheckboxInput::class)
-                                ->options($rulesOptions),
+                                ->setOptions($rulesOptions),
                         ])
                     ])
                 ]

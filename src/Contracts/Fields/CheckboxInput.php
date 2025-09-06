@@ -19,25 +19,31 @@ interface CheckboxInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param array $options.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param array|boolean $value
+     *
+     * @return static
      */
-    public function options(array $options): static;
+    public function setDefaultValue(array|bool $value): static;
 
     /**
-     * @param boolean $required Must the input have a value?
+     * Set the options attribute.
      *
-     * @return static Returns the current object instance.
+     * @param array $options
+     *
+     * @return static
      */
-    public function required(bool $required): static;
+    public function setOptions(array $options): static;
 
     /**
-     * @param array|boolean $value The default value.
+     * Set the required attribute.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $required
+     *
+     * @return static
      */
-    public function value(array|bool $value): static;
+    public function setRequired(bool $required): static;
 
     #endregion
 

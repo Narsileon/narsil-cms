@@ -19,32 +19,49 @@ interface SelectInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param string $placeholder The text displayed when the input has no value.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param string $value
+     *
+     * @return static
      */
-    public function placeholder(string $placeholder): static;
+    public function setDefaultValue(string $value): static;
 
     /**
+     * Set the multiple attribute.
+     *
+     * @param boolean $multiple
+     *
+     * @return static
+     */
+    public function setMultiple(bool $multiple): static;
+
+    /**
+     * Set the options attribute.
+     *
      * @param array $options
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
-    public function options(array $options): static;
+    public function setOptions(array $options): static;
 
     /**
-     * @param boolean $required Must the input have a value?
+     * Set the placeholder attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $placeholder
+     *
+     * @return static
      */
-    public function required(bool $required): static;
+    public function setPlaceholder(string $placeholder): static;
 
     /**
-     * @param string $value The default value.
+     * Set the required attribute.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $required
+     *
+     * @return static
      */
-    public function value(string $value): static;
+    public function setRequired(bool $required): static;
 
     #endregion
 

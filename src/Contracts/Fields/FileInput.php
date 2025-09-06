@@ -19,32 +19,40 @@ interface FileInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param string $accept The file types.
+     * Set the accept attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $accept
+     *
+     * @return static
      */
-    public function accept(string $accept): static;
+    public function setAccept(string $accept): static;
 
     /**
-     * @param string $icon The name of the icon.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param string $value
+     *
+     * @return static
      */
-    public function icon(string $icon): static;
+    public function setDefaultValue(string $value): static;
 
     /**
-     * @param boolean $required Must the input have a value?
+     * Set the icon attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $icon
+     *
+     * @return static
      */
-    public function required(bool $required): static;
+    public function setIcon(string $icon): static;
 
     /**
-     * @param string $value The default value.
+     * Set the required attribute.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $required
+     *
+     * @return static
      */
-    public function value(string $value): static;
+    public function setRequired(bool $required): static;
 
     #endregion
 

@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
+use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\RelationsInput as Contract;
 use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Implementations\AbstractField;
@@ -36,7 +37,7 @@ class RelationsInput extends AbstractField implements Contract
                 'attribute' => trans('narsil::validation.attributes.identifier'),
             ]);
 
-        $this->value([]);
+        $this->setDefaultValue([]);
     }
 
     #endregion
@@ -52,11 +53,18 @@ class RelationsInput extends AbstractField implements Contract
 
         return [
             new Field([
-                Field::HANDLE => $prefix ? "$prefix.min" : 'min',
-                Field::NAME => trans('narsil::validation.attributes.collection'),
+                Field::HANDLE => $prefix ? "$prefix.collections" : 'collections',
+                Field::NAME => trans('narsil::ui.collections'),
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
-                    ->options($templateOptions),
+                    ->setOptions($templateOptions)
+                    ->setMultiple(true),
+            ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
+                Field::NAME => trans('narsil::validation.attributes.multiple'),
+                Field::TYPE => CheckboxInput::class,
+                Field::SETTINGS => app(CheckboxInput::class),
             ]),
         ];
     }
@@ -83,7 +91,7 @@ class RelationsInput extends AbstractField implements Contract
         array $routes = [],
     ): static
     {
-        $this->settings['options'][] = [
+        $this->props['options'][] = [
             'identifier' => $identifier,
             'label' => $label,
             'optionLabel' => $optionLabel,
@@ -98,9 +106,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function columns(int $columns): static
+    final public function setColumns(int $columns): static
     {
-        $this->settings['columns'] = $columns;
+        $this->props['columns'] = $columns;
 
         return $this;
     }
@@ -108,9 +116,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function form(array $form): static
+    final public function setDefaultValue(array $value): static
     {
-        $this->settings['form'] = $form;
+        $this->props['value'] = $value;
 
         return $this;
     }
@@ -118,29 +126,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function multiple(bool $multiple): static
+    final public function setForm(array $form): static
     {
-        $this->settings['multiple'] = $multiple;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function options(array $options): static
-    {
-        $this->settings['options'] = $options;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->settings['placeholder'] = $placeholder;
+        $this->props['form'] = $form;
 
         return $this;
     }
@@ -155,7 +143,7 @@ class RelationsInput extends AbstractField implements Contract
         string $optionValue,
     ): static
     {
-        $this->settings['intermediate'] = [
+        $this->props['intermediate'] = [
             'label' => $label,
             'optionLabel' => $optionLabel,
             'optionValue' => $optionValue,
@@ -168,9 +156,9 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function value(array $value): static
+    final public function setMultiple(bool $multiple): static
     {
-        $this->settings['value'] = $value;
+        $this->props['multiple'] = $multiple;
 
         return $this;
     }
@@ -178,20 +166,39 @@ class RelationsInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function widthOptions(array $widthOptions): static
+    final public function setOptions(array $options): static
     {
-        $this->settings['widthOptions'] = $widthOptions;
+        $this->props['options'] = $options;
 
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    final public function setPlaceholder(string $placeholder): static
+    {
+        $this->props['placeholder'] = $placeholder;
+
+        return $this;
+    }
 
     /**
      * {@inheritDoc}
      */
-    final public function unique(bool $unique): static
+    final public function setWidthOptions(array $widthOptions): static
     {
-        $this->settings['unique'] = $unique;
+        $this->props['widthOptions'] = $widthOptions;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function setUnique(bool $unique): static
+    {
+        $this->props['unique'] = $unique;
 
         return $this;
     }
@@ -209,7 +216,7 @@ class RelationsInput extends AbstractField implements Contract
             ->get()
             ->map(function (Template $template)
             {
-                return new SelectOption($template->{Template::NAME}, $template->{Template::ID});
+                return new SelectOption($template->{Template::NAME}, (string)$template->{Template::ID});
             })
             ->toArray();
     }

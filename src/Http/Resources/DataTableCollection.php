@@ -132,7 +132,7 @@ class DataTableCollection extends ResourceCollection
     /**
      * @param boolean $selectable
      *
-     * @return static Returns the current object instance.
+     * @return static
      */
     public function setSelectable(bool $selectable): static
     {

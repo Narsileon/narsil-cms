@@ -19,32 +19,40 @@ interface RichTextInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param array<string> $modules The list of modules available in the toolbar.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param string $value
+     *
+     * @return static
      */
-    public function modules(array $modules): static;
+    public function setDefaultValue(string $value): static;
 
     /**
-     * @param string $placeholder The text displayed when the input has no value.
+     * Set the modules attribute.
      *
-     * @return static Returns the current object instance.
+     * @param array<string> $modules
+     *
+     * @return static
      */
-    public function placeholder(string $placeholder): static;
+    public function setModules(array $modules): static;
 
     /**
-     * @param boolean $required Must the input have a value?
+     * Set the placeholder attribute.
      *
-     * @return static Returns the current object instance.
+     * @param string $placeholder
+     *
+     * @return static
      */
-    public function required(bool $required): static;
+    public function setPlaceholder(string $placeholder): static;
 
     /**
-     * @param string $value The default value.
+     * Set the required attribute.
      *
-     * @return static Returns the current object instance.
+     * @param boolean $required
+     *
+     * @return static
      */
-    public function value(string $value): static;
+    public function setRequired(bool $required): static;
 
     #endregion
 

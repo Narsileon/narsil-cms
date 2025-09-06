@@ -19,32 +19,40 @@ interface RangeInput extends Contract
     #region • FLUENT METHODS
 
     /**
-     * @param float|integer $max The maximum number.
+     * Set the default value.
      *
-     * @return static Returns the current object instance.
+     * @param array<float|integer> $value
+     *
+     * @return static
      */
-    public function max(float|int $max): static;
+    public function setDefaultValue(array $value): static;
 
     /**
-     * @param float|integer $min The minimum number.
+     * Set the max attribute.
      *
-     * @return static Returns the current object instance.
+     * @param float|integer $max e.g. "100".
+     *
+     * @return static
      */
-    public function min(float|int $min): static;
+    public function setMax(float|int $max): static;
 
     /**
-     * @param float|integer $step The interval between two numbers.
+     * Set the min attribute.
      *
-     * @return static Returns the current object instance.
+     * @param float|integer $min e.g. "0".
+     *
+     * @return static
      */
-    public function step(float|int $step): static;
+    public function setMin(float|int $min): static;
 
     /**
-     * @param array<float|integer> $value The default value.
+     * Set the step attribute.
      *
-     * @return static Returns the current object instance.
+     * @param float|integer $step e.g. "1".
+     *
+     * @return static
      */
-    public function value(array $value): static;
+    public function setStep(float|int $step): static;
 
     #endregion
 

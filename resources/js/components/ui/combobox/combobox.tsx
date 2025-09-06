@@ -152,7 +152,6 @@ function Combobox({
           id={id}
           className={cn(
             "bg-input/25 w-full justify-between font-normal",
-            !option && "text-muted-foreground",
             className,
           )}
           aria-expanded={open}
