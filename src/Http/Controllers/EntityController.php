@@ -18,6 +18,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
+use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Template;
@@ -286,16 +287,82 @@ class EntityController extends AbstractController
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Entity::forceDestroy($ids);
+        Entity::query()
+            ->whereIn(Entity::ID, $ids)
+            ->forceDelete();
 
         return $this
-            ->redirect(route('collections.index'))
+            ->redirect(route('collections.index', [
+                'collection' => $collection,
+            ]))
             ->with('success', trans('narsil::toasts.success.entities.deleted_many'));
+    }
+
+    /**
+     * @param Request $request
+     * @param string $collection
+     * @param integer $id
+     *
+     * @return RedirectResponse
+     */
+    public function replicate(Request $request, string $collection, int $id): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Entity::class);
+
+        $entity = Entity::query()
+            ->firstWhere([
+                Entity::ID => $id
+            ]);
+
+        $this->replicateEntity($entity);
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.entities.replicated'));
+    }
+
+    /**
+     * @param DuplicateManyRequest $request
+     * @param string $collection
+     *
+     * @return RedirectResponse
+     */
+    public function replicateMany(DuplicateManyRequest $request, string $collection): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Entity::class);
+
+        $ids = $request->validated(DuplicateManyRequest::IDS);
+
+        $entities = Entity::query()
+            ->whereIn(Entity::ID, $ids);
+
+        foreach ($entities as $entity)
+        {
+            $this->replicateEntity($entity);
+        }
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.entities.replicated_many'));
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @param Entity $entity
+     *
+     * @return void
+     */
+    protected function replicateEntity(Entity $entity): void
+    {
+        $replicated = $entity->replicate();
+
+        $replicated
+            ->fill([
+                //
+            ])
+            ->save();
+    }
 
     /**
      * @param Entity $entity

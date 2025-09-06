@@ -36,13 +36,28 @@ use Narsil\Models\User;
  */
 function resource(string $table, string $controller, array $except = [])
 {
-    $slug = Str::slug($table);
-
-    Route::controller($controller)->group(function () use ($controller, $except, $slug)
+    Route::controller($controller)->group(function () use ($controller, $except, $table)
     {
-        Route::delete($slug, 'destroyMany')
-            ->name("$slug.destroyMany");
-        Route::resource($slug, $controller)
+        $plural = Str::slug($table);
+        $singular = Str::singular($table);
+
+        if (!in_array('destroyMany', $except))
+        {
+            Route::delete($plural, 'destroyMany')
+                ->name("$plural.destroyMany");
+        }
+        if (!in_array('replicate', $except))
+        {
+            Route::post("$plural/{{$singular}}/replicate", 'replicate')
+                ->name("$plural.replicate");
+        }
+        if (!in_array('replicateMany', $except))
+        {
+            Route::post("$plural/replicateMany", 'replicateMany')
+                ->name("$plural.replicateMany");
+        }
+
+        Route::resource($plural, $controller)
             ->except($except);
     });
 }
@@ -71,6 +86,8 @@ Route::middleware([
             'show',
         ]);
         resource(SiteGroup::TABLE, SiteGroupController::class, [
+            'replicate',
+            'replicateMany',
             'show',
         ]);
         resource(Site::TABLE, SiteController::class, [
@@ -80,6 +97,8 @@ Route::middleware([
             'show',
         ]);
         resource(User::TABLE, UserController::class, [
+            'replicate',
+            'replicateMany',
             'show',
         ]);
 

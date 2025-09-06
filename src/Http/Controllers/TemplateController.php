@@ -17,6 +17,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
+use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
@@ -211,9 +212,65 @@ class TemplateController extends AbstractController
             ->with('success', trans('narsil::toasts.success.templates.deleted_many'));
     }
 
+    /**
+     * @param Request $request
+     * @param Template $template
+     *
+     * @return RedirectResponse
+     */
+    public function replicate(Request $request, Template $template): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Template::class);
+
+        $this->replicateTemplate($template);
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.templates.replicated'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function replicateMany(DuplicateManyRequest $request): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Template::class);
+
+        $ids = $request->validated(DuplicateManyRequest::IDS);
+
+        $templates = Template::query()
+            ->findMany($ids);
+
+        foreach ($templates as $template)
+        {
+            $this->replicateTemplate($template);
+        }
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.templates.replicated_many'));
+    }
+
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @param Template $template
+     *
+     * @return void
+     */
+    protected function replicateTemplate(Template $template): void
+    {
+        $replicated = $template->replicate();
+
+        $replicated
+            ->fill([
+                Template::HANDLE => $template->{Template::HANDLE} . '_copy',
+                Template::NAME => $template->{Template::NAME} . ' (copy)',
+            ])
+            ->save();
+    }
 
     /**
      * @param TemplateSection $templateSection

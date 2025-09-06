@@ -17,6 +17,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
+use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
@@ -237,9 +238,65 @@ class BlockController extends AbstractController
             ->with('success', trans('narsil::toasts.success.blocks.deleted_many'));
     }
 
+    /**
+     * @param Request $request
+     * @param Block $block
+     *
+     * @return RedirectResponse
+     */
+    public function replicate(Request $request, Block $block): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Block::class);
+
+        $this->replicateBlock($block);
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.blocks.replicated'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function replicateMany(DuplicateManyRequest $request): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Block::class);
+
+        $ids = $request->validated(DuplicateManyRequest::IDS);
+
+        $blocks = Block::query()
+            ->findMany($ids);
+
+        foreach ($blocks as $block)
+        {
+            $this->replicateBlock($block);
+        }
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.blocks.replicated_many'));
+    }
+
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @param Block $block
+     *
+     * @return void
+     */
+    protected function replicateBlock(Block $block): void
+    {
+        $replicated = $block->replicate();
+
+        $replicated
+            ->fill([
+                Block::HANDLE => $block->{Block::HANDLE} . '_copy',
+                Block::NAME => $block->{Block::NAME} . ' (copy)',
+            ])
+            ->save();
+    }
 
     /**
      * @param Block $block

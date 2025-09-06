@@ -82,6 +82,21 @@ function DataTableRowMenu({
                 )}
               </DropdownMenuItem>
             ) : null}
+            {routes.replicate ? (
+              <DropdownMenuItem asChild={true}>
+                <Link
+                  as="button"
+                  href={route(routes.replicate, {
+                    ...routes.params,
+                    id: id,
+                  })}
+                  method="post"
+                >
+                  <Icon name="copy" />
+                  {trans("ui.duplicate")}
+                </Link>
+              </DropdownMenuItem>
+            ) : null}
             <DropdownMenuSeparator />
             {routes.destroy ? (
               <DropdownMenuItem asChild={true}>
@@ -112,26 +127,49 @@ function DataTableRowMenu({
               <Icon name="x" />
               {trans("ui.deselect_all")}
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            {routes.destroyMany ? (
+            {routes.replicateMany ? (
               <DropdownMenuItem asChild={true}>
                 <Link
                   as="button"
-                  href={route(routes.destroyMany, {
+                  href={route(routes.replicateMany, {
                     ...routes.params,
                     ids: table
                       ?.getSelectedRowModel()
                       .flatRows.map((row) => row.original.id),
                   })}
-                  method="delete"
+                  method="post"
                   data={{
                     _back: true,
                   }}
                 >
                   <Icon name="trash" />
-                  {trans("ui.delete_selected")}
+                  {trans("ui.duplicate_selected")}
                 </Link>
               </DropdownMenuItem>
+            ) : null}
+
+            {routes.destroyMany ? (
+              <>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild={true}>
+                  <Link
+                    as="button"
+                    href={route(routes.destroyMany, {
+                      ...routes.params,
+                      ids: table
+                        ?.getSelectedRowModel()
+                        .flatRows.map((row) => row.original.id),
+                    })}
+                    method="delete"
+                    data={{
+                      _back: true,
+                    }}
+                  >
+                    <Icon name="trash" />
+                    {trans("ui.delete_selected")}
+                  </Link>
+                </DropdownMenuItem>
+              </>
             ) : null}
           </>
         )}

@@ -17,6 +17,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
+use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
@@ -215,9 +216,65 @@ class FieldController extends AbstractController
             ->with('success', trans('narsil::toasts.success.fields.deleted_many'));
     }
 
+    /**
+     * @param Request $request
+     * @param Field $field
+     *
+     * @return RedirectResponse
+     */
+    public function replicate(Request $request, Field $field): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Field::class);
+
+        $this->replicateField($field);
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.fields.replicated'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function replicateMany(DuplicateManyRequest $request): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Field::class);
+
+        $ids = $request->validated(DuplicateManyRequest::IDS);
+
+        $fields = Field::query()
+            ->findMany($ids);
+
+        foreach ($fields as $field)
+        {
+            $this->replicateField($field);
+        }
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.fields.replicated_many'));
+    }
+
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @param Field $field
+     *
+     * @return void
+     */
+    protected function replicateField(Field $field): void
+    {
+        $replicated = $field->replicate();
+
+        $replicated
+            ->fill([
+                Field::HANDLE => $field->{Field::HANDLE} . '_copy',
+                Field::NAME => $field->{Field::NAME} . ' (copy)',
+            ])
+            ->save();
+    }
 
     /**
      * @param Field $field

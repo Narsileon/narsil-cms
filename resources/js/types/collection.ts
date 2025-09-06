@@ -68,6 +68,8 @@ export type RouteNames = {
   edit?: string;
   index?: string;
   params: Record<string, any>;
+  replicate?: string;
+  replicateMany?: string;
   show?: string;
   store?: string;
   update?: string;

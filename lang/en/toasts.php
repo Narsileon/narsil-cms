@@ -6,6 +6,7 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
 use Narsil\Models\User;
@@ -38,19 +39,33 @@ return [
             'created' => 'The block has been successfully created.',
             'deleted' => 'The block has been successfully deleted.',
             'deleted_many' => 'The blocks have been successfully deleted.',
+            'replicated' => 'The block has been successfully duplicated.',
+            'replicated_many' => 'The blocks have been successfully duplicated.',
             'updated' => 'The block has been successfully updated.',
         ],
         Entity::TABLE => [
             'created' => 'The entity has been successfully created.',
             'deleted' => 'The entity has been successfully deleted.',
             'deleted_many' => 'The entities have been successfully deleted.',
+            'replicated' => 'The entity has been successfully duplicated.',
+            'replicated_many' => 'The entities have been successfully duplicated.',
             'updated' => 'The entity has been successfully updated.',
         ],
         Field::TABLE => [
             'created' => 'The field has been successfully created.',
             'deleted' => 'The field has been successfully deleted.',
             'deleted_many' => 'The fields have been successfully deleted.',
+            'replicated' => 'The field has been successfully duplicated.',
+            'replicated_many' => 'The fields have been successfully duplicated.',
             'updated' => 'The field has been successfully updated.',
+        ],
+        Role::TABLE => [
+            'created' => 'The role has been successfully created.',
+            'deleted' => 'The role has been successfully deleted.',
+            'deleted_many' => 'The roles have been successfully deleted.',
+            'replicated' => 'The role has been successfully duplicated.',
+            'replicated_many' => 'The roles have been successfully duplicated.',
+            'updated' => 'The role has been successfully updated.',
         ],
         SiteGroup::TABLE => [
             'created' => 'The group has been successfully created.',
@@ -62,12 +77,16 @@ return [
             'created' => 'The site has been successfully created.',
             'deleted' => 'The site has been successfully deleted.',
             'deleted_many' => 'The sites have been successfully deleted.',
+            'replicated' => 'The site has been successfully duplicated.',
+            'replicated_many' => 'The sites have been successfully duplicated.',
             'updated' => 'The site has been successfully updated.',
         ],
         Template::TABLE => [
             'created' => 'The template has been successfully created.',
             'deleted' => 'The template has been successfully deleted.',
             'deleted_many' => 'The templates have been successfully deleted.',
+            'replicated' => 'The template has been successfully duplicated.',
+            'replicated_many' => 'The templates have been successfully duplicated.',
             'updated' => 'The template has been successfully updated.',
         ],
         User::TABLE => [

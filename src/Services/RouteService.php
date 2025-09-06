@@ -33,6 +33,8 @@ abstract class RouteService
             'destroyMany' => "$tableName.destroyMany",
             'edit' => "$tableName.edit",
             'index' => "$tableName.index",
+            'replicate' => "$tableName.replicate",
+            'replicateMany' => "$tableName.replicateMany",
             'show' => "$tableName.show",
             'store' => "$tableName.store",
             'update' => "$tableName.update",

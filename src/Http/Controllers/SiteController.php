@@ -16,6 +16,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
+use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Http\Resources\DataTableFilterCollection;
 use Narsil\Models\Sites\Site;
@@ -212,6 +213,67 @@ class SiteController extends AbstractController
         return $this
             ->redirect(route('sites.index'))
             ->with('success', trans('narsil::toasts.success.sites.deleted_many'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Site $site
+     *
+     * @return RedirectResponse
+     */
+    public function replicate(Request $request, Site $site): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Site::class);
+
+        $this->replicateSite($site);
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.sites.replicated'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function replicateMany(DuplicateManyRequest $request): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Site::class);
+
+        $ids = $request->validated(DuplicateManyRequest::IDS);
+
+        $sites = Site::query()
+            ->findMany($ids);
+
+        foreach ($sites as $site)
+        {
+            $this->replicateSite($site);
+        }
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.sites.replicated_many'));
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Site $site
+     *
+     * @return void
+     */
+    protected function replicateSite(Site $site): void
+    {
+        $replicated = $site->replicate();
+
+        $replicated
+            ->fill([
+                Site::HANDLE => $site->{Site::HANDLE} . '_copy',
+                Site::NAME => $site->{Site::NAME} . ' (copy)',
+                Site::PRIMARY => false,
+            ])
+            ->save();
     }
 
     #endregion

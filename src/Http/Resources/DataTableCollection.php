@@ -210,6 +210,8 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::ui.delete')
             ->add('narsil::ui.delete_selected')
             ->add('narsil::ui.deselect_all')
+            ->add('narsil::ui.duplicate')
+            ->add('narsil::ui.duplicate_selected')
             ->add('narsil::ui.edit')
             ->add('narsil::ui.filters');
     }

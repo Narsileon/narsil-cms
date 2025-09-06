@@ -16,6 +16,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
+use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
@@ -203,6 +204,68 @@ class RoleController extends AbstractController
         return $this
             ->redirect(route('roles.index'))
             ->with('success', trans('narsil::toasts.success.roles.deleted_many'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Role $role
+     *
+     * @return RedirectResponse
+     */
+    public function replicate(Request $request, Role $role): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Role::class);
+
+        $this->replicateRole($role);
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.roles.replicated'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function replicateMany(DuplicateManyRequest $request): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Role::class);
+
+        $ids = $request->validated(DuplicateManyRequest::IDS);
+
+        $roles = Role::query()
+            ->with(Role::RELATION_PERMISSIONS)
+            ->findMany($ids);
+
+        foreach ($roles as $role)
+        {
+            $this->replicateRole($role);
+        }
+
+        return back()
+            ->with('success', trans('narsil::toasts.success.roles.replicated_many'));
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Role $role
+     *
+     * @return void
+     */
+    protected function replicateRole(Role $role): void
+    {
+        $replicated = $role->replicate();
+
+        $replicated
+            ->fill([
+                Role::NAME => $role->{Role::NAME} . ' (copy)',
+            ])
+            ->save();
+
+        $replicated->permissions()->sync($role->{Role::RELATION_PERMISSIONS}->pluck(Permission::ID));
     }
 
     #endregion
