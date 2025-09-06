@@ -25,7 +25,11 @@ class DashboardController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        return $this->render('narsil/cms::dashboard/index');
+        return $this->render(
+            component: 'narsil/cms::dashboard/index',
+            description: trans('narsil::ui.dashboard'),
+            title: trans('narsil::ui.dashboard')
+        );
     }
 
     #endregion
