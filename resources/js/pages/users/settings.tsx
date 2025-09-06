@@ -63,7 +63,6 @@ function UserSettings({
             />
           </TabsContent>
         ) : null}
-
         <TabsContent value="configuration">
           <ConfigurationForm form={userConfigurationForm} />
         </TabsContent>

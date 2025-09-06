@@ -17,7 +17,7 @@ function Tooltip({
 }: TooltipProps) {
   return (
     <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props}>
+      <TooltipPrimitive.Root data-slot="tooltip">
         <TooltipTrigger asChild={asChild}>{children}</TooltipTrigger>
         <TooltipContent {...props}>{tooltip}</TooltipContent>
       </TooltipPrimitive.Root>
