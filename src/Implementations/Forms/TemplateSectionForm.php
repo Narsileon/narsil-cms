@@ -28,6 +28,7 @@ class TemplateSectionForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::ui.section');
+        $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::ui.section');
     }
 

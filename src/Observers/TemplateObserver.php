@@ -46,10 +46,10 @@ class TemplateObserver
     protected function createPermissions(string $handle): void
     {
         $permissions = [
-            PermissionEnum::VIEW,
-            PermissionEnum::CREATE,
-            PermissionEnum::UPDATE,
-            PermissionEnum::DELETE,
+            PermissionEnum::VIEW->value,
+            PermissionEnum::CREATE->value,
+            PermissionEnum::UPDATE->value,
+            PermissionEnum::DELETE->value,
         ];
 
         foreach ($permissions as $permission)

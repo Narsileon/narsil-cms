@@ -29,6 +29,7 @@ class SiteGroupForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.site_group');
+        $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.site_group');
     }
 

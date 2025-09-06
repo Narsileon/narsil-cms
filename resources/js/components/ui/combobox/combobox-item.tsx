@@ -5,7 +5,6 @@ import { Icon } from "@narsil-cms/components/ui/icon";
 import { isString } from "lodash";
 import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import type { SelectOption } from "@narsil-cms/types/forms";
-import type { UniqueIdentifier } from "@dnd-kit/core";
 
 type ComboboxItemProps = Omit<
   React.ComponentProps<typeof CommandItem>,
@@ -14,8 +13,7 @@ type ComboboxItemProps = Omit<
   displayValue?: boolean;
   item: SelectOption | string;
   labelPath: string;
-  selected?: boolean;
-  value: UniqueIdentifier;
+  value: string | string[];
   valuePath: string;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
@@ -24,7 +22,6 @@ function ComboboxItem({
   displayValue,
   item,
   labelPath,
-  selected,
   value,
   valuePath,
   renderOption,
@@ -33,13 +30,14 @@ function ComboboxItem({
   const optionLabel = getSelectOption(item, labelPath);
   const optionValue = getSelectOption(item, valuePath);
 
+  const isSelected = Array.isArray(value)
+    ? value.includes(optionValue)
+    : value === optionValue;
+
   return (
     <CommandItem {...props} value={optionValue.toString()}>
       <Icon
-        className={cn(
-          "size-4",
-          optionValue === value ? "opacity-100" : "opacity-0",
-        )}
+        className={cn("size-4", isSelected ? "opacity-100" : "opacity-0")}
         name="check"
       />
       {!isString(item) && item.icon ? (

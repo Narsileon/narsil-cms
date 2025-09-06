@@ -34,6 +34,7 @@ class BlockForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.block');
+        $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.block');
     }
 

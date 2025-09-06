@@ -38,6 +38,7 @@ class TemplateForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.template');
+        $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.template');
     }
 

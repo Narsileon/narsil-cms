@@ -36,6 +36,7 @@ class SiteForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.site');
+        $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.site');
     }
 

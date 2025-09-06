@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { debounce, lowerCase } from "lodash";
+import { debounce, isArray, lowerCase } from "lodash";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import ComboboxItem from "./combobox-item";
@@ -19,7 +19,8 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
 import type { SelectOption } from "@narsil-cms/types/forms";
-import type { UniqueIdentifier } from "@dnd-kit/core";
+import { Badge } from "../badge";
+import ComboboxBadge from "./combobox-badge";
 
 type ComboboxProps = {
   className?: string;
@@ -27,13 +28,14 @@ type ComboboxProps = {
   displayValue?: boolean;
   id?: string;
   labelPath?: string;
+  multiple?: boolean;
   options: SelectOption[] | string[];
   placeholder?: string;
   searchable?: boolean;
-  value: UniqueIdentifier;
+  value: string | string[];
   valuePath?: string;
   renderOption?: (option: SelectOption | string) => React.ReactNode;
-  setValue: (value: string) => void;
+  setValue: (value: string | string[]) => void;
 };
 
 function Combobox({
@@ -42,6 +44,7 @@ function Combobox({
   displayValue = true,
   id,
   labelPath = "label",
+  multiple = false,
   placeholder,
   searchable = true,
   value,
@@ -51,6 +54,10 @@ function Combobox({
   setValue,
 }: ComboboxProps) {
   const { trans } = useLabels();
+
+  if (multiple && !isArray(value)) {
+    value = [value];
+  }
 
   const parentRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -82,6 +89,16 @@ function Combobox({
     });
   }, [options, search]);
 
+  const selectedValues = React.useMemo<string[]>(() => {
+    return multiple ? (value as string[]) : value ? [value as string] : [];
+  }, [value, multiple]);
+
+  const selectedOptions = React.useMemo(() => {
+    return options.filter((option) =>
+      selectedValues.includes(getSelectOption(option, valuePath)),
+    );
+  }, [options, selectedValues, valuePath]);
+
   const option = options.find((option) => {
     const optionValue = getSelectOption(option, valuePath);
 
@@ -101,6 +118,20 @@ function Combobox({
     getScrollElement: () => parentRef.current,
     estimateSize: () => 36,
   });
+
+  function onSelect(selectedValue: string) {
+    if (multiple) {
+      if (selectedValues.includes(selectedValue)) {
+        setValue(selectedValues.filter((x) => x !== selectedValue));
+      } else {
+        setValue([...selectedValues, selectedValue]);
+      }
+    } else {
+      setValue(selectedValue === value ? "" : selectedValue);
+    }
+
+    setOpen(false);
+  }
 
   React.useEffect(() => {
     if (open) {
@@ -129,9 +160,28 @@ function Combobox({
           role="combobox"
           variant="outline"
         >
-          {option
-            ? getSelectOption(option, labelPath)
-            : (placeholder ?? trans("placeholders.search"))}
+          {selectedOptions.length > 0 ? (
+            multiple ? (
+              <div className="flex flex-wrap gap-1">
+                {selectedOptions.map((option, index) => {
+                  return (
+                    <ComboboxBadge
+                      item={option}
+                      labelPath={labelPath}
+                      value={value as string[]}
+                      valuePath={valuePath}
+                      setValue={setValue}
+                      key={index}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              getSelectOption(selectedOptions[0], labelPath)
+            )
+          ) : (
+            (placeholder ?? trans("placeholders.search"))
+          )}
           <Icon
             className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
             name="chevron-down"
@@ -167,12 +217,9 @@ function Combobox({
                         displayValue={displayValue}
                         item={filteredOptions[index]}
                         labelPath={labelPath}
-                        value={value as string}
+                        value={value}
                         valuePath={valuePath}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue == value ? "" : currentValue);
-                          setOpen(false);
-                        }}
+                        onSelect={onSelect}
                         renderOption={renderOption}
                         style={{
                           height: `${size}px`,

@@ -36,7 +36,7 @@ function FortifyForm({
   id,
   method,
   status,
-  submit,
+  submitLabel,
   title,
   url,
 }: FortifyFormProps) {
@@ -117,7 +117,7 @@ function FortifyForm({
                       ),
                     )}
                     <FormSubmit className="w-full place-self-center">
-                      {submit}
+                      {submitLabel}
                     </FormSubmit>
                   </Form>
                 )}

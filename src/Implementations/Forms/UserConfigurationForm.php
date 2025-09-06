@@ -38,6 +38,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->method = MethodEnum::PUT;
+        $this->submitLabel = trans('narsil::ui.save');
         $this->url = route('user-configuration.store');
     }
 

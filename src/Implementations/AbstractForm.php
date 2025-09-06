@@ -29,7 +29,6 @@ abstract class AbstractForm implements Form
     public function __construct()
     {
         $this->id = $this->getDefaultId();
-        $this->submitLabel = trans('narsil::ui.save');
 
         app(LabelsBag::class)
             ->add('narsil::accessibility.required')

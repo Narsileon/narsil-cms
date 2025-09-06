@@ -1,12 +1,14 @@
 import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Popover as PopoverPrimitive } from "radix-ui";
+import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
 
 type PopoverContentProps = React.ComponentProps<
   typeof PopoverPrimitive.Content
 > & {};
 
 function PopoverContent({
+  children,
   className,
   align = "center",
   sideOffset = 4,
@@ -31,7 +33,12 @@ function PopoverContent({
           className,
         )}
         {...props}
-      />
+      >
+        <VisuallyHidden aria-hidden="true" tabIndex={0}>
+          Popover
+        </VisuallyHidden>
+        {children}
+      </PopoverPrimitive.Content>
     </PopoverPrimitive.Portal>
   );
 }

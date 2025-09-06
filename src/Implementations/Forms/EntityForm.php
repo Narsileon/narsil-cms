@@ -33,6 +33,7 @@ class EntityForm extends AbstractForm implements Contract
         $this->template = $template;
 
         $this->description = $template->{Template::NAME};
+        $this->submitLabel = trans('narsil::ui.save');
         $this->title = $template->{Template::NAME};
     }
 
