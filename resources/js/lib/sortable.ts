@@ -1,5 +1,5 @@
 import { arrayMove } from "@dnd-kit/sortable";
-import { FlatNode, NestedNode } from "@narsil-cms/components/ui/sortable";
+import { FlatNode, NestedNode } from "@narsil-cms/components/sortable";
 import { UniqueIdentifier } from "@dnd-kit/core";
 
 export function flatNestedTree(

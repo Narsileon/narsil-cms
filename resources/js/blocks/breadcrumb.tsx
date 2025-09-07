@@ -8,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbRoot,
   BreadcrumbSeparator,
-} from "@narsil-cms/components/ui/breadcrumb";
+} from "@narsil-cms/components/breadcrumb";
 
 type BreadcrumbProps = React.ComponentProps<typeof BreadcrumbRoot> & {};
 

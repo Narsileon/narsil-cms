@@ -1,12 +1,12 @@
-import { Button } from "@narsil-cms/components/ui/button";
-import { Icon } from "@narsil-cms/components/ui/icon";
-import { Label } from "@narsil-cms/components/ui/label";
+import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
+import { Label } from "@narsil-cms/components/label";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
-import { Switch } from "@narsil-cms/components/ui/switch";
+import { Switch } from "@narsil-cms/components/switch";
 import { toast } from "sonner";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/labels";
 import { useState } from "react";
 import axios from "axios";
 import {
@@ -15,13 +15,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@narsil-cms/components/ui/card";
+} from "@narsil-cms/components/card";
 import {
   Form,
   FormFieldRenderer,
   FormProvider,
   FormSubmit,
-} from "@narsil-cms/components/ui/form";
+} from "@narsil-cms/components/form";
 import type { FormType } from "@narsil-cms/types/forms";
 
 type TwoFactorFormProps = {

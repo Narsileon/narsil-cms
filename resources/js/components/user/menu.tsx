@@ -1,17 +1,17 @@
 import { Avatar, Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/ui/button";
-import { Icon } from "@narsil-cms/components/ui/icon";
+import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { Link } from "@inertiajs/react";
-import { ModalLink } from "@narsil-cms/components/ui/modal";
+import { ModalLink } from "@narsil-cms/components/modal";
 import { useAuth, useNavigation } from "@narsil-cms/hooks/use-props";
-import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/ui/dropdown-menu";
+} from "@narsil-cms/components/dropdown-menu";
 
 type UserMenuProps = React.ComponentProps<typeof DropdownMenuTrigger> & {};
 

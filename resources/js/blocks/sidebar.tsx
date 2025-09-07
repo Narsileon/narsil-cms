@@ -1,8 +1,8 @@
 import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/ui/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/labels";
 import { useNavigation } from "@narsil-cms/hooks/use-props";
 import {
   SidebarContent,
@@ -17,7 +17,7 @@ import {
   SidebarRail,
   SidebarRoot,
   useSidebar,
-} from "@narsil-cms/components/ui/sidebar";
+} from "@narsil-cms/components/sidebar";
 
 type SidebarProps = React.ComponentProps<typeof SidebarRoot> & {};
 

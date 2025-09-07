@@ -1,20 +1,20 @@
-import { Separator } from "@narsil-cms/components/ui/separator";
+import { Separator } from "@narsil-cms/components/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   Form,
   FormFieldRenderer,
   FormProvider,
   FormSubmit,
-} from "@narsil-cms/components/ui/form";
+} from "@narsil-cms/components/form";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@narsil-cms/components/ui/section";
+} from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types/forms";
-import { Icon } from "../ui/icon";
+import { Icon } from "../icon";
 
 type ProfileFormProps = {
   profileForm: FormType;

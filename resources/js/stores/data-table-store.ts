@@ -7,7 +7,7 @@ import {
   SortingState,
   VisibilityState,
 } from "@tanstack/react-table";
-import type { ColumnFilter } from "@narsil-cms/components/ui/data-table";
+import type { ColumnFilter } from "@narsil-cms/components/data-table";
 
 type DataTableStoreState = {
   columnOrder: ColumnOrderState;

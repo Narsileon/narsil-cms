@@ -1,7 +1,7 @@
 import { getSelectOption } from "@narsil-cms/lib/utils";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
-import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/labels";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import useColorStore from "@narsil-cms/stores/color-store";
@@ -11,13 +11,13 @@ import {
   Form,
   FormFieldRenderer,
   FormProvider,
-} from "@narsil-cms/components/ui/form";
+} from "@narsil-cms/components/form";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@narsil-cms/components/ui/section";
+} from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types/forms";
 
 type ConfigurationFormProps = {

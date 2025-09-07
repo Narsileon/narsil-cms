@@ -1,17 +1,17 @@
-import { Button } from "@narsil-cms/components/ui/button";
-import { Card, CardContent } from "@narsil-cms/components/ui/card";
-import { Container } from "@narsil-cms/components/ui/container";
+import { Button } from "@narsil-cms/components/button";
+import { Card, CardContent } from "@narsil-cms/components/card";
+import { Container } from "@narsil-cms/components/container";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
-import { useLabels } from "@narsil-cms/components/ui/labels";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
-} from "@narsil-cms/components/ui/section";
+} from "@narsil-cms/components/section";
 
 type VerifyEmailProps = {
   status: string;

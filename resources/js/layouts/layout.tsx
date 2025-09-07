@@ -1,7 +1,7 @@
 import "@narsil-cms/../css/app.css";
 import { Head } from "@narsil-cms/blocks";
 import { isEmpty } from "lodash";
-import { LabelsProvider } from "@narsil-cms/components/ui/labels";
+import { LabelsProvider } from "@narsil-cms/components/labels";
 import { router } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect } from "react";

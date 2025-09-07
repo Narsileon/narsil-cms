@@ -5,6 +5,12 @@ import type {
   VisibilityState,
 } from "@tanstack/react-table";
 
+export type Bookmark = {
+  id: number;
+  name: string;
+  url: string;
+};
+
 export type DataTableCollection<T = any> = {
   columns: ColumnDef<T>[];
   columnOrder: ColumnOrderState;
@@ -73,10 +79,4 @@ export type RouteNames = {
   show?: string;
   store?: string;
   update?: string;
-};
-
-export type UserBookmark = {
-  id: number;
-  name: string;
-  url: string;
 };

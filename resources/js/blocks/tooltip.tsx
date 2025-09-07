@@ -3,7 +3,7 @@ import {
   TooltipContent,
   TooltipRoot,
   TooltipTrigger,
-} from "@narsil-cms/components/ui/tooltip";
+} from "@narsil-cms/components/tooltip";
 
 type TooltipProps = React.ComponentProps<typeof TooltipContent> & {
   asChild?: boolean;

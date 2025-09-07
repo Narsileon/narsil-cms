@@ -2,7 +2,7 @@ import {
   AvatarFallback,
   AvatarImage,
   AvatarRoot,
-} from "@narsil-cms/components/ui/avatar";
+} from "@narsil-cms/components/avatar";
 
 type AvatarProps = {
   avatar?: string | null;

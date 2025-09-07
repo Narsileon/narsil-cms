@@ -1,20 +1,19 @@
-import { Breadcrumb, Sidebar } from "@narsil-cms/blocks";
+import { Bookmarks, Breadcrumb, Sidebar } from "@narsil-cms/blocks";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
-import { ModalRenderer } from "@narsil-cms/components/ui/modal";
-import { Separator } from "@narsil-cms/components/ui/separator";
-import { Toaster } from "@narsil-cms/components/ui/toaster";
+import { ModalRenderer } from "@narsil-cms/components/modal";
+import { Separator } from "@narsil-cms/components/separator";
+import { Toaster } from "@narsil-cms/components/toaster";
 import { useEffect, useRef } from "react";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
-import UserBookmarks from "@narsil-cms/components/user/bookmarks";
 import UserMenu from "@narsil-cms/components/user/menu";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@narsil-cms/components/ui/sidebar";
+} from "@narsil-cms/components/sidebar";
 
 type AuthLayoutProps = {
   children: React.ReactNode & {
@@ -58,7 +57,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
             </>
           ) : null}
           <Breadcrumb className="grow" />
-          <UserBookmarks breadcrumb={navigation.breadcrumb} title={title} />
+          <Bookmarks breadcrumb={navigation.breadcrumb} title={title} />
           <UserMenu />
         </header>
         <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">

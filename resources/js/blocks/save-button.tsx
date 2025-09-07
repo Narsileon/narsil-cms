@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Button } from "@narsil-cms/components/ui/button";
+import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/ui/icon";
-import { Separator } from "@narsil-cms/components/ui/separator";
-import { useLabels } from "@narsil-cms/components/ui/labels";
-import { useForm } from "@narsil-cms/components/ui/form";
+import { Icon } from "@narsil-cms/components/icon";
+import { Separator } from "@narsil-cms/components/separator";
+import { useLabels } from "@narsil-cms/components/labels";
+import { useForm } from "@narsil-cms/components/form";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/ui/dropdown-menu";
+} from "@narsil-cms/components/dropdown-menu";
 
 type SaveButtonProps = React.ComponentProps<"div"> & {
   submitLabel: string;
