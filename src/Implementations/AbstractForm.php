@@ -4,6 +4,7 @@ namespace Narsil\Implementations;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Narsil\Contracts\Form;
 use Narsil\Enums\Forms\MethodEnum;
@@ -28,8 +29,6 @@ abstract class AbstractForm implements Form
      */
     public function __construct()
     {
-        $this->id = $this->getDefaultId();
-
         app(LabelsBag::class)
             ->add('narsil::accessibility.required')
             ->add('narsil::pagination.empty')
@@ -41,6 +40,7 @@ abstract class AbstractForm implements Form
             ->add('narsil::ui.back')
             ->add('narsil::ui.continue')
             ->add('narsil::ui.create')
+            ->add('narsil::ui.delete')
             ->add('narsil::ui.save')
             ->add('narsil::ui.save_as_new');
     }
@@ -50,7 +50,32 @@ abstract class AbstractForm implements Form
     #region PROPERTIES
 
     /**
-     * The description of the form.
+     * The routes associated to the form.
+     *
+     * @param array<string,string>
+     */
+    protected array $routes = [];
+
+    /**
+     * {@inheritDoc}
+     */
+    public string $action = ''
+    {
+        get => $this->action;
+        set(string $value) => $this->action = $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Model|array $data = []
+    {
+        get => $this->data;
+        set(Model|array $value) => $this->data = $value;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public string $description = ''
     {
@@ -59,16 +84,16 @@ abstract class AbstractForm implements Form
     }
 
     /**
-     * The id of the form.
+     * {@inheritDoc}
      */
-    public string $id = ''
+    public mixed $id = null
     {
         get => $this->id;
-        set(string $value) => $this->id = $value;
+        set(mixed $value) => $this->id = $value;
     }
 
     /**
-     * The method of the form.
+     * {@inheritDoc}
      */
     public MethodEnum $method = MethodEnum::POST
     {
@@ -77,7 +102,7 @@ abstract class AbstractForm implements Form
     }
 
     /**
-     * The label of the submit icon.
+     * {@inheritDoc}
      */
     public ?string $submitIcon = null
     {
@@ -86,7 +111,7 @@ abstract class AbstractForm implements Form
     }
 
     /**
-     * The label of the submit button.
+     * {@inheritDoc}
      */
     public string $submitLabel = ''
     {
@@ -95,21 +120,12 @@ abstract class AbstractForm implements Form
     }
 
     /**
-     * The title of the form.
+     * {@inheritDoc}
      */
     public string $title = ''
     {
         get => $this->title;
         set(string $value) => $this->title = $value;
-    }
-
-    /**
-     * The url of the form.
-     */
-    public string $url = ''
-    {
-        get => $this->url;
-        set(string $value) => $this->url = $value;
     }
 
     #endregion
@@ -122,14 +138,16 @@ abstract class AbstractForm implements Form
     public function jsonSerialize(): mixed
     {
         return [
+            'action' => $this->action,
+            'data' => $this->data,
             'description' => $this->description,
-            'form' => static::form(),
-            'id'     => $this->id,
+            'form' => $this->form(),
+            'id' => $this->getDefaultId($this->id),
             'method' => $this->method,
+            'routes' => $this->routes,
             'submitIcon' => $this->submitIcon,
             'submitLabel' => $this->submitLabel,
-            'title'  => $this->title,
-            'url'    => $this->url,
+            'title' => $this->title,
         ];
     }
 
@@ -138,13 +156,17 @@ abstract class AbstractForm implements Form
     #region PROTECTED METHODS
 
     /**
+     * @param mixed $id
+     *
      * @return string
      */
-    protected function getDefaultId(): string
+    protected function getDefaultId(mixed $id = null): string
     {
         $name = new ReflectionClass(static::class)->getShortName();
 
-        return Str::slug(Str::snake($name));
+        $slug = Str::slug(Str::snake($name));
+
+        return $id ? "$slug-$id" : $slug;
     }
 
     /**

@@ -27,10 +27,10 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
+        $this->action = route('two-factor.login');
         $this->description = trans('narsil::ui.two_factor_authentication');
         $this->submitLabel = trans('narsil::ui.confirm');
         $this->title = trans('narsil::ui.two_factor_authentication');
-        $this->url = route('two-factor.login');
     }
 
     #endregion

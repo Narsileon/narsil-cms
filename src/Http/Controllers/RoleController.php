@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\RoleFormRequest;
 use Narsil\Contracts\Forms\RoleForm;
@@ -66,9 +65,9 @@ class RoleController extends AbstractController
 
         $form = app(RoleForm::class);
 
+        $form->action = route('roles.store');
         $form->method = MethodEnum::POST;
         $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('roles.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -116,19 +115,17 @@ class RoleController extends AbstractController
 
         $form = app(RoleForm::class);
 
+        $form->action = route('roles.update', $role->{Role::ID});
+        $form->data = $role;
+        $form->id = $role->{Role::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-        $form->url = route('roles.update', [
-            Str::singular(Role::TABLE) => $role->{Role::ID}
-        ]);
 
         $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::NAME));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $role,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 

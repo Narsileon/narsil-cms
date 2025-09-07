@@ -49,14 +49,15 @@ export type Field = {
 };
 
 export type FormType = {
+  action: string;
   description: string;
   form: (Block | Field)[];
   id: string;
   method: string;
+  routes: RouteNames;
   submitIcon?: IconName;
   submitLabel: string;
   title: string;
-  url: string;
 };
 
 export type GroupedSelectOption = {

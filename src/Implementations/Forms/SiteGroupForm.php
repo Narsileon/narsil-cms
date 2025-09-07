@@ -10,6 +10,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Sites\SiteGroup;
+use Narsil\Services\RouteService;
 
 #endregion
 
@@ -29,6 +30,7 @@ class SiteGroupForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.site_group');
+        $this->routes = RouteService::getNames(SiteGroup::TABLE);
         $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.site_group');
     }

@@ -30,10 +30,10 @@ class ProfileForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
+        $this->action = route('user-profile-information.update');
         $this->method = MethodEnum::PUT;
         $this->submitIcon = 'save';
         $this->submitLabel = trans('narsil::ui.save');
-        $this->url = route('user-profile-information.update');
     }
 
     #endregion

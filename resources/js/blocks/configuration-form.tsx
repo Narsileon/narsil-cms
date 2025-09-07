@@ -71,7 +71,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
       <SectionContent>
         <FormProvider
           id="user-personalization-form"
-          action={form.url}
+          action={form.action}
           elements={form.form}
           method={form.method}
           initialValues={{

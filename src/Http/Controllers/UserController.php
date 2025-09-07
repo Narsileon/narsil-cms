@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\UserFormRequest;
 use Narsil\Contracts\Forms\UserForm;
@@ -65,9 +64,9 @@ class UserController extends AbstractController
 
         $form = app(UserForm::class);
 
+        $form->action = route('users.store');
         $form->method = MethodEnum::POST;
         $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('users.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -116,17 +115,15 @@ class UserController extends AbstractController
 
         $form = app(UserForm::class);
 
+        $form->action = route('users.update', $user->{User::ID});
+        $form->data = $user;
+        $form->id = $user->{User::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-        $form->url = route('users.update', [
-            Str::singular(User::TABLE) => $user->{User::ID}
-        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $user,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 

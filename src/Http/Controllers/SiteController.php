@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\SiteFormRequest;
 use Narsil\Contracts\Forms\SiteForm;
@@ -76,9 +75,9 @@ class SiteController extends AbstractController
 
         $form = app(SiteForm::class);
 
+        $form->action = route('sites.store');
         $form->method = MethodEnum::POST;
         $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('sites.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -121,17 +120,15 @@ class SiteController extends AbstractController
 
         $form = app(SiteForm::class);
 
+        $form->action = route('sites.update', $site->{Site::ID});
+        $form->data = $site;
+        $form->id = $site->{Site::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-        $form->url = route('sites.update', [
-            Str::singular(Site::TABLE) => $site->{Site::ID}
-        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $site,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 

@@ -10,6 +10,7 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Services\RouteService;
 
 #endregion
 
@@ -33,6 +34,7 @@ class EntityForm extends AbstractForm implements Contract
         $this->template = $template;
 
         $this->description = $template->{Template::NAME};
+        $this->routes = RouteService::getNames(Template::HANDLE);
         $this->submitLabel = trans('narsil::ui.save');
         $this->title = $template->{Template::NAME};
     }

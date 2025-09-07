@@ -2,9 +2,11 @@ import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
+import { route } from "ziggy-js";
+import { router } from "@inertiajs/react";
 import { Separator } from "@narsil-cms/components/separator";
-import { useLabels } from "@narsil-cms/components/labels";
 import { useForm } from "@narsil-cms/components/form";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -13,32 +15,59 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
+import type { RouteNames } from "@narsil-cms/types/collection";
 
 type SaveButtonProps = React.ComponentProps<"div"> & {
+  routes?: RouteNames;
   submitLabel: string;
 };
 
-function SaveButton({ className, submitLabel, ...props }: SaveButtonProps) {
-  const { action, id, isDirty, method, post, transform } = useForm();
+function SaveButton({
+  className,
+  routes,
+  submitLabel,
+  ...props
+}: SaveButtonProps) {
   const { trans } = useLabels();
 
+  const { action, data, id, isDirty, method, post, reset, transform } =
+    useForm();
+
+  function destroy() {
+    if (routes?.destroy && data?.id) {
+      router.delete(route(routes.destroy, data.id));
+    }
+  }
+
   function saveAndAdd() {
-    submit();
+    if (routes?.create) {
+      submit(action, method, {
+        _to: route(routes.create),
+      });
+    }
   }
 
   function saveAndContinue() {
-    submit({
+    submit(action, method, {
       _back: true,
     });
   }
 
-  function submit(submitData?: Record<string, any>) {
+  function saveAsNew() {
+    if (routes?.store) {
+      submit(route(routes.store), "post");
+    }
+  }
+
+  function submit(
+    action: string,
+    method: string,
+    submitData?: Record<string, any>,
+  ) {
     switch (method) {
       case "patch":
       case "put":
         transform?.((data) => {
-          console.log(data);
-
           return {
             ...data,
             ...submitData,
@@ -46,31 +75,54 @@ function SaveButton({ className, submitLabel, ...props }: SaveButtonProps) {
             _method: method,
           };
         });
+
         post?.(action, { forceFormData: true });
         break;
       case "post":
+        transform?.((data) => {
+          return {
+            ...data,
+            ...submitData,
+            _dirty: isDirty,
+          };
+        });
+
         post?.(action);
+
+        reset?.();
+
         break;
     }
   }
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
-        event.preventDefault();
+      if (event.ctrlKey || event.metaKey) {
+        switch (event.code) {
+          case "KeyS":
+            event.preventDefault();
+            if (event.shiftKey) {
+              saveAndAdd();
+            } else {
+              saveAndContinue();
+            }
+            break;
 
-        if (event.shiftKey) {
-          saveAndAdd();
-        } else {
-          saveAndContinue();
+          case "KeyD":
+            event.preventDefault();
+            saveAsNew();
+            break;
+          case "KeyX":
+            event.preventDefault();
+            destroy();
+            break;
         }
       }
     }
 
     window.addEventListener("keydown", handleKeyDown);
-
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [saveAndAdd, saveAndContinue]);
+  }, [saveAndAdd, saveAndContinue, saveAsNew]);
 
   return (
     <div
@@ -94,16 +146,33 @@ function SaveButton({ className, submitLabel, ...props }: SaveButtonProps) {
             {`${submitLabel} & ${trans("ui.continue")}`}
             <DropdownMenuShortcut>Ctrl+S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Icon name="save-and-add" />
-            {`${submitLabel} & ${trans("ui.add_another")}`}
-            <DropdownMenuShortcut>Ctrl+Shift+S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Icon name="plus" />
-            {trans("ui.save_as_new")}
-          </DropdownMenuItem>
+          {routes?.create ? (
+            <DropdownMenuItem onClick={saveAndAdd}>
+              <Icon name="save-and-add" />
+              {`${submitLabel} & ${trans("ui.add_another")}`}
+              <DropdownMenuShortcut>Ctrl+Shift+S</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          ) : null}
+          {routes?.store && data?.id ? (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={saveAsNew}>
+                <Icon name="plus" />
+                {trans("ui.save_as_new")}
+                <DropdownMenuShortcut>Ctrl+D</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </>
+          ) : null}
+          {routes?.destroy && data?.id ? (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={destroy}>
+                <Icon name="trash" />
+                {trans("ui.delete")}
+                <DropdownMenuShortcut>Ctrl+X</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </>
+          ) : null}
         </DropdownMenuContent>
       </DropdownMenuRoot>
     </div>

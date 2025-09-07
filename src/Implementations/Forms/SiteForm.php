@@ -15,6 +15,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SiteGroup;
+use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 use ResourceBundle;
 
@@ -36,6 +37,7 @@ class SiteForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.site');
+        $this->routes = RouteService::getNames(Site::TABLE);
         $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.site');
     }

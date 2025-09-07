@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\SiteGroupFormRequest;
 use Narsil\Contracts\Forms\SiteGroupForm;
@@ -63,9 +62,9 @@ class SiteGroupController extends AbstractController
 
         $form = app(SiteGroupForm::class);
 
+        $form->action = route('site-groups.store');
         $form->method = MethodEnum::POST;
         $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('site-groups.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -108,17 +107,15 @@ class SiteGroupController extends AbstractController
 
         $form = app(SiteGroupForm::class);
 
+        $form->action = route('site-groups.update', $siteGroup->{SiteGroup::ID});
+        $form->data = $siteGroup;
+        $form->id = $siteGroup->{SiteGroup::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-        $form->url = route('site-groups.update', [
-            Str::singular(SiteGroup::TABLE) => $siteGroup->{SiteGroup::ID}
-        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $siteGroup,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 

@@ -95,7 +95,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
         </div>
         {!active && enabled && qrCode ? (
           <FormProvider
-            action={form.url}
+            action={form.action}
             id={form.id}
             elements={form.form}
             method={form.method}

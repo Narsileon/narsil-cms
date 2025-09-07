@@ -30,10 +30,10 @@ class LoginForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
+        $this->action = route('login');
         $this->description = trans('narsil::ui.connection');
         $this->submitLabel = trans('narsil::ui.log_in');
         $this->title = trans('narsil::ui.connection');
-        $this->url = route('login');
     }
 
     #endregion

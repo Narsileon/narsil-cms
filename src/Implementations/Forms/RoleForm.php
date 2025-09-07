@@ -14,6 +14,7 @@ use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
 #endregion
@@ -34,6 +35,7 @@ class RoleForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.role');
+        $this->routes = RouteService::getNames(Role::TABLE);
         $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.role');
     }

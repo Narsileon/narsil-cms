@@ -62,6 +62,8 @@ abstract class AbstractController
         }
         else
         {
+            $to = request('_to', $to);
+
             return redirect($to);
         }
     }

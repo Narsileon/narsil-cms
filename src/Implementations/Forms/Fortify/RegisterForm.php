@@ -30,10 +30,10 @@ class RegisterForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
+        $this->action = route('register');
         $this->description = trans('narsil::ui.registration');
         $this->submitLabel = trans('narsil::ui.register');
         $this->title = trans('narsil::ui.registration');
-        $this->url = route('register');
     }
 
     #endregion

@@ -28,8 +28,8 @@ class TwoFactorForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
+        $this->action = route('two-factor.confirm');
         $this->submitLabel = trans('narsil::ui.confirm');
-        $this->url = route('two-factor.confirm');
 
         app(LabelsBag::class)
             ->add('validation.custom.code.invalid')

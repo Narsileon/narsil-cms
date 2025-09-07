@@ -75,9 +75,9 @@ class BlockController extends AbstractController
 
         $form = app()->make(BlockForm::class);
 
+        $form->action = route('blocks.store');
         $form->method = MethodEnum::POST;
         $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('blocks.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -134,17 +134,15 @@ class BlockController extends AbstractController
 
         $form = app()->make(BlockForm::class);
 
+        $form->action = route('blocks.update', $block->{Block::ID});
+        $form->data = $block;
+        $form->id = $block->{Block::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-        $form->url = route('blocks.update', [
-            Str::singular(Block::TABLE) => $block->{Block::ID}
-        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $block,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 

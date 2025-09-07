@@ -69,9 +69,9 @@ class TemplateController extends AbstractController
 
         $form = app(TemplateForm::class);
 
+        $form->action = route('templates.store');
         $form->method = MethodEnum::POST;
         $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('templates.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -116,17 +116,15 @@ class TemplateController extends AbstractController
 
         $form = app(TemplateForm::class);
 
+        $form->action = route('templates.update', $template->{Template::ID});
+        $form->data = $template;
+        $form->id = $template->{Template::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-        $form->url = route('templates.update', [
-            Str::singular(Template::TABLE) => $template->{Template::ID}
-        ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $template,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 

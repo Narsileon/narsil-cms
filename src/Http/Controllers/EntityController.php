@@ -97,11 +97,11 @@ class EntityController extends AbstractController
             'template' => $template
         ]);
 
-        $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('collections.store', [
+        $form->action = route('collections.store', [
             'collection' => $collection
         ]);
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -162,17 +162,18 @@ class EntityController extends AbstractController
             'template' => $template,
         ]);
 
-        $form->method = MethodEnum::PATCH;
-        $form->url = route('collections.update', [
+        $form->action = route('collections.update', [
             'id' => $entity->{Entity::ID},
             'collection' => $collection,
         ]);
+        $form->data = $entity;
+        $form->id = $entity->{Entity::UUID};
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->method = MethodEnum::PATCH;
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $entity,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 

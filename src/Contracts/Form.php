@@ -4,6 +4,7 @@ namespace Narsil\Contracts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use JsonSerializable;
 use Narsil\Enums\Forms\MethodEnum;
 
@@ -18,7 +19,31 @@ interface Form extends JsonSerializable
     #region PROPERTIES
 
     /**
+     * The action of the form.
+     *
+     * @var string
+     */
+    public string $action
+    {
+        get;
+        set;
+    }
+
+    /**
+     * The data of the form.
+     *
+     * @var Model|array<string,mixed>
+     */
+    public Model|array $data
+    {
+        get;
+        set;
+    }
+
+    /**
      * The description of the form.
+     *
+     * @var string
      */
     public string $description
     {
@@ -27,9 +52,11 @@ interface Form extends JsonSerializable
     }
 
     /**
-     * The description of the form.
+     * The id of the model.
+     *
+     * @var mixed
      */
-    public string $id
+    public mixed $id
     {
         get;
         set;
@@ -37,6 +64,8 @@ interface Form extends JsonSerializable
 
     /**
      * The method of the form.
+     *
+     * @var MethodEnum
      */
     public MethodEnum $method
     {
@@ -45,7 +74,20 @@ interface Form extends JsonSerializable
     }
 
     /**
-     * The label of the submit button.
+     * The icon of the submit.
+     *
+     * @var string|null
+     */
+    public ?string $submitIcon
+    {
+        get;
+        set;
+    }
+
+    /**
+     * The label of the submit.
+     *
+     * @var string
      */
     public string $submitLabel
     {
@@ -55,17 +97,10 @@ interface Form extends JsonSerializable
 
     /**
      * The title of the form.
+     *
+     * @var string
      */
     public string $title
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The url of the form.
-     */
-    public string $url
     {
         get;
         set;

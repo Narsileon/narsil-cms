@@ -39,14 +39,15 @@ type FormProps = FormType & {
 };
 
 function ResourceForm({
+  action,
   data,
   form,
   id,
   method,
   modal,
+  routes,
   submitLabel,
   title,
-  url,
 }: FormProps) {
   const { trans } = useLabels();
   const { closeTopModal } = useModalStore();
@@ -165,7 +166,7 @@ function ResourceForm({
   return (
     <FormProvider
       id={modal ? `${id}_${modal.id}` : id}
-      action={url}
+      action={action}
       elements={form}
       method={method}
       initialValues={{
@@ -204,6 +205,7 @@ function ResourceForm({
                   {title}
                 </SectionTitle>
                 <SaveButton
+                  routes={routes}
                   submitLabel={
                     isEmpty(submitLabel) ? trans("ui.save") : submitLabel
                   }
@@ -234,6 +236,7 @@ function ResourceForm({
           )}
         </FormRoot>
       )}
+      key={modal ? `${id}_${modal.id}` : id}
     />
   );
 }

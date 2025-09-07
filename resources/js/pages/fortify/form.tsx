@@ -31,6 +31,7 @@ type FortifyFormProps = FormType & {
 };
 
 function FortifyForm({
+  action,
   data = {},
   form,
   id,
@@ -38,7 +39,6 @@ function FortifyForm({
   status,
   submitLabel,
   title,
-  url,
 }: FortifyFormProps) {
   const { trans } = useLabels();
 
@@ -64,8 +64,8 @@ function FortifyForm({
           <Card className="max-w-md">
             <CardContent className="p-6">
               <FormProvider
-                action={url}
                 id={id}
+                action={action}
                 elements={form}
                 method={method}
                 initialValues={data}

@@ -30,7 +30,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
     <>
       <FormProvider
         id={profileForm.id}
-        action={profileForm.url}
+        action={profileForm.action}
         elements={profileForm.form}
         method={profileForm.method}
         initialValues={{
@@ -63,7 +63,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
 
       <FormProvider
         id={updatePasswordForm.id}
-        action={updatePasswordForm.url}
+        action={updatePasswordForm.action}
         elements={updatePasswordForm.form}
         method={updatePasswordForm.method}
         render={({ reset, setDefaults }) => (

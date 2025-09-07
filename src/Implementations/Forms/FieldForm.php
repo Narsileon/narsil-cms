@@ -16,6 +16,7 @@ use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
 #endregion
@@ -36,6 +37,7 @@ class FieldForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this->description = trans('narsil::models.field');
+        $this->routes = RouteService::getNames(Field::TABLE);
         $this->submitLabel = trans('narsil::ui.save');
         $this->title = trans('narsil::models.field');
     }

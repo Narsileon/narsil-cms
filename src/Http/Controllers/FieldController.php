@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
@@ -66,9 +65,9 @@ class FieldController extends AbstractController
 
         $form = app(FieldForm::class);
 
+        $form->action = route('fields.store');
         $form->method = MethodEnum::POST;
         $form->submitLabel = trans('narsil::ui.create');
-        $form->url = route('fields.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -116,17 +115,16 @@ class FieldController extends AbstractController
 
         $form = app(FieldForm::class);
 
+        $form->action = route('fields.update', $field->{Field::ID});
+        $form->data = $field;
+        $form->id = $field->{Field::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-        $form->url = route('fields.update', [
-            Str::singular(Field::TABLE) => $field->{Field::ID}
-        ]);
+
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'data' => $field,
-            ]),
+            props: $form->jsonSerialize(),
         );
     }
 
