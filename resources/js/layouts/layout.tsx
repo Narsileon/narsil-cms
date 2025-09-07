@@ -1,10 +1,10 @@
 import "@narsil-cms/../css/app.css";
+import { Head } from "@narsil-cms/blocks";
 import { isEmpty } from "lodash";
 import { LabelsProvider } from "@narsil-cms/components/ui/labels";
 import { router } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect } from "react";
-import AppHead from "@narsil-cms/components/app/app-head";
 import AuthLayout from "./auth-layout";
 import GuestLayout from "./guest-layout";
 import useColorStore from "@narsil-cms/stores/color-store";
@@ -49,7 +49,7 @@ function Layout({ children }: LayoutProps) {
 
   return (
     <LabelsProvider labels={labels}>
-      <AppHead
+      <Head
         description={description}
         follow={false}
         index={false}

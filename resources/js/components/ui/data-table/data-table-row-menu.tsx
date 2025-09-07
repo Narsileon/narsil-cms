@@ -4,12 +4,12 @@ import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
-  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
@@ -40,7 +40,7 @@ function DataTableRowMenu({
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenuRoot>
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
@@ -175,7 +175,7 @@ function DataTableRowMenu({
         )}
         {}
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenuRoot>
   );
 }
 

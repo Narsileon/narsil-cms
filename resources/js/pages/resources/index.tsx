@@ -1,12 +1,12 @@
 import { Button } from "@narsil-cms/components/ui/button";
 import { Checkbox } from "@narsil-cms/components/ui/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
+import { DataTable } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { DataTableBlock } from "@narsil-cms/blocks/data-table";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
 import {
   DataTableFilter,
@@ -231,7 +231,7 @@ function ResourceIndex({
                       })}
                     </ul>
                   ) : null}
-                  <DataTableBlock dataTable={dataTable} />
+                  <DataTable dataTable={dataTable} />
                   <div className="flex flex-col items-start justify-between gap-4 text-sm sm:flex-row sm:items-center">
                     <span className="truncate">
                       {selectedCount > 0

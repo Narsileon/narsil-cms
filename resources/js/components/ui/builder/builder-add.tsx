@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { Icon } from "@narsil-cms/components/ui/icon";
+import { Tooltip } from "@narsil-cms/blocks";
 import { uniqueId } from "lodash";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
-  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
 import type { Block } from "@narsil-cms/types/forms";
@@ -22,7 +22,7 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
   const { trans } = useLabels();
 
   return (
-    <DropdownMenu>
+    <DropdownMenuRoot>
       <Tooltip tooltip={trans("ui.add")}>
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
@@ -49,7 +49,7 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenuRoot>
   );
 }
 

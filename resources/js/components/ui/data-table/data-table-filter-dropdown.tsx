@@ -2,9 +2,9 @@ import * as React from "react";
 import { isString } from "lodash";
 import useDataTable from "./data-table-context";
 import {
-  DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
 
@@ -23,7 +23,7 @@ function DataTableFilterDropdown({
   const filteredColumns = dataTableStore.filters.map((filter) => filter.column);
 
   return (
-    <DropdownMenu>
+    <DropdownMenuRoot>
       <DropdownMenuTrigger asChild={true} {...props}>
         {children}
       </DropdownMenuTrigger>
@@ -53,7 +53,7 @@ function DataTableFilterDropdown({
             );
           })}
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenuRoot>
   );
 }
 

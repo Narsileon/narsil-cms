@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Editor } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Toggle } from "@narsil-cms/components/ui/toggle";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { ToggleRoot } from "@narsil-cms/components/ui/toggle";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 
-type RichTextEditorTextAlignProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorTextAlignProps = React.ComponentProps<typeof ToggleRoot> & {
   alignment: "left" | "center" | "right" | "justify";
   editor: Editor;
 };
@@ -19,7 +19,7 @@ function RichTextEditorTextAlign({
 
   return (
     <Tooltip tooltip={trans(`accessibility.align_${alignment}`)}>
-      <Toggle
+      <ToggleRoot
         aria-label={trans(
           `accessibility.align_${alignment}`,
           `Align ${alignment}`,
@@ -30,7 +30,7 @@ function RichTextEditorTextAlign({
         {...props}
       >
         <Icon name={`align-${alignment}`} />
-      </Toggle>
+      </ToggleRoot>
     </Tooltip>
   );
 }

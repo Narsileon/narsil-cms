@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Toggle } from "@narsil-cms/components/ui/toggle";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { ToggleRoot } from "@narsil-cms/components/ui/toggle";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 
-type RichTextEditorHeadingProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorHeadingProps = React.ComponentProps<typeof ToggleRoot> & {
   editor: Editor;
   level: 1 | 2 | 3 | 4 | 5 | 6;
 };
@@ -31,7 +31,7 @@ function RichTextEditorHeading({
       asChild={true}
       tooltip={trans(`accessibility.toggle_heading_${level}`)}
     >
-      <Toggle
+      <ToggleRoot
         aria-label={trans(
           `accessibility.toggle_heading_${level}`,
           `Toggle heading ${level}`,
@@ -44,7 +44,7 @@ function RichTextEditorHeading({
         {...props}
       >
         <Icon className="stroke-foreground" name={`heading-${level}`} />
-      </Toggle>
+      </ToggleRoot>
     </Tooltip>
   );
 }

@@ -18,11 +18,11 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import {
-  Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
+  TableRoot,
   TableRow,
 } from "@narsil-cms/components/ui/table";
 import type { Field } from "@narsil-cms/types/forms";
@@ -121,7 +121,7 @@ function SortableTable({
         strategy={verticalListSortingStrategy}
       >
         <div className="overflow-hidden rounded-md border">
-          <Table className="w-full table-fixed">
+          <TableRoot className="w-full table-fixed">
             <TableHeader>
               <TableRow>
                 <TableHead className="w-9" />
@@ -182,18 +182,18 @@ function SortableTable({
             {createPortal(
               <DragOverlay>
                 {active ? (
-                  <Table>
+                  <TableRoot>
                     <SortableTableRow id={active.id} className="h-11">
                       {columns.map((column, index) => {
                         return <TableCell key={index} />;
                       })}
                     </SortableTableRow>
-                  </Table>
+                  </TableRoot>
                 ) : null}
               </DragOverlay>,
               document.body,
             )}
-          </Table>
+          </TableRoot>
         </div>
       </SortableContext>
     </DndContext>

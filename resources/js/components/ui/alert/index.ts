@@ -1,7 +1,7 @@
 // https://ui.shadcn.com/docs/components/alert
 
-import Alert from "./alert";
 import AlertDescription from "./alert-description";
+import AlertRoot from "./alert-root";
 import AlertTitle from "./alert-title";
 
-export { Alert, AlertDescription, AlertTitle };
+export { AlertDescription, AlertRoot, AlertTitle };

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { cn } from "@narsil-cms/lib/utils";
 import { Toaster as Sonner } from "sonner";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import type { Theme } from "@narsil-cms/stores/theme-store";
@@ -17,7 +18,12 @@ function Toaster({ ...props }: ToasterProps) {
       toastOptions={{
         classNames: {
           toast: "group",
-          icon: "group-data-[type=error]:text-red-500 group-data-[type=success]:text-green-500 group-data-[type=warning]:text-amber-500 group-data-[type=info]:text-blue-500",
+          icon: cn(
+            "group-data-[type=error]:text-red-500",
+            "group-data-[type=info]:text-blue-500",
+            "group-data-[type=success]:text-green-500",
+            "group-data-[type=warning]:text-amber-500",
+          ),
         },
       }}
       style={

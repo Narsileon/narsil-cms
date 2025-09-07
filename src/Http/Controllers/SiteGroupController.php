@@ -27,35 +27,6 @@ use Narsil\Models\Sites\SiteGroup;
  */
 class SiteGroupController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param SiteGroupForm $form
-     * @param SiteGroupFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(SiteGroupForm $form, SiteGroupFormRequest $formRequest)
-    {
-        $this->form = $form;
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var SiteGroupForm
-     */
-    protected readonly SiteGroupForm $form;
-    /**
-     * @var SiteFormRequest
-     */
-    protected readonly SiteGroupFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -90,12 +61,15 @@ class SiteGroupController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, SiteGroup::class);
 
-        $this->form->method = MethodEnum::POST;
-        $this->form->url = route('site-groups.store');
+        $form = app(SiteGroupForm::class);
+
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
+        $form->url = route('site-groups.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -109,7 +83,8 @@ class SiteGroupController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, SiteGroup::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(SiteGroupFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -131,14 +106,17 @@ class SiteGroupController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $siteGroup);
 
-        $this->form->method = MethodEnum::PATCH;
-        $this->form->url = route('site-groups.update', [
+        $form = app(SiteGroupForm::class);
+
+        $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->url = route('site-groups.update', [
             Str::singular(SiteGroup::TABLE) => $siteGroup->{SiteGroup::ID}
         ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
+            props: array_merge($form->jsonSerialize(), [
                 'data' => $siteGroup,
             ]),
         );
@@ -155,7 +133,8 @@ class SiteGroupController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $siteGroup);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($siteGroup);
+
+        $rules = app(SiteGroupFormRequest::class)->rules($siteGroup);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

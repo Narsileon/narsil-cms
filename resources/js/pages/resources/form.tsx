@@ -2,6 +2,7 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { Card, CardContent } from "@narsil-cms/components/ui/card";
 import { ScrollArea } from "@narsil-cms/components/ui/scroll-area";
 import { isEmpty } from "lodash";
+import { SaveButton } from "@narsil-cms/blocks";
 import { useEffect, useState } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
@@ -43,7 +44,7 @@ function ResourceForm({
   id,
   method,
   modal,
-  submit,
+  submitLabel,
   title,
   url,
 }: FormProps) {
@@ -164,7 +165,9 @@ function ResourceForm({
   return (
     <FormProvider
       id={modal ? `${id}_${modal.id}` : id}
+      action={url}
       elements={form}
+      method={method}
       initialValues={{
         _back: modal,
         ...data,
@@ -172,8 +175,6 @@ function ResourceForm({
       render={() => (
         <Form
           className="overflow-hidden"
-          method={method}
-          url={url}
           options={{
             onSuccess: (response) => {
               if (modal) {
@@ -192,7 +193,7 @@ function ResourceForm({
                   <Button variant="ghost">{trans("ui.cancel")}</Button>
                 </DialogClose>
                 <FormSubmit className="place-self-auto">
-                  {isEmpty(submit) ? trans("ui.save") : submit}
+                  {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
                 </FormSubmit>
               </DialogFooter>
             </ScrollArea>
@@ -202,9 +203,11 @@ function ResourceForm({
                 <SectionTitle level="h1" variant="h4">
                   {title}
                 </SectionTitle>
-                <FormSubmit>
-                  {isEmpty(submit) ? trans("ui.save") : submit}
-                </FormSubmit>
+                <SaveButton
+                  submitLabel={
+                    isEmpty(submitLabel) ? trans("ui.save") : submitLabel
+                  }
+                />
               </SectionHeader>
               <SectionContent className="grid gap-4 lg:grid-cols-12">
                 {tabsContent}

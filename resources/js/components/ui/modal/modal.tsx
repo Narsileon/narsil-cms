@@ -1,12 +1,12 @@
 import * as React from "react";
 import { LabelsProvider } from "@narsil-cms/components/ui/labels";
 import { ModalState } from "@narsil-cms/stores/modal-store";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogRoot,
   DialogTitle,
 } from "@narsil-cms/components/ui/dialog";
 
@@ -54,7 +54,7 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
   }, [modal.component]);
 
   return (
-    <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
+    <DialogRoot open={true} onOpenChange={(open) => !open && onClose()}>
       <DialogContent
         className="fixed max-h-[calc(100%-13rem)] max-w-[calc(100%-4rem)] overflow-hidden"
         {...props}
@@ -62,18 +62,18 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
         <DialogHeader className="border-b">
           <DialogTitle>{modal.componentProps.title}</DialogTitle>
         </DialogHeader>
-        <VisuallyHidden asChild={true}>
+        <VisuallyHiddenRoot asChild={true}>
           <DialogDescription>
             {modal.componentProps.description}
           </DialogDescription>
-        </VisuallyHidden>
+        </VisuallyHiddenRoot>
         <LabelsProvider labels={modal.componentProps.labels}>
           {Component ? (
             <Component modal={modal} {...modal.componentProps} />
           ) : null}
         </LabelsProvider>
       </DialogContent>
-    </Dialog>
+    </DialogRoot>
   );
 }
 

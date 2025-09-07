@@ -3,8 +3,8 @@ import { Calendar } from "@narsil-cms/components/ui/calendar";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Input } from "@narsil-cms/components/ui/input";
 import {
-  Popover,
   PopoverContent,
+  PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
 
@@ -19,7 +19,7 @@ function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
   const date = value ? new Date(value) : undefined;
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <PopoverRoot open={open} onOpenChange={setOpen}>
       <PopoverTrigger className="relative">
         <Input
           className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
@@ -48,7 +48,7 @@ function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
           }}
         />
       </PopoverContent>
-    </Popover>
+    </PopoverRoot>
   );
 }
 

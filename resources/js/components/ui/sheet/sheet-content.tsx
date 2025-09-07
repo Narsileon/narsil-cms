@@ -3,7 +3,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 import SheetOverlay from "./sheet-overlay";
 import SheetPortal from "./sheet-portal";
 
@@ -63,9 +63,9 @@ function SheetContent({
           )}
         >
           <Icon className="size-4" name="x" />
-          <VisuallyHidden>
+          <VisuallyHiddenRoot>
             {trans("accessibility.close_sheet", "Close sheet")}
-          </VisuallyHidden>
+          </VisuallyHiddenRoot>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
     </SheetPortal>

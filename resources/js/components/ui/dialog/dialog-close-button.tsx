@@ -2,9 +2,9 @@ import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 
 type DialogCloseButtonProps = React.ComponentProps<
   typeof DialogPrimitive.Close
@@ -31,7 +31,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
         {...props}
       >
         <Icon name="x" />
-        <VisuallyHidden>{tooltip}</VisuallyHidden>
+        <VisuallyHiddenRoot>{tooltip}</VisuallyHiddenRoot>
       </DialogPrimitive.Close>
     </Tooltip>
   );

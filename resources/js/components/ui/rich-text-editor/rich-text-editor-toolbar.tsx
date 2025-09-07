@@ -4,7 +4,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { Editor } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Separator } from "@narsil-cms/components/ui/separator";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import RichTextEditorBold from "./rich-text-editor-bold";
 import RichTextEditorBulletList from "./rich-text-editor-bullet-list";
@@ -19,9 +19,9 @@ import RichTextEditorTextAlign from "./rich-text-editor-text-align";
 import RichTextEditorUnderline from "./rich-text-editor-underline";
 import RichTextEditorUndo from "./rich-text-editor-undo";
 import {
-  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
 
@@ -84,7 +84,7 @@ function RichTextEditorToolbar({
       {hasModules(headings.map((level) => `heading_${level}`)) && (
         <>
           <Separator orientation="vertical" />
-          <DropdownMenu>
+          <DropdownMenuRoot>
             <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
               <DropdownMenuTrigger asChild={true}>
                 <Button
@@ -109,7 +109,7 @@ function RichTextEditorToolbar({
                   </DropdownMenuItem>
                 ))}
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenuRoot>
         </>
       )}
 

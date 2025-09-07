@@ -9,8 +9,8 @@ import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 import useForm from "./form-context";
 import {
-  Collapsible,
   CollapsibleContent,
+  CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/ui/collapsible";
 import type {
@@ -48,7 +48,7 @@ function FormFieldRenderer({
     return (
       <>
         {element.identifier.startsWith("blocks") ? (
-          <Collapsible
+          <CollapsibleRoot
             className={cn(
               "group -mx-4 not-first:border-t",
               "first:-mt-4",
@@ -88,7 +88,7 @@ function FormFieldRenderer({
                 <Builder sets={element.sets} name={finalHandle} />
               ) : null}
             </CollapsibleContent>
-          </Collapsible>
+          </CollapsibleRoot>
         ) : (
           <>
             {element.elements?.map((element, index) => {

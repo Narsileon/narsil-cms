@@ -3,20 +3,19 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { FormItem, FormLabel } from "@narsil-cms/components/ui/form";
 import { get, set } from "lodash";
 import { getField } from "@narsil-cms/plugins/fields";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 import {
-  Dialog,
   DialogBody,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogRoot,
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/ui/dialog";
-
 import type { AnonymousItem } from ".";
 import type { FormType } from "@narsil-cms/types/forms";
 import type { UniqueIdentifier } from "@dnd-kit/core";
@@ -56,7 +55,7 @@ function SortableItemForm({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <DialogRoot open={open} onOpenChange={onOpenChange}>
       <Tooltip tooltip={trans("ui.edit")}>
         <DialogTrigger asChild={true} {...props}>
           {children}
@@ -67,9 +66,9 @@ function SortableItemForm({
           <DialogTitle>{form.title}</DialogTitle>
         </DialogHeader>
         <DialogBody>
-          <VisuallyHidden>
+          <VisuallyHiddenRoot>
             <DialogDescription></DialogDescription>
-          </VisuallyHidden>
+          </VisuallyHiddenRoot>
           {form.form.map((field, index) => {
             if ("settings" in field) {
               return (
@@ -121,7 +120,7 @@ function SortableItemForm({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </DialogRoot>
   );
 }
 

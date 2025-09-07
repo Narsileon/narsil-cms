@@ -2,7 +2,7 @@ import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Label as LabelPrimitive } from "radix-ui";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import useFormField from "./form-field-context";
 

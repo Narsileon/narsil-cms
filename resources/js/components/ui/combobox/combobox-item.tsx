@@ -3,7 +3,7 @@ import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { CommandItem } from "@narsil-cms/components/ui/command";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { isString } from "lodash";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import type { SelectOption } from "@narsil-cms/types/forms";
 
 type ComboboxItemProps = Omit<

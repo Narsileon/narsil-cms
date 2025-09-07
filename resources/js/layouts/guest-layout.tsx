@@ -1,8 +1,8 @@
 import { Container } from "@narsil-cms/components/ui/container";
+import { Logo } from "@narsil-cms/blocks";
 import { ModalRenderer } from "@narsil-cms/components/ui/modal";
 import { Toaster } from "@narsil-cms/components/ui/toaster";
 import { useRef } from "react";
-import AppLogo from "@narsil-cms/components/app/app-logo";
 import UserMenu from "@narsil-cms/components/user/menu";
 
 type GuestLayoutProps = {
@@ -16,7 +16,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
     <>
       <header className="bg-background sticky top-0 z-10 h-13 border-b">
         <Container className="flex items-center justify-between gap-4">
-          <AppLogo />
+          <Logo />
           <UserMenu />
         </Container>
       </header>

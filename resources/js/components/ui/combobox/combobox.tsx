@@ -8,15 +8,15 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import ComboboxBadge from "./combobox-badge";
 import ComboboxItem from "./combobox-item";
 import {
-  Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandList,
+  CommandRoot,
 } from "@narsil-cms/components/ui/command";
 import {
-  Popover,
   PopoverContent,
+  PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
 import type { SelectOption } from "@narsil-cms/types/forms";
@@ -145,7 +145,7 @@ function Combobox({
   }, [open, optionIndex, virtualizer]);
 
   return (
-    <Popover open={open} onOpenChange={setOpen} modal>
+    <PopoverRoot open={open} onOpenChange={setOpen} modal>
       <PopoverTrigger asChild>
         <Button
           id={id}
@@ -187,7 +187,7 @@ function Combobox({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0">
-        <Command shouldFilter={false}>
+        <CommandRoot shouldFilter={false}>
           {searchable ? (
             <CommandInput
               value={input}
@@ -230,9 +230,9 @@ function Combobox({
               </div>
             </CommandGroup>
           </CommandList>
-        </Command>
+        </CommandRoot>
       </PopoverContent>
-    </Popover>
+    </PopoverRoot>
   );
 }
 

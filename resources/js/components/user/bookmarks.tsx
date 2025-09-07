@@ -4,7 +4,7 @@ import { Icon } from "@narsil-cms/components/ui/icon";
 import { route } from "ziggy-js";
 import { Link, router } from "@inertiajs/react";
 import { sortBy } from "lodash";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import axios from "axios";
 import {
@@ -21,8 +21,8 @@ import {
   FormSubmit,
 } from "@narsil-cms/components/ui/form";
 import {
-  Popover,
   PopoverContent,
+  PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
 import type { FormType } from "@narsil-cms/types/forms";
@@ -96,7 +96,7 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
   }, [open]);
 
   return (
-    <Popover open={open} onOpenChange={onOpenChange}>
+    <PopoverRoot open={open} onOpenChange={onOpenChange}>
       <Tooltip tooltip={trans("bookmarks.tooltip")}>
         <PopoverTrigger asChild={true} {...props}>
           <Button
@@ -111,8 +111,10 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
       <PopoverContent className="border-none p-0">
         {bookmark && form ? (
           <FormProvider
+            action={route("user-bookmarks.update", bookmark.id)}
             id={form.id}
             elements={form.form}
+            method="patch"
             initialValues={{
               name: bookmark?.name,
             }}
@@ -131,7 +133,6 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
                         setBookmark(null);
                       },
                     }}
-                    url={route("user-bookmarks.update", bookmark.id)}
                   >
                     {form.form.map((element, index) => (
                       <FormFieldRenderer element={element} key={index} />
@@ -230,7 +231,7 @@ function UserBookmarks({ breadcrumb, title, ...props }: UserBookmarksProps) {
           </Card>
         )}
       </PopoverContent>
-    </Popover>
+    </PopoverRoot>
   );
 }
 

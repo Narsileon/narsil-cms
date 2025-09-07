@@ -36,10 +36,13 @@ abstract class AbstractForm implements Form
             ->add('narsil::placeholders.choose')
             ->add('narsil::placeholders.search')
             ->add('narsil::ui.add')
+            ->add('narsil::ui.add_another')
             ->add('narsil::ui.all')
             ->add('narsil::ui.back')
+            ->add('narsil::ui.continue')
             ->add('narsil::ui.create')
-            ->add('narsil::ui.save');
+            ->add('narsil::ui.save')
+            ->add('narsil::ui.save_as_new');
     }
 
     #endregion

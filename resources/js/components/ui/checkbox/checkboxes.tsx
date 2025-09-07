@@ -2,9 +2,9 @@ import * as React from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import Checkbox from "./checkbox";
 import {
-  Table,
   TableBody,
   TableCell,
+  TableRoot,
   TableRow,
 } from "@narsil-cms/components/ui/table";
 import type {
@@ -94,9 +94,9 @@ function Checkboxes({ options, values, onChange }: CheckboxesProps) {
 
   return (
     <div className="overflow-hidden rounded-md border">
-      <Table>
+      <TableRoot>
         <TableBody>{renderCheckboxes(options)}</TableBody>
-      </Table>
+      </TableRoot>
     </div>
   );
 }

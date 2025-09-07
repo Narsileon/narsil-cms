@@ -2,9 +2,9 @@ import * as React from "react";
 import { isString } from "lodash";
 import useDataTable from "./data-table-context";
 import {
-  DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
 
@@ -21,7 +21,7 @@ function DataTableVisibilityDropdown({
   const { dataTable } = useDataTable();
 
   return (
-    <DropdownMenu>
+    <DropdownMenuRoot>
       <DropdownMenuTrigger asChild={true} {...props}>
         {children}
       </DropdownMenuTrigger>
@@ -46,7 +46,7 @@ function DataTableVisibilityDropdown({
             );
           })}
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenuRoot>
   );
 }
 

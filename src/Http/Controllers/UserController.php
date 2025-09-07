@@ -29,35 +29,6 @@ use Narsil\Models\User;
  */
 class UserController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param UserForm $form
-     * @param UserFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(UserForm $form, UserFormRequest $formRequest)
-    {
-        $this->form = $form;
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var UserForm
-     */
-    protected readonly UserForm $form;
-    /**
-     * @var UserFormRequest
-     */
-    protected readonly UserFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -92,12 +63,15 @@ class UserController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, User::class);
 
-        $this->form->method = MethodEnum::POST;
-        $this->form->url = route('users.store');
+        $form = app(UserForm::class);
+
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
+        $form->url = route('users.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -111,7 +85,8 @@ class UserController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, User::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(UserFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -139,14 +114,17 @@ class UserController extends AbstractController
 
         $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::NAME));
 
-        $this->form->method = MethodEnum::PATCH;
-        $this->form->url = route('users.update', [
+        $form = app(UserForm::class);
+
+        $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->url = route('users.update', [
             Str::singular(User::TABLE) => $user->{User::ID}
         ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
+            props: array_merge($form->jsonSerialize(), [
                 'data' => $user,
             ]),
         );
@@ -163,7 +141,8 @@ class UserController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $user);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($user);
+
+        $rules = app(UserFormRequest::class)->rules($user);
 
         if (empty(Arr::get($data, User::PASSWORD)))
         {

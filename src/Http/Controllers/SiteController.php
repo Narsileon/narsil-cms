@@ -30,35 +30,6 @@ use Narsil\Models\Sites\SiteGroup;
  */
 class SiteController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param SiteForm $form
-     * @param SiteFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(SiteForm $form, SiteFormRequest $formRequest)
-    {
-        $this->form = $form;
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var SiteForm
-     */
-    protected readonly SiteForm $form;
-    /**
-     * @var SiteFormRequest
-     */
-    protected readonly SiteFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -103,12 +74,15 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Site::class);
 
-        $this->form->method = MethodEnum::POST;
-        $this->form->url = route('sites.store');
+        $form = app(SiteForm::class);
+
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
+        $form->url = route('sites.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -122,7 +96,8 @@ class SiteController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Site::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(SiteFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -144,14 +119,17 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $site);
 
-        $this->form->method = MethodEnum::PATCH;
-        $this->form->url = route('sites.update', [
+        $form = app(SiteForm::class);
+
+        $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->url = route('sites.update', [
             Str::singular(Site::TABLE) => $site->{Site::ID}
         ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
+            props: array_merge($form->jsonSerialize(), [
                 'data' => $site,
             ]),
         );
@@ -168,7 +146,8 @@ class SiteController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $site);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($site);
+
+        $rules = app(SiteFormRequest::class)->rules($site);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

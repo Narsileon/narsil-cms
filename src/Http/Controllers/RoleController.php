@@ -29,35 +29,6 @@ use Narsil\Models\Policies\Role;
  */
 class RoleController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param RoleForm $form
-     * @param RoleFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(RoleForm $form, RoleFormRequest $formRequest)
-    {
-        $this->form = $form;
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var RoleForm
-     */
-    protected readonly RoleForm $form;
-    /**
-     * @var RoleFormRequest
-     */
-    protected readonly RoleFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -92,12 +63,15 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Role::class);
 
-        $this->form->method = MethodEnum::POST;
-        $this->form->url = route('roles.store');
+        $form = app(RoleForm::class);
+
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
+        $form->url = route('roles.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -111,7 +85,8 @@ class RoleController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Role::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(RoleFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -133,8 +108,11 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $role);
 
-        $this->form->method = MethodEnum::PATCH;
-        $this->form->url = route('roles.update', [
+        $form = app(RoleForm::class);
+
+        $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->url = route('roles.update', [
             Str::singular(Role::TABLE) => $role->{Role::ID}
         ]);
 
@@ -142,7 +120,7 @@ class RoleController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
+            props: array_merge($form->jsonSerialize(), [
                 'data' => $role,
             ]),
         );
@@ -159,7 +137,8 @@ class RoleController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $role);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($role);
+        dd($data);
+        $rules = app(RoleFormRequest::class)->rules($role);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

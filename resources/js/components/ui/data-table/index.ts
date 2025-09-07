@@ -1,6 +1,5 @@
 // https://ui.shadcn.com/docs/components/data-table
 
-import DataTable from "./data-table";
 import DataTableBody from "./data-table-body";
 import DataTableCell from "./data-table-cell";
 import DataTableFilter from "./data-table-filter";
@@ -13,6 +12,7 @@ import DataTableHeadSort from "./data-table-head-sort";
 import DataTableInput from "./data-table-input";
 import DataTablePagination from "./data-table-pagination";
 import DataTableProvider from "./data-table-provider";
+import DataTableRoot from "./data-table-root";
 import DataTableRow from "./data-table-row";
 import DataTableRowMenu from "./data-table-row-menu";
 import DataTableRowSelect from "./data-table-row-select";
@@ -27,7 +27,6 @@ export type ColumnFilter = {
 };
 
 export {
-  DataTable,
   DataTableBody,
   DataTableCell,
   DataTableFilter,
@@ -40,6 +39,7 @@ export {
   DataTableInput,
   DataTablePagination,
   DataTableProvider,
+  DataTableRoot,
   DataTableRow,
   DataTableRowMenu,
   DataTableRowSelect,

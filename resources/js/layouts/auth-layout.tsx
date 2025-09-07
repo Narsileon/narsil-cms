@@ -1,13 +1,13 @@
+import { Breadcrumb, Sidebar } from "@narsil-cms/blocks";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { ModalRenderer } from "@narsil-cms/components/ui/modal";
 import { Separator } from "@narsil-cms/components/ui/separator";
 import { Toaster } from "@narsil-cms/components/ui/toaster";
 import { useEffect, useRef } from "react";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
-import AppBreadcrumb from "@narsil-cms/components/app/app-breadcrumb";
-import AppSidebar from "@narsil-cms/components/app/app-sidebar";
 import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
+import UserBookmarks from "@narsil-cms/components/user/bookmarks";
 import UserMenu from "@narsil-cms/components/user/menu";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
@@ -15,7 +15,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@narsil-cms/components/ui/sidebar";
-import UserBookmarks from "@narsil-cms/components/user/bookmarks";
 
 type AuthLayoutProps = {
   children: React.ReactNode & {
@@ -49,7 +48,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
 
   return (
     <SidebarProvider isMobile={isMobile}>
-      <AppSidebar />
+      <Sidebar />
       <SidebarInset>
         <header className="bg-background sticky top-0 z-10 flex h-13 items-center gap-2 border-b px-4">
           {isMobile ? (
@@ -58,7 +57,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
               <Separator orientation="vertical" />
             </>
           ) : null}
-          <AppBreadcrumb className="grow" />
+          <Breadcrumb className="grow" />
           <UserBookmarks breadcrumb={navigation.breadcrumb} title={title} />
           <UserMenu />
         </header>

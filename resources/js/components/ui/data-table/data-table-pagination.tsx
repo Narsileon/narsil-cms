@@ -1,21 +1,21 @@
 import * as React from "react";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
-  Pagination,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
+  PaginationRoot,
 } from "@narsil-cms/components/ui/pagination";
 import type {
   LaravelPaginationLinks,
   LaravelPaginationMeta,
 } from "@narsil-cms/types/collection";
 
-type DataTablePaginationProps = React.ComponentProps<typeof Pagination> & {
+type DataTablePaginationProps = React.ComponentProps<typeof PaginationRoot> & {
   links: LaravelPaginationLinks;
   metaLinks?: LaravelPaginationMeta["links"];
 };
@@ -28,7 +28,7 @@ function DataTablePagination({
   const { trans } = useLabels();
 
   return (
-    <Pagination {...props}>
+    <PaginationRoot {...props}>
       <PaginationContent>
         <Tooltip tooltip={trans("accessibility.first_page")}>
           <PaginationItem>
@@ -144,7 +144,7 @@ function DataTablePagination({
           </PaginationItem>
         </Tooltip>
       </PaginationContent>
-    </Pagination>
+    </PaginationRoot>
   );
 }
 

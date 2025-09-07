@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Toggle } from "@narsil-cms/components/ui/toggle";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { ToggleRoot } from "@narsil-cms/components/ui/toggle";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 
-type RichTextEditorUnderlineProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorUnderlineProps = React.ComponentProps<typeof ToggleRoot> & {
   editor: Editor;
 };
 
@@ -27,7 +27,7 @@ function RichTextEditorUnderline({
 
   return (
     <Tooltip tooltip={trans(`accessibility.toggle_underline`)}>
-      <Toggle
+      <ToggleRoot
         aria-label={trans(`accessibility.toggle_underline`, `Toggle underline`)}
         disabled={!canUnderline}
         pressed={isUnderline}
@@ -36,7 +36,7 @@ function RichTextEditorUnderline({
         {...props}
       >
         <Icon name="underline" />
-      </Toggle>
+      </ToggleRoot>
     </Tooltip>
   );
 }

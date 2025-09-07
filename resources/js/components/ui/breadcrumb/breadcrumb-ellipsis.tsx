@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 
 type BreadcrumbEllipsisProps = React.ComponentProps<"span"> & {
   ellipsisLabel?: string;
@@ -21,7 +21,7 @@ function BreadcrumbEllipsis({
       {...props}
     >
       <Icon className="size-4" name="more-horizontal" />
-      <VisuallyHidden>{ellipsisLabel ?? "More links"}</VisuallyHidden>
+      <VisuallyHiddenRoot>{ellipsisLabel ?? "More links"}</VisuallyHiddenRoot>
     </span>
   );
 }

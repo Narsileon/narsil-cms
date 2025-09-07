@@ -3,7 +3,7 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import { useSortable } from "@dnd-kit/sortable";
 import SortableHandle from "./sortable-handle";
@@ -17,8 +17,8 @@ import {
   CardTitle,
 } from "@narsil-cms/components/ui/card";
 import {
-  Collapsible,
   CollapsibleContent,
+  CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/ui/collapsible";
 import type { AnonymousItem } from ".";
@@ -85,7 +85,7 @@ function SortableItem({
   });
 
   return (
-    <Collapsible
+    <CollapsibleRoot
       ref={disabled ? undefined : setNodeRef}
       className={cn(
         "overflow-hidden",
@@ -194,7 +194,7 @@ function SortableItem({
           </>
         )}
       </Card>
-    </Collapsible>
+    </CollapsibleRoot>
   );
 }
 

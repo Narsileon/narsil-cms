@@ -2,7 +2,7 @@ import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { cva } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import useSidebar from "./sidebar-context";
 import type { VariantProps } from "class-variance-authority";
 

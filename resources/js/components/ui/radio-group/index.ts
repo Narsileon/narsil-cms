@@ -1,6 +1,6 @@
 // https://ui.shadcn.com/docs/components/radio-group
 
-import RadioGroup from "./radio-group";
 import RadioGroupItem from "./radio-group-item";
+import RadioGroupRoot from "./radio-group-root";
 
-export { RadioGroup, RadioGroupItem };
+export { RadioGroupItem, RadioGroupRoot };

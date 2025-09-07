@@ -64,15 +64,13 @@ function FortifyForm({
           <Card className="max-w-md">
             <CardContent className="p-6">
               <FormProvider
+                action={url}
                 id={id}
                 elements={form}
+                method={method}
                 initialValues={data}
                 render={() => (
-                  <Form
-                    className="grid-cols-12 gap-6"
-                    method={method}
-                    url={url}
-                  >
+                  <Form className="grid-cols-12 gap-6">
                     {form.map((element, index) =>
                       id === "login-form" &&
                       element.handle === "password" &&

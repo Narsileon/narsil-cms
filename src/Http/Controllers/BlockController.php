@@ -31,35 +31,6 @@ use Narsil\Models\Elements\Field;
  */
 class BlockController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param BlockForm $form
-     * @param BlockFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(BlockForm $form, BlockFormRequest $formRequest)
-    {
-        $this->form = $form;
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var BlockForm
-     */
-    protected readonly BlockForm $form;
-    /**
-     * @var BlockFormRequest
-     */
-    protected readonly BlockFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -102,12 +73,15 @@ class BlockController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
-        $this->form->method = MethodEnum::POST;
-        $this->form->url = route('blocks.store');
+        $form = app()->make(BlockForm::class);
+
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
+        $form->url = route('blocks.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -121,7 +95,8 @@ class BlockController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(BlockFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -157,14 +132,17 @@ class BlockController extends AbstractController
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
 
-        $this->form->method = MethodEnum::PATCH;
-        $this->form->url = route('blocks.update', [
+        $form = app()->make(BlockForm::class);
+
+        $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->url = route('blocks.update', [
             Str::singular(Block::TABLE) => $block->{Block::ID}
         ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
+            props: array_merge($form->jsonSerialize(), [
                 'data' => $block,
             ]),
         );
@@ -181,7 +159,8 @@ class BlockController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $block);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($block);
+
+        $rules = app(BlockFormRequest::class)->rules($block);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

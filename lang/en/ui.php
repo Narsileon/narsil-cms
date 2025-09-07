@@ -2,6 +2,7 @@
 
 return [
     'account'            => 'Account',
+    'add_another'        => 'Add another',
     'add_group'          => 'Add a group',
     'add_section'        => 'Add a section',
     'add'                => 'Add',
@@ -19,6 +20,7 @@ return [
     'confirm'            => 'Confirm',
     'connection'         => 'Connection',
     'content'            => 'Content',
+    'continue'           => 'Continue',
     'create'             => 'Create',
     'dashboard'          => 'Dashboard',
     'default_handle'     => 'Default handle',
@@ -59,6 +61,7 @@ return [
     'rule'               => 'Rule',
     'rules'              => 'Rules',
     'save'               => 'Save',
+    'save_as_new'        => 'Save as new',
     'section'            => 'Section',
     'sections'           => 'Sections',
     'security'           => 'Security',

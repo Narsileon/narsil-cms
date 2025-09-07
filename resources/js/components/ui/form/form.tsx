@@ -5,17 +5,10 @@ import useForm from "./form-context";
 
 type FormProps = React.ComponentProps<"form"> & {
   options?: Omit<VisitOptions, "data">;
-  url: string;
 };
 
-function Form({
-  className,
-  method = "post",
-  options,
-  url,
-  ...props
-}: FormProps) {
-  const { id, isDirty, post, transform } = useForm();
+function Form({ className, options, ...props }: FormProps) {
+  const { action, id, isDirty, method, post, transform } = useForm();
 
   function onSubmit(event?: React.FormEvent) {
     event?.preventDefault();
@@ -28,10 +21,10 @@ function Form({
           _dirty: isDirty,
           _method: method,
         }));
-        post?.(url, { ...options, forceFormData: true });
+        post?.(action, { ...options, forceFormData: true });
         break;
       case "post":
-        post?.(url, options);
+        post?.(action, options);
         break;
     }
   }
@@ -40,7 +33,7 @@ function Form({
     <form
       id={id}
       className={cn("grid", className)}
-      action={url}
+      action={action}
       method={method}
       onSubmit={onSubmit}
       {...props}

@@ -3,7 +3,7 @@ import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
 import { route } from "ziggy-js";
-import { Toggle } from "@narsil-cms/components/ui/toggle";
+import { ToggleRoot } from "@narsil-cms/components/ui/toggle";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import {
   DataTableRowMenu,
@@ -27,7 +27,7 @@ function DataTableFilter({
   return (
     <ul className={cn("grid gap-2", className)} {...props}>
       <li>
-        <Toggle
+        <ToggleRoot
           className="w-full justify-start font-normal"
           pressed={!dataTableStore.filter}
           onClick={() => {
@@ -35,14 +35,14 @@ function DataTableFilter({
           }}
         >
           {trans("ui.all")}
-        </Toggle>
+        </ToggleRoot>
       </li>
       {data.map((category) => (
         <li
           className="flex items-center justify-between gap-2"
           key={category.id}
         >
-          <Toggle
+          <ToggleRoot
             className="grow justify-start font-normal"
             pressed={category.id.toString() === dataTableStore.filter}
             onClick={() => {
@@ -50,7 +50,7 @@ function DataTableFilter({
             }}
           >
             {category.label}
-          </Toggle>
+          </ToggleRoot>
           <DataTableRowMenu
             id={category.id}
             modal={true}

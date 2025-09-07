@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Toggle } from "@narsil-cms/components/ui/toggle";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { ToggleRoot } from "@narsil-cms/components/ui/toggle";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 
-type RichTextEditorSubscriptProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorSubscriptProps = React.ComponentProps<typeof ToggleRoot> & {
   editor: Editor;
 };
 
@@ -27,7 +27,7 @@ function RichTextEditorSubscript({
 
   return (
     <Tooltip tooltip={trans(`accessibility.toggle_subscript`)}>
-      <Toggle
+      <ToggleRoot
         aria-label={trans(`accessibility.toggle_subscript`, `Toggle subscript`)}
         disabled={!canSubscript}
         pressed={isSubscript}
@@ -39,7 +39,7 @@ function RichTextEditorSubscript({
         {...props}
       >
         <Icon name="subscript" />
-      </Toggle>
+      </ToggleRoot>
     </Tooltip>
   );
 }

@@ -30,35 +30,6 @@ use Narsil\Models\Elements\FieldOption;
  */
 class FieldController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param FieldForm $form
-     * @param FieldFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(FieldForm $form, FieldFormRequest $formRequest)
-    {
-        $this->form = $form;
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var FieldForm
-     */
-    protected readonly FieldForm $form;
-    /**
-     * @var FieldFormRequest
-     */
-    protected readonly FieldFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -93,12 +64,15 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
-        $this->form->method = MethodEnum::POST;
-        $this->form->url = route('fields.store');
+        $form = app(FieldForm::class);
+
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
+        $form->url = route('fields.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -112,7 +86,8 @@ class FieldController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(FieldFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -139,14 +114,17 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $field);
 
-        $this->form->method = MethodEnum::PATCH;
-        $this->form->url = route('fields.update', [
+        $form = app(FieldForm::class);
+
+        $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->url = route('fields.update', [
             Str::singular(Field::TABLE) => $field->{Field::ID}
         ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
+            props: array_merge($form->jsonSerialize(), [
                 'data' => $field,
             ]),
         );
@@ -163,7 +141,8 @@ class FieldController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $field);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($field);
+
+        $rules = app(FieldFormRequest::class)->rules($field);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

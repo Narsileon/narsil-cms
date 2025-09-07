@@ -5,16 +5,20 @@ import type { Block, Field } from "@narsil-cms/types/forms";
 import type { FormContextProps } from "./form-context";
 
 type FormProviderProps = {
+  action: string;
   elements?: (Field | Block)[];
   id: string;
   initialValues?: Record<string, any>;
+  method: string;
   render: (props: FormContextProps) => React.ReactNode;
 };
 
 function FormProvider({
+  action,
   elements = [],
   id,
   initialValues = {},
+  method,
   render,
 }: FormProviderProps) {
   function flattenValues(elements: (Field | Block)[]): Record<string, any> {
@@ -64,10 +68,12 @@ function FormProvider({
   } = useForm<Record<string, any>>(mergedInitialValues);
 
   const value = {
-    id: id,
+    action: action,
     data: data,
     errors: errors,
+    id: id,
     isDirty: isDirty,
+    method: method,
     processing: processing,
     cancel: cancel,
     clearErrors: clearErrors,

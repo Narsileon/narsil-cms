@@ -33,35 +33,6 @@ use Narsil\Models\Elements\TemplateSectionElement;
  */
 class TemplateController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param TemplateForm $form
-     * @param TemplateFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(TemplateForm $form, TemplateFormRequest $formRequest)
-    {
-        $this->form = $form;
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var TemplateForm
-     */
-    protected readonly TemplateForm $form;
-    /**
-     * @var TemplateFormRequest
-     */
-    protected readonly TemplateFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -96,12 +67,15 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
-        $this->form->method = MethodEnum::POST;
-        $this->form->url = route('templates.store');
+        $form = app(TemplateForm::class);
+
+        $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
+        $form->url = route('templates.store');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -115,7 +89,8 @@ class TemplateController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(TemplateFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -139,14 +114,17 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $template);
 
-        $this->form->method = MethodEnum::PATCH;
-        $this->form->url = route('templates.update', [
+        $form = app(TemplateForm::class);
+
+        $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->url = route('templates.update', [
             Str::singular(Template::TABLE) => $template->{Template::ID}
         ]);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: array_merge($this->form->jsonSerialize(), [
+            props: array_merge($form->jsonSerialize(), [
                 'data' => $template,
             ]),
         );
@@ -163,7 +141,8 @@ class TemplateController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $template);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($template);
+
+        $rules = app(TemplateFormRequest::class)->rules($template);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

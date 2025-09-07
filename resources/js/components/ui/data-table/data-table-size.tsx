@@ -2,9 +2,9 @@ import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import useDataTable from "./data-table-context";
 import {
-  Select,
   SelectContent,
   SelectItem,
+  SelectRoot,
   SelectTrigger,
   SelectValue,
 } from "@narsil-cms/components/ui/select";
@@ -19,7 +19,7 @@ function DataTableSize({
   const { dataTableStore } = useDataTable();
 
   return (
-    <Select
+    <SelectRoot
       value={dataTableStore.pageSize.toString()}
       onValueChange={(value) => dataTableStore.setPageSize(Number(value))}
     >
@@ -33,7 +33,7 @@ function DataTableSize({
           </SelectItem>
         ))}
       </SelectContent>
-    </Select>
+    </SelectRoot>
   );
 }
 

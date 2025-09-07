@@ -1,3 +1,3 @@
-import VisuallyHidden from "./visually-hidden";
+import VisuallyHiddenRoot from "./visually-hidden-root";
 
-export { VisuallyHidden };
+export { VisuallyHiddenRoot };

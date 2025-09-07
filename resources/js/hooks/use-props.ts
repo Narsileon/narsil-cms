@@ -30,6 +30,7 @@ type AuthProps = {
   avatar: string | null;
   email: string;
   first_name: string | undefined | null;
+  full_name: string | undefined | null;
   last_name: string | undefined | null;
   two_factor_confirmed_at: string | null;
 };

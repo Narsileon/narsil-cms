@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
 import DialogCloseButton from "./dialog-close-button";
@@ -33,9 +33,9 @@ function DialogContent({
         )}
         {...props}
       >
-        <VisuallyHidden aria-hidden="true" tabIndex={0}>
+        <VisuallyHiddenRoot aria-hidden="true" tabIndex={0}>
           Dialog
-        </VisuallyHidden>
+        </VisuallyHiddenRoot>
         {children}
         {showCloseButton ? (
           <DialogCloseButton className="absolute top-5.5 right-5.5" />

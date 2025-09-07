@@ -1,6 +1,5 @@
 // https://ui.shadcn.com/docs/components/dialog
 
-import Dialog from "./dialog";
 import DialogBody from "./dialog-body";
 import DialogClose from "./dialog-close";
 import DialogCloseButton from "./dialog-close-button";
@@ -10,11 +9,11 @@ import DialogFooter from "./dialog-footer";
 import DialogHeader from "./dialog-header";
 import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
+import DialogRoot from "./dialog-root";
 import DialogTitle from "./dialog-title";
 import DialogTrigger from "./dialog-trigger";
 
 export {
-  Dialog,
   DialogBody,
   DialogClose,
   DialogCloseButton,
@@ -24,6 +23,7 @@ export {
   DialogHeader,
   DialogOverlay,
   DialogPortal,
+  DialogRoot,
   DialogTitle,
   DialogTrigger,
 };

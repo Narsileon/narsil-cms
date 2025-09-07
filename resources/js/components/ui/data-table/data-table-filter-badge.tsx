@@ -8,14 +8,14 @@ import { useEffect } from "react";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import useDataTable from "./data-table-context";
 import {
-  Popover,
   PopoverContent,
+  PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/ui/popover";
 import {
-  Select,
   SelectContent,
   SelectItem,
+  SelectRoot,
   SelectTrigger,
   SelectValue,
 } from "@narsil-cms/components/ui/select";
@@ -56,7 +56,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
   }, [filter.operator]);
 
   return (
-    <Popover open={open} onOpenChange={onOpenChange} modal={true}>
+    <PopoverRoot open={open} onOpenChange={onOpenChange} modal={true}>
       <PopoverTrigger asChild={true}>
         <Badge className="cursor-pointer">
           <span>{column.columnDef.header as string}</span>
@@ -70,7 +70,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
         </Badge>
       </PopoverTrigger>
       <PopoverContent className="flex flex-col gap-4">
-        <Select
+        <SelectRoot
           value={filter.operator}
           onValueChange={(value) => {
             dataTableStore.updateFilter(filter.column, { operator: value });
@@ -89,7 +89,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
               </SelectItem>
             ))}
           </SelectContent>
-        </Select>
+        </SelectRoot>
         {getField(meta.field.type, {
           element: meta.field,
           id: filter.column,
@@ -98,7 +98,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
             dataTableStore.updateFilter(filter.column, { value: value }),
         })}
       </PopoverContent>
-    </Popover>
+    </PopoverRoot>
   );
 }
 

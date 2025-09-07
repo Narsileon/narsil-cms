@@ -1,15 +1,14 @@
+import { Avatar, Tooltip } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/ui/button";
 import { Icon } from "@narsil-cms/components/ui/icon";
 import { Link } from "@inertiajs/react";
 import { ModalLink } from "@narsil-cms/components/ui/modal";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
 import { useAuth, useNavigation } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import UserAvatar from "@narsil-cms/components/user/avatar";
 import {
-  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/ui/dropdown-menu";
@@ -23,13 +22,14 @@ function UserMenu({ ...props }: UserMenuProps) {
   const { userMenu } = useNavigation();
 
   return (
-    <DropdownMenu>
+    <DropdownMenuRoot>
       <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
         <DropdownMenuTrigger asChild={!auth && true} {...props}>
           {auth ? (
-            <UserAvatar
+            <Avatar
               avatar={auth.avatar}
               firstName={auth.first_name ?? "A"}
+              fullName={`${auth.full_name ?? "AA"}`}
               lastName={auth.last_name ?? "A"}
             />
           ) : (
@@ -72,7 +72,7 @@ function UserMenu({ ...props }: UserMenuProps) {
           }
         })}
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenuRoot>
   );
 }
 

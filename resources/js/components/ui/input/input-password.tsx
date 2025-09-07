@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
 import Input from "./input";
 

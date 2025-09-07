@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 
 type PaginationEllipsisProps = React.ComponentProps<"span"> & {
   label?: string;
@@ -20,7 +20,7 @@ function PaginationEllipsis({
       {...props}
     >
       <Icon className="size-4" name="more-horizontal" />
-      <VisuallyHidden>{label ?? "More pages"}</VisuallyHidden>
+      <VisuallyHiddenRoot>{label ?? "More pages"}</VisuallyHiddenRoot>
     </span>
   );
 }

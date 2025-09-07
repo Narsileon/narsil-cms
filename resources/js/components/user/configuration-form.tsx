@@ -71,7 +71,9 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
       <SectionContent>
         <FormProvider
           id="user-personalization-form"
+          action={form.url}
           elements={form.form}
+          method={form.method}
           initialValues={{
             color: color,
             locale: locale,
@@ -79,7 +81,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
             theme: theme,
           }}
           render={() => (
-            <Form className="gap-4" method={form.method} url={form.url}>
+            <Form className="gap-4">
               {form.form.map((element, index) => {
                 return (
                   <FormFieldRenderer

@@ -31,59 +31,6 @@ use Narsil\Support\LabelsBag;
  */
 class UserConfigurationController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param ProfileForm $profileForm
-     * @param TwoFactorForm $twoFactorForm
-     * @param UpdatePasswordForm $updatePasswordForm
-     * @param UserConfigurationForm $userConfigurationForm
-     * @param UserConfigurationFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(
-        ProfileForm $profileForm,
-        TwoFactorForm $twoFactorForm,
-        UpdatePasswordForm $updatePasswordForm,
-        UserConfigurationForm $userConfigurationForm,
-        UserConfigurationFormRequest $formRequest
-    )
-    {
-        $this->formRequest = $formRequest;
-        $this->profileForm = $profileForm;
-        $this->twoFactorForm = $twoFactorForm;
-        $this->updatePasswordForm = $updatePasswordForm;
-        $this->userConfigurationForm = $userConfigurationForm;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var ProfileForm
-     */
-    protected readonly ProfileForm $profileForm;
-    /**
-     * @var TwoFactorForm
-     */
-    protected readonly TwoFactorForm $twoFactorForm;
-    /**
-     * @var UpdatePasswordForm
-     */
-    protected readonly UpdatePasswordForm $updatePasswordForm;
-    /**
-     * @var UserConfigurationForm
-     */
-    protected readonly UserConfigurationForm $userConfigurationForm;
-    /**
-     * @var UserConfigurationFormRequest
-     */
-    protected readonly UserConfigurationFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -91,6 +38,11 @@ class UserConfigurationController extends AbstractController
      */
     public function index(Request $request): JsonResponse|Response
     {
+        $profileForm = app(ProfileForm::class);
+        $twoFactorForm = app(TwoFactorForm::class);
+        $updatePasswordForm = app(UpdatePasswordForm::class);
+        $userConfigurationForm = app(UserConfigurationForm::class);
+
         app(LabelsBag::class)
             ->add('narsil::sessions.sign_out_current_description')
             ->add('narsil::sessions.sign_out_current')
@@ -109,10 +61,10 @@ class UserConfigurationController extends AbstractController
             title: trans('narsil::ui.settings'),
             description: trans('narsil::ui.settings'),
             props: [
-                'profileForm' => $this->profileForm->jsonSerialize(),
-                'twoFactorForm' => $this->twoFactorForm->jsonSerialize(),
-                'updatePasswordForm' => $this->updatePasswordForm->jsonSerialize(),
-                'userConfigurationForm' => $this->userConfigurationForm->jsonSerialize(),
+                'profileForm' => $profileForm->jsonSerialize(),
+                'twoFactorForm' => $twoFactorForm->jsonSerialize(),
+                'updatePasswordForm' => $updatePasswordForm->jsonSerialize(),
+                'userConfigurationForm' => $userConfigurationForm->jsonSerialize(),
             ]
         );
     }
@@ -123,7 +75,8 @@ class UserConfigurationController extends AbstractController
     public function store(Request $request): RedirectResponse
     {
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(UserconfigurationFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();

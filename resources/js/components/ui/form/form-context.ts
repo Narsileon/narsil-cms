@@ -4,11 +4,15 @@ import type { InertiaFormProps } from "@inertiajs/react";
 export type FormContextProps = Partial<
   InertiaFormProps<Record<string, any>>
 > & {
+  action: string;
   id: string;
+  method: string;
 };
 
 export const FormContext = React.createContext<FormContextProps>({
+  action: "#",
   id: "form",
+  method: "post",
 });
 
 function useForm() {

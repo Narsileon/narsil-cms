@@ -1,10 +1,7 @@
 // https://ui.shadcn.com/docs/components/toggle
 // https://ui.shadcn.com/docs/components/toggle-group
 
-import { toggleVariants } from "./toggle";
-import Toggle from "./toggle";
-import ToggleGroup from "./toggle-group";
-import ToggleGroupItem from "./toggle-group-item";
-import useToggleGroup from "./toggle-group-context";
+import ToggleRoot from "./toggle-root";
+import toggleVariants from "./toggle-variants";
 
-export { Toggle, ToggleGroup, ToggleGroupItem, toggleVariants, useToggleGroup };
+export { ToggleRoot, toggleVariants };

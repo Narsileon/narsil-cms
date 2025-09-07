@@ -44,31 +44,7 @@ class EntityController extends AbstractController
         $collection = request()->route('collection');
 
         Entity::setTableName($collection);
-
-        $this->template = Template::query()
-            ->with([
-                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_BlOCKS,
-                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_FIELDS,
-            ])
-            ->firstWhere(Template::HANDLE, '=', $collection);
-
-        $this->formRequest = app(EntityFormRequest::class, [
-            'template' => $this->template,
-        ]);
     }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var EntityFormRequest
-     */
-    protected readonly EntityFormRequest $formRequest;
-    /**
-     * @var Template
-     */
-    protected readonly Template $template;
 
     #endregion
 
@@ -84,6 +60,8 @@ class EntityController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
 
+        $template = $this->getTemplate($collection);
+
         $query = Entity::query()
             ->with([
                 Entity::RELATION_CREATOR,
@@ -95,8 +73,8 @@ class EntityController extends AbstractController
 
         return $this->render(
             component: 'narsil/cms::resources/index',
-            title: $this->template->{Template::NAME},
-            description: $this->template->{Template::NAME},
+            title: $template->{Template::NAME},
+            description: $template->{Template::NAME},
             props: [
                 'collection' => $collection,
             ]
@@ -113,11 +91,14 @@ class EntityController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
+        $template = $this->getTemplate($collection);
+
         $form = app()->make(EntityForm::class, [
-            'template' => $this->template
+            'template' => $template
         ]);
 
         $form->method = MethodEnum::POST;
+        $form->submitLabel = trans('narsil::ui.create');
         $form->url = route('collections.store', [
             'collection' => $collection
         ]);
@@ -139,7 +120,8 @@ class EntityController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
         $data = $request->all();
-        $rules = $this->formRequest->rules();
+
+        $rules = app(EntityFormRequest::class)->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -174,8 +156,10 @@ class EntityController extends AbstractController
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
+        $template = $this->getTemplate($collection);
+
         $form = app()->make(EntityForm::class, [
-            'template' => $this->template,
+            'template' => $template,
         ]);
 
         $form->method = MethodEnum::PATCH;
@@ -217,7 +201,8 @@ class EntityController extends AbstractController
         }
 
         $data = $request->all();
-        $rules = $this->formRequest->rules($entity);
+
+        $rules = app(EntityFormRequest::class)->rules($entity);
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -347,6 +332,21 @@ class EntityController extends AbstractController
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @param string $collection
+     *
+     * @return Template
+     */
+    protected function getTemplate(string $collection): Template
+    {
+        return Template::query()
+            ->with([
+                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_BlOCKS,
+                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_FIELDS,
+            ])
+            ->firstWhere(Template::HANDLE, '=', $collection);
+    }
 
     /**
      * @param Entity $entity

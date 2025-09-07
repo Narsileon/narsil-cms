@@ -95,12 +95,12 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
         </div>
         {!active && enabled && qrCode ? (
           <FormProvider
+            action={form.url}
             id={form.id}
             elements={form.form}
+            method={form.method}
             render={({ setError }) => (
               <Form
-                method={form.method}
-                url={form.url}
                 options={{
                   onSuccess: () => {
                     setActive(true);

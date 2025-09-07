@@ -2,9 +2,9 @@ import * as React from "react";
 import { Button } from "@narsil-cms/components/ui/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/ui/icon";
-import { Tooltip } from "@narsil-cms/components/ui/tooltip";
+import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/ui/labels";
-import { VisuallyHidden } from "@narsil-cms/components/ui/visually-hidden";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/ui/visually-hidden";
 import useSidebar from "./sidebar-context";
 
 type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};
@@ -30,9 +30,9 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
         {...props}
       >
         <Icon name="menu" />
-        <VisuallyHidden>
+        <VisuallyHiddenRoot>
           {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
-        </VisuallyHidden>
+        </VisuallyHiddenRoot>
       </Button>
     </Tooltip>
   );
