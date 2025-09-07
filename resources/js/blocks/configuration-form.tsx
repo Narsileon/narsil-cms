@@ -8,9 +8,9 @@ import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
-  Form,
   FormFieldRenderer,
   FormProvider,
+  FormRoot,
 } from "@narsil-cms/components/form";
 import {
   Section,
@@ -81,7 +81,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
             theme: theme,
           }}
           render={() => (
-            <Form className="gap-4">
+            <FormRoot className="gap-4">
               {form.form.map((element, index) => {
                 return (
                   <FormFieldRenderer
@@ -106,7 +106,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
                   />
                 );
               })}
-            </Form>
+            </FormRoot>
           )}
         />
       </SectionContent>

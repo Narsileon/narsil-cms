@@ -163,7 +163,7 @@ trait HasPermissions
             }
         }
 
-        if (!empty($handles))
+        if (!empty($names))
         {
             $names = Permission::query()
                 ->whereIn(Permission::NAME, $names)

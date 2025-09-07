@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Inertia\Response;
@@ -91,7 +92,12 @@ class RoleController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        Role::create($attributes);
+        $role = Role::create($attributes);
+
+        if ($permissions = Arr::get($attributes, Role::RELATION_PERMISSIONS))
+        {
+            $role->syncPermissions($permissions);
+        }
 
         return $this
             ->redirect(route('roles.index'))
@@ -137,13 +143,18 @@ class RoleController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $role);
 
         $data = $request->all();
-        dd($data);
+
         $rules = app(RoleFormRequest::class)->rules($role);
 
         $attributes = Validator::make($data, $rules)
             ->validated();
 
         $role->update($attributes);
+
+        if ($permissions = Arr::get($attributes, Role::RELATION_PERMISSIONS))
+        {
+            $role->syncPermissions($permissions);
+        }
 
         return $this
             ->redirect(route('roles.index'))
@@ -244,7 +255,7 @@ class RoleController extends AbstractController
             ])
             ->save();
 
-        $replicated->permissions()->sync($role->{Role::RELATION_PERMISSIONS}->pluck(Permission::ID));
+        $replicated->syncPermissions($role->{Role::RELATION_PERMISSIONS}->pluck(Permission::ID));
     }
 
     #endregion

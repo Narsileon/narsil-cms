@@ -14,7 +14,7 @@ import {
 } from "@narsil-cms/components/dialog";
 import {
   FormProvider,
-  Form,
+  FormRoot,
   FormSubmit,
   FormFieldRenderer,
 } from "@narsil-cms/components/form";
@@ -173,7 +173,7 @@ function ResourceForm({
         ...data,
       }}
       render={() => (
-        <Form
+        <FormRoot
           className="overflow-hidden"
           options={{
             onSuccess: (response) => {
@@ -232,7 +232,7 @@ function ResourceForm({
               </SectionContent>
             </Section>
           )}
-        </Form>
+        </FormRoot>
       )}
     />
   );

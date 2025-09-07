@@ -3,9 +3,9 @@ import { Separator } from "@narsil-cms/components/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Form,
   FormFieldRenderer,
   FormProvider,
+  FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
 import {
@@ -50,11 +50,11 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               </FormSubmit>
             </SectionHeader>
             <SectionContent>
-              <Form className="grid-cols-12 gap-4">
+              <FormRoot className="grid-cols-12 gap-4">
                 {profileForm.form.map((element, index) => (
                   <FormFieldRenderer element={element} key={index} />
                 ))}
-              </Form>
+              </FormRoot>
             </SectionContent>
           </Section>
         )}
@@ -78,7 +78,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               </FormSubmit>
             </SectionHeader>
             <SectionContent>
-              <Form
+              <FormRoot
                 className="grid-cols-12 gap-4"
                 options={{
                   onSuccess: () => {
@@ -90,7 +90,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                 {updatePasswordForm.form.map((element, index) => (
                   <FormFieldRenderer element={element} key={index} />
                 ))}
-              </Form>
+              </FormRoot>
             </SectionContent>
           </Section>
         )}

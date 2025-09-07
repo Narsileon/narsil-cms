@@ -15,9 +15,9 @@ import {
   CardTitle,
 } from "@narsil-cms/components/card";
 import {
-  Form,
   FormFieldRenderer,
   FormProvider,
+  FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
 import {
@@ -124,7 +124,7 @@ function Bookmarks({ breadcrumb, title, ...props }: BookmarksProps) {
                   <CardTitle>{form.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Form
+                  <FormRoot
                     className="grid-cols-12 gap-4"
                     method="patch"
                     options={{
@@ -137,7 +137,7 @@ function Bookmarks({ breadcrumb, title, ...props }: BookmarksProps) {
                     {form.form.map((element, index) => (
                       <FormFieldRenderer element={element} key={index} />
                     ))}
-                  </Form>
+                  </FormRoot>
                 </CardContent>
                 <CardFooter className="justify-between border-t">
                   <Button

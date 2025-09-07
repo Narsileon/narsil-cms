@@ -17,9 +17,9 @@ import {
   CardTitle,
 } from "@narsil-cms/components/card";
 import {
-  Form,
   FormFieldRenderer,
   FormProvider,
+  FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
 import type { FormType } from "@narsil-cms/types/forms";
@@ -100,7 +100,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
             elements={form.form}
             method={form.method}
             render={({ setError }) => (
-              <Form
+              <FormRoot
                 options={{
                   onSuccess: () => {
                     setActive(true);
@@ -126,7 +126,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                     <FormSubmit>{form.submitLabel}</FormSubmit>
                   </CardFooter>
                 </Card>
-              </Form>
+              </FormRoot>
             )}
           />
         ) : null}

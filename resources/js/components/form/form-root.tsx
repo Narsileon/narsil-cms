@@ -3,11 +3,11 @@ import { cn } from "@narsil-cms/lib/utils";
 import { VisitOptions } from "@inertiajs/core";
 import useForm from "./form-context";
 
-type FormProps = React.ComponentProps<"form"> & {
+type FormRootProps = React.ComponentProps<"form"> & {
   options?: Omit<VisitOptions, "data">;
 };
 
-function Form({ className, options, ...props }: FormProps) {
+function FormRoot({ className, options, ...props }: FormRootProps) {
   const { action, id, isDirty, method, post, transform } = useForm();
 
   function onSubmit(event?: React.FormEvent) {
@@ -41,4 +41,4 @@ function Form({ className, options, ...props }: FormProps) {
   );
 }
 
-export default Form;
+export default FormRoot;

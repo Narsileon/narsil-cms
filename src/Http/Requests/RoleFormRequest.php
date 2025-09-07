@@ -29,6 +29,11 @@ class RoleFormRequest implements Contract
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
+            Role::RELATION_PERMISSIONS => [
+                FormRule::ARRAY,
+                FormRule::SOMETIMES,
+                FormRule::NULLABLE,
+            ],
         ];
     }
 

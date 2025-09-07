@@ -137,8 +137,8 @@ trait HasRoles
             $roles = [$roles];
         }
 
-        $names = [];
         $ids = [];
+        $names = [];
 
         foreach ($roles as $role)
         {

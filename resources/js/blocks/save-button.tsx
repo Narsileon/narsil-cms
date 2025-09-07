@@ -23,8 +23,6 @@ function SaveButton({ className, submitLabel, ...props }: SaveButtonProps) {
   const { trans } = useLabels();
 
   function saveAndAdd() {
-    console.log("save and add");
-
     submit();
   }
 
@@ -38,12 +36,16 @@ function SaveButton({ className, submitLabel, ...props }: SaveButtonProps) {
     switch (method) {
       case "patch":
       case "put":
-        transform?.((data) => ({
-          ...data,
-          ...submitData,
-          _dirty: isDirty,
-          _method: method,
-        }));
+        transform?.((data) => {
+          console.log(data);
+
+          return {
+            ...data,
+            ...submitData,
+            _dirty: isDirty,
+            _method: method,
+          };
+        });
         post?.(action, { forceFormData: true });
         break;
       case "post":
@@ -68,14 +70,14 @@ function SaveButton({ className, submitLabel, ...props }: SaveButtonProps) {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [saveAndAdd, saveAndContinue]);
 
   return (
     <div
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <Button className="rounded-r-none" form={id} type="submit">
+      <Button className="rounded-r-none" form={id}>
         <Icon name="save" />
         {submitLabel}
       </Button>

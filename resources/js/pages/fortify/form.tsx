@@ -8,13 +8,13 @@ import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Form,
   FormField,
   FormFieldRenderer,
   FormItem,
   FormLabel,
   FormMessage,
   FormProvider,
+  FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
 import {
@@ -70,7 +70,7 @@ function FortifyForm({
                 method={method}
                 initialValues={data}
                 render={() => (
-                  <Form className="grid-cols-12 gap-6">
+                  <FormRoot className="grid-cols-12 gap-6">
                     {form.map((element, index) =>
                       id === "login-form" &&
                       element.handle === "password" &&
@@ -117,7 +117,7 @@ function FortifyForm({
                     <FormSubmit className="w-full place-self-center">
                       {submitLabel}
                     </FormSubmit>
-                  </Form>
+                  </FormRoot>
                 )}
               />
             </CardContent>
