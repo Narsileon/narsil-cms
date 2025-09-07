@@ -2,9 +2,11 @@ import { Icon } from "@narsil-cms/components/icon";
 import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/labels";
-import ConfigurationForm from "@narsil-cms/components/user/configuration-form";
-import ProfileForm from "@narsil-cms/components/user/profile-form";
-import SecurityForm from "@narsil-cms/components/user/security-form";
+import {
+  ConfigurationForm,
+  ProfileForm,
+  SecurityForm,
+} from "@narsil-cms/blocks";
 import {
   TabsList,
   Tabs,

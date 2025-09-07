@@ -1,3 +1,4 @@
+import { Icon } from "@narsil-cms/components/icon";
 import { Separator } from "@narsil-cms/components/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { useLabels } from "@narsil-cms/components/labels";
@@ -14,7 +15,6 @@ import {
   SectionTitle,
 } from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types/forms";
-import { Icon } from "../icon";
 
 type ProfileFormProps = {
   profileForm: FormType;

@@ -1,4 +1,4 @@
-import { Bookmarks, Breadcrumb, Sidebar } from "@narsil-cms/blocks";
+import { Bookmarks, Breadcrumb, Sidebar, UserMenu } from "@narsil-cms/blocks";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import { Separator } from "@narsil-cms/components/separator";
@@ -7,7 +7,6 @@ import { useEffect, useRef } from "react";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
-import UserMenu from "@narsil-cms/components/user/menu";
 import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
   SidebarInset,
