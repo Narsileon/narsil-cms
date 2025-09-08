@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class ComponentServiceProvider extends ServiceProvider
+class BlockServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 
@@ -21,7 +21,7 @@ class ComponentServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->registerComponents();
+        $this->registerBlocks();
     }
 
     #endregion
@@ -33,9 +33,9 @@ class ComponentServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerComponents(): void
+    protected function registerBlocks(): void
     {
-        $config = config('narsil.components', []);
+        $config = config('narsil.blocks', []);
 
         foreach ($config as $abstract => $concrete)
         {

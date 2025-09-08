@@ -6,8 +6,8 @@ namespace Narsil;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Providers\BlockServiceProvider;
 use Narsil\Providers\CommandServiceProvider;
-use Narsil\Providers\ComponentServiceProvider;
 use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
 use Narsil\Providers\FormServiceProvider;
@@ -92,7 +92,7 @@ class NarsilServiceProvider extends ServiceProvider
     protected function registerConfigs(): void
     {
         $configs = [
-            'narsil.components' => __DIR__ . '/../config/narsil/components.php',
+            'narsil.blocks' => __DIR__ . '/../config/narsil/blocks.php',
             'narsil.fields' => __DIR__ . '/../config/narsil/fields.php',
             'narsil.form-requests' => __DIR__ . '/../config/narsil/form-requests.php',
             'narsil.forms'  => __DIR__ . '/../config/narsil/forms.php',
@@ -110,8 +110,8 @@ class NarsilServiceProvider extends ServiceProvider
 
     protected function registerProviders(): void
     {
+        $this->app->register(BlockServiceProvider::class);
         $this->app->register(CommandServiceProvider::class);
-        $this->app->register(ComponentServiceProvider::class);
         $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);

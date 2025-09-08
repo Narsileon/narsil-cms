@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Implementations\Components\Elements;
+namespace Narsil\Implementations\Blocks\Elements;
 
 #region USE
 
-use Narsil\Implementations\Components\Elements\AbstractComponentElement;
+use Narsil\Implementations\Blocks\Elements\AbstractComponentElement;
 
 #endregion
 

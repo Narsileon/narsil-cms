@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Implementations\Components;
+namespace Narsil\Implementations\Blocks;
 
 #region USE
 
-use Narsil\Contracts\Components\AuthMenu as Contract;
+use Narsil\Contracts\Blocks\AuthMenu as Contract;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractComponent;
-use Narsil\Implementations\Components\Elements\NavigationItem;
-use Narsil\Implementations\Components\Elements\Separator;
+use Narsil\Implementations\Blocks\Elements\NavigationItem;
+use Narsil\Implementations\Blocks\Elements\Separator;
 use Narsil\Support\LabelsBag;
 
 #endregion

@@ -11,7 +11,7 @@ return [
     |
     */
 
-    \Narsil\Contracts\Components\AuthMenu::class => \Narsil\Implementations\Components\AuthMenu::class,
-    \Narsil\Contracts\Components\GuestMenu::class => \Narsil\Implementations\Components\GuestMenu::class,
-    \Narsil\Contracts\Components\Sidebar::class => \Narsil\Implementations\Components\Sidebar::class,
+    \Narsil\Contracts\Blocks\AuthMenu::class => \Narsil\Implementations\Blocks\AuthMenu::class,
+    \Narsil\Contracts\Blocks\GuestMenu::class => \Narsil\Implementations\Blocks\GuestMenu::class,
+    \Narsil\Contracts\Blocks\Sidebar::class => \Narsil\Implementations\Blocks\Sidebar::class,
 ];

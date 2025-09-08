@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Implementations\Components;
+namespace Narsil\Implementations\Blocks;
 
 #region USE
 
-use Narsil\Contracts\Components\Sidebar as Contract;
+use Narsil\Contracts\Blocks\Sidebar as Contract;
 use Narsil\Implementations\AbstractComponent;
-use Narsil\Implementations\Components\Elements\NavigationGroup;
-use Narsil\Implementations\Components\Elements\NavigationItem;
+use Narsil\Implementations\Blocks\Elements\NavigationGroup;
+use Narsil\Implementations\Blocks\Elements\NavigationItem;
 use Narsil\Models\Elements\Template;
 use Narsil\Support\LabelsBag;
 

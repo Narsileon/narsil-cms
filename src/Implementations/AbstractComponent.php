@@ -5,7 +5,7 @@ namespace Narsil\Implementations;
 #region USE
 
 use JsonSerializable;
-use Narsil\Contracts\Component;
+use Narsil\Contracts\Block;
 
 #endregion
 
@@ -13,7 +13,7 @@ use Narsil\Contracts\Component;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-abstract class AbstractComponent implements Component, JsonSerializable
+abstract class AbstractComponent implements Block, JsonSerializable
 {
     #region PUBLIC METHODS
 
