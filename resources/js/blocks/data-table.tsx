@@ -66,7 +66,7 @@ function DataTable({ dataTable }: DataTableProps) {
             <DataTableRow>
               <TableCell
                 colSpan={dataTable.getVisibleFlatColumns().length}
-                className="h-12"
+                className="h-9"
               />
             </DataTableRow>
           )}

@@ -34,7 +34,7 @@ abstract class MigrationService
      *
      * @return void
      */
-    public static function syncTable(Template $template): void
+    public static function up(Template $template): void
     {
         $table = $template->{Template::HANDLE};
 
@@ -43,6 +43,20 @@ abstract class MigrationService
         $fields = TemplateService::getFields($template);
 
         static::updateTable($table, $fields);
+
+        GraphQLService::generateTemplatesSchema();
+    }
+
+    /**
+     * @param Template $template
+     *
+     * @return void
+     */
+    public static function down(Template $template): void
+    {
+        $table = $template->{Template::HANDLE};
+
+        new CollectionMigration($table)->down();
 
         GraphQLService::generateTemplatesSchema();
     }

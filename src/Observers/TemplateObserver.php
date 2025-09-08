@@ -34,9 +34,19 @@ class TemplateObserver
      *
      * @return void
      */
+    public function deleted(Template $template): void
+    {
+        MigrationService::down($template);
+    }
+
+    /**
+     * @param Template $template
+     *
+     * @return void
+     */
     public function saved(Template $template): void
     {
-        MigrationService::syncTable($template);
+        MigrationService::up($template);
     }
 
     #endregion
