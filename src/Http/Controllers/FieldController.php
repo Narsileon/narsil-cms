@@ -251,6 +251,8 @@ class FieldController extends AbstractController
                 Field::NAME => $field->{Field::NAME} . ' (copy)',
             ])
             ->save();
+
+        $this->syncOptions($replicated, $field->options()->get()->toArray());
     }
 
     /**

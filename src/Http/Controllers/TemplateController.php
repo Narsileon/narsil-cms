@@ -99,6 +99,11 @@ class TemplateController extends AbstractController
 
         $this->syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
 
+        if ($sets = Arr::get($attributes, Template::RELATION_SETS))
+        {
+            $this->syncSets($template, $sets);
+        }
+
         return $this
             ->redirect(route('templates.index'))
             ->with('success', trans('narsil::toasts.success.templates.created'));
@@ -148,6 +153,11 @@ class TemplateController extends AbstractController
         $template->update($attributes);
 
         $this->syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
+
+        if ($sets = Arr::get($attributes, Template::RELATION_SETS))
+        {
+            $this->syncSets($template, $sets);
+        }
 
         return $this
             ->redirect(route('templates.index'))
@@ -247,6 +257,9 @@ class TemplateController extends AbstractController
                 Template::NAME => $template->{Template::NAME} . ' (copy)',
             ])
             ->save();
+
+        $this->syncSections($replicated, $template->sections()->get()->toArray());
+        $this->syncSets($replicated, $template->sets()->get()->toArray());
     }
 
     /**
@@ -315,6 +328,17 @@ class TemplateController extends AbstractController
         $template->sections()
             ->whereNotIn(TemplateSection::ID, $ids)
             ->delete();
+    }
+
+    /**
+     * @param Template $template
+     * @param array $blocks
+     *
+     * @return void
+     */
+    protected function syncSets(Template $template, array $blocks): void
+    {
+        $template->sets()->sync(collect($blocks)->pluck(Block::ID));
     }
 
     #endregion

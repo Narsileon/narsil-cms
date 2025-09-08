@@ -273,6 +273,9 @@ class BlockController extends AbstractController
                 Block::NAME => $block->{Block::NAME} . ' (copy)',
             ])
             ->save();
+
+        $this->syncElements($replicated, $block->elements()->get()->toArray());
+        $this->syncSets($replicated, $block->sets()->get()->toArray());
     }
 
     /**
