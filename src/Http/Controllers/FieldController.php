@@ -113,6 +113,13 @@ class FieldController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $field);
 
+        if (!$request->has(Field::TYPE))
+        {
+            $request->merge([
+                Field::TYPE => $field->{Field::TYPE},
+            ]);
+        }
+
         $form = app(FieldForm::class);
 
         $form->action = route('fields.update', $field->{Field::ID});
@@ -120,7 +127,6 @@ class FieldController extends AbstractController
         $form->id = $field->{Field::ID};
         $form->method = MethodEnum::PATCH;
         $form->submitLabel = trans('narsil::ui.update');
-
 
         return $this->render(
             component: 'narsil/cms::resources/form',

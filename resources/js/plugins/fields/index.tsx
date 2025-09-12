@@ -46,7 +46,7 @@ const defaultRegistry: Registry = {
           {...props.element.settings}
           id={props.id}
           name={props.id}
-          checked={props.value}
+          checked={[true, "1", "true", 1].includes(props.value)}
           onCheckedChange={props.setValue}
         />
       );

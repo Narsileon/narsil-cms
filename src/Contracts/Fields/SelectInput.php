@@ -55,6 +55,15 @@ interface SelectInput extends Contract
     public function setPlaceholder(string $placeholder): static;
 
     /**
+     * Set the reload attribute.
+     *
+     * @param string $reload
+     *
+     * @return static
+     */
+    public function setReload(string $reload): static;
+
+    /**
      * Set the required attribute.
      *
      * @param boolean $required

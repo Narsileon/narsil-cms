@@ -129,7 +129,7 @@ function SaveButton({
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <Button className="rounded-r-none" form={id}>
+      <Button className="rounded-r-none" form={id} type="submit">
         <Icon name="save" />
         {submitLabel}
       </Button>

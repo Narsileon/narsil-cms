@@ -1,5 +1,6 @@
 import { Builder } from "@narsil-cms/components/builder";
 import { cn } from "@narsil-cms/lib/utils";
+import { getField } from "@narsil-cms/plugins/fields";
 import { Heading } from "@narsil-cms/components/heading";
 import { Icon } from "@narsil-cms/components/icon";
 import FormDescription from "./form-description";
@@ -19,7 +20,6 @@ import type {
   Field,
   SelectOption,
 } from "@narsil-cms/types/forms";
-import { getField } from "@narsil-cms/plugins/fields";
 
 type FormFieldRendererProps = {
   className?: string;
@@ -59,7 +59,7 @@ function FormFieldRenderer({
           >
             <CollapsibleTrigger
               className={cn(
-                "bg-accent flex w-full items-center justify-between p-4 text-center",
+                "flex w-full items-center justify-between bg-accent p-4 text-center",
                 "data-[state=open]:border-b",
               )}
             >
@@ -120,7 +120,7 @@ function FormFieldRenderer({
   }
 
   return element.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
-    <Heading className="bg-accent -mx-4 border-t border-b p-4" level="h2">
+    <Heading className="-mx-4 border-t border-b bg-accent p-4" level="h2">
       {finalName}
     </Heading>
   ) : (

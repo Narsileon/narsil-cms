@@ -117,6 +117,16 @@ class SelectInput extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function setReload(string $reload): static
+    {
+        $this->props['reload'] = $reload;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function setRequired(bool $required): static
     {
         $this->props['required'] = $required;

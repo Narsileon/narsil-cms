@@ -3,6 +3,7 @@ import { Button } from "@narsil-cms/components/button";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
 import { debounce, isArray, lowerCase } from "lodash";
+import { router } from "@inertiajs/react";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import ComboboxBadge from "./combobox-badge";
@@ -25,11 +26,12 @@ type ComboboxProps = {
   className?: string;
   disabled?: boolean;
   displayValue?: boolean;
-  id?: string;
+  id: string;
   labelPath?: string;
   multiple?: boolean;
   options: SelectOption[] | string[];
   placeholder?: string;
+  reload?: string;
   searchable?: boolean;
   value: string | string[];
   valuePath?: string;
@@ -45,6 +47,7 @@ function Combobox({
   labelPath = "label",
   multiple = false,
   placeholder,
+  reload,
   searchable = true,
   value,
   valuePath = "value",
@@ -53,7 +56,7 @@ function Combobox({
   setValue,
 }: ComboboxProps) {
   const { trans } = useLabels();
-
+  console.log(reload);
   if (multiple && !isArray(value)) {
     value = [value];
   }
@@ -129,6 +132,10 @@ function Combobox({
       setValue(selectedValue === value ? "" : selectedValue);
     }
 
+    if (reload) {
+      router.reload({ data: { [id]: selectedValue }, only: [reload] });
+    }
+
     setOpen(false);
   }
 
@@ -150,7 +157,7 @@ function Combobox({
         <Button
           id={id}
           className={cn(
-            "bg-input/25 w-full justify-between font-normal",
+            "w-full justify-between bg-input/25 font-normal",
             className,
           )}
           aria-expanded={open}

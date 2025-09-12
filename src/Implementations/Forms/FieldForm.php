@@ -12,7 +12,6 @@ use Narsil\Contracts\Forms\FieldForm as Contract;
 use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
@@ -53,27 +52,18 @@ class FieldForm extends AbstractForm implements Contract
     {
         $settings = [];
 
-        foreach (config('narsil.fields', []) as $abstract => $concrete)
+        $abstract = request()->get(Field::TYPE, TextInput::class);
+        $concrete = config("narsil.fields.$abstract", app(TextInput::class));
+
+        $elements = $concrete::getForm(Field::SETTINGS);
+
+        foreach ($elements as $element)
         {
-            $elements = $concrete::getForm(Field::SETTINGS);
+            $blockElement = new BlockElement([
+                BlockElement::RELATION_ELEMENT => $element,
+            ]);
 
-            $conditions = [
-                new BlockElementCondition([
-                    BlockElementCondition::TARGET_ID => Field::TYPE,
-                    BlockElementCondition::OPERATOR => '=',
-                    BlockElementCondition::VALUE => $abstract,
-                ]),
-            ];
-
-            foreach ($elements as $element)
-            {
-                $blockElement = new BlockElement([
-                    BlockElement::RELATION_CONDITIONS => $conditions,
-                    BlockElement::RELATION_ELEMENT => $element,
-                ]);
-
-                $settings[] = $blockElement;
-            }
+            $settings[] = $blockElement;
         }
 
         $rulesOptions = static::getRulesOptions();
@@ -108,6 +98,7 @@ class FieldForm extends AbstractForm implements Contract
                             ->setDefaultValue(TextInput::class)
                             ->setOptions($typeOptions)
                             ->setPlaceholder(trans('narsil::placeholders.search'))
+                            ->setReload('form')
                             ->setRequired(true),
 
                     ])
