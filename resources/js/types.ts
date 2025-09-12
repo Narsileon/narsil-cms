@@ -6,6 +6,11 @@ import {
 
 import { type IconName } from "@narsil-cms/plugins/icons";
 
+import {
+  LaravelPaginationLinks,
+  LaravelPaginationMeta,
+} from "./blocks/pagination";
+
 export type Block = {
   elements?: HasElement[];
   handle: string;
@@ -109,28 +114,6 @@ export type LaravelNavigationItem = {
   label: string;
   method?: string;
   modal?: boolean;
-};
-
-export type LaravelPaginationLinks = {
-  first: string;
-  last: string;
-  prev: string | null;
-  next: string | null;
-};
-
-export type LaravelPaginationMeta = {
-  current_page: number;
-  from: number | null;
-  last_page: number;
-  links: {
-    url: string | null;
-    label: string;
-    active: boolean;
-  }[];
-  path: string;
-  per_page: number;
-  to: number | null;
-  total: number;
 };
 
 export type RouteNames = {

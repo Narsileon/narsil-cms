@@ -10,21 +10,35 @@ import {
   PaginationLink,
   PaginationRoot,
 } from "@narsil-cms/components/pagination";
-import {
-  type LaravelPaginationLinks,
-  type LaravelPaginationMeta,
-} from "@narsil-cms/types";
 
-type DataTablePaginationProps = React.ComponentProps<typeof PaginationRoot> & {
+export type LaravelPaginationLinks = {
+  first: string;
+  last: string;
+  prev: string | null;
+  next: string | null;
+};
+
+export type LaravelPaginationMeta = {
+  current_page: number;
+  from: number | null;
+  last_page: number;
+  links: {
+    url: string | null;
+    label: string;
+    active: boolean;
+  }[];
+  path: string;
+  per_page: number;
+  to: number | null;
+  total: number;
+};
+
+type PaginationProps = React.ComponentProps<typeof PaginationRoot> & {
   links: LaravelPaginationLinks;
   metaLinks?: LaravelPaginationMeta["links"];
 };
 
-function DataTablePagination({
-  links,
-  metaLinks,
-  ...props
-}: DataTablePaginationProps) {
+function Pagination({ links, metaLinks, ...props }: PaginationProps) {
   const { trans } = useLabels();
 
   return (
@@ -148,4 +162,4 @@ function DataTablePagination({
   );
 }
 
-export default DataTablePagination;
+export default Pagination;

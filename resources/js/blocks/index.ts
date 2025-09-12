@@ -7,6 +7,7 @@ import ConfigurationForm from "./configuration-form";
 import DataTable from "./data-table";
 import Head from "./head";
 import Logo from "./logo";
+import Pagination from "./pagination";
 import ProfileForm from "./profile-form";
 import Progress from "./progress";
 import SaveButton from "./save-button";
@@ -29,6 +30,7 @@ export {
   DataTable,
   Head,
   Logo,
+  Pagination,
   Progress,
   ProfileForm,
   SecurityForm,

@@ -2,14 +2,13 @@ import { Link } from "@inertiajs/react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
-import { Checkbox, DataTable, Tooltip } from "@narsil-cms/blocks";
+import { Checkbox, DataTable, Pagination, Tooltip } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
 import {
   DataTableFilter,
   DataTableFilterBadge,
   DataTableFilterDropdown,
   DataTableInput,
-  DataTablePagination,
   DataTableProvider,
   DataTableRowMenu,
   DataTableSize,
@@ -250,7 +249,7 @@ function ResourceIndex({
                             ? trans("pagination.pages_count")
                             : trans("pagination.pages_empty")}
                         </span>
-                        <DataTablePagination links={collection.links} />
+                        <Pagination links={collection.links} />
                       </div>
                     </div>
                   </div>

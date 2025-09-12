@@ -11,7 +11,6 @@ import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";
 import DataTableHeader from "./data-table-header";
 import DataTableInput from "./data-table-input";
-import DataTablePagination from "./data-table-pagination";
 import DataTableProvider from "./data-table-provider";
 import DataTableRoot from "./data-table-root";
 import DataTableRow from "./data-table-row";
@@ -37,7 +36,6 @@ export {
   DataTableHeadMove,
   DataTableHeadSort,
   DataTableInput,
-  DataTablePagination,
   DataTableProvider,
   DataTableRoot,
   DataTableRow,
