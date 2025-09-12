@@ -8,6 +8,7 @@ import DataTable from "./data-table";
 import Head from "./head";
 import Logo from "./logo";
 import ProfileForm from "./profile-form";
+import Progress from "./progress";
 import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
 import SecurityForm from "./security-form";
@@ -28,6 +29,7 @@ export {
   DataTable,
   Head,
   Logo,
+  Progress,
   ProfileForm,
   SecurityForm,
   SaveButton,

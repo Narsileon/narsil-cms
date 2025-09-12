@@ -1,5 +1,6 @@
 // https://ui.shadcn.com/docs/components/progress
 
-import Progress from "./progress";
+import ProgressIndicator from "./progress-indicator";
+import ProgressRoot from "./progress-root";
 
-export { Progress };
+export { ProgressIndicator, ProgressRoot };
