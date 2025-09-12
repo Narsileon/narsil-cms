@@ -2,6 +2,7 @@ import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
 import { SaveButton } from "@narsil-cms/blocks";
+import { ScrollArea } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import {
@@ -16,7 +17,6 @@ import {
   FormFieldRenderer,
 } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import {
   Section,
   SectionContent,

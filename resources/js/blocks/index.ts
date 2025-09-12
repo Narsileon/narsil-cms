@@ -7,6 +7,7 @@ import Head from "./head";
 import Logo from "./logo";
 import ProfileForm from "./profile-form";
 import SaveButton from "./save-button";
+import ScrollArea from "./scroll-area";
 import SecurityForm from "./security-form";
 import Sidebar from "./sidebar";
 import Tooltip from "./tooltip";
@@ -24,6 +25,7 @@ export {
   ProfileForm,
   SecurityForm,
   SaveButton,
+  ScrollArea,
   Sidebar,
   Tooltip,
   TwoFactorForm,

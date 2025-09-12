@@ -1,6 +1,13 @@
 // https://ui.shadcn.com/docs/components/scroll-area
 
-import ScrollArea from "./scroll-area";
+import ScrollAreaRoot from "./scroll-area-root";
 import ScrollAreaScrollbar from "./scroll-area-scrollbar";
+import ScrollAreaThumb from "./scroll-area-thumb";
+import ScrollAreaViewport from "./scroll-area-viewport";
 
-export { ScrollArea, ScrollAreaScrollbar };
+export {
+  ScrollAreaRoot,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
+};

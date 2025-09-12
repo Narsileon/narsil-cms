@@ -7,7 +7,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import CalendarDayButton from "./calendar-day-button";
 
 type CalendarProps = React.ComponentProps<typeof DayPicker> & {
-  buttonVariant?: ComponentProps<typeof Button>["variant"];
+  buttonVariant?: React.ComponentProps<typeof Button>["variant"];
 };
 
 function Calendar({

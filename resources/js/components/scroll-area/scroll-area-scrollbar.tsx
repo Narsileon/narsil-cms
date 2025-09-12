@@ -24,13 +24,7 @@ const ScrollAreaScrollBar = ({
       )}
       orientation={orientation}
       {...props}
-    >
-      <ScrollAreaPrimitive.ScrollAreaThumb
-        data-slot="scroll-area-thumb"
-        className="relative flex-1 rounded-full bg-border"
-        {...props}
-      />
-    </ScrollAreaPrimitive.ScrollAreaScrollbar>
+    />
   );
 };
 

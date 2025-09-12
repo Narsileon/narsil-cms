@@ -3,9 +3,9 @@ import {
   ProfileForm,
   SecurityForm,
 } from "@narsil-cms/blocks";
+import { ScrollArea } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import {
   TabsList,
   Tabs,
