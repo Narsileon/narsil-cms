@@ -1,6 +1,6 @@
 import { isArray } from "lodash";
 
-import { Checkbox, Checkboxes } from "@narsil-cms/components/checkbox";
+import { Checkbox, Checkboxes } from "@narsil-cms/blocks";
 import { Combobox } from "@narsil-cms/components/combobox";
 import { Icon } from "@narsil-cms/components/icon";
 import {

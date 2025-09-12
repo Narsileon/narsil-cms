@@ -1,8 +1,7 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-import { SaveButton } from "@narsil-cms/blocks";
-import { ScrollArea } from "@narsil-cms/blocks";
+import { SaveButton, ScrollArea } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import {

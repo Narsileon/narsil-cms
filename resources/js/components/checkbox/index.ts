@@ -1,6 +1,6 @@
 // https://ui.shadcn.com/docs/components/checkbox
 
-import Checkbox from "./checkbox";
-import Checkboxes from "./checkboxes";
+import CheckboxIndicator from "./checkbox-indicator";
+import CheckboxRoot from "./checkbox-root";
 
-export { Checkbox, Checkboxes };
+export { CheckboxIndicator, CheckboxRoot };

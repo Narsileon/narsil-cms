@@ -1,6 +1,8 @@
 import Avatar from "./avatar";
 import Bookmarks from "./bookmarks";
 import Breadcrumb from "./breadcrumb";
+import Checkbox from "./checkbox";
+import Checkboxes from "./checkboxes";
 import ConfigurationForm from "./configuration-form";
 import DataTable from "./data-table";
 import Head from "./head";
@@ -18,6 +20,8 @@ export {
   Avatar,
   Bookmarks,
   Breadcrumb,
+  Checkbox,
+  Checkboxes,
   ConfigurationForm,
   DataTable,
   Head,

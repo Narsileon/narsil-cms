@@ -2,9 +2,8 @@ import { Link } from "@inertiajs/react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
-import { DataTable, Tooltip } from "@narsil-cms/blocks";
+import { Checkbox, DataTable, Tooltip } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
-import { Checkbox } from "@narsil-cms/components/checkbox";
 import {
   DataTableFilter,
   DataTableFilterBadge,

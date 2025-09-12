@@ -1,11 +1,12 @@
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
 
-import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> & {};
+type CheckboxRootProps = React.ComponentProps<
+  typeof CheckboxPrimitive.Root
+> & {};
 
-function Checkbox({ className, ...props }: CheckboxProps) {
+function CheckboxRoot({ className, ...props }: CheckboxRootProps) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
@@ -20,15 +21,8 @@ function Checkbox({ className, ...props }: CheckboxProps) {
         className,
       )}
       {...props}
-    >
-      <CheckboxPrimitive.Indicator
-        data-slot="checkbox-indicator"
-        className="flex items-center justify-center text-current transition-none"
-      >
-        <Icon className="size-3.5" name="check" />
-      </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
+    />
   );
 }
 
-export default Checkbox;
+export default CheckboxRoot;
