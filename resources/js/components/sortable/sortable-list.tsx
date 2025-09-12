@@ -21,7 +21,7 @@ import {
   SortableItem,
   SortableListContext,
 } from "@narsil-cms/components/sortable";
-import { type GroupedSelectOption } from "@narsil-cms/types/forms";
+import { type GroupedSelectOption } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 

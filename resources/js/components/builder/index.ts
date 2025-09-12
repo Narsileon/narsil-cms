@@ -1,4 +1,4 @@
-import { Block } from "@narsil-cms/types/forms";
+import { Block } from "@narsil-cms/types";
 
 import Builder from "./builder";
 import BuilderAdd from "./builder-add";
@@ -13,7 +13,7 @@ export type BuilderNode = {
   id: number | string;
   parent_id: number | null;
   position: number;
-  values: Record<string, any>;
+  values: Record<string, unknown>;
 };
 
 export { Builder, BuilderAdd, BuilderItem, BuilderSeparator };

@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 export type ModalState = {
   component: string;
-  componentProps: Record<string, any>;
+  componentProps: Record<string, unknown>;
   href: string;
   id: string;
   options?: Partial<VisitCallbacks>;

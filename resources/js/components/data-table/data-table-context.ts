@@ -4,7 +4,7 @@ import { createContext, useContext } from "react";
 import { type DataTableStoreType } from "@narsil-cms/stores/data-table-store";
 
 export type DataTableContextProps = {
-  dataTable: Table<any>;
+  dataTable: Table<unknown>;
   dataTableStore: DataTableStoreType;
 };
 

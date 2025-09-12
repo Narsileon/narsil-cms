@@ -16,7 +16,7 @@ import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import { TableCell } from "@narsil-cms/components/table";
 
 type DataTableProps = {
-  dataTable: Table<any>;
+  dataTable: Table<unknown>;
 };
 
 function DataTable({ dataTable }: DataTableProps) {

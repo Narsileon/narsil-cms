@@ -9,10 +9,7 @@ import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
-import {
-  type GroupedSelectOption,
-  type SelectOption,
-} from "@narsil-cms/types/forms";
+import { type GroupedSelectOption, type SelectOption } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 

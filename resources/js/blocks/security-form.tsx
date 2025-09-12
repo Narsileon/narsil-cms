@@ -11,7 +11,7 @@ import {
   SectionTitle,
 } from "@narsil-cms/components/section";
 import { Separator } from "@narsil-cms/components/separator";
-import { type FormType } from "@narsil-cms/types/forms";
+import { type FormType } from "@narsil-cms/types";
 
 import TwoFactorForm from "./two-factor-form";
 

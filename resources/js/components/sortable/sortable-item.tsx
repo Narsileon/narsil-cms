@@ -24,7 +24,7 @@ import {
   type FormType,
   type GroupedSelectOption,
   type SelectOption,
-} from "@narsil-cms/types/forms";
+} from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 import SortableHandle from "./sortable-handle";

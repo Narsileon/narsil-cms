@@ -6,7 +6,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
 type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
-  header: Header<any, any>;
+  header: Header<unknown, unknown>;
 };
 
 function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {

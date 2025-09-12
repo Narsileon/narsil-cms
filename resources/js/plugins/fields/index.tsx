@@ -17,7 +17,7 @@ import {
   SortableTable,
 } from "@narsil-cms/components/sortable";
 import { Switch } from "@narsil-cms/components/switch";
-import { type Field, type SelectOption } from "@narsil-cms/types/forms";
+import { type Field, type SelectOption } from "@narsil-cms/types";
 
 export type FieldProps = {
   element: Field;

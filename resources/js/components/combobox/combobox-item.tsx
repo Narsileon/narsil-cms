@@ -4,7 +4,7 @@ import { Tooltip } from "@narsil-cms/blocks";
 import { CommandItem } from "@narsil-cms/components/command";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
-import { type SelectOption } from "@narsil-cms/types/forms";
+import { type SelectOption } from "@narsil-cms/types";
 
 type ComboboxItemProps = Omit<
   React.ComponentProps<typeof CommandItem>,

@@ -4,7 +4,7 @@ import Input from "./input";
 
 type InputFileProps = Omit<React.ComponentProps<typeof Input>, "onChange"> & {
   value: File | string | undefined;
-  onChange: (value: any) => void;
+  onChange: (value: File | string | undefined) => void;
 };
 
 function InputFile({

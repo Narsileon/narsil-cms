@@ -19,7 +19,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
-import { type SelectOption } from "@narsil-cms/types/forms";
+import { type SelectOption } from "@narsil-cms/types";
 
 import ComboboxBadge from "./combobox-badge";
 import ComboboxItem from "./combobox-item";

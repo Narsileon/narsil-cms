@@ -30,7 +30,7 @@ import {
   TableRow,
 } from "@narsil-cms/components/table";
 import { getField } from "@narsil-cms/plugins/fields";
-import { type Field } from "@narsil-cms/types/forms";
+import { type Field } from "@narsil-cms/types";
 
 import SortableTableRow from "./sortable-table-row";
 
@@ -102,7 +102,7 @@ function SortableTable({
     setRows(rows.filter((row) => row.id !== id));
   }
 
-  function onUpdate(id: UniqueIdentifier, key: string, value: any) {
+  function onUpdate(id: UniqueIdentifier, key: string, value: unknown) {
     setRows(
       rows.map((row) => (row.id === id ? set({ ...row }, key, value) : row)),
     );

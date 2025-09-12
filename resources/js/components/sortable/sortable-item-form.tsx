@@ -18,7 +18,7 @@ import { FormItem, FormLabel } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { getField } from "@narsil-cms/plugins/fields";
-import { type FormType } from "@narsil-cms/types/forms";
+import { type FormType } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 
@@ -26,7 +26,7 @@ type SortableItemFormProps = {
   children: React.ReactNode;
   form: FormType;
   ids: UniqueIdentifier[];
-  item?: Record<string, any>;
+  item?: Record<string, unknown>;
   optionValue: string;
   onItemChange: (value: AnonymousItem) => void;
 };
@@ -42,7 +42,7 @@ function SortableItemForm({
 }: SortableItemFormProps) {
   const { trans } = useLabels();
 
-  const [data, setData] = useState<Record<string, any>>(item);
+  const [data, setData] = useState<Record<string, unknown>>(item);
   const [error, setError] = useState<string | null>(null);
 
   const [open, setOpen] = useState<boolean>(false);

@@ -1,5 +1,5 @@
-import "@narsil-cms/../css/app.css";
 import { router } from "@inertiajs/react";
+import "@narsil-cms/../css/app.css";
 import { isEmpty } from "lodash";
 import { useEffect } from "react";
 import { toast } from "sonner";

@@ -26,8 +26,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import { type Bookmark } from "@narsil-cms/types/collection";
-import { type FormType } from "@narsil-cms/types/forms";
+import { type Bookmark, type FormType } from "@narsil-cms/types";
 
 type BookmarksProps = React.ComponentProps<typeof PopoverTrigger> & {
   breadcrumb: {
@@ -77,7 +76,6 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
     axios
       .get(route("user-bookmarks.index"))
       .then((response) => {
-        console.log(response);
         setBookmarks(sortBy(response.data.data, "name"));
         setForm(response.data.meta.form);
         setLabels(response.data.meta.labels);

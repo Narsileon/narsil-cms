@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from "@narsil-cms/components/select";
 import { getField } from "@narsil-cms/plugins/fields";
-import { type Field } from "@narsil-cms/types/forms";
+import { type Field } from "@narsil-cms/types";
 
 import { type ColumnFilter } from ".";
 import useDataTable from "./data-table-context";

@@ -1,7 +1,7 @@
 import { cloneDeep, get, unset } from "lodash";
 import { useEffect, useState } from "react";
 
-import { type BlockElementCondition, Field } from "@narsil-cms/types/forms";
+import { type BlockElementCondition, Field } from "@narsil-cms/types";
 
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
@@ -12,8 +12,8 @@ type FormFieldProps = {
   id: string;
   render: (field: {
     handle: string;
-    value: any;
-    onFieldChange: (value: any) => void;
+    value: unknown;
+    onFieldChange: (value: unknown) => void;
   }) => React.ReactNode;
 };
 
@@ -39,7 +39,7 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
     if (nextVisible && !visible) {
       setVisible(true);
     } else if (!nextVisible && visible) {
-      setData?.((data: Record<string, any>) => {
+      setData?.((data: Record<string, unknown>) => {
         const newData = cloneDeep(data);
 
         unset(newData, field.handle);

@@ -32,9 +32,9 @@ import useDataTableStore, {
 
 import { DataTableContext, DataTableContextProps } from "./data-table-context";
 
-type DataTableProviderProps = Partial<TableOptions<any>> & {
-  columns: ColumnDef<any>[];
-  data: any[];
+type DataTableProviderProps = Partial<TableOptions<unknown>> & {
+  columns: ColumnDef<unknown>[];
+  data: Record<string, unknown>[];
   id: string;
   initialState: Partial<DataTableStoreType>;
   render: (context: DataTableContextProps) => React.ReactNode;

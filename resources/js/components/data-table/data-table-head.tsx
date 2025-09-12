@@ -9,7 +9,7 @@ import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";
 
 type DataTableHeadProps = React.ComponentProps<typeof TableHead> & {
-  header: Header<any, any>;
+  header: Header<unknown, unknown>;
 };
 
 function DataTableHead({ header, style, ...props }: DataTableHeadProps) {

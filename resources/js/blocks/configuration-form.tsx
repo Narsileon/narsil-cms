@@ -18,8 +18,8 @@ import { getSelectOption } from "@narsil-cms/lib/utils";
 import useColorStore from "@narsil-cms/stores/color-store";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
-import useThemeStore from "@narsil-cms/stores/theme-store";
-import { type FormType } from "@narsil-cms/types/forms";
+import useThemeStore, { type Theme } from "@narsil-cms/stores/theme-store";
+import { type FormType } from "@narsil-cms/types";
 
 type ConfigurationFormProps = {
   form: FormType;
@@ -35,16 +35,16 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   const { radius, setRadius } = useRadiusStore();
   const { theme, setTheme } = useThemeStore();
 
-  function handleChange(id: string, value: any) {
+  function handleChange(id: string, value: unknown) {
     switch (id) {
       case "color":
-        setColor(value);
+        setColor(value as string);
         break;
       case "radius":
-        setRadius(value);
+        setRadius(value as number);
         break;
       case "theme":
-        setTheme(value);
+        setTheme(value as Theme);
         break;
       default:
         break;

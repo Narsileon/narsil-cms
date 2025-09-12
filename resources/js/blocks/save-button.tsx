@@ -16,7 +16,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { Separator } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
-import { type RouteNames } from "@narsil-cms/types/collection";
+import { type RouteNames } from "@narsil-cms/types";
 
 type SaveButtonProps = React.ComponentProps<"div"> & {
   routes?: RouteNames;
@@ -63,7 +63,7 @@ function SaveButton({
   function submit(
     action: string,
     method: string,
-    submitData?: Record<string, any>,
+    submitData?: Record<string, unknown>,
   ) {
     switch (method) {
       case "patch":

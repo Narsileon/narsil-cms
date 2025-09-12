@@ -34,7 +34,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import {
   type DataTableCollection,
   type DataTableFilterCollection,
-} from "@narsil-cms/types/collection";
+} from "@narsil-cms/types";
 
 type ResourceIndexProps = {
   collection: DataTableCollection;
@@ -42,7 +42,7 @@ type ResourceIndexProps = {
   title: string;
 };
 
-function getMenuColumn(collection: DataTableCollection): ColumnDef<any> {
+function getMenuColumn(collection: DataTableCollection): ColumnDef<unknown> {
   return {
     id: "_menu",
     header: ({ table }) =>
@@ -67,7 +67,7 @@ function getMenuColumn(collection: DataTableCollection): ColumnDef<any> {
   };
 }
 
-function getSelectColumn(collection: DataTableCollection): ColumnDef<any> {
+function getSelectColumn(collection: DataTableCollection): ColumnDef<unknown> {
   return {
     id: "_select",
     header: ({ table }) =>
@@ -105,7 +105,7 @@ function ResourceIndex({
 
   const hasMenu = collection.meta.routes.edit || collection.meta.routes.destroy;
 
-  const finalColumns: (ColumnDef<any> & { position?: string })[] = [
+  const finalColumns: (ColumnDef<unknown> & { position?: string })[] = [
     ...(collection.meta.selectable !== false
       ? [getSelectColumn(collection)]
       : []),

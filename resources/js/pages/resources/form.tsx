@@ -31,10 +31,10 @@ import {
 } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalState } from "@narsil-cms/stores/modal-store";
-import { type Block, type FormType } from "@narsil-cms/types/forms";
+import { type Block, type FormType } from "@narsil-cms/types";
 
 type FormProps = FormType & {
-  data: any;
+  data: Record<string, unknown>;
   modal?: ModalState;
 };
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
-import { type SelectOption } from "@narsil-cms/types/forms";
+import { type SelectOption } from "@narsil-cms/types";
 
 type SortableItemWidthProps = React.ComponentProps<"div"> & {
   options: SelectOption[];

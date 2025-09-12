@@ -23,7 +23,7 @@ import { Label } from "@narsil-cms/components/label";
 import { useLabels } from "@narsil-cms/components/labels";
 import { Switch } from "@narsil-cms/components/switch";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import { type FormType } from "@narsil-cms/types/forms";
+import { type FormType } from "@narsil-cms/types";
 
 type TwoFactorFormProps = {
   form: FormType;

@@ -10,7 +10,7 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { type Block } from "@narsil-cms/types/forms";
+import { type Block } from "@narsil-cms/types";
 
 import { type BuilderNode } from ".";
 

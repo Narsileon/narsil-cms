@@ -17,9 +17,7 @@ type ModalProps = React.ComponentProps<typeof DialogContent> & {
 };
 
 function Modal({ modal, onClose, ...props }: ModalProps) {
-  const [Component, setComponent] = useState<React.ComponentType<any> | null>(
-    null,
-  );
+  const [Component, setComponent] = useState<React.ReactNode | null>(null);
 
   useEffect(() => {
     const load = async () => {

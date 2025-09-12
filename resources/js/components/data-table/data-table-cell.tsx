@@ -6,7 +6,7 @@ import { TableCell } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 
 type DataTableCellProps = React.ComponentProps<typeof TableCell> & {
-  cell: Cell<any, any>;
+  cell: Cell<unknown, unknown>;
 };
 
 function DataTableCell({ cell, style, ...props }: DataTableCellProps) {

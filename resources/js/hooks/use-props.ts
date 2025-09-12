@@ -36,7 +36,7 @@ type AuthProps = {
   two_factor_confirmed_at: string | null;
 };
 
-type ComponentProps = Record<string, any> & {
+type ComponentProps = Record<string, unknown> & {
   components: string;
   children?: ComponentProps[];
 };
@@ -48,7 +48,7 @@ type ConfigurationProps = {
 };
 
 type RedirectProps = {
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
   error: string;
   info: string;
   success: string;

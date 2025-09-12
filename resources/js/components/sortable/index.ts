@@ -12,13 +12,13 @@ import SortableTree from "./sortable-tree";
 import SortableTable from "./table/sortable-table";
 import SortableTableRow from "./table/sortable-table-row";
 
-type AnonymousItem = Record<string, any> & {
+type AnonymousItem = Record<string, unknown> & {
   id: UniqueIdentifier;
   identifier: string;
 };
 
 type FlatNode = {
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
   depth: number;
   id: UniqueIdentifier;
   parent_id: UniqueIdentifier | null;
@@ -27,7 +27,7 @@ type FlatNode = {
 
 type NestedNode = {
   children: NestedNode[];
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
   id: UniqueIdentifier;
   type: string;
 };

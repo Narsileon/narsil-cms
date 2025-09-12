@@ -1,6 +1,6 @@
 import { useForm } from "@inertiajs/react";
 
-import { type Block, type Field } from "@narsil-cms/types/forms";
+import { type Block, type Field } from "@narsil-cms/types";
 
 import { FormContext, type FormContextProps } from "./form-context";
 
@@ -8,7 +8,7 @@ type FormProviderProps = {
   action: string;
   elements?: (Field | Block)[];
   id: string;
-  initialValues?: Record<string, any>;
+  initialValues?: Record<string, unknown>;
   method: string;
   render: (props: FormContextProps) => React.ReactNode;
 };
@@ -21,8 +21,8 @@ function FormProvider({
   method,
   render,
 }: FormProviderProps) {
-  function flattenValues(elements: (Field | Block)[]): Record<string, any> {
-    const receivedValues: Record<string, any> = {};
+  function flattenValues(elements: (Field | Block)[]): Record<string, unknown> {
+    const receivedValues: Record<string, unknown> = {};
 
     elements.map((element) => {
       if ("elements" in element) {

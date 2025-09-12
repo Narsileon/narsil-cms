@@ -17,7 +17,7 @@ type RichTextEditorProps = Partial<EditorOptions> & {
   placeholder?: string;
   toolbar?: boolean;
   value: string;
-  onChange?: (value: any) => void;
+  onChange?: (value: string) => void;
 };
 
 function RichTextEditor({

@@ -83,9 +83,9 @@ import {
   UsersIcon,
   XIcon,
 } from "lucide-react";
-import { type ComponentType } from "react";
 
-type Registry = Record<string, ComponentType<any>>;
+type Registry = Record<string, RegistryItem>;
+type RegistryItem = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 const defaultRegistry = {
   ["align-center"]: AlignCenterIcon,
@@ -179,10 +179,10 @@ const registry: Registry = {
   ...defaultRegistry,
 };
 
-export function getIcon(name: IconName): ComponentType<any> {
+export function getIcon(name: IconName): RegistryItem {
   return registry[name] ?? registry["default"];
 }
 
-export function setIcon(name: string, component: ComponentType<any>) {
+export function setIcon(name: string, component: RegistryItem) {
   registry[name] = component;
 }

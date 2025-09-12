@@ -8,12 +8,12 @@ import { Heading } from "@narsil-cms/components/heading";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
-import type {
-  Block,
-  BlockElementCondition,
-  Field,
-  SelectOption,
-} from "@narsil-cms/types/forms";
+import {
+  type Block,
+  type BlockElementCondition,
+  type Field,
+  type SelectOption,
+} from "@narsil-cms/types";
 
 import useForm from "./form-context";
 import FormDescription from "./form-description";

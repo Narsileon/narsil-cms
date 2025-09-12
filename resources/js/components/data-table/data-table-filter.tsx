@@ -9,7 +9,7 @@ import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { ToggleRoot } from "@narsil-cms/components/toggle";
 import { cn } from "@narsil-cms/lib/utils";
-import { type DataTableFilterCollection } from "@narsil-cms/types/collection";
+import { type DataTableFilterCollection } from "@narsil-cms/types";
 
 type DataTableFilterProps = React.ComponentProps<"ul"> &
   DataTableFilterCollection & {};
