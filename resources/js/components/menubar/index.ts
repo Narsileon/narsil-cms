@@ -11,7 +11,6 @@ import MenubarRadioGroup from "./menubar-radio-group";
 import MenubarRadioItem from "./menubar-radio-item";
 import MenubarRoot from "./menubar-root";
 import MenubarSeparator from "./menubar-separator";
-import MenubarShortcut from "./menubar-shortcut";
 import MenubarSub from "./menubar-sub";
 import MenubarSubContent from "./menubar-sub-content";
 import MenubarSubTrigger from "./menubar-sub-trigger";
@@ -29,7 +28,6 @@ export {
   MenubarRadioItem,
   MenubarRoot,
   MenubarSeparator,
-  MenubarShortcut,
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,

@@ -1,8 +1,8 @@
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandShortcutProps = React.ComponentProps<"span"> & {};
+type ShortcutProps = React.ComponentProps<"span"> & {};
 
-function CommandShortcut({ className, ...props }: CommandShortcutProps) {
+function Shortcut({ className, ...props }: ShortcutProps) {
   return (
     <span
       data-slot="command-shortcut"
@@ -15,4 +15,4 @@ function CommandShortcut({ className, ...props }: CommandShortcutProps) {
   );
 }
 
-export default CommandShortcut;
+export default Shortcut;

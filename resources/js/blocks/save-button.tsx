@@ -8,13 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuRoot,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { SeparatorRoot } from "@narsil-cms/components/separator";
+import { Shortcut } from "@narsil-cms/components/shortcut";
 import { cn } from "@narsil-cms/lib/utils";
 import { type RouteNames } from "@narsil-cms/types";
 
@@ -145,13 +145,13 @@ function SaveButton({
           <DropdownMenuItem onClick={saveAndContinue}>
             <Icon name="save-and-continue" />
             {`${submitLabel} & ${trans("ui.continue")}`}
-            <DropdownMenuShortcut>Ctrl+S</DropdownMenuShortcut>
+            <Shortcut>Ctrl+S</Shortcut>
           </DropdownMenuItem>
           {routes?.create ? (
             <DropdownMenuItem onClick={saveAndAdd}>
               <Icon name="save-and-add" />
               {`${submitLabel} & ${trans("ui.add_another")}`}
-              <DropdownMenuShortcut>Ctrl+Shift+S</DropdownMenuShortcut>
+              <Shortcut>Ctrl+Shift+S</Shortcut>
             </DropdownMenuItem>
           ) : null}
           {routes?.store && data?.id ? (
@@ -160,7 +160,7 @@ function SaveButton({
               <DropdownMenuItem onClick={saveAsNew}>
                 <Icon name="plus" />
                 {trans("ui.save_as_new")}
-                <DropdownMenuShortcut>Ctrl+D</DropdownMenuShortcut>
+                <Shortcut>Ctrl+D</Shortcut>
               </DropdownMenuItem>
             </>
           ) : null}
@@ -170,7 +170,7 @@ function SaveButton({
               <DropdownMenuItem onClick={destroy}>
                 <Icon name="trash" />
                 {trans("ui.delete")}
-                <DropdownMenuShortcut>Ctrl+X</DropdownMenuShortcut>
+                <Shortcut>Ctrl+X</Shortcut>
               </DropdownMenuItem>
             </>
           ) : null}

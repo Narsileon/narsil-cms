@@ -10,7 +10,6 @@ import DropdownMenuRadioGroup from "./dropdown-menu-radio-group";
 import DropdownMenuRadioItem from "./dropdown-menu-radio-item";
 import DropdownMenuRoot from "./dropdown-menu-root";
 import DropdownMenuSeparator from "./dropdown-menu-separator";
-import DropdownMenuShortcut from "./dropdown-menu-shortcut";
 import DropdownMenuSub from "./dropdown-menu-sub";
 import DropdownMenuSubContent from "./dropdown-menu-sub-content";
 import DropdownMenuSubTrigger from "./dropdown-menu-sub-trigger";
@@ -27,7 +26,6 @@ export {
   DropdownMenuRadioItem,
   DropdownMenuRoot,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,

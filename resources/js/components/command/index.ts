@@ -8,7 +8,6 @@ import CommandItem from "./command-item";
 import CommandList from "./command-list";
 import CommandRoot from "./command-root";
 import CommandSeparator from "./command-separator";
-import CommandShortcut from "./command-shortcut";
 
 export {
   CommandDialog,
@@ -19,5 +18,4 @@ export {
   CommandList,
   CommandRoot,
   CommandSeparator,
-  CommandShortcut,
 };

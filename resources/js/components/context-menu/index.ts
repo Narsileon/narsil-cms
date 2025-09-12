@@ -10,7 +10,6 @@ import ContextMenuRadioGroup from "./context-menu-radio-group";
 import ContextMenuRadioItem from "./context-menu-radio-item";
 import ContextMenuRoot from "./context-menu-root";
 import ContextMenuSeparator from "./context-menu-separator";
-import ContextMenuShortcut from "./context-menu-shortcut";
 import ContextMenuSub from "./context-menu-sub";
 import ContextMenuSubContent from "./context-menu-sub-content";
 import ContextMenuSubTrigger from "./context-menu-sub-trigger";
@@ -27,7 +26,6 @@ export {
   ContextMenuRadioItem,
   ContextMenuRoot,
   ContextMenuSeparator,
-  ContextMenuShortcut,
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
