@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Panel } from "react-resizable-panels";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type ResizablePanelProps = React.ComponentProps<typeof Panel> & {};
 

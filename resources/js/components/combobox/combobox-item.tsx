@@ -1,9 +1,9 @@
-import { cn, getSelectOption } from "@narsil-cms/lib/utils";
+import { isString } from "lodash";
+
+import { Tooltip } from "@narsil-cms/blocks";
 import { CommandItem } from "@narsil-cms/components/command";
 import { Icon } from "@narsil-cms/components/icon";
-import { isString } from "lodash";
-import { Tooltip } from "@narsil-cms/blocks";
-
+import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { type SelectOption } from "@narsil-cms/types/forms";
 
 type ComboboxItemProps = Omit<

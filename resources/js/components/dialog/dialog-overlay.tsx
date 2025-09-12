@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type DialogOverlayProps = React.ComponentProps<
   typeof DialogPrimitive.Overlay

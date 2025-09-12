@@ -1,8 +1,9 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { CSS } from "@dnd-kit/utilities";
-import { TableCell } from "@narsil-cms/components/table";
 import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { type Cell } from "@tanstack/react-table";
+
+import { TableCell } from "@narsil-cms/components/table";
+import { cn } from "@narsil-cms/lib/utils";
 
 type DataTableCellProps = React.ComponentProps<typeof TableCell> & {
   cell: Cell<any, any>;

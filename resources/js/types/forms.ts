@@ -1,5 +1,6 @@
-import { RouteNames } from "./collection";
 import { type IconName } from "@narsil-cms/plugins/icons";
+
+import { RouteNames } from "./collection";
 
 export type Block = {
   elements?: HasElement[];

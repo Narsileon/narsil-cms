@@ -1,12 +1,11 @@
+import { Link } from "@inertiajs/react";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
+import { route } from "ziggy-js";
+
 import { Button } from "@narsil-cms/components/button";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
 import { Container } from "@narsil-cms/components/container";
-import { InputPassword } from "@narsil-cms/components/input";
-import { Link } from "@inertiajs/react";
-import { route } from "ziggy-js";
-import { toast } from "sonner";
-import { useEffect, useRef } from "react";
-import { useLabels } from "@narsil-cms/components/labels";
 import {
   FormField,
   FormFieldRenderer,
@@ -17,6 +16,8 @@ import {
   FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
+import { InputPassword } from "@narsil-cms/components/input";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   Section,
   SectionContent,

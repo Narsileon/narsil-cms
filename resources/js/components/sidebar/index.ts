@@ -1,6 +1,7 @@
 // https://ui.shadcn.com/docs/components/sidebar
 
 import SidebarContent from "./sidebar-content";
+import useSidebar from "./sidebar-context";
 import SidebarFooter from "./sidebar-footer";
 import SidebarGroup from "./sidebar-group";
 import SidebarGroupAction from "./sidebar-group-action";
@@ -23,7 +24,6 @@ import SidebarRail from "./sidebar-rail";
 import SidebarRoot from "./sidebar-root";
 import SidebarSeparator from "./sidebar-separator";
 import SidebarTrigger from "./sidebar-trigger";
-import useSidebar from "./sidebar-context";
 
 export {
   SidebarContent,

@@ -1,12 +1,11 @@
-import { Button } from "@narsil-cms/components/button";
-import { Icon } from "@narsil-cms/components/icon";
-import { route } from "ziggy-js";
 import { Link, router } from "@inertiajs/react";
-import { sortBy } from "lodash";
-import { Tooltip } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { sortBy } from "lodash";
+import { useEffect, useState } from "react";
+import { route } from "ziggy-js";
+
+import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
 import {
   Card,
   CardContent,
@@ -20,6 +19,8 @@ import {
   FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
   PopoverRoot,

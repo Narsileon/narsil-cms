@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 export const headingVariants = cva("font-medium tracking-tight", {
   variants: {

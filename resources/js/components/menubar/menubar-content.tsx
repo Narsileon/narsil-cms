@@ -1,5 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
+
 import MenubarPortal from "./menubar-portal";
 
 type MenubarContentProps = React.ComponentProps<

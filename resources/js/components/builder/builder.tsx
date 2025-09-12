@@ -1,8 +1,3 @@
-import { get } from "lodash";
-import { Fragment, useState } from "react";
-import BuilderAdd from "./builder-add";
-import BuilderItem from "./builder-item";
-import BuilderSeparator from "./builder-seperator";
 import {
   closestCenter,
   DndContext,
@@ -21,8 +16,15 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { get } from "lodash";
+import { Fragment, useState } from "react";
+
 import { type Block } from "@narsil-cms/types/forms";
+
 import { type BuilderNode } from ".";
+import BuilderAdd from "./builder-add";
+import BuilderItem from "./builder-item";
+import BuilderSeparator from "./builder-seperator";
 import { useForm } from "../form";
 
 type BuilderProps = {

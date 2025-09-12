@@ -1,18 +1,19 @@
+import { useEffect, useRef } from "react";
+
 import { Bookmarks, Breadcrumb, Sidebar, UserMenu } from "@narsil-cms/blocks";
-import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import { Separator } from "@narsil-cms/components/separator";
-import { Toaster } from "@narsil-cms/components/toaster";
-import { useEffect, useRef } from "react";
-import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
-import useColorStore from "@narsil-cms/stores/color-store";
-import useRadiusStore from "@narsil-cms/stores/radius-store";
-import useThemeStore from "@narsil-cms/stores/theme-store";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@narsil-cms/components/sidebar";
+import { Toaster } from "@narsil-cms/components/toaster";
+import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
+import { GlobalProps } from "@narsil-cms/hooks/use-props";
+import useColorStore from "@narsil-cms/stores/color-store";
+import useRadiusStore from "@narsil-cms/stores/radius-store";
+import useThemeStore from "@narsil-cms/stores/theme-store";
 
 type AuthLayoutProps = {
   children: React.ReactNode & {

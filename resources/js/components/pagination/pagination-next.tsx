@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
+
 import PaginationLink from "./pagination-link";
 
 type PaginationNextProps = React.ComponentProps<typeof PaginationLink> & {};

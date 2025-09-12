@@ -1,21 +1,22 @@
+import { isArray } from "lodash";
+
 import { Checkbox, Checkboxes } from "@narsil-cms/components/checkbox";
 import { Combobox } from "@narsil-cms/components/combobox";
 import { Icon } from "@narsil-cms/components/icon";
-import { isArray } from "lodash";
-import { RichTextEditor } from "@narsil-cms/components/rich-text-editor";
-import { Slider } from "@narsil-cms/components/slider";
-import { Switch } from "@narsil-cms/components/switch";
 import {
   Input,
   InputDate,
   InputFile,
   InputPassword,
 } from "@narsil-cms/components/input";
+import { RichTextEditor } from "@narsil-cms/components/rich-text-editor";
+import { Slider } from "@narsil-cms/components/slider";
 import {
   SortableGrid,
   SortableList,
   SortableTable,
 } from "@narsil-cms/components/sortable";
+import { Switch } from "@narsil-cms/components/switch";
 import { type Field, type SelectOption } from "@narsil-cms/types/forms";
 
 export type FieldProps = {

@@ -1,15 +1,17 @@
-import SortableItem from "./sortable-item";
 import {
   horizontalListSortingStrategy,
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { type AnonymousItem } from ".";
+
 import {
   type FormType,
   type GroupedSelectOption,
   type SelectOption,
 } from "@narsil-cms/types/forms";
+
+import { type AnonymousItem } from ".";
+import SortableItem from "./sortable-item";
 
 type SortableListContextProps = {
   direction?: "horizontal" | "vertical";

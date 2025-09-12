@@ -1,3 +1,7 @@
+import { isEmpty } from "lodash";
+import { useEffect, useState } from "react";
+
+import { SaveButton } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import {
@@ -11,8 +15,7 @@ import {
   FormSubmit,
   FormFieldRenderer,
 } from "@narsil-cms/components/form";
-import { isEmpty } from "lodash";
-import { SaveButton } from "@narsil-cms/blocks";
+import { useLabels } from "@narsil-cms/components/labels";
 import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import {
   Section,
@@ -26,8 +29,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@narsil-cms/components/tabs";
-import { useEffect, useState } from "react";
-import { useLabels } from "@narsil-cms/components/labels";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalState } from "@narsil-cms/stores/modal-store";
 import { type Block, type FormType } from "@narsil-cms/types/forms";

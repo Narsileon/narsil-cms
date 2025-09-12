@@ -1,6 +1,7 @@
+import { Slot as SlotPrimitive } from "radix-ui";
+
 import { Button, buttonVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
-import { Slot as SlotPrimitive } from "radix-ui";
 
 type PaginationLinkProps = React.ComponentProps<"a"> &
   Pick<React.ComponentProps<typeof Button>, "size"> & {

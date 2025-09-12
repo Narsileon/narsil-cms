@@ -1,3 +1,5 @@
+import { type UniqueIdentifier } from "@dnd-kit/core";
+
 import SortableAdd from "./sortable-add";
 import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";
@@ -6,10 +8,9 @@ import SortableItemForm from "./sortable-item-form";
 import SortableItemWidth from "./sortable-item-width";
 import SortableList from "./sortable-list";
 import SortableListContext from "./sortable-list-context";
+import SortableTree from "./sortable-tree";
 import SortableTable from "./table/sortable-table";
 import SortableTableRow from "./table/sortable-table-row";
-import SortableTree from "./sortable-tree";
-import { type UniqueIdentifier } from "@dnd-kit/core";
 
 type AnonymousItem = Record<string, any> & {
   id: UniqueIdentifier;

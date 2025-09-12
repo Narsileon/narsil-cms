@@ -1,4 +1,5 @@
 import { Accordion as AccordionPrimitive } from "radix-ui";
+
 import { cn } from "@narsil-cms/lib/utils";
 
 type AccordionContentProps = React.ComponentProps<

@@ -1,5 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { VisitOptions } from "@inertiajs/core";
+
+import { cn } from "@narsil-cms/lib/utils";
+
 import useForm from "./form-context";
 
 type FormRootProps = React.ComponentProps<"form"> & {

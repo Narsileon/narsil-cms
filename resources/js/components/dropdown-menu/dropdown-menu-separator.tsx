@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuSeparatorProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.Separator

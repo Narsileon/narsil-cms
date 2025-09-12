@@ -1,6 +1,7 @@
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
-import { cn } from "@narsil-cms/lib/utils";
+
 import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> & {};
 

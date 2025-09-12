@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type ScrollAreaScrollbarProp = React.ComponentProps<
   typeof ScrollAreaPrimitive.ScrollAreaScrollbar

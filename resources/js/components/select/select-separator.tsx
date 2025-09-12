@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type SelectSeparatorProps = React.ComponentProps<
   typeof SelectPrimitive.Separator

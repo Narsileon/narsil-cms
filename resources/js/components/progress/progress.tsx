@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Progress as ProgressPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type ProgressProps = React.ComponentProps<typeof ProgressPrimitive.Root> & {};
 

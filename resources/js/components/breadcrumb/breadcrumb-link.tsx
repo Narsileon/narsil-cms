@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type BreadcrumbLinkProps = React.ComponentProps<"a"> & {
   asChild?: boolean;

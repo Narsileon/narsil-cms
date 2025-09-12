@@ -1,16 +1,18 @@
 import "@narsil-cms/../css/app.css";
-import { Head } from "@narsil-cms/blocks";
-import { isEmpty } from "lodash";
-import { LabelsProvider } from "@narsil-cms/components/labels";
 import { router } from "@inertiajs/react";
-import { toast } from "sonner";
+import { isEmpty } from "lodash";
 import { useEffect } from "react";
-import AuthLayout from "./auth-layout";
-import GuestLayout from "./guest-layout";
+import { toast } from "sonner";
+
+import { Head } from "@narsil-cms/blocks";
+import { LabelsProvider } from "@narsil-cms/components/labels";
+import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import useColorStore from "@narsil-cms/stores/color-store";
 import useRadiusStore from "@narsil-cms/stores/radius-store";
 import useThemeStore from "@narsil-cms/stores/theme-store";
-import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+
+import AuthLayout from "./auth-layout";
+import GuestLayout from "./guest-layout";
 
 type LayoutProps = {
   children: React.ReactNode & {

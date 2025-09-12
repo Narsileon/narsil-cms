@@ -1,11 +1,9 @@
-import { Button } from "@narsil-cms/components/button";
-import { FormItem, FormLabel } from "@narsil-cms/components/form";
+import { type UniqueIdentifier } from "@dnd-kit/core";
 import { get, set } from "lodash";
-import { getField } from "@narsil-cms/plugins/fields";
-import { Tooltip } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
 import { useState } from "react";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+
+import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
 import {
   DialogBody,
   DialogContent,
@@ -16,9 +14,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
-import { type AnonymousItem } from ".";
+import { FormItem, FormLabel } from "@narsil-cms/components/form";
+import { useLabels } from "@narsil-cms/components/labels";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { getField } from "@narsil-cms/plugins/fields";
 import { type FormType } from "@narsil-cms/types/forms";
-import { type UniqueIdentifier } from "@dnd-kit/core";
+
+import { type AnonymousItem } from ".";
 
 type SortableItemFormProps = {
   children: React.ReactNode;

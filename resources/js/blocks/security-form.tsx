@@ -1,17 +1,19 @@
-import { Button } from "@narsil-cms/components/button";
-import { DialogClose } from "@narsil-cms/components/dialog";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { Separator } from "@narsil-cms/components/separator";
+
+import { Button } from "@narsil-cms/components/button";
+import { DialogClose } from "@narsil-cms/components/dialog";
 import { useLabels } from "@narsil-cms/components/labels";
-import TwoFactorForm from "./two-factor-form";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/section";
+import { Separator } from "@narsil-cms/components/separator";
 import { type FormType } from "@narsil-cms/types/forms";
+
+import TwoFactorForm from "./two-factor-form";
 
 type SecurityFormProps = {
   twoFactorForm: FormType;

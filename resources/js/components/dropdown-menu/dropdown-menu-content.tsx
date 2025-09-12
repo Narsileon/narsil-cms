@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuContentProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.Content

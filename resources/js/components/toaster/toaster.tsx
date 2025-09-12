@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Toaster as Sonner } from "sonner";
+
+import { cn } from "@narsil-cms/lib/utils";
 import useThemeStore, { type Theme } from "@narsil-cms/stores/theme-store";
 
 type ToasterProps = React.ComponentProps<typeof Sonner> & {

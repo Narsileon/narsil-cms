@@ -1,4 +1,5 @@
 import { Tooltip as TooltipPrimitive } from "radix-ui";
+
 import TooltipProvider from "./tooltip-provider";
 
 function TooltipRoot({

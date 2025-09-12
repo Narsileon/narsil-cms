@@ -1,7 +1,8 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { cva } from "class-variance-authority";
-import { Icon } from "@narsil-cms/components/icon";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
+
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 const navigationMenuTriggerStyle = cva(
   cn(

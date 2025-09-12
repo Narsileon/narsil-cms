@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Tooltip as TooltipPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type TooltipContentProps = React.ComponentProps<
   typeof TooltipPrimitive.Content

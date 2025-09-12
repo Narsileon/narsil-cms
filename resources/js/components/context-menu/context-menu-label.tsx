@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type ContextMenuLabelProps = React.ComponentProps<
   typeof ContextMenuPrimitive.Label

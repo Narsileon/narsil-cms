@@ -1,9 +1,10 @@
-import { Button } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
-import { Tooltip } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
 import { type DraggableAttributes } from "@dnd-kit/core";
 import { type SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
+
+import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
+import { useLabels } from "@narsil-cms/components/labels";
+import { cn } from "@narsil-cms/lib/utils";
 
 type DataTableHeadMoveProps = React.ComponentProps<typeof Button> & {
   attributes: DraggableAttributes;

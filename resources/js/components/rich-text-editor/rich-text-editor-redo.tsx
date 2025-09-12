@@ -1,7 +1,8 @@
-import { Button } from "@narsil-cms/components/button";
 import { Editor, useEditorState } from "@tiptap/react";
-import { Icon } from "@narsil-cms/components/icon";
+
 import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
 type RichTextEditorRedoProps = React.ComponentProps<typeof Button> & {

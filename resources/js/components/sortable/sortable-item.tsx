@@ -1,14 +1,10 @@
-import { Button } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
-import { CSS } from "@dnd-kit/utilities";
-import { Icon } from "@narsil-cms/components/icon";
-import { Tooltip } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
+import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
-import SortableHandle from "./sortable-handle";
-import SortableItemWidth from "./sortable-item-width";
-import SortableItemForm from "./sortable-item-form";
+
+import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
 import {
   Card,
   CardContent,
@@ -21,13 +17,19 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
-import { type AnonymousItem } from ".";
-import { type UniqueIdentifier } from "@dnd-kit/core";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
+import { cn } from "@narsil-cms/lib/utils";
 import {
   type FormType,
   type GroupedSelectOption,
   type SelectOption,
 } from "@narsil-cms/types/forms";
+
+import { type AnonymousItem } from ".";
+import SortableHandle from "./sortable-handle";
+import SortableItemForm from "./sortable-item-form";
+import SortableItemWidth from "./sortable-item-width";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
   collapsible?: boolean;

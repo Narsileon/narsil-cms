@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
 import { Menubar as MenubarPrimitive } from "radix-ui";
+
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type MenubarRadioItemProps = React.ComponentProps<
   typeof MenubarPrimitive.RadioItem

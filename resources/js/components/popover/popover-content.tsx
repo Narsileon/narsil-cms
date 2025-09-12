@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Popover as PopoverPrimitive } from "radix-ui";
+
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { cn } from "@narsil-cms/lib/utils";
 
 type PopoverContentProps = React.ComponentProps<
   typeof PopoverPrimitive.Content

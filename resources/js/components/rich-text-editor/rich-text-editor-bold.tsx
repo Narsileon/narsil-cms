@@ -1,8 +1,9 @@
 import { Editor, useEditorState } from "@tiptap/react";
-import { Icon } from "@narsil-cms/components/icon";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
+
 import { Tooltip } from "@narsil-cms/blocks";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
+import { ToggleRoot } from "@narsil-cms/components/toggle";
 
 type RichTextEditorBoldProps = React.ComponentProps<typeof ToggleRoot> & {
   editor: Editor;

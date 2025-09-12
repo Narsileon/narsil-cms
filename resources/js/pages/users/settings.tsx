@@ -1,18 +1,18 @@
-import { Icon } from "@narsil-cms/components/icon";
-import { ScrollArea } from "@narsil-cms/components/scroll-area";
-import { useAuth } from "@narsil-cms/hooks/use-props";
-import { useLabels } from "@narsil-cms/components/labels";
 import {
   ConfigurationForm,
   ProfileForm,
   SecurityForm,
 } from "@narsil-cms/blocks";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
+import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import {
   TabsList,
   Tabs,
   TabsTrigger,
   TabsContent,
 } from "@narsil-cms/components/tabs";
+import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types/forms";
 
 type UserSettingsProps = {

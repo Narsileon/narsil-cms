@@ -1,9 +1,10 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
-import { Icon } from "@narsil-cms/components/icon";
+
 import { Tooltip } from "@narsil-cms/blocks";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { cn } from "@narsil-cms/lib/utils";
 
 type DialogCloseButtonProps = React.ComponentProps<
   typeof DialogPrimitive.Close

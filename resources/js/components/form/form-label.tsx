@@ -1,8 +1,10 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
 import { Label as LabelPrimitive } from "radix-ui";
+
 import { Tooltip } from "@narsil-cms/blocks";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
+import { cn } from "@narsil-cms/lib/utils";
+
 import useFormField from "./form-field-context";
 
 type FormLabelProps = React.ComponentProps<typeof LabelPrimitive.Root> & {

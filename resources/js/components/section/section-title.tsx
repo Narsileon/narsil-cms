@@ -1,5 +1,5 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Heading } from "@narsil-cms/components/heading";
+import { cn } from "@narsil-cms/lib/utils";
 
 type SectionTitleProps = React.ComponentProps<typeof Heading> & {};
 

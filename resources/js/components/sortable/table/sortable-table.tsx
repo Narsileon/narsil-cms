@@ -1,8 +1,3 @@
-import { createPortal } from "react-dom";
-import { get, set } from "lodash";
-import { getField } from "@narsil-cms/plugins/fields";
-import { useState } from "react";
-import SortableTableRow from "./sortable-table-row";
 import {
   closestCenter,
   DragOverlay,
@@ -22,6 +17,10 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { get, set } from "lodash";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+
 import {
   TableBody,
   TableCell,
@@ -30,7 +29,10 @@ import {
   TableRoot,
   TableRow,
 } from "@narsil-cms/components/table";
+import { getField } from "@narsil-cms/plugins/fields";
 import { type Field } from "@narsil-cms/types/forms";
+
+import SortableTableRow from "./sortable-table-row";
 
 type SortableTableItem = {
   id: UniqueIdentifier;

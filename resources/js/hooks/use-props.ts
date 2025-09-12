@@ -1,5 +1,6 @@
-import { isEmpty } from "lodash";
 import { usePage } from "@inertiajs/react";
+import { isEmpty } from "lodash";
+
 import { type Theme } from "@narsil-cms/stores/theme-store";
 
 export type GlobalProps = {

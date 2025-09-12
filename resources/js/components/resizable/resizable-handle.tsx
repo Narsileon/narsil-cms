@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
 import { PanelResizeHandle } from "react-resizable-panels";
+
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type ResizableHandleProps = React.ComponentProps<typeof PanelResizeHandle> & {
   withHandle?: boolean;

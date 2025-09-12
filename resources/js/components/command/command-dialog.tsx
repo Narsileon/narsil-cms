@@ -1,6 +1,5 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Command } from "cmdk";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+
 import {
   DialogContent,
   DialogDescription,
@@ -8,6 +7,8 @@ import {
   DialogRoot,
   DialogTitle,
 } from "@narsil-cms/components/dialog";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { cn } from "@narsil-cms/lib/utils";
 
 type CommandDialogProps = React.ComponentProps<typeof DialogRoot> & {
   className?: string;

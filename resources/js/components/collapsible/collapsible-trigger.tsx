@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type CollapsibleTriggerProps = React.ComponentProps<
   typeof CollapsiblePrimitive.Trigger

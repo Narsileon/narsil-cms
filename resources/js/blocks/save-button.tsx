@@ -1,12 +1,8 @@
-import { Button } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
-import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
-import { Separator } from "@narsil-cms/components/separator";
 import { useEffect } from "react";
-import { useForm } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { route } from "ziggy-js";
+
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -15,7 +11,11 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-
+import { useForm } from "@narsil-cms/components/form";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
+import { Separator } from "@narsil-cms/components/separator";
+import { cn } from "@narsil-cms/lib/utils";
 import { type RouteNames } from "@narsil-cms/types/collection";
 
 type SaveButtonProps = React.ComponentProps<"div"> & {

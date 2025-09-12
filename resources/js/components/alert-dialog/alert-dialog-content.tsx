@@ -1,7 +1,9 @@
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
+
 import { cn } from "@narsil-cms/lib/utils";
-import AlertDialogPortal from "./alert-dialog-portal";
+
 import AlertDialogOverlay from "./alert-dialog-overlay";
+import AlertDialogPortal from "./alert-dialog-portal";
 
 type AlertDialogContentProps = React.ComponentProps<
   typeof AlertDialogPrimitive.Content

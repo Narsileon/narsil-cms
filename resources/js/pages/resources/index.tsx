@@ -1,7 +1,10 @@
+import { Link } from "@inertiajs/react";
+import { type ColumnDef } from "@tanstack/react-table";
+import { route } from "ziggy-js";
+
+import { DataTable, Tooltip } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
 import { Checkbox } from "@narsil-cms/components/checkbox";
-import { cn } from "@narsil-cms/lib/utils";
-import { DataTable, Tooltip } from "@narsil-cms/blocks";
 import {
   DataTableFilter,
   DataTableFilterBadge,
@@ -14,22 +17,20 @@ import {
   DataTableVisibilityDropdown,
 } from "@narsil-cms/components/data-table";
 import { Icon } from "@narsil-cms/components/icon";
-import { Link } from "@inertiajs/react";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@narsil-cms/components/resizable";
-import { route } from "ziggy-js";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/section";
-import { useLabels } from "@narsil-cms/components/labels";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
-import { type ColumnDef } from "@tanstack/react-table";
+import { cn } from "@narsil-cms/lib/utils";
 import {
   type DataTableCollection,
   type DataTableFilterCollection,

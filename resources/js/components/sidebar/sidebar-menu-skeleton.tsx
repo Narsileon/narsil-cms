@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { Skeleton } from "@narsil-cms/components/skeleton";
 import { useMemo } from "react";
+
+import { Skeleton } from "@narsil-cms/components/skeleton";
+import { cn } from "@narsil-cms/lib/utils";
 
 type SidebarMenuSkeletonProps = React.ComponentProps<"div"> & {
   showIcon?: boolean;

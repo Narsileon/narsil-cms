@@ -1,4 +1,3 @@
-import { arrayMove } from "@dnd-kit/sortable";
 import {
   closestCenter,
   DndContext,
@@ -9,8 +8,9 @@ import {
   useSensors,
   type DragEndEvent,
 } from "@dnd-kit/core";
-import { compact, debounce } from "lodash";
-import { DataTableContext, DataTableContextProps } from "./data-table-context";
+import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
+import { arrayMove } from "@dnd-kit/sortable";
+import { router } from "@inertiajs/react";
 import {
   getCoreRowModel,
   useReactTable,
@@ -23,12 +23,14 @@ import {
   type Updater,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
-import { router } from "@inertiajs/react";
+import { compact, debounce } from "lodash";
+import { useCallback, useEffect, useMemo } from "react";
+
 import useDataTableStore, {
   type DataTableStoreType,
 } from "@narsil-cms/stores/data-table-store";
-import { useCallback, useEffect, useMemo } from "react";
+
+import { DataTableContext, DataTableContextProps } from "./data-table-context";
 
 type DataTableProviderProps = Partial<TableOptions<any>> & {
   columns: ColumnDef<any>[];

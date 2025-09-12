@@ -1,7 +1,9 @@
-import { buttonVariants } from "./button-variants";
-import { cn } from "@narsil-cms/lib/utils";
-import { Slot as SlotPrimitive } from "radix-ui";
 import { type VariantProps } from "class-variance-authority";
+import { Slot as SlotPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
+
+import { buttonVariants } from "./button-variants";
 
 type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {

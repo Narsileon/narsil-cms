@@ -1,11 +1,13 @@
 import { isString } from "lodash";
-import useDataTable from "./data-table-context";
+
 import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
+
+import useDataTable from "./data-table-context";
 
 type DataTableVisibilityDropdownProps = React.ComponentProps<
   typeof DropdownMenuTrigger

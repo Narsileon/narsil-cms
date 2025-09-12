@@ -1,6 +1,5 @@
-import { LabelsProvider } from "@narsil-cms/components/labels";
-import { ModalState } from "@narsil-cms/stores/modal-store";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { useEffect, useState } from "react";
+
 import {
   DialogContent,
   DialogDescription,
@@ -8,7 +7,9 @@ import {
   DialogRoot,
   DialogTitle,
 } from "@narsil-cms/components/dialog";
-import { useEffect, useState } from "react";
+import { LabelsProvider } from "@narsil-cms/components/labels";
+import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { ModalState } from "@narsil-cms/stores/modal-store";
 
 type ModalProps = React.ComponentProps<typeof DialogContent> & {
   modal: ModalState;

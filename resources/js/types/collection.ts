@@ -1,9 +1,10 @@
-import { type IconName } from "@narsil-cms/plugins/icons";
 import {
   type ColumnDef,
   type ColumnOrderState,
   type VisibilityState,
 } from "@tanstack/react-table";
+
+import { type IconName } from "@narsil-cms/plugins/icons";
 
 export type Bookmark = {
   id: number;

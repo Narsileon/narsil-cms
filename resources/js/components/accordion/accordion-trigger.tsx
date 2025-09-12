@@ -1,6 +1,7 @@
 import { Accordion as AccordionPrimitive } from "radix-ui";
-import { cn } from "@narsil-cms/lib/utils";
+
 import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type AccordionTriggerProps = React.ComponentProps<
   typeof AccordionPrimitive.Trigger

@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type SelectLabelProps = React.ComponentProps<typeof SelectPrimitive.Label> & {};
 

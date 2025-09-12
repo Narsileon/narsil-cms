@@ -1,4 +1,3 @@
-import { cn } from "@narsil-cms/lib/utils";
 import {
   SheetContent,
   SheetDescription,
@@ -6,6 +5,8 @@ import {
   SheetRoot,
   SheetTitle,
 } from "@narsil-cms/components/sheet";
+import { cn } from "@narsil-cms/lib/utils";
+
 import useSidebar from "./sidebar-context";
 
 type SidebarRootProps = React.ComponentProps<"div"> & {

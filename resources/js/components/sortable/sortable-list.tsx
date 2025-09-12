@@ -1,6 +1,3 @@
-import { arrayMove } from "@dnd-kit/sortable";
-import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
-import { createPortal } from "react-dom";
 import {
   closestCenter,
   DragOverlay,
@@ -14,14 +11,19 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
+import { arrayMove } from "@dnd-kit/sortable";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+
+import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
 import {
   SortableAdd,
   SortableItem,
   SortableListContext,
 } from "@narsil-cms/components/sortable";
-import { type AnonymousItem } from ".";
 import { type GroupedSelectOption } from "@narsil-cms/types/forms";
-import { useState } from "react";
+
+import { type AnonymousItem } from ".";
 
 type SortableProps = React.ComponentProps<typeof SortableListContext> & {};
 

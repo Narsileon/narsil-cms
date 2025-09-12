@@ -1,12 +1,14 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { EditorContent, EditorOptions, useEditor } from "@tiptap/react";
-import { Placeholder } from "@tiptap/extensions";
-import { useEffect } from "react";
-import RichTextEditorToolbar from "./rich-text-editor-toolbar";
-import StarterKit from "@tiptap/starter-kit";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import TextAlign from "@tiptap/extension-text-align";
+import { Placeholder } from "@tiptap/extensions";
+import { EditorContent, EditorOptions, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { useEffect } from "react";
+
+import { cn } from "@narsil-cms/lib/utils";
+
+import RichTextEditorToolbar from "./rich-text-editor-toolbar";
 
 type RichTextEditorProps = Partial<EditorOptions> & {
   className?: string;

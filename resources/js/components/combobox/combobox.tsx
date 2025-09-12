@@ -1,13 +1,9 @@
-import { Button } from "@narsil-cms/components/button";
-import { cn, getSelectOption } from "@narsil-cms/lib/utils";
-import { debounce, isArray, lowerCase } from "lodash";
-import { Icon } from "@narsil-cms/components/icon";
 import { router } from "@inertiajs/react";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useLabels } from "@narsil-cms/components/labels";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import ComboboxBadge from "./combobox-badge";
-import ComboboxItem from "./combobox-item";
+import { debounce, isArray, lowerCase } from "lodash";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+import { Button } from "@narsil-cms/components/button";
 import {
   CommandEmpty,
   CommandGroup,
@@ -15,12 +11,18 @@ import {
   CommandList,
   CommandRoot,
 } from "@narsil-cms/components/command";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
+import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { type SelectOption } from "@narsil-cms/types/forms";
+
+import ComboboxBadge from "./combobox-badge";
+import ComboboxItem from "./combobox-item";
 
 type ComboboxProps = {
   className?: string;

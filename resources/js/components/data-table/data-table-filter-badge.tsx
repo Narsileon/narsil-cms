@@ -1,10 +1,9 @@
-import { Badge } from "@narsil-cms/components/badge";
-import { getField } from "@narsil-cms/plugins/fields";
-import { Icon } from "@narsil-cms/components/icon";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
+
+import { Badge } from "@narsil-cms/components/badge";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import useDataTable from "./data-table-context";
 import {
   PopoverContent,
   PopoverRoot,
@@ -17,8 +16,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@narsil-cms/components/select";
-import { type ColumnFilter } from ".";
+import { getField } from "@narsil-cms/plugins/fields";
 import { type Field } from "@narsil-cms/types/forms";
+
+import { type ColumnFilter } from ".";
+import useDataTable from "./data-table-context";
 
 type DataTableFilterBadgeProps = React.ComponentProps<typeof PopoverTrigger> & {
   filter: ColumnFilter;

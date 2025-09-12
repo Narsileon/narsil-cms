@@ -1,6 +1,3 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { createPortal } from "react-dom";
-import { get } from "lodash";
 import {
   DndContext,
   DragOverlay,
@@ -21,6 +18,17 @@ import {
   rectSortingStrategy,
   SortableContext,
 } from "@dnd-kit/sortable";
+import { get } from "lodash";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+
+import { cn } from "@narsil-cms/lib/utils";
+import type {
+  Field,
+  FormType,
+  GroupedSelectOption,
+} from "@narsil-cms/types/forms";
+
 import {
   SortableAdd,
   SortableItem,
@@ -28,12 +36,6 @@ import {
   SortableListContext,
   type AnonymousItem,
 } from ".";
-import type {
-  Field,
-  FormType,
-  GroupedSelectOption,
-} from "@narsil-cms/types/forms";
-import { useState } from "react";
 
 type SortableGridProps = {
   columns?: 1 | 2 | 3 | 4;

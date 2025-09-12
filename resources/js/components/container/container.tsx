@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 export const containerVariants = cva(
   cn("mx-auto h-[inherit] min-h-[inherit] w-[inherit] max-w-7xl gap-3 px-3"),

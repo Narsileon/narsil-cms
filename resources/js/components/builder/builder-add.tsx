@@ -1,15 +1,17 @@
-import { Button } from "@narsil-cms/components/button";
-import { Icon } from "@narsil-cms/components/icon";
-import { Tooltip } from "@narsil-cms/blocks";
 import { uniqueId } from "lodash";
-import { useLabels } from "@narsil-cms/components/labels";
+
+import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
 import { type Block } from "@narsil-cms/types/forms";
+
 import { type BuilderNode } from ".";
 
 type BuilderAddProps = React.ComponentProps<typeof DropdownMenuTrigger> & {

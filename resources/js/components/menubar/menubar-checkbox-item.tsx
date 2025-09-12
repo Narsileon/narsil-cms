@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
 import { Menubar as MenubarPrimitive } from "radix-ui";
+
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type MenubarCheckboxItemProps = React.ComponentProps<
   typeof MenubarPrimitive.CheckboxItem

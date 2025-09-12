@@ -1,6 +1,7 @@
-import { Icon } from "@narsil-cms/components/icon";
 import { Link } from "@inertiajs/react";
+
 import { Tooltip } from "@narsil-cms/blocks";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PaginationContent,

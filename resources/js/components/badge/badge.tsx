@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 const badgeVariants = cva(
   cn(

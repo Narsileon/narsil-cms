@@ -1,23 +1,24 @@
-import { getSelectOption } from "@narsil-cms/lib/utils";
-import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
-import { useLabels } from "@narsil-cms/components/labels";
-import { useLocale } from "@narsil-cms/hooks/use-props";
-import { useModalStore } from "@narsil-cms/stores/modal-store";
-import useColorStore from "@narsil-cms/stores/color-store";
-import useRadiusStore from "@narsil-cms/stores/radius-store";
-import useThemeStore from "@narsil-cms/stores/theme-store";
+import { route } from "ziggy-js";
+
 import {
   FormFieldRenderer,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/section";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getSelectOption } from "@narsil-cms/lib/utils";
+import useColorStore from "@narsil-cms/stores/color-store";
+import { useModalStore } from "@narsil-cms/stores/modal-store";
+import useRadiusStore from "@narsil-cms/stores/radius-store";
+import useThemeStore from "@narsil-cms/stores/theme-store";
 import { type FormType } from "@narsil-cms/types/forms";
 
 type ConfigurationFormProps = {

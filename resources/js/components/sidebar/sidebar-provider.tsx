@@ -1,6 +1,8 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { SidebarContext, type SidebarContextProps } from "./sidebar-context";
 import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { cn } from "@narsil-cms/lib/utils";
+
+import { SidebarContext, type SidebarContextProps } from "./sidebar-context";
 
 type SidebarProviderProps = React.ComponentProps<"div"> & {
   cookieMaxAge?: number;

@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Slider as SliderPrimitive } from "radix-ui";
 import { useMemo } from "react";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type SliderProps = React.ComponentProps<typeof SliderPrimitive.Root> & {};
 

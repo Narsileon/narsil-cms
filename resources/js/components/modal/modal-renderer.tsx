@@ -1,4 +1,5 @@
 import { useModalStore } from "@narsil-cms/stores/modal-store";
+
 import Modal from "./modal";
 
 type ModalRendererProps = Pick<

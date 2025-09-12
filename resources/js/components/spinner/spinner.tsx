@@ -1,5 +1,5 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type SpinnerProps = Omit<React.ComponentProps<typeof Icon>, "name"> & {};
 

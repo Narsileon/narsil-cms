@@ -1,6 +1,3 @@
-import { createPortal } from "react-dom";
-import { getProjection } from "@narsil-cms/lib/sortable";
-import { SortableItem, type FlatNode } from ".";
 import {
   closestCenter,
   DndContext,
@@ -23,6 +20,11 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+
+import { getProjection } from "@narsil-cms/lib/sortable";
+
+import { SortableItem, type FlatNode } from ".";
 
 type SortableProps = {
   items: FlatNode[];

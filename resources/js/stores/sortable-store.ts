@@ -1,6 +1,7 @@
-import { create } from "zustand";
-import { type FlatNode } from "@narsil-cms/components/sortable";
 import { type UniqueIdentifier } from "@dnd-kit/core";
+import { create } from "zustand";
+
+import { type FlatNode } from "@narsil-cms/components/sortable";
 
 type SortableStoreState = {
   activeId: UniqueIdentifier | null;

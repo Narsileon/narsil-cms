@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { HoverCard as HoverCardPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type HoverCardContentProps = React.ComponentProps<
   typeof HoverCardPrimitive.Content

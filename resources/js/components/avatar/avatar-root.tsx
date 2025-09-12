@@ -1,4 +1,5 @@
 import { Avatar as AvatarPrimitive } from "radix-ui";
+
 import { cn } from "@narsil-cms/lib/utils";
 
 type AvatarRootProps = React.ComponentProps<typeof AvatarPrimitive.Root> & {};

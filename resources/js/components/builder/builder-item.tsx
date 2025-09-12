@@ -1,6 +1,7 @@
-import { Builder, BuilderNode } from ".";
 import { FormFieldRenderer } from "@narsil-cms/components/form";
 import { SortableItem } from "@narsil-cms/components/sortable";
+
+import { Builder, BuilderNode } from ".";
 
 type BuilderItemProps = Omit<
   React.ComponentProps<typeof SortableItem>,

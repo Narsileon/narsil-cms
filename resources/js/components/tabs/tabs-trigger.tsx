@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger> & {};
 

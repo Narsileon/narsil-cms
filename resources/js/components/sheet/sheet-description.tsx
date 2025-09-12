@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type SheetDescriptionProps = React.ComponentProps<
   typeof SheetPrimitive.Description

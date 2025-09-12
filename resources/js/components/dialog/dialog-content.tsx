@@ -1,9 +1,11 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
+
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { cn } from "@narsil-cms/lib/utils";
+
+import DialogCloseButton from "./dialog-close-button";
 import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
-import DialogCloseButton from "./dialog-close-button";
 
 type DialogContentProps = React.ComponentProps<typeof DialogPrimitive.Content> &
   Pick<React.ComponentProps<typeof DialogPortal>, "container"> & {

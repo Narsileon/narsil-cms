@@ -1,7 +1,8 @@
-import { Button } from "@narsil-cms/components/button";
 import { Header } from "@tanstack/react-table";
-import { Icon } from "@narsil-cms/components/icon";
+
 import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
 type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {

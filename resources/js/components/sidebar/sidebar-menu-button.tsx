@@ -1,7 +1,9 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
+
 import { Tooltip } from "@narsil-cms/blocks";
+import { cn } from "@narsil-cms/lib/utils";
+
 import useSidebar from "./sidebar-context";
 
 const sidebarMenuButtonVariants = cva(

@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
+
 import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type CommandInputProps = React.ComponentProps<
   typeof CommandPrimitive.Input

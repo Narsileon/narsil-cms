@@ -1,5 +1,4 @@
 import { Button } from "@narsil-cms/components/button";
-import useDataTable from "./data-table-context";
 import {
   SelectContent,
   SelectItem,
@@ -7,6 +6,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@narsil-cms/components/select";
+
+import useDataTable from "./data-table-context";
 
 type DataTableSizeProps = React.ComponentProps<typeof Button> & {
   options?: string[];

@@ -1,16 +1,18 @@
+import { Editor } from "@tiptap/react";
+
+import { Tooltip } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import { Editor } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/icon";
-import { Separator } from "@narsil-cms/components/separator";
-import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
+import { Separator } from "@narsil-cms/components/separator";
+import { cn } from "@narsil-cms/lib/utils";
+
 import RichTextEditorBold from "./rich-text-editor-bold";
 import RichTextEditorBulletList from "./rich-text-editor-bullet-list";
 import RichTextEditorHeading from "./rich-text-editor-heading";

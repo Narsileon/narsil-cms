@@ -1,5 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Select as SelectPrimitive } from "radix-ui";
+
+import { cn } from "@narsil-cms/lib/utils";
+
 import SelectScrollDownButton from "./select-scroll-down-button";
 import SelectScrollUpButton from "./select-scroll-up-button";
 

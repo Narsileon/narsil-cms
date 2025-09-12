@@ -1,6 +1,6 @@
 // https://ui.shadcn.com/docs/components/button
 
-import { buttonVariants } from "./button-variants";
 import Button from "./button";
+import { buttonVariants } from "./button-variants";
 
 export { Button, buttonVariants };

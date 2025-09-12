@@ -1,4 +1,5 @@
 import { TableRoot } from "@narsil-cms/components/table";
+
 import useDataTable from "./data-table-context";
 
 type DataTableRootProps = React.ComponentProps<typeof TableRoot> & {};

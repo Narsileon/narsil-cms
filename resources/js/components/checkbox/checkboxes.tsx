@@ -1,5 +1,4 @@
 import { useLabels } from "@narsil-cms/components/labels";
-import Checkbox from "./checkbox";
 import {
   TableBody,
   TableCell,
@@ -10,6 +9,8 @@ import type {
   GroupedSelectOption,
   SelectOption,
 } from "@narsil-cms/types/forms";
+
+import Checkbox from "./checkbox";
 
 type CheckboxesProps = {
   options: (GroupedSelectOption | SelectOption)[];

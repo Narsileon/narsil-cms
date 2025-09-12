@@ -1,7 +1,9 @@
-import { Icon } from "@narsil-cms/components/icon";
-import { Tooltip } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
 import { useState } from "react";
+
+import { Tooltip } from "@narsil-cms/blocks";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
+
 import Input from "./input";
 
 type InputPasswordProps = Omit<

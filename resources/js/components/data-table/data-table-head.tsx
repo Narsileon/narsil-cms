@@ -1,8 +1,10 @@
-import { cn } from "@narsil-cms/lib/utils";
+import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { flexRender, Header } from "@tanstack/react-table";
+
 import { TableHead } from "@narsil-cms/components/table";
-import { useSortable } from "@dnd-kit/sortable";
+import { cn } from "@narsil-cms/lib/utils";
+
 import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";
 

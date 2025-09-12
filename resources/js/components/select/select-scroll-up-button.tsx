@@ -1,6 +1,7 @@
-import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
 import { Select as SelectPrimitive } from "radix-ui";
+
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 
 type SelectScrollUpButtonProps = React.ComponentProps<
   typeof SelectPrimitive.ScrollUpButton

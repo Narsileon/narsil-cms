@@ -1,5 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 const alertVariants = cva(
   cn(

@@ -1,7 +1,8 @@
-import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
 import { Input } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
+import { cn } from "@narsil-cms/lib/utils";
+
 import useDataTable from "./data-table-context";
 
 type DataTableInputProps = React.ComponentProps<typeof Input> & {};

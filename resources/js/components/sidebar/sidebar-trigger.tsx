@@ -1,9 +1,10 @@
-import { Button } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
 import { Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { cn } from "@narsil-cms/lib/utils";
+
 import useSidebar from "./sidebar-context";
 
 type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};

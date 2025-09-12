@@ -1,10 +1,9 @@
-import { Button } from "@narsil-cms/components/button";
-import { Icon } from "@narsil-cms/components/icon";
 import { Link } from "@inertiajs/react";
-import { ModalLink } from "@narsil-cms/components/modal";
+import { type Table } from "@tanstack/react-table";
 import { route } from "ziggy-js";
+
 import { Tooltip } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -12,8 +11,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
+import { ModalLink } from "@narsil-cms/components/modal";
 import { type RouteNames } from "@narsil-cms/types/collection";
-import { type Table } from "@tanstack/react-table";
 
 type DataTableRowMenuProps = Omit<
   React.ComponentProps<typeof DropdownMenuTrigger>,

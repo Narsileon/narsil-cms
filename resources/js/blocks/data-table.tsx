@@ -1,6 +1,9 @@
+import {
+  horizontalListSortingStrategy,
+  SortableContext,
+} from "@dnd-kit/sortable";
 import { flexRender, Table } from "@tanstack/react-table";
-import { ScrollArea } from "@narsil-cms/components/scroll-area";
-import { TableCell } from "@narsil-cms/components/table";
+
 import {
   DataTableBody,
   DataTableCell,
@@ -9,10 +12,8 @@ import {
   DataTableRoot,
   DataTableRow,
 } from "@narsil-cms/components/data-table";
-import {
-  horizontalListSortingStrategy,
-  SortableContext,
-} from "@dnd-kit/sortable";
+import { ScrollArea } from "@narsil-cms/components/scroll-area";
+import { TableCell } from "@narsil-cms/components/table";
 
 type DataTableProps = {
   dataTable: Table<any>;
