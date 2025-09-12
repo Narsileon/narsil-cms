@@ -9,7 +9,7 @@ type CheckboxRootProps = React.ComponentProps<
 function CheckboxRoot({ className, ...props }: CheckboxRootProps) {
   return (
     <CheckboxPrimitive.Root
-      data-slot="checkbox"
+      data-slot="checkbox-root"
       className={cn(
         "peer size-4.5 shrink-0 cursor-pointer rounded-[4px] border border-input shadow-xs transition-shadow outline-none",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20",

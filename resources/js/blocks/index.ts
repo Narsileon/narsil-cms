@@ -12,6 +12,8 @@ import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
 import SecurityForm from "./security-form";
 import Sidebar from "./sidebar";
+import Slider from "./slider";
+import Switch from "./switch";
 import Tooltip from "./tooltip";
 import TwoFactorForm from "./two-factor-form";
 import UserMenu from "./user-menu";
@@ -31,6 +33,8 @@ export {
   SaveButton,
   ScrollArea,
   Sidebar,
+  Slider,
+  Switch,
   Tooltip,
   TwoFactorForm,
   UserMenu,

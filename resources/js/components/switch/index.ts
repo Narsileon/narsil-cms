@@ -1,5 +1,6 @@
 // https://ui.shadcn.com/docs/components/switch
 
-import Switch from "./switch";
+import SwitchRoot from "./switch-root";
+import SwitchThumb from "./switch-thumb";
 
-export { Switch };
+export { SwitchRoot, SwitchThumb };

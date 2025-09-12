@@ -1,5 +1,8 @@
 // https://ui.shadcn.com/docs/components/slider
 
-import Slider from "./slider";
+import SliderRange from "./slider-range";
+import SliderRoot from "./slider-root";
+import SliderThumb from "./slider-thumb";
+import SliderTrack from "./slider-track";
 
-export { Slider };
+export { SliderRange, SliderRoot, SliderThumb, SliderTrack };

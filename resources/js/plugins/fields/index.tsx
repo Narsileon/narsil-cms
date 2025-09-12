@@ -1,6 +1,6 @@
 import { isArray } from "lodash";
 
-import { Checkbox, Checkboxes } from "@narsil-cms/blocks";
+import { Checkbox, Checkboxes, Slider, Switch } from "@narsil-cms/blocks";
 import { Combobox } from "@narsil-cms/components/combobox";
 import { Icon } from "@narsil-cms/components/icon";
 import {
@@ -10,13 +10,11 @@ import {
   InputPassword,
 } from "@narsil-cms/components/input";
 import { RichTextEditor } from "@narsil-cms/components/rich-text-editor";
-import { Slider } from "@narsil-cms/components/slider";
 import {
   SortableGrid,
   SortableList,
   SortableTable,
 } from "@narsil-cms/components/sortable";
-import { Switch } from "@narsil-cms/components/switch";
 import { type Field, type SelectOption } from "@narsil-cms/types";
 
 export type FieldProps = {

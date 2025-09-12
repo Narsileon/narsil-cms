@@ -21,9 +21,10 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { Label } from "@narsil-cms/components/label";
 import { useLabels } from "@narsil-cms/components/labels";
-import { Switch } from "@narsil-cms/components/switch";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types";
+
+import Switch from "./switch";
 
 type TwoFactorFormProps = {
   form: FormType;
