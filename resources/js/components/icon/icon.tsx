@@ -8,12 +8,12 @@ type IconProps = React.ComponentProps<"svg"> & {
 };
 
 function Icon({ className, name, ...props }: IconProps) {
-  const DynamicIcon = getIcon(name);
+  const Comp = getIcon(name);
 
   return (
-    <DynamicIcon
+    <Comp
       className={cn("size-5", className)}
-      alt={startCase(name)}
+      aria-label={startCase(name)}
       {...props}
     />
   );
