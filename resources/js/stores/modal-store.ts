@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { VisitCallbacks } from "@inertiajs/core";
+import { type VisitCallbacks } from "@inertiajs/core";
 
 export type ModalState = {
   component: string;

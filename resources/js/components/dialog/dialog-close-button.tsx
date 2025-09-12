@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Icon } from "@narsil-cms/components/icon";
@@ -20,9 +19,9 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
       <DialogPrimitive.Close
         data-slot="dialog-close"
         className={cn(
-          "ring-offset-background cursor-pointer rounded-full opacity-75 transition-opacity",
+          "cursor-pointer rounded-full opacity-75 ring-offset-background transition-opacity",
           "disabled:pointer-events-none",
-          "focus:ring-ring focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
+          "focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden",
           "hover:opacity-100",
           "data-[state=open]:bg-accent data-[state=open]:text-muted-foreground",
           "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",

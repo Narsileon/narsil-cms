@@ -13,7 +13,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@narsil-cms/components/tabs";
-import type { FormType } from "@narsil-cms/types/forms";
+import { type FormType } from "@narsil-cms/types/forms";
 
 type UserSettingsProps = {
   profileForm: FormType;

@@ -1,6 +1,7 @@
-import * as React from "react";
 import { createPortal } from "react-dom";
 import { get, set } from "lodash";
+import { getField } from "@narsil-cms/plugins/fields";
+import { useState } from "react";
 import SortableTableRow from "./sortable-table-row";
 import {
   closestCenter,
@@ -11,6 +12,10 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  type DragCancelEvent,
+  type DragEndEvent,
+  type DragStartEvent,
+  type UniqueIdentifier,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -25,14 +30,7 @@ import {
   TableRoot,
   TableRow,
 } from "@narsil-cms/components/table";
-import type { Field } from "@narsil-cms/types/forms";
-import type {
-  DragCancelEvent,
-  DragEndEvent,
-  DragStartEvent,
-  UniqueIdentifier,
-} from "@dnd-kit/core";
-import { getField } from "@narsil-cms/plugins/fields";
+import { type Field } from "@narsil-cms/types/forms";
 
 type SortableTableItem = {
   id: UniqueIdentifier;
@@ -51,7 +49,7 @@ function SortableTable({
   rows,
   setRows,
 }: SortableTableProps) {
-  const [active, setActive] = React.useState<SortableTableItem | null>(null);
+  const [active, setActive] = useState<SortableTableItem | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),

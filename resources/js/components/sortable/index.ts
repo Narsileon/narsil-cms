@@ -9,7 +9,7 @@ import SortableListContext from "./sortable-list-context";
 import SortableTable from "./table/sortable-table";
 import SortableTableRow from "./table/sortable-table-row";
 import SortableTree from "./sortable-tree";
-import type { UniqueIdentifier } from "@dnd-kit/core";
+import { type UniqueIdentifier } from "@dnd-kit/core";
 
 type AnonymousItem = Record<string, any> & {
   id: UniqueIdentifier;

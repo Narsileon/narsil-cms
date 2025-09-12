@@ -36,7 +36,7 @@ const useThemeStore = create<ThemeStoreType>()(
           return;
         }
 
-        const theme = get().theme;
+        const { theme } = get();
 
         if (theme) {
           root.classList.add(theme);

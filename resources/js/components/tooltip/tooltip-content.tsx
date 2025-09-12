@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Tooltip as TooltipPrimitive } from "radix-ui";
 
@@ -17,7 +16,7 @@ function TooltipContent({
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         className={cn(
-          "bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 z-50 w-fit rounded-md border px-3 py-1.5 text-xs text-balance",
+          "animate-in fade-in-0 zoom-in-95 z-50 w-fit rounded-md border bg-primary px-3 py-1.5 text-xs text-balance text-primary-foreground",
           "data-[side=bottom]:slide-in-from-top-2",
           "data-[side=left]:slide-in-from-right-2",
           "data-[side=right]:slide-in-from-left-2",
@@ -30,7 +29,7 @@ function TooltipContent({
         {...props}
       >
         {children}
-        <TooltipPrimitive.Arrow className="bg-primary fill-primary z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45" />
+        <TooltipPrimitive.Arrow className="z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 bg-primary fill-primary" />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );

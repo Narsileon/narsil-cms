@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useLabels } from "@narsil-cms/components/labels";
 import Checkbox from "./checkbox";
 import {

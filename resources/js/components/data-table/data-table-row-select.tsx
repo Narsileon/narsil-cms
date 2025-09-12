@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Checkbox } from "@narsil-cms/components/checkbox";
 import { Row } from "@tanstack/react-table";
 

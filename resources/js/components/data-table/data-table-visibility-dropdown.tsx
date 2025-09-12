@@ -1,4 +1,3 @@
-import * as React from "react";
 import { isString } from "lodash";
 import useDataTable from "./data-table-context";
 import {

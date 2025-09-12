@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 
 type AccordionRootProps = React.ComponentProps<

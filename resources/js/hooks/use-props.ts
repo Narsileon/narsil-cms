@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
 import { usePage } from "@inertiajs/react";
-import type { Theme } from "@narsil-cms/stores/theme-store";
+import { type Theme } from "@narsil-cms/stores/theme-store";
 
 export type GlobalProps = {
   auth: AuthProps & {
@@ -75,7 +75,7 @@ export function useNavigation() {
 }
 
 export function useProps() {
-  const props = usePage<GlobalProps>().props;
+  const { props } = usePage<GlobalProps>();
 
   return props;
 }

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";

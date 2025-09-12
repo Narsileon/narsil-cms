@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 
 type AlertDescriptionProps = React.ComponentProps<"div"> & {};
@@ -8,7 +7,7 @@ function AlertDescription({ className, ...props }: AlertDescriptionProps) {
     <div
       data-slot="alert-description"
       className={cn(
-        "text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm",
+        "col-start-2 grid justify-items-start gap-1 text-sm text-muted-foreground",
         "[&_p]:leading-relaxed",
         className,
       )}

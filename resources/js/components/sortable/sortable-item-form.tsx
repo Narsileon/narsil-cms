@@ -1,10 +1,10 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { FormItem, FormLabel } from "@narsil-cms/components/form";
 import { get, set } from "lodash";
 import { getField } from "@narsil-cms/plugins/fields";
 import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
+import { useState } from "react";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import {
   DialogBody,
@@ -16,9 +16,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
-import type { AnonymousItem } from ".";
-import type { FormType } from "@narsil-cms/types/forms";
-import type { UniqueIdentifier } from "@dnd-kit/core";
+import { type AnonymousItem } from ".";
+import { type FormType } from "@narsil-cms/types/forms";
+import { type UniqueIdentifier } from "@dnd-kit/core";
 
 type SortableItemFormProps = {
   children: React.ReactNode;
@@ -40,10 +40,10 @@ function SortableItemForm({
 }: SortableItemFormProps) {
   const { trans } = useLabels();
 
-  const [data, setData] = React.useState<Record<string, any>>(item);
-  const [error, setError] = React.useState<string | null>(null);
+  const [data, setData] = useState<Record<string, any>>(item);
+  const [error, setError] = useState<string | null>(null);
 
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   function onOpenChange(open: boolean) {
     if (!open) {
@@ -87,7 +87,7 @@ function SortableItemForm({
                     },
                   })}
                   {error && optionValue === field.handle ? (
-                    <p className="text-destructive text-sm">{error}</p>
+                    <p className="text-sm text-destructive">{error}</p>
                   ) : null}
                 </FormItem>
               );

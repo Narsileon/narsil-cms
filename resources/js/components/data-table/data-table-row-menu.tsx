@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { Link } from "@inertiajs/react";
@@ -13,8 +12,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import type { RouteNames } from "@narsil-cms/types/collection";
-import type { Table } from "@tanstack/react-table";
+import { type RouteNames } from "@narsil-cms/types/collection";
+import { type Table } from "@tanstack/react-table";
 
 type DataTableRowMenuProps = Omit<
   React.ComponentProps<typeof DropdownMenuTrigger>,
@@ -44,7 +43,7 @@ function DataTableRowMenu({
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
-            className="hover:bg-secondary size-7"
+            className="size-7 hover:bg-secondary"
             size="icon"
             variant="ghost"
             aria-label={trans("accessibility.toggle_row_menu")}

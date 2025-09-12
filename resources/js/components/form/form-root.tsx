@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { VisitOptions } from "@inertiajs/core";
 import useForm from "./form-context";

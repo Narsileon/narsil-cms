@@ -1,8 +1,7 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Toggle as TogglePrimitive } from "radix-ui";
 import { toggleVariants } from ".";
-import type { VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 
 type ToggleRootProps = React.ComponentProps<typeof TogglePrimitive.Root> &
   VariantProps<typeof toggleVariants> & {};

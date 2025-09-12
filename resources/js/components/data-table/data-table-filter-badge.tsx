@@ -1,10 +1,8 @@
-import * as React from "react";
 import { Badge } from "@narsil-cms/components/badge";
-import { DropdownMenuTrigger } from "@narsil-cms/components/dropdown-menu";
 import { getField } from "@narsil-cms/plugins/fields";
 import { Icon } from "@narsil-cms/components/icon";
 import { isEmpty } from "lodash";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLabels } from "@narsil-cms/components/labels";
 import useDataTable from "./data-table-context";
 import {
@@ -19,12 +17,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@narsil-cms/components/select";
-import type { ColumnFilter } from ".";
-import type { Field } from "@narsil-cms/types/forms";
+import { type ColumnFilter } from ".";
+import { type Field } from "@narsil-cms/types/forms";
 
-type DataTableFilterBadgeProps = React.ComponentProps<
-  typeof DropdownMenuTrigger
-> & {
+type DataTableFilterBadgeProps = React.ComponentProps<typeof PopoverTrigger> & {
   filter: ColumnFilter;
 };
 
@@ -32,7 +28,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
   const { dataTable, dataTableStore } = useDataTable();
   const { trans } = useLabels();
 
-  const [open, onOpenChange] = React.useState(false);
+  const [open, onOpenChange] = useState(false);
 
   const column = dataTable.getColumn(filter.column);
 
@@ -57,11 +53,11 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
 
   return (
     <PopoverRoot open={open} onOpenChange={onOpenChange} modal={true}>
-      <PopoverTrigger asChild={true}>
+      <PopoverTrigger asChild={true} {...props}>
         <Badge className="cursor-pointer">
           <span>{column.columnDef.header as string}</span>
           <button
-            className="hover:text-destructive cursor-pointer"
+            className="cursor-pointer hover:text-destructive"
             type="button"
             onClick={() => dataTableStore.removeFilter(filter.column)}
           >

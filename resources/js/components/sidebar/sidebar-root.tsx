@@ -1,6 +1,4 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import useSidebar from "./sidebar-context";
 import {
   SheetContent,
   SheetDescription,
@@ -8,6 +6,7 @@ import {
   SheetRoot,
   SheetTitle,
 } from "@narsil-cms/components/sheet";
+import useSidebar from "./sidebar-context";
 
 type SidebarRootProps = React.ComponentProps<"div"> & {
   collapsible?: "offcanvas" | "icon" | "none";
@@ -31,7 +30,7 @@ function SidebarRoot({
       <div
         data-slot="sidebar"
         className={cn(
-          "bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col",
+          "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
           className,
         )}
         {...props}
@@ -49,7 +48,7 @@ function SidebarRoot({
           data-mobile="true"
           data-sidebar="sidebar"
           className={cn(
-            "bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0",
+            "w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground",
             "[&>button]:hidden",
           )}
           style={
@@ -76,7 +75,7 @@ function SidebarRoot({
       data-side={side}
       data-state={state}
       data-variant={variant}
-      className="group peer text-sidebar-foreground hidden md:block"
+      className="group peer hidden text-sidebar-foreground md:block"
     >
       <div
         data-slot="sidebar-gap"
@@ -107,8 +106,8 @@ function SidebarRoot({
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
           className={cn(
-            "bg-sidebar flex h-full w-full flex-col",
-            "group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:rounded-md group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm",
+            "flex h-full w-full flex-col bg-sidebar",
+            "group-data-[variant=floating]:rounded-md group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm",
           )}
         >
           {children}

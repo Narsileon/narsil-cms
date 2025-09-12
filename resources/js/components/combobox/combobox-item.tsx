@@ -1,10 +1,10 @@
-import * as React from "react";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { CommandItem } from "@narsil-cms/components/command";
 import { Icon } from "@narsil-cms/components/icon";
 import { isString } from "lodash";
 import { Tooltip } from "@narsil-cms/blocks";
-import type { SelectOption } from "@narsil-cms/types/forms";
+
+import { type SelectOption } from "@narsil-cms/types/forms";
 
 type ComboboxItemProps = Omit<
   React.ComponentProps<typeof CommandItem>,
@@ -51,7 +51,7 @@ function ComboboxItem({
         )}
         {displayValue && (
           <Tooltip tooltip={optionValue}>
-            <span className="text-muted-foreground truncate">
+            <span className="truncate text-muted-foreground">
               {optionValue}
             </span>
           </Tooltip>

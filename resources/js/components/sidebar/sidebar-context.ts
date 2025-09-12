@@ -1,4 +1,4 @@
-import * as React from "react";
+import { createContext, useContext } from "react";
 
 export type SidebarContextProps = {
   isMobile: boolean;
@@ -11,12 +11,10 @@ export type SidebarContextProps = {
   toggleSidebar: () => void;
 };
 
-export const SidebarContext = React.createContext<SidebarContextProps | null>(
-  null,
-);
+export const SidebarContext = createContext<SidebarContextProps | null>(null);
 
 function useSidebar() {
-  const context = React.useContext(SidebarContext);
+  const context = useContext(SidebarContext);
 
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.");

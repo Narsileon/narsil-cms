@@ -21,7 +21,7 @@ type AuthLayoutProps = {
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
-  const { auth, navigation, title } = children?.props;
+  const { auth, navigation } = children?.props;
 
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
@@ -48,7 +48,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
     <SidebarProvider isMobile={isMobile}>
       <Sidebar />
       <SidebarInset>
-        <header className="bg-background sticky top-0 z-10 flex h-13 items-center gap-2 border-b px-4">
+        <header className="sticky top-0 z-10 flex h-13 items-center gap-2 border-b bg-background px-4">
           {isMobile ? (
             <>
               <SidebarTrigger />
@@ -56,7 +56,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
             </>
           ) : null}
           <Breadcrumb className="grow" />
-          <Bookmarks breadcrumb={navigation.breadcrumb} title={title} />
+          <Bookmarks breadcrumb={navigation.breadcrumb} />
           <UserMenu />
         </header>
         <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">

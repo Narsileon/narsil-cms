@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Avatar as AvatarPrimitive } from "radix-ui";
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -11,7 +10,7 @@ function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "bg-muted flex size-full items-center justify-center rounded-full",
+        "flex size-full items-center justify-center rounded-full bg-muted",
         className,
       )}
       {...props}

@@ -50,7 +50,6 @@ class Block extends Model
             self::RELATION_SETS,
         ], $this->with);
 
-
         parent::__construct($attributes);
 
         if ($elements = Arr::get($attributes, self::RELATION_ELEMENTS))

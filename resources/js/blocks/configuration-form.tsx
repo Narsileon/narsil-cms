@@ -18,7 +18,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/section";
-import type { FormType } from "@narsil-cms/types/forms";
+import { type FormType } from "@narsil-cms/types/forms";
 
 type ConfigurationFormProps = {
   form: FormType;

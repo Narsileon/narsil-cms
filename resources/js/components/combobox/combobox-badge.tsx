@@ -1,8 +1,8 @@
-import * as React from "react";
 import { Badge } from "@narsil-cms/components/badge";
 import { getSelectOption } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
-import type { SelectOption } from "@narsil-cms/types/forms";
+
+import { type SelectOption } from "@narsil-cms/types/forms";
 
 type ComboboxBadgeProps = React.ComponentProps<typeof Badge> & {
   displayValue?: boolean;

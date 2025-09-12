@@ -1,4 +1,3 @@
-import * as React from "react";
 import { VisuallyHidden as VisuallyHiddenPrimitive } from "radix-ui";
 
 type VisuallyHiddenRootProps = React.ComponentProps<
@@ -10,7 +9,11 @@ function VisuallyHiddenRoot({
   ...props
 }: VisuallyHiddenRootProps) {
   return (
-    <VisuallyHiddenPrimitive.Root data-slot="visually-hidden-root" {...props} />
+    <VisuallyHiddenPrimitive.Root
+      data-slot="visually-hidden-root"
+      asChild={asChild}
+      {...props}
+    />
   );
 }
 

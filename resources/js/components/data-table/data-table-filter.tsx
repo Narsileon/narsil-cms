@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { ModalLink } from "@narsil-cms/components/modal";
@@ -9,7 +8,7 @@ import {
   DataTableRowMenu,
   useDataTable,
 } from "@narsil-cms/components/data-table";
-import type { DataTableFilterCollection } from "@narsil-cms/types/collection";
+import { type DataTableFilterCollection } from "@narsil-cms/types/collection";
 
 type DataTableFilterProps = React.ComponentProps<"ul"> &
   DataTableFilterCollection & {};

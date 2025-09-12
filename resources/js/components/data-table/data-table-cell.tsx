@@ -1,9 +1,8 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
 import { TableCell } from "@narsil-cms/components/table";
 import { useSortable } from "@dnd-kit/sortable";
-import type { Cell } from "@tanstack/react-table";
+import { type Cell } from "@tanstack/react-table";
 
 type DataTableCellProps = React.ComponentProps<typeof TableCell> & {
   cell: Cell<any, any>;
@@ -22,7 +21,7 @@ function DataTableCell({ cell, style, ...props }: DataTableCellProps) {
       ref={setNodeRef}
       data-slot="data-table-cell"
       className={cn(
-        "group-hover:to-accent group-data-[selected=true]:to-accent to-background bg-linear-to-r transition-colors",
+        "bg-linear-to-r to-background transition-colors group-hover:to-accent group-data-[selected=true]:to-accent",
         isDragging && "z-10 opacity-80",
         isMenu
           ? "sticky right-0 from-transparent to-20%"

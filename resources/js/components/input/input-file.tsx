@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Input from "./input";
 
 type InputFileProps = Omit<React.ComponentProps<typeof Input>, "onChange"> & {
@@ -13,9 +13,9 @@ function InputFile({
   onChange,
   ...props
 }: InputFileProps) {
-  const [preview, setPreview] = React.useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!value) {
       setPreview(null);
 

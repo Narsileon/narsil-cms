@@ -1,6 +1,5 @@
-import * as React from "react";
 import { get } from "lodash";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 import BuilderSeparator from "./builder-seperator";
@@ -13,19 +12,17 @@ import {
   KeyboardSensor,
   useSensor,
   useSensors,
+  type DragCancelEvent,
+  type DragEndEvent,
+  type DragStartEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import type { Block } from "@narsil-cms/types/forms";
-import type { BuilderNode } from ".";
-import type {
-  DragCancelEvent,
-  DragEndEvent,
-  DragStartEvent,
-} from "@dnd-kit/core";
+import { type Block } from "@narsil-cms/types/forms";
+import { type BuilderNode } from ".";
 import { useForm } from "../form";
 
 type BuilderProps = {
@@ -85,13 +82,13 @@ function Builder({ name, sets }: BuilderProps) {
     >
       <SortableContext items={nodes} strategy={verticalListSortingStrategy}>
         <div className="flex flex-col items-center justify-center">
-          <div className="bg-constructive size-4 rounded-full" />
+          <div className="size-4 rounded-full bg-constructive" />
           <BuilderSeparator />
           {nodes.map((node, index) => {
             const baseHandle = `${name}.${index}`;
 
             return (
-              <React.Fragment key={node.id}>
+              <Fragment key={node.id}>
                 <BuilderAdd
                   sets={sets}
                   onAdd={(node) => {
@@ -105,7 +102,7 @@ function Builder({ name, sets }: BuilderProps) {
                 <BuilderSeparator />
                 <BuilderItem baseHandle={baseHandle} id={node.id} node={node} />
                 <BuilderSeparator />
-              </React.Fragment>
+              </Fragment>
             );
           })}
           <BuilderAdd
@@ -113,7 +110,7 @@ function Builder({ name, sets }: BuilderProps) {
             onAdd={(node) => setNodes([...nodes, node])}
           />
           <BuilderSeparator />
-          <div className="bg-destructive size-4 rounded-full" />
+          <div className="size-4 rounded-full bg-destructive" />
         </div>
       </SortableContext>
       <DragOverlay>

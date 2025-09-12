@@ -31,7 +31,7 @@ abstract class AbstractForm implements Form
     {
         app(LabelsBag::class)
             ->add('narsil::accessibility.required')
-            ->add('narsil::pagination.empty')
+            ->add('narsil::pagination.pages_empty')
             ->add('narsil::placeholders.choose')
             ->add('narsil::placeholders.search')
             ->add('narsil::ui.add')

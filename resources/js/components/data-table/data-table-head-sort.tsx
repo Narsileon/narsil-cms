@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { Header } from "@tanstack/react-table";
 import { Icon } from "@narsil-cms/components/icon";

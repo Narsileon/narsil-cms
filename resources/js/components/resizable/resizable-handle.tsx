@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
 import { PanelResizeHandle } from "react-resizable-panels";
@@ -16,7 +15,7 @@ function ResizableHandle({
     <PanelResizeHandle
       data-slot="resizable-handle"
       className={cn(
-        "bg-border relative flex w-px items-center justify-center",
+        "relative flex w-px items-center justify-center bg-border",
         "after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2",
         "focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-hidden",
         "focus-visible:ring-ring",
@@ -28,7 +27,7 @@ function ResizableHandle({
       {...props}
     >
       {withHandle && (
-        <div className="bg-border z-10 flex h-4 w-3 items-center justify-center rounded-md border">
+        <div className="z-10 flex h-4 w-3 items-center justify-center rounded-md border bg-border">
           <Icon className="size-2.5" name="grip-vertical" />
         </div>
       )}

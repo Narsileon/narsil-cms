@@ -1,6 +1,5 @@
-import * as React from "react";
-import { getIcon, IconName } from "@narsil-cms/plugins/icons";
 import { cn } from "@narsil-cms/lib/utils";
+import { getIcon, IconName } from "@narsil-cms/plugins/icons";
 import { startCase } from "lodash";
 
 type IconProps = React.ComponentProps<"svg"> & {

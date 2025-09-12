@@ -1,4 +1,3 @@
-import * as React from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
 import { createPortal } from "react-dom";
@@ -11,19 +10,18 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  type DragCancelEvent,
+  type DragEndEvent,
+  type DragStartEvent,
 } from "@dnd-kit/core";
 import {
   SortableAdd,
   SortableItem,
   SortableListContext,
 } from "@narsil-cms/components/sortable";
-import type { AnonymousItem } from ".";
-import type { GroupedSelectOption } from "@narsil-cms/types/forms";
-import type {
-  DragCancelEvent,
-  DragEndEvent,
-  DragStartEvent,
-} from "@dnd-kit/core";
+import { type AnonymousItem } from ".";
+import { type GroupedSelectOption } from "@narsil-cms/types/forms";
+import { useState } from "react";
 
 type SortableProps = React.ComponentProps<typeof SortableListContext> & {};
 
@@ -34,7 +32,7 @@ function Sortable({
   setItems,
   ...props
 }: SortableProps) {
-  const [active, setActive] = React.useState<AnonymousItem | null>(null);
+  const [active, setActive] = useState<AnonymousItem | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),

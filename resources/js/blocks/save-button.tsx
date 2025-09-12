@@ -1,10 +1,10 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
 import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
 import { Separator } from "@narsil-cms/components/separator";
+import { useEffect } from "react";
 import { useForm } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -15,7 +15,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import type { RouteNames } from "@narsil-cms/types/collection";
+
+import { type RouteNames } from "@narsil-cms/types/collection";
 
 type SaveButtonProps = React.ComponentProps<"div"> & {
   routes?: RouteNames;
@@ -95,7 +96,7 @@ function SaveButton({
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.ctrlKey || event.metaKey) {
         switch (event.code) {

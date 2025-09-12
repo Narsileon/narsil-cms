@@ -22,7 +22,7 @@ import {
   FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
-import type { FormType } from "@narsil-cms/types/forms";
+import { type FormType } from "@narsil-cms/types/forms";
 
 type TwoFactorFormProps = {
   form: FormType;

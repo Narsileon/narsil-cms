@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
@@ -6,7 +5,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import { TableCell, TableRow } from "@narsil-cms/components/table";
 import { useSortable } from "@dnd-kit/sortable";
-import type { UniqueIdentifier } from "@dnd-kit/core";
+import { type UniqueIdentifier } from "@dnd-kit/core";
 
 type SortableTableRowProps = Omit<
   React.ComponentProps<typeof TableRow>,

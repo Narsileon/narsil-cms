@@ -1,8 +1,6 @@
-import * as React from "react";
-import { FormContext } from "./form-context";
+import { FormContext, type FormContextProps } from "./form-context";
 import { useForm } from "@inertiajs/react";
-import type { Block, Field } from "@narsil-cms/types/forms";
-import type { FormContextProps } from "./form-context";
+import { type Block, type Field } from "@narsil-cms/types/forms";
 
 type FormProviderProps = {
   action: string;

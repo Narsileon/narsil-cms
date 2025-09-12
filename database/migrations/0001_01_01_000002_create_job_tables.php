@@ -108,7 +108,6 @@ return new class extends Migration
         });
     }
 
-
     /**
      * @return void
      */

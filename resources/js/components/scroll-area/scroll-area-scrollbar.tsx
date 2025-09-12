@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
 
@@ -27,7 +26,7 @@ const ScrollAreaScrollBar = ({
     >
       <ScrollAreaPrimitive.ScrollAreaThumb
         data-slot="scroll-area-thumb"
-        className="bg-border relative flex-1 rounded-full"
+        className="relative flex-1 rounded-full bg-border"
         {...props}
       />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>

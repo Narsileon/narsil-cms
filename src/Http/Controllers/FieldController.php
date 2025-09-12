@@ -158,7 +158,6 @@ class FieldController extends AbstractController
             $this->syncOptions($field, $options);
         }
 
-
         return $this
             ->redirect(route('fields.index'), $field)
             ->with('success', trans('narsil::toasts.success.fields.updated'));

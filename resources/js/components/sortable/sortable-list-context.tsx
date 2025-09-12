@@ -4,11 +4,11 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import type { AnonymousItem } from ".";
-import type {
-  FormType,
-  GroupedSelectOption,
-  SelectOption,
+import { type AnonymousItem } from ".";
+import {
+  type FormType,
+  type GroupedSelectOption,
+  type SelectOption,
 } from "@narsil-cms/types/forms";
 
 type SortableListContextProps = {

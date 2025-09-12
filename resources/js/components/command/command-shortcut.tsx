@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 
 type CommandShortcutProps = React.ComponentProps<"span"> & {};
@@ -8,7 +7,7 @@ function CommandShortcut({ className, ...props }: CommandShortcutProps) {
     <span
       data-slot="command-shortcut"
       className={cn(
-        "text-muted-foreground ml-auto text-xs tracking-widest",
+        "ml-auto text-xs tracking-widest text-muted-foreground",
         className,
       )}
       {...props}

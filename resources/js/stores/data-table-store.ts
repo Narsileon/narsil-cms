@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import {
-  ColumnOrderState,
-  ColumnSizingState,
-  PaginationState,
-  SortingState,
-  VisibilityState,
+  type ColumnOrderState,
+  type ColumnSizingState,
+  type PaginationState,
+  type SortingState,
+  type VisibilityState,
 } from "@tanstack/react-table";
-import type { ColumnFilter } from "@narsil-cms/components/data-table";
+import { type ColumnFilter } from "@narsil-cms/components/data-table";
 
 type DataTableStoreState = {
   columnOrder: ColumnOrderState;

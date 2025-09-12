@@ -16,8 +16,7 @@ import {
   SortableList,
   SortableTable,
 } from "@narsil-cms/components/sortable";
-import type { ComponentType } from "react";
-import type { Field, SelectOption } from "@narsil-cms/types/forms";
+import { type Field, type SelectOption } from "@narsil-cms/types/forms";
 
 export type FieldProps = {
   element: Field;
@@ -27,7 +26,7 @@ export type FieldProps = {
   renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
 
-type Registry = Record<string, ComponentType<FieldProps>>;
+type Registry = Record<string, React.ComponentType<FieldProps>>;
 
 const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\CheckboxInput"]: (props) => {
@@ -109,12 +108,22 @@ const defaultRegistry: Registry = {
           setItems={props.setValue}
         />
       );
-    } else {
+    } else if (props.element.settings.options) {
       return (
         <SortableList
           {...props.element.settings}
           items={props.value ?? []}
           setItems={props.setValue}
+        />
+      );
+    } else {
+      return (
+        <Combobox
+          {...props.element.settings}
+          id={props.id}
+          value={props.value}
+          renderOption={props.renderOption}
+          setValue={props.setValue}
         />
       );
     }

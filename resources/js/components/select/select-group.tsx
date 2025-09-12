@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Select as SelectPrimitive } from "radix-ui";
 
 type SelectGroupProps = React.ComponentProps<typeof SelectPrimitive.Group> & {};

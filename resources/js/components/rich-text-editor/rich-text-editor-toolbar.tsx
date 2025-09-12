@@ -1,6 +1,11 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuRoot,
+  DropdownMenuTrigger,
+} from "@narsil-cms/components/dropdown-menu";
 import { Editor } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/icon";
 import { Separator } from "@narsil-cms/components/separator";
@@ -18,12 +23,6 @@ import RichTextEditorSuperscript from "./rich-text-editor-superscript";
 import RichTextEditorTextAlign from "./rich-text-editor-text-align";
 import RichTextEditorUnderline from "./rich-text-editor-underline";
 import RichTextEditorUndo from "./rich-text-editor-undo";
-import {
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuRoot,
-  DropdownMenuTrigger,
-} from "@narsil-cms/components/dropdown-menu";
 
 type RichTextEditorToolbarProps = React.HTMLAttributes<HTMLDivElement> & {
   editor: Editor | null;

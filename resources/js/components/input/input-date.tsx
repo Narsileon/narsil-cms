@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Calendar } from "@narsil-cms/components/calendar";
 import { Icon } from "@narsil-cms/components/icon";
 import { Input } from "@narsil-cms/components/input";
@@ -7,14 +6,15 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
+import { useState } from "react";
 
 type InputDateProps = Omit<React.ComponentProps<typeof Input>, "value"> & {
   value: string | undefined;
   onChange: (value: string | undefined) => void;
 };
 
-function InputDate({ placeholder, value, onChange, ...props }: InputDateProps) {
-  const [open, setOpen] = React.useState(false);
+function InputDate({ value, onChange, ...props }: InputDateProps) {
+  const [open, setOpen] = useState(false);
 
   const date = value ? new Date(value) : undefined;
 

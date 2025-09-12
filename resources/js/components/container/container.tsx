@@ -1,10 +1,9 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { cva, VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
 
 export const containerVariants = cva(
-  cn("mx-auto min-h-[inherit] h-[inherit] w-[inherit] max-w-7xl gap-3 px-3"),
+  cn("mx-auto h-[inherit] min-h-[inherit] w-[inherit] max-w-7xl gap-3 px-3"),
   {
     variants: {
       variant: {

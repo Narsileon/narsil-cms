@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { Tooltip } from "@narsil-cms/blocks";
@@ -10,8 +9,8 @@ import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import type { Block } from "@narsil-cms/types/forms";
-import type { BuilderNode } from ".";
+import { type Block } from "@narsil-cms/types/forms";
+import { type BuilderNode } from ".";
 
 type BuilderAddProps = React.ComponentProps<typeof DropdownMenuTrigger> & {
   sets: Block[];
@@ -26,7 +25,7 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
       <Tooltip tooltip={trans("ui.add")}>
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
-            className="hover:bg-secondary size-7 rounded-full"
+            className="size-7 rounded-full hover:bg-secondary"
             size="icon"
             variant="secondary"
           >

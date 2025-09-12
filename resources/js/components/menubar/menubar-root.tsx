@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
@@ -9,7 +8,7 @@ function MenubarRoot({ className, ...props }: MenubarRootProps) {
     <MenubarPrimitive.Root
       data-slot="menubar-root"
       className={cn(
-        "bg-background flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs",
+        "flex h-9 items-center gap-1 rounded-md border bg-background p-1 shadow-xs",
         className,
       )}
       {...props}

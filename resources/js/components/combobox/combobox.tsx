@@ -1,9 +1,9 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
-import { Icon } from "@narsil-cms/components/icon";
 import { debounce, isArray, lowerCase } from "lodash";
+import { Icon } from "@narsil-cms/components/icon";
 import { router } from "@inertiajs/react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import ComboboxBadge from "./combobox-badge";
@@ -20,12 +20,13 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import type { SelectOption } from "@narsil-cms/types/forms";
+import { type SelectOption } from "@narsil-cms/types/forms";
 
 type ComboboxProps = {
   className?: string;
   disabled?: boolean;
   displayValue?: boolean;
+  fetch?: string;
   id: string;
   labelPath?: string;
   multiple?: boolean;
@@ -43,6 +44,7 @@ function Combobox({
   className,
   disabled,
   displayValue = true,
+  fetch,
   id,
   labelPath = "label",
   multiple = false,
@@ -51,23 +53,28 @@ function Combobox({
   searchable = true,
   value,
   valuePath = "value",
-  options,
+  options: initialOptions = [],
   renderOption,
   setValue,
 }: ComboboxProps) {
   const { trans } = useLabels();
-  console.log(reload);
+
   if (multiple && !isArray(value)) {
     value = [value];
   }
 
-  const parentRef = React.useRef<HTMLDivElement | null>(null);
+  const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const [open, setOpen] = React.useState(false);
-  const [input, setInput] = React.useState("");
-  const [search, setSearch] = React.useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [input, setInput] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
 
-  const debouncedSetSearch = React.useMemo(
+  const [options, setOptions] = useState<SelectOption[] | string[]>(
+    initialOptions,
+  );
+
+  const debouncedSetSearch = useMemo(
     () => debounce((value: string) => setSearch(value), 300),
     [],
   );
@@ -77,7 +84,7 @@ function Combobox({
     debouncedSetSearch(value);
   }
 
-  const filteredOptions = React.useMemo(() => {
+  const filteredOptions = useMemo(() => {
     if (!search) {
       return options;
     }
@@ -91,11 +98,11 @@ function Combobox({
     });
   }, [options, search]);
 
-  const selectedValues = React.useMemo<string[]>(() => {
+  const selectedValues = useMemo<string[]>(() => {
     return multiple ? (value as string[]) : value ? [value as string] : [];
   }, [value, multiple]);
 
-  const selectedOptions = React.useMemo(() => {
+  const selectedOptions = useMemo(() => {
     return options.filter((option) =>
       selectedValues.includes(getSelectOption(option, valuePath)),
     );
@@ -107,7 +114,7 @@ function Combobox({
     return optionValue == value;
   });
 
-  const optionIndex = React.useMemo(() => {
+  const optionIndex = useMemo(() => {
     if (!option) {
       return -1;
     }
@@ -139,7 +146,7 @@ function Combobox({
     setOpen(false);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       requestAnimationFrame(() => {
         virtualizer.measure();
@@ -203,7 +210,7 @@ function Combobox({
             />
           ) : null}
           <CommandList ref={parentRef}>
-            <CommandEmpty>{trans("pagination.empty")}</CommandEmpty>
+            <CommandEmpty>{trans("pagination.pages_empty")}</CommandEmpty>
             <CommandGroup>
               <div
                 className="relative w-full"

@@ -143,7 +143,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
             return strcmp($a['label'], $b['label']);
         });
 
-
         return array_values($options);
     }
 

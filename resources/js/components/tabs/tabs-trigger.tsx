@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Tabs as TabsPrimitive } from "radix-ui";
 
@@ -9,9 +8,9 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "text-foreground inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap transition-[color,box-shadow]",
+        "inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap text-foreground transition-[color,box-shadow]",
         "disabled:pointer-events-none disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring focus-visible:ring-2 focus-visible:outline-1",
+        "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring",
         "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         "data-[orientation=horizontal]:flex-1",
         "data-[orientation=horizontal]:h-7 data-[orientation=vertical]:h-9",

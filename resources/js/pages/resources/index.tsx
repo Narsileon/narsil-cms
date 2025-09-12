@@ -1,13 +1,7 @@
 import { Button } from "@narsil-cms/components/button";
 import { Checkbox } from "@narsil-cms/components/checkbox";
 import { cn } from "@narsil-cms/lib/utils";
-import { DataTable } from "@narsil-cms/blocks";
-import { Icon } from "@narsil-cms/components/icon";
-import { Link } from "@inertiajs/react";
-import { route } from "ziggy-js";
-import { Tooltip } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
-import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
+import { DataTable, Tooltip } from "@narsil-cms/blocks";
 import {
   DataTableFilter,
   DataTableFilterBadge,
@@ -19,21 +13,26 @@ import {
   DataTableSize,
   DataTableVisibilityDropdown,
 } from "@narsil-cms/components/data-table";
+import { Icon } from "@narsil-cms/components/icon";
+import { Link } from "@inertiajs/react";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@narsil-cms/components/resizable";
+import { route } from "ziggy-js";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/section";
-import type { ColumnDef } from "@tanstack/react-table";
-import type {
-  DataTableCollection,
-  DataTableFilterCollection,
+import { useLabels } from "@narsil-cms/components/labels";
+import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
+import { type ColumnDef } from "@tanstack/react-table";
+import {
+  type DataTableCollection,
+  type DataTableFilterCollection,
 } from "@narsil-cms/types/collection";
 
 type ResourceIndexProps = {

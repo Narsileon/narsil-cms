@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Slot as SlotPrimitive } from "radix-ui";
 
@@ -24,7 +23,7 @@ function SidebarMenuSubButton({
       data-sidebar="menu-sub-button"
       data-size={size}
       className={cn(
-        "text-sidebar-foreground ring-sidebar-ring flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden",
+        "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground ring-sidebar-ring outline-hidden",
         "active:bg-sidebar-accent active:text-sidebar-accent-foreground",
         "aria-disabled:pointer-events-none aria-disabled:opacity-50",
         "disabled:opacity-50",
@@ -32,7 +31,7 @@ function SidebarMenuSubButton({
         "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",
         "[&>span:last-child]:truncate",
-        "[&>svg]:text-sidebar-accent-foreground [&>svg]:size-4 [&>svg]:shrink-0",
+        "[&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
         size === "sm" && "text-xs",
         size === "md" && "text-sm",
         "group-data-[collapsible=icon]:hidden",

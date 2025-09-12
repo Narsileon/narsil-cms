@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Editor } from "@tiptap/react";
 import { Icon } from "@narsil-cms/components/icon";
 import { ToggleRoot } from "@narsil-cms/components/toggle";

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { TableHeader } from "@narsil-cms/components/table";
 
 type DataTableHeaderProps = React.ComponentProps<typeof TableHeader> & {};

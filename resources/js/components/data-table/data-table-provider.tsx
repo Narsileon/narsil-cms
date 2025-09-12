@@ -1,11 +1,4 @@
-import * as React from "react";
 import { arrayMove } from "@dnd-kit/sortable";
-import { compact, debounce } from "lodash";
-import { DataTableContext, DataTableContextProps } from "./data-table-context";
-import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
-import { router } from "@inertiajs/react";
-import useDataTableStore from "@narsil-cms/stores/data-table-store";
 import {
   closestCenter,
   DndContext,
@@ -14,19 +7,28 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  type DragEndEvent,
 } from "@dnd-kit/core";
-import type { DataTableStoreType } from "@narsil-cms/stores/data-table-store";
-import type { DragEndEvent } from "@dnd-kit/core";
-import type {
-  ColumnDef,
-  ColumnOrderState,
-  ColumnSizingState,
-  PaginationState,
-  SortingState,
-  TableOptions,
-  Updater,
-  VisibilityState,
+import { compact, debounce } from "lodash";
+import { DataTableContext, DataTableContextProps } from "./data-table-context";
+import {
+  getCoreRowModel,
+  useReactTable,
+  type ColumnDef,
+  type ColumnOrderState,
+  type ColumnSizingState,
+  type PaginationState,
+  type SortingState,
+  type TableOptions,
+  type Updater,
+  type VisibilityState,
 } from "@tanstack/react-table";
+import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
+import { router } from "@inertiajs/react";
+import useDataTableStore, {
+  type DataTableStoreType,
+} from "@narsil-cms/stores/data-table-store";
+import { useCallback, useEffect, useMemo } from "react";
 
 type DataTableProviderProps = Partial<TableOptions<any>> & {
   columns: ColumnDef<any>[];
@@ -52,7 +54,7 @@ function DataTableProvider({
 }: DataTableProviderProps) {
   const columnOrder = compact(columns.map((c) => c.id));
 
-  const createDataTableStore = React.useMemo(
+  const createDataTableStore = useMemo(
     () =>
       useDataTableStore({
         id: id,
@@ -184,7 +186,7 @@ function DataTableProvider({
     });
   }
 
-  const update = React.useCallback(
+  const update = useCallback(
     debounce((href, params) => {
       router.get(href, params, {
         preserveScroll: true,
@@ -194,7 +196,7 @@ function DataTableProvider({
     [router],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const href = window.location.origin + window.location.pathname;
 
     update(href, {

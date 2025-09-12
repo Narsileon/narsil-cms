@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { route } from "ziggy-js";
@@ -6,6 +5,7 @@ import { Link, router } from "@inertiajs/react";
 import { sortBy } from "lodash";
 import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Card,
@@ -25,25 +25,24 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import type { Bookmark } from "@narsil-cms/types/collection";
-import type { FormType } from "@narsil-cms/types/forms";
+import { type Bookmark } from "@narsil-cms/types/collection";
+import { type FormType } from "@narsil-cms/types/forms";
 
 type BookmarksProps = React.ComponentProps<typeof PopoverTrigger> & {
   breadcrumb: {
     href: string;
     label: string;
   }[];
-  title: string;
 };
 
-function Bookmarks({ breadcrumb, title, ...props }: BookmarksProps) {
+function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
   const { trans } = useLabels();
 
-  const [bookmark, setBookmark] = React.useState<Bookmark | null>(null);
-  const [bookmarks, setBookmarks] = React.useState<Bookmark[]>([]);
-  const [form, setForm] = React.useState<FormType | null>(null);
-  const [labels, setLabels] = React.useState<Record<string, string>>({});
-  const [open, onOpenChange] = React.useState<boolean>(false);
+  const [bookmark, setBookmark] = useState<Bookmark | null>(null);
+  const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
+  const [form, setForm] = useState<FormType | null>(null);
+  const [labels, setLabels] = useState<Record<string, string>>({});
+  const [open, onOpenChange] = useState<boolean>(false);
 
   const name = breadcrumb.map((item) => item.label).join(" > ");
   const url = window.location.origin + window.location.pathname;
@@ -87,7 +86,7 @@ function Bookmarks({ breadcrumb, title, ...props }: BookmarksProps) {
       });
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open) {
       return;
     }
@@ -166,7 +165,11 @@ function Bookmarks({ breadcrumb, title, ...props }: BookmarksProps) {
                   size="icon"
                   variant="ghost"
                   onClick={() => {
-                    currentBookmark ? onDelete(currentBookmark.id) : onAdd();
+                    if (currentBookmark) {
+                      onDelete(currentBookmark.id);
+                    } else {
+                      onAdd();
+                    }
                   }}
                 >
                   <Icon
@@ -186,7 +189,7 @@ function Bookmarks({ breadcrumb, title, ...props }: BookmarksProps) {
                       key={bookmark.id}
                     >
                       <Button
-                        className="text-foreground font-normal"
+                        className="font-normal text-foreground"
                         size="link"
                         variant="link"
                         onClick={() => onOpenChange(false)}

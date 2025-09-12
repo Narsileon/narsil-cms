@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { Link } from "@inertiajs/react";
 import { Tooltip } from "@narsil-cms/blocks";
@@ -97,7 +96,7 @@ function DataTablePagination({
                 disabled={true}
               >
                 <PaginationEllipsis
-                  className="bg-accent border"
+                  className="border bg-accent"
                   label={trans("accessibility.more_pages", "More pages")}
                   key={index}
                 />

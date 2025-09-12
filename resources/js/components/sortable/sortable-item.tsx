@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
@@ -6,6 +5,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useSortable } from "@dnd-kit/sortable";
+import { useState } from "react";
 import SortableHandle from "./sortable-handle";
 import SortableItemWidth from "./sortable-item-width";
 import SortableItemForm from "./sortable-item-form";
@@ -21,16 +21,15 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
-import type { AnonymousItem } from ".";
-import type { UniqueIdentifier } from "@dnd-kit/core";
-import type {
-  FormType,
-  GroupedSelectOption,
-  SelectOption,
+import { type AnonymousItem } from ".";
+import { type UniqueIdentifier } from "@dnd-kit/core";
+import {
+  type FormType,
+  type GroupedSelectOption,
+  type SelectOption,
 } from "@narsil-cms/types/forms";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
-  asChild?: boolean;
   collapsible?: boolean;
   disabled?: boolean;
   footer?: React.ReactNode;
@@ -48,7 +47,6 @@ type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
 };
 
 function SortableItem({
-  asChild = false,
   children,
   className,
   collapsible = false,
@@ -69,7 +67,7 @@ function SortableItem({
 }: SortableItemProps) {
   const { trans } = useLabels();
 
-  const [open, setCollapsed] = React.useState<boolean>(true);
+  const [open, setCollapsed] = useState<boolean>(true);
 
   const {
     attributes,

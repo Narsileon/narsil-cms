@@ -1,7 +1,6 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { SidebarContext } from "./sidebar-context";
-import type { SidebarContextProps } from "./sidebar-context";
+import { SidebarContext, type SidebarContextProps } from "./sidebar-context";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type SidebarProviderProps = React.ComponentProps<"div"> & {
   cookieMaxAge?: number;
@@ -32,12 +31,12 @@ function SidebarProvider({
   width = "14rem",
   ...props
 }: SidebarProviderProps) {
-  const [_open, _setOpen] = React.useState(defaultOpen);
-  const [openMobile, setOpenMobile] = React.useState(false);
+  const [_open, _setOpen] = useState(defaultOpen);
+  const [openMobile, setOpenMobile] = useState(false);
 
   const open = openProp ?? _open;
 
-  const setOpen = React.useCallback(
+  const setOpen = useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === "function" ? value(open) : value;
       if (setOpenProp) {
@@ -51,11 +50,11 @@ function SidebarProvider({
     [setOpenProp, open],
   );
 
-  const toggleSidebar = React.useCallback(() => {
+  const toggleSidebar = useCallback(() => {
     return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
   }, [isMobile, setOpen, setOpenMobile]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === keyboardShortcut && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -73,7 +72,7 @@ function SidebarProvider({
 
   const state = open ? "expanded" : "collapsed";
 
-  const contextValue = React.useMemo<SidebarContextProps>(
+  const contextValue = useMemo<SidebarContextProps>(
     () => ({
       isMobile: isMobile,
       mobileWidth: mobileWidth,
@@ -101,7 +100,7 @@ function SidebarProvider({
       <div
         data-slot="sidebar-wrapper"
         className={cn(
-          "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
+          "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
           className,
         )}
         style={

@@ -1,7 +1,5 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { cva } from "class-variance-authority";
-import type { VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 export const headingVariants = cva("font-medium tracking-tight", {
   variants: {

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Dialog as SheetPrimitive } from "radix-ui";
 import { Icon } from "@narsil-cms/components/icon";
@@ -25,7 +24,7 @@ function SheetContent({
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
-          "bg-background fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out",
+          "fixed z-50 flex flex-col gap-4 bg-background shadow-lg transition ease-in-out",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:duration-300 data-[state=open]:duration-300",
           side === "right" &&
@@ -55,9 +54,9 @@ function SheetContent({
         {children}
         <SheetPrimitive.Close
           className={cn(
-            "ring-offset-background absolute top-4 right-4 rounded-md opacity-70 transition-opacity",
+            "absolute top-4 right-4 rounded-md opacity-70 ring-offset-background transition-opacity",
             "disabled:pointer-events-none",
-            "focus:ring-ring focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
+            "focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden",
             "hover:opacity-100",
             "data-[state=open]:bg-secondary",
           )}

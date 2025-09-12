@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { createPortal } from "react-dom";
 import { get } from "lodash";
@@ -10,6 +9,12 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  type CancelDrop,
+  type DragCancelEvent,
+  type DragEndEvent,
+  type DragOverEvent,
+  type DragStartEvent,
+  type UniqueIdentifier,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -21,21 +26,14 @@ import {
   SortableItem,
   SortableItemForm,
   SortableListContext,
+  type AnonymousItem,
 } from ".";
-import type { AnonymousItem } from ".";
-import type {
-  CancelDrop,
-  DragCancelEvent,
-  DragEndEvent,
-  DragOverEvent,
-  DragStartEvent,
-  UniqueIdentifier,
-} from "@dnd-kit/core";
 import type {
   Field,
   FormType,
   GroupedSelectOption,
 } from "@narsil-cms/types/forms";
+import { useState } from "react";
 
 type SortableGridProps = {
   columns?: 1 | 2 | 3 | 4;
@@ -69,7 +67,7 @@ function SortableGrid({
     useSensor(KeyboardSensor),
   );
 
-  const [active, setActive] = React.useState<AnonymousItem | null>(null);
+  const [active, setActive] = useState<AnonymousItem | null>(null);
 
   function onDragCancel({}: DragCancelEvent) {
     setActive(null);
@@ -89,8 +87,6 @@ function SortableGrid({
         children.map((child) => {
           if (getChildIdentifier(child) === active.id) {
             setActive(child);
-
-            return;
           }
         });
       });
@@ -108,9 +104,7 @@ function SortableGrid({
       return;
     }
 
-    if (moveChild(active.id, over.id, false)) {
-      return;
-    }
+    moveChild(active.id, over.id, false);
   }
 
   function onDragOver({ active, over }: DragOverEvent) {

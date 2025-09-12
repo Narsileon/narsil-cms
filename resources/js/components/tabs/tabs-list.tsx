@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import { Tabs as TabsPrimitive } from "radix-ui";
@@ -15,7 +14,7 @@ function TabsList({ children, className, ...props }: TabsListProps) {
       <TabsPrimitive.List
         data-slot="tabs-list"
         className={cn(
-          "bg-sidebar text-sidebar-foreground inline-flex w-fit gap-1 rounded-md",
+          "inline-flex w-fit gap-1 rounded-md bg-sidebar text-sidebar-foreground",
           "data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col",
           "data-[orientation=horizontal]:h-10 data-[orientation=vertical]:h-full",
           "data-[orientation=horizontal]:items-center data-[orientation=vertical]:justify-start",

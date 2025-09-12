@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import { cn } from "@narsil-cms/lib/utils";
 import { Icon } from "@narsil-cms/components/icon";
@@ -19,7 +18,7 @@ function AccordionTrigger({
         className={cn(
           "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none",
           "disabled:pointer-events-none disabled:opacity-50",
-          "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
+          "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50",
           "hover:underline",
           "[&[data-state=open]>svg]:rotate-180",
           className,
@@ -29,7 +28,7 @@ function AccordionTrigger({
         {children}
         <Icon
           className={cn(
-            "text-muted-foreground pointer-events-none size-4 shrink-0",
+            "pointer-events-none size-4 shrink-0 text-muted-foreground",
             "translate-y-0.5 transition-transform duration-300 will-change-transform",
           )}
           name="chevron-down"

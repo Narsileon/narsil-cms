@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 

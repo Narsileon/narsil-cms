@@ -1,14 +1,12 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
 import { Tooltip } from "@narsil-cms/blocks";
 import useSidebar from "./sidebar-context";
-import type { VariantProps } from "class-variance-authority";
 
 const sidebarMenuButtonVariants = cva(
   cn(
-    "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] truncate cursor-pointer",
+    "peer/menu-button flex w-full cursor-pointer items-center gap-2 truncate overflow-hidden rounded-md p-2 text-left text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding]",
     "active:bg-sidebar-accent active:text-sidebar-accent-foreground",
     "aria-disabled:pointer-events-none aria-disabled:opacity-50",
     "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",

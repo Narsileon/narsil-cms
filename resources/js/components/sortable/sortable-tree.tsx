@@ -1,7 +1,6 @@
-import * as React from "react";
 import { createPortal } from "react-dom";
 import { getProjection } from "@narsil-cms/lib/sortable";
-import { SortableItem } from ".";
+import { SortableItem, type FlatNode } from ".";
 import {
   closestCenter,
   DndContext,
@@ -11,21 +10,19 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  type DragCancelEvent,
+  type DragEndEvent,
+  type DragMoveEvent,
+  type DragOverEvent,
+  type DragStartEvent,
+  type UniqueIdentifier,
 } from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import type {
-  DragCancelEvent,
-  DragEndEvent,
-  DragMoveEvent,
-  DragOverEvent,
-  DragStartEvent,
-  UniqueIdentifier,
-} from "@dnd-kit/core";
-import type { FlatNode } from ".";
+import { useEffect, useRef, useState } from "react";
 
 type SortableProps = {
   items: FlatNode[];
@@ -33,9 +30,9 @@ type SortableProps = {
 };
 
 function Sortable({ items, setItems }: SortableProps) {
-  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
-  const [overId, setOverId] = React.useState<UniqueIdentifier | null>(null);
-  const [offsetLeft, setOffsetLeft] = React.useState(0);
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const [overId, setOverId] = useState<UniqueIdentifier | null>(null);
+  const [offsetLeft, setOffsetLeft] = useState(0);
 
   const projected =
     activeId && overId
@@ -49,7 +46,7 @@ function Sortable({ items, setItems }: SortableProps) {
     useSensor(TouchSensor, {}),
     useSensor(KeyboardSensor, {}),
   );
-  const sensorContext = React.useRef({
+  const sensorContext = useRef({
     items: items,
     offset: offsetLeft,
   });
@@ -107,7 +104,7 @@ function Sortable({ items, setItems }: SortableProps) {
     document.body.style.setProperty("cursor", "");
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     sensorContext.current = {
       items: items,
       offset: offsetLeft,

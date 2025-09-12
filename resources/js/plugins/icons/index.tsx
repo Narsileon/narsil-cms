@@ -83,7 +83,7 @@ import {
   UsersIcon,
   XIcon,
 } from "lucide-react";
-import type { ComponentType } from "react";
+import { type ComponentType } from "react";
 
 type Registry = Record<string, ComponentType<any>>;
 

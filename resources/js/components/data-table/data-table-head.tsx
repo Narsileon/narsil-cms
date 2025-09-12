@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
 import { flexRender, Header } from "@tanstack/react-table";
@@ -26,7 +25,7 @@ function DataTableHead({ header, style, ...props }: DataTableHeadProps) {
       ref={setNodeRef}
       data-slot="data-table-head"
       className={cn(
-        "group-hover:to-accent group-data-[selected=true]:to-accent to-background bg-linear-to-r transition-colors",
+        "bg-linear-to-r to-background transition-colors group-hover:to-accent group-data-[selected=true]:to-accent",
         !isCustom && "px-1",
         isDragging && "z-10 opacity-80",
         isMenu ? "sticky right-0 from-transparent to-20%" : "relative",

@@ -1,7 +1,7 @@
-import * as React from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
+import { useState } from "react";
 import Input from "./input";
 
 type InputPasswordProps = Omit<
@@ -12,7 +12,7 @@ type InputPasswordProps = Omit<
 function InputPassword({ type, ...props }: InputPasswordProps) {
   const { trans } = useLabels();
 
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
 
   const tooltip = show
     ? trans("accessibility.hide_password")

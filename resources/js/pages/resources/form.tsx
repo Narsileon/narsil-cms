@@ -1,12 +1,5 @@
 import { Button } from "@narsil-cms/components/button";
 import { Card, CardContent } from "@narsil-cms/components/card";
-import { ScrollArea } from "@narsil-cms/components/scroll-area";
-import { isEmpty } from "lodash";
-import { SaveButton } from "@narsil-cms/blocks";
-import { useEffect, useState } from "react";
-import { useLabels } from "@narsil-cms/components/labels";
-import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
-import { useModalStore } from "@narsil-cms/stores/modal-store";
 import {
   DialogBody,
   DialogClose,
@@ -18,6 +11,9 @@ import {
   FormSubmit,
   FormFieldRenderer,
 } from "@narsil-cms/components/form";
+import { isEmpty } from "lodash";
+import { SaveButton } from "@narsil-cms/blocks";
+import { ScrollArea } from "@narsil-cms/components/scroll-area";
 import {
   Section,
   SectionContent,
@@ -30,8 +26,11 @@ import {
   TabsList,
   TabsTrigger,
 } from "@narsil-cms/components/tabs";
-import type { Block, FormType } from "@narsil-cms/types/forms";
-import type { ModalState } from "@narsil-cms/stores/modal-store";
+import { useEffect, useState } from "react";
+import { useLabels } from "@narsil-cms/components/labels";
+import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
+import { useModalStore, type ModalState } from "@narsil-cms/stores/modal-store";
+import { type Block, type FormType } from "@narsil-cms/types/forms";
 
 type FormProps = FormType & {
   data: any;

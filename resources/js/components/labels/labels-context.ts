@@ -1,15 +1,15 @@
-import * as React from "react";
+import { createContext, useContext } from "react";
 
 export type LabelsContextProps = {
   trans: (key: string, fallback?: string) => string;
 };
 
-export const LabelsContext = React.createContext<LabelsContextProps>({
+export const LabelsContext = createContext<LabelsContextProps>({
   trans: () => "string",
 });
 
 function useLabels() {
-  const context = React.useContext(LabelsContext);
+  const context = useContext(LabelsContext);
 
   if (!context) {
     throw new Error("useLabels must be used within a LabelsProvider");

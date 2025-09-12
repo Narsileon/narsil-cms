@@ -270,7 +270,6 @@ class User extends Authenticatable implements MustVerifyEmail
             );
     }
 
-
     /**
      * Get the associated configuration.
      *

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import useFormField from "./form-field-context";
 
@@ -14,7 +13,7 @@ function FormMessage({ className, ...props }: FormMessageProps) {
   return (
     <p
       data-slot="form-message"
-      className={cn("text-destructive text-sm", className)}
+      className={cn("text-sm text-destructive", className)}
       {...props}
     >
       {error}

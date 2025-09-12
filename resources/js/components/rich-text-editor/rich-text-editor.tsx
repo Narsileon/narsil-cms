@@ -1,7 +1,7 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { EditorContent, EditorOptions, useEditor } from "@tiptap/react";
 import { Placeholder } from "@tiptap/extensions";
+import { useEffect } from "react";
 import RichTextEditorToolbar from "./rich-text-editor-toolbar";
 import StarterKit from "@tiptap/starter-kit";
 import Subscript from "@tiptap/extension-subscript";
@@ -60,9 +60,9 @@ function RichTextEditor({
     editorProps: {
       attributes: {
         class: cn(
-          "prose max-w-none text-foreground !whitespace-normal",
+          "prose max-w-none !whitespace-normal text-foreground",
           "rounded-md rounded-t-none bg-background px-3 py-2 text-sm ring-offset-background",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+          "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none",
           "disabled:cursor-not-allowed disabled:opacity-50",
           className,
         ),
@@ -74,7 +74,7 @@ function RichTextEditor({
     ...props,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (editor && editor?.getHTML() !== value) {
       editor?.commands.setContent(value);
     }

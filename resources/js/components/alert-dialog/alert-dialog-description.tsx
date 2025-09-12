@@ -1,4 +1,3 @@
-import * as React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -13,7 +12,7 @@ function AlertDialogDescription({
   return (
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-sm text-muted-foreground", className)}
       {...props}
     />
   );

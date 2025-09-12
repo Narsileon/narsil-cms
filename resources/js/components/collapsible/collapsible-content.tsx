@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 
 type CollapsibleContentProps = React.ComponentProps<

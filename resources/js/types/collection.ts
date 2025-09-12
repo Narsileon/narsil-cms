@@ -1,8 +1,8 @@
-import type { IconName } from "@narsil-cms/plugins/icons";
-import type {
-  ColumnDef,
-  ColumnOrderState,
-  VisibilityState,
+import { type IconName } from "@narsil-cms/plugins/icons";
+import {
+  type ColumnDef,
+  type ColumnOrderState,
+  type VisibilityState,
 } from "@tanstack/react-table";
 
 export type Bookmark = {

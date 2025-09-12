@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { Combobox } from "@narsil-cms/components/combobox";
@@ -6,12 +5,13 @@ import { isNumber } from "lodash";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { route } from "ziggy-js";
 import { useLabels } from "@narsil-cms/components/labels";
-import type { AnonymousItem } from ".";
-import type { GlobalProps } from "@narsil-cms/hooks/use-props";
-import type { UniqueIdentifier } from "@dnd-kit/core";
-import type {
-  GroupedSelectOption,
-  SelectOption,
+import { useState } from "react";
+import { type AnonymousItem } from ".";
+import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+import { type UniqueIdentifier } from "@dnd-kit/core";
+import {
+  type GroupedSelectOption,
+  type SelectOption,
 } from "@narsil-cms/types/forms";
 
 type SortableAddProps = React.ComponentProps<"div"> & {
@@ -33,7 +33,7 @@ function SortableAdd({
 }: SortableAddProps) {
   const { trans } = useLabels();
 
-  const [options, setOptions] = React.useState(group.options);
+  const [options, setOptions] = useState(group.options);
 
   const filteredOptions = options?.filter((option) => {
     if (!unique) {

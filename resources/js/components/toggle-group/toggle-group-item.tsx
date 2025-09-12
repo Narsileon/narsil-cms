@@ -1,9 +1,8 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 import { toggleVariants } from "@narsil-cms/components/toggle";
 import useToggleGroup from "./toggle-group-context";
-import type { VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 
 type ToggleGroupItemProps = React.ComponentProps<
   typeof ToggleGroupPrimitive.Item

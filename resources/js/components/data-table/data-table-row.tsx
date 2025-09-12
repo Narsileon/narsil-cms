@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@narsil-cms/lib/utils";
 import { TableRow } from "@narsil-cms/components/table";
 
@@ -16,7 +15,7 @@ function DataTableRow({
       data-slot="data-table-row"
       data-selected={selected}
       className={cn(
-        "group data-[selected=true]:bg-accent bg-background",
+        "group bg-background data-[selected=true]:bg-accent",
         className,
       )}
       {...props}
