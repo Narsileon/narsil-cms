@@ -10,7 +10,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/section";
-import { Separator } from "@narsil-cms/components/separator";
+import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { type FormType } from "@narsil-cms/types";
 
 import TwoFactorForm from "./two-factor-form";
@@ -32,7 +32,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
           <TwoFactorForm form={twoFactorForm} />
         </SectionContent>
       </Section>
-      <Separator />
+      <SeparatorRoot />
       <Section>
         <SectionHeader className="border-b">
           <SectionTitle level="h2">{trans("ui.sessions")}</SectionTitle>
@@ -51,7 +51,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               </Link>
             </Button>
           </DialogClose>
-          <Separator />
+          <SeparatorRoot />
           <p>{trans("sessions.sign_out_elsewhere_description")}</p>
           <Button asChild={true} variant="outline">
             <Link
@@ -64,7 +64,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               {trans("sessions.sign_out_elsewhere")}
             </Link>
           </Button>
-          <Separator />
+          <SeparatorRoot />
           <p>{trans("sessions.sign_out_everywhere_description")}</p>
           <DialogClose asChild={true}>
             <Button asChild={true} variant="outline">

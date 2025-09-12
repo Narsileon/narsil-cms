@@ -8,6 +8,7 @@ type ResizableHandleProps = React.ComponentProps<typeof PanelResizeHandle> & {
 };
 
 function ResizableHandle({
+  children,
   className,
   withHandle,
   ...props
@@ -27,6 +28,7 @@ function ResizableHandle({
       )}
       {...props}
     >
+      {children}
       {withHandle && (
         <div className="z-10 flex h-4 w-3 items-center justify-center rounded-md border bg-border">
           <Icon className="size-2.5" name="grip-vertical" />

@@ -14,7 +14,7 @@ import {
 import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { Separator } from "@narsil-cms/components/separator";
+import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 import { type RouteNames } from "@narsil-cms/types";
 
@@ -36,7 +36,7 @@ function SaveButton({
 
   function destroy() {
     if (routes?.destroy && data?.id) {
-      router.delete(route(routes.destroy, data.id));
+      router.delete(route(routes.destroy, { id: data.id }));
     }
   }
 
@@ -134,7 +134,7 @@ function SaveButton({
         <Icon name="save" />
         {submitLabel}
       </Button>
-      <Separator orientation="vertical" />
+      <SeparatorRoot orientation="vertical" />
       <DropdownMenuRoot>
         <DropdownMenuTrigger asChild={true}>
           <Button className="w-7 rounded-l-none" size="icon">

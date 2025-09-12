@@ -2,17 +2,19 @@ import { Separator as SeparatorPrimitive } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SeparatorProps = React.ComponentProps<typeof SeparatorPrimitive.Root> & {};
+type SeparatorRootProps = React.ComponentProps<
+  typeof SeparatorPrimitive.Root
+> & {};
 
-function Separator({
+function SeparatorRoot({
   className,
   decorative = true,
   orientation = "horizontal",
   ...props
-}: SeparatorProps) {
+}: SeparatorRootProps) {
   return (
     <SeparatorPrimitive.Root
-      data-slot="separator"
+      data-slot="separator-root"
       className={cn(
         "shrink-0 bg-border",
         "data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full",
@@ -26,4 +28,4 @@ function Separator({
   );
 }
 
-export default Separator;
+export default SeparatorRoot;

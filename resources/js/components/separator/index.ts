@@ -1,5 +1,5 @@
 // https://ui.shadcn.com/docs/components/separator
 
-import Separator from "./separator";
+import SeparatorRoot from "./separator-root";
 
-export { Separator };
+export { SeparatorRoot };

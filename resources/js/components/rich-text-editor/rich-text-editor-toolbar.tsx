@@ -10,7 +10,7 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { Separator } from "@narsil-cms/components/separator";
+import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
 import RichTextEditorBold from "./rich-text-editor-bold";
@@ -70,7 +70,7 @@ function RichTextEditorToolbar({
       {/* Advanced styles */}
       {hasModules(["superscript", "subscript"]) && (
         <>
-          <Separator orientation="vertical" />
+          <SeparatorRoot orientation="vertical" />
 
           {hasModule("superscript") !== false && (
             <RichTextEditorSuperscript editor={editor} />
@@ -84,7 +84,7 @@ function RichTextEditorToolbar({
       {/* Headings */}
       {hasModules(headings.map((level) => `heading_${level}`)) && (
         <>
-          <Separator orientation="vertical" />
+          <SeparatorRoot orientation="vertical" />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
               <DropdownMenuTrigger asChild={true}>
@@ -122,7 +122,7 @@ function RichTextEditorToolbar({
         "align_justify",
       ]) && (
         <>
-          <Separator orientation="vertical" />
+          <SeparatorRoot orientation="vertical" />
 
           {hasModule("align_left") !== false && (
             <RichTextEditorTextAlign alignment="left" editor={editor} />
@@ -142,7 +142,7 @@ function RichTextEditorToolbar({
       {/* Lists */}
       {hasModules(["bullet_list", "ordered_list"]) && (
         <>
-          <Separator orientation="vertical" />
+          <SeparatorRoot orientation="vertical" />
 
           {hasModule("bullet_list") && (
             <RichTextEditorBulletList editor={editor} />
@@ -156,7 +156,7 @@ function RichTextEditorToolbar({
       {/* Controls */}
       {hasModules(["undo", "redo"]) && (
         <>
-          <Separator orientation="vertical" />
+          <SeparatorRoot orientation="vertical" />
 
           {hasModule("undo") && <RichTextEditorUndo editor={editor} />}
           {hasModule("redo") && <RichTextEditorRedo editor={editor} />}

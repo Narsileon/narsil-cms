@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 import { Bookmarks, Breadcrumb, Sidebar, UserMenu } from "@narsil-cms/blocks";
 import { ModalRenderer } from "@narsil-cms/components/modal";
-import { Separator } from "@narsil-cms/components/separator";
+import { SeparatorRoot } from "@narsil-cms/components/separator";
 import {
   SidebarInset,
   SidebarProvider,
@@ -53,7 +53,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
           {isMobile ? (
             <>
               <SidebarTrigger />
-              <Separator orientation="vertical" />
+              <SeparatorRoot orientation="vertical" />
             </>
           ) : null}
           <Breadcrumb className="grow" />

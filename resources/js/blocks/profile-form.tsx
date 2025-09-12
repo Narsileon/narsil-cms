@@ -12,7 +12,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from "@narsil-cms/components/section";
-import { Separator } from "@narsil-cms/components/separator";
+import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types";
 
@@ -59,8 +59,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           </Section>
         )}
       />
-      <Separator />
-
+      <SeparatorRoot />
       <FormProvider
         id={updatePasswordForm.id}
         action={updatePasswordForm.action}
