@@ -1,5 +1,5 @@
 // https://ui.shadcn.com/docs/components/label
 
-import Label from "./label";
+import LabelRoot from "./label-root";
 
-export { Label };
+export { LabelRoot };
