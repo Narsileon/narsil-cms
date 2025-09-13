@@ -2,12 +2,11 @@ import { useState } from "react";
 
 import { Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
+import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
 
-import Input from "./input";
-
 type InputPasswordProps = Omit<
-  React.ComponentProps<typeof Input>,
+  React.ComponentProps<typeof InputContent>,
   "children"
 > & {};
 
@@ -21,7 +20,8 @@ function InputPassword({ type, ...props }: InputPasswordProps) {
     : trans("accessibility.show_password");
 
   return (
-    <Input type={show ? "text" : type} {...props}>
+    <InputRoot>
+      <InputContent type={show ? "text" : type} {...props} />
       <Tooltip tooltip={tooltip}>
         <Icon
           className="cursor-pointer opacity-50 duration-300 hover:opacity-100"
@@ -30,7 +30,7 @@ function InputPassword({ type, ...props }: InputPasswordProps) {
           onClick={() => setShow(!show)}
         />
       </Tooltip>
-    </Input>
+    </InputRoot>
   );
 }
 

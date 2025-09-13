@@ -8,7 +8,6 @@ import SidebarGroupAction from "./sidebar-group-action";
 import SidebarGroupContent from "./sidebar-group-content";
 import SidebarGroupLabel from "./sidebar-group-label";
 import SidebarHeader from "./sidebar-header";
-import SidebarInput from "./sidebar-input";
 import SidebarInset from "./sidebar-inset";
 import SidebarMenu from "./sidebar-menu";
 import SidebarMenuAction from "./sidebar-menu-action";
@@ -33,7 +32,6 @@ export {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarInput,
   SidebarInset,
   SidebarMenu,
   SidebarMenuAction,

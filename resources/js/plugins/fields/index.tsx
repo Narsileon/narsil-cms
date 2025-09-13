@@ -1,14 +1,17 @@
 import { isArray } from "lodash";
 
-import { Checkbox, Checkboxes, Slider, Switch } from "@narsil-cms/blocks";
-import { Combobox } from "@narsil-cms/components/combobox";
-import { Icon } from "@narsil-cms/components/icon";
 import {
-  Input,
+  Checkbox,
+  Checkboxes,
   InputDate,
   InputFile,
   InputPassword,
-} from "@narsil-cms/components/input";
+  Slider,
+  Switch,
+} from "@narsil-cms/blocks";
+import { Combobox } from "@narsil-cms/components/combobox";
+import { Icon } from "@narsil-cms/components/icon";
+import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { RichTextEditor } from "@narsil-cms/components/rich-text-editor";
 import {
   SortableGrid,
@@ -16,6 +19,7 @@ import {
   SortableTable,
 } from "@narsil-cms/components/sortable";
 import { type Field, type SelectOption } from "@narsil-cms/types";
+import { cn } from "@narsil-cms/lib/utils";
 
 export type FieldProps = {
   element: Field;
@@ -169,29 +173,36 @@ const defaultRegistry: Registry = {
   },
   ["Narsil\\Contracts\\Fields\\TimeInput"]: (props) => {
     return (
-      <Input
-        {...props.element.settings}
-        id={props.id}
-        name={props.id}
-        className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
-        value={props.value}
-        onChange={(event) => props.setValue(event.target.value)}
-      />
+      <InputRoot>
+        <InputContent
+          {...props.element.settings}
+          id={props.id}
+          name={props.id}
+          className={cn(
+            !props.value && "opacity-50",
+            "[&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none",
+          )}
+          value={props.value}
+          onChange={(event) => props.setValue(event.target.value)}
+        />
+        <Icon className="opacity-50" name="clock" />
+      </InputRoot>
     );
   },
   ["default"]: (props) => {
     return (
-      <Input
-        {...props.element.settings}
-        id={props.id}
-        name={props.id}
-        value={props.value}
-        onChange={(e) => props.setValue(e.target.value)}
-      >
+      <InputRoot>
+        <InputContent
+          {...props.element.settings}
+          id={props.id}
+          name={props.id}
+          value={props.value}
+          onChange={(e) => props.setValue(e.target.value)}
+        />
         {props.element.settings.icon ? (
           <Icon className="opacity-50" name={props.element.settings.icon} />
         ) : null}
-      </Input>
+      </InputRoot>
     );
   },
 };

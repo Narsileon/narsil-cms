@@ -3,7 +3,6 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { debounce, isArray, lowerCase } from "lodash";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { Button } from "@narsil-cms/components/button";
 import {
   CommandEmpty,
   CommandGroup,
@@ -12,6 +11,7 @@ import {
   CommandRoot,
 } from "@narsil-cms/components/command";
 import { Icon } from "@narsil-cms/components/icon";
+import { InputRoot } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
@@ -163,16 +163,13 @@ function Combobox({
   return (
     <PopoverRoot open={open} onOpenChange={setOpen} modal>
       <PopoverTrigger asChild>
-        <Button
+        <InputRoot
           id={id}
-          className={cn(
-            "w-full justify-between bg-input/25 font-normal",
-            className,
-          )}
+          className={cn(className)}
           aria-expanded={open}
-          disabled={disabled}
+          aria-disabled={disabled}
           role="combobox"
-          variant="outline"
+          variant="button"
         >
           {selectedOptions.length > 0 ? (
             multiple ? (
@@ -200,7 +197,7 @@ function Combobox({
             className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
             name="chevron-down"
           />
-        </Button>
+        </InputRoot>
       </PopoverTrigger>
       <PopoverContent className="p-0">
         <CommandRoot shouldFilter={false}>

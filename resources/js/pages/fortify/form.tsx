@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
+import { InputPassword } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
 import { Container } from "@narsil-cms/components/container";
@@ -16,7 +17,6 @@ import {
   FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
-import { InputPassword } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   Section,

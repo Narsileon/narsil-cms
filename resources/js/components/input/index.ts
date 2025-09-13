@@ -1,8 +1,8 @@
 // https://ui.shadcn.com/docs/components/input
 
-import Input from "./input";
-import InputDate from "./input-date";
-import InputFile from "./input-file";
-import InputPassword from "./input-password";
+import InputContent from "./input-content";
+import inputContentVariants from "./input-content-variants";
+import InputRoot from "./input-root";
+import inputRootVariants from "./input-root-variants";
 
-export { Input, InputDate, InputFile, InputPassword };
+export { InputContent, inputContentVariants, InputRoot, inputRootVariants };

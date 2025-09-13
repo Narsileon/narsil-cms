@@ -10,7 +10,6 @@ import {
 type SliderProps = React.ComponentProps<typeof SliderRoot> & {};
 
 function Slider({
-  className,
   defaultValue,
   value,
   min = 0,

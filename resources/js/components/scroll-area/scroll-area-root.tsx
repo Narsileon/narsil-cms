@@ -6,11 +6,7 @@ type ScrollAreaRootProps = React.ComponentProps<
   typeof ScrollAreaPrimitive.Root
 > & {};
 
-const ScrollAreaRoot = ({
-  asChild = false,
-  className,
-  ...props
-}: ScrollAreaRootProps) => {
+const ScrollAreaRoot = ({ className, ...props }: ScrollAreaRootProps) => {
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area-root"

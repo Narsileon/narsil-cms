@@ -1,6 +1,11 @@
 import { Link } from "@inertiajs/react";
 
-import { Avatar, Tooltip } from "@narsil-cms/blocks";
+import { Tooltip } from "@narsil-cms/blocks";
+import {
+  AvatarFallback,
+  AvatarImage,
+  AvatarRoot,
+} from "@narsil-cms/components/avatar";
 import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
@@ -27,12 +32,14 @@ function UserMenu({ ...props }: UserMenuProps) {
       <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
         <DropdownMenuTrigger asChild={!auth && true} {...props}>
           {auth ? (
-            <Avatar
-              avatar={auth.avatar}
-              firstName={auth.first_name ?? "A"}
-              fullName={`${auth.full_name ?? "AA"}`}
-              lastName={auth.last_name ?? "A"}
-            />
+            <AvatarRoot>
+              {auth.avatar ? (
+                <AvatarImage src={auth.avatar} alt={auth.full_name ?? "User"} />
+              ) : null}
+              <AvatarFallback>
+                <Icon name="user" />
+              </AvatarFallback>
+            </AvatarRoot>
           ) : (
             <Button
               aria-label={trans(
