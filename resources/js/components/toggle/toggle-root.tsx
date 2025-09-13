@@ -1,16 +1,16 @@
 import { type VariantProps } from "class-variance-authority";
-import { Toggle as TogglePrimitive } from "radix-ui";
+import { Toggle } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 import { toggleVariants } from ".";
 
-type ToggleRootProps = React.ComponentProps<typeof TogglePrimitive.Root> &
+type ToggleRootProps = React.ComponentProps<typeof Toggle.Root> &
   VariantProps<typeof toggleVariants> & {};
 
 function ToggleRoot({ className, variant, size, ...props }: ToggleRootProps) {
   return (
-    <TogglePrimitive.Root
+    <Toggle.Root
       data-slot="toggle"
       className={cn(
         toggleVariants({

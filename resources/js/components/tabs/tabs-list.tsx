@@ -1,12 +1,12 @@
-import { Tabs as TabsPrimitive } from "radix-ui";
+import { Tabs } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> & {};
+type TabsListProps = React.ComponentProps<typeof Tabs.List> & {};
 
-function TabsList({ children, className, ...props }: TabsListProps) {
+function TabsList({ className, ...props }: TabsListProps) {
   return (
-    <TabsPrimitive.List
+    <Tabs.List
       data-slot="tabs-list"
       className={cn(
         "inline-flex w-fit gap-1 rounded-md bg-sidebar text-sidebar-foreground",
@@ -20,9 +20,7 @@ function TabsList({ children, className, ...props }: TabsListProps) {
         className,
       )}
       {...props}
-    >
-      {children}
-    </TabsPrimitive.List>
+    />
   );
 }
 export default TabsList;
