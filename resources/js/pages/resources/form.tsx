@@ -1,7 +1,7 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-import { SaveButton, ScrollArea } from "@narsil-cms/blocks";
+import { SaveButton } from "@narsil-cms/blocks";
 import { Button } from "@narsil-cms/components/button";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import {
@@ -23,9 +23,9 @@ import {
   SectionTitle,
 } from "@narsil-cms/components/section";
 import {
-  Tabs,
   TabsContent,
   TabsList,
+  TabsRoot,
   TabsTrigger,
 } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
@@ -113,7 +113,7 @@ function ResourceForm({
   });
 
   const tabsContent = (
-    <Tabs
+    <TabsRoot
       defaultValue={tabs[0].handle}
       value={value}
       onValueChange={setValue}
@@ -151,7 +151,7 @@ function ResourceForm({
           </TabsContent>
         );
       })}
-    </Tabs>
+    </TabsRoot>
   );
 
   useEffect(() => {
@@ -186,17 +186,17 @@ function ResourceForm({
           }}
         >
           {modal ? (
-            <ScrollArea>
+            <>
               <DialogBody>{tabsContent}</DialogBody>
               <DialogFooter className="h-fit border-t">
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{trans("ui.cancel")}</Button>
                 </DialogClose>
-                <FormSubmit className="place-self-auto">
+                <FormSubmit>
                   {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
                 </FormSubmit>
               </DialogFooter>
-            </ScrollArea>
+            </>
           ) : (
             <Section className="p-4">
               <SectionHeader>

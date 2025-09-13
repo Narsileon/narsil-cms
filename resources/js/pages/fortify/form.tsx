@@ -115,7 +115,7 @@ function FortifyForm({
                         <FormFieldRenderer element={element} key={index} />
                       ),
                     )}
-                    <FormSubmit className="w-full place-self-center">
+                    <FormSubmit className="col-span-12 w-full">
                       {submitLabel}
                     </FormSubmit>
                   </FormRoot>

@@ -17,7 +17,7 @@ const ScrollAreaViewport = ({
     <ScrollAreaPrimitive.Viewport
       data-slot="scroll-area-viewport"
       className={cn(
-        "height-[inherit] size-full rounded-[inherit] transition-[color,box-shadow] outline-none",
+        "size-full rounded-[inherit] transition-[color,box-shadow] outline-none",
         "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-1",
         asChild && "!block",
         className,

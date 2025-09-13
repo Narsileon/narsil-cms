@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/accordion
+// https://www.radix-ui.com/primitives/docs/components/accordion#api-reference
 
 import AccordionContent from "./accordion-content";
 import AccordionHeader from "./accordion-header";

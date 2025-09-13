@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import {
+  DialogBody,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -56,7 +57,7 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
   return (
     <DialogRoot open={true} onOpenChange={(open) => !open && onClose()}>
       <DialogContent
-        className="fixed max-h-[calc(100%-13rem)] max-w-[calc(100%-4rem)] overflow-hidden"
+        className="max-h-[calc(100%-13rem)] max-w-[calc(100%-4rem)] overflow-hidden"
         {...props}
       >
         <DialogHeader className="border-b">
@@ -67,10 +68,13 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
             {modal.componentProps.description}
           </DialogDescription>
         </VisuallyHiddenRoot>
+
         <LabelsProvider labels={modal.componentProps.labels}>
-          {Component ? (
-            <Component modal={modal} {...modal.componentProps} />
-          ) : null}
+          <DialogBody className="p-0">
+            {Component ? (
+              <Component modal={modal} {...modal.componentProps} />
+            ) : null}
+          </DialogBody>
         </LabelsProvider>
       </DialogContent>
     </DialogRoot>

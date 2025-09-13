@@ -4,7 +4,6 @@ import {
 } from "@dnd-kit/sortable";
 import { flexRender, Table } from "@tanstack/react-table";
 
-import { ScrollArea } from "@narsil-cms/blocks";
 import {
   DataTableBody,
   DataTableCell,
@@ -21,7 +20,7 @@ type DataTableProps = {
 
 function DataTable({ dataTable }: DataTableProps) {
   return (
-    <ScrollArea className="rounded-md border" orientation="horizontal">
+    <div className="overflow-x-auto rounded-md border">
       <DataTableRoot className="min-w-max">
         <DataTableHeader>
           {dataTable.getHeaderGroups().map((headerGroup) => (
@@ -73,7 +72,7 @@ function DataTable({ dataTable }: DataTableProps) {
           )}
         </DataTableBody>
       </DataTableRoot>
-    </ScrollArea>
+    </div>
   );
 }
 

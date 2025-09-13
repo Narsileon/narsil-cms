@@ -3,9 +3,9 @@ import { Tabs as TabsPrimitive } from "radix-ui";
 import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 
-type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root> & {};
+type TabsRootProps = React.ComponentProps<typeof TabsPrimitive.Root> & {};
 
-function Tabs({ className, orientation, ...props }: TabsProps) {
+function TabsRoot({ className, orientation, ...props }: TabsRootProps) {
   const minMd = useMinMd();
 
   orientation = minMd ? orientation : "horizontal";
@@ -24,4 +24,4 @@ function Tabs({ className, orientation, ...props }: TabsProps) {
   );
 }
 
-export default Tabs;
+export default TabsRoot;

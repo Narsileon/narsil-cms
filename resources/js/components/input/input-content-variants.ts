@@ -4,7 +4,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 const inputContentVariants = cva(
   cn(
-    "h-full min-w-0 grow bg-transparent outline-none",
+    "h-full min-w-0 grow bg-transparent py-1 outline-none",
     "placeholder:text-muted-foreground",
     "selection:bg-primary selection:text-primary-foreground",
   ),

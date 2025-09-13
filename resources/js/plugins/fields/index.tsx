@@ -18,8 +18,8 @@ import {
   SortableList,
   SortableTable,
 } from "@narsil-cms/components/sortable";
-import { type Field, type SelectOption } from "@narsil-cms/types";
 import { cn } from "@narsil-cms/lib/utils";
+import { type Field, type SelectOption } from "@narsil-cms/types";
 
 export type FieldProps = {
   element: Field;

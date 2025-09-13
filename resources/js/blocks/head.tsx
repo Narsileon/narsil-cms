@@ -1,5 +1,4 @@
 import { Head as HeadPrimitive } from "@inertiajs/react";
-import React from "react";
 
 type HeadProps = React.ComponentProps<typeof HeadPrimitive> & {
   description?: string;

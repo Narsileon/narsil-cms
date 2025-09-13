@@ -17,6 +17,7 @@ import SecurityForm from "./security-form";
 import Sidebar from "./sidebar";
 import Slider from "./slider";
 import Switch from "./switch";
+import Tabs from "./tabs";
 import Tooltip from "./tooltip";
 import TwoFactorForm from "./two-factor-form";
 import UserMenu from "./user-menu";
@@ -41,6 +42,7 @@ export {
   Sidebar,
   Slider,
   Switch,
+  Tabs,
   Tooltip,
   TwoFactorForm,
   UserMenu,

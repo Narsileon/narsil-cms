@@ -6,7 +6,10 @@ function TableRoot({ className, ...props }: TableRootProps) {
   return (
     <table
       data-slot="table-root"
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={cn(
+        "w-full caption-bottom overflow-x-scroll text-sm",
+        className,
+      )}
       {...props}
     />
   );

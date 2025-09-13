@@ -380,4 +380,13 @@
     background-color: transparent !important;
     transition: background-color 5000s ease-in-out 0s;
   }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scale-500) transparent;
+  }
+
+  .dark * {
+    scrollbar-color: var(--scale-500) transparent;
+  }
 }
