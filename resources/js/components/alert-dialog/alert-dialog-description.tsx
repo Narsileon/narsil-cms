@@ -1,9 +1,9 @@
-import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
+import { AlertDialog } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type AlertDialogDescriptionProps = React.ComponentProps<
-  typeof AlertDialogPrimitive.Description
+  typeof AlertDialog.Description
 > & {};
 
 function AlertDialogDescription({
@@ -11,7 +11,7 @@ function AlertDialogDescription({
   ...props
 }: AlertDialogDescriptionProps) {
   return (
-    <AlertDialogPrimitive.Description
+    <AlertDialog.Description
       data-slot="alert-dialog-description"
       className={cn("text-sm text-muted-foreground", className)}
       {...props}

@@ -1,10 +1,10 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type ContextMenuCheckboxItemProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.CheckboxItem
+  typeof ContextMenu.CheckboxItem
 > & {};
 
 function ContextMenuCheckboxItem({
@@ -14,7 +14,7 @@ function ContextMenuCheckboxItem({
   ...props
 }: ContextMenuCheckboxItemProps) {
   return (
-    <ContextMenuPrimitive.CheckboxItem
+    <ContextMenu.CheckboxItem
       data-slot="context-menu-checkbox-item"
       className={cn(
         "relative flex cursor-pointer items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
@@ -27,12 +27,12 @@ function ContextMenuCheckboxItem({
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ContextMenuPrimitive.ItemIndicator>
+        <ContextMenu.ItemIndicator>
           <Icon className="size-4" name="check" />
-        </ContextMenuPrimitive.ItemIndicator>
+        </ContextMenu.ItemIndicator>
       </span>
       {children}
-    </ContextMenuPrimitive.CheckboxItem>
+    </ContextMenu.CheckboxItem>
   );
 }
 

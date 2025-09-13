@@ -1,10 +1,12 @@
 import {
-  AccordionRoot,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
   AccordionHeader,
+  AccordionSingle,
 } from "@narsil-cms/components/accordion";
+import { Heading } from "@narsil-cms/components/heading";
+import { Icon } from "@narsil-cms/components/icon";
 
 type AccordionElement = {
   id: string;
@@ -12,22 +14,32 @@ type AccordionElement = {
   content: React.ReactNode;
 };
 
-type AccordionProps = React.ComponentProps<typeof AccordionRoot> & {
+type AccordionProps = React.ComponentProps<typeof AccordionSingle> & {
   elements: AccordionElement[];
 };
 
 function Accordion({ elements, ...props }: AccordionProps) {
   return (
-    <AccordionRoot {...props}>
+    <AccordionSingle {...props}>
       {elements.map((element) => (
         <AccordionItem value={element.id} key={element.id}>
-          <AccordionHeader>
-            <AccordionTrigger>{element.title}</AccordionTrigger>
+          <AccordionHeader asChild>
+            <Heading level="h2">
+              <AccordionTrigger>
+                {element.title}
+                <Icon
+                  className={
+                    "transition-transform duration-300 will-change-transform group-data-[state=open]:rotate-180"
+                  }
+                  name="chevron-down"
+                />
+              </AccordionTrigger>
+            </Heading>
           </AccordionHeader>
           <AccordionContent>{element.content}</AccordionContent>
         </AccordionItem>
       ))}
-    </AccordionRoot>
+    </AccordionSingle>
   );
 }
 

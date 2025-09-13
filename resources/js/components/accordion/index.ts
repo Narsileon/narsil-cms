@@ -3,13 +3,15 @@
 import AccordionContent from "./accordion-content";
 import AccordionHeader from "./accordion-header";
 import AccordionItem from "./accordion-item";
-import AccordionRoot from "./accordion-root";
+import AccordionMultiple from "./accordion-multiple";
+import AccordionSingle from "./accordion-single";
 import AccordionTrigger from "./accordion-trigger";
 
 export {
   AccordionContent,
   AccordionHeader,
   AccordionItem,
-  AccordionRoot,
+  AccordionMultiple,
+  AccordionSingle,
   AccordionTrigger,
 };

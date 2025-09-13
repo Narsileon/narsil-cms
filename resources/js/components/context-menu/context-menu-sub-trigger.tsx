@@ -1,10 +1,10 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type ContextMenuSubTriggerProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.SubTrigger
+  typeof ContextMenu.SubTrigger
 > & {
   inset?: boolean;
 };
@@ -16,7 +16,7 @@ function ContextMenuSubTrigger({
   ...props
 }: ContextMenuSubTriggerProps) {
   return (
-    <ContextMenuPrimitive.SubTrigger
+    <ContextMenu.SubTrigger
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
@@ -31,7 +31,7 @@ function ContextMenuSubTrigger({
     >
       {children}
       <Icon className="ml-auto" name="chevron-right" />
-    </ContextMenuPrimitive.SubTrigger>
+    </ContextMenu.SubTrigger>
   );
 }
 

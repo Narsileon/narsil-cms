@@ -1,14 +1,12 @@
-import { Checkbox as CheckboxPrimitive } from "radix-ui";
+import { Checkbox } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CheckboxRootProps = React.ComponentProps<
-  typeof CheckboxPrimitive.Root
-> & {};
+type CheckboxRootProps = React.ComponentProps<typeof Checkbox.Root> & {};
 
 function CheckboxRoot({ className, ...props }: CheckboxRootProps) {
   return (
-    <CheckboxPrimitive.Root
+    <Checkbox.Root
       data-slot="checkbox-root"
       className={cn(
         "peer size-4.5 shrink-0 cursor-pointer rounded-[4px] border border-input shadow-xs transition-shadow outline-none",

@@ -1,10 +1,8 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuLabelProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.Label
-> & {
+type ContextMenuLabelProps = React.ComponentProps<typeof ContextMenu.Label> & {
   inset?: boolean;
 };
 
@@ -14,7 +12,7 @@ function ContextMenuLabel({
   ...props
 }: ContextMenuLabelProps) {
   return (
-    <ContextMenuPrimitive.Label
+    <ContextMenu.Label
       data-slot="context-menu-label"
       data-inset={inset}
       className={cn(

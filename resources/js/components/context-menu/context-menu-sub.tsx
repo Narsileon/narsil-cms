@@ -1,11 +1,9 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
-type ContextMenuSubProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.Sub
-> & {};
+type ContextMenuSubProps = React.ComponentProps<typeof ContextMenu.Sub> & {};
 
 function ContextMenuSub({ ...props }: ContextMenuSubProps) {
-  return <ContextMenuPrimitive.Sub data-slot="context-menu-sub" {...props} />;
+  return <ContextMenu.Sub data-slot="context-menu-sub" {...props} />;
 }
 
 export default ContextMenuSub;

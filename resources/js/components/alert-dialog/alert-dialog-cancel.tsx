@@ -1,15 +1,15 @@
-import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
+import { AlertDialog } from "radix-ui";
 
 import { buttonVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 
 type AlertDialogCancelProps = React.ComponentProps<
-  typeof AlertDialogPrimitive.Cancel
+  typeof AlertDialog.Cancel
 > & {};
 
 function AlertDialogCancel({ className, ...props }: AlertDialogCancelProps) {
   return (
-    <AlertDialogPrimitive.Cancel
+    <AlertDialog.Cancel
       className={cn(
         buttonVariants({
           variant: "outline",

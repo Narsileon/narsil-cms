@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/avatar
+// https://www.radix-ui.com/primitives/docs/components/avatar
 
 import AvatarFallback from "./avatar-fallback";
 import AvatarImage from "./avatar-Image";

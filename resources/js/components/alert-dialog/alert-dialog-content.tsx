@@ -1,4 +1,4 @@
-import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
+import { AlertDialog } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -6,14 +6,14 @@ import AlertDialogOverlay from "./alert-dialog-overlay";
 import AlertDialogPortal from "./alert-dialog-portal";
 
 type AlertDialogContentProps = React.ComponentProps<
-  typeof AlertDialogPrimitive.Content
+  typeof AlertDialog.Content
 > & {};
 
 function AlertDialogContent({ className, ...props }: AlertDialogContentProps) {
   return (
     <AlertDialogPortal>
       <AlertDialogOverlay />
-      <AlertDialogPrimitive.Content
+      <AlertDialog.Content
         data-slot="alert-dialog-content"
         className={cn(
           "fixed top-[50%] left-[50%] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-md border bg-background p-4 shadow-lg duration-300 not-first:z-50 sm:max-w-lg",

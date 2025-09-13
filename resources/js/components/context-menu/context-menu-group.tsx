@@ -1,13 +1,11 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
 type ContextMenuGroupProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.Group
+  typeof ContextMenu.Group
 > & {};
 
 function ContextMenuGroup({ ...props }: ContextMenuGroupProps) {
-  return (
-    <ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />
-  );
+  return <ContextMenu.Group data-slot="context-menu-group" {...props} />;
 }
 
 export default ContextMenuGroup;

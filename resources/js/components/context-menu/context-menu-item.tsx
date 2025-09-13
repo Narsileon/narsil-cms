@@ -1,10 +1,8 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuItemProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.Item
-> & {
+type ContextMenuItemProps = React.ComponentProps<typeof ContextMenu.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };
@@ -16,7 +14,7 @@ function ContextMenuItem({
   ...props
 }: ContextMenuItemProps) {
   return (
-    <ContextMenuPrimitive.Item
+    <ContextMenu.Item
       data-slot="context-menu-item"
       data-inset={inset}
       data-variant={variant}

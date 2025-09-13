@@ -1,15 +1,15 @@
-import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
+import { AlertDialog } from "radix-ui";
 
 import { buttonVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 
 type AlertDialogActionProps = React.ComponentProps<
-  typeof AlertDialogPrimitive.Action
+  typeof AlertDialog.Action
 > & {};
 
 function AlertDialogAction({ className, ...props }: AlertDialogActionProps) {
   return (
-    <AlertDialogPrimitive.Action
+    <AlertDialog.Action
       className={cn(
         buttonVariants({
           variant: "default",

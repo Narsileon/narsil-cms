@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/collapsible
+// https://www.radix-ui.com/primitives/docs/components/collapsible
 
 import CollapsibleContent from "./collapsible-content";
 import CollapsibleRoot from "./collapsible-root";

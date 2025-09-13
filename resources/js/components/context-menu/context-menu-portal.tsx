@@ -1,13 +1,11 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
 type ContextMenuPortalProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.Portal
+  typeof ContextMenu.Portal
 > & {};
 
 function ContextMenuPortal({ ...props }: ContextMenuPortalProps) {
-  return (
-    <ContextMenuPrimitive.Portal data-slot="context-menu-portal" {...props} />
-  );
+  return <ContextMenu.Portal data-slot="context-menu-portal" {...props} />;
 }
 
 export default ContextMenuPortal;

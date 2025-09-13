@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/checkbox
+// https://www.radix-ui.com/primitives/docs/components/checkbox
 
 import CheckboxIndicator from "./checkbox-indicator";
 import CheckboxRoot from "./checkbox-root";

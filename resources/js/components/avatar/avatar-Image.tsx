@@ -1,12 +1,12 @@
-import { Avatar as AvatarPrimitive } from "radix-ui";
+import { Avatar } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AvatarImageProps = React.ComponentProps<typeof AvatarPrimitive.Image> & {};
+type AvatarImageProps = React.ComponentProps<typeof Avatar.Image> & {};
 
 function AvatarImage({ className, ...props }: AvatarImageProps) {
   return (
-    <AvatarPrimitive.Image
+    <Avatar.Image
       data-slot="avatar-image"
       className={cn("aspect-square size-full", className)}
       {...props}

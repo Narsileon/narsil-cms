@@ -1,10 +1,10 @@
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import { ContextMenu } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type ContextMenuRadioItemProps = React.ComponentProps<
-  typeof ContextMenuPrimitive.RadioItem
+  typeof ContextMenu.RadioItem
 > & {};
 
 function ContextMenuRadioItem({
@@ -13,7 +13,7 @@ function ContextMenuRadioItem({
   ...props
 }: ContextMenuRadioItemProps) {
   return (
-    <ContextMenuPrimitive.RadioItem
+    <ContextMenu.RadioItem
       data-slot="context-menu-radio-item"
       className={cn(
         "relative flex cursor-pointer items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
@@ -25,12 +25,12 @@ function ContextMenuRadioItem({
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ContextMenuPrimitive.ItemIndicator>
+        <ContextMenu.ItemIndicator>
           <Icon className="size-2 fill-current" name="circle" />
-        </ContextMenuPrimitive.ItemIndicator>
+        </ContextMenu.ItemIndicator>
       </span>
       {children}
-    </ContextMenuPrimitive.RadioItem>
+    </ContextMenu.RadioItem>
   );
 }
 

@@ -1,3 +1,4 @@
+import Accordion from "./accordion";
 import Bookmarks from "./bookmarks";
 import Breadcrumb from "./breadcrumb";
 import Checkbox from "./checkbox";
@@ -23,6 +24,7 @@ import TwoFactorForm from "./two-factor-form";
 import UserMenu from "./user-menu";
 
 export {
+  Accordion,
   Bookmarks,
   Breadcrumb,
   Checkbox,

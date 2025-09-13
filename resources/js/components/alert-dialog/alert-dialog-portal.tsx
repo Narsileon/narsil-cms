@@ -1,13 +1,11 @@
-import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
+import { AlertDialog } from "radix-ui";
 
 type AlertDialogPortalProps = React.ComponentProps<
-  typeof AlertDialogPrimitive.Portal
+  typeof AlertDialog.Portal
 > & {};
 
 function AlertDialogPortal({ ...props }: AlertDialogPortalProps) {
-  return (
-    <AlertDialogPrimitive.Portal data-slot="alert-dialog-portal" {...props} />
-  );
+  return <AlertDialog.Portal data-slot="alert-dialog-portal" {...props} />;
 }
 
 export default AlertDialogPortal;
