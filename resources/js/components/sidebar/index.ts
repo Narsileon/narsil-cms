@@ -14,7 +14,6 @@ import SidebarMenuAction from "./sidebar-menu-action";
 import SidebarMenuBadge from "./sidebar-menu-badge";
 import SidebarMenuButton from "./sidebar-menu-button";
 import SidebarMenuItem from "./sidebar-menu-item";
-import SidebarMenuSkeleton from "./sidebar-menu-skeleton";
 import SidebarMenuSub from "./sidebar-menu-sub";
 import SidebarMenuSubButton from "./sidebar-menu-sub-button";
 import SidebarMenuSubItem from "./sidebar-menu-subitem";
@@ -38,7 +37,6 @@ export {
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSkeleton,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,

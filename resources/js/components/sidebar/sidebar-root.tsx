@@ -1,10 +1,10 @@
 import {
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetRoot,
-  SheetTitle,
-} from "@narsil-cms/components/sheet";
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+} from "@narsil-cms/components/dialog";
 import { cn } from "@narsil-cms/lib/utils";
 
 import useSidebar from "./sidebar-context";
@@ -43,8 +43,8 @@ function SidebarRoot({
 
   if (isMobile) {
     return (
-      <SheetRoot open={openMobile} onOpenChange={setOpenMobile} {...props}>
-        <SheetContent
+      <DialogRoot open={openMobile} onOpenChange={setOpenMobile} {...props}>
+        <DialogContent
           data-slot="sidebar"
           data-mobile="true"
           data-sidebar="sidebar"
@@ -57,15 +57,15 @@ function SidebarRoot({
               "--sidebar-width": mobileWidth,
             } as React.CSSProperties
           }
-          side={side}
+          variant="left"
         >
-          <SheetHeader className="sr-only">
-            <SheetTitle>Sidebar</SheetTitle>
-            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
-          </SheetHeader>
+          <DialogHeader className="sr-only">
+            <DialogTitle>Sidebar</DialogTitle>
+            <DialogDescription>Displays the mobile sidebar.</DialogDescription>
+          </DialogHeader>
           <div className="flex h-full w-full flex-col">{children}</div>
-        </SheetContent>
-      </SheetRoot>
+        </DialogContent>
+      </DialogRoot>
     );
   }
 

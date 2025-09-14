@@ -4,6 +4,7 @@ import DialogBody from "./dialog-body";
 import DialogClose from "./dialog-close";
 import DialogCloseButton from "./dialog-close-button";
 import DialogContent from "./dialog-content";
+import dialogContentVariants from "./dialog-content-variants";
 import DialogDescription from "./dialog-description";
 import DialogFooter from "./dialog-footer";
 import DialogHeader from "./dialog-header";
@@ -18,6 +19,7 @@ export {
   DialogClose,
   DialogCloseButton,
   DialogContent,
+  dialogContentVariants,
   DialogDescription,
   DialogFooter,
   DialogHeader,

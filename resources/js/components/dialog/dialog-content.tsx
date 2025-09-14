@@ -1,13 +1,16 @@
+import { type VariantProps } from "class-variance-authority";
 import { Dialog } from "radix-ui";
 
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
 
 import DialogCloseButton from "./dialog-close-button";
+import dialogContentVariants from "./dialog-content-variants";
 import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
 
 type DialogContentProps = React.ComponentProps<typeof Dialog.Content> &
+  VariantProps<typeof dialogContentVariants> &
   Pick<React.ComponentProps<typeof DialogPortal>, "container"> & {
     showCloseButton?: boolean;
   };
@@ -17,20 +20,19 @@ function DialogContent({
   children,
   container,
   showCloseButton = true,
+  variant = "default",
   ...props
 }: DialogContentProps) {
   return (
-    <DialogPortal data-slot="dialog-portal" container={container}>
+    <DialogPortal container={container}>
       <DialogOverlay />
       <Dialog.Content
         data-slot="dialog-content"
         className={cn(
-          "@container/dialog-content",
-          "fixed top-[50%] left-[50%] z-50 flex w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] flex-col overflow-hidden rounded-xl border bg-background shadow-lg md:max-w-lg",
-          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-          "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-          "data-[state=open]:animate-in data-[state=closed]:animate-out",
-          className,
+          dialogContentVariants({
+            className: className,
+            variant: variant,
+          }),
         )}
         {...props}
       >
