@@ -8,17 +8,17 @@ import {
 } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Section,
   SectionContent,
   SectionHeader,
+  SectionRoot,
   SectionTitle,
 } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { getSelectOption } from "@narsil-cms/lib/utils";
-import useColorStore from "@narsil-cms/stores/color-store";
+import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
-import useRadiusStore from "@narsil-cms/stores/radius-store";
-import useThemeStore, { type Theme } from "@narsil-cms/stores/theme-store";
+import { useRadiusStore } from "@narsil-cms/stores/radius-store";
+import { useThemeStore, type Theme } from "@narsil-cms/stores/theme-store";
 import { type FormType } from "@narsil-cms/types";
 
 type ConfigurationFormProps = {
@@ -65,7 +65,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   }
 
   return (
-    <Section>
+    <SectionRoot>
       <SectionHeader className="border-b">
         <SectionTitle level="h2">{trans("ui.personalization")}</SectionTitle>
       </SectionHeader>
@@ -111,7 +111,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
           )}
         />
       </SectionContent>
-    </Section>
+    </SectionRoot>
   );
 }
 

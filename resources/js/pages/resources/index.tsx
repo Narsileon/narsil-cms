@@ -22,9 +22,9 @@ import {
   ResizablePanelGroup,
 } from "@narsil-cms/components/resizable";
 import {
-  Section,
   SectionContent,
   SectionHeader,
+  SectionRoot,
   SectionTitle,
 } from "@narsil-cms/components/section";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
@@ -134,7 +134,7 @@ function ResourceIndex({
         const selectedCount = dataTable.getSelectedRowModel().rows.length;
 
         return (
-          <Section className="h-full gap-4 p-4">
+          <SectionRoot className="h-full gap-4 p-4">
             <SectionHeader className="flex items-center justify-between gap-2">
               <SectionTitle level="h2" variant="h4" className="min-w-1/5">
                 {title}
@@ -256,7 +256,7 @@ function ResourceIndex({
                 </ResizablePanel>
               </ResizablePanelGroup>
             </SectionContent>
-          </Section>
+          </SectionRoot>
         );
       }}
     />

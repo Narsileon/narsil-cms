@@ -1,7 +1,7 @@
 import { type VisitCallbacks } from "@inertiajs/core";
 import { create } from "zustand";
 
-export type ModalState = {
+type ModalType = {
   component: string;
   componentProps: Record<string, unknown>;
   href: string;
@@ -10,7 +10,7 @@ export type ModalState = {
 };
 
 type ModalStoreState = {
-  modals: ModalState[];
+  modals: ModalType[];
 };
 
 type ModalStoreActions = {
@@ -20,9 +20,9 @@ type ModalStoreActions = {
   reloadTopModal: () => Promise<void>;
 };
 
-export type ModalStoreType = ModalStoreState & ModalStoreActions;
+type ModalStoreType = ModalStoreState & ModalStoreActions;
 
-async function fetchModalProps(href: string): Promise<ModalState | null> {
+async function fetchModalProps(href: string): Promise<ModalType | null> {
   try {
     const url = new URL(href, window.location.origin);
 
@@ -57,7 +57,7 @@ async function fetchModalProps(href: string): Promise<ModalState | null> {
   }
 }
 
-export const useModalStore = create<ModalStoreType>((set, get) => ({
+const useModalStore = create<ModalStoreType>((set, get) => ({
   modals: [],
 
   closeModal: (href) =>
@@ -100,3 +100,7 @@ export const useModalStore = create<ModalStoreType>((set, get) => ({
     });
   },
 }));
+
+export { useModalStore };
+
+export type { ModalType };

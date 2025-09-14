@@ -1,13 +1,13 @@
 import { type VariantProps } from "class-variance-authority";
 import { ToggleGroup } from "radix-ui";
 
-import { toggleVariants } from "@narsil-cms/components/toggle";
+import { toggleRootVariants } from "@narsil-cms/components/toggle";
 import { cn } from "@narsil-cms/lib/utils";
 
 import useToggleGroup from "./toggle-group-context";
 
 type ToggleGroupItemProps = React.ComponentProps<typeof ToggleGroup.Item> &
-  VariantProps<typeof toggleVariants> & {};
+  VariantProps<typeof toggleRootVariants> & {};
 
 function ToggleGroupItem({
   className,
@@ -23,7 +23,7 @@ function ToggleGroupItem({
       data-size={context.size || size}
       data-variant={context.variant || variant}
       className={cn(
-        toggleVariants({
+        toggleRootVariants({
           size: context.size || size,
           variant: context.variant || variant,
         }),

@@ -10,10 +10,10 @@ import {
 } from "@narsil-cms/components/dialog";
 import { LabelsProvider } from "@narsil-cms/components/labels";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
-import { ModalState } from "@narsil-cms/stores/modal-store";
+import { type ModalType } from "@narsil-cms/stores/modal-store";
 
 type ModalProps = React.ComponentProps<typeof DialogContent> & {
-  modal: ModalState;
+  modal: ModalType;
   onClose: () => void;
 };
 

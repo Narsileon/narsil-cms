@@ -19,9 +19,9 @@ import {
 } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Section,
   SectionContent,
   SectionHeader,
+  SectionRoot,
   SectionTitle,
 } from "@narsil-cms/components/section";
 import { type FormType } from "@narsil-cms/types";
@@ -55,7 +55,7 @@ function FortifyForm({
 
   return (
     <Container className="gap-6" asChild={true} variant="centered">
-      <Section>
+      <SectionRoot>
         <SectionHeader>
           <SectionTitle level="h1" variant="h4">
             {title}
@@ -131,7 +131,7 @@ function FortifyForm({
             ) : null}
           </Card>
         </SectionContent>
-      </Section>
+      </SectionRoot>
     </Container>
   );
 }

@@ -10,7 +10,7 @@ type RadiusStoreActions = {
   setRadius: (radius: number) => void;
 };
 
-export type RadiusStoreType = RadiusStoreState & RadiusStoreActions;
+type RadiusStoreType = RadiusStoreState & RadiusStoreActions;
 
 const useRadiusStore = create<RadiusStoreType>()(
   persist(
@@ -36,4 +36,4 @@ const useRadiusStore = create<RadiusStoreType>()(
   ),
 );
 
-export default useRadiusStore;
+export { useRadiusStore };

@@ -4,7 +4,7 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
-import { Heading } from "@narsil-cms/components/heading";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
@@ -64,7 +64,7 @@ function FormFieldRenderer({
                 "data-[state=open]:border-b",
               )}
             >
-              <Heading level="h2">{finalName}</Heading>
+              <HeadingRoot level="h2">{finalName}</HeadingRoot>
               <Icon
                 className={cn(
                   "duration-300",
@@ -121,9 +121,9 @@ function FormFieldRenderer({
   }
 
   return element.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
-    <Heading className="-mx-4 border-t border-b bg-accent p-4" level="h2">
+    <HeadingRoot className="-mx-4 border-t border-b bg-accent p-4" level="h2">
       {finalName}
-    </Heading>
+    </HeadingRoot>
   ) : (
     <FormField
       id={finalHandle}

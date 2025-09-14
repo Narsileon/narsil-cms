@@ -1,9 +1,8 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { Slot } from "radix-ui";
+import { cva } from "class-variance-authority";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-const badgeVariants = cva(
+const badgeRootVariants = cva(
   cn(
     "inline-flex w-fit shrink-0 items-center justify-center overflow-hidden rounded-xs border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow]",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
@@ -40,19 +39,4 @@ const badgeVariants = cva(
   },
 );
 
-type BadgeProps = React.ComponentProps<"span"> &
-  VariantProps<typeof badgeVariants> & { asChild?: boolean };
-
-function Badge({ asChild = false, className, variant, ...props }: BadgeProps) {
-  const Comp = asChild ? Slot.Root : "span";
-
-  return (
-    <Comp
-      data-slot="badge"
-      className={cn(badgeVariants({ variant }), className)}
-      {...props}
-    />
-  );
-}
-
-export default Badge;
+export default badgeRootVariants;

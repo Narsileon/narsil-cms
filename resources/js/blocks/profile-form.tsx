@@ -7,9 +7,9 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Section,
   SectionContent,
   SectionHeader,
+  SectionRoot,
   SectionTitle,
 } from "@narsil-cms/components/section";
 import { SeparatorRoot } from "@narsil-cms/components/separator";
@@ -39,7 +39,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           last_name: auth?.last_name,
         }}
         render={() => (
-          <Section>
+          <SectionRoot>
             <SectionHeader className="border-b">
               <SectionTitle level="h2">{trans("ui.account")}</SectionTitle>
               <FormSubmit>
@@ -56,7 +56,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                 ))}
               </FormRoot>
             </SectionContent>
-          </Section>
+          </SectionRoot>
         )}
       />
       <SeparatorRoot />
@@ -66,7 +66,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         elements={updatePasswordForm.form}
         method={updatePasswordForm.method}
         render={({ reset, setDefaults }) => (
-          <Section>
+          <SectionRoot>
             <SectionHeader className="border-b">
               <SectionTitle level="h2">{trans("ui.password")}</SectionTitle>
               <FormSubmit>
@@ -91,7 +91,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                 ))}
               </FormRoot>
             </SectionContent>
-          </Section>
+          </SectionRoot>
         )}
       />
     </>

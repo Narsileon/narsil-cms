@@ -7,9 +7,9 @@ import { toast } from "sonner";
 import { Head } from "@narsil-cms/blocks";
 import { LabelsProvider } from "@narsil-cms/components/labels";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
-import useColorStore from "@narsil-cms/stores/color-store";
-import useRadiusStore from "@narsil-cms/stores/radius-store";
-import useThemeStore from "@narsil-cms/stores/theme-store";
+import { useColorStore } from "@narsil-cms/stores/color-store";
+import { useRadiusStore } from "@narsil-cms/stores/radius-store";
+import { useThemeStore } from "@narsil-cms/stores/theme-store";
 
 import AuthLayout from "./auth-layout";
 import GuestLayout from "./guest-layout";

@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-const toggleVariants = cva(
+const toggleRootVariants = cva(
   cn(
     "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-[color,box-shadow] outline-none",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
@@ -35,4 +35,4 @@ const toggleVariants = cva(
   },
 );
 
-export default toggleVariants;
+export default toggleRootVariants;

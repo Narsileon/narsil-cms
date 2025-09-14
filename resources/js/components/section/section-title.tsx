@@ -1,11 +1,11 @@
-import { Heading } from "@narsil-cms/components/heading";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SectionTitleProps = React.ComponentProps<typeof Heading> & {};
+type SectionTitleProps = React.ComponentProps<typeof HeadingRoot> & {};
 
 function SectionTitle({ className, ...props }: SectionTitleProps) {
   return (
-    <Heading
+    <HeadingRoot
       data-slot="section-title"
       className={cn("leading-none font-semibold", className)}
       {...props}

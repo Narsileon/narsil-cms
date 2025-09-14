@@ -1,7 +1,7 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-import { Badge } from "@narsil-cms/components/badge";
+import { BadgeRoot } from "@narsil-cms/components/badge";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -56,7 +56,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
   return (
     <PopoverRoot open={open} onOpenChange={onOpenChange} modal={true}>
       <PopoverTrigger asChild={true} {...props}>
-        <Badge className="cursor-pointer">
+        <BadgeRoot className="cursor-pointer">
           <span>{column.columnDef.header as string}</span>
           <button
             className="cursor-pointer hover:text-destructive"
@@ -65,7 +65,7 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
           >
             <Icon className="size-4" name="x" />
           </button>
-        </Badge>
+        </BadgeRoot>
       </PopoverTrigger>
       <PopoverContent className="flex flex-col gap-4">
         <SelectRoot

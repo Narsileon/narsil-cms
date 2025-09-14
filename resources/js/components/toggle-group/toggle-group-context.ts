@@ -1,10 +1,10 @@
 import { type VariantProps } from "class-variance-authority";
 import { createContext, useContext } from "react";
 
-import { toggleVariants } from "@narsil-cms/components/toggle";
+import { toggleRootVariants } from "@narsil-cms/components/toggle";
 
 export const ToggleGroupContext = createContext<
-  VariantProps<typeof toggleVariants>
+  VariantProps<typeof toggleRootVariants>
 >({
   size: "default",
   variant: "default",

@@ -1,25 +1,11 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-export const headingVariants = cva("font-medium tracking-tight", {
-  variants: {
-    variant: {
-      h1: "text-5xl",
-      h2: "text-4xl",
-      h3: "text-3xl",
-      h4: "text-2xl",
-      h5: "text-xl",
-      h6: "base",
-    },
-  },
-  defaultVariants: {
-    variant: "h6",
-  },
-});
+import headingRootVariants from "./heading-root-variants";
 
 type HeadingProps = React.ComponentProps<"h1"> &
-  VariantProps<typeof headingVariants> & {
+  VariantProps<typeof headingRootVariants> & {
     level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   };
 
@@ -30,7 +16,7 @@ function Heading({ className, level, variant, ...props }: HeadingProps) {
     <Comp
       data-slot="heading"
       className={cn(
-        headingVariants({
+        headingRootVariants({
           className: className,
           variant: variant,
         }),

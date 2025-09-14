@@ -3,17 +3,17 @@ import { Toggle } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-import { toggleVariants } from ".";
+import { toggleRootVariants } from ".";
 
 type ToggleRootProps = React.ComponentProps<typeof Toggle.Root> &
-  VariantProps<typeof toggleVariants> & {};
+  VariantProps<typeof toggleRootVariants> & {};
 
 function ToggleRoot({ className, variant, size, ...props }: ToggleRootProps) {
   return (
     <Toggle.Root
       data-slot="toggle"
       className={cn(
-        toggleVariants({
+        toggleRootVariants({
           className: className,
           size: size,
           variant: variant,

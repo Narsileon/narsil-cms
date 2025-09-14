@@ -7,8 +7,8 @@ type ResizablePanelProps = React.ComponentProps<typeof Panel> & {};
 function ResizablePanel({ className, ...props }: ResizablePanelProps) {
   return (
     <Panel
-      className={cn("data-[panel-size='0.0']:p-0", className)}
       data-slot="resizable-panel"
+      className={cn("data-[panel-size='0.0']:p-0", className)}
       {...props}
     />
   );

@@ -1,3 +1,5 @@
+// https://tiptap.dev/docs
+
 import RichTextEditor from "./rich-text-editor";
 import RichTextEditorBold from "./rich-text-editor-bold";
 import RichTextEditorBulletList from "./rich-text-editor-bullet-list";

@@ -26,7 +26,8 @@ import {
 import { compact, debounce } from "lodash";
 import { useCallback, useEffect, useMemo } from "react";
 
-import useDataTableStore, {
+import {
+  useDataTableStore,
   type DataTableStoreType,
 } from "@narsil-cms/stores/data-table-store";
 

@@ -11,9 +11,9 @@ import {
 import { ToasterRoot } from "@narsil-cms/components/toaster";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
-import useColorStore from "@narsil-cms/stores/color-store";
-import useRadiusStore from "@narsil-cms/stores/radius-store";
-import useThemeStore from "@narsil-cms/stores/theme-store";
+import { useColorStore } from "@narsil-cms/stores/color-store";
+import { useRadiusStore } from "@narsil-cms/stores/radius-store";
+import { useThemeStore } from "@narsil-cms/stores/theme-store";
 
 type AuthLayoutProps = {
   children: React.ReactNode & {

@@ -10,7 +10,7 @@ type ColorStoreActions = {
   setColor: (color: string) => void;
 };
 
-export type ColorStoreType = ColorStoreState & ColorStoreActions;
+type ColorStoreType = ColorStoreState & ColorStoreActions;
 
 const useColorStore = create<ColorStoreType>()(
   persist(
@@ -36,4 +36,4 @@ const useColorStore = create<ColorStoreType>()(
   ),
 );
 
-export default useColorStore;
+export { useColorStore };

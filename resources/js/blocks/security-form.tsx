@@ -5,9 +5,9 @@ import { Button } from "@narsil-cms/components/button";
 import { DialogClose } from "@narsil-cms/components/dialog";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Section,
   SectionContent,
   SectionHeader,
+  SectionRoot,
   SectionTitle,
 } from "@narsil-cms/components/section";
 import { SeparatorRoot } from "@narsil-cms/components/separator";
@@ -24,16 +24,16 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
 
   return (
     <>
-      <Section>
+      <SectionRoot>
         <SectionHeader className="border-b">
           <SectionTitle level="h2">{trans("ui.security")}</SectionTitle>
         </SectionHeader>
         <SectionContent>
           <TwoFactorForm form={twoFactorForm} />
         </SectionContent>
-      </Section>
+      </SectionRoot>
       <SeparatorRoot />
-      <Section>
+      <SectionRoot>
         <SectionHeader className="border-b">
           <SectionTitle level="h2">{trans("ui.sessions")}</SectionTitle>
         </SectionHeader>
@@ -79,7 +79,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
             </Button>
           </DialogClose>
         </SectionContent>
-      </Section>
+      </SectionRoot>
     </>
   );
 }

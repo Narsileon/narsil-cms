@@ -37,7 +37,7 @@ type DataTableStoreActions = {
   setSorting: (sorting: SortingState) => void;
 };
 
-export type DataTableStoreType = DataTableStoreState & DataTableStoreActions;
+type DataTableStoreType = DataTableStoreState & DataTableStoreActions;
 
 type CreateDataTableStoreProps = {
   id: string;
@@ -130,4 +130,6 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
     ),
   );
 
-export default useDataTableStore;
+export { useDataTableStore };
+
+export type { DataTableStoreType };

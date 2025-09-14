@@ -17,9 +17,9 @@ import {
 } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Section,
   SectionContent,
   SectionHeader,
+  SectionRoot,
   SectionTitle,
 } from "@narsil-cms/components/section";
 import {
@@ -29,12 +29,12 @@ import {
   TabsTrigger,
 } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
-import { useModalStore, type ModalState } from "@narsil-cms/stores/modal-store";
+import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import { type Block, type FormType } from "@narsil-cms/types";
 
 type FormProps = FormType & {
   data: Record<string, unknown>;
-  modal?: ModalState;
+  modal?: ModalType;
 };
 
 function ResourceForm({
@@ -198,7 +198,7 @@ function ResourceForm({
               </DialogFooter>
             </>
           ) : (
-            <Section className="p-4">
+            <SectionRoot className="p-4">
               <SectionHeader>
                 <SectionTitle level="h1" variant="h4">
                   {title}
@@ -231,7 +231,7 @@ function ResourceForm({
                   </div>
                 ) : null}
               </SectionContent>
-            </Section>
+            </SectionRoot>
           )}
         </FormRoot>
       )}

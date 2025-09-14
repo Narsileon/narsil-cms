@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/sonner
+// https://sonner.emilkowal.ski/
 
 import ToasterRoot from "./toaster-root";
 

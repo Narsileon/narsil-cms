@@ -8,9 +8,9 @@ import { Card, CardContent } from "@narsil-cms/components/card";
 import { Container } from "@narsil-cms/components/container";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
-  Section,
   SectionContent,
   SectionHeader,
+  SectionRoot,
   SectionTitle,
 } from "@narsil-cms/components/section";
 
@@ -34,7 +34,7 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
 
   return (
     <Container className="gap-6" asChild={true} variant="centered">
-      <Section>
+      <SectionRoot>
         <SectionHeader>
           <SectionTitle level="h1" variant="h4">
             {title}
@@ -53,7 +53,7 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
             </CardContent>
           </Card>
         </SectionContent>
-      </Section>
+      </SectionRoot>
     </Container>
   );
 }
