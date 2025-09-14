@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
+import TwoFactorForm from "@narsil-cms/blocks/two-factor-form";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import { DialogClose } from "@narsil-cms/components/dialog";
 import { useLabels } from "@narsil-cms/components/labels";
@@ -12,8 +13,6 @@ import {
 } from "@narsil-cms/components/section";
 import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { type FormType } from "@narsil-cms/types";
-
-import TwoFactorForm from "./two-factor-form";
 
 type SecurityFormProps = {
   twoFactorForm: FormType;

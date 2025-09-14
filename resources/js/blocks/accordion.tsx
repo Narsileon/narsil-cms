@@ -3,7 +3,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionHeader,
-  AccordionSingle,
+  AccordionRoot,
 } from "@narsil-cms/components/accordion";
 import { HeadingRoot } from "@narsil-cms/components/heading";
 import { Icon } from "@narsil-cms/components/icon";
@@ -14,13 +14,13 @@ type AccordionElement = {
   content: React.ReactNode;
 };
 
-type AccordionProps = React.ComponentProps<typeof AccordionSingle> & {
+type AccordionProps = React.ComponentProps<typeof AccordionRoot> & {
   elements: AccordionElement[];
 };
 
 function Accordion({ elements, ...props }: AccordionProps) {
   return (
-    <AccordionSingle {...props}>
+    <AccordionRoot {...props}>
       {elements.map((element) => (
         <AccordionItem value={element.id} key={element.id}>
           <AccordionHeader asChild>
@@ -39,7 +39,7 @@ function Accordion({ elements, ...props }: AccordionProps) {
           <AccordionContent>{element.content}</AccordionContent>
         </AccordionItem>
       ))}
-    </AccordionSingle>
+    </AccordionRoot>
   );
 }
 

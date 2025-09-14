@@ -4,12 +4,11 @@ import {
   type VisibilityState,
 } from "@tanstack/react-table";
 
-import { type IconName } from "@narsil-cms/plugins/icons";
-
 import {
   LaravelPaginationLinks,
   LaravelPaginationMeta,
-} from "./blocks/pagination";
+} from "@narsil-cms/blocks/pagination";
+import { type IconName } from "@narsil-cms/plugins/icons";
 
 export type Block = {
   elements?: HasElement[];

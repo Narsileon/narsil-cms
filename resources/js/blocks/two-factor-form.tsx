@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
+import Switch from "@narsil-cms/blocks/switch";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   Card,
@@ -23,8 +24,6 @@ import { LabelRoot } from "@narsil-cms/components/label";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types";
-
-import Switch from "./switch";
 
 type TwoFactorFormProps = {
   form: FormType;
