@@ -1,23 +1,28 @@
+import { type VariantProps } from "class-variance-authority";
 import { Separator } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SeparatorRootProps = React.ComponentProps<typeof Separator.Root> & {};
+import separatorRootVariants from "./separator-root-variants";
+
+type SeparatorRootProps = React.ComponentProps<typeof Separator.Root> &
+  VariantProps<typeof separatorRootVariants> & {};
 
 function SeparatorRoot({
   className,
   decorative = true,
   orientation = "horizontal",
+  variant = "default",
   ...props
 }: SeparatorRootProps) {
   return (
     <Separator.Root
       data-slot="separator-root"
       className={cn(
-        "shrink-0 bg-border",
-        "data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full",
-        "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-        className,
+        separatorRootVariants({
+          className: className,
+          variant: variant,
+        }),
       )}
       decorative={decorative}
       orientation={orientation}

@@ -1,5 +1,6 @@
 import { DropdownMenu } from "radix-ui";
 
+import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuSeparatorProps = React.ComponentProps<
@@ -13,7 +14,7 @@ function DropdownMenuSeparator({
   return (
     <DropdownMenu.Separator
       data-slot="dropdown-menu-separator"
-      className={cn("-mx-1 my-1 h-px bg-border", className)}
+      className={cn(separatorRootVariants({ variant: "menu" }), className)}
       {...props}
     />
   );

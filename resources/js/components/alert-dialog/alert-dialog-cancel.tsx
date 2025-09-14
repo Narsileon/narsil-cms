@@ -12,9 +12,9 @@ function AlertDialogCancel({ className, ...props }: AlertDialogCancelProps) {
     <AlertDialog.Cancel
       className={cn(
         buttonRootVariants({
+          className: className,
           variant: "outline",
         }),
-        className,
       )}
       {...props}
     />

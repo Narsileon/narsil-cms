@@ -26,12 +26,12 @@ function PaginationLink({
       data-active={active}
       className={cn(
         buttonRootVariants({
+          className: className,
           size: size,
           variant: "outline",
         }),
         active && "bg-accent dark:bg-accent",
         disabled && "pointer-events-none opacity-50",
-        className,
       )}
       aria-current={active ? "page" : undefined}
       {...props}

@@ -70,10 +70,10 @@ function SidebarMenuButton({
       data-size={size}
       className={cn(
         sidebarMenuButtonVariants({
+          className: className,
           size: size,
           variant: variant,
         }),
-        className,
       )}
       {...props}
     />

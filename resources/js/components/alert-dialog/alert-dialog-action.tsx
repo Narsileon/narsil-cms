@@ -12,9 +12,9 @@ function AlertDialogAction({ className, ...props }: AlertDialogActionProps) {
     <AlertDialog.Action
       className={cn(
         buttonRootVariants({
+          className: className,
           variant: "default",
         }),
-        className,
       )}
       {...props}
     />

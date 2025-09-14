@@ -19,7 +19,12 @@ function BadgeRoot({
   return (
     <Comp
       data-slot="badge"
-      className={cn(badgeRootVariants({ variant }), className)}
+      className={cn(
+        badgeRootVariants({
+          className: className,
+          variant: variant,
+        }),
+      )}
       {...props}
     />
   );

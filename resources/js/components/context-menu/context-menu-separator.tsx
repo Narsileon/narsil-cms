@@ -1,5 +1,6 @@
 import { ContextMenu } from "radix-ui";
 
+import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
 type ContextMenuSeparatorProps = React.ComponentProps<
@@ -13,7 +14,7 @@ function ContextMenuSeparator({
   return (
     <ContextMenu.Separator
       data-slot="context-menu-separator"
-      className={cn("-mx-1 my-1 h-px bg-border", className)}
+      className={cn(separatorRootVariants({ variant: "menu" }), className)}
       {...props}
     />
   );
