@@ -8,7 +8,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@narsil-cms/components/sidebar";
-import { Toaster } from "@narsil-cms/components/toaster";
+import { ToasterRoot } from "@narsil-cms/components/toaster";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import useColorStore from "@narsil-cms/stores/color-store";
@@ -63,7 +63,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
         <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
           <ModalRenderer container={mainRef.current} />
           {children}
-          <Toaster />
+          <ToasterRoot />
         </main>
       </SidebarInset>
     </SidebarProvider>

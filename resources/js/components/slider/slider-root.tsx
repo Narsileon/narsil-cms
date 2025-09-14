@@ -7,9 +7,9 @@ type SliderRootProps = React.ComponentProps<typeof Slider.Root> & {};
 function SliderRoot({
   className,
   defaultValue,
-  value,
   min = 0,
   max = 100,
+  value,
   ...props
 }: SliderRootProps) {
   return (

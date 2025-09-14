@@ -1,5 +1,5 @@
 // https://ui.shadcn.com/docs/components/textarea
 
-import Textarea from "./textarea";
+import TextareaRoot from "./textarea-root";
 
-export { Textarea };
+export { TextareaRoot };

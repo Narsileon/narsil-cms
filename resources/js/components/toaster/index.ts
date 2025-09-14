@@ -1,5 +1,5 @@
 // https://ui.shadcn.com/docs/components/sonner
 
-import Toaster from "./toaster";
+import ToasterRoot from "./toaster-root";
 
-export { Toaster };
+export { ToasterRoot };

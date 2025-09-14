@@ -1,17 +1,16 @@
-import { Toaster as Sonner } from "sonner";
+import { Toaster } from "sonner";
 
 import { cn } from "@narsil-cms/lib/utils";
-import useThemeStore, { type Theme } from "@narsil-cms/stores/theme-store";
+import useThemeStore from "@narsil-cms/stores/theme-store";
 
-type ToasterProps = React.ComponentProps<typeof Sonner> & {
-  theme?: Theme;
-};
+type ToasterRootProps = React.ComponentProps<typeof Toaster> & {};
 
-function Toaster({ ...props }: ToasterProps) {
+function ToasterRoot({ ...props }: ToasterRootProps) {
   const { theme } = useThemeStore();
 
   return (
-    <Sonner
+    <Toaster
+      data-slot="toaster-root"
       className="toaster group"
       theme={theme}
       toastOptions={{
@@ -37,4 +36,4 @@ function Toaster({ ...props }: ToasterProps) {
   );
 }
 
-export default Toaster;
+export default ToasterRoot;
