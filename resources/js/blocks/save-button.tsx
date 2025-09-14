@@ -14,7 +14,7 @@ import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { SeparatorRoot } from "@narsil-cms/components/separator";
-import { Shortcut } from "@narsil-cms/components/shortcut";
+import { ShortcutRoot } from "@narsil-cms/components/shortcut";
 import { cn } from "@narsil-cms/lib/utils";
 import { type RouteNames } from "@narsil-cms/types";
 
@@ -145,13 +145,13 @@ function SaveButton({
           <DropdownMenuItem onClick={saveAndContinue}>
             <Icon name="save-and-continue" />
             {`${submitLabel} & ${trans("ui.continue")}`}
-            <Shortcut>Ctrl+S</Shortcut>
+            <ShortcutRoot>Ctrl+S</ShortcutRoot>
           </DropdownMenuItem>
           {routes?.create ? (
             <DropdownMenuItem onClick={saveAndAdd}>
               <Icon name="save-and-add" />
               {`${submitLabel} & ${trans("ui.add_another")}`}
-              <Shortcut>Ctrl+Shift+S</Shortcut>
+              <ShortcutRoot>Ctrl+Shift+S</ShortcutRoot>
             </DropdownMenuItem>
           ) : null}
           {routes?.store && data?.id ? (
@@ -160,7 +160,7 @@ function SaveButton({
               <DropdownMenuItem onClick={saveAsNew}>
                 <Icon name="plus" />
                 {trans("ui.save_as_new")}
-                <Shortcut>Ctrl+D</Shortcut>
+                <ShortcutRoot>Ctrl+D</ShortcutRoot>
               </DropdownMenuItem>
             </>
           ) : null}
@@ -170,7 +170,7 @@ function SaveButton({
               <DropdownMenuItem onClick={destroy}>
                 <Icon name="trash" />
                 {trans("ui.delete")}
-                <Shortcut>Ctrl+X</Shortcut>
+                <ShortcutRoot>Ctrl+X</ShortcutRoot>
               </DropdownMenuItem>
             </>
           ) : null}

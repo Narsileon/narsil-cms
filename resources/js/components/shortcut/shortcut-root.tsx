@@ -1,11 +1,11 @@
 import { cn } from "@narsil-cms/lib/utils";
 
-type ShortcutProps = React.ComponentProps<"span"> & {};
+type ShortcutRootProps = React.ComponentProps<"span"> & {};
 
-function Shortcut({ className, ...props }: ShortcutProps) {
+function ShortcutRoot({ className, ...props }: ShortcutRootProps) {
   return (
     <span
-      data-slot="command-shortcut"
+      data-slot="shortcut-root"
       className={cn(
         "ml-auto text-xs tracking-widest text-muted-foreground",
         className,
@@ -15,4 +15,4 @@ function Shortcut({ className, ...props }: ShortcutProps) {
   );
 }
 
-export default Shortcut;
+export default ShortcutRoot;

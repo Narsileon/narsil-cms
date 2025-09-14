@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/label
+// https://www.radix-ui.com/primitives/docs/components/label
 
 import LabelRoot from "./label-root";
 

@@ -1,3 +1,3 @@
-import Shortcut from "./shortcut";
+import ShortcutRoot from "./shortcut-root";
 
-export { Shortcut };
+export { ShortcutRoot };
