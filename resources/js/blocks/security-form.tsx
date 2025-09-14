@@ -9,10 +9,10 @@ import {
   SectionContent,
   SectionHeader,
   SectionRoot,
-  SectionTitle,
 } from "@narsil-cms/components/section";
 import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { type FormType } from "@narsil-cms/types";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type SecurityFormProps = {
   twoFactorForm: FormType;
@@ -25,7 +25,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
     <>
       <SectionRoot>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">{trans("ui.security")}</SectionTitle>
+          <HeadingRoot level="h2">{trans("ui.security")}</HeadingRoot>
         </SectionHeader>
         <SectionContent>
           <TwoFactorForm form={twoFactorForm} />
@@ -34,7 +34,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
       <SeparatorRoot />
       <SectionRoot>
         <SectionHeader className="border-b">
-          <SectionTitle level="h2">{trans("ui.sessions")}</SectionTitle>
+          <HeadingRoot level="h2">{trans("ui.sessions")}</HeadingRoot>
         </SectionHeader>
         <SectionContent className="grid gap-4 text-sm">
           <p>{trans("sessions.sign_out_current_description")}</p>

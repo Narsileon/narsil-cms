@@ -20,7 +20,6 @@ import {
   SectionContent,
   SectionHeader,
   SectionRoot,
-  SectionTitle,
 } from "@narsil-cms/components/section";
 import {
   TabsContent,
@@ -31,6 +30,7 @@ import {
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import { type Block, type FormType } from "@narsil-cms/types";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type FormProps = FormType & {
   data: Record<string, unknown>;
@@ -200,9 +200,9 @@ function ResourceForm({
           ) : (
             <SectionRoot className="p-4">
               <SectionHeader>
-                <SectionTitle level="h1" variant="h4">
+                <HeadingRoot level="h1" variant="h4">
                   {title}
-                </SectionTitle>
+                </HeadingRoot>
                 <SaveButton
                   routes={routes}
                   submitLabel={

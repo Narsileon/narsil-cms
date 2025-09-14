@@ -22,9 +22,9 @@ import {
   SectionContent,
   SectionHeader,
   SectionRoot,
-  SectionTitle,
 } from "@narsil-cms/components/section";
 import { type FormType } from "@narsil-cms/types";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type FortifyFormProps = FormType & {
   data: Record<string, unknown>;
@@ -57,9 +57,9 @@ function FortifyForm({
     <ContainerRoot className="gap-6" asChild={true} variant="centered">
       <SectionRoot>
         <SectionHeader>
-          <SectionTitle level="h1" variant="h4">
+          <HeadingRoot level="h1" variant="h4">
             {title}
-          </SectionTitle>
+          </HeadingRoot>
         </SectionHeader>
         <SectionContent>
           <Card className="max-w-md">

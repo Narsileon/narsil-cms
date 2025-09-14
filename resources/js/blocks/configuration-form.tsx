@@ -11,7 +11,6 @@ import {
   SectionContent,
   SectionHeader,
   SectionRoot,
-  SectionTitle,
 } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { getSelectOption } from "@narsil-cms/lib/utils";
@@ -20,6 +19,7 @@ import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore, type Theme } from "@narsil-cms/stores/theme-store";
 import { type FormType } from "@narsil-cms/types";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type ConfigurationFormProps = {
   form: FormType;
@@ -67,7 +67,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   return (
     <SectionRoot>
       <SectionHeader className="border-b">
-        <SectionTitle level="h2">{trans("ui.personalization")}</SectionTitle>
+        <HeadingRoot level="h2">{trans("ui.personalization")}</HeadingRoot>
       </SectionHeader>
       <SectionContent>
         <FormProvider

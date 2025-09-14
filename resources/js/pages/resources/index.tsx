@@ -25,7 +25,6 @@ import {
   SectionContent,
   SectionHeader,
   SectionRoot,
-  SectionTitle,
 } from "@narsil-cms/components/section";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
@@ -33,6 +32,7 @@ import {
   type DataTableCollection,
   type DataTableFilterCollection,
 } from "@narsil-cms/types";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type ResourceIndexProps = {
   collection: DataTableCollection;
@@ -136,9 +136,9 @@ function ResourceIndex({
         return (
           <SectionRoot className="h-full gap-4 p-4">
             <SectionHeader className="flex items-center justify-between gap-2">
-              <SectionTitle level="h2" variant="h4" className="min-w-1/5">
+              <HeadingRoot level="h2" variant="h4" className="min-w-1/5">
                 {title}
-              </SectionTitle>
+              </HeadingRoot>
               <DataTableInput className="grow" />
               <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
                 <DataTableVisibilityDropdown>

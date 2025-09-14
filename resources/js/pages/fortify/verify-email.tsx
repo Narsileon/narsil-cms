@@ -11,8 +11,8 @@ import {
   SectionContent,
   SectionHeader,
   SectionRoot,
-  SectionTitle,
 } from "@narsil-cms/components/section";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type VerifyEmailProps = {
   status: string;
@@ -36,9 +36,9 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
     <ContainerRoot className="gap-6" asChild={true} variant="centered">
       <SectionRoot>
         <SectionHeader>
-          <SectionTitle level="h1" variant="h4">
+          <HeadingRoot level="h1" variant="h4">
             {title}
-          </SectionTitle>
+          </HeadingRoot>
         </SectionHeader>
         <SectionContent>
           <Card>
