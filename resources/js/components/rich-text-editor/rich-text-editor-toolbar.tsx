@@ -1,7 +1,7 @@
 import { Editor } from "@tiptap/react";
 
 import { Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -88,7 +88,7 @@ function RichTextEditorToolbar({
           <DropdownMenuRoot>
             <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
               <DropdownMenuTrigger asChild={true}>
-                <Button
+                <ButtonRoot
                   className="w-8 min-w-8"
                   aria-label={trans(
                     `accessibility.toggle_heading_menu`,
@@ -98,7 +98,7 @@ function RichTextEditorToolbar({
                   variant="ghost"
                 >
                   <Icon name="heading" />
-                </Button>
+                </ButtonRoot>
               </DropdownMenuTrigger>
             </Tooltip>
             <DropdownMenuContent className="min-w-9">

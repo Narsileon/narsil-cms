@@ -3,7 +3,7 @@ import { get, set } from "lodash";
 import { useState } from "react";
 
 import { Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DialogBody,
   DialogContent,
@@ -97,10 +97,10 @@ function SortableItemForm({
           })}
         </DialogBody>
         <DialogFooter className="border-t">
-          <Button variant="ghost" onClick={() => onOpenChange(false)}>
+          <ButtonRoot variant="ghost" onClick={() => onOpenChange(false)}>
             {trans("ui.cancel")}
-          </Button>
-          <Button
+          </ButtonRoot>
+          <ButtonRoot
             onClick={() => {
               const oldUniqueIdentifier = get(item, optionValue ?? "value");
               const newUniqueIdentifier = get(data, optionValue ?? "value");
@@ -119,7 +119,7 @@ function SortableItemForm({
             }}
           >
             {trans("ui.save")}
-          </Button>
+          </ButtonRoot>
         </DialogFooter>
       </DialogContent>
     </DialogRoot>

@@ -1,3 +1,3 @@
-import Container from "./container";
+import ContainerRoot from "./container-root";
 
-export { Container };
+export { ContainerRoot };

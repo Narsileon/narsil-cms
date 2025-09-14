@@ -1,7 +1,7 @@
 import { uniqueId } from "lodash";
 
 import { Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -26,13 +26,13 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
     <DropdownMenuRoot>
       <Tooltip tooltip={trans("ui.add")}>
         <DropdownMenuTrigger asChild={true} {...props}>
-          <Button
+          <ButtonRoot
             className="size-7 rounded-full hover:bg-secondary"
             size="icon"
             variant="secondary"
           >
             <Icon name="plus" />
-          </Button>
+          </ButtonRoot>
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent>

@@ -1,19 +1,19 @@
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SortableHandleProps = React.ComponentProps<typeof Button> & {};
+type SortableHandleProps = React.ComponentProps<typeof ButtonRoot> & {};
 
 function SortableHandle({ className, ...props }: SortableHandleProps) {
   return (
-    <Button
+    <ButtonRoot
       className={cn("h-9 w-7 cursor-grab rounded-none bg-accent/85", className)}
       size="icon"
       variant="ghost"
       {...props}
     >
       <Icon name="grip-vertical" />
-    </Button>
+    </ButtonRoot>
   );
 }
 

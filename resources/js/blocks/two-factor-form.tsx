@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   Card,
   CardContent,
@@ -136,7 +136,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
           <Card>
             <CardHeader className="grid-cols-2 items-center border-b">
               <CardTitle>{trans("two-factor.recovery_codes_title")}</CardTitle>
-              <Button
+              <ButtonRoot
                 className="place-self-end"
                 variant="outline"
                 size="icon"
@@ -147,7 +147,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                 }}
               >
                 <Icon name="copy" />
-              </Button>
+              </ButtonRoot>
             </CardHeader>
             <CardContent className="gap-4 text-sm">
               <p>{trans("two-factor.recovery_codes_description")}</p>

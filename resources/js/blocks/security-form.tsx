@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { DialogClose } from "@narsil-cms/components/dialog";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -40,7 +40,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
         <SectionContent className="grid gap-4 text-sm">
           <p>{trans("sessions.sign_out_current_description")}</p>
           <DialogClose asChild={true}>
-            <Button asChild={true} variant="outline">
+            <ButtonRoot asChild={true} variant="outline">
               <Link
                 method="delete"
                 href={route("sessions.delete", {
@@ -49,11 +49,11 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               >
                 {trans("sessions.sign_out_current")}
               </Link>
-            </Button>
+            </ButtonRoot>
           </DialogClose>
           <SeparatorRoot />
           <p>{trans("sessions.sign_out_elsewhere_description")}</p>
-          <Button asChild={true} variant="outline">
+          <ButtonRoot asChild={true} variant="outline">
             <Link
               method="delete"
               href={route("sessions.delete", {
@@ -63,11 +63,11 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
             >
               {trans("sessions.sign_out_elsewhere")}
             </Link>
-          </Button>
+          </ButtonRoot>
           <SeparatorRoot />
           <p>{trans("sessions.sign_out_everywhere_description")}</p>
           <DialogClose asChild={true}>
-            <Button asChild={true} variant="outline">
+            <ButtonRoot asChild={true} variant="outline">
               <Link
                 method="delete"
                 href={route("sessions.delete", {
@@ -76,7 +76,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               >
                 {trans("sessions.sign_out_everywhere")}
               </Link>
-            </Button>
+            </ButtonRoot>
           </DialogClose>
         </SectionContent>
       </SectionRoot>

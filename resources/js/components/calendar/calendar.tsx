@@ -1,13 +1,13 @@
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 
-import { Button, buttonVariants } from "@narsil-cms/components/button";
+import { ButtonRoot, buttonRootVariants } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 import CalendarDayButton from "./calendar-day-button";
 
 type CalendarProps = React.ComponentProps<typeof DayPicker> & {
-  buttonVariant?: React.ComponentProps<typeof Button>["variant"];
+  buttonVariant?: React.ComponentProps<typeof ButtonRoot>["variant"];
 };
 
 function Calendar({
@@ -34,14 +34,14 @@ function Calendar({
       )}
       classNames={{
         button_next: cn(
-          buttonVariants({
+          buttonRootVariants({
             variant: buttonVariant,
           }),
           "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",
           defaultClassNames.button_next,
         ),
         button_previous: cn(
-          buttonVariants({
+          buttonRootVariants({
             variant: buttonVariant,
           }),
           "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",

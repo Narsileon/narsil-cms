@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { DayButton, getDefaultClassNames } from "react-day-picker";
 
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 
 type CalendarDayButtonProps = React.ComponentProps<typeof DayButton> & {};
@@ -21,7 +21,7 @@ function CalendarDayButton({
   }, [modifiers.focused]);
 
   return (
-    <Button
+    <ButtonRoot
       ref={ref}
       className={cn(
         "flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal",

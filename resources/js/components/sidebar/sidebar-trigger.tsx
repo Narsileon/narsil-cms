@@ -1,5 +1,5 @@
 import { Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
@@ -7,7 +7,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import useSidebar from "./sidebar-context";
 
-type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};
+type SidebarTriggerProps = React.ComponentProps<typeof ButtonRoot> & {};
 
 function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
   const { trans } = useLabels();
@@ -16,7 +16,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
 
   return (
     <Tooltip tooltip={trans("accessibility.toggle_sidebar")}>
-      <Button
+      <ButtonRoot
         data-slot="sidebar-trigger"
         data-sidebar="trigger"
         className={cn("size-8", className)}
@@ -33,7 +33,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
         <VisuallyHiddenRoot>
           {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
         </VisuallyHiddenRoot>
-      </Button>
+      </ButtonRoot>
     </Tooltip>
   );
 }

@@ -3,9 +3,9 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { Card, CardContent } from "@narsil-cms/components/card";
-import { Container } from "@narsil-cms/components/container";
+import { ContainerRoot } from "@narsil-cms/components/container";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -33,7 +33,7 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
   }, [status]);
 
   return (
-    <Container className="gap-6" asChild={true} variant="centered">
+    <ContainerRoot className="gap-6" asChild={true} variant="centered">
       <SectionRoot>
         <SectionHeader>
           <SectionTitle level="h1" variant="h4">
@@ -45,16 +45,16 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
             <CardContent>
               <p>{trans("verify-email.instruction")}</p>
               <p>{trans("verify-email.prompt")}</p>
-              <Button asChild={true}>
+              <ButtonRoot asChild={true}>
                 <Link href={route("verification.send")} method="post">
                   {trans("verify-email.send_again")}
                 </Link>
-              </Button>
+              </ButtonRoot>
             </CardContent>
           </Card>
         </SectionContent>
       </SectionRoot>
-    </Container>
+    </ContainerRoot>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { type SelectOption } from "@narsil-cms/types";
 
@@ -29,7 +29,7 @@ function SortableItemWidth({
       <ul className="flex h-6 flex-row divide-x divide-input overflow-hidden rounded-md border">
         {options.map((option, index) => (
           <li key={index}>
-            <Button
+            <ButtonRoot
               className={cn(
                 "w-2.5 rounded-none border-none p-0",
                 width >= option.value && "bg-accent text-accent-foreground",

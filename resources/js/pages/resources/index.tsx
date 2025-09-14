@@ -3,7 +3,7 @@ import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
 import { Checkbox, DataTable, Pagination, Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DataTableFilter,
   DataTableFilterBadge,
@@ -142,7 +142,7 @@ function ResourceIndex({
               <DataTableInput className="grow" />
               <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
                 <DataTableVisibilityDropdown>
-                  <Button
+                  <ButtonRoot
                     aria-label={columnsLabel}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
@@ -151,12 +151,12 @@ function ResourceIndex({
                     <span className="sr-only sm:not-sr-only">
                       {columnsLabel}
                     </span>
-                  </Button>
+                  </ButtonRoot>
                 </DataTableVisibilityDropdown>
               </Tooltip>
               <Tooltip hidden={isDesktop} tooltip={filterLabel}>
                 <DataTableFilterDropdown>
-                  <Button
+                  <ButtonRoot
                     aria-label={filterLabel}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
@@ -165,12 +165,12 @@ function ResourceIndex({
                     <span className="sr-only sm:not-sr-only">
                       {filterLabel}
                     </span>
-                  </Button>
+                  </ButtonRoot>
                 </DataTableFilterDropdown>
               </Tooltip>
               {collection.meta.routes.create ? (
                 <Tooltip hidden={isDesktop} tooltip={createLabel}>
-                  <Button
+                  <ButtonRoot
                     asChild={true}
                     aria-label={createLabel}
                     size={isDesktop ? "default" : "icon"}
@@ -187,7 +187,7 @@ function ResourceIndex({
                         {createLabel}
                       </span>
                     </Link>
-                  </Button>
+                  </ButtonRoot>
                 </Tooltip>
               ) : null}
             </SectionHeader>

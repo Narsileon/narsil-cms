@@ -1,4 +1,4 @@
-import { Container } from "@narsil-cms/components/container";
+import { ContainerRoot } from "@narsil-cms/components/container";
 import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type ErrorProps = {
@@ -9,14 +9,14 @@ type ErrorProps = {
 const Error = ({ description, title }: ErrorProps) => {
   return (
     <>
-      <Container className="flex h-full items-center justify-center">
+      <ContainerRoot className="flex h-full items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-4">
           <HeadingRoot className="text-center" level="h1" variant="h3">
             {title}
           </HeadingRoot>
           <div className="text-center text-xl">{description}</div>
         </div>
-      </Container>
+      </ContainerRoot>
     </>
   );
 };

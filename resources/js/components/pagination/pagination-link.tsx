@@ -1,10 +1,10 @@
 import { Slot } from "radix-ui";
 
-import { Button, buttonVariants } from "@narsil-cms/components/button";
+import { ButtonRoot, buttonRootVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 
 type PaginationLinkProps = React.ComponentProps<"a"> &
-  Pick<React.ComponentProps<typeof Button>, "size"> & {
+  Pick<React.ComponentProps<typeof ButtonRoot>, "size"> & {
     asChild?: boolean;
     active?: boolean;
     disabled?: boolean;
@@ -25,7 +25,7 @@ function PaginationLink({
       data-slot="pagination-link"
       data-active={active}
       className={cn(
-        buttonVariants({
+        buttonRootVariants({
           size: size,
           variant: "outline",
         }),

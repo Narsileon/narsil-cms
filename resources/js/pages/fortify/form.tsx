@@ -4,9 +4,9 @@ import { toast } from "sonner";
 import { route } from "ziggy-js";
 
 import { InputPassword } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
-import { Container } from "@narsil-cms/components/container";
+import { ContainerRoot } from "@narsil-cms/components/container";
 import {
   FormField,
   FormFieldRenderer,
@@ -54,7 +54,7 @@ function FortifyForm({
   }, [status]);
 
   return (
-    <Container className="gap-6" asChild={true} variant="centered">
+    <ContainerRoot className="gap-6" asChild={true} variant="centered">
       <SectionRoot>
         <SectionHeader>
           <SectionTitle level="h1" variant="h4">
@@ -86,7 +86,7 @@ function FortifyForm({
                                   <FormLabel required={true}>
                                     {element.name}
                                   </FormLabel>
-                                  <Button
+                                  <ButtonRoot
                                     className="font-normal"
                                     size="link"
                                     variant="link"
@@ -94,7 +94,7 @@ function FortifyForm({
                                     <Link href={route("password.request")}>
                                       {trans("passwords.link")}
                                     </Link>
-                                  </Button>
+                                  </ButtonRoot>
                                 </div>
                                 <InputPassword
                                   {...(element.settings ?? {})}
@@ -124,15 +124,19 @@ function FortifyForm({
             </CardContent>
             {id === "forgot-password-form" ? (
               <CardFooter className="border-t px-6">
-                <Button className="w-full" asChild={true} variant="secondary">
+                <ButtonRoot
+                  className="w-full"
+                  asChild={true}
+                  variant="secondary"
+                >
                   <Link href={route("login")}>{trans("ui.back")}</Link>
-                </Button>
+                </ButtonRoot>
               </CardFooter>
             ) : null}
           </Card>
         </SectionContent>
       </SectionRoot>
-    </Container>
+    </ContainerRoot>
   );
 }
 

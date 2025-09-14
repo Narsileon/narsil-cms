@@ -1,4 +1,3 @@
-import { Button } from "@narsil-cms/components/button";
 import {
   SelectContent,
   SelectItem,
@@ -9,12 +8,13 @@ import {
 
 import useDataTable from "./data-table-context";
 
-type DataTableSizeProps = React.ComponentProps<typeof Button> & {
+type DataTableSizeProps = React.ComponentProps<typeof SelectTrigger> & {
   options?: string[];
 };
 
 function DataTableSize({
   options = ["10", "25", "50", "100"],
+  ...props
 }: DataTableSizeProps) {
   const { dataTableStore } = useDataTable();
 
@@ -23,7 +23,7 @@ function DataTableSize({
       value={dataTableStore.pageSize.toString()}
       onValueChange={(value) => dataTableStore.setPageSize(Number(value))}
     >
-      <SelectTrigger>
+      <SelectTrigger {...props}>
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

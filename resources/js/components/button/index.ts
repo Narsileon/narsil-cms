@@ -1,6 +1,6 @@
 // https://ui.shadcn.com/docs/components/button
 
-import Button from "./button";
-import buttonVariants from "./button-variants";
+import ButtonRoot from "./button-root";
+import buttonRootVariants from "./button-root-variants";
 
-export { Button, buttonVariants };
+export { ButtonRoot, buttonRootVariants };

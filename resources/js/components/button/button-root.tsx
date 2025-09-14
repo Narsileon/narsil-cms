@@ -3,26 +3,27 @@ import { Slot } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-import buttonVariants from "./button-variants";
-type ButtonProps = React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
+import buttonRootVariants from "./button-root-variants";
+
+type ButtonRootProps = React.ComponentProps<"button"> &
+  VariantProps<typeof buttonRootVariants> & {
     asChild?: boolean;
   };
 
-function Button({
+function ButtonRoot({
   asChild = false,
   className,
   size,
   variant,
   ...props
-}: ButtonProps) {
+}: ButtonRootProps) {
   const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp
       data-slot="button"
       className={cn(
-        buttonVariants({
+        buttonRootVariants({
           className: className,
           size: size,
           variant: variant,
@@ -34,4 +35,4 @@ function Button({
   );
 }
 
-export default Button;
+export default ButtonRoot;

@@ -1,13 +1,13 @@
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 
 import useForm from "./form-context";
 
-type FormSubmitProps = React.ComponentProps<typeof Button> & {};
+type FormSubmitProps = React.ComponentProps<typeof ButtonRoot> & {};
 
 function FormSubmit({ ...props }: FormSubmitProps) {
   const { id } = useForm();
 
-  return <Button form={id} type="submit" {...props} />;
+  return <ButtonRoot form={id} type="submit" {...props} />;
 }
 
 export default FormSubmit;

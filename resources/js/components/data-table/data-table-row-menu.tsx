@@ -3,7 +3,7 @@ import { type Table } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
 import { Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -43,14 +43,14 @@ function DataTableRowMenu({
     <DropdownMenuRoot>
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
-          <Button
+          <ButtonRoot
             className="size-7 hover:bg-secondary"
             size="icon"
             variant="ghost"
             aria-label={trans("accessibility.toggle_row_menu")}
           >
             <Icon name="more-horizontal" />
-          </Button>
+          </ButtonRoot>
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent align="end">

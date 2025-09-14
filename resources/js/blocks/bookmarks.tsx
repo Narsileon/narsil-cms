@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
 import { Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   Card,
   CardContent,
@@ -97,13 +97,13 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
     <PopoverRoot open={open} onOpenChange={onOpenChange}>
       <Tooltip tooltip={trans("bookmarks.tooltip")}>
         <PopoverTrigger asChild={true} {...props}>
-          <Button
+          <ButtonRoot
             aria-label={trans("bookmarks.tooltip", "Toggle bookmarks menu")}
             size="icon"
             variant="ghost"
           >
             <Icon name="star" fill="currentColor" />
-          </Button>
+          </ButtonRoot>
         </PopoverTrigger>
       </Tooltip>
       <PopoverContent className="border-none p-0">
@@ -138,13 +138,13 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                   </FormRoot>
                 </CardContent>
                 <CardFooter className="justify-between border-t">
-                  <Button
+                  <ButtonRoot
                     size="sm"
                     variant="secondary"
                     onClick={() => setBookmark(null)}
                   >
                     {labels["ui.cancel"]}
-                  </Button>
+                  </ButtonRoot>
                   <FormSubmit size="sm">{form.submitLabel}</FormSubmit>
                 </CardFooter>
               </Card>
@@ -159,7 +159,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                   currentBookmark ? labels["ui.remove"] : labels["ui.add"]
                 }
               >
-                <Button
+                <ButtonRoot
                   className="-my-2 size-8"
                   size="icon"
                   variant="ghost"
@@ -176,7 +176,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                     name={"star"}
                     fill={currentBookmark ? "currentColor" : "none"}
                   />
-                </Button>
+                </ButtonRoot>
               </Tooltip>
             </CardHeader>
             <CardContent className="text-sm">
@@ -187,17 +187,17 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                       className="flex items-center justify-between"
                       key={bookmark.id}
                     >
-                      <Button
+                      <ButtonRoot
                         className="font-normal text-foreground"
                         size="link"
                         variant="link"
                         onClick={() => onOpenChange(false)}
                       >
                         <Link href={bookmark.url}>{bookmark.name}</Link>
-                      </Button>
+                      </ButtonRoot>
                       <div className="flex items-center justify-between gap-1">
                         <Tooltip tooltip={labels["ui.edit"]}>
-                          <Button
+                          <ButtonRoot
                             className="size-8"
                             size="icon"
                             variant="ghost"
@@ -206,10 +206,10 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                             }}
                           >
                             <Icon className="size-4" name="edit" />
-                          </Button>
+                          </ButtonRoot>
                         </Tooltip>
                         <Tooltip tooltip={labels["ui.remove"]}>
-                          <Button
+                          <ButtonRoot
                             className="size-8"
                             size="icon"
                             variant="ghost"
@@ -218,7 +218,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                             }}
                           >
                             <Icon className="size-4" name="star-off" />
-                          </Button>
+                          </ButtonRoot>
                         </Tooltip>
                       </div>
                     </li>

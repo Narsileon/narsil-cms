@@ -4,7 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 
 import { Tooltip } from "@narsil-cms/blocks";
-import { Button } from "@narsil-cms/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   Card,
   CardContent,
@@ -130,7 +130,7 @@ function SortableItem({
                     </CardTitle>
                   ) : null}
                   {collapsible ? (
-                    <Button
+                    <ButtonRoot
                       className="size-7"
                       size="icon"
                       variant="ghost"
@@ -140,7 +140,7 @@ function SortableItem({
                         className={cn("duration-300", open && "rotate-180")}
                         name="chevron-down"
                       />
-                    </Button>
+                    </ButtonRoot>
                   ) : null}
                 </div>
                 <div className="flex items-center justify-between gap-1 justify-self-end">
@@ -161,21 +161,25 @@ function SortableItem({
                       optionValue={optionValue}
                       onItemChange={onItemChange}
                     >
-                      <Button className="size-7" size="icon" variant="ghost">
+                      <ButtonRoot
+                        className="size-7"
+                        size="icon"
+                        variant="ghost"
+                      >
                         <Icon name="edit" />
-                      </Button>
+                      </ButtonRoot>
                     </SortableItemForm>
                   ) : null}
                   {onItemRemove ? (
                     <Tooltip tooltip={trans("ui.remove")}>
-                      <Button
+                      <ButtonRoot
                         className="size-7"
                         size="icon"
                         variant="ghost"
                         onClick={onItemRemove}
                       >
                         <Icon name="trash" />
-                      </Button>
+                      </ButtonRoot>
                     </Tooltip>
                   ) : null}
                 </div>
