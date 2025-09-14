@@ -1,10 +1,9 @@
 import { type VariantProps } from "class-variance-authority";
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 import buttonVariants from "./button-variants";
-
 type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
@@ -17,7 +16,7 @@ function Button({
   variant,
   ...props
 }: ButtonProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "button";
+  const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp

@@ -1,10 +1,10 @@
-import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { DropdownMenu } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuSubTriggerProps = React.ComponentProps<
-  typeof DropdownMenuPrimitive.SubTrigger
+  typeof DropdownMenu.SubTrigger
 > & {
   inset?: boolean;
 };
@@ -16,7 +16,7 @@ function DropdownMenuSubTrigger({
   ...props
 }: DropdownMenuSubTriggerProps) {
   return (
-    <DropdownMenuPrimitive.SubTrigger
+    <DropdownMenu.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
@@ -30,7 +30,7 @@ function DropdownMenuSubTrigger({
     >
       {children}
       <Icon className="ml-auto size-4" name="chevron-right" />
-    </DropdownMenuPrimitive.SubTrigger>
+    </DropdownMenu.SubTrigger>
   );
 }
 

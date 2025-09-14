@@ -1,12 +1,12 @@
-import { Command as CommandPrimitive } from "cmdk";
+import { Command } from "cmdk";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandItemProps = React.ComponentProps<typeof CommandPrimitive.Item> & {};
+type CommandItemProps = React.ComponentProps<typeof Command.Item> & {};
 
 function CommandItem({ className, ...props }: CommandItemProps) {
   return (
-    <CommandPrimitive.Item
+    <Command.Item
       data-slot="command-item"
       className={cn(
         "relative flex h-9 cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-hidden select-none",

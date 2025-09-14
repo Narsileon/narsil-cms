@@ -1,14 +1,14 @@
-import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
+import { NavigationMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type NavigationMenuItemProps = React.ComponentProps<
-  typeof NavigationMenuPrimitive.Item
+  typeof NavigationMenu.Item
 > & {};
 
 function NavigationMenuItem({ className, ...props }: NavigationMenuItemProps) {
   return (
-    <NavigationMenuPrimitive.Item
+    <NavigationMenu.Item
       data-slot="navigation-menu-item"
       className={cn("relative", className)}
       {...props}

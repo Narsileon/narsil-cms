@@ -1,11 +1,9 @@
-import { Menubar as MenubarPrimitive } from "radix-ui";
+import { Menubar } from "radix-ui";
 
-type MenubarPortalProps = React.ComponentProps<
-  typeof MenubarPrimitive.Portal
-> & {};
+type MenubarPortalProps = React.ComponentProps<typeof Menubar.Portal> & {};
 
 function MenubarPortal({ ...props }: MenubarPortalProps) {
-  return <MenubarPrimitive.Portal data-slot="menubar-portal" {...props} />;
+  return <Menubar.Portal data-slot="menubar-portal" {...props} />;
 }
 
 export default MenubarPortal;

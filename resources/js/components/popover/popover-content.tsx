@@ -1,11 +1,9 @@
-import { Popover as PopoverPrimitive } from "radix-ui";
+import { Popover } from "radix-ui";
 
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
 
-type PopoverContentProps = React.ComponentProps<
-  typeof PopoverPrimitive.Content
-> & {};
+type PopoverContentProps = React.ComponentProps<typeof Popover.Content> & {};
 
 function PopoverContent({
   children,
@@ -15,8 +13,8 @@ function PopoverContent({
   ...props
 }: PopoverContentProps) {
   return (
-    <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content
+    <Popover.Portal>
+      <Popover.Content
         data-slot="popover-content"
         align={align}
         sideOffset={sideOffset}
@@ -38,8 +36,8 @@ function PopoverContent({
           Popover
         </VisuallyHiddenRoot>
         {children}
-      </PopoverPrimitive.Content>
-    </PopoverPrimitive.Portal>
+      </Popover.Content>
+    </Popover.Portal>
   );
 }
 

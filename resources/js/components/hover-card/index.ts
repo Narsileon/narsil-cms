@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/hover-card
+// https://www.radix-ui.com/primitives/docs/components/hover-card
 
 import HoverCardContent from "./hover-card-content";
 import HoverCardPortal from "./hover-card-portal";

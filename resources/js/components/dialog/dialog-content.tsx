@@ -1,4 +1,4 @@
-import { Dialog as DialogPrimitive } from "radix-ui";
+import { Dialog } from "radix-ui";
 
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
@@ -7,7 +7,7 @@ import DialogCloseButton from "./dialog-close-button";
 import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
 
-type DialogContentProps = React.ComponentProps<typeof DialogPrimitive.Content> &
+type DialogContentProps = React.ComponentProps<typeof Dialog.Content> &
   Pick<React.ComponentProps<typeof DialogPortal>, "container"> & {
     showCloseButton?: boolean;
   };
@@ -22,7 +22,7 @@ function DialogContent({
   return (
     <DialogPortal data-slot="dialog-portal" container={container}>
       <DialogOverlay />
-      <DialogPrimitive.Content
+      <Dialog.Content
         data-slot="dialog-content"
         className={cn(
           "@container/dialog-content",
@@ -41,7 +41,7 @@ function DialogContent({
         {showCloseButton ? (
           <DialogCloseButton className="absolute top-5.5 right-5.5" />
         ) : null}
-      </DialogPrimitive.Content>
+      </Dialog.Content>
     </DialogPortal>
   );
 }

@@ -1,14 +1,12 @@
-import { Menubar as MenubarPrimitive } from "radix-ui";
+import { Menubar } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarTriggerProps = React.ComponentProps<
-  typeof MenubarPrimitive.Trigger
-> & {};
+type MenubarTriggerProps = React.ComponentProps<typeof Menubar.Trigger> & {};
 
 function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
   return (
-    <MenubarPrimitive.Trigger
+    <Menubar.Trigger
       data-slot="menubar-trigger"
       className={cn(
         "flex items-center rounded-md px-2 py-1 text-sm font-medium outline-hidden select-none",

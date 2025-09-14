@@ -1,11 +1,11 @@
-import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
+import { ScrollArea } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type ScrollAreaViewportProps = React.ComponentProps<
-  typeof ScrollAreaPrimitive.Viewport
+  typeof ScrollArea.Viewport
 > & {
-  orientation?: React.ComponentProps<typeof ScrollAreaPrimitive.Viewport>;
+  orientation?: React.ComponentProps<typeof ScrollArea.Viewport>;
 };
 
 const ScrollAreaViewport = ({
@@ -14,7 +14,7 @@ const ScrollAreaViewport = ({
   ...props
 }: ScrollAreaViewportProps) => {
   return (
-    <ScrollAreaPrimitive.Viewport
+    <ScrollArea.Viewport
       data-slot="scroll-area-viewport"
       className={cn(
         "size-full rounded-[inherit] transition-[color,box-shadow] outline-none",

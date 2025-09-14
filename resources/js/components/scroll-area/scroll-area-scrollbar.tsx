@@ -1,9 +1,9 @@
-import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
+import { ScrollArea } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type ScrollAreaScrollbarProp = React.ComponentProps<
-  typeof ScrollAreaPrimitive.ScrollAreaScrollbar
+  typeof ScrollArea.ScrollAreaScrollbar
 > & {};
 
 const ScrollAreaScrollBar = ({
@@ -12,7 +12,7 @@ const ScrollAreaScrollBar = ({
   ...props
 }: ScrollAreaScrollbarProp) => {
   return (
-    <ScrollAreaPrimitive.ScrollAreaScrollbar
+    <ScrollArea.ScrollAreaScrollbar
       data-slot="scroll-area-scrollbar"
       className={cn(
         "flex touch-none p-px transition-colors select-none",

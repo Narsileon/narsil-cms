@@ -1,13 +1,13 @@
-import { Select as SelectPrimitive } from "radix-ui";
+import { Select } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectItemProps = React.ComponentProps<typeof SelectPrimitive.Item> & {};
+type SelectItemProps = React.ComponentProps<typeof Select.Item> & {};
 
 function SelectItem({ children, className, ...props }: SelectItemProps) {
   return (
-    <SelectPrimitive.Item
+    <Select.Item
       data-slot="select-item"
       className={cn(
         "relative flex w-full cursor-pointer items-center gap-2 rounded-md py-1.5 pr-8 pl-2 text-sm outline-hidden select-none",
@@ -21,12 +21,12 @@ function SelectItem({ children, className, ...props }: SelectItemProps) {
       {...props}
     >
       <span className="absolute right-2 flex size-3.5 items-center justify-center">
-        <SelectPrimitive.ItemIndicator>
+        <Select.ItemIndicator>
           <Icon className="size-4" name="check" />
-        </SelectPrimitive.ItemIndicator>
+        </Select.ItemIndicator>
       </span>
-      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-    </SelectPrimitive.Item>
+      <Select.ItemText>{children}</Select.ItemText>
+    </Select.Item>
   );
 }
 

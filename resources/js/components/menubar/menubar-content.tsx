@@ -1,12 +1,10 @@
-import { Menubar as MenubarPrimitive } from "radix-ui";
+import { Menubar } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 import MenubarPortal from "./menubar-portal";
 
-type MenubarContentProps = React.ComponentProps<
-  typeof MenubarPrimitive.Content
-> & {};
+type MenubarContentProps = React.ComponentProps<typeof Menubar.Content> & {};
 
 function MenubarContent({
   className,
@@ -17,7 +15,7 @@ function MenubarContent({
 }: MenubarContentProps) {
   return (
     <MenubarPortal>
-      <MenubarPrimitive.Content
+      <Menubar.Content
         data-slot="menubar-content"
         className={cn(
           "z-50 min-w-[12rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",

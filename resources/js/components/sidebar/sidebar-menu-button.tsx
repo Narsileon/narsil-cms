@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { Tooltip } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
@@ -58,7 +58,7 @@ function SidebarMenuButton({
   className,
   ...props
 }: SidebarMenuButtonProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "button";
+  const Comp = asChild ? Slot.Root : "button";
 
   const { isMobile, state } = useSidebar();
 

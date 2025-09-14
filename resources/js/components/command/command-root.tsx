@@ -1,12 +1,12 @@
-import { Command as CommandPrimitive } from "cmdk";
+import { Command } from "cmdk";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandRootProps = React.ComponentProps<typeof CommandPrimitive> & {};
+type CommandRootProps = React.ComponentProps<typeof Command> & {};
 
 function CommandRoot({ className, ...props }: CommandRootProps) {
   return (
-    <CommandPrimitive
+    <Command
       data-slot="command-root"
       className={cn(
         "flex h-full w-full flex-col overflow-hidden rounded-xl bg-popover text-popover-foreground",

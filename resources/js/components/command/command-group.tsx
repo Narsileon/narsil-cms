@@ -1,14 +1,12 @@
-import { Command as CommandPrimitive } from "cmdk";
+import { Command } from "cmdk";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandGroupProps = React.ComponentProps<
-  typeof CommandPrimitive.Group
-> & {};
+type CommandGroupProps = React.ComponentProps<typeof Command.Group> & {};
 
 function CommandGroup({ className, ...props }: CommandGroupProps) {
   return (
-    <CommandPrimitive.Group
+    <Command.Group
       data-slot="command-group"
       className={cn(
         "overflow-hidden p-1 text-foreground",

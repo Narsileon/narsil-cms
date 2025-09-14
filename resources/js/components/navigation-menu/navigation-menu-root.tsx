@@ -1,11 +1,11 @@
-import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
+import { NavigationMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 import NavigationMenuViewport from "./navigation-menu-viewport";
 
 type NavigationMenuRootProps = React.ComponentProps<
-  typeof NavigationMenuPrimitive.Root
+  typeof NavigationMenu.Root
 > & {
   viewport?: boolean;
 };
@@ -17,7 +17,7 @@ function NavigationMenuRoot({
   ...props
 }: NavigationMenuRootProps) {
   return (
-    <NavigationMenuPrimitive.Root
+    <NavigationMenu.Root
       data-slot="navigation-menu-root"
       data-viewport={viewport}
       className={cn(
@@ -28,7 +28,7 @@ function NavigationMenuRoot({
     >
       {children}
       {viewport && <NavigationMenuViewport />}
-    </NavigationMenuPrimitive.Root>
+    </NavigationMenu.Root>
   );
 }
 

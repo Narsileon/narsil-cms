@@ -1,10 +1,10 @@
-import { Menubar as MenubarPrimitive } from "radix-ui";
+import { Menubar } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type MenubarSubTriggerProps = React.ComponentProps<
-  typeof MenubarPrimitive.SubTrigger
+  typeof Menubar.SubTrigger
 > & {
   inset?: boolean;
 };
@@ -16,7 +16,7 @@ function MenubarSubTrigger({
   ...props
 }: MenubarSubTriggerProps) {
   return (
-    <MenubarPrimitive.SubTrigger
+    <Menubar.SubTrigger
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
@@ -30,7 +30,7 @@ function MenubarSubTrigger({
     >
       {children}
       <Icon className="ml-auto size-4" name="chevron-right" />
-    </MenubarPrimitive.SubTrigger>
+    </Menubar.SubTrigger>
   );
 }
 

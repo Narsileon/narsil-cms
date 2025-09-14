@@ -1,10 +1,10 @@
-import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { DropdownMenu } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuRadioItemProps = React.ComponentProps<
-  typeof DropdownMenuPrimitive.RadioItem
+  typeof DropdownMenu.RadioItem
 > & {};
 
 function DropdownMenuRadioItem({
@@ -13,7 +13,7 @@ function DropdownMenuRadioItem({
   ...props
 }: DropdownMenuRadioItemProps) {
   return (
-    <DropdownMenuPrimitive.RadioItem
+    <DropdownMenu.RadioItem
       data-slot="dropdown-menu-radio-item"
       className={cn(
         "relative flex cursor-pointer items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
@@ -25,12 +25,12 @@ function DropdownMenuRadioItem({
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <DropdownMenuPrimitive.ItemIndicator>
+        <DropdownMenu.ItemIndicator>
           <Icon className="size-2 fill-current" name="circle" />
-        </DropdownMenuPrimitive.ItemIndicator>
+        </DropdownMenu.ItemIndicator>
       </span>
       {children}
-    </DropdownMenuPrimitive.RadioItem>
+    </DropdownMenu.RadioItem>
   );
 }
 

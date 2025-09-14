@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/separator
+// https://www.radix-ui.com/primitives/docs/components/separator
 
 import SeparatorRoot from "./separator-root";
 

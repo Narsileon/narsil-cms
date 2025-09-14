@@ -1,4 +1,4 @@
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -15,7 +15,7 @@ function SidebarMenuSubButton({
   size = "md",
   ...props
 }: SidebarMenuSubButtonProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "a";
+  const Comp = asChild ? Slot.Root : "a";
 
   return (
     <Comp

@@ -1,9 +1,9 @@
-import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { DropdownMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuContentProps = React.ComponentProps<
-  typeof DropdownMenuPrimitive.Content
+  typeof DropdownMenu.Content
 > & {};
 
 function DropdownMenuContent({
@@ -12,8 +12,8 @@ function DropdownMenuContent({
   ...props
 }: DropdownMenuContentProps) {
   return (
-    <DropdownMenuPrimitive.Portal>
-      <DropdownMenuPrimitive.Content
+    <DropdownMenu.Portal>
+      <DropdownMenu.Content
         data-slot="dropdown-menu-content"
         className={cn(
           "min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-xl border bg-popover p-1 text-popover-foreground shadow-md",
@@ -31,7 +31,7 @@ function DropdownMenuContent({
         sideOffset={sideOffset}
         {...props}
       />
-    </DropdownMenuPrimitive.Portal>
+    </DropdownMenu.Portal>
   );
 }
 

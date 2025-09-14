@@ -1,9 +1,9 @@
-import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
+import { NavigationMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type NavigationMenuViewportProps = React.ComponentProps<
-  typeof NavigationMenuPrimitive.Viewport
+  typeof NavigationMenu.Viewport
 > & {};
 
 function NavigationMenuViewport({
@@ -16,7 +16,7 @@ function NavigationMenuViewport({
         "absolute top-full left-0 isolate z-50 flex justify-center",
       )}
     >
-      <NavigationMenuPrimitive.Viewport
+      <NavigationMenu.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(
           "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow md:w-[var(--radix-navigation-menu-viewport-width)]",

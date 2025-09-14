@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/dialog
+// https://www.radix-ui.com/primitives/docs/components/dialog
 
 import DialogBody from "./dialog-body";
 import DialogClose from "./dialog-close";

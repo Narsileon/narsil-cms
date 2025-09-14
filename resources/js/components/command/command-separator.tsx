@@ -1,14 +1,14 @@
-import { Command as CommandPrimitive } from "cmdk";
+import { Command } from "cmdk";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type CommandSeparatorProps = React.ComponentProps<
-  typeof CommandPrimitive.Separator
+  typeof Command.Separator
 > & {};
 
 function CommandSeparator({ className, ...props }: CommandSeparatorProps) {
   return (
-    <CommandPrimitive.Separator
+    <Command.Separator
       data-slot="command-separator"
       className={cn("-mx-1 h-px bg-border", className)}
       {...props}

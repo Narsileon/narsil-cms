@@ -1,12 +1,10 @@
-import { Command as CommandPrimitive } from "cmdk";
+import { Command } from "cmdk";
 
-type CommandEmptyProps = React.ComponentProps<
-  typeof CommandPrimitive.Empty
-> & {};
+type CommandEmptyProps = React.ComponentProps<typeof Command.Empty> & {};
 
 function CommandEmpty({ ...props }: CommandEmptyProps) {
   return (
-    <CommandPrimitive.Empty
+    <Command.Empty
       data-slot="command-empty"
       className="py-4 text-center text-sm"
       {...props}

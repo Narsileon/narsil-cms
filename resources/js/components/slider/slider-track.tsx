@@ -1,12 +1,12 @@
-import { Slider as SliderPrimitive } from "radix-ui";
+import { Slider } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SliderTrackProps = React.ComponentProps<typeof SliderPrimitive.Track> & {};
+type SliderTrackProps = React.ComponentProps<typeof Slider.Track> & {};
 
 function SliderTrack({ className, ...props }: SliderTrackProps) {
   return (
-    <SliderPrimitive.Track
+    <Slider.Track
       data-slot="slider-track"
       className={cn(
         "relative grow overflow-hidden rounded-full bg-muted",

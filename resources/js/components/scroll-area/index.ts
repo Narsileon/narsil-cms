@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/scroll-area
+// https://www.radix-ui.com/primitives/docs/components/scroll-area
 
 import ScrollAreaRoot from "./scroll-area-root";
 import ScrollAreaScrollbar from "./scroll-area-scrollbar";

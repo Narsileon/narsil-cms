@@ -1,4 +1,4 @@
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -11,7 +11,7 @@ function SidebarGroupAction({
   className,
   ...props
 }: SidebarGroupActionProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "button";
+  const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp

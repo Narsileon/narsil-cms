@@ -1,9 +1,9 @@
-import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { DropdownMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuTriggerProps = React.ComponentProps<
-  typeof DropdownMenuPrimitive.Trigger
+  typeof DropdownMenu.Trigger
 > & {};
 
 function DropdownMenuTrigger({
@@ -11,7 +11,7 @@ function DropdownMenuTrigger({
   ...props
 }: DropdownMenuTriggerProps) {
   return (
-    <DropdownMenuPrimitive.Trigger
+    <DropdownMenu.Trigger
       data-slot="dropdown-menu-trigger"
       className={cn("cursor-pointer", className)}
       {...props}

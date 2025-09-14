@@ -1,11 +1,9 @@
-import { Menubar as MenubarPrimitive } from "radix-ui";
+import { Menubar } from "radix-ui";
 
-type MenubarGroupProps = React.ComponentProps<
-  typeof MenubarPrimitive.Group
-> & {};
+type MenubarGroupProps = React.ComponentProps<typeof Menubar.Group> & {};
 
 function MenubarGroup({ ...props }: MenubarGroupProps) {
-  return <MenubarPrimitive.Group data-slot="menubar-group" {...props} />;
+  return <Menubar.Group data-slot="menubar-group" {...props} />;
 }
 
 export default MenubarGroup;

@@ -1,9 +1,9 @@
-import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
+import { NavigationMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type NavigationMenuContentProps = React.ComponentProps<
-  typeof NavigationMenuPrimitive.Content
+  typeof NavigationMenu.Content
 > & {};
 
 function NavigationMenuContent({
@@ -11,7 +11,7 @@ function NavigationMenuContent({
   ...props
 }: NavigationMenuContentProps) {
   return (
-    <NavigationMenuPrimitive.Content
+    <NavigationMenu.Content
       data-slot="navigation-menu-content"
       className={cn(
         "top-0 left-0 w-full p-2 pr-2.5 md:absolute md:w-auto",

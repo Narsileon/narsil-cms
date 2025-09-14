@@ -1,9 +1,9 @@
-import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
+import { NavigationMenu } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 type NavigationMenuIndicatorProps = React.ComponentProps<
-  typeof NavigationMenuPrimitive.Indicator
+  typeof NavigationMenu.Indicator
 > & {};
 
 function NavigationMenuIndicator({
@@ -11,7 +11,7 @@ function NavigationMenuIndicator({
   ...props
 }: NavigationMenuIndicatorProps) {
   return (
-    <NavigationMenuPrimitive.Indicator
+    <NavigationMenu.Indicator
       data-slot="navigation-menu-indicator"
       className={cn(
         "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
@@ -22,7 +22,7 @@ function NavigationMenuIndicator({
       {...props}
     >
       <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
-    </NavigationMenuPrimitive.Indicator>
+    </NavigationMenu.Indicator>
   );
 }
 

@@ -1,5 +1,5 @@
 import { cva } from "class-variance-authority";
-import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
+import { NavigationMenu } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
@@ -18,7 +18,7 @@ const navigationMenuTriggerStyle = cva(
 );
 
 type NavigationMenuTriggerProps = React.ComponentProps<
-  typeof NavigationMenuPrimitive.Trigger
+  typeof NavigationMenu.Trigger
 > & {};
 
 function NavigationMenuTrigger({
@@ -27,7 +27,7 @@ function NavigationMenuTrigger({
   ...props
 }: NavigationMenuTriggerProps) {
   return (
-    <NavigationMenuPrimitive.Trigger
+    <NavigationMenu.Trigger
       data-slot="navigation-menu-trigger"
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
@@ -41,7 +41,7 @@ function NavigationMenuTrigger({
         aria-hidden="true"
         name="chevron-down"
       />
-    </NavigationMenuPrimitive.Trigger>
+    </NavigationMenu.Trigger>
   );
 }
 

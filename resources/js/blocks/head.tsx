@@ -1,6 +1,6 @@
-import { Head as HeadPrimitive } from "@inertiajs/react";
+import { Head as InertiaHead } from "@inertiajs/react";
 
-type HeadProps = React.ComponentProps<typeof HeadPrimitive> & {
+type HeadProps = React.ComponentProps<typeof InertiaHead> & {
   description?: string;
   index: boolean;
   follow: boolean;
@@ -14,7 +14,7 @@ function Head({
   title = "",
 }: HeadProps) {
   return (
-    <HeadPrimitive>
+    <InertiaHead>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta
@@ -22,7 +22,7 @@ function Head({
         content={`${index ? "index" : "noindex"}, ${follow ? "follow" : "nofollow"}`}
       />
       {children}
-    </HeadPrimitive>
+    </InertiaHead>
   );
 }
 

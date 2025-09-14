@@ -1,11 +1,9 @@
-import { HoverCard as HoverCardPrimitive } from "radix-ui";
+import { HoverCard } from "radix-ui";
 
-type HoverCardPortalProps = React.ComponentProps<
-  typeof HoverCardPrimitive.Portal
-> & {};
+type HoverCardPortalProps = React.ComponentProps<typeof HoverCard.Portal> & {};
 
 function HoverCardPortal({ ...props }: HoverCardPortalProps) {
-  return <HoverCardPrimitive.Portal data-slot="hover-card-portal" {...props} />;
+  return <HoverCard.Portal data-slot="hover-card-portal" {...props} />;
 }
 
 export default HoverCardPortal;

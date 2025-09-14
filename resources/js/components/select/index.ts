@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/select
+// https://www.radix-ui.com/primitives/docs/components/select
 
 import SelectContent from "./select-content";
 import SelectGroup from "./select-group";

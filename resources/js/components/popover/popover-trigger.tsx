@@ -1,11 +1,9 @@
-import { Popover as PopoverPrimitive } from "radix-ui";
+import { Popover } from "radix-ui";
 
-type PopoverTriggerProps = React.ComponentProps<
-  typeof PopoverPrimitive.Trigger
-> & {};
+type PopoverTriggerProps = React.ComponentProps<typeof Popover.Trigger> & {};
 
 function PopoverTrigger({ ...props }: PopoverTriggerProps) {
-  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
+  return <Popover.Trigger data-slot="popover-trigger" {...props} />;
 }
 
 export default PopoverTrigger;

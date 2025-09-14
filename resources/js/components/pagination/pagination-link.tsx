@@ -1,4 +1,4 @@
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { Button, buttonVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
@@ -18,7 +18,7 @@ function PaginationLink({
   size = "icon",
   ...props
 }: PaginationLinkProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "a";
+  const Comp = asChild ? Slot.Root : "a";
 
   return (
     <Comp

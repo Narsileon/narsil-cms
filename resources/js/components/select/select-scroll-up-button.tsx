@@ -1,10 +1,10 @@
-import { Select as SelectPrimitive } from "radix-ui";
+import { Select } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type SelectScrollUpButtonProps = React.ComponentProps<
-  typeof SelectPrimitive.ScrollUpButton
+  typeof Select.ScrollUpButton
 > & {};
 
 function SelectScrollUpButton({
@@ -12,7 +12,7 @@ function SelectScrollUpButton({
   ...props
 }: SelectScrollUpButtonProps) {
   return (
-    <SelectPrimitive.ScrollUpButton
+    <Select.ScrollUpButton
       data-slot="select-scroll-up-button"
       className={cn(
         "flex cursor-pointer items-center justify-center py-1",
@@ -21,7 +21,7 @@ function SelectScrollUpButton({
       {...props}
     >
       <Icon className="size-4" name="chevron-up" />
-    </SelectPrimitive.ScrollUpButton>
+    </Select.ScrollUpButton>
   );
 }
 

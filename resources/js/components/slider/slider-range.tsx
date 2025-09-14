@@ -1,12 +1,12 @@
-import { Slider as SliderPrimitive } from "radix-ui";
+import { Slider } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SliderRangeProps = React.ComponentProps<typeof SliderPrimitive.Range> & {};
+type SliderRangeProps = React.ComponentProps<typeof Slider.Range> & {};
 
 function SliderRange({ className, ...props }: SliderRangeProps) {
   return (
-    <SliderPrimitive.Range
+    <Slider.Range
       data-slot="slider-range"
       className={cn(
         "absolute bg-primary",

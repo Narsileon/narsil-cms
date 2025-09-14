@@ -1,11 +1,9 @@
-import { HoverCard as HoverCardPrimitive } from "radix-ui";
+import { HoverCard } from "radix-ui";
 
-type HoverCardRootProps = React.ComponentProps<
-  typeof HoverCardPrimitive.Root
-> & {};
+type HoverCardRootProps = React.ComponentProps<typeof HoverCard.Root> & {};
 
 function HoverCardRoot({ ...props }: HoverCardRootProps) {
-  return <HoverCardPrimitive.Root data-slot="hover-card-root" {...props} />;
+  return <HoverCard.Root data-slot="hover-card-root" {...props} />;
 }
 
 export default HoverCardRoot;

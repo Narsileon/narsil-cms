@@ -1,4 +1,4 @@
-import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
+import { ScrollArea } from "radix-ui";
 
 import {
   ScrollAreaRoot,
@@ -23,7 +23,7 @@ const ScrollArea = ({
       <ScrollAreaScrollbar orientation={orientation}>
         <ScrollAreaThumb />
       </ScrollAreaScrollbar>
-      <ScrollAreaPrimitive.Corner />
+      <ScrollArea.Corner />
     </ScrollAreaRoot>
   );
 };

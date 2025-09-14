@@ -1,10 +1,10 @@
-import { Select as SelectPrimitive } from "radix-ui";
+import { Select } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type SelectScrollDownButtonProps = React.ComponentProps<
-  typeof SelectPrimitive.ScrollDownButton
+  typeof Select.ScrollDownButton
 > & {};
 
 function SelectScrollDownButton({
@@ -12,7 +12,7 @@ function SelectScrollDownButton({
   ...props
 }: SelectScrollDownButtonProps) {
   return (
-    <SelectPrimitive.ScrollDownButton
+    <Select.ScrollDownButton
       data-slot="select-scroll-down-button"
       className={cn(
         "flex cursor-pointer items-center justify-center py-1",
@@ -21,7 +21,7 @@ function SelectScrollDownButton({
       {...props}
     >
       <Icon className="size-4" name="chevron-down" />
-    </SelectPrimitive.ScrollDownButton>
+    </Select.ScrollDownButton>
   );
 }
 

@@ -1,12 +1,12 @@
-import { Switch as SwitchPrimitive } from "radix-ui";
+import { Switch } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SwitchThumbProps = React.ComponentProps<typeof SwitchPrimitive.Thumb> & {};
+type SwitchThumbProps = React.ComponentProps<typeof Switch.Thumb> & {};
 
 function SwitchThumb({ className, ...props }: SwitchThumbProps) {
   return (
-    <SwitchPrimitive.Thumb
+    <Switch.Thumb
       data-slot="switch-thumb"
       className={cn(
         "pointer-events-none block size-4 rounded-full bg-constructive-foreground ring-0 transition-transform will-change-transform",

@@ -1,4 +1,4 @@
-import { Dialog as DialogPrimitive } from "radix-ui";
+import { Dialog } from "radix-ui";
 
 import { Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
@@ -6,9 +6,7 @@ import { useLabels } from "@narsil-cms/components/labels";
 import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DialogCloseButtonProps = React.ComponentProps<
-  typeof DialogPrimitive.Close
-> & {};
+type DialogCloseButtonProps = React.ComponentProps<typeof Dialog.Close> & {};
 
 function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
   const { trans } = useLabels();
@@ -17,7 +15,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
 
   return (
     <Tooltip tooltip={tooltip}>
-      <DialogPrimitive.Close
+      <Dialog.Close
         data-slot="dialog-close"
         className={cn(
           "cursor-pointer rounded-full opacity-75 ring-offset-background transition-opacity",
@@ -32,7 +30,7 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
       >
         <Icon name="x" />
         <VisuallyHiddenRoot>{tooltip}</VisuallyHiddenRoot>
-      </DialogPrimitive.Close>
+      </Dialog.Close>
     </Tooltip>
   );
 }

@@ -1,8 +1,8 @@
-import { Slider as SliderPrimitive } from "radix-ui";
+import { Slider } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SliderRootProps = React.ComponentProps<typeof SliderPrimitive.Root> & {};
+type SliderRootProps = React.ComponentProps<typeof Slider.Root> & {};
 
 function SliderRoot({
   className,
@@ -13,7 +13,7 @@ function SliderRoot({
   ...props
 }: SliderRootProps) {
   return (
-    <SliderPrimitive.Root
+    <Slider.Root
       data-slot="slider-root"
       defaultValue={defaultValue}
       value={value}

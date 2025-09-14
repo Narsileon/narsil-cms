@@ -1,4 +1,4 @@
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -11,7 +11,7 @@ function SidebarGroupLabel({
   asChild = false,
   ...props
 }: SidebarGroupLabelProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "div";
+  const Comp = asChild ? Slot.Root : "div";
 
   return (
     <Comp

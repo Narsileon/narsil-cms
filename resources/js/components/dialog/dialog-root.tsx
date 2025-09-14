@@ -1,9 +1,9 @@
-import { Dialog as DialogPrimitive } from "radix-ui";
+import { Dialog } from "radix-ui";
 
-type DialogRootProps = React.ComponentProps<typeof DialogPrimitive.Root> & {};
+type DialogRootProps = React.ComponentProps<typeof Dialog.Root> & {};
 
 function DialogRoot({ ...props }: DialogRootProps) {
-  return <DialogPrimitive.Root data-slot="dialog-root" {...props} />;
+  return <Dialog.Root data-slot="dialog-root" {...props} />;
 }
 
 export default DialogRoot;

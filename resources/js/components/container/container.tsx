@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -27,7 +27,7 @@ function Container({
   variant,
   ...props
 }: ContainerProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "div";
+  const Comp = asChild ? Slot.Root : "div";
 
   return (
     <Comp

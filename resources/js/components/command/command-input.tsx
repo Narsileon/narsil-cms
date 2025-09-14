@@ -1,11 +1,9 @@
-import { Command as CommandPrimitive } from "cmdk";
+import { Command } from "cmdk";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandInputProps = React.ComponentProps<
-  typeof CommandPrimitive.Input
-> & {};
+type CommandInputProps = React.ComponentProps<typeof Command.Input> & {};
 
 function CommandInput({ className, ...props }: CommandInputProps) {
   return (
@@ -14,7 +12,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
       className="flex h-9 items-center gap-2 border-b px-3"
     >
       <Icon className="size-4 shrink-0 opacity-50" name="search" />
-      <CommandPrimitive.Input
+      <Command.Input
         data-slot="command-input"
         className={cn(
           "flex h-9 w-full rounded-md bg-transparent py-3 text-sm outline-hidden",

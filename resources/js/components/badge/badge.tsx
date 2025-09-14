@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { Slot as SlotPrimitive } from "radix-ui";
+import { Slot } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -44,7 +44,7 @@ type BadgeProps = React.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & { asChild?: boolean };
 
 function Badge({ asChild = false, className, variant, ...props }: BadgeProps) {
-  const Comp = asChild ? SlotPrimitive.Slot : "span";
+  const Comp = asChild ? Slot.Root : "span";
 
   return (
     <Comp

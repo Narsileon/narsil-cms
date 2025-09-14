@@ -1,15 +1,13 @@
-import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
+import { RadioGroup } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type RadioGroupItemProps = React.ComponentProps<
-  typeof RadioGroupPrimitive.Item
-> & {};
+type RadioGroupItemProps = React.ComponentProps<typeof RadioGroup.Item> & {};
 
 function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
   return (
-    <RadioGroupPrimitive.Item
+    <RadioGroup.Item
       data-slot="radio-group-item"
       className={cn(
         "aspect-square size-4 shrink-0 rounded-full border border-input text-primary shadow-xs transition-[color,box-shadow] outline-none",
@@ -21,7 +19,7 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
       )}
       {...props}
     >
-      <RadioGroupPrimitive.Indicator
+      <RadioGroup.Indicator
         data-slot="radio-group-indicator"
         className="relative flex items-center justify-center"
       >
@@ -29,8 +27,8 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
           className="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-primary"
           name="circle"
         />
-      </RadioGroupPrimitive.Indicator>
-    </RadioGroupPrimitive.Item>
+      </RadioGroup.Indicator>
+    </RadioGroup.Item>
   );
 }
 

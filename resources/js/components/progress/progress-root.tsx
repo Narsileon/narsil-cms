@@ -1,14 +1,12 @@
-import { Progress as ProgressPrimitive } from "radix-ui";
+import { Progress } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ProgressRootProps = React.ComponentProps<
-  typeof ProgressPrimitive.Root
-> & {};
+type ProgressRootProps = React.ComponentProps<typeof Progress.Root> & {};
 
 function ProgressRoot({ className, ...props }: ProgressRootProps) {
   return (
-    <ProgressPrimitive.Root
+    <Progress.Root
       data-slot="progress-root"
       className={cn(
         "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",

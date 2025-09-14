@@ -1,11 +1,9 @@
-import { Select as SelectPrimitive } from "radix-ui";
+import { Select } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectTriggerProps = React.ComponentProps<
-  typeof SelectPrimitive.Trigger
-> & {
+type SelectTriggerProps = React.ComponentProps<typeof Select.Trigger> & {
   size?: "sm" | "default";
 };
 
@@ -16,7 +14,7 @@ function SelectTrigger({
   ...props
 }: SelectTriggerProps) {
   return (
-    <SelectPrimitive.Trigger
+    <Select.Trigger
       data-slot="select-trigger"
       data-size={size}
       className={cn(
@@ -36,10 +34,10 @@ function SelectTrigger({
       {...props}
     >
       {children}
-      <SelectPrimitive.Icon asChild>
+      <Select.Icon asChild>
         <Icon name="chevron-down" />
-      </SelectPrimitive.Icon>
-    </SelectPrimitive.Trigger>
+      </Select.Icon>
+    </Select.Trigger>
   );
 }
 

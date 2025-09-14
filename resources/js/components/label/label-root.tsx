@@ -1,12 +1,12 @@
-import { Label as LabelPrimitive } from "radix-ui";
+import { Label } from "radix-ui";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type LabelRootProps = React.ComponentProps<typeof LabelPrimitive.Root> & {};
+type LabelRootProps = React.ComponentProps<typeof Label.Root> & {};
 
 function LabelRoot({ className, ...props }: LabelRootProps) {
   return (
-    <LabelPrimitive.Root
+    <Label.Root
       data-slot="label-root"
       className={cn(
         "flex items-center gap-1 text-sm leading-none font-medium select-none",
