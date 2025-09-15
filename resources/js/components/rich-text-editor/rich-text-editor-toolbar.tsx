@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { useCurrentEditor } from "@tiptap/react";
 
 import { Tooltip } from "@narsil-cms/blocks";
 import { ButtonRoot } from "@narsil-cms/components/button";
@@ -27,21 +27,20 @@ import RichTextEditorUnderline from "./rich-text-editor-underline";
 import RichTextEditorUndo from "./rich-text-editor-undo";
 
 type RichTextEditorToolbarProps = React.HTMLAttributes<HTMLDivElement> & {
-  editor: Editor | null;
   modules: string[];
 };
 
+const headings = [1, 2, 3, 4, 5, 6] as const;
+
 function RichTextEditorToolbar({
   className,
-  editor,
   modules,
   ...props
 }: RichTextEditorToolbarProps) {
+  const { editor } = useCurrentEditor();
   const { trans } = useLabels();
 
-  const headings = [1, 2, 3, 4, 5, 6] as const;
-
-  if (!editor) {
+  if (!editor || !editor.isEditable) {
     return null;
   }
 

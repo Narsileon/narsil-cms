@@ -2,34 +2,30 @@ import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import TextAlign from "@tiptap/extension-text-align";
 import { Placeholder } from "@tiptap/extensions";
-import { EditorContent, EditorOptions, useEditor } from "@tiptap/react";
+import { EditorContext, EditorOptions, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useEffect } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-import RichTextEditorToolbar from "./rich-text-editor-toolbar";
+import { useMemo } from "react";
 
-type RichTextEditorProps = Partial<EditorOptions> & {
+type RichTextEditorRootProps = Partial<EditorOptions> & {
+  children?: React.ReactNode;
   className?: string;
-  id?: string;
-  modules: string[];
   placeholder?: string;
-  toolbar?: boolean;
   value: string;
   onChange?: (value: string) => void;
 };
 
-function RichTextEditor({
+function RichTextEditorProvider({
+  children,
   className,
-  id,
-  modules,
   placeholder,
-  toolbar = true,
   value,
   onChange,
   ...props
-}: RichTextEditorProps) {
+}: RichTextEditorRootProps) {
   const extensions = [
     Placeholder.configure({
       emptyEditorClass:
@@ -82,15 +78,13 @@ function RichTextEditor({
     }
   }, [value]);
 
-  return (
-    <div className="border-color flex flex-col rounded-md border">
-      {toolbar && editor?.isEditable ? (
-        <RichTextEditorToolbar editor={editor} modules={modules} />
-      ) : null}
+  const providerValue = useMemo(() => ({ editor }), [editor]);
 
-      <EditorContent id={id} editor={editor} />
-    </div>
+  return (
+    <EditorContext.Provider value={providerValue}>
+      {children}
+    </EditorContext.Provider>
   );
 }
 
-export default RichTextEditor;
+export default RichTextEditorProvider;

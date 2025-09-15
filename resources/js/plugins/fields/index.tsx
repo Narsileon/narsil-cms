@@ -6,13 +6,13 @@ import {
   InputDate,
   InputFile,
   InputPassword,
+  RichTextEditor,
   Slider,
   Switch,
 } from "@narsil-cms/blocks";
 import { Combobox } from "@narsil-cms/components/combobox";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
-import { RichTextEditor } from "@narsil-cms/components/rich-text-editor";
 import {
   SortableGrid,
   SortableList,

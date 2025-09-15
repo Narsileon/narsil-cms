@@ -12,6 +12,7 @@ import InputPassword from "./input-password";
 import Logo from "./logo";
 import Pagination from "./pagination";
 import ProfileForm from "./profile-form";
+import RichTextEditor from "./rich-text-editor";
 import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
 import SecurityForm from "./security-form";
@@ -39,6 +40,7 @@ export {
   Logo,
   Pagination,
   ProfileForm,
+  RichTextEditor,
   SecurityForm,
   SaveButton,
   ScrollArea,
