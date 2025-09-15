@@ -1,5 +1,4 @@
 import { Link, router } from "@inertiajs/react";
-import axios from "axios";
 import { sortBy } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
@@ -57,8 +56,8 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
         url: url,
       },
       {
-        onSuccess: () => {
-          fetchBookmarks();
+        onSuccess: async () => {
+          await fetchBookmarks();
         },
       },
     );
@@ -72,17 +71,18 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
     });
   }
 
-  function fetchBookmarks() {
-    axios
-      .get(route("user-bookmarks.index"))
-      .then((response) => {
-        setBookmarks(sortBy(response.data.data, "name"));
-        setForm(response.data.meta.form);
-        setLabels(response.data.meta.labels);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  async function fetchBookmarks() {
+    try {
+      const response = await fetch(route("user-bookmarks.index"));
+
+      const data = await response.json();
+
+      setBookmarks(sortBy(data.data, "name"));
+      setForm(data.meta.form);
+      setLabels(data.meta.labels);
+    } catch (error) {
+      console.error("[Bookmarks] Error fetching bookmarks:", error);
+    }
   }
 
   useEffect(() => {

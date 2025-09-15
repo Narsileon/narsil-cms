@@ -1,5 +1,4 @@
 import { router } from "@inertiajs/react";
-import axios from "axios";
 import { useState } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
@@ -41,21 +40,25 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
 
   async function getQrCode(): Promise<void> {
     try {
-      const response = await axios.get(route("two-factor.qr-code"));
+      const response = await fetch(route("two-factor.qr-code"));
 
-      setQrCode(response.data.svg);
+      const data = await response.json();
+
+      setQrCode(data.svg);
     } catch (error) {
-      console.error("Error fetching two factor QR code:", error);
+      console.error("[Two Factor] Error fetching QR code:", error);
     }
   }
 
   async function getRecoveryCodes(): Promise<void> {
     try {
-      const response = await axios.get(route("two-factor.recovery-codes"));
+      const response = await fetch(route("two-factor.recovery-codes"));
 
-      setRecoveryCodes(response.data);
+      const data = await response.json();
+
+      setRecoveryCodes(data);
     } catch (error) {
-      console.error("Error fetching two factor recovery codes:", error);
+      console.error("[Two Factor] Error fetching recovery codes:", error);
     }
   }
 
