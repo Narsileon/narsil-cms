@@ -2,7 +2,13 @@ import { Link } from "@inertiajs/react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
-import { Checkbox, DataTable, Pagination, Tooltip } from "@narsil-cms/blocks";
+import {
+  Checkbox,
+  DataTable,
+  Pagination,
+  Select,
+  Tooltip,
+} from "@narsil-cms/blocks";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DataTableFilter,
@@ -11,9 +17,9 @@ import {
   DataTableInput,
   DataTableProvider,
   DataTableRowMenu,
-  DataTableSize,
   DataTableVisibilityDropdown,
 } from "@narsil-cms/components/data-table";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -32,7 +38,6 @@ import {
   type DataTableCollection,
   type DataTableFilterCollection,
 } from "@narsil-cms/types";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type ResourceIndexProps = {
   collection: DataTableCollection;
@@ -241,7 +246,13 @@ function ResourceIndex({
                         <span className="truncate">
                           {trans("pagination.pagination")}
                         </span>
-                        <DataTableSize />
+                        <Select
+                          options={["10", "25", "50", "100"]}
+                          value={dataTableStore.pageSize.toString()}
+                          onValueChange={(value) =>
+                            dataTableStore.setPageSize(Number(value))
+                          }
+                        />
                       </div>
                       <div className="flex flex-col items-end gap-x-4 gap-y-2 sm:flex-row sm:items-center">
                         <span className="truncate">

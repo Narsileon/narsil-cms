@@ -15,6 +15,7 @@ import ProfileForm from "./profile-form";
 import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
 import SecurityForm from "./security-form";
+import Select from "./select";
 import Sidebar from "./sidebar";
 import Slider from "./slider";
 import Switch from "./switch";
@@ -41,6 +42,7 @@ export {
   SecurityForm,
   SaveButton,
   ScrollArea,
+  Select,
   Sidebar,
   Slider,
   Switch,

@@ -6,6 +6,7 @@ import {
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -19,7 +20,6 @@ import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore, type Theme } from "@narsil-cms/stores/theme-store";
 import { type FormType } from "@narsil-cms/types";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type ConfigurationFormProps = {
   form: FormType;

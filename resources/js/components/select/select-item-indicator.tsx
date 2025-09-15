@@ -4,30 +4,30 @@ import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { IconName } from "@narsil-cms/plugins/icons";
 
-type SelectScrollDownButtonProps = React.ComponentProps<
-  typeof Select.ScrollDownButton
+type SelectItemIndicatorProps = React.ComponentProps<
+  typeof Select.ItemIndicator
 > & {
   icon?: IconName;
 };
 
-function SelectScrollDownButton({
+function SelectItemIndicator({
   children,
   className,
-  icon = "chevron-down",
+  icon = "check",
   ...props
-}: SelectScrollDownButtonProps) {
+}: SelectItemIndicatorProps) {
   return (
-    <Select.ScrollDownButton
-      data-slot="select-scroll-down-button"
+    <Select.ItemIndicator
+      data-slot="select-item-indicator"
       className={cn(
-        "flex cursor-pointer items-center justify-center py-1",
+        "absolute left-2 inline-flex items-center justify-center",
         className,
       )}
       {...props}
     >
       {children ?? <Icon className="size-4" name={icon} />}
-    </Select.ScrollDownButton>
+    </Select.ItemIndicator>
   );
 }
 
-export default SelectScrollDownButton;
+export default SelectItemIndicator;

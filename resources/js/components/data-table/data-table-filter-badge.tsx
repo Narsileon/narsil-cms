@@ -1,6 +1,7 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
+import { Select } from "@narsil-cms/blocks";
 import { BadgeRoot } from "@narsil-cms/components/badge";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
@@ -9,13 +10,6 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import {
-  SelectContent,
-  SelectItem,
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-} from "@narsil-cms/components/select";
 import { getField } from "@narsil-cms/plugins/fields";
 import { type Field } from "@narsil-cms/types";
 
@@ -53,6 +47,13 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
     }
   }, [filter.operator]);
 
+  const operatorOptions = meta.operators.map((operator) => {
+    return {
+      label: trans(`operators.${operator}`),
+      value: operator,
+    };
+  });
+
   return (
     <PopoverRoot open={open} onOpenChange={onOpenChange} modal={true}>
       <PopoverTrigger asChild={true} {...props}>
@@ -68,26 +69,15 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
         </BadgeRoot>
       </PopoverTrigger>
       <PopoverContent className="flex flex-col gap-4">
-        <SelectRoot
+        <Select
+          className="w-full text-left"
+          options={operatorOptions}
           value={filter.operator}
+          valueIcon="filter"
           onValueChange={(value) => {
             dataTableStore.updateFilter(filter.column, { operator: value });
           }}
-        >
-          <SelectTrigger className="w-full text-left">
-            <SelectValue>
-              <Icon name="filter" />
-              {trans(`operators.${filter.operator}`)}
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent>
-            {meta.operators.map((operator) => (
-              <SelectItem value={operator} key={operator}>
-                {trans(`operators.${operator}`)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </SelectRoot>
+        />
         {getField(meta.field.type, {
           element: meta.field,
           id: filter.column,

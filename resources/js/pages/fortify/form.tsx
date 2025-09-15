@@ -17,6 +17,7 @@ import {
   FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -24,7 +25,6 @@ import {
   SectionRoot,
 } from "@narsil-cms/components/section";
 import { type FormType } from "@narsil-cms/types";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type FortifyFormProps = FormType & {
   data: Record<string, unknown>;

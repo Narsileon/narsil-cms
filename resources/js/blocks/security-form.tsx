@@ -4,6 +4,7 @@ import { route } from "ziggy-js";
 import TwoFactorForm from "@narsil-cms/blocks/two-factor-form";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import { DialogClose } from "@narsil-cms/components/dialog";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -12,7 +13,6 @@ import {
 } from "@narsil-cms/components/section";
 import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { type FormType } from "@narsil-cms/types";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type SecurityFormProps = {
   twoFactorForm: FormType;

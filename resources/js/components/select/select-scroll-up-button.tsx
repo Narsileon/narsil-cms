@@ -2,13 +2,18 @@ import { Select } from "radix-ui";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
+import { IconName } from "@narsil-cms/plugins/icons";
 
 type SelectScrollUpButtonProps = React.ComponentProps<
   typeof Select.ScrollUpButton
-> & {};
+> & {
+  icon?: IconName;
+};
 
 function SelectScrollUpButton({
+  children,
   className,
+  icon = "chevron-up",
   ...props
 }: SelectScrollUpButtonProps) {
   return (
@@ -20,7 +25,7 @@ function SelectScrollUpButton({
       )}
       {...props}
     >
-      <Icon className="size-4" name="chevron-up" />
+      {children ?? <Icon className="size-4" name={icon} />}
     </Select.ScrollUpButton>
   );
 }

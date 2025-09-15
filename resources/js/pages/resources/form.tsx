@@ -15,6 +15,7 @@ import {
   FormSubmit,
   FormFieldRenderer,
 } from "@narsil-cms/components/form";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -30,7 +31,6 @@ import {
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import { type Block, type FormType } from "@narsil-cms/types";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type FormProps = FormType & {
   data: Record<string, unknown>;

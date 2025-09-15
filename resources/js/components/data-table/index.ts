@@ -16,7 +16,6 @@ import DataTableRoot from "./data-table-root";
 import DataTableRow from "./data-table-row";
 import DataTableRowMenu from "./data-table-row-menu";
 import DataTableRowSelect from "./data-table-row-select";
-import DataTableSize from "./data-table-size";
 import DataTableVisibilityDropdown from "./data-table-visibility-dropdown";
 
 export type ColumnFilter = {
@@ -41,7 +40,6 @@ export {
   DataTableRow,
   DataTableRowMenu,
   DataTableRowSelect,
-  DataTableSize,
   DataTableVisibilityDropdown,
   useDataTable,
 };

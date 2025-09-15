@@ -6,13 +6,13 @@ import { route } from "ziggy-js";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import { ContainerRoot } from "@narsil-cms/components/container";
+import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
   SectionHeader,
   SectionRoot,
 } from "@narsil-cms/components/section";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 
 type VerifyEmailProps = {
   status: string;

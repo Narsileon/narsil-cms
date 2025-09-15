@@ -1,6 +1,5 @@
 import { Select } from "radix-ui";
 
-import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type SelectTriggerProps = React.ComponentProps<typeof Select.Trigger> & {
@@ -10,7 +9,6 @@ type SelectTriggerProps = React.ComponentProps<typeof Select.Trigger> & {
 function SelectTrigger({
   className,
   size = "default",
-  children,
   ...props
 }: SelectTriggerProps) {
   return (
@@ -32,12 +30,7 @@ function SelectTrigger({
         className,
       )}
       {...props}
-    >
-      {children}
-      <Select.Icon asChild>
-        <Icon name="chevron-down" />
-      </Select.Icon>
-    </Select.Trigger>
+    />
   );
 }
 
