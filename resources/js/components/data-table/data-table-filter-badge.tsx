@@ -7,6 +7,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
+  PopoverPortal,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -68,24 +69,26 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
           </button>
         </BadgeRoot>
       </PopoverTrigger>
-      <PopoverContent className="flex flex-col gap-4">
-        <Select
-          className="w-full text-left"
-          options={operatorOptions}
-          value={filter.operator}
-          valueIcon="filter"
-          onValueChange={(value) => {
-            dataTableStore.updateFilter(filter.column, { operator: value });
-          }}
-        />
-        {getField(meta.field.type, {
-          element: meta.field,
-          id: filter.column,
-          value: filter.value,
-          setValue: (value) =>
-            dataTableStore.updateFilter(filter.column, { value: value }),
-        })}
-      </PopoverContent>
+      <PopoverPortal>
+        <PopoverContent className="flex flex-col gap-4">
+          <Select
+            className="w-full text-left"
+            options={operatorOptions}
+            value={filter.operator}
+            valueIcon="filter"
+            onValueChange={(value) => {
+              dataTableStore.updateFilter(filter.column, { operator: value });
+            }}
+          />
+          {getField(meta.field.type, {
+            element: meta.field,
+            id: filter.column,
+            value: filter.value,
+            setValue: (value) =>
+              dataTableStore.updateFilter(filter.column, { value: value }),
+          })}
+        </PopoverContent>
+      </PopoverPortal>
     </PopoverRoot>
   );
 }

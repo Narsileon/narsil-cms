@@ -1,10 +1,11 @@
+import React from "react";
+
 import {
   RichTextEditorContent,
   RichTextEditorProvider,
   RichTextEditorRoot,
   RichTextEditorToolbar,
 } from "@narsil-cms/components/rich-text-editor";
-import React from "react";
 
 type RichTextEditorProps = React.ComponentProps<typeof RichTextEditorProvider> &
   Pick<React.ComponentProps<typeof RichTextEditorContent>, "id"> &

@@ -5,11 +5,7 @@ type RichTextEditorContentProps = Omit<
   "editor"
 > & {};
 
-function RichTextEditorContent({
-  className,
-  id,
-  ...props
-}: RichTextEditorContentProps) {
+function RichTextEditorContent({ id, ...props }: RichTextEditorContentProps) {
   const { editor } = useCurrentEditor();
 
   return <EditorContent id={id} editor={editor} {...props} />;

@@ -15,6 +15,7 @@ import { InputRoot } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
+  PopoverPortal,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -199,52 +200,54 @@ function Combobox({
           />
         </InputRoot>
       </PopoverTrigger>
-      <PopoverContent className="p-0">
-        <CommandRoot shouldFilter={false}>
-          {searchable ? (
-            <CommandInput
-              value={input}
-              onValueChange={onValueChange}
-              placeholder={placeholder ?? trans("placeholders.search")}
-            />
-          ) : null}
-          <CommandList ref={parentRef}>
-            <CommandEmpty>{trans("pagination.pages_empty")}</CommandEmpty>
-            <CommandGroup>
-              <div
-                className="relative w-full"
-                style={{
-                  height: `${virtualizer.getTotalSize()}px`,
-                }}
-              >
-                {virtualizer
-                  .getVirtualItems()
-                  .map(({ index, key, size, start }) => {
-                    return (
-                      <ComboboxItem
-                        className={cn(
-                          "absolute top-0 left-0 h-9 w-full will-change-transform",
-                        )}
-                        displayValue={displayValue}
-                        item={filteredOptions[index]}
-                        labelPath={labelPath}
-                        value={value}
-                        valuePath={valuePath}
-                        onSelect={onSelect}
-                        renderOption={renderOption}
-                        style={{
-                          height: `${size}px`,
-                          transform: `translateY(${start}px)`,
-                        }}
-                        key={key}
-                      />
-                    );
-                  })}
-              </div>
-            </CommandGroup>
-          </CommandList>
-        </CommandRoot>
-      </PopoverContent>
+      <PopoverPortal>
+        <PopoverContent className="p-0">
+          <CommandRoot shouldFilter={false}>
+            {searchable ? (
+              <CommandInput
+                value={input}
+                onValueChange={onValueChange}
+                placeholder={placeholder ?? trans("placeholders.search")}
+              />
+            ) : null}
+            <CommandList ref={parentRef}>
+              <CommandEmpty>{trans("pagination.pages_empty")}</CommandEmpty>
+              <CommandGroup>
+                <div
+                  className="relative w-full"
+                  style={{
+                    height: `${virtualizer.getTotalSize()}px`,
+                  }}
+                >
+                  {virtualizer
+                    .getVirtualItems()
+                    .map(({ index, key, size, start }) => {
+                      return (
+                        <ComboboxItem
+                          className={cn(
+                            "absolute top-0 left-0 h-9 w-full will-change-transform",
+                          )}
+                          displayValue={displayValue}
+                          item={filteredOptions[index]}
+                          labelPath={labelPath}
+                          value={value}
+                          valuePath={valuePath}
+                          onSelect={onSelect}
+                          renderOption={renderOption}
+                          style={{
+                            height: `${size}px`,
+                            transform: `translateY(${start}px)`,
+                          }}
+                          key={key}
+                        />
+                      );
+                    })}
+                </div>
+              </CommandGroup>
+            </CommandList>
+          </CommandRoot>
+        </PopoverContent>
+      </PopoverPortal>
     </PopoverRoot>
   );
 }

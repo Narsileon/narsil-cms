@@ -22,6 +22,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
+  PopoverPortal,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -106,133 +107,135 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
           </ButtonRoot>
         </PopoverTrigger>
       </Tooltip>
-      <PopoverContent className="border-none p-0">
-        {bookmark && form ? (
-          <FormProvider
-            action={route("user-bookmarks.update", bookmark.id)}
-            id={form.id}
-            elements={form.form}
-            method="patch"
-            initialValues={{
-              name: bookmark?.name,
-            }}
-            render={() => (
-              <Card>
-                <CardHeader className="border-b">
-                  <CardTitle>{form.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <FormRoot
-                    className="grid-cols-12 gap-4"
-                    method="patch"
-                    options={{
-                      onSuccess: () => {
-                        fetchBookmarks();
-                        setBookmark(null);
-                      },
+      <PopoverPortal>
+        <PopoverContent className="border-none p-0">
+          {bookmark && form ? (
+            <FormProvider
+              action={route("user-bookmarks.update", bookmark.id)}
+              id={form.id}
+              elements={form.form}
+              method="patch"
+              initialValues={{
+                name: bookmark?.name,
+              }}
+              render={() => (
+                <Card>
+                  <CardHeader className="border-b">
+                    <CardTitle>{form.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <FormRoot
+                      className="grid-cols-12 gap-4"
+                      method="patch"
+                      options={{
+                        onSuccess: () => {
+                          fetchBookmarks();
+                          setBookmark(null);
+                        },
+                      }}
+                    >
+                      {form.form.map((element, index) => (
+                        <FormFieldRenderer element={element} key={index} />
+                      ))}
+                    </FormRoot>
+                  </CardContent>
+                  <CardFooter className="justify-between border-t">
+                    <ButtonRoot
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => setBookmark(null)}
+                    >
+                      {labels["ui.cancel"]}
+                    </ButtonRoot>
+                    <FormSubmit size="sm">{form.submitLabel}</FormSubmit>
+                  </CardFooter>
+                </Card>
+              )}
+            />
+          ) : (
+            <Card>
+              <CardHeader className="flex items-center justify-between border-b">
+                <CardTitle> {labels["bookmarks.bookmarks"]}</CardTitle>
+                <Tooltip
+                  tooltip={
+                    currentBookmark ? labels["ui.remove"] : labels["ui.add"]
+                  }
+                >
+                  <ButtonRoot
+                    className="-my-2 size-8"
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => {
+                      if (currentBookmark) {
+                        onDelete(currentBookmark.id);
+                      } else {
+                        onAdd();
+                      }
                     }}
                   >
-                    {form.form.map((element, index) => (
-                      <FormFieldRenderer element={element} key={index} />
-                    ))}
-                  </FormRoot>
-                </CardContent>
-                <CardFooter className="justify-between border-t">
-                  <ButtonRoot
-                    size="sm"
-                    variant="secondary"
-                    onClick={() => setBookmark(null)}
-                  >
-                    {labels["ui.cancel"]}
+                    <Icon
+                      className="size-4"
+                      name={"star"}
+                      fill={currentBookmark ? "currentColor" : "none"}
+                    />
                   </ButtonRoot>
-                  <FormSubmit size="sm">{form.submitLabel}</FormSubmit>
-                </CardFooter>
-              </Card>
-            )}
-          />
-        ) : (
-          <Card>
-            <CardHeader className="flex items-center justify-between border-b">
-              <CardTitle> {labels["bookmarks.bookmarks"]}</CardTitle>
-              <Tooltip
-                tooltip={
-                  currentBookmark ? labels["ui.remove"] : labels["ui.add"]
-                }
-              >
-                <ButtonRoot
-                  className="-my-2 size-8"
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => {
-                    if (currentBookmark) {
-                      onDelete(currentBookmark.id);
-                    } else {
-                      onAdd();
-                    }
-                  }}
-                >
-                  <Icon
-                    className="size-4"
-                    name={"star"}
-                    fill={currentBookmark ? "currentColor" : "none"}
-                  />
-                </ButtonRoot>
-              </Tooltip>
-            </CardHeader>
-            <CardContent className="text-sm">
-              {bookmarks.length > 0 ? (
-                <ul className="-my-2 flex flex-col gap-1">
-                  {bookmarks.map((bookmark) => (
-                    <li
-                      className="flex items-center justify-between"
-                      key={bookmark.id}
-                    >
-                      <ButtonRoot
-                        className="font-normal text-foreground"
-                        size="link"
-                        variant="link"
-                        onClick={() => onOpenChange(false)}
+                </Tooltip>
+              </CardHeader>
+              <CardContent className="text-sm">
+                {bookmarks.length > 0 ? (
+                  <ul className="-my-2 flex flex-col gap-1">
+                    {bookmarks.map((bookmark) => (
+                      <li
+                        className="flex items-center justify-between"
+                        key={bookmark.id}
                       >
-                        <Link href={bookmark.url}>{bookmark.name}</Link>
-                      </ButtonRoot>
-                      <div className="flex items-center justify-between gap-1">
-                        <Tooltip tooltip={labels["ui.edit"]}>
-                          <ButtonRoot
-                            className="size-8"
-                            size="icon"
-                            variant="ghost"
-                            onClick={() => {
-                              setBookmark(bookmark);
-                            }}
-                          >
-                            <Icon className="size-4" name="edit" />
-                          </ButtonRoot>
-                        </Tooltip>
-                        <Tooltip tooltip={labels["ui.remove"]}>
-                          <ButtonRoot
-                            className="size-8"
-                            size="icon"
-                            variant="ghost"
-                            onClick={() => {
-                              onDelete(bookmark.id);
-                            }}
-                          >
-                            <Icon className="size-4" name="star-off" />
-                          </ButtonRoot>
-                        </Tooltip>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-muted-foreground">
-                  {labels["bookmarks.instruction"]}
-                </p>
-              )}
-            </CardContent>
-          </Card>
-        )}
-      </PopoverContent>
+                        <ButtonRoot
+                          className="font-normal text-foreground"
+                          size="link"
+                          variant="link"
+                          onClick={() => onOpenChange(false)}
+                        >
+                          <Link href={bookmark.url}>{bookmark.name}</Link>
+                        </ButtonRoot>
+                        <div className="flex items-center justify-between gap-1">
+                          <Tooltip tooltip={labels["ui.edit"]}>
+                            <ButtonRoot
+                              className="size-8"
+                              size="icon"
+                              variant="ghost"
+                              onClick={() => {
+                                setBookmark(bookmark);
+                              }}
+                            >
+                              <Icon className="size-4" name="edit" />
+                            </ButtonRoot>
+                          </Tooltip>
+                          <Tooltip tooltip={labels["ui.remove"]}>
+                            <ButtonRoot
+                              className="size-8"
+                              size="icon"
+                              variant="ghost"
+                              onClick={() => {
+                                onDelete(bookmark.id);
+                              }}
+                            >
+                              <Icon className="size-4" name="star-off" />
+                            </ButtonRoot>
+                          </Tooltip>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground">
+                    {labels["bookmarks.instruction"]}
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          )}
+        </PopoverContent>
+      </PopoverPortal>
     </PopoverRoot>
   );
 }

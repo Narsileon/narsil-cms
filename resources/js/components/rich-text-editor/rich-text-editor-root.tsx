@@ -1,6 +1,6 @@
-import { cn } from "@narsil-cms/lib/utils";
-
 import React from "react";
+
+import { cn } from "@narsil-cms/lib/utils";
 
 type RichTextEditorRootProps = React.ComponentProps<"div"> & {};
 

@@ -5,6 +5,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
   PopoverContent,
+  PopoverPortal,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -37,21 +38,23 @@ function InputDate({ value, onChange, ...props }: InputDateProps) {
           <Icon className="opacity-50" name="calendar" />
         </InputRoot>
       </PopoverTrigger>
-      <PopoverContent className="w-auto overflow-hidden p-0" align="start">
-        <Calendar
-          captionLayout="dropdown"
-          mode="single"
-          defaultMonth={date}
-          selected={date}
-          onSelect={(selected) => {
-            const newValue = selected
-              ? selected.toLocaleDateString("en-CA")
-              : undefined;
-            onChange?.(newValue);
-            setOpen(false);
-          }}
-        />
-      </PopoverContent>
+      <PopoverPortal>
+        <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+          <Calendar
+            captionLayout="dropdown"
+            mode="single"
+            defaultMonth={date}
+            selected={date}
+            onSelect={(selected) => {
+              const newValue = selected
+                ? selected.toLocaleDateString("en-CA")
+                : undefined;
+              onChange?.(newValue);
+              setOpen(false);
+            }}
+          />
+        </PopoverContent>
+      </PopoverPortal>
     </PopoverRoot>
   );
 }

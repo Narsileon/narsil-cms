@@ -4,11 +4,9 @@ import TextAlign from "@tiptap/extension-text-align";
 import { Placeholder } from "@tiptap/extensions";
 import { EditorContext, EditorOptions, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
-
-import { useMemo } from "react";
 
 type RichTextEditorRootProps = Partial<EditorOptions> & {
   children?: React.ReactNode;
