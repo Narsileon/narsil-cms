@@ -1,13 +1,12 @@
 import { route } from "ziggy-js";
 
-import { Button } from "@narsil-cms/blocks";
+import { Button, Toggle } from "@narsil-cms/blocks";
 import {
   DataTableRowMenu,
   useDataTable,
 } from "@narsil-cms/components/data-table";
 import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
 import { cn } from "@narsil-cms/lib/utils";
 import { type DataTableFilterCollection } from "@narsil-cms/types";
 
@@ -27,7 +26,7 @@ function DataTableFilter({
   return (
     <ul className={cn("grid gap-2", className)} {...props}>
       <li>
-        <ToggleRoot
+        <Toggle
           className="w-full justify-start font-normal"
           pressed={!dataTableStore.filter}
           onClick={() => {
@@ -35,14 +34,14 @@ function DataTableFilter({
           }}
         >
           {trans("ui.all")}
-        </ToggleRoot>
+        </Toggle>
       </li>
       {data.map((category) => (
         <li
           className="flex items-center justify-between gap-2"
           key={category.id}
         >
-          <ToggleRoot
+          <Toggle
             className="grow justify-start font-normal"
             pressed={category.id.toString() === dataTableStore.filter}
             onClick={() => {
@@ -50,7 +49,7 @@ function DataTableFilter({
             }}
           >
             {category.label}
-          </ToggleRoot>
+          </Toggle>
           <DataTableRowMenu
             id={category.id}
             modal={true}

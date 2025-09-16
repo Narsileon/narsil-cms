@@ -1,7 +1,7 @@
 import { type VariantProps } from "class-variance-authority";
 import { Dialog } from "radix-ui";
 
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
+import { VisuallyHidden } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
 
 import DialogCloseButton from "./dialog-close-button";
@@ -36,9 +36,9 @@ function DialogContent({
         )}
         {...props}
       >
-        <VisuallyHiddenRoot aria-hidden="true" tabIndex={0}>
+        <VisuallyHidden aria-hidden="true" tabIndex={0}>
           Dialog
-        </VisuallyHiddenRoot>
+        </VisuallyHidden>
         {children}
         {showCloseButton ? (
           <DialogCloseButton className="absolute top-5.5 right-5.5" />

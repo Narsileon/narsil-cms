@@ -1,11 +1,10 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
 
-type RichTextEditorBoldProps = React.ComponentProps<typeof ToggleRoot> & {
+type RichTextEditorBoldProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
@@ -24,7 +23,7 @@ function RichTextEditorBold({ editor, ...props }: RichTextEditorBoldProps) {
 
   return (
     <Tooltip tooltip={trans(`accessibility.toggle_bold`)}>
-      <ToggleRoot
+      <Toggle
         aria-label={trans(`accessibility.toggle_bold`, `Toggle bold`)}
         disabled={!canBold}
         pressed={isBold}
@@ -33,7 +32,7 @@ function RichTextEditorBold({ editor, ...props }: RichTextEditorBoldProps) {
         {...props}
       >
         <Icon name="bold" />
-      </ToggleRoot>
+      </Toggle>
     </Tooltip>
   );
 }

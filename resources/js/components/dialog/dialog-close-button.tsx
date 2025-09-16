@@ -1,14 +1,20 @@
 import { Dialog } from "radix-ui";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
+import { type IconName } from "@narsil-cms/plugins/icons";
 
-type DialogCloseButtonProps = React.ComponentProps<typeof Dialog.Close> & {};
+type DialogCloseButtonProps = React.ComponentProps<typeof Dialog.Close> & {
+  icon?: IconName;
+};
 
-function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
+function DialogCloseButton({
+  className,
+  icon = "x",
+  ...props
+}: DialogCloseButtonProps) {
   const { trans } = useLabels();
 
   const tooltip = trans("accessibility.close_dialog", "Close dialog");
@@ -28,8 +34,8 @@ function DialogCloseButton({ className, ...props }: DialogCloseButtonProps) {
         )}
         {...props}
       >
-        <Icon name="x" />
-        <VisuallyHiddenRoot>{tooltip}</VisuallyHiddenRoot>
+        <Icon name={icon} />
+        <VisuallyHidden>{tooltip}</VisuallyHidden>
       </Dialog.Close>
     </Tooltip>
   );

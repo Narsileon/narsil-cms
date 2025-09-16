@@ -1,12 +1,12 @@
 import { router } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
+import { Heading } from "@narsil-cms/blocks";
 import {
   FormFieldRenderer,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -67,7 +67,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   return (
     <SectionRoot>
       <SectionHeader className="border-b">
-        <HeadingRoot level="h2">{trans("ui.personalization")}</HeadingRoot>
+        <Heading level="h2">{trans("ui.personalization")}</Heading>
       </SectionHeader>
       <SectionContent>
         <FormProvider

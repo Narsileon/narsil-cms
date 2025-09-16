@@ -1,13 +1,10 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
 
-type RichTextEditorOrderedListProps = React.ComponentProps<
-  typeof ToggleRoot
-> & {
+type RichTextEditorOrderedListProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
@@ -28,7 +25,7 @@ function RichTextEditorOrderedList({
 
   return (
     <Tooltip tooltip={trans(`accessibility.toggle_ordered_list`)}>
-      <ToggleRoot
+      <Toggle
         aria-label={trans(
           `accessibility.toggle_ordered_list`,
           `Toggle ordered list`,
@@ -39,7 +36,7 @@ function RichTextEditorOrderedList({
         {...props}
       >
         <Icon name="list-ordered" />
-      </ToggleRoot>
+      </Toggle>
     </Tooltip>
   );
 }

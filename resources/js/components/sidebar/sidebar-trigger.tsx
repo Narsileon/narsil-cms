@@ -1,7 +1,6 @@
-import { Button, Tooltip } from "@narsil-cms/blocks";
+import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
 
 import useSidebar from "./sidebar-context";
@@ -29,9 +28,9 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
         {...props}
       >
         <Icon name="menu" />
-        <VisuallyHiddenRoot>
+        <VisuallyHidden>
           {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
-        </VisuallyHiddenRoot>
+        </VisuallyHidden>
       </Button>
     </Tooltip>
   );

@@ -1,14 +1,19 @@
 import { useEffect, useRef } from "react";
 
-import { Bookmarks, Breadcrumb, Sidebar, UserMenu } from "@narsil-cms/blocks";
+import {
+  Bookmarks,
+  Breadcrumb,
+  Separator,
+  Sidebar,
+  Toaster,
+  UserMenu,
+} from "@narsil-cms/blocks";
 import { ModalRenderer } from "@narsil-cms/components/modal";
-import { SeparatorRoot } from "@narsil-cms/components/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@narsil-cms/components/sidebar";
-import { ToasterRoot } from "@narsil-cms/components/toaster";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
@@ -53,7 +58,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
           {isMobile ? (
             <>
               <SidebarTrigger />
-              <SeparatorRoot orientation="vertical" />
+              <Separator orientation="vertical" />
             </>
           ) : null}
           <Breadcrumb className="grow" />
@@ -63,7 +68,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
         <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
           <ModalRenderer container={mainRef.current} />
           {children}
-          <ToasterRoot />
+          <Toaster />
         </main>
       </SidebarInset>
     </SidebarProvider>

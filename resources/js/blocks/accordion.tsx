@@ -1,3 +1,4 @@
+import { Heading } from "@narsil-cms/blocks";
 import {
   AccordionContent,
   AccordionItem,
@@ -5,7 +6,6 @@ import {
   AccordionHeader,
   AccordionRoot,
 } from "@narsil-cms/components/accordion";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 import { Icon } from "@narsil-cms/components/icon";
 
 type AccordionElement = {
@@ -24,7 +24,7 @@ function Accordion({ elements, ...props }: AccordionProps) {
       {elements.map((element) => (
         <AccordionItem value={element.id} key={element.id}>
           <AccordionHeader asChild>
-            <HeadingRoot level="h2">
+            <Heading level="h2">
               <AccordionTrigger>
                 {element.title}
                 <Icon
@@ -34,7 +34,7 @@ function Accordion({ elements, ...props }: AccordionProps) {
                   name="chevron-down"
                 />
               </AccordionTrigger>
-            </HeadingRoot>
+            </Heading>
           </AccordionHeader>
           <AccordionContent>{element.content}</AccordionContent>
         </AccordionItem>

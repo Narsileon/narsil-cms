@@ -1,13 +1,10 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
 
-type RichTextEditorSuperscriptProps = React.ComponentProps<
-  typeof ToggleRoot
-> & {
+type RichTextEditorSuperscriptProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
@@ -34,7 +31,7 @@ function RichTextEditorSuperscript({
 
   return (
     <Tooltip tooltip={trans(`accessibility.toggle_superscript`)}>
-      <ToggleRoot
+      <Toggle
         aria-label={trans(
           `accessibility.toggle_superscript`,
           `Toggle superscript`,
@@ -49,7 +46,7 @@ function RichTextEditorSuperscript({
         {...props}
       >
         <Icon name="superscript" />
-      </ToggleRoot>
+      </Toggle>
     </Tooltip>
   );
 }

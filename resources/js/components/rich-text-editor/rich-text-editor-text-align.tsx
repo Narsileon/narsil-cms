@@ -1,11 +1,10 @@
 import { Editor } from "@tiptap/react";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
 
-type RichTextEditorTextAlignProps = React.ComponentProps<typeof ToggleRoot> & {
+type RichTextEditorTextAlignProps = React.ComponentProps<typeof Toggle> & {
   alignment: "left" | "center" | "right" | "justify";
   editor: Editor;
 };
@@ -19,7 +18,7 @@ function RichTextEditorTextAlign({
 
   return (
     <Tooltip tooltip={trans(`accessibility.align_${alignment}`)}>
-      <ToggleRoot
+      <Toggle
         aria-label={trans(
           `accessibility.align_${alignment}`,
           `Align ${alignment}`,
@@ -30,7 +29,7 @@ function RichTextEditorTextAlign({
         {...props}
       >
         <Icon name={`align-${alignment}`} />
-      </ToggleRoot>
+      </Toggle>
     </Tooltip>
   );
 }

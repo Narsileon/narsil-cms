@@ -1,5 +1,6 @@
 import { Command } from "cmdk";
 
+import { VisuallyHidden } from "@narsil-cms/blocks";
 import {
   DialogContent,
   DialogDescription,
@@ -7,7 +8,6 @@ import {
   DialogRoot,
   DialogTitle,
 } from "@narsil-cms/components/dialog";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
 
 type CommandDialogProps = React.ComponentProps<typeof DialogRoot> & {
@@ -27,12 +27,12 @@ function CommandDialog({
 }: CommandDialogProps) {
   return (
     <DialogRoot {...props}>
-      <VisuallyHiddenRoot>
+      <VisuallyHidden>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-      </VisuallyHiddenRoot>
+      </VisuallyHidden>
       <DialogContent
         className={cn("overflow-hidden p-0", className)}
         showCloseButton={showCloseButton}

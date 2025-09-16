@@ -1,11 +1,10 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
 
-type RichTextEditorItalicProps = React.ComponentProps<typeof ToggleRoot> & {
+type RichTextEditorItalicProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
@@ -24,7 +23,7 @@ function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
 
   return (
     <Tooltip tooltip={trans(`accessibility.toggle_italic`)}>
-      <ToggleRoot
+      <Toggle
         aria-label={trans(`accessibility.toggle_italic`, `Toggle italic`)}
         disabled={!canItalic}
         pressed={isItalic}
@@ -33,7 +32,7 @@ function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
         {...props}
       >
         <Icon name="italic" />
-      </ToggleRoot>
+      </Toggle>
     </Tooltip>
   );
 }

@@ -1,11 +1,10 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ToggleRoot } from "@narsil-cms/components/toggle";
 
-type RichTextEditorStrikeProps = React.ComponentProps<typeof ToggleRoot> & {
+type RichTextEditorStrikeProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
@@ -24,7 +23,7 @@ function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
 
   return (
     <Tooltip tooltip={trans(`accessibility.toggle_strike`)}>
-      <ToggleRoot
+      <Toggle
         aria-label={trans(`accessibility.toggle_strike`, `Toggle strike`)}
         disabled={!canStrike}
         pressed={isStrike}
@@ -33,7 +32,7 @@ function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
         {...props}
       >
         <Icon name="strikethrough" />
-      </ToggleRoot>
+      </Toggle>
     </Tooltip>
   );
 }

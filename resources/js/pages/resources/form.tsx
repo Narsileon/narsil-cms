@@ -1,7 +1,7 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-import { Button, SaveButton } from "@narsil-cms/blocks";
+import { Button, Heading, SaveButton } from "@narsil-cms/blocks";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import {
   DialogBody,
@@ -14,7 +14,6 @@ import {
   FormSubmit,
   FormFieldRenderer,
 } from "@narsil-cms/components/form";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -199,9 +198,9 @@ function ResourceForm({
           ) : (
             <SectionRoot className="p-4">
               <SectionHeader>
-                <HeadingRoot level="h1" variant="h4">
+                <Heading level="h1" variant="h4">
                   {title}
-                </HeadingRoot>
+                </Heading>
                 <SaveButton
                   routes={routes}
                   submitLabel={

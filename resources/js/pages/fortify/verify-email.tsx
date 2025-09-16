@@ -3,10 +3,9 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button } from "@narsil-cms/blocks";
+import { Button, Heading } from "@narsil-cms/blocks";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import { ContainerRoot } from "@narsil-cms/components/container";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -36,9 +35,9 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
     <ContainerRoot className="gap-6" asChild={true} variant="centered">
       <SectionRoot>
         <SectionHeader>
-          <HeadingRoot level="h1" variant="h4">
+          <Heading level="h1" variant="h4">
             {title}
-          </HeadingRoot>
+          </Heading>
         </SectionHeader>
         <SectionContent>
           <Card>

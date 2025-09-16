@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button, InputPassword } from "@narsil-cms/blocks";
+import { Button, Heading, InputPassword } from "@narsil-cms/blocks";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
 import { ContainerRoot } from "@narsil-cms/components/container";
 import {
@@ -16,7 +16,6 @@ import {
   FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -56,9 +55,9 @@ function FortifyForm({
     <ContainerRoot className="gap-6" asChild={true} variant="centered">
       <SectionRoot>
         <SectionHeader>
-          <HeadingRoot level="h1" variant="h4">
+          <Heading level="h1" variant="h4">
             {title}
-          </HeadingRoot>
+          </Heading>
         </SectionHeader>
         <SectionContent>
           <Card className="max-w-md">

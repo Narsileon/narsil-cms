@@ -2,6 +2,7 @@ import { router } from "@inertiajs/react";
 import { useEffect } from "react";
 import { route } from "ziggy-js";
 
+import { Separator, Shortcut } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -12,8 +13,6 @@ import {
 import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { SeparatorRoot } from "@narsil-cms/components/separator";
-import { ShortcutRoot } from "@narsil-cms/components/shortcut";
 import { cn } from "@narsil-cms/lib/utils";
 import { type RouteNames } from "@narsil-cms/types";
 
@@ -135,7 +134,7 @@ function SaveButton({
         <Icon name="save" />
         {submitLabel}
       </Button>
-      <SeparatorRoot orientation="vertical" />
+      <Separator orientation="vertical" />
       <DropdownMenuRoot>
         <DropdownMenuTrigger asChild={true}>
           <Button className="w-7 rounded-l-none" size="icon">
@@ -146,13 +145,13 @@ function SaveButton({
           <DropdownMenuItem onClick={saveAndContinue}>
             <Icon name="save-and-continue" />
             {`${submitLabel} & ${trans("ui.continue")}`}
-            <ShortcutRoot>Ctrl+S</ShortcutRoot>
+            <Shortcut>Ctrl+S</Shortcut>
           </DropdownMenuItem>
           {routes?.create ? (
             <DropdownMenuItem onClick={saveAndAdd}>
               <Icon name="save-and-add" />
               {`${submitLabel} & ${trans("ui.add_another")}`}
-              <ShortcutRoot>Ctrl+Shift+S</ShortcutRoot>
+              <Shortcut>Ctrl+Shift+S</Shortcut>
             </DropdownMenuItem>
           ) : null}
           {routes?.store && data?.id ? (
@@ -161,7 +160,7 @@ function SaveButton({
               <DropdownMenuItem onClick={saveAsNew}>
                 <Icon name="plus" />
                 {trans("ui.save_as_new")}
-                <ShortcutRoot>Ctrl+D</ShortcutRoot>
+                <Shortcut>Ctrl+D</Shortcut>
               </DropdownMenuItem>
             </>
           ) : null}
@@ -171,7 +170,7 @@ function SaveButton({
               <DropdownMenuItem onClick={destroy}>
                 <Icon name="trash" />
                 {trans("ui.delete")}
-                <ShortcutRoot>Ctrl+X</ShortcutRoot>
+                <Shortcut>Ctrl+X</Shortcut>
               </DropdownMenuItem>
             </>
           ) : null}

@@ -1,19 +1,17 @@
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
-import TwoFactorForm from "@narsil-cms/blocks/two-factor-form";
+import { Button, Heading, Separator } from "@narsil-cms/blocks";
 import { DialogClose } from "@narsil-cms/components/dialog";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
   SectionHeader,
   SectionRoot,
 } from "@narsil-cms/components/section";
-import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { type FormType } from "@narsil-cms/types";
 
-import Button from "./button";
+import TwoFactorForm from "./two-factor-form";
 
 type SecurityFormProps = {
   twoFactorForm: FormType;
@@ -26,16 +24,16 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
     <>
       <SectionRoot>
         <SectionHeader className="border-b">
-          <HeadingRoot level="h2">{trans("ui.security")}</HeadingRoot>
+          <Heading level="h2">{trans("ui.security")}</Heading>
         </SectionHeader>
         <SectionContent>
           <TwoFactorForm form={twoFactorForm} />
         </SectionContent>
       </SectionRoot>
-      <SeparatorRoot />
+      <Separator />
       <SectionRoot>
         <SectionHeader className="border-b">
-          <HeadingRoot level="h2">{trans("ui.sessions")}</HeadingRoot>
+          <Heading level="h2">{trans("ui.sessions")}</Heading>
         </SectionHeader>
         <SectionContent className="grid gap-4 text-sm">
           <p>{trans("sessions.sign_out_current_description")}</p>
@@ -51,7 +49,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               </Link>
             </Button>
           </DialogClose>
-          <SeparatorRoot />
+          <Separator />
           <p>{trans("sessions.sign_out_elsewhere_description")}</p>
           <Button asChild={true} variant="outline">
             <Link
@@ -64,7 +62,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               {trans("sessions.sign_out_elsewhere")}
             </Link>
           </Button>
-          <SeparatorRoot />
+          <Separator />
           <p>{trans("sessions.sign_out_everywhere_description")}</p>
           <DialogClose asChild={true}>
             <Button asChild={true} variant="outline">

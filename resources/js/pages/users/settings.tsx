@@ -1,9 +1,9 @@
+import { Tabs } from "@narsil-cms/blocks";
 import {
   ConfigurationForm,
   ProfileForm,
   SecurityForm,
-  Tabs,
-} from "@narsil-cms/blocks";
+} from "@narsil-cms/blocks/forms";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types";

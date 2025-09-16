@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { VisuallyHidden } from "@narsil-cms/blocks";
 import {
   DialogBody,
   DialogContent,
@@ -9,7 +10,6 @@ import {
   DialogTitle,
 } from "@narsil-cms/components/dialog";
 import { LabelsProvider } from "@narsil-cms/components/labels";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { type ModalType } from "@narsil-cms/stores/modal-store";
 
 type ModalProps = React.ComponentProps<typeof DialogContent> & {
@@ -63,11 +63,11 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
         <DialogHeader className="border-b">
           <DialogTitle>{modal.componentProps.title}</DialogTitle>
         </DialogHeader>
-        <VisuallyHiddenRoot asChild={true}>
+        <VisuallyHidden asChild={true}>
           <DialogDescription>
             {modal.componentProps.description}
           </DialogDescription>
-        </VisuallyHiddenRoot>
+        </VisuallyHidden>
 
         <LabelsProvider labels={modal.componentProps.labels}>
           <DialogBody className="p-0">

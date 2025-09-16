@@ -1,6 +1,6 @@
 import { useCurrentEditor } from "@tiptap/react";
 
-import { Button, Tooltip } from "@narsil-cms/blocks";
+import { Button, Separator, Tooltip } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -9,7 +9,6 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
-import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
 import RichTextEditorBold from "./rich-text-editor-bold";
@@ -68,7 +67,7 @@ function RichTextEditorToolbar({
       {/* Advanced styles */}
       {hasModules(["superscript", "subscript"]) && (
         <>
-          <SeparatorRoot orientation="vertical" />
+          <Separator orientation="vertical" />
 
           {hasModule("superscript") !== false && (
             <RichTextEditorSuperscript editor={editor} />
@@ -82,7 +81,7 @@ function RichTextEditorToolbar({
       {/* Headings */}
       {hasModules(headings.map((level) => `heading_${level}`)) && (
         <>
-          <SeparatorRoot orientation="vertical" />
+          <Separator orientation="vertical" />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
               <DropdownMenuTrigger asChild={true}>
@@ -120,7 +119,7 @@ function RichTextEditorToolbar({
         "align_justify",
       ]) && (
         <>
-          <SeparatorRoot orientation="vertical" />
+          <Separator orientation="vertical" />
 
           {hasModule("align_left") !== false && (
             <RichTextEditorTextAlign alignment="left" editor={editor} />
@@ -140,7 +139,7 @@ function RichTextEditorToolbar({
       {/* Lists */}
       {hasModules(["bullet_list", "ordered_list"]) && (
         <>
-          <SeparatorRoot orientation="vertical" />
+          <Separator orientation="vertical" />
 
           {hasModule("bullet_list") && (
             <RichTextEditorBulletList editor={editor} />
@@ -154,7 +153,7 @@ function RichTextEditorToolbar({
       {/* Controls */}
       {hasModules(["undo", "redo"]) && (
         <>
-          <SeparatorRoot orientation="vertical" />
+          <Separator orientation="vertical" />
 
           {hasModule("undo") && <RichTextEditorUndo editor={editor} />}
           {hasModule("redo") && <RichTextEditorRedo editor={editor} />}

@@ -1,9 +1,8 @@
 import { useRef } from "react";
 
-import { Logo, UserMenu } from "@narsil-cms/blocks";
+import { Logo, Toaster, UserMenu } from "@narsil-cms/blocks";
 import { ContainerRoot } from "@narsil-cms/components/container";
 import { ModalRenderer } from "@narsil-cms/components/modal";
-import { ToasterRoot } from "@narsil-cms/components/toaster";
 
 type GuestLayoutProps = {
   children: React.ReactNode;
@@ -23,7 +22,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
       <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
         <ModalRenderer container={mainRef.current} />
         {children}
-        <ToasterRoot />
+        <Toaster />
       </main>
     </>
   );

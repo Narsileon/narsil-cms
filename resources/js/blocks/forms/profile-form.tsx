@@ -1,10 +1,10 @@
+import { Heading, Separator } from "@narsil-cms/blocks";
 import {
   FormFieldRenderer,
   FormProvider,
   FormRoot,
   FormSubmit,
 } from "@narsil-cms/components/form";
-import { HeadingRoot } from "@narsil-cms/components/heading";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -12,7 +12,6 @@ import {
   SectionHeader,
   SectionRoot,
 } from "@narsil-cms/components/section";
-import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types";
 
@@ -41,7 +40,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         render={() => (
           <SectionRoot>
             <SectionHeader className="border-b">
-              <HeadingRoot level="h2">{trans("ui.account")}</HeadingRoot>
+              <Heading level="h2">{trans("ui.account")}</Heading>
               <FormSubmit>
                 {profileForm.submitIcon ? (
                   <Icon name={profileForm.submitIcon} />
@@ -59,7 +58,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           </SectionRoot>
         )}
       />
-      <SeparatorRoot />
+      <Separator />
       <FormProvider
         id={updatePasswordForm.id}
         action={updatePasswordForm.action}
@@ -68,7 +67,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         render={({ reset, setDefaults }) => (
           <SectionRoot>
             <SectionHeader className="border-b">
-              <HeadingRoot level="h2">{trans("ui.password")}</HeadingRoot>
+              <Heading level="h2">{trans("ui.password")}</Heading>
               <FormSubmit>
                 {updatePasswordForm.submitIcon ? (
                   <Icon name={updatePasswordForm.submitIcon} />

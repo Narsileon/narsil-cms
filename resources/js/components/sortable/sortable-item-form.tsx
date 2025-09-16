@@ -2,7 +2,7 @@ import { type UniqueIdentifier } from "@dnd-kit/core";
 import { get, set } from "lodash";
 import { useState } from "react";
 
-import { Button, Tooltip } from "@narsil-cms/blocks";
+import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import {
   DialogBody,
   DialogContent,
@@ -15,7 +15,6 @@ import {
 } from "@narsil-cms/components/dialog";
 import { FormItem, FormLabel } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
-import { VisuallyHiddenRoot } from "@narsil-cms/components/visually-hidden";
 import { getField } from "@narsil-cms/plugins/fields";
 import { type FormType } from "@narsil-cms/types";
 
@@ -67,9 +66,9 @@ function SortableItemForm({
           <DialogTitle>{form.title}</DialogTitle>
         </DialogHeader>
         <DialogBody>
-          <VisuallyHiddenRoot>
+          <VisuallyHidden>
             <DialogDescription></DialogDescription>
-          </VisuallyHiddenRoot>
+          </VisuallyHidden>
           {form.form.map((field, index) => {
             if ("settings" in field) {
               return (
