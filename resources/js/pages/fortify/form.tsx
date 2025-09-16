@@ -3,8 +3,7 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { InputPassword } from "@narsil-cms/blocks";
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button, InputPassword } from "@narsil-cms/blocks";
 import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
 import { ContainerRoot } from "@narsil-cms/components/container";
 import {
@@ -86,7 +85,7 @@ function FortifyForm({
                                   <FormLabel required={true}>
                                     {element.name}
                                   </FormLabel>
-                                  <ButtonRoot
+                                  <Button
                                     className="font-normal"
                                     size="link"
                                     variant="link"
@@ -94,7 +93,7 @@ function FortifyForm({
                                     <Link href={route("password.request")}>
                                       {trans("passwords.link")}
                                     </Link>
-                                  </ButtonRoot>
+                                  </Button>
                                 </div>
                                 <InputPassword
                                   {...(element.settings ?? {})}
@@ -124,13 +123,9 @@ function FortifyForm({
             </CardContent>
             {id === "forgot-password-form" ? (
               <CardFooter className="border-t px-6">
-                <ButtonRoot
-                  className="w-full"
-                  asChild={true}
-                  variant="secondary"
-                >
+                <Button className="w-full" asChild={true} variant="secondary">
                   <Link href={route("login")}>{trans("ui.back")}</Link>
-                </ButtonRoot>
+                </Button>
               </CardFooter>
             ) : null}
           </Card>

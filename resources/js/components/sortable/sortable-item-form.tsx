@@ -2,8 +2,7 @@ import { type UniqueIdentifier } from "@dnd-kit/core";
 import { get, set } from "lodash";
 import { useState } from "react";
 
-import { Tooltip } from "@narsil-cms/blocks";
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
   DialogBody,
   DialogContent,
@@ -97,10 +96,10 @@ function SortableItemForm({
           })}
         </DialogBody>
         <DialogFooter className="border-t">
-          <ButtonRoot variant="ghost" onClick={() => onOpenChange(false)}>
+          <Button variant="ghost" onClick={() => onOpenChange(false)}>
             {trans("ui.cancel")}
-          </ButtonRoot>
-          <ButtonRoot
+          </Button>
+          <Button
             onClick={() => {
               const oldUniqueIdentifier = get(item, optionValue ?? "value");
               const newUniqueIdentifier = get(data, optionValue ?? "value");
@@ -119,7 +118,7 @@ function SortableItemForm({
             }}
           >
             {trans("ui.save")}
-          </ButtonRoot>
+          </Button>
         </DialogFooter>
       </DialogContent>
     </DialogRoot>

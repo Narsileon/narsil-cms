@@ -2,7 +2,7 @@ import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import { TableCell, TableRow } from "@narsil-cms/components/table";
@@ -84,14 +84,14 @@ function SortableTableRow({
       )}
       <TableCell className="px-1 py-0">
         {!placeholder && onRemove ? (
-          <ButtonRoot
+          <Button
             className="size-7"
             size="icon"
             variant="ghost"
             onClick={() => onRemove(id)}
           >
             <Icon name="trash" />
-          </ButtonRoot>
+          </Button>
         ) : null}
       </TableCell>
     </TableRow>

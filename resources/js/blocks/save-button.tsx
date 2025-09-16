@@ -2,7 +2,6 @@ import { router } from "@inertiajs/react";
 import { useEffect } from "react";
 import { route } from "ziggy-js";
 
-import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -17,6 +16,8 @@ import { SeparatorRoot } from "@narsil-cms/components/separator";
 import { ShortcutRoot } from "@narsil-cms/components/shortcut";
 import { cn } from "@narsil-cms/lib/utils";
 import { type RouteNames } from "@narsil-cms/types";
+
+import Button from "./button";
 
 type SaveButtonProps = React.ComponentProps<"div"> & {
   routes?: RouteNames;
@@ -130,16 +131,16 @@ function SaveButton({
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <ButtonRoot className="rounded-r-none" form={id} type="submit">
+      <Button className="rounded-r-none" form={id} type="submit">
         <Icon name="save" />
         {submitLabel}
-      </ButtonRoot>
+      </Button>
       <SeparatorRoot orientation="vertical" />
       <DropdownMenuRoot>
         <DropdownMenuTrigger asChild={true}>
-          <ButtonRoot className="w-7 rounded-l-none" size="icon">
+          <Button className="w-7 rounded-l-none" size="icon">
             <Icon name="chevron-down" />
-          </ButtonRoot>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={saveAndContinue}>

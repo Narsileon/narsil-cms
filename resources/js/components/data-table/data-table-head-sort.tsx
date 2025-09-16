@@ -1,11 +1,10 @@
 import { Header } from "@tanstack/react-table";
 
-import { Tooltip } from "@narsil-cms/blocks";
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
-type DataTableHeadSortProps = React.ComponentProps<typeof ButtonRoot> & {
+type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
   header: Header<unknown, unknown>;
 };
 
@@ -25,7 +24,7 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
 
   return (
     <Tooltip tooltip={trans("accessibility.sort_column")}>
-      <ButtonRoot
+      <Button
         aria-label={trans("accessibility.sort_column", "Sort column")}
         className="size-6"
         size="icon"
@@ -34,7 +33,7 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
         {...props}
       >
         <Icon className="size-4" name={getIconName()} />
-      </ButtonRoot>
+      </Button>
     </Tooltip>
   );
 }

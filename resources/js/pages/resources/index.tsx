@@ -3,13 +3,13 @@ import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
 import {
+  Button,
   Checkbox,
   DataTable,
   Pagination,
   Select,
   Tooltip,
 } from "@narsil-cms/blocks";
-import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DataTableFilter,
   DataTableFilterBadge,
@@ -147,7 +147,7 @@ function ResourceIndex({
               <DataTableInput className="grow" />
               <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
                 <DataTableVisibilityDropdown>
-                  <ButtonRoot
+                  <Button
                     aria-label={columnsLabel}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
@@ -156,12 +156,12 @@ function ResourceIndex({
                     <span className="sr-only sm:not-sr-only">
                       {columnsLabel}
                     </span>
-                  </ButtonRoot>
+                  </Button>
                 </DataTableVisibilityDropdown>
               </Tooltip>
               <Tooltip hidden={isDesktop} tooltip={filterLabel}>
                 <DataTableFilterDropdown>
-                  <ButtonRoot
+                  <Button
                     aria-label={filterLabel}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
@@ -170,12 +170,12 @@ function ResourceIndex({
                     <span className="sr-only sm:not-sr-only">
                       {filterLabel}
                     </span>
-                  </ButtonRoot>
+                  </Button>
                 </DataTableFilterDropdown>
               </Tooltip>
               {collection.meta.routes.create ? (
                 <Tooltip hidden={isDesktop} tooltip={createLabel}>
-                  <ButtonRoot
+                  <Button
                     asChild={true}
                     aria-label={createLabel}
                     size={isDesktop ? "default" : "icon"}
@@ -192,7 +192,7 @@ function ResourceIndex({
                         {createLabel}
                       </span>
                     </Link>
-                  </ButtonRoot>
+                  </Button>
                 </Tooltip>
               ) : null}
             </SectionHeader>

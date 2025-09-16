@@ -1,12 +1,11 @@
 import { Link } from "@inertiajs/react";
 
-import { Tooltip } from "@narsil-cms/blocks";
+import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
   AvatarFallback,
   AvatarImage,
   AvatarRoot,
 } from "@narsil-cms/components/avatar";
-import { ButtonRoot } from "@narsil-cms/components/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -41,7 +40,7 @@ function UserMenu({ ...props }: UserMenuProps) {
               </AvatarFallback>
             </AvatarRoot>
           ) : (
-            <ButtonRoot
+            <Button
               aria-label={trans(
                 "accessibility.toggle_user_menu",
                 "Toggle user menu",
@@ -50,7 +49,7 @@ function UserMenu({ ...props }: UserMenuProps) {
               variant="ghost"
             >
               <Icon name="menu" />
-            </ButtonRoot>
+            </Button>
           )}
         </DropdownMenuTrigger>
       </Tooltip>

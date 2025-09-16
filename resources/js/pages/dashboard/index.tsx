@@ -1,3 +1,4 @@
+import { NavigationMenu } from "@narsil-cms/blocks";
 import { HeadingRoot } from "@narsil-cms/components/heading";
 import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
 
@@ -8,6 +9,7 @@ function Dashboard() {
         <HeadingRoot level="h1" variant="h3">
           Hello World!
         </HeadingRoot>
+        <NavigationMenu />
       </SectionContent>
     </SectionRoot>
   );

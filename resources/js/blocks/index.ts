@@ -1,6 +1,7 @@
 import Accordion from "./accordion";
 import Bookmarks from "./bookmarks";
 import Breadcrumb from "./breadcrumb";
+import Button from "./button";
 import Checkbox from "./checkbox";
 import Checkboxes from "./checkboxes";
 import ConfigurationForm from "./configuration-form";
@@ -30,6 +31,7 @@ export {
   Accordion,
   Bookmarks,
   Breadcrumb,
+  Button,
   Checkbox,
   Checkboxes,
   ConfigurationForm,

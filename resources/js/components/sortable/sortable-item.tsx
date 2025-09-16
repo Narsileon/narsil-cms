@@ -3,8 +3,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 
-import { Tooltip } from "@narsil-cms/blocks";
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
   Card,
   CardContent,
@@ -130,7 +129,7 @@ function SortableItem({
                     </CardTitle>
                   ) : null}
                   {collapsible ? (
-                    <ButtonRoot
+                    <Button
                       className="size-7"
                       size="icon"
                       variant="ghost"
@@ -140,7 +139,7 @@ function SortableItem({
                         className={cn("duration-300", open && "rotate-180")}
                         name="chevron-down"
                       />
-                    </ButtonRoot>
+                    </Button>
                   ) : null}
                 </div>
                 <div className="flex items-center justify-between gap-1 justify-self-end">
@@ -161,25 +160,21 @@ function SortableItem({
                       optionValue={optionValue}
                       onItemChange={onItemChange}
                     >
-                      <ButtonRoot
-                        className="size-7"
-                        size="icon"
-                        variant="ghost"
-                      >
+                      <Button className="size-7" size="icon" variant="ghost">
                         <Icon name="edit" />
-                      </ButtonRoot>
+                      </Button>
                     </SortableItemForm>
                   ) : null}
                   {onItemRemove ? (
                     <Tooltip tooltip={trans("ui.remove")}>
-                      <ButtonRoot
+                      <Button
                         className="size-7"
                         size="icon"
                         variant="ghost"
                         onClick={onItemRemove}
                       >
                         <Icon name="trash" />
-                      </ButtonRoot>
+                      </Button>
                     </Tooltip>
                   ) : null}
                 </div>

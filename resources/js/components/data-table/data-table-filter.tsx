@@ -1,6 +1,6 @@
 import { route } from "ziggy-js";
 
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button } from "@narsil-cms/blocks";
 import {
   DataTableRowMenu,
   useDataTable,
@@ -60,11 +60,11 @@ function DataTableFilter({
       ))}
       {meta.routes.create ? (
         <li className="mt-2">
-          <ButtonRoot asChild={true}>
+          <Button asChild={true}>
             <ModalLink href={route(meta.routes.create, meta.routes.params)}>
               {meta.addLabel}
             </ModalLink>
-          </ButtonRoot>
+          </Button>
         </li>
       ) : null}
     </ul>

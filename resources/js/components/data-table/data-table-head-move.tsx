@@ -1,12 +1,11 @@
 import { type DraggableAttributes } from "@dnd-kit/core";
 import { type SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
-import { Tooltip } from "@narsil-cms/blocks";
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button, Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DataTableHeadMoveProps = React.ComponentProps<typeof ButtonRoot> & {
+type DataTableHeadMoveProps = React.ComponentProps<typeof Button> & {
   attributes: DraggableAttributes;
   listeners: SyntheticListenerMap | undefined;
 };
@@ -22,7 +21,7 @@ function DataTableHeadMove({
 
   return (
     <Tooltip tooltip={trans("accessibility.move_column")}>
-      <ButtonRoot
+      <Button
         aria-label={trans("accessibility.move_column", "Move column")}
         className={cn("px-2", className)}
         variant="ghost"
@@ -31,7 +30,7 @@ function DataTableHeadMove({
         {...listeners}
       >
         {children}
-      </ButtonRoot>
+      </Button>
     </Tooltip>
   );
 }

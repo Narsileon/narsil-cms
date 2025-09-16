@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button } from "@narsil-cms/blocks";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import { ContainerRoot } from "@narsil-cms/components/container";
 import { HeadingRoot } from "@narsil-cms/components/heading";
@@ -45,11 +45,11 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
             <CardContent>
               <p>{trans("verify-email.instruction")}</p>
               <p>{trans("verify-email.prompt")}</p>
-              <ButtonRoot asChild={true}>
+              <Button asChild={true}>
                 <Link href={route("verification.send")} method="post">
                   {trans("verify-email.send_again")}
                 </Link>
-              </ButtonRoot>
+              </Button>
             </CardContent>
           </Card>
         </SectionContent>

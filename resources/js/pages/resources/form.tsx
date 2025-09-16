@@ -1,8 +1,7 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-import { SaveButton } from "@narsil-cms/blocks";
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button, SaveButton } from "@narsil-cms/blocks";
 import { Card, CardContent } from "@narsil-cms/components/card";
 import {
   DialogBody,
@@ -190,7 +189,7 @@ function ResourceForm({
               <DialogBody>{tabsContent}</DialogBody>
               <DialogFooter className="h-fit border-t">
                 <DialogClose asChild={true}>
-                  <ButtonRoot variant="ghost">{trans("ui.cancel")}</ButtonRoot>
+                  <Button variant="ghost">{trans("ui.cancel")}</Button>
                 </DialogClose>
                 <FormSubmit>
                   {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}

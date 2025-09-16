@@ -3,7 +3,7 @@ import { isNumber } from "lodash";
 import { useState } from "react";
 import { route } from "ziggy-js";
 
-import { ButtonRoot } from "@narsil-cms/components/button";
+import { Button } from "@narsil-cms/blocks";
 import { Combobox } from "@narsil-cms/components/combobox";
 import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
@@ -111,7 +111,7 @@ function SortableAdd({
         }}
       />
       {group.routes?.create ? (
-        <ButtonRoot className="justify-self-end" asChild={true}>
+        <Button className="justify-self-end" asChild={true}>
           <ModalLink
             href={route(group.routes.create, group.routes.params)}
             options={{
@@ -133,7 +133,7 @@ function SortableAdd({
           >
             {trans("ui.create")}
           </ModalLink>
-        </ButtonRoot>
+        </Button>
       ) : null}
     </div>
   );
