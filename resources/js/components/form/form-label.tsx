@@ -1,12 +1,11 @@
-import { Tooltip } from "@narsil-cms/blocks";
+import { Label, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { LabelRoot } from "@narsil-cms/components/label";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 
 import useFormField from "./form-field-context";
 
-type FormLabelProps = React.ComponentProps<typeof LabelRoot> & {
+type FormLabelProps = React.ComponentProps<typeof Label> & {
   required?: boolean;
 };
 
@@ -21,7 +20,7 @@ function FormLabel({
   const { error, handle } = useFormField();
 
   return (
-    <LabelRoot
+    <Label
       data-slot="form-label"
       data-error={!!error}
       className={cn("data-[error=true]:text-destructive", className)}
@@ -38,7 +37,7 @@ function FormLabel({
           />
         </Tooltip>
       )}
-    </LabelRoot>
+    </Label>
   );
 }
 

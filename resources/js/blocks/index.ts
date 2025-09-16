@@ -11,6 +11,7 @@ import Heading from "./heading";
 import InputDate from "./input-date";
 import InputFile from "./input-file";
 import InputPassword from "./input-password";
+import Label from "./label";
 import Logo from "./logo";
 import NavigationMenu from "./navigation-menu";
 import Pagination from "./pagination";
@@ -45,6 +46,7 @@ export {
   InputDate,
   InputFile,
   InputPassword,
+  Label,
   Logo,
   NavigationMenu,
   Pagination,

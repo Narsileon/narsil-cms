@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button, Switch } from "@narsil-cms/blocks";
+import { Button, Label, Switch } from "@narsil-cms/blocks";
 import {
   Card,
   CardContent,
@@ -18,7 +18,6 @@ import {
   FormSubmit,
 } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
-import { LabelRoot } from "@narsil-cms/components/label";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types";
@@ -93,7 +92,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
     <>
       <div className="grid gap-4">
         <div className="flex items-center justify-between">
-          <LabelRoot>{trans("two-factor.two_factor_authentication")}</LabelRoot>
+          <Label>{trans("two-factor.two_factor_authentication")}</Label>
           <Switch checked={enabled} onCheckedChange={toggleEnabled} />
         </div>
         {!active && enabled && qrCode ? (

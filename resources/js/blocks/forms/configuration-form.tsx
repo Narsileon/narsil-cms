@@ -35,7 +35,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   const { radius, setRadius } = useRadiusStore();
   const { theme, setTheme } = useThemeStore();
 
-  function handleChange(id: string, value: unknown) {
+  function handleChange(id: string, value: number | string) {
     switch (id) {
       case "color":
         setColor(value as string);
@@ -50,18 +50,16 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
         break;
     }
 
-    router.post(
-      route("user-configuration.store"),
-      {
-        [id]: value,
+    const data = {
+      [id]: value,
+    };
+
+    router.post(route("user-configuration.store"), data, {
+      preserveState: false,
+      onSuccess: () => {
+        reloadTopModal();
       },
-      {
-        preserveState: false,
-        onSuccess: () => {
-          reloadTopModal();
-        },
-      },
-    );
+    });
   }
 
   return (
