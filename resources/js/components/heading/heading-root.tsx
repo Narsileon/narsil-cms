@@ -19,7 +19,7 @@ function HeadingRoot({
 
   return (
     <Comp
-      data-slot="heading"
+      data-slot="heading-root"
       className={cn(
         headingRootVariants({
           className: className,

@@ -2,15 +2,15 @@ import { PanelResizeHandle } from "react-resizable-panels";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
+import { type IconName } from "@narsil-cms/plugins/icons";
 
 type ResizableHandleProps = React.ComponentProps<typeof PanelResizeHandle> & {
-  withHandle?: boolean;
+  icon?: IconName | null;
 };
 
 function ResizableHandle({
-  children,
   className,
-  withHandle,
+  icon = "grip-vertical",
   ...props
 }: ResizableHandleProps) {
   return (
@@ -28,10 +28,9 @@ function ResizableHandle({
       )}
       {...props}
     >
-      {children}
-      {withHandle && (
+      {icon && (
         <div className="z-10 flex h-4 w-3 items-center justify-center rounded-md border bg-border">
-          <Icon className="size-2.5" name="grip-vertical" />
+          <Icon className="size-2.5" name={icon} />
         </div>
       )}
     </PanelResizeHandle>

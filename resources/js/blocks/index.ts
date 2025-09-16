@@ -14,6 +14,7 @@ import InputPassword from "./input-password";
 import Logo from "./logo";
 import NavigationMenu from "./navigation-menu";
 import Pagination from "./pagination";
+import Progress from "./progress";
 import RichTextEditor from "./rich-text-editor";
 import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
@@ -47,6 +48,7 @@ export {
   Logo,
   NavigationMenu,
   Pagination,
+  Progress,
   RichTextEditor,
   SaveButton,
   ScrollArea,
