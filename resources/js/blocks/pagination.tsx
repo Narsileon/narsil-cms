@@ -14,36 +14,44 @@ import {
 export type LaravelPaginationLinks = {
   first: string;
   last: string;
-  prev: string | null;
   next: string | null;
+  prev: string | null;
 };
 
 export type LaravelPaginationMeta = {
   current_page: number;
   from: number | null;
   last_page: number;
-  links: {
-    url: string | null;
-    label: string;
-    active: boolean;
-  }[];
+  links: LaravelPaginationMetaLink[];
   path: string;
   per_page: number;
   to: number | null;
   total: number;
 };
 
+export type LaravelPaginationMetaLink = {
+  active: boolean;
+  label: string;
+  url: string | null;
+};
+
 type PaginationProps = React.ComponentProps<typeof PaginationRoot> & {
+  contentProps?: Partial<React.ComponentProps<typeof PaginationContent>>;
   links: LaravelPaginationLinks;
   metaLinks?: LaravelPaginationMeta["links"];
 };
 
-function Pagination({ links, metaLinks, ...props }: PaginationProps) {
+function Pagination({
+  contentProps,
+  links,
+  metaLinks,
+  ...props
+}: PaginationProps) {
   const { trans } = useLabels();
 
   return (
     <PaginationRoot {...props}>
-      <PaginationContent>
+      <PaginationContent {...contentProps}>
         <Tooltip tooltip={trans("accessibility.first_page")}>
           <PaginationItem>
             <PaginationLink

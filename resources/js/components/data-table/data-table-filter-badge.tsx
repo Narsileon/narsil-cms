@@ -72,10 +72,14 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
       <PopoverPortal>
         <PopoverContent className="flex flex-col gap-4">
           <Select
-            className="w-full text-left"
+            iconProps={{
+              icon: "filter",
+            }}
+            triggerProps={{
+              className: "w-full text-left",
+            }}
             options={operatorOptions}
             value={filter.operator}
-            valueIcon="filter"
             onValueChange={(value) => {
               dataTableStore.updateFilter(filter.column, { operator: value });
             }}

@@ -10,6 +10,7 @@ import InputDate from "./input-date";
 import InputFile from "./input-file";
 import InputPassword from "./input-password";
 import Logo from "./logo";
+import NavigationMenu from "./navigation-menu";
 import Pagination from "./pagination";
 import ProfileForm from "./profile-form";
 import RichTextEditor from "./rich-text-editor";
@@ -38,6 +39,7 @@ export {
   InputFile,
   InputPassword,
   Logo,
+  NavigationMenu,
   Pagination,
   ProfileForm,
   RichTextEditor,

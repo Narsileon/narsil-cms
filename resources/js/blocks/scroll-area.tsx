@@ -7,22 +7,27 @@ import {
 } from "@narsil-cms/components/scroll-area";
 
 type ScrollAreaProps = React.ComponentProps<typeof ScrollAreaRoot> & {
-  orientation?: React.ComponentProps<typeof ScrollAreaScrollbar>["orientation"];
+  cornerProps?: Partial<React.ComponentProps<typeof ScrollAreaCorner>>;
+  scrollbarProps?: Partial<React.ComponentProps<typeof ScrollAreaScrollbar>>;
+  thumbProps?: Partial<React.ComponentProps<typeof ScrollAreaThumb>>;
+  viewportProps?: Partial<React.ComponentProps<typeof ScrollAreaViewport>>;
 };
 
 const ScrollArea = ({
-  asChild = false,
   children,
-  orientation = "vertical",
+  cornerProps,
+  scrollbarProps,
+  thumbProps,
+  viewportProps,
   ...props
 }: ScrollAreaProps) => {
   return (
     <ScrollAreaRoot {...props}>
-      <ScrollAreaViewport asChild={asChild}>{children}</ScrollAreaViewport>
-      <ScrollAreaScrollbar orientation={orientation}>
-        <ScrollAreaThumb />
+      <ScrollAreaViewport {...viewportProps}>{children}</ScrollAreaViewport>
+      <ScrollAreaScrollbar {...scrollbarProps}>
+        <ScrollAreaThumb {...thumbProps} />
       </ScrollAreaScrollbar>
-      <ScrollAreaCorner />
+      <ScrollAreaCorner {...cornerProps} />
     </ScrollAreaRoot>
   );
 };

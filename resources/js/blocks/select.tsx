@@ -14,7 +14,6 @@ import {
   SelectValue,
   SelectViewport,
 } from "@narsil-cms/components/select";
-import { IconName } from "@narsil-cms/plugins/icons";
 
 type SelectOption =
   | string
@@ -24,16 +23,40 @@ type SelectOption =
     };
 
 type SelectProps = React.ComponentProps<typeof SelectRoot> & {
-  className?: string;
+  contentProps?: Partial<React.ComponentProps<typeof SelectContent>>;
+  iconProps?: Partial<React.ComponentProps<typeof SelectIcon>>;
+  itemProps?: Partial<React.ComponentProps<typeof SelectItem>>;
+  itemIndicatorProps?: Partial<
+    React.ComponentProps<typeof SelectItemIndicator>
+  >;
+  itemTextProps?: Partial<React.ComponentProps<typeof SelectItemText>>;
   options?: SelectOption[];
-  valueIcon?: IconName;
+  portalProps?: Partial<React.ComponentProps<typeof SelectPortal>>;
+  scrollDownButtonProps?: Partial<
+    React.ComponentProps<typeof SelectScrollDownButton>
+  >;
+  scrollUpButtonProps?: Partial<
+    React.ComponentProps<typeof SelectScrollUpButton>
+  >;
+  triggerProps?: Partial<React.ComponentProps<typeof SelectTrigger>>;
+  valueProps?: Partial<React.ComponentProps<typeof SelectValue>>;
+  viewportProps?: Partial<React.ComponentProps<typeof SelectViewport>>;
 };
 
 const Select = ({
   children,
-  className,
-  valueIcon,
+  contentProps,
+  iconProps,
+  itemIndicatorProps,
+  itemProps,
+  itemTextProps,
   options,
+  portalProps,
+  scrollDownButtonProps,
+  scrollUpButtonProps,
+  triggerProps,
+  valueProps,
+  viewportProps,
   ...props
 }: SelectProps) => {
   function getOptionLabel(option: SelectOption) {
@@ -54,23 +77,29 @@ const Select = ({
 
   return (
     <SelectRoot {...props}>
-      <SelectTrigger className={className}>
-        <SelectValue />
-        <SelectIcon icon={valueIcon} />
+      <SelectTrigger {...triggerProps}>
+        <SelectValue {...valueProps} />
+        <SelectIcon {...iconProps} />
       </SelectTrigger>
-      <SelectPortal>
-        <SelectContent>
-          <SelectScrollUpButton />
-          <SelectViewport>
+      <SelectPortal {...portalProps}>
+        <SelectContent {...contentProps}>
+          <SelectScrollUpButton {...scrollUpButtonProps} />
+          <SelectViewport {...viewportProps}>
             {children}
             {options?.map((option, index) => (
-              <SelectItem value={getOptionValue(option)} key={index}>
-                <SelectItemText>{getOptionLabel(option)}</SelectItemText>
-                <SelectItemIndicator />
+              <SelectItem
+                {...itemProps}
+                value={getOptionValue(option)}
+                key={index}
+              >
+                <SelectItemText {...itemTextProps}>
+                  {getOptionLabel(option)}
+                </SelectItemText>
+                <SelectItemIndicator {...itemIndicatorProps} />
               </SelectItem>
             ))}
           </SelectViewport>
-          <SelectScrollDownButton />
+          <SelectScrollDownButton {...scrollDownButtonProps} />
         </SelectContent>
       </SelectPortal>
     </SelectRoot>

@@ -16,21 +16,34 @@ type TabsElement = {
 
 type TabsProps = React.ComponentProps<typeof TabsRoot> & {
   elements: TabsElement[];
+  tabsContentProps?: Partial<React.ComponentProps<typeof TabsContent>>;
+  tabsListProps?: Partial<React.ComponentProps<typeof TabsList>>;
+  tabsTriggerProps?: Partial<React.ComponentProps<typeof TabsTrigger>>;
 };
 
-function Tabs({ elements, ...props }: TabsProps) {
+function Tabs({
+  elements,
+  tabsContentProps,
+  tabsListProps,
+  tabsTriggerProps,
+  ...props
+}: TabsProps) {
   return (
     <TabsRoot {...props}>
-      <TabsList>
+      <TabsList {...tabsListProps}>
         {elements.map((element) => (
-          <TabsTrigger value={element.id} key={element.id}>
+          <TabsTrigger
+            {...tabsTriggerProps}
+            value={element.id}
+            key={element.id}
+          >
             {element.icon ? <Icon name={element.icon} /> : null}
             {element.title}
           </TabsTrigger>
         ))}
       </TabsList>
       {elements.map((element) => (
-        <TabsContent value={element.id} key={element.id}>
+        <TabsContent {...tabsContentProps} value={element.id} key={element.id}>
           {element.content}
         </TabsContent>
       ))}
