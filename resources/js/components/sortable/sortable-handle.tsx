@@ -1,5 +1,4 @@
 import { Button } from "@narsil-cms/blocks";
-import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 type SortableHandleProps = React.ComponentProps<typeof Button> & {};

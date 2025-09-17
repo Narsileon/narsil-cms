@@ -18,7 +18,7 @@ function BadgeRoot({
 
   return (
     <Comp
-      data-slot="badge"
+      data-slot="badge-root"
       className={cn(
         badgeRootVariants({
           className: className,

@@ -1,5 +1,4 @@
 import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 

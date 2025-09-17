@@ -1,5 +1,6 @@
 import Accordion from "./accordion";
 import AspectRatio from "./aspect-ratio";
+import Badge from "./badge";
 import Bookmarks from "./bookmarks";
 import Breadcrumb from "./breadcrumb";
 import Button from "./button";
@@ -36,6 +37,7 @@ import VisuallyHidden from "./visually-hidden";
 export {
   Accordion,
   AspectRatio,
+  Badge,
   Bookmarks,
   Breadcrumb,
   Button,

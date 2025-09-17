@@ -1,9 +1,8 @@
-import { BadgeRoot } from "@narsil-cms/components/badge";
-import { Icon } from "@narsil-cms/components/icon";
+import { Badge } from "@narsil-cms/blocks";
 import { getSelectOption } from "@narsil-cms/lib/utils";
 import { type SelectOption } from "@narsil-cms/types";
 
-type ComboboxBadgeProps = React.ComponentProps<typeof BadgeRoot> & {
+type ComboboxBadgeProps = React.ComponentProps<typeof Badge> & {
   displayValue?: boolean;
   item: SelectOption | string;
   value: string[];
@@ -23,20 +22,9 @@ function ComboboxBadge({
   const optionValue = getSelectOption(item, valuePath);
 
   return (
-    <BadgeRoot>
+    <Badge onClose={() => setValue(value.filter((x) => x !== optionValue))}>
       {optionLabel}
-      <button
-        type="button"
-        onClick={(event) => {
-          event.stopPropagation();
-
-          setValue(value.filter((x) => x !== optionValue));
-        }}
-        className="hover:text-destructive focus:outline-none"
-      >
-        <Icon name="x" className="h-3 w-3" />
-      </button>
-    </BadgeRoot>
+    </Badge>
   );
 }
 
