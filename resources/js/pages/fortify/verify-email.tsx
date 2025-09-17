@@ -1,4 +1,3 @@
-import { Link } from "@inertiajs/react";
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
@@ -42,10 +41,13 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
           <Card>
             <p>{trans("verify-email.instruction")}</p>
             <p>{trans("verify-email.prompt")}</p>
-            <Button asChild={true}>
-              <Link href={route("verification.send")} method="post">
-                {trans("verify-email.send_again")}
-              </Link>
+            <Button
+              linkProps={{
+                href: route("verification.send"),
+                method: "post",
+              }}
+            >
+              {trans("verify-email.send_again")}
             </Button>
           </Card>
         </SectionContent>

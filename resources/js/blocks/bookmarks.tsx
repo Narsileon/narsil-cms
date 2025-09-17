@@ -1,4 +1,4 @@
-import { Link, router } from "@inertiajs/react";
+import { router } from "@inertiajs/react";
 import { sortBy } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
@@ -9,7 +9,6 @@ import {
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
@@ -192,37 +191,42 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                     >
                       <Button
                         className="font-normal text-foreground"
+                        linkProps={{
+                          href: bookmark.url,
+                        }}
                         size="link"
                         variant="link"
                         onClick={() => onOpenChange(false)}
                       >
-                        <Link href={bookmark.url}>{bookmark.name}</Link>
+                        {bookmark.name}
                       </Button>
                       <div className="flex items-center justify-between gap-1">
-                        <Tooltip tooltip={labels["ui.edit"]}>
-                          <Button
-                            className="size-8"
-                            size="icon"
-                            variant="ghost"
-                            onClick={() => {
-                              setBookmark(bookmark);
-                            }}
-                          >
-                            <Icon className="size-4" name="edit" />
-                          </Button>
-                        </Tooltip>
-                        <Tooltip tooltip={labels["ui.remove"]}>
-                          <Button
-                            className="size-8"
-                            size="icon"
-                            variant="ghost"
-                            onClick={() => {
-                              onDelete(bookmark.id);
-                            }}
-                          >
-                            <Icon className="size-4" name="star-off" />
-                          </Button>
-                        </Tooltip>
+                        <Button
+                          className="size-8"
+                          iconProps={{
+                            className: "size-4",
+                            name: "edit",
+                          }}
+                          size="icon"
+                          tooltip={labels["ui.edit"]}
+                          variant="ghost"
+                          onClick={() => {
+                            setBookmark(bookmark);
+                          }}
+                        />
+                        <Button
+                          className="size-8"
+                          iconProps={{
+                            className: "size-4",
+                            name: "star-off",
+                          }}
+                          size="icon"
+                          tooltip={labels["ui.remove"]}
+                          variant="ghost"
+                          onClick={() => {
+                            onDelete(bookmark.id);
+                          }}
+                        />
                       </div>
                     </li>
                   ))}

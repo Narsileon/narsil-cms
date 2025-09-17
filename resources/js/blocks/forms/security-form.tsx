@@ -44,14 +44,14 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
                 }),
                 method: "delete",
               }}
-              label={trans("sessions.sign_out_current")}
               variant="outline"
-            />
+            >
+              {trans("sessions.sign_out_current")}
+            </Button>
           </DialogClose>
           <Separator />
           <p>{trans("sessions.sign_out_elsewhere_description")}</p>
           <Button
-            label={trans("sessions.sign_out_elsewhere")}
             linkProps={{
               href: route("sessions.delete", {
                 type: "others",
@@ -60,12 +60,13 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
               preserveState: true,
             }}
             variant="outline"
-          />
+          >
+            {trans("sessions.sign_out_elsewhere")}
+          </Button>
           <Separator />
           <p>{trans("sessions.sign_out_everywhere_description")}</p>
           <DialogClose asChild={true}>
             <Button
-              label={trans("sessions.sign_out_everywhere")}
               linkProps={{
                 href: route("sessions.delete", {
                   type: "all",
@@ -74,7 +75,9 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
                 preserveState: true,
               }}
               variant="outline"
-            />
+            >
+              {trans("sessions.sign_out_everywhere")}
+            </Button>
           </DialogClose>
         </SectionContent>
       </SectionRoot>
