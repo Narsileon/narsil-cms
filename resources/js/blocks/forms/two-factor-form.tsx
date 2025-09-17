@@ -3,21 +3,12 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button, Label, Switch } from "@narsil-cms/blocks";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@narsil-cms/components/card";
+import { Card, Label, Switch } from "@narsil-cms/blocks";
 import {
   FormFieldRenderer,
   FormProvider,
   FormRoot,
-  FormSubmit,
 } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import { type FormType } from "@narsil-cms/types";
@@ -112,51 +103,59 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                   },
                 }}
               >
-                <Card>
-                  <CardContent className="grid-cols-12">
-                    {form.form.map((element, index) => (
-                      <FormFieldRenderer element={element} key={index} />
-                    ))}
-                    <div
-                      className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
-                      dangerouslySetInnerHTML={{
-                        __html: qrCode,
-                      }}
-                    />
-                  </CardContent>
-                  <CardFooter className="justify-end border-t">
-                    <FormSubmit>{form.submitLabel}</FormSubmit>
-                  </CardFooter>
+                <Card
+                  contentProps={{ className: "grid-cols-12" }}
+                  footerButtons={[
+                    {
+                      form: form.id,
+                      label: form.submitLabel,
+                      type: "submit",
+                    },
+                  ]}
+                  footerProps={{ className: "justify-end border-t" }}
+                >
+                  {form.form.map((element, index) => (
+                    <FormFieldRenderer element={element} key={index} />
+                  ))}
+                  <div
+                    className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
+                    dangerouslySetInnerHTML={{
+                      __html: qrCode,
+                    }}
+                  />
                 </Card>
               </FormRoot>
             )}
           />
         ) : null}
         {!active && enabled && recoveryCodes ? (
-          <Card>
-            <CardHeader className="grid-cols-2 items-center border-b">
-              <CardTitle>{trans("two-factor.recovery_codes_title")}</CardTitle>
-              <Button
-                className="place-self-end"
-                variant="outline"
-                size="icon"
-                onClick={() => {
+          <Card
+            contentProps={{ className: "gap-4 text-sm" }}
+            headerButtons={[
+              {
+                className: "place-self-end",
+                iconProps: {
+                  name: "copy",
+                },
+                size: "icon",
+                tooltip: trans("ui.copy_clipboard"),
+                variant: "outline",
+                onClick: () => {
                   navigator.clipboard.writeText(recoveryCodes.join("\n"));
 
                   toast.success(trans("two-factor.recovery_codes_copied"));
-                }}
-              >
-                <Icon name="copy" />
-              </Button>
-            </CardHeader>
-            <CardContent className="gap-4 text-sm">
-              <p>{trans("two-factor.recovery_codes_description")}</p>
-              <ul className="ml-6 list-disc">
-                {recoveryCodes?.map((recoveryCode, index) => {
-                  return <li key={index}>{recoveryCode}</li>;
-                })}
-              </ul>
-            </CardContent>
+                },
+              },
+            ]}
+            headerProps={{ className: "grid-cols-2 items-center border-b" }}
+            title={trans("two-factor.recovery_codes_title")}
+          >
+            <p>{trans("two-factor.recovery_codes_description")}</p>
+            <ul className="ml-6 list-disc">
+              {recoveryCodes?.map((recoveryCode, index) => {
+                return <li key={index}>{recoveryCode}</li>;
+              })}
+            </ul>
           </Card>
         ) : null}
       </div>

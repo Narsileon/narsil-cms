@@ -21,6 +21,7 @@ return [
     'connection'         => 'Connection',
     'content'            => 'Content',
     'continue'           => 'Continue',
+    'copy_clipboard'     => 'Copy to clipboard',
     'create'             => 'Create',
     'dashboard'          => 'Dashboard',
     'default_handle'     => 'Default handle',

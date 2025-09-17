@@ -3,6 +3,7 @@ import AspectRatio from "./aspect-ratio";
 import Bookmarks from "./bookmarks";
 import Breadcrumb from "./breadcrumb";
 import Button from "./button";
+import Card from "./card";
 import Checkbox from "./checkbox";
 import Checkboxes from "./checkboxes";
 import DataTable from "./data-table";
@@ -38,6 +39,7 @@ export {
   Bookmarks,
   Breadcrumb,
   Button,
+  Card,
   Checkbox,
   Checkboxes,
   DataTable,

@@ -3,7 +3,9 @@ import { GraphiQL } from "graphiql";
 import "graphiql/style.css";
 
 function GraphiQLPage() {
-  const fetcher = createGraphiQLFetcher({ url: "/narsil/graphql" });
+  const fetcher = createGraphiQLFetcher({
+    url: "/narsil/graphql",
+  });
 
   return <GraphiQL fetcher={fetcher} />;
 }

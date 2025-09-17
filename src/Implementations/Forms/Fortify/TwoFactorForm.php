@@ -36,7 +36,8 @@ class TwoFactorForm extends AbstractForm implements Contract
             ->add('narsil::two-factor.recovery_codes_copied')
             ->add('narsil::two-factor.recovery_codes_description')
             ->add('narsil::two-factor.recovery_codes_title')
-            ->add('narsil::two-factor.two_factor_authentication');
+            ->add('narsil::two-factor.two_factor_authentication')
+            ->add('narsil::ui.copy_clipboard');
     }
 
     #endregion

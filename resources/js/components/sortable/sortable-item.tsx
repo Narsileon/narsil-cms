@@ -5,10 +5,10 @@ import { useState } from "react";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
-  Card,
   CardContent,
   CardFooter,
   CardHeader,
+  CardRoot,
   CardTitle,
 } from "@narsil-cms/components/card";
 import {
@@ -30,7 +30,7 @@ import SortableHandle from "./sortable-handle";
 import SortableItemForm from "./sortable-item-form";
 import SortableItemWidth from "./sortable-item-width";
 
-type SortableItemProps = Omit<React.ComponentProps<typeof Card>, "id"> & {
+type SortableItemProps = Omit<React.ComponentProps<typeof CardRoot>, "id"> & {
   collapsible?: boolean;
   disabled?: boolean;
   footer?: React.ReactNode;
@@ -100,7 +100,7 @@ function SortableItem({
         transition: transition,
       }}
     >
-      <Card {...props}>
+      <CardRoot {...props}>
         {placeholder ? (
           <CardContent className="flex h-full items-center justify-center">
             {children}
@@ -192,7 +192,7 @@ function SortableItem({
             </CollapsibleContent>
           </>
         )}
-      </Card>
+      </CardRoot>
     </CollapsibleRoot>
   );
 }

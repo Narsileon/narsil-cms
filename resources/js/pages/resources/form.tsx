@@ -1,8 +1,7 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-import { Button, Heading, SaveButton } from "@narsil-cms/blocks";
-import { Card, CardContent } from "@narsil-cms/components/card";
+import { Button, Card, Heading, SaveButton } from "@narsil-cms/blocks";
 import {
   DialogBody,
   DialogClose,
@@ -11,7 +10,6 @@ import {
 import {
   FormProvider,
   FormRoot,
-  FormSubmit,
   FormFieldRenderer,
 } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
@@ -132,19 +130,17 @@ function ResourceForm({
         return (
           <TabsContent className="p-0" value={tab.handle} key={index}>
             <Card className="overflow-hidden">
-              <CardContent>
-                {tab.elements.map((element, index) => {
-                  return (
-                    <FormFieldRenderer
-                      conditions={element.conditions}
-                      element={element.element}
-                      handle={element.handle}
-                      name={element.name}
-                      key={index}
-                    />
-                  );
-                })}
-              </CardContent>
+              {tab.elements.map((element, index) => {
+                return (
+                  <FormFieldRenderer
+                    conditions={element.conditions}
+                    element={element.element}
+                    handle={element.handle}
+                    name={element.name}
+                    key={index}
+                  />
+                );
+              })}
             </Card>
           </TabsContent>
         );
@@ -190,9 +186,11 @@ function ResourceForm({
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{trans("ui.cancel")}</Button>
                 </DialogClose>
-                <FormSubmit>
-                  {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
-                </FormSubmit>
+                <Button
+                  form={id}
+                  label={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
+                  type="submit"
+                />
               </DialogFooter>
             </>
           ) : (
@@ -213,17 +211,21 @@ function ResourceForm({
                 {minLg && (sidebarContent || informationContent) ? (
                   <div className="flex flex-col gap-y-4 lg:col-span-4">
                     {sidebarContent ? (
-                      <Card>
-                        <CardContent className="grid-cols-12">
-                          {sidebarContent}
-                        </CardContent>
+                      <Card
+                        contentProps={{
+                          className: "grid-cols-12",
+                        }}
+                      >
+                        {sidebarContent}
                       </Card>
                     ) : null}
                     {informationContent ? (
-                      <Card>
-                        <CardContent className="grid-cols-12 justify-between text-sm">
-                          {informationContent}
-                        </CardContent>
+                      <Card
+                        contentProps={{
+                          className: "grid-cols-12 justify-between text-sm",
+                        }}
+                      >
+                        {informationContent}
                       </Card>
                     ) : null}
                   </div>

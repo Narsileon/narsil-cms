@@ -1,11 +1,11 @@
 import { cn } from "@narsil-cms/lib/utils";
 
-type CardProps = React.ComponentProps<"div"> & {};
+type CardRootProps = React.ComponentProps<"div"> & {};
 
-function Card({ className, ...props }: CardProps) {
+function CardRoot({ className, ...props }: CardRootProps) {
   return (
     <div
-      data-slot="card"
+      data-slot="card-root"
       className={cn(
         "flex flex-col rounded-md border bg-card text-card-foreground shadow-sm",
         className,
@@ -15,4 +15,4 @@ function Card({ className, ...props }: CardProps) {
   );
 }
 
-export default Card;
+export default CardRoot;

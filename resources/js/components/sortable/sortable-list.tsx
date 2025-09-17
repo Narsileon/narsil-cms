@@ -15,7 +15,7 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
-import { Card, CardContent, CardFooter } from "@narsil-cms/components/card";
+import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
 import {
   SortableAdd,
   SortableItem,
@@ -95,7 +95,7 @@ function Sortable({
   }
 
   return (
-    <Card>
+    <CardRoot>
       <CardContent>
         <DndContext
           collisionDetection={closestCenter}
@@ -142,7 +142,7 @@ function Sortable({
           })}
         </CardFooter>
       ) : null}
-    </Card>
+    </CardRoot>
   );
 }
 

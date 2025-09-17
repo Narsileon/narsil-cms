@@ -1,11 +1,9 @@
-import { Heading, Separator } from "@narsil-cms/blocks";
+import { Button, Heading, Separator } from "@narsil-cms/blocks";
 import {
   FormFieldRenderer,
   FormProvider,
   FormRoot,
-  FormSubmit,
 } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   SectionContent,
@@ -41,12 +39,16 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           <SectionRoot>
             <SectionHeader className="border-b">
               <Heading level="h2">{trans("ui.account")}</Heading>
-              <FormSubmit>
-                {profileForm.submitIcon ? (
-                  <Icon name={profileForm.submitIcon} />
-                ) : null}
-                {profileForm.submitLabel}
-              </FormSubmit>
+              <Button
+                form={profileForm.id}
+                iconProps={
+                  profileForm.submitIcon && {
+                    name: profileForm.submitIcon,
+                  }
+                }
+                label={profileForm.submitLabel}
+                type="submit"
+              />
             </SectionHeader>
             <SectionContent>
               <FormRoot className="grid-cols-12 gap-4">
@@ -68,12 +70,16 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           <SectionRoot>
             <SectionHeader className="border-b">
               <Heading level="h2">{trans("ui.password")}</Heading>
-              <FormSubmit>
-                {updatePasswordForm.submitIcon ? (
-                  <Icon name={updatePasswordForm.submitIcon} />
-                ) : null}
-                {updatePasswordForm.submitLabel}
-              </FormSubmit>
+              <Button
+                form={updatePasswordForm.id}
+                iconProps={
+                  updatePasswordForm.submitIcon && {
+                    name: updatePasswordForm.submitIcon,
+                  }
+                }
+                label={updatePasswordForm.submitLabel}
+                type="submit"
+              />
             </SectionHeader>
             <SectionContent>
               <FormRoot

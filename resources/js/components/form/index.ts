@@ -8,7 +8,6 @@ import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 import FormProvider from "./form-provider";
 import FormRoot from "./form-root";
-import FormSubmit from "./form-submit";
 
 export {
   FormDescription,
@@ -19,7 +18,6 @@ export {
   FormMessage,
   FormProvider,
   FormRoot,
-  FormSubmit,
   useForm,
   useFormField,
 };
