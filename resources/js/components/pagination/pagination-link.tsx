@@ -1,39 +1,27 @@
-import { Slot } from "radix-ui";
-
-import { ButtonRoot, buttonRootVariants } from "@narsil-cms/components/button";
+import { Button } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
 
-type PaginationLinkProps = React.ComponentProps<"a"> &
-  Pick<React.ComponentProps<typeof ButtonRoot>, "size"> & {
-    asChild?: boolean;
-    active?: boolean;
-    disabled?: boolean;
-  };
+type PaginationLinkProps = React.ComponentProps<typeof Button> & {
+  active?: boolean;
+};
 
 function PaginationLink({
-  asChild = false,
   className,
   active = false,
   disabled = false,
   size = "icon",
+  variant = "outline",
   ...props
 }: PaginationLinkProps) {
-  const Comp = asChild ? Slot.Root : "a";
-
   return (
-    <Comp
+    <Button
       data-slot="pagination-link"
       data-active={active}
-      className={cn(
-        buttonRootVariants({
-          className: className,
-          size: size,
-          variant: "outline",
-        }),
-        active && "bg-accent dark:bg-accent",
-        disabled && "pointer-events-none opacity-50",
-      )}
+      className={cn(active && "bg-accent dark:bg-accent", className)}
       aria-current={active ? "page" : undefined}
+      disabled={disabled}
+      size={size}
+      variant={variant}
       {...props}
     />
   );

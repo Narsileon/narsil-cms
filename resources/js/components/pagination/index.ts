@@ -4,8 +4,6 @@ import PaginationContent from "./pagination-content";
 import PaginationEllipsis from "./pagination-ellipsis";
 import PaginationItem from "./pagination-item";
 import PaginationLink from "./pagination-link";
-import PaginationNext from "./pagination-next";
-import PaginationPrevious from "./pagination-previous";
 import PaginationRoot from "./pagination-root";
 
 export {
@@ -13,7 +11,5 @@ export {
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
   PaginationRoot,
 };
