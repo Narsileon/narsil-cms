@@ -1,4 +1,3 @@
-import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
 import { Button, Heading, Separator } from "@narsil-cms/blocks";
@@ -38,43 +37,44 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
         <SectionContent className="grid gap-4 text-sm">
           <p>{trans("sessions.sign_out_current_description")}</p>
           <DialogClose asChild={true}>
-            <Button asChild={true} variant="outline">
-              <Link
-                method="delete"
-                href={route("sessions.delete", {
+            <Button
+              linkProps={{
+                href: route("sessions.delete", {
                   type: "current",
-                })}
-              >
-                {trans("sessions.sign_out_current")}
-              </Link>
-            </Button>
+                }),
+                method: "delete",
+              }}
+              label={trans("sessions.sign_out_current")}
+              variant="outline"
+            />
           </DialogClose>
           <Separator />
           <p>{trans("sessions.sign_out_elsewhere_description")}</p>
-          <Button asChild={true} variant="outline">
-            <Link
-              method="delete"
-              href={route("sessions.delete", {
+          <Button
+            label={trans("sessions.sign_out_elsewhere")}
+            linkProps={{
+              href: route("sessions.delete", {
                 type: "others",
-              })}
-              preserveState={true}
-            >
-              {trans("sessions.sign_out_elsewhere")}
-            </Link>
-          </Button>
+              }),
+              method: "delete",
+              preserveState: true,
+            }}
+            variant="outline"
+          />
           <Separator />
           <p>{trans("sessions.sign_out_everywhere_description")}</p>
           <DialogClose asChild={true}>
-            <Button asChild={true} variant="outline">
-              <Link
-                method="delete"
-                href={route("sessions.delete", {
+            <Button
+              label={trans("sessions.sign_out_everywhere")}
+              linkProps={{
+                href: route("sessions.delete", {
                   type: "all",
-                })}
-              >
-                {trans("sessions.sign_out_everywhere")}
-              </Link>
-            </Button>
+                }),
+                method: "delete",
+                preserveState: true,
+              }}
+              variant="outline"
+            />
           </DialogClose>
         </SectionContent>
       </SectionRoot>

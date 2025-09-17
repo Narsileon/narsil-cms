@@ -169,12 +169,11 @@ function SortableItem({
                     <Tooltip tooltip={trans("ui.remove")}>
                       <Button
                         className="size-7"
+                        icon="trash"
                         size="icon"
                         variant="ghost"
                         onClick={onItemRemove}
-                      >
-                        <Icon name="trash" />
-                      </Button>
+                      />
                     </Tooltip>
                   ) : null}
                 </div>

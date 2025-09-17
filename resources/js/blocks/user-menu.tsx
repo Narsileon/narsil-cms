@@ -45,11 +45,10 @@ function UserMenu({ ...props }: UserMenuProps) {
                 "accessibility.toggle_user_menu",
                 "Toggle user menu",
               )}
+              icon="menu"
               size="icon"
               variant="ghost"
-            >
-              <Icon name="menu" />
-            </Button>
+            />
           )}
         </DropdownMenuTrigger>
       </Tooltip>

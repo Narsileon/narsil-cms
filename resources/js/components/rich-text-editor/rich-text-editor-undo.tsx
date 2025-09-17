@@ -1,7 +1,6 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
 type RichTextEditorUndoProps = React.ComponentProps<typeof Button> & {
@@ -25,13 +24,12 @@ function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
       <Button
         aria-label={trans(`accessibility.undo`)}
         disabled={!canUndo}
+        icon="undo"
         size="icon"
         variant="ghost"
         onClick={() => editor.chain().focus().undo().run()}
         {...props}
-      >
-        <Icon name="undo" />
-      </Button>
+      />
     </Tooltip>
   );
 }

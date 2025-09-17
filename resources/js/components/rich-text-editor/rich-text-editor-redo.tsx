@@ -1,7 +1,6 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
 type RichTextEditorRedoProps = React.ComponentProps<typeof Button> & {
@@ -25,13 +24,12 @@ function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
       <Button
         aria-label={trans(`accessibility.redo`)}
         disabled={!canRedo}
+        icon="redo"
         size="icon"
         variant="ghost"
         onClick={() => editor.chain().focus().redo().run()}
         {...props}
-      >
-        <Icon name="redo" />
-      </Button>
+      />
     </Tooltip>
   );
 }

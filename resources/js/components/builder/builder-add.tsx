@@ -27,11 +27,10 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
             className="size-7 rounded-full hover:bg-secondary"
+            icon="plus"
             size="icon"
             variant="secondary"
-          >
-            <Icon name="plus" />
-          </Button>
+          />
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent>

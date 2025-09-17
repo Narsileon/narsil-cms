@@ -1,4 +1,3 @@
-import { Link } from "@inertiajs/react";
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
@@ -99,13 +98,13 @@ function FortifyForm({
                                 </FormLabel>
                                 <Button
                                   className="font-normal"
+                                  label={trans("passwords.link")}
+                                  linkProps={{
+                                    href: route("password.request"),
+                                  }}
                                   size="link"
                                   variant="link"
-                                >
-                                  <Link href={route("password.request")}>
-                                    {trans("passwords.link")}
-                                  </Link>
-                                </Button>
+                                />
                               </div>
                               <InputPassword
                                 {...(element.settings ?? {})}

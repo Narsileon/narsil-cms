@@ -86,12 +86,11 @@ function SortableTableRow({
         {!placeholder && onRemove ? (
           <Button
             className="size-7"
+            icon="trash"
             size="icon"
             variant="ghost"
             onClick={() => onRemove(id)}
-          >
-            <Icon name="trash" />
-          </Button>
+          />
         ) : null}
       </TableCell>
     </TableRow>

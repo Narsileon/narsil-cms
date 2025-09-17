@@ -1,4 +1,3 @@
-import { Link } from "@inertiajs/react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
@@ -20,8 +19,6 @@ import {
   DataTableRowMenu,
   DataTableVisibilityDropdown,
 } from "@narsil-cms/components/data-table";
-import {} from "@narsil-cms/components/heading";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   ResizableHandle,
@@ -146,54 +143,52 @@ function ResourceIndex({
                 {title}
               </Heading>
               <DataTableInput className="grow" />
-              <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
+              <Tooltip
+                contentProps={{ hidden: isDesktop }}
+                tooltip={columnsLabel}
+              >
                 <DataTableVisibilityDropdown>
                   <Button
                     aria-label={columnsLabel}
+                    icon="eye"
+                    label={isDesktop ? columnsLabel : undefined}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
-                  >
-                    <Icon name="eye" />
-                    <span className="sr-only sm:not-sr-only">
-                      {columnsLabel}
-                    </span>
-                  </Button>
+                  />
                 </DataTableVisibilityDropdown>
               </Tooltip>
-              <Tooltip hidden={isDesktop} tooltip={filterLabel}>
+              <Tooltip
+                contentProps={{ hidden: isDesktop }}
+                tooltip={filterLabel}
+              >
                 <DataTableFilterDropdown>
                   <Button
                     aria-label={filterLabel}
+                    icon="filter"
+                    label={isDesktop ? filterLabel : undefined}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
-                  >
-                    <Icon name="filter" />
-                    <span className="sr-only sm:not-sr-only">
-                      {filterLabel}
-                    </span>
-                  </Button>
+                  />
                 </DataTableFilterDropdown>
               </Tooltip>
               {collection.meta.routes.create ? (
-                <Tooltip hidden={isDesktop} tooltip={createLabel}>
+                <Tooltip
+                  contentProps={{ hidden: isDesktop }}
+                  tooltip={createLabel}
+                >
                   <Button
-                    asChild={true}
                     aria-label={createLabel}
-                    size={isDesktop ? "default" : "icon"}
-                    variant="default"
-                  >
-                    <Link
-                      href={route(
+                    icon="plus"
+                    label={isDesktop ? createLabel : undefined}
+                    linkProps={{
+                      href: route(
                         collection.meta.routes.create,
                         collection.meta.routes.params,
-                      )}
-                    >
-                      <Icon name="plus" />
-                      <span className="sr-only sm:not-sr-only">
-                        {createLabel}
-                      </span>
-                    </Link>
-                  </Button>
+                      ),
+                    }}
+                    size={isDesktop ? "default" : "icon"}
+                    variant="default"
+                  />
                 </Tooltip>
               ) : null}
             </SectionHeader>
@@ -212,7 +207,7 @@ function ResourceIndex({
                     >
                       <DataTableFilter {...collectionFilter} />
                     </ResizablePanel>
-                    <ResizableHandle withHandle={true} />
+                    <ResizableHandle />
                   </>
                 ) : null}
                 <ResizablePanel

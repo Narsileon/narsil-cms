@@ -12,7 +12,6 @@ type DataTableHeadMoveProps = React.ComponentProps<typeof Button> & {
 
 function DataTableHeadMove({
   attributes,
-  children,
   className,
   listeners,
   ...props
@@ -28,9 +27,7 @@ function DataTableHeadMove({
         {...props}
         {...attributes}
         {...listeners}
-      >
-        {children}
-      </Button>
+      />
     </Tooltip>
   );
 }

@@ -7,7 +7,6 @@ import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 
@@ -91,11 +90,10 @@ function RichTextEditorToolbar({
                     `accessibility.toggle_heading_menu`,
                     "Toggle heading menu",
                   )}
+                  icon="heading"
                   size="icon"
                   variant="ghost"
-                >
-                  <Icon name="heading" />
-                </Button>
+                />
               </DropdownMenuTrigger>
             </Tooltip>
             <DropdownMenuContent className="min-w-9">

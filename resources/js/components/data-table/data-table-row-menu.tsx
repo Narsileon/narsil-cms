@@ -44,12 +44,11 @@ function DataTableRowMenu({
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
             className="size-7 hover:bg-secondary"
+            aria-label={trans("accessibility.toggle_row_menu")}
+            icon="more-horizontal"
             size="icon"
             variant="ghost"
-            aria-label={trans("accessibility.toggle_row_menu")}
-          >
-            <Icon name="more-horizontal" />
-          </Button>
+          />
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent align="end">

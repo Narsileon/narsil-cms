@@ -91,11 +91,13 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
         <PopoverTrigger asChild={true} {...props}>
           <Button
             aria-label={trans("bookmarks.tooltip", "Toggle bookmarks menu")}
+            iconProps={{
+              fill: "currentColor",
+              name: "star",
+            }}
             size="icon"
             variant="ghost"
-          >
-            <Icon name="star" fill="currentColor" />
-          </Button>
+          />
         </PopoverTrigger>
       </Tooltip>
       <PopoverPortal>

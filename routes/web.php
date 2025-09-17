@@ -119,7 +119,7 @@ Route::middleware([
                 ->name('collections.store');
             Route::get('collections/{collection}/create', 'create')
                 ->name('collections.create');
-            Route::post('collections/{collection}', 'replicateMany')
+            Route::post('collections/{collection}/replicateMany', 'replicateMany')
                 ->name('collections.replicateMany');
             Route::patch('collections/{collection}/{id}', 'update')
                 ->name('collections.update');
