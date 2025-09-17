@@ -8,12 +8,11 @@ function SortableHandle({ className, ...props }: SortableHandleProps) {
   return (
     <Button
       className={cn("h-9 w-7 cursor-grab rounded-none bg-accent/85", className)}
+      icon="grip-vertical"
       size="icon"
       variant="ghost"
       {...props}
-    >
-      <Icon name="grip-vertical" />
-    </Button>
+    />
   );
 }
 

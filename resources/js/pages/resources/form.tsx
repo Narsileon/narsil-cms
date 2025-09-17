@@ -186,11 +186,9 @@ function ResourceForm({
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{trans("ui.cancel")}</Button>
                 </DialogClose>
-                <Button
-                  form={id}
-                  label={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
-                  type="submit"
-                />
+                <Button form={id} type="submit">
+                  {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
+                </Button>
               </DialogFooter>
             </>
           ) : (

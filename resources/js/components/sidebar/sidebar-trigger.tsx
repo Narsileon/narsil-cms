@@ -18,16 +18,16 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
         data-slot="sidebar-trigger"
         data-sidebar="trigger"
         className={cn("size-8", className)}
+        icon="menu"
+        size="icon"
+        variant="ghost"
         onClick={(e) => {
           onClick?.(e);
 
           toggleSidebar();
         }}
-        size="icon"
-        variant="ghost"
         {...props}
       >
-        <Icon name="menu" />
         <VisuallyHidden>
           {trans("accessibility.toggle_sidebar", "Toggle sidebar")}
         </VisuallyHidden>

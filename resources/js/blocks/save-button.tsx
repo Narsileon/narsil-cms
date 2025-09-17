@@ -130,13 +130,9 @@ function SaveButton({
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <Button
-        className="rounded-r-none"
-        form={id}
-        icon="save"
-        label={submitLabel}
-        type="submit"
-      />
+      <Button className="rounded-r-none" form={id} icon="save" type="submit">
+        {submitLabel}
+      </Button>
       <Separator orientation="vertical" />
       <DropdownMenuRoot>
         <DropdownMenuTrigger asChild={true}>

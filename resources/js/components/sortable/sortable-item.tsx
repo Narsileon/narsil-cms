@@ -131,15 +131,14 @@ function SortableItem({
                   {collapsible ? (
                     <Button
                       className="size-7"
+                      iconProps={{
+                        className: cn("duration-300", open && "rotate-180"),
+                        name: "chevron-down",
+                      }}
                       size="icon"
                       variant="ghost"
                       onClick={() => setCollapsed(!open)}
-                    >
-                      <Icon
-                        className={cn("duration-300", open && "rotate-180")}
-                        name="chevron-down"
-                      />
-                    </Button>
+                    />
                   ) : null}
                 </div>
                 <div className="flex items-center justify-between gap-1 justify-self-end">
@@ -160,21 +159,23 @@ function SortableItem({
                       optionValue={optionValue}
                       onItemChange={onItemChange}
                     >
-                      <Button className="size-7" size="icon" variant="ghost">
-                        <Icon name="edit" />
-                      </Button>
+                      <Button
+                        className="size-7"
+                        icon="edit"
+                        size="icon"
+                        variant="ghost"
+                      />
                     </SortableItemForm>
                   ) : null}
                   {onItemRemove ? (
-                    <Tooltip tooltip={trans("ui.remove")}>
-                      <Button
-                        className="size-7"
-                        icon="trash"
-                        size="icon"
-                        variant="ghost"
-                        onClick={onItemRemove}
-                      />
-                    </Tooltip>
+                    <Button
+                      className="size-7"
+                      icon="trash"
+                      size="icon"
+                      tooltip={trans("ui.remove")}
+                      variant="ghost"
+                      onClick={onItemRemove}
+                    />
                   ) : null}
                 </div>
               </CardHeader>

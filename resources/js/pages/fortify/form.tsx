@@ -98,13 +98,14 @@ function FortifyForm({
                                 </FormLabel>
                                 <Button
                                   className="font-normal"
-                                  label={trans("passwords.link")}
                                   linkProps={{
                                     href: route("password.request"),
                                   }}
                                   size="link"
                                   variant="link"
-                                />
+                                >
+                                  {trans("passwords.link")}
+                                </Button>
                               </div>
                               <InputPassword
                                 {...(element.settings ?? {})}
@@ -128,9 +129,10 @@ function FortifyForm({
                   <Button
                     className="col-span-12 w-full"
                     form={id}
-                    label={submitLabel}
                     type="submit"
-                  />
+                  >
+                    {submitLabel}
+                  </Button>
                 </FormRoot>
               )}
             />

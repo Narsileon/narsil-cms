@@ -151,10 +151,11 @@ function ResourceIndex({
                   <Button
                     aria-label={columnsLabel}
                     icon="eye"
-                    label={isDesktop ? columnsLabel : undefined}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
-                  />
+                  >
+                    {isDesktop ? columnsLabel : undefined}
+                  </Button>
                 </DataTableVisibilityDropdown>
               </Tooltip>
               <Tooltip
@@ -165,10 +166,11 @@ function ResourceIndex({
                   <Button
                     aria-label={filterLabel}
                     icon="filter"
-                    label={isDesktop ? filterLabel : undefined}
                     size={isDesktop ? "default" : "icon"}
                     variant="secondary"
-                  />
+                  >
+                    {isDesktop ? filterLabel : undefined}
+                  </Button>
                 </DataTableFilterDropdown>
               </Tooltip>
               {collection.meta.routes.create ? (
@@ -179,7 +181,6 @@ function ResourceIndex({
                   <Button
                     aria-label={createLabel}
                     icon="plus"
-                    label={isDesktop ? createLabel : undefined}
                     linkProps={{
                       href: route(
                         collection.meta.routes.create,
@@ -188,7 +189,9 @@ function ResourceIndex({
                     }}
                     size={isDesktop ? "default" : "icon"}
                     variant="default"
-                  />
+                  >
+                    {isDesktop ? createLabel : undefined}
+                  </Button>
                 </Tooltip>
               ) : null}
             </SectionHeader>

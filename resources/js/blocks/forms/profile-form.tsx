@@ -42,9 +42,10 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               <Button
                 form={profileForm.id}
                 icon={profileForm.submitIcon}
-                label={profileForm.submitLabel}
                 type="submit"
-              />
+              >
+                {profileForm.submitLabel}
+              </Button>
             </SectionHeader>
             <SectionContent>
               <FormRoot className="grid-cols-12 gap-4">
@@ -69,9 +70,10 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               <Button
                 form={updatePasswordForm.id}
                 icon={updatePasswordForm.submitIcon}
-                label={updatePasswordForm.submitLabel}
                 type="submit"
-              />
+              >
+                {updatePasswordForm.submitLabel}
+              </Button>
             </SectionHeader>
             <SectionContent>
               <FormRoot
