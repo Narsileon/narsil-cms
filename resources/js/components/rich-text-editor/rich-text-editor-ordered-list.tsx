@@ -3,13 +3,16 @@ import { Editor, useEditorState } from "@tiptap/react";
 import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
+import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorOrderedListProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
+  icon?: IconName;
 };
 
 function RichTextEditorOrderedList({
   editor,
+  icon = "list-ordered",
   ...props
 }: RichTextEditorOrderedListProps) {
   const { trans } = useLabels();
@@ -35,7 +38,7 @@ function RichTextEditorOrderedList({
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         {...props}
       >
-        <Icon name="list-ordered" />
+        <Icon name={icon} />
       </Toggle>
     </Tooltip>
   );

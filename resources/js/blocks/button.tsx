@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 import { Tooltip } from "@narsil-cms/blocks";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
-import { IconName } from "@narsil-cms/plugins/icons";
+import { type IconName } from "@narsil-cms/plugins/icons";
 
 type ButtonProps = React.ComponentProps<typeof ButtonRoot> & {
   icon?: IconName;

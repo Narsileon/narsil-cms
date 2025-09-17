@@ -3,12 +3,18 @@ import { Editor, useEditorState } from "@tiptap/react";
 import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
+import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorStrikeProps = React.ComponentProps<typeof Toggle> & {
   editor: Editor;
+  icon?: IconName;
 };
 
-function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
+function RichTextEditorStrike({
+  editor,
+  icon = "strikethrough",
+  ...props
+}: RichTextEditorStrikeProps) {
   const { trans } = useLabels();
 
   const { canStrike, isStrike } = useEditorState({
@@ -31,7 +37,7 @@ function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
         onClick={() => editor.chain().focus().toggleStrike().run()}
         {...props}
       >
-        <Icon name="strikethrough" />
+        <Icon name={icon} />
       </Toggle>
     </Tooltip>
   );
