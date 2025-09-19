@@ -19,14 +19,13 @@ import {
   SortableTable,
 } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
-import { type Field, type SelectOption } from "@narsil-cms/types";
+import { type Field } from "@narsil-cms/types";
 
 export type FieldProps = {
   element: Field;
   id: string;
   value: any;
   setValue: (value: any) => void;
-  renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
 
 type Registry = Record<string, React.ComponentType<FieldProps>>;
@@ -125,7 +124,6 @@ const defaultRegistry: Registry = {
           {...props.element.settings}
           id={props.id}
           value={props.value}
-          renderOption={props.renderOption}
           setValue={props.setValue}
         />
       );
@@ -147,7 +145,6 @@ const defaultRegistry: Registry = {
         {...props.element.settings}
         id={props.id}
         value={props.value}
-        renderOption={props.renderOption}
         setValue={props.setValue}
       />
     );

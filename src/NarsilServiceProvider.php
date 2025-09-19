@@ -45,6 +45,7 @@ class NarsilServiceProvider extends ServiceProvider
         $this->bootMigrations();
         $this->bootPublishes();
         $this->bootRoutes();
+        $this->bootViews();
     }
 
     #endregion
@@ -87,6 +88,16 @@ class NarsilServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->prefix('narsil')
             ->group(__DIR__ . '/../routes/graphql.php');
+    }
+
+    /**
+     * @return void
+     */
+    protected function bootViews(): void
+    {
+        $this->loadViewsFrom([
+            __DIR__ . '/../resources/views',
+        ], 'narsil');
     }
 
     protected function registerConfigs(): void

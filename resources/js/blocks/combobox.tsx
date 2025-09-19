@@ -40,7 +40,6 @@ type ComboboxProps = {
   searchable?: boolean;
   value: string | string[];
   valuePath?: string;
-  renderOption?: (option: SelectOption | string) => React.ReactNode;
   setValue: (value: string | string[]) => void;
 };
 
@@ -58,7 +57,6 @@ function Combobox({
   value,
   valuePath = "value",
   options: initialOptions = [],
-  renderOption,
   setValue,
 }: ComboboxProps) {
   const { trans } = useLabels();
@@ -230,7 +228,12 @@ function Combobox({
                 })}
               </div>
             ) : (
-              getSelectOption(selectedOptions[0], labelPath)
+              <div
+                className="min-w-1/2 grow truncate"
+                dangerouslySetInnerHTML={{
+                  __html: getSelectOption(selectedOptions[0], labelPath),
+                }}
+              />
             )
           ) : (
             (placeholder ?? trans("placeholders.search"))
@@ -299,13 +302,10 @@ function Combobox({
                             <Icon className="size-4" name={option.icon} />
                           ) : null}
                           <div className="flex w-full items-center justify-between gap-2 truncate">
-                            {renderOption ? (
-                              renderOption(option)
-                            ) : (
-                              <span className="min-w-1/2 grow truncate">
-                                {optionLabel}
-                              </span>
-                            )}
+                            <div
+                              className="min-w-1/2 grow truncate"
+                              dangerouslySetInnerHTML={{ __html: optionLabel }}
+                            />
                             {displayValue && (
                               <Tooltip tooltip={optionValue}>
                                 <span className="truncate text-muted-foreground">

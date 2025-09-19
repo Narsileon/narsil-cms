@@ -77,7 +77,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.color'),
                 Field::TYPE => SelectInput::class,
                 Field::SETTINGS => app(SelectInput::class)
-                    ->setDefaultValue('neutral')
+                    ->setDefaultValue('gray')
                     ->setOptions($colorOptions),
             ]),
             new Field([
@@ -106,7 +106,12 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         foreach (ColorEnum::cases() as $case)
         {
-            $options[] = new SelectOption(trans("narsil::colors.$case->value"), $case->value);
+            $optionLabel = view('narsil::components.bullet', [
+                'color' => $case->value,
+                'label' => trans("narsil::colors.$case->value"),
+            ])->render();
+
+            $options[] = new SelectOption($optionLabel, $case->value);
         }
 
         return $options;

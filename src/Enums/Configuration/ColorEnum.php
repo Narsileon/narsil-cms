@@ -16,7 +16,7 @@ enum ColorEnum: string
 {
     use Enumerable;
 
-    case NEUTRAL = 'neutral';
+    case GRAY = 'gray';
     case RED = 'red';
     case ORANGE  = 'orange';
     case AMBER = 'amber';

@@ -12,7 +12,6 @@ import {
   type Block,
   type BlockElementCondition,
   type Field,
-  type SelectOption,
 } from "@narsil-cms/types";
 
 import useForm from "./form-context";
@@ -29,7 +28,6 @@ type FormFieldRendererProps = {
   handle?: string | null;
   name?: string | null;
   onChange?: (value: any) => void;
-  renderOption?: (option: SelectOption | string) => React.ReactNode;
 };
 
 function FormFieldRenderer({

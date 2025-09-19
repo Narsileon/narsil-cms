@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Colors */
-@source inline('{bg,text}-{red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{500}');
+@source inline('{bg,text}-{gray,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{500}');
 
 /* Grids */
 @source inline('{col-span-{3,4,6,8,9}}');

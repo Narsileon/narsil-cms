@@ -14,7 +14,6 @@ import {
   SectionRoot,
 } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption } from "@narsil-cms/lib/utils";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
@@ -87,20 +86,6 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
                     element={element}
                     className="grid grid-cols-2"
                     onChange={(value) => handleChange(element.handle, value)}
-                    renderOption={
-                      element.handle === "color"
-                        ? (option) => {
-                            return (
-                              <>
-                                <span
-                                  className={`size-3 rounded-full bg-${getSelectOption(option, "value")}-500`}
-                                />
-                                {getSelectOption(option, "label")}
-                              </>
-                            );
-                          }
-                        : undefined
-                    }
                     key={index}
                   />
                 );
