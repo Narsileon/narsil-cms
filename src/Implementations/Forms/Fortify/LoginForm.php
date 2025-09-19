@@ -61,6 +61,10 @@ class LoginForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordInput::class,
                 Field::SETTINGS => app(PasswordInput::class)
+                    ->setAppend(view('narsil::components.link', [
+                        'label' => trans("narsil::passwords.link"),
+                        'route' => route("password.request"),
+                    ])->render())
                     ->setAutoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
                     ->setRequired(true),
             ]),

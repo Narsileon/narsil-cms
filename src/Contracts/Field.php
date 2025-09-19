@@ -25,6 +25,15 @@ interface Field
     #region • FLUENT METHODS
 
     /**
+     * Set the append attribute.
+     *
+     * @param string $append
+     *
+     * @return static
+     */
+    public function setAppend(string $append): static;
+
+    /**
      * Set the className attribute.
      *
      * @param string $className

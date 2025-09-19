@@ -1,3 +1,6 @@
+import { Link } from "@inertiajs/react";
+import parse from "html-react-parser";
+
 import { Heading } from "@narsil-cms/blocks";
 import { Builder } from "@narsil-cms/components/builder";
 import {
@@ -141,7 +144,25 @@ function FormFieldRenderer({
               className,
             )}
           >
-            <FormLabel required={settings.required}>{finalName}</FormLabel>
+            <div className="flex items-center justify-between gap-3">
+              <FormLabel required={settings.required}>{finalName}</FormLabel>
+              {settings.append
+                ? parse(settings.append, {
+                    replace: (domNode) => {
+                      if (domNode.name === "a") {
+                        return (
+                          <Link
+                            href={domNode.attribs.href}
+                            className={domNode.attribs.class}
+                          >
+                            {domNode.children.map((c) => c.data).join("")}
+                          </Link>
+                        );
+                      }
+                    },
+                  })
+                : null}
+            </div>
             {getField(element.type, {
               id: finalHandle,
               element: element,

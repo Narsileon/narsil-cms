@@ -1,5 +1,6 @@
 import { router } from "@inertiajs/react";
 import { useVirtualizer } from "@tanstack/react-virtual";
+import parse from "html-react-parser";
 import { debounce, isArray, isString, lowerCase } from "lodash";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { route } from "ziggy-js";
@@ -228,12 +229,7 @@ function Combobox({
                 })}
               </div>
             ) : (
-              <div
-                className="min-w-1/2 grow truncate"
-                dangerouslySetInnerHTML={{
-                  __html: getSelectOption(selectedOptions[0], labelPath),
-                }}
-              />
+              parse(getSelectOption(selectedOptions[0], labelPath))
             )
           ) : (
             (placeholder ?? trans("placeholders.search"))
@@ -302,10 +298,9 @@ function Combobox({
                             <Icon className="size-4" name={option.icon} />
                           ) : null}
                           <div className="flex w-full items-center justify-between gap-2 truncate">
-                            <div
-                              className="min-w-1/2 grow truncate"
-                              dangerouslySetInnerHTML={{ __html: optionLabel }}
-                            />
+                            <div className="min-w-1/2 grow truncate">
+                              {parse(optionLabel)}
+                            </div>
                             {displayValue && (
                               <Tooltip tooltip={optionValue}>
                                 <span className="truncate text-muted-foreground">

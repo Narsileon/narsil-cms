@@ -106,7 +106,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         foreach (ColorEnum::cases() as $case)
         {
-            $optionLabel = view('narsil::components.bullet', [
+            $optionLabel = view('narsil::components.bullet-label', [
                 'color' => $case->value,
                 'label' => trans("narsil::colors.$case->value"),
             ])->render();

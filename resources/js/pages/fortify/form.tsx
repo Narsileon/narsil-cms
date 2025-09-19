@@ -2,14 +2,10 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button, Card, Heading, InputPassword } from "@narsil-cms/blocks";
+import { Button, Card, Heading } from "@narsil-cms/blocks";
 import { ContainerRoot } from "@narsil-cms/components/container";
 import {
-  FormField,
   FormFieldRenderer,
-  FormItem,
-  FormLabel,
-  FormMessage,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
@@ -82,50 +78,9 @@ function FortifyForm({
               initialValues={data}
               render={() => (
                 <FormRoot className="grid-cols-12 gap-6">
-                  {form.map((element, index) =>
-                    id === "login-form" &&
-                    element.handle === "password" &&
-                    "type" in element ? (
-                      <FormField
-                        id={element.handle}
-                        field={element}
-                        render={({ value, onFieldChange }) => {
-                          return (
-                            <FormItem className="col-span-full">
-                              <div className="flex items-center justify-between gap-3">
-                                <FormLabel required={true}>
-                                  {element.name}
-                                </FormLabel>
-                                <Button
-                                  className="font-normal"
-                                  linkProps={{
-                                    href: route("password.request"),
-                                  }}
-                                  size="link"
-                                  variant="link"
-                                >
-                                  {trans("passwords.link")}
-                                </Button>
-                              </div>
-                              <InputPassword
-                                {...(element.settings ?? {})}
-                                id={element.handle}
-                                name={element.handle}
-                                value={value}
-                                onChange={(event) =>
-                                  onFieldChange(event.target.value)
-                                }
-                              />
-                              <FormMessage />
-                            </FormItem>
-                          );
-                        }}
-                        key={index}
-                      />
-                    ) : (
-                      <FormFieldRenderer element={element} key={index} />
-                    ),
-                  )}
+                  {form.map((element, index) => {
+                    return <FormFieldRenderer element={element} key={index} />;
+                  })}
                   <Button
                     className="col-span-12 w-full"
                     form={id}

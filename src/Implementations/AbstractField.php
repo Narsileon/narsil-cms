@@ -41,6 +41,16 @@ abstract class AbstractField implements Field, JsonSerializable
     /**
      * {@inheritDoc}
      */
+    final public function setAppend(string $append): static
+    {
+        $this->props['append'] = $append;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function setClassName(string $className): static
     {
         $this->props['className'] = $className;
