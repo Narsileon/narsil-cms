@@ -6,11 +6,11 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import CalendarDayButton from "./calendar-day-button";
 
-type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+type CalendarRootProps = React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof ButtonRoot>["variant"];
 };
 
-function Calendar({
+function CalendarRoot({
   buttonVariant = "ghost",
   captionLayout = "label",
   className,
@@ -19,7 +19,7 @@ function Calendar({
   formatters,
   showOutsideDays = true,
   ...props
-}: CalendarProps) {
+}: CalendarRootProps) {
   const defaultClassNames = getDefaultClassNames();
 
   return (
@@ -126,8 +126,8 @@ function Calendar({
           return (
             <div
               ref={rootRef}
+              data-slot="calendar-root"
               className={cn(className)}
-              data-slot="calendar"
               {...props}
             />
           );
@@ -171,4 +171,4 @@ function Calendar({
   );
 }
 
-export default Calendar;
+export default CalendarRoot;

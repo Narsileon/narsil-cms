@@ -12,6 +12,7 @@ import {
   CommandList,
   CommandRoot,
 } from "@narsil-cms/components/command";
+import CommandInputWrapper from "@narsil-cms/components/command/command-input-wrapper";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
@@ -23,7 +24,6 @@ import {
 } from "@narsil-cms/components/popover";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { type SelectOption } from "@narsil-cms/types";
-import CommandInputWrapper from "@narsil-cms/components/command/command-input-wrapper";
 
 type ComboboxProps = {
   className?: string;

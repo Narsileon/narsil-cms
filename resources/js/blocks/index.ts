@@ -4,6 +4,7 @@ import Badge from "./badge";
 import Bookmarks from "./bookmarks";
 import Breadcrumb from "./breadcrumb";
 import Button from "./button";
+import Calendar from "./calendar";
 import Card from "./card";
 import Checkbox from "./checkbox";
 import Checkboxes from "./checkboxes";
@@ -42,6 +43,7 @@ export {
   Bookmarks,
   Breadcrumb,
   Button,
+  Calendar,
   Card,
   Checkbox,
   Checkboxes,

@@ -23,6 +23,17 @@ function CalendarDayButton({
   return (
     <Button
       ref={ref}
+      data-slot="calendar-day-button"
+      data-day={day.date.toLocaleDateString()}
+      data-range-end={modifiers.range_end}
+      data-range-middle={modifiers.range_middle}
+      data-range-start={modifiers.range_start}
+      data-selected-single={
+        modifiers.selected &&
+        !modifiers.range_start &&
+        !modifiers.range_end &&
+        !modifiers.range_middle
+      }
       className={cn(
         "flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal",
         "dark:hover:text-accent-foreground",
@@ -35,16 +46,6 @@ function CalendarDayButton({
         defaultClassNames.day,
         className,
       )}
-      data-day={day.date.toLocaleDateString()}
-      data-range-end={modifiers.range_end}
-      data-range-middle={modifiers.range_middle}
-      data-range-start={modifiers.range_start}
-      data-selected-single={
-        modifiers.selected &&
-        !modifiers.range_start &&
-        !modifiers.range_end &&
-        !modifiers.range_middle
-      }
       size="icon"
       variant="ghost"
       {...props}

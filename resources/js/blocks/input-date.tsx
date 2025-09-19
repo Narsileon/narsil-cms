@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Calendar } from "@narsil-cms/components/calendar";
+import { Calendar } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
