@@ -1,7 +1,6 @@
 import { useRef } from "react";
 
-import { Logo, Toaster, UserMenu } from "@narsil-cms/blocks";
-import { ContainerRoot } from "@narsil-cms/components/container";
+import { Container, Logo, Toaster, UserMenu } from "@narsil-cms/blocks";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 
 type GuestLayoutProps = {
@@ -14,10 +13,10 @@ function GuestLayout({ children }: GuestLayoutProps) {
   return (
     <>
       <header className="sticky top-0 z-10 h-13 border-b bg-background">
-        <ContainerRoot className="flex items-center justify-between gap-4">
+        <Container className="flex items-center justify-between gap-4">
           <Logo />
           <UserMenu />
-        </ContainerRoot>
+        </Container>
       </header>
       <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
         <ModalRenderer container={mainRef.current} />

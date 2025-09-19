@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Button, Card, Heading } from "@narsil-cms/blocks";
-import { ContainerRoot } from "@narsil-cms/components/container";
+import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
 import {
   FormFieldRenderer,
   FormProvider,
@@ -45,7 +44,7 @@ function FortifyForm({
   }, [status]);
 
   return (
-    <ContainerRoot className="gap-6" asChild={true} variant="centered">
+    <Container className="gap-6" asChild={true} variant="centered">
       <SectionRoot>
         <SectionHeader>
           <Heading level="h1" variant="h4">
@@ -94,7 +93,7 @@ function FortifyForm({
           </Card>
         </SectionContent>
       </SectionRoot>
-    </ContainerRoot>
+    </Container>
   );
 }
 

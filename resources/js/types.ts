@@ -136,4 +136,10 @@ export type SelectOption = {
   value: UniqueIdentifier;
 };
 
+export type Template = {
+  handle: string;
+  id: number;
+  name: string;
+};
+
 export type UniqueIdentifier = string | number;

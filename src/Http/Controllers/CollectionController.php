@@ -6,11 +6,9 @@ namespace Narsil\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 
@@ -34,33 +32,17 @@ class CollectionController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
 
-        $tables = Template::pluck(Template::HANDLE)->unique()->toArray();
-
-        $caseSql = "CASE";
-
-        foreach ($tables as $table)
-        {
-            if (Schema::hasTable($table))
-            {
-                $caseSql .= " WHEN handle = '{$table}' THEN (SELECT COUNT(*) FROM {$table} WHERE deleted_at IS NULL)";
-            }
-        }
-
-        $caseSql .= " ELSE 0 END as entities_count";
-
-        $query = Template::query()
-            ->select(Template::TABLE . '.*')
-            ->selectRaw($caseSql);
-
-        $collection = new DataTableCollection($query, 'collections')
-            ->setSelectable(false);
+        $templates = Template::query()
+            ->withoutEagerLoads()
+            ->orderBy(Template::NAME, 'asc')
+            ->get();
 
         return $this->render(
-            component: 'narsil/cms::resources/index',
+            component: 'narsil/cms::collections/index',
             title: trans('narsil::ui.collections'),
             description: trans('narsil::ui.collections'),
             props: [
-                'collection' => $collection,
+                'templates' => $templates,
             ]
         );
     }

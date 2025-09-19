@@ -9,6 +9,7 @@ import Card from "./card";
 import Checkbox from "./checkbox";
 import Checkboxes from "./checkboxes";
 import Combobox from "./combobox";
+import Container from "./container";
 import DataTable from "./data-table";
 import Head from "./head";
 import Heading from "./heading";
@@ -48,6 +49,7 @@ export {
   Checkbox,
   Checkboxes,
   Combobox,
+  Container,
   DataTable,
   Head,
   Heading,

@@ -56,7 +56,9 @@ abstract class TableService
             $columnName = str_replace('_id', '', $columnName);
         }
 
-        return Str::ucfirst(trans("narsil::validation.attributes.$columnName"));
+        $translation = trans("narsil::validation.attributes.$columnName");
+
+        return Str::contains($translation, 'validation.attributes') ? $columnName : Str::ucfirst($translation);
     }
 
     #endregion
