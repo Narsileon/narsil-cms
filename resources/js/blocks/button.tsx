@@ -26,7 +26,6 @@ function Button({
   linkProps,
   tooltip,
   tooltipProps,
-  type,
   ...props
 }: ButtonProps) {
   const iconName = icon || iconProps?.name;
@@ -40,7 +39,7 @@ function Button({
   );
 
   const ButtonElement = (
-    <ButtonRoot asChild={linkProps ? true : asChild} type={type} {...props}>
+    <ButtonRoot asChild={linkProps ? true : asChild} {...props}>
       {linkProps ? (
         linkProps.modal ? (
           <ModalLink {...linkProps}>{ButtonContent}</ModalLink>

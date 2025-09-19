@@ -36,6 +36,7 @@ import Toggle from "./toggle";
 import Tooltip from "./tooltip";
 import UserMenu from "./user-menu";
 import VisuallyHidden from "./visually-hidden";
+import WidthSelector from "./width-selector";
 
 export {
   Accordion,
@@ -76,4 +77,5 @@ export {
   Tooltip,
   UserMenu,
   VisuallyHidden,
+  WidthSelector,
 };

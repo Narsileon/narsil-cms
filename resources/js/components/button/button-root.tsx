@@ -14,7 +14,8 @@ function ButtonRoot({
   asChild = false,
   className,
   size,
-  variant,
+  type = "button",
+  variant = "default",
   ...props
 }: ButtonRootProps) {
   const Comp = asChild ? Slot.Root : "button";
@@ -29,7 +30,7 @@ function ButtonRoot({
           variant: variant,
         }),
       )}
-      type="button"
+      type={type}
       {...props}
     />
   );

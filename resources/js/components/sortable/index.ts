@@ -5,7 +5,6 @@ import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";
 import SortableItem from "./sortable-item";
 import SortableItemForm from "./sortable-item-form";
-import SortableItemWidth from "./sortable-item-width";
 import SortableList from "./sortable-list";
 import SortableListContext from "./sortable-list-context";
 import SortableTree from "./sortable-tree";
@@ -38,7 +37,6 @@ export {
   SortableHandle,
   SortableItem,
   SortableItemForm,
-  SortableItemWidth,
   SortableList,
   SortableListContext,
   SortableTable,

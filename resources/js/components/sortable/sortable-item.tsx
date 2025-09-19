@@ -3,7 +3,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 
-import { Button, Tooltip } from "@narsil-cms/blocks";
+import { Button, Tooltip, WidthSelector } from "@narsil-cms/blocks";
 import {
   CardContent,
   CardFooter,
@@ -28,7 +28,6 @@ import {
 import { type AnonymousItem } from ".";
 import SortableHandle from "./sortable-handle";
 import SortableItemForm from "./sortable-item-form";
-import SortableItemWidth from "./sortable-item-width";
 
 type SortableItemProps = Omit<React.ComponentProps<typeof CardRoot>, "id"> & {
   collapsible?: boolean;
@@ -143,7 +142,7 @@ function SortableItem({
                 </div>
                 <div className="flex items-center justify-between gap-1 justify-self-end">
                   {item && widthOptions ? (
-                    <SortableItemWidth
+                    <WidthSelector
                       options={widthOptions}
                       value={item.width}
                       onValueChange={(value) =>
