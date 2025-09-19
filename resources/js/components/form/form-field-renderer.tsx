@@ -11,11 +11,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
-import {
-  type Block,
-  type BlockElementCondition,
-  type Field,
-} from "@narsil-cms/types";
+import { type BlockElementCondition, type HasElement } from "@narsil-cms/types";
 
 import useForm from "./form-context";
 import FormDescription from "./form-description";
@@ -24,12 +20,9 @@ import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 
-type FormFieldRendererProps = {
+type FormFieldRendererProps = HasElement & {
   className?: string;
   conditions?: BlockElementCondition[];
-  element: Field | Block;
-  handle?: string | null;
-  name?: string | null;
   onChange?: (value: any) => void;
 };
 
@@ -39,6 +32,7 @@ function FormFieldRenderer({
   element,
   handle,
   name,
+  width,
   onChange,
 }: FormFieldRendererProps) {
   const { data } = useForm();
@@ -52,7 +46,7 @@ function FormFieldRenderer({
         {element.identifier.startsWith("blocks") ? (
           <CollapsibleRoot
             className={cn(
-              "group -mx-4 not-first:border-t",
+              "group col-span-full -mx-4 not-first:border-t",
               "first:-mt-4",
               "-mb-4",
               "data-[state=closed]:not-last:border-b",
@@ -74,14 +68,12 @@ function FormFieldRenderer({
                 name="chevron-down"
               />
             </CollapsibleTrigger>
-            <CollapsibleContent className="grid gap-4 p-4 px-4">
+            <CollapsibleContent className="grid grid-cols-12 gap-4 p-4">
               {element.elements?.map((element, index) => {
                 return (
                   <FormFieldRenderer
                     conditions={element.conditions}
-                    element={element.element}
-                    handle={element.handle}
-                    name={element.name}
+                    {...element}
                     key={index}
                   />
                 );
@@ -97,9 +89,7 @@ function FormFieldRenderer({
               return (
                 <FormFieldRenderer
                   conditions={element.conditions}
-                  element={element.element}
-                  handle={element.handle}
-                  name={element.name}
+                  {...element}
                   key={index}
                 />
               );
@@ -122,7 +112,10 @@ function FormFieldRenderer({
   }
 
   return element.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
-    <Heading className="-mx-4 border-t border-b bg-accent p-4" level="h2">
+    <Heading
+      className="col-span-full -mx-4 border-t border-b bg-accent p-4"
+      level="h2"
+    >
       {finalName}
     </Heading>
   ) : (
@@ -143,6 +136,7 @@ function FormFieldRenderer({
               settings.className,
               className,
             )}
+            width={width}
           >
             <div className="flex items-center justify-between gap-3">
               <FormLabel required={settings.required}>{finalName}</FormLabel>

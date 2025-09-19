@@ -88,21 +88,21 @@ function ResourceForm({
 
   const [value, setValue] = useState(tabs[0].handle);
 
-  const informationContent = information?.elements.map((element, index) => {
+  const informationContent = information?.elements?.map((element, index) => {
     return (
       <FormFieldRenderer
         conditions={element.conditions}
-        element={element.element}
+        {...element}
         key={index}
       />
     );
   });
 
-  const sidebarContent = sidebar?.elements.map((element, index) => {
+  const sidebarContent = sidebar?.elements?.map((element, index) => {
     return (
       <FormFieldRenderer
         conditions={element.conditions}
-        element={element.element}
+        {...element}
         key={index}
       />
     );
@@ -129,14 +129,15 @@ function ResourceForm({
       {tabs.map((tab, index) => {
         return (
           <TabsContent className="p-0" value={tab.handle} key={index}>
-            <Card className="overflow-hidden">
-              {tab.elements.map((element, index) => {
+            <Card
+              className="overflow-hidden"
+              contentProps={{ className: "grid-cols-12 gap-4" }}
+            >
+              {tab.elements?.map((element, index) => {
                 return (
                   <FormFieldRenderer
                     conditions={element.conditions}
-                    element={element.element}
-                    handle={element.handle}
-                    name={element.name}
+                    {...element}
                     key={index}
                   />
                 );

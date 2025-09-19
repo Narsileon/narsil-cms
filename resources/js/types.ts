@@ -60,13 +60,18 @@ export type DataTableFilterCollection = {
   };
 };
 
-export type Field<T = Record<string, unknown>> = {
+export type Field = {
   blocks: Block[];
   description: string | null;
   handle: string;
   id: number;
   name: string;
-  settings: T;
+  settings: {
+    append?: string;
+    className?: string;
+    required?: boolean;
+    [key: string]: unknown;
+  };
   type: string;
 };
 

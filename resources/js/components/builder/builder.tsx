@@ -19,13 +19,13 @@ import {
 import { get } from "lodash";
 import { Fragment, useState } from "react";
 
+import { useForm } from "@narsil-cms/components/form";
 import { type Block } from "@narsil-cms/types";
 
 import { type BuilderNode } from ".";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 import BuilderSeparator from "./builder-seperator";
-import { useForm } from "../form";
 
 type BuilderProps = {
   name: string;
@@ -83,7 +83,7 @@ function Builder({ name, sets }: BuilderProps) {
       onDragStart={onDragStart}
     >
       <SortableContext items={nodes} strategy={verticalListSortingStrategy}>
-        <div className="flex flex-col items-center justify-center">
+        <div className="col-span-full flex flex-col items-center justify-center">
           <div className="size-4 rounded-full bg-constructive" />
           <BuilderSeparator />
           {nodes.map((node, index) => {

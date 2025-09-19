@@ -1,12 +1,35 @@
 import { cn } from "@narsil-cms/lib/utils";
 
-type FormItemProps = React.ComponentProps<"div"> & {};
+type FormItemProps = React.ComponentProps<"div"> & {
+  width?: number;
+};
 
-function FormItem({ className, ...props }: FormItemProps) {
+function FormItem({ className, width, ...props }: FormItemProps) {
+  function getWidthClass() {
+    switch (width) {
+      case 25:
+        return "col-span-3";
+      case 33:
+        return "col-span-4";
+      case 50:
+        return "col-span-6";
+      case 67:
+        return "col-span-8";
+      case 75:
+        return "col-span-9";
+      case 100:
+      default:
+        return "col-span-full";
+    }
+  }
   return (
     <div
       data-slot="form-item"
-      className={cn("col-span-full flex flex-col gap-2", className)}
+      className={cn(
+        "col-span-full flex flex-col gap-2",
+        getWidthClass(),
+        className,
+      )}
       {...props}
     />
   );
