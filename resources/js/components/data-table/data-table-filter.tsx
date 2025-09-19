@@ -6,7 +6,6 @@ import {
   useDataTable,
 } from "@narsil-cms/components/data-table";
 import { useLabels } from "@narsil-cms/components/labels";
-import { ModalLink } from "@narsil-cms/components/modal";
 import { cn } from "@narsil-cms/lib/utils";
 import { type DataTableFilterCollection } from "@narsil-cms/types";
 
@@ -59,10 +58,14 @@ function DataTableFilter({
       ))}
       {meta.routes.create ? (
         <li className="mt-2">
-          <Button asChild={true}>
-            <ModalLink href={route(meta.routes.create, meta.routes.params)}>
-              {meta.addLabel}
-            </ModalLink>
+          <Button
+            asChild={true}
+            linkProps={{
+              href: route(meta.routes.create, meta.routes.params),
+              modal: true,
+            }}
+          >
+            {meta.addLabel}
           </Button>
         </li>
       ) : null}

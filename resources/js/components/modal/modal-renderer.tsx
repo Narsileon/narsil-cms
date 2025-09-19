@@ -15,8 +15,8 @@ function ModalRenderer({ ...props }: ModalRendererProps) {
       {modals.map((modal) => (
         <Modal
           modal={modal}
-          onClose={() => closeModal(modal.href)}
-          key={modal.href}
+          onClose={() => closeModal(modal.linkProps.href as string)}
+          key={modal.linkProps.href as string}
           {...props}
         />
       ))}

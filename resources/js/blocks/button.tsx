@@ -3,13 +3,16 @@ import { Link } from "@inertiajs/react";
 import { Tooltip } from "@narsil-cms/blocks";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
+import { ModalLink } from "@narsil-cms/components/modal";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type ButtonProps = React.ComponentProps<typeof ButtonRoot> & {
   icon?: IconName;
   iconProps?: React.ComponentProps<typeof Icon>;
   label?: string;
-  linkProps?: React.ComponentProps<typeof Link>;
+  linkProps?: React.ComponentProps<typeof Link> & {
+    modal?: boolean;
+  };
   tooltip?: string;
   tooltipProps?: React.ComponentProps<typeof Tooltip>;
 };
@@ -38,7 +41,15 @@ function Button({
 
   const ButtonElement = (
     <ButtonRoot asChild={linkProps ? true : asChild} type={type} {...props}>
-      {linkProps ? <Link {...linkProps}>{ButtonContent}</Link> : ButtonContent}
+      {linkProps ? (
+        linkProps.modal ? (
+          <ModalLink {...linkProps}>{ButtonContent}</ModalLink>
+        ) : (
+          <Link {...linkProps}>{ButtonContent}</Link>
+        )
+      ) : (
+        ButtonContent
+      )}
     </ButtonRoot>
   );
 

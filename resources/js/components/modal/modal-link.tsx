@@ -1,28 +1,17 @@
-import { type VisitCallbacks } from "@inertiajs/core";
-import { Slot } from "radix-ui";
+import { Link } from "@inertiajs/react";
 
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 
-type ModalLinkProps = React.ComponentProps<"button"> & {
-  asChild?: boolean;
-  href: string;
-  options?: Partial<VisitCallbacks>;
-};
+type ModalLinkProps = React.ComponentProps<typeof Link> & {};
 
-function ModalLink({
-  asChild = false,
-  href,
-  options,
-  onClick,
-  ...props
-}: ModalLinkProps) {
+function ModalLink({ as = "button", onClick, ...props }: ModalLinkProps) {
   const { openModal } = useModalStore();
 
-  const Comp = asChild ? Slot.Root : "button";
+  const Comp = as;
 
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
-    openModal(href, options);
+    openModal({ ...props });
   }
 
   return (

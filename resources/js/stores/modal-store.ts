@@ -1,12 +1,11 @@
-import { type VisitCallbacks } from "@inertiajs/core";
+import { Link } from "@inertiajs/react";
 import { create } from "zustand";
 
 type ModalType = {
   component: string;
   componentProps: Record<string, unknown>;
-  href: string;
   id: string;
-  options?: Partial<VisitCallbacks>;
+  linkProps: React.ComponentProps<typeof Link>;
 };
 
 type ModalStoreState = {
@@ -16,15 +15,17 @@ type ModalStoreState = {
 type ModalStoreActions = {
   closeModal: (href: string) => void;
   closeTopModal: () => void;
-  openModal: (href: string, options?: Partial<VisitCallbacks>) => Promise<void>;
+  openModal: (linkProps: React.ComponentProps<typeof Link>) => Promise<void>;
   reloadTopModal: () => Promise<void>;
 };
 
 type ModalStoreType = ModalStoreState & ModalStoreActions;
 
-async function fetchModalProps(href: string): Promise<ModalType | null> {
+async function fetchModalProps(
+  linkProps: React.ComponentProps<typeof Link>,
+): Promise<ModalType | null> {
   try {
-    const url = new URL(href, window.location.origin);
+    const url = new URL(linkProps.href as string, window.location.origin);
 
     url.searchParams.set("_modal", "1");
 
@@ -47,8 +48,8 @@ async function fetchModalProps(href: string): Promise<ModalType | null> {
     return {
       component: data.component,
       componentProps: data.props ?? {},
-      href: href,
       id: crypto.randomUUID(),
+      linkProps: linkProps,
     };
   } catch (error) {
     console.error(error);
@@ -62,21 +63,21 @@ const useModalStore = create<ModalStoreType>((set, get) => ({
 
   closeModal: (href) =>
     set((state) => ({
-      modals: state.modals.filter((m) => m.href !== href),
+      modals: state.modals.filter((m) => m.linkProps?.href !== href),
     })),
   closeTopModal: () =>
     set((state) => ({
       modals: state.modals.slice(0, -1),
     })),
-  openModal: async (href, options) => {
-    const modal = await fetchModalProps(href);
+  openModal: async (linkProps: React.ComponentProps<typeof Link>) => {
+    const modal = await fetchModalProps(linkProps);
 
     if (!modal) {
       return;
     }
 
     set((state) => ({
-      modals: [...state.modals, { ...modal, options: options }],
+      modals: [...state.modals, { ...modal }],
     }));
   },
   reloadTopModal: async () => {
@@ -85,7 +86,7 @@ const useModalStore = create<ModalStoreType>((set, get) => ({
     if (!topModal) {
       return;
     }
-    const modal = await fetchModalProps(topModal.href);
+    const modal = await fetchModalProps(topModal.linkProps);
 
     if (!modal) {
       return;
