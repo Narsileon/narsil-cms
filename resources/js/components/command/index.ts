@@ -1,6 +1,5 @@
 // https://ui.shadcn.com/docs/components/command
 
-import CommandDialog from "./command-dialog";
 import CommandEmpty from "./command-empty";
 import CommandGroup from "./command-group";
 import CommandInput from "./command-input";
@@ -10,7 +9,6 @@ import CommandRoot from "./command-root";
 import CommandSeparator from "./command-separator";
 
 export {
-  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,

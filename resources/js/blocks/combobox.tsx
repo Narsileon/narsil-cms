@@ -1,12 +1,14 @@
 import { router } from "@inertiajs/react";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import { debounce, isArray, lowerCase } from "lodash";
+import { debounce, isArray, isString, lowerCase } from "lodash";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { Badge, Tooltip } from "@narsil-cms/blocks";
 import {
   CommandEmpty,
   CommandGroup,
   CommandInput,
+  CommandItem,
   CommandList,
   CommandRoot,
 } from "@narsil-cms/components/command";
@@ -21,9 +23,7 @@ import {
 } from "@narsil-cms/components/popover";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
 import { type SelectOption } from "@narsil-cms/types";
-
-import ComboboxBadge from "./combobox-badge";
-import ComboboxItem from "./combobox-item";
+import CommandInputWrapper from "@narsil-cms/components/command/command-input-wrapper";
 
 type ComboboxProps = {
   className?: string;
@@ -176,15 +176,20 @@ function Combobox({
             multiple ? (
               <div className="flex flex-wrap gap-1">
                 {selectedOptions.map((option, index) => {
+                  const optionLabel = getSelectOption(option, labelPath);
+                  const optionValue = getSelectOption(option, valuePath);
+
                   return (
-                    <ComboboxBadge
-                      item={option}
-                      labelPath={labelPath}
-                      value={value as string[]}
-                      valuePath={valuePath}
-                      setValue={setValue}
+                    <Badge
+                      onClose={() =>
+                        setValue(
+                          (value as string[]).filter((x) => x !== optionValue),
+                        )
+                      }
                       key={index}
-                    />
+                    >
+                      {optionLabel}
+                    </Badge>
                   );
                 })}
               </div>
@@ -204,11 +209,14 @@ function Combobox({
         <PopoverContent className="p-0">
           <CommandRoot shouldFilter={false}>
             {searchable ? (
-              <CommandInput
-                value={input}
-                onValueChange={onValueChange}
-                placeholder={placeholder ?? trans("placeholders.search")}
-              />
+              <CommandInputWrapper>
+                <Icon className="size-4 shrink-0 opacity-50" name="search" />
+                <CommandInput
+                  value={input}
+                  onValueChange={onValueChange}
+                  placeholder={placeholder ?? trans("placeholders.search")}
+                />
+              </CommandInputWrapper>
             ) : null}
             <CommandList ref={parentRef}>
               <CommandEmpty>{trans("pagination.pages_empty")}</CommandEmpty>
@@ -222,24 +230,55 @@ function Combobox({
                   {virtualizer
                     .getVirtualItems()
                     .map(({ index, key, size, start }) => {
+                      const option = filteredOptions[index];
+
+                      const optionLabel = getSelectOption(option, labelPath);
+                      const optionValue = getSelectOption(option, valuePath);
+
+                      const isSelected = Array.isArray(value)
+                        ? value.includes(optionValue)
+                        : value === optionValue;
+
                       return (
-                        <ComboboxItem
+                        <CommandItem
                           className={cn(
                             "absolute top-0 left-0 h-9 w-full will-change-transform",
                           )}
-                          displayValue={displayValue}
-                          item={filteredOptions[index]}
-                          labelPath={labelPath}
-                          value={value}
-                          valuePath={valuePath}
+                          value={optionValue.toString()}
                           onSelect={onSelect}
-                          renderOption={renderOption}
                           style={{
                             height: `${size}px`,
                             transform: `translateY(${start}px)`,
                           }}
                           key={key}
-                        />
+                        >
+                          <Icon
+                            className={cn(
+                              "size-4",
+                              isSelected ? "opacity-100" : "opacity-0",
+                            )}
+                            name="check"
+                          />
+                          {!isString(option) && option.icon ? (
+                            <Icon className="size-4" name={option.icon} />
+                          ) : null}
+                          <div className="flex w-full items-center justify-between gap-2 truncate">
+                            {renderOption ? (
+                              renderOption(option)
+                            ) : (
+                              <span className="min-w-1/2 grow truncate">
+                                {optionLabel}
+                              </span>
+                            )}
+                            {displayValue && (
+                              <Tooltip tooltip={optionValue}>
+                                <span className="truncate text-muted-foreground">
+                                  {optionValue}
+                                </span>
+                              </Tooltip>
+                            )}
+                          </div>
+                        </CommandItem>
                       );
                     })}
                 </div>

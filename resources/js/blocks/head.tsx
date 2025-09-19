@@ -9,8 +9,8 @@ type HeadProps = React.ComponentProps<typeof InertiaHead> & {
 function Head({
   children,
   description = "",
-  follow,
-  index,
+  follow = false,
+  index = false,
   title = "",
 }: HeadProps) {
   return (

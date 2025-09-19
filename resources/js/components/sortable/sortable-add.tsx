@@ -3,8 +3,7 @@ import { isNumber } from "lodash";
 import { useState } from "react";
 import { route } from "ziggy-js";
 
-import { Button } from "@narsil-cms/blocks";
-import { Combobox } from "@narsil-cms/components/combobox";
+import { Button, Combobox } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
