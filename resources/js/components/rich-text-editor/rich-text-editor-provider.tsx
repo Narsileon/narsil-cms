@@ -57,7 +57,7 @@ function RichTextEditorProvider({
       attributes: {
         class: cn(
           "prose max-w-none !whitespace-normal text-foreground",
-          "rounded-md rounded-t-none bg-background px-3 py-2 text-sm ring-offset-background",
+          "rounded-md rounded-t-none bg-background px-3 py-2 ring-offset-background",
           "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none",
           "disabled:cursor-not-allowed disabled:opacity-50",
           className,

@@ -87,7 +87,7 @@ function SortableItemForm({
                     },
                   })}
                   {error && optionValue === field.handle ? (
-                    <p className="text-sm text-destructive">{error}</p>
+                    <p className="text-destructive">{error}</p>
                   ) : null}
                 </FormItem>
               );

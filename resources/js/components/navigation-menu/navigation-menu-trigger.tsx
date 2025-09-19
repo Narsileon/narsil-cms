@@ -16,7 +16,7 @@ function NavigationMenuTrigger({
     <NavigationMenu.Trigger
       data-slot="navigation-menu-trigger"
       className={cn(
-        "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none",
+        "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium transition-[color,box-shadow] outline-none",
         "disabled:pointer-events-none disabled:opacity-50",
         "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-1",
         "focus:text-accent-foreground",

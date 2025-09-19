@@ -124,7 +124,7 @@ function SortableItem({
                     </Tooltip>
                   ) : null}
                   {label ? (
-                    <CardTitle className="justify-self-start text-sm font-normal">
+                    <CardTitle className="justify-self-start font-normal">
                       {label}
                     </CardTitle>
                   ) : null}

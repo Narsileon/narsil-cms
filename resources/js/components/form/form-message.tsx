@@ -14,7 +14,7 @@ function FormMessage({ className, ...props }: FormMessageProps) {
   return (
     <p
       data-slot="form-message"
-      className={cn("text-sm text-destructive", className)}
+      className={cn("text-destructive", className)}
       {...props}
     >
       {error}

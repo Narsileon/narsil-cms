@@ -130,7 +130,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
         ) : null}
         {!active && enabled && recoveryCodes ? (
           <Card
-            contentProps={{ className: "gap-4 text-sm" }}
+            contentProps={{ className: "gap-4" }}
             headerButtons={[
               {
                 className: "place-self-end",

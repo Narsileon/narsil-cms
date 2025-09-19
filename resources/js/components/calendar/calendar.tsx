@@ -49,9 +49,8 @@ function Calendar({
         ),
         caption_label: cn(
           "font-medium select-none",
-          captionLayout === "label"
-            ? "text-sm"
-            : "flex h-8 items-center gap-1 rounded-md pr-1 pl-2 text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
+          captionLayout === "label" &&
+            "flex h-8 items-center gap-1 rounded-md pr-1 pl-2 [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
           defaultClassNames.caption_label,
         ),
         day: cn(
@@ -73,7 +72,7 @@ function Calendar({
           defaultClassNames.dropdown_root,
         ),
         dropdowns: cn(
-          "flex h-(--cell-size) w-full items-center justify-center gap-1.5 text-sm font-medium",
+          "flex h-(--cell-size) w-full items-center justify-center gap-1.5 font-medium",
           defaultClassNames.dropdowns,
         ),
         hidden: cn("invisible", defaultClassNames.hidden),

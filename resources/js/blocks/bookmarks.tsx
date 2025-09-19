@@ -153,9 +153,6 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
             />
           ) : (
             <Card
-              contentProps={{
-                className: "text-sm",
-              }}
               headerButtons={[
                 {
                   className: "-my-2 size-8",

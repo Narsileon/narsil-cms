@@ -6,7 +6,7 @@ function CommandEmpty({ ...props }: CommandEmptyProps) {
   return (
     <Command.Empty
       data-slot="command-empty"
-      className="py-4 text-center text-sm"
+      className="py-4 text-center"
       {...props}
     />
   );

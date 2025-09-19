@@ -86,7 +86,7 @@ function SortableAdd({
   return (
     <div
       className={cn(
-        "grid w-full grid-cols-4 items-center justify-between gap-6 text-sm",
+        "grid w-full grid-cols-4 items-center justify-between gap-6",
         className,
       )}
       {...props}

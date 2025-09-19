@@ -34,7 +34,7 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
         <SectionHeader className="border-b">
           <Heading level="h2">{trans("ui.sessions")}</Heading>
         </SectionHeader>
-        <SectionContent className="grid gap-4 text-sm">
+        <SectionContent className="grid gap-4">
           <p>{trans("sessions.sign_out_current_description")}</p>
           <DialogClose asChild={true}>
             <Button

@@ -220,7 +220,7 @@ function ResourceForm({
                     {informationContent ? (
                       <Card
                         contentProps={{
-                          className: "grid-cols-12 justify-between text-sm",
+                          className: "grid-cols-12 justify-between",
                         }}
                       >
                         {informationContent}

@@ -11,7 +11,7 @@ function AccordionContent({ className, ...props }: AccordionContentProps) {
     <Accordion.Content
       data-slot="accordion-content"
       className={cn(
-        "overflow-hidden pb-4 text-sm transition-all",
+        "overflow-hidden pb-4 transition-all",
         "data-[state=closed]:animate-accordion-up",
         "data-[state=open]:animate-accordion-down",
         className,

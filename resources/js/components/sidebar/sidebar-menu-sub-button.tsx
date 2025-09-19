@@ -34,7 +34,6 @@ function SidebarMenuSubButton({
         "[&>span:last-child]:truncate",
         "[&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
         size === "sm" && "text-xs",
-        size === "md" && "text-sm",
         "group-data-[collapsible=icon]:hidden",
         className,
       )}

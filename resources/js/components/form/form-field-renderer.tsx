@@ -113,7 +113,7 @@ function FormFieldRenderer({
 
   if (!element.type) {
     return (
-      <div className="col-span-full flex items-center justify-between text-sm">
+      <div className="col-span-full flex items-center justify-between">
         <span className="first-letter:uppercase">{finalName}</span>
         <span>{data?.[finalHandle]}</span>
       </div>

@@ -234,7 +234,7 @@ function ResourceIndex({
                     </ul>
                   ) : null}
                   <DataTable dataTable={dataTable} />
-                  <div className="flex flex-col items-start justify-between gap-4 text-sm sm:flex-row sm:items-center">
+                  <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                     <span className="truncate">
                       {selectedCount > 0
                         ? `${selectedCount} ${trans("pagination.selected_count")}`
