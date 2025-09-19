@@ -2,6 +2,7 @@ import { router } from "@inertiajs/react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { debounce, isArray, isString, lowerCase } from "lodash";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { route } from "ziggy-js";
 
 import { Badge, Tooltip } from "@narsil-cms/blocks";
 import {
@@ -27,9 +28,9 @@ import { type SelectOption } from "@narsil-cms/types";
 
 type ComboboxProps = {
   className?: string;
+  collection?: string;
   disabled?: boolean;
   displayValue?: boolean;
-  fetch?: string;
   id: string;
   labelPath?: string;
   multiple?: boolean;
@@ -45,9 +46,9 @@ type ComboboxProps = {
 
 function Combobox({
   className,
+  collection,
   disabled,
   displayValue = true,
-  fetch,
   id,
   labelPath = "label",
   multiple = false,
@@ -160,6 +161,41 @@ function Combobox({
       });
     }
   }, [open, optionIndex, virtualizer]);
+
+  useEffect(() => {
+    if (!collection) {
+      return;
+    }
+
+    setLoading(true);
+
+    fetch(route("graphql"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: `
+        query {
+          ${collection} {
+            id
+            title
+          }
+        }
+      `,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        const fetchedOptions = result.data?.[collection]?.map((page: any) => ({
+          value: page.id,
+          label: page.title,
+        }));
+
+        setOptions(fetchedOptions);
+      })
+      .finally(() => setLoading(false));
+  }, [collection, search]);
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen} modal>

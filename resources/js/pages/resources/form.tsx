@@ -163,7 +163,7 @@ function ResourceForm({
       elements={form}
       method={method}
       initialValues={{
-        _back: modal,
+        _back: modal !== undefined,
         ...data,
       }}
       render={() => (
@@ -172,7 +172,7 @@ function ResourceForm({
           options={{
             onSuccess: (response) => {
               if (modal) {
-                modal.options?.onSuccess?.(response);
+                modal.linkProps?.onSuccess?.(response);
 
                 closeTopModal();
               }
@@ -186,7 +186,7 @@ function ResourceForm({
                 <DialogClose asChild={true}>
                   <Button variant="ghost">{trans("ui.cancel")}</Button>
                 </DialogClose>
-                <Button form={id} type="submit">
+                <Button form={`${id}_${modal.id}`} type="submit">
                   {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
                 </Button>
               </DialogFooter>

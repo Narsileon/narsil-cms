@@ -91,7 +91,7 @@ class SiteGroupController extends AbstractController
         SiteGroup::create($attributes);
 
         return $this
-            ->redirect(route('site_groups.index'))
+            ->redirect(route('site-groups.index'))
             ->with('success', trans('narsil::toasts.success.site_groups.created'));
     }
 
@@ -139,7 +139,7 @@ class SiteGroupController extends AbstractController
         $siteGroup->update($attributes);
 
         return $this
-            ->redirect(route('site_groups.index'))
+            ->redirect(route('site-groups.index'))
             ->with('success', trans('narsil::toasts.success.site_groups.updated'));
     }
 
@@ -156,7 +156,7 @@ class SiteGroupController extends AbstractController
         $siteGroup->delete();
 
         return $this
-            ->redirect(route('site_groups.index'))
+            ->redirect(route('site-groups.index'))
             ->with('success', trans('narsil::toasts.success.site_groups.deleted'));
     }
 
