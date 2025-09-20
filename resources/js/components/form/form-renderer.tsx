@@ -89,7 +89,10 @@ function FormRenderer({
                       key={index}
                     />
                     {childElement.sets && childElement.sets.length > 0 ? (
-                      <Builder sets={childElement.sets} name={props.handle} />
+                      <Builder
+                        sets={childElement.sets}
+                        name={element.handle ?? childElement.handle}
+                      />
                     ) : null}
                   </CollapsibleContent>
                 </CollapsibleRoot>
