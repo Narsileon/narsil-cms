@@ -5,7 +5,7 @@ import { cn } from "@narsil-cms/lib/utils";
 const dialogContentVariants = cva(
   cn(
     "@container/dialog-content",
-    "fixed z-50 flex flex-col overflow-hidden bg-background transition ease-in-out",
+    "fixed z-50 flex flex-col overflow-hidden border bg-background transition ease-in-out",
     "data-[state=closed]:animate-out data-[state=closed]:duration-300",
     "data-[state=open]:animate-in data-[state=open]:duration-300",
   ),
