@@ -10,7 +10,7 @@ import {
   RichTextEditor,
   Slider,
   Switch,
-} from "@narsil-cms/blocks";
+} from "@narsil-cms/blocks/inputs";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {

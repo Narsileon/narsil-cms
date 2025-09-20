@@ -6,30 +6,20 @@ import Breadcrumb from "./breadcrumb";
 import Button from "./button";
 import Calendar from "./calendar";
 import Card from "./card";
-import Checkbox from "./checkbox";
-import Checkboxes from "./checkboxes";
-import Combobox from "./combobox";
 import Container from "./container";
 import DataTable from "./data-table";
 import Head from "./head";
 import Heading from "./heading";
-import InputDate from "./input-date";
-import InputFile from "./input-file";
-import InputPassword from "./input-password";
 import Label from "./label";
 import Logo from "./logo";
 import NavigationMenu from "./navigation-menu";
 import Pagination from "./pagination";
 import Progress from "./progress";
-import RichTextEditor from "./rich-text-editor";
 import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
-import Select from "./select";
 import Separator from "./separator";
 import Shortcut from "./shortcut";
 import Sidebar from "./sidebar";
-import Slider from "./slider";
-import Switch from "./switch";
 import Tabs from "./tabs";
 import Toaster from "./toaster";
 import Toggle from "./toggle";
@@ -47,30 +37,20 @@ export {
   Button,
   Calendar,
   Card,
-  Checkbox,
-  Checkboxes,
-  Combobox,
   Container,
   DataTable,
   Head,
   Heading,
-  InputDate,
-  InputFile,
-  InputPassword,
   Label,
   Logo,
   NavigationMenu,
   Pagination,
   Progress,
-  RichTextEditor,
   SaveButton,
   ScrollArea,
-  Select,
   Separator,
   Shortcut,
   Sidebar,
-  Slider,
-  Switch,
   Tabs,
   Toaster,
   Toggle,

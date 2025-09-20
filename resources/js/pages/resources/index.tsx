@@ -3,13 +3,12 @@ import { route } from "ziggy-js";
 
 import {
   Button,
-  Checkbox,
   DataTable,
   Heading,
   Pagination,
-  Select,
   Tooltip,
 } from "@narsil-cms/blocks";
+import { Checkbox, Select } from "@narsil-cms/blocks/inputs";
 import {
   DataTableFilter,
   DataTableFilterBadge,

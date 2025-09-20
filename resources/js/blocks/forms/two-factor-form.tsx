@@ -3,7 +3,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-import { Card, Label, Switch } from "@narsil-cms/blocks";
+import { Card, Label } from "@narsil-cms/blocks";
+import { Switch } from "@narsil-cms/blocks/inputs";
 import {
   FormRenderer,
   FormProvider,

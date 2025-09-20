@@ -85,7 +85,9 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
                   <FormRenderer
                     {...element}
                     className="grid grid-cols-2"
-                    onChange={(value) => handleChange(element.handle, value)}
+                    onChange={(value) =>
+                      handleChange(element.handle, value as number | string)
+                    }
                     key={index}
                   />
                 );
