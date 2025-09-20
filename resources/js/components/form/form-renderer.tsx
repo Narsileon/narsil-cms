@@ -34,7 +34,7 @@ type FormRendererProps = (Block | Field | TemplateSection) & {
   settings?: Field["settings"];
   type?: Field["type"];
   width?: number;
-  onChange?: (value: any) => void;
+  onChange?: (value: unknown) => void;
 };
 
 function FormRenderer({
@@ -135,7 +135,7 @@ function FormRenderer({
       conditions={conditions}
       field={props}
       render={({ value, onFieldChange }) => {
-        function handleOnChange(value: any) {
+        function handleOnChange(value: unknown) {
           onChange?.(value);
           onFieldChange(value);
         }

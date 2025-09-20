@@ -23,7 +23,7 @@ import {
   type Updater,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { compact, debounce } from "lodash";
+import { debounce } from "lodash";
 import { useCallback, useEffect, useMemo } from "react";
 
 import {

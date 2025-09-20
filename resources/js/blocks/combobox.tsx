@@ -254,7 +254,11 @@ function Combobox({
               </CommandInputWrapper>
             ) : null}
             <CommandList ref={parentRef}>
-              <CommandEmpty>{trans("pagination.pages_empty")}</CommandEmpty>
+              <CommandEmpty>
+                {loading
+                  ? trans("ui.loading")
+                  : trans("pagination.pages_empty")}
+              </CommandEmpty>
               <CommandGroup>
                 <div
                   className="relative w-full"
