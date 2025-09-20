@@ -49,7 +49,7 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function form(): array
+    public function layout(): array
     {
         $groupOptions = static::getGroupOptions();
         $languageOptions = static::getLanguageOptions();

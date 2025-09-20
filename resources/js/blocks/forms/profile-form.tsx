@@ -1,6 +1,6 @@
 import { Button, Heading, Separator } from "@narsil-cms/blocks";
 import {
-  FormFieldRenderer,
+  FormRenderer,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
@@ -28,7 +28,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
       <FormProvider
         id={profileForm.id}
         action={profileForm.action}
-        elements={profileForm.form}
+        elements={profileForm.layout}
         method={profileForm.method}
         initialValues={{
           avatar: auth?.avatar,
@@ -49,8 +49,8 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             </SectionHeader>
             <SectionContent>
               <FormRoot className="grid-cols-12 gap-4">
-                {profileForm.form.map((element, index) => (
-                  <FormFieldRenderer element={element} key={index} />
+                {profileForm.layout.map((element, index) => (
+                  <FormRenderer {...element} key={index} />
                 ))}
               </FormRoot>
             </SectionContent>
@@ -61,7 +61,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
       <FormProvider
         id={updatePasswordForm.id}
         action={updatePasswordForm.action}
-        elements={updatePasswordForm.form}
+        elements={updatePasswordForm.layout}
         method={updatePasswordForm.method}
         render={({ reset, setDefaults }) => (
           <SectionRoot>
@@ -85,8 +85,8 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                   },
                 }}
               >
-                {updatePasswordForm.form.map((element, index) => (
-                  <FormFieldRenderer element={element} key={index} />
+                {updatePasswordForm.layout.map((element, index) => (
+                  <FormRenderer {...element} key={index} />
                 ))}
               </FormRoot>
             </SectionContent>

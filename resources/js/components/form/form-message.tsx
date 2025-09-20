@@ -7,11 +7,7 @@ type FormMessageProps = React.ComponentProps<"p">;
 function FormMessage({ className, ...props }: FormMessageProps) {
   const { error } = useFormField();
 
-  if (!error) {
-    return null;
-  }
-
-  return (
+  return error ? (
     <p
       data-slot="form-message"
       className={cn("text-destructive", className)}
@@ -19,7 +15,7 @@ function FormMessage({ className, ...props }: FormMessageProps) {
     >
       {error}
     </p>
-  );
+  ) : null;
 }
 
 export default FormMessage;

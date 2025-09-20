@@ -46,7 +46,7 @@ class BlockForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function form(): array
+    public function layout(): array
     {
         $blockOptions = static::getBlockOptions();
         $fieldOptions = static::getFieldOptions();

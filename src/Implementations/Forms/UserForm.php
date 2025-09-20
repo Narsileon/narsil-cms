@@ -51,7 +51,7 @@ class UserForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function form(): array
+    public function layout(): array
     {
         $isPost = $this->method === MethodEnum::POST->value;
 

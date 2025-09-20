@@ -65,6 +65,7 @@ export type Field = {
   description: string | null;
   handle: string;
   id: number;
+  identifier: string;
   name: string;
   settings: {
     append?: string;
@@ -78,8 +79,8 @@ export type Field = {
 export type FormType = {
   action: string;
   description: string;
-  form: (Block | Field)[];
   id: string;
+  layout: (Block | Field | TemplateSection)[];
   method: string;
   routes: RouteNames;
   submitIcon?: IconName;
@@ -145,6 +146,16 @@ export type Template = {
   handle: string;
   id: number;
   name: string;
+};
+
+export type TemplateSection = {
+  elements?: HasElement[];
+  handle: string;
+  icon?: IconName;
+  id: number;
+  identifier: string;
+  name: string;
+  sets: Block[];
 };
 
 export type UniqueIdentifier = string | number;

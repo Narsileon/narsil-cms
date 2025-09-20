@@ -121,7 +121,9 @@ class EntityController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(EntityFormRequest::class)->rules();
+        $rules = app(EntityFormRequest::class, [
+            'template' => $this->getTemplate($collection),
+        ])->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -203,7 +205,9 @@ class EntityController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(EntityFormRequest::class)->rules($entity);
+        $rules = app(EntityFormRequest::class, [
+            'template' => $this->getTemplate($collection),
+        ])->rules($entity);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

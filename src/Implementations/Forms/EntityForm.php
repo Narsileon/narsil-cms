@@ -55,7 +55,7 @@ class EntityForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function form(): array
+    public function layout(): array
     {
         $sets = $this->template->{Template::RELATION_SETS};
 
@@ -88,7 +88,7 @@ class EntityForm extends AbstractForm implements Contract
             }
         }
 
-        return $sections;
+        return [...$sections, static::informationSection()];
     }
 
     #endregion

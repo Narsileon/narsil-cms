@@ -69,7 +69,7 @@ function SortableItemForm({
           <VisuallyHidden>
             <DialogDescription></DialogDescription>
           </VisuallyHidden>
-          {form.form.map((field, index) => {
+          {form.layout.map((field, index) => {
             if ("settings" in field) {
               return (
                 <FormItem key={index}>

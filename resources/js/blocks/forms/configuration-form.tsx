@@ -3,7 +3,7 @@ import { route } from "ziggy-js";
 
 import { Heading } from "@narsil-cms/blocks";
 import {
-  FormFieldRenderer,
+  FormRenderer,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
@@ -70,7 +70,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
         <FormProvider
           id="user-personalization-form"
           action={form.action}
-          elements={form.form}
+          elements={form.layout}
           method={form.method}
           initialValues={{
             color: color,
@@ -80,10 +80,10 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
           }}
           render={() => (
             <FormRoot className="gap-4">
-              {form.form.map((element, index) => {
+              {form.layout.map((element, index) => {
                 return (
-                  <FormFieldRenderer
-                    element={element}
+                  <FormRenderer
+                    {...element}
                     className="grid grid-cols-2"
                     onChange={(value) => handleChange(element.handle, value)}
                     key={index}

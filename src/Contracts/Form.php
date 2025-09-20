@@ -111,11 +111,11 @@ interface Form extends JsonSerializable
     #region PUBLIC METHODS
 
     /**
-     * Define the template of the form.
+     * Define the layout of the form.
      *
      * @return array
      */
-    public function form(): array;
+    public function layout(): array;
 
     #endregion
 }

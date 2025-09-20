@@ -43,7 +43,7 @@ class LoginForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function form(): array
+    public function layout(): array
     {
         return [
             new Field([

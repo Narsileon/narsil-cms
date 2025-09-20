@@ -47,7 +47,7 @@ class RoleForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    public function form(): array
+    public function layout(): array
     {
         $permissionOptions = static::getPermissionOptions();
 

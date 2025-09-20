@@ -5,7 +5,7 @@ import { route } from "ziggy-js";
 
 import { Button, Card, Tooltip } from "@narsil-cms/blocks";
 import {
-  FormFieldRenderer,
+  FormRenderer,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
@@ -105,7 +105,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
             <FormProvider
               action={route("user-bookmarks.update", bookmark.id)}
               id={form.id}
-              elements={form.form}
+              elements={form.layout}
               method="patch"
               initialValues={{
                 name: bookmark?.name,
@@ -144,9 +144,9 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                       },
                     }}
                   >
-                    {form.form.map((element, index) => (
-                      <FormFieldRenderer element={element} key={index} />
-                    ))}
+                    {form.layout.map((element, index) => {
+                      return <FormRenderer {...element} key={index} />;
+                    })}
                   </FormRoot>
                 </Card>
               )}

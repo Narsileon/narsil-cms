@@ -4,7 +4,7 @@ import { route } from "ziggy-js";
 
 import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
 import {
-  FormFieldRenderer,
+  FormRenderer,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
@@ -24,8 +24,8 @@ type FortifyFormProps = FormType & {
 function FortifyForm({
   action,
   data = {},
-  form,
   id,
+  layout,
   method,
   status,
   submitLabel,
@@ -72,13 +72,13 @@ function FortifyForm({
             <FormProvider
               id={id}
               action={action}
-              elements={form}
+              elements={layout}
               method={method}
               initialValues={data}
               render={() => (
                 <FormRoot className="grid-cols-12 gap-6">
-                  {form.map((element, index) => {
-                    return <FormFieldRenderer element={element} key={index} />;
+                  {layout.map((element, index) => {
+                    return <FormRenderer {...element} key={index} />;
                   })}
                   <Button
                     className="col-span-12 w-full"

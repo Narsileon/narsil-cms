@@ -10,7 +10,7 @@ import {
 import {
   FormProvider,
   FormRoot,
-  FormFieldRenderer,
+  FormRenderer,
 } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -26,7 +26,7 @@ import {
 } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import { type Block, type FormType } from "@narsil-cms/types";
+import { type TemplateSection, type FormType } from "@narsil-cms/types";
 
 type FormProps = FormType & {
   data: Record<string, unknown>;
@@ -36,8 +36,8 @@ type FormProps = FormType & {
 function ResourceForm({
   action,
   data,
-  form,
   id,
+  layout,
   method,
   modal,
   routes,
@@ -49,7 +49,7 @@ function ResourceForm({
 
   const minLg = useMinLg();
 
-  const { information, sidebar, tabs } = form.reduce(
+  const { information, sidebar, tabs } = layout.reduce(
     (acc, element) => {
       if (!("elements" in element)) {
         return acc;
@@ -80,33 +80,19 @@ function ResourceForm({
       return acc;
     },
     {
-      information: undefined as Block | undefined,
-      sidebar: undefined as Block | undefined,
-      tabs: [] as Block[],
+      information: undefined as TemplateSection | undefined,
+      sidebar: undefined as TemplateSection | undefined,
+      tabs: [] as TemplateSection[],
     },
   );
 
   const [value, setValue] = useState(tabs[0].handle);
 
-  const informationContent = information?.elements?.map((element, index) => {
-    return (
-      <FormFieldRenderer
-        conditions={element.conditions}
-        {...element}
-        key={index}
-      />
-    );
-  });
+  const informationContent = information ? (
+    <FormRenderer {...information} />
+  ) : null;
 
-  const sidebarContent = sidebar?.elements?.map((element, index) => {
-    return (
-      <FormFieldRenderer
-        conditions={element.conditions}
-        {...element}
-        key={index}
-      />
-    );
-  });
+  const sidebarContent = sidebar ? <FormRenderer {...sidebar} /> : null;
 
   const tabsContent = (
     <TabsRoot
@@ -133,15 +119,7 @@ function ResourceForm({
               className="overflow-hidden"
               contentProps={{ className: "grid-cols-12 gap-4" }}
             >
-              {tab.elements?.map((element, index) => {
-                return (
-                  <FormFieldRenderer
-                    conditions={element.conditions}
-                    {...element}
-                    key={index}
-                  />
-                );
-              })}
+              <FormRenderer {...tab} key={index} />
             </Card>
           </TabsContent>
         );
@@ -161,7 +139,7 @@ function ResourceForm({
     <FormProvider
       id={modal ? `${id}_${modal.id}` : id}
       action={action}
-      elements={form}
+      elements={layout}
       method={method}
       initialValues={{
         _back: modal !== undefined,

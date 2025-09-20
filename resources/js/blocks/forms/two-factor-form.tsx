@@ -5,7 +5,7 @@ import { route } from "ziggy-js";
 
 import { Card, Label, Switch } from "@narsil-cms/blocks";
 import {
-  FormFieldRenderer,
+  FormRenderer,
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
@@ -90,7 +90,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
           <FormProvider
             action={form.action}
             id={form.id}
-            elements={form.form}
+            elements={form.layout}
             method={form.method}
             render={({ setError }) => (
               <FormRoot
@@ -114,8 +114,8 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                   ]}
                   footerProps={{ className: "justify-end border-t" }}
                 >
-                  {form.form.map((element, index) => (
-                    <FormFieldRenderer element={element} key={index} />
+                  {form.layout.map((element, index) => (
+                    <FormRenderer {...element} key={index} />
                   ))}
                   <div
                     className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
