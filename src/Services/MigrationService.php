@@ -50,6 +50,8 @@ abstract class MigrationService
         static::addColumns($table, $fields);
         static::dropColumns($table, $deletedFields);
 
+        $template->touch();
+
         GraphQLService::generateTemplatesSchema();
 
         Cache::forget("narsil.tables:$table");
