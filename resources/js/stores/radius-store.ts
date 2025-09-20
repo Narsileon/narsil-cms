@@ -15,7 +15,7 @@ type RadiusStoreType = RadiusStoreState & RadiusStoreActions;
 const useRadiusStore = create<RadiusStoreType>()(
   persist(
     (set, get) => ({
-      radius: 0.65,
+      radius: 0.4,
       applyRadius: () => {
         const root = window.document.documentElement;
 

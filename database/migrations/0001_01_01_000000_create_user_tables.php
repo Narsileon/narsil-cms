@@ -149,7 +149,7 @@ return new class extends Migration
                 ->default('default');
             $table
                 ->decimal(UserConfiguration::RADIUS, 3, 2)
-                ->default(0.65);
+                ->default(0.40);
             $table
                 ->string(UserConfiguration::THEME)
                 ->default('system');
