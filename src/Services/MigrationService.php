@@ -7,6 +7,7 @@ namespace Narsil\Services;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Contracts\Fields\CheckboxInput;
 use Narsil\Contracts\Fields\DateInput;
@@ -45,6 +46,8 @@ abstract class MigrationService
         static::updateTable($table, $fields);
 
         GraphQLService::generateTemplatesSchema();
+
+        Cache::forget("narsil.tables:$table");
     }
 
     /**
@@ -59,6 +62,8 @@ abstract class MigrationService
         new CollectionMigration($table)->down();
 
         GraphQLService::generateTemplatesSchema();
+
+        Cache::forget("narsil.tables:$table");
     }
 
     #endregion

@@ -159,6 +159,12 @@ class TemplateController extends AbstractController
             $this->syncSets($template, $sets);
         }
 
+        if (Arr::get($data, '_dirty', false))
+        {
+            $template->refresh();
+            $template->touch();
+        }
+
         return $this
             ->redirect(route('templates.index'))
             ->with('success', trans('narsil::toasts.success.templates.updated'));

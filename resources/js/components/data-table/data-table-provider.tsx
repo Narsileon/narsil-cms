@@ -55,14 +55,11 @@ function DataTableProvider({
   render,
   ...props
 }: DataTableProviderProps) {
-  const columnOrder = compact(columns.map((c) => c.id));
-
   const createDataTableStore = useMemo(
     () =>
       useDataTableStore({
         id: id,
         initialState: {
-          columnOrder: columnOrder,
           ...initialState,
         },
       }),
@@ -70,6 +67,21 @@ function DataTableProvider({
   );
 
   const dataTableStore = createDataTableStore((state) => state);
+
+  if (
+    initialState.columnOrder &&
+    dataTableStore.columnOrder.length < (initialState.columnOrder?.length ?? 0)
+  ) {
+    dataTableStore.setColumnOrder(initialState.columnOrder);
+  }
+
+  if (
+    initialState.columnVisibility &&
+    dataTableStore.columnVisibility.length <
+      (initialState.columnVisibility?.length ?? 0)
+  ) {
+    dataTableStore.setColumnVisibility(initialState.columnVisibility);
+  }
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -81,7 +93,9 @@ function DataTableProvider({
     order: Updater<ColumnOrderState> | ColumnOrderState,
   ) {
     dataTableStore.setColumnOrder(
-      typeof order === "function" ? order(dataTableStore.columnOrder) : order,
+      typeof order === "function"
+        ? order(dataTableStore.columnOrder ?? [])
+        : order,
     );
   }
 
