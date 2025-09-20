@@ -86,6 +86,7 @@ function FormRenderer({
                       {...childElement}
                       handle={element.handle ?? childElement.handle}
                       name={element.name ?? childElement.name}
+                      width={element.width}
                       key={index}
                     />
                     {childElement.sets && childElement.sets.length > 0 ? (
@@ -101,6 +102,7 @@ function FormRenderer({
                   {...childElement}
                   handle={element.handle ?? childElement.handle}
                   name={element.name ?? childElement.name}
+                  width={element.width}
                   key={index}
                 />
               )}
