@@ -14,11 +14,8 @@ use Narsil\Contracts\Fields\DateInput;
 use Narsil\Contracts\Fields\RichTextInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Fields\TimeInput;
-use Narsil\Database\Migrations\CollectionMigration;
-use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\Field;
-use Narsil\Services\GraphQLService;
-use Narsil\Services\TemplateService;
+use Narsil\Models\Elements\Template;
 
 #endregion
 
@@ -35,31 +32,23 @@ abstract class MigrationService
      *
      * @return void
      */
-    public static function up(Template $template): void
+    public static function syncTable(Template $template): void
     {
         $table = $template->{Template::HANDLE};
 
-        new CollectionMigration($table)->up();
+        $originalFields = TemplateService::getTemplateFields($template);
+        $originalHandles = $originalFields->pluck(Field::HANDLE);
 
-        $fields = TemplateService::getFields($template);
+        $template = $template->refresh();
 
-        static::updateTable($table, $fields);
+        $fields = TemplateService::getTemplateFields($template);
+        $handles = $fields->pluck(Field::HANDLE);
 
-        GraphQLService::generateTemplatesSchema();
+        $deletedHandles = $originalHandles->diff($handles);
+        $deletedFields = $originalFields->whereIn(Field::HANDLE, $deletedHandles)->values();
 
-        Cache::forget("narsil.tables:$table");
-    }
-
-    /**
-     * @param Template $template
-     *
-     * @return void
-     */
-    public static function down(Template $template): void
-    {
-        $table = $template->{Template::HANDLE};
-
-        new CollectionMigration($table)->down();
+        static::addColumns($table, $fields);
+        static::dropColumns($table, $deletedFields);
 
         GraphQLService::generateTemplatesSchema();
 
@@ -105,15 +94,35 @@ abstract class MigrationService
      *
      * @return void
      */
-    protected static function updateTable(string $table, Collection $fields): void
+    protected static function addColumns(string $table, Collection $fields): void
     {
-        Schema::table($table, function (Blueprint $table) use ($fields)
+        Schema::table($table, function (Blueprint $blueprint) use ($fields, $table)
         {
             foreach ($fields as $field)
             {
-                if (!Schema::hasColumn($table->getTable(), $field->{Field::HANDLE}))
+                if (!Schema::hasColumn($table, $field->{Field::HANDLE}))
                 {
-                    static::addColumn($table, $field);
+                    static::addColumn($blueprint, $field);
+                }
+            }
+        });
+    }
+
+    /**
+     * @param string $table
+     * @param Collection $fields
+     *
+     * @return void
+     */
+    protected static function dropColumns(string $table, Collection $fields): void
+    {
+        Schema::table($table, function (Blueprint $blueprint) use ($fields, $table)
+        {
+            foreach ($fields as $field)
+            {
+                if (Schema::hasColumn($table, $field->{Field::HANDLE}))
+                {
+                    $blueprint->dropColumn($field->{Field::HANDLE});
                 }
             }
         });

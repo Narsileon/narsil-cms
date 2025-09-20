@@ -65,14 +65,14 @@ return new class extends Migration
      */
     private function createPasswordResetTokensTable(): void
     {
-        Schema::create(PasswordResetToken::TABLE, function (Blueprint $table)
+        Schema::create(PasswordResetToken::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->string(PasswordResetToken::EMAIL)
                 ->primary();
-            $table
+            $blueprint
                 ->string(PasswordResetToken::TOKEN);
-            $table
+            $blueprint
                 ->timestamp(PasswordResetToken::CREATED_AT)
                 ->nullable();
         });
@@ -83,25 +83,25 @@ return new class extends Migration
      */
     private function createSessionsTable(): void
     {
-        Schema::create(Session::TABLE, function (Blueprint $table)
+        Schema::create(Session::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->string(Session::ID)
                 ->primary();
-            $table
+            $blueprint
                 ->foreignId(Session::USER_ID)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->string(Session::IP_ADDRESS, 45)
                 ->nullable();
-            $table
+            $blueprint
                 ->text(Session::USER_AGENT)
                 ->nullable();
-            $table
+            $blueprint
                 ->longText(Session::PAYLOAD);
-            $table
+            $blueprint
                 ->integer(Session::LAST_ACTIVITY)
                 ->index();
         });
@@ -112,19 +112,19 @@ return new class extends Migration
      */
     private function createUserBookmarksTable(): void
     {
-        Schema::create(UserBookmark::TABLE, function (Blueprint $table)
+        Schema::create(UserBookmark::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(UserBookmark::ID);
-            $table
+            $blueprint
                 ->foreignId(UserBookmark::USER_ID)
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->string(UserBookmark::NAME);
-            $table
+            $blueprint
                 ->string(UserBookmark::URL);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -134,29 +134,29 @@ return new class extends Migration
      */
     private function createUserConfigurationsTable(): void
     {
-        Schema::create(UserConfiguration::TABLE, function (Blueprint $table)
+        Schema::create(UserConfiguration::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->foreignId(UserConfiguration::USER_ID)
                 ->primary()
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->string(UserConfiguration::LOCALE)
                 ->default('en');
-            $table
+            $blueprint
                 ->string(UserConfiguration::COLOR)
                 ->default('default');
-            $table
+            $blueprint
                 ->decimal(UserConfiguration::RADIUS, 3, 2)
                 ->default(0.40);
-            $table
+            $blueprint
                 ->string(UserConfiguration::THEME)
                 ->default('system');
-            $table
+            $blueprint
                 ->json(UserConfiguration::PREFERENCES)
                 ->nullable();
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -166,43 +166,43 @@ return new class extends Migration
      */
     private function createUsersTable(): void
     {
-        Schema::create(User::TABLE, function (Blueprint $table)
+        Schema::create(User::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(User::ID);
-            $table
+            $blueprint
                 ->boolean(User::ENABLED)
                 ->default(false)
                 ->index();
-            $table
+            $blueprint
                 ->string(User::LAST_NAME)
                 ->nullable();
-            $table
+            $blueprint
                 ->string(User::FIRST_NAME)
                 ->nullable();
-            $table
+            $blueprint
                 ->string(User::EMAIL)
                 ->unique();
-            $table
+            $blueprint
                 ->timestamp(User::EMAIL_VERIFIED_AT)
                 ->nullable();
-            $table
+            $blueprint
                 ->string(User::PASSWORD);
-            $table
+            $blueprint
                 ->text(User::TWO_FACTOR_SECRET)
                 ->nullable();
-            $table
+            $blueprint
                 ->text(User::TWO_FACTOR_RECOVERY_CODES)
                 ->nullable();
-            $table
+            $blueprint
                 ->timestamp(User::TWO_FACTOR_CONFIRMED_AT)
                 ->nullable();
-            $table
+            $blueprint
                 ->rememberToken();
-            $table
+            $blueprint
                 ->string(User::AVATAR)
                 ->nullable();
-            $table
+            $blueprint
                 ->timestamps();
         });
     }

@@ -66,15 +66,15 @@ return new class extends Migration
      */
     private function createPermissionsTable(): void
     {
-        Schema::create(Permission::TABLE, function (Blueprint $table)
+        Schema::create(Permission::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(Permission::ID);
-            $table
+            $blueprint
                 ->string(PERMISSION::NAME);
-            $table
+            $blueprint
                 ->string(Permission::CATEGORY);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -84,13 +84,13 @@ return new class extends Migration
      */
     private function createRolesTable(): void
     {
-        Schema::create(Role::TABLE, function (Blueprint $table)
+        Schema::create(Role::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(Role::ID);
-            $table
+            $blueprint
                 ->string(Role::NAME);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -100,19 +100,19 @@ return new class extends Migration
      */
     private function createRolePermissionTable(): void
     {
-        Schema::create(RolePermission::TABLE, function (Blueprint $table)
+        Schema::create(RolePermission::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(RolePermission::ID);
-            $table
+            $blueprint
                 ->foreignId(RolePermission::ROLE_ID)
                 ->constrained(Role::TABLE, Role::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->foreignId(RolePermission::PERMISSION_ID)
                 ->constrained(Permission::TABLE, Permission::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -122,19 +122,19 @@ return new class extends Migration
      */
     private function createUserPermissionTable(): void
     {
-        Schema::create(UserPermission::TABLE, function (Blueprint $table)
+        Schema::create(UserPermission::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(UserPermission::ID);
-            $table
+            $blueprint
                 ->foreignId(UserPermission::USER_ID)
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->foreignId(UserPermission::PERMISSION_ID)
                 ->constrained(Permission::TABLE, Permission::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -144,19 +144,19 @@ return new class extends Migration
      */
     private function createUserRoleTable(): void
     {
-        Schema::create(UserRole::TABLE, function (Blueprint $table)
+        Schema::create(UserRole::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(UserRole::ID);
-            $table
+            $blueprint
                 ->foreignId(UserRole::USER_ID)
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->foreignId(UserRole::ROLE_ID)
                 ->constrained(Role::TABLE, Role::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->timestamps();
         });
     }

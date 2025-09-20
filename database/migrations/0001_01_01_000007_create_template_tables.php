@@ -61,15 +61,15 @@ return new class extends Migration
      */
     private function createTemplateSetsTable(): void
     {
-        Schema::create(TemplateSet::TABLE, function (Blueprint $table)
+        Schema::create(TemplateSet::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(TemplateSet::ID);
-            $table
+            $blueprint
                 ->foreignId(TemplateSet::TEMPLATE_ID)
                 ->constrained(Template::TABLE, Template::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->foreignId(TemplateSet::SET_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
@@ -81,24 +81,24 @@ return new class extends Migration
      */
     private function createTemplateSectionElementTable(): void
     {
-        Schema::create(TemplateSectionElement::TABLE, function (Blueprint $table)
+        Schema::create(TemplateSectionElement::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(TemplateSectionElement::ID);
-            $table
+            $blueprint
                 ->foreignId(TemplateSectionElement::TEMPLATE_SECTION_ID)
                 ->constrained(TemplateSection::TABLE, TemplateSection::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->morphs(BlockElement::RELATION_ELEMENT);
-            $table
+            $blueprint
                 ->string(BlockElement::HANDLE);
-            $table
+            $blueprint
                 ->string(BlockElement::NAME);
-            $table
+            $blueprint
                 ->integer(BlockElement::POSITION)
                 ->nullable();
-            $table
+            $blueprint
                 ->smallInteger(BlockElement::WIDTH)
                 ->nullable();
         });
@@ -109,22 +109,22 @@ return new class extends Migration
      */
     private function createTemplateSectionsTable(): void
     {
-        Schema::create(TemplateSection::TABLE, function (Blueprint $table)
+        Schema::create(TemplateSection::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(TemplateSection::ID);
-            $table
+            $blueprint
                 ->foreignId(TemplateSection::TEMPLATE_ID)
                 ->constrained(Template::TABLE, Template::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->string(TemplateSection::HANDLE);
-            $table
+            $blueprint
                 ->string(TemplateSection::NAME);
-            $table
+            $blueprint
                 ->integer(TemplateSection::POSITION)
                 ->nullable();
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -134,15 +134,15 @@ return new class extends Migration
      */
     private function createTemplatesTable(): void
     {
-        Schema::create(Template::TABLE, function (Blueprint $table)
+        Schema::create(Template::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(Template::ID);
-            $table
+            $blueprint
                 ->string(Template::HANDLE);
-            $table
+            $blueprint
                 ->string(Template::NAME);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }

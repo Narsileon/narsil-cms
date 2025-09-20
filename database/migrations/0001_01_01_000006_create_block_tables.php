@@ -59,23 +59,23 @@ return new class extends Migration
      */
     private function createBlockElementConditionsTable(): void
     {
-        Schema::create(BlockElementCondition::TABLE, function (Blueprint $table)
+        Schema::create(BlockElementCondition::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(BlockElementCondition::ID);
-            $table
+            $blueprint
                 ->foreignId(BlockElementCondition::OWNER_ID)
                 ->constrained(BlockElement::TABLE, BlockElement::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->foreignId(BlockElementCondition::TARGET_ID)
                 ->constrained(BlockElement::TABLE, BlockElement::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->string(BlockElementCondition::OPERATOR);
-            $table
+            $blueprint
                 ->string(BlockElementCondition::VALUE);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -85,27 +85,27 @@ return new class extends Migration
      */
     private function createBlockElementTable(): void
     {
-        Schema::create(BlockElement::TABLE, function (Blueprint $table)
+        Schema::create(BlockElement::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(BlockElement::ID);
-            $table
+            $blueprint
                 ->foreignId(BlockElement::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->morphs(BlockElement::RELATION_ELEMENT);
-            $table
+            $blueprint
                 ->string(BlockElement::HANDLE);
-            $table
+            $blueprint
                 ->string(BlockElement::NAME);
-            $table
+            $blueprint
                 ->string(BlockElement::DESCRIPTION)
                 ->nullable();
-            $table
+            $blueprint
                 ->integer(BlockElement::POSITION)
                 ->nullable();
-            $table
+            $blueprint
                 ->smallInteger(BlockElement::WIDTH)
                 ->nullable();
         });
@@ -116,15 +116,15 @@ return new class extends Migration
      */
     private function createBlocksTable(): void
     {
-        Schema::create(Block::TABLE, function (Blueprint $table)
+        Schema::create(Block::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(Block::ID);
-            $table
+            $blueprint
                 ->string(Block::HANDLE);
-            $table
+            $blueprint
                 ->string(Block::NAME);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -134,15 +134,15 @@ return new class extends Migration
      */
     private function createBlockSetTable(): void
     {
-        Schema::create(BlockSet::TABLE, function (Blueprint $table)
+        Schema::create(BlockSet::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(BlockSet::ID);
-            $table
+            $blueprint
                 ->foreignId(BlockSet::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->foreignId(BlockSet::SET_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();

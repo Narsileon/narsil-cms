@@ -42,17 +42,17 @@ return new class extends Migration
      */
     private function createRelationsTable(): void
     {
-        Schema::create(Relation::TABLE, function (Blueprint $table)
+        Schema::create(Relation::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id();
-            $table
+            $blueprint
                 ->string(Relation::OWNER_TABLE);
-            $table
+            $blueprint
                 ->uuid(Relation::OWNER_UUID);
-            $table
+            $blueprint
                 ->string(Relation::TARGET_TABLE);
-            $table
+            $blueprint
                 ->uuid(Relation::TARGET_UUID);
         });
     }

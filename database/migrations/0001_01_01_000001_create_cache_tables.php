@@ -47,14 +47,14 @@ return new class extends Migration
      */
     private function createCacheTable(): void
     {
-        Schema::create(Cache::TABLE, function (Blueprint $table)
+        Schema::create(Cache::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->string(Cache::KEY)
                 ->primary();
-            $table
+            $blueprint
                 ->mediumText(Cache::VALUE);
-            $table
+            $blueprint
                 ->integer(Cache::EXPIRATION);
         });
     }
@@ -64,14 +64,14 @@ return new class extends Migration
      */
     private function createCacheLocksTable(): void
     {
-        Schema::create(CacheLock::TABLE, function (Blueprint $table)
+        Schema::create(CacheLock::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->string(CacheLock::KEY)
                 ->primary();
-            $table
+            $blueprint
                 ->string(CacheLock::OWNER);
-            $table
+            $blueprint
                 ->integer(CacheLock::EXPIRATION);
         });
     }

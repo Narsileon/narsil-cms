@@ -24,6 +24,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Services\MigrationService;
 
 #endregion
 
@@ -104,6 +105,8 @@ class TemplateController extends AbstractController
             $this->syncSets($template, $sets);
         }
 
+        MigrationService::syncTable($template);
+
         return $this
             ->redirect(route('templates.index'))
             ->with('success', trans('narsil::toasts.success.templates.created'));
@@ -152,17 +155,16 @@ class TemplateController extends AbstractController
 
         $template->update($attributes);
 
-        $this->syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
-
-        if ($sets = Arr::get($attributes, Template::RELATION_SETS))
-        {
-            $this->syncSets($template, $sets);
-        }
-
         if (Arr::get($data, '_dirty', false))
         {
-            $template->refresh();
-            $template->touch();
+            $this->syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
+
+            if ($sets = Arr::get($attributes, Template::RELATION_SETS))
+            {
+                $this->syncSets($template, $sets);
+            }
+
+            MigrationService::syncTable($template);
         }
 
         return $this

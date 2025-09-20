@@ -73,35 +73,35 @@ class CollectionMigration extends Migration
      */
     protected function createEntitiesTable(): void
     {
-        Schema::create(Entity::getTableName(), function (Blueprint $table)
+        Schema::create(Entity::getTableName(), function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->uuid(Entity::UUID)
                 ->primary();
-            $table
+            $blueprint
                 ->bigInteger(Entity::ID)
                 ->index();
-            $table
+            $blueprint
                 ->bigInteger(Entity::REVISION)
                 ->default(1);
-            $table
+            $blueprint
                 ->timestamp(Entity::CREATED_AT);
-            $table
+            $blueprint
                 ->foreignId(Entity::CREATED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
-            $table
+            $blueprint
                 ->timestamp(Entity::UPDATED_AT);
-            $table
+            $blueprint
                 ->foreignId(Entity::UPDATED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
-            $table
+            $blueprint
                 ->softDeletes()
                 ->index();
-            $table
+            $blueprint
                 ->foreignId(Entity::DELETED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
@@ -114,27 +114,27 @@ class CollectionMigration extends Migration
      */
     protected function createEntityBlocksTable(): void
     {
-        Schema::create(EntityBlock::getTableName(), function (Blueprint $table)
+        Schema::create(EntityBlock::getTableName(), function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(EntityBlock::ID);
-            $table
+            $blueprint
                 ->foreignUuid(EntityBlock::ENTITY_UUID)
                 ->constrained(Entity::getTableName(), Entity::UUID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->foreignId(EntityBlock::PARENT_ID)
                 ->nullable()
                 ->constrained(EntityBlock::getTableName(), EntityBlock::ID)
                 ->nullOnDelete();
-            $table
+            $blueprint
                 ->foreignId(EntityBlock::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->integer(EntityBlock::POSITION)
                 ->default(0);
-            $table
+            $blueprint
                 ->json(EntityBlock::VALUES)
                 ->nullable();
         });

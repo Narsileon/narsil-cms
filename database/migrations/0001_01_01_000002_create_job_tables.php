@@ -53,22 +53,22 @@ return new class extends Migration
      */
     private function createFailedJobsTable(): void
     {
-        Schema::create(FailedJob::TABLE, function (Blueprint $table)
+        Schema::create(FailedJob::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(FailedJob::ID);
-            $table
+            $blueprint
                 ->string(FailedJob::UUID)
                 ->unique();
-            $table
+            $blueprint
                 ->text(FailedJob::CONNECTION);
-            $table
+            $blueprint
                 ->text(FailedJob::QUEUE);
-            $table
+            $blueprint
                 ->longText(FailedJob::PAYLOAD);
-            $table
+            $blueprint
                 ->longText(FailedJob::EXCEPTION);
-            $table
+            $blueprint
                 ->timestamp(FailedJob::FAILED_AT)
                 ->useCurrent();
         });
@@ -79,30 +79,30 @@ return new class extends Migration
      */
     private function createJobBatchesTable(): void
     {
-        Schema::create(JobBatch::TABLE, function (Blueprint $table)
+        Schema::create(JobBatch::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->string(JobBatch::ID)
                 ->primary();
-            $table
+            $blueprint
                 ->string(JobBatch::NAME);
-            $table
+            $blueprint
                 ->integer(JobBatch::TOTAL_JOBS);
-            $table
+            $blueprint
                 ->integer(JobBatch::PENDING_JOBS);
-            $table
+            $blueprint
                 ->integer(JobBatch::FAILED_JOBS);
-            $table
+            $blueprint
                 ->longText(JobBatch::FAILED_JOB_IDS);
-            $table
+            $blueprint
                 ->mediumText(JobBatch::OPTIONS)
                 ->nullable();
-            $table
+            $blueprint
                 ->integer(JobBatch::CANCELLED_AT)
                 ->nullable();
-            $table
+            $blueprint
                 ->integer(JobBatch::CREATED_AT);
-            $table
+            $blueprint
                 ->integer(JobBatch::FINISHED_AT)
                 ->nullable();
         });
@@ -113,23 +113,23 @@ return new class extends Migration
      */
     private function createJobsTable(): void
     {
-        Schema::create(Job::TABLE, function (Blueprint $table)
+        Schema::create(Job::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(Job::ID);
-            $table
+            $blueprint
                 ->string(Job::QUEUE)
                 ->index();
-            $table
+            $blueprint
                 ->longText(Job::PAYLOAD);
-            $table
+            $blueprint
                 ->unsignedTinyInteger(Job::ATTEMPTS);
-            $table
+            $blueprint
                 ->unsignedInteger(Job::RESERVED_AT)
                 ->nullable();
-            $table
+            $blueprint
                 ->unsignedInteger(Job::AVAILABLE_AT);
-            $table
+            $blueprint
                 ->unsignedInteger(Job::CREATED_AT);
         });
     }

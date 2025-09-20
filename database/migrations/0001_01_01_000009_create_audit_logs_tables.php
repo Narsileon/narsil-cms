@@ -43,26 +43,26 @@ return new class extends Migration
      */
     private function createAuditLogsTable(): void
     {
-        Schema::create(AuditLog::TABLE, function (Blueprint $table)
+        Schema::create(AuditLog::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->uuid(AuditLog::UUID)
                 ->primary();
-            $table
+            $blueprint
                 ->morphs(AuditLog::RELATION_MODEL);
-            $table
+            $blueprint
                 ->foreignId(AuditLog::USER_ID)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID);
-            $table
+            $blueprint
                 ->enum(AuditLog::EVENT, EventEnum::values());
-            $table
+            $blueprint
                 ->json(AuditLog::OLD_VALUES)
                 ->nullable();
-            $table
+            $blueprint
                 ->json(AuditLog::NEW_VALUES)
                 ->nullable();
-            $table
+            $blueprint
                 ->timestamps();
         });
     }

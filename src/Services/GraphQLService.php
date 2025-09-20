@@ -126,7 +126,7 @@ abstract class GraphQLService
             $definition .= "\t$handle: $type\n";
         }
 
-        $fields = TemplateService::getFields($template);
+        $fields = TemplateService::getTemplateFields($template);
 
         foreach ($fields as $field)
         {

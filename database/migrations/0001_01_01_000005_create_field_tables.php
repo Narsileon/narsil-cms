@@ -53,21 +53,21 @@ return new class extends Migration
      */
     private function createFieldOptionsTable(): void
     {
-        Schema::create(FieldOption::TABLE, function (Blueprint $table)
+        Schema::create(FieldOption::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(FieldOption::ID);
-            $table
+            $blueprint
                 ->foreignId(FieldOption::FIELD_ID)
                 ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->integer(FieldOption::POSITION);
-            $table
+            $blueprint
                 ->string(FieldOption::LABEL);
-            $table
+            $blueprint
                 ->string(FieldOption::VALUE);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -77,15 +77,15 @@ return new class extends Migration
      */
     private function createFieldRulesTable(): void
     {
-        Schema::create(FieldRule::TABLE, function (Blueprint $table)
+        Schema::create(FieldRule::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(FieldRule::ID);
-            $table
+            $blueprint
                 ->foreignId(FieldRule::FIELD_ID)
                 ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->enum(FieldRule::RULE, RuleEnum::values())
                 ->default(RuleEnum::STRING->value);
         });
@@ -96,27 +96,27 @@ return new class extends Migration
      */
     private function createFieldsTable(): void
     {
-        Schema::create(Field::TABLE, function (Blueprint $table)
+        Schema::create(Field::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(Field::ID);
-            $table
+            $blueprint
                 ->string(Field::NAME);
-            $table
+            $blueprint
                 ->string(Field::HANDLE);
-            $table
+            $blueprint
                 ->string(Field::DESCRIPTION)
                 ->nullable();
-            $table
+            $blueprint
                 ->boolean(Field::TRANSLATABLE)
                 ->default(false);
-            $table
+            $blueprint
                 ->string(Field::TYPE);
-            $table
+            $blueprint
                 ->json(Field::SETTINGS)
                 ->nullable()
                 ->default(null);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }

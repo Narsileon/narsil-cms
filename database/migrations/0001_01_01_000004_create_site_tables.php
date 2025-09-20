@@ -47,13 +47,13 @@ return new class extends Migration
      */
     private function createSiteGroupsTable(): void
     {
-        Schema::create(SiteGroup::TABLE, function (Blueprint $table)
+        Schema::create(SiteGroup::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(SiteGroup::ID);
-            $table
+            $blueprint
                 ->string(SiteGroup::NAME);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }
@@ -63,27 +63,27 @@ return new class extends Migration
      */
     private function createSitesTable(): void
     {
-        Schema::create(Site::TABLE, function (Blueprint $table)
+        Schema::create(Site::TABLE, function (Blueprint $blueprint)
         {
-            $table
+            $blueprint
                 ->id(Site::ID);
-            $table
+            $blueprint
                 ->foreignId(Site::GROUP_ID)
                 ->nullable()
                 ->constrained(SiteGroup::TABLE, SiteGroup::ID)
                 ->cascadeOnDelete();
-            $table
+            $blueprint
                 ->boolean(Site::ENABLED)
                 ->default(true);
-            $table
+            $blueprint
                 ->string(Site::NAME);
-            $table
+            $blueprint
                 ->string(Site::HANDLE);
-            $table
+            $blueprint
                 ->string(Site::LANGUAGE);
-            $table
+            $blueprint
                 ->boolean(Site::PRIMARY);
-            $table
+            $blueprint
                 ->timestamps();
         });
     }

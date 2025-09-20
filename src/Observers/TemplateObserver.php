@@ -4,10 +4,11 @@ namespace Narsil\Observers;
 
 #region USE
 
+use Narsil\Database\Migrations\CollectionMigration;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Policies\Permission;
-use Narsil\Services\MigrationService;
+use Narsil\Services\GraphQLService;
 
 #endregion
 
@@ -26,7 +27,13 @@ class TemplateObserver
      */
     public function created(Template $template): void
     {
-        $this->createPermissions($template->{Template::HANDLE});
+        $table = $template->{Template::HANDLE};
+
+        new CollectionMigration($table)->up();
+
+        GraphQLService::generateTemplatesSchema();
+
+        $this->createPermissions($table);
     }
 
     /**
@@ -36,17 +43,11 @@ class TemplateObserver
      */
     public function deleted(Template $template): void
     {
-        MigrationService::down($template);
-    }
+        $table = $template->{Template::HANDLE};
 
-    /**
-     * @param Template $template
-     *
-     * @return void
-     */
-    public function saved(Template $template): void
-    {
-        MigrationService::up($template);
+        new CollectionMigration($table)->down();
+
+        GraphQLService::generateTemplatesSchema();
     }
 
     #endregion

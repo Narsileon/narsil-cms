@@ -48,7 +48,7 @@ class EntityFormRequest implements Contract
      */
     public function rules(?Model $model = null): array
     {
-        $fields = TemplateService::getFields($this->template);
+        $fields = TemplateService::getTemplateFields($this->template);
 
         $rules = [];
 

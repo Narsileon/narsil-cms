@@ -27,10 +27,10 @@ abstract class TemplateService
      *
      * @return Collection<Field>
      */
-    public static function getFields(Template $template): Collection
+    public static function getTemplateFields(Template $template): Collection
     {
         return $template->{Template::RELATION_SECTIONS}
-            ->flatMap(fn($templateSection) => static::getSectionFields($templateSection));
+            ->flatMap(fn($templateSection) => static::getTemplateSectionFields($templateSection));
     }
 
     #endregion
@@ -67,7 +67,7 @@ abstract class TemplateService
      *
      * @return Collection<Field>
      */
-    protected static function getSectionFields(TemplateSection $templateSection): Collection
+    protected static function getTemplateSectionFields(TemplateSection $templateSection): Collection
     {
         return $templateSection->{TemplateSection::RELATION_ELEMENTS}->flatMap(function ($templateSectionElement)
         {
