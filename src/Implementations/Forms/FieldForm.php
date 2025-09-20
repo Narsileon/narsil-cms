@@ -98,7 +98,7 @@ class FieldForm extends AbstractForm implements Contract
                             ->setDefaultValue(TextInput::class)
                             ->setOptions($typeOptions)
                             ->setPlaceholder(trans('narsil::placeholders.search'))
-                            ->setReload('form')
+                            ->setReload('layout')
                             ->setRequired(true),
 
                     ])
