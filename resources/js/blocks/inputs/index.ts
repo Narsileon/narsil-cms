@@ -4,6 +4,7 @@ import Combobox from "./combobox";
 import InputDate from "./input-date";
 import InputFile from "./input-file";
 import InputPassword from "./input-password";
+import Relations from "./relations";
 import RichTextEditor from "./rich-text-editor";
 import Select from "./select";
 import Slider from "./slider";
@@ -16,6 +17,7 @@ export {
   InputDate,
   InputFile,
   InputPassword,
+  Relations,
   RichTextEditor,
   Select,
   Slider,

@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import parse from "html-react-parser";
+import { Fragment } from "react";
 
 import { Heading } from "@narsil-cms/blocks";
 import { Builder } from "@narsil-cms/components/builder";
@@ -55,7 +56,7 @@ function FormRenderer({
           const childElement = element.element;
 
           return (
-            <>
+            <Fragment key={index}>
               {"elements" in childElement || "sets" in childElement ? (
                 <CollapsibleRoot
                   className={cn(
@@ -87,7 +88,6 @@ function FormRenderer({
                       handle={element.handle ?? childElement.handle}
                       name={element.name ?? childElement.name}
                       width={element.width}
-                      key={index}
                     />
                     {childElement.sets && childElement.sets.length > 0 ? (
                       <Builder
@@ -103,10 +103,9 @@ function FormRenderer({
                   handle={element.handle ?? childElement.handle}
                   name={element.name ?? childElement.name}
                   width={element.width}
-                  key={index}
                 />
               )}
-            </>
+            </Fragment>
           );
         })}
       </>

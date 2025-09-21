@@ -63,7 +63,6 @@ function resource(string $table, string $controller, array $except = [])
 }
 
 Route::middleware([
-    'web',
     'auth',
     'verified',
 ])->group(
@@ -150,19 +149,12 @@ Route::middleware([
     }
 );
 
-Route::middleware([
-    'web',
-])->group(
-    function ()
-    {
-        #region USERS
+#region USERS
 
-        Route::resource('/user-configuration', UserConfigurationController::class)
-            ->only([
-                'index',
-                'store',
-            ]);
+Route::resource('/user-configuration', UserConfigurationController::class)
+    ->only([
+        'index',
+        'store',
+    ]);
 
-        #endregion
-    }
-);
+#endregion

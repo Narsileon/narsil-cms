@@ -7,6 +7,7 @@ import {
   InputDate,
   InputFile,
   InputPassword,
+  Relations,
   RichTextEditor,
   Slider,
   Switch,
@@ -120,7 +121,7 @@ const defaultRegistry: Registry = {
       );
     } else {
       return (
-        <Combobox
+        <Relations
           {...props.element.settings}
           id={props.id}
           value={props.value}

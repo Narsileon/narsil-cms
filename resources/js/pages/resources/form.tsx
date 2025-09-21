@@ -119,7 +119,7 @@ function ResourceForm({
               className="overflow-hidden"
               contentProps={{ className: "grid-cols-12 gap-4" }}
             >
-              <FormRenderer {...tab} key={index} />
+              <FormRenderer {...tab} />
             </Card>
           </TabsContent>
         );

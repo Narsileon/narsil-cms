@@ -81,13 +81,16 @@ class NarsilServiceProvider extends ServiceProvider
      */
     protected function bootRoutes(): void
     {
-        Route::middleware('web')
-            ->prefix('narsil')
-            ->group(__DIR__ . '/../routes/web.php');
+        Route::middleware('api')
+            ->prefix('api')
+            ->group(__DIR__ . '/../routes/api.php');
 
         Route::middleware('web')
             ->prefix('narsil')
             ->group(__DIR__ . '/../routes/graphql.php');
+        Route::middleware('web')
+            ->prefix('narsil')
+            ->group(__DIR__ . '/../routes/web.php');
     }
 
     /**

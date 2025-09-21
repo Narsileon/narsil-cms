@@ -7,7 +7,6 @@ namespace Narsil\Implementations;
 use Narsil\Contracts\Table;
 use Narsil\Services\RouteService;
 use Narsil\Services\TableService;
-use Narsil\Support\TanStackColumn;
 
 #endregion
 
@@ -31,7 +30,7 @@ abstract class AbstractTable implements Table
     #region PROPERTIES
 
     /**
-     * @var array<TanStackColumn> The columns of the table.
+     * @var array<TableColumn> The columns of the table.
      */
     public readonly array $columns;
     /**
@@ -115,7 +114,7 @@ abstract class AbstractTable implements Table
     #region PROTECTED METHODS
 
     /**
-     * @return array<TanStackColumn>
+     * @return array<TableColumn>
      */
     abstract protected function columns(): array;
 

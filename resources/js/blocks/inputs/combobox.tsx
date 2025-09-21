@@ -63,7 +63,7 @@ function Combobox({
   const { trans } = useLabels();
 
   if (multiple && !isArray(value)) {
-    value = [value];
+    value = value ? [value] : [];
   }
 
   const parentRef = useRef<HTMLDivElement | null>(null);

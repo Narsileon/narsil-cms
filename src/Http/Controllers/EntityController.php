@@ -43,6 +43,11 @@ class EntityController extends AbstractController
     {
         $collection = request()->route('collection');
 
+        if (is_numeric($collection))
+        {
+            $collection = $this->getTemplate($collection)->{Template::HANDLE};
+        }
+
         Entity::setTableName($collection);
     }
 
@@ -52,11 +57,11 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $collection
+     * @param integer|string $collection
      *
      * @return JsonResponse|Response
      */
-    public function index(Request $request, string $collection): JsonResponse|Response
+    public function index(Request $request, int|string $collection): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
 
@@ -69,7 +74,9 @@ class EntityController extends AbstractController
                 Entity::RELATION_UPDATER,
             ]);
 
-        $collection = new DataTableCollection($query, $collection);
+        $collection = new DataTableCollection($query, $template->{Template::HANDLE})
+            ->toResponse($request)
+            ->getData(true);
 
         return $this->render(
             component: 'narsil/cms::resources/index',
@@ -83,11 +90,11 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $collection
+     * @param integer|string $collection
      *
      * @return JsonResponse|Response
      */
-    public function create(Request $request, string $collection): JsonResponse|Response
+    public function create(Request $request, int|string $collection): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
@@ -111,11 +118,11 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $collection
+     * @param integer|string $collection
      *
      * @return RedirectResponse
      */
-    public function store(Request $request, string $collection): RedirectResponse
+    public function store(Request $request, int|string $collection): RedirectResponse
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
@@ -144,12 +151,12 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $collection
+     * @param integer|string $collection
      * @param integer $id
      *
      * @return JsonResponse|Response
      */
-    public function edit(Request $request, string $collection, int $id): JsonResponse|Response
+    public function edit(Request $request, int|string $collection, int $id): JsonResponse|Response
     {
         $entity = Entity::query()
             ->firstWhere([
@@ -181,12 +188,12 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $collection
+     * @param integer|string $collection
      * @param integer $id
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, string $collection, int $id): RedirectResponse
+    public function update(Request $request, int|string $collection, int $id): RedirectResponse
     {
         $entity = Entity::query()
             ->firstWhere([
@@ -242,12 +249,12 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $collection
+     * @param integer|string $collection
      * @param integer $id
      *
      * @return RedirectResponse
      */
-    public function destroy(Request $request, string $collection, int $id): RedirectResponse
+    public function destroy(Request $request, int|string $collection, int $id): RedirectResponse
     {
         $entity = Entity::query()
             ->firstWhere([
@@ -267,11 +274,11 @@ class EntityController extends AbstractController
 
     /**
      * @param DestroyManyRequest $request
-     * @param string $collection
+     * @param integer|string $collection
      *
      * @return RedirectResponse
      */
-    public function destroyMany(DestroyManyRequest $request, string $collection): RedirectResponse
+    public function destroyMany(DestroyManyRequest $request, int|string $collection): RedirectResponse
     {
         $this->authorize(PermissionEnum::DELETE_ANY, Entity::class);
 
@@ -290,12 +297,12 @@ class EntityController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $collection
+     * @param integer|string $collection
      * @param integer $id
      *
      * @return RedirectResponse
      */
-    public function replicate(Request $request, string $collection, int $id): RedirectResponse
+    public function replicate(Request $request, int|string $collection, int $id): RedirectResponse
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
@@ -312,11 +319,11 @@ class EntityController extends AbstractController
 
     /**
      * @param DuplicateManyRequest $request
-     * @param string $collection
+     * @param integer|string $collection
      *
      * @return RedirectResponse
      */
-    public function replicateMany(DuplicateManyRequest $request, string $collection): RedirectResponse
+    public function replicateMany(DuplicateManyRequest $request, int|string $collection): RedirectResponse
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
@@ -339,18 +346,30 @@ class EntityController extends AbstractController
     #region PROTECTED METHODS
 
     /**
-     * @param string $collection
+     * @param integer|string $collection
      *
      * @return Template
      */
-    protected function getTemplate(string $collection): Template
+    protected function getTemplate(int|string $collection): Template
     {
-        return Template::query()
+        $query = Template::query()
             ->with([
                 Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_BlOCKS,
                 Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_FIELDS,
-            ])
-            ->firstWhere(Template::HANDLE, '=', $collection);
+            ]);
+
+        if (is_numeric($collection))
+        {
+            $template = $query
+                ->firstWhere(Template::ID, '=', $collection);
+        }
+        else
+        {
+            $template = $query
+                ->firstWhere(Template::HANDLE, '=', $collection);
+        }
+
+        return $template;
     }
 
     /**
