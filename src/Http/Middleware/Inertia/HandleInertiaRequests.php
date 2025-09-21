@@ -32,7 +32,7 @@ class HandleInertiaRequests extends Middleware
      *
      * @var string
      */
-    protected $rootView = 'narsil';
+    protected $rootView = 'backend';
 
     #endreion
 
