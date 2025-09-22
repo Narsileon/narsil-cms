@@ -24,7 +24,6 @@ import Tabs from "./tabs";
 import Toaster from "./toaster";
 import Toggle from "./toggle";
 import Tooltip from "./tooltip";
-import UserMenu from "./user-menu";
 import VisuallyHidden from "./visually-hidden";
 import WidthSelector from "./width-selector";
 
@@ -55,7 +54,6 @@ export {
   Toaster,
   Toggle,
   Tooltip,
-  UserMenu,
   VisuallyHidden,
   WidthSelector,
 };

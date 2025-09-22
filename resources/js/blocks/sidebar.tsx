@@ -43,7 +43,7 @@ function Sidebar({ ...props }: SidebarProps) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
-          {sidebar?.content.map((item, index) => {
+          {sidebar?.map((item, index) => {
             if (item.children) {
               return (
                 <SidebarGroup key={index}>

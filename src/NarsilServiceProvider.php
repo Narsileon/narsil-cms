@@ -6,12 +6,12 @@ namespace Narsil;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Providers\BlockServiceProvider;
 use Narsil\Providers\CommandServiceProvider;
 use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
 use Narsil\Providers\FormServiceProvider;
 use Narsil\Providers\FortifyServiceProvider;
+use Narsil\Providers\MenuServiceProvider;
 use Narsil\Providers\ObserverServiceProvider;
 use Narsil\Providers\PolicyServiceProvider;
 use Narsil\Providers\TableServiceProvider;
@@ -106,11 +106,11 @@ class NarsilServiceProvider extends ServiceProvider
     protected function registerConfigs(): void
     {
         $configs = [
-            'narsil.blocks' => __DIR__ . '/../config/narsil/blocks.php',
             'narsil.fields' => __DIR__ . '/../config/narsil/fields.php',
             'narsil.form-requests' => __DIR__ . '/../config/narsil/form-requests.php',
             'narsil.forms'  => __DIR__ . '/../config/narsil/forms.php',
             'narsil.locales' => __DIR__ . '/../config/narsil/locales.php',
+            'narsil.menus' => __DIR__ . '/../config/narsil/menus.php',
             'narsil.observers' => __DIR__ . '/../config/narsil/observers.php',
             'narsil.policies' => __DIR__ . '/../config/narsil/policies.php',
             'narsil.tables' => __DIR__ . '/../config/narsil/tables.php',
@@ -124,13 +124,13 @@ class NarsilServiceProvider extends ServiceProvider
 
     protected function registerProviders(): void
     {
-        $this->app->register(BlockServiceProvider::class);
         $this->app->register(CommandServiceProvider::class);
         $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);
         $this->app->register(LighthouseServiceProvider::class);
+        $this->app->register(MenuServiceProvider::class);
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
         $this->app->register(TableServiceProvider::class);

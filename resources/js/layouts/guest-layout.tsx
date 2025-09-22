@@ -1,21 +1,83 @@
+import { groupBy } from "lodash";
 import { useRef } from "react";
+import { Fragment } from "react/jsx-runtime";
 
-import { Container, Logo, Toaster, UserMenu } from "@narsil-cms/blocks";
+import { Button, Container, Logo, Toaster, Tooltip } from "@narsil-cms/blocks";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuRoot,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@narsil-cms/components/dropdown-menu";
+import { useLabels } from "@narsil-cms/components/labels";
 import { ModalRenderer } from "@narsil-cms/components/modal";
+import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 
 type GuestLayoutProps = {
-  children: React.ReactNode;
+  children: React.ReactNode & {
+    props: GlobalProps;
+  };
 };
 
 function GuestLayout({ children }: GuestLayoutProps) {
+  const { trans } = useLabels();
+
   const mainRef = useRef<HTMLDivElement>(null);
+
+  const { navigation } = children?.props;
+
+  const groupedMenu = groupBy(
+    navigation.userMenu,
+    (item) => item.group ?? "default",
+  );
 
   return (
     <>
       <header className="sticky top-0 z-10 h-13 border-b bg-background">
         <Container className="flex items-center justify-between gap-4">
           <Logo />
-          <UserMenu />
+          <DropdownMenuRoot>
+            <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
+              <DropdownMenuTrigger>
+                <Button
+                  aria-label={trans(
+                    "accessibility.toggle_user_menu",
+                    "Toggle user menu",
+                  )}
+                  icon="menu"
+                  size="icon"
+                  variant="ghost"
+                />
+              </DropdownMenuTrigger>
+            </Tooltip>
+            <DropdownMenuContent align="end">
+              {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
+                return (
+                  <Fragment key={group}>
+                    {groupIndex > 0 && <DropdownMenuSeparator />}
+                    {items.map((item, index) => {
+                      return (
+                        <DropdownMenuItem asChild={true} key={index}>
+                          <Button
+                            icon={item.icon}
+                            label={item.label}
+                            linkProps={{
+                              href: item.href,
+                              method: item.method,
+                              modal: item.modal,
+                            }}
+                            size="sm"
+                            variant="ghost"
+                          />
+                        </DropdownMenuItem>
+                      );
+                    })}
+                  </Fragment>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenuRoot>
         </Container>
       </header>
       <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">

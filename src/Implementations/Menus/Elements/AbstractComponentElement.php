@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Implementations\Blocks\Elements;
+namespace Narsil\Implementations\Menus\Elements;
 
 #region USE
 

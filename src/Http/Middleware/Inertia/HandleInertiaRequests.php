@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
-use Narsil\Contracts\Blocks\AuthMenu;
-use Narsil\Contracts\Blocks\GuestMenu;
-use Narsil\Contracts\Blocks\Sidebar;
+use Narsil\Contracts\Menus\AuthMenu;
+use Narsil\Contracts\Menus\GuestMenu;
+use Narsil\Contracts\Menus\Sidebar;
 use Narsil\Http\Resources\UserInertiaResource;
 use Narsil\Services\BreadcrumbService;
 

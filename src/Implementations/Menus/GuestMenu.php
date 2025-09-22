@@ -1,14 +1,13 @@
 <?php
 
-namespace Narsil\Implementations\Blocks;
+namespace Narsil\Implementations\Menus;
 
 #region USE
 
-use Narsil\Contracts\Blocks\GuestMenu as Contract;
-use Narsil\Implementations\AbstractComponent;
-use Narsil\Implementations\Blocks\Elements\NavigationItem;
-use Narsil\Implementations\Blocks\Elements\Separator;
+use Narsil\Contracts\Menus\GuestMenu as Contract;
+use Narsil\Implementations\AbstractMenu;
 use Narsil\Support\LabelsBag;
+use Narsil\Support\MenuItem;
 
 #endregion
 
@@ -16,7 +15,7 @@ use Narsil\Support\LabelsBag;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class GuestMenu extends AbstractComponent implements Contract
+class GuestMenu extends AbstractMenu implements Contract
 {
     #region CONSTRUCTOR
 
@@ -39,12 +38,17 @@ class GuestMenu extends AbstractComponent implements Contract
     protected function content(): array
     {
         return [
-            new NavigationItem(route('user-configuration.index'), trans('narsil::ui.settings'))
+            new MenuItem()
+                ->group(1)
+                ->href(route('user-configuration.index'))
                 ->icon('settings')
+                ->label(trans('narsil::ui.settings'))
                 ->modal(true),
-            new Separator(),
-            new NavigationItem(route('login'), trans('narsil::ui.log_in'))
-                ->icon('log-in'),
+            new MenuItem()
+                ->group(2)
+                ->href(route('login'))
+                ->icon('log-in')
+                ->label(trans('narsil::ui.log_in')),
         ];
     }
 

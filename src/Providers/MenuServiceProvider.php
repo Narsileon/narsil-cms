@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class BlockServiceProvider extends ServiceProvider
+class MenuServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 
@@ -21,7 +21,7 @@ class BlockServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->registerBlocks();
+        $this->registerMenus();
     }
 
     #endregion
@@ -29,13 +29,13 @@ class BlockServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the components from the config file as singletons.
+     * Register the menus from the config file as singletons.
      *
      * @return void
      */
-    protected function registerBlocks(): void
+    protected function registerMenus(): void
     {
-        $config = config('narsil.blocks', []);
+        $config = config('narsil.menus', []);
 
         foreach ($config as $abstract => $concrete)
         {

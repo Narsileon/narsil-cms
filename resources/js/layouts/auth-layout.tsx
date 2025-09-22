@@ -1,13 +1,30 @@
+import { groupBy } from "lodash";
 import { useEffect, useRef } from "react";
+import { Fragment } from "react/jsx-runtime";
 
 import {
   Bookmarks,
   Breadcrumb,
+  Button,
   Separator,
   Sidebar,
   Toaster,
-  UserMenu,
+  Tooltip,
 } from "@narsil-cms/blocks";
+import {
+  AvatarFallback,
+  AvatarImage,
+  AvatarRoot,
+} from "@narsil-cms/components/avatar";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuRoot,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@narsil-cms/components/dropdown-menu";
+import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import {
   SidebarInset,
@@ -27,7 +44,7 @@ type AuthLayoutProps = {
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
-  const { auth, navigation } = children?.props;
+  const { trans } = useLabels();
 
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
@@ -36,7 +53,13 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const { setRadius } = useRadiusStore();
   const { setTheme } = useThemeStore();
 
+  const { auth, navigation } = children?.props;
   const { color, radius, theme } = auth?.configuration ?? {};
+
+  const groupedMenu = groupBy(
+    navigation.userMenu,
+    (item) => item.group ?? "default",
+  );
 
   useEffect(() => {
     if (color) {
@@ -63,7 +86,49 @@ function AuthLayout({ children }: AuthLayoutProps) {
           ) : null}
           <Breadcrumb className="grow" />
           <Bookmarks breadcrumb={navigation.breadcrumb} />
-          <UserMenu />
+          <DropdownMenuRoot>
+            <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
+              <DropdownMenuTrigger>
+                <AvatarRoot>
+                  {auth.avatar ? (
+                    <AvatarImage
+                      src={auth.avatar}
+                      alt={auth.full_name ?? "User"}
+                    />
+                  ) : null}
+                  <AvatarFallback>
+                    <Icon name="user" />
+                  </AvatarFallback>
+                </AvatarRoot>
+              </DropdownMenuTrigger>
+            </Tooltip>
+            <DropdownMenuContent align="end">
+              {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
+                return (
+                  <Fragment key={group}>
+                    {groupIndex > 0 && <DropdownMenuSeparator />}
+                    {items.map((item, index) => {
+                      return (
+                        <DropdownMenuItem asChild={true} key={index}>
+                          <Button
+                            icon={item.icon}
+                            label={item.label}
+                            linkProps={{
+                              href: item.href,
+                              method: item.method,
+                              modal: item.modal,
+                            }}
+                            size="sm"
+                            variant="ghost"
+                          />
+                        </DropdownMenuItem>
+                      );
+                    })}
+                  </Fragment>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenuRoot>
         </header>
         <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
           <ModalRenderer container={mainRef.current} />

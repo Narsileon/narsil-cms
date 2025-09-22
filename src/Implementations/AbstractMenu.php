@@ -4,8 +4,7 @@ namespace Narsil\Implementations;
 
 #region USE
 
-use JsonSerializable;
-use Narsil\Contracts\Block;
+use Narsil\Contracts\Menu;
 
 #endregion
 
@@ -13,7 +12,7 @@ use Narsil\Contracts\Block;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-abstract class AbstractComponent implements Block, JsonSerializable
+abstract class AbstractMenu implements Menu
 {
     #region PUBLIC METHODS
 
@@ -22,9 +21,7 @@ abstract class AbstractComponent implements Block, JsonSerializable
      */
     public function jsonSerialize(): mixed
     {
-        return [
-            'content' => $this->content(),
-        ];
+        return $this->content();
     }
 
     #endregion

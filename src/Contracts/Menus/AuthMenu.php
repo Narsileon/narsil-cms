@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Contracts\Blocks;
+namespace Narsil\Contracts\Menus;
 
 #region USE
 
-use Narsil\Contracts\Block;
+use Narsil\Contracts\Menu;
 
 #endregion
 
@@ -12,7 +12,7 @@ use Narsil\Contracts\Block;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-interface GuestMenu extends Block
+interface AuthMenu extends Menu
 {
     //
 }

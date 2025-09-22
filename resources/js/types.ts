@@ -1,3 +1,4 @@
+import { type InertiaLinkProps } from "@inertiajs/react";
 import {
   type ColumnDef,
   type ColumnOrderState,
@@ -5,8 +6,8 @@ import {
 } from "@tanstack/react-table";
 
 import {
-  LaravelPaginationLinks,
-  LaravelPaginationMeta,
+  type LaravelPaginationLinks,
+  type LaravelPaginationMeta,
 } from "@narsil-cms/blocks/pagination";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
@@ -113,11 +114,12 @@ export type HasElement = {
   width: number;
 };
 
-export type LaravelNavigationItem = {
+export type MenuItem = {
+  group?: string;
   href: string;
   icon?: IconName;
   label: string;
-  method?: string;
+  method: InertiaLinkProps["method"];
   modal?: boolean;
 };
 

@@ -1,15 +1,14 @@
 <?php
 
-namespace Narsil\Implementations\Blocks;
+namespace Narsil\Implementations\Menus;
 
 #region USE
 
-use Narsil\Contracts\Blocks\AuthMenu as Contract;
+use Narsil\Contracts\Menus\AuthMenu as Contract;
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Implementations\AbstractComponent;
-use Narsil\Implementations\Blocks\Elements\NavigationItem;
-use Narsil\Implementations\Blocks\Elements\Separator;
+use Narsil\Implementations\AbstractMenu;
 use Narsil\Support\LabelsBag;
+use Narsil\Support\MenuItem;
 
 #endregion
 
@@ -17,7 +16,7 @@ use Narsil\Support\LabelsBag;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class AuthMenu extends AbstractComponent implements Contract
+class AuthMenu extends AbstractMenu implements Contract
 {
     #region CONSTRUCTOR
 
@@ -41,12 +40,17 @@ class AuthMenu extends AbstractComponent implements Contract
     protected function content(): array
     {
         return [
-            new NavigationItem(route('user-configuration.index'), trans('narsil::ui.settings'))
+            new MenuItem()
+                ->group(1)
+                ->href(route('user-configuration.index'))
                 ->icon('settings')
+                ->label(trans('narsil::ui.settings'))
                 ->modal(true),
-            new Separator(),
-            new NavigationItem(route('logout'), trans('narsil::ui.log_out'))
+            new MenuItem()
+                ->group(2)
+                ->href(route('logout'))
                 ->icon('log-out')
+                ->label(trans('narsil::ui.log_out'))
                 ->method(MethodEnum::POST),
         ];
     }

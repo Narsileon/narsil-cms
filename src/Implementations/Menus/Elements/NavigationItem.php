@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Implementations\Blocks\Elements;
+namespace Narsil\Implementations\Menus\Elements;
 
 #region USE
 
 use Narsil\Enums\Forms\MethodEnum;
-use Narsil\Implementations\Blocks\Elements\AbstractComponentElement;
+use Narsil\Implementations\Menus\Elements\AbstractComponentElement;
 
 #endregion
 
