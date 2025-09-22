@@ -61,7 +61,6 @@ function GuestLayout({ children }: GuestLayoutProps) {
                         <DropdownMenuItem asChild={true} key={index}>
                           <Button
                             icon={item.icon}
-                            label={item.label}
                             linkProps={{
                               href: item.href,
                               method: item.method,
@@ -69,7 +68,9 @@ function GuestLayout({ children }: GuestLayoutProps) {
                             }}
                             size="sm"
                             variant="ghost"
-                          />
+                          >
+                            {item.label}
+                          </Button>
                         </DropdownMenuItem>
                       );
                     })}

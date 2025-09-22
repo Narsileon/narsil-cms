@@ -20,17 +20,17 @@ class MenuItem implements JsonSerializable
     /**
      * @var string
      */
-    protected string $group;
+    protected ?string $group = null;
 
     /**
      * @var string
      */
-    protected string $href;
+    protected ?string $href = null;
 
     /**
      * @var string
      */
-    protected string $label;
+    protected ?string $label = null;
 
     /**
      * @var string

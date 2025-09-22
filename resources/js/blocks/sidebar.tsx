@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import { groupBy } from "lodash";
 import { route } from "ziggy-js";
 
 import { Icon } from "@narsil-cms/components/icon";
@@ -29,6 +30,10 @@ function Sidebar({ ...props }: SidebarProps) {
 
   const { sidebar } = useNavigation();
 
+  const groupedMenu = groupBy(sidebar, (item) => {
+    return item.group ?? `_${item.label}`;
+  });
+
   return (
     <SidebarRoot collapsible="icon" {...props}>
       <SidebarHeader className="h-13 border-b">
@@ -43,51 +48,50 @@ function Sidebar({ ...props }: SidebarProps) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
-          {sidebar?.map((item, index) => {
-            if (item.children) {
-              return (
-                <SidebarGroup key={index}>
-                  <SidebarGroupLabel>{item.label}</SidebarGroupLabel>
-                  <SidebarGroupContent>
-                    {item.children.map((child, childIndex) => {
-                      return (
-                        <SidebarMenuItem key={childIndex}>
-                          <SidebarMenuButton
-                            asChild
-                            isActive={child.href.endsWith(
-                              window.location.pathname,
-                            )}
-                            tooltip={child.label}
-                          >
-                            <Link
-                              href={child.href}
-                              onSuccess={() => setOpenMobile(false)}
-                            >
-                              <Icon name={child.icon} />
-                              {child.label}
-                            </Link>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
-                      );
-                    })}
-                  </SidebarGroupContent>
-                </SidebarGroup>
-              );
-            }
-
-            return (
-              <SidebarMenuItem key={index}>
+          {Object.entries(groupedMenu)?.map(([group, items], groupIndex) => {
+            return group.startsWith("_") ? (
+              <SidebarMenuItem key={groupIndex}>
                 <SidebarMenuButton
                   asChild
-                  isActive={item.href?.endsWith(window.location.pathname)}
-                  tooltip={item.label}
+                  isActive={items[0].href?.endsWith(window.location.pathname)}
+                  tooltip={items[0].label}
                 >
-                  <Link href={item.href} onSuccess={() => setOpenMobile(false)}>
-                    <Icon name={item.icon} />
-                    {item.label}
+                  <Link
+                    href={items[0].href}
+                    onSuccess={() => setOpenMobile(false)}
+                  >
+                    {items[0].icon ? <Icon name={items[0].icon} /> : null}
+                    {items[0].label}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+            ) : (
+              <SidebarGroup key={groupIndex}>
+                <SidebarGroupLabel>{group}</SidebarGroupLabel>
+                <SidebarGroupContent>
+                  {items.map((item, itemIndex) => {
+                    return (
+                      <SidebarMenuItem key={itemIndex}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={item.href.endsWith(
+                            window.location.pathname,
+                          )}
+                          tooltip={item.label}
+                        >
+                          <Link
+                            href={item.href}
+                            onSuccess={() => setOpenMobile(false)}
+                          >
+                            {item.icon ? <Icon name={item.icon} /> : null}
+                            {item.label}
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
+                </SidebarGroupContent>
+              </SidebarGroup>
             );
           })}
         </SidebarMenu>

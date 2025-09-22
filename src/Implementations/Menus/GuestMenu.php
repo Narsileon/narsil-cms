@@ -37,20 +37,45 @@ class GuestMenu extends AbstractMenu implements Contract
      */
     protected function content(): array
     {
+        return array_merge(
+            $this->getSettingsGroup(),
+            $this->getLoginGroup(),
+        );
+    }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getLoginGroup(): array
+    {
+        $group = "login-group";
+
         return [
             new MenuItem()
-                ->group(1)
-                ->href(route('user-configuration.index'))
-                ->icon('settings')
-                ->label(trans('narsil::ui.settings'))
-                ->modal(true),
-            new MenuItem()
-                ->group(2)
+                ->group($group)
                 ->href(route('login'))
                 ->icon('log-in')
                 ->label(trans('narsil::ui.log_in')),
         ];
     }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getSettingsGroup(): array
+    {
+        $group = "settings-group";
+
+        return [
+            new MenuItem()
+                ->group($group)
+                ->href(route('user-configuration.index'))
+                ->icon('settings')
+                ->label(trans('narsil::ui.settings'))
+                ->modal(true),
+        ];
+    }
+
 
     #endregion
 }

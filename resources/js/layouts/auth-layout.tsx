@@ -112,7 +112,6 @@ function AuthLayout({ children }: AuthLayoutProps) {
                         <DropdownMenuItem asChild={true} key={index}>
                           <Button
                             icon={item.icon}
-                            label={item.label}
                             linkProps={{
                               href: item.href,
                               method: item.method,
@@ -120,7 +119,9 @@ function AuthLayout({ children }: AuthLayoutProps) {
                             }}
                             size="sm"
                             variant="ghost"
-                          />
+                          >
+                            {item.label}
+                          </Button>
                         </DropdownMenuItem>
                       );
                     })}

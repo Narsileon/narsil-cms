@@ -6,10 +6,9 @@ namespace Narsil\Implementations\Menus;
 
 use Narsil\Contracts\Menus\Sidebar as Contract;
 use Narsil\Implementations\AbstractMenu;
-use Narsil\Implementations\Menus\Elements\NavigationGroup;
-use Narsil\Implementations\Menus\Elements\NavigationItem;
 use Narsil\Models\Elements\Template;
 use Narsil\Support\LabelsBag;
+use Narsil\Support\MenuItem;
 
 #endregion
 
@@ -41,52 +40,124 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function content(): array
     {
+        return array_merge(
+            [
+                new MenuItem()
+                    ->href(route('dashboard'))
+                    ->icon('chart-pie')
+                    ->label(trans('narsil::ui.dashboard')),
+            ],
+            $this->getCollectionGroup(),
+            $this->getStructuresGroup(),
+            $this->getManagementGroup(),
+            $this->getToolsGroup(),
+            $this->getSettingsGroup(),
+        );
+    }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getCollectionGroup(): array
+    {
+        $menuItems = [];
+
+        $group = trans('narsil::ui.collections');
+
         $templates = Template::query()
             ->orderBy(Template::NAME)
             ->get();
 
-        $collections = [];
-
         foreach ($templates as $template)
         {
-            $collections[] = new NavigationItem(route('collections.index', [
-                'collection' => $template->{Template::HANDLE},
-            ]), $template->{Template::NAME})
-                ->icon('layout');
+            $menuItems[] = new MenuItem()
+                ->group($group)
+                ->href(route('collections.index', [
+                    'collection' => $template->{Template::HANDLE},
+                ]))
+                ->icon('layout')
+                ->label($template->{Template::NAME});
         }
 
-        return [
-            new NavigationItem(route('dashboard'), trans('narsil::ui.dashboard'))
-                ->icon('chart-pie'),
-            new NavigationGroup(trans('narsil::ui.collections'))
-                ->children($collections),
-            new NavigationGroup(trans('narsil::ui.structures'))
-                ->children([
-                    new NavigationItem(route('templates.index'), trans('narsil::tables.templates'))
-                        ->icon('layout'),
-                    new NavigationItem(route('blocks.index'), trans('narsil::tables.blocks'))
-                        ->icon('box'),
-                    new NavigationItem(route('fields.index'), trans('narsil::tables.fields'))
-                        ->icon('input'),
-                ]),
-            new NavigationGroup(trans('narsil::ui.management'))
-                ->children([
-                    new NavigationItem(route('users.index'), trans('narsil::tables.users'))
-                        ->icon('users'),
-                    new NavigationItem(route('roles.index'), trans('narsil::tables.roles'))
-                        ->icon('shield'),
-                ]),
-            new NavigationGroup(trans('narsil::ui.tools'))
-                ->children([
-                    new NavigationItem(route('graphiql'), trans('narsil::ui.graphiql'))
-                        ->icon('database'),
-                ]),
-            new NavigationGroup(trans('narsil::ui.settings'))
-                ->children([
-                    new NavigationItem(route('sites.index'), trans('narsil::tables.sites'))
-                        ->icon('globe'),
-                ]),
+        return $menuItems;
+    }
 
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getManagementGroup(): array
+    {
+        $group = trans('narsil::ui.management');
+
+        return [
+            new MenuItem()
+                ->group($group)
+                ->href(route('users.index'))
+                ->icon('users')
+                ->label(trans('narsil::tables.users')),
+            new MenuItem()
+                ->group($group)
+                ->href(route('roles.index'))
+                ->icon('shield')
+                ->label(trans('narsil::tables.roles')),
+        ];
+    }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getSettingsGroup(): array
+    {
+        $group = trans('narsil::ui.tools');
+
+        return [
+            new MenuItem()
+                ->group($group)
+                ->href(route('sites.index'))
+                ->icon('globe')
+                ->label(trans('narsil::tables.sites')),
+        ];
+    }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getStructuresGroup(): array
+    {
+        $group = trans('narsil::ui.management');
+
+        return [
+            new MenuItem()
+                ->group($group)
+                ->href(route('templates.index'))
+                ->icon('layout')
+                ->label(trans('narsil::tables.templates')),
+            new MenuItem()
+                ->group($group)
+                ->href(route('blocks.index'))
+                ->icon('box')
+                ->label(trans('narsil::tables.blocks')),
+            new MenuItem()
+                ->group($group)
+                ->href(route('fields.index'))
+                ->icon('input')
+                ->label(trans('narsil::tables.fields')),
+        ];
+    }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getToolsGroup(): array
+    {
+        $group = trans('narsil::ui.settings');
+
+        return [
+            new MenuItem()
+                ->group($group)
+                ->href(route('graphiql'))
+                ->icon('database')
+                ->label(trans('narsil::ui.graphiql')),
         ];
     }
 

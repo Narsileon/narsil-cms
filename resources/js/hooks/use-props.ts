@@ -16,7 +16,7 @@ export type GlobalProps = {
       href: string;
       label: string;
     }[];
-    sidebar?: ComponentProps[];
+    sidebar: MenuItem[];
     userMenu: MenuItem[];
   };
   redirect: RedirectProps;
@@ -31,11 +31,6 @@ type AuthProps = {
   full_name: string | undefined | null;
   last_name: string | undefined | null;
   two_factor_confirmed_at: string | null;
-};
-
-type ComponentProps = Record<string, unknown> & {
-  components: string;
-  children?: ComponentProps[];
 };
 
 type ConfigurationProps = {
