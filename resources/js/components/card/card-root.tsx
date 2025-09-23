@@ -7,7 +7,7 @@ function CardRoot({ className, ...props }: CardRootProps) {
     <div
       data-slot="card-root"
       className={cn(
-        "flex flex-col rounded-md border bg-card text-card-foreground shadow-sm",
+        "flex flex-col rounded-xl border bg-card text-card-foreground shadow-sm",
         className,
       )}
       {...props}

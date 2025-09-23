@@ -123,7 +123,7 @@ function Relations({
         </InputRoot>
       </DialogTrigger>
       <DialogPortal>
-        <DialogContent className="p-0">
+        <DialogContent className="border-none p-0">
           <Card
             footerButtons={[
               {
