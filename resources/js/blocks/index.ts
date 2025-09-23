@@ -20,6 +20,7 @@ import ScrollArea from "./scroll-area";
 import Separator from "./separator";
 import Shortcut from "./shortcut";
 import Sidebar from "./sidebar";
+import Spinner from "./spinner";
 import Tabs from "./tabs";
 import Toaster from "./toaster";
 import Toggle from "./toggle";
@@ -50,6 +51,7 @@ export {
   Separator,
   Shortcut,
   Sidebar,
+  Spinner,
   Tabs,
   Toaster,
   Toggle,

@@ -2,17 +2,27 @@ import { isArray } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
-import { Badge, Card, DataTable } from "@narsil-cms/blocks";
+import { Badge, Button, DataTable, Spinner } from "@narsil-cms/blocks";
 import { DataTableProvider } from "@narsil-cms/components/data-table";
 import {
+  DialogClose,
   DialogContent,
+  DialogFooter,
+  DialogHeader,
   DialogPortal,
   DialogRoot,
+  DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
+import {
+  TabsContent,
+  TabsList,
+  TabsRoot,
+  TabsTrigger,
+} from "@narsil-cms/components/tabs";
 import { cn } from "@narsil-cms/lib/utils";
 import { type DataTableCollection } from "@narsil-cms/types";
 
@@ -75,7 +85,7 @@ function Relations({
           if (props.collection) {
             setDataTables((dataTables) => ({
               ...dataTables,
-              [collection]: props.collection,
+              [props.title]: props.collection,
             }));
           }
         } catch (error) {
@@ -88,7 +98,7 @@ function Relations({
   }, [collections, open]);
 
   return (
-    <DialogRoot open={open} onOpenChange={setOpen} modal>
+    <DialogRoot open={open} onOpenChange={setOpen} modal={true}>
       <DialogTrigger asChild={true}>
         <InputRoot
           id={id}
@@ -123,39 +133,54 @@ function Relations({
         </InputRoot>
       </DialogTrigger>
       <DialogPortal>
-        <DialogContent className="border-none p-0">
-          <Card
-            footerButtons={[
-              {
-                label: trans("ui.cancel"),
-                variant: "secondary",
-              },
-              {
-                label: trans("ui.confirm"),
-              },
-            ]}
-            footerProps={{
-              className: "justify-between border-t",
-            }}
-          >
-            {Object.entries(dataTables).map(([id, collection]) => {
-              return (
-                <DataTableProvider
-                  id={collection.meta.id}
-                  columns={collection.columns}
-                  data={collection.data}
-                  initialState={{
-                    columnOrder: collection.columnOrder,
-                    columnVisibility: collection.columnVisibility,
-                  }}
-                  render={({ dataTable }) => (
-                    <DataTable dataTable={dataTable} />
-                  )}
-                  key={id}
-                />
-              );
-            })}
-          </Card>
+        <DialogContent className="sm:max-w-full" variant="right">
+          <DialogHeader className="border-b">
+            <DialogTitle>Relations</DialogTitle>
+          </DialogHeader>
+          {Object.keys(dataTables).length > 0 ? (
+            <TabsRoot
+              className="grow"
+              defaultValue={Object.keys(dataTables)[0]}
+              orientation="vertical"
+            >
+              <TabsList>
+                {Object.keys(dataTables).map((id) => {
+                  return (
+                    <TabsTrigger value={id} key={id}>
+                      {id}
+                    </TabsTrigger>
+                  );
+                })}
+              </TabsList>
+              {Object.entries(dataTables).map(([id, collection]) => {
+                return (
+                  <TabsContent value={id} key={id}>
+                    <DataTableProvider
+                      id={collection.meta.id}
+                      columns={collection.columns}
+                      data={collection.data}
+                      initialState={{
+                        columnOrder: collection.columnOrder,
+                        columnVisibility: collection.columnVisibility,
+                      }}
+                      render={({ dataTable }) => (
+                        <DataTable dataTable={dataTable} />
+                      )}
+                      key={id}
+                    />
+                  </TabsContent>
+                );
+              })}
+            </TabsRoot>
+          ) : (
+            <Spinner />
+          )}
+          <DialogFooter className="border-t">
+            <DialogClose>
+              <Button variant="ghost">{trans("ui.cancel")}</Button>
+            </DialogClose>
+            <Button>{trans("ui.confirm")}</Button>
+          </DialogFooter>
         </DialogContent>
       </DialogPortal>
     </DialogRoot>
