@@ -4,7 +4,7 @@ import { useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Button } from "@narsil-cms/blocks";
-import { Combobox } from "@narsil-cms/blocks/inputs";
+import { Combobox } from "@narsil-cms/blocks/fields";
 import { useLabels } from "@narsil-cms/components/labels";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";

@@ -4,10 +4,10 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\CheckboxInput;
+use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\SectionElement;
-use Narsil\Contracts\Fields\SelectInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\SelectField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FieldForm as Contract;
 use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Implementations\AbstractForm;
@@ -52,8 +52,8 @@ class FieldForm extends AbstractForm implements Contract
     {
         $settings = [];
 
-        $abstract = request()->get(Field::TYPE, TextInput::class);
-        $concrete = config("narsil.fields.$abstract", app(TextInput::class));
+        $abstract = request()->get(Field::TYPE, TextField::class);
+        $concrete = config("narsil.fields.$abstract", app(TextField::class));
 
         $elements = $concrete::getForm(Field::SETTINGS);
 
@@ -75,8 +75,8 @@ class FieldForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
                         Field::NAME => trans('narsil::ui.default_name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ])
                 ]),
@@ -84,8 +84,8 @@ class FieldForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::HANDLE,
                         Field::NAME => trans('narsil::ui.default_handle'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ])
                 ]),
@@ -93,9 +93,9 @@ class FieldForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::TYPE,
                         Field::NAME => trans('narsil::validation.attributes.type'),
-                        Field::TYPE => SelectInput::class,
-                        Field::SETTINGS => app(SelectInput::class)
-                            ->setDefaultValue(TextInput::class)
+                        Field::TYPE => SelectField::class,
+                        Field::SETTINGS => app(SelectField::class)
+                            ->setDefaultValue(TextField::class)
                             ->setOptions($typeOptions)
                             ->setPlaceholder(trans('narsil::placeholders.search'))
                             ->setReload('layout')
@@ -119,8 +119,8 @@ class FieldForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => 'rules',
                             Field::NAME => trans("narsil::ui.rules"),
-                            Field::TYPE => CheckboxInput::class,
-                            Field::SETTINGS => app(CheckboxInput::class)
+                            Field::TYPE => CheckboxField::class,
+                            Field::SETTINGS => app(CheckboxField::class)
                                 ->setOptions($rulesOptions),
                         ])
                     ])

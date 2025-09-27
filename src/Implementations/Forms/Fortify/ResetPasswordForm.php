@@ -4,8 +4,8 @@ namespace Narsil\Implementations\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Fields\EmailInput;
-use Narsil\Contracts\Fields\PasswordInput;
+use Narsil\Contracts\Fields\EmailField;
+use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Contracts\Forms\Fortify\ResetPasswordForm as Contract;
@@ -48,8 +48,8 @@ class ResetPasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::EMAIL,
                 Field::NAME => trans('narsil::validation.attributes.email'),
-                Field::TYPE => EmailInput::class,
-                Field::SETTINGS => app(EmailInput::class)
+                Field::TYPE => EmailField::class,
+                Field::SETTINGS => app(EmailField::class)
                     ->setAutoComplete(AutoCompleteEnum::EMAIL)
                     ->setIcon('email')
                     ->setRequired(true),
@@ -57,16 +57,16 @@ class ResetPasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
-                Field::TYPE => PasswordInput::class,
-                Field::SETTINGS => app(PasswordInput::class)
+                Field::TYPE => PasswordField::class,
+                Field::SETTINGS => app(PasswordField::class)
                     ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
                     ->setRequired(true),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
-                Field::TYPE => PasswordInput::class,
-                Field::SETTINGS => app(PasswordInput::class)
+                Field::TYPE => PasswordField::class,
+                Field::SETTINGS => app(PasswordField::class)
                     ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
                     ->setRequired(true),
             ]),

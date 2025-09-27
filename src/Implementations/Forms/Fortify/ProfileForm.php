@@ -4,8 +4,8 @@ namespace Narsil\Implementations\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Fields\FileInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\FileField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\ProfileForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\Forms\MethodEnum;
@@ -49,8 +49,8 @@ class ProfileForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.last_name'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
                     ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
                     ->setIcon('circle-user')
                     ->setRequired(true),
@@ -58,8 +58,8 @@ class ProfileForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.first_name'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
                     ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
                     ->setIcon('circle-user')
                     ->setRequired(true),
@@ -67,8 +67,8 @@ class ProfileForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::AVATAR,
                 Field::NAME => trans('narsil::validation.attributes.avatar'),
-                Field::TYPE => FileInput::class,
-                Field::SETTINGS => app(FileInput::class)
+                Field::TYPE => FileField::class,
+                Field::SETTINGS => app(FileField::class)
                     ->setAccept('image/*')
                     ->setIcon('image'),
             ]),

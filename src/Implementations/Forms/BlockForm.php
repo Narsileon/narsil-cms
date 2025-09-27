@@ -4,8 +4,8 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\RelationsInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\RelationsField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm;
 use Narsil\Contracts\Forms\BlockForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -59,8 +59,8 @@ class BlockForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::NAME,
                         Field::NAME => trans('narsil::ui.default_name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ])
                 ]),
@@ -68,8 +68,8 @@ class BlockForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::HANDLE,
                         Field::NAME => trans('narsil::ui.default_handle'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ])
                 ]),
@@ -77,8 +77,8 @@ class BlockForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::RELATION_ELEMENTS,
                         Field::NAME => trans('narsil::validation.attributes.elements'),
-                        Field::TYPE => RelationsInput::class,
-                        Field::SETTINGS => app(RelationsInput::class)
+                        Field::TYPE => RelationsField::class,
+                        Field::SETTINGS => app(RelationsField::class)
                             ->setForm(app(BlockElementForm::class)->jsonSerialize())
                             ->addOption(
                                 identifier: Block::TABLE,
@@ -103,8 +103,8 @@ class BlockForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::RELATION_SETS,
                         Field::NAME => trans('narsil::validation.attributes.sets'),
-                        Field::TYPE => RelationsInput::class,
-                        Field::SETTINGS => app(RelationsInput::class)
+                        Field::TYPE => RelationsField::class,
+                        Field::SETTINGS => app(RelationsField::class)
                             ->addOption(
                                 identifier: Block::TABLE,
                                 label: trans('narsil::models.block'),

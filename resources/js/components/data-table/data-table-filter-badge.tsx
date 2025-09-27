@@ -2,7 +2,7 @@ import { isEmpty } from "lodash";
 import { useEffect, useState, type ComponentProps } from "react";
 
 import { Badge } from "@narsil-cms/blocks";
-import { Select } from "@narsil-cms/blocks/inputs";
+import { Select } from "@narsil-cms/blocks/fields";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,

@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Users\UserBookmark;
@@ -44,8 +44,8 @@ class UserBookmarkForm extends AbstractForm
             new Field([
                 Field::HANDLE => UserBookmark::NAME,
                 Field::NAME => trans('narsil::validation.attributes.name'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class),
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class),
             ]),
         ];
     }

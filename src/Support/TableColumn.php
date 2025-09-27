@@ -4,10 +4,10 @@ namespace Narsil\Support;
 
 #region USE
 
-use Narsil\Contracts\Fields\DateInput;
-use Narsil\Contracts\Fields\NumberInput;
-use Narsil\Contracts\Fields\TextInput;
-use Narsil\Contracts\Fields\TimeInput;
+use Narsil\Contracts\Fields\DateField;
+use Narsil\Contracts\Fields\NumberField;
+use Narsil\Contracts\Fields\TextField;
+use Narsil\Contracts\Fields\TimeField;
 use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Models\Elements\Field;
@@ -106,14 +106,14 @@ class TableColumn
             case TypeNameEnum::DATETIME->value:
             case TypeNameEnum::TIMESTAMP->value:
                 $field = new Field([
-                    Field::TYPE => DateInput::class,
-                    Field::SETTINGS => app(DateInput::class),
+                    Field::TYPE => DateField::class,
+                    Field::SETTINGS => app(DateField::class),
                 ]);
                 break;
             case TypeNameEnum::TIME->value:
                 $field = new Field([
-                    Field::TYPE => TimeInput::class,
-                    Field::SETTINGS => app(TimeInput::class),
+                    Field::TYPE => TimeField::class,
+                    Field::SETTINGS => app(TimeField::class),
                 ]);
                 break;
             case TypeNameEnum::INTEGER->value:
@@ -123,8 +123,8 @@ class TableColumn
             case TypeNameEnum::FLOAT->value:
             case TypeNameEnum::DOUBLE->value:
                 $field = new Field([
-                    Field::TYPE => NumberInput::class,
-                    Field::SETTINGS => app(NumberInput::class),
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class),
                 ]);
                 break;
             case TypeNameEnum::STRING->value:
@@ -133,8 +133,8 @@ class TableColumn
             case TypeNameEnum::UUID->value:
             default:
                 $field = new Field([
-                    Field::TYPE => TextInput::class,
-                    Field::SETTINGS => app(TextInput::class),
+                    Field::TYPE => TextField::class,
+                    Field::SETTINGS => app(TextField::class),
                 ]);
                 break;
         };

@@ -4,8 +4,8 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\RelationsInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\RelationsField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm;
 use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Contracts\Forms\TemplateSectionForm;
@@ -62,8 +62,8 @@ class TemplateForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::NAME,
                         Field::NAME => trans('narsil::validation.attributes.name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ])
                 ]),
@@ -71,8 +71,8 @@ class TemplateForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::HANDLE,
                         Field::NAME => trans('narsil::validation.attributes.handle'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ])
                 ]),
@@ -80,8 +80,8 @@ class TemplateForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::RELATION_SECTIONS,
                         Field::NAME => trans('narsil::validation.attributes.sections'),
-                        Field::TYPE => RelationsInput::class,
-                        Field::SETTINGS => app(RelationsInput::class)
+                        Field::TYPE => RelationsField::class,
+                        Field::SETTINGS => app(RelationsField::class)
                             ->setForm(app(TemplateSectionForm::class)->jsonSerialize())
                             ->setIntermediate(
                                 label: trans('narsil::ui.section'),
@@ -90,8 +90,8 @@ class TemplateForm extends AbstractForm implements Contract
                                 relation: new Field([
                                     Field::HANDLE => TemplateSection::RELATION_ELEMENTS,
                                     Field::NAME => trans('narsil::validation.attributes.elements'),
-                                    Field::TYPE => RelationsInput::class,
-                                    Field::SETTINGS => app(RelationsInput::class)
+                                    Field::TYPE => RelationsField::class,
+                                    Field::SETTINGS => app(RelationsField::class)
                                         ->setForm(app(BlockElementForm::class)->jsonSerialize())
                                         ->addOption(
                                             identifier: Block::TABLE,
@@ -119,8 +119,8 @@ class TemplateForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::RELATION_SETS,
                         Field::NAME => trans('narsil::validation.attributes.sets'),
-                        Field::TYPE => RelationsInput::class,
-                        Field::SETTINGS => app(RelationsInput::class)
+                        Field::TYPE => RelationsField::class,
+                        Field::SETTINGS => app(RelationsField::class)
                             ->addOption(
                                 identifier: Block::TABLE,
                                 label: trans('narsil::models.block'),

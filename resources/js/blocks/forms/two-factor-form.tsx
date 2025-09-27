@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { route } from "ziggy-js";
 
 import { Card, Label } from "@narsil-cms/blocks";
-import { Switch } from "@narsil-cms/blocks/inputs";
+import { Switch } from "@narsil-cms/blocks/fields";
 import {
   FormRenderer,
   FormProvider,

@@ -3,7 +3,7 @@ import { route } from "ziggy-js";
 
 import { Button, Heading, Pagination } from "@narsil-cms/blocks";
 import { DataTable, DataTableColumns } from "@narsil-cms/blocks/data-table";
-import { Checkbox, Select } from "@narsil-cms/blocks/inputs";
+import { Checkbox, Select } from "@narsil-cms/blocks/fields";
 import {
   DataTableFilter,
   DataTableFilterBadge,

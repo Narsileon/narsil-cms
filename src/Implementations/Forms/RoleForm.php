@@ -5,8 +5,8 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Support\Collection;
-use Narsil\Contracts\Fields\CheckboxInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\CheckboxField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\RoleForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
@@ -58,8 +58,8 @@ class RoleForm extends AbstractForm implements Contract
                 new Field([
                     Field::HANDLE => Role::RELATION_PERMISSIONS,
                     Field::NAME => trans("narsil::tables.{$category}"),
-                    Field::TYPE => CheckboxInput::class,
-                    Field::SETTINGS => app(CheckboxInput::class)
+                    Field::TYPE => CheckboxField::class,
+                    Field::SETTINGS => app(CheckboxField::class)
                         ->setOptions($options),
                 ]),
             ]);
@@ -71,8 +71,8 @@ class RoleForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Role::NAME,
                         Field::NAME => trans('narsil::validation.attributes.name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ]),
                 ]),

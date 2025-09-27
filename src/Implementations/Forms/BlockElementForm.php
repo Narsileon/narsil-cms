@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\BlockElement;
@@ -45,15 +45,15 @@ class BlockElementForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => BlockElement::NAME,
                 Field::NAME => trans('narsil::validation.attributes.name'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
                     ->setRequired(true),
             ]),
             new Field([
                 Field::HANDLE => BlockElement::HANDLE,
                 Field::NAME => trans('narsil::validation.attributes.handle'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
                     ->setRequired(true),
             ]),
         ];

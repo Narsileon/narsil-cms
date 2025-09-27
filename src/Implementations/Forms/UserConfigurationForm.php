@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Locale;
-use Narsil\Contracts\Fields\RangeInput;
-use Narsil\Contracts\Fields\SelectInput;
+use Narsil\Contracts\Fields\RangeField;
+use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Forms\UserConfigurationForm as Contract;
 use Narsil\Enums\Configuration\ColorEnum;
 use Narsil\Enums\Forms\MethodEnum;
@@ -57,24 +57,24 @@ class UserConfigurationForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => UserConfiguration::LOCALE,
                 Field::NAME => trans('narsil::validation.attributes.language'),
-                Field::TYPE => SelectInput::class,
-                Field::SETTINGS => app(SelectInput::class)
+                Field::TYPE => SelectField::class,
+                Field::SETTINGS => app(SelectField::class)
                     ->setDefaultValue('en')
                     ->setOptions($localeOptions),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::COLOR,
                 Field::NAME => trans('narsil::validation.attributes.color'),
-                Field::TYPE => SelectInput::class,
-                Field::SETTINGS => app(SelectInput::class)
+                Field::TYPE => SelectField::class,
+                Field::SETTINGS => app(SelectField::class)
                     ->setDefaultValue('gray')
                     ->setOptions($colorOptions),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::RADIUS,
                 Field::NAME => trans('narsil::validation.attributes.radius'),
-                Field::TYPE => RangeInput::class,
-                Field::SETTINGS => app(RangeInput::class)
+                Field::TYPE => RangeField::class,
+                Field::SETTINGS => app(RangeField::class)
                     ->setDefaultValue([0.50])
                     ->setMax(1)
                     ->setMin(0)

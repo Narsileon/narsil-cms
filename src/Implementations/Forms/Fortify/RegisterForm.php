@@ -4,9 +4,9 @@ namespace Narsil\Implementations\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Fields\EmailInput;
-use Narsil\Contracts\Fields\PasswordInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\EmailField;
+use Narsil\Contracts\Fields\PasswordField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\RegisterForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
@@ -49,16 +49,16 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::EMAIL,
                 Field::NAME => trans('narsil::validation.attributes.email'),
-                Field::TYPE => EmailInput::class,
-                Field::SETTINGS => app(EmailInput::class)
+                Field::TYPE => EmailField::class,
+                Field::SETTINGS => app(EmailField::class)
                     ->setIcon('email')
                     ->setRequired(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
-                Field::TYPE => PasswordInput::class,
-                Field::SETTINGS => app(PasswordInput::class)
+                Field::TYPE => PasswordField::class,
+                Field::SETTINGS => app(PasswordField::class)
                     ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
                     ->setClassName('col-span-6')
                     ->setRequired(true),
@@ -66,8 +66,8 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
-                Field::TYPE => PasswordInput::class,
-                Field::SETTINGS => app(PasswordInput::class)
+                Field::TYPE => PasswordField::class,
+                Field::SETTINGS => app(PasswordField::class)
                     ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
                     ->setClassName('col-span-6')
                     ->setRequired(true),
@@ -75,8 +75,8 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.first_name'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
                     ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
                     ->setClassName('col-span-6')
                     ->setIcon('circle-user')
@@ -85,8 +85,8 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.last_name'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
                     ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
                     ->setClassName('col-span-6')
                     ->setIcon('circle-user')

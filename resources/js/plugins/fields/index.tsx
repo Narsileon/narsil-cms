@@ -1,6 +1,7 @@
 import { isArray } from "lodash";
 
 import {
+  Array,
   Checkbox,
   Checkboxes,
   Combobox,
@@ -11,7 +12,7 @@ import {
   RichTextEditor,
   Slider,
   Switch,
-} from "@narsil-cms/blocks/inputs";
+} from "@narsil-cms/blocks/fields";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
@@ -32,7 +33,17 @@ export type FieldProps = {
 type Registry = Record<string, React.ComponentType<FieldProps>>;
 
 const defaultRegistry: Registry = {
-  ["Narsil\\Contracts\\Fields\\CheckboxInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\ArrayField"]: (props) => {
+    return (
+      <Array
+        {...props.element.settings}
+        id={props.id}
+        items={props.value ?? []}
+        setItems={props.setValue}
+      />
+    );
+  },
+  ["Narsil\\Contracts\\Fields\\CheckboxField"]: (props) => {
     if (props.element.settings.options) {
       return (
         <Checkboxes
@@ -54,7 +65,7 @@ const defaultRegistry: Registry = {
       );
     }
   },
-  ["Narsil\\Contracts\\Fields\\DateInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\DateField"]: (props) => {
     return (
       <InputDate
         {...props.element.settings}
@@ -65,7 +76,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\FileInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\FileField"]: (props) => {
     return (
       <InputFile
         {...props.element.settings}
@@ -80,7 +91,7 @@ const defaultRegistry: Registry = {
       </InputFile>
     );
   },
-  ["Narsil\\Contracts\\Fields\\PasswordInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\PasswordField"]: (props) => {
     return (
       <InputPassword
         {...props.element.settings}
@@ -91,7 +102,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\RangeInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\RangeField"]: (props) => {
     return (
       <Slider
         {...props.element.settings}
@@ -102,7 +113,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\RelationsInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\RelationsField"]: (props) => {
     if (props.element.settings.intermediate) {
       return (
         <SortableGrid
@@ -130,7 +141,7 @@ const defaultRegistry: Registry = {
       );
     }
   },
-  ["Narsil\\Contracts\\Fields\\RichTextInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\RichTextField"]: (props) => {
     return (
       <RichTextEditor
         {...props.element.settings}
@@ -140,7 +151,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\SelectInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\SelectField"]: (props) => {
     return (
       <Combobox
         {...props.element.settings}
@@ -150,7 +161,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\SwitchInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\SwitchField"]: (props) => {
     return (
       <Switch
         {...props.element.settings}
@@ -160,7 +171,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\TableInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\TableField"]: (props) => {
     return (
       <SortableTable
         {...props.element.settings}
@@ -169,7 +180,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\TimeInput"]: (props) => {
+  ["Narsil\\Contracts\\Fields\\TimeField"]: (props) => {
     return (
       <InputRoot>
         <InputContent

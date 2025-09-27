@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Fields\EmailInput;
+use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Forms\Fortify\ForgotPasswordForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
@@ -48,8 +48,8 @@ class ForgotPasswordForm extends AbstractForm implements Contract
                 Field::DESCRIPTION => trans('narsil::passwords.instruction'),
                 Field::HANDLE => User::EMAIL,
                 Field::NAME => trans('narsil::validation.attributes.email'),
-                Field::TYPE => EmailInput::class,
-                Field::SETTINGS => app(EmailInput::class)
+                Field::TYPE => EmailField::class,
+                Field::SETTINGS => app(EmailField::class)
                     ->setAutoComplete(AutoCompleteEnum::EMAIL)
                     ->setIcon('email')
                     ->setRequired(true),

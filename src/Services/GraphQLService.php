@@ -6,11 +6,11 @@ namespace Narsil\Services;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-use Narsil\Contracts\Fields\CheckboxInput;
-use Narsil\Contracts\Fields\DateInput;
-use Narsil\Contracts\Fields\RichTextInput;
-use Narsil\Contracts\Fields\TextInput;
-use Narsil\Contracts\Fields\TimeInput;
+use Narsil\Contracts\Fields\CheckboxField;
+use Narsil\Contracts\Fields\DateField;
+use Narsil\Contracts\Fields\RichTextField;
+use Narsil\Contracts\Fields\TextField;
+use Narsil\Contracts\Fields\TimeField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
@@ -134,11 +134,11 @@ abstract class GraphQLService
 
             $type = match ($field->{Field::TYPE})
             {
-                CheckboxInput::class => "Boolean",
-                DateInput::class => "Date",
-                RichTextInput::class => "String",
-                TextInput::class => "String",
-                TimeInput::class => "Time",
+                CheckboxField::class => "Boolean",
+                DateField::class => "Date",
+                RichTextField::class => "String",
+                TextField::class => "String",
+                TimeField::class => "Time",
                 default => "String",
             };
 

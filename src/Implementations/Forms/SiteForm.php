@@ -4,9 +4,10 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\RelationsInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\ArrayField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\SiteForm as Contract;
+use Narsil\Contracts\Forms\SiteSubdomainForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSectionElement;
@@ -46,7 +47,8 @@ class SiteForm extends AbstractForm implements Contract
      */
     public function layout(): array
     {
-        $subdomainForm = $this->getSubdomainForm();
+        $subdomainForm = app(SiteSubdomainForm::class)
+            ->layout();
 
         return [
             static::mainSection([
@@ -54,8 +56,8 @@ class SiteForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::NAME,
                         Field::NAME => trans('narsil::validation.attributes.name'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ]),
                 ]),
@@ -63,8 +65,8 @@ class SiteForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::DOMAIN,
                         Field::NAME => trans('narsil::validation.attributes.domain'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ]),
                 ]),
@@ -72,8 +74,8 @@ class SiteForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::PATTERN,
                         Field::NAME => trans('narsil::validation.attributes.pattern'),
-                        Field::TYPE => TextInput::class,
-                        Field::SETTINGS => app(TextInput::class)
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
                     ]),
                 ]),
@@ -81,46 +83,14 @@ class SiteForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Site::RELATION_SUBDOMAINS,
                         Field::NAME => trans('narsil::validation.attributes.subdomains'),
-                        Field::TYPE => RelationsInput::class,
-                        Field::SETTINGS => app(RelationsInput::class)
+                        Field::TYPE => ArrayField::class,
+                        Field::SETTINGS => app(ArrayField::class)
                             ->setForm($subdomainForm)
-                            ->addOption(
-                                identifier: SiteSubdomain::TABLE,
-                                label: '',
-                                optionLabel: SiteSubdomain::SUBDOMAIN,
-                                optionValue: SiteSubdomain::ID,
-                            ),
+                            ->setLabelKey(SiteSubdomain::SUBDOMAIN),
                     ]),
                 ]),
             ]),
             static::informationSection(),
-        ];
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return array<Field>
-     */
-    protected function getSubdomainForm(): array
-    {
-        return [
-            new Field([
-                Field::HANDLE => SiteSubdomain::SUBDOMAIN,
-                Field::NAME => trans('narsil::validation.attributes.pattern'),
-                Field::TYPE => TextInput::class,
-                Field::SETTINGS => app(TextInput::class)
-                    ->setRequired(true),
-            ]),
-            new Field([
-                Field::HANDLE => SiteSubdomain::RELATION_LANGUAGES,
-                Field::NAME => trans('narsil::validation.attributes.subdomains'),
-                Field::TYPE => RelationsInput::class,
-                Field::SETTINGS => app(RelationsInput::class)
-                    ->setOptions([]),
-            ]),
         ];
     }
 

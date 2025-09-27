@@ -4,11 +4,11 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\CheckboxInput;
-use Narsil\Contracts\Fields\EmailInput;
-use Narsil\Contracts\Fields\FileInput;
-use Narsil\Contracts\Fields\PasswordInput;
-use Narsil\Contracts\Fields\TextInput;
+use Narsil\Contracts\Fields\CheckboxField;
+use Narsil\Contracts\Fields\EmailField;
+use Narsil\Contracts\Fields\FileField;
+use Narsil\Contracts\Fields\PasswordField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\UserForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\Forms\MethodEnum;
@@ -67,8 +67,8 @@ class UserForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::EMAIL,
                                     Field::NAME => trans('narsil::validation.attributes.email'),
-                                    Field::TYPE => EmailInput::class,
-                                    Field::SETTINGS => app(EmailInput::class)
+                                    Field::TYPE => EmailField::class,
+                                    Field::SETTINGS => app(EmailField::class)
                                         ->setIcon('email')
                                         ->setRequired(true),
                                 ])
@@ -77,8 +77,8 @@ class UserForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::PASSWORD,
                                     Field::NAME => trans('narsil::validation.attributes.password'),
-                                    Field::TYPE => PasswordInput::class,
-                                    Field::SETTINGS => app(PasswordInput::class)
+                                    Field::TYPE => PasswordField::class,
+                                    Field::SETTINGS => app(PasswordField::class)
                                         ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
                                         ->setRequired($isPost),
                                 ])
@@ -87,8 +87,8 @@ class UserForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                                     Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
-                                    Field::TYPE => PasswordInput::class,
-                                    Field::SETTINGS => app(PasswordInput::class)
+                                    Field::TYPE => PasswordField::class,
+                                    Field::SETTINGS => app(PasswordField::class)
                                         ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
                                         ->setRequired($isPost),
                                 ])
@@ -104,8 +104,8 @@ class UserForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::LAST_NAME,
                                     Field::NAME => trans('narsil::validation.attributes.last_name'),
-                                    Field::TYPE => TextInput::class,
-                                    Field::SETTINGS => app(TextInput::class)
+                                    Field::TYPE => TextField::class,
+                                    Field::SETTINGS => app(TextField::class)
                                         ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
                                         ->setIcon('circle-user')
                                         ->setRequired(true),
@@ -115,8 +115,8 @@ class UserForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::FIRST_NAME,
                                     Field::NAME => trans('narsil::validation.attributes.first_name'),
-                                    Field::TYPE => TextInput::class,
-                                    Field::SETTINGS => app(TextInput::class)
+                                    Field::TYPE => TextField::class,
+                                    Field::SETTINGS => app(TextField::class)
                                         ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
                                         ->setIcon('circle-user')
                                         ->setRequired(true),
@@ -126,8 +126,8 @@ class UserForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => User::AVATAR,
                                     Field::NAME => trans('narsil::validation.attributes.avatar'),
-                                    Field::TYPE => FileInput::class,
-                                    Field::SETTINGS => app(FileInput::class)
+                                    Field::TYPE => FileField::class,
+                                    Field::SETTINGS => app(FileField::class)
                                         ->setAccept('image/*')
                                         ->setIcon('image'),
                                 ]),
@@ -145,8 +145,8 @@ class UserForm extends AbstractForm implements Contract
                         new Field([
                             Field::HANDLE => User::RELATION_ROLES,
                             Field::NAME => trans('narsil::validation.attributes.roles'),
-                            Field::TYPE => CheckboxInput::class,
-                            Field::SETTINGS => app(CheckboxInput::class)
+                            Field::TYPE => CheckboxField::class,
+                            Field::SETTINGS => app(CheckboxField::class)
                                 ->setOptions(static::getRoleOptions($roleOptions)),
                         ]),
                     ]),

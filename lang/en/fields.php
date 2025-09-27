@@ -2,38 +2,40 @@
 
 #region USE
 
-use Narsil\Contracts\Fields\CheckboxInput;
-use Narsil\Contracts\Fields\DateInput;
-use Narsil\Contracts\Fields\EmailInput;
-use Narsil\Contracts\Fields\FileInput;
-use Narsil\Contracts\Fields\NumberInput;
-use Narsil\Contracts\Fields\PasswordInput;
-use Narsil\Contracts\Fields\RangeInput;
-use Narsil\Contracts\Fields\RelationsInput;
-use Narsil\Contracts\Fields\RichTextInput;
+use Narsil\Contracts\Fields\ArrayField;
+use Narsil\Contracts\Fields\CheckboxField;
+use Narsil\Contracts\Fields\DateField;
+use Narsil\Contracts\Fields\EmailField;
+use Narsil\Contracts\Fields\FileField;
+use Narsil\Contracts\Fields\NumberField;
+use Narsil\Contracts\Fields\PasswordField;
+use Narsil\Contracts\Fields\RangeField;
+use Narsil\Contracts\Fields\RelationsField;
+use Narsil\Contracts\Fields\RichTextField;
 use Narsil\Contracts\Fields\SectionElement;
-use Narsil\Contracts\Fields\SelectInput;
-use Narsil\Contracts\Fields\SwitchInput;
-use Narsil\Contracts\Fields\TableInput;
-use Narsil\Contracts\Fields\TextInput;
-use Narsil\Contracts\Fields\TimeInput;
+use Narsil\Contracts\Fields\SelectField;
+use Narsil\Contracts\Fields\SwitchField;
+use Narsil\Contracts\Fields\TableField;
+use Narsil\Contracts\Fields\TextField;
+use Narsil\Contracts\Fields\TimeField;
 
 #endregion
 
 return [
-    CheckboxInput::class => 'Checkbox',
-    DateInput::class => 'Date',
-    EmailInput::class => 'Email',
-    FileInput::class => 'File',
-    NumberInput::class => 'Number',
-    PasswordInput::class => 'Password',
-    RangeInput::class => 'Range',
-    RelationsInput::class => 'Relations',
-    RichTextInput::class => 'Rich Text',
+    ArrayField::class => 'Array',
+    CheckboxField::class => 'Checkbox',
+    DateField::class => 'Date',
+    EmailField::class => 'Email',
+    FileField::class => 'File',
+    NumberField::class => 'Number',
+    PasswordField::class => 'Password',
+    RangeField::class => 'Range',
+    RelationsField::class => 'Relations',
+    RichTextField::class => 'Rich Text',
     SectionElement::class => 'Section',
-    SelectInput::class => 'Select',
-    SwitchInput::class => 'Switch',
-    TableInput::class => 'Table',
-    TextInput::class => 'Text',
-    TimeInput::class => 'Time',
+    SelectField::class => 'Select',
+    SwitchField::class => 'Switch',
+    TableField::class => 'Table',
+    TextField::class => 'Text',
+    TimeField::class => 'Time',
 ];
