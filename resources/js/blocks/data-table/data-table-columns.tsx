@@ -166,7 +166,7 @@ function SortableItem({
   return (
     <div
       style={style}
-      className="flex items-center gap-2 overflow-hidden rounded-md border bg-background pr-1"
+      className="flex h-9 items-center gap-2 overflow-hidden rounded-md border bg-background pr-1"
     >
       <SortableHandle
         ref={setNodeRef}
