@@ -19,7 +19,7 @@ const debouncedSave = debounce((radius: number) => {
   router.post(
     route("user-configuration.store"),
     { radius: radius },
-    { preserveState: false },
+    { preserveState: true },
   );
 }, 500);
 
