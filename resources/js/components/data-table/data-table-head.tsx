@@ -5,6 +5,7 @@ import { TableHead } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 
 import DataTableHeadSort from "./data-table-head-sort";
+import { upperFirst } from "lodash";
 
 type DataTableHeadProps = ComponentProps<typeof TableHead> & {
   header: Header<unknown, unknown>;
@@ -24,7 +25,7 @@ function DataTableHead({ header, ...props }: DataTableHeadProps) {
     >
       {typeof header.column.columnDef.header === "string" ? (
         <div className="flex items-center justify-start">
-          {header.column.columnDef.header}
+          {upperFirst(header.column.columnDef.header)}
 
           {header.column.getCanSort() ? (
             <DataTableHeadSort header={header} />

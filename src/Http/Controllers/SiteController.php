@@ -41,7 +41,8 @@ class SiteController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Site::class);
 
-        $query = Site::query();
+        $query = Site::query()
+            ->withCount(Site::RELATION_SUBDOMAINS);
 
         $collection = new DataTableCollection($query, Site::TABLE);
 

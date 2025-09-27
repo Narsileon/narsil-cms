@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SiteSubdomain;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -50,6 +52,12 @@ class SiteTable extends AbstractTable
             ),
             new TableColumn(
                 id: Site::PATTERN,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: trans('narsil::validation.attributes.domains'),
+                id: Site::COUNT_SUBDOMAINS,
+                type: TypeNameEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

@@ -87,11 +87,11 @@ class Site extends Model
     #region • COUNTS
 
     /**
-     * The name of the "domains" count.
+     * The name of the "subdomains" count.
      *
      * @var string
      */
-    final public const COUNT_DOMAINS = 'domains_count';
+    final public const COUNT_SUBDOMAINS = 'subdomains_count';
 
     #region • RELATIONS
 

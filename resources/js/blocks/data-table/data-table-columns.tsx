@@ -19,6 +19,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { SortableHandle } from "@narsil-cms/components/sortable";
+import { upperFirst } from "lodash";
 
 type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger> & {};
 
@@ -98,7 +99,7 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
               onClick={() => handleActivate(column)}
               key={column.id}
             >
-              {column.columnDef.header as string}
+              {upperFirst(column.columnDef.header as string)}
             </Button>
           ))}
         </Card>
@@ -158,7 +159,7 @@ function SortableItem({
     transition,
   };
 
-  const columnLabel = column.columnDef.header as string;
+  const columnLabel = upperFirst(column.columnDef.header as string);
 
   const hideColumnLabel = `${trans("ui.hide", "Hide")} ${columnLabel}`;
   const moveClumnLabel = `${trans("ui.move", "Move")} ${columnLabel}`;
