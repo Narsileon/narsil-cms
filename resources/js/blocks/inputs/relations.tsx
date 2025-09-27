@@ -2,7 +2,8 @@ import { isArray } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
-import { Badge, Button, DataTable, Spinner } from "@narsil-cms/blocks";
+import { Badge, Button, Spinner } from "@narsil-cms/blocks";
+import { DataTable } from "@narsil-cms/blocks/data-table";
 import { DataTableProvider } from "@narsil-cms/components/data-table";
 import {
   DialogClose,

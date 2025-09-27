@@ -1,7 +1,3 @@
-import {
-  horizontalListSortingStrategy,
-  SortableContext,
-} from "@dnd-kit/sortable";
 import { flexRender, Table } from "@tanstack/react-table";
 
 import {
@@ -30,18 +26,13 @@ function DataTable({ dataTable }: DataTableProps) {
         <TableHeader>
           {dataTable.getHeaderGroups().map((headerGroup) => (
             <DataTableRow key={headerGroup.id}>
-              <SortableContext
-                items={dataTable.getState().columnOrder}
-                strategy={horizontalListSortingStrategy}
-              >
-                {headerGroup.headers.map((header) => {
-                  if (header.isPlaceholder) {
-                    return null;
-                  }
+              {headerGroup.headers.map((header) => {
+                if (header.isPlaceholder) {
+                  return null;
+                }
 
-                  return <DataTableHead header={header} key={header.id} />;
-                })}
-              </SortableContext>
+                return <DataTableHead header={header} key={header.id} />;
+              })}
             </DataTableRow>
           ))}
         </TableHeader>
@@ -51,18 +42,12 @@ function DataTable({ dataTable }: DataTableProps) {
               <DataTableRow selected={row.getIsSelected()} key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   return (
-                    <SortableContext
-                      items={dataTable.getState().columnOrder}
-                      strategy={horizontalListSortingStrategy}
-                      key={cell.id}
-                    >
-                      <DataTableCell cell={cell}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext() ?? "",
-                        )}
-                      </DataTableCell>
-                    </SortableContext>
+                    <DataTableCell cell={cell} key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext() ?? "",
+                      )}
+                    </DataTableCell>
                   );
                 })}
               </DataTableRow>

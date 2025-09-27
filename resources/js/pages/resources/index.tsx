@@ -1,13 +1,8 @@
 import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
-import {
-  Button,
-  DataTable,
-  Heading,
-  Pagination,
-  Tooltip,
-} from "@narsil-cms/blocks";
+import { Button, Heading, Pagination, Tooltip } from "@narsil-cms/blocks";
+import { DataTable, DataTableColumns } from "@narsil-cms/blocks/data-table";
 import { Checkbox, Select } from "@narsil-cms/blocks/inputs";
 import {
   DataTableFilter,
@@ -16,7 +11,6 @@ import {
   DataTableInput,
   DataTableProvider,
   DataTableRowMenu,
-  DataTableVisibilityDropdown,
 } from "@narsil-cms/components/data-table";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -146,7 +140,7 @@ function ResourceIndex({
                 contentProps={{ hidden: isDesktop }}
                 tooltip={columnsLabel}
               >
-                <DataTableVisibilityDropdown>
+                <DataTableColumns>
                   <Button
                     aria-label={columnsLabel}
                     icon="eye"
@@ -155,7 +149,7 @@ function ResourceIndex({
                   >
                     {isDesktop ? columnsLabel : undefined}
                   </Button>
-                </DataTableVisibilityDropdown>
+                </DataTableColumns>
               </Tooltip>
               <Tooltip
                 contentProps={{ hidden: isDesktop }}

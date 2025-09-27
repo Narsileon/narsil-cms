@@ -2,11 +2,13 @@
 
 return [
     'account'            => 'Account',
+    'active_columns'     => 'Active columns',
     'add_another'        => 'Add another',
     'add_group'          => 'Add a group',
     'add_section'        => 'Add a section',
     'add'                => 'Add',
     'all'                => 'All',
+    'available_columns'  => 'Available columns',
     'back'               => 'Back',
     'cancel'             => 'Cancel',
     'cell'               => 'Cell',

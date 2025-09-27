@@ -6,14 +6,12 @@ import DataTableFilter from "./data-table-filter";
 import DataTableFilterBadge from "./data-table-filter-badge";
 import DataTableFilterDropdown from "./data-table-filter-dropdown";
 import DataTableHead from "./data-table-head";
-import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";
 import DataTableInput from "./data-table-input";
 import DataTableProvider from "./data-table-provider";
 import DataTableRow from "./data-table-row";
 import DataTableRowMenu from "./data-table-row-menu";
 import DataTableRowSelect from "./data-table-row-select";
-import DataTableVisibilityDropdown from "./data-table-visibility-dropdown";
 
 export type ColumnFilter = {
   column: string;
@@ -27,13 +25,11 @@ export {
   DataTableFilterBadge,
   DataTableFilterDropdown,
   DataTableHead,
-  DataTableHeadMove,
   DataTableHeadSort,
   DataTableInput,
   DataTableProvider,
   DataTableRow,
   DataTableRowMenu,
   DataTableRowSelect,
-  DataTableVisibilityDropdown,
   useDataTable,
 };

@@ -7,7 +7,6 @@ import Button from "./button";
 import Calendar from "./calendar";
 import Card from "./card";
 import Container from "./container";
-import DataTable from "./data-table";
 import Head from "./head";
 import Heading from "./heading";
 import Label from "./label";
@@ -39,7 +38,6 @@ export {
   Calendar,
   Card,
   Container,
-  DataTable,
   Head,
   Heading,
   Label,

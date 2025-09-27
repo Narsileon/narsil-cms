@@ -53,9 +53,7 @@ function Background({
   blur = 36,
   className,
   count = 7,
-  fill = true,
   length = "75vh",
-  ref,
   speed = 14,
   style,
   ...props

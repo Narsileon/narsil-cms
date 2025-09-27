@@ -205,6 +205,8 @@ class DataTableCollection extends ResourceCollection
             ])
             ->add('narsil::pagination.selected_empty')
             ->add('narsil::placeholders.search')
+            ->add('narsil::ui.active_columns')
+            ->add('narsil::ui.available_columns')
             ->add('narsil::ui.columns')
             ->add('narsil::ui.create')
             ->add('narsil::ui.delete')
