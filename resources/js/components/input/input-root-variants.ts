@@ -1,5 +1,4 @@
 import { cva } from "class-variance-authority";
-import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 

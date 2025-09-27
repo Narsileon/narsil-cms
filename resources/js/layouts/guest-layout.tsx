@@ -10,6 +10,7 @@ import {
   Toaster,
   Tooltip,
 } from "@narsil-cms/blocks";
+import Background from "@narsil-cms/components/background/background";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -90,6 +91,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
           </DropdownMenuRoot>
         </Container>
       </header>
+      <Background />
       <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
         <ModalRenderer container={mainRef.current} />
         {children}
