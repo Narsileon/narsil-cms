@@ -129,7 +129,7 @@ class SiteSubdomain extends Model
                 SiteSubdomainLanguage::SUBDOMAIN_ID,
                 self::ID
             )
-            ->orderBy(SiteSubdomainLanguage::LANGUAGE);
+            ->orderBy(SiteSubdomainLanguage::POSITION);
     }
 
     /**

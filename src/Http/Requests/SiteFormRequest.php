@@ -7,6 +7,8 @@ namespace Narsil\Http\Requests;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\SiteFormRequest as Contract;
 use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SiteSubdomain;
+use Narsil\Models\Sites\SiteSubdomainLanguage;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -41,6 +43,26 @@ class SiteFormRequest implements Contract
             Site::RELATION_SUBDOMAINS => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
+            ],
+            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::ID => [
+                FormRule::INTEGER,
+                FormRule::SOMETIMES,
+            ],
+            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::SUBDOMAIN => [
+                FormRule::STRING,
+                FormRule::REQUIRED,
+            ],
+            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::RELATION_LANGUAGES => [
+                FormRule::ARRAY,
+                FormRule::REQUIRED,
+            ],
+            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::RELATION_LANGUAGES . '.*.' . SiteSubdomainLanguage::ID => [
+                FormRule::STRING,
+                FormRule::REQUIRED,
+            ],
+            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::RELATION_LANGUAGES . '.*.' . SiteSubdomainLanguage::LANGUAGE => [
+                FormRule::STRING,
+                FormRule::REQUIRED,
             ],
         ];
     }

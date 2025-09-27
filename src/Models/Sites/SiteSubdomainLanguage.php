@@ -73,7 +73,7 @@ class SiteSubdomainLanguage extends Model
      *
      * @var string
      */
-    final public const SUBDOMAIN_ID = 'SUBDOMAIN_ID';
+    final public const SUBDOMAIN_ID = 'subdomain_id';
 
     #endregion
 

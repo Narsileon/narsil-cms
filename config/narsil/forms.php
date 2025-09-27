@@ -17,7 +17,6 @@ return [
     \Narsil\Contracts\Forms\FieldForm::class => \Narsil\Implementations\Forms\FieldForm::class,
     \Narsil\Contracts\Forms\RoleForm::class => \Narsil\Implementations\Forms\RoleForm::class,
     \Narsil\Contracts\Forms\SiteForm::class => \Narsil\Implementations\Forms\SiteForm::class,
-    \Narsil\Contracts\Forms\SiteSubdomainForm::class => \Narsil\Implementations\Forms\SiteSubdomainForm::class,
     \Narsil\Contracts\Forms\TemplateForm::class => \Narsil\Implementations\Forms\TemplateForm::class,
     \Narsil\Contracts\Forms\TemplateSectionForm::class => \Narsil\Implementations\Forms\TemplateSectionForm::class,
     \Narsil\Contracts\Forms\UserConfigurationForm::class => \Narsil\Implementations\Forms\UserConfigurationForm::class,

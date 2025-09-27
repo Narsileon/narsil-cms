@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Response;
 use Narsil\Contracts\FormRequests\SiteFormRequest;
@@ -18,6 +19,8 @@ use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SiteSubdomain;
+use Narsil\Models\Sites\SiteSubdomainLanguage;
 
 #endregion
 
@@ -89,7 +92,11 @@ class SiteController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        Site::create($attributes);
+        $site = Site::create($attributes);
+
+        $subdomains = Arr::get($attributes, Site::RELATION_SUBDOMAINS, []);
+
+        $this->syncSubdomains($site, $subdomains);
 
         return $this
             ->redirect(route('sites.index'))
@@ -138,6 +145,10 @@ class SiteController extends AbstractController
             ->validated();
 
         $site->update($attributes);
+
+        $subdomains = Arr::get($attributes, Site::RELATION_SUBDOMAINS, []);
+
+        $this->syncSubdomains($site, $subdomains);
 
         return $this
             ->redirect(route('sites.index'))
@@ -236,6 +247,98 @@ class SiteController extends AbstractController
                 Site::NAME => $site->{Site::NAME} . ' (copy)',
             ])
             ->save();
+    }
+
+    /**
+     * @param Site $site
+     * @param array $subdomains
+     *
+     * @return void
+     */
+    protected function syncSubdomains(Site $site, array $subdomains): void
+    {
+        $processed = [];
+
+        foreach ($subdomains as $position => $subdomain)
+        {
+            $id = Arr::get($subdomain, SiteSubdomain::ID);
+
+            $siteSubdomain = $site
+                ->subdomains()
+                ->find($id);
+
+            if ($siteSubdomain)
+            {
+                $siteSubdomain
+                    ->update([
+                        SiteSubdomain::POSITION => $position,
+                        SiteSubdomain::SUBDOMAIN => Arr::get($subdomain, SiteSubdomain::SUBDOMAIN),
+                    ]);
+            }
+            else
+            {
+                $siteSubdomain = $site
+                    ->subdomains()
+                    ->create([
+                        SiteSubdomain::POSITION => $position,
+                        SiteSubdomain::SUBDOMAIN => Arr::get($subdomain, SiteSubdomain::SUBDOMAIN),
+                    ]);
+            }
+
+            $processed[] = $siteSubdomain->{SiteSubdomain::ID};
+
+            $this->syncLanguages($siteSubdomain, Arr::get($subdomain, SiteSubdomain::RELATION_LANGUAGES, []));
+        }
+
+        $site
+            ->subdomains()
+            ->whereNotIn(SiteSubdomain::ID, $processed)
+            ->delete();
+    }
+
+    /**
+     * @param SiteSubdomain $subdomain
+     * @param array $languages
+     *
+     * @return void
+     */
+    protected function syncLanguages(SiteSubdomain $subdomain, array $languages): void
+    {
+        $processed = [];
+
+        foreach ($languages as $position => $language)
+        {
+            $id = Arr::get($language, SiteSubdomainLanguage::ID);
+
+            $siteSubdomainLanguage = $subdomain
+                ->languages()
+                ->find($id);
+
+            if ($siteSubdomainLanguage)
+            {
+                $siteSubdomainLanguage
+                    ->update([
+                        SiteSubdomainLanguage::LANGUAGE => Arr::get($language, SiteSubdomainLanguage::LANGUAGE),
+                        SiteSubdomainLanguage::POSITION => $position,
+                    ]);
+            }
+            else
+            {
+                $siteSubdomainLanguage = $subdomain
+                    ->languages()
+                    ->create([
+                        SiteSubdomainLanguage::LANGUAGE => Arr::get($language, SiteSubdomainLanguage::LANGUAGE),
+                        SiteSubdomainLanguage::POSITION => $position,
+                    ]);
+            }
+
+            $processed[] = $siteSubdomainLanguage->{SiteSubdomainLanguage::ID};
+        }
+
+        $subdomain
+            ->languages()
+            ->whereNotIn(SiteSubdomainLanguage::ID, $processed)
+            ->delete();
     }
 
     #endregion
