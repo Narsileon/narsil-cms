@@ -1,6 +1,7 @@
 import { Dialog } from "radix-ui";
+import { type ComponentProps } from "react";
 
-type DialogPortalProps = React.ComponentProps<typeof Dialog.Portal> & {};
+type DialogPortalProps = ComponentProps<typeof Dialog.Portal> & {};
 
 function DialogPortal({ ...props }: DialogPortalProps) {
   return <Dialog.Portal data-slot="dialog-portal" {...props} />;

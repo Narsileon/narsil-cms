@@ -1,12 +1,13 @@
 import { type VariantProps } from "class-variance-authority";
 import { ToggleGroup } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { toggleRootVariants } from "@narsil-cms/components/toggle";
 import { cn } from "@narsil-cms/lib/utils";
 
 import useToggleGroup from "./toggle-group-context";
 
-type ToggleGroupItemProps = React.ComponentProps<typeof ToggleGroup.Item> &
+type ToggleGroupItemProps = ComponentProps<typeof ToggleGroup.Item> &
   VariantProps<typeof toggleRootVariants> & {};
 
 function ToggleGroupItem({
@@ -27,7 +28,7 @@ function ToggleGroupItem({
           size: context.size || size,
           variant: context.variant || variant,
         }),
-        "min-w-0 flex-1 shrink-0 rounded-none shadow-none",
+        "min-w-0 flex-1 shrink-0 cursor-pointer rounded-none shadow-none",
         "first:rounded-l-md",
         "focus:z-10",
         "focus-visible:z-10",

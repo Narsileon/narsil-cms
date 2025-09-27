@@ -72,7 +72,7 @@ class TemplateController extends AbstractController
 
         $form->action = route('templates.store');
         $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.create');
+        $form->submitLabel = trans('narsil::ui.save');
 
         return $this->render(
             component: 'narsil/cms::resources/form',

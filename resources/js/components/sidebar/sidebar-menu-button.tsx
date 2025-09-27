@@ -1,5 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Tooltip } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
@@ -42,7 +43,7 @@ const sidebarMenuButtonVariants = cva(
   },
 );
 
-type SidebarMenuButtonProps = React.ComponentProps<"button"> &
+type SidebarMenuButtonProps = ComponentProps<"button"> &
   VariantProps<typeof sidebarMenuButtonVariants> & {
     asChild?: boolean;
     isActive?: boolean;

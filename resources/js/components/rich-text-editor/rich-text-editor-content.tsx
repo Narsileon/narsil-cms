@@ -1,7 +1,8 @@
 import { EditorContent, useCurrentEditor } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 type RichTextEditorContentProps = Omit<
-  React.ComponentProps<typeof EditorContent>,
+  ComponentProps<typeof EditorContent>,
   "editor"
 > & {};
 

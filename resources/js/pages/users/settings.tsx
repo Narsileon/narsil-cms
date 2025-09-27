@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import { Tabs } from "@narsil-cms/blocks";
 import {
   ConfigurationForm,
@@ -54,7 +56,7 @@ function UserSettings({
             icon: "shield",
             content: <SecurityForm twoFactorForm={twoFactorForm} />,
           },
-        ].filter(Boolean) as React.ComponentProps<typeof Tabs>["elements"]
+        ].filter(Boolean) as ComponentProps<typeof Tabs>["elements"]
       }
     />
   );

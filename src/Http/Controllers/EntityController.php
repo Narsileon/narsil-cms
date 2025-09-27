@@ -108,7 +108,7 @@ class EntityController extends AbstractController
             'collection' => $collection
         ]);
         $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.create');
+        $form->submitLabel = trans('narsil::ui.save');
 
         return $this->render(
             component: 'narsil/cms::resources/form',

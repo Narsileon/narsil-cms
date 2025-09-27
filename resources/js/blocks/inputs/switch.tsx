@@ -1,7 +1,9 @@
+import { type ComponentProps } from "react";
+
 import { SwitchRoot, SwitchThumb } from "@narsil-cms/components/switch";
 
-type SwitchProps = React.ComponentProps<typeof SwitchRoot> & {
-  thumbProps?: Partial<React.ComponentProps<typeof SwitchThumb>>;
+type SwitchProps = ComponentProps<typeof SwitchRoot> & {
+  thumbProps?: Partial<ComponentProps<typeof SwitchThumb>>;
 };
 
 function Switch({ thumbProps, ...props }: SwitchProps) {

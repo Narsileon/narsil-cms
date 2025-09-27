@@ -1,4 +1,5 @@
 import { get, isString } from "lodash";
+import { type ComponentProps } from "react";
 
 import { FormLabel } from "@narsil-cms/components/form";
 import {
@@ -14,7 +15,7 @@ type RadioGroupOption =
       value: string;
     };
 
-type RadioGroupProps = React.ComponentProps<typeof RadioGroupRoot> & {
+type RadioGroupProps = ComponentProps<typeof RadioGroupRoot> & {
   options?: RadioGroupOption[];
 };
 

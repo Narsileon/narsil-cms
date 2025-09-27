@@ -1,8 +1,9 @@
 import { Row } from "@tanstack/react-table";
+import { type ComponentProps } from "react";
 
 import { Checkbox } from "@narsil-cms/blocks/inputs";
 
-type DataTableRowSelectProps = React.ComponentProps<typeof Checkbox> & {
+type DataTableRowSelectProps = ComponentProps<typeof Checkbox> & {
   row: Row<unknown>;
 };
 

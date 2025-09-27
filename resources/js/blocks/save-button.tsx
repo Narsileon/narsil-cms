@@ -1,5 +1,5 @@
 import { router } from "@inertiajs/react";
-import { useEffect } from "react";
+import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Separator, Shortcut } from "@narsil-cms/blocks";
@@ -18,7 +18,7 @@ import { type RouteNames } from "@narsil-cms/types";
 
 import Button from "./button";
 
-type SaveButtonProps = React.ComponentProps<"div"> & {
+type SaveButtonProps = ComponentProps<"div"> & {
   routes?: RouteNames;
   submitLabel: string;
 };

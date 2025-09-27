@@ -18,7 +18,6 @@ use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Middleware\LocaleMiddleware;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Support\LabelsBag;
@@ -91,9 +90,24 @@ class UserConfigurationController extends AbstractController
             $configuration?->update($attributes);
         }
 
+        if ($color = Arr::get($attributes, UserConfiguration::COLOR))
+        {
+            Session::put(UserConfiguration::COLOR, $color);
+        }
+
         if ($locale = Arr::get($attributes, UserConfiguration::LOCALE))
         {
-            Session::put(LocaleMiddleware::LOCALE, $locale);
+            Session::put(UserConfiguration::LOCALE, $locale);
+        }
+
+        if ($radius = Arr::get($attributes, UserConfiguration::RADIUS))
+        {
+            Session::put(UserConfiguration::RADIUS, $radius);
+        }
+
+        if ($theme = Arr::get($attributes, UserConfiguration::THEME))
+        {
+            Session::put(UserConfiguration::THEME, $theme);
         }
 
         return back();

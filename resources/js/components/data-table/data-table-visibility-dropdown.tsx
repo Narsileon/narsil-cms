@@ -1,4 +1,5 @@
 import { isString } from "lodash";
+import { type ComponentProps } from "react";
 
 import {
   DropdownMenuCheckboxItem,
@@ -9,7 +10,7 @@ import {
 
 import useDataTable from "./data-table-context";
 
-type DataTableVisibilityDropdownProps = React.ComponentProps<
+type DataTableVisibilityDropdownProps = ComponentProps<
   typeof DropdownMenuTrigger
 > & {
   options?: string[];

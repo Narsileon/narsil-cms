@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentProps } from "react";
 
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 
-type InputFileProps = Omit<
-  React.ComponentProps<typeof InputContent>,
-  "onChange"
-> & {
+type InputFileProps = Omit<ComponentProps<typeof InputContent>, "onChange"> & {
   value: File | string | undefined;
   onChange: (value: File | string | undefined) => void;
 };

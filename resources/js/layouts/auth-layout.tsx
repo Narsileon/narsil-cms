@@ -8,6 +8,7 @@ import {
   Button,
   Separator,
   Sidebar,
+  ThemeToggleGroup,
   Toaster,
   Tooltip,
 } from "@narsil-cms/blocks";
@@ -53,8 +54,8 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const { setRadius } = useRadiusStore();
   const { setTheme } = useThemeStore();
 
-  const { auth, navigation } = children?.props;
-  const { color, radius, theme } = auth?.configuration ?? {};
+  const { auth, navigation, session } = children?.props;
+  const { color, radius, theme } = session;
 
   const groupedMenu = groupBy(
     navigation.userMenu,
@@ -71,7 +72,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
     if (theme) {
       setTheme(theme);
     }
-  }, [color, radius, theme]);
+  }, []);
 
   return (
     <SidebarProvider isMobile={isMobile}>
@@ -128,6 +129,8 @@ function AuthLayout({ children }: AuthLayoutProps) {
                   </Fragment>
                 );
               })}
+              <DropdownMenuSeparator />
+              <ThemeToggleGroup className="w-full" />
             </DropdownMenuContent>
           </DropdownMenuRoot>
         </header>

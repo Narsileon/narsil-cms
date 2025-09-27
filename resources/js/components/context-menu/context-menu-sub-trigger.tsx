@@ -1,9 +1,10 @@
 import { ContextMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuSubTriggerProps = React.ComponentProps<
+type ContextMenuSubTriggerProps = ComponentProps<
   typeof ContextMenu.SubTrigger
 > & {
   inset?: boolean;

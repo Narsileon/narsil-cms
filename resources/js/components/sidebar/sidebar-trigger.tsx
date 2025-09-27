@@ -1,10 +1,12 @@
+import { type ComponentProps } from "react";
+
 import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 
 import useSidebar from "./sidebar-context";
 
-type SidebarTriggerProps = React.ComponentProps<typeof Button> & {};
+type SidebarTriggerProps = ComponentProps<typeof Button> & {};
 
 function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
   const { trans } = useLabels();

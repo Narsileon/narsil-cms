@@ -1,8 +1,9 @@
 import { Tabs } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TabsTriggerProps = React.ComponentProps<typeof Tabs.Trigger> & {};
+type TabsTriggerProps = ComponentProps<typeof Tabs.Trigger> & {};
 
 function TabsTrigger({ className, ...props }: TabsTriggerProps) {
   return (

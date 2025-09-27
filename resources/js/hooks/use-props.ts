@@ -5,9 +5,7 @@ import { type Theme } from "@narsil-cms/stores/theme-store";
 import { type MenuItem } from "@narsil-cms/types";
 
 export type GlobalProps = {
-  auth: AuthProps & {
-    configuration: ConfigurationProps;
-  };
+  auth: AuthProps;
   description: string;
   labels: Record<string, string>;
   locale: string;
@@ -20,6 +18,7 @@ export type GlobalProps = {
     userMenu: MenuItem[];
   };
   redirect: RedirectProps;
+  session: SessionProps;
   title: string;
   url: string;
 };
@@ -33,7 +32,7 @@ type AuthProps = {
   two_factor_confirmed_at: string | null;
 };
 
-type ConfigurationProps = {
+type SessionProps = {
   color: string;
   radius: number;
   theme: Theme;

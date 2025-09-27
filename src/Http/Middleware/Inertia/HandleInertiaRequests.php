@@ -13,6 +13,7 @@ use Narsil\Contracts\Menus\AuthMenu;
 use Narsil\Contracts\Menus\GuestMenu;
 use Narsil\Contracts\Menus\Sidebar;
 use Narsil\Http\Resources\UserInertiaResource;
+use Narsil\Models\Users\UserConfiguration;
 use Narsil\Services\BreadcrumbService;
 
 #endregions
@@ -58,10 +59,12 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $locale = App::getLocale();
+        $user = Auth::user();
 
-        $auth = new UserInertiaResource();
+        $auth = $user ? new UserInertiaResource($user) : null;
         $navigation = $this->getNavigation($request);
         $redirect = $this->getRedirect($request);
+        $session = $this->getSession($request);
 
         return [
             ...parent::share($request),
@@ -70,6 +73,7 @@ class HandleInertiaRequests extends Middleware
             'navigation' => $navigation,
             'locale' => $locale,
             'redirect' => $redirect,
+            'session' => $session,
         ];
     }
 
@@ -104,6 +108,20 @@ class HandleInertiaRequests extends Middleware
             'info' => Session::get('info'),
             'success' => Session::get('success'),
             'warning' => Session::get('warning'),
+        ];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    protected function getSession(Request $request): array
+    {
+        return [
+            UserConfiguration::COLOR => Session::get(UserConfiguration::COLOR),
+            UserConfiguration::RADIUS => Session::get(UserConfiguration::RADIUS),
+            UserConfiguration::THEME => Session::get(UserConfiguration::THEME),
         ];
     }
 

@@ -1,5 +1,6 @@
 import { type VariantProps } from "class-variance-authority";
 import { Dialog } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { VisuallyHidden } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
@@ -9,9 +10,9 @@ import dialogContentVariants from "./dialog-content-variants";
 import DialogOverlay from "./dialog-overlay";
 import DialogPortal from "./dialog-portal";
 
-type DialogContentProps = React.ComponentProps<typeof Dialog.Content> &
+type DialogContentProps = ComponentProps<typeof Dialog.Content> &
   VariantProps<typeof dialogContentVariants> &
-  Pick<React.ComponentProps<typeof DialogPortal>, "container"> & {
+  Pick<ComponentProps<typeof DialogPortal>, "container"> & {
     showCloseButton?: boolean;
   };
 

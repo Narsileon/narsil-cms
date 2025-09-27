@@ -1,10 +1,11 @@
+import { type ComponentProps } from "react";
 import { PanelResizeHandle } from "react-resizable-panels";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type ResizableHandleProps = React.ComponentProps<typeof PanelResizeHandle> & {
+type ResizableHandleProps = ComponentProps<typeof PanelResizeHandle> & {
   icon?: IconName | null;
 };
 

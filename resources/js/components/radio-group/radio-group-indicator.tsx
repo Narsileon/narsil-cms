@@ -1,9 +1,10 @@
 import { RadioGroup } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type RadioGroupIndicatorProps = React.ComponentProps<
+type RadioGroupIndicatorProps = ComponentProps<
   typeof RadioGroup.Indicator
 > & {};
 

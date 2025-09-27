@@ -13,7 +13,7 @@ const buttonRootVariants = cva(
   {
     variants: {
       variant: {
-        default: cn(
+        primary: cn(
           "text-primary-foreground shadow-xs",
           "bg-primary hover:bg-primary/85",
         ),
@@ -42,7 +42,7 @@ const buttonRootVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
   },

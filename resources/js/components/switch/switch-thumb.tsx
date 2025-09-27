@@ -1,8 +1,9 @@
 import { Switch } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SwitchThumbProps = React.ComponentProps<typeof Switch.Thumb> & {};
+type SwitchThumbProps = ComponentProps<typeof Switch.Thumb> & {};
 
 function SwitchThumb({ className, ...props }: SwitchThumbProps) {
   return (

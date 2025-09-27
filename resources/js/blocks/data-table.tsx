@@ -5,14 +5,16 @@ import {
 import { flexRender, Table } from "@tanstack/react-table";
 
 import {
-  DataTableBody,
   DataTableCell,
   DataTableHead,
-  DataTableHeader,
-  DataTableRoot,
   DataTableRow,
 } from "@narsil-cms/components/data-table";
-import { TableCell } from "@narsil-cms/components/table";
+import {
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRoot,
+} from "@narsil-cms/components/table";
 
 type DataTableProps = {
   dataTable: Table<unknown>;
@@ -21,8 +23,11 @@ type DataTableProps = {
 function DataTable({ dataTable }: DataTableProps) {
   return (
     <div className="overflow-x-auto rounded-md border">
-      <DataTableRoot className="min-w-max">
-        <DataTableHeader>
+      <TableRoot
+        className="min-w-max"
+        aria-colcount={dataTable.getAllColumns().length}
+      >
+        <TableHeader>
           {dataTable.getHeaderGroups().map((headerGroup) => (
             <DataTableRow key={headerGroup.id}>
               <SortableContext
@@ -39,8 +44,8 @@ function DataTable({ dataTable }: DataTableProps) {
               </SortableContext>
             </DataTableRow>
           ))}
-        </DataTableHeader>
-        <DataTableBody>
+        </TableHeader>
+        <TableBody>
           {dataTable.getRowModel().rows?.length ? (
             dataTable.getRowModel().rows.map((row) => (
               <DataTableRow selected={row.getIsSelected()} key={row.id}>
@@ -70,8 +75,8 @@ function DataTable({ dataTable }: DataTableProps) {
               />
             </DataTableRow>
           )}
-        </DataTableBody>
-      </DataTableRoot>
+        </TableBody>
+      </TableRoot>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { get, isString } from "lodash";
+import { type ComponentProps } from "react";
 
 import {
   SelectContent,
@@ -22,25 +23,21 @@ type SelectOption =
       value: string;
     };
 
-type SelectProps = React.ComponentProps<typeof SelectRoot> & {
-  contentProps?: Partial<React.ComponentProps<typeof SelectContent>>;
-  iconProps?: Partial<React.ComponentProps<typeof SelectIcon>>;
-  itemProps?: Partial<React.ComponentProps<typeof SelectItem>>;
-  itemIndicatorProps?: Partial<
-    React.ComponentProps<typeof SelectItemIndicator>
-  >;
-  itemTextProps?: Partial<React.ComponentProps<typeof SelectItemText>>;
+type SelectProps = ComponentProps<typeof SelectRoot> & {
+  contentProps?: Partial<ComponentProps<typeof SelectContent>>;
+  iconProps?: Partial<ComponentProps<typeof SelectIcon>>;
+  itemProps?: Partial<ComponentProps<typeof SelectItem>>;
+  itemIndicatorProps?: Partial<ComponentProps<typeof SelectItemIndicator>>;
+  itemTextProps?: Partial<ComponentProps<typeof SelectItemText>>;
   options?: SelectOption[];
-  portalProps?: Partial<React.ComponentProps<typeof SelectPortal>>;
+  portalProps?: Partial<ComponentProps<typeof SelectPortal>>;
   scrollDownButtonProps?: Partial<
-    React.ComponentProps<typeof SelectScrollDownButton>
+    ComponentProps<typeof SelectScrollDownButton>
   >;
-  scrollUpButtonProps?: Partial<
-    React.ComponentProps<typeof SelectScrollUpButton>
-  >;
-  triggerProps?: Partial<React.ComponentProps<typeof SelectTrigger>>;
-  valueProps?: Partial<React.ComponentProps<typeof SelectValue>>;
-  viewportProps?: Partial<React.ComponentProps<typeof SelectViewport>>;
+  scrollUpButtonProps?: Partial<ComponentProps<typeof SelectScrollUpButton>>;
+  triggerProps?: Partial<ComponentProps<typeof SelectTrigger>>;
+  valueProps?: Partial<ComponentProps<typeof SelectValue>>;
+  viewportProps?: Partial<ComponentProps<typeof SelectViewport>>;
 };
 
 const Select = ({

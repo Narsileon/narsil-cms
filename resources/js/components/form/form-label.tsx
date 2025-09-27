@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import { Label, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
@@ -5,7 +7,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import useFormField from "./form-field-context";
 
-type FormLabelProps = React.ComponentProps<typeof Label> & {
+type FormLabelProps = ComponentProps<typeof Label> & {
   required?: boolean;
 };
 

@@ -4,20 +4,15 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Illuminate\Support\Facades\App;
-use Locale;
-use Narsil\Contracts\Fields\SelectInput;
-use Narsil\Contracts\Fields\SwitchInput;
+use Narsil\Contracts\Fields\RelationsInput;
 use Narsil\Contracts\Fields\TextInput;
 use Narsil\Contracts\Forms\SiteForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteGroup;
+use Narsil\Models\Sites\SiteSubdomain;
 use Narsil\Services\RouteService;
-use Narsil\Support\SelectOption;
-use ResourceBundle;
 
 #endregion
 
@@ -51,8 +46,7 @@ class SiteForm extends AbstractForm implements Contract
      */
     public function layout(): array
     {
-        $groupOptions = static::getGroupOptions();
-        $languageOptions = static::getLanguageOptions();
+        $subdomainForm = $this->getSubdomainForm();
 
         return [
             static::mainSection([
@@ -63,56 +57,40 @@ class SiteForm extends AbstractForm implements Contract
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->setRequired(true),
-                    ])
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::HANDLE,
-                        Field::NAME => trans('narsil::validation.attributes.handle'),
+                        Field::HANDLE => Site::DOMAIN,
+                        Field::NAME => trans('narsil::validation.attributes.domain'),
                         Field::TYPE => TextInput::class,
                         Field::SETTINGS => app(TextInput::class)
                             ->setRequired(true),
-                    ])
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::LANGUAGE,
-                        Field::NAME => trans('narsil::validation.attributes.language'),
-                        Field::TYPE => SelectInput::class,
-                        Field::SETTINGS => app(SelectInput::class)
-                            ->setOptions($languageOptions)
-                            ->setPlaceholder(trans('narsil::placeholders.search'))
+                        Field::HANDLE => Site::PATTERN,
+                        Field::NAME => trans('narsil::validation.attributes.pattern'),
+                        Field::TYPE => TextInput::class,
+                        Field::SETTINGS => app(TextInput::class)
                             ->setRequired(true),
-                    ])
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::GROUP_ID,
-                        Field::NAME => trans('narsil::validation.attributes.group'),
-                        Field::TYPE => SelectInput::class,
-                        Field::SETTINGS => app(SelectInput::class)
-                            ->setOptions($groupOptions)
-                            ->setPlaceholder(trans('narsil::placeholders.search')),
-                    ])
-                ]),
-            ]),
-            static::sidebarSection([
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::ENABLED,
-                        Field::NAME => trans('narsil::validation.attributes.enabled'),
-                        Field::TYPE => SwitchInput::class,
-                        Field::SETTINGS => app(SwitchInput::class)
-                            ->setDefaultValue(true),
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Site::PRIMARY,
-                        Field::NAME => trans('narsil::validation.attributes.primary'),
-                        Field::TYPE => SwitchInput::class,
-                        Field::SETTINGS => app(SwitchInput::class),
-                    ])
+                        Field::HANDLE => Site::RELATION_SUBDOMAINS,
+                        Field::NAME => trans('narsil::validation.attributes.subdomains'),
+                        Field::TYPE => RelationsInput::class,
+                        Field::SETTINGS => app(RelationsInput::class)
+                            ->setForm($subdomainForm)
+                            ->addOption(
+                                identifier: SiteSubdomain::TABLE,
+                                label: '',
+                                optionLabel: SiteSubdomain::SUBDOMAIN,
+                                optionValue: SiteSubdomain::ID,
+                            ),
+                    ]),
                 ]),
             ]),
             static::informationSection(),
@@ -124,47 +102,26 @@ class SiteForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * @return array<string>
+     * @return array<Field>
      */
-    protected static function getGroupOptions(): array
+    protected function getSubdomainForm(): array
     {
-        $groups = SiteGroup::query()
-            ->orderBy(SiteGroup::NAME)
-            ->get();
-
-        $options = [];
-
-        foreach ($groups as $group)
-        {
-            $options[] = new SelectOption($group->{SiteGroup::NAME}, (string)$group->{SiteGroup::ID});
-        }
-
-        return $options;
-    }
-
-    /**
-     * @return array<string>
-     */
-    protected static function getLanguageOptions(): array
-    {
-        $locales = ResourceBundle::getLocales('');
-
-        $options = [];
-
-        foreach ($locales as $locale)
-        {
-            $options[] = new SelectOption(
-                label: Locale::getDisplayName($locale, App::getLocale()),
-                value: $locale
-            )->jsonSerialize();
-        }
-
-        usort($options, function ($a, $b)
-        {
-            return strcmp($a['label'], $b['label']);
-        });
-
-        return array_values($options);
+        return [
+            new Field([
+                Field::HANDLE => SiteSubdomain::SUBDOMAIN,
+                Field::NAME => trans('narsil::validation.attributes.pattern'),
+                Field::TYPE => TextInput::class,
+                Field::SETTINGS => app(TextInput::class)
+                    ->setRequired(true),
+            ]),
+            new Field([
+                Field::HANDLE => SiteSubdomain::RELATION_LANGUAGES,
+                Field::NAME => trans('narsil::validation.attributes.subdomains'),
+                Field::TYPE => RelationsInput::class,
+                Field::SETTINGS => app(RelationsInput::class)
+                    ->setOptions([]),
+            ]),
+        ];
     }
 
     #endregion

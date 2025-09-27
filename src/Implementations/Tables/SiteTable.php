@@ -6,7 +6,6 @@ namespace Narsil\Implementations\Tables;
 
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteGroup;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -38,16 +37,7 @@ class SiteTable extends AbstractTable
     {
         return [
             new TableColumn(
-                id: SiteGroup::ID,
-                visibility: true,
-            ),
-            new TableColumn(
-                accessorKey: Site::RELATION_GROUP . '.' . SiteGroup::NAME,
-                id: Site::GROUP_ID,
-                visibility: true,
-            ),
-            new TableColumn(
-                id: Site::HANDLE,
+                id: Site::ID,
                 visibility: true,
             ),
             new TableColumn(
@@ -55,11 +45,11 @@ class SiteTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Site::LANGUAGE,
+                id: Site::DOMAIN,
                 visibility: true,
             ),
             new TableColumn(
-                id: Site::PRIMARY,
+                id: Site::PATTERN,
                 visibility: true,
             ),
             new TableColumn(

@@ -1,11 +1,12 @@
 import { type VariantProps } from "class-variance-authority";
 import { Separator } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 import separatorRootVariants from "./separator-root-variants";
 
-type SeparatorRootProps = React.ComponentProps<typeof Separator.Root> &
+type SeparatorRootProps = ComponentProps<typeof Separator.Root> &
   VariantProps<typeof separatorRootVariants> & {};
 
 function SeparatorRoot({

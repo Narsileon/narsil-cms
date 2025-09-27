@@ -51,7 +51,6 @@ class Sidebar extends AbstractMenu implements Contract
             $this->getStructuresGroup(),
             $this->getManagementGroup(),
             $this->getToolsGroup(),
-            $this->getSettingsGroup(),
         );
     }
 
@@ -92,6 +91,11 @@ class Sidebar extends AbstractMenu implements Contract
         return [
             new MenuItem()
                 ->group($group)
+                ->href(route('sites.index'))
+                ->icon('globe')
+                ->label(trans('narsil::tables.sites')),
+            new MenuItem()
+                ->group($group)
                 ->href(route('users.index'))
                 ->icon('users')
                 ->label(trans('narsil::tables.users')),
@@ -106,25 +110,9 @@ class Sidebar extends AbstractMenu implements Contract
     /**
      * @return array<MenuItem>
      */
-    protected function getSettingsGroup(): array
-    {
-        $group = trans('narsil::ui.tools');
-
-        return [
-            new MenuItem()
-                ->group($group)
-                ->href(route('sites.index'))
-                ->icon('globe')
-                ->label(trans('narsil::tables.sites')),
-        ];
-    }
-
-    /**
-     * @return array<MenuItem>
-     */
     protected function getStructuresGroup(): array
     {
-        $group = trans('narsil::ui.management');
+        $group = trans('narsil::ui.structures');
 
         return [
             new MenuItem()
@@ -150,7 +138,7 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function getToolsGroup(): array
     {
-        $group = trans('narsil::ui.settings');
+        $group = trans('narsil::ui.tools');
 
         return [
             new MenuItem()

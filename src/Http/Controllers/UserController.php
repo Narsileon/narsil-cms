@@ -66,7 +66,7 @@ class UserController extends AbstractController
 
         $form->action = route('users.store');
         $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.create');
+        $form->submitLabel = trans('narsil::ui.save');
 
         return $this->render(
             component: 'narsil/cms::resources/form',

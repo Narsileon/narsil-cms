@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import {
   DialogContent,
   DialogDescription,
@@ -9,7 +11,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import useSidebar from "./sidebar-context";
 
-type SidebarRootProps = React.ComponentProps<"div"> & {
+type SidebarRootProps = ComponentProps<"div"> & {
   collapsible?: "offcanvas" | "icon" | "none";
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";

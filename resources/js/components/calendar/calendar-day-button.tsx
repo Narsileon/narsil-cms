@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ComponentProps } from "react";
 import { DayButton, getDefaultClassNames } from "react-day-picker";
 
 import { Button } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
 
-type CalendarDayButtonProps = React.ComponentProps<typeof DayButton> & {};
+type CalendarDayButtonProps = ComponentProps<typeof DayButton> & {};
 
 function CalendarDayButton({
   className,

@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type CardFooterProps = React.ComponentProps<"div"> & {};
+type CardFooterProps = ComponentProps<"div"> & {};
 
 function CardFooter({ className, ...props }: CardFooterProps) {
   return (

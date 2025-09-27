@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type SectionRootProps = React.ComponentProps<"section"> & {};
+type SectionRootProps = ComponentProps<"section"> & {};
 
 const SectionRoot = ({ className, ...props }: SectionRootProps) => {
   return (

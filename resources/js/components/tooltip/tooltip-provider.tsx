@@ -1,6 +1,7 @@
 import { Tooltip } from "radix-ui";
+import { type ComponentProps } from "react";
 
-type TooltipProviderProps = React.ComponentProps<typeof Tooltip.Provider> & {};
+type TooltipProviderProps = ComponentProps<typeof Tooltip.Provider> & {};
 
 function TooltipProvider({ ...props }: TooltipProviderProps) {
   return <Tooltip.Provider data-slot="tooltip-provider" {...props} />;

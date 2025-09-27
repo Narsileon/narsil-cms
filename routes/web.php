@@ -12,7 +12,6 @@ use Narsil\Http\Controllers\FieldController;
 use Narsil\Http\Controllers\RoleController;
 use Narsil\Http\Controllers\SessionController;
 use Narsil\Http\Controllers\SiteController;
-use Narsil\Http\Controllers\SiteGroupController;
 use Narsil\Http\Controllers\TemplateController;
 use Narsil\Http\Controllers\UserBookmarkController;
 use Narsil\Http\Controllers\UserConfigurationController;
@@ -22,7 +21,6 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteGroup;
 use Narsil\Models\User;
 
 #endregion
@@ -82,11 +80,6 @@ Route::middleware([
             'show',
         ]);
         resource(Role::TABLE, RoleController::class, [
-            'show',
-        ]);
-        resource(SiteGroup::TABLE, SiteGroupController::class, [
-            'replicate',
-            'replicateMany',
             'show',
         ]);
         resource(Site::TABLE, SiteController::class, [

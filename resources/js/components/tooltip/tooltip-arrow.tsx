@@ -1,8 +1,9 @@
 import { Tooltip } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TooltipArrowProps = React.ComponentProps<typeof Tooltip.Arrow> & {};
+type TooltipArrowProps = ComponentProps<typeof Tooltip.Arrow> & {};
 
 function TooltipArrow({ className, ...props }: TooltipArrowProps) {
   return (

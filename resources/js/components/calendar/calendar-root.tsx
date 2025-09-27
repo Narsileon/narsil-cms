@@ -1,3 +1,4 @@
+import { type ComponentProps } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 
 import { ButtonRoot, buttonRootVariants } from "@narsil-cms/components/button";
@@ -6,8 +7,8 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import CalendarDayButton from "./calendar-day-button";
 
-type CalendarRootProps = React.ComponentProps<typeof DayPicker> & {
-  buttonVariant?: React.ComponentProps<typeof ButtonRoot>["variant"];
+type CalendarRootProps = ComponentProps<typeof DayPicker> & {
+  buttonVariant?: ComponentProps<typeof ButtonRoot>["variant"];
 };
 
 function CalendarRoot({

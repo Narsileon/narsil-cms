@@ -17,9 +17,7 @@ use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
-use Narsil\Http\Resources\DataTableFilterCollection;
 use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteGroup;
 
 #endregion
 
@@ -42,16 +40,7 @@ class SiteController extends AbstractController
 
         $query = Site::query();
 
-        $this->filter($query, Site::GROUP_ID);
-
         $collection = new DataTableCollection($query, Site::TABLE);
-
-        $collectionFilter = new DataTableFilterCollection(
-            SiteGroup::all(),
-            addLabel: trans('narsil::ui.add_group'),
-            labelPath: SiteGroup::NAME,
-            table: SiteGroup::TABLE,
-        );
 
         return $this->render(
             component: 'narsil/cms::resources/index',
@@ -59,7 +48,6 @@ class SiteController extends AbstractController
             description: trans('narsil::tables.sites'),
             props: [
                 'collection' => $collection,
-                'collectionFilter' => $collectionFilter,
             ]
         );
     }
@@ -77,7 +65,7 @@ class SiteController extends AbstractController
 
         $form->action = route('sites.store');
         $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.create');
+        $form->submitLabel = trans('narsil::ui.save');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -245,9 +233,7 @@ class SiteController extends AbstractController
 
         $replicated
             ->fill([
-                Site::HANDLE => $site->{Site::HANDLE} . '_copy',
                 Site::NAME => $site->{Site::NAME} . ' (copy)',
-                Site::PRIMARY => false,
             ])
             ->save();
     }

@@ -1,11 +1,10 @@
 import { ScrollArea } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ScrollAreaViewportProps = React.ComponentProps<
-  typeof ScrollArea.Viewport
-> & {
-  orientation?: React.ComponentProps<typeof ScrollArea.Viewport>;
+type ScrollAreaViewportProps = ComponentProps<typeof ScrollArea.Viewport> & {
+  orientation?: ComponentProps<typeof ScrollArea.Viewport>;
 };
 
 const ScrollAreaViewport = ({

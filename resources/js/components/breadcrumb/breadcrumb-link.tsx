@@ -1,8 +1,9 @@
 import { Slot } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type BreadcrumbLinkProps = React.ComponentProps<"a"> & {
+type BreadcrumbLinkProps = ComponentProps<"a"> & {
   asChild?: boolean;
 };
 

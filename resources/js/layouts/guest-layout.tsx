@@ -2,7 +2,14 @@ import { groupBy } from "lodash";
 import { useRef } from "react";
 import { Fragment } from "react/jsx-runtime";
 
-import { Button, Container, Logo, Toaster, Tooltip } from "@narsil-cms/blocks";
+import {
+  Button,
+  Container,
+  Logo,
+  ThemeToggleGroup,
+  Toaster,
+  Tooltip,
+} from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -77,6 +84,8 @@ function GuestLayout({ children }: GuestLayoutProps) {
                   </Fragment>
                 );
               })}
+              <DropdownMenuSeparator />
+              <ThemeToggleGroup className="w-full" />
             </DropdownMenuContent>
           </DropdownMenuRoot>
         </Container>

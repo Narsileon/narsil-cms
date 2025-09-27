@@ -1,12 +1,11 @@
+import { type ComponentProps } from "react";
+
 import { FormRenderer } from "@narsil-cms/components/form";
 import { SortableItem } from "@narsil-cms/components/sortable";
 
 import { Builder, BuilderNode } from ".";
 
-type BuilderItemProps = Omit<
-  React.ComponentProps<typeof SortableItem>,
-  "item"
-> & {
+type BuilderItemProps = Omit<ComponentProps<typeof SortableItem>, "item"> & {
   baseHandle?: string;
   node: BuilderNode;
 };

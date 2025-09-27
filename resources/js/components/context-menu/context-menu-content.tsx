@@ -1,10 +1,9 @@
 import { ContextMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuContentProps = React.ComponentProps<
-  typeof ContextMenu.Content
-> & {};
+type ContextMenuContentProps = ComponentProps<typeof ContextMenu.Content> & {};
 
 function ContextMenuContent({ className, ...props }: ContextMenuContentProps) {
   return (

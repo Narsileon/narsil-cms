@@ -12,7 +12,7 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
 
 import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
@@ -25,7 +25,7 @@ import { type GroupedSelectOption } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 
-type SortableProps = React.ComponentProps<typeof SortableListContext> & {};
+type SortableProps = ComponentProps<typeof SortableListContext> & {};
 
 function Sortable({
   items,

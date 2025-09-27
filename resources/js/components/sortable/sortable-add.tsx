@@ -1,6 +1,6 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { isNumber } from "lodash";
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Button } from "@narsil-cms/blocks";
@@ -12,7 +12,7 @@ import { type GroupedSelectOption, type SelectOption } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 
-type SortableAddProps = React.ComponentProps<"div"> & {
+type SortableAddProps = ComponentProps<"div"> & {
   group: GroupedSelectOption;
   ids: UniqueIdentifier[];
   items: AnonymousItem[];
@@ -50,7 +50,7 @@ function SortableAdd({
     let value = originalValue;
 
     while (ids.includes(value)) {
-      if (isNumber(value)) {
+      if (isNumber(originalValue)) {
         value = originalValue + counter;
       } else {
         value = `${originalValue}_${counter}`;
@@ -82,7 +82,7 @@ function SortableAdd({
     return selectOption;
   }
 
-  return (
+  return group.routes?.create ? (
     <div
       className={cn(
         "grid w-full grid-cols-4 items-center justify-between gap-6",
@@ -134,6 +134,8 @@ function SortableAdd({
         </Button>
       ) : null}
     </div>
+  ) : (
+    <Button onClick={() => {}}>Add</Button>
   );
 }
 

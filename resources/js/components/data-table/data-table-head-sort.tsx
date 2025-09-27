@@ -1,9 +1,10 @@
 import { Header } from "@tanstack/react-table";
+import { type ComponentProps } from "react";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 
-type DataTableHeadSortProps = React.ComponentProps<typeof Button> & {
+type DataTableHeadSortProps = ComponentProps<typeof Button> & {
   header: Header<unknown, unknown>;
 };
 

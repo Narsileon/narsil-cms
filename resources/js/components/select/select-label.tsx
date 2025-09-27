@@ -1,8 +1,9 @@
 import { Select } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectLabelProps = React.ComponentProps<typeof Select.Label> & {};
+type SelectLabelProps = ComponentProps<typeof Select.Label> & {};
 
 function SelectLabel({ className, ...props }: SelectLabelProps) {
   return (

@@ -1,9 +1,10 @@
 import { ContextMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuSeparatorProps = React.ComponentProps<
+type ContextMenuSeparatorProps = ComponentProps<
   typeof ContextMenu.Separator
 > & {};
 

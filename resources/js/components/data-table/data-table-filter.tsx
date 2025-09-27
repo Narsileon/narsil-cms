@@ -1,3 +1,4 @@
+import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Button, Toggle } from "@narsil-cms/blocks";
@@ -9,7 +10,7 @@ import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 import { type DataTableFilterCollection } from "@narsil-cms/types";
 
-type DataTableFilterProps = React.ComponentProps<"ul"> &
+type DataTableFilterProps = ComponentProps<"ul"> &
   DataTableFilterCollection & {};
 
 function DataTableFilter({

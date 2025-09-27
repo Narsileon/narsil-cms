@@ -1,8 +1,9 @@
 import { Menubar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarRootProps = React.ComponentProps<typeof Menubar.Root> & {};
+type MenubarRootProps = ComponentProps<typeof Menubar.Root> & {};
 
 function MenubarRoot({ className, ...props }: MenubarRootProps) {
   return (

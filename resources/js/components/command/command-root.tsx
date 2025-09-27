@@ -1,8 +1,9 @@
 import { Command } from "cmdk";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandRootProps = React.ComponentProps<typeof Command> & {};
+type CommandRootProps = ComponentProps<typeof Command> & {};
 
 function CommandRoot({ className, ...props }: CommandRootProps) {
   return (

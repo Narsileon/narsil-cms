@@ -1,8 +1,9 @@
 import { Accordion } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AccordionHeaderProps = React.ComponentProps<typeof Accordion.Header> & {};
+type AccordionHeaderProps = ComponentProps<typeof Accordion.Header> & {};
 
 function AccordionHeader({ className, ...props }: AccordionHeaderProps) {
   return (

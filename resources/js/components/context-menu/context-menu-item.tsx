@@ -1,8 +1,9 @@
 import { ContextMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuItemProps = React.ComponentProps<typeof ContextMenu.Item> & {
+type ContextMenuItemProps = ComponentProps<typeof ContextMenu.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };

@@ -1,11 +1,12 @@
 import { type DraggableAttributes } from "@dnd-kit/core";
 import { type SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
+import { type ComponentProps } from "react";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DataTableHeadMoveProps = React.ComponentProps<typeof Button> & {
+type DataTableHeadMoveProps = ComponentProps<typeof Button> & {
   attributes: DraggableAttributes;
   listeners: SyntheticListenerMap | undefined;
 };

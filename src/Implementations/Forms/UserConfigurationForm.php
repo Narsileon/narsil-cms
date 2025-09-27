@@ -12,7 +12,6 @@ use Narsil\Contracts\Fields\RangeInput;
 use Narsil\Contracts\Fields\SelectInput;
 use Narsil\Contracts\Forms\UserConfigurationForm as Contract;
 use Narsil\Enums\Configuration\ColorEnum;
-use Narsil\Enums\Configuration\ThemeEnum;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
@@ -53,7 +52,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
     {
         $colorOptions = static::getColorOptions();
         $localeOptions = static::getLocaleOptions();
-        $themeOptions = static::getThemesOptions();
 
         return [
             new Field([
@@ -63,14 +61,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::SETTINGS => app(SelectInput::class)
                     ->setDefaultValue('en')
                     ->setOptions($localeOptions),
-            ]),
-            new Field([
-                Field::HANDLE => UserConfiguration::THEME,
-                Field::NAME => trans('narsil::validation.attributes.theme'),
-                Field::TYPE => SelectInput::class,
-                Field::SETTINGS => app(SelectInput::class)
-                    ->setDefaultValue('system')
-                    ->setOptions($themeOptions),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::COLOR,
@@ -149,21 +139,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
         });
 
         return array_values($options);
-    }
-
-    /**
-     * @return array<string>
-     */
-    protected static function getThemesOptions(): array
-    {
-        $options = [];
-
-        foreach (ThemeEnum::cases() as $case)
-        {
-            $options[] = new SelectOption(trans("narsil::themes.$case->value"), $case->value);
-        }
-
-        return $options;
     }
 
     #endregion

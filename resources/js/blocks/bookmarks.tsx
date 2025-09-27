@@ -1,6 +1,6 @@
 import { router } from "@inertiajs/react";
 import { sortBy } from "lodash";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Button, Card, Tooltip } from "@narsil-cms/blocks";
@@ -18,7 +18,7 @@ import {
 } from "@narsil-cms/components/popover";
 import { type Bookmark, type FormType } from "@narsil-cms/types";
 
-type BookmarksProps = React.ComponentProps<typeof PopoverTrigger> & {
+type BookmarksProps = ComponentProps<typeof PopoverTrigger> & {
   breadcrumb: {
     href: string;
     label: string;

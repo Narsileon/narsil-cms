@@ -1,7 +1,9 @@
+import { type ComponentProps } from "react";
+
 import { Button } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SortableHandleProps = React.ComponentProps<typeof Button> & {};
+type SortableHandleProps = ComponentProps<typeof Button> & {};
 
 function SortableHandle({ className, ...props }: SortableHandleProps) {
   return (

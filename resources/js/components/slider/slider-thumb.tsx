@@ -1,8 +1,9 @@
 import { Slider } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SliderThumbProps = React.ComponentProps<typeof Slider.Thumb> & {};
+type SliderThumbProps = ComponentProps<typeof Slider.Thumb> & {};
 
 function SliderThumb({ className, ...props }: SliderThumbProps) {
   return (

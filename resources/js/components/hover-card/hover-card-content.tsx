@@ -1,10 +1,9 @@
 import { HoverCard } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type HoverCardContentProps = React.ComponentProps<
-  typeof HoverCard.Content
-> & {};
+type HoverCardContentProps = ComponentProps<typeof HoverCard.Content> & {};
 
 function HoverCardContent({
   align = "center",
@@ -22,8 +21,8 @@ function HoverCardContent({
         "data-[side=right]:slide-in-from-left-2",
         "data-[side=top]:slide-in-from-bottom-2",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95",
+        "data-[state=closed]:animate-out data-[state=open]:animate-in",
+        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "origin-(--radix-hover-card-content-transform-origin) will-change-transform",
         className,
       )}

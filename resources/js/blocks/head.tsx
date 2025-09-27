@@ -1,6 +1,7 @@
 import { Head as InertiaHead } from "@inertiajs/react";
+import { type ComponentProps } from "react";
 
-type HeadProps = React.ComponentProps<typeof InertiaHead> & {
+type HeadProps = ComponentProps<typeof InertiaHead> & {
   description?: string;
   index: boolean;
   follow: boolean;

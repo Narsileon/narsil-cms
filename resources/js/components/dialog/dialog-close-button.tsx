@@ -1,4 +1,5 @@
 import { Dialog } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
@@ -6,7 +7,7 @@ import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type DialogCloseButtonProps = React.ComponentProps<typeof Dialog.Close> & {
+type DialogCloseButtonProps = ComponentProps<typeof Dialog.Close> & {
   icon?: IconName;
 };
 

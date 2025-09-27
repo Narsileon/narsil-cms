@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentProps } from "react";
 
 import { VisuallyHidden } from "@narsil-cms/blocks";
 import {
@@ -12,7 +12,7 @@ import {
 import { LabelsProvider } from "@narsil-cms/components/labels";
 import { type ModalType } from "@narsil-cms/stores/modal-store";
 
-type ModalProps = React.ComponentProps<typeof DialogContent> & {
+type ModalProps = ComponentProps<typeof DialogContent> & {
   modal: ModalType;
   onClose: () => void;
 };

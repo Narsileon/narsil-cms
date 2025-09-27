@@ -1,11 +1,10 @@
 import { Menubar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarRadioItemProps = React.ComponentProps<
-  typeof Menubar.RadioItem
-> & {};
+type MenubarRadioItemProps = ComponentProps<typeof Menubar.RadioItem> & {};
 
 function MenubarRadioItem({
   children,

@@ -8,7 +8,6 @@ use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteGroup;
 use Narsil\Models\User;
 
 #endregion
@@ -66,12 +65,6 @@ return [
             'replicated' => 'The role has been successfully duplicated.',
             'replicated_many' => 'The roles have been successfully duplicated.',
             'updated' => 'The role has been successfully updated.',
-        ],
-        SiteGroup::TABLE => [
-            'created' => 'The group has been successfully created.',
-            'deleted' => 'The group has been successfully deleted.',
-            'deleted_many' => 'The groups have been successfully deleted.',
-            'updated' => 'The group has been successfully updated.',
         ],
         Site::TABLE => [
             'created' => 'The site has been successfully created.',

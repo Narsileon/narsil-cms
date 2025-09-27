@@ -116,7 +116,9 @@ function Builder({ name, sets }: BuilderProps) {
         </div>
       </SortableContext>
       <DragOverlay>
-        {active ? <BuilderItem id={active.id} node={active} /> : null}
+        {active ? (
+          <BuilderItem collapsed={true} id={active.id} node={active} />
+        ) : null}
       </DragOverlay>
     </DndContext>
   );

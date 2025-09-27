@@ -1,7 +1,9 @@
+import { type ComponentProps } from "react";
+
 import { Button } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
 
-type PaginationLinkProps = React.ComponentProps<typeof Button> & {
+type PaginationLinkProps = ComponentProps<typeof Button> & {
   active?: boolean;
 };
 

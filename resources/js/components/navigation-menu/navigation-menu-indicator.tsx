@@ -1,8 +1,9 @@
 import { NavigationMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type NavigationMenuIndicatorProps = React.ComponentProps<
+type NavigationMenuIndicatorProps = ComponentProps<
   typeof NavigationMenu.Indicator
 > & {};
 
@@ -16,7 +17,7 @@ function NavigationMenuIndicator({
       className={cn(
         "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
         "data-[state=hidden]:fade-out data-[state=visible]:fade-in",
-        "data-[state=visible]:animate-in data-[state=hidden]:animate-out",
+        "data-[state=hidden]:animate-out data-[state=visible]:animate-in",
         className,
       )}
       {...props}

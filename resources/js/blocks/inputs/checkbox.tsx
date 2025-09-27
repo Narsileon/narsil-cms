@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import {
   CheckboxIndicator,
   CheckboxRoot,
@@ -5,9 +7,9 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type CheckboxProps = React.ComponentProps<typeof CheckboxRoot> & {
+type CheckboxProps = ComponentProps<typeof CheckboxRoot> & {
   icon?: IconName;
-  indicatorProps?: Partial<React.ComponentProps<typeof CheckboxIndicator>>;
+  indicatorProps?: Partial<ComponentProps<typeof CheckboxIndicator>>;
 };
 
 function Checkbox({ icon = "check", indicatorProps, ...props }: CheckboxProps) {

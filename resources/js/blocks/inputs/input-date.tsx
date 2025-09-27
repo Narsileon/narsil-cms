@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 
 import { Calendar } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
@@ -11,10 +11,7 @@ import {
 } from "@narsil-cms/components/popover";
 import { cn } from "@narsil-cms/lib/utils";
 
-type InputDateProps = Omit<
-  React.ComponentProps<typeof InputContent>,
-  "value"
-> & {
+type InputDateProps = Omit<ComponentProps<typeof InputContent>, "value"> & {
   value: string | undefined;
   onChange: (value: string | undefined) => void;
 };

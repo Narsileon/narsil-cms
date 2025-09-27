@@ -1,8 +1,9 @@
 import { Popover } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type PopoverContentProps = React.ComponentProps<typeof Popover.Content> & {};
+type PopoverContentProps = ComponentProps<typeof Popover.Content> & {};
 
 function PopoverContent({
   className,

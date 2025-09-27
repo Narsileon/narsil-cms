@@ -1,8 +1,9 @@
 import { Tooltip } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TooltipContentProps = React.ComponentProps<typeof Tooltip.Content> & {};
+type TooltipContentProps = ComponentProps<typeof Tooltip.Content> & {};
 
 function TooltipContent({
   className,
@@ -13,7 +14,7 @@ function TooltipContent({
     <Tooltip.Content
       data-slot="tooltip-content"
       className={cn(
-        "animate-in fade-in-0 zoom-in-95 z-50 w-fit rounded-md border bg-primary px-3 py-1.5 text-xs text-balance text-primary-foreground",
+        "z-50 w-fit animate-in rounded-md border bg-primary px-3 py-1.5 text-xs text-balance text-primary-foreground fade-in-0 zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2",
         "data-[side=left]:slide-in-from-right-2",
         "data-[side=right]:slide-in-from-left-2",

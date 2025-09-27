@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarFooterProps = React.ComponentProps<"div"> & {};
+type SidebarFooterProps = ComponentProps<"div"> & {};
 
 function SidebarFooter({ className, ...props }: SidebarFooterProps) {
   return (

@@ -1,9 +1,10 @@
 import { DropdownMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DropdownMenuSeparatorProps = React.ComponentProps<
+type DropdownMenuSeparatorProps = ComponentProps<
   typeof DropdownMenu.Separator
 > & {};
 

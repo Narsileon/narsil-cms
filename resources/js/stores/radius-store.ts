@@ -1,3 +1,6 @@
+import { router } from "@inertiajs/react";
+import { debounce } from "lodash";
+import { route } from "ziggy-js";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -11,6 +14,14 @@ type RadiusStoreActions = {
 };
 
 type RadiusStoreType = RadiusStoreState & RadiusStoreActions;
+
+const debouncedSave = debounce((radius: number) => {
+  router.post(
+    route("user-configuration.store"),
+    { radius: radius },
+    { preserveState: false },
+  );
+}, 500);
 
 const useRadiusStore = create<RadiusStoreType>()(
   persist(
@@ -27,6 +38,8 @@ const useRadiusStore = create<RadiusStoreType>()(
         });
 
         get().applyRadius();
+
+        debouncedSave(radius);
       },
     }),
     {

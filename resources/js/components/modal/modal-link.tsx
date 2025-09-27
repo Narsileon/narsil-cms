@@ -1,8 +1,9 @@
 import { Link } from "@inertiajs/react";
+import { type ComponentProps } from "react";
 
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 
-type ModalLinkProps = React.ComponentProps<typeof Link> & {};
+type ModalLinkProps = ComponentProps<typeof Link> & {};
 
 function ModalLink({ as = "button", onClick, ...props }: ModalLinkProps) {
   const { openModal } = useModalStore();

@@ -1,7 +1,9 @@
+import { type ComponentProps } from "react";
+
 import { BadgeClose, BadgeRoot } from "@narsil-cms/components/badge";
 
-type BadgeProps = React.ComponentProps<typeof BadgeRoot> & {
-  closeProps?: React.ComponentProps<typeof BadgeClose>;
+type BadgeProps = ComponentProps<typeof BadgeRoot> & {
+  closeProps?: ComponentProps<typeof BadgeClose>;
   onClose?: () => void;
 };
 

@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type TableCellProps = React.ComponentProps<"td"> & {};
+type TableCellProps = ComponentProps<"td"> & {};
 
 function TableCell({ className, ...props }: TableCellProps) {
   return (

@@ -15,23 +15,11 @@ use Illuminate\Support\Facades\Session;
 #endregion
 
 /**
- * @version 1.0.0
- *
  * @author Jonathan Rigaux
+ * @version 1.0.0
  */
 class LocaleMiddleware
 {
-    #region CONSTANTS
-
-    /**
-     * The name of the "locale" session key.
-     *
-     * @var string
-     */
-    public const LOCALE = 'locale';
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -42,7 +30,7 @@ class LocaleMiddleware
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $this->setlocale($request);
+        $this->setLocale();
 
         return $next($request);
     }
@@ -52,13 +40,11 @@ class LocaleMiddleware
     #region PROTECTED METHODS
 
     /**
-     * @param Request $request
-     *
      * @return void
      */
-    protected function setlocale(Request $request): void
+    protected function setLocale(): void
     {
-        $locale = Session::get(self::LOCALE);
+        $locale = Session::get(UserConfiguration::LOCALE);
 
         if (!$locale)
         {
@@ -66,7 +52,7 @@ class LocaleMiddleware
 
             if ($locale)
             {
-                Session::put(self::LOCALE, $locale);
+                Session::put(UserConfiguration::LOCALE, $locale);
             }
         }
 

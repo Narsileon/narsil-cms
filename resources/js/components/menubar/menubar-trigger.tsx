@@ -1,8 +1,9 @@
 import { Menubar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarTriggerProps = React.ComponentProps<typeof Menubar.Trigger> & {};
+type MenubarTriggerProps = ComponentProps<typeof Menubar.Trigger> & {};
 
 function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
   return (

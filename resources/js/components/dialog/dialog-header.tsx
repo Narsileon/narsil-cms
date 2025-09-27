@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type DialogHeaderProps = React.ComponentProps<"div"> & {};
+type DialogHeaderProps = ComponentProps<"div"> & {};
 
 function DialogHeader({ className, ...props }: DialogHeaderProps) {
   return (

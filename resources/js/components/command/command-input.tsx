@@ -1,8 +1,9 @@
 import { Command } from "cmdk";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandInputProps = React.ComponentProps<typeof Command.Input> & {};
+type CommandInputProps = ComponentProps<typeof Command.Input> & {};
 
 function CommandInput({ className, ...props }: CommandInputProps) {
   return (

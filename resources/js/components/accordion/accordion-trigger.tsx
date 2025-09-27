@@ -1,10 +1,9 @@
 import { Accordion } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AccordionTriggerProps = React.ComponentProps<
-  typeof Accordion.Trigger
-> & {};
+type AccordionTriggerProps = ComponentProps<typeof Accordion.Trigger> & {};
 
 function AccordionTrigger({ className, ...props }: AccordionTriggerProps) {
   return (

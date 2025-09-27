@@ -1,8 +1,7 @@
 import { DropdownMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
-type DropdownMenuGroupProps = React.ComponentProps<
-  typeof DropdownMenu.Group
-> & {};
+type DropdownMenuGroupProps = ComponentProps<typeof DropdownMenu.Group> & {};
 
 function DropdownMenuGroup({ ...props }: DropdownMenuGroupProps) {
   return <DropdownMenu.Group data-slot="dropdown-menu-group" {...props} />;

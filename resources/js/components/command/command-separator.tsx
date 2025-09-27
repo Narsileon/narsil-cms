@@ -1,10 +1,9 @@
 import { Command } from "cmdk";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandSeparatorProps = React.ComponentProps<
-  typeof Command.Separator
-> & {};
+type CommandSeparatorProps = ComponentProps<typeof Command.Separator> & {};
 
 function CommandSeparator({ className, ...props }: CommandSeparatorProps) {
   return (

@@ -5,8 +5,7 @@ namespace Narsil\Models\Sites;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Models\Sites\SiteGroup;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 
@@ -30,17 +29,14 @@ class Site extends Model
     {
         $this->table = self::TABLE;
 
-        $this->casts = array_merge([
-            self::PRIMARY => 'boolean',
-        ], $this->casts);
-
         $this->guarded = array_merge([
             self::ID,
         ], $this->guarded);
 
         $this->with = array_merge([
-            self::RELATION_GROUP,
+            self::RELATION_SUBDOMAINS,
         ], $this->with);
+
 
         parent::__construct($attributes);
     }
@@ -59,25 +55,11 @@ class Site extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "enabled" column.
+     * The name of the "domain" column.
      *
      * @var string
      */
-    final public const ENABLED = 'enabled';
-
-    /**
-     * The name of the "group id" column.
-     *
-     * @var string
-     */
-    final public const GROUP_ID = 'group_id';
-
-    /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
+    final public const DOMAIN = 'domain';
 
     /**
      * The name of the "id" column.
@@ -87,13 +69,6 @@ class Site extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "language" column.
-     *
-     * @var string
-     */
-    final public const LANGUAGE = 'language';
-
-    /**
      * The name of the "name" column.
      *
      * @var string
@@ -101,22 +76,31 @@ class Site extends Model
     final public const NAME = 'name';
 
     /**
-     * The name of the "primary" column.
+     * The name of the "pattern" column.
      *
      * @var string
      */
-    final public const PRIMARY = 'primary';
+    final public const PATTERN = 'pattern';
 
     #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "domains" count.
+     *
+     * @var string
+     */
+    final public const COUNT_DOMAINS = 'domains_count';
 
     #region • RELATIONS
 
     /**
-     * The name of the "group" relation.
+     * The name of the "subdomains" relation.
      *
      * @var string
      */
-    final public const RELATION_GROUP = 'group';
+    final public const RELATION_SUBDOMAINS = 'subdomains';
 
     #endregion
 
@@ -127,18 +111,19 @@ class Site extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated group.
+     * Get the associated subdomains.
      *
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function group(): BelongsTo
+    public function subdomains(): HasMany
     {
         return $this
-            ->belongsTo(
-                SiteGroup::class,
-                self::GROUP_ID,
-                SiteGroup::ID
-            );
+            ->hasMany(
+                SiteSubdomain::class,
+                SiteSubdomain::SITE_ID,
+                self::ID
+            )
+            ->orderBy(SiteSubdomain::POSITION);
     }
 
     #endregion

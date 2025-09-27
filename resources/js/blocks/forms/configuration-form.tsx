@@ -1,6 +1,3 @@
-import { router } from "@inertiajs/react";
-import { route } from "ziggy-js";
-
 import { Heading } from "@narsil-cms/blocks";
 import {
   FormRenderer,
@@ -15,9 +12,7 @@ import {
 } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
-import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
-import { useThemeStore, type Theme } from "@narsil-cms/stores/theme-store";
 import { type FormType } from "@narsil-cms/types";
 
 type ConfigurationFormProps = {
@@ -28,11 +23,8 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   const { trans } = useLabels();
   const { locale } = useLocale();
 
-  const { reloadTopModal } = useModalStore();
-
   const { color, setColor } = useColorStore();
   const { radius, setRadius } = useRadiusStore();
-  const { theme, setTheme } = useThemeStore();
 
   function handleChange(id: string, value: number | string) {
     switch (id) {
@@ -42,23 +34,9 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
       case "radius":
         setRadius(value as number);
         break;
-      case "theme":
-        setTheme(value as Theme);
-        break;
       default:
         break;
     }
-
-    const data = {
-      [id]: value,
-    };
-
-    router.post(route("user-configuration.store"), data, {
-      preserveState: false,
-      onSuccess: () => {
-        reloadTopModal();
-      },
-    });
   }
 
   return (
@@ -76,7 +54,6 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
             color: color,
             locale: locale,
             radius: radius,
-            theme: theme,
           }}
           render={() => (
             <FormRoot className="gap-4">

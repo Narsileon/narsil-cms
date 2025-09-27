@@ -1,6 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { flexRender, Header } from "@tanstack/react-table";
+import { type ComponentProps } from "react";
 
 import { TableHead } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
@@ -8,7 +9,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import DataTableHeadMove from "./data-table-head-move";
 import DataTableHeadSort from "./data-table-head-sort";
 
-type DataTableHeadProps = React.ComponentProps<typeof TableHead> & {
+type DataTableHeadProps = ComponentProps<typeof TableHead> & {
   header: Header<unknown, unknown>;
 };
 

@@ -1,11 +1,12 @@
 import { type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
 import buttonRootVariants from "./button-root-variants";
 
-type ButtonRootProps = React.ComponentProps<"button"> &
+type ButtonRootProps = ComponentProps<"button"> &
   VariantProps<typeof buttonRootVariants> & {
     asChild?: boolean;
   };
@@ -15,7 +16,7 @@ function ButtonRoot({
   className,
   size,
   type = "button",
-  variant = "default",
+  variant,
   ...props
 }: ButtonRootProps) {
   const Comp = asChild ? Slot.Root : "button";

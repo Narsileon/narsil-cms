@@ -1,3 +1,5 @@
+import { type ComponentProps, type ReactNode } from "react";
+
 import { Heading } from "@narsil-cms/blocks";
 import {
   AccordionContent,
@@ -11,10 +13,10 @@ import { Icon } from "@narsil-cms/components/icon";
 type AccordionElement = {
   id: string;
   title: string;
-  content: React.ReactNode;
+  content: ReactNode;
 };
 
-type AccordionProps = React.ComponentProps<typeof AccordionRoot> & {
+type AccordionProps = ComponentProps<typeof AccordionRoot> & {
   elements: AccordionElement[];
 };
 

@@ -1,9 +1,10 @@
 import { ContextMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuRadioItemProps = React.ComponentProps<
+type ContextMenuRadioItemProps = ComponentProps<
   typeof ContextMenu.RadioItem
 > & {};
 

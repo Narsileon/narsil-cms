@@ -1,9 +1,10 @@
 import { Select } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type SelectIconProps = React.ComponentProps<typeof Select.Icon> & {
+type SelectIconProps = ComponentProps<typeof Select.Icon> & {
   icon?: IconName;
 };
 

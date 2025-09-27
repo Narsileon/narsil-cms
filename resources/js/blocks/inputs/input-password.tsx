@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 
 import { Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
@@ -6,7 +6,7 @@ import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useLabels } from "@narsil-cms/components/labels";
 
 type InputPasswordProps = Omit<
-  React.ComponentProps<typeof InputContent>,
+  ComponentProps<typeof InputContent>,
   "children"
 > & {};
 

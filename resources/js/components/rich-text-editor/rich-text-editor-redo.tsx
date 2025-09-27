@@ -1,9 +1,10 @@
 import { Editor, useEditorState } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 
-type RichTextEditorRedoProps = React.ComponentProps<typeof Button> & {
+type RichTextEditorRedoProps = ComponentProps<typeof Button> & {
   editor: Editor;
 };
 

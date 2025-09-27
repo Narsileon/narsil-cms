@@ -1,9 +1,10 @@
 import { startCase } from "lodash";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 import { getIcon, IconName } from "@narsil-cms/plugins/icons";
 
-type IconProps = React.ComponentProps<"svg"> & {
+type IconProps = ComponentProps<"svg"> & {
   name: IconName;
 };
 

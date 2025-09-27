@@ -1,10 +1,9 @@
 import { AlertDialog } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AlertDialogTitleProps = React.ComponentProps<
-  typeof AlertDialog.Title
-> & {};
+type AlertDialogTitleProps = ComponentProps<typeof AlertDialog.Title> & {};
 
 function AlertDialogTitle({ className, ...props }: AlertDialogTitleProps) {
   return (

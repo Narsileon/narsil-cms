@@ -6,9 +6,7 @@ namespace Narsil\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
 use Narsil\Models\User;
-use Narsil\Models\Users\UserConfiguration;
 
 #endregion
 
@@ -21,17 +19,12 @@ class UserInertiaResource extends JsonResource
     #region CONSTRUCTOR
 
     /**
-     * @param User|null $resource
+     * @param User $resource
      *
      * @return void
      */
-    public function __construct(User|null $resource = null)
+    public function __construct(User $resource)
     {
-        if (!$resource)
-        {
-            $resource = Auth::user();
-        }
-
         parent::__construct($resource);
     }
 
@@ -50,19 +43,13 @@ class UserInertiaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return $this->resource ? [
+        return [
             User::AVATAR => $this->{User::AVATAR},
             User::EMAIL => $this->{User::EMAIL},
             User::FIRST_NAME => $this->{User::FIRST_NAME},
             User::LAST_NAME => $this->{User::LAST_NAME},
             User::TWO_FACTOR_CONFIRMED_AT => $this->{User::TWO_FACTOR_CONFIRMED_AT},
-
-            User::RELATION_CONFIGURATION => [
-                UserConfiguration::COLOR => $this->{User::RELATION_CONFIGURATION}->{UserConfiguration::COLOR},
-                UserConfiguration::RADIUS => $this->{User::RELATION_CONFIGURATION}->{UserConfiguration::RADIUS},
-                UserConfiguration::THEME => $this->{User::RELATION_CONFIGURATION}->{UserConfiguration::THEME},
-            ],
-        ] : [];
+        ];
     }
 
     #endregion

@@ -1,8 +1,9 @@
 import { Avatar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AvatarRootProps = React.ComponentProps<typeof Avatar.Root> & {};
+type AvatarRootProps = ComponentProps<typeof Avatar.Root> & {};
 
 function AvatarRoot({ className, ...props }: AvatarRootProps) {
   return (

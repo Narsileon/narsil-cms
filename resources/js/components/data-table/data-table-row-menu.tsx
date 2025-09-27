@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { type Table } from "@tanstack/react-table";
+import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
@@ -16,7 +17,7 @@ import { ModalLink } from "@narsil-cms/components/modal";
 import { type RouteNames } from "@narsil-cms/types";
 
 type DataTableRowMenuProps = Omit<
-  React.ComponentProps<typeof DropdownMenuTrigger>,
+  ComponentProps<typeof DropdownMenuTrigger>,
   "id"
 > & {
   id?: number;

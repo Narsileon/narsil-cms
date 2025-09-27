@@ -1,8 +1,9 @@
 import { Command } from "cmdk";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandGroupProps = React.ComponentProps<typeof Command.Group> & {};
+type CommandGroupProps = ComponentProps<typeof Command.Group> & {};
 
 function CommandGroup({ className, ...props }: CommandGroupProps) {
   return (

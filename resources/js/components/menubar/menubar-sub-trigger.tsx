@@ -1,11 +1,10 @@
 import { Menubar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarSubTriggerProps = React.ComponentProps<
-  typeof Menubar.SubTrigger
-> & {
+type MenubarSubTriggerProps = ComponentProps<typeof Menubar.SubTrigger> & {
   inset?: boolean;
 };
 

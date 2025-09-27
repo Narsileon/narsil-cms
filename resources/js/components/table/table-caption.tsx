@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type TableCaptionProps = React.ComponentProps<"caption"> & {};
+type TableCaptionProps = ComponentProps<"caption"> & {};
 
 function TableCaption({ className, ...props }: TableCaptionProps) {
   return (

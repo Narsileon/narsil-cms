@@ -1,8 +1,9 @@
 import { Switch } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SwitchRootProps = React.ComponentProps<typeof Switch.Root> & {};
+type SwitchRootProps = ComponentProps<typeof Switch.Root> & {};
 
 function SwitchRoot({ className, ...props }: SwitchRootProps) {
   return (

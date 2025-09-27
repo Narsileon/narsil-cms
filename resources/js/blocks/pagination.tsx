@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
@@ -32,10 +34,10 @@ export type LaravelPaginationMetaLink = {
   url: string | null;
 };
 
-type PaginationProps = React.ComponentProps<typeof PaginationRoot> & {
-  contentProps?: Partial<React.ComponentProps<typeof PaginationContent>>;
+type PaginationProps = ComponentProps<typeof PaginationRoot> & {
+  contentProps?: Partial<ComponentProps<typeof PaginationContent>>;
   links: LaravelPaginationLinks;
-  metaLinks?: LaravelPaginationMeta["links"];
+  metaLinks?: LaravelPaginationMetaLink[];
 };
 
 function Pagination({

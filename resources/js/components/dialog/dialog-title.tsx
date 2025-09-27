@@ -1,8 +1,9 @@
 import { Dialog } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type DialogTitleProps = React.ComponentProps<typeof Dialog.Title> & {};
+type DialogTitleProps = ComponentProps<typeof Dialog.Title> & {};
 
 function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (

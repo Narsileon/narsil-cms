@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import {
   ScrollAreaCorner,
   ScrollAreaRoot,
@@ -6,11 +8,11 @@ import {
   ScrollAreaViewport,
 } from "@narsil-cms/components/scroll-area";
 
-type ScrollAreaProps = React.ComponentProps<typeof ScrollAreaRoot> & {
-  cornerProps?: Partial<React.ComponentProps<typeof ScrollAreaCorner>>;
-  scrollbarProps?: Partial<React.ComponentProps<typeof ScrollAreaScrollbar>>;
-  thumbProps?: Partial<React.ComponentProps<typeof ScrollAreaThumb>>;
-  viewportProps?: Partial<React.ComponentProps<typeof ScrollAreaViewport>>;
+type ScrollAreaProps = ComponentProps<typeof ScrollAreaRoot> & {
+  cornerProps?: Partial<ComponentProps<typeof ScrollAreaCorner>>;
+  scrollbarProps?: Partial<ComponentProps<typeof ScrollAreaScrollbar>>;
+  thumbProps?: Partial<ComponentProps<typeof ScrollAreaThumb>>;
+  viewportProps?: Partial<ComponentProps<typeof ScrollAreaViewport>>;
 };
 
 const ScrollArea = ({

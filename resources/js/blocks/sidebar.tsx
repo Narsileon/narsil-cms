@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { groupBy } from "lodash";
+import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Icon } from "@narsil-cms/components/icon";
@@ -21,7 +22,7 @@ import {
 import { useNavigation } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarProps = React.ComponentProps<typeof SidebarRoot> & {};
+type SidebarProps = ComponentProps<typeof SidebarRoot> & {};
 
 function Sidebar({ ...props }: SidebarProps) {
   const { trans } = useLabels();

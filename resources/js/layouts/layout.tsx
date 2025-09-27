@@ -26,11 +26,13 @@ function Layout({ children }: LayoutProps) {
   const radiusStore = useRadiusStore();
   const themeStore = useThemeStore();
 
-  colorStore.applyColor();
-  radiusStore.applyRadius();
-  themeStore.applyTheme();
-
   const { error, info, success, warning } = redirect;
+
+  useEffect(() => {
+    colorStore.applyColor();
+    radiusStore.applyRadius();
+    themeStore.applyTheme();
+  }, []);
 
   useEffect(() => {
     if (error) {

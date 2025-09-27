@@ -1,8 +1,9 @@
 import { Slot } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarGroupLabelProps = React.ComponentProps<"div"> & {
+type SidebarGroupLabelProps = ComponentProps<"div"> & {
   asChild?: boolean;
 };
 

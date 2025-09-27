@@ -1,10 +1,12 @@
 import { type VariantProps } from "class-variance-authority";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
+import { InputBorder } from "./input-border";
 import inputContentVariants from "./input-content-variants";
 
-type InputContentProps = React.ComponentProps<"input"> &
+type InputContentProps = ComponentProps<"input"> &
   VariantProps<typeof inputContentVariants> & {};
 
 const TYPES = {
@@ -33,17 +35,20 @@ function InputContent({
   }
 
   return (
-    <input
-      data-slot="input-content"
-      className={cn(
-        inputContentVariants({
-          className: className,
-          variant: getVariant(),
-        }),
-      )}
-      type={type}
-      {...props}
-    />
+    <>
+      <input
+        data-slot="input-content"
+        className={cn(
+          inputContentVariants({
+            className: className,
+            variant: getVariant(),
+          }),
+        )}
+        type={type}
+        {...props}
+      />
+      <InputBorder className="hidden group-focus-within:block" />
+    </>
   );
 }
 

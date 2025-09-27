@@ -1,8 +1,10 @@
+import { type ComponentProps } from "react";
+
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type BadgeCloseProps = React.ComponentProps<"button"> & {
+type BadgeCloseProps = ComponentProps<"button"> & {
   icon?: IconName;
 };
 

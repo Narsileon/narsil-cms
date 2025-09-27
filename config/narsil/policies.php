@@ -17,6 +17,5 @@ return [
     \Narsil\Models\Entities\Entity::class => \Narsil\Policies\EntityPolicy::class,
     \Narsil\Models\Policies\Role::class => \Narsil\Policies\RolePolicy::class,
     \Narsil\Models\Sites\Site::class => \Narsil\Policies\SitePolicy::class,
-    \Narsil\Models\Sites\SiteGroup::class => \Narsil\Policies\SiteGroupPolicy::class,
     \Narsil\Models\User::class => \Narsil\Policies\UserPolicy::class,
 ];

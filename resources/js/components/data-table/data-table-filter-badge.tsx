@@ -1,5 +1,5 @@
 import { isEmpty } from "lodash";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentProps } from "react";
 
 import { Badge } from "@narsil-cms/blocks";
 import { Select } from "@narsil-cms/blocks/inputs";
@@ -16,7 +16,7 @@ import { type Field } from "@narsil-cms/types";
 import { type ColumnFilter } from ".";
 import useDataTable from "./data-table-context";
 
-type DataTableFilterBadgeProps = React.ComponentProps<typeof PopoverTrigger> & {
+type DataTableFilterBadgeProps = ComponentProps<typeof PopoverTrigger> & {
   filter: ColumnFilter;
 };
 

@@ -1,8 +1,7 @@
 import { VisuallyHidden } from "radix-ui";
+import { type ComponentProps } from "react";
 
-type VisuallyHiddenRootProps = React.ComponentProps<
-  typeof VisuallyHidden.Root
-> & {};
+type VisuallyHiddenRootProps = ComponentProps<typeof VisuallyHidden.Root> & {};
 
 function VisuallyHiddenRoot({
   asChild = false,

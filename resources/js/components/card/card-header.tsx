@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type CardHeaderProps = React.ComponentProps<"div"> & {};
+type CardHeaderProps = ComponentProps<"div"> & {};
 
 function CardHeader({ className, ...props }: CardHeaderProps) {
   return (

@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import { Button } from "@narsil-cms/blocks";
 import {
   CardContent,
@@ -7,14 +9,14 @@ import {
   CardTitle,
 } from "@narsil-cms/components/card";
 
-type CardProps = React.ComponentProps<typeof CardRoot> & {
-  contentProps?: Partial<React.ComponentProps<typeof CardContent>>;
-  footerButtons?: React.ComponentProps<typeof Button>[];
-  footerProps?: Partial<React.ComponentProps<typeof CardFooter>>;
-  headerButtons?: React.ComponentProps<typeof Button>[];
-  headerProps?: Partial<React.ComponentProps<typeof CardHeader>>;
+type CardProps = ComponentProps<typeof CardRoot> & {
+  contentProps?: Partial<ComponentProps<typeof CardContent>>;
+  footerButtons?: ComponentProps<typeof Button>[];
+  footerProps?: Partial<ComponentProps<typeof CardFooter>>;
+  headerButtons?: ComponentProps<typeof Button>[];
+  headerProps?: Partial<ComponentProps<typeof CardHeader>>;
   title?: string;
-  titleProps?: Partial<React.ComponentProps<typeof CardTitle>>;
+  titleProps?: Partial<ComponentProps<typeof CardTitle>>;
 };
 
 function Card({

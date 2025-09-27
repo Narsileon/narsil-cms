@@ -1,8 +1,9 @@
 import { Select } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectViewportProps = React.ComponentProps<typeof Select.Content> & {};
+type SelectViewportProps = ComponentProps<typeof Select.Content> & {};
 
 function SelectViewport({
   className,

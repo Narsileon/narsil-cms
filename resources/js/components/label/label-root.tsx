@@ -1,8 +1,9 @@
 import { Label } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type LabelRootProps = React.ComponentProps<typeof Label.Root> & {};
+type LabelRootProps = ComponentProps<typeof Label.Root> & {};
 
 function LabelRoot({ className, ...props }: LabelRootProps) {
   return (

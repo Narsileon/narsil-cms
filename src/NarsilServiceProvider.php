@@ -4,7 +4,6 @@ namespace Narsil;
 
 #region USE
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Providers\CommandServiceProvider;
 use Narsil\Providers\FieldServiceProvider;
@@ -14,6 +13,7 @@ use Narsil\Providers\FortifyServiceProvider;
 use Narsil\Providers\MenuServiceProvider;
 use Narsil\Providers\ObserverServiceProvider;
 use Narsil\Providers\PolicyServiceProvider;
+use Narsil\Providers\RouteServiceProvider;
 use Narsil\Providers\TableServiceProvider;
 use Narsil\Providers\TranslationServiceProvider;
 use Nuwave\Lighthouse\LighthouseServiceProvider;
@@ -44,7 +44,6 @@ class NarsilServiceProvider extends ServiceProvider
     {
         $this->bootMigrations();
         $this->bootPublishes();
-        $this->bootRoutes();
         $this->bootViews();
     }
 
@@ -74,23 +73,6 @@ class NarsilServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../lang' => lang_path('vendor/narsil-cms'),
         ], 'narsil-cms-translations');
-    }
-
-    /**
-     * @return void
-     */
-    protected function bootRoutes(): void
-    {
-        Route::middleware('api')
-            ->prefix('api')
-            ->group(__DIR__ . '/../routes/api.php');
-
-        Route::middleware('web')
-            ->prefix('narsil')
-            ->group(__DIR__ . '/../routes/graphql.php');
-        Route::middleware('web')
-            ->prefix('narsil')
-            ->group(__DIR__ . '/../routes/web.php');
     }
 
     /**
@@ -133,6 +115,7 @@ class NarsilServiceProvider extends ServiceProvider
         $this->app->register(MenuServiceProvider::class);
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
+        $this->app->register(RouteServiceProvider::class);
         $this->app->register(TableServiceProvider::class);
         $this->app->register(TranslationServiceProvider::class);
     }

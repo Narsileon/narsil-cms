@@ -1,4 +1,5 @@
 import { uniqueId } from "lodash";
+import { type ComponentProps } from "react";
 
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
@@ -13,7 +14,7 @@ import { type Block } from "@narsil-cms/types";
 
 import { type BuilderNode } from ".";
 
-type BuilderAddProps = React.ComponentProps<typeof DropdownMenuTrigger> & {
+type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
   sets: Block[];
   onAdd: (node: BuilderNode) => void;
 };

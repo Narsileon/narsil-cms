@@ -1,10 +1,9 @@
 import { Accordion } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AccordionContentProps = React.ComponentProps<
-  typeof Accordion.Content
-> & {};
+type AccordionContentProps = ComponentProps<typeof Accordion.Content> & {};
 
 function AccordionContent({ className, ...props }: AccordionContentProps) {
   return (

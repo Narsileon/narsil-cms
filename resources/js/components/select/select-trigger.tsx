@@ -1,8 +1,9 @@
 import { Select } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectTriggerProps = React.ComponentProps<typeof Select.Trigger> & {
+type SelectTriggerProps = ComponentProps<typeof Select.Trigger> & {
   size?: "sm" | "default";
 };
 

@@ -22,6 +22,7 @@ import Shortcut from "./shortcut";
 import Sidebar from "./sidebar";
 import Spinner from "./spinner";
 import Tabs from "./tabs";
+import ThemeToggleGroup from "./theme-toggle-group";
 import Toaster from "./toaster";
 import Toggle from "./toggle";
 import Tooltip from "./tooltip";
@@ -53,6 +54,7 @@ export {
   Sidebar,
   Spinner,
   Tabs,
+  ThemeToggleGroup,
   Toaster,
   Toggle,
   Tooltip,

@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import { type ComponentProps } from "react";
 
 import { Tooltip } from "@narsil-cms/blocks";
 import { ButtonRoot } from "@narsil-cms/components/button";
@@ -6,15 +7,15 @@ import { Icon } from "@narsil-cms/components/icon";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type ButtonProps = React.ComponentProps<typeof ButtonRoot> & {
+type ButtonProps = ComponentProps<typeof ButtonRoot> & {
   icon?: IconName;
-  iconProps?: React.ComponentProps<typeof Icon>;
+  iconProps?: ComponentProps<typeof Icon>;
   label?: string;
-  linkProps?: React.ComponentProps<typeof Link> & {
+  linkProps?: ComponentProps<typeof Link> & {
     modal?: boolean;
   };
   tooltip?: string;
-  tooltipProps?: React.ComponentProps<typeof Tooltip>;
+  tooltipProps?: ComponentProps<typeof Tooltip>;
 };
 
 function Button({

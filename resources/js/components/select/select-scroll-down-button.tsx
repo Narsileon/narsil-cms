@@ -1,10 +1,11 @@
 import { Select } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type SelectScrollDownButtonProps = React.ComponentProps<
+type SelectScrollDownButtonProps = ComponentProps<
   typeof Select.ScrollDownButton
 > & {
   icon?: IconName;

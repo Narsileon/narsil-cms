@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import {
   TooltipArrow,
   TooltipContent,
@@ -7,11 +9,11 @@ import {
   TooltipTrigger,
 } from "@narsil-cms/components/tooltip";
 
-type TooltipProps = React.ComponentProps<typeof TooltipRoot> & {
-  arrowProps?: Partial<React.ComponentProps<typeof TooltipArrow>>;
-  contentProps?: Partial<React.ComponentProps<typeof TooltipContent>>;
-  portalProps?: Partial<React.ComponentProps<typeof TooltipPortal>>;
-  triggerProps?: Partial<React.ComponentProps<typeof TooltipTrigger>>;
+type TooltipProps = ComponentProps<typeof TooltipRoot> & {
+  arrowProps?: Partial<ComponentProps<typeof TooltipArrow>>;
+  contentProps?: Partial<ComponentProps<typeof TooltipContent>>;
+  portalProps?: Partial<ComponentProps<typeof TooltipPortal>>;
+  triggerProps?: Partial<ComponentProps<typeof TooltipTrigger>>;
   tooltip: string | React.ReactNode;
 };
 

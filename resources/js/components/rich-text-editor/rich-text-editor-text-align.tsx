@@ -1,10 +1,11 @@
 import { Editor } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
-type RichTextEditorTextAlignProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorTextAlignProps = ComponentProps<typeof Toggle> & {
   alignment: "left" | "center" | "right" | "justify";
   editor: Editor;
 };

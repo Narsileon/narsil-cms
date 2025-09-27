@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarGroupProps = React.ComponentProps<"li"> & {};
+type SidebarGroupProps = ComponentProps<"li"> & {};
 
 function SidebarGroup({ className, ...props }: SidebarGroupProps) {
   return (

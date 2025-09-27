@@ -1,6 +1,7 @@
 import { Command } from "cmdk";
+import { type ComponentProps } from "react";
 
-type CommandEmptyProps = React.ComponentProps<typeof Command.Empty> & {};
+type CommandEmptyProps = ComponentProps<typeof Command.Empty> & {};
 
 function CommandEmpty({ ...props }: CommandEmptyProps) {
   return (

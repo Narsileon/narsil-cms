@@ -16,7 +16,6 @@ return [
     \Narsil\Contracts\FormRequests\FieldFormRequest::class => \Narsil\Http\Requests\FieldFormRequest::class,
     \Narsil\Contracts\FormRequests\RoleFormRequest::class => \Narsil\Http\Requests\RoleFormRequest::class,
     \Narsil\Contracts\FormRequests\SiteFormRequest::class => \Narsil\Http\Requests\SiteFormRequest::class,
-    \Narsil\Contracts\FormRequests\SiteGroupFormRequest::class => \Narsil\Http\Requests\SiteGroupFormRequest::class,
     \Narsil\Contracts\FormRequests\TemplateFormRequest::class => \Narsil\Http\Requests\TemplateFormRequest::class,
     \Narsil\Contracts\FormRequests\UserConfigurationFormRequest::class => \Narsil\Http\Requests\UserConfigurationFormRequest::class,
     \Narsil\Contracts\FormRequests\UserFormRequest::class => \Narsil\Http\Requests\UserFormRequest::class,

@@ -25,15 +25,7 @@ class SiteFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            Site::GROUP_ID => [
-                FormRule::INTEGER,
-                FormRule::NULLABLE,
-            ],
-            Site::HANDLE => [
-                FormRule::STRING,
-                FormRule::REQUIRED,
-            ],
-            Site::LANGUAGE => [
+            Site::DOMAIN => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
@@ -41,9 +33,14 @@ class SiteFormRequest implements Contract
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
-            Site::PRIMARY => [
-                FormRule::BOOLEAN,
+            Site::PATTERN => [
+                FormRule::STRING,
                 FormRule::REQUIRED,
+            ],
+
+            Site::RELATION_SUBDOMAINS => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
             ],
         ];
     }

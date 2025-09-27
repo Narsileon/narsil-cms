@@ -1,10 +1,11 @@
 import { Editor, useEditorState } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
-type RichTextEditorHeadingProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorHeadingProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
   level: 1 | 2 | 3 | 4 | 5 | 6;
 };

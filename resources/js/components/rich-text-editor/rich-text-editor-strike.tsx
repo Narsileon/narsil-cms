@@ -1,11 +1,12 @@
 import { Editor, useEditorState } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 import { Toggle, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-type RichTextEditorStrikeProps = React.ComponentProps<typeof Toggle> & {
+type RichTextEditorStrikeProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
   icon?: IconName;
 };

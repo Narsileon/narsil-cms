@@ -1,9 +1,10 @@
 import { Link } from "@inertiajs/react";
+import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type LogoProps = Omit<React.ComponentProps<typeof Link>, "href">;
+type LogoProps = Omit<ComponentProps<typeof Link>, "href">;
 
 function Logo({ className, ...props }: LogoProps) {
   return (

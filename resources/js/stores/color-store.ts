@@ -1,3 +1,6 @@
+import { router } from "@inertiajs/react";
+import { debounce } from "lodash";
+import { route } from "ziggy-js";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -11,6 +14,14 @@ type ColorStoreActions = {
 };
 
 type ColorStoreType = ColorStoreState & ColorStoreActions;
+
+const debouncedSave = debounce((color: string) => {
+  router.post(
+    route("user-configuration.store"),
+    { color: color },
+    { preserveState: false },
+  );
+}, 500);
 
 const useColorStore = create<ColorStoreType>()(
   persist(
@@ -27,6 +38,8 @@ const useColorStore = create<ColorStoreType>()(
         });
 
         get().applyColor();
+
+        debouncedSave(color);
       },
     }),
     {

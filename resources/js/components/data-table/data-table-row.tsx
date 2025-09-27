@@ -1,7 +1,9 @@
+import { type ComponentProps } from "react";
+
 import { TableRow } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DataTableRowProps = React.ComponentProps<typeof TableRow> & {
+type DataTableRowProps = ComponentProps<typeof TableRow> & {
   selected?: boolean;
 };
 

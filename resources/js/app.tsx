@@ -1,4 +1,5 @@
 import { createInertiaApp } from "@inertiajs/react";
+import { type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 
 import Layout from "@narsil-cms/layouts/layout";
@@ -10,8 +11,7 @@ createInertiaApp({
     const page: any = pages[`./pages/${name}.tsx`];
 
     page.default.layout =
-      page.default?.layout ||
-      ((page: React.ReactNode) => <Layout children={page} />);
+      page.default?.layout || ((page: ReactNode) => <Layout children={page} />);
 
     return page;
   },

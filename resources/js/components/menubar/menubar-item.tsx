@@ -1,8 +1,9 @@
 import { Menubar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarItemProps = React.ComponentProps<typeof Menubar.Item> & {
+type MenubarItemProps = ComponentProps<typeof Menubar.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };

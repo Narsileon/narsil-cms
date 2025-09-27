@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type SectionHeaderProps = React.ComponentProps<"div"> & {};
+type SectionHeaderProps = ComponentProps<"div"> & {};
 
 function SectionHeader({ className, ...props }: SectionHeaderProps) {
   return (

@@ -1,6 +1,7 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { type ComponentProps } from "react";
 
 import { Button } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
@@ -8,10 +9,7 @@ import { SortableHandle } from "@narsil-cms/components/sortable";
 import { TableCell, TableRow } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SortableTableRowProps = Omit<
-  React.ComponentProps<typeof TableRow>,
-  "id"
-> & {
+type SortableTableRowProps = Omit<ComponentProps<typeof TableRow>, "id"> & {
   colSpan?: number;
   disabled?: boolean;
   id: UniqueIdentifier;

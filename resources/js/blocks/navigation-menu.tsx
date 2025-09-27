@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import {
   NavigationMenuContent,
   NavigationMenuItem,
@@ -6,12 +8,13 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@narsil-cms/components/navigation-menu";
+
 type NavigationMenuElement = {
   title: string;
   content: React.ReactNode;
 };
 
-type NavigationMenuProps = React.ComponentProps<typeof NavigationMenuRoot> & {
+type NavigationMenuProps = ComponentProps<typeof NavigationMenuRoot> & {
   elements: NavigationMenuElement[];
   viewport?: boolean;
 };

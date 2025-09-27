@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteGroup;
+use Narsil\Models\Sites\SiteSubdomain;
+use Narsil\Models\Sites\SiteSubdomainLanguage;
 
 #endregion
 
@@ -19,13 +20,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(SiteGroup::TABLE))
-        {
-            $this->createSiteGroupsTable();
-        }
         if (!Schema::hasTable(Site::TABLE))
         {
             $this->createSitesTable();
+        }
+        if (!Schema::hasTable(SiteSubdomain::TABLE))
+        {
+            $this->createSiteSubdomainsTable();
+        }
+        if (!Schema::hasTable(SiteSubdomainLanguage::TABLE))
+        {
+            $this->createSiteSubdomainLanguagesTable();
         }
     }
 
@@ -34,8 +39,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(SiteSubdomainLanguage::TABLE);
+        Schema::dropIfExists(SiteSubdomain::TABLE);
         Schema::dropIfExists(Site::TABLE);
-        Schema::dropIfExists(SiteGroup::TABLE);
     }
 
     #endregion
@@ -45,14 +51,44 @@ return new class extends Migration
     /**
      * @return void
      */
-    private function createSiteGroupsTable(): void
+    private function createSiteSubdomainLanguagesTable(): void
     {
-        Schema::create(SiteGroup::TABLE, function (Blueprint $blueprint)
+        Schema::create(SiteSubdomainLanguage::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(SiteGroup::ID);
+                ->id(SiteSubdomainLanguage::ID);
             $blueprint
-                ->string(SiteGroup::NAME);
+                ->foreignId(SiteSubdomainLanguage::SUBDOMAIN_ID)
+                ->nullable()
+                ->constrained(SiteSubdomain::TABLE, SiteSubdomain::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(SiteSubdomainLanguage::LANGUAGE);
+            $blueprint
+                ->integer(SiteSubdomainLanguage::POSITION);
+            $blueprint
+                ->timestamps();
+        });
+    }
+
+    /**
+     * @return void
+     */
+    private function createSiteSubdomainsTable(): void
+    {
+        Schema::create(SiteSubdomain::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(SiteSubdomain::ID);
+            $blueprint
+                ->foreignId(SiteSubdomain::SITE_ID)
+                ->nullable()
+                ->constrained(Site::TABLE, Site::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(SiteSubdomain::SUBDOMAIN);
+            $blueprint
+                ->integer(SiteSubdomain::POSITION);
             $blueprint
                 ->timestamps();
         });
@@ -68,21 +104,11 @@ return new class extends Migration
             $blueprint
                 ->id(Site::ID);
             $blueprint
-                ->foreignId(Site::GROUP_ID)
-                ->nullable()
-                ->constrained(SiteGroup::TABLE, SiteGroup::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->boolean(Site::ENABLED)
-                ->default(true);
-            $blueprint
                 ->string(Site::NAME);
             $blueprint
-                ->string(Site::HANDLE);
+                ->string(Site::DOMAIN);
             $blueprint
-                ->string(Site::LANGUAGE);
-            $blueprint
-                ->boolean(Site::PRIMARY);
+                ->string(Site::PATTERN);
             $blueprint
                 ->timestamps();
         });

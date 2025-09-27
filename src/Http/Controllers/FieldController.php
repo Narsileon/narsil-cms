@@ -67,7 +67,7 @@ class FieldController extends AbstractController
 
         $form->action = route('fields.store');
         $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.create');
+        $form->submitLabel = trans('narsil::ui.save');
 
         return $this->render(
             component: 'narsil/cms::resources/form',

@@ -1,8 +1,9 @@
 import { NavigationMenu } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type NavigationMenuViewportProps = React.ComponentProps<
+type NavigationMenuViewportProps = ComponentProps<
   typeof NavigationMenu.Viewport
 > & {};
 

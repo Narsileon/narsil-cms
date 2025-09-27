@@ -1,7 +1,7 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 
 import { Button, Tooltip, WidthSelector } from "@narsil-cms/blocks";
 import {
@@ -29,7 +29,8 @@ import { type AnonymousItem } from ".";
 import SortableHandle from "./sortable-handle";
 import SortableItemForm from "./sortable-item-form";
 
-type SortableItemProps = Omit<React.ComponentProps<typeof CardRoot>, "id"> & {
+type SortableItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> & {
+  collapsed?: boolean;
   collapsible?: boolean;
   disabled?: boolean;
   footer?: React.ReactNode;
@@ -49,6 +50,7 @@ type SortableItemProps = Omit<React.ComponentProps<typeof CardRoot>, "id"> & {
 function SortableItem({
   children,
   className,
+  collapsed = false,
   collapsible = false,
   item,
   disabled,
@@ -67,7 +69,7 @@ function SortableItem({
 }: SortableItemProps) {
   const { trans } = useLabels();
 
-  const [open, setCollapsed] = useState<boolean>(true);
+  const [open, setCollapsed] = useState<boolean>(!collapsed);
 
   const {
     attributes,

@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type SectionFooterProps = React.ComponentProps<"div"> & {};
+type SectionFooterProps = ComponentProps<"div"> & {};
 
 function SectionFooter({ className, ...props }: SectionFooterProps) {
   return (

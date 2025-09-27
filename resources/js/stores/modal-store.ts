@@ -1,11 +1,12 @@
 import { Link } from "@inertiajs/react";
+import { type ComponentProps } from "react";
 import { create } from "zustand";
 
 type ModalType = {
   component: string;
   componentProps: Record<string, unknown>;
   id: string;
-  linkProps: React.ComponentProps<typeof Link>;
+  linkProps: ComponentProps<typeof Link>;
 };
 
 type ModalStoreState = {
@@ -15,14 +16,14 @@ type ModalStoreState = {
 type ModalStoreActions = {
   closeModal: (href: string) => void;
   closeTopModal: () => void;
-  openModal: (linkProps: React.ComponentProps<typeof Link>) => Promise<void>;
+  openModal: (linkProps: ComponentProps<typeof Link>) => Promise<void>;
   reloadTopModal: () => Promise<void>;
 };
 
 type ModalStoreType = ModalStoreState & ModalStoreActions;
 
 async function fetchModalProps(
-  linkProps: React.ComponentProps<typeof Link>,
+  linkProps: ComponentProps<typeof Link>,
 ): Promise<ModalType | null> {
   try {
     const url = new URL(linkProps.href as string, window.location.origin);
@@ -69,7 +70,7 @@ const useModalStore = create<ModalStoreType>((set, get) => ({
     set((state) => ({
       modals: state.modals.slice(0, -1),
     })),
-  openModal: async (linkProps: React.ComponentProps<typeof Link>) => {
+  openModal: async (linkProps: ComponentProps<typeof Link>) => {
     const modal = await fetchModalProps(linkProps);
 
     if (!modal) {

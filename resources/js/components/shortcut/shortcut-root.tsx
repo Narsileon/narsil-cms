@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type ShortcutRootProps = React.ComponentProps<"span"> & {};
+type ShortcutRootProps = ComponentProps<"span"> & {};
 
 function ShortcutRoot({ className, ...props }: ShortcutRootProps) {
   return (

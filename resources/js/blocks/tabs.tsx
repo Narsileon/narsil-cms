@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import { Icon } from "@narsil-cms/components/icon";
 import {
   TabsContent,
@@ -14,11 +16,11 @@ type TabsElement = {
   content: React.ReactNode;
 };
 
-type TabsProps = React.ComponentProps<typeof TabsRoot> & {
+type TabsProps = ComponentProps<typeof TabsRoot> & {
   elements: TabsElement[];
-  tabsContentProps?: Partial<React.ComponentProps<typeof TabsContent>>;
-  tabsListProps?: Partial<React.ComponentProps<typeof TabsList>>;
-  tabsTriggerProps?: Partial<React.ComponentProps<typeof TabsTrigger>>;
+  tabsContentProps?: Partial<ComponentProps<typeof TabsContent>>;
+  tabsListProps?: Partial<ComponentProps<typeof TabsList>>;
+  tabsTriggerProps?: Partial<ComponentProps<typeof TabsTrigger>>;
 };
 
 function Tabs({

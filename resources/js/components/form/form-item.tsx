@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type FormItemProps = React.ComponentProps<"div"> & {
+type FormItemProps = ComponentProps<"div"> & {
   width?: number;
 };
 

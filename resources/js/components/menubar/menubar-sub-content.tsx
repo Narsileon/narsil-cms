@@ -1,10 +1,9 @@
 import { Menubar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarSubContentProps = React.ComponentProps<
-  typeof Menubar.SubContent
-> & {};
+type MenubarSubContentProps = ComponentProps<typeof Menubar.SubContent> & {};
 
 function MenubarSubContent({ className, ...props }: MenubarSubContentProps) {
   return (
@@ -12,7 +11,7 @@ function MenubarSubContent({ className, ...props }: MenubarSubContentProps) {
       data-slot="menubar-sub-content"
       className={cn(
         "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg",
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
+        "data-[state=closed]:animate-out data-[state=open]:animate-in",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2",

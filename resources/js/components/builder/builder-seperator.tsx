@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
+
 import { cn } from "@narsil-cms/lib/utils";
 
-type BuilderSeparatorProps = React.ComponentProps<"div"> & {};
+type BuilderSeparatorProps = ComponentProps<"div"> & {};
 
 function BuilderSeparator({ className, ...props }: BuilderSeparatorProps) {
   return (
