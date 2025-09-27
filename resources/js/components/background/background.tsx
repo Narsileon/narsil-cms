@@ -70,7 +70,6 @@ function Background({
 
   return (
     <div
-      ref={ref}
       className={cn(
         "absolute inset-0 overflow-hidden rounded-[inherit] opacity-20",
         className,

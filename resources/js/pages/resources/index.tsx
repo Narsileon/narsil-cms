@@ -187,7 +187,6 @@ function ResourceIndex({
                       ),
                     }}
                     size={isDesktop ? "default" : "icon"}
-                    variant="default"
                   >
                     {isDesktop ? createLabel : undefined}
                   </Button>
