@@ -64,7 +64,10 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix('api')
             ->group(__DIR__ . '/../../routes/api.php');
 
-        Route::middleware('web')
+        Route::middleware([
+            'web',
+            'narsil.web',
+        ])
             ->prefix('narsil')
             ->group(__DIR__ . '/../../routes/graphql.php');
     }
