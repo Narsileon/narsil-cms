@@ -47,7 +47,7 @@ function InputContent({
         type={type}
         {...props}
       />
-      <InputBorder className="hidden group-focus-within:block" />
+      <InputBorder className="hidden group-focus-within/input:block" />
     </>
   );
 }
