@@ -16,6 +16,7 @@ const buttonRootVariants = cva(
         primary: cn(
           "text-primary-foreground shadow-xs",
           "bg-primary hover:bg-primary/85",
+          "[&_svg]:text-primary-foreground",
         ),
         destructive: cn(
           "text-destructive-foreground shadow-xs",

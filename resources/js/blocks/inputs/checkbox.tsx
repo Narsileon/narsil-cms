@@ -16,7 +16,7 @@ function Checkbox({ icon = "check", indicatorProps, ...props }: CheckboxProps) {
   return (
     <CheckboxRoot {...props}>
       <CheckboxIndicator {...indicatorProps}>
-        <Icon className="size-3.5" name={icon} />
+        <Icon className="size-3.5 text-current" name={icon} />
       </CheckboxIndicator>
     </CheckboxRoot>
   );
