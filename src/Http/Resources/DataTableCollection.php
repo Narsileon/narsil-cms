@@ -171,11 +171,13 @@ class DataTableCollection extends ResourceCollection
 
         app(LabelsBag::class)
             ->add('narsil::accessibility.first_page')
+            ->add('narsil::accessibility.hide_column')
             ->add('narsil::accessibility.last_page')
             ->add('narsil::accessibility.more_pages')
             ->add('narsil::accessibility.move_column')
             ->add('narsil::accessibility.next_page')
             ->add('narsil::accessibility.previous_page')
+            ->add('narsil::accessibility.show_column')
             ->add('narsil::accessibility.sort_column')
             ->add('narsil::accessibility.toggle_row_menu')
             ->add('narsil::operators.after_or_equal')

@@ -93,9 +93,10 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
           {availableColumns.map((column) => (
             <Button
               className="justify-start font-normal"
-              key={column.id}
+              tooltip={trans("accessibility.show_column", "Show column")}
               variant="outline"
               onClick={() => handleActivate(column)}
+              key={column.id}
             >
               {column.columnDef.header as string}
             </Button>
@@ -178,6 +179,7 @@ function SortableItem({
       <Button
         className="size-7"
         size="icon"
+        tooltip={trans("accessibility.hide_column", "Hide column")}
         variant="ghost"
         onClick={() => onRemove(column)}
       >
