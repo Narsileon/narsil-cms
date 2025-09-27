@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import { omit } from "lodash";
 import { type ComponentProps } from "react";
 
 import { Tooltip } from "@narsil-cms/blocks";
@@ -40,10 +41,14 @@ function Button({
   );
 
   const ButtonElement = (
-    <ButtonRoot asChild={linkProps ? true : asChild} {...props}>
+    <ButtonRoot
+      aria-label={tooltipLabel as string}
+      asChild={linkProps ? true : asChild}
+      {...props}
+    >
       {linkProps ? (
         linkProps.modal ? (
-          <ModalLink {...linkProps}>{ButtonContent}</ModalLink>
+          <ModalLink {...omit(linkProps, ["modal"])}>{ButtonContent}</ModalLink>
         ) : (
           <Link {...linkProps}>{ButtonContent}</Link>
         )

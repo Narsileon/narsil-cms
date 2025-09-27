@@ -25,7 +25,10 @@ class GuestMenu extends AbstractMenu implements Contract
     public function __construct()
     {
         app(LabelsBag::class)
-            ->add('narsil::accessibility.toggle_user_menu');
+            ->add('narsil::accessibility.toggle_user_menu')
+            ->add('narsil::themes.dark')
+            ->add('narsil::themes.light')
+            ->add('narsil::themes.system');
     }
 
     #endregion

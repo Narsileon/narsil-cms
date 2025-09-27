@@ -30,8 +30,6 @@ function ToggleGroupItem({
         }),
         "min-w-0 flex-1 shrink-0 cursor-pointer rounded-none shadow-none",
         "first:rounded-l-md",
-        "focus:z-10",
-        "focus-visible:z-10",
         "last:rounded-r-md",
         "data-[variant=outline]:border-l-0",
         "data-[variant=outline]:first:border-l",

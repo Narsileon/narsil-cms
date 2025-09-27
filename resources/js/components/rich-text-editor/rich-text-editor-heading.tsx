@@ -1,7 +1,7 @@
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
-import { Toggle, Tooltip } from "@narsil-cms/blocks";
+import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
@@ -26,26 +26,23 @@ function RichTextEditorHeading({
     },
   });
 
+  const tooltip = trans(
+    `accessibility.toggle_heading_${level}`,
+    `Toggle heading ${level}`,
+  );
+
   return (
-    <Tooltip
-      asChild={true}
-      tooltip={trans(`accessibility.toggle_heading_${level}`)}
+    <Toggle
+      pressed={isHeading}
+      size="icon"
+      tooltip={tooltip}
+      onClick={() =>
+        editor.chain().focus().toggleHeading({ level: level }).run()
+      }
+      {...props}
     >
-      <Toggle
-        aria-label={trans(
-          `accessibility.toggle_heading_${level}`,
-          `Toggle heading ${level}`,
-        )}
-        pressed={isHeading}
-        size="icon"
-        onClick={() =>
-          editor.chain().focus().toggleHeading({ level: level }).run()
-        }
-        {...props}
-      >
-        <Icon className="stroke-foreground" name={`heading-${level}`} />
-      </Toggle>
-    </Tooltip>
+      <Icon className="stroke-foreground" name={`heading-${level}`} />
+    </Toggle>
   );
 }
 

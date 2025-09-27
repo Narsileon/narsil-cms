@@ -1,21 +1,26 @@
 import { useRef } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
 import {
   ToggleGroupItem,
   ToggleGroupRoot,
 } from "@narsil-cms/components/toggle-group";
 import { useThemeStore, themes } from "@narsil-cms/stores/theme-store";
 
+import Tooltip from "./tooltip";
+
 type ThemeToggleGroupProps = {
   className?: string;
 };
 
 function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
-  const { theme, setTheme } = useThemeStore();
+  const { trans } = useLabels();
+
+  const { theme: currentTheme, setTheme } = useThemeStore();
 
   return (
-    <ToggleGroupRoot value={theme} type="single" {...props}>
+    <ToggleGroupRoot type="single" value={currentTheme} {...props}>
       {themes.map((theme) => {
         const ref = useRef<HTMLButtonElement>(null);
 
@@ -41,15 +46,19 @@ function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
             onClick={handleClick}
             key={theme}
           >
-            <Icon
-              name={
-                theme === "light"
-                  ? "sun"
-                  : theme === "dark"
-                    ? "moon"
-                    : "sun-moon"
-              }
-            />
+            <Tooltip tooltip={trans(`themes.${theme}`)}>
+              <div className="flex size-full items-center justify-center">
+                <Icon
+                  name={
+                    theme === "light"
+                      ? "sun"
+                      : theme === "dark"
+                        ? "moon"
+                        : "sun-moon"
+                  }
+                />
+              </div>
+            </Tooltip>
           </ToggleGroupItem>
         );
       })}

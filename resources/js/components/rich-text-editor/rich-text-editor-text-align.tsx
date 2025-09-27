@@ -1,7 +1,7 @@
 import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
-import { Toggle, Tooltip } from "@narsil-cms/blocks";
+import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 
@@ -17,21 +17,21 @@ function RichTextEditorTextAlign({
 }: RichTextEditorTextAlignProps) {
   const { trans } = useLabels();
 
+  const tooltip = trans(
+    `accessibility.align_${alignment}`,
+    `Align ${alignment}`,
+  );
+
   return (
-    <Tooltip tooltip={trans(`accessibility.align_${alignment}`)}>
-      <Toggle
-        aria-label={trans(
-          `accessibility.align_${alignment}`,
-          `Align ${alignment}`,
-        )}
-        pressed={editor.isActive({ textAlign: alignment })}
-        size="icon"
-        onClick={() => editor.chain().focus().setTextAlign(alignment).run()}
-        {...props}
-      >
-        <Icon name={`align-${alignment}`} />
-      </Toggle>
-    </Tooltip>
+    <Toggle
+      pressed={editor.isActive({ textAlign: alignment })}
+      size="icon"
+      tooltip={tooltip}
+      onClick={() => editor.chain().focus().setTextAlign(alignment).run()}
+      {...props}
+    >
+      <Icon name={`align-${alignment}`} />
+    </Toggle>
   );
 }
 

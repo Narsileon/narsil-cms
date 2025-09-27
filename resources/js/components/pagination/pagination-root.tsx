@@ -6,7 +6,7 @@ function PaginationRoot({ ...props }: PaginationRootProps) {
   return (
     <nav
       data-slot="pagination-root"
-      aria-label="pagination"
+      aria-label="Pagination"
       role="navigation"
       {...props}
     />

@@ -46,17 +46,14 @@ function GuestLayout({ children }: GuestLayoutProps) {
         <Container className="flex items-center justify-between gap-4">
           <Logo />
           <DropdownMenuRoot>
-            <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
-              <DropdownMenuTrigger>
-                <Button
-                  aria-label={trans(
-                    "accessibility.toggle_user_menu",
-                    "Toggle user menu",
-                  )}
-                  icon="menu"
-                  size="icon"
-                  variant="ghost"
-                />
+            <Tooltip
+              tooltip={trans(
+                "accessibility.toggle_user_menu",
+                "Toggle user menu",
+              )}
+            >
+              <DropdownMenuTrigger asChild={true}>
+                <Button icon="menu" size="icon" variant="ghost" />
               </DropdownMenuTrigger>
             </Tooltip>
             <DropdownMenuContent align="end">

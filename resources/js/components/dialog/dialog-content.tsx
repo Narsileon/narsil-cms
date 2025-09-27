@@ -37,9 +37,7 @@ function DialogContent({
         )}
         {...props}
       >
-        <VisuallyHidden aria-hidden="true" tabIndex={0}>
-          Dialog
-        </VisuallyHidden>
+        <VisuallyHidden tabIndex={0}>Dialog</VisuallyHidden>
         {children}
         {showCloseButton ? (
           <DialogCloseButton className="absolute top-5.5 right-5.5" />

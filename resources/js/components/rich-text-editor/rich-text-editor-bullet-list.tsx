@@ -1,7 +1,7 @@
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
-import { Toggle, Tooltip } from "@narsil-cms/blocks";
+import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { type IconName } from "@narsil-cms/plugins/icons";
@@ -27,21 +27,21 @@ function RichTextEditorBulletList({
     },
   });
 
+  const tooltip = trans(
+    `accessibility.toggle_bullet_list`,
+    `Toggle bullet list`,
+  );
+
   return (
-    <Tooltip tooltip={trans(`accessibility.toggle_bullet_list`)}>
-      <Toggle
-        aria-label={trans(
-          `accessibility.toggle_bullet_list`,
-          `Toggle bullet list`,
-        )}
-        pressed={isBulletList}
-        size="icon"
-        onClick={() => editor.chain().focus().toggleBulletList().run()}
-        {...props}
-      >
-        <Icon name={icon} />
-      </Toggle>
-    </Tooltip>
+    <Toggle
+      pressed={isBulletList}
+      size="icon"
+      tooltip={tooltip}
+      onClick={() => editor.chain().focus().toggleBulletList().run()}
+      {...props}
+    >
+      <Icon name={icon} />
+    </Toggle>
   );
 }
 

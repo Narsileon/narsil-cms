@@ -2,10 +2,24 @@ import { type ComponentProps } from "react";
 
 import { ToggleRoot } from "@narsil-cms/components/toggle";
 
-type ToggleProps = ComponentProps<typeof ToggleRoot> & {};
+import Tooltip from "./tooltip";
 
-function Toggle({ ...props }: ToggleProps) {
-  return <ToggleRoot {...props} />;
+type ToggleProps = ComponentProps<typeof ToggleRoot> & {
+  tooltip?: string;
+  tooltipProps?: ComponentProps<typeof Tooltip>;
+};
+
+function Toggle({ tooltip, tooltipProps, ...props }: ToggleProps) {
+  const tooltipLabel = tooltip || tooltipProps?.tooltip;
+
+  if (!tooltipLabel) {
+    return <ToggleRoot {...props} />;
+  }
+  return (
+    <Tooltip tooltip={tooltipLabel} {...tooltipProps}>
+      <ToggleRoot aria-label={tooltipLabel as string} {...props} />
+    </Tooltip>
+  );
 }
 
 export default Toggle;

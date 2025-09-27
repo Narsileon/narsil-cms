@@ -158,6 +158,11 @@ function SortableItem({
     transition,
   };
 
+  const columnLabel = column.columnDef.header as string;
+
+  const hideColumnLabel = `${trans("ui.hide", "Hide")} ${columnLabel}`;
+  const moveClumnLabel = `${trans("ui.move", "Move")} ${columnLabel}`;
+
   return (
     <div
       style={style}
@@ -172,14 +177,14 @@ function SortableItem({
           contentProps: {
             hidden: isDragging,
           },
-          tooltip: trans("accessibility.move_column", "Move column"),
+          tooltip: moveClumnLabel,
         }}
       />
-      <span className="grow">{column.columnDef.header as string}</span>
+      <span className="grow">{columnLabel}</span>
       <Button
         className="size-7"
         size="icon"
-        tooltip={trans("accessibility.hide_column", "Hide column")}
+        tooltip={hideColumnLabel}
         variant="ghost"
         onClick={() => onRemove(column)}
       >

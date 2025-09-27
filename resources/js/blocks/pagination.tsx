@@ -1,6 +1,5 @@
 import { type ComponentProps } from "react";
 
-import { Tooltip } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PaginationContent,
@@ -48,46 +47,44 @@ function Pagination({
 }: PaginationProps) {
   const { trans } = useLabels();
 
+  const firstPageLabel = trans("accessibility.first_page", "First page");
+  const prevPageLabel = trans("accessibility.previous_page", "Previous page");
+  const nextPageLabel = trans("accessibility.next_page", "Next page");
+  const lastPageLabel = trans("accessibility.last_page", "Last page");
+
   return (
     <PaginationRoot {...props}>
       <PaginationContent {...contentProps}>
-        <Tooltip tooltip={trans("accessibility.first_page")}>
-          <PaginationItem>
-            <PaginationLink
-              className="rounded-r-none"
-              asChild={true}
-              disabled={links.prev === null}
-              icon="chevron-left"
-              linkProps={{
-                "aria-label": trans("accessibility.first_page", "First page"),
-                as: "button",
-                href: links.first,
-                preserveScroll: true,
-                preserveState: true,
-              }}
-            />
-          </PaginationItem>
-        </Tooltip>
-        <Tooltip tooltip={trans("accessibility.previous_page")}>
-          <PaginationItem>
-            <PaginationLink
-              className="rounded-none"
-              asChild={true}
-              disabled={links.prev === null}
-              icon="chevron-left"
-              linkProps={{
-                "aria-label": trans(
-                  "accessibility.previous_page",
-                  "Previous page",
-                ),
-                as: "button",
-                href: links.prev ?? "",
-                preserveScroll: true,
-                preserveState: true,
-              }}
-            />
-          </PaginationItem>
-        </Tooltip>
+        <PaginationItem>
+          <PaginationLink
+            className="rounded-r-none"
+            asChild={true}
+            disabled={links.prev === null}
+            icon="chevron-left"
+            linkProps={{
+              as: "button",
+              href: links.first,
+              preserveScroll: true,
+              preserveState: true,
+            }}
+            tooltip={firstPageLabel}
+          />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink
+            className="rounded-none"
+            asChild={true}
+            disabled={links.prev === null}
+            icon="chevron-left"
+            linkProps={{
+              as: "button",
+              href: links.prev ?? "",
+              preserveScroll: true,
+              preserveState: true,
+            }}
+            tooltip={prevPageLabel}
+          />
+        </PaginationItem>
         {metaLinks?.slice(1, -1).map((link, index) => {
           return link.url ? (
             <PaginationItem key={index}>
@@ -117,40 +114,36 @@ function Pagination({
             </PaginationItem>
           );
         })}
-        <Tooltip tooltip={trans("accessibility.next_page")}>
-          <PaginationItem>
-            <PaginationLink
-              className="rounded-none"
-              asChild={true}
-              disabled={links.next === null}
-              icon="chevron-right"
-              linkProps={{
-                "aria-label": trans("accessibility.next_page", "Next page"),
-                as: "button",
-                href: links.next ?? "",
-                preserveScroll: true,
-                preserveState: true,
-              }}
-            />
-          </PaginationItem>
-        </Tooltip>
-        <Tooltip tooltip={trans("accessibility.last_page")}>
-          <PaginationItem>
-            <PaginationLink
-              className="rounded-l-none"
-              asChild={true}
-              disabled={links.next === null}
-              icon="chevrons-right"
-              linkProps={{
-                "aria-label": trans("accessibility.last_page", "Last page"),
-                as: "button",
-                href: links.last,
-                preserveScroll: true,
-                preserveState: true,
-              }}
-            />
-          </PaginationItem>
-        </Tooltip>
+        <PaginationItem>
+          <PaginationLink
+            className="rounded-none"
+            asChild={true}
+            disabled={links.next === null}
+            icon="chevron-right"
+            linkProps={{
+              as: "button",
+              href: links.next ?? "",
+              preserveScroll: true,
+              preserveState: true,
+            }}
+            tooltip={nextPageLabel}
+          />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink
+            className="rounded-l-none"
+            asChild={true}
+            disabled={links.next === null}
+            icon="chevrons-right"
+            linkProps={{
+              as: "button",
+              href: links.last,
+              preserveScroll: true,
+              preserveState: true,
+            }}
+            tooltip={lastPageLabel}
+          />
+        </PaginationItem>
       </PaginationContent>
     </PaginationRoot>
   );

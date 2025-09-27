@@ -1,7 +1,7 @@
 import { type ColumnDef } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 
-import { Button, Heading, Pagination, Tooltip } from "@narsil-cms/blocks";
+import { Button, Heading, Pagination } from "@narsil-cms/blocks";
 import { DataTable, DataTableColumns } from "@narsil-cms/blocks/data-table";
 import { Checkbox, Select } from "@narsil-cms/blocks/inputs";
 import {
@@ -136,55 +136,49 @@ function ResourceIndex({
                 {title}
               </Heading>
               <DataTableInput className="grow" />
-              <Tooltip
-                contentProps={{ hidden: isDesktop }}
-                tooltip={columnsLabel}
-              >
-                <DataTableColumns>
-                  <Button
-                    aria-label={columnsLabel}
-                    icon="eye"
-                    size={isDesktop ? "default" : "icon"}
-                    variant="secondary"
-                  >
-                    {isDesktop ? columnsLabel : undefined}
-                  </Button>
-                </DataTableColumns>
-              </Tooltip>
-              <Tooltip
-                contentProps={{ hidden: isDesktop }}
-                tooltip={filterLabel}
-              >
-                <DataTableFilterDropdown>
-                  <Button
-                    aria-label={filterLabel}
-                    icon="filter"
-                    size={isDesktop ? "default" : "icon"}
-                    variant="secondary"
-                  >
-                    {isDesktop ? filterLabel : undefined}
-                  </Button>
-                </DataTableFilterDropdown>
-              </Tooltip>
-              {collection.meta.routes.create ? (
-                <Tooltip
-                  contentProps={{ hidden: isDesktop }}
-                  tooltip={createLabel}
+              <DataTableColumns>
+                <Button
+                  icon="eye"
+                  size={isDesktop ? "default" : "icon"}
+                  tooltipProps={{
+                    contentProps: { hidden: isDesktop },
+                    tooltip: columnsLabel,
+                  }}
+                  variant="secondary"
                 >
-                  <Button
-                    aria-label={createLabel}
-                    icon="plus"
-                    linkProps={{
-                      href: route(
-                        collection.meta.routes.create,
-                        collection.meta.routes.params,
-                      ),
-                    }}
-                    size={isDesktop ? "default" : "icon"}
-                  >
-                    {isDesktop ? createLabel : undefined}
-                  </Button>
-                </Tooltip>
+                  {isDesktop ? columnsLabel : undefined}
+                </Button>
+              </DataTableColumns>
+              <DataTableFilterDropdown>
+                <Button
+                  icon="filter"
+                  size={isDesktop ? "default" : "icon"}
+                  tooltipProps={{
+                    contentProps: { hidden: isDesktop },
+                    tooltip: filterLabel,
+                  }}
+                  variant="secondary"
+                >
+                  {isDesktop ? filterLabel : undefined}
+                </Button>
+              </DataTableFilterDropdown>
+              {collection.meta.routes.create ? (
+                <Button
+                  icon="plus"
+                  linkProps={{
+                    href: route(
+                      collection.meta.routes.create,
+                      collection.meta.routes.params,
+                    ),
+                  }}
+                  size={isDesktop ? "default" : "icon"}
+                  tooltipProps={{
+                    contentProps: { hidden: isDesktop },
+                    tooltip: createLabel,
+                  }}
+                >
+                  {isDesktop ? createLabel : undefined}
+                </Button>
               ) : null}
             </SectionHeader>
             <SectionContent className="grow">

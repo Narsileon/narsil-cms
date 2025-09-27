@@ -86,12 +86,12 @@ function RichTextEditorToolbar({
               <DropdownMenuTrigger asChild={true}>
                 <Button
                   className="w-8 min-w-8"
-                  aria-label={trans(
+                  icon="heading"
+                  size="icon"
+                  tooltip={trans(
                     `accessibility.toggle_heading_menu`,
                     "Toggle heading menu",
                   )}
-                  icon="heading"
-                  size="icon"
                   variant="ghost"
                 />
               </DropdownMenuTrigger>
