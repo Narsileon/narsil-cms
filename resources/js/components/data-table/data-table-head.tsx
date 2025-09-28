@@ -1,11 +1,11 @@
 import { flexRender, Header } from "@tanstack/react-table";
+import { upperFirst } from "lodash";
 import { type ComponentProps } from "react";
 
 import { TableHead } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 
 import DataTableHeadSort from "./data-table-head-sort";
-import { upperFirst } from "lodash";
 
 type DataTableHeadProps = ComponentProps<typeof TableHead> & {
   header: Header<unknown, unknown>;

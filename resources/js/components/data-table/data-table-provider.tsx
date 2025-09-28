@@ -1,15 +1,3 @@
-import {
-  closestCenter,
-  DndContext,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-  type DragEndEvent,
-} from "@dnd-kit/core";
-import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
-import { arrayMove } from "@dnd-kit/sortable";
 import { router } from "@inertiajs/react";
 import {
   getCoreRowModel,
@@ -82,12 +70,6 @@ function DataTableProvider({
   ) {
     dataTableStore.setColumnVisibility(initialState.columnVisibility);
   }
-
-  const sensors = useSensors(
-    useSensor(MouseSensor, {}),
-    useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {}),
-  );
 
   function handleColumnOrderChange(
     order: Updater<ColumnOrderState> | ColumnOrderState,
@@ -181,28 +163,6 @@ function DataTableProvider({
     ...props,
   });
 
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-
-    if (!active || !over || active.id === over.id) {
-      return;
-    }
-
-    if (
-      active.id.toString().startsWith("_") ||
-      over.id.toString().startsWith("_")
-    ) {
-      return;
-    }
-
-    dataTable.setColumnOrder((columnOrder) => {
-      const activeIndex = columnOrder.indexOf(active.id as string);
-      const overIndex = columnOrder.indexOf(over.id as string);
-
-      return arrayMove(columnOrder, activeIndex, overIndex);
-    });
-  }
-
   const update = useCallback(
     debounce((href, params) => {
       router.get(href, params, {
@@ -240,14 +200,7 @@ function DataTableProvider({
         dataTableStore: dataTableStore,
       }}
     >
-      <DndContext
-        collisionDetection={closestCenter}
-        modifiers={[restrictToHorizontalAxis]}
-        onDragEnd={handleDragEnd}
-        sensors={sensors}
-      >
-        {render({ dataTable: dataTable, dataTableStore: dataTableStore })}
-      </DndContext>
+      {render({ dataTable: dataTable, dataTableStore: dataTableStore })}
     </DataTableContext.Provider>
   );
 }

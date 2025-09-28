@@ -48,6 +48,8 @@ type ArrayProps = {
 };
 
 function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
+  const { trans } = useLabels();
+
   const [active, setActive] = useState<Arrayitem | null>(null);
 
   const sensors = useSensors(
@@ -122,13 +124,15 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
           setItems([...items, { id: uniqueId("value"), [labelKey]: "" }])
         }
       >
-        Add
+        {trans("ui.add", "Add")}
       </Button>
     </div>
   );
 }
 
-type ArrayitemProps = {
+export default Array;
+
+type SortableitemProps = {
   handle?: string;
   id: string | number;
   index?: number;
@@ -147,7 +151,7 @@ function SortableItem({
   id,
   labelKey,
   onItemRemove,
-}: ArrayitemProps) {
+}: SortableitemProps) {
   const { trans } = useLabels();
 
   const [open, setCollapsed] = useState<boolean>(true);
@@ -232,5 +236,3 @@ function SortableItem({
     </CollapsibleRoot>
   );
 }
-
-export default Array;

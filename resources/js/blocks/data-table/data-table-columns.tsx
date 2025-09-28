@@ -7,11 +7,11 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Column } from "@tanstack/react-table";
+import { upperFirst } from "lodash";
 import { ComponentProps } from "react";
 
 import { Button, Card } from "@narsil-cms/blocks";
 import { useDataTable } from "@narsil-cms/components/data-table";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverRoot,
@@ -19,7 +19,6 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { SortableHandle } from "@narsil-cms/components/sortable";
-import { upperFirst } from "lodash";
 
 type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger> & {};
 
@@ -134,13 +133,12 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
 
 export default DataTableColumns;
 
-function SortableItem({
-  column,
-  onRemove,
-}: {
+type SortableItemProps = {
   column: Column<unknown, unknown>;
   onRemove: (c: Column<unknown, unknown>) => void;
-}) {
+};
+
+function SortableItem({ column, onRemove }: SortableItemProps) {
   const { trans } = useLabels();
 
   const {
@@ -154,11 +152,6 @@ function SortableItem({
     id: column.id,
   });
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
-
   const columnLabel = upperFirst(column.columnDef.header as string);
 
   const hideColumnLabel = `${trans("ui.hide", "Hide")} ${columnLabel}`;
@@ -166,8 +159,11 @@ function SortableItem({
 
   return (
     <div
-      style={style}
       className="flex h-9 items-center gap-2 overflow-hidden rounded-md border bg-background pr-1"
+      style={{
+        transform: CSS.Transform.toString(transform),
+        transition,
+      }}
     >
       <SortableHandle
         ref={setNodeRef}
@@ -184,13 +180,15 @@ function SortableItem({
       <span className="grow">{columnLabel}</span>
       <Button
         className="size-7"
+        iconProps={{
+          className: "size-4",
+          name: "x",
+        }}
         size="icon"
         tooltip={hideColumnLabel}
         variant="ghost"
         onClick={() => onRemove(column)}
-      >
-        <Icon className="size-4" name="x" />
-      </Button>
+      />
     </div>
   );
 }
