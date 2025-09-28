@@ -49,7 +49,7 @@ function CalendarRoot({
           defaultClassNames.button_previous,
         ),
         caption_label: cn(
-          "font-medium select-none",
+          "flex h-(--cell-size) items-center gap-2 px-2 font-medium select-none",
           captionLayout === "label" &&
             "flex h-8 items-center gap-1 rounded-md pr-1 pl-2 [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
           defaultClassNames.caption_label,

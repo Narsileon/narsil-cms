@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { route } from "ziggy-js";
 
 import { Badge, Tooltip } from "@narsil-cms/blocks";
+import { Border } from "@narsil-cms/components/border";
 import {
   CommandEmpty,
   CommandGroup,
@@ -17,7 +18,6 @@ import {
 import CommandInputWrapper from "@narsil-cms/components/command/command-input-wrapper";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
-import { InputBorder } from "@narsil-cms/components/input/input-border";
 import { useLabels } from "@narsil-cms/components/labels";
 import {
   PopoverContent,
@@ -239,7 +239,7 @@ function Combobox({
             className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
             name="chevron-down"
           />
-          <InputBorder className={open ? "block" : "hidden"} />
+          <Border className={open ? "block" : "hidden"} />
         </InputRoot>
       </PopoverTrigger>
       <PopoverPortal>

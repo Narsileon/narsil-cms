@@ -1,3 +1,5 @@
+import { router } from "@inertiajs/react";
+
 import {
   SelectContent,
   SelectItem,
@@ -12,7 +14,6 @@ import {
   SelectViewport,
 } from "@narsil-cms/components/select";
 import type { Revision } from "@narsil-cms/types";
-import { router } from "@inertiajs/react";
 
 type RevisionSelectProps = {
   revisions: Revision[];

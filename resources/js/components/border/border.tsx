@@ -1,15 +1,10 @@
 import { cn } from "@narsil-cms/lib/utils";
 
-type InputBorderProps = React.HTMLAttributes<HTMLDivElement> & {
+type BorderProps = React.HTMLAttributes<HTMLDivElement> & {
   duration?: number;
 };
 
-function InputBorder({
-  className,
-  duration = 14,
-  style,
-  ...props
-}: InputBorderProps) {
+function Border({ className, duration = 14, style, ...props }: BorderProps) {
   return (
     <div
       className={cn(
@@ -33,4 +28,4 @@ function InputBorder({
   );
 }
 
-export { InputBorder };
+export { Border };

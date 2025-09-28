@@ -1,9 +1,9 @@
 import { type VariantProps } from "class-variance-authority";
 import { type ComponentProps } from "react";
 
+import { Border } from "@narsil-cms/components/border";
 import { cn } from "@narsil-cms/lib/utils";
 
-import { InputBorder } from "./input-border";
 import inputContentVariants from "./input-content-variants";
 
 type InputContentProps = ComponentProps<"input"> &
@@ -47,7 +47,7 @@ function InputContent({
         type={type}
         {...props}
       />
-      <InputBorder className="hidden group-focus-within/input:block" />
+      <Border className="hidden group-focus-within/input:block" />
     </>
   );
 }
