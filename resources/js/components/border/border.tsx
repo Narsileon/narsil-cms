@@ -8,8 +8,8 @@ function Border({ className, duration = 14, style, ...props }: BorderProps) {
   return (
     <div
       className={cn(
-        "absolute -top-[1px] -right-[1px] -bottom-[1px] -left-[1px]",
-        "pointer-events-none rounded-[inherit] border-1 border-transparent bg-size-[300%_300%] mask-exclude",
+        "absolute -top-0.5 -right-0.5 -bottom-0.5 -left-0.5",
+        "pointer-events-none rounded-[inherit] border-2 border-transparent bg-size-[300%_300%] mask-exclude",
         "infinite linear will-change-[background-position] motion-safe:animate-shine",
         className,
       )}

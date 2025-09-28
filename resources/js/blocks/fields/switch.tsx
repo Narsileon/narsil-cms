@@ -10,7 +10,7 @@ type SwitchProps = ComponentProps<typeof SwitchRoot> & {
 function Switch({ thumbProps, ...props }: SwitchProps) {
   return (
     <SwitchRoot {...props}>
-      <Border />
+      <Border className="hidden group-focus-within/switch:block" />
       <SwitchThumb {...thumbProps} />
     </SwitchRoot>
   );
