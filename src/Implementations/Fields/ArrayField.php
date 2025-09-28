@@ -47,7 +47,7 @@ class ArrayField extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'relations';
+        return 'array';
     }
 
     #region • FLUENT METHODS

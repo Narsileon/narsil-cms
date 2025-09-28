@@ -113,7 +113,7 @@ function SortableItem({
               asChild={true}
             >
               <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pr-1 pl-0">
-                <div className="flex items-center justify-start gap-2">
+                <div className="flex w-full items-center justify-start gap-2">
                   <SortableHandle
                     ref={setActivatorNodeRef}
                     {...attributes}
@@ -125,7 +125,7 @@ function SortableItem({
                     </Tooltip>
                   ) : null}
                   {label ? (
-                    <CardTitle className="justify-self-start font-normal">
+                    <CardTitle className="grow justify-self-start font-normal">
                       {label}
                     </CardTitle>
                   ) : null}

@@ -8,6 +8,7 @@ import {
   BetweenHorizonalStartIcon,
   BoldIcon,
   BoxIcon,
+  BracketsIcon,
   Calendar1Icon,
   CalendarIcon,
   ChartPieIcon,
@@ -53,6 +54,7 @@ import {
   LockIcon,
   LogInIcon,
   LogOutIcon,
+  LucideIcon,
   MailIcon,
   MenuIcon,
   MoonIcon,
@@ -89,13 +91,17 @@ import {
 } from "lucide-react";
 
 type Registry = Record<string, RegistryItem>;
-type RegistryItem = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+type RegistryItem =
+  | LucideIcon
+  | React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 const defaultRegistry = {
   ["align-center"]: AlignCenterIcon,
   ["align-justify"]: AlignJustifyIcon,
   ["align-left"]: AlignLeftIcon,
   ["align-right"]: AlignRightIcon,
+  ["array"]: BracketsIcon,
   ["asterisk"]: AsteriskIcon,
   ["bold"]: BoldIcon,
   ["box"]: BoxIcon,
