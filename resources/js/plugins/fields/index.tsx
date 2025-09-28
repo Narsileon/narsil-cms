@@ -1,5 +1,5 @@
 import { isArray } from "lodash";
-import { type ComponentType, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import {
   Array,
@@ -19,7 +19,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
-import { type Field } from "@narsil-cms/types";
+import type { Field } from "@narsil-cms/types";
 
 export type FieldProps = {
   element: Field;
@@ -48,7 +48,7 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\CheckboxField"]: (props) => {
-    if (props.element.settings.options) {
+    if ("options" in props.element.settings) {
       return (
         <Checkboxes
           {...props.element.settings}
@@ -220,16 +220,20 @@ const defaultRegistry: Registry = {
   },
 };
 
-export type FieldName = keyof typeof defaultRegistry;
+type FieldName = keyof typeof defaultRegistry;
 
 const registry: Registry = { ...defaultRegistry };
 
-export function getField(name: FieldName, props: FieldProps) {
+function getField<K extends keyof Registry>(name: K, props: FieldProps) {
   const FieldComponent = registry[name] ?? registry.default;
 
   return <FieldComponent {...props} />;
 }
 
-export function setField(name: string, component: ComponentType<FieldProps>) {
+function setField<K extends keyof Registry>(name: K, component: Registry[K]) {
   registry[name] = component;
 }
+
+export { getField, setField };
+
+export type { FieldName };

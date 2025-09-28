@@ -95,7 +95,7 @@ type RegistryItem =
 
 type Registry = Record<string, RegistryItem>;
 
-const defaultRegistry = {
+const defaultRegistry: Registry = {
   ["align-center"]: AlignCenterIcon,
   ["align-justify"]: AlignJustifyIcon,
   ["align-left"]: AlignLeftIcon,
