@@ -13,6 +13,12 @@ export type Block = {
   sets: Block[];
 };
 
+export type Bookmark = {
+  id: number;
+  name: string;
+  url: string;
+};
+
 export type Field = {
   blocks: Block[];
   description: string | null;
