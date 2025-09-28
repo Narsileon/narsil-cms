@@ -5,6 +5,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Enums\Configuration\ColorEnum;
+use Narsil\Enums\Configuration\ThemeEnum;
 use Narsil\Models\User;
 use Narsil\Models\Users\PasswordResetToken;
 use Narsil\Models\Users\Session;
@@ -146,13 +148,13 @@ return new class extends Migration
                 ->default('en');
             $blueprint
                 ->string(UserConfiguration::COLOR)
-                ->default('default');
+                ->default(ColorEnum::GRAY->value);
             $blueprint
                 ->decimal(UserConfiguration::RADIUS, 3, 2)
                 ->default(0.40);
             $blueprint
                 ->string(UserConfiguration::THEME)
-                ->default('system');
+                ->default(ThemeEnum::SYSTEM->value);
             $blueprint
                 ->json(UserConfiguration::PREFERENCES)
                 ->nullable();
