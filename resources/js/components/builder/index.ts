@@ -3,7 +3,6 @@ import { Block } from "@narsil-cms/types";
 import Builder from "./builder";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
-import BuilderSeparator from "./builder-seperator";
 
 export type BuilderNode = {
   block: Block;
@@ -16,4 +15,4 @@ export type BuilderNode = {
   values: Record<string, unknown>;
 };
 
-export { Builder, BuilderAdd, BuilderItem, BuilderSeparator };
+export { Builder, BuilderAdd, BuilderItem };

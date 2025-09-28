@@ -25,7 +25,6 @@ import { type Block } from "@narsil-cms/types";
 import { type BuilderNode } from ".";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
-import BuilderSeparator from "./builder-seperator";
 
 type BuilderProps = {
   name: string;
@@ -85,7 +84,6 @@ function Builder({ name, sets }: BuilderProps) {
       <SortableContext items={nodes} strategy={verticalListSortingStrategy}>
         <div className="col-span-full flex flex-col items-center justify-center">
           <div className="size-4 rounded-full bg-constructive" />
-          <BuilderSeparator />
           {nodes.map((node, index) => {
             const baseHandle = `${name}.${index}`;
 
@@ -101,9 +99,7 @@ function Builder({ name, sets }: BuilderProps) {
                     setNodes(newNodes);
                   }}
                 />
-                <BuilderSeparator />
                 <BuilderItem baseHandle={baseHandle} id={node.id} node={node} />
-                <BuilderSeparator />
               </Fragment>
             );
           })}
@@ -111,7 +107,6 @@ function Builder({ name, sets }: BuilderProps) {
             sets={sets}
             onAdd={(node) => setNodes([...nodes, node])}
           />
-          <BuilderSeparator />
           <div className="size-4 rounded-full bg-destructive" />
         </div>
       </SortableContext>

@@ -19,12 +19,13 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { get, set } from "lodash";
+import { get, set, upperFirst } from "lodash";
 import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
+import { useLabels } from "@narsil-cms/components/labels";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import {
   TableBody,
@@ -127,7 +128,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
                 {columns.map((column, index) => {
                   return (
                     <TableHead className="px-3" key={index}>
-                      {column.name}
+                      {upperFirst(column.name)}
                     </TableHead>
                   );
                 })}
@@ -221,6 +222,8 @@ function SortableItem({
   onRemove,
   ...props
 }: SortableItemProps) {
+  const { trans } = useLabels();
+
   const {
     attributes,
     isDragging,
@@ -257,6 +260,7 @@ function SortableItem({
           <SortableHandle
             ref={setActivatorNodeRef}
             className="rounded-md bg-transparent"
+            tooltip={trans("ui.move", "Move")}
             {...attributes}
             {...listeners}
           />
@@ -278,6 +282,7 @@ function SortableItem({
             className="size-7"
             icon="trash"
             size="icon"
+            tooltip={trans("ui.remove", "Remove")}
             variant="ghost"
             onClick={() => onRemove(id)}
           />
