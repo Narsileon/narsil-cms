@@ -33,7 +33,7 @@ function FormLabel({
       {required && (
         <Tooltip tooltip={trans("accessibility.required")}>
           <Icon
-            className="!size-3 text-destructive"
+            className="!size-3 text-primary"
             aria-hidden="true"
             name="asterisk"
           />
