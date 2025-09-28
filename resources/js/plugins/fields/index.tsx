@@ -1,4 +1,5 @@
 import { isArray } from "lodash";
+import { type ComponentType } from "react";
 
 import {
   Array,
@@ -12,14 +13,11 @@ import {
   RichTextEditor,
   Slider,
   Switch,
+  Table,
 } from "@narsil-cms/blocks/fields";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
-import {
-  SortableGrid,
-  SortableList,
-  SortableTable,
-} from "@narsil-cms/components/sortable";
+import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import { type Field } from "@narsil-cms/types";
 
@@ -173,7 +171,7 @@ const defaultRegistry: Registry = {
   },
   ["Narsil\\Contracts\\Fields\\TableField"]: (props) => {
     return (
-      <SortableTable
+      <Table
         {...props.element.settings}
         rows={props.value ?? []}
         setRows={props.setValue}

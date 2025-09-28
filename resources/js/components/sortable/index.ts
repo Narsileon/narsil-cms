@@ -8,8 +8,6 @@ import SortableItemForm from "./sortable-item-form";
 import SortableList from "./sortable-list";
 import SortableListContext from "./sortable-list-context";
 import SortableTree from "./sortable-tree";
-import SortableTable from "./table/sortable-table";
-import SortableTableRow from "./table/sortable-table-row";
 
 type AnonymousItem = Record<string, unknown> & {
   id: UniqueIdentifier;
@@ -39,8 +37,6 @@ export {
   SortableItemForm,
   SortableList,
   SortableListContext,
-  SortableTable,
-  SortableTableRow,
   SortableTree,
 };
 

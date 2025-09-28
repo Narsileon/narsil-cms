@@ -15,12 +15,17 @@ import {
 import {
   arrayMove,
   SortableContext,
+  useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { get, set } from "lodash";
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
 
+import { Button } from "@narsil-cms/blocks";
+import { Icon } from "@narsil-cms/components/icon";
+import { SortableHandle } from "@narsil-cms/components/sortable";
 import {
   TableBody,
   TableCell,
@@ -29,29 +34,23 @@ import {
   TableRoot,
   TableRow,
 } from "@narsil-cms/components/table";
+import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
 import { type Field } from "@narsil-cms/types";
 
-import SortableTableRow from "./sortable-table-row";
-
-type SortableTableItem = {
+type TableItem = {
   id: UniqueIdentifier;
 };
 
-type SortableTableProps = {
+type TableProps = {
   columns: Field[];
   placeholder?: string;
-  rows: SortableTableItem[];
-  setRows: (rows: SortableTableItem[]) => void;
+  rows: TableItem[];
+  setRows: (rows: TableItem[]) => void;
 };
 
-function SortableTable({
-  columns,
-  placeholder,
-  rows,
-  setRows,
-}: SortableTableProps) {
-  const [active, setActive] = useState<SortableTableItem | null>(null);
+function Table({ columns, placeholder, rows, setRows }: TableProps) {
+  const [active, setActive] = useState<TableItem | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -138,7 +137,7 @@ function SortableTable({
             <TableBody>
               {rows.map((row) => {
                 return (
-                  <SortableTableRow
+                  <SortableItem
                     className="h-11"
                     id={row.id}
                     onRemove={onRemove}
@@ -164,10 +163,10 @@ function SortableTable({
                         </TableCell>
                       );
                     })}
-                  </SortableTableRow>
+                  </SortableItem>
                 );
               })}
-              <SortableTableRow
+              <SortableItem
                 id={"placeholder"}
                 colSpan={columns.length}
                 disabled={true}
@@ -177,17 +176,17 @@ function SortableTable({
                 }}
               >
                 {placeholder}
-              </SortableTableRow>
+              </SortableItem>
             </TableBody>
             {createPortal(
               <DragOverlay>
                 {active ? (
                   <TableRoot>
-                    <SortableTableRow id={active.id} className="h-11">
+                    <SortableItem id={active.id} className="h-11">
                       {columns.map((column, index) => {
                         return <TableCell key={index} />;
                       })}
-                    </SortableTableRow>
+                    </SortableItem>
                   </TableRoot>
                 ) : null}
               </DragOverlay>,
@@ -200,4 +199,90 @@ function SortableTable({
   );
 }
 
-export default SortableTable;
+export default Table;
+
+type SortableItemProps = Omit<ComponentProps<typeof TableRow>, "id"> & {
+  colSpan?: number;
+  disabled?: boolean;
+  id: UniqueIdentifier;
+  placeholder?: boolean;
+  onRemove?: (id: UniqueIdentifier) => void;
+};
+
+function SortableItem({
+  children,
+  className,
+  colSpan = 1,
+  disabled,
+  id,
+  placeholder,
+  style,
+  onClick,
+  onRemove,
+  ...props
+}: SortableItemProps) {
+  const {
+    attributes,
+    isDragging,
+    listeners,
+    transform,
+    transition,
+    setActivatorNodeRef,
+    setNodeRef,
+  } = useSortable({
+    id: id,
+  });
+
+  return (
+    <TableRow
+      ref={disabled ? undefined : setNodeRef}
+      className={cn(
+        "h-9",
+        isDragging && "opacity-50",
+        placeholder &&
+          "border-dashed bg-transparent opacity-50 will-change-transform hover:opacity-100",
+        onClick && "cursor-pointer",
+        className,
+      )}
+      style={{
+        ...style,
+        transform: CSS.Transform.toString(transform),
+        transition: transition,
+      }}
+      onClick={onClick}
+      {...props}
+    >
+      <TableCell className="px-1 py-0">
+        {!placeholder ? (
+          <SortableHandle
+            ref={setActivatorNodeRef}
+            className="rounded-md bg-transparent"
+            {...attributes}
+            {...listeners}
+          />
+        ) : null}
+      </TableCell>
+      {placeholder ? (
+        <TableCell colSpan={colSpan}>
+          <div className="flex items-center justify-center gap-1">
+            <Icon name="plus" />
+            <span>{children}</span>
+          </div>
+        </TableCell>
+      ) : (
+        children
+      )}
+      <TableCell className="px-1 py-0">
+        {!placeholder && onRemove ? (
+          <Button
+            className="size-7"
+            icon="trash"
+            size="icon"
+            variant="ghost"
+            onClick={() => onRemove(id)}
+          />
+        ) : null}
+      </TableCell>
+    </TableRow>
+  );
+}

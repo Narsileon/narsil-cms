@@ -10,6 +10,7 @@ import RichTextEditor from "./rich-text-editor";
 import Select from "./select";
 import Slider from "./slider";
 import Switch from "./switch";
+import Table from "./table";
 
 export {
   Array,
@@ -24,4 +25,5 @@ export {
   Select,
   Slider,
   Switch,
+  Table,
 };
