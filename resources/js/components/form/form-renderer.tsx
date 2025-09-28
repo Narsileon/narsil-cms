@@ -75,13 +75,15 @@ function FormRenderer({
                     )}
                   >
                     <Heading level="h2">{childElement.name}</Heading>
-                    <Icon
-                      className={cn(
-                        "duration-300",
-                        "group-data-[state=open]:rotate-180",
-                      )}
-                      name="chevron-down"
-                    />
+                    {childElement.collapsible ? (
+                      <Icon
+                        className={cn(
+                          "duration-300",
+                          "group-data-[state=open]:rotate-180",
+                        )}
+                        name="chevron-down"
+                      />
+                    ) : null}
                   </CollapsibleTrigger>
                   <CollapsibleContent className="grid grid-cols-12 gap-4 p-4">
                     <FormRenderer

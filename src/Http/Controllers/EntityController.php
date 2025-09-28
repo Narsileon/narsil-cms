@@ -158,10 +158,22 @@ class EntityController extends AbstractController
      */
     public function edit(Request $request, int|string $collection, int $id): JsonResponse|Response
     {
-        $entity = Entity::query()
-            ->firstWhere([
-                Entity::ID => $id
-            ]);
+        if ($revision = $request->query('revision'))
+        {
+            $entity = Entity::withTrashed()
+                ->firstWhere([
+                    Entity::UUID => $revision
+                ]);
+        }
+        else
+        {
+            $entity = Entity::query()
+                ->firstWhere([
+                    Entity::ID => $id
+                ]);
+        }
+
+        $revisions = Entity::revisionOptions($id)->get();
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
@@ -177,12 +189,15 @@ class EntityController extends AbstractController
         ]);
         $form->data = $entity;
         $form->id = $entity->{Entity::UUID};
-        $form->submitLabel = trans('narsil::ui.update');
         $form->method = MethodEnum::PATCH;
+        $form->submitLabel = trans('narsil::ui.update');
+        $form->title = "$form->title: $id";
 
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
+            props: array_merge($form->jsonSerialize(), [
+                'revisions' => $revisions,
+            ]),
         );
     }
 

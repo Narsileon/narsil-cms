@@ -9,7 +9,7 @@ function CollapsibleTrigger({ className, ...props }: CollapsibleTriggerProps) {
   return (
     <Collapsible.Trigger
       data-slot="collapsible-trigger"
-      className={cn("cursor-pointer", className)}
+      className={cn("cursor-pointer data-[disabled]:cursor-default", className)}
       {...props}
     />
   );

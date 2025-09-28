@@ -12,11 +12,14 @@ function BadgeClose({ className, icon = "x", ...props }: BadgeCloseProps) {
   return (
     <button
       data-slot="badge-close"
-      className={cn("cursor-pointer hover:text-destructive", className)}
+      className={cn("cursor-pointer", className)}
       type="button"
       {...props}
     >
-      <Icon className="size-3.5" name={icon} />
+      <Icon
+        className="size-3.5 text-current hover:text-destructive"
+        name={icon}
+      />
     </button>
   );
 }

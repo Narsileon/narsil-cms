@@ -4,6 +4,8 @@ namespace Narsil\Traits;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -116,6 +118,7 @@ trait HasRevisions
                 self::ID,
                 self::ID,
             )
+            ->withTrashed()
             ->whereNotNull(self::DELETED_AT)
             ->orderByDesc(self::REVISION);
     }
@@ -158,4 +161,31 @@ trait HasRevisions
             $model->{self::REVISION} = $model->{self::REVISION} + 1;
         });
     }
+
+    #region • SCOPES
+
+    /**
+     * @param Builder $query
+     * @param integer $id
+     *
+     * @return void
+     */
+    #[Scope]
+    protected function revisionOptions(Builder $query, int $id): void
+    {
+        $query
+            ->withTrashed()
+            ->withoutEagerLoads()
+            ->select([
+                self::ID,
+                self::REVISION,
+                self::UUID,
+            ])
+            ->where(self::ID, $id)
+            ->orderByDesc(self::REVISION);
+    }
+
+    #endregion
+
+    #endregion
 }

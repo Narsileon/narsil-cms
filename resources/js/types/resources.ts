@@ -80,6 +80,12 @@ export type MenuItem = {
   modal?: boolean;
 };
 
+export type Revision = {
+  id: number;
+  revision: number;
+  uuid: string;
+};
+
 export type RouteNames = {
   create?: string;
   destroy?: string;

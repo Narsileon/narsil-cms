@@ -1,7 +1,13 @@
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-import { Button, Card, Heading, SaveButton } from "@narsil-cms/blocks";
+import {
+  Button,
+  Card,
+  Heading,
+  RevisionSelect,
+  SaveButton,
+} from "@narsil-cms/blocks";
 import {
   DialogBody,
   DialogClose,
@@ -26,11 +32,12 @@ import {
 } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type { FormType, TemplateSection } from "@narsil-cms/types";
+import type { FormType, Revision, TemplateSection } from "@narsil-cms/types";
 
 type FormProps = FormType & {
   data: Record<string, unknown>;
   modal?: ModalType;
+  revisions?: Revision[];
 };
 
 function ResourceForm({
@@ -40,6 +47,7 @@ function ResourceForm({
   layout,
   method,
   modal,
+  revisions,
   routes,
   submitLabel,
   title,
@@ -173,9 +181,13 @@ function ResourceForm({
           ) : (
             <SectionRoot className="p-4">
               <SectionHeader>
-                <Heading level="h1" variant="h4">
-                  {title}
-                </Heading>
+                <div className="flex items-end gap-2">
+                  <Heading level="h1" variant="h4">
+                    {title}
+                  </Heading>
+                  {revisions ? <RevisionSelect revisions={revisions} /> : null}
+                </div>
+
                 <SaveButton
                   routes={routes}
                   submitLabel={

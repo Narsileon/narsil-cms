@@ -15,7 +15,7 @@ const badgeRootVariants = cva(
       variant: {
         default: cn(
           "border-transparent bg-primary text-primary-foreground",
-          "[a&]:hover:bg-primary/90",
+          "[&>svg]:size-3 [a&]:hover:bg-primary/90",
         ),
         secondary: cn(
           "border-transparent bg-secondary text-secondary-foreground",

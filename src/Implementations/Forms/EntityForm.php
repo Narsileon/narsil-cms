@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Contracts\Forms\EntityForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
@@ -36,7 +37,7 @@ class EntityForm extends AbstractForm implements Contract
         $this->description = $template->{Template::NAME};
         $this->routes = RouteService::getNames(Template::HANDLE);
         $this->submitLabel = trans('narsil::ui.save');
-        $this->title = $template->{Template::NAME};
+        $this->title = Str::singular($template->{Template::NAME});
     }
 
     #endregion
