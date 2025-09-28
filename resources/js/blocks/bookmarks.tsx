@@ -16,7 +16,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import { type Bookmark, type FormType } from "@narsil-cms/types";
+import type { Bookmark, FormType } from "@narsil-cms/types";
 
 type BookmarksProps = ComponentProps<typeof PopoverTrigger> & {
   breadcrumb: {

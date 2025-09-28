@@ -20,7 +20,7 @@ import { get } from "lodash";
 import { Fragment, useState } from "react";
 
 import { useForm } from "@narsil-cms/components/form";
-import { type Block } from "@narsil-cms/types";
+import type { Block } from "@narsil-cms/types";
 
 import { type BuilderNode } from ".";
 import BuilderAdd from "./builder-add";

@@ -12,12 +12,12 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
-import {
+import type {
   Block,
+  BlockElementCondition,
   Field,
+  HasElement,
   TemplateSection,
-  type BlockElementCondition,
-  type HasElement,
 } from "@narsil-cms/types";
 
 import useForm from "./form-context";

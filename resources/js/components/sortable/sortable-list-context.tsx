@@ -4,10 +4,10 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import {
-  type FormType,
-  type GroupedSelectOption,
-  type SelectOption,
+import type {
+  FormType,
+  GroupedSelectOption,
+  SelectOption,
 } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";

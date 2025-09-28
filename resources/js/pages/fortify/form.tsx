@@ -14,7 +14,7 @@ import {
   SectionHeader,
   SectionRoot,
 } from "@narsil-cms/components/section";
-import { type FormType } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 
 type FortifyFormProps = FormType & {
   data: Record<string, unknown>;

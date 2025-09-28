@@ -2,7 +2,7 @@ import { useState, type ComponentProps } from "react";
 
 import { Button } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
-import { type SelectOption } from "@narsil-cms/types";
+import type { SelectOption } from "@narsil-cms/types";
 
 type WidthSelectorProps = Omit<ComponentProps<"div">, "defaultValue"> & {
   defaultValue: number;

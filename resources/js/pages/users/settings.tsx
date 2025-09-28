@@ -8,7 +8,7 @@ import {
 } from "@narsil-cms/blocks/forms";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import { type FormType } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 
 type UserSettingsProps = {
   profileForm: FormType;

@@ -2,7 +2,7 @@ import { usePage } from "@inertiajs/react";
 import { isEmpty } from "lodash";
 
 import { type Theme } from "@narsil-cms/stores/theme-store";
-import { type MenuItem } from "@narsil-cms/types";
+import type { MenuItem } from "@narsil-cms/types";
 
 export type GlobalProps = {
   auth: AuthProps;

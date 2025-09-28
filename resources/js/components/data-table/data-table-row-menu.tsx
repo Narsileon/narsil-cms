@@ -14,7 +14,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
-import { type RouteNames } from "@narsil-cms/types";
+import type { RouteNames } from "@narsil-cms/types";
 
 type DataTableRowMenuProps = Omit<
   ComponentProps<typeof DropdownMenuTrigger>,

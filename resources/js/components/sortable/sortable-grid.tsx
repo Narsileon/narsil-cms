@@ -23,11 +23,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 
 import { cn } from "@narsil-cms/lib/utils";
-import {
-  type Field,
-  type FormType,
-  type GroupedSelectOption,
-} from "@narsil-cms/types";
+import type { Field, FormType, GroupedSelectOption } from "@narsil-cms/types";
 
 import {
   SortableAdd,

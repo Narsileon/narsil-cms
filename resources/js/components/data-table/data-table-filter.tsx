@@ -8,7 +8,7 @@ import {
 } from "@narsil-cms/components/data-table";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
-import { type DataTableFilterCollection } from "@narsil-cms/types";
+import type { DataTableFilterCollection } from "@narsil-cms/types";
 
 type DataTableFilterProps = ComponentProps<"ul"> &
   DataTableFilterCollection & {};

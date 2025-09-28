@@ -14,7 +14,7 @@ import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
-import { type RouteNames } from "@narsil-cms/types";
+import type { RouteNames } from "@narsil-cms/types";
 
 import Button from "./button";
 

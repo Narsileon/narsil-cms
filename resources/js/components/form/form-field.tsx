@@ -1,7 +1,7 @@
 import { cloneDeep, get, unset } from "lodash";
 import { useEffect, useState } from "react";
 
-import { type BlockElementCondition, Field } from "@narsil-cms/types";
+import type { BlockElementCondition, Field } from "@narsil-cms/types";
 
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";

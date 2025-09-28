@@ -12,7 +12,7 @@ import {
 } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import { type FormType } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 
 type TwoFactorFormProps = {
   form: FormType;

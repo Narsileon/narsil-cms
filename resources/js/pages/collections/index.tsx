@@ -9,7 +9,7 @@ import {
   useMinXl,
 } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
-import { Template } from "@narsil-cms/types";
+import type { Template } from "@narsil-cms/types";
 
 type CollectionsProps = {
   templates: Template[];

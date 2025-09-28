@@ -11,7 +11,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
-import { type Block } from "@narsil-cms/types";
+import type { Block } from "@narsil-cms/types";
 
 import { type BuilderNode } from ".";
 

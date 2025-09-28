@@ -8,7 +8,7 @@ import { Combobox } from "@narsil-cms/blocks/fields";
 import { useLabels } from "@narsil-cms/components/labels";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
-import { type GroupedSelectOption, type SelectOption } from "@narsil-cms/types";
+import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 

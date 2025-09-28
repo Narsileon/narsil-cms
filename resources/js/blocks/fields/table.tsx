@@ -37,7 +37,7 @@ import {
 } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
-import { type Field } from "@narsil-cms/types";
+import type { Field } from "@narsil-cms/types";
 
 type TableItem = {
   id: UniqueIdentifier;

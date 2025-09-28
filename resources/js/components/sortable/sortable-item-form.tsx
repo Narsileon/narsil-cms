@@ -16,7 +16,7 @@ import {
 import { FormItem, FormLabel } from "@narsil-cms/components/form";
 import { useLabels } from "@narsil-cms/components/labels";
 import { getField } from "@narsil-cms/plugins/fields";
-import { type FormType } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 

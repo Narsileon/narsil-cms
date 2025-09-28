@@ -3,6 +3,7 @@ import { ComponentProps } from "react";
 import {
   Array,
   Checkbox,
+  Checkboxes,
   Combobox,
   InputDate,
   InputFile,
@@ -15,24 +16,23 @@ import {
 } from "@narsil-cms/blocks/fields";
 import { InputContent } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
+import { IconName } from "@narsil-cms/plugins/icons";
 
 type DefaultField = {
   type: "default";
-  settings: Record<string, unknown>;
+  settings: Record<string, unknown> & {
+    icon?: IconName;
+  };
 };
 
 type ArrayField = {
   type: "Narsil\\Contracts\\Fields\\ArrayField";
-  settings: ComponentProps<typeof Array> & {
-    labelKey: string;
-  };
+  settings: ComponentProps<typeof Array>;
 };
 
 type CheckboxField = {
   type: "Narsil\\Contracts\\Fields\\CheckboxField";
-  settings: ComponentProps<typeof Checkbox> & {
-    options?: { label: string; value: string }[];
-  };
+  settings: ComponentProps<typeof Checkbox> | ComponentProps<typeof Checkboxes>;
 };
 
 type DateField = {
@@ -42,7 +42,9 @@ type DateField = {
 
 type FileField = {
   type: "Narsil\\Contracts\\Fields\\FileField";
-  settings: ComponentProps<typeof InputFile> & { icon?: string };
+  settings: ComponentProps<typeof InputFile> & {
+    icon?: IconName;
+  };
 };
 
 type PasswordField = {

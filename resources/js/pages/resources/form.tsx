@@ -26,7 +26,7 @@ import {
 } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import { type TemplateSection, type FormType } from "@narsil-cms/types";
+import type { FormType, TemplateSection } from "@narsil-cms/types";
 
 type FormProps = FormType & {
   data: Record<string, unknown>;

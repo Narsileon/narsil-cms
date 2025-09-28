@@ -5,10 +5,10 @@ import {
   TableRoot,
   TableRow,
 } from "@narsil-cms/components/table";
-import {
-  type GroupedSelectOption,
-  type SelectOption,
-  type UniqueIdentifier,
+import type {
+  GroupedSelectOption,
+  SelectOption,
+  UniqueIdentifier,
 } from "@narsil-cms/types";
 
 import Checkbox from "./checkbox";

@@ -19,10 +19,10 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { cn } from "@narsil-cms/lib/utils";
-import {
-  type FormType,
-  type GroupedSelectOption,
-  type SelectOption,
+import type {
+  FormType,
+  GroupedSelectOption,
+  SelectOption,
 } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";

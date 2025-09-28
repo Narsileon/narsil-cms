@@ -13,7 +13,7 @@ import {
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
-import { type FormType } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 
 type ConfigurationFormProps = {
   form: FormType;

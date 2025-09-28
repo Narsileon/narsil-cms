@@ -26,7 +26,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { cn, getSelectOption } from "@narsil-cms/lib/utils";
-import { type SelectOption } from "@narsil-cms/types";
+import type { SelectOption } from "@narsil-cms/types";
 
 type ComboboxProps = {
   className?: string;

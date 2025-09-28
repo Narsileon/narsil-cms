@@ -8,7 +8,7 @@ import {
   SectionHeader,
   SectionRoot,
 } from "@narsil-cms/components/section";
-import { type FormType } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 
 import TwoFactorForm from "./two-factor-form";
 

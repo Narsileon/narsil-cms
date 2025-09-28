@@ -1,4 +1,4 @@
-import { Block } from "@narsil-cms/types";
+import type { Block } from "@narsil-cms/types";
 
 import Builder from "./builder";
 import BuilderAdd from "./builder-add";

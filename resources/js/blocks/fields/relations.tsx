@@ -25,7 +25,7 @@ import {
   TabsTrigger,
 } from "@narsil-cms/components/tabs";
 import { cn } from "@narsil-cms/lib/utils";
-import { type DataTableCollection } from "@narsil-cms/types";
+import type { DataTableCollection } from "@narsil-cms/types";
 
 type RelationsProps = {
   className?: string;

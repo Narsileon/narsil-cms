@@ -25,9 +25,9 @@ import {
 } from "@narsil-cms/components/section";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
-import {
-  type DataTableCollection,
-  type DataTableFilterCollection,
+import type {
+  DataTableCollection,
+  DataTableFilterCollection,
 } from "@narsil-cms/types";
 
 type ResourceIndexProps = {

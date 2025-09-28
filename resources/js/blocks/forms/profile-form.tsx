@@ -11,7 +11,7 @@ import {
   SectionRoot,
 } from "@narsil-cms/components/section";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import { type FormType } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 
 type ProfileFormProps = {
   profileForm: FormType;
