@@ -125,6 +125,9 @@ return new class extends Migration
             $blueprint
                 ->string(Block::NAME);
             $blueprint
+                ->boolean(Block::COLLAPSIBLE)
+                ->default(false);
+            $blueprint
                 ->timestamps();
         });
     }

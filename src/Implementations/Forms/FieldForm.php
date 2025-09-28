@@ -105,6 +105,7 @@ class FieldForm extends AbstractForm implements Contract
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::COLLAPSIBLE => true,
                         Block::NAME => trans('narsil::ui.settings'),
                         Block::RELATION_ELEMENTS =>  $settings,
                     ])

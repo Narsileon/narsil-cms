@@ -198,6 +198,7 @@ return [
         'avatar'                  => 'avatar',
         'blocks'                  => 'blocks',
         'code'                    => 'code',
+        'collapsible'             => 'collapsible',
         'color'                   => 'color',
         'created_at'              => 'created at',
         'created_by'              => 'created by',

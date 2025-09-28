@@ -3,7 +3,8 @@ import { IconName } from "@narsil-cms/plugins/icons";
 import { FieldType } from "./fields";
 
 export type Block = {
-  elements?: HasElement[];
+  collapsible: boolean;
+  elements: HasElement[];
   handle: string;
   icon?: IconName;
   id: number;

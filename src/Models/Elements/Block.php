@@ -77,6 +77,13 @@ class Block extends Model
     #region • COLUMNS
 
     /**
+     * The name of the "collapsible" column.
+     *
+     * @var string
+     */
+    final public const COLLAPSIBLE = 'collapsible';
+
+    /**
      * The name of the "handle" column.
      *
      * @var string

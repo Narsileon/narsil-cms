@@ -65,6 +65,7 @@ function FormRenderer({
                     "-mb-4",
                     "data-[state=closed]:not-last:border-b",
                   )}
+                  disabled={!childElement.collapsible}
                   defaultOpen={true}
                 >
                   <CollapsibleTrigger
@@ -121,14 +122,7 @@ function FormRenderer({
     );
   }
 
-  return props.type === "Narsil\\Contracts\\Fields\\SectionElement" ? (
-    <Heading
-      className="col-span-full -mx-4 border-t border-b bg-accent p-4"
-      level="h2"
-    >
-      {props.name}
-    </Heading>
-  ) : (
+  return (
     <FormField
       id={props.handle}
       conditions={conditions}

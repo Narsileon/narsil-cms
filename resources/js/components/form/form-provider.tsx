@@ -1,12 +1,12 @@
 import { useForm } from "@inertiajs/react";
 
-import { type Block, type Field } from "@narsil-cms/types";
+import type { Block, Field, TemplateSection } from "@narsil-cms/types";
 
 import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
   action: string;
-  elements?: (Field | Block)[];
+  elements?: (Block | Field | TemplateSection)[];
   id: string;
   initialValues?: Record<string, unknown>;
   method: string;

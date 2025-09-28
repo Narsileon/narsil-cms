@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm;
@@ -62,7 +63,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
-                    ])
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
@@ -71,7 +72,15 @@ class BlockForm extends AbstractForm implements Contract
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
-                    ])
+                    ]),
+                ]),
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => Block::COLLAPSIBLE,
+                        Field::NAME => trans('narsil::validation.attributes.collapsible'),
+                        Field::TYPE => CheckboxField::class,
+                        Field::SETTINGS => app(CheckboxField::class),
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
@@ -97,7 +106,7 @@ class BlockForm extends AbstractForm implements Contract
                                 routes: RouteService::getNames(Field::TABLE),
                             )
                             ->setWidthOptions($widthOptions),
-                    ])
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
