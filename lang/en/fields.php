@@ -12,7 +12,6 @@ use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Fields\RangeField;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\RichTextField;
-use Narsil\Contracts\Fields\SectionElement;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TableField;
@@ -32,7 +31,6 @@ return [
     RangeField::class => 'Range',
     RelationsField::class => 'Relations',
     RichTextField::class => 'Rich Text',
-    SectionElement::class => 'Section',
     SelectField::class => 'Select',
     SwitchField::class => 'Switch',
     TableField::class => 'Table',

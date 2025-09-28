@@ -21,7 +21,6 @@ return [
     \Narsil\Contracts\Fields\RangeField::class => \Narsil\Implementations\Fields\RangeField::class,
     \Narsil\Contracts\Fields\RelationsField::class => \Narsil\Implementations\Fields\RelationsField::class,
     \Narsil\Contracts\Fields\RichTextField::class => \Narsil\Implementations\Fields\RichTextField::class,
-    \Narsil\Contracts\Fields\SectionElement::class => \Narsil\Implementations\Fields\SectionElement::class,
     \Narsil\Contracts\Fields\SelectField::class => \Narsil\Implementations\Fields\SelectField::class,
     \Narsil\Contracts\Fields\SwitchField::class => \Narsil\Implementations\Fields\SwitchField::class,
     \Narsil\Contracts\Fields\TableField::class => \Narsil\Implementations\Fields\TableField::class,

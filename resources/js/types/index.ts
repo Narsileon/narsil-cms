@@ -1,3 +1,6 @@
+export * from "./fields";
+export * from "./models";
+
 import { type InertiaLinkProps } from "@inertiajs/react";
 import {
   type ColumnDef,
@@ -11,15 +14,7 @@ import {
 } from "@narsil-cms/blocks/pagination";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-export type Block = {
-  elements?: HasElement[];
-  handle: string;
-  icon?: IconName;
-  id: number;
-  identifier: string;
-  name: string;
-  sets: Block[];
-};
+import { Block, Field, TemplateSection } from "./models";
 
 export type BlockElementCondition = {
   id: number;
@@ -61,22 +56,6 @@ export type DataTableFilterCollection = {
   };
 };
 
-export type Field = {
-  blocks: Block[];
-  description: string | null;
-  handle: string;
-  id: number;
-  identifier: string;
-  name: string;
-  settings: {
-    append?: string;
-    className?: string;
-    required?: boolean;
-    [key: string]: unknown;
-  };
-  type: string;
-};
-
 export type FormType = {
   action: string;
   description: string;
@@ -99,19 +78,6 @@ export type GroupedSelectOption = {
   optionValue: string;
   routes: RouteNames;
   value: unknown;
-};
-
-export type HasElement = {
-  element_id: number;
-  element_type:
-    | "Narsil\\Models\\Elements\\Block"
-    | "Narsil\\Models\\Elements\\Field";
-  element: Block | Field;
-  handle: string;
-  id: number;
-  name: string;
-  position: number;
-  width: number;
 };
 
 export type MenuItem = {
@@ -142,22 +108,6 @@ export type SelectOption = {
   icon?: IconName;
   label: string;
   value: UniqueIdentifier;
-};
-
-export type Template = {
-  handle: string;
-  id: number;
-  name: string;
-};
-
-export type TemplateSection = {
-  elements?: HasElement[];
-  handle: string;
-  icon?: IconName;
-  id: number;
-  identifier: string;
-  name: string;
-  sets: Block[];
 };
 
 export type UniqueIdentifier = string | number;

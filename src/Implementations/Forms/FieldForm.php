@@ -5,12 +5,12 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\CheckboxField;
-use Narsil\Contracts\Fields\SectionElement;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FieldForm as Contract;
 use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Implementations\AbstractForm;
+use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
@@ -104,13 +104,12 @@ class FieldForm extends AbstractForm implements Contract
                     ])
                 ]),
                 new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::NAME => trans('narsil::ui.settings'),
-                        Field::TYPE => SectionElement::class,
-                        Field::SETTINGS => app(SectionElement::class),
+                    TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::NAME => trans('narsil::ui.settings'),
+                        Block::RELATION_ELEMENTS =>  $settings,
                     ])
                 ]),
-            ], $settings)),
+            ])),
             new TemplateSection([
                 TemplateSection::HANDLE => 'validation',
                 TemplateSection::NAME => trans('narsil::ui.validation'),

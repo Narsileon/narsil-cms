@@ -5,7 +5,6 @@ import {
   AlignRightIcon,
   ArrowLeftRightIcon,
   AsteriskIcon,
-  BetweenHorizonalStartIcon,
   BoldIcon,
   BoxIcon,
   BracketsIcon,
@@ -90,11 +89,11 @@ import {
   XIcon,
 } from "lucide-react";
 
-type Registry = Record<string, RegistryItem>;
-
 type RegistryItem =
   | LucideIcon
   | React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+type Registry = Record<string, RegistryItem>;
 
 const defaultRegistry = {
   ["align-center"]: AlignCenterIcon,
@@ -164,7 +163,6 @@ const defaultRegistry = {
   ["save-and-add"]: GitPullRequestCreateIcon,
   ["save-and-continue"]: GitPullRequestIcon,
   ["search"]: SearchIcon,
-  ["section"]: BetweenHorizonalStartIcon,
   ["select"]: SquareMousePointerIcon,
   ["settings"]: SettingsIcon,
   ["shield"]: ShieldIcon,
@@ -188,16 +186,20 @@ const defaultRegistry = {
   ["x"]: XIcon,
 } satisfies Registry;
 
-export type IconName = keyof typeof defaultRegistry;
+type IconName = keyof typeof defaultRegistry;
 
 const registry: Registry = {
   ...defaultRegistry,
 };
 
-export function getIcon(name: IconName): RegistryItem {
+function getIcon(name: IconName): RegistryItem {
   return registry[name] ?? registry["default"];
 }
 
-export function setIcon(name: string, component: RegistryItem) {
+function setIcon(name: string, component: RegistryItem) {
   registry[name] = component;
 }
+
+export { getIcon, setIcon };
+
+export type { IconName };

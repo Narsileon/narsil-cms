@@ -1,5 +1,5 @@
 import { isArray } from "lodash";
-import { type ComponentType } from "react";
+import { type ComponentType, type ReactNode } from "react";
 
 import {
   Array,
@@ -28,7 +28,13 @@ export type FieldProps = {
   setValue: (value: any) => void;
 };
 
-type Registry = Record<string, React.ComponentType<FieldProps>>;
+type Registry = {
+  [K in FieldProps["element"]["type"]]: (
+    props: FieldProps & {
+      element: Extract<FieldProps["element"], { type: K }>;
+    },
+  ) => ReactNode;
+};
 
 const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\ArrayField"]: (props) => {
@@ -112,7 +118,7 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\RelationsField"]: (props) => {
-    if (props.element.settings.intermediate) {
+    if ("intermediate" in props.element.settings) {
       return (
         <SortableGrid
           {...props.element.settings}
@@ -120,7 +126,7 @@ const defaultRegistry: Registry = {
           setItems={props.setValue}
         />
       );
-    } else if (props.element.settings.options) {
+    } else if ("options" in props.element.settings) {
       return (
         <SortableList
           {...props.element.settings}
