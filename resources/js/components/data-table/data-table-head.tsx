@@ -4,11 +4,12 @@ import { type ComponentProps } from "react";
 
 import { TableHead } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
+import type { BaseModel } from "@narsil-cms/types";
 
 import DataTableHeadSort from "./data-table-head-sort";
 
 type DataTableHeadProps = ComponentProps<typeof TableHead> & {
-  header: Header<unknown, unknown>;
+  header: Header<BaseModel, unknown>;
 };
 
 function DataTableHead({ header, ...props }: DataTableHeadProps) {
@@ -16,7 +17,7 @@ function DataTableHead({ header, ...props }: DataTableHeadProps) {
   return (
     <TableHead
       className={cn(
-        "bg-linear-to-r to-background transition-colors group-hover:to-accent group-data-[selected=true]:to-accent",
+        "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent transition-colors",
         isMenu ? "sticky right-0 from-transparent to-20%" : "relative",
       )}
       colSpan={header.colSpan}

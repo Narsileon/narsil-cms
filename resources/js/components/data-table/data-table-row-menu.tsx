@@ -14,7 +14,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
-import type { RouteNames } from "@narsil-cms/types";
+import type { BaseModel, RouteNames } from "@narsil-cms/types";
 
 type DataTableRowMenuProps = Omit<
   ComponentProps<typeof DropdownMenuTrigger>,
@@ -23,7 +23,7 @@ type DataTableRowMenuProps = Omit<
   id?: number;
   modal?: boolean;
   routes: RouteNames;
-  table?: Table<unknown>;
+  table?: Table<BaseModel>;
 };
 
 function DataTableRowMenu({
@@ -44,7 +44,7 @@ function DataTableRowMenu({
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
           <Button
-            className="size-7 hover:bg-secondary"
+            className="hover:bg-secondary size-7"
             aria-label={trans("accessibility.toggle_row_menu")}
             icon="more-horizontal"
             size="icon"

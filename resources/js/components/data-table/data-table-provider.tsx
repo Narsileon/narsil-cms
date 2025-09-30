@@ -18,13 +18,16 @@ import {
   useDataTableStore,
   type DataTableStoreType,
 } from "@narsil-cms/stores/data-table-store";
+import type { BaseModel } from "@narsil-cms/types";
 
 import { DataTableContext } from "./data-table-context";
 
-type DataTableProviderProps = Partial<TableOptions<unknown>> & {
+type DataTableProviderProps = Partial<
+  Omit<TableOptions<BaseModel>, "columns">
+> & {
   children: ReactNode;
-  columns: ColumnDef<unknown>[];
-  data: Record<string, unknown>[];
+  columns: ColumnDef<BaseModel>[];
+  data: BaseModel[];
   id: string;
   initialState: Partial<DataTableStoreType>;
 };
@@ -37,11 +40,28 @@ function formatSorting(sorting: SortingState) {
 
 function DataTableProvider({
   children,
+  columnResizeMode = "onEnd",
   columns,
   data,
+  enableColumnFilters = false,
+  enableColumnResizing = true,
+  enableExpanding = false,
+  enableFilters = true,
+  enableGlobalFilter = true,
+  enableGrouping = false,
+  enableHiding = true,
+  enableMultiRowSelection = true,
+  enableMultiSort = true,
+  enableRowSelection = true,
+  enableSorting = true,
+  groupedColumnMode = false,
+  manualExpanding = true,
+  manualFiltering = true,
+  manualGrouping = false,
+  manualPagination = true,
+  manualSorting = true,
   id,
   initialState = {},
-  ...props
 }: DataTableProviderProps) {
   const createDataTableStore = useMemo(
     () =>
@@ -120,27 +140,27 @@ function DataTableProvider({
     );
   }
 
-  const dataTable = useReactTable({
-    columnResizeMode: "onEnd",
+  const dataTable = useReactTable<BaseModel>({
+    columnResizeMode: columnResizeMode,
     columns: columns,
     data: data,
-    enableColumnFilters: false,
-    enableColumnResizing: true,
-    enableExpanding: false,
-    enableFilters: true,
-    enableGlobalFilter: true,
-    enableGrouping: false,
-    enableHiding: true,
-    enableMultiRowSelection: true,
-    enableMultiSort: true,
-    enableRowSelection: true,
-    enableSorting: true,
-    groupedColumnMode: false,
-    manualExpanding: true,
-    manualFiltering: true,
-    manualGrouping: false,
-    manualPagination: true,
-    manualSorting: true,
+    enableColumnFilters: enableColumnFilters,
+    enableColumnResizing: enableColumnResizing,
+    enableExpanding: enableExpanding,
+    enableFilters: enableFilters,
+    enableGlobalFilter: enableGlobalFilter,
+    enableGrouping: enableGrouping,
+    enableHiding: enableHiding,
+    enableMultiRowSelection: enableMultiRowSelection,
+    enableMultiSort: enableMultiSort,
+    enableRowSelection: enableRowSelection,
+    enableSorting: enableSorting,
+    groupedColumnMode: groupedColumnMode,
+    manualExpanding: manualExpanding,
+    manualFiltering: manualFiltering,
+    manualGrouping: manualGrouping,
+    manualPagination: manualPagination,
+    manualSorting: manualSorting,
     state: {
       columnOrder: dataTableStore.columnOrder,
       columnSizing: dataTableStore.columnSizing,
@@ -153,14 +173,13 @@ function DataTableProvider({
       sorting: dataTableStore.sorting,
     },
     getCoreRowModel: getCoreRowModel(),
-    getRowId: (row: any) => row.id,
+    getRowId: (row) => row.id.toString(),
     onColumnOrderChange: handleColumnOrderChange,
     onColumnSizingChange: handleColumnSizingChange,
     onColumnVisibilityChange: handleColumnVisibilityChange,
     onGlobalFilterChange: dataTableStore.setSearch,
     onPaginationChange: handlePaginationChange,
     onSortingChange: handleSortingChange,
-    ...props,
   });
 
   const update = useCallback(

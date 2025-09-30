@@ -3,9 +3,10 @@ import { type ComponentProps } from "react";
 
 import { Button } from "@narsil-cms/blocks";
 import { useLabels } from "@narsil-cms/components/labels";
+import type { BaseModel } from "@narsil-cms/types";
 
 type DataTableHeadSortProps = ComponentProps<typeof Button> & {
-  header: Header<unknown, unknown>;
+  header: Header<BaseModel, unknown>;
 };
 
 function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {

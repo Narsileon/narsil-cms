@@ -11,7 +11,7 @@ import {
 } from "@narsil-cms/blocks/pagination";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
-import { Block, Field, TemplateSection } from "./models";
+import { BaseModel, Block, Field, TemplateSection } from "./models";
 
 export type BlockElementCondition = {
   id: number;
@@ -21,7 +21,7 @@ export type BlockElementCondition = {
   value: string;
 };
 
-export type DataTableCollection<T = unknown> = {
+export type DataTableCollection<T = BaseModel> = {
   columns: ColumnDef<T>[];
   columnOrder: ColumnOrderState;
   columnVisibility: VisibilityState;
