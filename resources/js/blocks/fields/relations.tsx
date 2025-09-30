@@ -2,8 +2,7 @@ import { isArray } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
-import { Badge, Button, Spinner } from "@narsil-cms/blocks";
-import { DataTable } from "@narsil-cms/blocks/data-table";
+import { Badge, Button, DataTable, Spinner } from "@narsil-cms/blocks";
 import { DataTableProvider } from "@narsil-cms/components/data-table";
 import {
   DialogClose,
@@ -155,7 +154,7 @@ function Relations({
               </TabsList>
               {Object.entries(dataTables).map(([id, collection]) => {
                 return (
-                  <TabsContent value={id} key={id}>
+                  <TabsContent className="p-0" value={id} key={id}>
                     <DataTableProvider
                       id={collection.meta.id}
                       columns={collection.columns}
@@ -164,11 +163,10 @@ function Relations({
                         columnOrder: collection.columnOrder,
                         columnVisibility: collection.columnVisibility,
                       }}
-                      render={({ dataTable }) => (
-                        <DataTable dataTable={dataTable} />
-                      )}
                       key={id}
-                    />
+                    >
+                      <DataTable collection={collection} title={id} />
+                    </DataTableProvider>
                   </TabsContent>
                 );
               })}

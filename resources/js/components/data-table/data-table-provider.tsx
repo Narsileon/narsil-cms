@@ -12,21 +12,21 @@ import {
   type VisibilityState,
 } from "@tanstack/react-table";
 import { debounce } from "lodash";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, type ReactNode } from "react";
 
 import {
   useDataTableStore,
   type DataTableStoreType,
 } from "@narsil-cms/stores/data-table-store";
 
-import { DataTableContext, DataTableContextProps } from "./data-table-context";
+import { DataTableContext } from "./data-table-context";
 
 type DataTableProviderProps = Partial<TableOptions<unknown>> & {
+  children: ReactNode;
   columns: ColumnDef<unknown>[];
   data: Record<string, unknown>[];
   id: string;
   initialState: Partial<DataTableStoreType>;
-  render: (context: DataTableContextProps) => React.ReactNode;
 };
 
 function formatSorting(sorting: SortingState) {
@@ -36,11 +36,11 @@ function formatSorting(sorting: SortingState) {
 }
 
 function DataTableProvider({
+  children,
   columns,
   data,
   id,
   initialState = {},
-  render,
   ...props
 }: DataTableProviderProps) {
   const createDataTableStore = useMemo(
@@ -200,7 +200,7 @@ function DataTableProvider({
         dataTableStore: dataTableStore,
       }}
     >
-      {render({ dataTable: dataTable, dataTableStore: dataTableStore })}
+      {children}
     </DataTableContext.Provider>
   );
 }

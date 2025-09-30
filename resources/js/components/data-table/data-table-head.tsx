@@ -15,7 +15,6 @@ function DataTableHead({ header, ...props }: DataTableHeadProps) {
   const isMenu = header.column.id === "_menu";
   return (
     <TableHead
-      data-slot="data-table-head"
       className={cn(
         "bg-linear-to-r to-background transition-colors group-hover:to-accent group-data-[selected=true]:to-accent",
         isMenu ? "sticky right-0 from-transparent to-20%" : "relative",

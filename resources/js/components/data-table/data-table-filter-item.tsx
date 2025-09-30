@@ -16,11 +16,11 @@ import type { Field } from "@narsil-cms/types";
 import { type ColumnFilter } from ".";
 import useDataTable from "./data-table-context";
 
-type DataTableFilterBadgeProps = ComponentProps<typeof PopoverTrigger> & {
+type DataTableFilterItemProps = ComponentProps<typeof PopoverTrigger> & {
   filter: ColumnFilter;
 };
 
-function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
+function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
   const { dataTable, dataTableStore } = useDataTable();
   const { trans } = useLabels();
 
@@ -37,6 +37,13 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
     operators: string[];
   };
 
+  const operatorOptions = meta.operators.map((operator) => {
+    return {
+      label: trans(`operators.${operator}`),
+      value: operator,
+    };
+  });
+
   useEffect(() => {
     if (isEmpty(filter.operator)) {
       dataTableStore.updateFilter(filter.column, {
@@ -47,22 +54,17 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
     }
   }, [filter.operator]);
 
-  const operatorOptions = meta.operators.map((operator) => {
-    return {
-      label: trans(`operators.${operator}`),
-      value: operator,
-    };
-  });
-
   return (
     <PopoverRoot open={open} onOpenChange={onOpenChange} modal={true}>
       <PopoverTrigger asChild={true} {...props}>
-        <Badge
-          className="cursor-pointer"
-          onClose={() => dataTableStore.removeFilter(filter.column)}
-        >
-          {column.columnDef.header as string}
-        </Badge>
+        <li>
+          <Badge
+            className="cursor-pointer"
+            onClose={() => dataTableStore.removeFilter(filter.column)}
+          >
+            {column.columnDef.header as string}
+          </Badge>
+        </li>
       </PopoverTrigger>
       <PopoverPortal>
         <PopoverContent className="flex flex-col gap-4">
@@ -92,4 +94,4 @@ function DataTableFilterBadge({ filter, ...props }: DataTableFilterBadgeProps) {
   );
 }
 
-export default DataTableFilterBadge;
+export default DataTableFilterItem;

@@ -1,30 +1,11 @@
-import { type ColumnDef } from "@tanstack/react-table";
-import { route } from "ziggy-js";
+import { ColumnDef } from "@tanstack/react-table";
 
-import { Button, Heading, Pagination } from "@narsil-cms/blocks";
-import { DataTable, DataTableColumns } from "@narsil-cms/blocks/data-table";
-import { Checkbox, Select } from "@narsil-cms/blocks/fields";
+import { DataTable } from "@narsil-cms/blocks";
+import { Checkbox } from "@narsil-cms/blocks/fields";
 import {
-  DataTableFilter,
-  DataTableFilterBadge,
-  DataTableFilterDropdown,
-  DataTableInput,
   DataTableProvider,
   DataTableRowMenu,
 } from "@narsil-cms/components/data-table";
-import { useLabels } from "@narsil-cms/components/labels";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@narsil-cms/components/resizable";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
-import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
-import { cn } from "@narsil-cms/lib/utils";
 import type {
   DataTableCollection,
   DataTableFilterCollection,
@@ -88,15 +69,7 @@ function getSelectColumn(collection: DataTableCollection): ColumnDef<unknown> {
   };
 }
 
-function ResourceIndex({
-  collection,
-  collectionFilter,
-  title,
-}: ResourceIndexProps) {
-  const { trans } = useLabels();
-
-  const isDesktop = useMinSm();
-
+function ResourceIndex({ collection, title }: ResourceIndexProps) {
   const hasMenu = collection.meta.routes.edit || collection.meta.routes.destroy;
 
   const finalColumns: (ColumnDef<unknown> & { position?: string })[] = [
@@ -113,10 +86,6 @@ function ResourceIndex({
     ...(hasMenu ? ["_menu"] : []),
   ];
 
-  const columnsLabel = trans("ui.columns", "Columns");
-  const createLabel = trans("ui.create", "Create");
-  const filterLabel = trans("ui.filters", "Filters");
-
   return (
     <DataTableProvider
       id={collection.meta.id}
@@ -126,136 +95,9 @@ function ResourceIndex({
         columnOrder: finalColumnOrder,
         columnVisibility: collection.columnVisibility,
       }}
-      render={({ dataTable, dataTableStore }) => {
-        const selectedCount = dataTable.getSelectedRowModel().rows.length;
-
-        return (
-          <SectionRoot className="h-full gap-4 p-4">
-            <SectionHeader className="flex items-center justify-between gap-2">
-              <Heading level="h2" variant="h4" className="min-w-1/5">
-                {title}
-              </Heading>
-              <DataTableInput className="grow" />
-              <DataTableColumns>
-                <Button
-                  icon="eye"
-                  size={isDesktop ? "default" : "icon"}
-                  tooltipProps={{
-                    contentProps: { hidden: isDesktop },
-                    tooltip: columnsLabel,
-                  }}
-                  variant="secondary"
-                >
-                  {isDesktop ? columnsLabel : undefined}
-                </Button>
-              </DataTableColumns>
-              <DataTableFilterDropdown>
-                <Button
-                  icon="filter"
-                  size={isDesktop ? "default" : "icon"}
-                  tooltipProps={{
-                    contentProps: { hidden: isDesktop },
-                    tooltip: filterLabel,
-                  }}
-                  variant="secondary"
-                >
-                  {isDesktop ? filterLabel : undefined}
-                </Button>
-              </DataTableFilterDropdown>
-              {collection.meta.routes.create ? (
-                <Button
-                  icon="plus"
-                  linkProps={{
-                    href: route(
-                      collection.meta.routes.create,
-                      collection.meta.routes.params,
-                    ),
-                  }}
-                  size={isDesktop ? "default" : "icon"}
-                  tooltipProps={{
-                    contentProps: { hidden: isDesktop },
-                    tooltip: createLabel,
-                  }}
-                >
-                  {isDesktop ? createLabel : undefined}
-                </Button>
-              ) : null}
-            </SectionHeader>
-            <SectionContent className="grow">
-              <ResizablePanelGroup
-                autoSaveId={collection.meta.id}
-                direction="horizontal"
-              >
-                {collectionFilter ? (
-                  <>
-                    <ResizablePanel
-                      className="pr-4"
-                      collapsible={true}
-                      defaultSize={20}
-                      minSize={10}
-                    >
-                      <DataTableFilter {...collectionFilter} />
-                    </ResizablePanel>
-                    <ResizableHandle />
-                  </>
-                ) : null}
-                <ResizablePanel
-                  className={cn(
-                    "flex flex-col gap-3",
-                    collectionFilter && "pl-4",
-                  )}
-                  collapsible={true}
-                  defaultSize={80}
-                  minSize={10}
-                >
-                  {dataTableStore.filters.length > 0 ? (
-                    <ul className="flex items-center justify-start gap-2">
-                      {dataTableStore.filters.map((filter, index) => {
-                        return (
-                          <li key={index}>
-                            <DataTableFilterBadge filter={filter} />
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  ) : null}
-                  <DataTable dataTable={dataTable} />
-                  <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-                    <span className="truncate">
-                      {selectedCount > 0
-                        ? `${selectedCount} ${trans("pagination.selected_count")}`
-                        : trans("pagination.selected_empty")}
-                    </span>
-                    <div className="flex w-full items-center justify-between gap-4 sm:w-fit sm:justify-end">
-                      <div className="flex flex-col items-start gap-x-4 gap-y-2 sm:flex-row sm:items-center">
-                        <span className="truncate">
-                          {trans("pagination.pagination")}
-                        </span>
-                        <Select
-                          options={["10", "25", "50", "100"]}
-                          value={dataTableStore.pageSize.toString()}
-                          onValueChange={(value) =>
-                            dataTableStore.setPageSize(Number(value))
-                          }
-                        />
-                      </div>
-                      <div className="flex flex-col items-end gap-x-4 gap-y-2 sm:flex-row sm:items-center">
-                        <span className="truncate">
-                          {collection.meta.total > 0
-                            ? trans("pagination.pages_count")
-                            : trans("pagination.pages_empty")}
-                        </span>
-                        <Pagination links={collection.links} />
-                      </div>
-                    </div>
-                  </div>
-                </ResizablePanel>
-              </ResizablePanelGroup>
-            </SectionContent>
-          </SectionRoot>
-        );
-      }}
-    />
+    >
+      <DataTable collection={collection} title={title} />
+    </DataTableProvider>
   );
 }
 

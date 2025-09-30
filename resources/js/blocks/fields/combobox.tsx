@@ -3,7 +3,6 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
 import { debounce, isArray, isString, lowerCase } from "lodash";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { route } from "ziggy-js";
 
 import { Badge, Tooltip } from "@narsil-cms/blocks";
 import { Border } from "@narsil-cms/components/border";
@@ -47,7 +46,6 @@ type ComboboxProps = {
 
 function Combobox({
   className,
-  collection,
   disabled,
   displayValue = true,
   id,
@@ -161,41 +159,6 @@ function Combobox({
       });
     }
   }, [open, optionIndex, virtualizer]);
-
-  useEffect(() => {
-    if (!collection) {
-      return;
-    }
-
-    setLoading(true);
-
-    fetch(route("graphql"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `
-        query {
-          ${collection} {
-            id
-            title
-          }
-        }
-      `,
-      }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((result) => {
-        const fetchedOptions = result.data?.[collection]?.map((page: any) => ({
-          value: page.id,
-          label: page.title,
-        }));
-
-        setOptions(fetchedOptions);
-      })
-      .finally(() => setLoading(false));
-  }, [collection, search]);
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen} modal>
