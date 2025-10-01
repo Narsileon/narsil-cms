@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 
 import {
   Array,
@@ -16,7 +16,7 @@ import {
 } from "@narsil-cms/blocks/fields";
 import { InputContent } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
-import { IconName } from "@narsil-cms/plugins/icons";
+import { type IconName } from "@narsil-cms/plugins/icons";
 
 type DefaultField = {
   type: "default";

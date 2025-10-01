@@ -10,8 +10,7 @@ import {
   type LaravelPaginationMeta,
 } from "@narsil-cms/blocks/pagination";
 import { type IconName } from "@narsil-cms/plugins/icons";
-
-import { Model, Block, Field, TemplateSection } from "./models";
+import type { Model, Block, Field, TemplateSection } from "@narsil-cms/types";
 
 export type BlockElementCondition = {
   id: number;
