@@ -2,9 +2,9 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@narsil-cms/blocks/fields";
 import { useLabels } from "@narsil-cms/components/labels";
-import type { BaseModel } from "@narsil-cms/types";
+import type { Model } from "@narsil-cms/types";
 
-function getSelectColumn(count: number): ColumnDef<BaseModel> {
+function getSelectColumn(count: number): ColumnDef<Model> {
   const { trans } = useLabels();
 
   return {

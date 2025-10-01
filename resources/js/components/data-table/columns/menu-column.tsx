@@ -1,9 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableRowMenu } from "@narsil-cms/components/data-table";
-import type { BaseModel, RouteNames } from "@narsil-cms/types";
+import type { Model, RouteNames } from "@narsil-cms/types";
 
-function getMenuColumn(routes: RouteNames): ColumnDef<BaseModel> {
+function getMenuColumn(routes: RouteNames): ColumnDef<Model> {
   return {
     id: "_menu",
     header: ({ table }) => {

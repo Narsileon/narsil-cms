@@ -14,7 +14,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLabels } from "@narsil-cms/components/labels";
 import { ModalLink } from "@narsil-cms/components/modal";
-import type { BaseModel, RouteNames } from "@narsil-cms/types";
+import type { Model, RouteNames } from "@narsil-cms/types";
 
 type DataTableRowMenuProps = Omit<
   ComponentProps<typeof DropdownMenuTrigger>,
@@ -23,7 +23,7 @@ type DataTableRowMenuProps = Omit<
   id?: number;
   modal?: boolean;
   routes: RouteNames;
-  table?: Table<BaseModel>;
+  table?: Table<Model>;
 };
 
 function DataTableRowMenu({

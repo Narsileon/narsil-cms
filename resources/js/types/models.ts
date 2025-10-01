@@ -2,12 +2,14 @@ import { IconName } from "@narsil-cms/plugins/icons";
 
 import { FieldType } from "./fields";
 
-export type BaseModel = {
+export type Model = {
+  created_at?: string;
   id: number;
+  updated_at?: string;
   [key: string]: unknown;
 };
 
-export type Block = BaseModel & {
+export type Block = Model & {
   collapsible: boolean;
   elements: HasElement[];
   handle: string;
@@ -17,12 +19,12 @@ export type Block = BaseModel & {
   sets: Block[];
 };
 
-export type Bookmark = BaseModel & {
+export type Bookmark = Model & {
   name: string;
   url: string;
 };
 
-export type Field = BaseModel & {
+export type Field = Model & {
   blocks: Block[];
   description: string | null;
   handle: string;
@@ -30,7 +32,7 @@ export type Field = BaseModel & {
   name: string;
 } & FieldType;
 
-export type HasElement = BaseModel & {
+export type HasElement = Model & {
   element_id: number;
   element_type:
     | "Narsil\\Models\\Elements\\Block"
@@ -42,12 +44,12 @@ export type HasElement = BaseModel & {
   width: number;
 };
 
-export type Template = BaseModel & {
+export type Template = Model & {
   handle: string;
   name: string;
 };
 
-export type TemplateSection = BaseModel & {
+export type TemplateSection = Model & {
   elements?: HasElement[];
   handle: string;
   icon?: IconName;

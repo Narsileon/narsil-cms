@@ -2,10 +2,10 @@ import { Table } from "@tanstack/react-table";
 import { createContext, useContext } from "react";
 
 import { type DataTableStoreType } from "@narsil-cms/stores/data-table-store";
-import type { BaseModel } from "@narsil-cms/types";
+import type { Model } from "@narsil-cms/types";
 
 export type DataTableContextProps = {
-  dataTable: Table<BaseModel>;
+  dataTable: Table<Model>;
   dataTableStore: DataTableStoreType;
 };
 

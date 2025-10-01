@@ -19,7 +19,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { SortableHandle } from "@narsil-cms/components/sortable";
-import type { BaseModel } from "@narsil-cms/types";
+import type { Model } from "@narsil-cms/types";
 
 type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger> & {};
 
@@ -36,7 +36,7 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
     .getAllLeafColumns()
     .filter((column) => !column.getIsVisible() && column.getCanHide());
 
-  function handleActivate(column: Column<BaseModel, unknown>) {
+  function handleActivate(column: Column<Model, unknown>) {
     column.toggleVisibility(true);
 
     const originalOrder = dataTable.getState().columnOrder ?? [];
@@ -48,7 +48,7 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
     dataTable.setColumnOrder(newOrder);
   }
 
-  function handleDeactivate(column: Column<BaseModel, unknown>) {
+  function handleDeactivate(column: Column<Model, unknown>) {
     column.toggleVisibility(false);
 
     const originalOrder = dataTable.getState().columnOrder ?? [];
@@ -135,8 +135,8 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
 export default DataTableColumns;
 
 type SortableItemProps = {
-  column: Column<BaseModel, unknown>;
-  onRemove: (c: Column<BaseModel, unknown>) => void;
+  column: Column<Model, unknown>;
+  onRemove: (c: Column<Model, unknown>) => void;
 };
 
 function SortableItem({ column, onRemove }: SortableItemProps) {

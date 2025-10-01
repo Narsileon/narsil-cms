@@ -7,7 +7,7 @@ import {
   getSelectColumn,
 } from "@narsil-cms/components/data-table";
 import type {
-  BaseModel,
+  Model,
   DataTableCollection,
   DataTableFilterCollection,
 } from "@narsil-cms/types";
@@ -21,7 +21,7 @@ type ResourceIndexProps = {
 function ResourceIndex({ collection, title }: ResourceIndexProps) {
   const hasMenu = collection.meta.routes.edit || collection.meta.routes.destroy;
 
-  const finalColumns: ColumnDef<BaseModel>[] = [
+  const finalColumns: ColumnDef<Model>[] = [
     ...(collection.meta.selectable !== false
       ? [getSelectColumn(collection.data.length)]
       : []),

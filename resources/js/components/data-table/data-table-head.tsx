@@ -4,12 +4,12 @@ import { type ComponentProps } from "react";
 
 import { TableHead } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
-import type { BaseModel } from "@narsil-cms/types";
+import type { Model } from "@narsil-cms/types";
 
 import DataTableHeadSort from "./data-table-head-sort";
 
 type DataTableHeadProps = ComponentProps<typeof TableHead> & {
-  header: Header<BaseModel, unknown>;
+  header: Header<Model, unknown>;
 };
 
 function DataTableHead({ header, ...props }: DataTableHeadProps) {

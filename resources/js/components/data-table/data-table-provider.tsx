@@ -18,16 +18,14 @@ import {
   useDataTableStore,
   type DataTableStoreType,
 } from "@narsil-cms/stores/data-table-store";
-import type { BaseModel } from "@narsil-cms/types";
+import type { Model } from "@narsil-cms/types";
 
 import { DataTableContext } from "./data-table-context";
 
-type DataTableProviderProps = Partial<
-  Omit<TableOptions<BaseModel>, "columns">
-> & {
+type DataTableProviderProps = Partial<Omit<TableOptions<Model>, "columns">> & {
   children: ReactNode;
-  columns: ColumnDef<BaseModel>[];
-  data: BaseModel[];
+  columns: ColumnDef<Model>[];
+  data: Model[];
   id: string;
   initialState: Partial<DataTableStoreType>;
 };
@@ -140,7 +138,7 @@ function DataTableProvider({
     );
   }
 
-  const dataTable = useReactTable<BaseModel>({
+  const dataTable = useReactTable<Model>({
     columnResizeMode: columnResizeMode,
     columns: columns,
     data: data,
