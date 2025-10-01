@@ -17,6 +17,7 @@ import {
   PopoverRoot,
   PopoverContent,
   PopoverTrigger,
+  PopoverPortal,
 } from "@narsil-cms/components/popover";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import type { Model } from "@narsil-cms/types";
@@ -84,50 +85,52 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
       <PopoverTrigger asChild={true} {...props}>
         {children}
       </PopoverTrigger>
-      <PopoverContent className="grid w-96 grid-cols-2 border-none p-0">
-        <Card
-          className="rounded-r-none border-r-0"
-          contentProps={{ className: "gap-y-1" }}
-          headerProps={{ className: "border-b" }}
-          title={trans("ui.available_columns", "Available columns")}
-        >
-          {availableColumns.map((column) => (
-            <Button
-              className="justify-start font-normal"
-              tooltip={trans("accessibility.show_column", "Show column")}
-              variant="outline"
-              onClick={() => handleActivate(column)}
-              key={column.id}
-            >
-              {upperFirst(column.columnDef.header as string)}
-            </Button>
-          ))}
-        </Card>
-        <Card
-          className="rounded-l-none"
-          contentProps={{ className: "gap-y-1" }}
-          headerProps={{ className: "border-b" }}
-          title={trans("ui.active_columns", "Active columns")}
-        >
-          <DndContext
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
+      <PopoverPortal>
+        <PopoverContent className="grid w-96 grid-cols-2 overflow-y-hidden border-none p-0">
+          <Card
+            className="rounded-r-none border-r-0"
+            contentProps={{ className: "gap-y-1" }}
+            headerProps={{ className: "border-b" }}
+            title={trans("ui.available_columns", "Available columns")}
           >
-            <SortableContext
-              items={activeColumns.map((column) => column.id)}
-              strategy={verticalListSortingStrategy}
+            {availableColumns.map((column) => (
+              <Button
+                className="justify-start font-normal"
+                tooltip={trans("accessibility.show_column", "Show column")}
+                variant="outline"
+                onClick={() => handleActivate(column)}
+                key={column.id}
+              >
+                {upperFirst(column.columnDef.header as string)}
+              </Button>
+            ))}
+          </Card>
+          <Card
+            className="rounded-l-none"
+            contentProps={{ className: "gap-y-1" }}
+            headerProps={{ className: "border-b" }}
+            title={trans("ui.active_columns", "Active columns")}
+          >
+            <DndContext
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
             >
-              {activeColumns.map((column) => (
-                <SortableItem
-                  key={column.id}
-                  column={column}
-                  onRemove={() => handleDeactivate(column)}
-                />
-              ))}
-            </SortableContext>
-          </DndContext>
-        </Card>
-      </PopoverContent>
+              <SortableContext
+                items={activeColumns.map((column) => column.id)}
+                strategy={verticalListSortingStrategy}
+              >
+                {activeColumns.map((column) => (
+                  <SortableItem
+                    key={column.id}
+                    column={column}
+                    onRemove={() => handleDeactivate(column)}
+                  />
+                ))}
+              </SortableContext>
+            </DndContext>
+          </Card>
+        </PopoverContent>
+      </PopoverPortal>
     </PopoverRoot>
   );
 }
