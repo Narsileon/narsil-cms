@@ -14,8 +14,8 @@ function InputRoot({ className, variant, ...props }: InputRootProps) {
       data-slot="input-root"
       className={cn(
         inputWrapperVariants({
-          className: className,
           variant: variant,
+          className: className,
         }),
       )}
       {...props}

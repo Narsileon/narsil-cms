@@ -112,7 +112,7 @@ function SortableItem({
               className={cn(children && open && "border-b")}
               asChild={true}
             >
-              <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pr-1 pl-0">
+              <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
                 <div className="flex w-full items-center justify-start gap-2">
                   <SortableHandle
                     ref={setActivatorNodeRef}

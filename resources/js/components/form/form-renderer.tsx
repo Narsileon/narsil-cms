@@ -60,7 +60,7 @@ function FormRenderer({
               {"elements" in childElement || "sets" in childElement ? (
                 <CollapsibleRoot
                   className={cn(
-                    "group col-span-full -mx-4 not-first:border-t",
+                    "not-first:border-t group col-span-full -mx-4",
                     "first:-mt-4",
                     "-mb-4",
                     "data-[state=closed]:not-last:border-b",
@@ -70,7 +70,7 @@ function FormRenderer({
                 >
                   <CollapsibleTrigger
                     className={cn(
-                      "flex w-full items-center justify-between bg-accent p-4 text-center",
+                      "bg-accent flex w-full items-center justify-between p-4 text-center",
                       "data-[state=open]:border-b",
                     )}
                   >

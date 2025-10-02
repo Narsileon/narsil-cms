@@ -165,7 +165,7 @@ function Combobox({
       <PopoverTrigger asChild>
         <InputRoot
           id={id}
-          className={cn(className)}
+          className={cn(open && "before:!opacity-100", className)}
           aria-expanded={open}
           aria-disabled={disabled}
           role="combobox"
@@ -202,7 +202,6 @@ function Combobox({
             className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
             name="chevron-down"
           />
-          <Border className={open ? "block" : "hidden"} />
         </InputRoot>
       </PopoverTrigger>
       <PopoverPortal>
@@ -246,7 +245,7 @@ function Combobox({
                       return (
                         <CommandItem
                           className={cn(
-                            "absolute top-0 left-0 h-9 w-full will-change-transform",
+                            "absolute left-0 top-0 h-9 w-full will-change-transform",
                           )}
                           value={optionValue.toString()}
                           onSelect={onSelect}
@@ -272,7 +271,7 @@ function Combobox({
                             </div>
                             {displayValue && (
                               <Tooltip tooltip={optionValue}>
-                                <span className="truncate text-muted-foreground">
+                                <span className="text-muted-foreground truncate">
                                   {optionValue}
                                 </span>
                               </Tooltip>

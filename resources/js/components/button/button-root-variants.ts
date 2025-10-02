@@ -4,10 +4,10 @@ import { cn } from "@narsil-cms/lib/utils";
 
 const buttonRootVariants = cva(
   cn(
-    "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all duration-300 outline-none",
+    "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none transition-all duration-300",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
     "disabled:pointer-events-none disabled:opacity-50",
-    "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50",
+    "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
   ),
   {
@@ -24,7 +24,7 @@ const buttonRootVariants = cva(
           "focus-visible:ring-destructive/50",
         ),
         outline: cn(
-          "border border-input shadow-xs",
+          "border-input shadow-xs border",
           "bg-background hover:bg-accent hover:text-accent-foreground",
         ),
         secondary: cn(

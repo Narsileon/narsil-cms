@@ -15,7 +15,7 @@ function NavigationMenuContent({
     <NavigationMenu.Content
       data-slot="navigation-menu-content"
       className={cn(
-        "top-0 left-0 w-full p-2 pr-2.5 md:absolute md:w-auto",
+        "left-0 top-0 w-full p-2 pr-2.5 md:absolute md:w-auto",
         "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out",
         "data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out",
         "data-[motion=from-end]:slide-in-from-right-52",

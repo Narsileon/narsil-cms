@@ -9,7 +9,7 @@ function DialogFooter({ className, ...props }: DialogFooterProps) {
     <div
       data-slot="dialog-footer"
       className={cn(
-        "flex flex-col-reverse gap-3 px-5 pb-3 sm:flex-row sm:justify-end [.border-t]:pt-3",
+        "[.border-t]:pt-3 flex flex-col-reverse gap-3 px-5 pb-3 sm:flex-row sm:justify-end",
         className,
       )}
       {...props}

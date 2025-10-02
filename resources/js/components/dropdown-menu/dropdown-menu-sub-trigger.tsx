@@ -21,7 +21,7 @@ function DropdownMenuSubTrigger({
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex cursor-pointer items-center rounded-md px-2 py-1.5 outline-hidden select-none",
+        "outline-hidden flex cursor-pointer select-none items-center rounded-md px-2 py-1.5",
         "focus:bg-accent focus:text-accent-foreground",
         "data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
         "data-[inset]:pl-8",

@@ -40,7 +40,7 @@ function DialogContent({
         <VisuallyHidden tabIndex={0}>Dialog</VisuallyHidden>
         {children}
         {showCloseButton ? (
-          <DialogCloseButton className="absolute top-5.5 right-5.5" />
+          <DialogCloseButton className="top-5.5 right-5.5 absolute" />
         ) : null}
       </Dialog.Content>
     </DialogPortal>

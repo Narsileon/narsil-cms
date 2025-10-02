@@ -83,7 +83,7 @@ function Builder({ name, sets }: BuilderProps) {
     >
       <SortableContext items={nodes} strategy={verticalListSortingStrategy}>
         <div className="col-span-full flex flex-col items-center justify-center">
-          <div className="size-4 rounded-full bg-constructive" />
+          <div className="bg-constructive size-4 rounded-full" />
           {nodes.map((node, index) => {
             const baseHandle = `${name}.${index}`;
 
@@ -107,7 +107,7 @@ function Builder({ name, sets }: BuilderProps) {
             sets={sets}
             onAdd={(node) => setNodes([...nodes, node])}
           />
-          <div className="size-4 rounded-full bg-destructive" />
+          <div className="bg-destructive size-4 rounded-full" />
         </div>
       </SortableContext>
       <DragOverlay>

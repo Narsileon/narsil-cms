@@ -8,7 +8,7 @@ function SectionFooter({ className, ...props }: SectionFooterProps) {
   return (
     <div
       data-slot="section-footer"
-      className={cn("flex items-center [.border-t]:pt-3", className)}
+      className={cn("[.border-t]:pt-3 flex items-center", className)}
       {...props}
     />
   );

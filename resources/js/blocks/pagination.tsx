@@ -109,7 +109,7 @@ function Pagination({
                 asChild={true}
                 disabled={true}
               >
-                <PaginationEllipsis className="border bg-accent" key={index} />
+                <PaginationEllipsis className="bg-accent border" key={index} />
               </PaginationLink>
             </PaginationItem>
           );

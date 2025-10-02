@@ -14,7 +14,7 @@ function SelectContent({
     <Select.Content
       data-slot="select-content"
       className={cn(
-        "relative z-50 overflow-x-hidden overflow-y-auto rounded-xl border bg-popover text-popover-foreground shadow-md",
+        "bg-popover text-popover-foreground relative z-50 overflow-y-auto overflow-x-hidden rounded-xl border shadow-md",
         "data-[state=closed]:animate-out data-[state=open]:animate-in",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",

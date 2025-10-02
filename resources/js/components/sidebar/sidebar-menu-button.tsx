@@ -9,7 +9,7 @@ import useSidebar from "./sidebar-context";
 
 const sidebarMenuButtonVariants = cva(
   cn(
-    "peer/menu-button flex w-full cursor-pointer items-center gap-2 truncate overflow-hidden rounded-md p-2 text-left ring-sidebar-ring outline-hidden transition-[width,height,padding]",
+    "peer/menu-button ring-sidebar-ring outline-hidden flex w-full cursor-pointer items-center gap-2 overflow-hidden truncate rounded-md p-2 text-left transition-[width,height,padding]",
     "active:bg-sidebar-accent active:text-sidebar-accent-foreground",
     "aria-disabled:pointer-events-none aria-disabled:opacity-50",
     "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",
@@ -33,7 +33,7 @@ const sidebarMenuButtonVariants = cva(
       size: {
         default: "h-9",
         sm: "h-7 text-xs",
-        lg: "h-11 group-data-[collapsible=icon]:p-0!",
+        lg: "group-data-[collapsible=icon]:p-0! h-11",
       },
     },
     defaultVariants: {

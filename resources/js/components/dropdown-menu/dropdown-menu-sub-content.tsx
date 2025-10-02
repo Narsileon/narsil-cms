@@ -15,7 +15,7 @@ function DropdownMenuSubContent({
     <DropdownMenu.SubContent
       data-slot="dropdown-menu-sub-content"
       className={cn(
-        "text-popover-foregroundoverflow-hidden z-50 min-w-[8rem] rounded-md border bg-popover p-1 shadow-lg",
+        "text-popover-foregroundoverflow-hidden bg-popover z-50 min-w-[8rem] rounded-md border p-1 shadow-lg",
         "data-[state=closed]:animate-out data-[state=open]:animate-in",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",

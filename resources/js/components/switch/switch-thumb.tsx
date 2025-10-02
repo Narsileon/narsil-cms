@@ -10,7 +10,7 @@ function SwitchThumb({ className, ...props }: SwitchThumbProps) {
     <Switch.Thumb
       data-slot="switch-thumb"
       className={cn(
-        "pointer-events-none block size-4 rounded-full bg-constructive-foreground ring-0 transition-transform will-change-transform",
+        "bg-constructive-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform will-change-transform",
         "data-[state=checked]:translate-x-[calc(100%)] data-[state=unchecked]:translate-x-0",
         className,
       )}

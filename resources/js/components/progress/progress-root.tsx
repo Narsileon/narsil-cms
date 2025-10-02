@@ -10,7 +10,7 @@ function ProgressRoot({ className, ...props }: ProgressRootProps) {
     <Progress.Root
       data-slot="progress-root"
       className={cn(
-        "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",
+        "bg-primary/20 relative h-2 w-full overflow-hidden rounded-full",
         className,
       )}
       {...props}

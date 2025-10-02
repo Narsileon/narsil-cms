@@ -8,7 +8,7 @@ function SkeletonRoot({ className, ...props }: SkeletonRootProps) {
   return (
     <div
       data-slot="skeleton-root"
-      className={cn("animate-pulse rounded-md bg-primary/10", className)}
+      className={cn("bg-primary/10 animate-pulse rounded-md", className)}
       {...props}
     />
   );

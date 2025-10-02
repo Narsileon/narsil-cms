@@ -10,7 +10,7 @@ function CommandList({ className, ...props }: CommandListProps) {
     <Command.List
       data-slot="command-list"
       className={cn(
-        "max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto",
+        "max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden",
         className,
       )}
       {...props}

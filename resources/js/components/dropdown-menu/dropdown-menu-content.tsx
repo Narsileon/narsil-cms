@@ -17,11 +17,11 @@ function DropdownMenuContent({
       <DropdownMenu.Content
         data-slot="dropdown-menu-content"
         className={cn(
-          "min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-xl border bg-popover p-1 text-popover-foreground shadow-md",
+          "bg-popover text-popover-foreground min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-xl border p-1 shadow-md",
           "data-[side=bottom]:slide-in-from-top-2",
           "data-[side=left]:slide-in-from-right-2",
           "data-[side=right]:slide-in-from-left-2",
-          "z-50 data-[side=top]:slide-in-from-bottom-2",
+          "data-[side=top]:slide-in-from-bottom-2 z-50",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           "data-[state=closed]:animate-out data-[state=open]:animate-in",

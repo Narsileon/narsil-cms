@@ -187,7 +187,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                       key={bookmark.id}
                     >
                       <Button
-                        className="font-normal text-foreground"
+                        className="text-foreground font-normal"
                         linkProps={{
                           href: bookmark.url,
                         }}

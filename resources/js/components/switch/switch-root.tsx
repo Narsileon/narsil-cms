@@ -10,7 +10,8 @@ function SwitchRoot({ className, ...props }: SwitchRootProps) {
     <Switch.Root
       data-slot="switch-root"
       className={cn(
-        "peer group/switch relative inline-flex h-4.5 w-8.5 shrink-0 cursor-pointer items-center rounded-full border shadow-xs transition-all outline-none",
+        "h-4.5 w-8.5 shadow-xs peer relative inline-flex shrink-0 cursor-pointer items-center rounded-full border outline-none",
+        "shine-border transition-all",
         "data-[state=checked]:bg-constructive data-[state=unchecked]:bg-input",
         "disabled:cursor-not-allowed disabled:opacity-50",
         className,

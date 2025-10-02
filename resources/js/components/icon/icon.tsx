@@ -14,7 +14,7 @@ function Icon({ className, name, ...props }: IconProps) {
   return (
     <Comp
       data-slot="icon"
-      className={cn("size-5 text-primary", className)}
+      className={cn("text-primary size-5", className)}
       aria-label={startCase(name)}
       {...props}
     />

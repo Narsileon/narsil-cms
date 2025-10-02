@@ -10,9 +10,9 @@ function AccordionTrigger({ className, ...props }: AccordionTriggerProps) {
     <Accordion.Trigger
       data-slot="accordion-trigger"
       className={cn(
-        "group flex flex-1 cursor-pointer items-start justify-between gap-4 rounded-md py-4 text-left transition-all outline-none",
+        "group flex flex-1 cursor-pointer items-start justify-between gap-4 rounded-md py-4 text-left outline-none transition-all",
         "disabled:pointer-events-none disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50",
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
         "hover:underline",
         className,
       )}

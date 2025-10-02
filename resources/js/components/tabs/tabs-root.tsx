@@ -16,7 +16,7 @@ function TabsRoot({ className, orientation, ...props }: TabsRootProps) {
       data-slot="tabs"
       className={cn(
         "flex",
-        "data-[orientation=horizontal]:flex-col data-[orientation=vertical]:flex-row",
+        "data-[orientation=vertical]:flex-row data-[orientation=horizontal]:flex-col",
         className,
       )}
       orientation={orientation}

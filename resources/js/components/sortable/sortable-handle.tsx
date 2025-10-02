@@ -15,7 +15,7 @@ function SortableHandle({
   return (
     <Button
       className={cn(
-        "h-9 w-7 rounded-none bg-accent/85",
+        "bg-accent/85 h-9 w-7 rounded-none",
         isDragging ? "cursor-grabbing" : "cursor-grab",
         className,
       )}

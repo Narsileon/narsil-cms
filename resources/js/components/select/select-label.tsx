@@ -9,7 +9,7 @@ function SelectLabel({ className, ...props }: SelectLabelProps) {
   return (
     <Select.Label
       data-slot="select-label"
-      className={cn("px-2 py-1.5 text-xs text-muted-foreground", className)}
+      className={cn("text-muted-foreground px-2 py-1.5 text-xs", className)}
       {...props}
     />
   );

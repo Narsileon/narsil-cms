@@ -16,7 +16,7 @@ const ScrollAreaScrollBar = ({
     <ScrollArea.ScrollAreaScrollbar
       data-slot="scroll-area-scrollbar"
       className={cn(
-        "flex touch-none p-px transition-colors select-none",
+        "flex touch-none select-none p-px transition-colors",
         orientation === "vertical" &&
           "h-full w-2.5 border-l border-l-transparent",
         orientation === "horizontal" &&

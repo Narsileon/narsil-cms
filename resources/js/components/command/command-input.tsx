@@ -10,7 +10,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
     <Command.Input
       data-slot="command-input"
       className={cn(
-        "flex h-9 w-full rounded-md bg-transparent py-3 outline-hidden",
+        "outline-hidden flex h-9 w-full rounded-md bg-transparent py-3",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "placeholder:text-muted-foreground",
         className,

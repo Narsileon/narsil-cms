@@ -15,7 +15,7 @@ function DataTableCell({ cell, ...props }: DataTableCellProps) {
     <TableCell
       data-slot="data-table-cell"
       className={cn(
-        "bg-linear-to-r to-background transition-colors group-hover:to-accent group-data-[selected=true]:to-accent",
+        "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent transition-colors",
         isMenu
           ? "sticky right-0 min-w-12 from-transparent to-20%"
           : "relative bg-clip-content",

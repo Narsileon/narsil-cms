@@ -9,7 +9,7 @@ function ShortcutRoot({ className, ...props }: ShortcutRootProps) {
     <span
       data-slot="shortcut-root"
       className={cn(
-        "ml-auto text-xs tracking-widest text-muted-foreground",
+        "text-muted-foreground ml-auto text-xs tracking-widest",
         className,
       )}
       {...props}

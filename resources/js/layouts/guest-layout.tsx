@@ -42,7 +42,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-10 h-13 border-b bg-background">
+      <header className="h-13 bg-background sticky top-0 z-10 border-b">
         <Container className="flex items-center justify-between gap-4">
           <Logo />
           <DropdownMenuRoot>

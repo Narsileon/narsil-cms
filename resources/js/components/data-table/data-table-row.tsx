@@ -17,7 +17,7 @@ function DataTableRow({
       data-slot="data-table-row"
       data-selected={selected}
       className={cn(
-        "group bg-background data-[selected=true]:bg-accent",
+        "bg-background data-[selected=true]:bg-accent group",
         className,
       )}
       {...props}
