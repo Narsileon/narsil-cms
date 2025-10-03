@@ -16,7 +16,7 @@ function CheckboxRoot({ className, ...props }: CheckboxRootProps) {
         "data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
         "data-[state=indeterminate]:text-primary",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "shine-border",
+        "focus-visible:border-shine",
         className,
       )}
       {...props}

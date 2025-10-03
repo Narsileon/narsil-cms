@@ -10,7 +10,7 @@ const toggleRootVariants = cva(
     "dark:hover:bg-accent",
     "dark:data-[state=on]:bg-accent",
     "disabled:pointer-events-none disabled:opacity-50",
-    "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
+    "focus-visible:border-shine",
     "hover:bg-accent hover:text-accent-foreground",
     "data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
     "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",

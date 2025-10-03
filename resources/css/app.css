@@ -335,17 +335,14 @@
   }
 }
 
-@layer utilities {
-  .shine-border {
-    @apply relative;
-    @apply before:absolute before:-inset-0.5 before:content-[''];
-    @apply before:rounded-[inherit] before:border-2 before:border-transparent;
-    @apply before:pointer-events-none before:opacity-0;
-    @apply before:bg-size-[300%_300%] before:mask-exclude;
-    @apply focus-within:before:opacity-100 focus-visible:before:opacity-100;
-    @apply motion-safe:before:animate-shine before:will-change-[background-position];
-  }
-  .shine-border::before {
+@utility border-shine {
+  @apply relative focus-visible:outline-none;
+  @apply before:absolute before:-inset-0.5 before:rounded-[inherit] before:content-[''];
+  @apply before:pointer-events-none before:border-2 before:border-transparent;
+  @apply before:bg-size-[300%_300%] before:mask-exclude;
+  @apply motion-safe:before:animate-shine before:will-change-[background-position];
+
+  &::before {
     background-image: radial-gradient(
       transparent,
       transparent,

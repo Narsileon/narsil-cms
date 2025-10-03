@@ -85,7 +85,6 @@ function RichTextEditorToolbar({
             <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
               <DropdownMenuTrigger asChild={true}>
                 <Button
-                  className="w-8 min-w-8"
                   icon="heading"
                   size="icon"
                   tooltip={trans(

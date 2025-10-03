@@ -5,7 +5,6 @@ import { debounce, isArray, isString, lowerCase } from "lodash";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Badge, Tooltip } from "@narsil-cms/blocks";
-import { Border } from "@narsil-cms/components/border";
 import {
   CommandEmpty,
   CommandGroup,
@@ -165,7 +164,7 @@ function Combobox({
       <PopoverTrigger asChild>
         <InputRoot
           id={id}
-          className={cn(open && "before:!opacity-100", className)}
+          className={cn(open && "data-[state=open]:border-shine", className)}
           aria-expanded={open}
           aria-disabled={disabled}
           role="combobox"

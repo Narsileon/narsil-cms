@@ -12,7 +12,7 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
       className={cn(
         "text-foreground inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-md border border-transparent px-2 py-1 transition-[color,box-shadow]",
         "disabled:pointer-events-none disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring focus-visible:outline-1 focus-visible:ring-2",
+        "focus-visible:border-shine",
         "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         "data-[orientation=horizontal]:flex-1",
         "data-[orientation=horizontal]:h-7 data-[orientation=vertical]:h-9",

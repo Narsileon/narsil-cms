@@ -7,7 +7,7 @@ const buttonRootVariants = cva(
     "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none transition-all duration-300",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
     "disabled:pointer-events-none disabled:opacity-50",
-    "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
+    "focus-visible:border-shine",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
   ),
   {

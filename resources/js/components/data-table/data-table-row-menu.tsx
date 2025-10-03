@@ -43,13 +43,15 @@ function DataTableRowMenu({
     <DropdownMenuRoot>
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
-          <Button
-            className="hover:bg-secondary size-7"
-            aria-label={trans("accessibility.toggle_row_menu")}
-            icon="more-horizontal"
-            size="icon"
-            variant="ghost"
-          />
+          <div className="flex items-center justify-end">
+            <Button
+              className="hover:bg-secondary size-7"
+              aria-label={trans("accessibility.toggle_row_menu")}
+              icon="more-horizontal"
+              size="icon"
+              variant="ghost"
+            />
+          </div>
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent align="end">
