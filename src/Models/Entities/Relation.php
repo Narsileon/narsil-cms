@@ -102,71 +102,9 @@ class Relation extends Model
      */
     public function scopeEntities(Builder $query, string $table, string $uuid): Builder
     {
-        $tableName   = self::TABLE;
+        $sql = file_get_contents(__DIR__ . '/../../SQL/relations.sql');
 
-        $id = self::ID;
-        $ownerTable    = self::OWNER_TABLE;
-        $ownerUuid = self::OWNER_UUID;
-        $targetTable   = self::TARGET_TABLE;
-        $targetUuid = self::TARGET_UUID;
-
-        $cte = 'cte';
-        $processed = 'processed';
-        $visited = 'visited';
-
-        $rawQuery = <<<SQL
-WITH RECURSIVE $cte AS (
-    SELECT
-        $id,
-        $ownerTable,
-        $ownerUuid,
-        $targetTable,
-        $targetUuid,
-        JSON_ARRAY(
-            CONCAT($ownerTable, ':', $ownerUuid), 
-            CONCAT($targetTable, ':', $targetUuid)
-        ) AS $visited,
-        0 AS $processed
-    FROM 
-        $tableName
-    WHERE 
-        $ownerTable = ? 
-        AND $ownerUuid = ?
-    UNION ALL
-    SELECT
-        r.$id,
-        r.$ownerTable,
-        r.$ownerUuid,
-        r.$targetTable,
-        r.$targetUuid,
-        JSON_ARRAY_APPEND(
-            cte.$visited, 
-            '$', 
-            CONCAT(r.$targetTable, ':', r.$targetUuid)
-        ),
-        JSON_CONTAINS(
-            cte.$visited, 
-            JSON_QUOTE(CONCAT(r.$targetTable, ':', r.$targetUuid))
-        ) AS $processed
-    FROM 
-        {$tableName} r
-    INNER JOIN $cte cte
-        ON cte.$targetTable = r.$ownerTable 
-        AND cte.$targetUuid = r.$ownerUuid
-    WHERE 
-        cte.$processed = 0
-)
-SELECT 
-    $id,
-    $ownerTable,
-    $ownerUuid,
-    $targetTable,
-    $targetUuid
-FROM 
-    $cte
-SQL;
-
-        return $query->from(DB::raw("($rawQuery) as relation_chain"))
+        return $query->from(DB::raw("($sql) as relation_chain"))
             ->setBindings([$table, $uuid]);
     }
 
