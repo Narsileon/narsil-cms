@@ -7,7 +7,6 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Narsil\Traits\HasTableName;
 
 #endregion
 
@@ -17,8 +16,6 @@ use Narsil\Traits\HasTableName;
  */
 class Relation extends Model
 {
-    use HasTableName;
-
     #region CONSTRUCTOR
 
     /**

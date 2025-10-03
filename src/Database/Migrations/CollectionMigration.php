@@ -8,6 +8,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
 use Narsil\Models\User;
@@ -23,13 +24,13 @@ class CollectionMigration extends Migration
     #region CONSTRUCTOR
 
     /**
-     * @param string $table
+     * @param Template $template
      *
      * @return void
      */
-    public function __construct(string $table)
+    public function __construct(Template $template)
     {
-        Entity::setTableName($table);
+        Entity::setTemplate($template);
     }
 
     #endregion

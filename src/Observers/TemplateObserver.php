@@ -27,13 +27,11 @@ class TemplateObserver
      */
     public function created(Template $template): void
     {
-        $table = $template->{Template::HANDLE};
-
-        new CollectionMigration($table)->up();
+        new CollectionMigration($template)->up();
 
         GraphQLService::generateTemplatesSchema();
 
-        $this->createPermissions($table);
+        $this->createPermissions($template);
     }
 
     /**
@@ -43,9 +41,7 @@ class TemplateObserver
      */
     public function deleted(Template $template): void
     {
-        $table = $template->{Template::HANDLE};
-
-        new CollectionMigration($table)->down();
+        new CollectionMigration($template)->down();
 
         GraphQLService::generateTemplatesSchema();
     }
@@ -54,8 +50,15 @@ class TemplateObserver
 
     #region PROTECTED METHODS
 
-    protected function createPermissions(string $handle): void
+    /**
+     * @param Template $template
+     *
+     * @return void
+     */
+    protected function createPermissions(Template $template): void
     {
+        $handle = $template->{Template::HANDLE};
+
         $permissions = [
             PermissionEnum::VIEW->value,
             PermissionEnum::CREATE->value,

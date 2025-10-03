@@ -7,12 +7,12 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
+use Narsil\Models\Elements\Template;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasRevisions;
-use Narsil\Traits\HasTableName;
+use Narsil\Traits\HasTemplate;
 
 #endregion
 
@@ -27,7 +27,7 @@ class Entity extends Model
     use HasDatetimes;
     use HasUuids;
     use HasRevisions;
-    use HasTableName;
+    use HasTemplate;
 
     #region CONSTRUCTOR
 
@@ -36,7 +36,7 @@ class Entity extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = static::$tableName;
+        $this->table = static::getTableName();
 
         $this->primaryKey = self::UUID;
 
@@ -85,13 +85,28 @@ class Entity extends Model
     /**
      * {@inheritDoc}
      */
-    public static function setTableName(string $tableName): void
+    public static function getTableName(): string
     {
-        static::$tableName = $tableName;
+        return static::$template->{Template::HANDLE};
+    }
 
-        $singular = Str::singular($tableName);
+    /**
+     * {@inheritDoc}
+     */
+    public static function setTemplate(Template|string $template): void
+    {
+        if (is_string($template))
+        {
+            $template = Template::query()
+                ->firstWhere([
+                    Template::HANDLE,
+                    $template
+                ]);
+        }
 
-        EntityBlock::setTableName($singular . '_blocks');
+        static::$template = $template;
+
+        EntityBlock::setTemplate($template);
     }
 
     #region • RELATIONSHIPS

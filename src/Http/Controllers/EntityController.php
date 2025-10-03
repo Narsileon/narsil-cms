@@ -43,12 +43,9 @@ class EntityController extends AbstractController
     {
         $collection = request()->route('collection');
 
-        if (is_numeric($collection))
-        {
-            $collection = $this->getTemplate($collection)->{Template::HANDLE};
-        }
+        $template = $this->getTemplate($collection);
 
-        Entity::setTableName($collection);
+        Entity::setTemplate($template);
     }
 
     #endregion

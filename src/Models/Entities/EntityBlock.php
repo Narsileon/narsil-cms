@@ -7,10 +7,12 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Narsil\Casts\JsonCast;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Traits\HasTableName;
+use Narsil\Traits\HasTemplate;
 
 #endregion
 
@@ -20,7 +22,7 @@ use Narsil\Traits\HasTableName;
  */
 class EntityBlock extends Model
 {
-    use HasTableName;
+    use HasTemplate;
 
     #region CONSTRUCTOR
 
@@ -29,7 +31,7 @@ class EntityBlock extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = static::$tableName;
+        $this->table = static::getTableName();
 
         $this->timestamps = false;
 
@@ -141,6 +143,16 @@ class EntityBlock extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getTableName(): string
+    {
+        $singular = Str::singular(static::$template->{Template::HANDLE});
+
+        return $singular . '_blocks';
+    }
 
     #region • RELATIONSHIPS
 
