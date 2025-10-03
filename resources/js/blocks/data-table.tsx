@@ -3,7 +3,6 @@ import { route } from "ziggy-js";
 
 import { Button, Heading } from "@narsil-cms/blocks";
 import {
-  DataTableCell,
   DataTableColumns,
   DataTableFilterDropdown,
   DataTableFilterList,
@@ -24,8 +23,10 @@ import {
   TableCell,
   TableHeader,
   TableRoot,
+  TableWrapper,
 } from "@narsil-cms/components/table";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
+import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection } from "@narsil-cms/types";
 
 type DataTableProps = {
@@ -96,25 +97,33 @@ function DataTable({ collection, title }: DataTableProps) {
           </Button>
         ) : null}
       </SectionHeader>
-      <SectionContent className="flex grow flex-col gap-4">
+      <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">
         <DataTableFilterList />
-        <div className="overflow-x-auto rounded-md border">
+        <TableWrapper>
           <TableRoot
             className="min-w-max"
             aria-colcount={dataTable.getAllColumns().length}
           >
             <TableHeader>
-              {dataTable.getHeaderGroups().map((headerGroup) => (
-                <DataTableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    if (header.isPlaceholder) {
-                      return null;
-                    }
+              {dataTable.getHeaderGroups().map((headerGroup) => {
+                return (
+                  <DataTableRow key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => {
+                      if (header.isPlaceholder) {
+                        return null;
+                      }
 
-                    return <DataTableHead header={header} key={header.id} />;
-                  })}
-                </DataTableRow>
-              ))}
+                      return (
+                        <DataTableHead
+                          className={header.column.columnDef.meta?.className}
+                          header={header}
+                          key={header.id}
+                        />
+                      );
+                    })}
+                  </DataTableRow>
+                );
+              })}
             </TableHeader>
             <TableBody>
               {dataTable.getRowModel().rows?.length ? (
@@ -122,12 +131,18 @@ function DataTable({ collection, title }: DataTableProps) {
                   <DataTableRow selected={row.getIsSelected()} key={row.id}>
                     {row.getVisibleCells().map((cell) => {
                       return (
-                        <DataTableCell cell={cell} key={cell.id}>
+                        <TableCell
+                          className={cn(
+                            "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent bg-clip-content transition-colors",
+                            cell.column.columnDef.meta?.className,
+                          )}
+                          key={cell.id}
+                        >
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext() ?? "",
                           )}
-                        </DataTableCell>
+                        </TableCell>
                       );
                     })}
                   </DataTableRow>
@@ -142,7 +157,7 @@ function DataTable({ collection, title }: DataTableProps) {
               )}
             </TableBody>
           </TableRoot>
-        </div>
+        </TableWrapper>
         <DataTableFooter collection={collection} />
       </SectionContent>
     </SectionRoot>

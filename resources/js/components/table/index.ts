@@ -8,6 +8,7 @@ import TableHead from "./table-head";
 import TableHeader from "./table-header";
 import TableRoot from "./table-root";
 import TableRow from "./table-row";
+import TableWrapper from "./table-wrapper";
 
 export {
   TableBody,
@@ -18,4 +19,5 @@ export {
   TableHeader,
   TableRoot,
   TableRow,
+  TableWrapper,
 };

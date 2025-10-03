@@ -34,6 +34,7 @@ import {
   TableHeader,
   TableRoot,
   TableRow,
+  TableWrapper,
 } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
@@ -120,7 +121,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
         items={rows.map((row) => row.id)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="overflow-hidden rounded-md border">
+        <TableWrapper>
           <TableRoot className="w-full table-fixed">
             <TableHeader>
               <TableRow>
@@ -194,7 +195,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
               document.body,
             )}
           </TableRoot>
-        </div>
+        </TableWrapper>
       </SortableContext>
     </DndContext>
   );

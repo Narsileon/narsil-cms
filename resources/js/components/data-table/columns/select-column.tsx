@@ -42,6 +42,9 @@ function getSelectColumn(count: number): ColumnDef<Model> {
     },
     enableHiding: false,
     enableSorting: false,
+    meta: {
+      className: "min-w-9 w-9 max-w-9",
+    },
   };
 }
 

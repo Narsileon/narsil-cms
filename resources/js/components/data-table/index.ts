@@ -2,7 +2,6 @@
 
 import getMenuColumn from "./columns/menu-column";
 import getSelectColumn from "./columns/select-column";
-import DataTableCell from "./data-table-cell";
 import DataTableColumns from "./data-table-columns";
 import useDataTable from "./data-table-context";
 import DataTableFilterDropdown from "./data-table-filter-dropdown";
@@ -23,7 +22,6 @@ export type ColumnFilter = {
 };
 
 export {
-  DataTableCell,
   DataTableColumns,
   DataTableFilterDropdown,
   DataTableFilterItem,

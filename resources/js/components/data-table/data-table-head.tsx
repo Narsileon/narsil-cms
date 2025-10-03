@@ -12,15 +12,12 @@ type DataTableHeadProps = ComponentProps<typeof TableHead> & {
   header: Header<Model, unknown>;
 };
 
-function DataTableHead({ header, ...props }: DataTableHeadProps) {
-  const isMenu = header.column.id === "_menu";
+function DataTableHead({ className, header, ...props }: DataTableHeadProps) {
   return (
     <TableHead
       className={cn(
         "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent transition-colors",
-        isMenu
-          ? "sticky right-0 min-w-12 max-w-12 from-transparent to-20%"
-          : "relative",
+        className,
       )}
       colSpan={header.colSpan}
       {...props}

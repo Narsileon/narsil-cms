@@ -2,6 +2,7 @@ import { type InertiaLinkProps } from "@inertiajs/react";
 import {
   type ColumnDef,
   type ColumnOrderState,
+  type RowData,
   type VisibilityState,
 } from "@tanstack/react-table";
 
@@ -11,6 +12,12 @@ import {
 } from "@narsil-cms/blocks/pagination";
 import { type IconName } from "@narsil-cms/plugins/icons";
 import type { Model, Block, Field, TemplateSection } from "@narsil-cms/types";
+
+declare module "@tanstack/react-table" {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    className: string;
+  }
+}
 
 export type BlockElementCondition = {
   id: number;
