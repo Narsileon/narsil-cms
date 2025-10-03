@@ -1,4 +1,4 @@
-import { type ColumnDef } from "@tanstack/react-table";
+import { RowSelectionState, type ColumnDef } from "@tanstack/react-table";
 import { isArray } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
@@ -56,6 +56,9 @@ function Relations({
   }
 
   const [open, setOpen] = useState<boolean>(false);
+  const [selectedRows, setSelectedRows] = useState<
+    Record<string, RowSelectionState>
+  >({});
 
   const [dataTables, setDataTables] = useState<
     Record<string, DataTableCollection>
@@ -177,6 +180,22 @@ function Relations({
                       initialState={{
                         columnOrder: finalColumnOrder,
                         columnVisibility: collection.columnVisibility,
+                      }}
+                      state={{
+                        rowSelection: selectedRows[collection.meta.id] ?? {},
+                      }}
+                      onRowSelectionChange={(updater) => {
+                        setSelectedRows((prev) => {
+                          const oldSelection = prev[collection.meta.id] ?? {};
+                          const newSelection =
+                            typeof updater === "function"
+                              ? updater(oldSelection)
+                              : updater;
+                          return {
+                            ...prev,
+                            [collection.meta.id]: newSelection,
+                          };
+                        });
                       }}
                       key={id}
                     >

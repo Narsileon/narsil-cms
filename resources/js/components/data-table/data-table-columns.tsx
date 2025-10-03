@@ -81,7 +81,7 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
   }
 
   return (
-    <PopoverRoot>
+    <PopoverRoot modal={true}>
       <PopoverTrigger asChild={true} {...props}>
         {children}
       </PopoverTrigger>

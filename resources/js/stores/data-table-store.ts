@@ -2,6 +2,7 @@ import {
   type ColumnOrderState,
   type ColumnSizingState,
   type PaginationState,
+  type RowSelectionState,
   type SortingState,
   type VisibilityState,
 } from "@tanstack/react-table";
@@ -18,6 +19,7 @@ type DataTableStoreState = {
   filters: ColumnFilter[];
   pageIndex: number;
   pageSize: number;
+  rowSelection: RowSelectionState;
   search: string | null;
   sorting: SortingState;
 };
@@ -33,6 +35,7 @@ type DataTableStoreActions = {
   setPageIndex: (pageIndex: PaginationState["pageIndex"]) => void;
   setPageSize: (pageSige: PaginationState["pageSize"]) => void;
   setPagination: (pagination: PaginationState) => void;
+  setRowSelection: (rowSelection: RowSelectionState) => void;
   setSearch: (search: string | null) => void;
   setSorting: (sorting: SortingState) => void;
 };
@@ -52,6 +55,7 @@ const defaultState: DataTableStoreState = {
   filters: [],
   pageIndex: 0,
   pageSize: 10,
+  rowSelection: {},
   search: "",
   sorting: [],
 };
@@ -113,6 +117,10 @@ const useDataTableStore = ({ id, initialState }: CreateDataTableStoreProps) =>
           set({
             pageIndex: pagination.pageIndex,
             pageSize: pagination.pageSize,
+          }),
+        setRowSelection: (rowSelection) =>
+          set({
+            rowSelection: rowSelection,
           }),
         setSearch: (search) =>
           set({

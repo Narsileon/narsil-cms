@@ -6,6 +6,7 @@ import {
   type ColumnOrderState,
   type ColumnSizingState,
   type PaginationState,
+  type RowSelectionState,
   type SortingState,
   type TableOptions,
   type Updater,
@@ -60,6 +61,8 @@ function DataTableProvider({
   manualSorting = true,
   id,
   initialState = {},
+  state,
+  ...props
 }: DataTableProviderProps) {
   const createDataTableStore = useMemo(
     () =>
@@ -132,6 +135,16 @@ function DataTableProvider({
     );
   }
 
+  function handleRowSelectionChange(
+    rowSelection: Updater<RowSelectionState> | RowSelectionState,
+  ) {
+    dataTableStore.setRowSelection(
+      typeof rowSelection === "function"
+        ? rowSelection(dataTableStore.rowSelection)
+        : rowSelection,
+    );
+  }
+
   function handleSortingChange(sorting: Updater<SortingState> | SortingState) {
     dataTableStore.setSorting(
       typeof sorting === "function" ? sorting(dataTableStore.sorting) : sorting,
@@ -168,7 +181,9 @@ function DataTableProvider({
         pageIndex: dataTableStore.pageIndex,
         pageSize: dataTableStore.pageSize,
       },
+      rowSelection: dataTableStore.rowSelection,
       sorting: dataTableStore.sorting,
+      ...state,
     },
     getCoreRowModel: getCoreRowModel(),
     getRowId: (row) => row.id.toString(),
@@ -177,7 +192,9 @@ function DataTableProvider({
     onColumnVisibilityChange: handleColumnVisibilityChange,
     onGlobalFilterChange: dataTableStore.setSearch,
     onPaginationChange: handlePaginationChange,
+    onRowSelectionChange: handleRowSelectionChange,
     onSortingChange: handleSortingChange,
+    ...props,
   });
 
   const update = useCallback(
