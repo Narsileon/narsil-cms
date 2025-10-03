@@ -86,27 +86,31 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
         {children}
       </PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent className="grid w-96 grid-cols-2 overflow-y-hidden border-none p-0">
+        <PopoverContent className="grid max-h-96 min-w-fit border-collapse grid-cols-2 overflow-y-scroll p-0">
           <Card
-            className="rounded-r-none border-r-0"
+            className="rounded-none border-0"
             contentProps={{ className: "gap-y-1" }}
             headerProps={{ className: "border-b" }}
             title={trans("ui.available_columns")}
           >
-            {availableColumns.map((column) => (
-              <Button
-                className="justify-start font-normal"
-                tooltip={trans("accessibility.show_column")}
-                variant="outline"
-                onClick={() => handleActivate(column)}
-                key={column.id}
-              >
-                {upperFirst(column.columnDef.header as string)}
-              </Button>
-            ))}
+            {availableColumns.map((column) => {
+              const columnLabel = upperFirst(column.columnDef.header as string);
+
+              return (
+                <Button
+                  className="justify-start font-normal"
+                  tooltip={`${trans("ui.show")} '${columnLabel}'`}
+                  variant="outline"
+                  onClick={() => handleActivate(column)}
+                  key={column.id}
+                >
+                  {upperFirst(column.columnDef.header as string)}
+                </Button>
+              );
+            })}
           </Card>
           <Card
-            className="rounded-l-none"
+            className="rounded-none border-y-0"
             contentProps={{ className: "gap-y-1" }}
             headerProps={{ className: "border-b" }}
             title={trans("ui.active_columns")}
