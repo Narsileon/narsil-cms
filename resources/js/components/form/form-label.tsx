@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { Label, Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 
 import useFormField from "./form-field-context";
@@ -17,7 +17,7 @@ function FormLabel({
   required = false,
   ...props
 }: FormLabelProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { error, handle } = useFormField();
 

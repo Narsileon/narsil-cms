@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorOrderedListProps = ComponentProps<typeof Toggle> & {
@@ -16,7 +16,7 @@ function RichTextEditorOrderedList({
   icon = "list-ordered",
   ...props
 }: RichTextEditorOrderedListProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { isOrderedList } = useEditorState({
     editor,
@@ -27,10 +27,7 @@ function RichTextEditorOrderedList({
     },
   });
 
-  const tooltip = trans(
-    `accessibility.toggle_ordered_list`,
-    `Toggle ordered list`,
-  );
+  const tooltip = trans("accessibility.toggle_ordered_list");
 
   return (
     <Toggle

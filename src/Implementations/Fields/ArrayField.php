@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\ArrayField as Contract;
 use Narsil\Implementations\AbstractField;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -23,7 +23,7 @@ class ArrayField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::ui.add')
             ->add('narsil::ui.remove');
 

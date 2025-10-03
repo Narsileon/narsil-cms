@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 
 type RichTextEditorHeadingProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
@@ -15,7 +15,7 @@ function RichTextEditorHeading({
   level,
   ...props
 }: RichTextEditorHeadingProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { isHeading } = useEditorState({
     editor,
@@ -26,10 +26,7 @@ function RichTextEditorHeading({
     },
   });
 
-  const tooltip = trans(
-    `accessibility.toggle_heading_${level}`,
-    `Toggle heading ${level}`,
-  );
+  const tooltip = trans("accessibility.toggle_heading_${level}");
 
   return (
     <Toggle

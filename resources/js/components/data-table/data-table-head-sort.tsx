@@ -2,7 +2,7 @@ import { Header } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
 
 import { Button } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import type { Model } from "@narsil-cms/types";
 
 type DataTableHeadSortProps = ComponentProps<typeof Button> & {
@@ -10,7 +10,7 @@ type DataTableHeadSortProps = ComponentProps<typeof Button> & {
 };
 
 function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   function getIconName() {
     switch (header.column.getIsSorted()) {
@@ -23,7 +23,7 @@ function DataTableHeadSort({ header, ...props }: DataTableHeadSortProps) {
     }
   }
 
-  const tooltip = trans("accessibility.sort_column", "Sort column");
+  const tooltip = trans("accessibility.sort_column");
 
   return (
     <Button

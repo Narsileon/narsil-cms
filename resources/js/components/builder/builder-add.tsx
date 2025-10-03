@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
 
@@ -21,7 +21,7 @@ type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
 };
 
 function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [hovered, setHovered] = useState<boolean>(false);
   const [open, onOpenChange] = useState<boolean>(false);

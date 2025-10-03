@@ -8,7 +8,7 @@ use Narsil\Contracts\Fields\PasswordField as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -29,7 +29,7 @@ class PasswordField extends AbstractField implements Contract
 
         $this->setDefaultValue('');
 
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::accessibility.hide_password')
             ->add('narsil::accessibility.show_password');
     }

@@ -1,7 +1,7 @@
 import { Pagination } from "@narsil-cms/blocks";
 import { Select } from "@narsil-cms/blocks/fields";
 import { useDataTable } from "@narsil-cms/components/data-table";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import type { DataTableCollection } from "@narsil-cms/types";
 
 type DataTableProps = {
@@ -9,7 +9,7 @@ type DataTableProps = {
 };
 
 function DataTableFooter({ collection }: DataTableProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { dataTable, dataTableStore } = useDataTable();
 
@@ -19,7 +19,12 @@ function DataTableFooter({ collection }: DataTableProps) {
     <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
       <span className="truncate">
         {selectedCount > 0
-          ? `${selectedCount} ${trans("pagination.selected_count")}`
+          ? trans("pagination.selected_count", {
+              replacements: {
+                selected: selectedCount,
+                total: collection.meta.total,
+              },
+            })
           : trans("pagination.selected_empty")}
       </span>
       <div className="flex w-full items-center justify-between gap-4 sm:w-fit sm:justify-end">
@@ -34,7 +39,12 @@ function DataTableFooter({ collection }: DataTableProps) {
         <div className="flex flex-col items-end gap-x-4 gap-y-2 sm:flex-row sm:items-center">
           <span className="truncate">
             {collection.meta.total > 0
-              ? trans("pagination.pages_count")
+              ? trans("pagination.pages_count", {
+                  replacements: {
+                    current: collection.meta.current_page,
+                    total: collection.meta.last_page,
+                  },
+                })
               : trans("pagination.pages_empty")}
           </span>
           <Pagination links={collection.links} />

@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Fortify;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -26,7 +26,7 @@ class VerifyEmailController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::verify-email.instruction')
             ->add('narsil::verify-email.prompt')
             ->add('narsil::verify-email.send_again')

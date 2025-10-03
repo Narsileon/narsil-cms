@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { route } from "ziggy-js";
 
 import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SectionContent,
   SectionHeader,
@@ -16,7 +16,7 @@ type VerifyEmailProps = {
 };
 
 function VerifyEmail({ status, title }: VerifyEmailProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const hasStatus = useRef<boolean>(false);
 

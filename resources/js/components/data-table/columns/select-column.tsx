@@ -1,11 +1,11 @@
 import { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@narsil-cms/blocks/fields";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import type { Model } from "@narsil-cms/types";
 
-function getSelectColumn(count: number): ColumnDef<Model> {
-  const { trans } = useLabels();
+function getSelectColumn(): ColumnDef<Model> {
+  const { trans } = useLocalization();
 
   return {
     id: "_select",
@@ -13,11 +13,9 @@ function getSelectColumn(count: number): ColumnDef<Model> {
       const checked = table.getIsAllPageRowsSelected();
       const indeterminate = table.getIsSomePageRowsSelected();
 
-      const label = checked
-        ? trans("", "Deselect all")
-        : trans("", "Select all");
+      const label = checked ? trans("Deselect all") : trans("Select all");
 
-      return count > 0 ? (
+      return table.options.data.length > 0 ? (
         <Checkbox
           aria-label={label}
           checked={checked || (indeterminate && "indeterminate")}
@@ -28,9 +26,7 @@ function getSelectColumn(count: number): ColumnDef<Model> {
     cell: ({ row }) => {
       const checked = row.getIsSelected();
 
-      const label = checked
-        ? trans("", "Deselect row")
-        : trans("", "Select row");
+      const label = checked ? trans("Deselect row") : trans("Select row");
 
       return (
         <Checkbox

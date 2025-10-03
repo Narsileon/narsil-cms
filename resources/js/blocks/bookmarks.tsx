@@ -9,7 +9,7 @@ import {
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverContent,
   PopoverPortal,
@@ -26,7 +26,7 @@ type BookmarksProps = ComponentProps<typeof PopoverTrigger> & {
 };
 
 function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [bookmark, setBookmark] = useState<Bookmark | null>(null);
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
@@ -89,7 +89,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
       <Tooltip tooltip={trans("bookmarks.tooltip")}>
         <PopoverTrigger asChild={true} {...props}>
           <Button
-            aria-label={trans("bookmarks.tooltip", "Toggle bookmarks menu")}
+            aria-label={trans("bookmarks.tooltip")}
             iconProps={{
               fill: "currentColor",
               name: "star",

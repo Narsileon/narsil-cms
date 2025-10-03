@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 
 import { Head } from "@narsil-cms/blocks";
-import { LabelsProvider } from "@narsil-cms/components/labels";
+import { LocalizationProvider } from "@narsil-cms/components/localization";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
@@ -20,7 +20,7 @@ type LayoutProps = {
 };
 
 function Layout({ children }: LayoutProps) {
-  const { auth, description, labels, redirect, title } = children?.props;
+  const { auth, description, redirect, translations, title } = children?.props;
 
   const colorStore = useColorStore();
   const radiusStore = useRadiusStore();
@@ -51,7 +51,7 @@ function Layout({ children }: LayoutProps) {
   }, [error, info, success, warning]);
 
   return (
-    <LabelsProvider labels={labels}>
+    <LocalizationProvider translations={translations}>
       <Head
         description={description}
         follow={false}
@@ -63,7 +63,7 @@ function Layout({ children }: LayoutProps) {
       ) : (
         <AuthLayout>{children}</AuthLayout>
       )}
-    </LabelsProvider>
+    </LocalizationProvider>
   );
 }
 

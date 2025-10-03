@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorSuperscriptProps = ComponentProps<typeof Toggle> & {
@@ -16,7 +16,7 @@ function RichTextEditorSuperscript({
   icon = "superscript",
   ...props
 }: RichTextEditorSuperscriptProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { canSuperscript, isSuperscript } = useEditorState({
     editor,
@@ -33,10 +33,7 @@ function RichTextEditorSuperscript({
     },
   });
 
-  const tooltip = trans(
-    `accessibility.toggle_superscript`,
-    `Toggle superscript`,
-  );
+  const tooltip = trans("accessibility.toggle_superscript");
 
   return (
     <Toggle

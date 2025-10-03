@@ -18,7 +18,7 @@ import {
   FormRoot,
   FormRenderer,
 } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SectionContent,
   SectionHeader,
@@ -52,7 +52,7 @@ function ResourceForm({
   submitLabel,
   title,
 }: FormProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
   const { closeTopModal } = useModalStore();
 
   const minLg = useMinLg();

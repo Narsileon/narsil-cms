@@ -30,7 +30,7 @@ import {
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
 import { FormRenderer } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block, Field } from "@narsil-cms/types";
@@ -48,7 +48,7 @@ type ArrayProps = {
 };
 
 function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [active, setActive] = useState<Arrayitem | null>(null);
 
@@ -124,7 +124,7 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
           setItems([...items, { id: uniqueId("value"), [labelKey]: "" }])
         }
       >
-        {trans("ui.add", "Add")}
+        {trans("ui.add")}
       </Button>
     </div>
   );
@@ -152,7 +152,7 @@ function SortableItem({
   labelKey,
   onItemRemove,
 }: SortableitemProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [open, setCollapsed] = useState<boolean>(true);
 

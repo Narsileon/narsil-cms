@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
@@ -16,9 +16,9 @@ function DialogCloseButton({
   icon = "x",
   ...props
 }: DialogCloseButtonProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
-  const tooltip = trans("accessibility.close_dialog", "Close dialog");
+  const tooltip = trans("accessibility.close_dialog");
 
   return (
     <Tooltip tooltip={tooltip}>

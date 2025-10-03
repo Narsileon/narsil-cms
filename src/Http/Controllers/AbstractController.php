@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 use Narsil\Http\Requests\QueryRequest;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -78,32 +78,31 @@ abstract class AbstractController
      */
     protected function render(string $component, string $title = '', string $description = '', array $props = []): JsonResponse|Response
     {
-        $labelsBag = app(LabelsBag::class);
+        $TranslationsBag = app(TranslationsBag::class);
 
         if (request()->boolean('_modal'))
         {
-            $labelsBag
+            $translations = $TranslationsBag
                 ->add('narsil::accessibility.close_dialog')
-                ->add('narsil::ui.cancel');
-
-            $labels = $labelsBag->get();
+                ->add('narsil::ui.cancel')
+                ->get();
 
             return response()->json([
                 'component' => $component,
                 'props' => array_merge([
                     '_modal' => true,
                     'description' => $description,
-                    'labels' => $labels,
+                    'translations' => $translations,
                     'title' => $title,
                 ], $props),
             ]);
         }
 
-        $labels = $labelsBag->get();
+        $translations = $TranslationsBag->get();
 
         return Inertia::render($component, array_merge([
             'description' => $description,
-            'labels' => $labels,
+            'translations' => $translations,
             'title' => $title,
         ], $props));
     }

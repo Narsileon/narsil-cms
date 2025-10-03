@@ -12,7 +12,7 @@ import {
   DataTableRow,
   useDataTable,
 } from "@narsil-cms/components/data-table";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SectionContent,
   SectionHeader,
@@ -35,15 +35,15 @@ type DataTableProps = {
 };
 
 function DataTable({ collection, title }: DataTableProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { dataTable } = useDataTable();
 
   const isDesktop = useMinSm();
 
-  const columnsLabel = trans("ui.columns", "Columns");
-  const createLabel = trans("ui.create", "Create");
-  const filterLabel = trans("ui.filters", "Filters");
+  const columnsLabel = trans("ui.columns");
+  const createLabel = trans("ui.create");
+  const filterLabel = trans("ui.filters");
 
   return (
     <SectionRoot className="h-full gap-4 p-4">

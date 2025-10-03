@@ -4,7 +4,7 @@ import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SidebarContent,
   SidebarFooter,
@@ -25,7 +25,7 @@ import { cn } from "@narsil-cms/lib/utils";
 type SidebarProps = ComponentProps<typeof SidebarRoot> & {};
 
 function Sidebar({ ...props }: SidebarProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 

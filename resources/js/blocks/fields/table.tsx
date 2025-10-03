@@ -25,7 +25,7 @@ import { createPortal } from "react-dom";
 
 import { Button } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import {
   TableBody,
@@ -223,7 +223,7 @@ function SortableItem({
   onRemove,
   ...props
 }: SortableItemProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const {
     attributes,
@@ -261,7 +261,7 @@ function SortableItem({
           <SortableHandle
             ref={setActivatorNodeRef}
             className="rounded-md bg-transparent"
-            tooltip={trans("ui.move", "Move")}
+            tooltip={trans("ui.move")}
             {...attributes}
             {...listeners}
           />
@@ -283,7 +283,7 @@ function SortableItem({
             className="size-7"
             icon="trash"
             size="icon"
-            tooltip={trans("ui.remove", "Remove")}
+            tooltip={trans("ui.remove")}
             variant="ghost"
             onClick={() => onRemove(id)}
           />

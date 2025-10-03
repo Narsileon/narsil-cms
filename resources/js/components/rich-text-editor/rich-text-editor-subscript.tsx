@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorSubscriptProps = ComponentProps<typeof Toggle> & {
@@ -16,7 +16,7 @@ function RichTextEditorSubscript({
   icon = "subscript",
   ...props
 }: RichTextEditorSubscriptProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { canSubscript, isSubscript } = useEditorState({
     editor,
@@ -28,7 +28,7 @@ function RichTextEditorSubscript({
     },
   });
 
-  const tooltip = trans(`accessibility.toggle_subscript`, `Toggle subscript`);
+  const tooltip = trans("accessibility.toggle_subscript");
 
   return (
     <Toggle

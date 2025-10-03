@@ -1,4 +1,4 @@
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   TableBody,
   TableCell,
@@ -20,7 +20,7 @@ type CheckboxesProps = {
 };
 
 function Checkboxes({ options, values, onChange }: CheckboxesProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   function toggleValue(value: UniqueIdentifier) {
     if (values.includes(value)) {

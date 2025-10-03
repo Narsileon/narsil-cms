@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorUnderlineProps = ComponentProps<typeof Toggle> & {
@@ -16,7 +16,7 @@ function RichTextEditorUnderline({
   icon = "underline",
   ...props
 }: RichTextEditorUnderlineProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { canUnderline, isUnderline } = useEditorState({
     editor,
@@ -28,7 +28,7 @@ function RichTextEditorUnderline({
     },
   });
 
-  const tooltip = trans(`accessibility.toggle_underline`, `Toggle underline`);
+  const tooltip = trans("accessibility.toggle_underline");
 
   return (
     <Toggle

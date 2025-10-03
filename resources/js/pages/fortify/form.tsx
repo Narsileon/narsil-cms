@@ -8,7 +8,7 @@ import {
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SectionContent,
   SectionHeader,
@@ -31,7 +31,7 @@ function FortifyForm({
   submitLabel,
   title,
 }: FortifyFormProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const hasStatus = useRef<boolean>(false);
 

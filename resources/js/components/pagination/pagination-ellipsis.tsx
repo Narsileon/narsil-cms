@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { VisuallyHidden } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
@@ -16,7 +16,7 @@ function PaginationEllipsis({
   icon = "more-horizontal",
   ...props
 }: PaginationEllipsisProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   return (
     <span
@@ -26,9 +26,7 @@ function PaginationEllipsis({
       {...props}
     >
       <Icon className="size-4" name={icon} />
-      <VisuallyHidden>
-        {trans("accessibility.more_pages", "More pages")}
-      </VisuallyHidden>
+      <VisuallyHidden>{trans("accessibility.more_pages")}</VisuallyHidden>
     </span>
   );
 }

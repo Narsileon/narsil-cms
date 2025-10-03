@@ -12,7 +12,7 @@ import { ComponentProps } from "react";
 
 import { Button, Card } from "@narsil-cms/blocks";
 import { useDataTable } from "@narsil-cms/components/data-table";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverRoot,
   PopoverContent,
@@ -25,7 +25,7 @@ import type { Model } from "@narsil-cms/types";
 type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger> & {};
 
 function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { dataTable } = useDataTable();
 
@@ -91,12 +91,12 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
             className="rounded-r-none border-r-0"
             contentProps={{ className: "gap-y-1" }}
             headerProps={{ className: "border-b" }}
-            title={trans("ui.available_columns", "Available columns")}
+            title={trans("ui.available_columns")}
           >
             {availableColumns.map((column) => (
               <Button
                 className="justify-start font-normal"
-                tooltip={trans("accessibility.show_column", "Show column")}
+                tooltip={trans("accessibility.show_column")}
                 variant="outline"
                 onClick={() => handleActivate(column)}
                 key={column.id}
@@ -109,7 +109,7 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
             className="rounded-l-none"
             contentProps={{ className: "gap-y-1" }}
             headerProps={{ className: "border-b" }}
-            title={trans("ui.active_columns", "Active columns")}
+            title={trans("ui.active_columns")}
           >
             <DndContext
               collisionDetection={closestCenter}
@@ -143,7 +143,7 @@ type SortableItemProps = {
 };
 
 function SortableItem({ column, onRemove }: SortableItemProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const {
     attributes,
@@ -158,8 +158,8 @@ function SortableItem({ column, onRemove }: SortableItemProps) {
 
   const columnLabel = upperFirst(column.columnDef.header as string);
 
-  const hideColumnLabel = `${trans("ui.hide", "Hide")} ${columnLabel}`;
-  const moveClumnLabel = `${trans("ui.move", "Move")} ${columnLabel}`;
+  const hideColumnLabel = `${trans("ui.hide")} ${columnLabel}`;
+  const moveClumnLabel = `${trans("ui.move")} ${columnLabel}`;
 
   return (
     <div

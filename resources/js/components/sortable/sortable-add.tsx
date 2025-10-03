@@ -5,7 +5,7 @@ import { route } from "ziggy-js";
 
 import { Button } from "@narsil-cms/blocks";
 import { Combobox } from "@narsil-cms/blocks/fields";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
@@ -29,7 +29,7 @@ function SortableAdd({
   setItems,
   ...props
 }: SortableAddProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [options, setOptions] = useState(group.options);
 

@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\TableField as Contract;
 use Narsil\Implementations\AbstractField;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -25,7 +25,7 @@ class TableField extends AbstractField implements Contract
     {
         $this->setDefaultValue([]);
 
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::ui.move')
             ->add('narsil::ui.remove');
     }

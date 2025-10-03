@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   ToggleGroupItem,
   ToggleGroupRoot,
@@ -15,7 +15,7 @@ type ThemeToggleGroupProps = {
 };
 
 function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { theme: currentTheme, setTheme } = useThemeStore();
 

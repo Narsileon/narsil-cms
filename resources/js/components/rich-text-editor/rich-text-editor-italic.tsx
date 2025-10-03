@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorItalicProps = ComponentProps<typeof Toggle> & {
@@ -16,7 +16,7 @@ function RichTextEditorItalic({
   icon = "italic",
   ...props
 }: RichTextEditorItalicProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { canItalic, isItalic } = useEditorState({
     editor,
@@ -28,7 +28,7 @@ function RichTextEditorItalic({
     },
   });
 
-  const tooltip = trans(`accessibility.toggle_italic`, `Toggle italic`);
+  const tooltip = trans("accessibility.toggle_italic");
 
   return (
     <Toggle

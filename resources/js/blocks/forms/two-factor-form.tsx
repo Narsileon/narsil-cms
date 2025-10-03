@@ -10,7 +10,7 @@ import {
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
 
@@ -19,7 +19,7 @@ type TwoFactorFormProps = {
 };
 
 function TwoFactorForm({ form }: TwoFactorFormProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { two_factor_confirmed_at } = useAuth() ?? {};
 

@@ -11,7 +11,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 use ReflectionClass;
 
 #endregion
@@ -29,7 +29,7 @@ abstract class AbstractForm implements Form
      */
     public function __construct()
     {
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
             ->add('narsil::pagination.pages_empty')
             ->add('narsil::placeholders.choose')

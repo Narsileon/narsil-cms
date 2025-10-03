@@ -21,12 +21,13 @@ type ResourceIndexProps = {
 function ResourceIndex({ collection, title }: ResourceIndexProps) {
   const hasMenu = collection.meta.routes.edit || collection.meta.routes.destroy;
 
+  const menuColumn = getMenuColumn(collection.meta.routes);
+  const selectColumn = getSelectColumn();
+
   const finalColumns: ColumnDef<Model>[] = [
-    ...(collection.meta.selectable !== false
-      ? [getSelectColumn(collection.data.length)]
-      : []),
+    ...(collection.meta.selectable !== false ? [selectColumn] : []),
     ...collection.columns,
-    ...(hasMenu ? [getMenuColumn(collection.meta.routes)] : []),
+    ...(hasMenu ? [menuColumn] : []),
   ];
 
   const finalColumnOrder = [

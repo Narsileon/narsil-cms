@@ -1,9 +1,13 @@
+import { type ColumnDef } from "@tanstack/react-table";
 import { isArray } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
 import { Badge, Button, DataTable, Spinner } from "@narsil-cms/blocks";
-import { DataTableProvider } from "@narsil-cms/components/data-table";
+import {
+  DataTableProvider,
+  getSelectColumn,
+} from "@narsil-cms/components/data-table";
 import {
   DialogClose,
   DialogContent,
@@ -16,7 +20,7 @@ import {
 } from "@narsil-cms/components/dialog";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   TabsContent,
   TabsList,
@@ -24,7 +28,7 @@ import {
   TabsTrigger,
 } from "@narsil-cms/components/tabs";
 import { cn } from "@narsil-cms/lib/utils";
-import type { DataTableCollection } from "@narsil-cms/types";
+import type { DataTableCollection, Model } from "@narsil-cms/types";
 
 type RelationsProps = {
   className?: string;
@@ -45,7 +49,7 @@ function Relations({
   value,
   setValue,
 }: RelationsProps) {
-  const { trans } = useLabels();
+  const { addTranslations, trans } = useLocalization();
 
   if (!isArray(value)) {
     value = value ? [value] : [];
@@ -56,6 +60,8 @@ function Relations({
   const [dataTables, setDataTables] = useState<
     Record<string, DataTableCollection>
   >({});
+
+  const selectColumn = getSelectColumn();
 
   useEffect(() => {
     if (!open || !collections || collections.length === 0) return;
@@ -81,6 +87,8 @@ function Relations({
           }
 
           const { props } = await response.json();
+
+          addTranslations(props.translations);
 
           if (props.collection) {
             setDataTables((dataTables) => ({
@@ -139,7 +147,7 @@ function Relations({
           </DialogHeader>
           {Object.keys(dataTables).length > 0 ? (
             <TabsRoot
-              className="grow"
+              className="grow overflow-y-hidden"
               defaultValue={Object.keys(dataTables)[0]}
               orientation="vertical"
             >
@@ -153,14 +161,21 @@ function Relations({
                 })}
               </TabsList>
               {Object.entries(dataTables).map(([id, collection]) => {
+                const finalColumns: ColumnDef<Model>[] = [
+                  selectColumn,
+                  ...collection.columns,
+                ];
+
+                const finalColumnOrder = ["_select", ...collection.columnOrder];
+
                 return (
                   <TabsContent className="p-0" value={id} key={id}>
                     <DataTableProvider
                       id={collection.meta.id}
-                      columns={collection.columns}
+                      columns={finalColumns}
                       data={collection.data}
                       initialState={{
-                        columnOrder: collection.columnOrder,
+                        columnOrder: finalColumnOrder,
                         columnVisibility: collection.columnVisibility,
                       }}
                       key={id}
@@ -175,10 +190,12 @@ function Relations({
             <Spinner />
           )}
           <DialogFooter className="border-t">
-            <DialogClose>
+            <DialogClose asChild={true}>
               <Button variant="ghost">{trans("ui.cancel")}</Button>
             </DialogClose>
-            <Button>{trans("ui.confirm")}</Button>
+            <DialogClose asChild={true}>
+              <Button>{trans("ui.confirm")}</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </DialogPortal>

@@ -2,14 +2,14 @@ import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 import { Button } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 
 type RichTextEditorUndoProps = ComponentProps<typeof Button> & {
   editor: Editor;
 };
 
 function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { canUndo } = useEditorState({
     editor,
@@ -20,7 +20,7 @@ function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
     },
   });
 
-  const tooltip = trans(`accessibility.undo`, `Undo`);
+  const tooltip = trans("accessibility.undo");
 
   return (
     <Button

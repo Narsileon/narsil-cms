@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Menus;
 
 use Narsil\Contracts\Menus\GuestMenu as Contract;
 use Narsil\Implementations\AbstractMenu;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 use Narsil\Support\MenuItem;
 
 #endregion
@@ -24,7 +24,7 @@ class GuestMenu extends AbstractMenu implements Contract
      */
     public function __construct()
     {
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::accessibility.toggle_user_menu')
             ->add('narsil::themes.dark')
             ->add('narsil::themes.light')

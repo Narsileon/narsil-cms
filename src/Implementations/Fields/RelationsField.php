@@ -10,7 +10,7 @@ use Narsil\Contracts\Fields\SelectField;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 use Narsil\Support\SelectOption;
 
 #endregion
@@ -28,7 +28,7 @@ class RelationsField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::ui.cancel')
             ->add('narsil::ui.edit')
             ->add('narsil::ui.remove')

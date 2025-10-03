@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 
@@ -29,7 +29,7 @@ type GuestLayoutProps = {
 };
 
 function GuestLayout({ children }: GuestLayoutProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -46,12 +46,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
         <Container className="flex items-center justify-between gap-4">
           <Logo />
           <DropdownMenuRoot>
-            <Tooltip
-              tooltip={trans(
-                "accessibility.toggle_user_menu",
-                "Toggle user menu",
-              )}
-            >
+            <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
               <DropdownMenuTrigger asChild={true}>
                 <Button icon="menu" size="icon" variant="ghost" />
               </DropdownMenuTrigger>

@@ -12,7 +12,7 @@ use JsonSerializable;
 use Narsil\Contracts\Table;
 use Narsil\Http\Requests\QueryRequest;
 use Narsil\Services\QueryService;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -165,11 +165,7 @@ class DataTableCollection extends ResourceCollection
      */
     protected function registerLabels(): void
     {
-        $currentPage = $this->resource->currentPage();
-        $totalRows = $this->resource->total();
-        $totalPages = $this->resource->lastPage();
-
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::accessibility.first_page')
             ->add('narsil::accessibility.last_page')
             ->add('narsil::accessibility.more_pages')
@@ -194,15 +190,10 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::operators.not_contains')
             ->add('narsil::operators.not_equals')
             ->add('narsil::operators.starts_with')
-            ->add('narsil::pagination.pages_count', [
-                'current'  => $currentPage,
-                'total'    => $totalPages,
-            ])
+            ->add('narsil::pagination.pages_count')
             ->add('narsil::pagination.pages_empty')
             ->add('narsil::pagination.pagination')
-            ->add('narsil::pagination.selected_count', [
-                'total'    => $totalRows,
-            ])
+            ->add('narsil::pagination.selected_count')
             ->add('narsil::pagination.selected_empty')
             ->add('narsil::placeholders.search')
             ->add('narsil::ui.active_columns')

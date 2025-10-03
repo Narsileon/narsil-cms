@@ -16,7 +16,7 @@ import {
 import CommandInputWrapper from "@narsil-cms/components/command/command-input-wrapper";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverContent,
   PopoverPortal,
@@ -58,7 +58,7 @@ function Combobox({
   options: initialOptions = [],
   setValue,
 }: ComboboxProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   if (multiple && !isArray(value)) {
     value = value ? [value] : [];

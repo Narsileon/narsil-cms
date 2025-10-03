@@ -9,7 +9,7 @@ use Narsil\Contracts\Forms\Fortify\TwoFactorForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -31,7 +31,7 @@ class TwoFactorForm extends AbstractForm implements Contract
         $this->action = route('two-factor.confirm');
         $this->submitLabel = trans('narsil::ui.confirm');
 
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('validation.custom.code.invalid')
             ->add('narsil::two-factor.recovery_codes_copied')
             ->add('narsil::two-factor.recovery_codes_description')

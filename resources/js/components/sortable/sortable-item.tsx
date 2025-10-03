@@ -17,7 +17,7 @@ import {
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type {
   FormType,
@@ -67,7 +67,7 @@ function SortableItem({
   onItemRemove,
   ...props
 }: SortableItemProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [open, setCollapsed] = useState<boolean>(!collapsed);
 

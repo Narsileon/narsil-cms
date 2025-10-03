@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\LoginForm;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -29,7 +29,7 @@ class LoginController extends AbstractController
     {
         $this->form = $form;
 
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::passwords.link');
     }
 

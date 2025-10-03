@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use JsonSerializable;
 use Narsil\Services\RouteService;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -110,7 +110,7 @@ class DataTableFilterCollection extends ResourceCollection
      */
     protected function registerLabels(): void
     {
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::accessibility.toggle_row_menu')
             ->add('narsil::ui.all')
             ->add('narsil::ui.delete')

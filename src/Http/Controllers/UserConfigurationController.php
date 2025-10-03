@@ -20,7 +20,7 @@ use Narsil\Contracts\Forms\UserConfigurationForm;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserConfiguration;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -42,7 +42,7 @@ class UserConfigurationController extends AbstractController
         $updatePasswordForm = app(UpdatePasswordForm::class);
         $userConfigurationForm = app(UserConfigurationForm::class);
 
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::sessions.sign_out_current_description')
             ->add('narsil::sessions.sign_out_current')
             ->add('narsil::sessions.sign_out_elsewhere_description')

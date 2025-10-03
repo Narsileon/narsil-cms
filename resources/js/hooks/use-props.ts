@@ -7,7 +7,6 @@ import type { MenuItem } from "@narsil-cms/types";
 export type GlobalProps = {
   auth: AuthProps;
   description: string;
-  labels: Record<string, string>;
   locale: string;
   navigation: {
     breadcrumb: {
@@ -20,6 +19,7 @@ export type GlobalProps = {
   redirect: RedirectProps;
   session: SessionProps;
   title: string;
+  translations: Record<string, string>;
   url: string;
 };
 
@@ -52,8 +52,8 @@ export function useAuth() {
   return isEmpty(auth) ? null : auth;
 }
 
-export function useLabels() {
-  return usePage<GlobalProps>().props.labels ?? {};
+export function useLocalization() {
+  return usePage<GlobalProps>().props.localization ?? {};
 }
 
 export function useLocale() {

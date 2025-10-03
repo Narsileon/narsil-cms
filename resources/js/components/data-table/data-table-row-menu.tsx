@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink } from "@narsil-cms/components/modal";
 import type { Model, RouteNames } from "@narsil-cms/types";
 
@@ -33,7 +33,7 @@ function DataTableRowMenu({
   table,
   ...props
 }: DataTableRowMenuProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   if (!routes.edit && !routes.destroy) {
     return null;

@@ -25,7 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import {
   SidebarInset,
@@ -45,7 +45,7 @@ type AuthLayoutProps = {
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);

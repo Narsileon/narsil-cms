@@ -7,7 +7,7 @@ import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 
 import RichTextEditorBold from "./rich-text-editor-bold";
@@ -35,7 +35,7 @@ function RichTextEditorToolbar({
   ...props
 }: RichTextEditorToolbarProps) {
   const { editor } = useCurrentEditor();
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   if (!editor || !editor.isEditable) {
     return null;
@@ -82,15 +82,12 @@ function RichTextEditorToolbar({
         <>
           <Separator orientation="vertical" />
           <DropdownMenuRoot>
-            <Tooltip tooltip={trans(`accessibility.toggle_heading_menu`)}>
+            <Tooltip tooltip={trans("accessibility.toggle_heading_menu")}>
               <DropdownMenuTrigger asChild={true}>
                 <Button
                   icon="heading"
                   size="icon"
-                  tooltip={trans(
-                    `accessibility.toggle_heading_menu`,
-                    "Toggle heading menu",
-                  )}
+                  tooltip={trans("accessibility.toggle_heading_menu")}
                   variant="ghost"
                 />
               </DropdownMenuTrigger>

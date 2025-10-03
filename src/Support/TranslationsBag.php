@@ -12,14 +12,14 @@ use Illuminate\Support\Str;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-final class LabelsBag
+final class TranslationsBag
 {
     #region PROPERTIES
 
     /**
      * @var array<string,string>
      */
-    protected array $labels = [];
+    protected array $translations = [];
 
     #endregion
 
@@ -30,7 +30,7 @@ final class LabelsBag
      */
     public function get(): array
     {
-        return $this->labels;
+        return $this->translations;
     }
 
     #region • FLUENT METHODS
@@ -43,9 +43,9 @@ final class LabelsBag
      */
     public function add(string $key, array $replace = []): static
     {
-        $label = Str::contains($key, '::') ? explode('::', $key)[1] : $key;
+        $translation = Str::contains($key, '::') ? explode('::', $key)[1] : $key;
 
-        $this->labels[$label] = trans($key, $replace);
+        $this->translations[$translation] = trans($key, $replace);
 
         return $this;
     }

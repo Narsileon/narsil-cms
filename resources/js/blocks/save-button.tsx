@@ -12,7 +12,7 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { RouteNames } from "@narsil-cms/types";
 
@@ -29,7 +29,7 @@ function SaveButton({
   submitLabel,
   ...props
 }: SaveButtonProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { action, data, id, isDirty, method, post, reset, transform } =
     useForm();

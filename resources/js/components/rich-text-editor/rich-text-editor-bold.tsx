@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorBoldProps = ComponentProps<typeof Toggle> & {
@@ -16,7 +16,7 @@ function RichTextEditorBold({
   icon = "bold",
   ...props
 }: RichTextEditorBoldProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { canBold, isBold } = useEditorState({
     editor,
@@ -28,7 +28,7 @@ function RichTextEditorBold({
     },
   });
 
-  const tooltip = trans(`accessibility.toggle_bold`, `Toggle bold`);
+  const tooltip = trans("accessibility.toggle_bold");
 
   return (
     <Toggle

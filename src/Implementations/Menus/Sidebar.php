@@ -7,7 +7,7 @@ namespace Narsil\Implementations\Menus;
 use Narsil\Contracts\Menus\Sidebar as Contract;
 use Narsil\Implementations\AbstractMenu;
 use Narsil\Models\Elements\Template;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 use Narsil\Support\MenuItem;
 
 #endregion
@@ -25,7 +25,7 @@ class Sidebar extends AbstractMenu implements Contract
      */
     public function __construct()
     {
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::accessibility.close_sidebar')
             ->add('narsil::accessibility.open_sidebar')
             ->add('narsil::accessibility.toggle_sidebar');

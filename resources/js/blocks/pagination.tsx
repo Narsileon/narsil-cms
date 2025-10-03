@@ -1,6 +1,6 @@
 import { type ComponentProps } from "react";
 
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PaginationContent,
   PaginationEllipsis,
@@ -45,7 +45,7 @@ function Pagination({
   metaLinks,
   ...props
 }: PaginationProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const firstPageLabel = trans("accessibility.first_page", "First page");
   const prevPageLabel = trans("accessibility.previous_page", "Previous page");

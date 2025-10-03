@@ -5,7 +5,7 @@ namespace Narsil\Providers;
 #region USE
 
 use Illuminate\Support\ServiceProvider;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -30,9 +30,9 @@ class TranslationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(LabelsBag::class, function ()
+        $this->app->singleton(TranslationsBag::class, function ()
         {
-            return new LabelsBag();
+            return new TranslationsBag();
         });
     }
 

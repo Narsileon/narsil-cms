@@ -4,7 +4,7 @@ import {
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SectionContent,
   SectionHeader,
@@ -19,7 +19,7 @@ type ProfileFormProps = {
 };
 
 function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const auth = useAuth();
 

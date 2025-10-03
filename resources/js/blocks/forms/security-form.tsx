@@ -2,7 +2,7 @@ import { route } from "ziggy-js";
 
 import { Button, Heading, Separator } from "@narsil-cms/blocks";
 import { DialogClose } from "@narsil-cms/components/dialog";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SectionContent,
   SectionHeader,
@@ -17,7 +17,7 @@ type SecurityFormProps = {
 };
 
 function SecurityForm({ twoFactorForm }: SecurityFormProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   return (
     <>

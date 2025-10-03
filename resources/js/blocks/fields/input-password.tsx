@@ -3,7 +3,7 @@ import { useState, type ComponentProps } from "react";
 import { Tooltip } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 
 type InputPasswordProps = Omit<
   ComponentProps<typeof InputContent>,
@@ -11,7 +11,7 @@ type InputPasswordProps = Omit<
 > & {};
 
 function InputPassword({ type, ...props }: InputPasswordProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [show, setShow] = useState(false);
 

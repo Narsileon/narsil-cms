@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
 
 type RichTextEditorBulletListProps = ComponentProps<typeof Toggle> & {
@@ -16,7 +16,7 @@ function RichTextEditorBulletList({
   icon = "list-bullet",
   ...props
 }: RichTextEditorBulletListProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { isBulletList } = useEditorState({
     editor,
@@ -27,10 +27,7 @@ function RichTextEditorBulletList({
     },
   });
 
-  const tooltip = trans(
-    `accessibility.toggle_bullet_list`,
-    `Toggle bullet list`,
-  );
+  const tooltip = trans("accessibility.toggle_bullet_list");
 
   return (
     <Toggle

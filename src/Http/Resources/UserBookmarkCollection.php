@@ -56,7 +56,7 @@ class UserBookmarkCollection extends ResourceCollection
     {
         return [
             'form' => app(UserBookmarkForm::class),
-            'labels' => [
+            'translations' => [
                 'bookmarks.bookmarks' => trans('narsil::bookmarks.bookmarks'),
                 'bookmarks.instruction' => trans('narsil::bookmarks.instruction'),
                 'ui.add' => trans('narsil::ui.add'),

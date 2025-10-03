@@ -3,7 +3,7 @@ import { useEffect, useState, type ComponentProps } from "react";
 
 import { Badge } from "@narsil-cms/blocks";
 import { Select } from "@narsil-cms/blocks/fields";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverContent,
   PopoverPortal,
@@ -22,7 +22,7 @@ type DataTableFilterItemProps = ComponentProps<typeof PopoverTrigger> & {
 
 function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
   const { dataTable, dataTableStore } = useDataTable();
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [open, onOpenChange] = useState(false);
 

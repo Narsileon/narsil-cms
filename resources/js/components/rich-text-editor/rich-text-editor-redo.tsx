@@ -2,14 +2,14 @@ import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 import { Button } from "@narsil-cms/blocks";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 
 type RichTextEditorRedoProps = ComponentProps<typeof Button> & {
   editor: Editor;
 };
 
 function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const { canRedo } = useEditorState({
     editor,
@@ -20,7 +20,7 @@ function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
     },
   });
 
-  const tooltip = trans(`accessibility.redo`, `Redo`);
+  const tooltip = trans("accessibility.redo");
 
   return (
     <Button

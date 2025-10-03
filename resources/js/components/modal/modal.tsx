@@ -9,7 +9,7 @@ import {
   DialogRoot,
   DialogTitle,
 } from "@narsil-cms/components/dialog";
-import { LabelsProvider } from "@narsil-cms/components/labels";
+import { LocalizationProvider } from "@narsil-cms/components/localization";
 import { type ModalType } from "@narsil-cms/stores/modal-store";
 
 type ModalProps = ComponentProps<typeof DialogContent> & {
@@ -69,13 +69,13 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
           </DialogDescription>
         </VisuallyHidden>
 
-        <LabelsProvider labels={modal.componentProps.labels}>
+        <LocalizationProvider translations={modal.componentProps.translations}>
           <DialogBody className="p-0">
             {Component ? (
               <Component modal={modal} {...modal.componentProps} />
             ) : null}
           </DialogBody>
-        </LabelsProvider>
+        </LocalizationProvider>
       </DialogContent>
     </DialogRoot>
   );

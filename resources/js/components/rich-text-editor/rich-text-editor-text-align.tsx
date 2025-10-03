@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 
 type RichTextEditorTextAlignProps = ComponentProps<typeof Toggle> & {
   alignment: "left" | "center" | "right" | "justify";
@@ -15,12 +15,9 @@ function RichTextEditorTextAlign({
   editor,
   ...props
 }: RichTextEditorTextAlignProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
-  const tooltip = trans(
-    `accessibility.align_${alignment}`,
-    `Align ${alignment}`,
-  );
+  const tooltip = trans("accessibility.align_${alignment}");
 
   return (
     <Toggle

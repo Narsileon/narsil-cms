@@ -10,7 +10,7 @@ use Narsil\Contracts\Fields\TextField;
 use Narsil\Enums\Forms\RichTextEditorEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
-use Narsil\Support\LabelsBag;
+use Narsil\Support\TranslationsBag;
 use Narsil\Support\SelectOption;
 
 #endregion
@@ -30,7 +30,7 @@ class RichTextField extends AbstractField implements Contract
     {
         $this->setDefaultValue('');
 
-        app(LabelsBag::class)
+        app(TranslationsBag::class)
             ->add('narsil::accessibility.align_center')
             ->add('narsil::accessibility.align_justify')
             ->add('narsil::accessibility.align_left')

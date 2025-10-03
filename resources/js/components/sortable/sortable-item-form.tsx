@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
 import { FormItem, FormLabel } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { FormType } from "@narsil-cms/types";
 
@@ -38,7 +38,7 @@ function SortableItemForm({
   onItemChange,
   ...props
 }: SortableItemFormProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
 
   const [data, setData] = useState<Record<string, unknown>>(item);
   const [error, setError] = useState<string | null>(null);

@@ -4,7 +4,7 @@ import {
   FormProvider,
   FormRoot,
 } from "@narsil-cms/components/form";
-import { useLabels } from "@narsil-cms/components/labels";
+import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SectionContent,
   SectionHeader,
@@ -20,7 +20,7 @@ type ConfigurationFormProps = {
 };
 
 function ConfigurationForm({ form }: ConfigurationFormProps) {
-  const { trans } = useLabels();
+  const { trans } = useLocalization();
   const { locale } = useLocale();
 
   const { color, setColor } = useColorStore();
