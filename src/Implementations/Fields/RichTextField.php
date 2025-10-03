@@ -31,27 +31,27 @@ class RichTextField extends AbstractField implements Contract
         $this->setDefaultValue('');
 
         app(TranslationsBag::class)
-            ->add('narsil::accessibility.align_center')
-            ->add('narsil::accessibility.align_justify')
-            ->add('narsil::accessibility.align_left')
-            ->add('narsil::accessibility.align_right')
-            ->add('narsil::accessibility.redo')
-            ->add('narsil::accessibility.toggle_bold')
-            ->add('narsil::accessibility.toggle_bullet_list')
-            ->add('narsil::accessibility.toggle_heading_1')
-            ->add('narsil::accessibility.toggle_heading_2')
-            ->add('narsil::accessibility.toggle_heading_3')
-            ->add('narsil::accessibility.toggle_heading_4')
-            ->add('narsil::accessibility.toggle_heading_5')
-            ->add('narsil::accessibility.toggle_heading_6')
-            ->add('narsil::accessibility.toggle_heading_menu')
-            ->add('narsil::accessibility.toggle_italic')
-            ->add('narsil::accessibility.toggle_ordered_list')
-            ->add('narsil::accessibility.toggle_strike')
-            ->add('narsil::accessibility.toggle_subscript')
-            ->add('narsil::accessibility.toggle_superscript')
-            ->add('narsil::accessibility.toggle_underline')
-            ->add('narsil::accessibility.undo');
+            ->add('narsil::rich-text-editor.toggles.align_center')
+            ->add('narsil::rich-text-editor.toggles.align_justify')
+            ->add('narsil::rich-text-editor.toggles.align_left')
+            ->add('narsil::rich-text-editor.toggles.align_right')
+            ->add('narsil::rich-text-editor.toggles.bold')
+            ->add('narsil::rich-text-editor.toggles.bullet_list')
+            ->add('narsil::rich-text-editor.toggles.heading_1')
+            ->add('narsil::rich-text-editor.toggles.heading_2')
+            ->add('narsil::rich-text-editor.toggles.heading_3')
+            ->add('narsil::rich-text-editor.toggles.heading_4')
+            ->add('narsil::rich-text-editor.toggles.heading_5')
+            ->add('narsil::rich-text-editor.toggles.heading_6')
+            ->add('narsil::rich-text-editor.toggles.heading_menu')
+            ->add('narsil::rich-text-editor.toggles.italic')
+            ->add('narsil::rich-text-editor.toggles.ordered_list')
+            ->add('narsil::rich-text-editor.toggles.strike')
+            ->add('narsil::rich-text-editor.toggles.subscript')
+            ->add('narsil::rich-text-editor.toggles.superscript')
+            ->add('narsil::rich-text-editor.toggles.underline')
+            ->add('narsil::ui.redo')
+            ->add('narsil::ui.undo');
     }
 
     #endregion
@@ -150,7 +150,7 @@ class RichTextField extends AbstractField implements Contract
         foreach (RichTextEditorEnum::cases() as $case)
         {
             $options[] = new SelectOption(
-                label: trans("narsil::rich-text-editor.$case->value"),
+                label: trans("narsil::rich-text-editor.modules.$case->value"),
                 value: $case->value
             );
         }

@@ -17,7 +17,7 @@ function RichTextEditorTextAlign({
 }: RichTextEditorTextAlignProps) {
   const { trans } = useLocalization();
 
-  const tooltip = trans("accessibility.align_${alignment}");
+  const tooltip = trans(`rich-text-editor.toggles.align_${alignment}`);
 
   return (
     <Toggle

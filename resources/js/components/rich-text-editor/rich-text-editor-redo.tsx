@@ -20,7 +20,7 @@ function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
     },
   });
 
-  const tooltip = trans("accessibility.redo");
+  const tooltip = trans("ui.redo");
 
   return (
     <Button

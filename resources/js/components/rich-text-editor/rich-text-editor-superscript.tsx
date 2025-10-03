@@ -33,7 +33,7 @@ function RichTextEditorSuperscript({
     },
   });
 
-  const tooltip = trans("accessibility.toggle_superscript");
+  const tooltip = trans("rich-text-editor.toggles.superscript");
 
   return (
     <Toggle

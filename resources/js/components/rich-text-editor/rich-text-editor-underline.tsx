@@ -28,7 +28,7 @@ function RichTextEditorUnderline({
     },
   });
 
-  const tooltip = trans("accessibility.toggle_underline");
+  const tooltip = trans("rich-text-editor.toggles.underline");
 
   return (
     <Toggle

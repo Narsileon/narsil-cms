@@ -55,6 +55,7 @@ return [
     'personalization'    => 'Personalization',
     'profile'            => 'Profile',
     'recovery_codes'     => 'Recovery codes',
+    'redo'               => 'Redo',
     'register'           => 'Register',
     'registration'       => 'Registration',
     'remove'             => 'Remove',
@@ -82,6 +83,7 @@ return [
     'table'              => 'Table',
     'tool'               => 'Tool',
     'tools'              => 'Tools',
+    'undo'               => 'Undo',
     'update'             => 'Update',
     'validation'         => 'Validation',
 ];

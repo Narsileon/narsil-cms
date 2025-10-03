@@ -82,12 +82,12 @@ function RichTextEditorToolbar({
         <>
           <Separator orientation="vertical" />
           <DropdownMenuRoot>
-            <Tooltip tooltip={trans("accessibility.toggle_heading_menu")}>
+            <Tooltip tooltip={trans("rich-text-editor.toggles.heading_menu")}>
               <DropdownMenuTrigger asChild={true}>
                 <Button
                   icon="heading"
                   size="icon"
-                  tooltip={trans("accessibility.toggle_heading_menu")}
+                  tooltip={trans("rich-text-editor.toggles.heading_menu")}
                   variant="ghost"
                 />
               </DropdownMenuTrigger>

@@ -28,7 +28,7 @@ function RichTextEditorBold({
     },
   });
 
-  const tooltip = trans("accessibility.toggle_bold");
+  const tooltip = trans("rich-text-editor.toggles.bold");
 
   return (
     <Toggle

@@ -28,7 +28,7 @@ function RichTextEditorItalic({
     },
   });
 
-  const tooltip = trans("accessibility.toggle_italic");
+  const tooltip = trans("rich-text-editor.toggles.italic");
 
   return (
     <Toggle

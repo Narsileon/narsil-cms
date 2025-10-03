@@ -28,7 +28,7 @@ function RichTextEditorStrike({
     },
   });
 
-  const tooltip = trans("accessibility.toggle_strike");
+  const tooltip = trans("rich-text-editor.toggles.strike");
 
   return (
     <Toggle

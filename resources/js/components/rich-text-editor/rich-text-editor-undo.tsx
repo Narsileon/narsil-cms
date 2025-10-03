@@ -20,7 +20,7 @@ function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
     },
   });
 
-  const tooltip = trans("accessibility.undo");
+  const tooltip = trans("ui.undo");
 
   return (
     <Button
