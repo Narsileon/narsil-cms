@@ -118,6 +118,7 @@ function SortableItem({
                     ref={setActivatorNodeRef}
                     {...attributes}
                     {...listeners}
+                    tooltip={trans("ui.move")}
                   />
                   {item?.icon ? (
                     <Tooltip tooltip={group?.label}>

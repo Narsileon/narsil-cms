@@ -1,5 +1,5 @@
 import { get } from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LocalizationContext } from "./localization-context";
 
@@ -14,6 +14,13 @@ const LocalizationProvider = ({
 }: LocalizationProviderProps) => {
   const [translations, setTranslations] =
     useState<Record<string, string>>(initialTranslations);
+
+  useEffect(() => {
+    setTranslations((prev) => ({
+      ...prev,
+      ...initialTranslations,
+    }));
+  }, [initialTranslations]);
 
   return (
     <LocalizationContext.Provider
