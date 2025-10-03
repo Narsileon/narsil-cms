@@ -31,7 +31,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
   const [bookmark, setBookmark] = useState<Bookmark | null>(null);
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [form, setForm] = useState<FormType | null>(null);
-  const [labels, setLabels] = useState<Record<string, string>>({});
+  const [translations, setTranslations] = useState<Record<string, string>>({});
   const [open, onOpenChange] = useState<boolean>(false);
 
   const name = breadcrumb.map((item) => item.label).join(" > ");
@@ -70,7 +70,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
 
       setBookmarks(sortBy(data.data, "name"));
       setForm(data.meta.form);
-      setLabels(data.meta.labels);
+      setTranslations(data.meta.translations);
     } catch (error) {
       console.error("[Bookmarks] Error fetching bookmarks:", error);
     }
@@ -114,7 +114,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                 <Card
                   footerButtons={[
                     {
-                      label: labels["ui.cancel"],
+                      label: translations["ui.cancel"],
                       size: "sm",
                       variant: "secondary",
                       onClick: () => setBookmark(null),
@@ -162,8 +162,8 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                   },
                   size: "icon",
                   tooltip: currentBookmark
-                    ? labels["ui.remove"]
-                    : labels["ui.add"],
+                    ? translations["ui.remove"]
+                    : translations["ui.add"],
                   variant: "ghost",
                   onClick: () => {
                     if (currentBookmark) {
@@ -177,7 +177,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
               headerProps={{
                 className: "flex items-center justify-between border-b",
               }}
-              title={labels["bookmarks.bookmarks"]}
+              title={translations["bookmarks.bookmarks"]}
             >
               {bookmarks.length > 0 ? (
                 <ul className="-my-2 flex flex-col gap-1">
@@ -205,7 +205,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                             name: "edit",
                           }}
                           size="icon"
-                          tooltip={labels["ui.edit"]}
+                          tooltip={translations["ui.edit"]}
                           variant="ghost"
                           onClick={() => {
                             setBookmark(bookmark);
@@ -218,7 +218,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                             name: "star-off",
                           }}
                           size="icon"
-                          tooltip={labels["ui.remove"]}
+                          tooltip={translations["ui.remove"]}
                           variant="ghost"
                           onClick={() => {
                             onDelete(bookmark.id);
@@ -230,7 +230,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                 </ul>
               ) : (
                 <p className="text-muted-foreground">
-                  {labels["bookmarks.instruction"]}
+                  {translations["bookmarks.instruction"]}
                 </p>
               )}
             </Card>

@@ -12,20 +12,20 @@ const LocalizationProvider = ({
   children,
   translations: initialTranslations,
 }: LocalizationProviderProps) => {
-  const [labels, setLabels] =
+  const [translations, setTranslations] =
     useState<Record<string, string>>(initialTranslations);
 
   return (
     <LocalizationContext.Provider
       value={{
-        addTranslations: (labels) => {
-          setLabels((prev) => ({
+        addTranslations: (translations) => {
+          setTranslations((prev) => ({
             ...prev,
-            ...labels,
+            ...translations,
           }));
         },
         trans: (key, options) => {
-          let trans = get(labels, key) ?? "No translation found";
+          let trans = get(translations, key) ?? "No translation found";
 
           if (options?.replacements) {
             Object.entries(options?.replacements).forEach(
