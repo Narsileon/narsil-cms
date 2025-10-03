@@ -51,6 +51,7 @@ return [
     'management'         => 'Management',
     'module'             => 'Module',
     'modules'            => 'Modules',
+    'move'               => 'Move',
     'password'           => 'Password',
     'personalization'    => 'Personalization',
     'profile'            => 'Profile',

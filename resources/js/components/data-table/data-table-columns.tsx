@@ -158,8 +158,8 @@ function SortableItem({ column, onRemove }: SortableItemProps) {
 
   const columnLabel = upperFirst(column.columnDef.header as string);
 
-  const hideColumnLabel = `${trans("ui.hide")} ${columnLabel}`;
-  const moveClumnLabel = `${trans("ui.move")} ${columnLabel}`;
+  const hideColumnLabel = `${trans("ui.hide")} '${columnLabel}'`;
+  const moveColumnLabel = `${trans("ui.move")} '${columnLabel}'`;
 
   return (
     <div
@@ -178,7 +178,7 @@ function SortableItem({ column, onRemove }: SortableItemProps) {
           contentProps: {
             hidden: isDragging,
           },
-          tooltip: moveClumnLabel,
+          tooltip: moveColumnLabel,
         }}
       />
       <span className="grow">{columnLabel}</span>

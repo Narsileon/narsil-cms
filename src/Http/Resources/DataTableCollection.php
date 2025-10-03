@@ -208,6 +208,7 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::ui.edit')
             ->add('narsil::ui.filters')
             ->add('narsil::ui.hide')
+            ->add('narsil::ui.move')
             ->add('narsil::ui.show');
     }
 
