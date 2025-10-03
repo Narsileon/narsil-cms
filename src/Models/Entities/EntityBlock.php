@@ -149,7 +149,7 @@ class EntityBlock extends Model
      */
     public static function getTableName(): string
     {
-        $singular = Str::singular(static::$template->{Template::HANDLE});
+        $singular = Str::singular(static::$template?->{Template::HANDLE} ?? "");
 
         return $singular . '_blocks';
     }

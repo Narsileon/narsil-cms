@@ -58,7 +58,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const { color, radius, theme } = session;
 
   const groupedMenu = groupBy(
-    navigation.userMenu,
+    navigation?.userMenu,
     (item) => item.group ?? "default",
   );
 

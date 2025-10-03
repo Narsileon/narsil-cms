@@ -15,9 +15,9 @@ trait HasTemplate
     /**
      * The template associated with the model.
      *
-     * @var Template
+     * @var ?Template
      */
-    protected static Template $template;
+    protected static ?Template $template = null;
 
     #endregion
 
@@ -26,7 +26,7 @@ trait HasTemplate
     /**
      * @return string
      */
-    abstract public static function getTableName();
+    abstract public static function getTableName(): string;
 
     /**
      * @return Template

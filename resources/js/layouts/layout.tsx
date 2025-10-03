@@ -1,4 +1,3 @@
-import { router } from "@inertiajs/react";
 import { isEmpty } from "lodash";
 import { useEffect } from "react";
 import { toast } from "sonner";
@@ -44,10 +43,6 @@ function Layout({ children }: LayoutProps) {
     } else if (warning) {
       toast.warning(warning);
     }
-
-    router.reload({
-      only: ["redirect"],
-    });
   }, [error, info, success, warning]);
 
   return (

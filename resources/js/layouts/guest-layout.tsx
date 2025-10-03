@@ -36,7 +36,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
   const { navigation } = children?.props;
 
   const groupedMenu = groupBy(
-    navigation.userMenu,
+    navigation?.userMenu,
     (item) => item.group ?? "default",
   );
 

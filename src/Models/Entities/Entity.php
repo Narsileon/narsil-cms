@@ -87,7 +87,7 @@ class Entity extends Model
      */
     public static function getTableName(): string
     {
-        return static::$template->{Template::HANDLE};
+        return static::$template?->{Template::HANDLE} ?? "";
     }
 
     /**
