@@ -9,7 +9,7 @@ function DialogHeader({ className, ...props }: DialogHeaderProps) {
     <div
       data-slot="dialog-header"
       className={cn(
-        "[.border-b]:pb-3 flex flex-col gap-3 px-5 pt-3 text-left",
+        "[.border-b]:pb-2 h-13 flex items-center gap-2 px-4 pt-2",
         className,
       )}
       {...props}

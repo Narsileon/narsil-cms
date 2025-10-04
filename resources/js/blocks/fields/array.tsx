@@ -120,6 +120,7 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
         )}
       </DndContext>
       <Button
+        className="mt-4"
         onClick={() =>
           setItems([...items, { id: uniqueId("value"), [labelKey]: "" }])
         }

@@ -2,7 +2,13 @@
 
 namespace Narsil\Traits;
 
+use Illuminate\Support\Collection;
+use Narsil\Contracts\Fields\CheckboxField;
+use Narsil\Contracts\Fields\RelationsField;
+use Narsil\Contracts\Fields\SwitchField;
+use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Services\TemplateService;
 
 /**
  * @author Jonathan Rigaux
@@ -53,6 +59,40 @@ trait HasTemplate
         }
 
         static::$template = $template;
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Collection<Field> $fields
+     *
+     * @return array<string,string>
+     */
+    protected function generateCasts(Collection $fields): array
+    {
+        $casts = [];
+
+        $fields = TemplateService::getTemplateFields(static::$template);
+
+        foreach ($fields as $field)
+        {
+            switch ($field->{Field::TYPE})
+            {
+                case CheckboxField::class:
+                case SwitchField::class:
+                    $casts[$field->{Field::HANDLE}] = 'boolean';
+                    break;
+                case RelationsField::class:
+                    $casts[$field->{Field::HANDLE}] = 'json';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return $casts;
     }
 
     #endregion

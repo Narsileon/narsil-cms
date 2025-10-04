@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\Elements\Template;
+use Narsil\Services\TemplateService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -39,6 +40,8 @@ class Entity extends Model
         $this->table = static::getTableName();
 
         $this->primaryKey = self::UUID;
+
+        $this->casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
 
         $this->guarded = [];
 

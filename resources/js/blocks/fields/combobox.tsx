@@ -164,7 +164,7 @@ function Combobox({
       <PopoverTrigger asChild>
         <InputRoot
           id={id}
-          className={cn(open && "data-[state=open]:border-shine", className)}
+          className={cn("data-[state=open]:border-shine", className)}
           aria-expanded={open}
           aria-disabled={disabled}
           role="combobox"
@@ -172,7 +172,7 @@ function Combobox({
         >
           {selectedOptions.length > 0 ? (
             multiple ? (
-              <div className="flex flex-wrap gap-1">
+              <div className="-ml-1 flex flex-wrap gap-1">
                 {selectedOptions.map((option, index) => {
                   const optionLabel = getSelectOption(option, labelPath);
                   const optionValue = getSelectOption(option, valuePath);

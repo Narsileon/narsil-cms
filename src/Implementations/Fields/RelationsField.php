@@ -30,6 +30,7 @@ class RelationsField extends AbstractField implements Contract
     {
         app(TranslationsBag::class)
             ->add('narsil::ui.cancel')
+            ->add('narsil::ui.confirm')
             ->add('narsil::ui.edit')
             ->add('narsil::ui.remove')
             ->add('narsil::ui.save')

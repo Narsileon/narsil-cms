@@ -1,5 +1,5 @@
-import { RowSelectionState, type ColumnDef } from "@tanstack/react-table";
-import { isArray } from "lodash";
+import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
+import { flatMap, isArray } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
@@ -30,6 +30,9 @@ import {
 import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
 
+type TablesState = Record<string, DataTableCollection>;
+type ValuesState = Record<string, RowSelectionState>;
+
 type RelationsProps = {
   className?: string;
   collections?: string[];
@@ -39,6 +42,28 @@ type RelationsProps = {
   value: string | string[];
   setValue: (value: string | string[]) => void;
 };
+
+function getSelectedRowsFromValue(value: string[]): ValuesState {
+  return value.reduce<ValuesState>((acc, item) => {
+    const [collection, id] = item.split("-");
+
+    if (!collection || !id) {
+      return acc;
+    }
+
+    (acc[collection] ??= {})[id] = true;
+
+    return acc;
+  }, {});
+}
+
+function getValueFromSelectedRows(selectedRows: ValuesState): string[] {
+  return flatMap(selectedRows, (rows, collection) =>
+    Object.keys(rows)
+      .filter((id) => rows[id])
+      .map((id) => `${collection}-${id}`),
+  );
+}
 
 function Relations({
   className,
@@ -55,14 +80,11 @@ function Relations({
     value = value ? [value] : [];
   }
 
+  const [dataTables, setDataTables] = useState<TablesState>({});
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedRows, setSelectedRows] = useState<
-    Record<string, RowSelectionState>
-  >({});
-
-  const [dataTables, setDataTables] = useState<
-    Record<string, DataTableCollection>
-  >({});
+  const [selectedRows, setSelectedRows] = useState<ValuesState>(
+    getSelectedRowsFromValue(value),
+  );
 
   const selectColumn = getSelectColumn();
 
@@ -120,7 +142,7 @@ function Relations({
           variant="button"
         >
           {value.length > 0 ? (
-            <div className="flex flex-wrap gap-1">
+            <div className="-ml-1 flex flex-wrap gap-1">
               {value?.map((item, index) => {
                 return (
                   <Badge
@@ -213,7 +235,15 @@ function Relations({
               <Button variant="ghost">{trans("ui.cancel")}</Button>
             </DialogClose>
             <DialogClose asChild={true}>
-              <Button>{trans("ui.confirm")}</Button>
+              <Button
+                onClick={() => {
+                  const value = getValueFromSelectedRows(selectedRows);
+
+                  setValue(value);
+                }}
+              >
+                {trans("ui.confirm")}
+              </Button>
             </DialogClose>
           </DialogFooter>
         </DialogContent>

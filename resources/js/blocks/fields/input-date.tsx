@@ -24,7 +24,7 @@ function InputDate({ value, onChange, ...props }: InputDateProps) {
   return (
     <PopoverRoot open={open} onOpenChange={setOpen}>
       <PopoverTrigger className="relative" asChild>
-        <InputRoot variant="button">
+        <InputRoot className={cn(open && "border-shine")} variant="button">
           <InputContent
             className={cn(!value && "opacity-50")}
             type="date"
