@@ -23,7 +23,7 @@ function ButtonRoot({
 
   return (
     <Comp
-      data-slot="button"
+      data-slot="button-root"
       className={cn(
         buttonRootVariants({
           className: className,

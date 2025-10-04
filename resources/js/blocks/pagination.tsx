@@ -47,10 +47,10 @@ function Pagination({
 }: PaginationProps) {
   const { trans } = useLocalization();
 
-  const firstPageLabel = trans("accessibility.first_page", "First page");
-  const prevPageLabel = trans("accessibility.previous_page", "Previous page");
-  const nextPageLabel = trans("accessibility.next_page", "Next page");
-  const lastPageLabel = trans("accessibility.last_page", "Last page");
+  const firstPageLabel = trans("accessibility.first_page");
+  const prevPageLabel = trans("accessibility.previous_page");
+  const nextPageLabel = trans("accessibility.next_page");
+  const lastPageLabel = trans("accessibility.last_page");
 
   return (
     <PaginationRoot {...props}>

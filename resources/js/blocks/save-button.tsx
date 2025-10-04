@@ -3,6 +3,7 @@ import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 import { Button, Separator, Kbd } from "@narsil-cms/blocks";
+import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -13,20 +14,14 @@ import {
 import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { cn } from "@narsil-cms/lib/utils";
 import type { RouteNames } from "@narsil-cms/types";
 
-type SaveButtonProps = ComponentProps<"div"> & {
+type SaveButtonProps = ComponentProps<typeof ButtonGroupRoot> & {
   routes?: RouteNames;
   submitLabel: string;
 };
 
-function SaveButton({
-  className,
-  routes,
-  submitLabel,
-  ...props
-}: SaveButtonProps) {
+function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
   const { trans } = useLocalization();
 
   const { action, data, id, isDirty, method, post, reset, transform } =
@@ -124,21 +119,14 @@ function SaveButton({
   }, [saveAndAdd, saveAndContinue, saveAsNew]);
 
   return (
-    <div
-      className={cn("flex items-center justify-center", className)}
-      {...props}
-    >
-      <Button className="rounded-r-none" form={id} icon="save" type="submit">
+    <ButtonGroupRoot {...props}>
+      <Button form={id} icon="save" type="submit">
         {submitLabel}
       </Button>
       <Separator orientation="vertical" />
       <DropdownMenuRoot>
         <DropdownMenuTrigger asChild={true}>
-          <Button
-            className="w-7 rounded-l-none"
-            icon="chevron-down"
-            size="icon"
-          />
+          <Button className="w-7" icon="chevron-down" size="icon" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={saveAndContinue}>
@@ -175,7 +163,7 @@ function SaveButton({
           ) : null}
         </DropdownMenuContent>
       </DropdownMenuRoot>
-    </div>
+    </ButtonGroupRoot>
   );
 }
 
