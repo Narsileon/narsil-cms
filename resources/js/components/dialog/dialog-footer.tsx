@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type DialogFooterProps = ComponentProps<"div"> & {};
+type DialogFooterProps = ComponentProps<"div">;
 
 function DialogFooter({ className, ...props }: DialogFooterProps) {
   return (

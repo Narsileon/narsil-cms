@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TableHeadProps = ComponentProps<"th"> & {};
+type TableHeadProps = ComponentProps<"th">;
 
 function TableHead({ className, ...props }: TableHeadProps) {
   return (

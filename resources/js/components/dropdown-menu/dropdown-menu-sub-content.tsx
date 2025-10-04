@@ -5,7 +5,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuSubContentProps = ComponentProps<
   typeof DropdownMenu.SubContent
-> & {};
+>;
 
 function DropdownMenuSubContent({
   className,

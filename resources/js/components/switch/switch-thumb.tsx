@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SwitchThumbProps = ComponentProps<typeof Switch.Thumb> & {};
+type SwitchThumbProps = ComponentProps<typeof Switch.Thumb>;
 
 function SwitchThumb({ className, ...props }: SwitchThumbProps) {
   return (

@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AccordionContentProps = ComponentProps<typeof Accordion.Content> & {};
+type AccordionContentProps = ComponentProps<typeof Accordion.Content>;
 
 function AccordionContent({ className, ...props }: AccordionContentProps) {
   return (

@@ -6,7 +6,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import inputContentVariants from "./input-content-variants";
 
 type InputContentProps = ComponentProps<"input"> &
-  VariantProps<typeof inputContentVariants> & {};
+  VariantProps<typeof inputContentVariants>;
 
 const TYPES = {
   date: "date",

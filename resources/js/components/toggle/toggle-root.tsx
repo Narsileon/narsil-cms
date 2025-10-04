@@ -7,7 +7,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { toggleRootVariants } from ".";
 
 type ToggleRootProps = ComponentProps<typeof Toggle.Root> &
-  VariantProps<typeof toggleRootVariants> & {};
+  VariantProps<typeof toggleRootVariants>;
 
 function ToggleRoot({ className, variant, size, ...props }: ToggleRootProps) {
   return (

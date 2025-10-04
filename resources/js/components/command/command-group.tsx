@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandGroupProps = ComponentProps<typeof Command.Group> & {};
+type CommandGroupProps = ComponentProps<typeof Command.Group>;
 
 function CommandGroup({ className, ...props }: CommandGroupProps) {
   return (

@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type BreadcrumbItemProps = ComponentProps<"li"> & {};
+type BreadcrumbItemProps = ComponentProps<"li">;
 
 function BreadcrumbItem({ className, ...props }: BreadcrumbItemProps) {
   return (

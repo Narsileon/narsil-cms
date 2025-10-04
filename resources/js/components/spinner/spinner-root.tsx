@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SpinnerRootProps = Omit<ComponentProps<typeof Icon>, "name"> & {};
+type SpinnerRootProps = Omit<ComponentProps<typeof Icon>, "name">;
 
 function SpinnerRoot({ className, ...props }: SpinnerRootProps) {
   return (
@@ -11,6 +11,7 @@ function SpinnerRoot({ className, ...props }: SpinnerRootProps) {
       data-slot="spinner-root"
       className={cn("animate-spin", className)}
       name="loader-circle"
+      role="status"
       {...props}
     />
   );

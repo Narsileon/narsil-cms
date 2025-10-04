@@ -10,6 +10,7 @@ import Container from "./container";
 import DataTable from "./data-table";
 import Head from "./head";
 import Heading from "./heading";
+import Kbd from "./kbd";
 import Label from "./label";
 import Logo from "./logo";
 import NavigationMenu from "./navigation-menu";
@@ -19,7 +20,6 @@ import RevisionSelect from "./revision-select";
 import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
 import Separator from "./separator";
-import Shortcut from "./shortcut";
 import Sidebar from "./sidebar";
 import Spinner from "./spinner";
 import Tabs from "./tabs";
@@ -43,6 +43,7 @@ export {
   DataTable,
   Head,
   Heading,
+  Kbd,
   Label,
   Logo,
   NavigationMenu,
@@ -52,7 +53,6 @@ export {
   SaveButton,
   ScrollArea,
   Separator,
-  Shortcut,
   Sidebar,
   Spinner,
   Tabs,

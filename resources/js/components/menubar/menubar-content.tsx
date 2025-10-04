@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarContentProps = ComponentProps<typeof Menubar.Content> & {};
+type MenubarContentProps = ComponentProps<typeof Menubar.Content>;
 
 function MenubarContent({
   className,

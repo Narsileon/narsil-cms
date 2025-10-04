@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type DialogDescriptionProps = ComponentProps<typeof Dialog.Description> & {};
+type DialogDescriptionProps = ComponentProps<typeof Dialog.Description>;
 
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
   return (

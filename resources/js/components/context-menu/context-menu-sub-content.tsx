@@ -3,9 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuSubContentProps = ComponentProps<
-  typeof ContextMenu.SubContent
-> & {};
+type ContextMenuSubContentProps = ComponentProps<typeof ContextMenu.SubContent>;
 
 function ContextMenuSubContent({
   className,

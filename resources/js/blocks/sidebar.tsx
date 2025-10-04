@@ -22,7 +22,7 @@ import {
 import { useNavigation } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarProps = ComponentProps<typeof SidebarRoot> & {};
+type SidebarProps = ComponentProps<typeof SidebarRoot>;
 
 function Sidebar({ ...props }: SidebarProps) {
   const { trans } = useLocalization();

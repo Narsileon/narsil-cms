@@ -3,9 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type NavigationMenuContentProps = ComponentProps<
-  typeof NavigationMenu.Content
-> & {};
+type NavigationMenuContentProps = ComponentProps<typeof NavigationMenu.Content>;
 
 function NavigationMenuContent({
   className,

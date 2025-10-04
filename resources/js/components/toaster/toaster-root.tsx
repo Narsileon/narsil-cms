@@ -4,7 +4,7 @@ import { Toaster } from "sonner";
 import { cn } from "@narsil-cms/lib/utils";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
 
-type ToasterRootProps = ComponentProps<typeof Toaster> & {};
+type ToasterRootProps = ComponentProps<typeof Toaster>;
 
 function ToasterRoot({ ...props }: ToasterRootProps) {
   const { theme } = useThemeStore();

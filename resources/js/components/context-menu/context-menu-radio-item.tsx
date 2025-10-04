@@ -4,9 +4,7 @@ import { type ComponentProps } from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuRadioItemProps = ComponentProps<
-  typeof ContextMenu.RadioItem
-> & {};
+type ContextMenuRadioItemProps = ComponentProps<typeof ContextMenu.RadioItem>;
 
 function ContextMenuRadioItem({
   children,

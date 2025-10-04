@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandInputProps = ComponentProps<typeof Command.Input> & {};
+type CommandInputProps = ComponentProps<typeof Command.Input>;
 
 function CommandInput({ className, ...props }: CommandInputProps) {
   return (

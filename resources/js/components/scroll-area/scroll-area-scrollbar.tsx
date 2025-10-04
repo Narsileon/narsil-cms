@@ -5,7 +5,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 type ScrollAreaScrollbarProp = ComponentProps<
   typeof ScrollArea.ScrollAreaScrollbar
-> & {};
+>;
 
 const ScrollAreaScrollBar = ({
   className,

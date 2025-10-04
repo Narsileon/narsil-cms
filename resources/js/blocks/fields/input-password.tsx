@@ -5,10 +5,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
 
-type InputPasswordProps = Omit<
-  ComponentProps<typeof InputContent>,
-  "children"
-> & {};
+type InputPasswordProps = Omit<ComponentProps<typeof InputContent>, "children">;
 
 function InputPassword({ type, ...props }: InputPasswordProps) {
   const { trans } = useLocalization();

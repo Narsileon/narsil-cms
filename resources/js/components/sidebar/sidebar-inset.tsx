@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarInsetProps = ComponentProps<"main"> & {};
+type SidebarInsetProps = ComponentProps<"main">;
 
 function SidebarInset({ className, ...props }: SidebarInsetProps) {
   return (

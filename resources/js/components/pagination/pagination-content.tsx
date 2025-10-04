@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type PaginationContentProps = ComponentProps<"ul"> & {};
+type PaginationContentProps = ComponentProps<"ul">;
 
 function PaginationContent({ className, ...props }: PaginationContentProps) {
   return (

@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type RadioGroupItemProps = ComponentProps<typeof RadioGroup.Item> & {};
+type RadioGroupItemProps = ComponentProps<typeof RadioGroup.Item>;
 
 function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
   return (

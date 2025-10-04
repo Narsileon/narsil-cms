@@ -6,7 +6,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuCheckboxItemProps = ComponentProps<
   typeof DropdownMenu.CheckboxItem
-> & {};
+>;
 
 function DropdownMenuCheckboxItem({
   checked,

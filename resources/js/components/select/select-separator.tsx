@@ -4,7 +4,7 @@ import { type ComponentProps } from "react";
 import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectSeparatorProps = ComponentProps<typeof Select.Separator> & {};
+type SelectSeparatorProps = ComponentProps<typeof Select.Separator>;
 
 function SelectSeparator({ className, ...props }: SelectSeparatorProps) {
   return (

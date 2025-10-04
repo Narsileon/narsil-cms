@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ProgressRootProps = ComponentProps<typeof Progress.Root> & {};
+type ProgressRootProps = ComponentProps<typeof Progress.Root>;
 
 function ProgressRoot({ className, ...props }: ProgressRootProps) {
   return (

@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandInputWrapperProps = ComponentProps<"div"> & {};
+type CommandInputWrapperProps = ComponentProps<"div">;
 
 function CommandInputWrapper({
   className,

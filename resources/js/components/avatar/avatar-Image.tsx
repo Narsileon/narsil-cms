@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AvatarImageProps = ComponentProps<typeof Avatar.Image> & {};
+type AvatarImageProps = ComponentProps<typeof Avatar.Image>;
 
 function AvatarImage({ className, ...props }: AvatarImageProps) {
   return (

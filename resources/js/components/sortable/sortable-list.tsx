@@ -25,7 +25,7 @@ import type { GroupedSelectOption } from "@narsil-cms/types";
 
 import { type AnonymousItem } from ".";
 
-type SortableProps = ComponentProps<typeof SortableListContext> & {};
+type SortableProps = ComponentProps<typeof SortableListContext>;
 
 function Sortable({
   items,

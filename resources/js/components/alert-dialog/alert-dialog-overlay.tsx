@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AlertDialogOverlayProps = ComponentProps<typeof AlertDialog.Overlay> & {};
+type AlertDialogOverlayProps = ComponentProps<typeof AlertDialog.Overlay>;
 
 function AlertDialogOverlay({ className, ...props }: AlertDialogOverlayProps) {
   return (

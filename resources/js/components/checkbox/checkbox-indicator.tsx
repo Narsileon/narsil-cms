@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CheckboxIndicatorProps = ComponentProps<typeof Checkbox.Indicator> & {};
+type CheckboxIndicatorProps = ComponentProps<typeof Checkbox.Indicator>;
 
 function CheckboxIndicator({ className, ...props }: CheckboxIndicatorProps) {
   return (

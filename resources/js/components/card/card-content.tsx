@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CardContentProps = ComponentProps<"div"> & {};
+type CardContentProps = ComponentProps<"div">;
 
 function CardContent({ className, ...props }: CardContentProps) {
   return (

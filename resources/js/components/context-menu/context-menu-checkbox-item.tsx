@@ -6,7 +6,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 type ContextMenuCheckboxItemProps = ComponentProps<
   typeof ContextMenu.CheckboxItem
-> & {};
+>;
 
 function ContextMenuCheckboxItem({
   checked,

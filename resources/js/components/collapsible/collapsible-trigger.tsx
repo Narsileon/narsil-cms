@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CollapsibleTriggerProps = ComponentProps<typeof Collapsible.Trigger> & {};
+type CollapsibleTriggerProps = ComponentProps<typeof Collapsible.Trigger>;
 
 function CollapsibleTrigger({ className, ...props }: CollapsibleTriggerProps) {
   return (

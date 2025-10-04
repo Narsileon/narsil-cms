@@ -1,7 +1,7 @@
 import { Tooltip } from "radix-ui";
 import { type ComponentProps } from "react";
 
-type TooltipTriggerProps = ComponentProps<typeof Tooltip.Trigger> & {};
+type TooltipTriggerProps = ComponentProps<typeof Tooltip.Trigger>;
 
 function TooltipTrigger({ asChild = true, ...props }: TooltipTriggerProps) {
   return (

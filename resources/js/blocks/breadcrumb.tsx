@@ -11,7 +11,7 @@ import {
 } from "@narsil-cms/components/breadcrumb";
 import { useNavigation } from "@narsil-cms/hooks/use-props";
 
-type BreadcrumbProps = ComponentProps<typeof BreadcrumbRoot> & {};
+type BreadcrumbProps = ComponentProps<typeof BreadcrumbRoot>;
 
 function Breadcrumb({ ...props }: BreadcrumbProps) {
   const { breadcrumb } = useNavigation();

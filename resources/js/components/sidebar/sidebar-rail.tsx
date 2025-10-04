@@ -4,7 +4,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import useSidebar from "./sidebar-context";
 
-type SidebarRailProps = ComponentProps<"button"> & {};
+type SidebarRailProps = ComponentProps<"button">;
 
 function SidebarRail({ className, ...props }: SidebarRailProps) {
   const { toggleSidebar } = useSidebar();

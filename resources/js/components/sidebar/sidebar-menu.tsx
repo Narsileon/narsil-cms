@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarMenuProps = ComponentProps<"ul"> & {};
+type SidebarMenuProps = ComponentProps<"ul">;
 
 function SidebarMenu({ className, ...props }: SidebarMenuProps) {
   return (

@@ -5,7 +5,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 type NavigationMenuViewportProps = ComponentProps<
   typeof NavigationMenu.Viewport
-> & {};
+>;
 
 function NavigationMenuViewport({
   className,

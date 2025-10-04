@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectContentProps = ComponentProps<typeof Select.Content> & {};
+type SelectContentProps = ComponentProps<typeof Select.Content>;
 
 function SelectContent({
   className,

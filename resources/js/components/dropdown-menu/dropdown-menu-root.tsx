@@ -1,7 +1,7 @@
 import { DropdownMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-type DropdownMenuRootProps = ComponentProps<typeof DropdownMenu.Root> & {};
+type DropdownMenuRootProps = ComponentProps<typeof DropdownMenu.Root>;
 
 function DropdownMenuRoot({ modal = false, ...props }: DropdownMenuRootProps) {
   return (

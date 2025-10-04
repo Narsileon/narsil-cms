@@ -2,7 +2,7 @@ import { router } from "@inertiajs/react";
 import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
-import { Separator, Shortcut } from "@narsil-cms/blocks";
+import { Button, Separator, Kbd } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -15,8 +15,6 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { RouteNames } from "@narsil-cms/types";
-
-import Button from "./button";
 
 type SaveButtonProps = ComponentProps<"div"> & {
   routes?: RouteNames;
@@ -146,13 +144,13 @@ function SaveButton({
           <DropdownMenuItem onClick={saveAndContinue}>
             <Icon name="save-and-continue" />
             {`${submitLabel} & ${trans("ui.continue")}`}
-            <Shortcut>Ctrl+S</Shortcut>
+            <Kbd className="ml-auto" elements={["Ctrl", "S"]} />
           </DropdownMenuItem>
           {routes?.create ? (
             <DropdownMenuItem onClick={saveAndAdd}>
               <Icon name="save-and-add" />
               {`${submitLabel} & ${trans("ui.add_another")}`}
-              <Shortcut>Ctrl+Shift+S</Shortcut>
+              <Kbd className="ml-auto" elements={["Ctrl", "Shift", "S"]} />
             </DropdownMenuItem>
           ) : null}
           {routes?.store && data?.id ? (
@@ -161,7 +159,7 @@ function SaveButton({
               <DropdownMenuItem onClick={saveAsNew}>
                 <Icon name="plus" />
                 {trans("ui.save_as_new")}
-                <Shortcut>Ctrl+D</Shortcut>
+                <Kbd className="ml-auto" elements={["Ctrl", "D"]} />
               </DropdownMenuItem>
             </>
           ) : null}
@@ -171,7 +169,7 @@ function SaveButton({
               <DropdownMenuItem onClick={destroy}>
                 <Icon name="trash" />
                 {trans("ui.delete")}
-                <Shortcut>Ctrl+X</Shortcut>
+                <Kbd className="ml-auto" elements={["Ctrl", "X"]} />
               </DropdownMenuItem>
             </>
           ) : null}

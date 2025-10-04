@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type FormDescriptionProps = ComponentProps<"p"> & {};
+type FormDescriptionProps = ComponentProps<"p">;
 
 function FormDescription({ className, ...props }: FormDescriptionProps) {
   return (

@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TableRootProps = ComponentProps<"table"> & {};
+type TableRootProps = ComponentProps<"table">;
 
 function TableRoot({ className, ...props }: TableRootProps) {
   return (

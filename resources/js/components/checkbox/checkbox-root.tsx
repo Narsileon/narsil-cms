@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CheckboxRootProps = ComponentProps<typeof Checkbox.Root> & {};
+type CheckboxRootProps = ComponentProps<typeof Checkbox.Root>;
 
 function CheckboxRoot({ className, ...props }: CheckboxRootProps) {
   return (

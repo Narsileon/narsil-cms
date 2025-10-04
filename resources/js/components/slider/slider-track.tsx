@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SliderTrackProps = ComponentProps<typeof Slider.Track> & {};
+type SliderTrackProps = ComponentProps<typeof Slider.Track>;
 
 function SliderTrack({ className, ...props }: SliderTrackProps) {
   return (

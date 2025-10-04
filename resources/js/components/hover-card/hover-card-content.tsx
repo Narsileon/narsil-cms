@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type HoverCardContentProps = ComponentProps<typeof HoverCard.Content> & {};
+type HoverCardContentProps = ComponentProps<typeof HoverCard.Content>;
 
 function HoverCardContent({
   align = "center",

@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type BreadcrumbSeparatorProps = ComponentProps<"li"> & {};
+type BreadcrumbSeparatorProps = ComponentProps<"li">;
 
 function BreadcrumbSeparator({
   children,

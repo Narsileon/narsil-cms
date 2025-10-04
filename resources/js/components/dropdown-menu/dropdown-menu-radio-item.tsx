@@ -4,9 +4,7 @@ import { type ComponentProps } from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DropdownMenuRadioItemProps = ComponentProps<
-  typeof DropdownMenu.RadioItem
-> & {};
+type DropdownMenuRadioItemProps = ComponentProps<typeof DropdownMenu.RadioItem>;
 
 function DropdownMenuRadioItem({
   children,

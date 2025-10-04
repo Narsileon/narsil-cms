@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TableFooterProps = ComponentProps<"tfoot"> & {};
+type TableFooterProps = ComponentProps<"tfoot">;
 
 function TableFooter({ className, ...props }: TableFooterProps) {
   return (

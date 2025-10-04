@@ -3,9 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type DropdownMenuContentProps = ComponentProps<
-  typeof DropdownMenu.Content
-> & {};
+type DropdownMenuContentProps = ComponentProps<typeof DropdownMenu.Content>;
 
 function DropdownMenuContent({
   className,

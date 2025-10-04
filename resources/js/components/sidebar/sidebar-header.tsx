@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarHeaderProps = ComponentProps<"div"> & {};
+type SidebarHeaderProps = ComponentProps<"div">;
 
 function SidebarHeader({ className, ...props }: SidebarHeaderProps) {
   return (

@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ProgressIndicatorProps = ComponentProps<typeof Progress.Indicator> & {};
+type ProgressIndicatorProps = ComponentProps<typeof Progress.Indicator>;
 
 function ProgressIndicator({ className, ...props }: ProgressIndicatorProps) {
   return (

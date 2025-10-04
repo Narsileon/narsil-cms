@@ -1,7 +1,7 @@
 import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
-type AlertTitleProps = ComponentProps<"div"> & {};
+type AlertTitleProps = ComponentProps<"div">;
 
 function AlertTitle({ className, ...props }: AlertTitleProps) {
   return (

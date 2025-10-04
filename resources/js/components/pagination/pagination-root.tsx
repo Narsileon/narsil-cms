@@ -1,6 +1,6 @@
 import { type ComponentProps } from "react";
 
-type PaginationRootProps = ComponentProps<"nav"> & {};
+type PaginationRootProps = ComponentProps<"nav">;
 
 function PaginationRoot({ ...props }: PaginationRootProps) {
   return (

@@ -4,9 +4,7 @@ import { type ComponentProps } from "react";
 import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
-type ContextMenuSeparatorProps = ComponentProps<
-  typeof ContextMenu.Separator
-> & {};
+type ContextMenuSeparatorProps = ComponentProps<typeof ContextMenu.Separator>;
 
 function ContextMenuSeparator({
   className,

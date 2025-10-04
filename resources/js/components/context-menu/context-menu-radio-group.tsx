@@ -1,9 +1,7 @@
 import { ContextMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-type ContextMenuRadioGroupProps = ComponentProps<
-  typeof ContextMenu.RadioGroup
-> & {};
+type ContextMenuRadioGroupProps = ComponentProps<typeof ContextMenu.RadioGroup>;
 
 function ContextMenuRadioGroup({ ...props }: ContextMenuRadioGroupProps) {
   return (

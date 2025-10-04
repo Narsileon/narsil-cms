@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SelectItemProps = ComponentProps<typeof Select.Item> & {};
+type SelectItemProps = ComponentProps<typeof Select.Item>;
 
 function SelectItem({ className, ...props }: SelectItemProps) {
   return (

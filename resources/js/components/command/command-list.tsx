@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type CommandListProps = ComponentProps<typeof Command.List> & {};
+type CommandListProps = ComponentProps<typeof Command.List>;
 
 function CommandList({ className, ...props }: CommandListProps) {
   return (

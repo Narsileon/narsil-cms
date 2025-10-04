@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type AvatarFallbackProps = ComponentProps<typeof Avatar.Fallback> & {};
+type AvatarFallbackProps = ComponentProps<typeof Avatar.Fallback>;
 function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
   return (
     <Avatar.Fallback

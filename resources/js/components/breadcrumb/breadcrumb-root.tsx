@@ -1,6 +1,6 @@
 import { type ComponentProps } from "react";
 
-type BreadcrumbRootProps = ComponentProps<"nav"> & {};
+type BreadcrumbRootProps = ComponentProps<"nav">;
 
 function BreadcrumbRoot({ ...props }: BreadcrumbRootProps) {
   return (

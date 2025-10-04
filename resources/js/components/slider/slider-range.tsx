@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SliderRangeProps = ComponentProps<typeof Slider.Range> & {};
+type SliderRangeProps = ComponentProps<typeof Slider.Range>;
 
 function SliderRange({ className, ...props }: SliderRangeProps) {
   return (

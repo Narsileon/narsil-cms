@@ -4,9 +4,7 @@ import { type ComponentProps } from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenubarCheckboxItemProps = ComponentProps<
-  typeof Menubar.CheckboxItem
-> & {};
+type MenubarCheckboxItemProps = ComponentProps<typeof Menubar.CheckboxItem>;
 
 function MenubarCheckboxItem({
   checked,

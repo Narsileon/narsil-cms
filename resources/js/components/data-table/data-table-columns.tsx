@@ -22,7 +22,7 @@ import {
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import type { Model } from "@narsil-cms/types";
 
-type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger> & {};
+type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger>;
 
 function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
   const { trans } = useLocalization();

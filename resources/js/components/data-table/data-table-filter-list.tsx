@@ -6,7 +6,7 @@ import {
 } from "@narsil-cms/components/data-table";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DataTableFilterListProps = ComponentProps<"ul"> & {};
+type DataTableFilterListProps = ComponentProps<"ul">;
 
 function DataTableFilterList({
   className,

@@ -4,9 +4,7 @@ import { type ComponentProps } from "react";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
-type RadioGroupIndicatorProps = ComponentProps<
-  typeof RadioGroup.Indicator
-> & {};
+type RadioGroupIndicatorProps = ComponentProps<typeof RadioGroup.Indicator>;
 
 function RadioGroupIndicator({
   className,

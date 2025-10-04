@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type RichTextEditorRootProps = ComponentProps<"div"> & {};
+type RichTextEditorRootProps = ComponentProps<"div">;
 
 function RichTextEditorRoot({ className, ...props }: RichTextEditorRootProps) {
   return (

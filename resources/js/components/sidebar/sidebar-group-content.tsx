@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SidebarGroupContentProps = ComponentProps<"ul"> & {};
+type SidebarGroupContentProps = ComponentProps<"ul">;
 
 function SidebarGroupContent({
   className,

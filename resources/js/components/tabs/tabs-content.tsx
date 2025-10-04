@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TabsContentProps = ComponentProps<typeof Tabs.Content> & {};
+type TabsContentProps = ComponentProps<typeof Tabs.Content>;
 
 function TabsContent({ className, ...props }: TabsContentProps) {
   return (

@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type SliderRootProps = ComponentProps<typeof Slider.Root> & {};
+type SliderRootProps = ComponentProps<typeof Slider.Root>;
 
 function SliderRoot({
   className,

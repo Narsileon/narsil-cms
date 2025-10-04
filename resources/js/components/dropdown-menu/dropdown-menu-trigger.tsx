@@ -3,9 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type DropdownMenuTriggerProps = ComponentProps<
-  typeof DropdownMenu.Trigger
-> & {};
+type DropdownMenuTriggerProps = ComponentProps<typeof DropdownMenu.Trigger>;
 
 function DropdownMenuTrigger({
   className,

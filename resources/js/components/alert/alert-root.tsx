@@ -6,7 +6,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import alertRootVariants from "./alert-root-variants";
 
 type AlertRootProps = ComponentProps<"div"> &
-  VariantProps<typeof alertRootVariants> & {};
+  VariantProps<typeof alertRootVariants>;
 
 function AlertRoot({ className, variant, ...props }: AlertRootProps) {
   return (

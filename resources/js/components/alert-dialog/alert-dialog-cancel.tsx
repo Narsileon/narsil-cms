@@ -4,7 +4,7 @@ import { type ComponentProps } from "react";
 import { buttonRootVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 
-type AlertDialogCancelProps = ComponentProps<typeof AlertDialog.Cancel> & {};
+type AlertDialogCancelProps = ComponentProps<typeof AlertDialog.Cancel>;
 
 function AlertDialogCancel({ className, ...props }: AlertDialogCancelProps) {
   return (

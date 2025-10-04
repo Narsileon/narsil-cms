@@ -6,7 +6,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import inputWrapperVariants from "./input-root-variants";
 
 type InputRootProps = ComponentProps<"div"> &
-  VariantProps<typeof inputWrapperVariants> & {};
+  VariantProps<typeof inputWrapperVariants>;
 
 function InputRoot({ className, variant, ...props }: InputRootProps) {
   return (

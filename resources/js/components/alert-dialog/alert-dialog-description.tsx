@@ -5,7 +5,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 type AlertDialogDescriptionProps = ComponentProps<
   typeof AlertDialog.Description
-> & {};
+>;
 
 function AlertDialogDescription({
   className,

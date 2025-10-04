@@ -6,7 +6,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import useSidebar from "./sidebar-context";
 
-type SidebarTriggerProps = ComponentProps<typeof Button> & {};
+type SidebarTriggerProps = ComponentProps<typeof Button>;
 
 function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
   const { trans } = useLocalization();

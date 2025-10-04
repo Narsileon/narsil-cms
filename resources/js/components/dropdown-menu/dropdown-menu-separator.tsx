@@ -4,9 +4,7 @@ import { type ComponentProps } from "react";
 import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 
-type DropdownMenuSeparatorProps = ComponentProps<
-  typeof DropdownMenu.Separator
-> & {};
+type DropdownMenuSeparatorProps = ComponentProps<typeof DropdownMenu.Separator>;
 
 function DropdownMenuSeparator({
   className,

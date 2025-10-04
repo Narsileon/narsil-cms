@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { CalendarRoot } from "@narsil-cms/components/calendar";
 
-type CalendarProps = ComponentProps<typeof CalendarRoot> & {};
+type CalendarProps = ComponentProps<typeof CalendarRoot>;
 
 function Calendar({ ...props }: CalendarProps) {
   return <CalendarRoot {...props} />;

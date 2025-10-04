@@ -3,7 +3,7 @@ import { Panel } from "react-resizable-panels";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ResizablePanelProps = ComponentProps<typeof Panel> & {};
+type ResizablePanelProps = ComponentProps<typeof Panel>;
 
 function ResizablePanel({ className, ...props }: ResizablePanelProps) {
   return (

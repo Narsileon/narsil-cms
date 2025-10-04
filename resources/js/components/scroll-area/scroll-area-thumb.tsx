@@ -3,9 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type ScrollAreaThumbProps = ComponentProps<
-  typeof ScrollArea.ScrollAreaThumb
-> & {};
+type ScrollAreaThumbProps = ComponentProps<typeof ScrollArea.ScrollAreaThumb>;
 
 const ScrollAreaThumb = ({ className, ...props }: ScrollAreaThumbProps) => {
   return (

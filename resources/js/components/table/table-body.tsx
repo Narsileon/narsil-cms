@@ -2,7 +2,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TableBodyProps = ComponentProps<"tbody"> & {};
+type TableBodyProps = ComponentProps<"tbody">;
 
 function TableBody({ className, ...props }: TableBodyProps) {
   return (

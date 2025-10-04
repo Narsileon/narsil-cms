@@ -7,7 +7,7 @@ import { cn } from "@narsil-cms/lib/utils";
 
 import useDataTable from "./data-table-context";
 
-type DataTableInputProps = ComponentProps<typeof InputContent> & {};
+type DataTableInputProps = ComponentProps<typeof InputContent>;
 
 function DataTableInput({ className, ...props }: DataTableInputProps) {
   const { trans } = useLocalization();

@@ -8,7 +8,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { ToggleGroupContext } from "./toggle-group-context";
 
 type ToggleGroupRootProps = ComponentProps<typeof ToggleGroup.Root> &
-  VariantProps<typeof toggleRootVariants> & {};
+  VariantProps<typeof toggleRootVariants>;
 
 function ToggleGroupRoot({
   children,

@@ -7,7 +7,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import separatorRootVariants from "./separator-root-variants";
 
 type SeparatorRootProps = ComponentProps<typeof Separator.Root> &
-  VariantProps<typeof separatorRootVariants> & {};
+  VariantProps<typeof separatorRootVariants>;
 
 function SeparatorRoot({
   className,

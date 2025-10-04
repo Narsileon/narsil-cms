@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 import { cn } from "@narsil-cms/lib/utils";
 
-type TooltipContentProps = ComponentProps<typeof Tooltip.Content> & {};
+type TooltipContentProps = ComponentProps<typeof Tooltip.Content>;
 
 function TooltipContent({
   className,

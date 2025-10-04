@@ -7,7 +7,7 @@ import {
   SliderTrack,
 } from "@narsil-cms/components/slider";
 
-type SliderProps = ComponentProps<typeof SliderRoot> & {};
+type SliderProps = ComponentProps<typeof SliderRoot>;
 
 function Slider({
   defaultValue,
