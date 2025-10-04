@@ -86,7 +86,7 @@ const useThemeStore = create<ThemeStoreType>()(
                 ],
               },
               {
-                duration: 700,
+                duration: 800,
                 easing: "ease-in-out",
                 pseudoElement: "::view-transition-new(root)",
               },

@@ -88,7 +88,6 @@ function SortableItem({
     <CollapsibleRoot
       ref={disabled ? undefined : setNodeRef}
       className={cn(
-        "overflow-hidden",
         isDragging && "opacity-50",
         placeholder &&
           "border-dashed bg-transparent opacity-50 will-change-transform hover:opacity-100",

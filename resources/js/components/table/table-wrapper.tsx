@@ -8,7 +8,7 @@ function TableWrapper({ className, ...props }: TableWrapperProps) {
   return (
     <div
       data-slot="table-wrapper"
-      className={cn("overflow-x-auto rounded-md border-2", className)}
+      className={cn("overflow-x-auto rounded-md border shadow", className)}
       {...props}
     />
   );

@@ -23,7 +23,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "@narsil-cms/blocks";
-import { CardContent } from "@narsil-cms/components/card";
+import { CardContent, CardHeader, CardRoot } from "@narsil-cms/components/card";
 import {
   CollapsibleContent,
   CollapsibleRoot,
@@ -171,68 +171,64 @@ function SortableItem({
   return (
     <CollapsibleRoot
       ref={setNodeRef}
-      className={cn(
-        "overflow-hidden rounded-md border",
-        isDragging && "opacity-50",
-      )}
+      className={cn(isDragging && "opacity-50")}
       open={open}
       style={{
         transform: CSS.Transform.toString(transform),
         transition: transition,
       }}
     >
-      <CollapsibleTrigger
-        className={cn(
-          "flex w-full items-center gap-2 pr-1",
-          open && "border-b",
-        )}
-      >
-        <SortableHandle
-          ref={setActivatorNodeRef}
-          {...attributes}
-          {...listeners}
-        />
-        <span className="grow text-start">{item[labelKey] ?? "item"}</span>
-        <div className="flex items-center gap-1">
-          {onItemRemove ? (
-            <Button
-              className="size-7"
-              icon="trash"
-              size="icon"
-              tooltip={trans("ui.remove")}
-              variant="ghost"
-              onClick={onItemRemove}
+      <CardRoot>
+        <CollapsibleTrigger className={cn(open && "border-b")} asChild={true}>
+          <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
+            <SortableHandle
+              ref={setActivatorNodeRef}
+              {...attributes}
+              {...listeners}
             />
-          ) : null}
-          <Button
-            className="size-7"
-            iconProps={{
-              className: cn("duration-300", open && "rotate-180"),
-              name: "chevron-down",
-            }}
-            size="icon"
-            variant="ghost"
-            onClick={() => setCollapsed(!open)}
-          />
-        </div>
-      </CollapsibleTrigger>
-      {form ? (
-        <CollapsibleContent>
-          <CardContent className="grow">
-            {form?.map((item) => {
-              const finalHandle = `${handle}.${index}.${item.handle}`;
-
-              return (
-                <FormRenderer
-                  {...item}
-                  handle={finalHandle}
-                  key={item.handle}
+            <span className="grow text-start">{item[labelKey] ?? "item"}</span>
+            <div className="flex items-center gap-1">
+              {onItemRemove ? (
+                <Button
+                  className="size-7"
+                  icon="trash"
+                  size="icon"
+                  tooltip={trans("ui.remove")}
+                  variant="ghost"
+                  onClick={onItemRemove}
                 />
-              );
-            })}
-          </CardContent>
-        </CollapsibleContent>
-      ) : null}
+              ) : null}
+              <Button
+                className="size-7"
+                iconProps={{
+                  className: cn("duration-300", open && "rotate-180"),
+                  name: "chevron-down",
+                }}
+                size="icon"
+                variant="ghost"
+                onClick={() => setCollapsed(!open)}
+              />
+            </div>
+          </CardHeader>
+        </CollapsibleTrigger>
+        {form ? (
+          <CollapsibleContent>
+            <CardContent className="grow">
+              {form?.map((item) => {
+                const finalHandle = `${handle}.${index}.${item.handle}`;
+
+                return (
+                  <FormRenderer
+                    {...item}
+                    handle={finalHandle}
+                    key={item.handle}
+                  />
+                );
+              })}
+            </CardContent>
+          </CollapsibleContent>
+        ) : null}
+      </CardRoot>
     </CollapsibleRoot>
   );
 }

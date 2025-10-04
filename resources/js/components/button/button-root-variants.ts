@@ -13,23 +13,23 @@ const buttonRootVariants = cva(
     variants: {
       variant: {
         primary: cn(
-          "bg-primary/80 text-primary-foreground shadow-xs",
+          "bg-primary/80 text-primary-foreground",
           "focus-visible:bg-primary",
           "hover:bg-primary",
           "[&_svg]:text-primary-foreground",
         ),
         destructive: cn(
-          "bg-destructive/80 text-destructive-foreground shadow-xs",
+          "bg-destructive/80 text-destructive-foreground",
           "focus-visible:bg-destructive",
           "hover:bg-destructive",
         ),
         outline: cn(
-          "border-input bg-background shadow-xs border",
+          "border-input bg-background border shadow-sm",
           "focus-visible:border-shine",
           "hover:bg-accent hover:text-accent-foreground",
         ),
         secondary: cn(
-          "bg-secondary/80 text-secondary-foreground shadow-xs",
+          "bg-secondary/80 text-secondary-foreground",
           "focus-visible:bg-secondary",
           "hover:bg-secondary",
         ),

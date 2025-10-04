@@ -4,6 +4,7 @@ import {
   TableCell,
   TableRoot,
   TableRow,
+  TableWrapper,
 } from "@narsil-cms/components/table";
 import type {
   GroupedSelectOption,
@@ -98,11 +99,11 @@ function Checkboxes({ options, values, onChange }: CheckboxesProps) {
   }
 
   return (
-    <div className="overflow-hidden rounded-md border">
+    <TableWrapper>
       <TableRoot>
         <TableBody>{renderCheckboxes(options)}</TableBody>
       </TableRoot>
-    </div>
+    </TableWrapper>
   );
 }
 

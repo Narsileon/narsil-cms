@@ -19,7 +19,7 @@ const toggleRootVariants = cva(
     variants: {
       variant: {
         default: "bg-transparent",
-        outline: cn("border-input shadow-xs border bg-transparent"),
+        outline: cn("border-input border bg-transparent shadow-sm"),
       },
       size: {
         default: "h-9 min-w-9 px-4",

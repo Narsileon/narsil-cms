@@ -10,7 +10,7 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
     <RadioGroup.Item
       data-slot="radio-group-item"
       className={cn(
-        "border-input text-primary shadow-xs aspect-square size-4 shrink-0 rounded-full border outline-none transition-[color,box-shadow]",
+        "border-input text-primary aspect-square size-4 shrink-0 rounded-full border shadow-sm outline-none transition-[color,box-shadow]",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
         "dark:bg-input/30 dark:aria-invalid:ring-destructive/40",
         "disabled:cursor-not-allowed disabled:opacity-50",

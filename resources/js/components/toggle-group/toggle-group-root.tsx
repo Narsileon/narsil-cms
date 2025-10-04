@@ -24,7 +24,7 @@ function ToggleGroupRoot({
       data-variant={variant}
       className={cn(
         "group/toggle-group flex w-fit items-center rounded-md",
-        "data-[variant=outline]:shadow-xs",
+        "data-[variant=outline]:shadow-sm",
         className,
       )}
       {...props}
