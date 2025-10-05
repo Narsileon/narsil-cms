@@ -53,7 +53,9 @@ function Layout({ children }: LayoutProps) {
         index={false}
         title={title}
       />
-      {isEmpty(auth) ? (
+      {window.location.pathname === "/narsil/graphiql" ? (
+        <main className="h-screen w-screen">{children}</main>
+      ) : isEmpty(auth) ? (
         <GuestLayout>{children}</GuestLayout>
       ) : (
         <AuthLayout>{children}</AuthLayout>

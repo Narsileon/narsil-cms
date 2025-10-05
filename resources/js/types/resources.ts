@@ -84,6 +84,7 @@ export type MenuItem = {
   label: string;
   method: InertiaLinkProps["method"];
   modal?: boolean;
+  target?: string;
 };
 
 export type Revision = {

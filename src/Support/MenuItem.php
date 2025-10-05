@@ -18,34 +18,39 @@ class MenuItem implements JsonSerializable
     #region PROPERTIES
 
     /**
-     * @var string
+     * @var ?string
      */
     protected ?string $group = null;
 
     /**
-     * @var string
+     * @var ?string
      */
     protected ?string $href = null;
 
     /**
-     * @var string
+     * @var ?string
      */
     protected ?string $label = null;
 
     /**
-     * @var string
+     * @var ?string
      */
     protected ?string $icon = null;
 
     /**
-     * @var string
+     * @var ?string
      */
     protected ?string $method = MethodEnum::GET->value;
 
     /**
-     * @var string
+     * @var ?boolean
      */
     protected ?bool $modal = null;
+
+    /**
+     * @var ?string
+     */
+    protected ?string $target = null;
 
     #endregion
 
@@ -63,6 +68,7 @@ class MenuItem implements JsonSerializable
             'label' => $this->label,
             'method' => $this->method,
             'modal' => $this->modal,
+            'target' => $this->target
         ];
     }
 
@@ -136,6 +142,18 @@ class MenuItem implements JsonSerializable
     final public function modal(bool $modal): static
     {
         $this->modal = $modal;
+
+        return $this;
+    }
+
+    /**
+     * @param string $target
+     *
+     * @return static
+     */
+    final public function target(string $target): static
+    {
+        $this->target = $target;
 
         return $this;
     }

@@ -12,6 +12,7 @@ import Head from "./head";
 import Heading from "./heading";
 import Kbd from "./kbd";
 import Label from "./label";
+import Link from "./link";
 import Logo from "./logo";
 import NavigationMenu from "./navigation-menu";
 import Pagination from "./pagination";
@@ -45,6 +46,7 @@ export {
   Heading,
   Kbd,
   Label,
+  Link,
   Logo,
   NavigationMenu,
   Pagination,

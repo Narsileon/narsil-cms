@@ -1,8 +1,8 @@
-import { Link } from "@inertiajs/react";
 import { groupBy } from "lodash";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
+import { Link } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
@@ -59,6 +59,7 @@ function Sidebar({ ...props }: SidebarProps) {
                 >
                   <Link
                     href={items[0].href}
+                    target={items[0].target}
                     onSuccess={() => setOpenMobile(false)}
                   >
                     {items[0].icon ? <Icon name={items[0].icon} /> : null}
@@ -82,6 +83,7 @@ function Sidebar({ ...props }: SidebarProps) {
                         >
                           <Link
                             href={item.href}
+                            target={item.target}
                             onSuccess={() => setOpenMobile(false)}
                           >
                             {item.icon ? <Icon name={item.icon} /> : null}

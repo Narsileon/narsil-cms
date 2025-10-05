@@ -145,7 +145,8 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('graphiql'))
                 ->icon('database')
-                ->label(trans('narsil::ui.graphiql')),
+                ->label(trans('narsil::ui.graphiql'))
+                ->target('_blank'),
         ];
     }
 
