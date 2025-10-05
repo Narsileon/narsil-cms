@@ -44,7 +44,16 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
 
     const filteredOrder = originalOrder.filter((id) => id !== column.id);
 
-    const newOrder = [...filteredOrder, column.id];
+    const menuIndex = filteredOrder.indexOf("_menu");
+
+    const newOrder = [
+      ...filteredOrder.slice(
+        0,
+        menuIndex === -1 ? filteredOrder.length : menuIndex,
+      ),
+      column.id,
+      ...(menuIndex === -1 ? [] : filteredOrder.slice(menuIndex)),
+    ];
 
     dataTable.setColumnOrder(newOrder);
   }
