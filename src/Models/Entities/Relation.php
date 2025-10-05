@@ -6,6 +6,7 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 #endregion
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\DB;
  */
 class Relation extends Model
 {
+    use SoftDeletes;
+
     #region CONSTRUCTOR
 
     /**
@@ -24,6 +27,7 @@ class Relation extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+        $this->timestamps = false;
 
         $this->guarded = array_merge([
             self::ID,
@@ -46,11 +50,25 @@ class Relation extends Model
     #region • COLUMNS
 
     /**
+     * The name of the "deleted at" column.
+     *
+     * @var string
+     */
+    final public const DELETED_AT = 'deleted_at';
+
+    /**
      * The name of the "id" column.
      *
      * @var string
      */
     final public const ID = 'id';
+
+    /**
+     * The name of the "owner id" column.
+     *
+     * @var string
+     */
+    final public const OWNER_ID = 'owner_id';
 
     /**
      * The name of the "owner table" column.
@@ -67,18 +85,18 @@ class Relation extends Model
     final public const OWNER_UUID = 'owner_uuid';
 
     /**
+     * The name of the "target id" column.
+     *
+     * @var string
+     */
+    final public const TARGET_ID = 'target_id';
+
+    /**
      * The name of the "target table" column.
      *
      * @var string
      */
     final public const TARGET_TABLE = 'target_table';
-
-    /**
-     * The name of the "target uuid" column.
-     *
-     * @var string
-     */
-    final public const TARGET_UUID = 'target_uuid';
 
     #endregion
 
@@ -93,16 +111,18 @@ class Relation extends Model
      *
      * @param Builder $query
      * @param string $table
-     * @param string $uuid
+     * @param integer $id
      *
      * @return Builder
      */
-    public function scopeEntities(Builder $query, string $table, string $uuid): Builder
+    public function scopeEntities(Builder $query, string $table, int $id): Builder
     {
         $sql = file_get_contents(__DIR__ . '/../../SQL/relations.sql');
 
-        return $query->from(DB::raw("($sql) as relation_chain"))
-            ->setBindings([$table, $uuid]);
+        return $query
+            ->withTrashed()
+            ->fromRaw("($sql) as relation_chain")
+            ->setBindings([$table, $id]);
     }
 
     #endregion

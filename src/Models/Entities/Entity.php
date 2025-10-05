@@ -41,7 +41,10 @@ class Entity extends Model
 
         $this->primaryKey = self::UUID;
 
-        $this->casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
+        if (static::$template)
+        {
+            $this->casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
+        }
 
         $this->guarded = [];
 

@@ -24,13 +24,21 @@ abstract class TemplateService
 
     /**
      * @param Template $template
+     * @param ?string $type
      *
      * @return Collection<Field>
      */
-    public static function getTemplateFields(Template $template): Collection
+    public static function getTemplateFields(Template $template, ?string $type = null): Collection
     {
         return $template->{Template::RELATION_SECTIONS}
-            ->flatMap(fn($templateSection) => static::getTemplateSectionFields($templateSection));
+            ->flatMap(function ($templateSection)
+            {
+                return static::getTemplateSectionFields($templateSection);
+            })
+            ->when($type, function ($collection) use ($type)
+            {
+                return $collection->where('type', $type);
+            });
     }
 
     #endregion

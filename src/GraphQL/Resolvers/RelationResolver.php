@@ -29,14 +29,14 @@ class RelationResolver
     public function resolveEntities($root, array $args): Collection
     {
         $ownerTable = Arr::get($args, Relation::OWNER_TABLE);
-        $ownerUuid = Arr::get($args, Relation::OWNER_UUID);
+        $ownerId = Arr::get($args, Relation::OWNER_ID);
 
-        if (empty($ownerTable) || empty($ownerUuid))
+        if (empty($ownerTable) || empty($ownerId))
         {
             return collect();
         }
 
-        return Relation::entities($ownerTable, $ownerUuid)->get();
+        return Relation::entities($ownerTable, $ownerId)->get();
     }
 
     #endregion

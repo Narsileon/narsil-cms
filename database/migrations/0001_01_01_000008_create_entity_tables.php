@@ -47,13 +47,17 @@ return new class extends Migration
             $blueprint
                 ->id();
             $blueprint
+                ->uuid(Relation::OWNER_UUID);
+            $blueprint
                 ->string(Relation::OWNER_TABLE);
             $blueprint
-                ->uuid(Relation::OWNER_UUID);
+                ->bigInteger(Relation::OWNER_ID);
             $blueprint
                 ->string(Relation::TARGET_TABLE);
             $blueprint
-                ->uuid(Relation::TARGET_UUID);
+                ->bigInteger(Relation::TARGET_ID);
+            $blueprint
+                ->softDeletes(Relation::DELETED_AT);
         });
     }
 

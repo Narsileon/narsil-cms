@@ -9,7 +9,7 @@ extend type Query {
   fields: [Field!]! @all
   permission(id: Int! @eq): Permission @find
   permissions: [Permission!]! @all
-  relations(owner_table: String!, owner_uuid: String!): [Relation!]!
+  relations(owner_table: String!, owner_id: ID!): [Relation!]!
     @field(
       resolver: "Narsil\\GraphQL\\Resolvers\\RelationResolver@resolveEntities"
     )
@@ -93,11 +93,13 @@ type Permission @model(class: "Narsil\\Models\\Policies\\Permission") {
 }
 
 type Relation @model(class: "Narsil\\Models\\Entities\\Relation") {
+  deleted_at: DateTime!
   id: ID!
+  owner_id: ID!
   owner_table: String!
   owner_uuid: String!
+  target_id: ID!
   target_table: String!
-  target_uuid: String!
 }
 
 type Role @model(class: "Narsil\\Models\\Policies\\Role") {

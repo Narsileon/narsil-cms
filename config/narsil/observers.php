@@ -11,6 +11,7 @@ return [
     |
     */
 
+    \Narsil\Models\Entities\Entity::class => \Narsil\Observers\EntityObserver::class,
     \Narsil\Models\Elements\Template::class => \Narsil\Observers\TemplateObserver::class,
     \Narsil\Models\User::class => \Narsil\Observers\UserObserver::class,
 ];

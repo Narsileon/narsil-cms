@@ -45,7 +45,10 @@ class EntityController extends AbstractController
 
         $template = $this->getTemplate($collection);
 
-        Entity::setTemplate($template);
+        if ($template)
+        {
+            Entity::setTemplate($template);
+        }
     }
 
     #endregion
@@ -62,7 +65,7 @@ class EntityController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
 
-        $template = $this->getTemplate($collection);
+        $template = Entity::getTemplate();
 
         $query = Entity::query()
             ->with([
@@ -95,7 +98,7 @@ class EntityController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
-        $template = $this->getTemplate($collection);
+        $template = Entity::getTemplate();
 
         $form = app()->make(EntityForm::class, [
             'template' => $template
@@ -123,10 +126,12 @@ class EntityController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
+        $template = Entity::getTemplate();
+
         $data = $request->all();
 
         $rules = app(EntityFormRequest::class, [
-            'template' => $this->getTemplate($collection),
+            'template' => $template,
         ])->rules();
 
         $attributes = Validator::make($data, $rules)
@@ -174,7 +179,7 @@ class EntityController extends AbstractController
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
-        $template = $this->getTemplate($collection);
+        $template = Entity::getTemplate();
 
         $form = app()->make(EntityForm::class, [
             'template' => $template,
@@ -214,6 +219,8 @@ class EntityController extends AbstractController
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
+        $template = Entity::getTemplate();
+
         if (!$request->get('_dirty'))
         {
             return $this
@@ -225,7 +232,7 @@ class EntityController extends AbstractController
         $data = $request->all();
 
         $rules = app(EntityFormRequest::class, [
-            'template' => $this->getTemplate($collection),
+            'template' => $template,
         ])->rules($entity);
 
         $attributes = Validator::make($data, $rules)
@@ -360,9 +367,9 @@ class EntityController extends AbstractController
     /**
      * @param integer|string $collection
      *
-     * @return Template
+     * @return ?Template
      */
-    protected function getTemplate(int|string $collection): Template
+    protected function getTemplate(int|string $collection): ?Template
     {
         $query = Template::query()
             ->with([

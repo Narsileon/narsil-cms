@@ -2,6 +2,8 @@
 
 namespace Narsil\Traits;
 
+#region USE
+
 use Illuminate\Support\Collection;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField;
@@ -9,6 +11,8 @@ use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Services\TemplateService;
+
+#endregion
 
 /**
  * @author Jonathan Rigaux
@@ -35,9 +39,9 @@ trait HasTemplate
     abstract public static function getTableName(): string;
 
     /**
-     * @return Template
+     * @return ?Template
      */
-    public static function getTemplate(): Template
+    public static function getTemplate(): ?Template
     {
         return static::$template;
     }
