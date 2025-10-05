@@ -32,7 +32,6 @@ class EntityBlock extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = static::getTableName();
-
         $this->timestamps = false;
 
         $this->casts = array_merge([
@@ -197,7 +196,7 @@ class EntityBlock extends Model
             ->belongsTo(
                 Entity::class,
                 self::ENTITY_UUID,
-                Entity::ID,
+                Entity::UUID,
             );
     }
 

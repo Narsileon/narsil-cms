@@ -4,9 +4,9 @@ namespace Narsil\Observers;
 
 #region USE
 
-use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityBlock;
 use Narsil\Models\Entities\Relation;
 use Narsil\Services\TemplateService;
 
@@ -16,28 +16,18 @@ use Narsil\Services\TemplateService;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class EntityObserver
+class EntityBlockObserver
 {
     #region PUBLIC METHODS
 
     /**
-     * @param Entity $entity
+     * @param EntityBlock $entityBlock
      *
      * @return void
      */
-    public function deleted(Entity $entity): void
+    public function saved(EntityBlock $entityBlock): void
     {
-        $this->deleteRelations($entity);
-    }
-
-    /**
-     * @param Entity $entity
-     *
-     * @return void
-     */
-    public function saved(Entity $entity): void
-    {
-        $this->syncRelations($entity);
+        $this->syncRelations($entityBlock);
     }
 
     #endregion
@@ -45,29 +35,23 @@ class EntityObserver
     #region PROTECTED METHODS
 
     /**
-     * @param Entity $entity
+     * @param EntityBlock $entityBlock
      *
      * @return void
      */
-    protected function deleteRelations(Entity $entity): void
+    protected function syncRelations(EntityBlock $entityBlock): void
     {
-        Relation::query()
-            ->where(Relation::OWNER_UUID, $entity->{Entity::UUID})
-            ->delete();
-    }
+        $entityBlock->loadMissing([
+            EntityBlock::RELATION_ENTITY,
+        ]);
 
-    /**
-     * @param Entity $entity
-     *
-     * @return void
-     */
-    protected function syncRelations(Entity $entity): void
-    {
-        $fields = TemplateService::getTemplateFields($entity::getTemplate(), RelationsField::class);
+        $entity = $entityBlock->{EntityBlock::RELATION_ENTITY};
+
+        $fields = TemplateService::getBlockFields($entityBlock->{EntityBlock::RELATION_BLOCK});
 
         foreach ($fields as $field)
         {
-            $relations = $entity->{$field->{Field::HANDLE}};
+            $relations = $entityBlock->{EntityBlock::VALUES}->{$field->{Field::HANDLE}};
 
             foreach ($relations as $relation)
             {
