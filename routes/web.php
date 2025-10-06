@@ -9,9 +9,9 @@ use Narsil\Http\Controllers\CollectionController;
 use Narsil\Http\Controllers\DashboardController;
 use Narsil\Http\Controllers\EntityController;
 use Narsil\Http\Controllers\FieldController;
+use Narsil\Http\Controllers\HostController;
 use Narsil\Http\Controllers\RoleController;
 use Narsil\Http\Controllers\SessionController;
-use Narsil\Http\Controllers\SiteController;
 use Narsil\Http\Controllers\TemplateController;
 use Narsil\Http\Controllers\UserBookmarkController;
 use Narsil\Http\Controllers\UserConfigurationController;
@@ -19,8 +19,8 @@ use Narsil\Http\Controllers\UserController;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Hosts\Host;
 use Narsil\Models\Policies\Role;
-use Narsil\Models\Sites\Site;
 use Narsil\Models\User;
 
 #endregion
@@ -79,10 +79,10 @@ Route::middleware([
         resource(Field::TABLE, FieldController::class, [
             'show',
         ]);
-        resource(Role::TABLE, RoleController::class, [
+        resource(Host::TABLE, HostController::class, [
             'show',
         ]);
-        resource(Site::TABLE, SiteController::class, [
+        resource(Role::TABLE, RoleController::class, [
             'show',
         ]);
         resource(Template::TABLE, TemplateController::class, [

@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Models\Sites;
+namespace Narsil\Models\Hosts;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Models\Sites\Site;
+use Narsil\Models\Hosts\Host;
 use Narsil\Traits\HasAuditLogs;
 
 #endregion
@@ -16,7 +16,7 @@ use Narsil\Traits\HasAuditLogs;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class SiteSubdomain extends Model
+class HostLocale extends Model
 {
     use HasAuditLogs;
 
@@ -49,9 +49,23 @@ class SiteSubdomain extends Model
      *
      * @var string
      */
-    final public const TABLE = 'site_subdomains';
+    final public const TABLE = 'host_locales';
 
     #region • COLUMNS
+
+    /**
+     * The name of the "country" column.
+     *
+     * @var string
+     */
+    final public const COUNTRY = 'country';
+
+    /**
+     * The name of the "host id" column.
+     *
+     * @var string
+     */
+    final public const HOST_ID = 'host_id';
 
     /**
      * The name of the "id" column.
@@ -61,25 +75,18 @@ class SiteSubdomain extends Model
     final public const ID = 'id';
 
     /**
+     * The name of the "pattern" column.
+     *
+     * @var string
+     */
+    final public const PATTERN = 'pattern';
+
+    /**
      * The name of the "position" column.
      *
      * @var string
      */
     final public const POSITION = 'position';
-
-    /**
-     * The name of the "site id" column.
-     *
-     * @var string
-     */
-    final public const SITE_ID = 'site_id';
-
-    /**
-     * The name of the "subdomain" column.
-     *
-     * @var string
-     */
-    final public const SUBDOMAIN = 'subdomain';
 
     #endregion
 
@@ -102,11 +109,11 @@ class SiteSubdomain extends Model
     final public const RELATION_LANGUAGES = 'languages';
 
     /**
-     * The name of the "site" relation.
+     * The name of the "host" relation.
      *
      * @var string
      */
-    final public const RELATION_SITE = 'site';
+    final public const RELATION_HOST = 'host';
 
     #endregion
 
@@ -125,25 +132,25 @@ class SiteSubdomain extends Model
     {
         return $this
             ->hasMany(
-                SiteSubdomainLanguage::class,
-                SiteSubdomainLanguage::SUBDOMAIN_ID,
+                HostLocaleLanguage::class,
+                HostLocaleLanguage::LOCALE_ID,
                 self::ID
             )
-            ->orderBy(SiteSubdomainLanguage::POSITION);
+            ->orderBy(HostLocaleLanguage::POSITION);
     }
 
     /**
-     * Get the associated site.
+     * Get the associated host.
      *
      * @return BelongsTo
      */
-    public function site(): BelongsTo
+    public function host(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Site::class,
-                self::SITE_ID,
-                Site::ID
+                Host::class,
+                self::HOST_ID,
+                Host::ID
             );
     }
 

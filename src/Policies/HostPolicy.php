@@ -5,7 +5,7 @@ namespace Narsil\Policies;
 #region USE
 
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Sites\Site;
+use Narsil\Models\Hosts\Host;
 use Narsil\Models\User;
 use Narsil\Services\PermissionService;
 
@@ -15,12 +15,12 @@ use Narsil\Services\PermissionService;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class SitePolicy
+class HostPolicy
 {
     #region PUBLIC METHODS
 
     /**
-     * Determine whether the user can create sites.
+     * Determine whether the user can create hosts.
      *
      * @param User $user
      *
@@ -28,28 +28,28 @@ class SitePolicy
      */
     public function create(User $user): bool
     {
-        $permission = PermissionService::getName(Site::TABLE, PermissionEnum::CREATE->value);
+        $permission = PermissionService::getName(Host::TABLE, PermissionEnum::CREATE->value);
 
         return $user->hasPermission($permission);
     }
 
     /**
-     * Determine whether the user can delete the site.
+     * Determine whether the user can delete the host.
      *
      * @param User $user
-     * @param Site $model
+     * @param Host $model
      *
      * @return boolean
      */
-    public function delete(User $user, Site $model): bool
+    public function delete(User $user, Host $model): bool
     {
-        $permission = PermissionService::getName(Site::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getName(Host::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
 
     /**
-     * Determine whether the user can delete sites.
+     * Determine whether the user can delete hosts.
      *
      * @param User $user
      *
@@ -57,43 +57,43 @@ class SitePolicy
      */
     public function deleteAny(User $user): bool
     {
-        $permission = PermissionService::getName(Site::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getName(Host::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
 
     /**
-     * Determine whether the user can update the site.
+     * Determine whether the user can update the host.
      *
      * @param User $user
-     * @param Site $model
+     * @param Host $model
      *
      * @return boolean
      */
-    public function update(User $user, Site $model): bool
+    public function update(User $user, Host $model): bool
     {
-        $permission = PermissionService::getName(Site::TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getName(Host::TABLE, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
 
     /**
-     * Determine whether the user can view the site.
+     * Determine whether the user can view the host.
      *
      * @param User $user
-     * @param Site $model
+     * @param Host $model
      *
      * @return boolean
      */
-    public function view(User $user, Site $model): bool
+    public function view(User $user, Host $model): bool
     {
-        $permission = PermissionService::getName(Site::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getName(Host::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
 
     /**
-     * Determine whether the user can view sites.
+     * Determine whether the user can view hosts.
      *
      * @param User $user
      *
@@ -101,7 +101,7 @@ class SitePolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(Site::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getName(Host::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

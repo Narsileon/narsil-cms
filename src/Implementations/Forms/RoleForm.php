@@ -103,8 +103,8 @@ class RoleForm extends AbstractForm implements Contract
                 return $permissions->map(function (Permission $permission)
                 {
                     return new SelectOption(
-                        $permission->{Permission::NAME},
-                        $permission->{Permission::NAME}
+                        label: $permission->{Permission::NAME},
+                        value: $permission->{Permission::NAME},
                     );
                 })->toArray();
             });

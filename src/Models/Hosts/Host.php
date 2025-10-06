@@ -1,12 +1,13 @@
 <?php
 
-namespace Narsil\Models\Sites;
+namespace Narsil\Models\Hosts;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Traits\HasAuditLogs;
+use Narsil\Traits\HasDatetimes;
 
 #endregion
 
@@ -14,9 +15,10 @@ use Narsil\Traits\HasAuditLogs;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class SiteSubdomainLanguage extends Model
+class Host extends Model
 {
     use HasAuditLogs;
+    use HasDatetimes;
 
     #region CONSTRUCTOR
 
@@ -31,6 +33,11 @@ class SiteSubdomainLanguage extends Model
             self::ID,
         ], $this->guarded);
 
+        $this->with = array_merge([
+            self::RELATION_LOCALES,
+        ], $this->with);
+
+
         parent::__construct($attributes);
     }
 
@@ -43,9 +50,16 @@ class SiteSubdomainLanguage extends Model
      *
      * @var string
      */
-    final public const TABLE = 'site_subdomain_languages';
+    final public const TABLE = 'hosts';
 
     #region • COLUMNS
+
+    /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
 
     /**
      * The name of the "id" column.
@@ -55,36 +69,31 @@ class SiteSubdomainLanguage extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "language" column.
+     * The name of the "name" column.
      *
      * @var string
      */
-    final public const LANGUAGE = 'language';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
-
-    /**
-     * The name of the "subdomain id" column.
-     *
-     * @var string
-     */
-    final public const SUBDOMAIN_ID = 'subdomain_id';
+    final public const NAME = 'name';
 
     #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "locales" count.
+     *
+     * @var string
+     */
+    final public const COUNT_LOCALES = 'locales_count';
 
     #region • RELATIONS
 
     /**
-     * The name of the "subdomain" relation.
+     * The name of the "locales" relation.
      *
      * @var string
      */
-    final public const RELATION_SUBDOMAIN = 'subdomain';
+    final public const RELATION_LOCALES = 'locales';
 
     #endregion
 
@@ -95,18 +104,19 @@ class SiteSubdomainLanguage extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated site.
+     * Get the associated locales.
      *
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function subdomain(): BelongsTo
+    public function locales(): HasMany
     {
         return $this
-            ->belongsTo(
-                SiteSubdomain::class,
-                self::SUBDOMAIN_ID,
-                SiteSubdomain::ID
-            );
+            ->hasMany(
+                HostLocale::class,
+                HostLocale::HOST_ID,
+                self::ID
+            )
+            ->orderBy(HostLocale::POSITION);
     }
 
     #endregion

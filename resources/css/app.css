@@ -22,8 +22,8 @@
   }
 
   * {
-    scrollbar-width: thin;
     scrollbar-color: var(--scale-500) transparent;
+    scrollbar-width: thin;
   }
 
   .dark * {

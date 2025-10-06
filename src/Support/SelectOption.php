@@ -24,10 +24,8 @@ class SelectOption implements JsonSerializable
      */
     public function __construct(string $label, string $value)
     {
-        $this->option = [
-            'label' => $label,
-            'value' => $value,
-        ];
+        $this->label = $label;
+        $this->value = $value;
     }
 
     #endregion
@@ -35,11 +33,32 @@ class SelectOption implements JsonSerializable
     #region PROPERTIES
 
     /**
-     * The array representation of the option.
+     * The icon of the select option.
      *
-     * @var array
+     * @var string
      */
-    protected array $option;
+    protected ?string $icon = null;
+
+    /**
+     * The identifier of the select option.
+     *
+     * @var string
+     */
+    protected ?string $identifier = null;
+
+    /**
+     * The label of the select option.
+     *
+     * @var string
+     */
+    protected string $label = '';
+
+    /**
+     * The value of the select option.
+     *
+     * @var string
+     */
+    protected string $value = '';
 
     #endregion
 
@@ -50,38 +69,116 @@ class SelectOption implements JsonSerializable
      */
     public function jsonSerialize(): mixed
     {
-        return $this->option;
+        return [
+            'icon' => $this->icon,
+            'identifier' => $this->identifier,
+            'label' => $this->label,
+            'value' => $this->value,
+        ];
     }
 
-    #region • FLUENT METHODS
+    #region • GETTERS
 
     /**
-     * Sets the icon.
+     * Get the icon of the select option.
+     *
+     * @return string|null
+     */
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    /**
+     * Get the identifier of the select option.
+     *
+     * @return string|null
+     */
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * Get the label of the select option.
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    /**
+     * Get the value of the select option.
+     *
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
+    #endregion
+
+    #region • SETTERS
+
+    /**
+     * Set the icon of the select option.
      *
      * @param string $icon
      *
      * @return static
      */
-    public function icon(string $icon): static
+    public function setIcon(string $icon): static
     {
-        $this->option['icon'] = $icon;
+        $this->icon = $icon;
 
         return $this;
     }
 
     /**
-     * Sets the identifier.
+     * Set the identifier of the select option.
      *
      * @param string $identifier
      *
      * @return static
      */
-    public function identifier(string $identifier): static
+    public function setIdentifier(string $identifier): static
     {
-        $this->option['identifier'] = $identifier;
+        $this->identifier = $identifier;
 
         return $this;
     }
+
+    /**
+     * Sets the label of the select option.
+     *
+     * @param string $label
+     *
+     * @return static
+     */
+    public function setLabel(string $label): static
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Sets the value of the select option.
+     *
+     * @param string $value
+     *
+     * @return static
+     */
+    public function setValue(string $value): static
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
 
     #endregion
 

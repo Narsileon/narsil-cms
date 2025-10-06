@@ -12,7 +12,7 @@ use Narsil\Contracts\Form;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-interface SiteForm extends Form
+interface HostForm extends Form
 {
     //
 }

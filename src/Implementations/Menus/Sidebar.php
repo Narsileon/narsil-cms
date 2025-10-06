@@ -91,9 +91,9 @@ class Sidebar extends AbstractMenu implements Contract
         return [
             new MenuItem()
                 ->group($group)
-                ->href(route('sites.index'))
+                ->href(route('hosts.index'))
                 ->icon('globe')
-                ->label(trans('narsil::tables.sites')),
+                ->label(trans('narsil::tables.hosts')),
             new MenuItem()
                 ->group($group)
                 ->href(route('users.index'))

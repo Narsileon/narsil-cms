@@ -6,8 +6,7 @@ namespace Narsil\Implementations\Tables;
 
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteSubdomain;
+use Narsil\Models\Hosts\Host;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -16,7 +15,7 @@ use Narsil\Support\TableColumn;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class SiteTable extends AbstractTable
+class HostTable extends AbstractTable
 {
     #region CONSTRUCTOR
 
@@ -25,7 +24,7 @@ class SiteTable extends AbstractTable
      */
     public function __construct()
     {
-        parent::__construct(Site::TABLE);
+        parent::__construct(Host::TABLE);
     }
 
     #endregion
@@ -39,33 +38,29 @@ class SiteTable extends AbstractTable
     {
         return [
             new TableColumn(
-                id: Site::ID,
+                id: Host::ID,
                 visibility: true,
             ),
             new TableColumn(
-                id: Site::NAME,
+                id: Host::NAME,
                 visibility: true,
             ),
             new TableColumn(
-                id: Site::DOMAIN,
+                id: Host::HANDLE,
                 visibility: true,
             ),
             new TableColumn(
-                id: Site::PATTERN,
-                visibility: true,
-            ),
-            new TableColumn(
-                header: trans('narsil::validation.attributes.domains'),
-                id: Site::COUNT_SUBDOMAINS,
+                header: trans('narsil::validation.attributes.locales'),
+                id: Host::COUNT_LOCALES,
                 type: TypeNameEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
-                id: Site::CREATED_AT,
+                id: Host::CREATED_AT,
                 visibility: false,
             ),
             new TableColumn(
-                id: Site::UPDATED_AT,
+                id: Host::UPDATED_AT,
                 visibility: false,
             ),
         ];

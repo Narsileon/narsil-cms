@@ -6,8 +6,8 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Hosts\Host;
 use Narsil\Models\Policies\Role;
-use Narsil\Models\Sites\Site;
 use Narsil\Models\User;
 
 #endregion
@@ -58,6 +58,14 @@ return [
             'replicated_many' => 'The fields have been successfully duplicated.',
             'updated' => 'The field has been successfully updated.',
         ],
+        Host::TABLE => [
+            'created' => 'The host has been successfully created.',
+            'deleted' => 'The host has been successfully deleted.',
+            'deleted_many' => 'The hosts have been successfully deleted.',
+            'replicated' => 'The host has been successfully duplicated.',
+            'replicated_many' => 'The hosts have been successfully duplicated.',
+            'updated' => 'The host has been successfully updated.',
+        ],
         Role::TABLE => [
             'created' => 'The role has been successfully created.',
             'deleted' => 'The role has been successfully deleted.',
@@ -65,14 +73,6 @@ return [
             'replicated' => 'The role has been successfully duplicated.',
             'replicated_many' => 'The roles have been successfully duplicated.',
             'updated' => 'The role has been successfully updated.',
-        ],
-        Site::TABLE => [
-            'created' => 'The site has been successfully created.',
-            'deleted' => 'The site has been successfully deleted.',
-            'deleted_many' => 'The sites have been successfully deleted.',
-            'replicated' => 'The site has been successfully duplicated.',
-            'replicated_many' => 'The sites have been successfully duplicated.',
-            'updated' => 'The site has been successfully updated.',
         ],
         Template::TABLE => [
             'created' => 'The template has been successfully created.',

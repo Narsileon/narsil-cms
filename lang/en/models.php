@@ -3,10 +3,9 @@
 return [
     'block'      => 'Block',
     'field'      => 'Field',
+    'host'       => 'Host',
     'permission' => 'Permission',
     'role'       => 'Role',
-    'site_group' => 'Site group',
-    'site'       => 'Site',
     'template'   => 'Template',
     'user'       => 'User',
 ];

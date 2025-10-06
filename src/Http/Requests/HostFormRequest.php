@@ -5,10 +5,10 @@ namespace Narsil\Http\Requests;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\FormRequests\SiteFormRequest as Contract;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SiteSubdomain;
-use Narsil\Models\Sites\SiteSubdomainLanguage;
+use Narsil\Contracts\FormRequests\HostFormRequest as Contract;
+use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocale;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Validation\FormRule;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class SiteFormRequest implements Contract
+class HostFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -27,40 +27,40 @@ class SiteFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            Site::DOMAIN => [
+            Host::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
-            Site::NAME => [
-                FormRule::STRING,
-                FormRule::REQUIRED,
-            ],
-            Site::PATTERN => [
+            Host::NAME => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
 
-            Site::RELATION_SUBDOMAINS => [
+            Host::RELATION_LOCALES => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
-            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::ID => [
-                FormRule::INTEGER,
+            Host::RELATION_LOCALES . '.*.' . HostLocale::COUNTRY => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
+            Host::RELATION_LOCALES . '.*.' . HostLocale::ID => [
+                FormRule::STRING,
                 FormRule::SOMETIMES,
             ],
-            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::SUBDOMAIN => [
+            Host::RELATION_LOCALES . '.*.' . HostLocale::PATTERN => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
-            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::RELATION_LANGUAGES => [
+            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES => [
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
-            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::RELATION_LANGUAGES . '.*.' . SiteSubdomainLanguage::ID => [
+            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::ID => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
-            Site::RELATION_SUBDOMAINS . '.*.' . SiteSubdomain::RELATION_LANGUAGES . '.*.' . SiteSubdomainLanguage::LANGUAGE => [
+            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::LANGUAGE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],

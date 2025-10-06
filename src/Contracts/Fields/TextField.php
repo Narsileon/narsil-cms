@@ -74,6 +74,15 @@ interface TextField extends Contract
     public function setPlaceholder(string $placeholder): static;
 
     /**
+     * Set the smart values attribute.
+     *
+     * @param string $smartValues
+     *
+     * @return static
+     */
+    public function setSmartValues(string $smartValues): static;
+
+    /**
      * Set the required attribute.
      *
      * @param boolean $required

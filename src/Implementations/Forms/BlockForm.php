@@ -145,9 +145,12 @@ class BlockForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return new SelectOption($block->{Block::NAME}, $block->{Block::HANDLE})
-                    ->icon($block->{Block::ATTRIBUTE_ICON})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                return new SelectOption(
+                    label: $block->{Block::NAME},
+                    value: $block->{Block::HANDLE},
+                )
+                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -162,9 +165,12 @@ class BlockForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Field $field)
             {
-                return new SelectOption($field->{Field::NAME}, $field->{Field::HANDLE})
-                    ->icon($field->{Field::ATTRIBUTE_ICON})
-                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
+                return new SelectOption(
+                    label: $field->{Field::NAME},
+                    value: $field->{Field::HANDLE},
+                )
+                    ->setIcon($field->{Field::ATTRIBUTE_ICON})
+                    ->setIdentifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -179,9 +185,12 @@ class BlockForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return new SelectOption($block->{Block::NAME}, $block->{Block::HANDLE})
-                    ->icon($block->{Block::ATTRIBUTE_ICON})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                return new SelectOption(
+                    label: $block->{Block::NAME},
+                    value: $block->{Block::HANDLE},
+                )
+                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }

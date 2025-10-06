@@ -146,6 +146,16 @@ class TextField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function setSmartValues(string $smartValues): static
+    {
+        $this->props['smartValues'] = $smartValues;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function setRequired(bool $required): static
     {
         $this->props['required'] = $required;

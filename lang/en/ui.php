@@ -26,6 +26,7 @@ return [
     'copy_clipboard'     => 'Copy to clipboard',
     'create'             => 'Create',
     'dashboard'          => 'Dashboard',
+    'default'            => 'Default',
     'default_handle'     => 'Default handle',
     'default_name'       => 'Default name',
     'delete_selected'    => 'Delete selected',

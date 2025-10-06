@@ -170,7 +170,8 @@ class FieldForm extends AbstractForm implements Contract
             $options[] = new SelectOption(
                 label: trans('narsil::fields.' . $abstract),
                 value: $abstract
-            )->icon($concrete::getIcon());
+            )
+                ->setIcon($concrete::getIcon());
         }
 
         return $options;

@@ -7,7 +7,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Column } from "@tanstack/react-table";
-import { upperFirst } from "lodash";
+import { concat, upperFirst } from "lodash";
 import { ComponentProps } from "react";
 
 import { Button, Card } from "@narsil-cms/blocks";
@@ -46,14 +46,14 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
 
     const menuIndex = filteredOrder.indexOf("_menu");
 
-    const newOrder = [
-      ...filteredOrder.slice(
-        0,
-        menuIndex === -1 ? filteredOrder.length : menuIndex,
-      ),
-      column.id,
-      ...(menuIndex === -1 ? [] : filteredOrder.slice(menuIndex)),
-    ];
+    const newOrder =
+      menuIndex === -1
+        ? concat(filteredOrder, column.id)
+        : concat(
+            filteredOrder.slice(0, menuIndex),
+            column.id,
+            filteredOrder.slice(menuIndex),
+          );
 
     dataTable.setColumnOrder(newOrder);
   }

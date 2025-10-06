@@ -103,7 +103,10 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 'label' => trans("narsil::colors.$case->value"),
             ])->render();
 
-            $options[] = new SelectOption($optionLabel, $case->value);
+            $options[] = new SelectOption(
+                label: $optionLabel,
+                value: $case->value,
+            );
         }
 
         return $options;
