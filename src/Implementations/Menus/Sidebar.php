@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Menus;
 use Narsil\Contracts\Menus\Sidebar as Contract;
 use Narsil\Implementations\AbstractMenu;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Hosts\Host;
 use Narsil\Support\TranslationsBag;
 use Narsil\Support\MenuItem;
 
@@ -47,6 +48,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->icon('chart-pie')
                     ->label(trans('narsil::ui.dashboard')),
             ],
+            $this->getSiteGroup(),
             $this->getCollectionGroup(),
             $this->getStructuresGroup(),
             $this->getManagementGroup(),
@@ -74,7 +76,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->href(route('collections.index', [
                     'collection' => $template->{Template::HANDLE},
                 ]))
-                ->icon('layout')
+                ->icon('layers')
                 ->label($template->{Template::NAME});
         }
 
@@ -92,7 +94,7 @@ class Sidebar extends AbstractMenu implements Contract
             new MenuItem()
                 ->group($group)
                 ->href(route('hosts.index'))
-                ->icon('globe')
+                ->icon('server')
                 ->label(trans('narsil::tables.hosts')),
             new MenuItem()
                 ->group($group)
@@ -106,6 +108,32 @@ class Sidebar extends AbstractMenu implements Contract
                 ->label(trans('narsil::tables.roles')),
         ];
     }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getSiteGroup(): array
+    {
+        $menuItems = [];
+
+        $group = trans('narsil::ui.sites');
+
+        $hosts = Host::query()
+            ->orderBy(Host::NAME)
+            ->get();
+
+        foreach ($hosts as $host)
+        {
+            $menuItems[] = new MenuItem()
+                ->group($group)
+                ->href(route('collections.summary'))
+                ->icon('globe')
+                ->label($host->{Host::NAME});
+        }
+
+        return $menuItems;
+    }
+
 
     /**
      * @return array<MenuItem>
@@ -144,7 +172,7 @@ class Sidebar extends AbstractMenu implements Contract
             new MenuItem()
                 ->group($group)
                 ->href(route('graphiql'))
-                ->icon('database')
+                ->icon('braces')
                 ->label(trans('narsil::ui.graphiql'))
                 ->target('_blank'),
         ];

@@ -79,6 +79,7 @@ return [
     'settings'           => 'Settings',
     'show'               => 'Show',
     'sidebar'            => 'Sidebar',
+    'sites'              => 'Sites',
     'structure'          => 'Structure',
     'structures'         => 'Structures',
     'system'             => 'System',
