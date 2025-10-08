@@ -26,8 +26,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->bootMiddlewares();
-        $this->bootRoutes();
+        $this->bootNarsilMiddleware();
+
+        $this->bootApiRoutes();
+        $this->bootGraphQLRoutes();
+        $this->bootNarsilRoutes();
+        $this->bootWebRoutes();
     }
 
     #endregion
@@ -37,11 +41,36 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    protected function bootMiddlewares(): void
+    protected function bootApiRoutes(): void
+    {
+
+        Route::middleware('api')
+            ->prefix('api')
+            ->group(__DIR__ . '/../../routes/api.php');
+    }
+
+    /**
+     * @return void
+     */
+    protected function bootGraphQLRoutes(): void
+    {
+
+        Route::middleware([
+            'web',
+            'narsil-web',
+        ])
+            ->prefix('narsil')
+            ->group(__DIR__ . '/../../routes/graphql.php');
+    }
+
+    /**
+     * @return void
+     */
+    protected function bootNarsilMiddleware(): void
     {
         $router = $this->app->make(Router::class);
 
-        $router->middlewareGroup('narsil.web', [
+        $router->middlewareGroup('narsil-web', [
             LocaleMiddleware::class,
             UserConfigurationMiddleware::class,
             HandleInertiaRequests::class,
@@ -51,25 +80,25 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    protected function bootRoutes(): void
+    protected function bootNarsilRoutes(): void
     {
         Route::middleware([
             'web',
-            'narsil.web',
+            'narsil-web',
         ])
             ->prefix('narsil')
-            ->group(__DIR__ . '/../../routes/web.php');
+            ->group(__DIR__ . '/../../routes/narsil.php');
+    }
 
-        Route::middleware('api')
-            ->prefix('api')
-            ->group(__DIR__ . '/../../routes/api.php');
-
+    /**
+     * @return void
+     */
+    protected function bootWebRoutes(): void
+    {
         Route::middleware([
             'web',
-            'narsil.web',
         ])
-            ->prefix('narsil')
-            ->group(__DIR__ . '/../../routes/graphql.php');
+            ->group(__DIR__ . '/../../routes/web.php');
     }
 
     #endregion

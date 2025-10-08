@@ -88,6 +88,14 @@ class HostLocale extends Model
      */
     final public const POSITION = 'position';
 
+    /**
+     * The name of the "regex" column.
+     *
+     * @var string
+     */
+    final public const REGEX = 'regex';
+
+
     #endregion
 
     #region • COUNTS

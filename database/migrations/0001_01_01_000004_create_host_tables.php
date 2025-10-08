@@ -93,6 +93,8 @@ return new class extends Migration
             $blueprint
                 ->string(HostLocale::PATTERN);
             $blueprint
+                ->string(HostLocale::REGEX);
+            $blueprint
                 ->timestamps();
         });
     }
