@@ -41,7 +41,6 @@ type Pages {
 	deleted_at: DateTime
 	deleted_by: Int
 	title: String
-	relations: String
 	meta_title: String
 	meta_description: String
 	open_graph_type: String
