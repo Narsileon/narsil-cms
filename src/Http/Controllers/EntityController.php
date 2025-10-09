@@ -21,10 +21,12 @@ use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
+use Narsil\Models\Entities\EntityBlockField;
 
 #endregion
 
@@ -421,10 +423,20 @@ class EntityController extends AbstractController
             $entityBlock = EntityBlock::create([
                 EntityBlock::ENTITY_UUID => $entity->{Entity::UUID},
                 EntityBlock::BLOCK_ID => Arr::get($block, EntityBlock::RELATION_BLOCK . '.' . Block::ID),
-                EntityBlock::PARENT_ID => $parent?->{EntityBlock::ID},
+                EntityBlock::PARENT_UUID => $parent?->{EntityBlock::UUID},
                 EntityBlock::POSITION => $key,
-                EntityBlock::VALUES => Arr::get($block, EntityBlock::VALUES, []),
             ]);
+
+            $elements = Arr::get($block, EntityBlock::RELATION_BLOCK . '.' . Block::RELATION_ELEMENTS, []);
+
+            foreach ($elements as $key => $element)
+            {
+                EntityBlockField::create([
+                    EntityBlockField::BLOCK_UUID => $entityBlock->{EntityBlock::UUID},
+                    EntityBlockField::FIELD_ID => Arr::get($element, BlockElement::ELEMENT_ID),
+                    EntityBlockField::VALUE => Arr::get($block, EntityBlock::RELATION_FIELDS . '.' . $key . '.' . EntityBlockField::VALUE),
+                ]);
+            }
 
             if ($children = Arr::get($block, EntityBlock::RELATION_CHILDREN))
             {

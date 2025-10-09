@@ -56,8 +56,8 @@ function Builder({ name, sets }: BuilderProps) {
     setActive(null);
 
     if (over) {
-      const activeIndex = nodes.findIndex((node) => node.id == active.id);
-      const overIndex = nodes.findIndex((node) => node.id == over.id);
+      const activeIndex = nodes.findIndex((node) => node.uuid == active.id);
+      const overIndex = nodes.findIndex((node) => node.uuid == over.id);
 
       if (activeIndex !== overIndex) {
         setNodes(arrayMove(nodes, activeIndex, overIndex));
@@ -66,7 +66,7 @@ function Builder({ name, sets }: BuilderProps) {
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const node = nodes.find((node) => node.id == active.id);
+    const node = nodes.find((node) => node.uuid == active.id);
 
     if (node) {
       setActive(node);
@@ -81,14 +81,17 @@ function Builder({ name, sets }: BuilderProps) {
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
     >
-      <SortableContext items={nodes} strategy={verticalListSortingStrategy}>
+      <SortableContext
+        items={nodes.map((node) => node.uuid)}
+        strategy={verticalListSortingStrategy}
+      >
         <div className="col-span-full flex flex-col items-center justify-center">
           <div className="bg-constructive size-4 rounded-full" />
           {nodes.map((node, index) => {
             const baseHandle = `${name}.${index}`;
 
             return (
-              <Fragment key={node.id}>
+              <Fragment key={node.uuid}>
                 <BuilderAdd
                   sets={sets}
                   onAdd={(node) => {
@@ -99,7 +102,11 @@ function Builder({ name, sets }: BuilderProps) {
                     setNodes(newNodes);
                   }}
                 />
-                <BuilderItem baseHandle={baseHandle} id={node.id} node={node} />
+                <BuilderItem
+                  baseHandle={baseHandle}
+                  id={node.uuid}
+                  node={node}
+                />
               </Fragment>
             );
           })}
@@ -112,7 +119,7 @@ function Builder({ name, sets }: BuilderProps) {
       </SortableContext>
       <DragOverlay>
         {active ? (
-          <BuilderItem collapsed={true} id={active.id} node={active} />
+          <BuilderItem collapsed={true} id={active.uuid} node={active} />
         ) : null}
       </DragOverlay>
     </DndContext>

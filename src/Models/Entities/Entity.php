@@ -113,6 +113,7 @@ class Entity extends Model
         static::$template = $template;
 
         EntityBlock::setTemplate($template);
+        EntityBlockField::setTemplate($template);
     }
 
     #region • RELATIONSHIPS
@@ -130,7 +131,7 @@ class Entity extends Model
                 EntityBlock::ENTITY_UUID,
                 self::UUID,
             )
-            ->whereNull(EntityBlock::PARENT_ID);
+            ->whereNull(EntityBlock::PARENT_UUID);
     }
 
     #endregion

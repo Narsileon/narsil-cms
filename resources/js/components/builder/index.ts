@@ -5,13 +5,13 @@ import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 
 export type BuilderNode = {
-  block: Block;
   block_id: number;
+  block: Block;
   children: BuilderNode[];
   entity_uuid: string;
-  id: number | string;
   parent_id: number | null;
   position: number;
+  uuid: string;
   values: Record<string, unknown>;
 };
 

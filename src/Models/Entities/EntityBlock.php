@@ -4,11 +4,11 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
-use Narsil\Casts\JsonCast;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
@@ -23,6 +23,7 @@ use Narsil\Traits\HasTemplate;
 class EntityBlock extends Model
 {
     use HasTemplate;
+    use HasUuids;
 
     #region CONSTRUCTOR
 
@@ -32,19 +33,18 @@ class EntityBlock extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = static::getTableName();
+
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->casts = array_merge([
-            self::VALUES => JsonCast::class,
-        ], $this->casts);
-
         $this->guarded = array_merge([
-            self::ID,
+            self::UUID,
         ], $this->guarded);
 
         $this->with = array_merge([
             self::RELATION_BLOCK,
             self::RELATION_CHILDREN,
+            self::RELATION_FIELDS,
         ], $this->with);
 
         parent::__construct($attributes);
@@ -59,7 +59,7 @@ class EntityBlock extends Model
      *
      * @var string
      */
-    final public const TABLE = 'entity_elements';
+    final public const TABLE = 'entity_blocks';
 
     #region • COLUMNS
 
@@ -78,18 +78,11 @@ class EntityBlock extends Model
     final public const ENTITY_UUID = 'entity_uuid';
 
     /**
-     * The name of the "id" column.
+     * The name of the "parent uuid" column.
      *
      * @var string
      */
-    final public const ID = 'id';
-
-    /**
-     * The name of the "parent id" column.
-     *
-     * @var string
-     */
-    final public const PARENT_ID = 'parent_id';
+    final public const PARENT_UUID = 'parent_uuid';
 
     /**
      * The name of the "position" column.
@@ -99,11 +92,11 @@ class EntityBlock extends Model
     final public const POSITION = 'position';
 
     /**
-     * The name of the "values" column.
+     * The name of the "uuid" column.
      *
      * @var string
      */
-    final public const VALUES = 'values';
+    final public const UUID = 'uuid';
 
     #endregion
 
@@ -129,6 +122,13 @@ class EntityBlock extends Model
      * @var string
      */
     final public const RELATION_ENTITY = 'entity';
+
+    /**
+     * The name of the "children" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FIELDS = 'fields';
 
     /**
      * The name of the "parent" relation.
@@ -171,7 +171,7 @@ class EntityBlock extends Model
     }
 
     /**
-     * Get the children.
+     * Get the associated children.
      *
      * @return BelongsTo
      */
@@ -180,8 +180,8 @@ class EntityBlock extends Model
         return $this
             ->hasMany(
                 self::class,
-                self::PARENT_ID,
-                self::ID
+                self::PARENT_UUID,
+                self::UUID
             );
     }
 
@@ -201,7 +201,23 @@ class EntityBlock extends Model
     }
 
     /**
-     * Get the parent.
+     * Get the associated fields.
+     *
+     * @return HasMany
+     */
+    public function fields(): HasMany
+    {
+        return $this
+            ->hasMany(
+                EntityBlockField::class,
+                EntityBlockField::BLOCK_UUID,
+                self::UUID,
+            );
+    }
+
+
+    /**
+     * Get the associated parent.
      *
      * @return BelongsTo
      */
@@ -210,8 +226,8 @@ class EntityBlock extends Model
         return $this
             ->belongsTo(
                 self::class,
-                self::PARENT_ID,
-                self::ID,
+                self::PARENT_UUID,
+                self::UUID,
             );
     }
 

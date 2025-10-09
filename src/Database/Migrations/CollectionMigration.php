@@ -8,9 +8,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
+use Narsil\Models\Entities\EntityBlockField;
 use Narsil\Models\User;
 
 #endregion
@@ -52,6 +54,10 @@ class CollectionMigration extends Migration
         {
             $this->createEntityBlocksTable();
         }
+        if (!Schema::hasTable(EntityBlockField::getTableName()))
+        {
+            $this->createEntityBlockFieldsTable();
+        }
     }
 
     /**
@@ -61,6 +67,7 @@ class CollectionMigration extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(EntityBlockField::getTableName());
         Schema::dropIfExists(EntityBlock::getTableName());
         Schema::dropIfExists(Entity::getTableName());
     }
@@ -118,15 +125,16 @@ class CollectionMigration extends Migration
         Schema::create(EntityBlock::getTableName(), function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(EntityBlock::ID);
+                ->uuid(EntityBlock::UUID)
+                ->primary();
             $blueprint
                 ->foreignUuid(EntityBlock::ENTITY_UUID)
                 ->constrained(Entity::getTableName(), Entity::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(EntityBlock::PARENT_ID)
+                ->foreignUuid(EntityBlock::PARENT_UUID)
                 ->nullable()
-                ->constrained(EntityBlock::getTableName(), EntityBlock::ID)
+                ->constrained(EntityBlock::getTableName(), EntityBlock::UUID)
                 ->nullOnDelete();
             $blueprint
                 ->foreignId(EntityBlock::BLOCK_ID)
@@ -135,8 +143,29 @@ class CollectionMigration extends Migration
             $blueprint
                 ->integer(EntityBlock::POSITION)
                 ->default(0);
+        });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function createEntityBlockFieldsTable(): void
+    {
+        Schema::create(EntityBlockField::getTableName(), function (Blueprint $blueprint)
+        {
             $blueprint
-                ->json(EntityBlock::VALUES)
+                ->uuid(EntityBlockField::UUID)
+                ->primary();
+            $blueprint
+                ->foreignUuid(EntityBlockField::BLOCK_UUID)
+                ->constrained(EntityBlock::getTableName(), EntityBlock::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(EntityBlockField::FIELD_ID)
+                ->constrained(Field::TABLE, Field::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->json(EntityBlockField::VALUE)
                 ->nullable();
         });
     }

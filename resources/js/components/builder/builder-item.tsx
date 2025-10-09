@@ -22,13 +22,12 @@ function BuilderItem({ baseHandle, node, ...props }: BuilderItemProps) {
       {node.block.elements?.map((element, index) => {
         const childElement = element.element;
 
-        const childHandle = element.handle ?? childElement.handle;
         const childName = element.name ?? childElement.name;
 
         return (
           <FormRenderer
             {...element.element}
-            handle={`${baseHandle}.values.${childHandle}`}
+            handle={`${baseHandle}.fields.${index}.value`}
             name={childName}
             key={index}
           />
