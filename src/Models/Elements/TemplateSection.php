@@ -30,9 +30,9 @@ class TemplateSection extends Model
     {
         $this->table = self::TABLE;
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         $this->touches = [
             self::RELATION_TEMPLATE,

@@ -4,6 +4,7 @@ namespace Narsil\Services;
 
 #region USE
 
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -78,30 +79,40 @@ abstract class MigrationService
     {
         $handle = $field->{Field::HANDLE};
 
-        $column = match ($field->{Field::TYPE})
+        if ($field->{Field::TRANSLATABLE})
         {
-            CheckboxField::class => $table->boolean($handle),
-            DateField::class => $table->date($handle),
-            EmailField::class => $table->string($handle),
-            NumberField::class => $table->integer($handle),
-            PasswordField::class => $table->string($handle),
-            RangeField::class => $table->integer($handle),
-            RelationsField::class => $table->json($handle),
-            RichTextField::class => $table->text($handle),
-            SelectField::class => $table->string($handle),
-            SwitchField::class => $table->boolean($handle),
-            TextField::class => $table->text($handle),
-            TimeField::class => $table->time($handle),
-            default => null,
-        };
+            $column = $table
+                ->json($handle)
+                ->default(new Expression('(JSON_OBJECT())'));
+        }
+        else
+        {
+            $column = match ($field->{Field::TYPE})
+            {
+                CheckboxField::class => $table->boolean($handle),
+                DateField::class => $table->date($handle),
+                EmailField::class => $table->string($handle),
+                NumberField::class => $table->integer($handle),
+                PasswordField::class => $table->string($handle),
+                RangeField::class => $table->integer($handle),
+                RelationsField::class => $table->json($handle),
+                RichTextField::class => $table->text($handle),
+                SelectField::class => $table->string($handle),
+                SwitchField::class => $table->boolean($handle),
+                TextField::class => $table->text($handle),
+                TimeField::class => $table->time($handle),
+                default => null,
+            };
 
-        if ($column === null)
-        {
-            return;
+            if ($column === null)
+            {
+                return;
+            }
+
+            $column->default(Arr::get($field->{Field::SETTINGS}, 'value', null));
         }
 
         $column->nullable(!Arr::get($field->{Field::SETTINGS}, 'required', false));
-        $column->default(Arr::get($field->{Field::SETTINGS}, 'value', null));
     }
 
     /**

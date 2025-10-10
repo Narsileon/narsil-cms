@@ -29,9 +29,9 @@ class HostLocale extends Model
     {
         $this->table = self::TABLE;
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         $this->with = array_merge([
             self::RELATION_LANGUAGES,

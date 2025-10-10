@@ -10,6 +10,10 @@ use Narsil\Models\Policies\Role;
 
 #endregion
 
+/**
+ * @author Jonathan Rigaux
+ * @version 1.0.0
+ */
 trait HasPermissions
 {
     #region CONSTANTS

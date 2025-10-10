@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -19,6 +20,7 @@ class Host extends Model
 {
     use HasAuditLogs;
     use HasDatetimes;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -29,9 +31,13 @@ class Host extends Model
     {
         $this->table = self::TABLE;
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
+
+        $this->translatable = [
+            self::NAME,
+        ];
 
         $this->with = array_merge([
             self::RELATION_LOCALES,

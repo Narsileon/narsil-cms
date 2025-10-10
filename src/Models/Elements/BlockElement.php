@@ -31,14 +31,14 @@ class BlockElement extends Model
     {
         $this->table = self::TABLE;
 
-        $this->appends = array_merge([
+        $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
-        ], $this->appends);
+        ]);
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         parent::__construct($attributes);
 

@@ -28,16 +28,17 @@ class TemplateSectionElement extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
         $this->timestamps = false;
 
-        $this->appends = array_merge([
+        $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
-        ], $this->appends);
+        ]);
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         $this->touches = [
             self::RELATION_TEMPLATE_SECTION,

@@ -31,9 +31,9 @@ class Role extends Model
     {
         $this->table = self::TABLE;
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         parent::__construct($attributes);
     }

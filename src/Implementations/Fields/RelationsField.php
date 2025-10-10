@@ -187,9 +187,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setWidthOptions(array $widthOptions): static
+    final public function setUnique(bool $unique): static
     {
-        $this->props['widthOptions'] = $widthOptions;
+        $this->props['unique'] = $unique;
 
         return $this;
     }
@@ -197,9 +197,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setUnique(bool $unique): static
+    final public function setWidthOptions(array $widthOptions): static
     {
-        $this->props['unique'] = $unique;
+        $this->props['widthOptions'] = $widthOptions;
 
         return $this;
     }

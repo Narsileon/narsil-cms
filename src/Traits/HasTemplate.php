@@ -94,6 +94,11 @@ trait HasTemplate
                 default:
                     break;
             }
+
+            if ($field->{Field::TRANSLATABLE})
+            {
+                $this->translatable[] = $field->{Field::HANDLE};
+            }
         }
 
         return $casts;

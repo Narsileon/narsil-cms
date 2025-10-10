@@ -36,13 +36,13 @@ class EntityBlockField extends Model
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->casts = array_merge([
+        $this->mergeCasts([
             self::VALUE => JsonCast::class,
-        ], $this->casts);
+        ]);
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::UUID,
-        ], $this->guarded);
+        ]);
 
         $this->with = array_merge([
             self::RELATION_FIELD,

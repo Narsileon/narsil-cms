@@ -14,6 +14,7 @@ use Narsil\Models\Elements\BlockElement;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -26,6 +27,7 @@ class Block extends Model
     use HasAuditLogs;
     use HasDatetimes;
     use HasIdentifier;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -36,14 +38,18 @@ class Block extends Model
     {
         $this->table = self::TABLE;
 
-        $this->appends = array_merge([
+        $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
-        ], $this->appends);
+        ]);
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
+
+        $this->translatable = [
+            self::NAME,
+        ];
 
         $this->with = array_merge([
             self::RELATION_ELEMENTS,

@@ -112,15 +112,6 @@ interface RelationsField extends Contract
     public function setPlaceholder(string $placeholder): static;
 
     /**
-     * Set the width options.
-     *
-     * @param array $widthOptions
-     *
-     * @return static
-     */
-    public function setWidthOptions(array $widthOptions): static;
-
-    /**
      * Set the unique attribute.
      *
      * @param boolean $unique
@@ -128,6 +119,15 @@ interface RelationsField extends Contract
      * @return static
      */
     public function setUnique(bool $unique): static;
+
+    /**
+     * Set the width options.
+     *
+     * @param array $widthOptions
+     *
+     * @return static
+     */
+    public function setWidthOptions(array $widthOptions): static;
 
     #endregion
 

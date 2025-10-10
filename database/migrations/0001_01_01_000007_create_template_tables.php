@@ -141,7 +141,7 @@ return new class extends Migration
             $blueprint
                 ->string(Template::HANDLE);
             $blueprint
-                ->string(Template::NAME);
+                ->json(Template::NAME);
             $blueprint
                 ->timestamps();
         });

@@ -28,9 +28,9 @@ class UserRole extends Pivot
 
         $this->incrementing = true;
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         parent::__construct($attributes);
     }

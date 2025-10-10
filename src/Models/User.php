@@ -48,18 +48,18 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->table = self::TABLE;
 
-        $this->appends = array_merge([
+        $this->mergeAppends([
             self::ATTRIBUTE_FULL_NAME,
-        ], $this->appends);
+        ]);
 
-        $this->casts = array_merge([
+        $this->mergeCasts([
             self::AVATAR => ImageCast::class . ':avatars',
             self::EMAIL_VERIFIED_AT => 'datetime',
             self::ENABLED => 'boolean',
             self::PASSWORD => 'hashed',
-        ], $this->casts);
+        ]);
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::EMAIL_VERIFIED_AT,
             self::ID,
             self::PASSWORD,
@@ -67,14 +67,14 @@ class User extends Authenticatable implements MustVerifyEmail
             self::TWO_FACTOR_CONFIRMED_AT,
             self::TWO_FACTOR_RECOVERY_CODES,
             self::TWO_FACTOR_SECRET,
-        ], $this->guarded);
+        ]);
 
-        $this->hidden = array_merge([
+        $this->mergeHidden([
             self::PASSWORD,
             self::REMEMBER_TOKEN,
             self::TWO_FACTOR_RECOVERY_CODES,
             self::TWO_FACTOR_SECRET,
-        ], $this->hidden);
+        ]);
 
         parent::__construct($attributes);
     }

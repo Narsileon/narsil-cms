@@ -123,7 +123,7 @@ return new class extends Migration
             $blueprint
                 ->string(Block::HANDLE);
             $blueprint
-                ->string(Block::NAME);
+                ->json(Block::NAME);
             $blueprint
                 ->boolean(Block::COLLAPSIBLE)
                 ->default(false);

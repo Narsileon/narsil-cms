@@ -250,6 +250,7 @@ return [
         'step'                    => 'step',
         'theme'                   => 'theme',
         'title'                   => 'title',
+        'translatable'            => 'translatable',
         'two_factor_confirmed_at' => 'two factor confirmed at',
         'type'                    => 'type',
         'updated_at'              => 'updated at',
