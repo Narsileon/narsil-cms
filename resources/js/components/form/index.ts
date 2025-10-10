@@ -12,11 +12,11 @@ import FormRoot from "./form-root";
 export {
   FormDescription,
   FormField,
-  FormRenderer,
   FormItem,
   FormLabel,
   FormMessage,
   FormProvider,
+  FormRenderer,
   FormRoot,
   useForm,
   useFormField,

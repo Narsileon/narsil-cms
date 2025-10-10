@@ -33,9 +33,7 @@ export type Field = Model & {
 
 export type HasElement = Model & {
   element_id: number;
-  element_type:
-    | "Narsil\\Models\\Elements\\Block"
-    | "Narsil\\Models\\Elements\\Field";
+  element_type: "Narsil\\Models\\Elements\\Block" | "Narsil\\Models\\Elements\\Field";
   element: Block | Field;
   handle: string;
   name: string;

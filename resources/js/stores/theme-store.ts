@@ -27,8 +27,7 @@ const useThemeStore = create<ThemeStoreType>()(
         root.classList.remove("light", "dark");
 
         if (get().theme === "system") {
-          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-            .matches
+          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
             ? "dark"
             : "light";
 
@@ -51,9 +50,7 @@ const useThemeStore = create<ThemeStoreType>()(
         let newTheme: "light" | "dark";
 
         if (theme === "system") {
-          newTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
+          newTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         } else {
           newTheme = theme;
         }
@@ -98,8 +95,12 @@ const useThemeStore = create<ThemeStoreType>()(
 
         router.post(
           route("user-configuration.store"),
-          { theme: theme },
-          { preserveState: true },
+          {
+            theme: theme,
+          },
+          {
+            preserveState: true,
+          },
         );
       },
     }),
