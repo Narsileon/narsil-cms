@@ -5,10 +5,8 @@ namespace Narsil\Traits;
 #region USE
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 
 #endregion
 
@@ -23,141 +21,20 @@ trait HasTranslations
     /**
      * @var array<string>
      */
-    protected array $translatable = [];
+    final protected array $translatable = [];
 
     #endregion
 
     #region PUBLIC METHODS
 
-    public function initializeHasTranslations(): void
+    /**
+     * @return void
+     */
+    final public function bootHasTranslations(): void
     {
-        $this->mergeCasts(
-            array_fill_keys($this->getTranslatableAttributes(), 'json'),
-        );
-    }
+        $casts = array_fill_keys($this->translatable, 'json');
 
-    public function toArray()
-    {
-
-        $attributes = $this->attributesToArray();
-
-        $translatables = array_filter($this->getTranslatableAttributes(), function ($key) use ($attributes)
-        {
-            return array_key_exists($key, $attributes);
-        });
-        foreach ($translatables as $field)
-        {
-            $attributes[$field] = $this->getTranslation($field, App::getLocale());
-        }
-        return array_merge($attributes, $this->relationsToArray());
-    }
-
-    public function getAttributeValue($key): mixed
-    {
-        if (! $this->isTranslatableAttribute($key))
-        {
-            return parent::getAttributeValue($key);
-        }
-
-        return $this->getTranslation($key, App::getLocale(), App::getFallbackLocale());
-    }
-
-    protected function mutateAttributeForArray($key, $value): mixed
-    {
-        if (! $this->isTranslatableAttribute($key))
-        {
-            return parent::mutateAttributeForArray($key, $value);
-        }
-
-        $translations = $this->getTranslations($key);
-
-        return array_map(fn($value) => parent::mutateAttributeForArray($key, $value), $translations);
-    }
-
-    public function setAttribute($key, $value)
-    {
-        if (! $this->isTranslatableAttribute($key))
-        {
-            return parent::setAttribute($key, $value);
-        }
-
-        if (is_array($value) && (! array_is_list($value) || count($value) === 0))
-        {
-            return $this->setTranslations($key, $value);
-        }
-
-        return $this->setTranslation($key, App::getLocale(), $value);
-    }
-
-    public function translate(string $key, string $locale = '', bool $useFallbackLocale = true): mixed
-    {
-        return $this->getTranslation($key, $locale, $useFallbackLocale);
-    }
-
-    public function getTranslations(?string $key = null, ?array $allowedLocales = null): array
-    {
-        if ($key !== null)
-        {
-            if ($this->isNestedKey($key))
-            {
-                [$key, $nestedKey] = explode('.', str_replace('->', '.', $key), 2);
-            }
-
-            return array_filter(
-                Arr::get($this->fromJson($this->getAttributeFromArray($key)), $nestedKey ?? null, []),
-                fn($value, $locale) => $this->filterTranslations($value, $locale, $allowedLocales, false, true),
-                ARRAY_FILTER_USE_BOTH,
-            );
-        }
-
-        return array_reduce($this->getTranslatableAttributes(), function ($result, $item) use ($allowedLocales)
-        {
-            $result[$item] = $this->getTranslations($item, $allowedLocales);
-
-            return $result;
-        });
-    }
-
-    public function getTranslatableAttributes(): array
-    {
-        return is_array($this->translatable)
-            ? $this->translatable
-            : [];
-    }
-
-    public function setTranslation(string $key, string $locale, mixed $value): void
-    {
-        $translations = $this->getTranslations($key);
-
-        $mutatorKey = str_replace('->', '-', $key);
-
-        if ($this->hasSetMutator($mutatorKey))
-        {
-            $method = 'set' . Str::studly($mutatorKey) . 'Attribute';
-
-            $this->{$method}($value, $locale);
-
-            $value = $this->attributes[$key];
-        }
-        else if ($this->hasAttributeSetMutator($mutatorKey))
-        {
-            $this->setAttributeMarkedMutatedAttributeValue($mutatorKey, $value);
-
-            $value = $this->attributes[$mutatorKey];
-        }
-
-        $translations[$locale] = $value;
-
-        if ($this->isNestedKey($key))
-        {
-            unset($this->attributes[$key], $this->attributes[$mutatorKey]);
-
-            $this->fillJsonAttribute($key, $translations);
-        }
-        else
-        {
-            $this->attributes[$key] = json_encode($translations, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        }
+        $this->mergeCasts($casts);
     }
 
     /**
@@ -166,7 +43,7 @@ trait HasTranslations
      *
      * @return void
      */
-    public function forgetTranslation(string $key, string $locale): void
+    final public function forgetTranslation(string $key, string $locale): void
     {
         $translations = $this->getTranslations($key);
 
@@ -175,42 +52,53 @@ trait HasTranslations
         $this->setTranslations($key, $translations);
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return void
-     */
-    public function forgetAllTranslations(string $locale): void
-    {
-        collect($this->getTranslatableAttributes())->each(function (string $attribute) use ($locale)
-        {
-            $this->forgetTranslation($attribute, $locale);
-        });
-    }
-
-    public function getTranslatedLocales(string $key): array
-    {
-        return array_keys($this->getTranslations($key));
-    }
-
-    public function isNestedKey(string $key): bool
+    final public function isNestedKey(string $key): bool
     {
         return str_contains($key, '->');
     }
 
-    public function isTranslatableAttribute(string $key): bool
+    /**
+     * @param string $key
+     * @param string $locale
+     *
+     * @return mixed
+     */
+    final public function getTranslationWithFallback(string $key, string $locale): mixed
     {
-        return in_array($key, $this->getTranslatableAttributes());
+        return $this->getTranslation($key, $locale, true);
     }
 
-    public function hasTranslation(string $key, ?string $locale = null): bool
+    /**
+     * @param string $key
+     * @param string $locale
+     *
+     * @return mixed
+     */
+    final public function getTranslationWithoutFallback(string $key, string $locale): mixed
+    {
+        return $this->getTranslation($key, $locale, false);
+    }
+
+    /**
+     * @param string $key
+     * @param string|null $locale
+     *
+     * @return boolean
+     */
+    final public function hasTranslation(string $key, ?string $locale = null): bool
     {
         $locale = $locale ?: App::getLocale();
 
-        return isset($this->getTranslations($key)[$locale]);
+        return Arr::has($this->getTranslations($key), $locale);
     }
 
-    public function replaceTranslations(string $key, array $translations): self
+    /**
+     * @param string $key
+     * @param array $translations
+     *
+     * @return void
+     */
+    final public function replaceTranslations(string $key, array $translations): void
     {
         foreach ($this->getTranslatedLocales($key) as $locale)
         {
@@ -218,70 +106,22 @@ trait HasTranslations
         }
 
         $this->setTranslations($key, $translations);
-
-        return $this;
     }
 
-    protected function normalizeLocale(string $key, string $locale, bool $useFallbackLocale): string
+    /**
+     * @param string $key
+     * @param string $locale
+     * @param mixed $value
+     *
+     * @return void
+     */
+    final public function setTranslation(string $key, string $locale, mixed $value): void
     {
-        $translatedLocales = $this->getTranslatedLocales($key);
+        $translations = $this->getTranslations($key);
 
-        if (in_array($locale, $translatedLocales))
-        {
-            return $locale;
-        }
+        $translations[$locale] = $value;
 
-        if (! $useFallbackLocale)
-        {
-            return $locale;
-        }
-
-        $fallbackLocale = App::getFallbackLocale();
-
-        if (! is_null($fallbackLocale) && in_array($fallbackLocale, $translatedLocales))
-        {
-            return $fallbackLocale;
-        }
-
-        return $locale;
-    }
-
-    protected function filterTranslations(mixed $value = null, ?string $locale = null, ?array $allowedLocales = null, bool $allowNull = false, bool $allowEmptyString = false): bool
-    {
-        if ($value === null && ! $allowNull)
-        {
-            return false;
-        }
-
-        if ($value === '' && ! $allowEmptyString)
-        {
-            return false;
-        }
-
-        if ($allowedLocales === null)
-        {
-            return true;
-        }
-
-        if (! in_array($locale, $allowedLocales))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function translations(): Attribute
-    {
-        return Attribute::get(function ()
-        {
-            return collect($this->getTranslatableAttributes())
-                ->mapWithKeys(function (string $key)
-                {
-                    return [$key => $this->getTranslations($key)];
-                })
-                ->toArray();
-        });
+        $this->attributes[$key] = json_encode($translations, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     /**
@@ -290,7 +130,7 @@ trait HasTranslations
      *
      * @return void
      */
-    public function setTranslations(string $key, array $translations): void
+    final public function setTranslations(string $key, array $translations): void
     {
         if (!empty($translations))
         {
@@ -305,68 +145,63 @@ trait HasTranslations
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    final public function toArray(): array
+    {
+        $attributes = $this->attributesToArray();
+
+        $translatables = array_filter($this->translatable, function ($key) use ($attributes)
+        {
+            return array_key_exists($key, $attributes);
+        });
+
+        foreach ($translatables as $translatable)
+        {
+            $attributes[$translatable] = $this->getTranslation($translatable, App::getLocale());
+        }
+
+        return array_merge($attributes, $this->relationsToArray());
+    }
+
     #region • ATTRIBUTES
 
     /**
-     * @param string $key
-     * @param string $locale
-     * @param boolean $fallback
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
-    public function getTranslation(string $key, string $locale, bool $fallback = true): mixed
+    final public function getAttributeValue($key): mixed
     {
-        $normalizedLocale = $this->normalizeLocale($key, $locale, $fallback);
-
-        $translations = $this->getTranslations($key);
-
-        $baseKey = Str::before($key, '->');
-
-        if (is_null(self::getAttributeFromArray($baseKey)))
+        if (!$this->isTranslatableAttribute($key))
         {
-            $translation = null;
-        }
-        else
-        {
-            $translation = isset($translations[$normalizedLocale]) ? $translations[$normalizedLocale] : null;
-            $translation ??= '';
+            return parent::getAttributeValue($key);
         }
 
-        $key = str_replace('->', '-', $key);
-
-        if ($this->hasGetMutator($key))
-        {
-            return $this->mutateAttribute($key, $translation);
-        }
-
-        if ($this->hasAttributeMutator($key))
-        {
-            return $this->mutateAttributeMarkedAttribute($key, $translation);
-        }
-
-        return $translation;
+        return $this->getTranslation($key, App::getLocale(), true);
     }
 
     /**
-     * @param string $key
-     * @param string $locale
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
-    public function getTranslationWithFallback(string $key, string $locale): mixed
+    final public function setAttribute($key, $value): void
     {
-        return $this->getTranslation($key, $locale, true);
-    }
+        if (!$this->isTranslatableAttribute($key))
+        {
+            parent::setAttribute($key, $value);
 
-    /**
-     * @param string $key
-     * @param string $locale
-     *
-     * @return mixed
-     */
-    public function getTranslationWithoutFallback(string $key, string $locale): mixed
-    {
-        return $this->getTranslation($key, $locale, false);
+            return;
+        }
+
+        if (is_array($value) && (!array_is_list($value) || count($value) === 0))
+        {
+            $this->setTranslations($key, $value);
+
+            return;
+        }
+
+        $this->setTranslation($key, App::getLocale(), $value);
+
+        return;
     }
 
     #endregion
@@ -375,32 +210,30 @@ trait HasTranslations
 
     /**
      * @param Builder $query
-     * @param string $column
      * @param string $locale
-     * @param mixed $value
+     * @param string $column
      * @param string $operator
+     * @param mixed $value
      *
      * @return void
      */
-    public function scopeWhereJsonContainsLocale(Builder $query, string $column, string $locale, mixed $value, string $operator = '='): void
+    final public function scopeWhereLocale(Builder $query, string $locale, string $column, string $operator = '=', mixed $value): void
     {
         $query->where("{$column}->{$locale}", $operator, $value);
     }
 
     /**
-     * Undocumented function
-     *
      * @param Builder $query
-     * @param string $column
      * @param array $locales
-     * @param mixed $value
+     * @param string $column
      * @param string $operator
+     * @param mixed $value
      *
      * @return void
      */
-    public function scopeWhereJsonContainsLocales(Builder $query, string $column, array $locales, mixed $value, string $operator = '='): void
+    final public function scopeWhereLocales(Builder $query, array $locales, string $column, string $operator = '=', mixed $value): void
     {
-        $query->where(function (Builder $query) use ($column, $locales, $value, $operator)
+        $query->where(function (Builder $query) use ($column, $locales, $operator, $value)
         {
             foreach ($locales as $locale)
             {
@@ -416,7 +249,7 @@ trait HasTranslations
      *
      * @return void
      */
-    public function scopeWhereLocale(Builder $query, string $column, string $locale): void
+    final public function scopeWhereHasLocale(Builder $query, string $column, string $locale): void
     {
         $query->whereNotNull("{$column}->{$locale}");
     }
@@ -428,7 +261,7 @@ trait HasTranslations
      *
      * @return void
      */
-    public function scopeWhereLocales(Builder $query, string $column, array $locales): void
+    final public function scopeWhereHasLocales(Builder $query, string $column, array $locales): void
     {
         $query->where(function (Builder $query) use ($column, $locales)
         {
@@ -440,6 +273,119 @@ trait HasTranslations
     }
 
     #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param mixed $value
+     *
+     * @return boolean
+     */
+    final protected function filterTranslations(mixed $value = null): bool
+    {
+        if ($value === null)
+        {
+            return false;
+        }
+
+        if ($value === '')
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param string $key
+     * @param string $locale
+     * @param boolean $fallback
+     *
+     * @return string
+     */
+    final protected function getNormalizedLocale(string $key, string $locale, bool $fallback): string
+    {
+        $translatedLocales = $this->getTranslatedLocales($key);
+
+        if (in_array($locale, $translatedLocales) || !$fallback)
+        {
+            return $locale;
+        }
+
+        $fallbackLocale = App::getFallbackLocale();
+
+        if ($fallbackLocale && in_array($fallbackLocale, $translatedLocales))
+        {
+            return $fallbackLocale;
+        }
+
+        return $locale;
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return array
+     */
+    final protected function getTranslatedLocales(string $key): array
+    {
+        return array_keys($this->getTranslations($key));
+    }
+
+    /**
+     * @param string $key
+     * @param string $locale
+     * @param boolean $fallback
+     *
+     * @return mixed
+     */
+    final protected function getTranslation(string $key, string $locale, bool $fallback = true): mixed
+    {
+        $normalizedLocale = $this->getNormalizedLocale($key, $locale, $fallback);
+
+        $translations = $this->getTranslations($key);
+
+        $translation = Arr::get($translations, $normalizedLocale, '');
+
+        return $translation;
+    }
+
+    /**
+     * @param string|null $key
+     * @param array|null $allowedLocales
+     *
+     * @return array
+     */
+    final public function getTranslations(?string $key = null, ?array $allowedLocales = null): array
+    {
+        if ($key !== null)
+        {
+            return array_filter(
+                $this->fromJson($this->getAttributeFromArray($key)) ?? [],
+                fn($value, $locale) => $this->filterTranslations($value, $locale, $allowedLocales, false, true),
+                ARRAY_FILTER_USE_BOTH
+            );
+        }
+
+        return array_reduce($this->translatable, function ($result, $item) use ($allowedLocales)
+        {
+            $result[$item] = $this->getTranslations($item, $allowedLocales);
+
+            return $result;
+        }, []);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return boolean
+     */
+    final protected function isTranslatableAttribute(string $key): bool
+    {
+        return in_array($key, $this->translatable);
+    }
 
     #endregion
 }
