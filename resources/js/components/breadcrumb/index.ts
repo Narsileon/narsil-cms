@@ -1,4 +1,5 @@
 // https://ui.shadcn.com/docs/components/breadcrumb
+
 import BreadcrumbEllipsis from "./breadcrumb-ellipsis";
 import BreadcrumbItem from "./breadcrumb-item";
 import BreadcrumbLink from "./breadcrumb-link";
