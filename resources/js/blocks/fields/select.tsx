@@ -32,6 +32,7 @@ type SelectProps = ComponentProps<typeof SelectRoot> & {
   portalProps?: Partial<ComponentProps<typeof SelectPortal>>;
   scrollDownButtonProps?: Partial<ComponentProps<typeof SelectScrollDownButton>>;
   scrollUpButtonProps?: Partial<ComponentProps<typeof SelectScrollUpButton>>;
+  showIcon?: boolean;
   triggerProps?: Partial<ComponentProps<typeof SelectTrigger>>;
   valueProps?: Partial<ComponentProps<typeof SelectValue>>;
   viewportProps?: Partial<ComponentProps<typeof SelectViewport>>;
@@ -48,6 +49,7 @@ const Select = ({
   portalProps,
   scrollDownButtonProps,
   scrollUpButtonProps,
+  showIcon = true,
   triggerProps,
   valueProps,
   viewportProps,
@@ -73,7 +75,7 @@ const Select = ({
     <SelectRoot {...props}>
       <SelectTrigger {...triggerProps}>
         <SelectValue {...valueProps} />
-        <SelectIcon {...iconProps} />
+        {showIcon ? <SelectIcon {...iconProps} /> : null}
       </SelectTrigger>
       <SelectPortal {...portalProps}>
         <SelectContent {...contentProps}>
