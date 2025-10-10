@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Menubar } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type MenubarContentProps = ComponentProps<typeof Menubar.Content>;
 

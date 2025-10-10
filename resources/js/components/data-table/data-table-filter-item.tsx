@@ -1,6 +1,3 @@
-import { isEmpty } from "lodash";
-import { useEffect, useState, type ComponentProps } from "react";
-
 import { Badge } from "@narsil-cms/blocks";
 import { Select } from "@narsil-cms/blocks/fields";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -12,7 +9,8 @@ import {
 } from "@narsil-cms/components/popover";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { Field } from "@narsil-cms/types";
-
+import { isEmpty } from "lodash";
+import { useEffect, useState, type ComponentProps } from "react";
 import { type ColumnFilter } from ".";
 import useDataTable from "./data-table-context";
 
@@ -85,8 +83,7 @@ function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
             element: meta.field,
             id: filter.column,
             value: filter.value,
-            setValue: (value) =>
-              dataTableStore.updateFilter(filter.column, { value: value }),
+            setValue: (value) => dataTableStore.updateFilter(filter.column, { value: value }),
           })}
         </PopoverContent>
       </PopoverPortal>

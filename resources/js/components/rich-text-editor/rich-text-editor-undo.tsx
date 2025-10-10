@@ -1,8 +1,7 @@
-import { Editor, useEditorState } from "@tiptap/react";
-import { type ComponentProps } from "react";
-
 import { Button } from "@narsil-cms/blocks";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Editor, useEditorState } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 type RichTextEditorUndoProps = ComponentProps<typeof Button> & {
   editor: Editor;

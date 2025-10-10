@@ -1,15 +1,7 @@
 import { Heading } from "@narsil-cms/blocks";
-import {
-  FormRenderer,
-  FormProvider,
-  FormRoot,
-} from "@narsil-cms/components/form";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
@@ -62,9 +54,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
                   <FormRenderer
                     {...element}
                     className="grid grid-cols-2"
-                    onChange={(value) =>
-                      handleChange(element.handle, value as number | string)
-                    }
+                    onChange={(value) => handleChange(element.handle, value as number | string)}
                     key={index}
                   />
                 );

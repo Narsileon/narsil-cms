@@ -1,19 +1,14 @@
-import { type ComponentProps } from "react";
-import { PanelResizeHandle } from "react-resizable-panels";
-
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { type ComponentProps } from "react";
+import { PanelResizeHandle } from "react-resizable-panels";
 
 type ResizableHandleProps = ComponentProps<typeof PanelResizeHandle> & {
   icon?: IconName | null;
 };
 
-function ResizableHandle({
-  className,
-  icon = "grip-vertical",
-  ...props
-}: ResizableHandleProps) {
+function ResizableHandle({ className, icon = "grip-vertical", ...props }: ResizableHandleProps) {
   return (
     <PanelResizeHandle
       data-slot="resizable-handle"

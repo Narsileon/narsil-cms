@@ -3,13 +3,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-
-import type {
-  FormType,
-  GroupedSelectOption,
-  SelectOption,
-} from "@narsil-cms/types";
-
+import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { type AnonymousItem } from ".";
 import SortableItem from "./sortable-item";
 
@@ -59,9 +53,7 @@ function SortableListContext({
     <SortableContext
       items={items.map((item) => getUniqueIdentifier(item))}
       strategy={
-        direction === "vertical"
-          ? verticalListSortingStrategy
-          : horizontalListSortingStrategy
+        direction === "vertical" ? verticalListSortingStrategy : horizontalListSortingStrategy
       }
     >
       <ul className="grid gap-2">
@@ -81,9 +73,7 @@ function SortableListContext({
               optionValue={group.optionValue}
               widthOptions={widthOptions}
               onItemChange={(value: AnonymousItem) => {
-                setItems(
-                  items.map((x) => (getUniqueIdentifier(x) === id ? value : x)),
-                );
+                setItems(items.map((x) => (getUniqueIdentifier(x) === id ? value : x)));
               }}
               onItemRemove={() => {
                 setItems(items.filter((x) => x !== item));

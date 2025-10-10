@@ -1,5 +1,4 @@
 // https://www.radix-ui.com/primitives/docs/components/navigation-menu
-
 import NavigationMenuContent from "./navigation-menu-content";
 import NavigationMenuIndicator from "./navigation-menu-indicator";
 import NavigationMenuItem from "./navigation-menu-item";

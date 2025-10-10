@@ -1,5 +1,3 @@
-import { type ComponentProps } from "react";
-
 import { Button } from "@narsil-cms/blocks";
 import {
   CardContent,
@@ -8,6 +6,7 @@ import {
   CardRoot,
   CardTitle,
 } from "@narsil-cms/components/card";
+import { type ComponentProps } from "react";
 
 type CardProps = ComponentProps<typeof CardRoot> & {
   contentProps?: Partial<ComponentProps<typeof CardContent>>;

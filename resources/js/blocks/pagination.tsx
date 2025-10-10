@@ -1,5 +1,3 @@
-import { type ComponentProps } from "react";
-
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PaginationContent,
@@ -8,6 +6,7 @@ import {
   PaginationLink,
   PaginationRoot,
 } from "@narsil-cms/components/pagination";
+import { type ComponentProps } from "react";
 
 export type LaravelPaginationLinks = {
   first: string;
@@ -39,12 +38,7 @@ type PaginationProps = ComponentProps<typeof PaginationRoot> & {
   metaLinks?: LaravelPaginationMetaLink[];
 };
 
-function Pagination({
-  contentProps,
-  links,
-  metaLinks,
-  ...props
-}: PaginationProps) {
+function Pagination({ contentProps, links, metaLinks, ...props }: PaginationProps) {
   const { trans } = useLocalization();
 
   const firstPageLabel = trans("accessibility.first_page");
@@ -104,11 +98,7 @@ function Pagination({
             </PaginationItem>
           ) : (
             <PaginationItem>
-              <PaginationLink
-                className="rounded-none"
-                asChild={true}
-                disabled={true}
-              >
+              <PaginationLink className="rounded-none" asChild={true} disabled={true}>
                 <PaginationEllipsis className="bg-accent border" key={index} />
               </PaginationLink>
             </PaginationItem>

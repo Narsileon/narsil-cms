@@ -1,9 +1,7 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { Separator } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
-
 import separatorRootVariants from "./separator-root-variants";
 
 type SeparatorRootProps = ComponentProps<typeof Separator.Root> &

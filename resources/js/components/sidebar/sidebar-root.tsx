@@ -1,5 +1,3 @@
-import { type ComponentProps } from "react";
-
 import {
   DialogContent,
   DialogDescription,
@@ -8,7 +6,7 @@ import {
   DialogTitle,
 } from "@narsil-cms/components/dialog";
 import { cn } from "@narsil-cms/lib/utils";
-
+import { type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 
 type SidebarRootProps = ComponentProps<"div"> & {
@@ -25,8 +23,7 @@ function SidebarRoot({
   variant = "sidebar",
   ...props
 }: SidebarRootProps) {
-  const { isMobile, mobileWidth, openMobile, state, setOpenMobile } =
-    useSidebar();
+  const { isMobile, mobileWidth, openMobile, state, setOpenMobile } = useSidebar();
 
   if (collapsible === "none") {
     return (

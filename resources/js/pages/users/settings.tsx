@@ -1,14 +1,9 @@
-import { type ComponentProps } from "react";
-
 import { Tabs } from "@narsil-cms/blocks";
-import {
-  ConfigurationForm,
-  ProfileForm,
-  SecurityForm,
-} from "@narsil-cms/blocks/forms";
+import { ConfigurationForm, ProfileForm, SecurityForm } from "@narsil-cms/blocks/forms";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
+import { type ComponentProps } from "react";
 
 type UserSettingsProps = {
   profileForm: FormType;
@@ -38,10 +33,7 @@ function UserSettings({
             title: trans("ui.account"),
             icon: "user-edit",
             content: (
-              <ProfileForm
-                profileForm={profileForm}
-                updatePasswordForm={updatePasswordForm}
-              />
+              <ProfileForm profileForm={profileForm} updatePasswordForm={updatePasswordForm} />
             ),
           },
           {

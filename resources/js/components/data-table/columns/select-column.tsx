@@ -1,8 +1,7 @@
-import { ColumnDef } from "@tanstack/react-table";
-
 import { Checkbox } from "@narsil-cms/blocks/fields";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { Model } from "@narsil-cms/types";
+import { ColumnDef } from "@tanstack/react-table";
 
 function getSelectColumn(): ColumnDef<Model> {
   const { trans } = useLocalization();

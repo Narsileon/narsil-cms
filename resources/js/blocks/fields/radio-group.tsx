@@ -1,12 +1,11 @@
-import { get, isString } from "lodash";
-import { type ComponentProps } from "react";
-
 import { FormLabel } from "@narsil-cms/components/form";
 import {
   RadioGroupIndicator,
   RadioGroupItem,
   RadioGroupRoot,
 } from "@narsil-cms/components/radio-group";
+import { get, isString } from "lodash";
+import { type ComponentProps } from "react";
 
 type RadioGroupOption =
   | string

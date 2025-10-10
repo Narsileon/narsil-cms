@@ -1,10 +1,8 @@
-import { type ComponentProps } from "react";
-import { DayPicker, getDefaultClassNames } from "react-day-picker";
-
 import { ButtonRoot, buttonRootVariants } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
-
+import { type ComponentProps } from "react";
+import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import CalendarDayButton from "./calendar-day-button";
 
 type CalendarRootProps = ComponentProps<typeof DayPicker> & {
@@ -60,14 +58,8 @@ function CalendarRoot({
           "[&:last-child[data-selected=true]_button]:rounded-r-md",
           defaultClassNames.day,
         ),
-        disabled: cn(
-          "text-muted-foreground opacity-50",
-          defaultClassNames.disabled,
-        ),
-        dropdown: cn(
-          "bg-popover absolute inset-0 opacity-0",
-          defaultClassNames.dropdown,
-        ),
+        disabled: cn("text-muted-foreground opacity-50", defaultClassNames.disabled),
+        dropdown: cn("bg-popover absolute inset-0 opacity-0", defaultClassNames.dropdown),
         dropdown_root: cn(
           "border-input has-focus:border-ring has-focus:ring-2 has-focus:ring-ring/50 relative rounded-md border shadow-sm",
           defaultClassNames.dropdown_root,
@@ -82,10 +74,7 @@ function CalendarRoot({
           "h-(--cell-size) px-(--cell-size) flex w-full items-center justify-center",
           defaultClassNames.month_caption,
         ),
-        months: cn(
-          "relative flex flex-col gap-4 md:flex-row",
-          defaultClassNames.months,
-        ),
+        months: cn("relative flex flex-col gap-4 md:flex-row", defaultClassNames.months),
         nav: cn(
           "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
           defaultClassNames.nav,
@@ -94,10 +83,7 @@ function CalendarRoot({
           "text-muted-foreground aria-selected:text-muted-foreground",
           defaultClassNames.outside,
         ),
-        range_start: cn(
-          "bg-accent rounded-l-md",
-          defaultClassNames.range_start,
-        ),
+        range_start: cn("bg-accent rounded-l-md", defaultClassNames.range_start),
         range_middle: cn("rounded-none", defaultClassNames.range_middle),
         range_end: cn("bg-accent rounded-r-md", defaultClassNames.range_end),
         root: cn("w-fit", defaultClassNames.root),
@@ -116,21 +102,13 @@ function CalendarRoot({
           "text-muted-foreground select-none text-[0.8rem]",
           defaultClassNames.week_number,
         ),
-        week_number_header: cn(
-          "w-(--cell-size) select-none",
-          defaultClassNames.week_number_header,
-        ),
+        week_number_header: cn("w-(--cell-size) select-none", defaultClassNames.week_number_header),
         ...classNames,
       }}
       components={{
         Root: ({ className, rootRef, ...props }) => {
           return (
-            <div
-              ref={rootRef}
-              data-slot="calendar-root"
-              className={cn(className)}
-              {...props}
-            />
+            <div ref={rootRef} data-slot="calendar-root" className={cn(className)} {...props} />
           );
         },
         Chevron: ({ className, orientation, ...props }) => {
@@ -162,8 +140,7 @@ function CalendarRoot({
       }}
       captionLayout={captionLayout}
       formatters={{
-        formatMonthDropdown: (date) =>
-          date.toLocaleString("default", { month: "short" }),
+        formatMonthDropdown: (date) => date.toLocaleString("default", { month: "short" }),
         ...formatters,
       }}
       showOutsideDays={showOutsideDays}

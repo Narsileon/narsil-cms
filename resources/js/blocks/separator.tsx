@@ -1,6 +1,5 @@
-import { type ComponentProps } from "react";
-
 import { SeparatorRoot } from "@narsil-cms/components/separator";
+import { type ComponentProps } from "react";
 
 type SeparatorProps = ComponentProps<typeof SeparatorRoot>;
 

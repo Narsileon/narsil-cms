@@ -1,6 +1,5 @@
-import { cva } from "class-variance-authority";
-
 import { cn } from "@narsil-cms/lib/utils";
+import { cva } from "class-variance-authority";
 
 const buttonRootVariants = cva(
   cn(

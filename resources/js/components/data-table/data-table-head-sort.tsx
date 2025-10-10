@@ -1,9 +1,8 @@
-import { Header } from "@tanstack/react-table";
-import { type ComponentProps } from "react";
-
 import { Button } from "@narsil-cms/blocks";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { Model } from "@narsil-cms/types";
+import { Header } from "@tanstack/react-table";
+import { type ComponentProps } from "react";
 
 type DataTableHeadSortProps = ComponentProps<typeof Button> & {
   header: Header<Model, unknown>;

@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Accordion } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type AccordionItemProps = ComponentProps<typeof Accordion.Item>;
 

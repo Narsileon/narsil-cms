@@ -1,12 +1,9 @@
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { Icon } from "@narsil-cms/components/icon";
-import { cn } from "@narsil-cms/lib/utils";
-
-type ContextMenuSubTriggerProps = ComponentProps<
-  typeof ContextMenu.SubTrigger
-> & {
+type ContextMenuSubTriggerProps = ComponentProps<typeof ContextMenu.SubTrigger> & {
   inset?: boolean;
 };
 

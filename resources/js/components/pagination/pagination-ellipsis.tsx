@@ -1,10 +1,9 @@
-import { type ComponentProps } from "react";
-
 import { VisuallyHidden } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { type ComponentProps } from "react";
 
 type PaginationEllipsisProps = ComponentProps<"span"> & {
   icon?: IconName;

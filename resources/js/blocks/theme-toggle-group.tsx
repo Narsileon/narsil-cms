@@ -1,13 +1,8 @@
-import { useRef } from "react";
-
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  ToggleGroupItem,
-  ToggleGroupRoot,
-} from "@narsil-cms/components/toggle-group";
-import { useThemeStore, themes } from "@narsil-cms/stores/theme-store";
-
+import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
+import { themes, useThemeStore } from "@narsil-cms/stores/theme-store";
+import { useRef } from "react";
 import Tooltip from "./tooltip";
 
 type ThemeToggleGroupProps = {
@@ -48,15 +43,7 @@ function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
           >
             <Tooltip tooltip={trans(`themes.${theme}`)}>
               <div className="flex size-full items-center justify-center">
-                <Icon
-                  name={
-                    theme === "light"
-                      ? "sun"
-                      : theme === "dark"
-                        ? "moon"
-                        : "sun-moon"
-                  }
-                />
+                <Icon name={theme === "light" ? "sun" : theme === "dark" ? "moon" : "sun-moon"} />
               </div>
             </Tooltip>
           </ToggleGroupItem>

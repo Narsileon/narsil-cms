@@ -1,20 +1,13 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
-
 import containerRootVariants from "./container-root-variants";
 
 type ContainerProps = ComponentProps<"div"> &
   VariantProps<typeof containerRootVariants> & { asChild?: boolean };
 
-function ContainerRoot({
-  asChild = false,
-  className,
-  variant,
-  ...props
-}: ContainerProps) {
+function ContainerRoot({ asChild = false, className, variant, ...props }: ContainerProps) {
   const Comp = asChild ? Slot.Root : "div";
 
   return (

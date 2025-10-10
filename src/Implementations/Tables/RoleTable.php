@@ -45,6 +45,10 @@ class RoleTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                id: Role::HANDLE,
+                visibility: true,
+            ),
+            new TableColumn(
                 id: Role::CREATED_AT,
                 visibility: true,
             ),

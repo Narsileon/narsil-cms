@@ -1,6 +1,5 @@
-import { type ComponentProps } from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
+import { type ComponentProps } from "react";
 
 type CardFooterProps = ComponentProps<"div">;
 

@@ -1,16 +1,11 @@
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { Icon } from "@narsil-cms/components/icon";
-import { cn } from "@narsil-cms/lib/utils";
-
 type ContextMenuRadioItemProps = ComponentProps<typeof ContextMenu.RadioItem>;
 
-function ContextMenuRadioItem({
-  children,
-  className,
-  ...props
-}: ContextMenuRadioItemProps) {
+function ContextMenuRadioItem({ children, className, ...props }: ContextMenuRadioItemProps) {
   return (
     <ContextMenu.RadioItem
       data-slot="context-menu-radio-item"

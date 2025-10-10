@@ -1,15 +1,13 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { isNumber } from "lodash";
-import { useState, type ComponentProps } from "react";
-import { route } from "ziggy-js";
-
 import { Button } from "@narsil-cms/blocks";
 import { Combobox } from "@narsil-cms/blocks/fields";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
-
+import { isNumber } from "lodash";
+import { useState, type ComponentProps } from "react";
+import { route } from "ziggy-js";
 import { type AnonymousItem } from ".";
 
 type SortableAddProps = ComponentProps<"div"> & {
@@ -84,10 +82,7 @@ function SortableAdd({
 
   return group.routes?.create ? (
     <div
-      className={cn(
-        "grid w-full grid-cols-4 items-center justify-between gap-6",
-        className,
-      )}
+      className={cn("grid w-full grid-cols-4 items-center justify-between gap-6", className)}
       {...props}
     >
       <span className="text-left">{group.label}</span>
@@ -117,8 +112,7 @@ function SortableAdd({
             href: route(group.routes.create, group.routes.params),
             modal: true,
             onSuccess: (response) => {
-              const props = response?.props
-                ?.redirect as GlobalProps["redirect"];
+              const props = response?.props?.redirect as GlobalProps["redirect"];
 
               if (!props.data) {
                 return;

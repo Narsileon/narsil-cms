@@ -1,12 +1,9 @@
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { Icon } from "@narsil-cms/components/icon";
-import { cn } from "@narsil-cms/lib/utils";
-
-type DropdownMenuSubTriggerProps = ComponentProps<
-  typeof DropdownMenu.SubTrigger
-> & {
+type DropdownMenuSubTriggerProps = ComponentProps<typeof DropdownMenu.SubTrigger> & {
   inset?: boolean;
 };
 

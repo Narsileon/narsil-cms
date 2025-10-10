@@ -1,9 +1,5 @@
+import { ProgressIndicator, ProgressRoot } from "@narsil-cms/components/progress";
 import { type ComponentProps } from "react";
-
-import {
-  ProgressIndicator,
-  ProgressRoot,
-} from "@narsil-cms/components/progress";
 
 type ProgressProps = ComponentProps<typeof ProgressRoot> & {
   indicatorProps?: Partial<ComponentProps<typeof ProgressIndicator>>;

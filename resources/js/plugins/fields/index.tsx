@@ -1,6 +1,3 @@
-import { isArray } from "lodash";
-import { type ReactNode } from "react";
-
 import {
   Array,
   Checkbox,
@@ -20,6 +17,8 @@ import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Field } from "@narsil-cms/types";
+import { isArray } from "lodash";
+import { type ReactNode } from "react";
 
 export type FieldProps = {
   element: Field;
@@ -176,13 +175,7 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\TableField"]: (props) => {
-    return (
-      <Table
-        {...props.element.settings}
-        rows={props.value ?? []}
-        setRows={props.setValue}
-      />
-    );
+    return <Table {...props.element.settings} rows={props.value ?? []} setRows={props.setValue} />;
   },
   ["Narsil\\Contracts\\Fields\\TimeField"]: (props) => {
     return (

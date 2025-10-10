@@ -1,7 +1,7 @@
 import {
   closestCenter,
-  DragOverlay,
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
@@ -12,28 +12,16 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
+import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
+import { SortableAdd, SortableItem, SortableListContext } from "@narsil-cms/components/sortable";
+import type { GroupedSelectOption } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
-
-import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
-import {
-  SortableAdd,
-  SortableItem,
-  SortableListContext,
-} from "@narsil-cms/components/sortable";
-import type { GroupedSelectOption } from "@narsil-cms/types";
-
 import { type AnonymousItem } from ".";
 
 type SortableProps = ComponentProps<typeof SortableListContext>;
 
-function Sortable({
-  items,
-  options,
-  unique,
-  setItems,
-  ...props
-}: SortableProps) {
+function Sortable({ items, options, unique, setItems, ...props }: SortableProps) {
   const [active, setActive] = useState<AnonymousItem | null>(null);
 
   const sensors = useSensors(
@@ -48,12 +36,8 @@ function Sortable({
 
   function onDragEnd({ active, over }: DragEndEvent) {
     if (over) {
-      const activeIndex = items.findIndex(
-        (item) => getUniqueIdentifier(item) == active.id,
-      );
-      const overIndex = items.findIndex(
-        (item) => getUniqueIdentifier(item) == over.id,
-      );
+      const activeIndex = items.findIndex((item) => getUniqueIdentifier(item) == active.id);
+      const overIndex = items.findIndex((item) => getUniqueIdentifier(item) == over.id);
 
       if (activeIndex !== overIndex) {
         setItems(arrayMove(items, activeIndex, overIndex));
@@ -64,9 +48,7 @@ function Sortable({
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const item = items.find(
-      (item) => getUniqueIdentifier(item) == active.id,
-    ) as AnonymousItem;
+    const item = items.find((item) => getUniqueIdentifier(item) == active.id) as AnonymousItem;
 
     setActive(item);
   }

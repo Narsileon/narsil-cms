@@ -108,7 +108,7 @@ trait HasPermissions
             return false;
         }
 
-        $roles = $permission->{Permission::RELATION_ROLES}->pluck(Role::NAME)->toArray();
+        $roles = $permission->{Permission::RELATION_ROLES}->pluck(Role::HANDLE)->toArray();
 
         return $this->hasRole($roles);
     }

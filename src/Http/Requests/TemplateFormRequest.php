@@ -30,7 +30,6 @@ class TemplateFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
             Template::NAME => [
-                FormRule::STRING,
                 FormRule::REQUIRED,
             ],
             Template::RELATION_SECTIONS => [

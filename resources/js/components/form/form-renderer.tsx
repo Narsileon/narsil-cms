@@ -1,7 +1,4 @@
 import { Link } from "@inertiajs/react";
-import parse from "html-react-parser";
-import { Fragment } from "react";
-
 import { Heading } from "@narsil-cms/blocks";
 import { Builder } from "@narsil-cms/components/builder";
 import {
@@ -19,7 +16,8 @@ import type {
   HasElement,
   TemplateSection,
 } from "@narsil-cms/types";
-
+import parse from "html-react-parser";
+import { Fragment } from "react";
 import useForm from "./form-context";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
@@ -77,10 +75,7 @@ function FormRenderer({
                     <Heading level="h2">{childElement.name}</Heading>
                     {childElement.collapsible ? (
                       <Icon
-                        className={cn(
-                          "duration-300",
-                          "group-data-[state=open]:rotate-180",
-                        )}
+                        className={cn("duration-300", "group-data-[state=open]:rotate-180")}
                         name="chevron-down"
                       />
                     ) : null}
@@ -146,18 +141,13 @@ function FormRenderer({
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
-              <FormLabel required={props.settings?.required}>
-                {props.name}
-              </FormLabel>
+              <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
               {props.settings?.append
                 ? parse(props.settings.append, {
                     replace: (domNode) => {
                       if (domNode.name === "a") {
                         return (
-                          <Link
-                            href={domNode.attribs.href}
-                            className={domNode.attribs.class}
-                          >
+                          <Link href={domNode.attribs.href} className={domNode.attribs.class}>
                             {domNode.children.map((c) => c.data).join("")}
                           </Link>
                         );
@@ -172,9 +162,7 @@ function FormRenderer({
               value: value,
               setValue: handleOnChange,
             })}
-            {props.description ? (
-              <FormDescription>{props.description}</FormDescription>
-            ) : null}
+            {props.description ? <FormDescription>{props.description}</FormDescription> : null}
             <FormMessage />
           </FormItem>
         );

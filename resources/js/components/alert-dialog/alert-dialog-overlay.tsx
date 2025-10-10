@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { AlertDialog } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type AlertDialogOverlayProps = ComponentProps<typeof AlertDialog.Overlay>;
 

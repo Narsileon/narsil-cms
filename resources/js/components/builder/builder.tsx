@@ -2,26 +2,20 @@ import {
   closestCenter,
   DndContext,
   DragOverlay,
+  KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  KeyboardSensor,
   useSensor,
   useSensors,
   type DragCancelEvent,
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { get } from "lodash";
-import { Fragment, useState } from "react";
-
+import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useForm } from "@narsil-cms/components/form";
 import type { Block } from "@narsil-cms/types";
-
+import { get } from "lodash";
+import { Fragment, useState } from "react";
 import { type BuilderNode } from ".";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
@@ -102,25 +96,16 @@ function Builder({ name, sets }: BuilderProps) {
                     setNodes(newNodes);
                   }}
                 />
-                <BuilderItem
-                  baseHandle={baseHandle}
-                  id={node.uuid}
-                  node={node}
-                />
+                <BuilderItem baseHandle={baseHandle} id={node.uuid} node={node} />
               </Fragment>
             );
           })}
-          <BuilderAdd
-            sets={sets}
-            onAdd={(node) => setNodes([...nodes, node])}
-          />
+          <BuilderAdd sets={sets} onAdd={(node) => setNodes([...nodes, node])} />
           <div className="bg-destructive size-4 rounded-full" />
         </div>
       </SortableContext>
       <DragOverlay>
-        {active ? (
-          <BuilderItem collapsed={true} id={active.uuid} node={active} />
-        ) : null}
+        {active ? <BuilderItem collapsed={true} id={active.uuid} node={active} /> : null}
       </DragOverlay>
     </DndContext>
   );

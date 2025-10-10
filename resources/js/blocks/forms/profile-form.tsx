@@ -1,15 +1,7 @@
 import { Button, Heading, Separator } from "@narsil-cms/blocks";
-import {
-  FormRenderer,
-  FormProvider,
-  FormRoot,
-} from "@narsil-cms/components/form";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
 
@@ -39,11 +31,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           <SectionRoot>
             <SectionHeader className="border-b">
               <Heading level="h2">{trans("ui.account")}</Heading>
-              <Button
-                form={profileForm.id}
-                icon={profileForm.submitIcon}
-                type="submit"
-              >
+              <Button form={profileForm.id} icon={profileForm.submitIcon} type="submit">
                 {profileForm.submitLabel}
               </Button>
             </SectionHeader>

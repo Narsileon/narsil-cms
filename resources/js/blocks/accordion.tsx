@@ -1,14 +1,13 @@
-import { type ComponentProps, type ReactNode } from "react";
-
 import { Heading } from "@narsil-cms/blocks";
 import {
   AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
   AccordionHeader,
+  AccordionItem,
   AccordionRoot,
+  AccordionTrigger,
 } from "@narsil-cms/components/accordion";
 import { Icon } from "@narsil-cms/components/icon";
+import { type ComponentProps, type ReactNode } from "react";
 
 type AccordionElement = {
   id: string;

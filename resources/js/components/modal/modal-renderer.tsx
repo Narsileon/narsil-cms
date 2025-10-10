@@ -1,7 +1,5 @@
-import { type ComponentProps } from "react";
-
 import { useModalStore } from "@narsil-cms/stores/modal-store";
-
+import { type ComponentProps } from "react";
 import Modal from "./modal";
 
 type ModalRendererProps = Pick<ComponentProps<typeof Modal>, "container">;

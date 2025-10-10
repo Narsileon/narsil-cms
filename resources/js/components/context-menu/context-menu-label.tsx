@@ -1,26 +1,17 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type ContextMenuLabelProps = ComponentProps<typeof ContextMenu.Label> & {
   inset?: boolean;
 };
 
-function ContextMenuLabel({
-  className,
-  inset,
-  ...props
-}: ContextMenuLabelProps) {
+function ContextMenuLabel({ className, inset, ...props }: ContextMenuLabelProps) {
   return (
     <ContextMenu.Label
       data-slot="context-menu-label"
       data-inset={inset}
-      className={cn(
-        "text-foreground px-2 py-1.5 font-medium",
-        "data-[inset]:pl-8",
-        className,
-      )}
+      className={cn("text-foreground px-2 py-1.5 font-medium", "data-[inset]:pl-8", className)}
       {...props}
     />
   );

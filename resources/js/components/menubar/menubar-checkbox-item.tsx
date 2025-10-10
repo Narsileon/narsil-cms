@@ -1,17 +1,11 @@
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 import { Menubar } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { Icon } from "@narsil-cms/components/icon";
-import { cn } from "@narsil-cms/lib/utils";
-
 type MenubarCheckboxItemProps = ComponentProps<typeof Menubar.CheckboxItem>;
 
-function MenubarCheckboxItem({
-  checked,
-  children,
-  className,
-  ...props
-}: MenubarCheckboxItemProps) {
+function MenubarCheckboxItem({ checked, children, className, ...props }: MenubarCheckboxItemProps) {
   return (
     <Menubar.CheckboxItem
       data-slot="menubar-checkbox-item"

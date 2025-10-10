@@ -1,10 +1,8 @@
+import { VisuallyHidden } from "@narsil-cms/blocks";
+import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { Dialog } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { VisuallyHidden } from "@narsil-cms/blocks";
-import { cn } from "@narsil-cms/lib/utils";
-
 import DialogCloseButton from "./dialog-close-button";
 import dialogContentVariants from "./dialog-content-variants";
 import DialogOverlay from "./dialog-overlay";
@@ -39,9 +37,7 @@ function DialogContent({
       >
         <VisuallyHidden tabIndex={0}>Dialog</VisuallyHidden>
         {children}
-        {showCloseButton ? (
-          <DialogCloseButton className="absolute right-4 top-4" />
-        ) : null}
+        {showCloseButton ? <DialogCloseButton className="absolute right-4 top-4" /> : null}
       </Dialog.Content>
     </DialogPortal>
   );

@@ -1,38 +1,14 @@
-import { isEmpty } from "lodash";
-import { useEffect, useState } from "react";
-
-import {
-  Button,
-  Card,
-  Heading,
-  RevisionSelect,
-  SaveButton,
-} from "@narsil-cms/blocks";
-import {
-  DialogBody,
-  DialogClose,
-  DialogFooter,
-} from "@narsil-cms/components/dialog";
-import {
-  FormProvider,
-  FormRoot,
-  FormRenderer,
-} from "@narsil-cms/components/form";
+import { Button, Card, Heading, RevisionSelect, SaveButton } from "@narsil-cms/blocks";
+import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
-import {
-  TabsContent,
-  TabsList,
-  TabsRoot,
-  TabsTrigger,
-} from "@narsil-cms/components/tabs";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
+import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import type { FormType, Revision, TemplateSection } from "@narsil-cms/types";
+import { isEmpty } from "lodash";
+import { useEffect, useState } from "react";
 
 type FormProps = FormType & {
   data: Record<string, unknown>;
@@ -96,9 +72,7 @@ function ResourceForm({
 
   const [value, setValue] = useState(tabs[0].handle);
 
-  const informationContent = information ? (
-    <FormRenderer {...information} />
-  ) : null;
+  const informationContent = information ? <FormRenderer {...information} /> : null;
 
   const sidebarContent = sidebar ? <FormRenderer {...sidebar} /> : null;
 
@@ -123,10 +97,7 @@ function ResourceForm({
       {tabs.map((tab, index) => {
         return (
           <TabsContent className="p-0" value={tab.handle} key={index}>
-            <Card
-              className="overflow-hidden"
-              contentProps={{ className: "grid-cols-12 gap-4" }}
-            >
+            <Card className="overflow-hidden" contentProps={{ className: "grid-cols-12 gap-4" }}>
               <FormRenderer {...tab} />
             </Card>
           </TabsContent>
@@ -190,9 +161,7 @@ function ResourceForm({
 
                 <SaveButton
                   routes={routes}
-                  submitLabel={
-                    isEmpty(submitLabel) ? trans("ui.save") : submitLabel
-                  }
+                  submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
                 />
               </SectionHeader>
               <SectionContent className="grid gap-4 lg:grid-cols-12">

@@ -1,6 +1,3 @@
-import { uniqueId } from "lodash";
-import { useRef, useState, type ComponentProps } from "react";
-
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
@@ -12,7 +9,8 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
-
+import { uniqueId } from "lodash";
+import { useRef, useState, type ComponentProps } from "react";
 import { type BuilderNode } from ".";
 
 type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {

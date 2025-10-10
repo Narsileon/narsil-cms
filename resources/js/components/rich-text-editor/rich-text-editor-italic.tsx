@@ -1,21 +1,16 @@
-import { Editor, useEditorState } from "@tiptap/react";
-import { type ComponentProps } from "react";
-
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { Editor, useEditorState } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 type RichTextEditorItalicProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
   icon?: IconName;
 };
 
-function RichTextEditorItalic({
-  editor,
-  icon = "italic",
-  ...props
-}: RichTextEditorItalicProps) {
+function RichTextEditorItalic({ editor, icon = "italic", ...props }: RichTextEditorItalicProps) {
   const { trans } = useLocalization();
 
   const { canItalic, isItalic } = useEditorState({

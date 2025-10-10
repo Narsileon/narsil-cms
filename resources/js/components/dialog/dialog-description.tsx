@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Dialog } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type DialogDescriptionProps = ComponentProps<typeof Dialog.Description>;
 

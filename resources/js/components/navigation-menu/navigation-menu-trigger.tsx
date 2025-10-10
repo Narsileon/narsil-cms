@@ -1,16 +1,11 @@
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 import { NavigationMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { Icon } from "@narsil-cms/components/icon";
-import { cn } from "@narsil-cms/lib/utils";
-
 type NavigationMenuTriggerProps = ComponentProps<typeof NavigationMenu.Trigger>;
 
-function NavigationMenuTrigger({
-  className,
-  children,
-  ...props
-}: NavigationMenuTriggerProps) {
+function NavigationMenuTrigger({ className, children, ...props }: NavigationMenuTriggerProps) {
   return (
     <NavigationMenu.Trigger
       data-slot="navigation-menu-trigger"

@@ -1,17 +1,12 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuLabelProps = ComponentProps<typeof DropdownMenu.Label> & {
   inset?: boolean;
 };
 
-function DropdownMenuLabel({
-  className,
-  inset,
-  ...props
-}: DropdownMenuLabelProps) {
+function DropdownMenuLabel({ className, inset, ...props }: DropdownMenuLabelProps) {
   return (
     <DropdownMenu.Label
       data-slot="dropdown-menu-label"

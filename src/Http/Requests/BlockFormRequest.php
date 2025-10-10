@@ -30,7 +30,6 @@ class BlockFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
             Block::NAME => [
-                FormRule::STRING,
                 FormRule::REQUIRED,
             ],
             Block::RELATION_ELEMENTS => [

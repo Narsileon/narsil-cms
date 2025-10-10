@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasPermissions;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -21,6 +22,7 @@ class Role extends Model
     use HasAuditLogs;
     use HasDatetimes;
     use HasPermissions;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -30,6 +32,10 @@ class Role extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->translatable = [
+            self::NAME,
+        ];
 
         $this->mergeGuarded([
             self::ID,
@@ -50,6 +56,13 @@ class Role extends Model
     final public const TABLE = 'roles';
 
     #region • COLUMNS
+
+    /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
 
     /**
      * The name of the "id" column.

@@ -248,7 +248,7 @@ class RoleController extends AbstractController
 
         $replicated
             ->fill([
-                Role::NAME => $role->{Role::NAME} . ' (copy)',
+                Role::HANDLE => $role->{Role::HANDLE} . ' (copy)',
             ])
             ->save();
 

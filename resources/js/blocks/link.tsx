@@ -11,11 +11,7 @@ function isExternalLinkProps(props: LinkProps): props is ExternalLinkProps {
 }
 
 function Link(props: LinkProps) {
-  return isExternalLinkProps(props) ? (
-    <a {...props} />
-  ) : (
-    <InertiaLink {...props} />
-  );
+  return isExternalLinkProps(props) ? <a {...props} /> : <InertiaLink {...props} />;
 }
 
 export default Link;

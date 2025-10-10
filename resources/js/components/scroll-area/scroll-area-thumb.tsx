@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { ScrollArea } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type ScrollAreaThumbProps = ComponentProps<typeof ScrollArea.ScrollAreaThumb>;
 

@@ -1,15 +1,10 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Tooltip } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { cn } from "@narsil-cms/lib/utils";
-
 type TooltipContentProps = ComponentProps<typeof Tooltip.Content>;
 
-function TooltipContent({
-  className,
-  sideOffset = 0,
-  ...props
-}: TooltipContentProps) {
+function TooltipContent({ className, sideOffset = 0, ...props }: TooltipContentProps) {
   return (
     <Tooltip.Content
       data-slot="tooltip-content"

@@ -1,14 +1,6 @@
 import { router } from "@inertiajs/react";
-import { sortBy } from "lodash";
-import { useEffect, useState, type ComponentProps } from "react";
-import { route } from "ziggy-js";
-
 import { Button, Card, Tooltip } from "@narsil-cms/blocks";
-import {
-  FormRenderer,
-  FormProvider,
-  FormRoot,
-} from "@narsil-cms/components/form";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverContent,
@@ -17,6 +9,9 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import type { Bookmark, FormType } from "@narsil-cms/types";
+import { sortBy } from "lodash";
+import { useEffect, useState, type ComponentProps } from "react";
+import { route } from "ziggy-js";
 
 type BookmarksProps = ComponentProps<typeof PopoverTrigger> & {
   breadcrumb: {
@@ -161,9 +156,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                     name: "star",
                   },
                   size: "icon",
-                  tooltip: currentBookmark
-                    ? translations["ui.remove"]
-                    : translations["ui.add"],
+                  tooltip: currentBookmark ? translations["ui.remove"] : translations["ui.add"],
                   variant: "ghost",
                   onClick: () => {
                     if (currentBookmark) {
@@ -182,10 +175,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
               {bookmarks.length > 0 ? (
                 <ul className="-my-2 flex flex-col gap-1">
                   {bookmarks.map((bookmark) => (
-                    <li
-                      className="flex items-center justify-between"
-                      key={bookmark.id}
-                    >
+                    <li className="flex items-center justify-between" key={bookmark.id}>
                       <Button
                         className="text-foreground font-normal"
                         linkProps={{
@@ -229,9 +219,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                   ))}
                 </ul>
               ) : (
-                <p className="text-muted-foreground">
-                  {translations["bookmarks.instruction"]}
-                </p>
+                <p className="text-muted-foreground">{translations["bookmarks.instruction"]}</p>
               )}
             </Card>
           )}

@@ -1,7 +1,5 @@
 import { useForm } from "@inertiajs/react";
-
 import type { Block, Field, TemplateSection } from "@narsil-cms/types";
-
 import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
@@ -32,8 +30,7 @@ function FormProvider({
           if ("elements" in childElement) {
             Object.assign(receivedValues, flattenValues([childElement]));
           } else if ("type" in childElement) {
-            receivedValues[blockElement.handle] =
-              childElement.settings?.value ?? "";
+            receivedValues[blockElement.handle] = childElement.settings?.value ?? "";
           }
         });
       } else if ("type" in element) {
@@ -44,10 +41,7 @@ function FormProvider({
     return receivedValues;
   }
 
-  const mergedInitialValues = Object.assign(
-    flattenValues(elements),
-    initialValues,
-  );
+  const mergedInitialValues = Object.assign(flattenValues(elements), initialValues);
 
   const {
     data,
@@ -88,9 +82,7 @@ function FormProvider({
     transform: transform,
   };
 
-  return (
-    <FormContext.Provider value={value}>{render(value)}</FormContext.Provider>
-  );
+  return <FormContext.Provider value={value}>{render(value)}</FormContext.Provider>;
 }
 
 export default FormProvider;

@@ -1,6 +1,5 @@
-import { type ComponentProps } from "react";
-
 import { ToasterRoot } from "@narsil-cms/components/toaster";
+import { type ComponentProps } from "react";
 
 type ToasterProps = ComponentProps<typeof ToasterRoot>;
 

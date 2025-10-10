@@ -1,5 +1,3 @@
-import { useEffect, useState, type ComponentProps } from "react";
-
 import { VisuallyHidden } from "@narsil-cms/blocks";
 import {
   DialogBody,
@@ -11,6 +9,7 @@ import {
 } from "@narsil-cms/components/dialog";
 import { LocalizationProvider } from "@narsil-cms/components/localization";
 import { type ModalType } from "@narsil-cms/stores/modal-store";
+import { useEffect, useState, type ComponentProps } from "react";
 
 type ModalProps = ComponentProps<typeof DialogContent> & {
   modal: ModalType;
@@ -64,16 +63,12 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
           <DialogTitle>{modal.componentProps.title}</DialogTitle>
         </DialogHeader>
         <VisuallyHidden asChild={true}>
-          <DialogDescription>
-            {modal.componentProps.description}
-          </DialogDescription>
+          <DialogDescription>{modal.componentProps.description}</DialogDescription>
         </VisuallyHidden>
 
         <LocalizationProvider translations={modal.componentProps.translations}>
           <DialogBody className="p-0">
-            {Component ? (
-              <Component modal={modal} {...modal.componentProps} />
-            ) : null}
+            {Component ? <Component modal={modal} {...modal.componentProps} /> : null}
           </DialogBody>
         </LocalizationProvider>
       </DialogContent>

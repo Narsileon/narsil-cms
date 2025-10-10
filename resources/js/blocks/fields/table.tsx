@@ -1,7 +1,7 @@
 import {
   closestCenter,
-  DragOverlay,
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
@@ -19,10 +19,6 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { get, set, upperFirst } from "lodash";
-import { useState, type ComponentProps } from "react";
-import { createPortal } from "react-dom";
-
 import { Button } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -39,6 +35,9 @@ import {
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { Field } from "@narsil-cms/types";
+import { get, set, upperFirst } from "lodash";
+import { useState, type ComponentProps } from "react";
+import { createPortal } from "react-dom";
 
 type TableItem = {
   id: UniqueIdentifier;
@@ -104,9 +103,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
   }
 
   function onUpdate(id: UniqueIdentifier, key: string, value: unknown) {
-    setRows(
-      rows.map((row) => (row.id === id ? set({ ...row }, key, value) : row)),
-    );
+    setRows(rows.map((row) => (row.id === id ? set({ ...row }, key, value) : row)));
   }
 
   return (
@@ -117,10 +114,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
     >
-      <SortableContext
-        items={rows.map((row) => row.id)}
-        strategy={verticalListSortingStrategy}
-      >
+      <SortableContext items={rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
         <TableWrapper>
           <TableRoot className="w-full table-fixed">
             <TableHeader>
@@ -139,18 +133,9 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
             <TableBody>
               {rows.map((row) => {
                 return (
-                  <SortableItem
-                    className="h-11"
-                    id={row.id}
-                    onRemove={onRemove}
-                    key={row.id}
-                  >
+                  <SortableItem className="h-11" id={row.id} onRemove={onRemove} key={row.id}>
                     {columns.map((column, index) => {
-                      const value = get(
-                        row,
-                        column.handle,
-                        column.settings.value,
-                      );
+                      const value = get(row, column.handle, column.settings.value);
 
                       return (
                         <TableCell className="px-0.5 py-0" key={index}>

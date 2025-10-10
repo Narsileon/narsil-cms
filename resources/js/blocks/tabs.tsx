@@ -1,13 +1,7 @@
-import { type ComponentProps } from "react";
-
 import { Icon } from "@narsil-cms/components/icon";
-import {
-  TabsContent,
-  TabsList,
-  TabsRoot,
-  TabsTrigger,
-} from "@narsil-cms/components/tabs";
+import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { type ComponentProps } from "react";
 
 type TabsElement = {
   id: string;
@@ -34,11 +28,7 @@ function Tabs({
     <TabsRoot {...props}>
       <TabsList {...tabsListProps}>
         {elements.map((element) => (
-          <TabsTrigger
-            {...tabsTriggerProps}
-            value={element.id}
-            key={element.id}
-          >
+          <TabsTrigger {...tabsTriggerProps} value={element.id} key={element.id}>
             {element.icon ? <Icon name={element.icon} /> : null}
             {element.title}
           </TabsTrigger>

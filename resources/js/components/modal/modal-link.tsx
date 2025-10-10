@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/react";
-import { type ComponentProps } from "react";
-
 import { useModalStore } from "@narsil-cms/stores/modal-store";
+import { type ComponentProps } from "react";
 
 type ModalLinkProps = ComponentProps<typeof Link>;
 
@@ -15,14 +14,7 @@ function ModalLink({ as = "button", onClick, ...props }: ModalLinkProps) {
     openModal({ ...props });
   }
 
-  return (
-    <Comp
-      data-slot="modal-link"
-      aria-haspopup="dialog"
-      onClick={handleClick}
-      {...props}
-    />
-  );
+  return <Comp data-slot="modal-link" aria-haspopup="dialog" onClick={handleClick} {...props} />;
 }
 
 export default ModalLink;

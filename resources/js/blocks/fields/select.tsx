@@ -1,6 +1,3 @@
-import { get, isString } from "lodash";
-import { type ComponentProps } from "react";
-
 import {
   SelectContent,
   SelectIcon,
@@ -15,6 +12,8 @@ import {
   SelectValue,
   SelectViewport,
 } from "@narsil-cms/components/select";
+import { get, isString } from "lodash";
+import { type ComponentProps } from "react";
 
 type SelectOption =
   | string
@@ -31,9 +30,7 @@ type SelectProps = ComponentProps<typeof SelectRoot> & {
   itemTextProps?: Partial<ComponentProps<typeof SelectItemText>>;
   options?: SelectOption[];
   portalProps?: Partial<ComponentProps<typeof SelectPortal>>;
-  scrollDownButtonProps?: Partial<
-    ComponentProps<typeof SelectScrollDownButton>
-  >;
+  scrollDownButtonProps?: Partial<ComponentProps<typeof SelectScrollDownButton>>;
   scrollUpButtonProps?: Partial<ComponentProps<typeof SelectScrollUpButton>>;
   triggerProps?: Partial<ComponentProps<typeof SelectTrigger>>;
   valueProps?: Partial<ComponentProps<typeof SelectValue>>;
@@ -84,14 +81,8 @@ const Select = ({
           <SelectViewport {...viewportProps}>
             {children}
             {options?.map((option, index) => (
-              <SelectItem
-                {...itemProps}
-                value={getOptionValue(option)}
-                key={index}
-              >
-                <SelectItemText {...itemTextProps}>
-                  {getOptionLabel(option)}
-                </SelectItemText>
+              <SelectItem {...itemProps} value={getOptionValue(option)} key={index}>
+                <SelectItemText {...itemTextProps}>{getOptionLabel(option)}</SelectItemText>
                 <SelectItemIndicator {...itemIndicatorProps} />
               </SelectItem>
             ))}

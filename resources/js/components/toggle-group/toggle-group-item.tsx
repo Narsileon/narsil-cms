@@ -1,21 +1,14 @@
+import { toggleRootVariants } from "@narsil-cms/components/toggle";
+import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { ToggleGroup } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { toggleRootVariants } from "@narsil-cms/components/toggle";
-import { cn } from "@narsil-cms/lib/utils";
-
 import useToggleGroup from "./toggle-group-context";
 
 type ToggleGroupItemProps = ComponentProps<typeof ToggleGroup.Item> &
   VariantProps<typeof toggleRootVariants>;
 
-function ToggleGroupItem({
-  className,
-  size,
-  variant,
-  ...props
-}: ToggleGroupItemProps) {
+function ToggleGroupItem({ className, size, variant, ...props }: ToggleGroupItemProps) {
   const context = useToggleGroup();
 
   return (

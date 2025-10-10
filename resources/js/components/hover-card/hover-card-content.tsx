@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { HoverCard } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type HoverCardContentProps = ComponentProps<typeof HoverCard.Content>;
 

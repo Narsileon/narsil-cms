@@ -1,14 +1,12 @@
-import { isEmpty } from "lodash";
-import { useEffect } from "react";
-import { toast } from "sonner";
-
 import { Head } from "@narsil-cms/blocks";
 import { LocalizationProvider } from "@narsil-cms/components/localization";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
-
+import { isEmpty } from "lodash";
+import { useEffect } from "react";
+import { toast } from "sonner";
 import AuthLayout from "./auth-layout";
 import GuestLayout from "./guest-layout";
 
@@ -47,12 +45,7 @@ function Layout({ children }: LayoutProps) {
 
   return (
     <LocalizationProvider translations={translations}>
-      <Head
-        description={description}
-        follow={false}
-        index={false}
-        title={title}
-      />
+      <Head description={description} follow={false} index={false} title={title} />
       {window.location.pathname === "/narsil/graphiql" ? (
         <main className="h-screen w-screen">{children}</main>
       ) : isEmpty(auth) ? (

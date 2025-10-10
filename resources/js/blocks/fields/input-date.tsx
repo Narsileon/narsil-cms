@@ -1,5 +1,3 @@
-import { useState, type ComponentProps } from "react";
-
 import { Calendar } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
@@ -10,6 +8,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { cn } from "@narsil-cms/lib/utils";
+import { useState, type ComponentProps } from "react";
 
 type InputDateProps = Omit<ComponentProps<typeof InputContent>, "value"> & {
   value: string | undefined;
@@ -43,9 +42,7 @@ function InputDate({ value, onChange, ...props }: InputDateProps) {
             defaultMonth={date}
             selected={date}
             onSelect={(selected) => {
-              const newValue = selected
-                ? selected.toLocaleDateString("en-CA")
-                : undefined;
+              const newValue = selected ? selected.toLocaleDateString("en-CA") : undefined;
               onChange?.(newValue);
               setOpen(false);
             }}

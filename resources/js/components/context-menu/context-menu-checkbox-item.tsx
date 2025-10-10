@@ -1,12 +1,9 @@
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { Icon } from "@narsil-cms/components/icon";
-import { cn } from "@narsil-cms/lib/utils";
-
-type ContextMenuCheckboxItemProps = ComponentProps<
-  typeof ContextMenu.CheckboxItem
->;
+type ContextMenuCheckboxItemProps = ComponentProps<typeof ContextMenu.CheckboxItem>;
 
 function ContextMenuCheckboxItem({
   checked,

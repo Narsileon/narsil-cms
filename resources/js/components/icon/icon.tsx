@@ -1,8 +1,7 @@
-import { startCase } from "lodash";
-import { type ComponentProps } from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
 import { getIcon, IconName } from "@narsil-cms/plugins/icons";
+import { startCase } from "lodash";
+import { type ComponentProps } from "react";
 
 type IconProps = ComponentProps<"svg"> & {
   name: IconName;

@@ -1,17 +1,12 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Slot } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type SidebarGroupLabelProps = ComponentProps<"div"> & {
   asChild?: boolean;
 };
 
-function SidebarGroupLabel({
-  className,
-  asChild = false,
-  ...props
-}: SidebarGroupLabelProps) {
+function SidebarGroupLabel({ className, asChild = false, ...props }: SidebarGroupLabelProps) {
   const Comp = asChild ? Slot.Root : "div";
 
   return (

@@ -1,12 +1,9 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
-
 import inputContentVariants from "./input-content-variants";
 
-type InputContentProps = ComponentProps<"input"> &
-  VariantProps<typeof inputContentVariants>;
+type InputContentProps = ComponentProps<"input"> & VariantProps<typeof inputContentVariants>;
 
 const TYPES = {
   date: "date",
@@ -15,12 +12,7 @@ const TYPES = {
   number: "number",
 } as const;
 
-function InputContent({
-  className,
-  type,
-  variant,
-  ...props
-}: InputContentProps) {
+function InputContent({ className, type, variant, ...props }: InputContentProps) {
   function getVariant() {
     if (variant) {
       return variant;

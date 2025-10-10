@@ -1,5 +1,4 @@
 import { router } from "@inertiajs/react";
-
 import {
   SelectContent,
   SelectItem,

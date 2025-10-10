@@ -1,13 +1,9 @@
-import { type ComponentProps } from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
+import { type ComponentProps } from "react";
 
 type SidebarGroupContentProps = ComponentProps<"ul">;
 
-function SidebarGroupContent({
-  className,
-  ...props
-}: SidebarGroupContentProps) {
+function SidebarGroupContent({ className, ...props }: SidebarGroupContentProps) {
   return (
     <ul
       data-slot="sidebar-group-content"

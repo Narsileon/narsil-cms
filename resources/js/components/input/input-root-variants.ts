@@ -1,6 +1,5 @@
-import { cva } from "class-variance-authority";
-
 import { cn } from "@narsil-cms/lib/utils";
+import { cva } from "class-variance-authority";
 
 const inputRootVariants = cva(
   cn(
@@ -13,10 +12,7 @@ const inputRootVariants = cva(
     variants: {
       variant: {
         default: "",
-        button: cn(
-          "cursor-pointer",
-          "hover:bg-accent hover:text-accent-foreground",
-        ),
+        button: cn("cursor-pointer", "hover:bg-accent hover:text-accent-foreground"),
       },
     },
     defaultVariants: {

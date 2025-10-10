@@ -1,14 +1,10 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { NavigationMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { cn } from "@narsil-cms/lib/utils";
-
 type NavigationMenuContentProps = ComponentProps<typeof NavigationMenu.Content>;
 
-function NavigationMenuContent({
-  className,
-  ...props
-}: NavigationMenuContentProps) {
+function NavigationMenuContent({ className, ...props }: NavigationMenuContentProps) {
   return (
     <NavigationMenu.Content
       data-slot="navigation-menu-content"

@@ -1,6 +1,5 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
-
 import { LocalizationContext } from "./localization-context";
 
 type LocalizationProviderProps = {
@@ -12,8 +11,7 @@ const LocalizationProvider = ({
   children,
   translations: initialTranslations,
 }: LocalizationProviderProps) => {
-  const [translations, setTranslations] =
-    useState<Record<string, string>>(initialTranslations);
+  const [translations, setTranslations] = useState<Record<string, string>>(initialTranslations);
 
   useEffect(() => {
     setTranslations((prev) => ({
@@ -35,13 +33,11 @@ const LocalizationProvider = ({
           let trans = get(translations, key) ?? "No translation found";
 
           if (options?.replacements) {
-            Object.entries(options?.replacements).forEach(
-              ([placeholder, value]) => {
-                const regex = new RegExp(`:${placeholder}`, "g");
+            Object.entries(options?.replacements).forEach(([placeholder, value]) => {
+              const regex = new RegExp(`:${placeholder}`, "g");
 
-                trans = trans.replace(regex, String(value));
-              },
-            );
+              trans = trans.replace(regex, String(value));
+            });
           }
 
           return trans;

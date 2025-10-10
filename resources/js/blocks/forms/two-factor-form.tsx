@@ -1,18 +1,13 @@
 import { router } from "@inertiajs/react";
-import { useState } from "react";
-import { toast } from "sonner";
-import { route } from "ziggy-js";
-
 import { Card, Label } from "@narsil-cms/blocks";
 import { Switch } from "@narsil-cms/blocks/fields";
-import {
-  FormRenderer,
-  FormProvider,
-  FormRoot,
-} from "@narsil-cms/components/form";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
+import { useState } from "react";
+import { toast } from "sonner";
+import { route } from "ziggy-js";
 
 type TwoFactorFormProps = {
   form: FormType;

@@ -1,19 +1,12 @@
-import { useEffect, useState, type ComponentProps } from "react";
-
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
+import { useEffect, useState, type ComponentProps } from "react";
 
 type InputFileProps = Omit<ComponentProps<typeof InputContent>, "onChange"> & {
   value: File | string | undefined;
   onChange: (value: File | string | undefined) => void;
 };
 
-function InputFile({
-  accept,
-  children,
-  value,
-  onChange,
-  ...props
-}: InputFileProps) {
+function InputFile({ accept, children, value, onChange, ...props }: InputFileProps) {
   const [preview, setPreview] = useState<string | null>(null);
 
   useEffect(() => {
@@ -51,17 +44,8 @@ function InputFile({
 
   return (
     <InputRoot>
-      <InputContent
-        accept={accept}
-        type="file"
-        onChange={handleChange}
-        {...props}
-      />
-      {value && preview ? (
-        <img src={preview} className="size-5 rounded" />
-      ) : (
-        children
-      )}
+      <InputContent accept={accept} type="file" onChange={handleChange} {...props} />
+      {value && preview ? <img src={preview} className="size-5 rounded" /> : children}
     </InputRoot>
   );
 }

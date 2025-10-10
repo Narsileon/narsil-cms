@@ -1,16 +1,11 @@
-import { ColumnDef } from "@tanstack/react-table";
-
 import { DataTable } from "@narsil-cms/blocks";
 import {
   DataTableProvider,
   getMenuColumn,
   getSelectColumn,
 } from "@narsil-cms/components/data-table";
-import type {
-  Model,
-  DataTableCollection,
-  DataTableFilterCollection,
-} from "@narsil-cms/types";
+import type { DataTableCollection, DataTableFilterCollection, Model } from "@narsil-cms/types";
+import { ColumnDef } from "@tanstack/react-table";
 
 type ResourceIndexProps = {
   collection: DataTableCollection;

@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Slider } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type SliderThumbProps = ComponentProps<typeof Slider.Thumb>;
 
