@@ -87,7 +87,7 @@ function FormProvider({
     transform: transform,
   };
 
-  return <FormContext.Provider value={contextValue}>{render(value)}</FormContext.Provider>;
+  return <FormContext.Provider value={contextValue}>{render(contextValue)}</FormContext.Provider>;
 }
 
 export default FormProvider;
