@@ -20,8 +20,8 @@ function ResourceForm({
   action,
   data,
   id,
+  languageOptions,
   layout,
-  locales,
   method,
   modal,
   revisions,
@@ -125,6 +125,7 @@ function ResourceForm({
         _back: modal !== undefined,
         ...data,
       }}
+      languageOptions={languageOptions}
       render={({ language, setLanguage }) => (
         <FormRoot
           className="overflow-hidden"
@@ -159,7 +160,7 @@ function ResourceForm({
                   </Heading>
                   {revisions ? <RevisionSelect revisions={revisions} /> : null}
                 </div>
-                <FormLanguage value={language} setValue={setLanguage} options={locales} />
+                <FormLanguage value={language} onValueChange={setLanguage} />
                 <SaveButton
                   routes={routes}
                   submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}

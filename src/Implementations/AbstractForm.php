@@ -32,7 +32,7 @@ abstract class AbstractForm implements Form
      */
     public function __construct()
     {
-        $this->locales(config('narsil.locales'));
+        $this->languageOptions(config('narsil.locales'));
 
         app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
@@ -84,7 +84,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public protected(set) array $locales = [];
+    public protected(set) array $languageOptions = [];
 
     /**
      * {@inheritDoc}
@@ -120,8 +120,8 @@ abstract class AbstractForm implements Form
             'data' => $this->data,
             'description' => $this->description,
             'id' => $this->getDefaultId($this->id),
+            'languageOptions' => $this->languageOptions,
             'layout' => $this->layout(),
-            'locales' => $this->locales,
             'method' => $this->method,
             'routes' => $this->routes,
             'submitIcon' => $this->submitIcon,
@@ -175,19 +175,19 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function locales(array $locales): static
+    public function languageOptions(array $locales): static
     {
-        $options = [];
+        $languageOptions = [];
 
         foreach ($locales as $locale)
         {
-            $options[] = new SelectOption(
+            $languageOptions[] = new SelectOption(
                 label: Str::ucfirst(Locale::getDisplayName($locale, App::getLocale())),
                 value: $locale
             )->jsonSerialize();
         }
 
-        $this->locales = $options;
+        $this->languageOptions = $languageOptions;
 
         return $this;
     }

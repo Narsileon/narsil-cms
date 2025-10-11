@@ -23,6 +23,7 @@ import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
+import FormLanguage from "./form-language";
 import FormMessage from "./form-message";
 
 type FormRendererProps = (Block | Field | TemplateSection) & {
@@ -124,7 +125,7 @@ function FormRenderer({
       id={props.handle}
       conditions={conditions}
       field={props}
-      render={({ value, onFieldChange }) => {
+      render={({ language, setLanguage, value, onFieldChange }) => {
         function handleOnChange(value: unknown) {
           onChange?.(value);
           onFieldChange(value);
@@ -142,6 +143,9 @@ function FormRenderer({
           >
             <div className="flex items-center justify-between gap-3">
               <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
+              {props.translatable ? (
+                <FormLanguage value={language} onValueChange={setLanguage} />
+              ) : null}
               {props.settings?.append
                 ? parse(props.settings.append, {
                     replace: (domNode) => {

@@ -12,15 +12,9 @@ import {
   SelectValue,
   SelectViewport,
 } from "@narsil-cms/components/select";
+import { SelectOption } from "@narsil-cms/types";
 import { get, isString } from "lodash";
 import { type ComponentProps } from "react";
-
-type SelectOption =
-  | string
-  | {
-      label: string;
-      value: string;
-    };
 
 type SelectProps = ComponentProps<typeof SelectRoot> & {
   contentProps?: Partial<ComponentProps<typeof SelectContent>>;
@@ -28,7 +22,7 @@ type SelectProps = ComponentProps<typeof SelectRoot> & {
   itemProps?: Partial<ComponentProps<typeof SelectItem>>;
   itemIndicatorProps?: Partial<ComponentProps<typeof SelectItemIndicator>>;
   itemTextProps?: Partial<ComponentProps<typeof SelectItemText>>;
-  options?: SelectOption[];
+  options?: (string | SelectOption)[];
   portalProps?: Partial<ComponentProps<typeof SelectPortal>>;
   scrollDownButtonProps?: Partial<ComponentProps<typeof SelectScrollDownButton>>;
   scrollUpButtonProps?: Partial<ComponentProps<typeof SelectScrollUpButton>>;
@@ -55,7 +49,7 @@ const Select = ({
   viewportProps,
   ...props
 }: SelectProps) => {
-  function getOptionLabel(option: SelectOption) {
+  function getOptionLabel(option: string | SelectOption): string {
     if (isString(option)) {
       return option;
     }
@@ -63,12 +57,12 @@ const Select = ({
     return get(option, "label");
   }
 
-  function getOptionValue(option: SelectOption) {
+  function getOptionValue(option: string | SelectOption): string {
     if (isString(option)) {
       return option;
     }
 
-    return get(option, "value");
+    return get(option, "value")?.toString();
   }
 
   return (

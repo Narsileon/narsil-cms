@@ -81,7 +81,9 @@ function Sidebar({ ...props }: SidebarProps) {
                           <Link
                             href={item.href}
                             target={item.target}
-                            onSuccess={() => setOpenMobile(false)}
+                            {...(item.target !== "_blank"
+                              ? { onSuccess: () => setOpenMobile(false) }
+                              : {})}
                           >
                             {item.icon ? <Icon name={item.icon} /> : null}
                             {item.label}

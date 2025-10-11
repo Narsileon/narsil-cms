@@ -64,13 +64,13 @@ interface Form extends JsonSerializable
     public function id(mixed $id): static;
 
     /**
-     * Set the locales of the form.
+     * Set the language options of the form.
      *
      * @param array $locales
      *
      * @return static
      */
-    public function locales(array $locales): static;
+    public function languageOptions(array $locales): static;
 
     /**
      * Set the method of the form.

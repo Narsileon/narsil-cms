@@ -1,5 +1,5 @@
 import { useForm } from "@inertiajs/react";
-import type { Block, Field, TemplateSection } from "@narsil-cms/types";
+import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
 import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 
@@ -8,6 +8,7 @@ type FormProviderProps = {
   elements?: (Block | Field | TemplateSection)[];
   id: string;
   initialValues?: Record<string, unknown>;
+  languageOptions?: SelectOption[];
   method: string;
   render: (props: FormContextProps) => React.ReactNode;
 };
@@ -17,6 +18,7 @@ function FormProvider({
   elements = [],
   id,
   initialValues = {},
+  languageOptions = [],
   method,
   render,
 }: FormProviderProps) {
@@ -71,6 +73,7 @@ function FormProvider({
     id: id,
     isDirty: isDirty,
     language: language,
+    languageOptions: languageOptions,
     method: method,
     processing: processing,
     cancel: cancel,

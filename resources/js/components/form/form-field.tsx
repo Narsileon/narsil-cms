@@ -10,8 +10,10 @@ type FormFieldProps = {
   id: string;
   render: (field: {
     handle: string;
+    language: string;
     value: unknown;
     onFieldChange: (value: unknown) => void;
+    setLanguage: (value: string) => void;
   }) => React.ReactNode;
 };
 
@@ -74,12 +76,14 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
     <FormFieldContext.Provider value={contextValue}>
       {render({
         handle: id,
+        language: language,
         value: getValue(),
         onFieldChange: (value) => {
           const key = field.translatable ? `${id}.${language}` : id;
 
           setData?.(key, value);
         },
+        setLanguage: setLanguage,
       })}
     </FormFieldContext.Provider>
   ) : null;
