@@ -62,11 +62,10 @@ class UserController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, User::class);
 
-        $form = app(UserForm::class);
-
-        $form->action = route('users.store');
-        $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.save');
+        $form = app(UserForm::class)
+            ->action(route('users.store'))
+            ->method(MethodEnum::POST)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -113,13 +112,12 @@ class UserController extends AbstractController
 
         $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::HANDLE));
 
-        $form = app(UserForm::class);
-
-        $form->action = route('users.update', $user->{User::ID});
-        $form->data = $user;
-        $form->id = $user->{User::ID};
-        $form->method = MethodEnum::PATCH;
-        $form->submitLabel = trans('narsil::ui.update');
+        $form = app(UserForm::class)
+            ->action(route('users.update', $user->{User::ID}))
+            ->data($user)
+            ->id($user->{User::ID})
+            ->method(MethodEnum::PATCH)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',

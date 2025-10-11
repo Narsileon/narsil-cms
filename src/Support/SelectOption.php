@@ -108,7 +108,7 @@ class SelectOption implements JsonSerializable
     }
 
     /**
-     * Sets the label of the select option.
+     * Set the label of the select option.
      *
      * @param string $label
      *
@@ -122,7 +122,7 @@ class SelectOption implements JsonSerializable
     }
 
     /**
-     * Sets the value of the select option.
+     * Set the value of the select option.
      *
      * @param string $value
      *

@@ -73,11 +73,10 @@ class BlockController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
-        $form = app()->make(BlockForm::class);
-
-        $form->action = route('blocks.store');
-        $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.save');
+        $form = app(BlockForm::class)
+            ->action(route('blocks.store'))
+            ->method(MethodEnum::POST)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -132,13 +131,12 @@ class BlockController extends AbstractController
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
 
-        $form = app()->make(BlockForm::class);
-
-        $form->action = route('blocks.update', $block->{Block::ID});
-        $form->data = $block;
-        $form->id = $block->{Block::ID};
-        $form->method = MethodEnum::PATCH;
-        $form->submitLabel = trans('narsil::ui.update');
+        $form = app(BlockForm::class)
+            ->action(route('blocks.update', $block->{Block::ID}))
+            ->data($block)
+            ->id($block->{Block::ID})
+            ->method(MethodEnum::PATCH)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',

@@ -63,11 +63,10 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Role::class);
 
-        $form = app(RoleForm::class);
-
-        $form->action = route('roles.store');
-        $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.save');
+        $form = app(RoleForm::class)
+            ->action(route('roles.store'))
+            ->method(MethodEnum::POST)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -113,13 +112,12 @@ class RoleController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $role);
 
-        $form = app(RoleForm::class);
-
-        $form->action = route('roles.update', $role->{Role::ID});
-        $form->data = $role;
-        $form->id = $role->{Role::ID};
-        $form->method = MethodEnum::PATCH;
-        $form->submitLabel = trans('narsil::ui.update');
+        $form = app(RoleForm::class)
+            ->action(route('roles.update', $role->{Role::ID}))
+            ->data($role)
+            ->id($role->{Role::ID})
+            ->method(MethodEnum::PATCH)
+            ->submitLabel(trans('narsil::ui.update'));
 
         $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::NAME));
 

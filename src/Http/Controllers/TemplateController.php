@@ -68,11 +68,10 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
-        $form = app(TemplateForm::class);
-
-        $form->action = route('templates.store');
-        $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.save');
+        $form = app(TemplateForm::class)
+            ->action(route('templates.store'))
+            ->method(MethodEnum::POST)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -122,13 +121,12 @@ class TemplateController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $template);
 
-        $form = app(TemplateForm::class);
-
-        $form->action = route('templates.update', $template->{Template::ID});
-        $form->data = $template;
-        $form->id = $template->{Template::ID};
-        $form->method = MethodEnum::PATCH;
-        $form->submitLabel = trans('narsil::ui.update');
+        $form = app(TemplateForm::class)
+            ->action(route('templates.update', $template->{Template::ID}))
+            ->data($template)
+            ->id($template->{Template::ID})
+            ->method(MethodEnum::PATCH)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',

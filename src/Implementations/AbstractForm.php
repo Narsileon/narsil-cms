@@ -59,74 +59,42 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public string $action = ''
-    {
-        get => $this->action;
-        set(string $value) => $this->action = $value;
-    }
+    public protected(set) string $action = '';
 
     /**
      * {@inheritDoc}
      */
-    public Model|array $data = []
-    {
-        get => $this->data;
-        set(Model|array $value) => $this->data = $value;
-    }
+    public protected(set) Model|array $data = [];
 
     /**
      * {@inheritDoc}
      */
-    public string $description = ''
-    {
-        get => $this->description;
-        set(string $value) => $this->description = $value;
-    }
+    public protected(set) string $description = '';
 
     /**
      * {@inheritDoc}
      */
-    public mixed $id = null
-    {
-        get => $this->id;
-        set(mixed $value) => $this->id = $value;
-    }
+    public protected(set) mixed $id = null;
 
     /**
      * {@inheritDoc}
      */
-    public MethodEnum $method = MethodEnum::POST
-    {
-        get => $this->method;
-        set(MethodEnum $value) => $this->method = $value;
-    }
+    public protected(set) MethodEnum $method = MethodEnum::POST;
 
     /**
      * {@inheritDoc}
      */
-    public ?string $submitIcon = null
-    {
-        get => $this->submitIcon;
-        set(?string $value) => $this->submitIcon = $value;
-    }
+    public protected(set) ?string $submitIcon = null;
 
     /**
      * {@inheritDoc}
      */
-    public string $submitLabel = ''
-    {
-        get => $this->submitLabel;
-        set(string $value) => $this->submitLabel = $value;
-    }
+    public protected(set) string $submitLabel = '';
 
     /**
      * {@inheritDoc}
      */
-    public string $title = ''
-    {
-        get => $this->title;
-        set(string $value) => $this->title = $value;
-    }
+    public protected(set) string $title = '';
 
     #endregion
 
@@ -150,6 +118,90 @@ abstract class AbstractForm implements Form
             'title' => $this->title,
         ];
     }
+
+    #region • SETTERS
+
+    /**
+     * {@inheritDoc}
+     */
+    public function action(string $action): static
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function data(Model|array $data): static
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function description(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function id(mixed $id): static
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function method(MethodEnum $method): static
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function submitIcon(?string $submitIcon): static
+    {
+        $this->submitIcon = $submitIcon;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function submitLabel(string $submitLabel): static
+    {
+        $this->submitLabel = $submitLabel;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function title(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    #endregion
 
     #endregion
 
