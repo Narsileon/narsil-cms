@@ -18,39 +18,53 @@ class MenuItem implements JsonSerializable
     #region PROPERTIES
 
     /**
+     * The group of the menu item.
+     *
      * @var ?string
      */
-    protected ?string $group = null;
+    public protected(set) ?string $group = null;
 
     /**
+     * The href of the anchor.
+     *
      * @var ?string
      */
-    protected ?string $href = null;
+    public protected(set) ?string $href = null;
 
     /**
+     * The label of the menu item.
+     *
      * @var ?string
      */
-    protected ?string $label = null;
+    public protected(set) ?string $label = null;
 
     /**
+     * The icon of the menu item.
+     *
      * @var ?string
      */
-    protected ?string $icon = null;
+    public protected(set) ?string $icon = null;
 
     /**
+     * The method of the anchor.
+     *
      * @var ?string
      */
-    protected ?string $method = MethodEnum::GET->value;
+    public protected(set) ?string $method = MethodEnum::GET->value;
 
     /**
+     * The modal toggle.
+     *
      * @var ?boolean
      */
-    protected ?bool $modal = null;
+    public protected(set) ?bool $modal = null;
 
     /**
+     * The target of the anchor.
+     *
      * @var ?string
      */
-    protected ?string $target = null;
+    public protected(set) ?string $target = null;
 
     #endregion
 
@@ -72,9 +86,11 @@ class MenuItem implements JsonSerializable
         ];
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
+     * Set the group of the menu item.
+     *
      * @param string $group
      *
      * @return static
@@ -87,6 +103,8 @@ class MenuItem implements JsonSerializable
     }
 
     /**
+     * Set the href of the anchor.
+     *
      * @param string $href
      *
      * @return static
@@ -99,6 +117,8 @@ class MenuItem implements JsonSerializable
     }
 
     /**
+     * Set the icon of the menu item.
+     *
      * @param string $icon
      *
      * @return static
@@ -111,6 +131,8 @@ class MenuItem implements JsonSerializable
     }
 
     /**
+     * Set the label of the menu item.
+     *
      * @param string $label
      *
      * @return static
@@ -123,6 +145,8 @@ class MenuItem implements JsonSerializable
     }
 
     /**
+     * Set the method of the anchor.
+     *
      * @param MethodEnum $method
      *
      * @return static
@@ -135,6 +159,8 @@ class MenuItem implements JsonSerializable
     }
 
     /**
+     * Set the modal toggle.
+     *
      * @param boolean $modal
      *
      * @return static
@@ -147,6 +173,8 @@ class MenuItem implements JsonSerializable
     }
 
     /**
+     * Set the target of the anchor.
+     *
      * @param string $target
      *
      * @return static

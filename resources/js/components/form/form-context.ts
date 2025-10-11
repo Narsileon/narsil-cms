@@ -4,14 +4,17 @@ import { createContext, useContext } from "react";
 export type FormContextProps = Partial<InertiaFormProps<Record<string, unknown>>> & {
   action: string;
   id: string;
+  language: string;
   method: string;
+  setLanguage: (value: string) => void;
 };
 
 export const FormContext = createContext<FormContextProps>({
   action: "#",
   id: "form",
+  language: "en",
   method: "post",
-});
+} as FormContextProps);
 
 function useForm() {
   const context = useContext(FormContext);

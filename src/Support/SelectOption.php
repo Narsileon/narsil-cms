@@ -24,8 +24,8 @@ class SelectOption implements JsonSerializable
      */
     public function __construct(string $label, string $value)
     {
-        $this->label = $label;
-        $this->value = $value;
+        $this->label($label);
+        $this->value($value);
     }
 
     #endregion
@@ -37,28 +37,28 @@ class SelectOption implements JsonSerializable
      *
      * @var string
      */
-    protected ?string $icon = null;
+    public protected(set) ?string $icon = null;
 
     /**
      * The identifier of the select option.
      *
      * @var string
      */
-    protected ?string $identifier = null;
+    public protected(set) ?string $identifier = null;
 
     /**
      * The label of the select option.
      *
      * @var string
      */
-    protected string $label = '';
+    public protected(set) string $label = '';
 
     /**
      * The value of the select option.
      *
      * @var string
      */
-    protected string $value = '';
+    public protected(set) string $value = '';
 
     #endregion
 
@@ -77,50 +77,6 @@ class SelectOption implements JsonSerializable
         ];
     }
 
-    #region • GETTERS
-
-    /**
-     * Get the icon of the select option.
-     *
-     * @return string|null
-     */
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    /**
-     * Get the identifier of the select option.
-     *
-     * @return string|null
-     */
-    public function getIdentifier(): ?string
-    {
-        return $this->identifier;
-    }
-
-    /**
-     * Get the label of the select option.
-     *
-     * @return string
-     */
-    public function getLabel(): string
-    {
-        return $this->label;
-    }
-
-    /**
-     * Get the value of the select option.
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    #endregion
-
     #region • SETTERS
 
     /**
@@ -130,7 +86,7 @@ class SelectOption implements JsonSerializable
      *
      * @return static
      */
-    public function setIcon(string $icon): static
+    public function icon(string $icon): static
     {
         $this->icon = $icon;
 
@@ -144,7 +100,7 @@ class SelectOption implements JsonSerializable
      *
      * @return static
      */
-    public function setIdentifier(string $identifier): static
+    public function identifier(string $identifier): static
     {
         $this->identifier = $identifier;
 
@@ -158,7 +114,7 @@ class SelectOption implements JsonSerializable
      *
      * @return static
      */
-    public function setLabel(string $label): static
+    public function label(string $label): static
     {
         $this->label = $label;
 
@@ -172,13 +128,12 @@ class SelectOption implements JsonSerializable
      *
      * @return static
      */
-    public function setValue(string $value): static
+    public function value(string $value): static
     {
         $this->value = $value;
 
         return $this;
     }
-
 
     #endregion
 

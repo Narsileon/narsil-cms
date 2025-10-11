@@ -1,5 +1,6 @@
 import { useForm } from "@inertiajs/react";
 import type { Block, Field, TemplateSection } from "@narsil-cms/types";
+import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
@@ -19,6 +20,8 @@ function FormProvider({
   method,
   render,
 }: FormProviderProps) {
+  const [language, setLanguage] = useState<string>("en");
+
   function flattenValues(elements: (Field | Block)[]): Record<string, unknown> {
     const receivedValues: Record<string, unknown> = {};
 
@@ -61,12 +64,13 @@ function FormProvider({
     transform,
   } = useForm<Record<string, any>>(mergedInitialValues);
 
-  const value = {
+  const contextValue = {
     action: action,
     data: data,
     errors: errors,
     id: id,
     isDirty: isDirty,
+    language: language,
     method: method,
     processing: processing,
     cancel: cancel,
@@ -78,11 +82,12 @@ function FormProvider({
     setData: setData,
     setDefaults: setDefaults,
     setError: setError,
+    setLanguage: setLanguage,
     submit: submit,
     transform: transform,
   };
 
-  return <FormContext.Provider value={value}>{render(value)}</FormContext.Provider>;
+  return <FormContext.Provider value={contextValue}>{render(value)}</FormContext.Provider>;
 }
 
 export default FormProvider;

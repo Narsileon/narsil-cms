@@ -166,7 +166,7 @@ class HostForm extends AbstractForm implements Contract
 
         usort($options, function (SelectOption $a, SelectOption $b)
         {
-            return strcasecmp($a->getLabel(), $b->getLabel());
+            return strcasecmp($a->label, $b->label);
         });
 
         array_unshift($options, new SelectOption(
@@ -208,7 +208,7 @@ class HostForm extends AbstractForm implements Contract
 
         usort($options, function (SelectOption $a, SelectOption $b)
         {
-            return strcasecmp($a->getLabel(), $b->getLabel());
+            return strcasecmp($a->label, $b->label);
         });
 
         return array_values($options);

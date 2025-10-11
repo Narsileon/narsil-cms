@@ -4,6 +4,7 @@ import FormField from "./form-field";
 import useFormField from "./form-field-context";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
+import FormLanguage from "./form-language";
 import FormMessage from "./form-message";
 import FormProvider from "./form-provider";
 import FormRenderer from "./form-renderer";
@@ -14,6 +15,7 @@ export {
   FormField,
   FormItem,
   FormLabel,
+  FormLanguage,
   FormMessage,
   FormProvider,
   FormRenderer,

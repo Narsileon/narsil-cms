@@ -156,8 +156,8 @@ class TemplateForm extends AbstractForm implements Contract
                     label: $block->{Block::NAME},
                     value: $block->{Block::HANDLE},
                 )
-                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
-                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -176,8 +176,8 @@ class TemplateForm extends AbstractForm implements Contract
                     label: $field->{Field::NAME},
                     value: $field->{Field::HANDLE},
                 )
-                    ->setIcon($field->{Field::ATTRIBUTE_ICON})
-                    ->setIdentifier($field->{Field::ATTRIBUTE_IDENTIFIER});
+                    ->icon($field->{Field::ATTRIBUTE_ICON})
+                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -196,8 +196,8 @@ class TemplateForm extends AbstractForm implements Contract
                     label: $block->{Block::NAME},
                     value: $block->{Block::HANDLE},
                 )
-                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
-                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }

@@ -8,25 +8,28 @@ export type Model = {
   [key: string]: unknown;
 };
 
-export type Block = Model & {
+export type Block = {
   collapsible: boolean;
   elements: HasElement[];
   handle: string;
   icon?: IconName;
+  id: number;
   identifier: string;
   name: string;
   sets: Block[];
 };
 
 export type Bookmark = Model & {
+  id: number;
   name: string;
   url: string;
 };
 
-export type Field = Model & {
+export type Field = {
   blocks: Block[];
   description: string | null;
   handle: string;
+  id: number;
   identifier: string;
   name: string;
 } & FieldType;
@@ -36,6 +39,7 @@ export type HasElement = Model & {
   element_type: "Narsil\\Models\\Elements\\Block" | "Narsil\\Models\\Elements\\Field";
   element: Block | Field;
   handle: string;
+  id: number;
   name: string;
   position: number;
   width: number;
@@ -43,6 +47,7 @@ export type HasElement = Model & {
 
 export type Template = Model & {
   handle: string;
+  id: number;
   name: string;
 };
 
@@ -50,6 +55,7 @@ export type TemplateSection = Model & {
   elements?: HasElement[];
   handle: string;
   icon?: IconName;
+  id: number;
   identifier: string;
   name: string;
   sets: Block[];

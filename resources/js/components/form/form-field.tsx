@@ -1,8 +1,6 @@
+import type { BlockElementCondition, Field } from "@narsil-cms/types";
 import { cloneDeep, get, unset } from "lodash";
 import { useEffect, useState } from "react";
-
-import type { BlockElementCondition, Field } from "@narsil-cms/types";
-
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
 
@@ -18,9 +16,11 @@ type FormFieldProps = {
 };
 
 const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
-  const [visible, setVisible] = useState(true);
-
   const { data, errors, setData } = useForm();
+
+  const [language, setLanguage] = useState<string>("en");
+  const [visible, setVisible] = useState<boolean>(true);
+
   const { settings } = field;
 
   const value = get(data, id);
@@ -51,8 +51,15 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
     }
   }, [data]);
 
+  const contextValue = {
+    ...field,
+    error: error,
+    language: language,
+    setLanguage: setLanguage,
+  };
+
   return visible ? (
-    <FormFieldContext.Provider value={{ ...field, error: error }}>
+    <FormFieldContext.Provider value={contextValue}>
       {render({
         handle: id,
         value: value ?? settings?.value ?? "",

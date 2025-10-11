@@ -3,10 +3,13 @@ import { createContext, useContext } from "react";
 
 export type FormFieldContextProps = Field & {
   error: string | undefined;
+  language: string;
+  setLanguage: (value: string) => void;
 };
 
 export const FormFieldContext = createContext<FormFieldContextProps>({
   error: undefined,
+  language: "en",
 } as FormFieldContextProps);
 
 function useFormField() {
