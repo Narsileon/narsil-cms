@@ -69,12 +69,12 @@ class SelectOption implements JsonSerializable
      */
     public function jsonSerialize(): mixed
     {
-        return [
+        return array_filter([
             'icon' => $this->icon,
             'identifier' => $this->identifier,
             'label' => $this->label,
             'value' => $this->value,
-        ];
+        ]);
     }
 
     #region • SETTERS

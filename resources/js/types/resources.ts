@@ -57,6 +57,7 @@ export type FormType = {
   description: string;
   id: string;
   layout: (Block | Field | TemplateSection)[];
+  locales: string[];
   method: string;
   routes: RouteNames;
   submitIcon?: IconName;

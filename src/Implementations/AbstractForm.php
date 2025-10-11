@@ -5,12 +5,15 @@ namespace Narsil\Implementations;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use Locale;
 use Narsil\Contracts\Form;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
 use ReflectionClass;
 
@@ -29,6 +32,8 @@ abstract class AbstractForm implements Form
      */
     public function __construct()
     {
+        $this->locales(config('narsil.locales'));
+
         app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
             ->add('narsil::pagination.pages_empty')
@@ -79,6 +84,11 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
+    public protected(set) array $locales = [];
+
+    /**
+     * {@inheritDoc}
+     */
     public protected(set) MethodEnum $method = MethodEnum::POST;
 
     /**
@@ -111,6 +121,7 @@ abstract class AbstractForm implements Form
             'description' => $this->description,
             'id' => $this->getDefaultId($this->id),
             'layout' => $this->layout(),
+            'locales' => $this->locales,
             'method' => $this->method,
             'routes' => $this->routes,
             'submitIcon' => $this->submitIcon,
@@ -157,6 +168,26 @@ abstract class AbstractForm implements Form
     public function id(mixed $id): static
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function locales(array $locales): static
+    {
+        $options = [];
+
+        foreach ($locales as $locale)
+        {
+            $options[] = new SelectOption(
+                label: Str::ucfirst(Locale::getDisplayName($locale, App::getLocale())),
+                value: $locale
+            )->jsonSerialize();
+        }
+
+        $this->locales = $options;
 
         return $this;
     }
