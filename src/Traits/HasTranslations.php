@@ -30,7 +30,7 @@ trait HasTranslations
     /**
      * @return void
      */
-    final public function bootHasTranslations(): void
+    final public function initializeHasTranslations(): void
     {
         $casts = array_fill_keys($this->translatable, 'json');
 
@@ -150,7 +150,7 @@ trait HasTranslations
      */
     final public function toArray(): array
     {
-        $attributes = $this->attributesToArray();
+        $attributes = parent::toArray();
 
         $translatables = array_filter($this->translatable, function ($key) use ($attributes)
         {
@@ -162,7 +162,15 @@ trait HasTranslations
             $attributes[$translatable] = $this->getTranslation($translatable, App::getLocale());
         }
 
-        return array_merge($attributes, $this->relationsToArray());
+        return $attributes;
+    }
+
+    /**
+     * @return array
+     */
+    final public function toArrayWithTranslations(): array
+    {
+        return parent::toArray();
     }
 
     #region • ATTRIBUTES

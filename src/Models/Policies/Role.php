@@ -88,6 +88,7 @@ class Role extends Model
 
     /**
      * Get the associated permissions.
+     *
      * @return BelongsToMany
      */
     public function permissions(): BelongsToMany

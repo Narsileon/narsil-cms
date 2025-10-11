@@ -32,6 +32,7 @@ export type Field = {
   id: number;
   identifier: string;
   name: string;
+  translatable: boolean;
 } & FieldType;
 
 export type HasElement = Model & {

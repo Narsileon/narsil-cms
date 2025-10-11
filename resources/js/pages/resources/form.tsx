@@ -1,6 +1,6 @@
 import { Button, Card, Heading, RevisionSelect, SaveButton } from "@narsil-cms/blocks";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
-import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { FormLanguage, FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
@@ -21,6 +21,7 @@ function ResourceForm({
   data,
   id,
   layout,
+  locales,
   method,
   modal,
   revisions,
@@ -124,7 +125,7 @@ function ResourceForm({
         _back: modal !== undefined,
         ...data,
       }}
-      render={() => (
+      render={({ language, setLanguage }) => (
         <FormRoot
           className="overflow-hidden"
           options={{
@@ -150,15 +151,15 @@ function ResourceForm({
               </DialogFooter>
             </>
           ) : (
-            <SectionRoot className="p-4">
-              <SectionHeader>
+            <SectionRoot className="px-4 py-2">
+              <SectionHeader className="h-13 border-b !pb-2">
                 <div className="flex items-end gap-2">
                   <Heading level="h1" variant="h4">
                     {title}
                   </Heading>
                   {revisions ? <RevisionSelect revisions={revisions} /> : null}
                 </div>
-
+                <FormLanguage value={language} setValue={setLanguage} options={locales} />
                 <SaveButton
                   routes={routes}
                   submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}

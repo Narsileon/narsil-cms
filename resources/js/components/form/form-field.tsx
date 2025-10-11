@@ -1,5 +1,5 @@
 import type { BlockElementCondition, Field } from "@narsil-cms/types";
-import { cloneDeep, get, unset } from "lodash";
+import { cloneDeep, get, isObject, unset } from "lodash";
 import { useEffect, useState } from "react";
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
@@ -16,15 +16,23 @@ type FormFieldProps = {
 };
 
 const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
-  const { data, errors, setData } = useForm();
+  const { data, errors, language: formLanguage, setData } = useForm();
 
   const [language, setLanguage] = useState<string>("en");
   const [visible, setVisible] = useState<boolean>(true);
 
-  const { settings } = field;
-
-  const value = get(data, id);
   const error = get(errors, id);
+
+  function getValue() {
+    let defaultValue = (field.settings as Record<string, unknown>)?.value ?? "";
+    let value = get(data, id, defaultValue);
+
+    if (field.translatable && isObject(value)) {
+      value = get(value, language, defaultValue);
+    }
+
+    return value;
+  }
 
   useEffect(() => {
     let nextVisible = true;
@@ -51,6 +59,10 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    setLanguage(formLanguage);
+  }, [formLanguage]);
+
   const contextValue = {
     ...field,
     error: error,
@@ -62,9 +74,11 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
     <FormFieldContext.Provider value={contextValue}>
       {render({
         handle: id,
-        value: value ?? settings?.value ?? "",
+        value: getValue(),
         onFieldChange: (value) => {
-          setData?.(id, value);
+          const key = field.translatable ? `${id}.${language}` : id;
+
+          setData?.(key, value);
         },
       })}
     </FormFieldContext.Provider>
