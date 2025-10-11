@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Traits\HasElement;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -19,6 +20,7 @@ use Narsil\Traits\HasElement;
 class TemplateSectionElement extends Model
 {
     use HasElement;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -31,6 +33,19 @@ class TemplateSectionElement extends Model
 
         $this->timestamps = false;
 
+        $this->touches = [
+            self::RELATION_TEMPLATE_SECTION,
+        ];
+
+        $this->translatable = [
+            self::DESCRIPTION,
+            self::NAME,
+        ];
+
+        $this->with = [
+            self::RELATION_ELEMENT,
+        ];
+
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
@@ -39,14 +54,6 @@ class TemplateSectionElement extends Model
         $this->mergeGuarded([
             self::ID,
         ]);
-
-        $this->touches = [
-            self::RELATION_TEMPLATE_SECTION,
-        ];
-
-        $this->with = array_merge([
-            self::RELATION_ELEMENT,
-        ], $this->with);
 
         parent::__construct($attributes);
 

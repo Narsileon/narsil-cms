@@ -43,18 +43,18 @@ class Entity extends Model
 
         $this->primaryKey = self::UUID;
 
+        $this->guarded = [];
+
+        $this->with = [
+            self::RELATION_BLOCKS,
+        ];
+
         if (static::$template)
         {
             $casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
 
             $this->mergeCasts($casts);
         }
-
-        $this->guarded = [];
-
-        $this->with = array_merge([
-            self::RELATION_BLOCKS,
-        ], $this->with);
 
         parent::__construct($attributes);
     }

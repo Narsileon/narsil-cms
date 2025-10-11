@@ -38,6 +38,15 @@ class Block extends Model
     {
         $this->table = self::TABLE;
 
+        $this->translatable = [
+            self::NAME,
+        ];
+
+        $this->with = [
+            self::RELATION_ELEMENTS,
+            self::RELATION_SETS,
+        ];
+
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
@@ -46,15 +55,6 @@ class Block extends Model
         $this->mergeGuarded([
             self::ID,
         ]);
-
-        $this->translatable = [
-            self::NAME,
-        ];
-
-        $this->with = array_merge([
-            self::RELATION_ELEMENTS,
-            self::RELATION_SETS,
-        ], $this->with);
 
         parent::__construct($attributes);
 

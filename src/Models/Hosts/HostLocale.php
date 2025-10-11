@@ -29,13 +29,13 @@ class HostLocale extends Model
     {
         $this->table = self::TABLE;
 
+        $this->with = [
+            self::RELATION_LANGUAGES,
+        ];
+
         $this->mergeGuarded([
             self::ID,
         ]);
-
-        $this->with = array_merge([
-            self::RELATION_LANGUAGES,
-        ], $this->with);
 
         parent::__construct($attributes);
     }

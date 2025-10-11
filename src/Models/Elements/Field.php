@@ -33,6 +33,15 @@ class Field extends Model
     {
         $this->table = self::TABLE;
 
+        $this->translatable = [
+            self::DESCRIPTION,
+            self::NAME,
+        ];
+
+        $this->with = [
+            self::RELATION_OPTIONS,
+        ];
+
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
@@ -45,15 +54,6 @@ class Field extends Model
         $this->mergeGuarded([
             self::ID,
         ]);
-
-        $this->translatable = [
-            self::DESCRIPTION,
-            self::NAME,
-        ];
-
-        $this->with = array_merge([
-            self::RELATION_OPTIONS,
-        ], $this->with);
 
         parent::__construct($attributes);
     }

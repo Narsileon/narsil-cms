@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -21,6 +22,8 @@ use Narsil\Models\Elements\TemplateSectionElement;
  */
 class TemplateSection extends Model
 {
+    use HasTranslations;
+
     #region CONSTRUCTOR
 
     /**
@@ -30,17 +33,21 @@ class TemplateSection extends Model
     {
         $this->table = self::TABLE;
 
-        $this->mergeGuarded([
-            self::ID,
-        ]);
-
         $this->touches = [
             self::RELATION_TEMPLATE,
         ];
 
-        $this->with = array_merge([
+        $this->translatable = [
+            self::NAME,
+        ];
+
+        $this->with = [
             self::RELATION_ELEMENTS,
-        ], $this->with);
+        ];
+
+        $this->mergeGuarded([
+            self::ID,
+        ]);
 
         parent::__construct($attributes);
 

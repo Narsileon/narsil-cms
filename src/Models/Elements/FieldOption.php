@@ -7,6 +7,7 @@ namespace Narsil\Models\Elements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\Elements\Field;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -16,6 +17,8 @@ use Narsil\Models\Elements\Field;
  */
 class FieldOption extends Model
 {
+    use HasTranslations;
+
     #region CONSTRUCTOR
 
     /**
@@ -24,6 +27,10 @@ class FieldOption extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->translatable = [
+            self::LABEL,
+        ];
 
         $this->mergeGuarded([
             self::ID,

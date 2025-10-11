@@ -37,15 +37,15 @@ class EntityBlock extends Model
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
-
-        $this->with = array_merge([
+        $this->with = [
             self::RELATION_BLOCK,
             self::RELATION_CHILDREN,
             self::RELATION_FIELDS,
-        ], $this->with);
+        ];
+
+        $this->mergeGuarded([
+            self::UUID,
+        ]);
 
         parent::__construct($attributes);
     }

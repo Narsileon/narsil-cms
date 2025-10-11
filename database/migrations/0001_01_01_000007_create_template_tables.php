@@ -3,6 +3,7 @@
 #region USE
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
@@ -90,16 +91,19 @@ return new class extends Migration
                 ->constrained(TemplateSection::TABLE, TemplateSection::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(BlockElement::RELATION_ELEMENT);
+                ->morphs(TemplateSectionElement::RELATION_ELEMENT);
             $blueprint
-                ->string(BlockElement::HANDLE);
+                ->string(TemplateSectionElement::HANDLE);
             $blueprint
-                ->string(BlockElement::NAME);
+                ->json(TemplateSectionElement::NAME);
             $blueprint
-                ->integer(BlockElement::POSITION)
+                ->json(TemplateSectionElement::DESCRIPTION)
+                ->default(new Expression('(JSON_OBJECT())'));
+            $blueprint
+                ->integer(TemplateSectionElement::POSITION)
                 ->nullable();
             $blueprint
-                ->smallInteger(BlockElement::WIDTH)
+                ->smallInteger(TemplateSectionElement::WIDTH)
                 ->nullable();
         });
     }
@@ -120,7 +124,7 @@ return new class extends Migration
             $blueprint
                 ->string(TemplateSection::HANDLE);
             $blueprint
-                ->string(TemplateSection::NAME);
+                ->json(TemplateSection::NAME);
             $blueprint
                 ->integer(TemplateSection::POSITION)
                 ->nullable();

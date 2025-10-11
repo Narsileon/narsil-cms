@@ -31,18 +31,17 @@ class Host extends Model
     {
         $this->table = self::TABLE;
 
-        $this->mergeGuarded([
-            self::ID,
-        ]);
-
         $this->translatable = [
             self::NAME,
         ];
 
-        $this->with = array_merge([
+        $this->with = [
             self::RELATION_LOCALES,
-        ], $this->with);
+        ];
 
+        $this->mergeGuarded([
+            self::ID,
+        ]);
 
         parent::__construct($attributes);
     }

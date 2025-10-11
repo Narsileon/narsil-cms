@@ -25,13 +25,13 @@ class BlockElementCondition extends Model
     {
         $this->table = self::TABLE;
 
+        $this->with = [
+            self::RELATION_TARGET,
+        ];
+
         $this->mergeGuarded([
             self::ID,
         ]);
-
-        $this->with = array_merge([
-            self::RELATION_TARGET,
-        ], $this->with);
 
         parent::__construct($attributes);
     }

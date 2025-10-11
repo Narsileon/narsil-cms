@@ -40,10 +40,10 @@ class Template extends Model
             self::NAME,
         ];
 
-        $this->with = array_merge([
+        $this->with = [
             self::RELATION_SECTIONS,
             self::RELATION_SETS,
-        ], $this->with);
+        ];
 
         parent::__construct($attributes);
     }
