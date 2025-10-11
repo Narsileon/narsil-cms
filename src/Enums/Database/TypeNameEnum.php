@@ -27,6 +27,7 @@ enum TypeNameEnum: string
     case FLOAT = 'float';
     case INTEGER = 'integer';
     case JSON = 'json';
+    case LONGTEXT = 'longtext';
     case SET = 'set';
     case SMALLINT = 'smallint';
     case STRING = 'string';

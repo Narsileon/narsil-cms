@@ -81,18 +81,18 @@ abstract class QueryService
                 OperatorEnum::AFTER->value => $query->whereDate($key, '>', $value),
                 OperatorEnum::BEFORE_OR_EQUAL->value => $query->whereDate($key, '<=', $value),
                 OperatorEnum::BEFORE->value => $query->whereDate($key, '<', $value),
-                OperatorEnum::CONTAINS->value => $query->where($key, 'LIKE', "%{$value}%"),
-                OperatorEnum::DOESNT_END_WITH->value => $query->where($key, 'NOT LIKE', "%{$value}"),
-                OperatorEnum::DOESNT_START_WITH->value => $query->where($key, 'NOT LIKE', "{$value}%"),
-                OperatorEnum::ENDS_WITH->value => $query->where($key, 'LIKE', "%{$value}"),
+                OperatorEnum::CONTAINS->value => $query->whereLike($key, "%{$value}%"),
+                OperatorEnum::DOESNT_END_WITH->value => $query->whereNotLike($key, "%{$value}"),
+                OperatorEnum::DOESNT_START_WITH->value => $query->whereNotLike($key,  "{$value}%"),
+                OperatorEnum::ENDS_WITH->value => $query->whereLike($key, "%{$value}"),
                 OperatorEnum::EQUALS->value => $query->where($key, '=', $value),
                 OperatorEnum::GREATER_THAN_OR_EQUAL->value => $query->where($key, '>=', $value),
                 OperatorEnum::GREATER_THAN->value => $query->where($key, '>', $value),
                 OperatorEnum::LESS_THAN_OR_EQUAL->value => $query->where($key, '<=', $value),
                 OperatorEnum::LESS_THAN->value => $query->where($key, '<', $value),
-                OperatorEnum::NOT_CONTAINS->value => $query->where($key, 'NOT LIKE', "%{$value}%"),
+                OperatorEnum::NOT_CONTAINS->value => $query->whereNotLike($key, "%{$value}%"),
                 OperatorEnum::NOT_EQUALS->value => $query->where($key, '!=', $value),
-                OperatorEnum::STARTS_WITH->value => $query->where($key, 'LIKE', "{$value}%"),
+                OperatorEnum::STARTS_WITH->value => $query->whereLike($key, "{$value}%"),
                 default => null,
             };
         }
@@ -107,15 +107,18 @@ abstract class QueryService
      */
     public static function applySearch(Builder $query, string $table, string $search): void
     {
-        $columns = TableService::getColumns($table);
+        $locale = App::getLocale();
 
-        $columns->each(function ($column) use ($query, $search)
+        $columns = TableService::getColumns($table);
+        $columns->each(function ($column) use ($locale, $query, $search)
         {
             switch ($column->type)
             {
                 case TypeNameEnum::VARCHAR->value:
-                    $query->orWhere($column->name, 'like', '%' . $search . '%');
+                    $query->orWhereLike($column->name, '%' . $search . '%');
                     break;
+                case TypeNameEnum::LONGTEXT->value:
+                    $query->orWhereLike("$column->name->$locale", '%' . $search . '%');
                 default:
                     break;
             }
