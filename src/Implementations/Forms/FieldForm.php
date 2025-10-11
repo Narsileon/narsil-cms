@@ -79,6 +79,7 @@ class FieldForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
                         Field::NAME => trans('narsil::ui.default_name'),
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
@@ -182,7 +183,7 @@ class FieldForm extends AbstractForm implements Contract
                 label: trans('narsil::fields.' . $abstract),
                 value: $abstract
             )
-                ->icon($concrete::getIcon());
+                ->setIcon($concrete::getIcon());
         }
 
         return $options;

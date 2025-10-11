@@ -115,7 +115,7 @@ class HostController extends AbstractController
 
         $form = app(HostForm::class)
             ->action(route('hosts.update', $host->{Host::ID}))
-            ->data($host)
+            ->data($host->toArrayWithTranslations())
             ->id($host->{Host::ID})
             ->method(MethodEnum::PATCH)
             ->submitLabel(trans('narsil::ui.update'));

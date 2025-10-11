@@ -60,6 +60,7 @@ class BlockForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Block::NAME,
                         Field::NAME => trans('narsil::ui.default_name'),
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
@@ -149,8 +150,8 @@ class BlockForm extends AbstractForm implements Contract
                     label: $block->{Block::NAME},
                     value: $block->{Block::HANDLE},
                 )
-                    ->icon($block->{Block::ATTRIBUTE_ICON})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -169,8 +170,8 @@ class BlockForm extends AbstractForm implements Contract
                     label: $field->{Field::NAME},
                     value: $field->{Field::HANDLE},
                 )
-                    ->icon($field->{Field::ATTRIBUTE_ICON})
-                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
+                    ->setIcon($field->{Field::ATTRIBUTE_ICON})
+                    ->setIdentifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -189,8 +190,8 @@ class BlockForm extends AbstractForm implements Contract
                     label: $block->{Block::NAME},
                     value: $block->{Block::HANDLE},
                 )
-                    ->icon($block->{Block::ATTRIBUTE_ICON})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }

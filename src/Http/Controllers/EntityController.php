@@ -191,7 +191,7 @@ class EntityController extends AbstractController
                 'id' => $entity->{Entity::ID},
                 'collection' => $collection,
             ]))
-            ->data($entity)
+            ->data($entity->toArrayWithTranslations())
             ->id($entity->{Entity::UUID})
             ->method(MethodEnum::PATCH)
             ->submitLabel(trans('narsil::ui.update'));

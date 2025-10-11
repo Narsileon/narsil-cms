@@ -55,10 +55,10 @@ class GuestMenu extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->group($group)
-                ->href(route('login'))
-                ->icon('log-in')
-                ->label(trans('narsil::ui.log_in')),
+                ->setGroup($group)
+                ->setHref(route('login'))
+                ->setIcon('log-in')
+                ->setLabel(trans('narsil::ui.log_in')),
         ];
     }
 
@@ -71,11 +71,11 @@ class GuestMenu extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->group($group)
-                ->href(route('user-configuration.index'))
-                ->icon('settings')
-                ->label(trans('narsil::ui.settings'))
-                ->modal(true),
+                ->setGroup($group)
+                ->setHref(route('user-configuration.index'))
+                ->setIcon('settings')
+                ->setLabel(trans('narsil::ui.settings'))
+                ->setModal(true),
         ];
     }
 

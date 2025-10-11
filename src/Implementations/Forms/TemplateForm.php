@@ -62,6 +62,7 @@ class TemplateForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::NAME,
                         Field::NAME => trans('narsil::validation.attributes.name'),
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
@@ -156,8 +157,8 @@ class TemplateForm extends AbstractForm implements Contract
                     label: $block->{Block::NAME},
                     value: $block->{Block::HANDLE},
                 )
-                    ->icon($block->{Block::ATTRIBUTE_ICON})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -176,8 +177,8 @@ class TemplateForm extends AbstractForm implements Contract
                     label: $field->{Field::NAME},
                     value: $field->{Field::HANDLE},
                 )
-                    ->icon($field->{Field::ATTRIBUTE_ICON})
-                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
+                    ->setIcon($field->{Field::ATTRIBUTE_ICON})
+                    ->setIdentifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }
@@ -196,8 +197,8 @@ class TemplateForm extends AbstractForm implements Contract
                     label: $block->{Block::NAME},
                     value: $block->{Block::HANDLE},
                 )
-                    ->icon($block->{Block::ATTRIBUTE_ICON})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
     }

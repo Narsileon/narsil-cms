@@ -123,7 +123,7 @@ class TemplateController extends AbstractController
 
         $form = app(TemplateForm::class)
             ->action(route('templates.update', $template->{Template::ID}))
-            ->data($template)
+            ->data($template->toArrayWithTranslations())
             ->id($template->{Template::ID})
             ->method(MethodEnum::PATCH)
             ->submitLabel(trans('narsil::ui.update'));

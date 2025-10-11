@@ -133,7 +133,7 @@ class BlockController extends AbstractController
 
         $form = app(BlockForm::class)
             ->action(route('blocks.update', $block->{Block::ID}))
-            ->data($block)
+            ->data($block->toArrayWithTranslations())
             ->id($block->{Block::ID})
             ->method(MethodEnum::PATCH)
             ->submitLabel(trans('narsil::ui.update'));

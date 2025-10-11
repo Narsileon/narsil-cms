@@ -44,9 +44,9 @@ class Sidebar extends AbstractMenu implements Contract
         return array_merge(
             [
                 new MenuItem()
-                    ->href(route('dashboard'))
-                    ->icon('chart-pie')
-                    ->label(trans('narsil::ui.dashboard')),
+                    ->setHref(route('dashboard'))
+                    ->setIcon('chart-pie')
+                    ->setLabel(trans('narsil::ui.dashboard')),
             ],
             $this->getSiteGroup(),
             $this->getCollectionGroup(),
@@ -72,12 +72,12 @@ class Sidebar extends AbstractMenu implements Contract
         foreach ($templates as $template)
         {
             $menuItems[] = new MenuItem()
-                ->group($group)
-                ->href(route('collections.index', [
+                ->setGroup($group)
+                ->setHref(route('collections.index', [
                     'collection' => $template->{Template::HANDLE},
                 ]))
-                ->icon('layers')
-                ->label($template->{Template::NAME});
+                ->setIcon('layers')
+                ->setLabel($template->{Template::NAME});
         }
 
         return $menuItems;
@@ -92,20 +92,20 @@ class Sidebar extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->group($group)
-                ->href(route('hosts.index'))
-                ->icon('server')
-                ->label(trans('narsil::tables.hosts')),
+                ->setGroup($group)
+                ->setHref(route('hosts.index'))
+                ->setIcon('server')
+                ->setLabel(trans('narsil::tables.hosts')),
             new MenuItem()
-                ->group($group)
-                ->href(route('users.index'))
-                ->icon('users')
-                ->label(trans('narsil::tables.users')),
+                ->setGroup($group)
+                ->setHref(route('users.index'))
+                ->setIcon('users')
+                ->setLabel(trans('narsil::tables.users')),
             new MenuItem()
-                ->group($group)
-                ->href(route('roles.index'))
-                ->icon('shield')
-                ->label(trans('narsil::tables.roles')),
+                ->setGroup($group)
+                ->setHref(route('roles.index'))
+                ->setIcon('shield')
+                ->setLabel(trans('narsil::tables.roles')),
         ];
     }
 
@@ -125,10 +125,10 @@ class Sidebar extends AbstractMenu implements Contract
         foreach ($hosts as $host)
         {
             $menuItems[] = new MenuItem()
-                ->group($group)
-                ->href(route('collections.summary'))
-                ->icon('globe')
-                ->label($host->{Host::NAME});
+                ->setGroup($group)
+                ->setHref(route('collections.summary'))
+                ->setIcon('globe')
+                ->setLabel($host->{Host::NAME});
         }
 
         return $menuItems;
@@ -144,20 +144,20 @@ class Sidebar extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->group($group)
-                ->href(route('templates.index'))
-                ->icon('layout')
-                ->label(trans('narsil::tables.templates')),
+                ->setGroup($group)
+                ->setHref(route('templates.index'))
+                ->setIcon('layout')
+                ->setLabel(trans('narsil::tables.templates')),
             new MenuItem()
-                ->group($group)
-                ->href(route('blocks.index'))
-                ->icon('box')
-                ->label(trans('narsil::tables.blocks')),
+                ->setGroup($group)
+                ->setHref(route('blocks.index'))
+                ->setIcon('box')
+                ->setLabel(trans('narsil::tables.blocks')),
             new MenuItem()
-                ->group($group)
-                ->href(route('fields.index'))
-                ->icon('input')
-                ->label(trans('narsil::tables.fields')),
+                ->setGroup($group)
+                ->setHref(route('fields.index'))
+                ->setIcon('input')
+                ->setLabel(trans('narsil::tables.fields')),
         ];
     }
 
@@ -170,11 +170,11 @@ class Sidebar extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->group($group)
-                ->href(route('graphiql'))
-                ->icon('braces')
-                ->label(trans('narsil::ui.graphiql'))
-                ->target('_blank'),
+                ->setGroup($group)
+                ->setHref(route('graphiql'))
+                ->setIcon('braces')
+                ->setLabel(trans('narsil::ui.graphiql'))
+                ->setTarget('_blank'),
         ];
     }
 

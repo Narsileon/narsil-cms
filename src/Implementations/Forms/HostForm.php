@@ -63,6 +63,7 @@ class HostForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Host::NAME,
                         Field::NAME => trans('narsil::validation.attributes.name'),
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
@@ -166,7 +167,7 @@ class HostForm extends AbstractForm implements Contract
 
         usort($options, function (SelectOption $a, SelectOption $b)
         {
-            return strcasecmp($a->label, $b->label);
+            return strcasecmp($a->getLabel(), $b->getLabel());
         });
 
         array_unshift($options, new SelectOption(
@@ -208,7 +209,7 @@ class HostForm extends AbstractForm implements Contract
 
         usort($options, function (SelectOption $a, SelectOption $b)
         {
-            return strcasecmp($a->label, $b->label);
+            return strcasecmp($a->getLabel(), $b->getLabel());
         });
 
         return array_values($options);

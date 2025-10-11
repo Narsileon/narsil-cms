@@ -121,7 +121,7 @@ class FieldController extends AbstractController
 
         $form = app(FieldForm::class)
             ->action(route('fields.update', $field->{Field::ID}))
-            ->data($field)
+            ->data($field->toArrayWithTranslations())
             ->id($field->{Field::ID})
             ->method(MethodEnum::PATCH)
             ->submitLabel(trans('narsil::ui.update'));
