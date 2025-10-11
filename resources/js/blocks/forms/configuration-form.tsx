@@ -1,11 +1,14 @@
+import { router } from "@inertiajs/react";
 import { Heading } from "@narsil-cms/blocks";
 import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
+import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import type { FormType } from "@narsil-cms/types";
+import { route } from "ziggy-js";
 
 type ConfigurationFormProps = {
   form: FormType;
@@ -13,21 +16,35 @@ type ConfigurationFormProps = {
 
 function ConfigurationForm({ form }: ConfigurationFormProps) {
   const { trans } = useLocalization();
+
   const { locale } = useLocale();
 
   const { color, setColor } = useColorStore();
+  const { reloadTopModal } = useModalStore();
   const { radius, setRadius } = useRadiusStore();
 
   function handleChange(id: string, value: number | string) {
     switch (id) {
       case "color":
         setColor(value as string);
-        break;
+        return;
       case "radius":
         setRadius(value as number);
-        break;
+        return;
       default:
-        break;
+        router.post(
+          route("user-configuration.store"),
+          {
+            [id]: value,
+          },
+          {
+            preserveState: false,
+            onSuccess: () => {
+              reloadTopModal();
+            },
+          },
+        );
+        return;
     }
   }
 

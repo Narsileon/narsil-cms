@@ -49,12 +49,12 @@ function Combobox({
   id,
   labelPath = "label",
   multiple = false,
+  options,
   placeholder,
   reload,
   searchable = true,
   value,
   valuePath = "value",
-  options: initialOptions = [],
   setValue,
 }: ComboboxProps) {
   const { trans } = useLocalization();
@@ -69,8 +69,6 @@ function Combobox({
   const [open, setOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
   const [search, setSearch] = useState<string>("");
-
-  const [options, setOptions] = useState<SelectOption[] | string[]>(initialOptions);
 
   const debouncedSetSearch = useMemo(() => debounce((value: string) => setSearch(value), 300), []);
 
