@@ -6,6 +6,7 @@ namespace Narsil\Services;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Enums\Database\TypeNameEnum;
 
@@ -52,6 +53,10 @@ abstract class QueryService
      */
     public static function applyFilters(Builder $query, array $filters): void
     {
+        $locale = App::getLocale();
+
+        $model = $query->getModel();
+
         foreach ($filters as $filter)
         {
             $column = Arr::get($filter, self::COLUMN);
@@ -63,24 +68,31 @@ abstract class QueryService
                 continue;
             }
 
+            $key = $column;
+
+            if (method_exists($model, 'isTranslatableAttribute') && $model->isTranslatableAttribute($column))
+            {
+                $key = "$column->$locale";
+            }
+
             match ($operator)
             {
-                OperatorEnum::AFTER_OR_EQUAL->value => $query->whereDate($column, '>=', $value),
-                OperatorEnum::AFTER->value => $query->whereDate($column, '>', $value),
-                OperatorEnum::BEFORE_OR_EQUAL->value => $query->whereDate($column, '<=', $value),
-                OperatorEnum::BEFORE->value => $query->whereDate($column, '<', $value),
-                OperatorEnum::CONTAINS->value => $query->where($column, 'LIKE', "%{$value}%"),
-                OperatorEnum::DOESNT_END_WITH->value => $query->where($column, 'NOT LIKE', "%{$value}"),
-                OperatorEnum::DOESNT_START_WITH->value => $query->where($column, 'NOT LIKE', "{$value}%"),
-                OperatorEnum::ENDS_WITH->value => $query->where($column, 'LIKE', "%{$value}"),
-                OperatorEnum::EQUALS->value => $query->where($column, '=', $value),
-                OperatorEnum::GREATER_THAN_OR_EQUAL->value => $query->where($column, '>=', $value),
-                OperatorEnum::GREATER_THAN->value => $query->where($column, '>', $value),
-                OperatorEnum::LESS_THAN_OR_EQUAL->value => $query->where($column, '<=', $value),
-                OperatorEnum::LESS_THAN->value => $query->where($column, '<', $value),
-                OperatorEnum::NOT_CONTAINS->value => $query->where($column, 'NOT LIKE', "%{$value}%"),
-                OperatorEnum::NOT_EQUALS->value => $query->where($column, '!=', $value),
-                OperatorEnum::STARTS_WITH->value => $query->where($column, 'LIKE', "{$value}%"),
+                OperatorEnum::AFTER_OR_EQUAL->value => $query->whereDate($key, '>=', $value),
+                OperatorEnum::AFTER->value => $query->whereDate($key, '>', $value),
+                OperatorEnum::BEFORE_OR_EQUAL->value => $query->whereDate($key, '<=', $value),
+                OperatorEnum::BEFORE->value => $query->whereDate($key, '<', $value),
+                OperatorEnum::CONTAINS->value => $query->where($key, 'LIKE', "%{$value}%"),
+                OperatorEnum::DOESNT_END_WITH->value => $query->where($key, 'NOT LIKE', "%{$value}"),
+                OperatorEnum::DOESNT_START_WITH->value => $query->where($key, 'NOT LIKE', "{$value}%"),
+                OperatorEnum::ENDS_WITH->value => $query->where($key, 'LIKE', "%{$value}"),
+                OperatorEnum::EQUALS->value => $query->where($key, '=', $value),
+                OperatorEnum::GREATER_THAN_OR_EQUAL->value => $query->where($key, '>=', $value),
+                OperatorEnum::GREATER_THAN->value => $query->where($key, '>', $value),
+                OperatorEnum::LESS_THAN_OR_EQUAL->value => $query->where($key, '<=', $value),
+                OperatorEnum::LESS_THAN->value => $query->where($key, '<', $value),
+                OperatorEnum::NOT_CONTAINS->value => $query->where($key, 'NOT LIKE', "%{$value}%"),
+                OperatorEnum::NOT_EQUALS->value => $query->where($key, '!=', $value),
+                OperatorEnum::STARTS_WITH->value => $query->where($key, 'LIKE', "{$value}%"),
                 default => null,
             };
         }

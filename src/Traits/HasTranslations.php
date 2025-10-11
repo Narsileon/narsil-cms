@@ -52,11 +52,6 @@ trait HasTranslations
         $this->setTranslations($key, $translations);
     }
 
-    final public function isNestedKey(string $key): bool
-    {
-        return str_contains($key, '->');
-    }
-
     /**
      * @param string $key
      * @param string $locale
@@ -90,6 +85,16 @@ trait HasTranslations
         $locale = $locale ?: App::getLocale();
 
         return Arr::has($this->getTranslations($key), $locale);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return boolean
+     */
+    final public function isTranslatableAttribute(string $key): bool
+    {
+        return in_array($key, $this->translatable);
     }
 
     /**
@@ -383,16 +388,6 @@ trait HasTranslations
 
             return $result;
         }, []);
-    }
-
-    /**
-     * @param string $key
-     *
-     * @return boolean
-     */
-    final protected function isTranslatableAttribute(string $key): bool
-    {
-        return in_array($key, $this->translatable);
     }
 
     #endregion
