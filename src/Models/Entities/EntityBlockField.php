@@ -12,6 +12,7 @@ use Narsil\Casts\JsonCast;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Traits\HasTemplate;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -22,6 +23,7 @@ use Narsil\Traits\HasTemplate;
 class EntityBlockField extends Model
 {
     use HasTemplate;
+    use HasTranslations;
     use HasUuids;
 
     #region CONSTRUCTOR
@@ -35,6 +37,10 @@ class EntityBlockField extends Model
 
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
+
+        $this->translatable = [
+            self::VALUE,
+        ];
 
         $this->with = [
             self::RELATION_FIELD,

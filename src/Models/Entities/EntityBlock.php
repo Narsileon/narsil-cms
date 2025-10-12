@@ -4,6 +4,7 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -151,6 +152,29 @@ class EntityBlock extends Model
         $singular = Str::singular(static::$template?->{Template::HANDLE} ?? "");
 
         return $singular . '_blocks';
+    }
+
+    /**
+     * @return array
+     */
+    final public function toArrayWithTranslations(): array
+    {
+        $attributes = parent::toArray();
+
+        foreach ($this->getRelations() as $relation => $model)
+        {
+            if ($model instanceof Collection)
+            {
+                $attributes[$relation] = $model->map(function ($item)
+                {
+                    return method_exists($item, 'toArrayWithTranslations')
+                        ? $item->toArrayWithTranslations()
+                        : $item->toArray();
+                })->all();
+            }
+        }
+
+        return $attributes;
     }
 
     #region • RELATIONSHIPS

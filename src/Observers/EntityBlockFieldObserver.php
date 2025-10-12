@@ -56,19 +56,42 @@ class EntityBlockFieldObserver
 
         $entity = $entityBlockField->{EntityBlockField::RELATION_BLOCK}?->{EntityBlock::RELATION_ENTITY};
 
-        $relations = $entityBlockField->{EntityBlockField::VALUE};
-
-        foreach ($relations as $relation)
+        if ($field->{Field::TRANSLATABLE})
         {
-            [$table, $id] = explode('-', $relation, 2);
+            $translations = $entityBlockField->getTranslations(EntityBlockField::VALUE);
 
-            Relation::firstOrCreate([
-                Relation::OWNER_ID => $entity->{Entity::ID},
-                Relation::OWNER_TABLE => $entity->getTable(),
-                Relation::OWNER_UUID => $entity->{Entity::UUID},
-                Relation::TARGET_ID => $id,
-                Relation::TARGET_TABLE => $table,
-            ]);
+            foreach ($translations as $relations)
+            {
+                foreach ($relations as $relation)
+                {
+                    [$table, $id] = explode('-', $relation, 2);
+
+                    Relation::firstOrCreate([
+                        Relation::OWNER_ID => $entity->{Entity::ID},
+                        Relation::OWNER_TABLE => $entity->getTable(),
+                        Relation::OWNER_UUID => $entity->{Entity::UUID},
+                        Relation::TARGET_ID => $id,
+                        Relation::TARGET_TABLE => $table,
+                    ]);
+                }
+            }
+        }
+        else
+        {
+            $relations = $entityBlockField->{EntityBlockField::VALUE};
+
+            foreach ($relations as $relation)
+            {
+                [$table, $id] = explode('-', $relation, 2);
+
+                Relation::firstOrCreate([
+                    Relation::OWNER_ID => $entity->{Entity::ID},
+                    Relation::OWNER_TABLE => $entity->getTable(),
+                    Relation::OWNER_UUID => $entity->{Entity::UUID},
+                    Relation::TARGET_ID => $id,
+                    Relation::TARGET_TABLE => $table,
+                ]);
+            }
         }
     }
 

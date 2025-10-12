@@ -17,7 +17,7 @@ type FormFieldProps = {
   }) => React.ReactNode;
 };
 
-const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
+function FormField({ conditions, field, id, render }: FormFieldProps) {
   const { data, errors, language: formLanguage, setData } = useForm();
 
   const [language, setLanguage] = useState<string>("en");
@@ -26,7 +26,7 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
   const error = get(errors, id);
 
   function getValue() {
-    let defaultValue = (field.settings as Record<string, unknown>)?.value ?? "";
+    const defaultValue = (field.settings as Record<string, unknown>)?.value ?? "";
     let value = get(data, id, defaultValue);
 
     if (field.translatable && isObject(value)) {
@@ -87,6 +87,6 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
       })}
     </FormFieldContext.Provider>
   ) : null;
-};
+}
 
 export default FormField;

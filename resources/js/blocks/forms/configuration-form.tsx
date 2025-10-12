@@ -44,7 +44,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
             },
           },
         );
-        return;
+        break;
     }
   }
 
