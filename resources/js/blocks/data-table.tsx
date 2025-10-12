@@ -1,6 +1,3 @@
-import { flexRender } from "@tanstack/react-table";
-import { route } from "ziggy-js";
-
 import { Button, Heading } from "@narsil-cms/blocks";
 import {
   DataTableColumns,
@@ -13,11 +10,7 @@ import {
   useDataTable,
 } from "@narsil-cms/components/data-table";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import {
   TableBody,
   TableCell,
@@ -28,6 +21,8 @@ import {
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection } from "@narsil-cms/types";
+import { flexRender } from "@tanstack/react-table";
+import { route } from "ziggy-js";
 
 type DataTableProps = {
   collection: DataTableCollection;
@@ -82,10 +77,7 @@ function DataTable({ collection, title }: DataTableProps) {
           <Button
             icon="plus"
             linkProps={{
-              href: route(
-                collection.meta.routes.create,
-                collection.meta.routes.params,
-              ),
+              href: route(collection.meta.routes.create, collection.meta.routes.params),
             }}
             size={isDesktop ? "default" : "icon"}
             tooltipProps={{
@@ -100,10 +92,7 @@ function DataTable({ collection, title }: DataTableProps) {
       <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">
         <DataTableFilterList />
         <TableWrapper>
-          <TableRoot
-            className="min-w-max"
-            aria-colcount={dataTable.getAllColumns().length}
-          >
+          <TableRoot className="min-w-max" aria-colcount={dataTable.getAllColumns().length}>
             <TableHeader>
               {dataTable.getHeaderGroups().map((headerGroup) => {
                 return (
@@ -127,32 +116,28 @@ function DataTable({ collection, title }: DataTableProps) {
             </TableHeader>
             <TableBody>
               {dataTable.getRowModel().rows?.length ? (
-                dataTable.getRowModel().rows.map((row) => (
-                  <DataTableRow selected={row.getIsSelected()} key={row.id}>
-                    {row.getVisibleCells().map((cell) => {
-                      return (
-                        <TableCell
-                          className={cn(
-                            "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent bg-clip-content transition-colors",
-                            cell.column.columnDef.meta?.className,
-                          )}
-                          key={cell.id}
-                        >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext() ?? "",
-                          )}
-                        </TableCell>
-                      );
-                    })}
-                  </DataTableRow>
-                ))
+                dataTable.getRowModel().rows.map((row) => {
+                  return (
+                    <DataTableRow selected={row.getIsSelected()} key={row.id}>
+                      {row.getVisibleCells().map((cell) => {
+                        return (
+                          <TableCell
+                            className={cn(
+                              "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent bg-clip-content transition-colors",
+                              cell.column.columnDef.meta?.className,
+                            )}
+                            key={cell.id}
+                          >
+                            {flexRender(cell.column.columnDef.cell, cell.getContext() ?? "")}
+                          </TableCell>
+                        );
+                      })}
+                    </DataTableRow>
+                  );
+                })
               ) : (
                 <DataTableRow>
-                  <TableCell
-                    colSpan={dataTable.getVisibleFlatColumns().length}
-                    className="h-9"
-                  />
+                  <TableCell colSpan={dataTable.getVisibleFlatColumns().length} className="h-9" />
                 </DataTableRow>
               )}
             </TableBody>

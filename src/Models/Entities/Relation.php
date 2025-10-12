@@ -27,11 +27,12 @@ class Relation extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
         $this->timestamps = false;
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         parent::__construct($attributes);
     }

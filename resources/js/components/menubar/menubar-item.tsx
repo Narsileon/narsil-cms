@@ -1,19 +1,13 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Menubar } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type MenubarItemProps = ComponentProps<typeof Menubar.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };
 
-function MenubarItem({
-  className,
-  inset,
-  variant = "default",
-  ...props
-}: MenubarItemProps) {
+function MenubarItem({ className, inset, variant = "default", ...props }: MenubarItemProps) {
   return (
     <Menubar.Item
       data-slot="menubar-item"

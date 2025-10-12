@@ -27,6 +27,11 @@ class JsonCast implements CastsAttributes
      */
     public function set($model, string $key, $value, array $attributes)
     {
-        return json_encode($value ?: new \stdClass());
+        if (empty($value))
+        {
+            $value = null;
+        }
+
+        return $value ? json_encode($value) : null;
     }
 }

@@ -8,12 +8,4 @@ import CardHeader from "./card-header";
 import CardRoot from "./card-root";
 import CardTitle from "./card-title";
 
-export {
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardRoot,
-  CardTitle,
-};
+export { CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardRoot, CardTitle };

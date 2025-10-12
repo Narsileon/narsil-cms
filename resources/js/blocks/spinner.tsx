@@ -1,6 +1,5 @@
-import { type ComponentProps } from "react";
-
 import { SpinnerRoot } from "@narsil-cms/components/spinner";
+import { type ComponentProps } from "react";
 
 type SpinnerProps = ComponentProps<typeof SpinnerRoot>;
 

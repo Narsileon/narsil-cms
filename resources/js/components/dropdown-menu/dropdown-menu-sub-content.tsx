@@ -1,16 +1,10 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { cn } from "@narsil-cms/lib/utils";
+type DropdownMenuSubContentProps = ComponentProps<typeof DropdownMenu.SubContent>;
 
-type DropdownMenuSubContentProps = ComponentProps<
-  typeof DropdownMenu.SubContent
->;
-
-function DropdownMenuSubContent({
-  className,
-  ...props
-}: DropdownMenuSubContentProps) {
+function DropdownMenuSubContent({ className, ...props }: DropdownMenuSubContentProps) {
   return (
     <DropdownMenu.SubContent
       data-slot="dropdown-menu-sub-content"

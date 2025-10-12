@@ -1,8 +1,6 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useState, type ComponentProps } from "react";
-
 import { Button, Tooltip, WidthSelector } from "@narsil-cms/blocks";
 import {
   CardContent,
@@ -19,12 +17,8 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
-import type {
-  FormType,
-  GroupedSelectOption,
-  SelectOption,
-} from "@narsil-cms/types";
-
+import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
+import { useState, type ComponentProps } from "react";
 import { type AnonymousItem } from ".";
 import SortableHandle from "./sortable-handle";
 import SortableItemForm from "./sortable-item-form";
@@ -102,15 +96,10 @@ function SortableItem({
     >
       <CardRoot {...props}>
         {placeholder ? (
-          <CardContent className="flex h-full items-center justify-center">
-            {children}
-          </CardContent>
+          <CardContent className="flex h-full items-center justify-center">{children}</CardContent>
         ) : (
           <>
-            <CollapsibleTrigger
-              className={cn(children && open && "border-b")}
-              asChild={true}
-            >
+            <CollapsibleTrigger className={cn(children && open && "border-b")} asChild={true}>
               <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
                 <div className="flex w-full items-center justify-start gap-2">
                   <SortableHandle
@@ -125,9 +114,7 @@ function SortableItem({
                     </Tooltip>
                   ) : null}
                   {label ? (
-                    <CardTitle className="grow justify-self-start font-normal">
-                      {label}
-                    </CardTitle>
+                    <CardTitle className="grow justify-self-start font-normal">{label}</CardTitle>
                   ) : null}
                   {collapsible ? (
                     <Button
@@ -147,9 +134,7 @@ function SortableItem({
                     <WidthSelector
                       options={widthOptions}
                       value={item.width}
-                      onValueChange={(value) =>
-                        onItemChange?.({ ...item, width: value })
-                      }
+                      onValueChange={(value) => onItemChange?.({ ...item, width: value })}
                     />
                   ) : null}
                   {form && item && optionValue && onItemChange ? (
@@ -160,12 +145,7 @@ function SortableItem({
                       optionValue={optionValue}
                       onItemChange={onItemChange}
                     >
-                      <Button
-                        className="size-7"
-                        icon="edit"
-                        size="icon"
-                        variant="ghost"
-                      />
+                      <Button className="size-7" icon="edit" size="icon" variant="ghost" />
                     </SortableItemForm>
                   ) : null}
                   {onItemRemove ? (
@@ -182,13 +162,9 @@ function SortableItem({
               </CardHeader>
             </CollapsibleTrigger>
             <CollapsibleContent>
-              {children ? (
-                <CardContent className="grow">{children}</CardContent>
-              ) : null}
+              {children ? <CardContent className="grow">{children}</CardContent> : null}
               {footer ? (
-                <CardFooter className="flex-col gap-4 border-t">
-                  {footer}
-                </CardFooter>
+                <CardFooter className="flex-col gap-4 border-t">{footer}</CardFooter>
               ) : null}
             </CollapsibleContent>
           </>

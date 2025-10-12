@@ -6,9 +6,11 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Casts\JsonCast;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -21,6 +23,7 @@ class Field extends Model
     use HasAuditLogs;
     use HasDatetimes;
     use HasIdentifier;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -31,23 +34,27 @@ class Field extends Model
     {
         $this->table = self::TABLE;
 
-        $this->appends = array_merge([
+        $this->translatable = [
+            self::DESCRIPTION,
+            self::NAME,
+        ];
+
+        $this->with = [
+            self::RELATION_OPTIONS,
+        ];
+
+        $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
-        ], $this->appends);
-
-        $this->casts = array_merge([
-            self::SETTINGS => 'json',
+        ]);
+        $this->mergeCasts([
+            self::SETTINGS => JsonCast::class,
             self::TRANSLATABLE => 'boolean',
-        ], $this->casts);
+        ]);
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
-
-        $this->with = array_merge([
-            self::RELATION_OPTIONS,
-        ], $this->with);
+        ]);
 
         parent::__construct($attributes);
     }

@@ -1,15 +1,10 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Select } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { cn } from "@narsil-cms/lib/utils";
-
 type SelectContentProps = ComponentProps<typeof Select.Content>;
 
-function SelectContent({
-  className,
-  position = "popper",
-  ...props
-}: SelectContentProps) {
+function SelectContent({ className, position = "popper", ...props }: SelectContentProps) {
   return (
     <Select.Content
       data-slot="select-content"

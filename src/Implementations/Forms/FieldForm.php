@@ -52,18 +52,22 @@ class FieldForm extends AbstractForm implements Contract
     {
         $settings = [];
 
-        $abstract = request()->get(Field::TYPE, TextField::class);
-        $concrete = config("narsil.fields.$abstract", app(TextField::class));
+        $abstract = request()->get(Field::TYPE);
 
-        $elements = $concrete::getForm(Field::SETTINGS);
-
-        foreach ($elements as $element)
+        if ($abstract)
         {
-            $blockElement = new BlockElement([
-                BlockElement::RELATION_ELEMENT => $element,
-            ]);
+            $concrete = config("narsil.fields.$abstract");
 
-            $settings[] = $blockElement;
+            $elements = $concrete::getForm(Field::SETTINGS);
+
+            foreach ($elements as $element)
+            {
+                $blockElement = new BlockElement([
+                    BlockElement::RELATION_ELEMENT => $element,
+                ]);
+
+                $settings[] = $blockElement;
+            }
         }
 
         $rulesOptions = static::getRulesOptions();
@@ -75,10 +79,11 @@ class FieldForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Field::NAME,
                         Field::NAME => trans('narsil::ui.default_name'),
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
-                    ])
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
@@ -87,7 +92,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
-                    ])
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
@@ -95,20 +100,27 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.type'),
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
-                            ->setDefaultValue(TextField::class)
                             ->setOptions($typeOptions)
                             ->setPlaceholder(trans('narsil::placeholders.search'))
                             ->setReload('layout')
                             ->setRequired(true),
 
-                    ])
+                    ]),
+                ]),
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => Field::TRANSLATABLE,
+                        Field::NAME => trans('narsil::validation.attributes.translatable'),
+                        Field::TYPE => CheckboxField::class,
+                        Field::SETTINGS => app(CheckboxField::class),
+                    ]),
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Block([
                         Block::COLLAPSIBLE => true,
                         Block::NAME => trans('narsil::ui.settings'),
                         Block::RELATION_ELEMENTS =>  $settings,
-                    ])
+                    ]),
                 ]),
             ])),
             new TemplateSection([
@@ -122,9 +134,9 @@ class FieldForm extends AbstractForm implements Contract
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class)
                                 ->setOptions($rulesOptions),
-                        ])
-                    ])
-                ]
+                        ]),
+                    ]),
+                ],
             ]),
             static::informationSection(),
         ];

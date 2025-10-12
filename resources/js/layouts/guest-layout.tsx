@@ -1,15 +1,4 @@
-import { groupBy } from "lodash";
-import { useRef } from "react";
-import { Fragment } from "react/jsx-runtime";
-
-import {
-  Button,
-  Container,
-  Logo,
-  ThemeToggleGroup,
-  Toaster,
-  Tooltip,
-} from "@narsil-cms/blocks";
+import { Button, Container, Logo, ThemeToggleGroup, Toaster, Tooltip } from "@narsil-cms/blocks";
 import Background from "@narsil-cms/components/background/background";
 import {
   DropdownMenuContent,
@@ -21,6 +10,9 @@ import {
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+import { groupBy } from "lodash";
+import { useRef } from "react";
+import { Fragment } from "react/jsx-runtime";
 
 type GuestLayoutProps = {
   children: React.ReactNode & {
@@ -35,10 +27,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
 
   const { navigation } = children?.props;
 
-  const groupedMenu = groupBy(
-    navigation?.userMenu,
-    (item) => item.group ?? "default",
-  );
+  const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
 
   return (
     <>

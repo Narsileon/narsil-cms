@@ -1,12 +1,11 @@
 import { Link } from "@inertiajs/react";
-import { omit } from "lodash";
-import { type ComponentProps } from "react";
-
 import { Tooltip } from "@narsil-cms/blocks";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { omit } from "lodash";
+import { type ComponentProps } from "react";
 
 type ButtonProps = ComponentProps<typeof ButtonRoot> & {
   icon?: IconName;
@@ -41,11 +40,7 @@ function Button({
   );
 
   const ButtonElement = (
-    <ButtonRoot
-      aria-label={tooltipLabel as string}
-      asChild={linkProps ? true : asChild}
-      {...props}
-    >
+    <ButtonRoot aria-label={tooltipLabel as string} asChild={linkProps ? true : asChild} {...props}>
       {linkProps ? (
         linkProps.modal ? (
           <ModalLink {...omit(linkProps, ["modal"])}>{ButtonContent}</ModalLink>

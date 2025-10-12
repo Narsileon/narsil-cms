@@ -3,6 +3,7 @@
 #region USE
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
@@ -98,10 +99,10 @@ return new class extends Migration
             $blueprint
                 ->string(BlockElement::HANDLE);
             $blueprint
-                ->string(BlockElement::NAME);
+                ->json(BlockElement::NAME);
             $blueprint
-                ->string(BlockElement::DESCRIPTION)
-                ->nullable();
+                ->json(BlockElement::DESCRIPTION)
+                ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->integer(BlockElement::POSITION)
                 ->nullable();
@@ -123,7 +124,7 @@ return new class extends Migration
             $blueprint
                 ->string(Block::HANDLE);
             $blueprint
-                ->string(Block::NAME);
+                ->json(Block::NAME);
             $blueprint
                 ->boolean(Block::COLLAPSIBLE)
                 ->default(false);

@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Command } from "cmdk";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type CommandGroupProps = ComponentProps<typeof Command.Group>;
 

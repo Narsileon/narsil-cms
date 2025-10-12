@@ -1,8 +1,7 @@
-import { Menubar } from "radix-ui";
-import { type ComponentProps } from "react";
-
 import { separatorRootVariants } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
+import { Menubar } from "radix-ui";
+import { type ComponentProps } from "react";
 
 type MenubarSeparatorProps = ComponentProps<typeof Menubar.Separator>;
 

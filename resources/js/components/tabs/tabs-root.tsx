@@ -1,8 +1,7 @@
-import { Tabs } from "radix-ui";
-import { type ComponentProps } from "react";
-
 import { useMinMd } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
+import { Tabs } from "radix-ui";
+import { type ComponentProps } from "react";
 
 type TabsRootProps = ComponentProps<typeof Tabs.Root>;
 

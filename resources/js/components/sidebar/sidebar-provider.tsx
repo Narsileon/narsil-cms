@@ -1,13 +1,5 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  type ComponentProps,
-} from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
-
+import { useCallback, useEffect, useMemo, useState, type ComponentProps } from "react";
 import { SidebarContext, type SidebarContextProps } from "./sidebar-context";
 
 type SidebarProviderProps = ComponentProps<"div"> & {
@@ -91,16 +83,7 @@ function SidebarProvider({
       setOpenMobile: setOpenMobile,
       toggleSidebar: toggleSidebar,
     }),
-    [
-      isMobile,
-      mobileWidth,
-      open,
-      openMobile,
-      state,
-      setOpen,
-      setOpenMobile,
-      toggleSidebar,
-    ],
+    [isMobile, mobileWidth, open, openMobile, state, setOpen, setOpenMobile, toggleSidebar],
   );
 
   return (

@@ -1,3 +1,4 @@
+import { type ColumnFilter } from "@narsil-cms/components/data-table";
 import {
   type ColumnOrderState,
   type ColumnSizingState,
@@ -8,8 +9,6 @@ import {
 } from "@tanstack/react-table";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-
-import { type ColumnFilter } from "@narsil-cms/components/data-table";
 
 type DataTableStoreState = {
   columnOrder: ColumnOrderState;

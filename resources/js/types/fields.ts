@@ -1,5 +1,3 @@
-import { type ComponentProps } from "react";
-
 import {
   Array,
   Checkbox,
@@ -17,6 +15,7 @@ import {
 import { InputContent } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { type ComponentProps } from "react";
 
 type DefaultField = {
   type: "default";

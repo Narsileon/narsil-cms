@@ -1,14 +1,10 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { ContextMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { cn } from "@narsil-cms/lib/utils";
-
 type ContextMenuSubContentProps = ComponentProps<typeof ContextMenu.SubContent>;
 
-function ContextMenuSubContent({
-  className,
-  ...props
-}: ContextMenuSubContentProps) {
+function ContextMenuSubContent({ className, ...props }: ContextMenuSubContentProps) {
   return (
     <ContextMenu.SubContent
       data-slot="context-menu-sub-content"

@@ -5,4 +5,4 @@ import TabsList from "./tabs-list";
 import TabsRoot from "./tabs-root";
 import TabsTrigger from "./tabs-trigger";
 
-export { TabsList, TabsContent, TabsRoot, TabsTrigger };
+export { TabsContent, TabsList, TabsRoot, TabsTrigger };

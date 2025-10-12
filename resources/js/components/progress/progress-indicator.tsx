@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Progress } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type ProgressIndicatorProps = ComponentProps<typeof Progress.Indicator>;
 

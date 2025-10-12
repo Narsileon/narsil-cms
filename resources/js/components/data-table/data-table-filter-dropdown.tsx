@@ -1,25 +1,18 @@
-import { isString } from "lodash";
-import { type ComponentProps } from "react";
-
 import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-
+import { isString } from "lodash";
+import { type ComponentProps } from "react";
 import useDataTable from "./data-table-context";
 
-type DataTableFilterDropdownProps = ComponentProps<
-  typeof DropdownMenuTrigger
-> & {
+type DataTableFilterDropdownProps = ComponentProps<typeof DropdownMenuTrigger> & {
   options?: string[];
 };
 
-function DataTableFilterDropdown({
-  children,
-  ...props
-}: DataTableFilterDropdownProps) {
+function DataTableFilterDropdown({ children, ...props }: DataTableFilterDropdownProps) {
   const { dataTable, dataTableStore } = useDataTable();
 
   const filteredColumns = dataTableStore.filters.map((filter) => filter.column);

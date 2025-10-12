@@ -1,3 +1,4 @@
+import { cn } from "@narsil-cms/lib/utils";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import TextAlign from "@tiptap/extension-text-align";
@@ -5,8 +6,6 @@ import { Placeholder } from "@tiptap/extensions";
 import { EditorContext, EditorOptions, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useEffect, useMemo } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type RichTextEditorRootProps = Partial<EditorOptions> & {
   children?: React.ReactNode;
@@ -76,13 +75,11 @@ function RichTextEditorProvider({
     }
   }, [value]);
 
-  const providerValue = useMemo(() => ({ editor }), [editor]);
+  const providerValue = useMemo(() => {
+    return { editor };
+  }, [editor]);
 
-  return (
-    <EditorContext.Provider value={providerValue}>
-      {children}
-    </EditorContext.Provider>
-  );
+  return <EditorContext.Provider value={providerValue}>{children}</EditorContext.Provider>;
 }
 
 export default RichTextEditorProvider;

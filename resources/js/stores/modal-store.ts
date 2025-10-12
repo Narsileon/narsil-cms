@@ -22,9 +22,7 @@ type ModalStoreActions = {
 
 type ModalStoreType = ModalStoreState & ModalStoreActions;
 
-async function fetchModalProps(
-  linkProps: ComponentProps<typeof Link>,
-): Promise<ModalType | null> {
+async function fetchModalProps(linkProps: ComponentProps<typeof Link>): Promise<ModalType | null> {
   try {
     const url = new URL(linkProps.href as string, window.location.origin);
 

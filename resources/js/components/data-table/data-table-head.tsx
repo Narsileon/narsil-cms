@@ -1,11 +1,9 @@
-import { flexRender, Header } from "@tanstack/react-table";
-import { upperFirst } from "lodash";
-import { type ComponentProps } from "react";
-
 import { TableHead } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Model } from "@narsil-cms/types";
-
+import { flexRender, Header } from "@tanstack/react-table";
+import { upperFirst } from "lodash";
+import { type ComponentProps } from "react";
 import DataTableHeadSort from "./data-table-head-sort";
 
 type DataTableHeadProps = ComponentProps<typeof TableHead> & {
@@ -26,9 +24,7 @@ function DataTableHead({ className, header, ...props }: DataTableHeadProps) {
         <div className="flex items-center justify-start">
           {upperFirst(header.column.columnDef.header)}
 
-          {header.column.getCanSort() ? (
-            <DataTableHeadSort header={header} />
-          ) : null}
+          {header.column.getCanSort() ? <DataTableHeadSort header={header} /> : null}
         </div>
       ) : (
         flexRender(header.column.columnDef.header, header.getContext())

@@ -14,16 +14,10 @@ import {
   type DragStartEvent,
   type UniqueIdentifier,
 } from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { getProjection } from "@narsil-cms/lib/sortable";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-
-import { getProjection } from "@narsil-cms/lib/sortable";
-
 import { SortableItem, type FlatNode } from ".";
 
 type SortableProps = {
@@ -37,9 +31,7 @@ function Sortable({ items, setItems }: SortableProps) {
   const [offsetLeft, setOffsetLeft] = useState(0);
 
   const projected =
-    activeId && overId
-      ? getProjection(items, activeId, overId, offsetLeft, 20)
-      : null;
+    activeId && overId ? getProjection(items, activeId, overId, offsetLeft, 20) : null;
 
   const activeItem = activeId ? items.find(({ id }) => id === activeId) : null;
 
@@ -125,8 +117,7 @@ function Sortable({ items, setItems }: SortableProps) {
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         {items.map((item) => {
-          const depth =
-            item.id === activeId && projected ? projected.depth : item.depth;
+          const depth = item.id === activeId && projected ? projected.depth : item.depth;
 
           return (
             <SortableItem
@@ -139,9 +130,7 @@ function Sortable({ items, setItems }: SortableProps) {
         })}
         {createPortal(
           <DragOverlay>
-            {activeId && activeItem ? (
-              <SortableItem id={activeItem.id} />
-            ) : null}
+            {activeId && activeItem ? <SortableItem id={activeItem.id} /> : null}
           </DragOverlay>,
           document.body,
         )}

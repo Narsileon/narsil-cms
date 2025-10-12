@@ -1,18 +1,13 @@
-import { type ComponentProps } from "react";
-
 import { VisuallyHidden } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
+import { type ComponentProps } from "react";
 
 type BreadcrumbEllipsisProps = ComponentProps<"span"> & {
   ellipsisLabel?: string;
 };
 
-function BreadcrumbEllipsis({
-  className,
-  ellipsisLabel,
-  ...props
-}: BreadcrumbEllipsisProps) {
+function BreadcrumbEllipsis({ className, ellipsisLabel, ...props }: BreadcrumbEllipsisProps) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"

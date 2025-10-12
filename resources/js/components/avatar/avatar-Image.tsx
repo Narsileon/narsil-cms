@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Avatar } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type AvatarImageProps = ComponentProps<typeof Avatar.Image>;
 

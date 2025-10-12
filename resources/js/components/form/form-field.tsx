@@ -1,8 +1,6 @@
-import { cloneDeep, get, unset } from "lodash";
-import { useEffect, useState } from "react";
-
 import type { BlockElementCondition, Field } from "@narsil-cms/types";
-
+import { cloneDeep, get, isObject, unset } from "lodash";
+import { useEffect, useState } from "react";
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
 
@@ -12,19 +10,31 @@ type FormFieldProps = {
   id: string;
   render: (field: {
     handle: string;
+    language: string;
     value: unknown;
     onFieldChange: (value: unknown) => void;
+    setLanguage: (value: string) => void;
   }) => React.ReactNode;
 };
 
-const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
-  const [visible, setVisible] = useState(true);
+function FormField({ conditions, field, id, render }: FormFieldProps) {
+  const { data, errors, language: formLanguage, setData } = useForm();
 
-  const { data, errors, setData } = useForm();
-  const { settings } = field;
+  const [language, setLanguage] = useState<string>("en");
+  const [visible, setVisible] = useState<boolean>(true);
 
-  const value = get(data, id);
   const error = get(errors, id);
+
+  function getValue() {
+    const defaultValue = (field.settings as Record<string, unknown>)?.value ?? "";
+    let value = get(data, id, defaultValue);
+
+    if (field.translatable && isObject(value)) {
+      value = get(value, language, defaultValue);
+    }
+
+    return value;
+  }
 
   useEffect(() => {
     let nextVisible = true;
@@ -51,17 +61,32 @@ const FormField = ({ conditions, field, id, render }: FormFieldProps) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    setLanguage(formLanguage);
+  }, [formLanguage]);
+
+  const contextValue = {
+    ...field,
+    error: error,
+    language: language,
+    setLanguage: setLanguage,
+  };
+
   return visible ? (
-    <FormFieldContext.Provider value={{ ...field, error: error }}>
+    <FormFieldContext.Provider value={contextValue}>
       {render({
         handle: id,
-        value: value ?? settings?.value ?? "",
+        language: language,
+        value: getValue(),
         onFieldChange: (value) => {
-          setData?.(id, value);
+          const key = field.translatable ? `${id}.${language}` : id;
+
+          setData?.(key, value);
         },
+        setLanguage: setLanguage,
       })}
     </FormFieldContext.Provider>
   ) : null;
-};
+}
 
 export default FormField;

@@ -1,5 +1,3 @@
-import { useCurrentEditor } from "@tiptap/react";
-
 import { Button, Separator, Tooltip } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
@@ -9,7 +7,7 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
-
+import { useCurrentEditor } from "@tiptap/react";
 import RichTextEditorBold from "./rich-text-editor-bold";
 import RichTextEditorBulletList from "./rich-text-editor-bullet-list";
 import RichTextEditorHeading from "./rich-text-editor-heading";
@@ -29,11 +27,7 @@ type RichTextEditorToolbarProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const headings = [1, 2, 3, 4, 5, 6] as const;
 
-function RichTextEditorToolbar({
-  className,
-  modules,
-  ...props
-}: RichTextEditorToolbarProps) {
+function RichTextEditorToolbar({ className, modules, ...props }: RichTextEditorToolbarProps) {
   const { editor } = useCurrentEditor();
   const { trans } = useLocalization();
 
@@ -68,12 +62,8 @@ function RichTextEditorToolbar({
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("superscript") !== false && (
-            <RichTextEditorSuperscript editor={editor} />
-          )}
-          {hasModule("subscript") !== false && (
-            <RichTextEditorSubscript editor={editor} />
-          )}
+          {hasModule("superscript") !== false && <RichTextEditorSuperscript editor={editor} />}
+          {hasModule("subscript") !== false && <RichTextEditorSubscript editor={editor} />}
         </>
       )}
 
@@ -95,23 +85,20 @@ function RichTextEditorToolbar({
             <DropdownMenuContent className="min-w-9">
               {headings
                 .filter((level) => hasModule(`heading_${level}`) !== false)
-                .map((level) => (
-                  <DropdownMenuItem asChild={true} key={level}>
-                    <RichTextEditorHeading editor={editor} level={level} />
-                  </DropdownMenuItem>
-                ))}
+                .map((level) => {
+                  return (
+                    <DropdownMenuItem asChild={true} key={level}>
+                      <RichTextEditorHeading editor={editor} level={level} />
+                    </DropdownMenuItem>
+                  );
+                })}
             </DropdownMenuContent>
           </DropdownMenuRoot>
         </>
       )}
 
       {/* Alignment */}
-      {hasModules([
-        "align_left",
-        "align_center",
-        "align_right",
-        "align_justify",
-      ]) && (
+      {hasModules(["align_left", "align_center", "align_right", "align_justify"]) && (
         <>
           <Separator orientation="vertical" />
 
@@ -135,12 +122,8 @@ function RichTextEditorToolbar({
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("bullet_list") && (
-            <RichTextEditorBulletList editor={editor} />
-          )}
-          {hasModule("ordered_list") && (
-            <RichTextEditorOrderedList editor={editor} />
-          )}
+          {hasModule("bullet_list") && <RichTextEditorBulletList editor={editor} />}
+          {hasModule("ordered_list") && <RichTextEditorOrderedList editor={editor} />}
         </>
       )}
 

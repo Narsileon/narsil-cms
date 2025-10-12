@@ -18,8 +18,12 @@ type ColorStoreType = ColorStoreState & ColorStoreActions;
 const debouncedSave = debounce((color: string) => {
   router.post(
     route("user-configuration.store"),
-    { color: color },
-    { preserveState: true },
+    {
+      color: color,
+    },
+    {
+      preserveState: true,
+    },
   );
 }, 500);
 

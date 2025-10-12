@@ -1,5 +1,4 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-
 import SortableAdd from "./sortable-add";
 import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";

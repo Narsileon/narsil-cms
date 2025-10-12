@@ -5,4 +5,4 @@ import inputContentVariants from "./input-content-variants";
 import InputRoot from "./input-root";
 import inputRootVariants from "./input-root-variants";
 
-export { InputContent, inputContentVariants, InputRoot, inputRootVariants };
+export { InputContent, InputRoot, inputContentVariants, inputRootVariants };

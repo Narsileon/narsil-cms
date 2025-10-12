@@ -62,6 +62,7 @@ class TemplateForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Template::NAME,
                         Field::NAME => trans('narsil::validation.attributes.name'),
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),
@@ -153,10 +154,11 @@ class TemplateForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return new SelectOption(
-                    label: $block->{Block::NAME},
+                    label: $block->getTranslations(Block::NAME),
                     value: $block->{Block::HANDLE},
                 )
                     ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setId($block->{Block::ID})
                     ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
@@ -173,10 +175,11 @@ class TemplateForm extends AbstractForm implements Contract
             ->map(function (Field $field)
             {
                 return new SelectOption(
-                    label: $field->{Field::NAME},
+                    label: $field->getTranslations(Field::NAME),
                     value: $field->{Field::HANDLE},
                 )
                     ->setIcon($field->{Field::ATTRIBUTE_ICON})
+                    ->setId($field->{Field::ID})
                     ->setIdentifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
@@ -193,10 +196,11 @@ class TemplateForm extends AbstractForm implements Contract
             ->map(function (Block $block)
             {
                 return new SelectOption(
-                    label: $block->{Block::NAME},
+                    label: $block->getTranslations(Block::NAME),
                     value: $block->{Block::HANDLE},
                 )
                     ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setId($block->{Block::ID})
                     ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();

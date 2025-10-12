@@ -13,6 +13,7 @@ import SelectScrollDownButton from "./select-scroll-down-button";
 import SelectScrollUpButton from "./select-scroll-up-button";
 import SelectSeparator from "./select-separator";
 import SelectTrigger from "./select-trigger";
+import selectTriggerVariants from "./select-trigger-variants";
 import SelectValue from "./select-value";
 import SelectViewport from "./select-viewport";
 
@@ -32,4 +33,5 @@ export {
   SelectTrigger,
   SelectValue,
   SelectViewport,
+  selectTriggerVariants,
 };

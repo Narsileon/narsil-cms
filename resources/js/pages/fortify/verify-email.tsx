@@ -1,14 +1,9 @@
+import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
+import { useLocalization } from "@narsil-cms/components/localization";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
-
-import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
-import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
 
 type VerifyEmailProps = {
   status: string;

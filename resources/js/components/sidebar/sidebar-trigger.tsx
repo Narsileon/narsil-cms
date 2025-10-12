@@ -1,9 +1,7 @@
-import { type ComponentProps } from "react";
-
 import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
-
+import { type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 
 type SidebarTriggerProps = ComponentProps<typeof Button>;

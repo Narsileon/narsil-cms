@@ -1,6 +1,5 @@
-import { cva } from "class-variance-authority";
-
 import { cn } from "@narsil-cms/lib/utils";
+import { cva } from "class-variance-authority";
 
 const badgeRootVariants = cva(
   cn(
@@ -27,10 +26,7 @@ const badgeRootVariants = cva(
           "focus-visible:ring-destructive/20",
           "[a&]:hover:bg-destructive/90",
         ),
-        outline: cn(
-          "text-foreground",
-          "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
-        ),
+        outline: cn("text-foreground", "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground"),
       },
     },
     defaultVariants: {

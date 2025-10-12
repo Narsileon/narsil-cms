@@ -1,12 +1,5 @@
-import {
-  useEffect,
-  useState,
-  type ComponentProps,
-  type CSSProperties,
-} from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
-
+import { useEffect, useState, type ComponentProps, type CSSProperties } from "react";
 import BackgroundRay from "./background-ray";
 
 type BackgroundProps = Omit<ComponentProps<"div">, "color"> & {
@@ -19,10 +12,7 @@ type BackgroundProps = Omit<ComponentProps<"div">, "color"> & {
   fill?: boolean;
 };
 
-const createRays = (
-  count: number,
-  cycle: number,
-): ComponentProps<typeof BackgroundRay>[] => {
+const createRays = (count: number, cycle: number): ComponentProps<typeof BackgroundRay>[] => {
   if (count <= 0) {
     return [];
   }
@@ -68,10 +58,7 @@ function Background({
 
   return (
     <div
-      className={cn(
-        "absolute inset-0 overflow-hidden rounded-[inherit] opacity-20",
-        className,
-      )}
+      className={cn("absolute inset-0 overflow-hidden rounded-[inherit] opacity-20", className)}
       style={
         {
           "--light-rays-color": "var(--primary)",
@@ -99,9 +86,9 @@ function Background({
               "radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--light-rays-color) 35%, transparent), transparent 75%)",
           }}
         />
-        {rays.map((ray, index) => (
-          <BackgroundRay {...ray} key={index} />
-        ))}
+        {rays.map((ray, index) => {
+          return <BackgroundRay {...ray} key={index} />;
+        })}
       </div>
     </div>
   );

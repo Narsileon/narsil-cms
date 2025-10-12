@@ -1,10 +1,9 @@
-import { Editor, useEditorState } from "@tiptap/react";
-import { type ComponentProps } from "react";
-
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { Editor, useEditorState } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 type RichTextEditorSuperscriptProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
@@ -22,12 +21,7 @@ function RichTextEditorSuperscript({
     editor,
     selector: (ctx) => {
       return {
-        canSuperscript: ctx.editor
-          .can()
-          .chain()
-          .focus()
-          .toggleSuperscript()
-          .run(),
+        canSuperscript: ctx.editor.can().chain().focus().toggleSuperscript().run(),
         isSuperscript: ctx.editor.isActive("superscript"),
       };
     },

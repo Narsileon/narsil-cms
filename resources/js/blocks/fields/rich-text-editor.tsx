@@ -1,11 +1,10 @@
-import { type ComponentProps } from "react";
-
 import {
   RichTextEditorContent,
   RichTextEditorProvider,
   RichTextEditorRoot,
   RichTextEditorToolbar,
 } from "@narsil-cms/components/rich-text-editor";
+import { type ComponentProps } from "react";
 
 type RichTextEditorProps = ComponentProps<typeof RichTextEditorProvider> &
   Pick<ComponentProps<typeof RichTextEditorContent>, "id"> &
@@ -13,13 +12,7 @@ type RichTextEditorProps = ComponentProps<typeof RichTextEditorProvider> &
     toolbar?: boolean;
   };
 
-function RichTextEditor({
-  className,
-  id,
-  modules,
-  toolbar = true,
-  ...props
-}: RichTextEditorProps) {
+function RichTextEditor({ className, id, modules, toolbar = true, ...props }: RichTextEditorProps) {
   return (
     <RichTextEditorRoot className={className}>
       <RichTextEditorProvider {...props}>

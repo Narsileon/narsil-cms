@@ -1,11 +1,7 @@
-import { type ComponentProps } from "react";
-
-import {
-  CheckboxIndicator,
-  CheckboxRoot,
-} from "@narsil-cms/components/checkbox";
+import { CheckboxIndicator, CheckboxRoot } from "@narsil-cms/components/checkbox";
 import { Icon } from "@narsil-cms/components/icon";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { type ComponentProps } from "react";
 
 type CheckboxProps = ComponentProps<typeof CheckboxRoot> & {
   icon?: IconName;

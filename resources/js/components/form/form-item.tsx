@@ -1,6 +1,5 @@
-import { type ComponentProps } from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
+import { type ComponentProps } from "react";
 
 type FormItemProps = ComponentProps<"div"> & {
   width?: number;
@@ -27,11 +26,7 @@ function FormItem({ className, width, ...props }: FormItemProps) {
   return (
     <div
       data-slot="form-item"
-      className={cn(
-        "col-span-full flex flex-col gap-2",
-        getWidthClass(),
-        className,
-      )}
+      className={cn("col-span-full flex flex-col gap-2", getWidthClass(), className)}
       {...props}
     />
   );

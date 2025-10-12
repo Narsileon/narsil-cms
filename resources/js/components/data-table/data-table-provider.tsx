@@ -1,4 +1,6 @@
 import { router } from "@inertiajs/react";
+import { useDataTableStore, type DataTableStoreType } from "@narsil-cms/stores/data-table-store";
+import type { Model } from "@narsil-cms/types";
 import {
   getCoreRowModel,
   useReactTable,
@@ -14,13 +16,6 @@ import {
 } from "@tanstack/react-table";
 import { debounce } from "lodash";
 import { useCallback, useEffect, useMemo, type ReactNode } from "react";
-
-import {
-  useDataTableStore,
-  type DataTableStoreType,
-} from "@narsil-cms/stores/data-table-store";
-import type { Model } from "@narsil-cms/types";
-
 import { DataTableContext } from "./data-table-context";
 
 type DataTableProviderProps = Partial<Omit<TableOptions<Model>, "columns">> & {
@@ -32,9 +27,7 @@ type DataTableProviderProps = Partial<Omit<TableOptions<Model>, "columns">> & {
 };
 
 function formatSorting(sorting: SortingState) {
-  return Object.fromEntries(
-    sorting.map(({ id, desc }) => [id, desc ? "desc" : "asc"]),
-  );
+  return Object.fromEntries(sorting.map(({ id, desc }) => [id, desc ? "desc" : "asc"]));
 }
 
 function DataTableProvider({
@@ -86,45 +79,30 @@ function DataTableProvider({
 
   if (
     initialState.columnVisibility &&
-    dataTableStore.columnVisibility.length <
-      (initialState.columnVisibility?.length ?? 0)
+    dataTableStore.columnVisibility.length < (initialState.columnVisibility?.length ?? 0)
   ) {
     dataTableStore.setColumnVisibility(initialState.columnVisibility);
   }
 
-  function handleColumnOrderChange(
-    order: Updater<ColumnOrderState> | ColumnOrderState,
-  ) {
+  function handleColumnOrderChange(order: Updater<ColumnOrderState> | ColumnOrderState) {
     dataTableStore.setColumnOrder(
-      typeof order === "function"
-        ? order(dataTableStore.columnOrder ?? [])
-        : order,
+      typeof order === "function" ? order(dataTableStore.columnOrder ?? []) : order,
     );
   }
 
-  function handleColumnSizingChange(
-    sizing: Updater<ColumnSizingState> | ColumnSizingState,
-  ) {
+  function handleColumnSizingChange(sizing: Updater<ColumnSizingState> | ColumnSizingState) {
     dataTableStore.setColumnSizing(
-      typeof sizing === "function"
-        ? sizing(dataTableStore.columnSizing)
-        : sizing,
+      typeof sizing === "function" ? sizing(dataTableStore.columnSizing) : sizing,
     );
   }
 
-  function handleColumnVisibilityChange(
-    visibility: Updater<VisibilityState> | VisibilityState,
-  ) {
+  function handleColumnVisibilityChange(visibility: Updater<VisibilityState> | VisibilityState) {
     dataTableStore.setColumnVisibility(
-      typeof visibility === "function"
-        ? visibility(dataTableStore.columnVisibility)
-        : visibility,
+      typeof visibility === "function" ? visibility(dataTableStore.columnVisibility) : visibility,
     );
   }
 
-  function handlePaginationChange(
-    pagination: Updater<PaginationState> | PaginationState,
-  ) {
+  function handlePaginationChange(pagination: Updater<PaginationState> | PaginationState) {
     dataTableStore.setPagination(
       typeof pagination === "function"
         ? pagination({
@@ -135,13 +113,9 @@ function DataTableProvider({
     );
   }
 
-  function handleRowSelectionChange(
-    rowSelection: Updater<RowSelectionState> | RowSelectionState,
-  ) {
+  function handleRowSelectionChange(rowSelection: Updater<RowSelectionState> | RowSelectionState) {
     dataTableStore.setRowSelection(
-      typeof rowSelection === "function"
-        ? rowSelection(dataTableStore.rowSelection)
-        : rowSelection,
+      typeof rowSelection === "function" ? rowSelection(dataTableStore.rowSelection) : rowSelection,
     );
   }
 

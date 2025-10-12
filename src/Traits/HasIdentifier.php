@@ -2,6 +2,10 @@
 
 namespace Narsil\Traits;
 
+/**
+ * @author Jonathan Rigaux
+ * @version 1.0.0
+ */
 trait HasIdentifier
 {
     #region CONSTANTS

@@ -1,16 +1,11 @@
+import { Icon } from "@narsil-cms/components/icon";
+import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { Icon } from "@narsil-cms/components/icon";
-import { cn } from "@narsil-cms/lib/utils";
-
 type DropdownMenuRadioItemProps = ComponentProps<typeof DropdownMenu.RadioItem>;
 
-function DropdownMenuRadioItem({
-  children,
-  className,
-  ...props
-}: DropdownMenuRadioItemProps) {
+function DropdownMenuRadioItem({ children, className, ...props }: DropdownMenuRadioItemProps) {
   return (
     <DropdownMenu.RadioItem
       data-slot="dropdown-menu-radio-item"

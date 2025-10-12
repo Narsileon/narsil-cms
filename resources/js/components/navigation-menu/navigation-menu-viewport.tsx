@@ -1,22 +1,12 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { NavigationMenu } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { cn } from "@narsil-cms/lib/utils";
+type NavigationMenuViewportProps = ComponentProps<typeof NavigationMenu.Viewport>;
 
-type NavigationMenuViewportProps = ComponentProps<
-  typeof NavigationMenu.Viewport
->;
-
-function NavigationMenuViewport({
-  className,
-  ...props
-}: NavigationMenuViewportProps) {
+function NavigationMenuViewport({ className, ...props }: NavigationMenuViewportProps) {
   return (
-    <div
-      className={cn(
-        "absolute left-0 top-full isolate z-50 flex justify-center",
-      )}
-    >
+    <div className={cn("absolute left-0 top-full isolate z-50 flex justify-center")}>
       <NavigationMenu.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(

@@ -1,7 +1,4 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { get, set } from "lodash";
-import { useState } from "react";
-
 import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
 import {
   DialogBody,
@@ -17,7 +14,8 @@ import { FormItem, FormLabel } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { FormType } from "@narsil-cms/types";
-
+import { get, set } from "lodash";
+import { useState } from "react";
 import { type AnonymousItem } from ".";
 
 type SortableItemFormProps = {

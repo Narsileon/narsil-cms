@@ -1,8 +1,4 @@
 import { Link } from "@inertiajs/react";
-import { type Table } from "@tanstack/react-table";
-import { type ComponentProps } from "react";
-import { route } from "ziggy-js";
-
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
@@ -15,24 +11,18 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink } from "@narsil-cms/components/modal";
 import type { Model, RouteNames } from "@narsil-cms/types";
+import { type Table } from "@tanstack/react-table";
+import { type ComponentProps } from "react";
+import { route } from "ziggy-js";
 
-type DataTableRowMenuProps = Omit<
-  ComponentProps<typeof DropdownMenuTrigger>,
-  "id"
-> & {
+type DataTableRowMenuProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "id"> & {
   id?: number;
   modal?: boolean;
   routes: RouteNames;
   table?: Table<Model>;
 };
 
-function DataTableRowMenu({
-  id,
-  modal = false,
-  routes,
-  table,
-  ...props
-}: DataTableRowMenuProps) {
+function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTableRowMenuProps) {
   const { trans } = useLocalization();
 
   if (!routes.edit && !routes.destroy) {
@@ -134,9 +124,7 @@ function DataTableRowMenu({
                   as="button"
                   href={route(routes.replicateMany, {
                     ...routes.params,
-                    ids: table
-                      ?.getSelectedRowModel()
-                      .flatRows.map((row) => row.original.id),
+                    ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
                   })}
                   method="post"
                   data={{
@@ -157,9 +145,7 @@ function DataTableRowMenu({
                     as="button"
                     href={route(routes.destroyMany, {
                       ...routes.params,
-                      ids: table
-                        ?.getSelectedRowModel()
-                        .flatRows.map((row) => row.original.id),
+                      ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
                     })}
                     method="delete"
                     data={{

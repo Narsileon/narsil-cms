@@ -1,8 +1,5 @@
 import { router } from "@inertiajs/react";
-import { useEffect, type ComponentProps } from "react";
-import { route } from "ziggy-js";
-
-import { Button, Separator, Kbd } from "@narsil-cms/blocks";
+import { Button, Kbd, Separator } from "@narsil-cms/blocks";
 import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
 import {
   DropdownMenuContent,
@@ -15,6 +12,8 @@ import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { RouteNames } from "@narsil-cms/types";
+import { useEffect, type ComponentProps } from "react";
+import { route } from "ziggy-js";
 
 type SaveButtonProps = ComponentProps<typeof ButtonGroupRoot> & {
   routes?: RouteNames;
@@ -24,8 +23,7 @@ type SaveButtonProps = ComponentProps<typeof ButtonGroupRoot> & {
 function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
   const { trans } = useLocalization();
 
-  const { action, data, id, isDirty, method, post, reset, transform } =
-    useForm();
+  const { action, data, id, isDirty, method, post, reset, transform } = useForm();
 
   function destroy() {
     if (routes?.destroy && data?.id) {
@@ -53,11 +51,7 @@ function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
     }
   }
 
-  function submit(
-    action: string,
-    method: string,
-    submitData?: Record<string, unknown>,
-  ) {
+  function submit(action: string, method: string, submitData?: Record<string, unknown>) {
     switch (method) {
       case "patch":
       case "put":

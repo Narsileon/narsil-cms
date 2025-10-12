@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Label } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type LabelRootProps = ComponentProps<typeof Label.Root>;
 

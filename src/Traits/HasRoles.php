@@ -9,6 +9,10 @@ use Narsil\Models\Policies\Role;
 
 #endregion
 
+/**
+ * @author Jonathan Rigaux
+ * @version 1.0.0
+ */
 trait HasRoles
 {
     #region CONSTANTS
@@ -76,7 +80,7 @@ trait HasRoles
 
         if (is_string($roles))
         {
-            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::NAME, $roles);
+            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::HANDLE, $roles);
         }
         else if (is_int($roles))
         {
@@ -138,13 +142,13 @@ trait HasRoles
         }
 
         $ids = [];
-        $names = [];
+        $handles = [];
 
         foreach ($roles as $role)
         {
             if (is_string($role))
             {
-                $names[] = $role;
+                $handles[] = $role;
             }
             else if (is_int($role))
             {
@@ -152,14 +156,14 @@ trait HasRoles
             }
         }
 
-        if (!empty($names))
+        if (!empty($handles))
         {
-            $names = Role::query()
-                ->whereIn(Role::NAME, $names)
+            $handles = Role::query()
+                ->whereIn(Role::HANDLE, $handles)
                 ->pluck(Role::ID)
                 ->toArray();
 
-            $ids = array_merge($ids, $names);
+            $ids = array_merge($ids, $handles);
         }
 
         return array_values(array_unique($ids));

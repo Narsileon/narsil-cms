@@ -1,6 +1,3 @@
-import { uniqueId } from "lodash";
-import { useRef, useState, type ComponentProps } from "react";
-
 import { Button, Tooltip } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
@@ -12,7 +9,8 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
-
+import { uniqueId } from "lodash";
+import { useRef, useState, type ComponentProps } from "react";
 import { type BuilderNode } from ".";
 
 type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
@@ -66,18 +64,21 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
           </DropdownMenuTrigger>
         </Tooltip>
         <DropdownMenuContent>
-          {sets.map((set, index) => (
-            <DropdownMenuItem
-              onClick={() => {
-                const node = { id: uniqueId("id:"), block: set, values: {} };
-                onAdd(node as BuilderNode);
-              }}
-              key={index}
-            >
-              {set.icon ? <Icon name={set.icon} /> : null}
-              <span>{set.name}</span>
-            </DropdownMenuItem>
-          ))}
+          {sets.map((set, index) => {
+            return (
+              <DropdownMenuItem
+                onClick={() => {
+                  const node = { uuid: uniqueId("id:"), block: set, values: {} };
+
+                  onAdd(node as BuilderNode);
+                }}
+                key={index}
+              >
+                {set.icon ? <Icon name={set.icon} /> : null}
+                <span>{set.name}</span>
+              </DropdownMenuItem>
+            );
+          })}
         </DropdownMenuContent>
       </DropdownMenuRoot>
       <div

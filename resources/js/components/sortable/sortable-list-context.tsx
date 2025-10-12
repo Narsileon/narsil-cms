@@ -3,13 +3,9 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-
-import type {
-  FormType,
-  GroupedSelectOption,
-  SelectOption,
-} from "@narsil-cms/types";
-
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { type AnonymousItem } from ".";
 import SortableItem from "./sortable-item";
 
@@ -32,6 +28,8 @@ function SortableListContext({
   widthOptions,
   setItems,
 }: SortableListContextProps) {
+  const { locale } = useLocale();
+
   function getGroup(item: AnonymousItem) {
     const group = options.find((x) =>
       item.identifier.includes(x.identifier),
@@ -43,8 +41,8 @@ function SortableListContext({
   function getFormattedLabel(item: AnonymousItem) {
     const group = getGroup(item);
 
-    const label = item[group.optionLabel];
-    const value = item[group.optionValue];
+    const label = getTranslatableSelectOption(item, group.optionLabel, locale);
+    const value = getSelectOption(item, group.optionValue);
 
     return unique ? label : `${label} (${value})`;
   }
@@ -52,16 +50,14 @@ function SortableListContext({
   function getUniqueIdentifier(item: AnonymousItem) {
     const group = getGroup(item);
 
-    return item[group.optionValue];
+    return getSelectOption(item, group.optionValue);
   }
 
   return (
     <SortableContext
       items={items.map((item) => getUniqueIdentifier(item))}
       strategy={
-        direction === "vertical"
-          ? verticalListSortingStrategy
-          : horizontalListSortingStrategy
+        direction === "vertical" ? verticalListSortingStrategy : horizontalListSortingStrategy
       }
     >
       <ul className="grid gap-2">
@@ -82,11 +78,17 @@ function SortableListContext({
               widthOptions={widthOptions}
               onItemChange={(value: AnonymousItem) => {
                 setItems(
-                  items.map((x) => (getUniqueIdentifier(x) === id ? value : x)),
+                  items.map((x) => {
+                    return getUniqueIdentifier(x) === id ? value : x;
+                  }),
                 );
               }}
               onItemRemove={() => {
-                setItems(items.filter((x) => x !== item));
+                setItems(
+                  items.filter((x) => {
+                    return x !== item;
+                  }),
+                );
               }}
               key={id}
             />

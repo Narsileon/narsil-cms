@@ -1,9 +1,7 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
-
 import buttonRootVariants from "./button-root-variants";
 
 type ButtonRootProps = ComponentProps<"button"> &

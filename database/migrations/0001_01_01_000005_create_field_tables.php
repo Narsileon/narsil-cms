@@ -3,6 +3,7 @@
 #region USE
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Enums\Forms\RuleEnum;
@@ -64,7 +65,7 @@ return new class extends Migration
             $blueprint
                 ->integer(FieldOption::POSITION);
             $blueprint
-                ->string(FieldOption::LABEL);
+                ->json(FieldOption::LABEL);
             $blueprint
                 ->string(FieldOption::VALUE);
             $blueprint
@@ -101,21 +102,20 @@ return new class extends Migration
             $blueprint
                 ->id(Field::ID);
             $blueprint
-                ->string(Field::NAME);
-            $blueprint
                 ->string(Field::HANDLE);
             $blueprint
-                ->string(Field::DESCRIPTION)
-                ->nullable();
+                ->string(Field::TYPE);
+            $blueprint
+                ->json(Field::NAME);
+            $blueprint
+                ->json(Field::DESCRIPTION)
+                ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->boolean(Field::TRANSLATABLE)
                 ->default(false);
             $blueprint
-                ->string(Field::TYPE);
-            $blueprint
                 ->json(Field::SETTINGS)
-                ->nullable()
-                ->default(null);
+                ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->timestamps();
         });

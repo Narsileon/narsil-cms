@@ -1,19 +1,7 @@
 import { router } from "@inertiajs/react";
-
-import {
-  SelectContent,
-  SelectItem,
-  SelectItemIndicator,
-  SelectItemText,
-  SelectPortal,
-  SelectRoot,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectTrigger,
-  SelectValue,
-  SelectViewport,
-} from "@narsil-cms/components/select";
+import { Select } from "@narsil-cms/blocks/fields";
 import type { Revision } from "@narsil-cms/types";
+import { useMemo } from "react";
 
 type RevisionSelectProps = {
   revisions: Revision[];
@@ -21,32 +9,35 @@ type RevisionSelectProps = {
 
 function RevisionSelect({ revisions }: RevisionSelectProps) {
   const params = new URLSearchParams(window.location.search);
+
   const revision = params.get("revision") ?? revisions[0]?.uuid;
+
+  const options = useMemo(
+    () =>
+      revisions.map((r) => {
+        return {
+          label: `Revision ${r.revision}`,
+          value: r.uuid,
+        };
+      }),
+    [revisions],
+  );
 
   function onValueChange(value: string) {
     router.reload({ data: { revision: value } });
   }
 
   return (
-    <SelectRoot value={revision} onValueChange={onValueChange}>
-      <SelectTrigger className="bg-secondary" size={"sm"}>
-        <SelectValue />
-      </SelectTrigger>
-      <SelectPortal>
-        <SelectContent>
-          <SelectScrollUpButton />
-          <SelectViewport>
-            {revisions?.map((revision) => (
-              <SelectItem value={revision.uuid} key={revision.uuid}>
-                <SelectItemIndicator />
-                <SelectItemText>Revision {revision.revision}</SelectItemText>
-              </SelectItem>
-            ))}
-          </SelectViewport>
-          <SelectScrollDownButton />
-        </SelectContent>
-      </SelectPortal>
-    </SelectRoot>
+    <Select
+      options={options}
+      showIcon={false}
+      value={revision}
+      triggerProps={{
+        className: "bg-secondary",
+        size: "sm",
+      }}
+      onValueChange={onValueChange}
+    />
   );
 }
 

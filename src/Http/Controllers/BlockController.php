@@ -73,11 +73,10 @@ class BlockController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
-        $form = app()->make(BlockForm::class);
-
-        $form->action = route('blocks.store');
-        $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.save');
+        $form = app(BlockForm::class)
+            ->action(route('blocks.store'))
+            ->method(MethodEnum::POST)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -132,13 +131,12 @@ class BlockController extends AbstractController
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
 
-        $form = app()->make(BlockForm::class);
-
-        $form->action = route('blocks.update', $block->{Block::ID});
-        $form->data = $block;
-        $form->id = $block->{Block::ID};
-        $form->method = MethodEnum::PATCH;
-        $form->submitLabel = trans('narsil::ui.update');
+        $form = app(BlockForm::class)
+            ->action(route('blocks.update', $block->{Block::ID}))
+            ->data($block->toArrayWithTranslations())
+            ->id($block->{Block::ID})
+            ->method(MethodEnum::PATCH)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -270,7 +268,6 @@ class BlockController extends AbstractController
         $replicated
             ->fill([
                 Block::HANDLE => $block->{Block::HANDLE} . '_copy',
-                Block::NAME => $block->{Block::NAME} . ' (copy)',
             ])
             ->save();
 
@@ -302,7 +299,7 @@ class BlockController extends AbstractController
 
             $attributes = [
                 BlockElement::HANDLE => Arr::get($element, BlockElement::HANDLE),
-                BlockElement::NAME => Arr::get($element, BlockElement::NAME),
+                BlockElement::NAME => json_encode(Arr::get($element, BlockElement::NAME)),
                 BlockElement::POSITION => $position,
                 BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH),
             ];

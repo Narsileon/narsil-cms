@@ -1,6 +1,3 @@
-import { get, isString } from "lodash";
-import { type ComponentProps } from "react";
-
 import {
   SelectContent,
   SelectIcon,
@@ -15,13 +12,10 @@ import {
   SelectValue,
   SelectViewport,
 } from "@narsil-cms/components/select";
-
-type SelectOption =
-  | string
-  | {
-      label: string;
-      value: string;
-    };
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import { SelectOption } from "@narsil-cms/types";
+import { type ComponentProps } from "react";
 
 type SelectProps = ComponentProps<typeof SelectRoot> & {
   contentProps?: Partial<ComponentProps<typeof SelectContent>>;
@@ -29,12 +23,11 @@ type SelectProps = ComponentProps<typeof SelectRoot> & {
   itemProps?: Partial<ComponentProps<typeof SelectItem>>;
   itemIndicatorProps?: Partial<ComponentProps<typeof SelectItemIndicator>>;
   itemTextProps?: Partial<ComponentProps<typeof SelectItemText>>;
-  options?: SelectOption[];
+  options?: (string | SelectOption)[];
   portalProps?: Partial<ComponentProps<typeof SelectPortal>>;
-  scrollDownButtonProps?: Partial<
-    ComponentProps<typeof SelectScrollDownButton>
-  >;
+  scrollDownButtonProps?: Partial<ComponentProps<typeof SelectScrollDownButton>>;
   scrollUpButtonProps?: Partial<ComponentProps<typeof SelectScrollUpButton>>;
+  showIcon?: boolean;
   triggerProps?: Partial<ComponentProps<typeof SelectTrigger>>;
   valueProps?: Partial<ComponentProps<typeof SelectValue>>;
   viewportProps?: Partial<ComponentProps<typeof SelectViewport>>;
@@ -51,50 +44,35 @@ const Select = ({
   portalProps,
   scrollDownButtonProps,
   scrollUpButtonProps,
+  showIcon = true,
   triggerProps,
   valueProps,
   viewportProps,
   ...props
 }: SelectProps) => {
-  function getOptionLabel(option: SelectOption) {
-    if (isString(option)) {
-      return option;
-    }
-
-    return get(option, "label");
-  }
-
-  function getOptionValue(option: SelectOption) {
-    if (isString(option)) {
-      return option;
-    }
-
-    return get(option, "value");
-  }
+  const { locale } = useLocale();
 
   return (
     <SelectRoot {...props}>
       <SelectTrigger {...triggerProps}>
         <SelectValue {...valueProps} />
-        <SelectIcon {...iconProps} />
+        {showIcon ? <SelectIcon {...iconProps} /> : null}
       </SelectTrigger>
       <SelectPortal {...portalProps}>
         <SelectContent {...contentProps}>
           <SelectScrollUpButton {...scrollUpButtonProps} />
           <SelectViewport {...viewportProps}>
             {children}
-            {options?.map((option, index) => (
-              <SelectItem
-                {...itemProps}
-                value={getOptionValue(option)}
-                key={index}
-              >
-                <SelectItemText {...itemTextProps}>
-                  {getOptionLabel(option)}
-                </SelectItemText>
-                <SelectItemIndicator {...itemIndicatorProps} />
-              </SelectItem>
-            ))}
+            {options?.map((option, index) => {
+              return (
+                <SelectItem {...itemProps} value={getSelectOption(option, "value")} key={index}>
+                  <SelectItemText {...itemTextProps}>
+                    {getTranslatableSelectOption(option, "label", locale)}
+                  </SelectItemText>
+                  <SelectItemIndicator {...itemIndicatorProps} />
+                </SelectItem>
+              );
+            })}
           </SelectViewport>
           <SelectScrollDownButton {...scrollDownButtonProps} />
         </SelectContent>

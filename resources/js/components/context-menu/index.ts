@@ -1,4 +1,4 @@
-// https://www.radix-ui.com/primitives/docs/components/checkbox
+// https://www.radix-ui.com/primitives/docs/components/context-menu
 
 import ContextMenuCheckboxItem from "./context-menu-checkbox-item";
 import ContextMenuContent from "./context-menu-content";

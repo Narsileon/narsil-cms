@@ -1,16 +1,10 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { AlertDialog } from "radix-ui";
 import { type ComponentProps } from "react";
 
-import { cn } from "@narsil-cms/lib/utils";
+type AlertDialogDescriptionProps = ComponentProps<typeof AlertDialog.Description>;
 
-type AlertDialogDescriptionProps = ComponentProps<
-  typeof AlertDialog.Description
->;
-
-function AlertDialogDescription({
-  className,
-  ...props
-}: AlertDialogDescriptionProps) {
+function AlertDialogDescription({ className, ...props }: AlertDialogDescriptionProps) {
   return (
     <AlertDialog.Description
       data-slot="alert-dialog-description"

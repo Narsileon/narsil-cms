@@ -1,7 +1,7 @@
 import { useForm } from "@inertiajs/react";
-
-import type { Block, Field, TemplateSection } from "@narsil-cms/types";
-
+import { getFieldDefaultValue } from "@narsil-cms/lib/field";
+import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
+import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
@@ -9,6 +9,7 @@ type FormProviderProps = {
   elements?: (Block | Field | TemplateSection)[];
   id: string;
   initialValues?: Record<string, unknown>;
+  languageOptions?: SelectOption[];
   method: string;
   render: (props: FormContextProps) => React.ReactNode;
 };
@@ -18,9 +19,12 @@ function FormProvider({
   elements = [],
   id,
   initialValues = {},
+  languageOptions = [],
   method,
   render,
 }: FormProviderProps) {
+  const [language, setLanguage] = useState<string>("en");
+
   function flattenValues(elements: (Field | Block)[]): Record<string, unknown> {
     const receivedValues: Record<string, unknown> = {};
 
@@ -32,22 +36,18 @@ function FormProvider({
           if ("elements" in childElement) {
             Object.assign(receivedValues, flattenValues([childElement]));
           } else if ("type" in childElement) {
-            receivedValues[blockElement.handle] =
-              childElement.settings?.value ?? "";
+            receivedValues[blockElement.handle] = getFieldDefaultValue(childElement);
           }
         });
       } else if ("type" in element) {
-        receivedValues[element.handle] = element.settings?.value ?? "";
+        receivedValues[element.handle] = getFieldDefaultValue(element);
       }
     });
 
     return receivedValues;
   }
 
-  const mergedInitialValues = Object.assign(
-    flattenValues(elements),
-    initialValues,
-  );
+  const mergedInitialValues = Object.assign(flattenValues(elements), initialValues);
 
   const {
     data,
@@ -67,12 +67,14 @@ function FormProvider({
     transform,
   } = useForm<Record<string, any>>(mergedInitialValues);
 
-  const value = {
+  const contextValue = {
     action: action,
     data: data,
     errors: errors,
     id: id,
     isDirty: isDirty,
+    language: language,
+    languageOptions: languageOptions,
     method: method,
     processing: processing,
     cancel: cancel,
@@ -84,13 +86,12 @@ function FormProvider({
     setData: setData,
     setDefaults: setDefaults,
     setError: setError,
+    setLanguage: setLanguage,
     submit: submit,
     transform: transform,
   };
 
-  return (
-    <FormContext.Provider value={value}>{render(value)}</FormContext.Provider>
-  );
+  return <FormContext.Provider value={contextValue}>{render(contextValue)}</FormContext.Provider>;
 }
 
 export default FormProvider;

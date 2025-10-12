@@ -63,6 +63,7 @@ class HostForm extends AbstractForm implements Contract
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Host::NAME,
                         Field::NAME => trans('narsil::validation.attributes.name'),
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
                             ->setRequired(true),

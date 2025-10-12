@@ -32,12 +32,12 @@ class AuditLog extends Model
 
         $this->primaryKey = self::UUID;
 
-        $this->casts = array_merge([
+        $this->guarded = [];
+
+        $this->mergeCasts([
             self::NEW_VALUES => 'array',
             self::OLD_VALUES => 'array',
-        ], $this->casts);
-
-        $this->guarded = [];
+        ]);
 
         parent::__construct($attributes);
     }

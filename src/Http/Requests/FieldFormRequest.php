@@ -30,13 +30,15 @@ class FieldFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
             Field::NAME => [
-                FormRule::STRING,
                 FormRule::REQUIRED,
             ],
             Field::SETTINGS => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
+            ],
+            Field::TRANSLATABLE => [
+                FormRule::BOOLEAN,
             ],
             Field::TYPE => [
                 FormRule::STRING,

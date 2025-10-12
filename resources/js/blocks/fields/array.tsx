@@ -1,7 +1,7 @@
 import {
   closestCenter,
-  DragOverlay,
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
@@ -18,10 +18,6 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { uniqueId } from "lodash";
-import { useState } from "react";
-import { createPortal } from "react-dom";
-
 import { Button } from "@narsil-cms/blocks";
 import { CardContent, CardHeader, CardRoot } from "@narsil-cms/components/card";
 import {
@@ -34,6 +30,9 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block, Field } from "@narsil-cms/types";
+import { uniqueId } from "lodash";
+import { useState } from "react";
+import { createPortal } from "react-dom";
 
 type Arrayitem = Record<string, string> & {
   id: string | number;
@@ -94,36 +93,34 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
           strategy={verticalListSortingStrategy}
         >
           <ul className="grid gap-4">
-            {items.map((item, index) => (
-              <SortableItem
-                form={form}
-                handle={id}
-                id={item.id}
-                index={index}
-                item={item}
-                labelKey={labelKey}
-                onItemRemove={() => {
-                  setItems(items.filter((x) => x.id !== item.id));
-                }}
-                key={item.id}
-              />
-            ))}
+            {items.map((item, index) => {
+              return (
+                <SortableItem
+                  form={form}
+                  handle={id}
+                  id={item.id}
+                  index={index}
+                  item={item}
+                  labelKey={labelKey}
+                  onItemRemove={() => {
+                    setItems(items.filter((x) => x.id !== item.id));
+                  }}
+                  key={item.id}
+                />
+              );
+            })}
           </ul>
         </SortableContext>
         {createPortal(
           <DragOverlay>
-            {active ? (
-              <SortableItem id={active.id} item={active} labelKey={labelKey} />
-            ) : null}
+            {active ? <SortableItem id={active.id} item={active} labelKey={labelKey} /> : null}
           </DragOverlay>,
           document.body,
         )}
       </DndContext>
       <Button
         className="mt-4"
-        onClick={() =>
-          setItems([...items, { id: uniqueId("value"), [labelKey]: "" }])
-        }
+        onClick={() => setItems([...items, { id: uniqueId("value"), [labelKey]: "" }])}
       >
         {trans("ui.add")}
       </Button>
@@ -182,11 +179,7 @@ function SortableItem({
       <CardRoot>
         <CollapsibleTrigger className={cn(open && "border-b")} asChild={true}>
           <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
-            <SortableHandle
-              ref={setActivatorNodeRef}
-              {...attributes}
-              {...listeners}
-            />
+            <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
             <span className="grow text-start">{item[labelKey] ?? "item"}</span>
             <div className="flex items-center gap-1">
               {onItemRemove ? (
@@ -218,13 +211,7 @@ function SortableItem({
               {form?.map((item) => {
                 const finalHandle = `${handle}.${index}.${item.handle}`;
 
-                return (
-                  <FormRenderer
-                    {...item}
-                    handle={finalHandle}
-                    key={item.handle}
-                  />
-                );
+                return <FormRenderer {...item} handle={finalHandle} key={item.handle} />;
               })}
             </CardContent>
           </CollapsibleContent>

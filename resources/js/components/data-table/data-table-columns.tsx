@@ -2,25 +2,24 @@ import { closestCenter, DndContext, type DragEndEvent } from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
-  verticalListSortingStrategy,
   useSortable,
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Column } from "@tanstack/react-table";
-import { concat, upperFirst } from "lodash";
-import { ComponentProps } from "react";
-
 import { Button, Card } from "@narsil-cms/blocks";
 import { useDataTable } from "@narsil-cms/components/data-table";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
-  PopoverRoot,
   PopoverContent,
-  PopoverTrigger,
   PopoverPortal,
+  PopoverRoot,
+  PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import type { Model } from "@narsil-cms/types";
+import { Column } from "@tanstack/react-table";
+import { concat, upperFirst } from "lodash";
+import { ComponentProps } from "react";
 
 type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger>;
 
@@ -49,11 +48,7 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
     const newOrder =
       menuIndex === -1
         ? concat(filteredOrder, column.id)
-        : concat(
-            filteredOrder.slice(0, menuIndex),
-            column.id,
-            filteredOrder.slice(menuIndex),
-          );
+        : concat(filteredOrder.slice(0, menuIndex), column.id, filteredOrder.slice(menuIndex));
 
     dataTable.setColumnOrder(newOrder);
   }
@@ -124,21 +119,20 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
             headerProps={{ className: "border-b" }}
             title={trans("ui.active_columns")}
           >
-            <DndContext
-              collisionDetection={closestCenter}
-              onDragEnd={handleDragEnd}
-            >
+            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
               <SortableContext
                 items={activeColumns.map((column) => column.id)}
                 strategy={verticalListSortingStrategy}
               >
-                {activeColumns.map((column) => (
-                  <SortableItem
-                    key={column.id}
-                    column={column}
-                    onRemove={() => handleDeactivate(column)}
-                  />
-                ))}
+                {activeColumns.map((column) => {
+                  return (
+                    <SortableItem
+                      key={column.id}
+                      column={column}
+                      onRemove={() => handleDeactivate(column)}
+                    />
+                  );
+                })}
               </SortableContext>
             </DndContext>
           </Card>
@@ -158,14 +152,7 @@ type SortableItemProps = {
 function SortableItem({ column, onRemove }: SortableItemProps) {
   const { trans } = useLocalization();
 
-  const {
-    attributes,
-    isDragging,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({
+  const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({
     id: column.id,
   });
 

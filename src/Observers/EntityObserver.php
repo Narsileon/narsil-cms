@@ -67,19 +67,42 @@ class EntityObserver
 
         foreach ($fields as $field)
         {
-            $relations = $entity->{$field->{Field::HANDLE}};
-
-            foreach ($relations as $relation)
+            if ($field->{Field::TRANSLATABLE})
             {
-                [$table, $id] = explode('-', $relation, 2);
+                $translations = $entity->getTranslations($field->{Field::HANDLE});
 
-                Relation::firstOrCreate([
-                    Relation::OWNER_ID => $entity->{Entity::ID},
-                    Relation::OWNER_TABLE => $entity->getTable(),
-                    Relation::OWNER_UUID => $entity->{Entity::UUID},
-                    Relation::TARGET_ID => $id,
-                    Relation::TARGET_TABLE => $table,
-                ]);
+                foreach ($translations as $relations)
+                {
+                    foreach ($relations as $relation)
+                    {
+                        [$table, $id] = explode('-', $relation, 2);
+
+                        Relation::firstOrCreate([
+                            Relation::OWNER_ID => $entity->{Entity::ID},
+                            Relation::OWNER_TABLE => $entity->getTable(),
+                            Relation::OWNER_UUID => $entity->{Entity::UUID},
+                            Relation::TARGET_ID => $id,
+                            Relation::TARGET_TABLE => $table,
+                        ]);
+                    }
+                }
+            }
+            else
+            {
+                $relations = $entity->{$field->{Field::HANDLE}};
+
+                foreach ($relations as $relation)
+                {
+                    [$table, $id] = explode('-', $relation, 2);
+
+                    Relation::firstOrCreate([
+                        Relation::OWNER_ID => $entity->{Entity::ID},
+                        Relation::OWNER_TABLE => $entity->getTable(),
+                        Relation::OWNER_UUID => $entity->{Entity::UUID},
+                        Relation::TARGET_ID => $id,
+                        Relation::TARGET_TABLE => $table,
+                    ]);
+                }
             }
         }
     }

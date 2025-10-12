@@ -1,5 +1,3 @@
-import { type ComponentProps } from "react";
-
 import { Button } from "@narsil-cms/blocks";
 import {
   CardContent,
@@ -8,6 +6,7 @@ import {
   CardRoot,
   CardTitle,
 } from "@narsil-cms/components/card";
+import { type ComponentProps } from "react";
 
 type CardProps = ComponentProps<typeof CardRoot> & {
   contentProps?: Partial<ComponentProps<typeof CardContent>>;
@@ -35,17 +34,17 @@ function Card({
       {title && (
         <CardHeader {...headerProps}>
           <CardTitle {...titleProps}>{title}</CardTitle>
-          {headerButtons?.map((button, index) => (
-            <Button {...button} key={index} />
-          ))}
+          {headerButtons?.map((button, index) => {
+            return <Button {...button} key={index} />;
+          })}
         </CardHeader>
       )}
       <CardContent {...contentProps}>{children}</CardContent>
       {footerButtons && (
         <CardFooter {...footerProps}>
-          {footerButtons.map((button, index) => (
-            <Button {...button} key={index} />
-          ))}
+          {footerButtons.map((button, index) => {
+            return <Button {...button} key={index} />;
+          })}
         </CardFooter>
       )}
     </CardRoot>

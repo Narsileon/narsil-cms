@@ -1,5 +1,4 @@
 import type { Block } from "@narsil-cms/types";
-
 import Builder from "./builder";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";

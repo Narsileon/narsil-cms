@@ -1,15 +1,9 @@
-import { route } from "ziggy-js";
-
 import { Button, Heading, Separator } from "@narsil-cms/blocks";
 import { DialogClose } from "@narsil-cms/components/dialog";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types";
-
+import { route } from "ziggy-js";
 import TwoFactorForm from "./two-factor-form";
 
 type SecurityFormProps = {

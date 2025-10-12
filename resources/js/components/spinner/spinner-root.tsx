@@ -1,7 +1,6 @@
-import { type ComponentProps } from "react";
-
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
+import { type ComponentProps } from "react";
 
 type SpinnerRootProps = Omit<ComponentProps<typeof Icon>, "name">;
 

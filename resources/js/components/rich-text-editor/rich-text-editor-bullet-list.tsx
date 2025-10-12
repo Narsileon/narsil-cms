@@ -1,10 +1,9 @@
-import { Editor, useEditorState } from "@tiptap/react";
-import { type ComponentProps } from "react";
-
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { type IconName } from "@narsil-cms/plugins/icons";
+import { Editor, useEditorState } from "@tiptap/react";
+import { type ComponentProps } from "react";
 
 type RichTextEditorBulletListProps = ComponentProps<typeof Toggle> & {
   editor: Editor;

@@ -1,7 +1,3 @@
-import { groupBy } from "lodash";
-import { type ComponentProps } from "react";
-import { route } from "ziggy-js";
-
 import { Link } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -21,6 +17,9 @@ import {
 } from "@narsil-cms/components/sidebar";
 import { useNavigation } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
+import { groupBy } from "lodash";
+import { type ComponentProps } from "react";
+import { route } from "ziggy-js";
 
 type SidebarProps = ComponentProps<typeof SidebarRoot>;
 
@@ -76,15 +75,15 @@ function Sidebar({ ...props }: SidebarProps) {
                       <SidebarMenuItem key={itemIndex}>
                         <SidebarMenuButton
                           asChild
-                          isActive={item.href.endsWith(
-                            window.location.pathname,
-                          )}
+                          isActive={item.href.endsWith(window.location.pathname)}
                           tooltip={item.label}
                         >
                           <Link
                             href={item.href}
                             target={item.target}
-                            onSuccess={() => setOpenMobile(false)}
+                            {...(item.target !== "_blank"
+                              ? { onSuccess: () => setOpenMobile(false) }
+                              : {})}
                           >
                             {item.icon ? <Icon name={item.icon} /> : null}
                             {item.label}
@@ -100,14 +99,8 @@ function Sidebar({ ...props }: SidebarProps) {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="h-13 border-t">
-        <SidebarMenuButton
-          tooltip={trans("accessibility.open_sidebar")}
-          onClick={toggleSidebar}
-        >
-          <Icon
-            className={cn("duration-300", open && "rotate-180")}
-            name="chevron-left"
-          />
+        <SidebarMenuButton tooltip={trans("accessibility.open_sidebar")} onClick={toggleSidebar}>
+          <Icon className={cn("duration-300", open && "rotate-180")} name="chevron-left" />
           {open && trans("accessibility.close_sidebar")}
         </SidebarMenuButton>
       </SidebarFooter>

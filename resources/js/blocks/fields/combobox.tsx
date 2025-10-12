@@ -1,9 +1,4 @@
 import { router } from "@inertiajs/react";
-import { useVirtualizer } from "@tanstack/react-virtual";
-import parse from "html-react-parser";
-import { debounce, isArray, isString, lowerCase } from "lodash";
-import { useEffect, useMemo, useRef, useState } from "react";
-
 import { Badge, Tooltip } from "@narsil-cms/blocks";
 import {
   CommandEmpty,
@@ -23,8 +18,13 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import { cn, getSelectOption } from "@narsil-cms/lib/utils";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import parse from "html-react-parser";
+import { debounce, isArray, isString, lowerCase } from "lodash";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type ComboboxProps = {
   className?: string;
@@ -50,14 +50,15 @@ function Combobox({
   id,
   labelPath = "label",
   multiple = false,
+  options,
   placeholder,
   reload,
   searchable = true,
   value,
   valuePath = "value",
-  options: initialOptions = [],
   setValue,
 }: ComboboxProps) {
+  const { locale } = useLocale();
   const { trans } = useLocalization();
 
   if (multiple && !isArray(value)) {
@@ -71,14 +72,7 @@ function Combobox({
   const [input, setInput] = useState<string>("");
   const [search, setSearch] = useState<string>("");
 
-  const [options, setOptions] = useState<SelectOption[] | string[]>(
-    initialOptions,
-  );
-
-  const debouncedSetSearch = useMemo(
-    () => debounce((value: string) => setSearch(value), 300),
-    [],
-  );
+  const debouncedSetSearch = useMemo(() => debounce((value: string) => setSearch(value), 300), []);
 
   function onValueChange(value: string) {
     setInput(value);
@@ -93,7 +87,7 @@ function Combobox({
     const searchedLabel = lowerCase(search);
 
     return options.filter((option) => {
-      const optionLabel = getSelectOption(option, labelPath);
+      const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
 
       return lowerCase(optionLabel).includes(searchedLabel);
     });
@@ -104,9 +98,7 @@ function Combobox({
   }, [value, multiple]);
 
   const selectedOptions = useMemo(() => {
-    return options.filter((option) =>
-      selectedValues.includes(getSelectOption(option, valuePath)),
-    );
+    return options.filter((option) => selectedValues.includes(getSelectOption(option, valuePath)));
   }, [options, selectedValues, valuePath]);
 
   const option = options.find((option) => {
@@ -174,16 +166,12 @@ function Combobox({
             multiple ? (
               <div className="-ml-1 flex flex-wrap gap-1">
                 {selectedOptions.map((option, index) => {
-                  const optionLabel = getSelectOption(option, labelPath);
+                  const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
                   const optionValue = getSelectOption(option, valuePath);
 
                   return (
                     <Badge
-                      onClose={() =>
-                        setValue(
-                          (value as string[]).filter((x) => x !== optionValue),
-                        )
-                      }
+                      onClose={() => setValue((value as string[]).filter((x) => x !== optionValue))}
                       key={index}
                     >
                       {optionLabel}
@@ -192,7 +180,7 @@ function Combobox({
                 })}
               </div>
             ) : (
-              parse(getSelectOption(selectedOptions[0], labelPath))
+              parse(getTranslatableSelectOption(selectedOptions[0], labelPath, locale))
             )
           ) : (
             (placeholder ?? trans("placeholders.search"))
@@ -218,9 +206,7 @@ function Combobox({
             ) : null}
             <CommandList ref={parentRef}>
               <CommandEmpty>
-                {loading
-                  ? trans("ui.loading")
-                  : trans("pagination.pages_empty")}
+                {loading ? trans("ui.loading") : trans("pagination.pages_empty")}
               </CommandEmpty>
               <CommandGroup>
                 <div
@@ -229,56 +215,45 @@ function Combobox({
                     height: `${virtualizer.getTotalSize()}px`,
                   }}
                 >
-                  {virtualizer
-                    .getVirtualItems()
-                    .map(({ index, key, size, start }) => {
-                      const option = filteredOptions[index];
+                  {virtualizer.getVirtualItems().map(({ index, key, size, start }) => {
+                    const option = filteredOptions[index];
 
-                      const optionLabel = getSelectOption(option, labelPath);
-                      const optionValue = getSelectOption(option, valuePath);
+                    const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
+                    const optionValue = getSelectOption(option, valuePath);
 
-                      const isSelected = Array.isArray(value)
-                        ? value.includes(optionValue)
-                        : value === optionValue;
+                    const isSelected = Array.isArray(value)
+                      ? value.includes(optionValue)
+                      : value === optionValue;
 
-                      return (
-                        <CommandItem
-                          className={cn(
-                            "absolute left-0 top-0 h-9 w-full will-change-transform",
+                    return (
+                      <CommandItem
+                        className={cn("absolute left-0 top-0 h-9 w-full will-change-transform")}
+                        value={optionValue.toString()}
+                        onSelect={onSelect}
+                        style={{
+                          height: `${size}px`,
+                          transform: `translateY(${start}px)`,
+                        }}
+                        key={key}
+                      >
+                        <Icon
+                          className={cn("size-4", isSelected ? "opacity-100" : "opacity-0")}
+                          name="check"
+                        />
+                        {!isString(option) && option.icon ? (
+                          <Icon className="size-4" name={option.icon} />
+                        ) : null}
+                        <div className="flex w-full items-center justify-between gap-2 truncate">
+                          <div className="min-w-1/2 grow truncate">{parse(optionLabel)}</div>
+                          {displayValue && (
+                            <Tooltip tooltip={optionValue}>
+                              <span className="text-muted-foreground truncate">{optionValue}</span>
+                            </Tooltip>
                           )}
-                          value={optionValue.toString()}
-                          onSelect={onSelect}
-                          style={{
-                            height: `${size}px`,
-                            transform: `translateY(${start}px)`,
-                          }}
-                          key={key}
-                        >
-                          <Icon
-                            className={cn(
-                              "size-4",
-                              isSelected ? "opacity-100" : "opacity-0",
-                            )}
-                            name="check"
-                          />
-                          {!isString(option) && option.icon ? (
-                            <Icon className="size-4" name={option.icon} />
-                          ) : null}
-                          <div className="flex w-full items-center justify-between gap-2 truncate">
-                            <div className="min-w-1/2 grow truncate">
-                              {parse(optionLabel)}
-                            </div>
-                            {displayValue && (
-                              <Tooltip tooltip={optionValue}>
-                                <span className="text-muted-foreground truncate">
-                                  {optionValue}
-                                </span>
-                              </Tooltip>
-                            )}
-                          </div>
-                        </CommandItem>
-                      );
-                    })}
+                        </div>
+                      </CommandItem>
+                    );
+                  })}
                 </div>
               </CommandGroup>
             </CommandList>

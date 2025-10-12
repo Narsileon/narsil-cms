@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { DropdownMenu } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type DropdownMenuItemProps = ComponentProps<typeof DropdownMenu.Item> & {
   inset?: boolean;

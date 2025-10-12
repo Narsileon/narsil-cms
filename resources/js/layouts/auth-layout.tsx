@@ -1,7 +1,3 @@
-import { groupBy } from "lodash";
-import { useEffect, useRef } from "react";
-import { Fragment } from "react/jsx-runtime";
-
 import {
   Bookmarks,
   Breadcrumb,
@@ -12,11 +8,7 @@ import {
   Toaster,
   Tooltip,
 } from "@narsil-cms/blocks";
-import {
-  AvatarFallback,
-  AvatarImage,
-  AvatarRoot,
-} from "@narsil-cms/components/avatar";
+import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -27,16 +19,15 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@narsil-cms/components/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
+import { groupBy } from "lodash";
+import { useEffect, useRef } from "react";
+import { Fragment } from "react/jsx-runtime";
 
 type AuthLayoutProps = {
   children: React.ReactNode & {
@@ -57,10 +48,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const { auth, navigation, session } = children?.props;
   const { color, radius, theme } = session;
 
-  const groupedMenu = groupBy(
-    navigation?.userMenu,
-    (item) => item.group ?? "default",
-  );
+  const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
 
   useEffect(() => {
     if (color) {
@@ -92,10 +80,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
               <DropdownMenuTrigger>
                 <AvatarRoot>
                   {auth.avatar ? (
-                    <AvatarImage
-                      src={auth.avatar}
-                      alt={auth.full_name ?? "User"}
-                    />
+                    <AvatarImage src={auth.avatar} alt={auth.full_name ?? "User"} />
                   ) : null}
                   <AvatarFallback>
                     <Icon name="user" />

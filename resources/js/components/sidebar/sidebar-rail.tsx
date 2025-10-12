@@ -1,7 +1,5 @@
-import { type ComponentProps } from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
-
+import { type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 
 type SidebarRailProps = ComponentProps<"button">;

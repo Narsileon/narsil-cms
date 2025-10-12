@@ -19,7 +19,6 @@ export {
   DialogClose,
   DialogCloseButton,
   DialogContent,
-  dialogContentVariants,
   DialogDescription,
   DialogFooter,
   DialogHeader,
@@ -28,4 +27,5 @@ export {
   DialogRoot,
   DialogTitle,
   DialogTrigger,
+  dialogContentVariants,
 };

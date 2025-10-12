@@ -1,15 +1,9 @@
 import { Link } from "@inertiajs/react";
-import { route } from "ziggy-js";
-
 import { Card, Heading } from "@narsil-cms/blocks";
-import {
-  useMinLg,
-  useMinMd,
-  useMinSm,
-  useMinXl,
-} from "@narsil-cms/hooks/use-breakpoints";
+import { useMinLg, useMinMd, useMinSm, useMinXl } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Template } from "@narsil-cms/types";
+import { route } from "ziggy-js";
 
 type CollectionsProps = {
   templates: Template[];

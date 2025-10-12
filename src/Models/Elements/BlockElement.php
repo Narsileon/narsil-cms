@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Traits\HasElement;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -21,6 +22,7 @@ use Narsil\Traits\HasElement;
 class BlockElement extends Model
 {
     use HasElement;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -31,14 +33,19 @@ class BlockElement extends Model
     {
         $this->table = self::TABLE;
 
-        $this->appends = array_merge([
+        $this->translatable = [
+            self::DESCRIPTION,
+            self::NAME,
+        ];
+
+        $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
-        ], $this->appends);
+        ]);
 
-        $this->guarded = array_merge([
+        $this->mergeGuarded([
             self::ID,
-        ], $this->guarded);
+        ]);
 
         parent::__construct($attributes);
 

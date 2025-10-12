@@ -1,8 +1,6 @@
 import { VisitOptions } from "@inertiajs/core";
-import { type ComponentProps } from "react";
-
 import { cn } from "@narsil-cms/lib/utils";
-
+import { type ComponentProps } from "react";
 import useForm from "./form-context";
 
 type FormRootProps = ComponentProps<"form"> & {

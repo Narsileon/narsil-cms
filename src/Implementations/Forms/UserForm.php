@@ -171,7 +171,7 @@ class UserForm extends AbstractForm implements Contract
             {
                 return new SelectOption(
                     label: $role->{Role::NAME},
-                    value: $role->{Role::NAME},
+                    value: $role->{Role::HANDLE},
                 );
             })
             ->toArray();

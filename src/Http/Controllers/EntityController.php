@@ -102,15 +102,15 @@ class EntityController extends AbstractController
 
         $template = Entity::getTemplate();
 
-        $form = app()->make(EntityForm::class, [
-            'template' => $template
-        ]);
-
-        $form->action = route('collections.store', [
-            'collection' => $collection
-        ]);
-        $form->method = MethodEnum::POST;
-        $form->submitLabel = trans('narsil::ui.save');
+        $form = app()
+            ->make(EntityForm::class, [
+                'template' => $template
+            ])
+            ->action(route('collections.store', [
+                'collection' => $collection
+            ]))
+            ->method(MethodEnum::POST)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -183,19 +183,20 @@ class EntityController extends AbstractController
 
         $template = Entity::getTemplate();
 
-        $form = app()->make(EntityForm::class, [
-            'template' => $template,
-        ]);
+        $form = app()
+            ->make(EntityForm::class, [
+                'template' => $template,
+            ])
+            ->action(route('collections.update', [
+                'id' => $entity->{Entity::ID},
+                'collection' => $collection,
+            ]))
+            ->data($entity->toArrayWithTranslations())
+            ->id($entity->{Entity::UUID})
+            ->method(MethodEnum::PATCH)
+            ->submitLabel(trans('narsil::ui.update'));
 
-        $form->action = route('collections.update', [
-            'id' => $entity->{Entity::ID},
-            'collection' => $collection,
-        ]);
-        $form->data = $entity;
-        $form->id = $entity->{Entity::UUID};
-        $form->method = MethodEnum::PATCH;
-        $form->submitLabel = trans('narsil::ui.update');
-        $form->title = "$form->title: $id";
+        $form->title("$form->title: $id");
 
         return $this->render(
             component: 'narsil/cms::resources/form',

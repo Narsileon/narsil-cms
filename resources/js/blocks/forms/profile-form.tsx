@@ -1,15 +1,7 @@
 import { Button, Heading, Separator } from "@narsil-cms/blocks";
-import {
-  FormRenderer,
-  FormProvider,
-  FormRoot,
-} from "@narsil-cms/components/form";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
 
@@ -35,27 +27,25 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
           first_name: auth?.first_name,
           last_name: auth?.last_name,
         }}
-        render={() => (
-          <SectionRoot>
-            <SectionHeader className="border-b">
-              <Heading level="h2">{trans("ui.account")}</Heading>
-              <Button
-                form={profileForm.id}
-                icon={profileForm.submitIcon}
-                type="submit"
-              >
-                {profileForm.submitLabel}
-              </Button>
-            </SectionHeader>
-            <SectionContent>
-              <FormRoot className="grid-cols-12 gap-4">
-                {profileForm.layout.map((element, index) => (
-                  <FormRenderer {...element} key={index} />
-                ))}
-              </FormRoot>
-            </SectionContent>
-          </SectionRoot>
-        )}
+        render={() => {
+          return (
+            <SectionRoot>
+              <SectionHeader className="border-b">
+                <Heading level="h2">{trans("ui.account")}</Heading>
+                <Button form={profileForm.id} icon={profileForm.submitIcon} type="submit">
+                  {profileForm.submitLabel}
+                </Button>
+              </SectionHeader>
+              <SectionContent>
+                <FormRoot className="grid-cols-12 gap-4">
+                  {profileForm.layout.map((element, index) => {
+                    return <FormRenderer {...element} key={index} />;
+                  })}
+                </FormRoot>
+              </SectionContent>
+            </SectionRoot>
+          );
+        }}
       />
       <Separator />
       <FormProvider
@@ -63,35 +53,37 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
         action={updatePasswordForm.action}
         elements={updatePasswordForm.layout}
         method={updatePasswordForm.method}
-        render={({ reset, setDefaults }) => (
-          <SectionRoot>
-            <SectionHeader className="border-b">
-              <Heading level="h2">{trans("ui.password")}</Heading>
-              <Button
-                form={updatePasswordForm.id}
-                icon={updatePasswordForm.submitIcon}
-                type="submit"
-              >
-                {updatePasswordForm.submitLabel}
-              </Button>
-            </SectionHeader>
-            <SectionContent>
-              <FormRoot
-                className="grid-cols-12 gap-4"
-                options={{
-                  onSuccess: () => {
-                    reset?.();
-                    setDefaults?.();
-                  },
-                }}
-              >
-                {updatePasswordForm.layout.map((element, index) => (
-                  <FormRenderer {...element} key={index} />
-                ))}
-              </FormRoot>
-            </SectionContent>
-          </SectionRoot>
-        )}
+        render={({ reset, setDefaults }) => {
+          return (
+            <SectionRoot>
+              <SectionHeader className="border-b">
+                <Heading level="h2">{trans("ui.password")}</Heading>
+                <Button
+                  form={updatePasswordForm.id}
+                  icon={updatePasswordForm.submitIcon}
+                  type="submit"
+                >
+                  {updatePasswordForm.submitLabel}
+                </Button>
+              </SectionHeader>
+              <SectionContent>
+                <FormRoot
+                  className="grid-cols-12 gap-4"
+                  options={{
+                    onSuccess: () => {
+                      reset?.();
+                      setDefaults?.();
+                    },
+                  }}
+                >
+                  {updatePasswordForm.layout.map((element, index) => {
+                    return <FormRenderer {...element} key={index} />;
+                  })}
+                </FormRoot>
+              </SectionContent>
+            </SectionRoot>
+          );
+        }}
       />
     </>
   );

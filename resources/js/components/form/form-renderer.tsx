@@ -1,7 +1,4 @@
 import { Link } from "@inertiajs/react";
-import parse from "html-react-parser";
-import { Fragment } from "react";
-
 import { Heading } from "@narsil-cms/blocks";
 import { Builder } from "@narsil-cms/components/builder";
 import {
@@ -19,12 +16,14 @@ import type {
   HasElement,
   TemplateSection,
 } from "@narsil-cms/types";
-
+import parse from "html-react-parser";
+import { Fragment } from "react";
 import useForm from "./form-context";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
+import FormLanguage from "./form-language";
 import FormMessage from "./form-message";
 
 type FormRendererProps = (Block | Field | TemplateSection) & {
@@ -77,10 +76,7 @@ function FormRenderer({
                     <Heading level="h2">{childElement.name}</Heading>
                     {childElement.collapsible ? (
                       <Icon
-                        className={cn(
-                          "duration-300",
-                          "group-data-[state=open]:rotate-180",
-                        )}
+                        className={cn("duration-300", "group-data-[state=open]:rotate-180")}
                         name="chevron-down"
                       />
                     ) : null}
@@ -129,13 +125,12 @@ function FormRenderer({
       id={props.handle}
       conditions={conditions}
       field={props}
-      render={({ value, onFieldChange }) => {
+      render={({ language, setLanguage, value, onFieldChange }) => {
         function handleOnChange(value: unknown) {
           onChange?.(value);
           onFieldChange(value);
         }
 
-        // flex-row-reverse
         return (
           <FormItem
             className={cn(
@@ -146,18 +141,29 @@ function FormRenderer({
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
-              <FormLabel required={props.settings?.required}>
-                {props.name}
-              </FormLabel>
+              <div className="flex items-center gap-2">
+                <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
+                {props.translatable ? (
+                  <FormLanguage
+                    triggerProps={{
+                      size: "sm",
+                      variant: "inline",
+                    }}
+                    valueProps={{
+                      asChild: true,
+                      children: <span className="uppercase">- {language}</span>,
+                    }}
+                    value={language}
+                    onValueChange={setLanguage}
+                  />
+                ) : null}
+              </div>
               {props.settings?.append
                 ? parse(props.settings.append, {
                     replace: (domNode) => {
                       if (domNode.name === "a") {
                         return (
-                          <Link
-                            href={domNode.attribs.href}
-                            className={domNode.attribs.class}
-                          >
+                          <Link href={domNode.attribs.href} className={domNode.attribs.class}>
                             {domNode.children.map((c) => c.data).join("")}
                           </Link>
                         );
@@ -172,9 +178,7 @@ function FormRenderer({
               value: value,
               setValue: handleOnChange,
             })}
-            {props.description ? (
-              <FormDescription>{props.description}</FormDescription>
-            ) : null}
+            {props.description ? <FormDescription>{props.description}</FormDescription> : null}
             <FormMessage />
           </FormItem>
         );

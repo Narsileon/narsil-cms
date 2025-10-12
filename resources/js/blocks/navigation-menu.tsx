@@ -1,5 +1,3 @@
-import { type ComponentProps } from "react";
-
 import {
   NavigationMenuContent,
   NavigationMenuItem,
@@ -8,6 +6,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@narsil-cms/components/navigation-menu";
+import { type ComponentProps } from "react";
 
 type NavigationMenuElement = {
   title: string;
@@ -19,20 +18,18 @@ type NavigationMenuProps = ComponentProps<typeof NavigationMenuRoot> & {
   viewport?: boolean;
 };
 
-function NavigationMenu({
-  elements,
-  viewport = true,
-  ...props
-}: NavigationMenuProps) {
+function NavigationMenu({ elements, viewport = true, ...props }: NavigationMenuProps) {
   return (
     <NavigationMenuRoot data-viewport={viewport} {...props}>
       <NavigationMenuList>
-        {elements.map((element, index) => (
-          <NavigationMenuItem key={index}>
-            <NavigationMenuTrigger>{element.title}</NavigationMenuTrigger>
-            <NavigationMenuContent>{element.content}</NavigationMenuContent>
-          </NavigationMenuItem>
-        ))}
+        {elements.map((element, index) => {
+          return (
+            <NavigationMenuItem key={index}>
+              <NavigationMenuTrigger>{element.title}</NavigationMenuTrigger>
+              <NavigationMenuContent>{element.content}</NavigationMenuContent>
+            </NavigationMenuItem>
+          );
+        })}
       </NavigationMenuList>
       {viewport ? <NavigationMenuViewport /> : null}
     </NavigationMenuRoot>

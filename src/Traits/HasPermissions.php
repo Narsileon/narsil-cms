@@ -10,6 +10,10 @@ use Narsil\Models\Policies\Role;
 
 #endregion
 
+/**
+ * @author Jonathan Rigaux
+ * @version 1.0.0
+ */
 trait HasPermissions
 {
     #region CONSTANTS
@@ -104,7 +108,7 @@ trait HasPermissions
             return false;
         }
 
-        $roles = $permission->{Permission::RELATION_ROLES}->pluck(Role::NAME)->toArray();
+        $roles = $permission->{Permission::RELATION_ROLES}->pluck(Role::HANDLE)->toArray();
 
         return $this->hasRole($roles);
     }

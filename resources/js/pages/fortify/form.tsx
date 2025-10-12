@@ -1,20 +1,11 @@
+import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { useLocalization } from "@narsil-cms/components/localization";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
+import type { FormType } from "@narsil-cms/types";
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
-
-import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
-import {
-  FormRenderer,
-  FormProvider,
-  FormRoot,
-} from "@narsil-cms/components/form";
-import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionRoot,
-} from "@narsil-cms/components/section";
-import type { FormType } from "@narsil-cms/types";
 
 type FortifyFormProps = FormType & {
   data: Record<string, unknown>;
@@ -75,20 +66,18 @@ function FortifyForm({
               elements={layout}
               method={method}
               initialValues={data}
-              render={() => (
-                <FormRoot className="grid-cols-12 gap-6">
-                  {layout.map((element, index) => {
-                    return <FormRenderer {...element} key={index} />;
-                  })}
-                  <Button
-                    className="col-span-12 w-full"
-                    form={id}
-                    type="submit"
-                  >
-                    {submitLabel}
-                  </Button>
-                </FormRoot>
-              )}
+              render={() => {
+                return (
+                  <FormRoot className="grid-cols-12 gap-6">
+                    {layout.map((element, index) => {
+                      return <FormRenderer {...element} key={index} />;
+                    })}
+                    <Button className="col-span-12 w-full" form={id} type="submit">
+                      {submitLabel}
+                    </Button>
+                  </FormRoot>
+                );
+              }}
             />
           </Card>
         </SectionContent>

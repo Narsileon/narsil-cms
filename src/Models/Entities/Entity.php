@@ -14,6 +14,7 @@ use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasRevisions;
 use Narsil\Traits\HasTemplate;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -29,6 +30,7 @@ class Entity extends Model
     use HasUuids;
     use HasRevisions;
     use HasTemplate;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -41,16 +43,18 @@ class Entity extends Model
 
         $this->primaryKey = self::UUID;
 
-        if (static::$template)
-        {
-            $this->casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
-        }
-
         $this->guarded = [];
 
-        $this->with = array_merge([
+        $this->with = [
             self::RELATION_BLOCKS,
-        ], $this->with);
+        ];
+
+        if (static::$template)
+        {
+            $casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
+
+            $this->mergeCasts($casts);
+        }
 
         parent::__construct($attributes);
     }

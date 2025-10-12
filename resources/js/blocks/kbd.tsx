@@ -1,6 +1,5 @@
-import { Fragment, type ComponentProps } from "react";
-
 import { KbdGroup, KbdRoot } from "@narsil-cms/components/kbd";
+import { Fragment, type ComponentProps } from "react";
 
 type KbdProps = ComponentProps<typeof KbdGroup> & {
   elements: string[];

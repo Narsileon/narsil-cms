@@ -16,98 +16,6 @@ use Narsil\Enums\Forms\MethodEnum;
  */
 interface Form extends JsonSerializable
 {
-    #region PROPERTIES
-
-    /**
-     * The action of the form.
-     *
-     * @var string
-     */
-    public string $action
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The data of the form.
-     *
-     * @var Model|array<string,mixed>
-     */
-    public Model|array $data
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The description of the form.
-     *
-     * @var string
-     */
-    public string $description
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The id of the model.
-     *
-     * @var mixed
-     */
-    public mixed $id
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The method of the form.
-     *
-     * @var MethodEnum
-     */
-    public MethodEnum $method
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The icon of the submit.
-     *
-     * @var string|null
-     */
-    public ?string $submitIcon
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The label of the submit.
-     *
-     * @var string
-     */
-    public string $submitLabel
-    {
-        get;
-        set;
-    }
-
-    /**
-     * The title of the form.
-     *
-     * @var string
-     */
-    public string $title
-    {
-        get;
-        set;
-    }
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -116,6 +24,91 @@ interface Form extends JsonSerializable
      * @return array
      */
     public function layout(): array;
+
+    #region • SETTERS
+
+    /**
+     * Set the action of the form.
+     *
+     * @param string $action
+     *
+     * @return static
+     */
+    public function action(string $action): static;
+
+    /**
+     * Set the data of the form.
+     *
+     * @param Model|array $data
+     *
+     * @return static
+     */
+    public function data(Model|array $data): static;
+
+    /**
+     * Set the description of the form.
+     *
+     * @param string $description
+     *
+     * @return static
+     */
+    public function description(string $description): static;
+
+    /**
+     * Set the id of the form.
+     *
+     * @param mixed $id
+     *
+     * @return static
+     */
+    public function id(mixed $id): static;
+
+    /**
+     * Set the language options of the form.
+     *
+     * @param array $locales
+     *
+     * @return static
+     */
+    public function languageOptions(array $locales): static;
+
+    /**
+     * Set the method of the form.
+     *
+     * @param MethodEnum $method
+     *
+     * @return static
+     */
+    public function method(MethodEnum $method): static;
+
+    /**
+     * Set the icon of the submit button.
+     *
+     * @param ?string $submitIcon
+     *
+     * @return static
+     */
+    public function submitIcon(?string $submitIcon): static;
+
+    /**
+     * Set the label of the submit button.
+     *
+     * @param string $submitLabel
+     *
+     * @return static
+     */
+    public function submitLabel(string $submitLabel): static;
+
+    /**
+     * Set the title of the form.
+     *
+     * @param string $title
+     *
+     * @return static
+     */
+    public function title(string $title): static;
+
+    #endregion
 
     #endregion
 }

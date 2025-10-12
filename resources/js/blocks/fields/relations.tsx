@@ -1,13 +1,5 @@
-import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
-import { flatMap, isArray } from "lodash";
-import { useEffect, useState } from "react";
-import { route } from "ziggy-js";
-
 import { Badge, Button, DataTable, Spinner } from "@narsil-cms/blocks";
-import {
-  DataTableProvider,
-  getSelectColumn,
-} from "@narsil-cms/components/data-table";
+import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
 import {
   DialogClose,
   DialogContent,
@@ -21,14 +13,13 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
-import {
-  TabsContent,
-  TabsList,
-  TabsRoot,
-  TabsTrigger,
-} from "@narsil-cms/components/tabs";
+import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
 import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
+import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
+import { flatMap, isArray } from "lodash";
+import { useEffect, useState } from "react";
+import { route } from "ziggy-js";
 
 type TablesState = Record<string, DataTableCollection>;
 type ValuesState = Record<string, RowSelectionState>;
@@ -82,9 +73,7 @@ function Relations({
 
   const [dataTables, setDataTables] = useState<TablesState>({});
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedRows, setSelectedRows] = useState<ValuesState>(
-    getSelectedRowsFromValue(value),
-  );
+  const [selectedRows, setSelectedRows] = useState<ValuesState>(getSelectedRowsFromValue(value));
 
   const selectColumn = getSelectColumn();
 
@@ -146,9 +135,7 @@ function Relations({
               {value?.map((item, index) => {
                 return (
                   <Badge
-                    onClose={() =>
-                      setValue((value as string[]).filter((x) => x !== item))
-                    }
+                    onClose={() => setValue((value as string[]).filter((x) => x !== item))}
                     key={index}
                   >
                     {item}
@@ -159,10 +146,7 @@ function Relations({
           ) : (
             (placeholder ?? trans("placeholders.search"))
           )}
-          <Icon
-            className={cn("ml-2 shrink-0 duration-300")}
-            name="chevron-down"
-          />
+          <Icon className={cn("ml-2 shrink-0 duration-300")} name="chevron-down" />
         </InputRoot>
       </DialogTrigger>
       <DialogPortal>
@@ -186,10 +170,7 @@ function Relations({
                 })}
               </TabsList>
               {Object.entries(dataTables).map(([id, collection]) => {
-                const finalColumns: ColumnDef<Model>[] = [
-                  selectColumn,
-                  ...collection.columns,
-                ];
+                const finalColumns: ColumnDef<Model>[] = [selectColumn, ...collection.columns];
 
                 const finalColumnOrder = ["_select", ...collection.columnOrder];
 
@@ -210,9 +191,7 @@ function Relations({
                         setSelectedRows((prev) => {
                           const oldSelection = prev[collection.meta.id] ?? {};
                           const newSelection =
-                            typeof updater === "function"
-                              ? updater(oldSelection)
-                              : updater;
+                            typeof updater === "function" ? updater(oldSelection) : updater;
                           return {
                             ...prev,
                             [collection.meta.id]: newSelection,

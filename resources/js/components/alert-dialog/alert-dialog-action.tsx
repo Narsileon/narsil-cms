@@ -1,8 +1,7 @@
-import { AlertDialog } from "radix-ui";
-import { type ComponentProps } from "react";
-
 import { buttonRootVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
+import { AlertDialog } from "radix-ui";
+import { type ComponentProps } from "react";
 
 type AlertDialogActionProps = ComponentProps<typeof AlertDialog.Action>;
 

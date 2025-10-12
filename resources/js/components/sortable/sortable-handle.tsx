@@ -1,17 +1,12 @@
-import { type ComponentProps } from "react";
-
 import { Button } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
+import { type ComponentProps } from "react";
 
 type SortableHandleProps = ComponentProps<typeof Button> & {
   isDragging?: boolean;
 };
 
-function SortableHandle({
-  className,
-  isDragging = false,
-  ...props
-}: SortableHandleProps) {
+function SortableHandle({ className, isDragging = false, ...props }: SortableHandleProps) {
   return (
     <Button
       className={cn(

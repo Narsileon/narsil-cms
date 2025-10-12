@@ -1,17 +1,16 @@
 import { type InertiaLinkProps } from "@inertiajs/react";
 import {
+  type LaravelPaginationLinks,
+  type LaravelPaginationMeta,
+} from "@narsil-cms/blocks/pagination";
+import { type IconName } from "@narsil-cms/plugins/icons";
+import type { Block, Field, Model, TemplateSection } from "@narsil-cms/types";
+import {
   type ColumnDef,
   type ColumnOrderState,
   type RowData,
   type VisibilityState,
 } from "@tanstack/react-table";
-
-import {
-  type LaravelPaginationLinks,
-  type LaravelPaginationMeta,
-} from "@narsil-cms/blocks/pagination";
-import { type IconName } from "@narsil-cms/plugins/icons";
-import type { Model, Block, Field, TemplateSection } from "@narsil-cms/types";
 
 declare module "@tanstack/react-table" {
   interface ColumnMeta<TData extends RowData, TValue> {
@@ -57,6 +56,7 @@ export type FormType = {
   action: string;
   description: string;
   id: string;
+  languageOptions: SelectOption[];
   layout: (Block | Field | TemplateSection)[];
   method: string;
   routes: RouteNames;
@@ -69,7 +69,7 @@ export type GroupedSelectOption = {
   [key: string]: unknown;
   icon?: IconName;
   identifier: string;
-  label: string;
+  label: string | Record<string, string>;
   optionLabel: string;
   options: (GroupedSelectOption | SelectOption)[];
   optionValue: string;
@@ -110,7 +110,7 @@ export type RouteNames = {
 export type SelectOption = {
   [key: string]: unknown;
   icon?: IconName;
-  label: string;
+  label: string | Record<string, string>;
   value: UniqueIdentifier;
 };
 

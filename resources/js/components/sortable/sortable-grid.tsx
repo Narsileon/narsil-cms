@@ -13,18 +13,13 @@ import {
   type DragStartEvent,
   type UniqueIdentifier,
 } from "@dnd-kit/core";
-import {
-  arrayMove,
-  rectSortingStrategy,
-  SortableContext,
-} from "@dnd-kit/sortable";
+import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import type { Field, FormType, GroupedSelectOption } from "@narsil-cms/types";
 import { get } from "lodash";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-
-import { cn } from "@narsil-cms/lib/utils";
-import type { Field, FormType, GroupedSelectOption } from "@narsil-cms/types";
-
 import {
   SortableAdd,
   SortableItem,
@@ -59,6 +54,8 @@ function SortableGrid({
   cancelDrop,
   setItems,
 }: SortableGridProps) {
+  const { locale } = useLocale();
+
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -128,11 +125,7 @@ function SortableGrid({
   }
 
   function getContainerChildren(container: AnonymousItem) {
-    const children: AnonymousItem[] = get(
-      container,
-      intermediate.relation.handle,
-      [],
-    );
+    const children: AnonymousItem[] = get(container, intermediate.relation.handle, []);
 
     return children;
   }
@@ -142,8 +135,8 @@ function SortableGrid({
   }
 
   function getFormattedLabel(container: AnonymousItem) {
-    const label = container[intermediate.optionLabel];
-    const value = container[intermediate.optionValue];
+    const label = getTranslatableSelectOption(container, intermediate.optionLabel, locale);
+    const value = getSelectOption(container, intermediate.optionValue);
 
     return `${label} (${value})`;
   }
@@ -218,9 +211,7 @@ function SortableGrid({
       const activeChildren = getContainerChildren(activeContainer);
       const overChildren = getContainerChildren(overContainer);
 
-      const newActiveChildren = activeChildren.filter(
-        (child, index) => index !== activeChildIndex,
-      );
+      const newActiveChildren = activeChildren.filter((child, index) => index !== activeChildIndex);
 
       const insertIndex = overChildIndex ?? overChildren.length;
 
@@ -325,9 +316,7 @@ function SortableGrid({
                 onItemChange={(value: AnonymousItem) => {
                   setItems(
                     items.map((container) =>
-                      getContainerIdentifier(container) === identifier
-                        ? value
-                        : container,
+                      getContainerIdentifier(container) === identifier ? value : container,
                     ),
                   );
                 }}
@@ -336,35 +325,29 @@ function SortableGrid({
                 }}
                 footer={
                   <>
-                    {intermediate.relation.settings.options?.map(
-                      (group, index) => {
-                        return (
-                          <SortableAdd
-                            ids={items
-                              .flatMap(
-                                (item) =>
-                                  item[intermediate.relation.handle] || [],
-                              )
-                              .map((x) => x.handle)}
-                            items={children}
-                            group={group as GroupedSelectOption}
-                            setItems={(groupItems) => {
-                              const updatedItems = items.map((container) =>
-                                getContainerIdentifier(container) === identifier
-                                  ? {
-                                      ...container,
-                                      [intermediate.relation.handle]:
-                                        groupItems,
-                                    }
-                                  : container,
-                              );
-                              setItems(updatedItems);
-                            }}
-                            key={index}
-                          />
-                        );
-                      },
-                    )}
+                    {intermediate.relation.settings.options?.map((group, index) => {
+                      return (
+                        <SortableAdd
+                          ids={items
+                            .flatMap((item) => item[intermediate.relation.handle] || [])
+                            .map((x) => x.handle)}
+                          items={children}
+                          group={group as GroupedSelectOption}
+                          setItems={(groupItems) => {
+                            const updatedItems = items.map((container) =>
+                              getContainerIdentifier(container) === identifier
+                                ? {
+                                    ...container,
+                                    [intermediate.relation.handle]: groupItems,
+                                  }
+                                : container,
+                            );
+                            setItems(updatedItems);
+                          }}
+                          key={index}
+                        />
+                      );
+                    })}
                   </>
                 }
                 key={identifier}
@@ -372,10 +355,7 @@ function SortableGrid({
                 <SortableListContext
                   {...intermediate.relation.settings}
                   items={children}
-                  options={
-                    intermediate.relation.settings
-                      .options as GroupedSelectOption[]
-                  }
+                  options={intermediate.relation.settings.options as GroupedSelectOption[]}
                   setItems={(groupItems) => {
                     const updatedItems = items.map((container) =>
                       getContainerIdentifier(container) === identifier
@@ -421,9 +401,7 @@ function SortableGrid({
         <DragOverlay>
           {active ? (
             items.some(
-              (container) =>
-                getContainerIdentifier(container) ===
-                getContainerIdentifier(active),
+              (container) => getContainerIdentifier(container) === getContainerIdentifier(active),
             ) ? (
               <SortableItem
                 id={getContainerIdentifier(active)}

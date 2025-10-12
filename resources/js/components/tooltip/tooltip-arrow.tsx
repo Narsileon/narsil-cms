@@ -1,7 +1,6 @@
+import { cn } from "@narsil-cms/lib/utils";
 import { Tooltip } from "radix-ui";
 import { type ComponentProps } from "react";
-
-import { cn } from "@narsil-cms/lib/utils";
 
 type TooltipArrowProps = ComponentProps<typeof Tooltip.Arrow>;
 

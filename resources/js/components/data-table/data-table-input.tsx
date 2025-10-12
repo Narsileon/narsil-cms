@@ -1,10 +1,8 @@
-import { type ComponentProps } from "react";
-
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
-
+import { type ComponentProps } from "react";
 import useDataTable from "./data-table-context";
 
 type DataTableInputProps = ComponentProps<typeof InputContent>;

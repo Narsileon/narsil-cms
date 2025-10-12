@@ -6,10 +6,4 @@ import PaginationItem from "./pagination-item";
 import PaginationLink from "./pagination-link";
 import PaginationRoot from "./pagination-root";
 
-export {
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationRoot,
-};
+export { PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationRoot };

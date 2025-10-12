@@ -1,6 +1,4 @@
 import { Link } from "@inertiajs/react";
-import { Fragment, type ComponentProps } from "react";
-
 import {
   BreadcrumbItem,
   BreadcrumbLink,
@@ -10,6 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@narsil-cms/components/breadcrumb";
 import { useNavigation } from "@narsil-cms/hooks/use-props";
+import { Fragment, type ComponentProps } from "react";
 
 type BreadcrumbProps = ComponentProps<typeof BreadcrumbRoot>;
 

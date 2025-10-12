@@ -25,8 +25,11 @@ class RoleFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            Role::NAME => [
+            Role::HANDLE => [
                 FormRule::STRING,
+                FormRule::REQUIRED,
+            ],
+            Role::NAME => [
                 FormRule::REQUIRED,
             ],
             Role::RELATION_PERMISSIONS => [
