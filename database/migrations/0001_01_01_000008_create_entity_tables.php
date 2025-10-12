@@ -42,6 +42,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the relations table.
+     *
      * @return void
      */
     private function createRelationsTable(): void

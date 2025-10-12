@@ -43,6 +43,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the audit logs table.
+     *
      * @return void
      */
     private function createAuditLogsTable(): void

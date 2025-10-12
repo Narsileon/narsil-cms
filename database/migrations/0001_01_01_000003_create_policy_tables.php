@@ -66,6 +66,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the permissions table.
+     *
      * @return void
      */
     private function createPermissionsTable(): void
@@ -84,6 +86,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the roles table.
+     *
      * @return void
      */
     private function createRolesTable(): void
@@ -102,6 +106,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the role permissions table.
+     *
      * @return void
      */
     private function createRolePermissionTable(): void
@@ -124,6 +130,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the user permissions table.
+     *
      * @return void
      */
     private function createUserPermissionTable(): void
@@ -146,6 +154,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the user roles table.
+     *
      * @return void
      */
     private function createUserRoleTable(): void

@@ -54,6 +54,7 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the field options table.
      * @return void
      */
     private function createFieldOptionsTable(): void
@@ -78,6 +79,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the field rules table.
+     *
      * @return void
      */
     private function createFieldRulesTable(): void
@@ -97,6 +100,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the fields table.
+     *
      * @return void
      */
     private function createFieldsTable(): void

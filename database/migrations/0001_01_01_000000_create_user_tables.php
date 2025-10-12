@@ -67,6 +67,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the password reset tokens table.
+     *
      * @return void
      */
     private function createPasswordResetTokensTable(): void
@@ -85,6 +87,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the sessions table.
+     *
      * @return void
      */
     private function createSessionsTable(): void
@@ -114,6 +118,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the user bookmarks table.
+     *
      * @return void
      */
     private function createUserBookmarksTable(): void
@@ -136,6 +142,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the user configurations table.
+     *
      * @return void
      */
     private function createUserConfigurationsTable(): void
@@ -168,6 +176,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the users table.
+     *
      * @return void
      */
     private function createUsersTable(): void

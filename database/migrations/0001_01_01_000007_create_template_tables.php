@@ -61,6 +61,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the template sets table.
+     *
      * @return void
      */
     private function createTemplateSetsTable(): void
@@ -81,6 +83,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the template section elements table.
+     *
      * @return void
      */
     private function createTemplateSectionElementTable(): void
@@ -112,6 +116,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the template sections table.
+     *
      * @return void
      */
     private function createTemplateSectionsTable(): void
@@ -137,6 +143,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the templates table.
+     *
      * @return void
      */
     private function createTemplatesTable(): void

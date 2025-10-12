@@ -53,6 +53,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the host locale languages table.
+     *
      * @return void
      */
     private function createHostLocaleLanguagesTable(): void
@@ -76,6 +78,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the host locales table.
+     *
      * @return void
      */
     private function createHostLocalesTable(): void
@@ -104,6 +108,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the hosts table.
+     *
      * @return void
      */
     private function createHostsTable(): void

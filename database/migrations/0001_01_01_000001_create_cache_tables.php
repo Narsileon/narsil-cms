@@ -47,6 +47,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the cache table.
+     *
      * @return void
      */
     private function createCacheTable(): void
@@ -64,6 +66,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the cache locks table.
+     *
      * @return void
      */
     private function createCacheLocksTable(): void

@@ -53,6 +53,8 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
+     * Create the failed jobs table.
+     *
      * @return void
      */
     private function createFailedJobsTable(): void
@@ -79,6 +81,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the job batches table.
+     *
      * @return void
      */
     private function createJobBatchesTable(): void
@@ -113,6 +117,8 @@ return new class extends Migration
     }
 
     /**
+     * Create the jobs table.
+     *
      * @return void
      */
     private function createJobsTable(): void

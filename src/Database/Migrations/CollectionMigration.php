@@ -77,7 +77,9 @@ class CollectionMigration extends Migration
     #region PROTECTED METHODS
 
     /**
-     * {@inheritDoc}
+     * Create the entities table.
+     *
+     * @return void
      */
     protected function createEntitiesTable(): void
     {
@@ -118,7 +120,9 @@ class CollectionMigration extends Migration
     }
 
     /**
-     * {@inheritDoc}
+     * Create the entity blocks table.
+     *
+     * @return void
      */
     protected function createEntityBlocksTable(): void
     {
@@ -147,7 +151,9 @@ class CollectionMigration extends Migration
     }
 
     /**
-     * {@inheritDoc}
+     * Create the entity block fields table.
+     *
+     * @return void
      */
     protected function createEntityBlockFieldsTable(): void
     {
