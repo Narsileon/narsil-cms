@@ -64,18 +64,21 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
           </DropdownMenuTrigger>
         </Tooltip>
         <DropdownMenuContent>
-          {sets.map((set, index) => (
-            <DropdownMenuItem
-              onClick={() => {
-                const node = { id: uniqueId("id:"), block: set, values: {} };
-                onAdd(node as BuilderNode);
-              }}
-              key={index}
-            >
-              {set.icon ? <Icon name={set.icon} /> : null}
-              <span>{set.name}</span>
-            </DropdownMenuItem>
-          ))}
+          {sets.map((set, index) => {
+            return (
+              <DropdownMenuItem
+                onClick={() => {
+                  const node = { uuid: uniqueId("id:"), block: set, values: {} };
+
+                  onAdd(node as BuilderNode);
+                }}
+                key={index}
+              >
+                {set.icon ? <Icon name={set.icon} /> : null}
+                <span>{set.name}</span>
+              </DropdownMenuItem>
+            );
+          })}
         </DropdownMenuContent>
       </DropdownMenuRoot>
       <div

@@ -14,10 +14,12 @@ function RevisionSelect({ revisions }: RevisionSelectProps) {
 
   const options = useMemo(
     () =>
-      revisions.map((r) => ({
-        label: `Revision ${r.revision}`,
-        value: r.uuid,
-      })),
+      revisions.map((r) => {
+        return {
+          label: `Revision ${r.revision}`,
+          value: r.uuid,
+        };
+      }),
     [revisions],
   );
 

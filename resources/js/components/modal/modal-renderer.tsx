@@ -9,14 +9,16 @@ function ModalRenderer({ ...props }: ModalRendererProps) {
 
   return (
     <>
-      {modals.map((modal) => (
-        <Modal
-          modal={modal}
-          onClose={() => closeModal(modal.linkProps.href as string)}
-          key={modal.linkProps.href as string}
-          {...props}
-        />
-      ))}
+      {modals.map((modal) => {
+        return (
+          <Modal
+            modal={modal}
+            onClose={() => closeModal(modal.linkProps.href as string)}
+            key={modal.linkProps.href as string}
+            {...props}
+          />
+        );
+      })}
     </>
   );
 }

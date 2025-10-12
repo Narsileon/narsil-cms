@@ -268,7 +268,6 @@ class BlockController extends AbstractController
         $replicated
             ->fill([
                 Block::HANDLE => $block->{Block::HANDLE} . '_copy',
-                Block::NAME => $block->{Block::NAME} . ' (copy)',
             ])
             ->save();
 
@@ -300,7 +299,7 @@ class BlockController extends AbstractController
 
             $attributes = [
                 BlockElement::HANDLE => Arr::get($element, BlockElement::HANDLE),
-                BlockElement::NAME => Arr::get($element, BlockElement::NAME),
+                BlockElement::NAME => json_encode(Arr::get($element, BlockElement::NAME)),
                 BlockElement::POSITION => $position,
                 BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH),
             ];

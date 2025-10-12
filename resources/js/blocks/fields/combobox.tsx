@@ -18,7 +18,8 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import { cn, getSelectOption } from "@narsil-cms/lib/utils";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
@@ -57,6 +58,7 @@ function Combobox({
   valuePath = "value",
   setValue,
 }: ComboboxProps) {
+  const { locale } = useLocale();
   const { trans } = useLocalization();
 
   if (multiple && !isArray(value)) {
@@ -85,7 +87,7 @@ function Combobox({
     const searchedLabel = lowerCase(search);
 
     return options.filter((option) => {
-      const optionLabel = getSelectOption(option, labelPath);
+      const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
 
       return lowerCase(optionLabel).includes(searchedLabel);
     });
@@ -164,7 +166,7 @@ function Combobox({
             multiple ? (
               <div className="-ml-1 flex flex-wrap gap-1">
                 {selectedOptions.map((option, index) => {
-                  const optionLabel = getSelectOption(option, labelPath);
+                  const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
                   const optionValue = getSelectOption(option, valuePath);
 
                   return (
@@ -178,7 +180,7 @@ function Combobox({
                 })}
               </div>
             ) : (
-              parse(getSelectOption(selectedOptions[0], labelPath))
+              parse(getTranslatableSelectOption(selectedOptions[0], labelPath, locale))
             )
           ) : (
             (placeholder ?? trans("placeholders.search"))
@@ -216,7 +218,7 @@ function Combobox({
                   {virtualizer.getVirtualItems().map(({ index, key, size, start }) => {
                     const option = filteredOptions[index];
 
-                    const optionLabel = getSelectOption(option, labelPath);
+                    const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
                     const optionValue = getSelectOption(option, valuePath);
 
                     const isSelected = Array.isArray(value)

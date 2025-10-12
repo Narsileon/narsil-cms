@@ -158,6 +158,7 @@ class TemplateForm extends AbstractForm implements Contract
                     value: $block->{Block::HANDLE},
                 )
                     ->setIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->setId($block->{Block::ID})
                     ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();
@@ -178,6 +179,7 @@ class TemplateForm extends AbstractForm implements Contract
                     value: $field->{Field::HANDLE},
                 )
                     ->setIcon($field->{Field::ATTRIBUTE_ICON})
+                    ->setId($field->{Field::ID})
                     ->setIdentifier($field->{Field::ATTRIBUTE_IDENTIFIER});
             })
             ->toArray();

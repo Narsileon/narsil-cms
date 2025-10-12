@@ -70,8 +70,12 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
       return;
     }
 
-    const activeIndex = rows.findIndex((row) => row.id === active.id);
-    const overIndex = rows.findIndex((row) => row.id === over.id);
+    const activeIndex = rows.findIndex((row) => {
+      return row.id === active.id;
+    });
+    const overIndex = rows.findIndex((row) => {
+      return row.id === over.id;
+    });
 
     if (activeIndex === overIndex) {
       return;
@@ -85,7 +89,9 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
       return;
     }
 
-    const activeRow = rows.find((row) => row.id === active.id);
+    const activeRow = rows.find((row) => {
+      return row.id === active.id;
+    });
 
     if (!activeRow) {
       return;
@@ -99,11 +105,19 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
   }
 
   function onRemove(id: UniqueIdentifier) {
-    setRows(rows.filter((row) => row.id !== id));
+    setRows(
+      rows.filter((row) => {
+        return row.id !== id;
+      }),
+    );
   }
 
   function onUpdate(id: UniqueIdentifier, key: string, value: unknown) {
-    setRows(rows.map((row) => (row.id === id ? set({ ...row }, key, value) : row)));
+    setRows(
+      rows.map((row) => {
+        return row.id === id ? set({ ...row }, key, value) : row;
+      }),
+    );
   }
 
   return (

@@ -75,7 +75,9 @@ function RichTextEditorProvider({
     }
   }, [value]);
 
-  const providerValue = useMemo(() => ({ editor }), [editor]);
+  const providerValue = useMemo(() => {
+    return { editor };
+  }, [editor]);
 
   return <EditorContext.Provider value={providerValue}>{children}</EditorContext.Provider>;
 }

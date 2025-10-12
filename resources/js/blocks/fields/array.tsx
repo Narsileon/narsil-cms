@@ -93,20 +93,22 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
           strategy={verticalListSortingStrategy}
         >
           <ul className="grid gap-4">
-            {items.map((item, index) => (
-              <SortableItem
-                form={form}
-                handle={id}
-                id={item.id}
-                index={index}
-                item={item}
-                labelKey={labelKey}
-                onItemRemove={() => {
-                  setItems(items.filter((x) => x.id !== item.id));
-                }}
-                key={item.id}
-              />
-            ))}
+            {items.map((item, index) => {
+              return (
+                <SortableItem
+                  form={form}
+                  handle={id}
+                  id={item.id}
+                  index={index}
+                  item={item}
+                  labelKey={labelKey}
+                  onItemRemove={() => {
+                    setItems(items.filter((x) => x.id !== item.id));
+                  }}
+                  key={item.id}
+                />
+              );
+            })}
           </ul>
         </SortableContext>
         {createPortal(

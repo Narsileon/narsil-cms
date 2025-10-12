@@ -27,18 +27,22 @@ function Tabs({
   return (
     <TabsRoot {...props}>
       <TabsList {...tabsListProps}>
-        {elements.map((element) => (
-          <TabsTrigger {...tabsTriggerProps} value={element.id} key={element.id}>
-            {element.icon ? <Icon name={element.icon} /> : null}
-            {element.title}
-          </TabsTrigger>
-        ))}
+        {elements.map((element) => {
+          return (
+            <TabsTrigger {...tabsTriggerProps} value={element.id} key={element.id}>
+              {element.icon ? <Icon name={element.icon} /> : null}
+              {element.title}
+            </TabsTrigger>
+          );
+        })}
       </TabsList>
-      {elements.map((element) => (
-        <TabsContent {...tabsContentProps} value={element.id} key={element.id}>
-          {element.content}
-        </TabsContent>
-      ))}
+      {elements.map((element) => {
+        return (
+          <TabsContent {...tabsContentProps} value={element.id} key={element.id}>
+            {element.content}
+          </TabsContent>
+        );
+      })}
     </TabsRoot>
   );
 }

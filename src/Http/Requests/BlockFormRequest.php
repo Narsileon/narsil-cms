@@ -25,6 +25,9 @@ class BlockFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
+            Block::COLLAPSIBLE => [
+                FormRule::BOOLEAN,
+            ],
             Block::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
@@ -32,7 +35,13 @@ class BlockFormRequest implements Contract
             Block::NAME => [
                 FormRule::REQUIRED,
             ],
+
             Block::RELATION_ELEMENTS => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+                FormRule::SOMETIMES,
+            ],
+            Block::RELATION_SETS => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,

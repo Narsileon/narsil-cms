@@ -12,8 +12,9 @@ import {
   SelectValue,
   SelectViewport,
 } from "@narsil-cms/components/select";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import { SelectOption } from "@narsil-cms/types";
-import { get, isString } from "lodash";
 import { type ComponentProps } from "react";
 
 type SelectProps = ComponentProps<typeof SelectRoot> & {
@@ -49,21 +50,7 @@ const Select = ({
   viewportProps,
   ...props
 }: SelectProps) => {
-  function getOptionLabel(option: string | SelectOption): string {
-    if (isString(option)) {
-      return option;
-    }
-
-    return get(option, "label");
-  }
-
-  function getOptionValue(option: string | SelectOption): string {
-    if (isString(option)) {
-      return option;
-    }
-
-    return get(option, "value")?.toString();
-  }
+  const { locale } = useLocale();
 
   return (
     <SelectRoot {...props}>
@@ -76,12 +63,16 @@ const Select = ({
           <SelectScrollUpButton {...scrollUpButtonProps} />
           <SelectViewport {...viewportProps}>
             {children}
-            {options?.map((option, index) => (
-              <SelectItem {...itemProps} value={getOptionValue(option)} key={index}>
-                <SelectItemText {...itemTextProps}>{getOptionLabel(option)}</SelectItemText>
-                <SelectItemIndicator {...itemIndicatorProps} />
-              </SelectItem>
-            ))}
+            {options?.map((option, index) => {
+              return (
+                <SelectItem {...itemProps} value={getSelectOption(option, "value")} key={index}>
+                  <SelectItemText {...itemTextProps}>
+                    {getTranslatableSelectOption(option, "label", locale)}
+                  </SelectItemText>
+                  <SelectItemIndicator {...itemIndicatorProps} />
+                </SelectItem>
+              );
+            })}
           </SelectViewport>
           <SelectScrollDownButton {...scrollDownButtonProps} />
         </SelectContent>

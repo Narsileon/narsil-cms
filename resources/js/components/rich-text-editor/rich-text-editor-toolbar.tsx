@@ -85,11 +85,13 @@ function RichTextEditorToolbar({ className, modules, ...props }: RichTextEditorT
             <DropdownMenuContent className="min-w-9">
               {headings
                 .filter((level) => hasModule(`heading_${level}`) !== false)
-                .map((level) => (
-                  <DropdownMenuItem asChild={true} key={level}>
-                    <RichTextEditorHeading editor={editor} level={level} />
-                  </DropdownMenuItem>
-                ))}
+                .map((level) => {
+                  return (
+                    <DropdownMenuItem asChild={true} key={level}>
+                      <RichTextEditorHeading editor={editor} level={level} />
+                    </DropdownMenuItem>
+                  );
+                })}
             </DropdownMenuContent>
           </DropdownMenuRoot>
         </>

@@ -124,13 +124,15 @@ function DataTableColumns({ children, ...props }: DataTableColumnsProps) {
                 items={activeColumns.map((column) => column.id)}
                 strategy={verticalListSortingStrategy}
               >
-                {activeColumns.map((column) => (
-                  <SortableItem
-                    key={column.id}
-                    column={column}
-                    onRemove={() => handleDeactivate(column)}
-                  />
-                ))}
+                {activeColumns.map((column) => {
+                  return (
+                    <SortableItem
+                      key={column.id}
+                      column={column}
+                      onRemove={() => handleDeactivate(column)}
+                    />
+                  );
+                })}
               </SortableContext>
             </DndContext>
           </Card>

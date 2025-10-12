@@ -86,9 +86,9 @@ function Background({
               "radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--light-rays-color) 35%, transparent), transparent 75%)",
           }}
         />
-        {rays.map((ray, index) => (
-          <BackgroundRay {...ray} key={index} />
-        ))}
+        {rays.map((ray, index) => {
+          return <BackgroundRay {...ray} key={index} />;
+        })}
       </div>
     </div>
   );

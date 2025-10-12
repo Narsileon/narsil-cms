@@ -66,16 +66,18 @@ function FortifyForm({
               elements={layout}
               method={method}
               initialValues={data}
-              render={() => (
-                <FormRoot className="grid-cols-12 gap-6">
-                  {layout.map((element, index) => {
-                    return <FormRenderer {...element} key={index} />;
-                  })}
-                  <Button className="col-span-12 w-full" form={id} type="submit">
-                    {submitLabel}
-                  </Button>
-                </FormRoot>
-              )}
+              render={() => {
+                return (
+                  <FormRoot className="grid-cols-12 gap-6">
+                    {layout.map((element, index) => {
+                      return <FormRenderer {...element} key={index} />;
+                    })}
+                    <Button className="col-span-12 w-full" form={id} type="submit">
+                      {submitLabel}
+                    </Button>
+                  </FormRoot>
+                );
+              }}
             />
           </Card>
         </SectionContent>

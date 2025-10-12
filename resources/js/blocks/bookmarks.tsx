@@ -105,46 +105,48 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
               initialValues={{
                 name: bookmark?.name,
               }}
-              render={() => (
-                <Card
-                  footerButtons={[
-                    {
-                      label: translations["ui.cancel"],
-                      size: "sm",
-                      variant: "secondary",
-                      onClick: () => setBookmark(null),
-                    },
-                    {
-                      form: form.id,
-                      label: form.submitLabel,
-                      size: "sm",
-                      type: "submit",
-                    },
-                  ]}
-                  footerProps={{
-                    className: "border-t justify-between",
-                  }}
-                  headerProps={{
-                    className: "border-b",
-                  }}
-                  title={form.title}
-                >
-                  <FormRoot
-                    className="grid-cols-12 gap-4"
-                    method="patch"
-                    options={{
-                      onSuccess: () => {
-                        fetchBookmarks();
-                        setBookmark(null);
+              render={() => {
+                return (
+                  <Card
+                    footerButtons={[
+                      {
+                        label: translations["ui.cancel"],
+                        size: "sm",
+                        variant: "secondary",
+                        onClick: () => setBookmark(null),
                       },
+                      {
+                        form: form.id,
+                        label: form.submitLabel,
+                        size: "sm",
+                        type: "submit",
+                      },
+                    ]}
+                    footerProps={{
+                      className: "border-t justify-between",
                     }}
+                    headerProps={{
+                      className: "border-b",
+                    }}
+                    title={form.title}
                   >
-                    {form.layout.map((element, index) => {
-                      return <FormRenderer {...element} key={index} />;
-                    })}
-                  </FormRoot>
-                </Card>
-              )}
+                    <FormRoot
+                      className="grid-cols-12 gap-4"
+                      method="patch"
+                      options={{
+                        onSuccess: () => {
+                          fetchBookmarks();
+                          setBookmark(null);
+                        },
+                      }}
+                    >
+                      {form.layout.map((element, index) => {
+                        return <FormRenderer {...element} key={index} />;
+                      })}
+                    </FormRoot>
+                  </Card>
+                );
+              }}
             />
           ) : (
             <Card
@@ -174,49 +176,51 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
             >
               {bookmarks.length > 0 ? (
                 <ul className="-my-2 flex flex-col gap-1">
-                  {bookmarks.map((bookmark) => (
-                    <li className="flex items-center justify-between" key={bookmark.id}>
-                      <Button
-                        className="text-foreground font-normal"
-                        linkProps={{
-                          href: bookmark.url,
-                        }}
-                        size="link"
-                        variant="link"
-                        onClick={() => onOpenChange(false)}
-                      >
-                        {bookmark.name}
-                      </Button>
-                      <div className="flex items-center justify-between gap-1">
+                  {bookmarks.map((bookmark) => {
+                    return (
+                      <li className="flex items-center justify-between" key={bookmark.id}>
                         <Button
-                          className="size-8"
-                          iconProps={{
-                            className: "size-4",
-                            name: "edit",
+                          className="text-foreground font-normal"
+                          linkProps={{
+                            href: bookmark.url,
                           }}
-                          size="icon"
-                          tooltip={translations["ui.edit"]}
-                          variant="ghost"
-                          onClick={() => {
-                            setBookmark(bookmark);
-                          }}
-                        />
-                        <Button
-                          className="size-8"
-                          iconProps={{
-                            className: "size-4",
-                            name: "star-off",
-                          }}
-                          size="icon"
-                          tooltip={translations["ui.remove"]}
-                          variant="ghost"
-                          onClick={() => {
-                            onDelete(bookmark.id);
-                          }}
-                        />
-                      </div>
-                    </li>
-                  ))}
+                          size="link"
+                          variant="link"
+                          onClick={() => onOpenChange(false)}
+                        >
+                          {bookmark.name}
+                        </Button>
+                        <div className="flex items-center justify-between gap-1">
+                          <Button
+                            className="size-8"
+                            iconProps={{
+                              className: "size-4",
+                              name: "edit",
+                            }}
+                            size="icon"
+                            tooltip={translations["ui.edit"]}
+                            variant="ghost"
+                            onClick={() => {
+                              setBookmark(bookmark);
+                            }}
+                          />
+                          <Button
+                            className="size-8"
+                            iconProps={{
+                              className: "size-4",
+                              name: "star-off",
+                            }}
+                            size="icon"
+                            tooltip={translations["ui.remove"]}
+                            variant="ghost"
+                            onClick={() => {
+                              onDelete(bookmark.id);
+                            }}
+                          />
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : (
                 <p className="text-muted-foreground">{translations["bookmarks.instruction"]}</p>

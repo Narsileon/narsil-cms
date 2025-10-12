@@ -88,40 +88,42 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
             id={form.id}
             elements={form.layout}
             method={form.method}
-            render={({ setError }) => (
-              <FormRoot
-                options={{
-                  onSuccess: () => {
-                    setActive(true);
-                  },
-                  onError() {
-                    setError?.("code", trans("validation.custom.code.invalid"));
-                  },
-                }}
-              >
-                <Card
-                  contentProps={{ className: "grid-cols-12" }}
-                  footerButtons={[
-                    {
-                      form: form.id,
-                      label: form.submitLabel,
-                      type: "submit",
+            render={({ setError }) => {
+              return (
+                <FormRoot
+                  options={{
+                    onSuccess: () => {
+                      setActive(true);
                     },
-                  ]}
-                  footerProps={{ className: "justify-end border-t" }}
+                    onError() {
+                      setError?.("code", trans("validation.custom.code.invalid"));
+                    },
+                  }}
                 >
-                  {form.layout.map((element, index) => (
-                    <FormRenderer {...element} key={index} />
-                  ))}
-                  <div
-                    className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
-                    dangerouslySetInnerHTML={{
-                      __html: qrCode,
-                    }}
-                  />
-                </Card>
-              </FormRoot>
-            )}
+                  <Card
+                    contentProps={{ className: "grid-cols-12" }}
+                    footerButtons={[
+                      {
+                        form: form.id,
+                        label: form.submitLabel,
+                        type: "submit",
+                      },
+                    ]}
+                    footerProps={{ className: "justify-end border-t" }}
+                  >
+                    {form.layout.map((element, index) => {
+                      return <FormRenderer {...element} key={index} />;
+                    })}
+                    <div
+                      className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
+                      dangerouslySetInnerHTML={{
+                        __html: qrCode,
+                      }}
+                    />
+                  </Card>
+                </FormRoot>
+              );
+            }}
           />
         ) : null}
         {!active && enabled && recoveryCodes ? (

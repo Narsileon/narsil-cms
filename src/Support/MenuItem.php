@@ -75,7 +75,7 @@ class MenuItem implements JsonSerializable
      */
     public function jsonSerialize(): mixed
     {
-        return [
+        return array_filter([
             'group' => $this->getGroup(),
             'href' => $this->getHref(),
             'icon' => $this->getIcon(),
@@ -83,7 +83,7 @@ class MenuItem implements JsonSerializable
             'method' => $this->getMethod(),
             'modal' => $this->getModal(),
             'target' => $this->getTarget(),
-        ];
+        ]);
     }
 
     #region • GETTERS

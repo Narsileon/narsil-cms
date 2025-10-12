@@ -5,6 +5,8 @@ namespace Narsil\Traits;
 #region USE
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 
@@ -175,7 +177,36 @@ trait HasTranslations
      */
     final public function toArrayWithTranslations(): array
     {
-        return parent::toArray();
+        $attributes = parent::toArray();
+
+        foreach ($this->translatable ?? [] as $key)
+        {
+            if ($this->hasTranslation($key))
+            {
+                $attributes[$key] = $this->getTranslations($key);
+            }
+        }
+
+        foreach ($this->getRelations() as $relation => $model)
+        {
+            if ($model instanceof Collection)
+            {
+                $attributes[$relation] = $model->map(function ($item)
+                {
+                    return method_exists($item, 'toArrayWithTranslations')
+                        ? $item->toArrayWithTranslations()
+                        : $item->toArray();
+                })->all();
+            }
+            elseif ($model instanceof Model)
+            {
+                $attributes[$relation] = method_exists($model, 'toArrayWithTranslations')
+                    ? $model->toArrayWithTranslations()
+                    : $model->toArray();
+            }
+        }
+
+        return $attributes;
     }
 
     #region • ATTRIBUTES
@@ -230,7 +261,7 @@ trait HasTranslations
      *
      * @return void
      */
-    final public function scopeWhereLocale(Builder $query, string $locale, string $column, string $operator = '=', mixed $value): void
+    final public function scopeWhereLocale(Builder $query, string $locale, string $column, string $operator, mixed $value): void
     {
         $query->where("{$column}->{$locale}", $operator, $value);
     }
@@ -244,7 +275,7 @@ trait HasTranslations
      *
      * @return void
      */
-    final public function scopeWhereLocales(Builder $query, array $locales, string $column, string $operator = '=', mixed $value): void
+    final public function scopeWhereLocales(Builder $query, array $locales, string $column, string $operator, mixed $value): void
     {
         $query->where(function (Builder $query) use ($column, $locales, $operator, $value)
         {
@@ -377,7 +408,10 @@ trait HasTranslations
         {
             return array_filter(
                 $this->fromJson($this->getAttributeFromArray($key)) ?? [],
-                fn($value, $locale) => $this->filterTranslations($value, $locale, $allowedLocales, false, true),
+                function ($value)
+                {
+                    return $this->filterTranslations($value);
+                },
                 ARRAY_FILTER_USE_BOTH
             );
         }

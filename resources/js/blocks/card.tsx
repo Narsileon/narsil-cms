@@ -34,17 +34,17 @@ function Card({
       {title && (
         <CardHeader {...headerProps}>
           <CardTitle {...titleProps}>{title}</CardTitle>
-          {headerButtons?.map((button, index) => (
-            <Button {...button} key={index} />
-          ))}
+          {headerButtons?.map((button, index) => {
+            return <Button {...button} key={index} />;
+          })}
         </CardHeader>
       )}
       <CardContent {...contentProps}>{children}</CardContent>
       {footerButtons && (
         <CardFooter {...footerProps}>
-          {footerButtons.map((button, index) => (
-            <Button {...button} key={index} />
-          ))}
+          {footerButtons.map((button, index) => {
+            return <Button {...button} key={index} />;
+          })}
         </CardFooter>
       )}
     </CardRoot>

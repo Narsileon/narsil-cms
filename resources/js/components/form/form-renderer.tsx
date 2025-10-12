@@ -142,10 +142,23 @@ function FormRenderer({
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
-              <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
-              {props.translatable ? (
-                <FormLanguage value={language} onValueChange={setLanguage} />
-              ) : null}
+              <div className="flex items-center gap-2">
+                <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
+                {props.translatable ? (
+                  <FormLanguage
+                    triggerProps={{
+                      size: "sm",
+                      variant: "inline",
+                    }}
+                    valueProps={{
+                      asChild: true,
+                      children: <span className="uppercase">- {language}</span>,
+                    }}
+                    value={language}
+                    onValueChange={setLanguage}
+                  />
+                ) : null}
+              </div>
               {props.settings?.append
                 ? parse(props.settings.append, {
                     replace: (domNode) => {

@@ -116,23 +116,25 @@ function DataTable({ collection, title }: DataTableProps) {
             </TableHeader>
             <TableBody>
               {dataTable.getRowModel().rows?.length ? (
-                dataTable.getRowModel().rows.map((row) => (
-                  <DataTableRow selected={row.getIsSelected()} key={row.id}>
-                    {row.getVisibleCells().map((cell) => {
-                      return (
-                        <TableCell
-                          className={cn(
-                            "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent bg-clip-content transition-colors",
-                            cell.column.columnDef.meta?.className,
-                          )}
-                          key={cell.id}
-                        >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext() ?? "")}
-                        </TableCell>
-                      );
-                    })}
-                  </DataTableRow>
-                ))
+                dataTable.getRowModel().rows.map((row) => {
+                  return (
+                    <DataTableRow selected={row.getIsSelected()} key={row.id}>
+                      {row.getVisibleCells().map((cell) => {
+                        return (
+                          <TableCell
+                            className={cn(
+                              "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent bg-clip-content transition-colors",
+                              cell.column.columnDef.meta?.className,
+                            )}
+                            key={cell.id}
+                          >
+                            {flexRender(cell.column.columnDef.cell, cell.getContext() ?? "")}
+                          </TableCell>
+                        );
+                      })}
+                    </DataTableRow>
+                  );
+                })
               ) : (
                 <DataTableRow>
                   <TableCell colSpan={dataTable.getVisibleFlatColumns().length} className="h-9" />

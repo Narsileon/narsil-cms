@@ -126,75 +126,85 @@ function ResourceForm({
         ...data,
       }}
       languageOptions={languageOptions}
-      render={({ language, setLanguage }) => (
-        <FormRoot
-          className="overflow-hidden"
-          options={{
-            onSuccess: (response) => {
-              if (modal) {
-                modal.linkProps?.onSuccess?.(response);
+      render={({ language, setLanguage }) => {
+        return (
+          <FormRoot
+            className="overflow-hidden"
+            options={{
+              onSuccess: (response) => {
+                if (modal) {
+                  modal.linkProps?.onSuccess?.(response);
 
-                closeTopModal();
-              }
-            },
-          }}
-        >
-          {modal ? (
-            <>
-              <DialogBody>{tabsContent}</DialogBody>
-              <DialogFooter className="h-fit border-t">
-                <DialogClose asChild={true}>
-                  <Button variant="ghost">{trans("ui.cancel")}</Button>
-                </DialogClose>
-                <Button form={`${id}_${modal.id}`} type="submit">
-                  {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
-                </Button>
-              </DialogFooter>
-            </>
-          ) : (
-            <SectionRoot className="px-4 py-2">
-              <SectionHeader className="h-13 border-b !pb-2">
-                <div className="flex items-end gap-2">
-                  <Heading level="h1" variant="h4">
-                    {title}
-                  </Heading>
-                  {revisions ? <RevisionSelect revisions={revisions} /> : null}
-                </div>
-                <FormLanguage value={language} onValueChange={setLanguage} />
-                <SaveButton
-                  routes={routes}
-                  submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
-                />
-              </SectionHeader>
-              <SectionContent className="grid gap-4 lg:grid-cols-12">
-                {tabsContent}
-                {minLg && (sidebarContent || informationContent) ? (
-                  <div className="flex flex-col gap-y-4 lg:col-span-4">
-                    {sidebarContent ? (
-                      <Card
-                        contentProps={{
-                          className: "grid-cols-12",
-                        }}
-                      >
-                        {sidebarContent}
-                      </Card>
-                    ) : null}
-                    {informationContent ? (
-                      <Card
-                        contentProps={{
-                          className: "grid-cols-12 justify-between",
-                        }}
-                      >
-                        {informationContent}
-                      </Card>
-                    ) : null}
+                  closeTopModal();
+                }
+              },
+            }}
+          >
+            {modal ? (
+              <>
+                <DialogBody>{tabsContent}</DialogBody>
+                <DialogFooter className="h-fit border-t">
+                  <DialogClose asChild={true}>
+                    <Button variant="ghost">{trans("ui.cancel")}</Button>
+                  </DialogClose>
+                  <Button form={`${id}_${modal.id}`} type="submit">
+                    {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
+                  </Button>
+                </DialogFooter>
+              </>
+            ) : (
+              <SectionRoot className="px-4 py-2">
+                <SectionHeader className="h-13 border-b !pb-2">
+                  <div className="flex items-end gap-2">
+                    <Heading level="h1" variant="h4">
+                      {title}
+                    </Heading>
+                    <FormLanguage
+                      showIcon={false}
+                      triggerProps={{
+                        className: "bg-secondary",
+                        size: "sm",
+                      }}
+                      value={language}
+                      onValueChange={setLanguage}
+                    />
+                    {revisions ? <RevisionSelect revisions={revisions} /> : null}
                   </div>
-                ) : null}
-              </SectionContent>
-            </SectionRoot>
-          )}
-        </FormRoot>
-      )}
+                  <SaveButton
+                    routes={routes}
+                    submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
+                  />
+                </SectionHeader>
+                <SectionContent className="grid gap-4 lg:grid-cols-12">
+                  {tabsContent}
+                  {minLg && (sidebarContent || informationContent) ? (
+                    <div className="flex flex-col gap-y-4 lg:col-span-4">
+                      {sidebarContent ? (
+                        <Card
+                          contentProps={{
+                            className: "grid-cols-12",
+                          }}
+                        >
+                          {sidebarContent}
+                        </Card>
+                      ) : null}
+                      {informationContent ? (
+                        <Card
+                          contentProps={{
+                            className: "grid-cols-12 justify-between",
+                          }}
+                        >
+                          {informationContent}
+                        </Card>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </SectionContent>
+              </SectionRoot>
+            )}
+          </FormRoot>
+        );
+      }}
       key={modal ? `${id}_${modal.id}` : id}
     />
   );

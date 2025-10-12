@@ -4,18 +4,18 @@ import { useMemo, type ComponentProps } from "react";
 type SliderProps = ComponentProps<typeof SliderRoot>;
 
 function Slider({ defaultValue, value, min = 0, max = 100, ...props }: SliderProps) {
-  const _values = useMemo(
-    () => (Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max]),
-    [value, defaultValue, min, max],
-  );
+  const _values = useMemo(() => {
+    return Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max];
+  }, [value, defaultValue, min, max]);
+
   return (
     <SliderRoot defaultValue={defaultValue} value={value} min={min} max={max} {...props}>
       <SliderTrack>
         <SliderRange />
       </SliderTrack>
-      {Array.from({ length: _values.length }, (_, index) => (
-        <SliderThumb key={index} />
-      ))}
+      {Array.from({ length: _values.length }, (_, index) => {
+        return <SliderThumb key={index} />;
+      })}
     </SliderRoot>
   );
 }

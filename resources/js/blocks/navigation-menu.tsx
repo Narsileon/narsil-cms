@@ -22,12 +22,14 @@ function NavigationMenu({ elements, viewport = true, ...props }: NavigationMenuP
   return (
     <NavigationMenuRoot data-viewport={viewport} {...props}>
       <NavigationMenuList>
-        {elements.map((element, index) => (
-          <NavigationMenuItem key={index}>
-            <NavigationMenuTrigger>{element.title}</NavigationMenuTrigger>
-            <NavigationMenuContent>{element.content}</NavigationMenuContent>
-          </NavigationMenuItem>
-        ))}
+        {elements.map((element, index) => {
+          return (
+            <NavigationMenuItem key={index}>
+              <NavigationMenuTrigger>{element.title}</NavigationMenuTrigger>
+              <NavigationMenuContent>{element.content}</NavigationMenuContent>
+            </NavigationMenuItem>
+          );
+        })}
       </NavigationMenuList>
       {viewport ? <NavigationMenuViewport /> : null}
     </NavigationMenuRoot>

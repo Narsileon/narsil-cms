@@ -69,7 +69,7 @@ export type GroupedSelectOption = {
   [key: string]: unknown;
   icon?: IconName;
   identifier: string;
-  label: string;
+  label: string | Record<string, string>;
   optionLabel: string;
   options: (GroupedSelectOption | SelectOption)[];
   optionValue: string;
@@ -110,7 +110,7 @@ export type RouteNames = {
 export type SelectOption = {
   [key: string]: unknown;
   icon?: IconName;
-  label: string;
+  label: string | Record<string, string>;
   value: UniqueIdentifier;
 };
 

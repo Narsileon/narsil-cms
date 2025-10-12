@@ -22,24 +22,26 @@ type AccordionProps = ComponentProps<typeof AccordionRoot> & {
 function Accordion({ elements, ...props }: AccordionProps) {
   return (
     <AccordionRoot {...props}>
-      {elements.map((element) => (
-        <AccordionItem value={element.id} key={element.id}>
-          <AccordionHeader asChild>
-            <Heading level="h2">
-              <AccordionTrigger>
-                {element.title}
-                <Icon
-                  className={
-                    "transition-transform duration-300 will-change-transform group-data-[state=open]:rotate-180"
-                  }
-                  name="chevron-down"
-                />
-              </AccordionTrigger>
-            </Heading>
-          </AccordionHeader>
-          <AccordionContent>{element.content}</AccordionContent>
-        </AccordionItem>
-      ))}
+      {elements.map((element) => {
+        return (
+          <AccordionItem value={element.id} key={element.id}>
+            <AccordionHeader asChild>
+              <Heading level="h2">
+                <AccordionTrigger>
+                  {element.title}
+                  <Icon
+                    className={
+                      "transition-transform duration-300 will-change-transform group-data-[state=open]:rotate-180"
+                    }
+                    name="chevron-down"
+                  />
+                </AccordionTrigger>
+              </Heading>
+            </AccordionHeader>
+            <AccordionContent>{element.content}</AccordionContent>
+          </AccordionItem>
+        );
+      })}
     </AccordionRoot>
   );
 }

@@ -14,6 +14,8 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
 import { SortableAdd, SortableItem, SortableListContext } from "@narsil-cms/components/sortable";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
@@ -22,6 +24,8 @@ import { type AnonymousItem } from ".";
 type SortableProps = ComponentProps<typeof SortableListContext>;
 
 function Sortable({ items, options, unique, setItems, ...props }: SortableProps) {
+  const { locale } = useLocale();
+
   const [active, setActive] = useState<AnonymousItem | null>(null);
 
   const sensors = useSensors(
@@ -64,8 +68,8 @@ function Sortable({ items, options, unique, setItems, ...props }: SortableProps)
   function getFormattedLabel(item: AnonymousItem) {
     const group = getGroup(item);
 
-    const label = item[group.optionLabel];
-    const value = item[group.optionValue];
+    const label = getTranslatableSelectOption(item, group.optionLabel, locale);
+    const value = getSelectOption(item, group.optionValue);
 
     return unique ? label : `${label} (${value})`;
   }
@@ -73,7 +77,7 @@ function Sortable({ items, options, unique, setItems, ...props }: SortableProps)
   function getUniqueIdentifier(item: AnonymousItem) {
     const group = getGroup(item);
 
-    return item[group.optionValue];
+    return getSelectOption(item, group.optionValue);
   }
 
   return (

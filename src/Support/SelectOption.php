@@ -17,12 +17,12 @@ class SelectOption implements JsonSerializable
     #region CONSTRUCTOR
 
     /**
-     * @param string $label
+     * @param string|array $label
      * @param string $value
      *
      * @return void
      */
-    public function __construct(string $label, string $value)
+    public function __construct(string|array $label, string $value)
     {
         $this->setLabel($label);
         $this->setValue($value);
@@ -37,28 +37,35 @@ class SelectOption implements JsonSerializable
      *
      * @var string
      */
-    protected ?string $icon = null;
+    private ?string $icon = null;
+
+    /**
+     * The id of the select option.
+     *
+     * @var string
+     */
+    private ?string $id = null;
 
     /**
      * The identifier of the select option.
      *
      * @var string
      */
-    protected ?string $identifier = null;
+    private ?string $identifier = null;
 
     /**
      * The label of the select option.
      *
-     * @var string
+     * @var string|array
      */
-    protected string $label = '';
+    private string|array $label = '';
 
     /**
      * The value of the select option.
      *
      * @var string
      */
-    protected string $value = '';
+    private string $value = '';
 
     #endregion
 
@@ -70,10 +77,11 @@ class SelectOption implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return array_filter([
-            'icon' => $this->icon,
-            'identifier' => $this->identifier,
-            'label' => $this->label,
-            'value' => $this->value,
+            'icon' => $this->getIcon(),
+            'id' => $this->getId(),
+            'identifier' => $this->getIdentifier(),
+            'label' => $this->getLabel(),
+            'value' => $this->getValue(),
         ]);
     }
 
@@ -90,6 +98,17 @@ class SelectOption implements JsonSerializable
     }
 
     /**
+     * Get the id of the select option.
+     *
+
+     * @return string|null
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    /**
      * Get the identifier of the select option.
      *
 
@@ -103,9 +122,9 @@ class SelectOption implements JsonSerializable
     /**
      * Get the label of the select option.
      *
-     * @return string
+     * @return string|array
      */
-    public function getLabel(): string
+    public function getLabel(): string|array
     {
         return $this->label;
     }
@@ -139,6 +158,20 @@ class SelectOption implements JsonSerializable
     }
 
     /**
+     * Set the id of the select option.
+     *
+     * @param string $id
+     *
+     * @return static
+     */
+    public function setId(string $id): static
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Set the identifier of the select option.
      *
      * @param string $identifier
@@ -155,11 +188,11 @@ class SelectOption implements JsonSerializable
     /**
      * Set the label of the select option.
      *
-     * @param string $label
+     * @param string|array $label
      *
      * @return static
      */
-    public function setLabel(string $label): static
+    public function setLabel(string|array $label): static
     {
         $this->label = $label;
 

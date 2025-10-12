@@ -64,20 +64,22 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
             locale: locale,
             radius: radius,
           }}
-          render={() => (
-            <FormRoot className="gap-4">
-              {form.layout.map((element, index) => {
-                return (
-                  <FormRenderer
-                    {...element}
-                    className="grid grid-cols-2"
-                    onChange={(value) => handleChange(element.handle, value as number | string)}
-                    key={index}
-                  />
-                );
-              })}
-            </FormRoot>
-          )}
+          render={() => {
+            return (
+              <FormRoot className="gap-4">
+                {form.layout.map((element, index) => {
+                  return (
+                    <FormRenderer
+                      {...element}
+                      className="grid grid-cols-2"
+                      onChange={(value) => handleChange(element.handle, value as number | string)}
+                      key={index}
+                    />
+                  );
+                })}
+              </FormRoot>
+            );
+          }}
         />
       </SectionContent>
     </SectionRoot>
