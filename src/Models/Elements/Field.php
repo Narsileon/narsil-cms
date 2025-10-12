@@ -6,6 +6,7 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Casts\JsonCast;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
@@ -47,7 +48,7 @@ class Field extends Model
             self::ATTRIBUTE_IDENTIFIER,
         ]);
         $this->mergeCasts([
-            self::SETTINGS => 'json',
+            self::SETTINGS => JsonCast::class,
             self::TRANSLATABLE => 'boolean',
         ]);
 

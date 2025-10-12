@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
+use Narsil\Casts\JsonCast;
 
 #endregion
 
@@ -34,7 +35,7 @@ trait HasTranslations
      */
     final public function initializeHasTranslations(): void
     {
-        $casts = array_fill_keys($this->translatable, 'json');
+        $casts = array_fill_keys($this->translatable, JsonCast::class);
 
         $this->mergeCasts($casts);
     }

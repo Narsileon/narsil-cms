@@ -5,6 +5,7 @@ namespace Narsil\Traits;
 #region USE
 
 use Illuminate\Support\Collection;
+use Narsil\Casts\JsonCast;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\SwitchField;
@@ -89,7 +90,7 @@ trait HasTemplate
                     $casts[$field->{Field::HANDLE}] = 'boolean';
                     break;
                 case RelationsField::class:
-                    $casts[$field->{Field::HANDLE}] = 'json';
+                    $casts[$field->{Field::HANDLE}] = JsonCast::class;
                     break;
                 default:
                     break;

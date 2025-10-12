@@ -35,11 +35,13 @@ function FormProvider({
           if ("elements" in childElement) {
             Object.assign(receivedValues, flattenValues([childElement]));
           } else if ("type" in childElement) {
-            receivedValues[blockElement.handle] = childElement.settings?.value ?? "";
+            receivedValues[blockElement.handle] =
+              (childElement.settings?.value ?? childElement.translatable) ? {} : "";
           }
         });
       } else if ("type" in element) {
-        receivedValues[element.handle] = element.settings?.value ?? "";
+        receivedValues[element.handle] =
+          (element.settings?.value ?? element.translatable) ? {} : "";
       }
     });
 
@@ -47,7 +49,8 @@ function FormProvider({
   }
 
   const mergedInitialValues = Object.assign(flattenValues(elements), initialValues);
-
+  console.log(initialValues);
+  console.log(mergedInitialValues);
   const {
     data,
     errors,
