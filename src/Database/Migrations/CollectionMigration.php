@@ -40,7 +40,7 @@ class CollectionMigration extends Migration
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Run the migrations.
      *
      * @return void
      */
@@ -61,7 +61,7 @@ class CollectionMigration extends Migration
     }
 
     /**
-     * {@inheritDoc}
+     * Reverse the migrations.
      *
      * @return void
      */

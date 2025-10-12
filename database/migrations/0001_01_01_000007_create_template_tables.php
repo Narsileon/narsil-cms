@@ -7,7 +7,6 @@ use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSet;
 use Narsil\Models\Elements\TemplateSection;
@@ -20,7 +19,9 @@ return new class extends Migration
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Run the migrations.
+     *
+     * @return void
      */
     public function up(): void
     {
@@ -43,7 +44,9 @@ return new class extends Migration
     }
 
     /**
-     * {@inheritDoc}
+     * Reverse the migrations.
+     *
+     * @return void
      */
     public function down(): void
     {

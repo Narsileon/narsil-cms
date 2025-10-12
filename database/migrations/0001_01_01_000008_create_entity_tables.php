@@ -15,7 +15,9 @@ return new class extends Migration
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Run the migrations.
+     *
+     * @return void
      */
     public function up(): void
     {
@@ -26,7 +28,9 @@ return new class extends Migration
     }
 
     /**
-     * {@inheritDoc}
+     * Reverse the migrations.
+     *
+     * @return void
      */
     public function down(): void
     {
