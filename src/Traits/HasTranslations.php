@@ -149,7 +149,7 @@ trait HasTranslations
         }
         else
         {
-            $this->attributes[$key] = $this->asJson([]);
+            $this->attributes[$key] = null;
         }
     }
 

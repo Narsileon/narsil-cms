@@ -83,17 +83,24 @@ trait HasTemplate
 
         foreach ($fields as $field)
         {
-            switch ($field->{Field::TYPE})
+            if ($field->{Field::TRANSLATABLE})
             {
-                case CheckboxField::class:
-                case SwitchField::class:
-                    $casts[$field->{Field::HANDLE}] = 'boolean';
-                    break;
-                case RelationsField::class:
-                    $casts[$field->{Field::HANDLE}] = JsonCast::class;
-                    break;
-                default:
-                    break;
+                $casts[$field->{Field::HANDLE}] = JsonCast::class;
+            }
+            else
+            {
+                switch ($field->{Field::TYPE})
+                {
+                    case CheckboxField::class:
+                    case SwitchField::class:
+                        $casts[$field->{Field::HANDLE}] = 'boolean';
+                        break;
+                    case RelationsField::class:
+                        $casts[$field->{Field::HANDLE}] = 'array';
+                        break;
+                    default:
+                        break;
+                }
             }
 
             if ($field->{Field::TRANSLATABLE})

@@ -1,4 +1,5 @@
 import { useForm } from "@inertiajs/react";
+import { getFieldDefaultValue } from "@narsil-cms/lib/field";
 import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
 import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
@@ -35,13 +36,11 @@ function FormProvider({
           if ("elements" in childElement) {
             Object.assign(receivedValues, flattenValues([childElement]));
           } else if ("type" in childElement) {
-            receivedValues[blockElement.handle] =
-              (childElement.settings?.value ?? childElement.translatable) ? {} : "";
+            receivedValues[blockElement.handle] = getFieldDefaultValue(childElement);
           }
         });
       } else if ("type" in element) {
-        receivedValues[element.handle] =
-          (element.settings?.value ?? element.translatable) ? {} : "";
+        receivedValues[element.handle] = getFieldDefaultValue(element);
       }
     });
 
@@ -49,8 +48,7 @@ function FormProvider({
   }
 
   const mergedInitialValues = Object.assign(flattenValues(elements), initialValues);
-  console.log(initialValues);
-  console.log(mergedInitialValues);
+
   const {
     data,
     errors,
