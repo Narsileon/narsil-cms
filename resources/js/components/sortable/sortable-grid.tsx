@@ -14,7 +14,8 @@ import {
   type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
-import { cn } from "@narsil-cms/lib/utils";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { Field, FormType, GroupedSelectOption } from "@narsil-cms/types";
 import { get } from "lodash";
 import { useState } from "react";
@@ -53,6 +54,8 @@ function SortableGrid({
   cancelDrop,
   setItems,
 }: SortableGridProps) {
+  const { locale } = useLocale();
+
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -132,8 +135,8 @@ function SortableGrid({
   }
 
   function getFormattedLabel(container: AnonymousItem) {
-    const label = container[intermediate.optionLabel];
-    const value = container[intermediate.optionValue];
+    const label = getTranslatableSelectOption(container, intermediate.optionLabel, locale);
+    const value = getSelectOption(container, intermediate.optionValue);
 
     return `${label} (${value})`;
   }

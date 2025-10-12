@@ -260,7 +260,6 @@ class TemplateController extends AbstractController
         $replicated
             ->fill([
                 Template::HANDLE => $template->{Template::HANDLE} . '_copy',
-                Template::NAME => $template->{Template::NAME} . ' (copy)',
             ])
             ->save();
 
@@ -292,7 +291,7 @@ class TemplateController extends AbstractController
 
             $attributes = [
                 TemplateSectionElement::HANDLE => Arr::get($element, TemplateSectionElement::HANDLE),
-                TemplateSectionElement::NAME => Arr::get($element, TemplateSectionElement::NAME),
+                TemplateSectionElement::NAME => json_encode(Arr::get($element, TemplateSectionElement::NAME, [])),
                 TemplateSectionElement::POSITION => $position,
                 TemplateSectionElement::WIDTH => Arr::get($element, TemplateSectionElement::WIDTH),
             ];
@@ -320,10 +319,10 @@ class TemplateController extends AbstractController
         {
             $templateSection = TemplateSection::updateOrCreate([
                 TemplateSection::TEMPLATE_ID => $template->{Template::ID},
-                TemplateSection::HANDLE => $section[TemplateSection::HANDLE],
+                TemplateSection::HANDLE => Arr::get($section, TemplateSection::HANDLE),
             ], [
                 TemplateSection::POSITION => $key,
-                TemplateSection::NAME => $section[TemplateSection::NAME],
+                TemplateSection::NAME => Arr::get($section, TemplateSection::NAME),
             ]);
 
             $this->syncElements($templateSection, Arr::get($section, TemplateSection::RELATION_ELEMENTS, []));
