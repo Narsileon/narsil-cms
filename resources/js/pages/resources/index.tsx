@@ -4,12 +4,11 @@ import {
   getMenuColumn,
   getSelectColumn,
 } from "@narsil-cms/components/data-table";
-import type { DataTableCollection, DataTableFilterCollection, Model } from "@narsil-cms/types";
+import type { DataTableCollection, Model } from "@narsil-cms/types";
 import { ColumnDef } from "@tanstack/react-table";
 
 type ResourceIndexProps = {
   collection: DataTableCollection;
-  collectionFilter: DataTableFilterCollection;
   title: string;
 };
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Middleware\Inertia;
+namespace Narsil\Http\Middleware;
 
 #region USE
 
@@ -22,7 +22,7 @@ use Narsil\Services\BreadcrumbService;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class HandleInertiaRequests extends Middleware
+class InertiaMiddleware extends Middleware
 {
     #region PROPERTIES
 
@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
     #region PUBLIC METHODS
 
     /**
-     * Determines the current asset version.
+     * Determine the current asset version.
      *
      * @see https://inertiajs.com/asset-versioning
      */

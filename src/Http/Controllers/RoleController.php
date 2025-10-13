@@ -14,10 +14,10 @@ use Narsil\Contracts\FormRequests\RoleFormRequest;
 use Narsil\Contracts\Forms\RoleForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Requests\DuplicateManyRequest;
-use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 

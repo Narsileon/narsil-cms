@@ -14,9 +14,9 @@ use Narsil\Contracts\FormRequests\UserFormRequest;
 use Narsil\Contracts\Forms\UserForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
-use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 

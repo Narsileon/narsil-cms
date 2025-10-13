@@ -7,9 +7,9 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Narsil\Http\Collections\UserBookmarkCollection;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\UserBookmarkRequest;
-use Narsil\Http\Resources\UserBookmarkCollection;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 

@@ -40,18 +40,6 @@ export type DataTableCollection<T = Model> = {
   };
 };
 
-export type DataTableFilterCollection = {
-  data: {
-    id: number;
-    label: string;
-  }[];
-  meta: {
-    addLabel: string;
-    routes: RouteNames;
-    title: string;
-  };
-};
-
 export type FormType = {
   action: string;
   description: string;

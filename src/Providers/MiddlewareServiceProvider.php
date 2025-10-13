@@ -6,7 +6,7 @@ namespace Narsil\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Http\Middleware\Inertia\HandleInertiaRequests;
+use Narsil\Http\Middleware\InertiaMiddleware;
 use Narsil\Http\Middleware\LocaleMiddleware;
 use Narsil\Http\Middleware\UserConfigurationMiddleware;
 
@@ -46,7 +46,7 @@ class MiddlewareServiceProvider extends ServiceProvider
         $router->middlewareGroup('narsil-web', [
             UserConfigurationMiddleware::class,
             LocaleMiddleware::class,
-            HandleInertiaRequests::class,
+            InertiaMiddleware::class,
         ]);
     }
 

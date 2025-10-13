@@ -14,10 +14,10 @@ use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Requests\DuplicateManyRequest;
-use Narsil\Http\Resources\DataTableCollection;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
 
