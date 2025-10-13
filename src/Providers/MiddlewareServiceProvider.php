@@ -44,8 +44,8 @@ class MiddlewareServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
 
         $router->middlewareGroup('narsil-web', [
-            LocaleMiddleware::class,
             UserConfigurationMiddleware::class,
+            LocaleMiddleware::class,
             HandleInertiaRequests::class,
         ]);
     }

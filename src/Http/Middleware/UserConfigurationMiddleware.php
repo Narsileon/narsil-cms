@@ -22,6 +22,8 @@ class UserConfigurationMiddleware
     #region PUBLIC METHODS
 
     /**
+     * Handle an incoming request.
+     *
      * @param Request $request
      * @param Closure $next
      *
@@ -33,9 +35,10 @@ class UserConfigurationMiddleware
 
         if ($userConfiguration)
         {
-            $this->setColor($userConfiguration);
-            $this->setRadius($userConfiguration);
-            $this->setTheme($userConfiguration);
+            $this->setSessionColor($userConfiguration);
+            $this->setSessionLanguage($userConfiguration);
+            $this->setSessionRadius($userConfiguration);
+            $this->setSessionTheme($userConfiguration);
         }
 
         return $next($request);
@@ -46,11 +49,13 @@ class UserConfigurationMiddleware
     #region PROTECTED METHODS
 
     /**
+     * Set the color of the session.
+     *
      * @param UserConfiguration $userConfiguration
      *
      * @return void
      */
-    protected function setColor(UserConfiguration $userConfiguration): void
+    protected function setSessionColor(UserConfiguration $userConfiguration): void
     {
         if (!Session::has(UserConfiguration::COLOR))
         {
@@ -64,11 +69,33 @@ class UserConfigurationMiddleware
     }
 
     /**
+     * Set the language of the session.
+     *
      * @param UserConfiguration $userConfiguration
      *
      * @return void
      */
-    protected function setRadius(UserConfiguration $userConfiguration): void
+    protected function setSessionLanguage(UserConfiguration $userConfiguration): void
+    {
+        if (!Session::has(UserConfiguration::LANGUAGE))
+        {
+            $language = $userConfiguration->{UserConfiguration::LANGUAGE};
+
+            if ($language)
+            {
+                Session::put(UserConfiguration::LANGUAGE, $language);
+            }
+        }
+    }
+
+    /**
+     * Set the radius of the session.
+     *
+     * @param UserConfiguration $userConfiguration
+     *
+     * @return void
+     */
+    protected function setSessionRadius(UserConfiguration $userConfiguration): void
     {
         if (!Session::has(UserConfiguration::RADIUS))
         {
@@ -82,11 +109,13 @@ class UserConfigurationMiddleware
     }
 
     /**
+     * Set the theme of the session.
+     *
      * @param UserConfiguration $userConfiguration
      *
      * @return void
      */
-    protected function setTheme(UserConfiguration $userConfiguration): void
+    protected function setSessionTheme(UserConfiguration $userConfiguration): void
     {
         if (!Session::has(UserConfiguration::THEME))
         {

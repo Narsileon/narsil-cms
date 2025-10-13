@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 
 const selectTriggerVariants = cva(
   cn(
-    "flex w-fit cursor-pointer items-center justify-between whitespace-nowrap rounded-md bg-transparent shadow-sm outline-none transition-[color,box-shadow]",
+    "flex w-fit cursor-pointer items-center justify-between whitespace-nowrap rounded-md bg-transparent outline-none transition-[color,box-shadow]",
     "disabled:cursor-not-allowed disabled:opacity-50",
     "focus-visible:border-shine",
     "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center",
@@ -13,7 +13,7 @@ const selectTriggerVariants = cva(
     variants: {
       variant: {
         default: cn(
-          "border-input border p-2",
+          "border-input border p-2 shadow-sm",
           "dark:bg-input/30 dark:hover:bg-input/50",
           "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
           "data-[placeholder]:text-muted-foreground",

@@ -4,6 +4,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Enums\Configuration\ColorEnum;
 use Narsil\Enums\Configuration\ThemeEnum;
@@ -156,8 +157,8 @@ return new class extends Migration
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(UserConfiguration::LOCALE)
-                ->default('en');
+                ->string(UserConfiguration::LANGUAGE)
+                ->default(Config::get('app.locale'));
             $blueprint
                 ->string(UserConfiguration::COLOR)
                 ->default(ColorEnum::GRAY->value);

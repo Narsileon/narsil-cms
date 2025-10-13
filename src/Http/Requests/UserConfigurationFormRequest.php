@@ -30,7 +30,7 @@ class UserConfigurationFormRequest implements Contract
                 FormRule::min(1),
                 FormRule::SOMETIMES,
             ],
-            UserConfiguration::LOCALE => [
+            UserConfiguration::LANGUAGE => [
                 FormRule::STRING,
                 FormRule::min(1),
                 FormRule::SOMETIMES,

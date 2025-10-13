@@ -95,9 +95,9 @@ class UserConfigurationController extends AbstractController
             Session::put(UserConfiguration::COLOR, $color);
         }
 
-        if ($locale = Arr::get($attributes, UserConfiguration::LOCALE))
+        if ($language = Arr::get($attributes, UserConfiguration::LANGUAGE))
         {
-            Session::put(UserConfiguration::LOCALE, $locale);
+            Session::put(UserConfiguration::LANGUAGE, $language);
         }
 
         if ($radius = Arr::get($attributes, UserConfiguration::RADIUS))

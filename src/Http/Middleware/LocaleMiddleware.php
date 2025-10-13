@@ -4,12 +4,10 @@ namespace Narsil\Http\Middleware;
 
 #region USE
 
-use Narsil\Models\User;
 use Narsil\Models\Users\UserConfiguration;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 #endregion
@@ -23,6 +21,8 @@ class LocaleMiddleware
     #region PUBLIC METHODS
 
     /**
+     * Handle an incoming request.
+     *
      * @param Request $request
      * @param Closure $next
      *
@@ -30,7 +30,7 @@ class LocaleMiddleware
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $this->setLocale();
+        $this->setApplicationLocale();
 
         return $next($request);
     }
@@ -40,25 +40,17 @@ class LocaleMiddleware
     #region PROTECTED METHODS
 
     /**
+     * Set the locale of the application.
+     *
      * @return void
      */
-    protected function setLocale(): void
+    protected function setApplicationLocale(): void
     {
-        $locale = Session::get(UserConfiguration::LOCALE);
+        $language = Session::get(UserConfiguration::LANGUAGE);
 
-        if (!$locale)
+        if ($language)
         {
-            $locale = Auth::user()?->{User::RELATION_CONFIGURATION}?->{UserConfiguration::LOCALE};
-
-            if ($locale)
-            {
-                Session::put(UserConfiguration::LOCALE, $locale);
-            }
-        }
-
-        if ($locale)
-        {
-            App::setLocale($locale);
+            App::setLocale($language);
         }
     }
 

@@ -56,11 +56,11 @@ class UserConfiguration extends Model
     final public const COLOR = 'color';
 
     /**
-     * The name of the "locale" column.
+     * The name of the "language" column.
      *
      * @var string
      */
-    final public const LOCALE = 'locale';
+    final public const LANGUAGE = 'language';
 
     /**
      * The name of the "preferences" column.
