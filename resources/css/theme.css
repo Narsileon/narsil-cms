@@ -35,17 +35,17 @@
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --scale-50: oklch(98.5% 0.002 247.839);
-  --scale-100: oklch(96.7% 0.003 264.542);
-  --scale-200: oklch(92.8% 0.006 264.531);
-  --scale-300: oklch(87.2% 0.01 258.338);
-  --scale-400: oklch(70.7% 0.022 261.325);
-  --scale-500: oklch(55.1% 0.027 264.364);
-  --scale-600: oklch(44.6% 0.03 256.802);
-  --scale-700: oklch(37.3% 0.034 259.733);
-  --scale-800: oklch(27.8% 0.033 256.848);
-  --scale-900: oklch(21% 0.034 264.665);
-  --scale-950: oklch(13% 0.028 261.692);
+  --scale-50: theme(colors.gray.50);
+  --scale-100: theme(colors.gray.100);
+  --scale-200: theme(colors.gray.200);
+  --scale-300: theme(colors.gray.300);
+  --scale-400: theme(colors.gray.400);
+  --scale-500: theme(colors.gray.500);
+  --scale-600: theme(colors.gray.600);
+  --scale-700: theme(colors.gray.700);
+  --scale-800: theme(colors.gray.800);
+  --scale-900: theme(colors.gray.900);
+  --scale-950: theme(colors.gray.950);
 }
 
 :root {
