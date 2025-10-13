@@ -18,6 +18,11 @@ abstract class AbstractTable implements Table
 {
     #region CONSTRUCTOR
 
+    /**
+     * @param string $table
+     *
+     * @return void
+     */
     public function __construct(string $table)
     {
         $this->name = $table;
@@ -72,7 +77,7 @@ abstract class AbstractTable implements Table
     }
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function getColumnOrder(): array
     {

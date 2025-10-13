@@ -3,6 +3,7 @@
 @import "./utilities.css";
 
 @source inline('{col-span-{3,4,6,8,9}}');
+@source inline('{flex-{col,row}-reverse}');
 
 @layer base {
   * {

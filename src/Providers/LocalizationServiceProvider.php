@@ -13,15 +13,18 @@ use Narsil\Support\TranslationsBag;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class TranslationServiceProvider extends ServiceProvider
+class LocalizationServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Boot any application services.
+     *
+     * @return void
      */
     public function boot(): void
     {
+        $this->bootPublishes();
         $this->bootTranslations();
     }
 
@@ -41,6 +44,20 @@ class TranslationServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
+     * Boot the publishes.
+     *
+     * @return void
+     */
+    protected function bootPublishes(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../../lang' => lang_path('vendor/narsil-cms'),
+        ], 'narsil-cms-localization');
+    }
+
+    /**
+     * Boot the translations.
+     *
      * @return void
      */
     protected function bootTranslations(): void

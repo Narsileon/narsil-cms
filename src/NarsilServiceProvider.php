@@ -4,18 +4,24 @@ namespace Narsil;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Providers\CommandServiceProvider;
+use Narsil\Providers\ConfigServiceProvider;
 use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
 use Narsil\Providers\FormServiceProvider;
 use Narsil\Providers\FortifyServiceProvider;
+use Narsil\Providers\LocalizationServiceProvider;
 use Narsil\Providers\MenuServiceProvider;
+use Narsil\Providers\MiddlewareServiceProvider;
+use Narsil\Providers\MigrationServiceProvider;
 use Narsil\Providers\ObserverServiceProvider;
 use Narsil\Providers\PolicyServiceProvider;
 use Narsil\Providers\RouteServiceProvider;
 use Narsil\Providers\TableServiceProvider;
-use Narsil\Providers\TranslationServiceProvider;
+use Narsil\Providers\ViewServiceProvider;
 use Nuwave\Lighthouse\LighthouseServiceProvider;
 
 #endregion
@@ -29,95 +35,45 @@ class NarsilServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Boot any application services.
+     *
+     * @return void
      */
-    public function register(): void
+    public function boot(): void
     {
-        $this->registerConfigs();
-        $this->registerProviders();
+        Model::preventLazyLoading(!App::isProduction());
     }
 
     /**
      * {@inheritDoc}
      */
-    public function boot(): void
+    public function register(): void
     {
-        $this->bootMigrations();
-        $this->bootPublishes();
-        $this->bootViews();
+        $this->registerProviders();
     }
 
     #endregion
 
     #region PROTECTED METHODS
 
-    /**
-     * @return void
-     */
-    protected function bootMigrations(): void
-    {
-        $this->loadMigrationsFrom([
-            __DIR__ . '/../database/migrations',
-        ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function bootPublishes(): void
-    {
-        $this->publishes([
-            __DIR__ . '/../config' => config_path(),
-        ], 'narsil-cms-configs');
-
-        $this->publishes([
-            __DIR__ . '/../lang' => lang_path('vendor/narsil-cms'),
-        ], 'narsil-cms-translations');
-    }
-
-    /**
-     * @return void
-     */
-    protected function bootViews(): void
-    {
-        $this->loadViewsFrom([
-            __DIR__ . '/../resources/views',
-        ], 'narsil');
-    }
-
-    protected function registerConfigs(): void
-    {
-        $configs = [
-            'narsil.fields' => __DIR__ . '/../config/narsil/fields.php',
-            'narsil.form-requests' => __DIR__ . '/../config/narsil/form-requests.php',
-            'narsil.forms'  => __DIR__ . '/../config/narsil/forms.php',
-            'narsil.locales' => __DIR__ . '/../config/narsil/locales.php',
-            'narsil.menus' => __DIR__ . '/../config/narsil/menus.php',
-            'narsil.observers' => __DIR__ . '/../config/narsil/observers.php',
-            'narsil.policies' => __DIR__ . '/../config/narsil/policies.php',
-            'narsil.tables' => __DIR__ . '/../config/narsil/tables.php',
-        ];
-
-        foreach ($configs as $key => $path)
-        {
-            $this->mergeConfigFrom($path, $key);
-        }
-    }
-
     protected function registerProviders(): void
     {
         $this->app->register(CommandServiceProvider::class);
+        $this->app->register(ConfigServiceProvider::class);
         $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);
         $this->app->register(LighthouseServiceProvider::class);
+        $this->app->register(LocalizationServiceProvider::class);
         $this->app->register(MenuServiceProvider::class);
+        $this->app->register(MiddlewareServiceProvider::class);
+        $this->app->register(MigrationServiceProvider::class);
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(TableServiceProvider::class);
-        $this->app->register(TranslationServiceProvider::class);
+        $this->app->register(ViewServiceProvider::class);
     }
 
     #endregion

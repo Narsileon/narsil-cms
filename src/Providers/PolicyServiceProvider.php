@@ -19,7 +19,9 @@ class PolicyServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Boot any application services.
+     *
+     * @return void
      */
     public function boot(): void
     {
@@ -39,7 +41,7 @@ class PolicyServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the policies from the config file.
+     * Boot the configured policies.
      *
      * @return void
      */

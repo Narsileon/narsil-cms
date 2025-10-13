@@ -19,7 +19,9 @@ class CommandServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Boot any application services.
+     *
+     * @return void
      */
     public function boot(): void
     {
@@ -31,6 +33,8 @@ class CommandServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
+     * Boot the commands.
+     *
      * @return void
      */
     protected function bootCommands(): void

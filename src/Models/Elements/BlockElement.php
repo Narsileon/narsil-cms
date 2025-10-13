@@ -38,6 +38,10 @@ class BlockElement extends Model
             self::NAME,
         ];
 
+        $this->with = [
+            self::RELATION_ELEMENT,
+        ];
+
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,

@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class ObserverServiceProvider extends ServiceProvider
+class MigrationServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 
@@ -23,7 +23,7 @@ class ObserverServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->bootObservers();
+        $this->bootMigrations();
     }
 
     #endregion
@@ -31,18 +31,15 @@ class ObserverServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the configured observers.
+     * Boot the migrations.
      *
      * @return void
      */
-    protected function bootObservers(): void
+    protected function bootMigrations(): void
     {
-        $config = config('narsil.observers', []);
-
-        foreach ($config as $model => $observer)
-        {
-            $model::observe($observer);
-        }
+        $this->loadMigrationsFrom([
+            __DIR__ . '/../../database/migrations',
+        ]);
     }
 
     #endregion

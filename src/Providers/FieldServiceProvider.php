@@ -29,7 +29,7 @@ class FieldServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the fields from the config file as bindings.
+     * Register the configured fields as bindings.
      *
      * @return void
      */

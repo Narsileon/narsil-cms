@@ -29,7 +29,7 @@ class MenuServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the menus from the config file as singletons.
+     * Register the configured menus as singletons.
      *
      * @return void
      */

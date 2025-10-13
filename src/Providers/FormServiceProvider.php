@@ -29,7 +29,7 @@ class FormServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the forms from the config file as singletons.
+     * Register the configured forms as bindings.
      *
      * @return void
      */

@@ -41,7 +41,9 @@ class FortifyServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Boot any application services.
+     *
+     * @return void
      */
     public function boot(): void
     {

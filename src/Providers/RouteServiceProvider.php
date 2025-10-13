@@ -4,12 +4,8 @@ namespace Narsil\Providers;
 
 #region USE
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Http\Middleware\Inertia\HandleInertiaRequests;
-use Narsil\Http\Middleware\LocaleMiddleware;
-use Narsil\Http\Middleware\UserConfigurationMiddleware;
 
 #endregion
 
@@ -22,15 +18,15 @@ class RouteServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Boot any application services.
+     *
+     * @return void
      */
     public function boot(): void
     {
-        $this->bootNarsilMiddleware();
-
         $this->bootApiRoutes();
+        $this->bootCpRoutes();
         $this->bootGraphQLRoutes();
-        $this->bootNarsilRoutes();
         $this->bootWebRoutes();
     }
 
@@ -39,6 +35,8 @@ class RouteServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
+     * Boot the API routes.
+     *
      * @return void
      */
     protected function bootApiRoutes(): void
@@ -50,6 +48,24 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
+     * Boot the control panel routes.
+     *
+     * @return void
+     */
+    protected function bootCpRoutes(): void
+    {
+        Route::middleware([
+            'web',
+            'narsil-web',
+        ])
+            ->prefix('narsil')
+            ->group(__DIR__ . '/../../routes/cp.php');
+    }
+
+
+    /**
+     * Boot the GraphQL routes.
+     *
      * @return void
      */
     protected function bootGraphQLRoutes(): void
@@ -64,33 +80,8 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return void
-     */
-    protected function bootNarsilMiddleware(): void
-    {
-        $router = $this->app->make(Router::class);
-
-        $router->middlewareGroup('narsil-web', [
-            LocaleMiddleware::class,
-            UserConfigurationMiddleware::class,
-            HandleInertiaRequests::class,
-        ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function bootNarsilRoutes(): void
-    {
-        Route::middleware([
-            'web',
-            'narsil-web',
-        ])
-            ->prefix('narsil')
-            ->group(__DIR__ . '/../../routes/narsil.php');
-    }
-
-    /**
+     * Boot the web routes.
+     *
      * @return void
      */
     protected function bootWebRoutes(): void
