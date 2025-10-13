@@ -12,7 +12,7 @@ use Inertia\Middleware;
 use Narsil\Contracts\Menus\AuthMenu;
 use Narsil\Contracts\Menus\GuestMenu;
 use Narsil\Contracts\Menus\Sidebar;
-use Narsil\Http\Resources\UserInertiaResource;
+use Narsil\Http\Resources\AuthResource;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Services\BreadcrumbService;
 
@@ -61,7 +61,7 @@ class InertiaMiddleware extends Middleware
         $locale = App::getLocale();
         $user = Auth::user();
 
-        $auth = $user ? new UserInertiaResource($user) : null;
+        $auth = $user ? new AuthResource($user) : null;
         $navigation = $this->getNavigation($request);
         $redirect = $this->getRedirect($request);
         $session = $this->getSession($request);

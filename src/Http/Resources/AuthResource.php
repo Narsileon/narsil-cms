@@ -14,7 +14,7 @@ use Narsil\Models\User;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class UserInertiaResource extends JsonResource
+class AuthResource extends JsonResource
 {
     #region CONSTRUCTOR
 
