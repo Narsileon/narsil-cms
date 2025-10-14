@@ -92,6 +92,21 @@ class HostLocaleLanguage extends Model
 
     #region PUBLIC METHODS
 
+    /**
+     * Get unique languages.
+     *
+     * @return array<string>
+     */
+    public static function getUniqueLanguages(): array
+    {
+        return self::query()
+            ->select(self::LANGUAGE)
+            ->distinct()
+            ->orderBy(self::LANGUAGE)
+            ->pluck(self::LANGUAGE)
+            ->toArray();
+    }
+
     #region • RELATIONSHIPS
 
     /**

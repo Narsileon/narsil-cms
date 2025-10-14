@@ -63,7 +63,7 @@ class RichTextField extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
-        $moduleOptions = static::getModulesOptions();
+        $modulesSelectOptions = static::getModulesSelectOptions();
 
         return [
             new Field([
@@ -77,7 +77,7 @@ class RichTextField extends AbstractField implements Contract
                 Field::NAME => trans("narsil::ui.modules"),
                 Field::TYPE => CheckboxField::class,
                 Field::SETTINGS => app(CheckboxField::class)
-                    ->setOptions($moduleOptions),
+                    ->setOptions($modulesSelectOptions),
             ]),
         ];
     }
@@ -139,11 +139,11 @@ class RichTextField extends AbstractField implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Get the modules options.
+     * Get the modules select options.
      *
      * @return array<SelectOption>
      */
-    protected static function getModulesOptions(): array
+    protected static function getModulesSelectOptions(): array
     {
         $options = [];
 

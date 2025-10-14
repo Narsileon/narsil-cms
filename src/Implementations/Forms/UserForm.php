@@ -39,9 +39,10 @@ class UserForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::models.user');
-        $this->submitLabel = trans('narsil::ui.save');
-        $this->title = trans('narsil::models.user');
+        $this
+            ->setDescription(trans('narsil::models.user'))
+            ->setSubmitLabel(trans('narsil::ui.save'))
+            ->setTitle(trans('narsil::models.user'));
     }
 
     #endregion
@@ -55,7 +56,7 @@ class UserForm extends AbstractForm implements Contract
     {
         $isPost = $this->method === MethodEnum::POST->value;
 
-        $roleOptions = static::getRoleOptions();
+        $roleSelectOptions = static::getRoleSelectOptions();
 
         return [
             static::mainSection([
@@ -147,7 +148,7 @@ class UserForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.roles'),
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class)
-                                ->setOptions(static::getRoleOptions($roleOptions)),
+                                ->setOptions($roleSelectOptions),
                         ]),
                     ]),
                 ],
@@ -159,10 +160,13 @@ class UserForm extends AbstractForm implements Contract
     #endregion
 
     #region PROTECTED METHODS
+
     /**
-     * @return array
+     * Get the role select options.
+     *
+     * @return array<SelectOption>
      */
-    protected static function getRoleOptions(): array
+    protected static function getRoleSelectOptions(): array
     {
         return Role::query()
             ->orderBy(Role::NAME)

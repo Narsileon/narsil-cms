@@ -64,9 +64,9 @@ class FieldController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
         $form = app(FieldForm::class)
-            ->action(route('fields.store'))
-            ->method(MethodEnum::POST)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->setAction(route('fields.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -120,11 +120,11 @@ class FieldController extends AbstractController
         }
 
         $form = app(FieldForm::class)
-            ->action(route('fields.update', $field->{Field::ID}))
-            ->data($field->toArrayWithTranslations())
-            ->id($field->{Field::ID})
-            ->method(MethodEnum::PATCH)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->setAction(route('fields.update', $field->{Field::ID}))
+            ->setData($field->toArrayWithTranslations())
+            ->setId($field->{Field::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',

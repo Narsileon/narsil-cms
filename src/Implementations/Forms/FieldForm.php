@@ -35,10 +35,11 @@ class FieldForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::models.field');
-        $this->routes = RouteService::getNames(Field::TABLE);
-        $this->submitLabel = trans('narsil::ui.save');
-        $this->title = trans('narsil::models.field');
+        $this
+            ->setDescription(trans('narsil::models.field'))
+            ->setRoutes(RouteService::getNames(Field::TABLE))
+            ->setSubmitLabel(trans('narsil::ui.save'))
+            ->setTitle(trans('narsil::models.field'));
     }
 
     #endregion
@@ -70,8 +71,8 @@ class FieldForm extends AbstractForm implements Contract
             }
         }
 
-        $rulesOptions = static::getRulesOptions();
-        $typeOptions = static::getTypeOptions();
+        $rulesSelectOptions = static::getRulesSelectOptions();
+        $typeSelectOptions = static::getTypeSelectOptions();
 
         $content = [
             static::mainSection(array_merge([
@@ -100,7 +101,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.type'),
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
-                            ->setOptions($typeOptions)
+                            ->setOptions($typeSelectOptions)
                             ->setPlaceholder(trans('narsil::placeholders.search'))
                             ->setReload('layout')
                             ->setRequired(true),
@@ -133,7 +134,7 @@ class FieldForm extends AbstractForm implements Contract
                             Field::NAME => trans("narsil::ui.rules"),
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class)
-                                ->setOptions($rulesOptions),
+                                ->setOptions($rulesSelectOptions),
                         ]),
                     ]),
                 ],
@@ -149,11 +150,11 @@ class FieldForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Get the rules options.
+     * Get the rules select options.
      *
      * @return array<SelectOption>
      */
-    protected static function getRulesOptions(): array
+    protected static function getRulesSelectOptions(): array
     {
         $options = [];
 
@@ -169,11 +170,11 @@ class FieldForm extends AbstractForm implements Contract
     }
 
     /**
-     * Get the type options.
+     * Get the type select options.
      *
-     * @return array<string>
+     * @return array<SelectOption>
      */
-    protected static function getTypeOptions(): array
+    protected static function getTypeSelectOptions(): array
     {
         $options = [];
 

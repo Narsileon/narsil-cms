@@ -66,9 +66,9 @@ class HostController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, Host::class);
 
         $form = app(HostForm::class)
-            ->action(route('hosts.store'))
-            ->method(MethodEnum::POST)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->setAction(route('hosts.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -114,11 +114,11 @@ class HostController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $host);
 
         $form = app(HostForm::class)
-            ->action(route('hosts.update', $host->{Host::ID}))
-            ->data($host->toArrayWithTranslations())
-            ->id($host->{Host::ID})
-            ->method(MethodEnum::PATCH)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->setAction(route('hosts.update', $host->{Host::ID}))
+            ->setData($host->toArrayWithTranslations())
+            ->setId($host->{Host::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',

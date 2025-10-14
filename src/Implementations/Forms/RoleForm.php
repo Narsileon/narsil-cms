@@ -34,10 +34,11 @@ class RoleForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::models.role');
-        $this->routes = RouteService::getNames(Role::TABLE);
-        $this->submitLabel = trans('narsil::ui.save');
-        $this->title = trans('narsil::models.role');
+        $this
+            ->setDescription(trans('narsil::models.role'))
+            ->setRoutes(RouteService::getNames(Role::TABLE))
+            ->setSubmitLabel(trans('narsil::ui.save'))
+            ->setTitle(trans('narsil::models.role'));
     }
 
     #endregion
@@ -49,9 +50,9 @@ class RoleForm extends AbstractForm implements Contract
      */
     public function layout(): array
     {
-        $permissionOptions = static::getPermissionOptions();
+        $permissionSelectOptions = static::getPermissionSelectOptions();
 
-        $permissionElements = $permissionOptions->map(function ($options, $category)
+        $permissionElements = $permissionSelectOptions->map(function ($options, $category)
         {
             return new TemplateSectionElement([
                 TemplateSectionElement::RELATION_ELEMENT =>
@@ -101,9 +102,9 @@ class RoleForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * @return Collection<string,array<Permission>>
+     * @return Collection<string,array<SelectOption>>
      */
-    protected static function getPermissionOptions(): Collection
+    protected static function getPermissionSelectOptions(): Collection
     {
         return Permission::query()
             ->get()

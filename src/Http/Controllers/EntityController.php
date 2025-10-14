@@ -27,6 +27,7 @@ use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
 use Narsil\Models\Entities\EntityBlockField;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
@@ -106,11 +107,12 @@ class EntityController extends AbstractController
             ->make(EntityForm::class, [
                 'template' => $template
             ])
-            ->action(route('collections.store', [
+            ->setAction(route('collections.store', [
                 'collection' => $collection
             ]))
-            ->method(MethodEnum::POST)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -187,16 +189,19 @@ class EntityController extends AbstractController
             ->make(EntityForm::class, [
                 'template' => $template,
             ])
-            ->action(route('collections.update', [
+            ->setAction(route('collections.update', [
                 'id' => $entity->{Entity::ID},
                 'collection' => $collection,
             ]))
-            ->data($entity->toArrayWithTranslations())
-            ->id($entity->{Entity::UUID})
-            ->method(MethodEnum::PATCH)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->setData($entity->toArrayWithTranslations())
+            ->setId($entity->{Entity::UUID})
+            ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
 
-        $form->title("$form->title: $id");
+        $title = $form->getTitle();
+
+        $form->setTitle("$title: $id");
 
         return $this->render(
             component: 'narsil/cms::resources/form',

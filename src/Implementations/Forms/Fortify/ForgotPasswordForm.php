@@ -28,10 +28,11 @@ class ForgotPasswordForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->action = route('password.email');
-        $this->description = trans('narsil::ui.reset_password');
-        $this->submitLabel = trans('narsil::ui.send');
-        $this->title = trans('narsil::ui.reset_password');
+        $this
+            ->setAction(route('password.email'))
+            ->setDescription(trans('narsil::ui.reset_password'))
+            ->setSubmitLabel(trans('narsil::ui.send'))
+            ->setTitle(trans('narsil::ui.reset_password'));
     }
 
     #endregion

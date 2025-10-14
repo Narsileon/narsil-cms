@@ -50,7 +50,7 @@ class RelationsField extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
-        $templateOptions = static::getTemplateOptions();
+        $templateSelectOptions = static::getTemplateSelectOptions();
 
         return [
             new Field([
@@ -58,7 +58,7 @@ class RelationsField extends AbstractField implements Contract
                 Field::NAME => trans('narsil::ui.collections'),
                 Field::TYPE => SelectField::class,
                 Field::SETTINGS => app(SelectField::class)
-                    ->setOptions($templateOptions)
+                    ->setOptions($templateSelectOptions)
                     ->setMultiple(true),
             ]),
             new Field([
@@ -210,7 +210,12 @@ class RelationsField extends AbstractField implements Contract
 
     #region PROTECTED METHODS
 
-    protected static function getTemplateOptions(): array
+    /**
+     * Get the template select options.
+     *
+     * @return array<SelectOption>
+     */
+    protected static function getTemplateSelectOptions(): array
     {
         return Template::query()
             ->orderBy(Template::NAME)

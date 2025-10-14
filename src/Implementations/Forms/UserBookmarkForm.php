@@ -26,9 +26,10 @@ class UserBookmarkForm extends AbstractForm
     {
         parent::__construct();
 
-        $this->description = trans('narsil::bookmarks.bookmark');
-        $this->submitLabel = trans('narsil::ui.save');
-        $this->title = trans('narsil::bookmarks.bookmark');
+        $this
+            ->setDescription(trans('narsil::bookmarks.bookmark'))
+            ->setSubmitLabel(trans('narsil::ui.save'))
+            ->setTitle(trans('narsil::bookmarks.bookmark'));
     }
 
     #endregion

@@ -36,10 +36,11 @@ class TemplateForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::models.template');
-        $this->routes = RouteService::getNames(Template::TABLE);
-        $this->submitLabel = trans('narsil::ui.save');
-        $this->title = trans('narsil::models.template');
+        $this
+            ->setDescription(trans('narsil::models.template'))
+            ->setRoutes(RouteService::getNames(Template::TABLE))
+            ->setSubmitLabel(trans('narsil::ui.save'))
+            ->setTitle(trans('narsil::models.template'));
     }
 
     #endregion
@@ -51,10 +52,10 @@ class TemplateForm extends AbstractForm implements Contract
      */
     public function layout(): array
     {
-        $blockOptions = static::getBlockOptions();
-        $fieldOptions = static::getFieldOptions();
-        $setOptions = static::getSetOptions();
-        $widthOptions = static::getWidthOptions();
+        $blockSelectOptions = static::getBlockSelectOptions();
+        $fieldSelectOptions = static::getFieldSelectOptions();
+        $setSelectOptions = static::getSetSelectOptions();
+        $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
             static::mainSection([
@@ -99,7 +100,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             label: trans('narsil::models.block'),
                                             optionLabel: BlockElement::NAME,
                                             optionValue: BlockElement::HANDLE,
-                                            options: $blockOptions,
+                                            options: $blockSelectOptions,
                                             routes: RouteService::getNames(Block::TABLE),
                                         )
                                         ->addOption(
@@ -107,10 +108,10 @@ class TemplateForm extends AbstractForm implements Contract
                                             label: trans('narsil::models.field'),
                                             optionLabel: BlockElement::NAME,
                                             optionValue: BlockElement::HANDLE,
-                                            options: $fieldOptions,
+                                            options: $fieldSelectOptions,
                                             routes: RouteService::getNames(Field::TABLE),
                                         )
-                                        ->setWidthOptions($widthOptions),
+                                        ->setWidthOptions($widthSelectOptions),
                                 ])
                             )
                             ->setPlaceholder(trans('narsil::ui.add_section')),
@@ -127,7 +128,7 @@ class TemplateForm extends AbstractForm implements Contract
                                 label: trans('narsil::models.block'),
                                 optionLabel: BlockElement::NAME,
                                 optionValue: BlockElement::HANDLE,
-                                options: $setOptions,
+                                options: $setSelectOptions,
                                 routes: RouteService::getNames(Block::TABLE),
                             )
                             ->setUnique(true),
@@ -143,9 +144,11 @@ class TemplateForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * @return array
+     * Get the block select options.
+     *
+     * @return array<SelectOption>
      */
-    protected static function getBlockOptions(): array
+    protected static function getBlockSelectOptions(): array
     {
         return Block::query()
             ->whereDoesntHave(Block::RELATION_SETS)
@@ -165,9 +168,11 @@ class TemplateForm extends AbstractForm implements Contract
     }
 
     /**
-     * @return array
+     * Get the field select options.
+     *
+     * @return array<SelectOption>
      */
-    protected static function getFieldOptions(): array
+    protected static function getFieldSelectOptions(): array
     {
         return Field::query()
             ->orderBy(Field::NAME)
@@ -186,9 +191,11 @@ class TemplateForm extends AbstractForm implements Contract
     }
 
     /**
-     * @return array
+     * Get the set select options.
+     *
+     * @return array<SelectOption>
      */
-    protected static function getSetOptions(): array
+    protected static function getSetSelectOptions(): array
     {
         return Block::query()
             ->orderBy(Block::NAME)
@@ -207,9 +214,11 @@ class TemplateForm extends AbstractForm implements Contract
     }
 
     /**
-     * @return array
+     * Get the width select options.
+     *
+     * @return array<SelectOption>
      */
-    protected static function getWidthOptions(): array
+    protected static function getWidthSelectOptions(): array
     {
         return [
             new SelectOption('25%', '25'),

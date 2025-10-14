@@ -36,9 +36,10 @@ class UserConfigurationForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->action = route('user-configuration.store');
-        $this->method = MethodEnum::PUT;
-        $this->submitLabel = trans('narsil::ui.save');
+        $this
+            ->setAction(route('user-configuration.store'))
+            ->setMethod(MethodEnum::PUT)
+            ->setSubmitLabel(trans('narsil::ui.save'));
     }
 
     #endregion
@@ -50,8 +51,8 @@ class UserConfigurationForm extends AbstractForm implements Contract
      */
     public function layout(): array
     {
-        $colorOptions = static::getColorOptions();
-        $localeOptions = static::getLocaleOptions();
+        $colorSelectOptions = static::getColorSelectOptions();
+        $localeSelectOptions = static::getLocaleSelectOptions();
 
         return [
             new Field([
@@ -60,7 +61,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::TYPE => SelectField::class,
                 Field::SETTINGS => app(SelectField::class)
                     ->setDefaultValue(App::getLocale())
-                    ->setOptions($localeOptions)
+                    ->setOptions($localeSelectOptions)
                     ->setRequired(true),
             ]),
             new Field([
@@ -69,7 +70,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::TYPE => SelectField::class,
                 Field::SETTINGS => app(SelectField::class)
                     ->setDefaultValue(ColorEnum::GRAY->value)
-                    ->setOptions($colorOptions)
+                    ->setOptions($colorSelectOptions)
                     ->setRequired(true),
             ]),
             new Field([
@@ -90,9 +91,11 @@ class UserConfigurationForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * @return array<string>
+     * Get the color select options.
+     *
+     * @return array<SelectOption>
      */
-    protected static function getColorOptions(): array
+    protected static function getColorSelectOptions(): array
     {
         $options = [];
 
@@ -115,9 +118,11 @@ class UserConfigurationForm extends AbstractForm implements Contract
     #endregion
 
     /**
-     * @return array<string>
+     * Get the locale select options.
+     *
+     * @return array<SelectOption>
      */
-    protected static function getLocaleOptions(): array
+    protected static function getLocaleSelectOptions(): array
     {
         $locales = ResourceBundle::getLocales('');
 

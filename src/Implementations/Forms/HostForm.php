@@ -39,10 +39,11 @@ class HostForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::models.host');
-        $this->routes = RouteService::getNames(Host::TABLE);
-        $this->submitLabel = trans('narsil::ui.save');
-        $this->title = trans('narsil::models.host');
+        $this
+            ->setDescription(trans('narsil::models.host'))
+            ->setRoutes(RouteService::getNames(Host::TABLE))
+            ->setSubmitLabel(trans('narsil::ui.save'))
+            ->setTitle(trans('narsil::models.host'));
     }
 
     #endregion
@@ -54,8 +55,8 @@ class HostForm extends AbstractForm implements Contract
      */
     public function layout(): array
     {
-        $countryOptions = $this->getCountryOptions();
-        $languageOptions = $this->getLanguageOptions();
+        $countrySelectOptions = $this->getCountrySelectOptions();
+        $languageSelectOptions = $this->getLanguageSelectOptions();
 
         return [
             static::mainSection([
@@ -97,7 +98,7 @@ class HostForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.country'),
                                     Field::TYPE => SelectField::class,
                                     Field::SETTINGS => app(SelectField::class)
-                                        ->setOptions($countryOptions),
+                                        ->setOptions($countrySelectOptions),
                                 ]),
                                 new Field([
                                     Field::HANDLE => HostLocale::RELATION_LANGUAGES,
@@ -110,7 +111,7 @@ class HostForm extends AbstractForm implements Contract
                                                 Field::NAME => trans('narsil::validation.attributes.language'),
                                                 Field::TYPE => SelectField::class,
                                                 Field::SETTINGS => app(SelectField::class)
-                                                    ->setOptions($languageOptions)
+                                                    ->setOptions($languageSelectOptions)
                                                     ->setRequired(true),
                                             ]),
                                         ])
@@ -130,9 +131,11 @@ class HostForm extends AbstractForm implements Contract
     #region PROTECTED METHODS
 
     /**
+     * Get the country select options.
+     *
      * @return array<SelectOption>
      */
-    protected function getCountryOptions(): array
+    protected function getCountrySelectOptions(): array
     {
         $locales = \ResourceBundle::getLocales('');
 
@@ -179,9 +182,11 @@ class HostForm extends AbstractForm implements Contract
     }
 
     /**
+     * Get the language select options.
+     *
      * @return array<SelectOption>
      */
-    protected function getLanguageOptions(): array
+    protected function getLanguageSelectOptions(): array
     {
         $locales = ResourceBundle::getLocales('');
 

@@ -27,9 +27,10 @@ class BlockElementForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this->description = trans('narsil::ui.element');
-        $this->submitLabel = trans('narsil::ui.save');
-        $this->title = trans('narsil::ui.element');
+        $this
+            ->setDescription(trans('narsil::ui.element'))
+            ->setSubmitLabel(trans('narsil::ui.save'))
+            ->setTitle(trans('narsil::ui.element'));
     }
 
     #endregion

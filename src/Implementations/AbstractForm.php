@@ -32,7 +32,7 @@ abstract class AbstractForm implements Form
      */
     public function __construct()
     {
-        $this->languageOptions(config('narsil.locales'));
+        $this->setLanguageOptions(config('narsil.locales'));
 
         app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
@@ -55,6 +55,48 @@ abstract class AbstractForm implements Form
     #region PROPERTIES
 
     /**
+     * The action of the form.
+     *
+     * @var string
+     */
+    protected string $action = '';
+
+    /**
+     * The data of the form.
+     *
+     * @var Model|array
+     */
+    protected Model|array $data = [];
+
+    /**
+     * The description of the form.
+     *
+     * @var string
+     */
+    protected string $description = '';
+
+    /**
+     * The id of the form.
+     *
+     * @var integer|string|null
+     */
+    protected int|string|null $id = null;
+
+    /**
+     * The language options of the form.
+     *
+     * @var array<SelectOption>
+     */
+    protected array $languageOptions = [];
+
+    /**
+     * The method of the form.
+     *
+     * @var MethodEnum
+     */
+    protected MethodEnum $method = MethodEnum::POST;
+
+    /**
      * The routes associated to the form.
      *
      * @param array<string,string>
@@ -62,49 +104,25 @@ abstract class AbstractForm implements Form
     protected array $routes = [];
 
     /**
-     * {@inheritDoc}
+     * The icon of the submit button.
+     *
+     * @param string|null
      */
-    public protected(set) string $action = '';
+    protected ?string $submitIcon = null;
 
     /**
-     * {@inheritDoc}
+     * The label of the submit button.
+     *
+     * @param string
      */
-    public protected(set) Model|array $data = [];
+    protected string $submitLabel = '';
 
     /**
-     * {@inheritDoc}
+     * The title of the form.
+     *
+     * @param string
      */
-    public protected(set) string $description = '';
-
-    /**
-     * {@inheritDoc}
-     */
-    public protected(set) mixed $id = null;
-
-    /**
-     * {@inheritDoc}
-     */
-    public protected(set) array $languageOptions = [];
-
-    /**
-     * {@inheritDoc}
-     */
-    public protected(set) MethodEnum $method = MethodEnum::POST;
-
-    /**
-     * {@inheritDoc}
-     */
-    public protected(set) ?string $submitIcon = null;
-
-    /**
-     * {@inheritDoc}
-     */
-    public protected(set) string $submitLabel = '';
-
-    /**
-     * {@inheritDoc}
-     */
-    public protected(set) string $title = '';
+    protected string $title = '';
 
     #endregion
 
@@ -116,26 +134,110 @@ abstract class AbstractForm implements Form
     public function jsonSerialize(): mixed
     {
         return [
-            'action' => $this->action,
-            'data' => $this->data,
-            'description' => $this->description,
+            'action' => $this->getAction(),
+            'data' => $this->getData(),
+            'description' => $this->getDescription(),
             'id' => $this->getDefaultId($this->id),
-            'languageOptions' => $this->languageOptions,
+            'languageOptions' => $this->getLanguageOptions(),
             'layout' => $this->layout(),
-            'method' => $this->method,
+            'method' => $this->getMethod(),
             'routes' => $this->routes,
-            'submitIcon' => $this->submitIcon,
-            'submitLabel' => $this->submitLabel,
-            'title' => $this->title,
+            'submitIcon' => $this->getSubmitIcon(),
+            'submitLabel' => $this->getSubmitLabel(),
+            'title' => $this->getTitle(),
         ];
     }
+
+    #region • GETTERS
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAction(): string
+    {
+        return $this->action;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getData(): Model|array
+    {
+        return $this->data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getId(): int|string
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLanguageOptions(): array
+    {
+        return $this->languageOptions;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMethod(): MethodEnum
+    {
+        return $this->method;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRoutes(): array
+    {
+        return $this->routes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSubmitIcon(): ?string
+    {
+        return $this->submitIcon;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSubmitLabel(): string
+    {
+        return $this->submitLabel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    #endregion
 
     #region • SETTERS
 
     /**
      * {@inheritDoc}
      */
-    public function action(string $action): static
+    public function setAction(string $action): static
     {
         $this->action = $action;
 
@@ -145,7 +247,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function data(Model|array $data): static
+    public function setData(Model|array $data): static
     {
         $this->data = $data;
 
@@ -155,7 +257,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function description(string $description): static
+    public function setDescription(string $description): static
     {
         $this->description = $description;
 
@@ -165,7 +267,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function id(mixed $id): static
+    public function setId(mixed $id): static
     {
         $this->id = $id;
 
@@ -175,7 +277,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function languageOptions(array $locales): static
+    public function setLanguageOptions(array $locales): static
     {
         $languageOptions = [];
 
@@ -195,7 +297,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function method(MethodEnum $method): static
+    public function setMethod(MethodEnum $method): static
     {
         $this->method = $method;
 
@@ -205,7 +307,17 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function submitIcon(?string $submitIcon): static
+    public function setRoutes(array $routes): static
+    {
+        $this->routes = $routes;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSubmitIcon(?string $submitIcon): static
     {
         $this->submitIcon = $submitIcon;
 
@@ -215,7 +327,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function submitLabel(string $submitLabel): static
+    public function setSubmitLabel(string $submitLabel): static
     {
         $this->submitLabel = $submitLabel;
 
@@ -225,7 +337,7 @@ abstract class AbstractForm implements Form
     /**
      * {@inheritDoc}
      */
-    public function title(string $title): static
+    public function setTitle(string $title): static
     {
         $this->title = $title;
 
