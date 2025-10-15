@@ -99,7 +99,7 @@ return new class extends Migration
             $blueprint
                 ->string(Role::HANDLE);
             $blueprint
-                ->json(Role::NAME);
+                ->jsonb(Role::NAME);
             $blueprint
                 ->timestamps();
         });

@@ -102,6 +102,23 @@ class TableColumn
 
         switch ($type)
         {
+            case TypeNameEnum::BIGINT->value:
+            case TypeNameEnum::DECIMAL->value:
+            case TypeNameEnum::DOUBLE->value:
+            case TypeNameEnum::FLOAT->value:
+            case TypeNameEnum::FLOAT4->value:
+            case TypeNameEnum::FLOAT8->value:
+            case TypeNameEnum::INT2->value:
+            case TypeNameEnum::INT4->value:
+            case TypeNameEnum::INT8->value:
+            case TypeNameEnum::INTEGER->value:
+            case TypeNameEnum::NUMERIC->value:
+            case TypeNameEnum::SMALLINT->value:
+                $field = new Field([
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class),
+                ]);
+                break;
             case TypeNameEnum::DATE->value:
             case TypeNameEnum::DATETIME->value:
             case TypeNameEnum::TIMESTAMP->value:
@@ -114,17 +131,6 @@ class TableColumn
                 $field = new Field([
                     Field::TYPE => TimeField::class,
                     Field::SETTINGS => app(TimeField::class),
-                ]);
-                break;
-            case TypeNameEnum::INTEGER->value:
-            case TypeNameEnum::BIGINT->value:
-            case TypeNameEnum::SMALLINT->value:
-            case TypeNameEnum::DECIMAL->value:
-            case TypeNameEnum::FLOAT->value:
-            case TypeNameEnum::DOUBLE->value:
-                $field = new Field([
-                    Field::TYPE => NumberField::class,
-                    Field::SETTINGS => app(NumberField::class),
                 ]);
                 break;
             case TypeNameEnum::STRING->value:

@@ -102,9 +102,9 @@ return new class extends Migration
             $blueprint
                 ->string(TemplateSectionElement::HANDLE);
             $blueprint
-                ->json(TemplateSectionElement::NAME);
+                ->jsonb(TemplateSectionElement::NAME);
             $blueprint
-                ->json(TemplateSectionElement::DESCRIPTION)
+                ->jsonb(TemplateSectionElement::DESCRIPTION)
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->integer(TemplateSectionElement::POSITION)
@@ -133,7 +133,7 @@ return new class extends Migration
             $blueprint
                 ->string(TemplateSection::HANDLE);
             $blueprint
-                ->json(TemplateSection::NAME);
+                ->jsonb(TemplateSection::NAME);
             $blueprint
                 ->integer(TemplateSection::POSITION)
                 ->nullable();
@@ -156,7 +156,7 @@ return new class extends Migration
             $blueprint
                 ->string(Template::HANDLE);
             $blueprint
-                ->json(Template::NAME);
+                ->jsonb(Template::NAME);
             $blueprint
                 ->timestamps();
         });

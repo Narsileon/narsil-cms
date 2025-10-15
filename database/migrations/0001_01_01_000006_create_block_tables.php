@@ -107,9 +107,9 @@ return new class extends Migration
             $blueprint
                 ->string(BlockElement::HANDLE);
             $blueprint
-                ->json(BlockElement::NAME);
+                ->jsonb(BlockElement::NAME);
             $blueprint
-                ->json(BlockElement::DESCRIPTION)
+                ->jsonb(BlockElement::DESCRIPTION)
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->integer(BlockElement::POSITION)
@@ -134,7 +134,7 @@ return new class extends Migration
             $blueprint
                 ->string(Block::HANDLE);
             $blueprint
-                ->json(Block::NAME);
+                ->jsonb(Block::NAME);
             $blueprint
                 ->boolean(Block::COLLAPSIBLE)
                 ->default(false);

@@ -82,7 +82,7 @@ abstract class MigrationService
         if ($field->{Field::TRANSLATABLE})
         {
             $column = $table
-                ->json($handle)
+                ->jsonb($handle)
                 ->default(new Expression('(JSON_OBJECT())'));
         }
         else
@@ -95,7 +95,7 @@ abstract class MigrationService
                 NumberField::class => $table->integer($handle),
                 PasswordField::class => $table->string($handle),
                 RangeField::class => $table->integer($handle),
-                RelationsField::class => $table->json($handle),
+                RelationsField::class => $table->jsonb($handle),
                 RichTextField::class => $table->text($handle),
                 SelectField::class => $table->string($handle),
                 SwitchField::class => $table->boolean($handle),

@@ -114,11 +114,12 @@ abstract class QueryService
         {
             switch ($column->type)
             {
+                case TypeNameEnum::JSONB->value:
+                case TypeNameEnum::LONGTEXT->value:
+                    $query->orWhereLike("$column->name->$locale", '%' . $search . '%');
                 case TypeNameEnum::VARCHAR->value:
                     $query->orWhereLike($column->name, '%' . $search . '%');
                     break;
-                case TypeNameEnum::LONGTEXT->value:
-                    $query->orWhereLike("$column->name->$locale", '%' . $search . '%');
                 default:
                     break;
             }

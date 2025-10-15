@@ -136,10 +136,8 @@ class CollectionMigration extends Migration
                 ->constrained(Entity::getTableName(), Entity::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(EntityBlock::PARENT_UUID)
-                ->nullable()
-                ->constrained(EntityBlock::getTableName(), EntityBlock::UUID)
-                ->nullOnDelete();
+                ->uuid(EntityBlock::PARENT_UUID)
+                ->nullable();
             $blueprint
                 ->foreignId(EntityBlock::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)
@@ -147,6 +145,15 @@ class CollectionMigration extends Migration
             $blueprint
                 ->integer(EntityBlock::POSITION)
                 ->default(0);
+        });
+
+        Schema::table(EntityBlock::getTableName(), function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->foreign(EntityBlock::PARENT_UUID)
+                ->references(EntityBlock::UUID)
+                ->on(EntityBlock::getTableName())
+                ->nullOnDelete();
         });
     }
 
@@ -171,7 +178,7 @@ class CollectionMigration extends Migration
                 ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->json(EntityBlockField::VALUE)
+                ->jsonb(EntityBlockField::VALUE)
                 ->nullable();
         });
     }

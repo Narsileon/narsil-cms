@@ -63,7 +63,8 @@ return new class extends Migration
             $blueprint
                 ->bigInteger(Relation::TARGET_ID);
             $blueprint
-                ->softDeletes(Relation::DELETED_AT);
+                ->softDeletes(Relation::DELETED_AT)
+                ->index();
         });
     }
 

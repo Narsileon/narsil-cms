@@ -70,7 +70,7 @@ return new class extends Migration
             $blueprint
                 ->integer(FieldOption::POSITION);
             $blueprint
-                ->json(FieldOption::LABEL);
+                ->jsonb(FieldOption::LABEL);
             $blueprint
                 ->string(FieldOption::VALUE);
             $blueprint
@@ -115,15 +115,15 @@ return new class extends Migration
             $blueprint
                 ->string(Field::TYPE);
             $blueprint
-                ->json(Field::NAME);
+                ->jsonb(Field::NAME);
             $blueprint
-                ->json(Field::DESCRIPTION)
+                ->jsonb(Field::DESCRIPTION)
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->boolean(Field::TRANSLATABLE)
                 ->default(false);
             $blueprint
-                ->json(Field::SETTINGS)
+                ->jsonb(Field::SETTINGS)
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->timestamps();

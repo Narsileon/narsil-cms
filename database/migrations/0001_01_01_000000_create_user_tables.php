@@ -169,7 +169,7 @@ return new class extends Migration
                 ->string(UserConfiguration::THEME)
                 ->default(ThemeEnum::SYSTEM->value);
             $blueprint
-                ->json(UserConfiguration::PREFERENCES)
+                ->jsonb(UserConfiguration::PREFERENCES)
                 ->nullable();
             $blueprint
                 ->timestamps();

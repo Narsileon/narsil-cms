@@ -25,9 +25,16 @@ enum TypeNameEnum: string
     case DOUBLE = 'double';
     case ENUM = 'enum';
     case FLOAT = 'float';
+    case FLOAT4 = 'float4';
+    case FLOAT8 = 'float8';
+    case INT2 = 'int2';
+    case INT4 = 'int4';
+    case INT8 = 'int8';
     case INTEGER = 'integer';
     case JSON = 'json';
+    case JSONB = 'jsonb';
     case LONGTEXT = 'longtext';
+    case NUMERIC = 'numeric';
     case SET = 'set';
     case SMALLINT = 'smallint';
     case STRING = 'string';

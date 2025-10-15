@@ -119,7 +119,7 @@ return new class extends Migration
             $blueprint
                 ->id(Host::ID);
             $blueprint
-                ->json(Host::NAME);
+                ->jsonb(Host::NAME);
             $blueprint
                 ->string(Host::HANDLE);
             $blueprint
