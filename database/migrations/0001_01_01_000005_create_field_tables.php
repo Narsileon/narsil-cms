@@ -62,7 +62,8 @@ return new class extends Migration
         Schema::create(FieldOption::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FieldOption::ID);
+                ->uuid(FieldOption::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(FieldOption::FIELD_ID)
                 ->constrained(Field::TABLE, Field::ID)

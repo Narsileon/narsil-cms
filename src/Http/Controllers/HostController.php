@@ -260,7 +260,7 @@ class HostController extends AbstractController
 
         foreach ($languages as $position => $language)
         {
-            $id = Arr::get($language, HostLocaleLanguage::ID);
+            $id = Arr::get($language, HostLocaleLanguage::UUID);
 
             $hostLocaleLanguage = $hostLocale
                 ->languages()
@@ -284,12 +284,12 @@ class HostController extends AbstractController
                     ]);
             }
 
-            $processed[] = $hostLocaleLanguage->{HostLocaleLanguage::ID};
+            $processed[] = $hostLocaleLanguage->{HostLocaleLanguage::UUID};
         }
 
         $hostLocale
             ->languages()
-            ->whereNotIn(HostLocaleLanguage::ID, $processed)
+            ->whereNotIn(HostLocaleLanguage::UUID, $processed)
             ->delete();
     }
 
@@ -305,7 +305,7 @@ class HostController extends AbstractController
 
         foreach ($locales as $position => $locale)
         {
-            $id = Arr::get($locale, HostLocale::ID);
+            $id = Arr::get($locale, HostLocale::UUID);
 
             $hostLocale = $host
                 ->locales()
@@ -331,14 +331,14 @@ class HostController extends AbstractController
                     ]);
             }
 
-            $processed[] = $hostLocale->{HostLocale::ID};
+            $processed[] = $hostLocale->{HostLocale::UUID};
 
             $this->syncLanguages($hostLocale, Arr::get($locale, HostLocale::RELATION_LANGUAGES, []));
         }
 
         $host
             ->locales()
-            ->whereNotIn(HostLocale::ID, $processed)
+            ->whereNotIn(HostLocale::UUID, $processed)
             ->delete();
     }
 

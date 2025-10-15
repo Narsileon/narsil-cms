@@ -10,7 +10,6 @@ import {
   type DragCancelEvent,
   type DragEndEvent,
   type DragStartEvent,
-  type UniqueIdentifier,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -39,8 +38,8 @@ import { get, set, upperFirst } from "lodash";
 import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
 
-type TableItem = {
-  id: UniqueIdentifier;
+type TableItem = Record<string, string> & {
+  uuid: string;
 };
 
 type TableProps = {
@@ -71,10 +70,10 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
     }
 
     const activeIndex = rows.findIndex((row) => {
-      return row.id === active.id;
+      return row.uuid === active.id;
     });
     const overIndex = rows.findIndex((row) => {
-      return row.id === over.id;
+      return row.uuid === over.id;
     });
 
     if (activeIndex === overIndex) {
@@ -90,7 +89,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
     }
 
     const activeRow = rows.find((row) => {
-      return row.id === active.id;
+      return row.uuid === active.id;
     });
 
     if (!activeRow) {
@@ -100,22 +99,22 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
     setActive(activeRow);
   }
 
-  function onAdd(id: UniqueIdentifier) {
-    setRows([...rows, { id: id }]);
+  function onAdd(uuid: string) {
+    setRows([...rows, { uuid: uuid }]);
   }
 
-  function onRemove(id: UniqueIdentifier) {
+  function onRemove(uuid: string) {
     setRows(
       rows.filter((row) => {
-        return row.id !== id;
+        return row.uuid !== uuid;
       }),
     );
   }
 
-  function onUpdate(id: UniqueIdentifier, key: string, value: unknown) {
+  function onUpdate(uuid: string, key: string, value: unknown) {
     setRows(
       rows.map((row) => {
-        return row.id === id ? set({ ...row }, key, value) : row;
+        return row.uuid === uuid ? set({ ...row }, key, value) : row;
       }),
     );
   }
@@ -128,7 +127,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
       onDragEnd={onDragEnd}
       onDragStart={onDragStart}
     >
-      <SortableContext items={rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
+      <SortableContext items={rows.map((row) => row.uuid)} strategy={verticalListSortingStrategy}>
         <TableWrapper>
           <TableRoot className="w-full table-fixed">
             <TableHeader>
@@ -147,9 +146,13 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
             <TableBody>
               {rows.map((row) => {
                 return (
-                  <SortableItem className="h-11" id={row.id} onRemove={onRemove} key={row.id}>
+                  <SortableItem className="h-11" id={row.uuid} onRemove={onRemove} key={row.uuid}>
                     {columns.map((column, index) => {
-                      const value = get(row, column.handle, column.settings.value);
+                      const value = get(
+                        row,
+                        column.handle,
+                        "value" in column.settings ? column.settings.value : null,
+                      );
 
                       return (
                         <TableCell className="px-0.5 py-0" key={index}>
@@ -158,7 +161,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
                             element: column,
                             value: value,
                             setValue: (value) => {
-                              onUpdate(row.id, column.handle, value);
+                              onUpdate(row.uuid, column.handle, value);
                             },
                           })}
                         </TableCell>
@@ -183,7 +186,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
               <DragOverlay>
                 {active ? (
                   <TableRoot>
-                    <SortableItem id={active.id} className="h-11">
+                    <SortableItem id={active.uuid} className="h-11">
                       {columns.map((column, index) => {
                         return <TableCell key={index} />;
                       })}
@@ -205,9 +208,9 @@ export default Table;
 type SortableItemProps = Omit<ComponentProps<typeof TableRow>, "id"> & {
   colSpan?: number;
   disabled?: boolean;
-  id: UniqueIdentifier;
+  id: string;
   placeholder?: boolean;
-  onRemove?: (id: UniqueIdentifier) => void;
+  onRemove?: (id: string) => void;
 };
 
 function SortableItem({

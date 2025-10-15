@@ -30,12 +30,11 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block, Field } from "@narsil-cms/types";
-import { uniqueId } from "lodash";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
 type Arrayitem = Record<string, string> & {
-  id: string | number;
+  uuid: string;
 };
 
 type ArrayProps = {
@@ -63,8 +62,8 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
 
   function onDragEnd({ active, over }: DragEndEvent) {
     if (over) {
-      const activeIndex = items.findIndex((item) => item.id === active.id);
-      const overIndex = items.findIndex((item) => item.id === over.id);
+      const activeIndex = items.findIndex((item) => item.uuid === active.id);
+      const overIndex = items.findIndex((item) => item.uuid === over.id);
 
       if (activeIndex !== overIndex) {
         setItems(arrayMove(items, activeIndex, overIndex));
@@ -75,7 +74,7 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const item = items.find((item) => item.id === active.id) as Arrayitem;
+    const item = items.find((item) => item.uuid === active.id) as Arrayitem;
     setActive(item);
   }
 
@@ -89,7 +88,7 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
         onDragStart={onDragStart}
       >
         <SortableContext
-          items={items.map((item) => item.id)}
+          items={items.map((item) => item.uuid)}
           strategy={verticalListSortingStrategy}
         >
           <ul className="grid gap-4">
@@ -98,14 +97,14 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
                 <SortableItem
                   form={form}
                   handle={id}
-                  id={item.id}
+                  id={item.uuid}
                   index={index}
                   item={item}
                   labelKey={labelKey}
                   onItemRemove={() => {
-                    setItems(items.filter((x) => x.id !== item.id));
+                    setItems(items.filter((x) => x.uuid !== item.uuid));
                   }}
-                  key={item.id}
+                  key={item.uuid}
                 />
               );
             })}
@@ -113,14 +112,14 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
         </SortableContext>
         {createPortal(
           <DragOverlay>
-            {active ? <SortableItem id={active.id} item={active} labelKey={labelKey} /> : null}
+            {active ? <SortableItem id={active.uuid} item={active} labelKey={labelKey} /> : null}
           </DragOverlay>,
           document.body,
         )}
       </DndContext>
       <Button
         className="mt-4"
-        onClick={() => setItems([...items, { id: uniqueId("value"), [labelKey]: "" }])}
+        onClick={() => setItems([...items, { uuid: crypto.randomUUID(), [labelKey]: "" }])}
       >
         {trans("ui.add")}
       </Button>

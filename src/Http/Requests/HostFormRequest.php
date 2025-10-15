@@ -43,7 +43,7 @@ class HostFormRequest implements Contract
                 FormRule::STRING,
                 FormRule::NULLABLE,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::ID => [
+            Host::RELATION_LOCALES . '.*.' . HostLocale::UUID => [
                 FormRule::STRING,
                 FormRule::SOMETIMES,
             ],
@@ -55,7 +55,7 @@ class HostFormRequest implements Contract
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::ID => [
+            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::UUID => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],

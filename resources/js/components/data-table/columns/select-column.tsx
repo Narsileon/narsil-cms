@@ -31,6 +31,7 @@ function getSelectColumn(): ColumnDef<Model> {
         <Checkbox
           aria-label={label}
           checked={checked}
+          onClick={(event) => event.stopPropagation()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
         />
       );

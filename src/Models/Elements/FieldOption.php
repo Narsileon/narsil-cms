@@ -4,6 +4,7 @@ namespace Narsil\Models\Elements;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\Elements\Field;
@@ -18,6 +19,7 @@ use Narsil\Traits\HasTranslations;
 class FieldOption extends Model
 {
     use HasTranslations;
+    use HasUuids;
 
     #region CONSTRUCTOR
 
@@ -28,12 +30,14 @@ class FieldOption extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
+
         $this->translatable = [
             self::LABEL,
         ];
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -60,13 +64,6 @@ class FieldOption extends Model
     final public const FIELD_ID = 'field_id';
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "label" column.
      *
      * @var string
@@ -79,6 +76,13 @@ class FieldOption extends Model
      * @var string
      */
     final public const POSITION = 'position';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     /**
      * The name of the "value" column.

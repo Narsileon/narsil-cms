@@ -4,6 +4,7 @@ namespace Narsil\Models\Hosts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Traits\HasAuditLogs;
@@ -17,6 +18,7 @@ use Narsil\Traits\HasAuditLogs;
 class HostLocaleLanguage extends Model
 {
     use HasAuditLogs;
+    use HasUuids;
 
     #region CONSTRUCTOR
 
@@ -27,8 +29,10 @@ class HostLocaleLanguage extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
+
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -48,13 +52,6 @@ class HostLocaleLanguage extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "language" column.
      *
      * @var string
@@ -62,11 +59,11 @@ class HostLocaleLanguage extends Model
     final public const LANGUAGE = 'language';
 
     /**
-     * The name of the "locale id" column.
+     * The name of the "locale uuid" column.
      *
      * @var string
      */
-    final public const LOCALE_ID = 'locale_id';
+    final public const LOCALE_UUID = 'locale_uuid';
 
     /**
      * The name of the "position" column.
@@ -74,6 +71,13 @@ class HostLocaleLanguage extends Model
      * @var string
      */
     final public const POSITION = 'position';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 
@@ -119,8 +123,8 @@ class HostLocaleLanguage extends Model
         return $this
             ->belongsTo(
                 HostLocale::class,
-                self::LOCALE_ID,
-                HostLocale::ID
+                self::LOCALE_UUID,
+                HostLocale::UUID,
             );
     }
 

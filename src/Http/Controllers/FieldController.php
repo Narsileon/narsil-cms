@@ -266,7 +266,7 @@ class FieldController extends AbstractController
      */
     protected function syncOptions(Field $field, array $options): void
     {
-        $ids = [];
+        $uuids = [];
 
         foreach ($options as $key => $option)
         {
@@ -278,11 +278,11 @@ class FieldController extends AbstractController
                 FieldOption::LABEL => $option[FieldOption::LABEL],
             ]);
 
-            $ids[] = $fieldOption->{FieldOption::ID};
+            $uuids[] = $fieldOption->{FieldOption::UUID};
         }
 
         $field->options()
-            ->whereNotIn(FieldOption::ID, $ids)
+            ->whereNotIn(FieldOption::UUID, $uuids)
             ->delete();
     }
 

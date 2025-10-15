@@ -1,3 +1,4 @@
+import { router } from "@inertiajs/react";
 import { Button, Heading } from "@narsil-cms/blocks";
 import {
   DataTableColumns,
@@ -39,6 +40,17 @@ function DataTable({ collection, title }: DataTableProps) {
   const columnsLabel = trans("ui.columns");
   const createLabel = trans("ui.create");
   const filterLabel = trans("ui.filters");
+
+  function onRowClick(id: number) {
+    if (collection.meta.routes.edit) {
+      router.visit(
+        route(collection.meta.routes.edit, {
+          ...collection.meta.routes.params,
+          id: id,
+        }),
+      );
+    }
+  }
 
   return (
     <SectionRoot className="h-full gap-4 p-4">
@@ -118,7 +130,12 @@ function DataTable({ collection, title }: DataTableProps) {
               {dataTable.getRowModel().rows?.length ? (
                 dataTable.getRowModel().rows.map((row) => {
                   return (
-                    <DataTableRow selected={row.getIsSelected()} key={row.id}>
+                    <DataTableRow
+                      className="cursor-pointer"
+                      onClick={() => onRowClick(row.original.id)}
+                      selected={row.getIsSelected()}
+                      key={row.id}
+                    >
                       {row.getVisibleCells().map((cell) => {
                         return (
                           <TableCell

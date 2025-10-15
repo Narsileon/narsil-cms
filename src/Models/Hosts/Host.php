@@ -119,7 +119,7 @@ class Host extends Model
             ->hasMany(
                 HostLocale::class,
                 HostLocale::HOST_ID,
-                self::ID
+                self::ID,
             )
             ->orderBy(HostLocale::POSITION);
     }

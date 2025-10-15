@@ -62,11 +62,12 @@ return new class extends Migration
         Schema::create(HostLocaleLanguage::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(HostLocaleLanguage::ID);
+                ->uuid(HostLocaleLanguage::UUID)
+                ->primary();
             $blueprint
-                ->foreignId(HostLocaleLanguage::LOCALE_ID)
+                ->foreignUuid(HostLocaleLanguage::LOCALE_UUID)
                 ->nullable()
-                ->constrained(HostLocale::TABLE, HostLocale::ID)
+                ->constrained(HostLocale::TABLE, HostLocale::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(HostLocaleLanguage::LANGUAGE);
@@ -87,7 +88,8 @@ return new class extends Migration
         Schema::create(HostLocale::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(HostLocale::ID);
+                ->uuid(HostLocale::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(HostLocale::HOST_ID)
                 ->nullable()

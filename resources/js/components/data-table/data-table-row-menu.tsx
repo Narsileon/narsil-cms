@@ -40,6 +40,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
               icon="more-horizontal"
               size="icon"
               variant="ghost"
+              onClick={(event) => event.stopPropagation()}
             />
           </div>
         </DropdownMenuTrigger>
