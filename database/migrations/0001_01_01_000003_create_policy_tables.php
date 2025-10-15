@@ -124,8 +124,6 @@ return new class extends Migration
                 ->foreignId(RolePermission::PERMISSION_ID)
                 ->constrained(Permission::TABLE, Permission::ID)
                 ->cascadeOnDelete();
-            $blueprint
-                ->timestamps();
         });
     }
 
@@ -148,8 +146,6 @@ return new class extends Migration
                 ->foreignId(UserPermission::PERMISSION_ID)
                 ->constrained(Permission::TABLE, Permission::ID)
                 ->cascadeOnDelete();
-            $blueprint
-                ->timestamps();
         });
     }
 
@@ -172,8 +168,6 @@ return new class extends Migration
                 ->foreignId(UserRole::ROLE_ID)
                 ->constrained(Role::TABLE, Role::ID)
                 ->cascadeOnDelete();
-            $blueprint
-                ->timestamps();
         });
     }
 

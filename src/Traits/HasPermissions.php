@@ -189,7 +189,10 @@ trait HasPermissions
     {
         return Permission::query()
             ->where(Permission::NAME, $permission)
-            ->orWhere(Permission::ID, $permission)
+            ->when(is_int($permission), function ($query) use ($permission)
+            {
+                $query->orWhere(Permission::ID, $permission);
+            })
             ->first();
     }
 

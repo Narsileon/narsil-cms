@@ -26,7 +26,7 @@ class UserRole extends Pivot
     {
         $this->table = self::TABLE;
 
-        $this->incrementing = true;
+        $this->timestamps = false;
 
         $this->mergeGuarded([
             self::ID,
