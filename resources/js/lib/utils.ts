@@ -10,21 +10,34 @@ export function getSelectOption(
   option: string | Record<string, unknown> | string,
   key: string,
 ): string {
-  const label = isString(option) ? option : get(option, key);
+  const value = isString(option) ? option : get(option, key);
 
-  return label as string;
+  return value as string;
 }
 
 export function getTranslatableSelectOption(
   option: string | Record<string, unknown>,
   key: string,
   language: string,
+  fallbackLanguage?: string,
 ): string {
-  let label = isString(option) ? option : get(option, key);
+  let value = isString(option) ? option : get(option, key);
 
-  if (isObject(label)) {
-    label = get(label, language);
+  if (isObject(value)) {
+    let translatedValue = get(value, language);
+
+    if (!translatedValue && fallbackLanguage) {
+      translatedValue = get(value, fallbackLanguage);
+    }
+
+    if (!translatedValue) {
+      const firstKey = Object.keys(value)[0];
+
+      translatedValue = get(value, firstKey, "");
+    }
+
+    value = translatedValue;
   }
 
-  return label as string;
+  return value as string;
 }

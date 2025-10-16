@@ -10,11 +10,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
-import { FormItem, FormLabel } from "@narsil-cms/components/form";
+import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { getField } from "@narsil-cms/plugins/fields";
 import type { FormType } from "@narsil-cms/types";
-import { get, set } from "lodash";
+import { get } from "lodash";
 import { useState } from "react";
 import { type AnonymousItem } from ".";
 
@@ -67,30 +66,24 @@ function SortableItemForm({
           <VisuallyHidden>
             <DialogDescription></DialogDescription>
           </VisuallyHidden>
-          {form.layout.map((field, index) => {
-            if ("settings" in field) {
+          <FormProvider
+            id={form.id}
+            action={form.action}
+            elements={form.layout}
+            method={form.method}
+            initialValues={data}
+            languageOptions={form.languageOptions}
+            render={() => {
               return (
-                <FormItem key={index}>
-                  <FormLabel required={true}>{field.name}</FormLabel>
-                  {getField(field.type, {
-                    id: field.handle,
-                    element: field,
-                    value: data[field.handle],
-                    setValue: (value) => {
-                      const nextData = { ...data };
-
-                      set(nextData, field.handle, value);
-
-                      setData(nextData);
-                    },
+                <FormRoot className="grid-cols-12 gap-4">
+                  {form.layout.map((element, index) => {
+                    console.log(element);
+                    return <FormRenderer {...element} key={index} />;
                   })}
-                  {error && optionValue === field.handle ? (
-                    <p className="text-destructive">{error}</p>
-                  ) : null}
-                </FormItem>
+                </FormRoot>
               );
-            }
-          })}
+            }}
+          ></FormProvider>
         </DialogBody>
         <DialogFooter className="border-t">
           <Button variant="ghost" onClick={() => onOpenChange(false)}>
