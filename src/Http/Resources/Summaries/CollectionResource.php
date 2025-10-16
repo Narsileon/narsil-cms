@@ -1,11 +1,10 @@
 <?php
 
-namespace Narsil\Http\Resources;
+namespace Narsil\Http\Resources\Summaries;
 
 #region USE
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Narsil\Models\Elements\Template;
 
 #endregion
@@ -14,7 +13,7 @@ use Narsil\Models\Elements\Template;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class TemplateResource extends JsonResource
+class CollectionResource extends AbstractSummaryResource
 {
     #region CONSTRUCTOR
 
@@ -30,15 +29,6 @@ class TemplateResource extends JsonResource
 
     #endregion
 
-    #region PROPERTIES
-
-    /**
-     * {@inheritDoc}
-     */
-    public static $wrap = false;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -47,9 +37,11 @@ class TemplateResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            Template::ID => $this->{Template::ID},
             Template::HANDLE => $this->{Template::HANDLE},
+            Template::ID => $this->{Template::ID},
             Template::NAME => $this->{Template::NAME},
+
+            self::HREF => route("collections.index", $this->{Template::HANDLE}),
         ];
     }
 

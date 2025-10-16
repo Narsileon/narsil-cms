@@ -2,14 +2,18 @@ import { Link } from "@inertiajs/react";
 import { Card, Heading } from "@narsil-cms/blocks";
 import { useMinLg, useMinMd, useMinSm, useMinXl } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
-import type { Template } from "@narsil-cms/types";
-import { route } from "ziggy-js";
 
-type CollectionsProps = {
-  templates: Template[];
+type Item = {
+  handle: string;
+  href: string;
+  name: string;
 };
 
-function Collections({ templates }: CollectionsProps) {
+type CollectionsProps = {
+  items: Item[];
+};
+
+function Collections({ items }: CollectionsProps) {
   const isSm = useMinSm();
   const isMd = useMinMd();
   const isLg = useMinLg();
@@ -18,8 +22,8 @@ function Collections({ templates }: CollectionsProps) {
   function getColumns() {
     let columns = isXl ? 5 : isLg ? 4 : isMd ? 3 : isSm ? 2 : 1;
 
-    if (columns > templates.length) {
-      columns = templates.length;
+    if (columns > items.length) {
+      columns = items.length;
     }
 
     return columns;
@@ -38,7 +42,7 @@ function Collections({ templates }: CollectionsProps) {
           columns === 5 && "grid-cols-5",
         )}
       >
-        {templates.map((template) => {
+        {items.map((item) => {
           return (
             <Card
               className="aspect-square h-48 w-48 cursor-pointer shadow-lg"
@@ -46,14 +50,14 @@ function Collections({ templates }: CollectionsProps) {
                 className:
                   "p-0 h-full w-full hover:bg-accent hover:text-accent-foreground transition-all duration-300",
               }}
-              key={template.handle}
+              key={item.handle}
             >
               <Link
                 className="flex h-full w-full items-center justify-center text-center"
-                href={route("collections.index", template.handle)}
+                href={item.href}
               >
                 <Heading level="h2" variant="h5">
-                  {template.name}
+                  {item.name}
                 </Heading>
               </Link>
             </Card>

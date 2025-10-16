@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Resources\Summaries\CollectionResource;
-use Narsil\Models\Elements\Template;
+use Narsil\Http\Resources\Summaries\SiteResource;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Hosts\Host;
 
 #endregion
 
@@ -20,7 +20,7 @@ use Narsil\Models\Entities\Entity;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class CollectionController extends AbstractController
+class SiteController extends AbstractController
 {
     #region PUBLIC METHODS
 
@@ -36,18 +36,18 @@ class CollectionController extends AbstractController
 
         $locale = App::getLocale();
 
-        $templates = Template::query()
+        $hosts = Host::query()
             ->withoutEagerLoads()
-            ->orderBy(Template::NAME . "->$locale", 'asc')
+            ->orderBy(Host::NAME . "->$locale", 'asc')
             ->get();
 
-        $items = CollectionResource::collection($templates)
+        $items = SiteResource::collection($hosts)
             ->resolve($request);
 
         return $this->render(
             component: 'narsil/cms::summary/index',
-            title: trans('narsil::ui.collections'),
-            description: trans('narsil::ui.collections'),
+            title: trans('narsil::ui.sites'),
+            description: trans('narsil::ui.sites'),
             props: [
                 'items' => $items,
             ]
