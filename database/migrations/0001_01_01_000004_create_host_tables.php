@@ -121,9 +121,10 @@ return new class extends Migration
             $blueprint
                 ->id(Host::ID);
             $blueprint
-                ->jsonb(Host::NAME);
+                ->string(Host::HANDLE)
+                ->unique();
             $blueprint
-                ->string(Host::HANDLE);
+                ->jsonb(Host::NAME);
             $blueprint
                 ->timestamps();
         });

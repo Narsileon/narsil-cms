@@ -154,7 +154,8 @@ return new class extends Migration
             $blueprint
                 ->id(Template::ID);
             $blueprint
-                ->string(Template::HANDLE);
+                ->string(Template::HANDLE)
+                ->unique();
             $blueprint
                 ->jsonb(Template::NAME);
             $blueprint

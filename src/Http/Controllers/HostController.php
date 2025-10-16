@@ -21,6 +21,7 @@ use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -87,7 +88,8 @@ class HostController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(HostFormRequest::class)->rules();
+        $rules = app(HostFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -138,7 +140,8 @@ class HostController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(HostFormRequest::class)->rules($host);
+        $rules = app(HostFormRequest::class)
+            ->rules($host);
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -243,7 +246,7 @@ class HostController extends AbstractController
 
         $replicated
             ->fill([
-                Host::NAME => $host->{Host::NAME} . ' (copy)',
+                Host::HANDLE => DatabaseService::generateUniqueValue($replicated, Host::HANDLE, $host->{Host::HANDLE}),
             ])
             ->save();
     }

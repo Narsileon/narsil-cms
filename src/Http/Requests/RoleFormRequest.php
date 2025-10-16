@@ -28,6 +28,10 @@ class RoleFormRequest implements Contract
             Role::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
+                FormRule::unique(
+                    Role::class,
+                    Role::HANDLE,
+                ),
             ],
             Role::NAME => [
                 FormRule::REQUIRED,

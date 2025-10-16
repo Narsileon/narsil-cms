@@ -28,6 +28,10 @@ class FieldFormRequest implements Contract
             Field::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
+                FormRule::unique(
+                    Field::class,
+                    Field::HANDLE,
+                ),
             ],
             Field::NAME => [
                 FormRule::REQUIRED,

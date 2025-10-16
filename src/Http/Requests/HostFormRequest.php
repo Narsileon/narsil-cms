@@ -30,6 +30,10 @@ class HostFormRequest implements Contract
             Host::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
+                FormRule::unique(
+                    Host::class,
+                    Host::HANDLE,
+                ),
             ],
             Host::NAME => [
                 FormRule::REQUIRED,

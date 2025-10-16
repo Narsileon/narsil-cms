@@ -31,6 +31,10 @@ class BlockFormRequest implements Contract
             Block::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
+                FormRule::unique(
+                    Block::class,
+                    Block::HANDLE,
+                ),
             ],
             Block::NAME => [
                 FormRule::REQUIRED,

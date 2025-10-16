@@ -20,6 +20,7 @@ use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -250,8 +251,7 @@ class FieldController extends AbstractController
 
         $replicated
             ->fill([
-                Field::HANDLE => $field->{Field::HANDLE} . '_copy',
-                Field::NAME => $field->{Field::NAME} . ' (copy)',
+                Field::HANDLE => DatabaseService::generateUniqueValue($replicated, Field::HANDLE, $field->{Field::HANDLE}),
             ])
             ->save();
 

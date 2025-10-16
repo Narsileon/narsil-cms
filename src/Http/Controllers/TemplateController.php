@@ -24,6 +24,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Services\DatabaseService;
 use Narsil\Services\MigrationService;
 
 #endregion
@@ -259,7 +260,7 @@ class TemplateController extends AbstractController
 
         $replicated
             ->fill([
-                Template::HANDLE => $template->{Template::HANDLE} . '_copy',
+                Template::HANDLE => DatabaseService::generateUniqueValue($replicated, Template::HANDLE, $template->{Template::HANDLE}),
             ])
             ->save();
 

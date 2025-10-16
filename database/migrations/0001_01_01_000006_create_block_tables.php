@@ -132,7 +132,8 @@ return new class extends Migration
             $blueprint
                 ->id(Block::ID);
             $blueprint
-                ->string(Block::HANDLE);
+                ->string(Block::HANDLE)
+                ->unique();
             $blueprint
                 ->jsonb(Block::NAME);
             $blueprint

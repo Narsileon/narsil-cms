@@ -112,7 +112,8 @@ return new class extends Migration
             $blueprint
                 ->id(Field::ID);
             $blueprint
-                ->string(Field::HANDLE);
+                ->string(Field::HANDLE)
+                ->unique();
             $blueprint
                 ->string(Field::TYPE);
             $blueprint

@@ -28,6 +28,10 @@ class TemplateFormRequest implements Contract
             Template::HANDLE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
+                FormRule::unique(
+                    Template::class,
+                    Template::HANDLE,
+                ),
             ],
             Template::NAME => [
                 FormRule::REQUIRED,

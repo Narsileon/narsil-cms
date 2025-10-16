@@ -22,6 +22,7 @@ use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -267,7 +268,7 @@ class BlockController extends AbstractController
 
         $replicated
             ->fill([
-                Block::HANDLE => $block->{Block::HANDLE} . '_copy',
+                Block::HANDLE => DatabaseService::generateUniqueValue($replicated, Block::HANDLE, $block->{Block::HANDLE}),
             ])
             ->save();
 

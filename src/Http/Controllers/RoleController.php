@@ -20,6 +20,7 @@ use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Http\Requests\DuplicateManyRequest;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -85,7 +86,8 @@ class RoleController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(RoleFormRequest::class)->rules();
+        $rules = app(RoleFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -139,7 +141,8 @@ class RoleController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(RoleFormRequest::class)->rules($role);
+        $rules = app(RoleFormRequest::class)
+            ->rules($role);
 
         $attributes = Validator::make($data, $rules)
             ->validated();
@@ -246,7 +249,7 @@ class RoleController extends AbstractController
 
         $replicated
             ->fill([
-                Role::HANDLE => $role->{Role::HANDLE} . ' (copy)',
+                Role::HANDLE => DatabaseService::generateUniqueValue($replicated, Role::HANDLE, $role->{Role::HANDLE}),
             ])
             ->save();
 

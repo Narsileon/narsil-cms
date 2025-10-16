@@ -45,7 +45,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
           </div>
         </DropdownMenuTrigger>
       </Tooltip>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" onClick={(event) => event.stopPropagation()}>
         {id ? (
           <>
             {routes.edit ? (

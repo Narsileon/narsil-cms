@@ -97,7 +97,8 @@ return new class extends Migration
             $blueprint
                 ->id(Role::ID);
             $blueprint
-                ->string(Role::HANDLE);
+                ->string(Role::HANDLE)
+                ->unique();
             $blueprint
                 ->jsonb(Role::NAME);
             $blueprint
