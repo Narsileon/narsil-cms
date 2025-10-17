@@ -5,7 +5,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\AuditLog;
 use Narsil\Models\Entities\Relation;
 
 #endregion
@@ -34,7 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(AuditLog::TABLE);
+        Schema::dropIfExists(Relation::TABLE);
     }
 
     #endregion
@@ -51,7 +50,7 @@ return new class extends Migration
         Schema::create(Relation::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id();
+                ->id(Relation::ID);
             $blueprint
                 ->uuid(Relation::OWNER_UUID);
             $blueprint

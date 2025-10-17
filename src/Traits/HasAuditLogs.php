@@ -63,7 +63,7 @@ trait HasAuditLogs
 
                     AuditLog::create([
                         AuditLog::EVENT => $event,
-                        AuditLog::MODEL_ID => $model->id,
+                        AuditLog::MODEL_ID => $model->getKey(),
                         AuditLog::MODEL_TYPE => self::getModelType($model),
                         AuditLog::NEW_VALUES => $newValues,
                         AuditLog::OLD_VALUES => $oldValues,

@@ -55,7 +55,9 @@ return new class extends Migration
                 ->uuid(AuditLog::UUID)
                 ->primary();
             $blueprint
-                ->morphs(AuditLog::RELATION_MODEL);
+                ->string(AuditLog::MODEL_ID);
+            $blueprint
+                ->string(AuditLog::MODEL_TYPE);
             $blueprint
                 ->foreignId(AuditLog::USER_ID)
                 ->nullable()
@@ -70,6 +72,11 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->timestamps();
+
+            $blueprint->index([
+                AuditLog::MODEL_ID,
+                AuditLog::MODEL_TYPE,
+            ]);
         });
     }
 

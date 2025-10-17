@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Navigation;
+namespace Narsil\Models\Sites;
 
 #region USE
 
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class NavigationNode extends Model
+class SiteNavigation extends Model
 {
     #region CONSTRUCTOR
 
@@ -38,7 +38,7 @@ class NavigationNode extends Model
      *
      * @var string
      */
-    final public const TABLE = 'navigation_nodes';
+    final public const TABLE = 'site_navigations';
 
     #region • COLUMNS
 
@@ -69,6 +69,13 @@ class NavigationNode extends Model
      * @var string
      */
     final public const RIGHT_ID = 'right_id';
+
+    /**
+     * The name of the "site id" column.
+     *
+     * @var string
+     */
+    final public const SITE_ID = 'site_id';
 
     #endregion
 
@@ -102,13 +109,20 @@ class NavigationNode extends Model
      */
     final public const RELATION_RIGHT = 'right';
 
+    /**
+     * The name of the "site" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE = 'site';
+
     #endregion
 
     #endregion
 
     #region PUBLIC METHODS
 
-    #region RELATIONSHIPS
+    #region • RELATIONSHIPS
 
     /**
      * Get the associated children.
@@ -163,6 +177,20 @@ class NavigationNode extends Model
             static::class,
             self::ID,
             self::RIGHT_ID
+        );
+    }
+
+    /**
+     * Get the associated site.
+     *
+     * @return BelongsTo
+     */
+    public function site(): BelongsTo
+    {
+        return $this->belongsTo(
+            Site::class,
+            self::SITE_ID,
+            Site::ID
         );
     }
 
