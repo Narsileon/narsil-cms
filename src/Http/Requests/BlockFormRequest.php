@@ -34,7 +34,8 @@ class BlockFormRequest implements Contract
                 FormRule::unique(
                     Block::class,
                     Block::HANDLE,
-                ),
+                )->ignore($model?->{Block::ID}),
+
             ],
             Block::NAME => [
                 FormRule::REQUIRED,

@@ -31,7 +31,7 @@ class TemplateFormRequest implements Contract
                 FormRule::unique(
                     Template::class,
                     Template::HANDLE,
-                ),
+                )->ignore($model?->{Template::ID}),
             ],
             Template::NAME => [
                 FormRule::REQUIRED,

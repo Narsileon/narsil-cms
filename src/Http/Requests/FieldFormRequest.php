@@ -31,7 +31,7 @@ class FieldFormRequest implements Contract
                 FormRule::unique(
                     Field::class,
                     Field::HANDLE,
-                ),
+                )->ignore($model?->{Field::ID}),
             ],
             Field::NAME => [
                 FormRule::REQUIRED,

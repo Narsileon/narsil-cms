@@ -29,7 +29,7 @@ import { FormRenderer } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
-import type { Block, Field } from "@narsil-cms/types";
+import type { Block } from "@narsil-cms/types";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -38,14 +38,14 @@ type Arrayitem = Record<string, string> & {
 };
 
 type ArrayProps = {
+  block: Block;
   id: string;
-  form: (Block | Field)[];
   items: Arrayitem[];
   labelKey: string;
   setItems: (items: Arrayitem[]) => void;
 };
 
-function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
+function Array({ block, id, items, labelKey, setItems }: ArrayProps) {
   const { trans } = useLocalization();
 
   const [active, setActive] = useState<Arrayitem | null>(null);
@@ -95,7 +95,7 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
             {items.map((item, index) => {
               return (
                 <SortableItem
-                  form={form}
+                  block={block}
                   handle={id}
                   id={item.uuid}
                   index={index}
@@ -135,16 +135,16 @@ type SortableitemProps = {
   index?: number;
   item: Arrayitem;
   labelKey: string;
-  form?: (Block | Field)[];
+  block?: Block;
   onItemChange?: (value: Arrayitem) => void;
   onItemRemove?: () => void;
 };
 
 function SortableItem({
+  block,
   handle,
   index,
   item,
-  form,
   id,
   labelKey,
   onItemRemove,
@@ -204,13 +204,15 @@ function SortableItem({
             </div>
           </CardHeader>
         </CollapsibleTrigger>
-        {form ? (
+        {block ? (
           <CollapsibleContent>
             <CardContent className="grow">
-              {form?.map((item) => {
-                const finalHandle = `${handle}.${index}.${item.handle}`;
+              {block?.elements.map((item) => {
+                const defaultHandle = item.handle ?? item.element.handle;
 
-                return <FormRenderer {...item} handle={finalHandle} key={item.handle} />;
+                const finalHandle = `${handle}.${index}.${defaultHandle}`;
+
+                return <FormRenderer {...item.element} handle={finalHandle} key={defaultHandle} />;
               })}
             </CardContent>
           </CollapsibleContent>

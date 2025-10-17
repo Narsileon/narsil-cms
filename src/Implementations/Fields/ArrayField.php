@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\ArrayField as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Elements\Block;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -65,9 +66,9 @@ class ArrayField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setForm(array $form): static
+    final public function setBlock(Block $block): static
     {
-        $this->props['form'] = $form;
+        $this->props['block'] = $block;
 
         return $this;
     }

@@ -12,6 +12,7 @@ use Narsil\Http\Controllers\FieldController;
 use Narsil\Http\Controllers\HostController;
 use Narsil\Http\Controllers\RoleController;
 use Narsil\Http\Controllers\SessionController;
+use Narsil\Http\Controllers\SiteController;
 use Narsil\Http\Controllers\TemplateController;
 use Narsil\Http\Controllers\UserBookmarkController;
 use Narsil\Http\Controllers\UserConfigurationController;
@@ -121,6 +122,16 @@ Route::middleware([
                 ->name('collections.edit');
             Route::post('collections/{collection}/{id}/replicate', 'replicate')
                 ->name('collections.replicate');
+        });
+
+        Route::controller(SiteController::class)->group(function ()
+        {
+            Route::get('sites', 'index')
+                ->name('sites.index');
+            Route::patch('sites/{site}/{id}', 'update')
+                ->name('sites.update');
+            Route::get('sites/{site}/{id}/edit', 'edit')
+                ->name('sites.edit');
         });
 
         #endregion

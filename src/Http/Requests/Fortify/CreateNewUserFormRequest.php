@@ -30,7 +30,10 @@ class CreateNewUserFormRequest implements Contract
                 FormRule::EMAIL,
                 FormRule::max(255),
                 FormRule::REQUIRED,
-                FormRule::unique(User::class),
+                FormRule::unique(
+                    User::class,
+                    User::EMAIL,
+                )->ignore($model?->{User::ID}),
             ],
             User::FIRST_NAME => [
                 FormRule::STRING,

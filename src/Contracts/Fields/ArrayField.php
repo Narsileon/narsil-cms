@@ -5,6 +5,7 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
+use Narsil\Models\Elements\Block;
 
 #endregion
 
@@ -28,13 +29,13 @@ interface ArrayField extends Contract
     public function setDefaultValue(array $value): static;
 
     /**
-     * Set the form attribute.
+     * Set the block attribute.
      *
-     * @param array $form
+     * @param Block $block
      *
      * @return static
      */
-    public function setForm(array $form): static;
+    public function setBlock(Block $block): static;
 
     /**
      * Set the label key.

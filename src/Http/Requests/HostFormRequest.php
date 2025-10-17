@@ -33,7 +33,7 @@ class HostFormRequest implements Contract
                 FormRule::unique(
                     Host::class,
                     Host::HANDLE,
-                ),
+                )->ignore($model?->{Host::ID}),
             ],
             Host::NAME => [
                 FormRule::REQUIRED,

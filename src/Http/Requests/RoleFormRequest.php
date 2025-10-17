@@ -31,7 +31,7 @@ class RoleFormRequest implements Contract
                 FormRule::unique(
                     Role::class,
                     Role::HANDLE,
-                ),
+                )->ignore($model?->{Role::ID}),
             ],
             Role::NAME => [
                 FormRule::REQUIRED,

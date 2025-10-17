@@ -13,6 +13,8 @@ use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostForm as Contract;
 use Narsil\Implementations\AbstractForm;
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Hosts\Host;
@@ -85,39 +87,47 @@ class HostForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.locales'),
                         Field::TYPE => ArrayField::class,
                         Field::SETTINGS => app(ArrayField::class)
-                            ->setForm([
-                                new Field([
-                                    Field::HANDLE => HostLocale::PATTERN,
-                                    Field::NAME => trans('narsil::validation.attributes.pattern'),
-                                    Field::TYPE => TextField::class,
-                                    Field::SETTINGS => app(TextField::class)
-                                        ->setRequired(true),
-                                ]),
-                                new Field([
-                                    Field::HANDLE => HostLocale::COUNTRY,
-                                    Field::NAME => trans('narsil::validation.attributes.country'),
-                                    Field::TYPE => SelectField::class,
-                                    Field::SETTINGS => app(SelectField::class)
-                                        ->setOptions($countrySelectOptions),
-                                ]),
-                                new Field([
-                                    Field::HANDLE => HostLocale::RELATION_LANGUAGES,
-                                    Field::NAME => trans('narsil::validation.attributes.languages'),
-                                    Field::TYPE => TableField::class,
-                                    Field::SETTINGS => app(TableField::class)
-                                        ->setColumns([
-                                            new Field([
-                                                Field::HANDLE => HostLocaleLanguage::LANGUAGE,
-                                                Field::NAME => trans('narsil::validation.attributes.language'),
-                                                Field::TYPE => SelectField::class,
-                                                Field::SETTINGS => app(SelectField::class)
-                                                    ->setOptions($languageSelectOptions)
-                                                    ->setRequired(true),
-                                            ]),
+                            ->setBlock(new Block([
+                                Block::RELATION_ELEMENTS => [
+                                    new BlockElement([
+                                        BlockElement::RELATION_ELEMENT => new Field([
+                                            Field::HANDLE => HostLocale::PATTERN,
+                                            Field::NAME => trans('narsil::validation.attributes.pattern'),
+                                            Field::TYPE => TextField::class,
+                                            Field::SETTINGS => app(TextField::class)
+                                                ->setRequired(true),
+                                        ]),
+                                    ]),
+                                    new BlockElement([
+                                        BlockElement::RELATION_ELEMENT => new Field([
+                                            Field::HANDLE => HostLocale::COUNTRY,
+                                            Field::NAME => trans('narsil::validation.attributes.country'),
+                                            Field::TYPE => SelectField::class,
+                                            Field::SETTINGS => app(SelectField::class)
+                                                ->setOptions($countrySelectOptions),
+                                        ]),
+                                    ]),
+                                    new BlockElement([
+                                        BlockElement::RELATION_ELEMENT => new Field([
+                                            Field::HANDLE => HostLocale::RELATION_LANGUAGES,
+                                            Field::NAME => trans('narsil::validation.attributes.languages'),
+                                            Field::TYPE => TableField::class,
+                                            Field::SETTINGS => app(TableField::class)
+                                                ->setColumns([
+                                                    new Field([
+                                                        Field::HANDLE => HostLocaleLanguage::LANGUAGE,
+                                                        Field::NAME => trans('narsil::validation.attributes.language'),
+                                                        Field::TYPE => SelectField::class,
+                                                        Field::SETTINGS => app(SelectField::class)
+                                                            ->setOptions($languageSelectOptions)
+                                                            ->setRequired(true),
+                                                    ]),
+                                                ])
+                                                ->setPlaceholder(trans('narsil::ui.add')),
                                         ])
-                                        ->setPlaceholder(trans('narsil::ui.add')),
-                                ]),
-                            ])
+                                    ]),
+                                ],
+                            ]))
                             ->setLabelKey(HostLocale::COUNTRY),
                     ]),
                 ]),
