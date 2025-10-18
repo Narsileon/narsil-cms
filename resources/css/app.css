@@ -24,11 +24,11 @@
   }
 
   * {
-    scrollbar-color: var(--scale-500) transparent;
+    scrollbar-color: var(--color-gray-500) transparent;
     scrollbar-width: thin;
   }
 
   .dark * {
-    scrollbar-color: var(--scale-500) transparent;
+    scrollbar-color: var(--color-gray-500) transparent;
   }
 }

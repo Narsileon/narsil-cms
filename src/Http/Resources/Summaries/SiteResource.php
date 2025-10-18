@@ -41,7 +41,7 @@ class SiteResource extends AbstractSummaryResource
             Host::ID => $this->{Host::ID},
             Host::NAME => $this->{Host::NAME},
 
-            self::HREF => route("sites.index", $this->{Host::HANDLE}),
+            self::HREF => route('sites.edit', $this->{Host::HANDLE}),
         ];
     }
 

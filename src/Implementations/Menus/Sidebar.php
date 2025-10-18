@@ -126,7 +126,7 @@ class Sidebar extends AbstractMenu implements Contract
         {
             $menuItems[] = new MenuItem()
                 ->setGroup($group)
-                ->setHref(route('sites.index'))
+                ->setHref(route('sites.edit', $host->{Host::HANDLE}))
                 ->setIcon('globe')
                 ->setLabel($host->{Host::NAME});
         }

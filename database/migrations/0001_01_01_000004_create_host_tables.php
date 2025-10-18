@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Models\Hosts\HostNavigation;
 
 #endregion
 
@@ -34,6 +35,10 @@ return new class extends Migration
         {
             $this->createHostLocaleLanguagesTable();
         }
+        if (!Schema::hasTable(HostNavigation::TABLE))
+        {
+            $this->createHostNavigationsTable();
+        }
     }
 
     /**
@@ -43,6 +48,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(HostNavigation::TABLE);
         Schema::dropIfExists(HostLocaleLanguage::TABLE);
         Schema::dropIfExists(HostLocale::TABLE);
         Schema::dropIfExists(Host::TABLE);
@@ -106,6 +112,54 @@ return new class extends Migration
                 ->string(HostLocale::REGEX);
             $blueprint
                 ->timestamps();
+        });
+    }
+
+    /**
+     * Create the host navigations table.
+     *
+     * @return void
+     */
+    private function createHostNavigationsTable(): void
+    {
+        Schema::create(HostNavigation::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(HostNavigation::ID);
+            $blueprint
+                ->foreignId(HostNavigation::HOST_ID)
+                ->constrained(Host::TABLE, Host::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->bigInteger(HostNavigation::PARENT_ID)
+                ->nullable();
+            $blueprint
+                ->bigInteger(HostNavigation::LEFT_ID)
+                ->nullable();
+            $blueprint
+                ->bigInteger(HostNavigation::RIGHT_ID)
+                ->nullable();
+            $blueprint
+                ->timestamps();
+        });
+
+        Schema::table(HostNavigation::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->foreign(HostNavigation::PARENT_ID)
+                ->references(HostNavigation::ID)
+                ->on(HostNavigation::TABLE)
+                ->nullOnDelete();
+            $blueprint
+                ->foreign(HostNavigation::LEFT_ID)
+                ->references(HostNavigation::ID)
+                ->on(HostNavigation::TABLE)
+                ->nullOnDelete();
+            $blueprint
+                ->foreign(HostNavigation::RIGHT_ID)
+                ->references(HostNavigation::ID)
+                ->on(HostNavigation::TABLE)
+                ->nullOnDelete();
         });
     }
 

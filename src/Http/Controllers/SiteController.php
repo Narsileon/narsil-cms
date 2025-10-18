@@ -9,9 +9,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Response;
+use Narsil\Contracts\Forms\HostForm;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Requests\SiteFormRequest;
 use Narsil\Http\Resources\Summaries\SiteResource;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\Host;
@@ -64,8 +65,22 @@ class SiteController extends AbstractController
      */
     public function edit(Request $request, string $site): JsonResponse|Response
     {
+        $host = Host::query()
+            ->where(Host::HANDLE, $site)
+            ->first();
+
+        $this->authorize(PermissionEnum::UPDATE, $host);
+
+        $form = app(HostForm::class)
+            ->setAction(route('roles.update', $host->{Host::ID}))
+            ->setData($host->toArrayWithTranslations())
+            ->setId($host->{Host::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
         return $this->render(
             component: 'narsil/cms::resources/form',
+            props: $form->jsonSerialize(),
         );
     }
 

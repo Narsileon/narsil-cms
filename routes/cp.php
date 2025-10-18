@@ -128,9 +128,9 @@ Route::middleware([
         {
             Route::get('sites', 'index')
                 ->name('sites.index');
-            Route::patch('sites/{site}/{id}', 'update')
+            Route::patch('sites/{site}', 'update')
                 ->name('sites.update');
-            Route::get('sites/{site}/{id}/edit', 'edit')
+            Route::get('sites/{site}/edit', 'edit')
                 ->name('sites.edit');
         });
 

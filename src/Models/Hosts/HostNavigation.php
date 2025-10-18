@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Sites;
+namespace Narsil\Models\Hosts;
 
 #region USE
 
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class SiteNavigation extends Model
+class HostNavigation extends Model
 {
     #region CONSTRUCTOR
 
@@ -41,6 +41,13 @@ class SiteNavigation extends Model
     final public const TABLE = 'site_navigations';
 
     #region • COLUMNS
+
+    /**
+     * The name of the "host id" column.
+     *
+     * @var string
+     */
+    final public const HOST_ID = 'host_id';
 
     /**
      * The name of the "id" column.
@@ -69,13 +76,6 @@ class SiteNavigation extends Model
      * @var string
      */
     final public const RIGHT_ID = 'right_id';
-
-    /**
-     * The name of the "site id" column.
-     *
-     * @var string
-     */
-    final public const SITE_ID = 'site_id';
 
     #endregion
 
@@ -181,16 +181,16 @@ class SiteNavigation extends Model
     }
 
     /**
-     * Get the associated site.
+     * Get the associated host.
      *
      * @return BelongsTo
      */
-    public function site(): BelongsTo
+    public function host(): BelongsTo
     {
         return $this->belongsTo(
-            Site::class,
-            self::SITE_ID,
-            Site::ID
+            Host::class,
+            self::HOST_ID,
+            Host::ID
         );
     }
 
