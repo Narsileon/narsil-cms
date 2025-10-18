@@ -7,7 +7,9 @@ type FormLanguageProps = Omit<ComponentProps<typeof Select>, "options">;
 function FormLanguage({ ...props }: FormLanguageProps) {
   const { languageOptions } = useForm();
 
-  return <Select data-slot="form-language" options={languageOptions} {...props} />;
+  return languageOptions?.length > 0 ? (
+    <Select data-slot="form-language" options={languageOptions} {...props} />
+  ) : null;
 }
 
 export default FormLanguage;

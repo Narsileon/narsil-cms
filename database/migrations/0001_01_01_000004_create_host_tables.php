@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Models\Hosts\HostNavigation;
+use Narsil\Models\Hosts\HostPage;
 
 #endregion
 
@@ -35,9 +35,9 @@ return new class extends Migration
         {
             $this->createHostLocaleLanguagesTable();
         }
-        if (!Schema::hasTable(HostNavigation::TABLE))
+        if (!Schema::hasTable(HostPage::TABLE))
         {
-            $this->createHostNavigationsTable();
+            $this->createHostPagesTable();
         }
     }
 
@@ -48,7 +48,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(HostNavigation::TABLE);
+        Schema::dropIfExists(HostPage::TABLE);
         Schema::dropIfExists(HostLocaleLanguage::TABLE);
         Schema::dropIfExists(HostLocale::TABLE);
         Schema::dropIfExists(Host::TABLE);
@@ -120,45 +120,45 @@ return new class extends Migration
      *
      * @return void
      */
-    private function createHostNavigationsTable(): void
+    private function createHostPagesTable(): void
     {
-        Schema::create(HostNavigation::TABLE, function (Blueprint $blueprint)
+        Schema::create(HostPage::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(HostNavigation::ID);
+                ->id(HostPage::ID);
             $blueprint
-                ->foreignId(HostNavigation::HOST_ID)
+                ->foreignId(HostPage::HOST_ID)
                 ->constrained(Host::TABLE, Host::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->bigInteger(HostNavigation::PARENT_ID)
+                ->bigInteger(HostPage::PARENT_ID)
                 ->nullable();
             $blueprint
-                ->bigInteger(HostNavigation::LEFT_ID)
+                ->bigInteger(HostPage::LEFT_ID)
                 ->nullable();
             $blueprint
-                ->bigInteger(HostNavigation::RIGHT_ID)
+                ->bigInteger(HostPage::RIGHT_ID)
                 ->nullable();
             $blueprint
                 ->timestamps();
         });
 
-        Schema::table(HostNavigation::TABLE, function (Blueprint $blueprint)
+        Schema::table(HostPage::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->foreign(HostNavigation::PARENT_ID)
-                ->references(HostNavigation::ID)
-                ->on(HostNavigation::TABLE)
+                ->foreign(HostPage::PARENT_ID)
+                ->references(HostPage::ID)
+                ->on(HostPage::TABLE)
                 ->nullOnDelete();
             $blueprint
-                ->foreign(HostNavigation::LEFT_ID)
-                ->references(HostNavigation::ID)
-                ->on(HostNavigation::TABLE)
+                ->foreign(HostPage::LEFT_ID)
+                ->references(HostPage::ID)
+                ->on(HostPage::TABLE)
                 ->nullOnDelete();
             $blueprint
-                ->foreign(HostNavigation::RIGHT_ID)
-                ->references(HostNavigation::ID)
-                ->on(HostNavigation::TABLE)
+                ->foreign(HostPage::RIGHT_ID)
+                ->references(HostPage::ID)
+                ->on(HostPage::TABLE)
                 ->nullOnDelete();
         });
     }

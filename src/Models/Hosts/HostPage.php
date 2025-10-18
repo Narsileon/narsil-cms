@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class HostNavigation extends Model
+class HostPage extends Model
 {
     #region CONSTRUCTOR
 
@@ -38,7 +38,7 @@ class HostNavigation extends Model
      *
      * @var string
      */
-    final public const TABLE = 'site_navigations';
+    final public const TABLE = 'host_pages';
 
     #region • COLUMNS
 
@@ -89,6 +89,13 @@ class HostNavigation extends Model
     final public const RELATION_CHILDREN = 'children';
 
     /**
+     * The name of the "host" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_HOST = 'host';
+
+    /**
      * The name of the "left" relation.
      *
      * @var string
@@ -109,13 +116,6 @@ class HostNavigation extends Model
      */
     final public const RELATION_RIGHT = 'right';
 
-    /**
-     * The name of the "site" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_SITE = 'site';
-
     #endregion
 
     #endregion
@@ -135,6 +135,20 @@ class HostNavigation extends Model
             static::class,
             self::PARENT_ID,
             self::ID
+        );
+    }
+
+    /**
+     * Get the associated host.
+     *
+     * @return BelongsTo
+     */
+    public function host(): BelongsTo
+    {
+        return $this->belongsTo(
+            Host::class,
+            self::HOST_ID,
+            Host::ID
         );
     }
 
@@ -177,20 +191,6 @@ class HostNavigation extends Model
             static::class,
             self::ID,
             self::RIGHT_ID
-        );
-    }
-
-    /**
-     * Get the associated host.
-     *
-     * @return BelongsTo
-     */
-    public function host(): BelongsTo
-    {
-        return $this->belongsTo(
-            Host::class,
-            self::HOST_ID,
-            Host::ID
         );
     }
 

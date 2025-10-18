@@ -20,12 +20,12 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { SortableItem, type FlatNode } from ".";
 
-type SortableProps = {
+type SortableTreeProps = {
   items: FlatNode[];
   setItems: (items: FlatNode[]) => void;
 };
 
-function Sortable({ items, setItems }: SortableProps) {
+function SortableTree({ items, setItems }: SortableTreeProps) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [overId, setOverId] = useState<UniqueIdentifier | null>(null);
   const [offsetLeft, setOffsetLeft] = useState(0);
@@ -139,4 +139,4 @@ function Sortable({ items, setItems }: SortableProps) {
   );
 }
 
-export default Sortable;
+export default SortableTree;

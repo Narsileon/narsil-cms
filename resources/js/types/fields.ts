@@ -13,7 +13,7 @@ import {
   Table,
 } from "@narsil-cms/blocks/fields";
 import { InputContent } from "@narsil-cms/components/input";
-import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
+import { SortableGrid, SortableList, SortableTree } from "@narsil-cms/components/sortable";
 import { type IconName } from "@narsil-cms/plugins/icons";
 import { type ComponentProps } from "react";
 
@@ -89,6 +89,11 @@ type TimeField = {
   settings: ComponentProps<typeof InputContent> & { icon?: string };
 };
 
+type TreeField = {
+  type: "Narsil\\Contracts\\Fields\\TreeField";
+  settings: ComponentProps<typeof SortableTree> & { icon?: string };
+};
+
 export type FieldType =
   | DefaultField
   | ArrayField
@@ -102,4 +107,5 @@ export type FieldType =
   | SelectField
   | SwitchField
   | TableField
-  | TimeField;
+  | TimeField
+  | TreeField;

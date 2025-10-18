@@ -14,7 +14,7 @@ import {
 } from "@narsil-cms/blocks/fields";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
-import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
+import { SortableGrid, SortableList, SortableTree } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Field } from "@narsil-cms/types";
 import { isArray } from "lodash";
@@ -193,6 +193,15 @@ const defaultRegistry: Registry = {
         />
         <Icon className="opacity-50" name="clock" />
       </InputRoot>
+    );
+  },
+  ["Narsil\\Contracts\\Fields\\TreeField"]: (props) => {
+    return (
+      <SortableTree
+        {...props.element.settings}
+        items={props.value ?? []}
+        setItems={props.setValue}
+      />
     );
   },
   ["default"]: (props) => {
