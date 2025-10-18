@@ -16,7 +16,6 @@ use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\Summaries\SiteResource;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\Host;
-use Narsil\Support\HostTree;
 
 #endregion
 
@@ -67,6 +66,9 @@ class SiteController extends AbstractController
     public function edit(Request $request, string $site): JsonResponse|Response
     {
         $host = Host::query()
+            ->with([
+                Host::RELATION_PAGES,
+            ])
             ->where(Host::HANDLE, $site)
             ->first();
 
@@ -74,8 +76,6 @@ class SiteController extends AbstractController
         {
             abort(404);
         }
-
-        $host->{Host::RELATION_PAGES} = new HostTree($host)->getFlatTree();
 
         $this->authorize(PermissionEnum::UPDATE, $host);
 

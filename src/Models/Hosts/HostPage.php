@@ -131,11 +131,13 @@ class HostPage extends Model
      */
     public function children(): HasMany
     {
-        return $this->hasMany(
-            static::class,
-            self::PARENT_ID,
-            self::ID
-        );
+        return $this
+            ->hasMany(
+                static::class,
+                self::PARENT_ID,
+                self::ID
+            )
+            ->with(self::RELATION_CHILDREN);
     }
 
     /**
@@ -145,11 +147,12 @@ class HostPage extends Model
      */
     public function host(): BelongsTo
     {
-        return $this->belongsTo(
-            Host::class,
-            self::HOST_ID,
-            Host::ID
-        );
+        return $this
+            ->belongsTo(
+                Host::class,
+                self::HOST_ID,
+                Host::ID
+            );
     }
 
     /**
@@ -159,11 +162,12 @@ class HostPage extends Model
      */
     public function left(): HasOne
     {
-        return $this->hasOne(
-            static::class,
-            self::ID,
-            self::LEFT_ID
-        );
+        return $this
+            ->hasOne(
+                static::class,
+                self::ID,
+                self::LEFT_ID
+            );
     }
 
     /**
@@ -173,11 +177,12 @@ class HostPage extends Model
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(
-            static::class,
-            self::PARENT_ID,
-            self::ID
-        );
+        return $this
+            ->belongsTo(
+                static::class,
+                self::PARENT_ID,
+                self::ID
+            );
     }
 
     /**
@@ -187,11 +192,12 @@ class HostPage extends Model
      */
     public function right(): HasOne
     {
-        return $this->hasOne(
-            static::class,
-            self::ID,
-            self::RIGHT_ID
-        );
+        return $this
+            ->hasOne(
+                static::class,
+                self::ID,
+                self::RIGHT_ID
+            );
     }
 
     #endregion

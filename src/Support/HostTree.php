@@ -56,31 +56,63 @@ class HostTree
         return $flatTree->toArray();
     }
 
+    /**
+     * @return array
+     */
+    public function getNestedTree(): array
+    {
+        $hostPages = collect($this->collection->get('', []));
+
+        $nestedTree = $this->buildNestedTreeRecursively($hostPages);
+
+        return $nestedTree->toArray();
+    }
+
     #endregion
 
     #region PROTECTED METHODS
 
     /**
      * @param Collection<HostPage> $collection
-     * @param integer $depth
      *
      * @return Collection
      */
-    protected function buildFlatTreeRecursively(Collection $collection, int $depth = 0): Collection
+    protected function buildFlatTreeRecursively(Collection $collection): Collection
     {
         $tree = collect();
 
         $collection = $this->sortByNeighbors($collection);
 
-        $collection->each(function ($hostPage) use (&$tree, $depth)
+        $collection->each(function ($hostPage) use (&$tree)
         {
-            $hostPage->depth = $depth;
+            $children = $this->collection->get($hostPage->{HostPage::ID}, collect());
+
+            $tree = $tree->merge($this->buildFlatTreeRecursively($children));
 
             $tree->push($hostPage);
+        });
 
-            $children = $this->collection->get($hostPage->{HostPage::ID}, collect([]));
+        return $tree;
+    }
 
-            $tree = $tree->merge($this->buildFlatTreeRecursively($children, $depth + 1));
+    /**
+     * @param Collection<HostPage> $collection
+     *
+     * @return Collection
+     */
+    protected function buildNestedTreeRecursively(Collection $collection): Collection
+    {
+        $tree = collect();
+
+        $collection = $this->sortByNeighbors($collection);
+
+        $collection->each(function ($hostPage) use (&$tree)
+        {
+            $children = $this->collection->get($hostPage->{HostPage::ID}, collect());
+
+            $hostPage->children = $this->buildNestedTreeRecursively($children);
+
+            $tree->push($hostPage);
         });
 
         return $tree;

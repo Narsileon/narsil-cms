@@ -144,7 +144,9 @@ class Host extends Model
                 HostPage::class,
                 HostPage::HOST_ID,
                 self::ID,
-            );
+            )
+            ->with(HostPage::RELATION_CHILDREN)
+            ->where(HostPage::PARENT_ID, null);
     }
 
     #endregion

@@ -15,42 +15,51 @@ import {
   type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { getProjection } from "@narsil-cms/lib/sortable";
-import { useEffect, useRef, useState } from "react";
+import { buildTree, flatTree, getProjection, removeChildren } from "@narsil-cms/lib/sortable";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { SortableItem, type FlatNode } from ".";
+import { NestedNode, SortableItem, type FlatNode } from ".";
 
 type SortableTreeProps = {
-  items: FlatNode[];
-  setItems: (items: FlatNode[]) => void;
+  items: NestedNode[];
+  setItems: (items: NestedNode[]) => void;
 };
 
 function SortableTree({ items, setItems }: SortableTreeProps) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [overId, setOverId] = useState<UniqueIdentifier | null>(null);
+
   const [offsetLeft, setOffsetLeft] = useState(0);
 
-  const projected =
-    activeId && overId ? getProjection(items, activeId, overId, offsetLeft, 20) : null;
+  const flattenedItems = useMemo(() => {
+    const flattenedTree = flatTree(items);
 
-  const activeItem = activeId ? items.find(({ id }) => id === activeId) : null;
+    const collapsedItems = flattenedTree.reduce<UniqueIdentifier[]>(
+      (acc, { children, collapsed, id }) => (collapsed && children.length ? [...acc, id] : acc),
+      [],
+    );
+
+    return removeChildren(
+      flattenedTree,
+      activeId != null ? [activeId, ...collapsedItems] : collapsedItems,
+    );
+  }, [activeId, items]);
+
+  const sensorContext = useRef({
+    items: flattenedItems,
+    offset: offsetLeft,
+  });
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
     useSensor(KeyboardSensor, {}),
   );
-  const sensorContext = useRef({
-    items: items,
-    offset: offsetLeft,
-  });
 
-  function handleDragStart({ active }: DragStartEvent) {
-    setActiveId(active.id);
-    setOverId(active.id);
+  const activeItem = activeId ? items.find(({ id }) => id === activeId) : null;
 
-    document.body.style.setProperty("cursor", "grabbing");
-  }
+  const projected =
+    activeId && overId ? getProjection(flattenedItems, activeId, overId, offsetLeft, 20) : null;
 
   function handleDragCancel({}: DragCancelEvent) {
     resetState();
@@ -58,11 +67,12 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
 
   function handleDragEnd({ active, over }: DragEndEvent) {
     resetState();
+
     if (!projected || !over) {
       return;
     }
 
-    const clonedItems: FlatNode[] = JSON.parse(JSON.stringify(items));
+    const clonedItems: FlatNode[] = JSON.parse(JSON.stringify(flatTree(items)));
 
     const activeIndex = clonedItems.findIndex(({ id }) => id === active.id);
     const overIndex = clonedItems.findIndex(({ id }) => id === over.id);
@@ -78,8 +88,9 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
     };
 
     const sortedItems = arrayMove(clonedItems, activeIndex, overIndex);
+    const newItems = buildTree(sortedItems);
 
-    setItems(sortedItems);
+    setItems(newItems);
   }
 
   function handleDragMove({ delta }: DragMoveEvent) {
@@ -88,6 +99,13 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
 
   function handleDragOver({ over }: DragOverEvent) {
     setOverId(over?.id ?? null);
+  }
+
+  function handleDragStart({ active }: DragStartEvent) {
+    setActiveId(active.id);
+    setOverId(active.id);
+
+    document.body.style.setProperty("cursor", "grabbing");
   }
 
   function resetState() {
@@ -100,10 +118,10 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
 
   useEffect(() => {
     sensorContext.current = {
-      items: items,
+      items: flattenedItems,
       offset: offsetLeft,
     };
-  }, [items, offsetLeft]);
+  }, [flattenedItems, offsetLeft]);
 
   return (
     <DndContext
@@ -115,8 +133,8 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
       onDragStart={handleDragStart}
       sensors={sensors}
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map((item) => {
+      <SortableContext items={flattenedItems} strategy={verticalListSortingStrategy}>
+        {flattenedItems.map((item) => {
           const depth = item.id === activeId && projected ? projected.depth : item.depth;
 
           return (

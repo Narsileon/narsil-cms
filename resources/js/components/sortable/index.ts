@@ -14,18 +14,20 @@ type AnonymousItem = Record<string, unknown> & {
 };
 
 type FlatNode = {
+  children: NestedNode[];
+  collapsed?: boolean;
   data?: Record<string, unknown>;
   depth: number;
   id: UniqueIdentifier;
   parent_id: UniqueIdentifier | null;
-  type: string;
+  type?: string;
 };
 
 type NestedNode = {
   children: NestedNode[];
   data?: Record<string, unknown>;
   id: UniqueIdentifier;
-  type: string;
+  type?: string;
 };
 
 export {

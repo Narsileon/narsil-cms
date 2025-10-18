@@ -58,6 +58,11 @@ abstract class BreadcrumbService
                     $label = trans('narsil::ui.' . $key);
                 }
 
+                if (Str::contains($label, '::'))
+                {
+                    $label = $key;
+                }
+
                 $breadcrumbs[] = [
                     'label' => $label,
                     'href'  => $path,
