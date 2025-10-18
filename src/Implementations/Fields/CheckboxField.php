@@ -78,7 +78,7 @@ class CheckboxField extends AbstractField implements Contract
         return 'checkbox';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

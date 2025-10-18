@@ -16,7 +16,7 @@ interface DateField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * Set the default value.

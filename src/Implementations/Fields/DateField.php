@@ -67,7 +67,7 @@ class DateField extends AbstractField implements Contract
         return 'date';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

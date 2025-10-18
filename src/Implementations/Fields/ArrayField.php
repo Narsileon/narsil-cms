@@ -51,7 +51,7 @@ class ArrayField extends AbstractField implements Contract
         return 'array';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

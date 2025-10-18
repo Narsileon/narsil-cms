@@ -78,7 +78,7 @@ class RelationsField extends AbstractField implements Contract
         return 'relations';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

@@ -22,7 +22,7 @@ interface Field
      */
     public static function getIcon(): string;
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * Set the append attribute.

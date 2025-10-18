@@ -77,7 +77,7 @@ class NumberField extends AbstractField implements Contract
         return 'number';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

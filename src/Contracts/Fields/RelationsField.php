@@ -17,7 +17,7 @@ interface RelationsField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * Add an option.

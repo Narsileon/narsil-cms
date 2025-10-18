@@ -69,7 +69,7 @@ class TimeField extends AbstractField implements Contract
         return 'time';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

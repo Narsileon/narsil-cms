@@ -127,7 +127,7 @@ class DataTableCollection extends ResourceCollection
         ]);
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * @param boolean $selectable

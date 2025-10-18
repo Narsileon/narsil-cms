@@ -81,7 +81,7 @@ class TextField extends AbstractField implements Contract
         return 'text';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

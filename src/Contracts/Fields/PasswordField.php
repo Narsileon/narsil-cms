@@ -17,7 +17,7 @@ interface PasswordField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * Set the autocomplete attribute.

@@ -50,7 +50,7 @@ class TableField extends AbstractField implements Contract
         return 'table';
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}

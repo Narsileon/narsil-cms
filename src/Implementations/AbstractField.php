@@ -36,7 +36,7 @@ abstract class AbstractField implements Field, JsonSerializable
         return $this->props;
     }
 
-    #region • FLUENT METHODS
+    #region • SETTERS
 
     /**
      * {@inheritDoc}
