@@ -16,11 +16,11 @@ enum ChangeFreqEnum: string
 {
     use Enumerable;
 
-    case ALWAYS = 'never';
-    case HOURLY = 'current';
-    case DAILY = 'others';
-    case WEEKLY = 'never';
-    case MONTHLY = 'never';
-    case YEARLY = 'never';
+    case ALWAYS = 'always';
+    case HOURLY = 'hourly';
+    case DAILY = 'daily';
+    case WEEKLY = 'weekly';
+    case MONTHLY = 'monthly';
+    case YEARLY = 'yearly';
     case NEVER = 'never';
 }
