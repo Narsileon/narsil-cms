@@ -47,7 +47,7 @@ class TreeField extends AbstractField implements Contract
      */
     public static function getIcon(): string
     {
-        return 'array';
+        return 'tree';
     }
 
     #region • SETTERS

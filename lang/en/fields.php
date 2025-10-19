@@ -15,8 +15,10 @@ use Narsil\Contracts\Fields\RichTextField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TableField;
+use Narsil\Contracts\Fields\TextareaField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Fields\TimeField;
+use Narsil\Contracts\Fields\TreeField;
 
 #endregion
 
@@ -35,5 +37,7 @@ return [
     SwitchField::class => 'Switch',
     TableField::class => 'Table',
     TextField::class => 'Text',
+    TextareaField::class => 'Textarea',
     TimeField::class => 'Time',
+    TreeField::class => 'Tree',
 ];
