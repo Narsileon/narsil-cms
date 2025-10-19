@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Locale;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Form;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Models\Elements\Field;
@@ -379,18 +380,21 @@ abstract class AbstractForm implements Form
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'id',
                         Field::NAME => trans('narsil::validation.attributes.id'),
+                        Field::TYPE => TextField::class,
                     ])
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'created_at',
                         Field::NAME => trans('narsil::validation.attributes.created_at'),
+                        Field::TYPE => TextField::class,
                     ])
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'updated_at',
                         Field::NAME => trans('narsil::validation.attributes.updated_at'),
+                        Field::TYPE => TextField::class,
                     ])
                 ]),
             ]

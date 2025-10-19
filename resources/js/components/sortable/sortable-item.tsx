@@ -111,7 +111,7 @@ function SortableItem({
                     tooltip={trans("ui.move")}
                   />
                   {item?.icon ? (
-                    <Tooltip tooltip={group?.label}>
+                    <Tooltip tooltip={group?.label as string}>
                       <Icon className="size-5" name={item.icon} />
                     </Tooltip>
                   ) : null}

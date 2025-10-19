@@ -9,13 +9,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
-import type {
-  Block,
-  BlockElementCondition,
-  Field,
-  HasElement,
-  TemplateSection,
-} from "@narsil-cms/types";
+import type { Block, BlockElementCondition, Field, TemplateSection } from "@narsil-cms/types";
 import parse from "html-react-parser";
 import { Fragment } from "react";
 import useForm from "./form-context";
@@ -29,34 +23,30 @@ import FormMessage from "./form-message";
 type FormRendererProps = (Block | Field | TemplateSection) & {
   className?: string;
   conditions?: BlockElementCondition[];
-  elements?: HasElement[];
   sets?: Block[];
-  settings?: Field["settings"];
-  type?: Field["type"];
   width?: number;
   onChange?: (value: unknown) => void;
 };
 
-function FormRenderer({
-  className,
-  conditions,
-  elements,
-  sets,
-  width,
-  onChange,
-  ...props
-}: FormRendererProps) {
+function FormRenderer({ className, conditions, width, onChange, ...props }: FormRendererProps) {
   const { data } = useForm();
 
-  if (elements || sets) {
+  if ("elements" in props) {
     return (
       <>
-        {elements?.map((element, index) => {
+        {props.elements?.map((element, index) => {
           const childElement = element.element;
 
           return (
             <Fragment key={index}>
-              {"elements" in childElement || "sets" in childElement ? (
+              {"type" in childElement ? (
+                <FormRenderer
+                  {...childElement}
+                  handle={element.handle ?? childElement.handle}
+                  name={element.name ?? childElement.name}
+                  width={element.width}
+                />
+              ) : (
                 <CollapsibleRoot
                   className={cn(
                     "not-first:border-t group col-span-full -mx-4",
@@ -96,13 +86,6 @@ function FormRenderer({
                     ) : null}
                   </CollapsibleContent>
                 </CollapsibleRoot>
-              ) : (
-                <FormRenderer
-                  {...childElement}
-                  handle={element.handle ?? childElement.handle}
-                  name={element.name ?? childElement.name}
-                  width={element.width}
-                />
               )}
             </Fragment>
           );
@@ -111,16 +94,7 @@ function FormRenderer({
     );
   }
 
-  if (!props.type) {
-    return (
-      <div className="col-span-full flex items-center justify-between">
-        <span className="first-letter:uppercase">{props.name}</span>
-        <span>{data?.[props.handle]}</span>
-      </div>
-    );
-  }
-
-  return (
+  return "settings" in props ? (
     <FormField
       id={props.handle}
       conditions={conditions}
@@ -184,7 +158,12 @@ function FormRenderer({
         );
       }}
     />
-  );
+  ) : "type" in props ? (
+    <div className="col-span-full flex items-center justify-between">
+      <span className="first-letter:uppercase">{props.name}</span>
+      <span>{data?.[props.handle]}</span>
+    </div>
+  ) : null;
 }
 
 export default FormRenderer;

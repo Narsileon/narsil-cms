@@ -7,6 +7,7 @@ use Narsil\Enums\Forms\RuleEnum;
 #endregion
 
 return [
+    RuleEnum::ALPHA_DASH->value => 'Alpha dash',
     RuleEnum::ARRAY->value => 'Array',
     RuleEnum::BOOLEAN->value => 'Boolean',
     RuleEnum::CONFIRMED->value => 'Confirmed',
@@ -16,6 +17,7 @@ return [
     RuleEnum::EMAIL->value => 'Email',
     RuleEnum::IMAGE->value => 'Image',
     RuleEnum::INTEGER->value => 'Integer',
+    RuleEnum::LOWERCASE->value => 'Lowercase',
     RuleEnum::NULLABLE->value => 'Nullable',
     RuleEnum::NUMERIC->value => 'Numeric',
     RuleEnum::REQUIRED->value => 'Required',
