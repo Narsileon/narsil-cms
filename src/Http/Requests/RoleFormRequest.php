@@ -26,7 +26,7 @@ class RoleFormRequest implements Contract
     {
         return [
             Role::HANDLE => [
-                FormRule::STRING,
+                ...FormRule::getSlugRules(),
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Role::class,

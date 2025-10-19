@@ -28,7 +28,7 @@ class HostFormRequest implements Contract
     {
         return [
             Host::HANDLE => [
-                FormRule::STRING,
+                ...FormRule::getSlugRules(),
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Host::class,

@@ -26,7 +26,7 @@ class TemplateFormRequest implements Contract
     {
         return [
             Template::HANDLE => [
-                FormRule::STRING,
+                ...FormRule::getSlugRules(),
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Template::class,

@@ -26,7 +26,7 @@ class FieldFormRequest implements Contract
     {
         return [
             Field::HANDLE => [
-                FormRule::STRING,
+                ...FormRule::getSlugRules(),
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Field::class,

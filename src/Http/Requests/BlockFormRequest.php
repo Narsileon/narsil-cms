@@ -29,7 +29,7 @@ class BlockFormRequest implements Contract
                 FormRule::BOOLEAN,
             ],
             Block::HANDLE => [
-                FormRule::STRING,
+                ...FormRule::getSlugRules(),
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Block::class,

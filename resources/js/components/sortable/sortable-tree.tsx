@@ -139,6 +139,7 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
 
           return (
             <SortableItem
+              disabled={depth === 0}
               label={item.id.toString()}
               id={item.id}
               style={{ marginLeft: `${depth * 16}px` }}

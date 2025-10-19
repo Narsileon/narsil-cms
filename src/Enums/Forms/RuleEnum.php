@@ -17,6 +17,7 @@ enum RuleEnum: string
     use Enumerable;
 
     case REQUIRED = 'required';
+    case ALPHA_DASH = 'alpha_dash';
     case ARRAY = 'array';
     case BOOLEAN = 'boolean';
     case CONFIRMED = 'confirmed';
@@ -26,6 +27,7 @@ enum RuleEnum: string
     case EMAIL = 'email';
     case IMAGE = 'image';
     case INTEGER = 'integer';
+    case LOWERCASE = 'lowercase';
     case NULLABLE = 'nullable';
     case NUMERIC = 'numeric';
     case SOMETIMES = 'sometimes';

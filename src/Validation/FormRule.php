@@ -18,6 +18,13 @@ abstract class FormRule extends Rule
     #region CONSTANTS
 
     /**
+     * The name of the "alpha dash" rule.
+     *
+     * @var string
+     */
+    final public const ALPHA_DASH = RuleEnum::ALPHA_DASH->value;
+
+    /**
      * The name of the "array" rule.
      *
      * @var string
@@ -79,6 +86,13 @@ abstract class FormRule extends Rule
      * @var string
      */
     final public const INTEGER = RuleEnum::INTEGER->value;
+
+    /**
+     * The name of the "lowercase" rule.
+     *
+     * @var string
+     */
+    final public const LOWERCASE = RuleEnum::LOWERCASE->value;
 
     /**
      * The name of the "nullable" rule.
@@ -171,6 +185,39 @@ abstract class FormRule extends Rule
     final public static function beforeOrEqual(string $value): string
     {
         return "before_or_equal:$value";
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    final public static function doesntEndWith(string $value): string
+    {
+        return "doesnt_end_with:$value";
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    final public static function doesntStartWith(string $value): string
+    {
+        return "doesnt_start_with:$value";
+    }
+
+    /**
+     * @return array
+     */
+    final public static function getSlugRules(): array
+    {
+        return [
+            self::ALPHA_DASH,
+            self::LOWERCASE,
+            self::doesntStartWith('-'),
+            self::doesntEndWith('-'),
+        ];
     }
 
     /**

@@ -83,6 +83,7 @@ function SortableItem({
       ref={disabled ? undefined : setNodeRef}
       className={cn(
         isDragging && "opacity-50",
+        disabled && "pointer-events-none",
         placeholder &&
           "border-dashed bg-transparent opacity-50 will-change-transform hover:opacity-100",
         className,
@@ -106,6 +107,7 @@ function SortableItem({
                     ref={setActivatorNodeRef}
                     {...attributes}
                     {...listeners}
+                    disabled={disabled}
                     tooltip={trans("ui.move")}
                   />
                   {item?.icon ? (
