@@ -4,6 +4,8 @@ namespace Narsil\Enums\Forms;
 
 #region USE
 
+use Illuminate\Support\Facades\Cache;
+use Narsil\Support\SelectOption;
 use Narsil\Traits\Enumerable;
 
 #endregion
@@ -38,4 +40,29 @@ enum RichTextEditorEnum: string
     case SUPERSCRIPT = 'superscript';
     case UNDERLINE = 'underline';
     case UNDO = 'undo';
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function options(): array
+    {
+        return Cache::rememberForever(static::class . ':options', function ()
+        {
+            $options = [];
+
+            foreach (self::cases() as $case)
+            {
+                $options[] = new SelectOption(
+                    label: trans("narsil::rich-text-editor.modules.$case->value"),
+                    value: $case->value
+                );
+            }
+
+            return $options;
+        });
+    }
+
+    #endregion
 }

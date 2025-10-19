@@ -63,8 +63,6 @@ class RichTextField extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
-        $modulesSelectOptions = static::getModulesSelectOptions();
-
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
@@ -77,7 +75,7 @@ class RichTextField extends AbstractField implements Contract
                 Field::NAME => trans("narsil::ui.modules"),
                 Field::TYPE => CheckboxField::class,
                 Field::SETTINGS => app(CheckboxField::class)
-                    ->setOptions($modulesSelectOptions),
+                    ->setOptions(RichTextEditorEnum::options()),
             ]),
         ];
     }
@@ -133,30 +131,6 @@ class RichTextField extends AbstractField implements Contract
     }
 
     #endregion
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * Get the modules select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getModulesSelectOptions(): array
-    {
-        $options = [];
-
-        foreach (RichTextEditorEnum::cases() as $case)
-        {
-            $options[] = new SelectOption(
-                label: trans("narsil::rich-text-editor.modules.$case->value"),
-                value: $case->value
-            );
-        }
-
-        return $options;
-    }
 
     #endregion
 }

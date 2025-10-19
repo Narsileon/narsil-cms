@@ -4,6 +4,8 @@ namespace Narsil\Enums\Forms;
 
 #region USE
 
+use Illuminate\Support\Facades\Cache;
+use Narsil\Support\SelectOption;
 use Narsil\Traits\Enumerable;
 
 #endregion
@@ -34,4 +36,29 @@ enum RuleEnum: string
     case STRING = 'string';
     case URL = 'url';
     case UUID = 'uuid';
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function options(): array
+    {
+        return Cache::rememberForever(static::class . ':options', function ()
+        {
+            $options = [];
+
+            foreach (self::cases() as $case)
+            {
+                $options[] = new SelectOption(
+                    label: trans("narsil::rules.$case->value"),
+                    value: $case->value
+                );
+            }
+
+            return $options;
+        });
+    }
+
+    #endregion
 }

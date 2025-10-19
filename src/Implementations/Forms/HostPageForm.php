@@ -5,9 +5,14 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\FileField;
+use Narsil\Contracts\Fields\RangeField;
+use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextareaField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostForm as Contract;
+use Narsil\Enums\SEO\ChangeFreqEnum;
+use Narsil\Enums\SEO\OpenGraphTypeEnum;
+use Narsil\Enums\SEO\RobotsEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
@@ -78,8 +83,12 @@ class HostPageForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => HostPage::ROBOTS,
                                     Field::NAME => trans('narsil::validation.attributes.robots'),
-                                    Field::TYPE => TextField::class,
-                                    Field::SETTINGS => app(TextField::class),
+                                    Field::TYPE => SelectField::class,
+                                    Field::SETTINGS => app(SelectField::class)
+                                        ->setDefaultValue(RobotsEnum::ALL->value)
+                                        ->setDisplayValue(false)
+                                        ->setOptions(RobotsEnum::options())
+                                        ->setRequired(true),
                                 ])
                             ]),
                         ],
@@ -93,8 +102,12 @@ class HostPageForm extends AbstractForm implements Contract
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => HostPage::OPEN_GRAPH_TYPE,
                                     Field::NAME => trans('narsil::validation.attributes.type'),
-                                    Field::TYPE => TextField::class,
-                                    Field::SETTINGS => app(TextField::class),
+                                    Field::TYPE => SelectField::class,
+                                    Field::SETTINGS => app(SelectField::class)
+                                        ->setDefaultValue(OpenGraphTypeEnum::WEBSITE->value)
+                                        ->setDisplayValue(false)
+                                        ->setOptions(OpenGraphTypeEnum::options())
+                                        ->setRequired(true),
                                 ])
                             ]),
                             new BlockElement([
@@ -124,6 +137,38 @@ class HostPageForm extends AbstractForm implements Contract
                                         ->setAccept('image/*')
                                         ->setIcon('image'),
                                 ]),
+                            ]),
+                        ],
+                    ]),
+                ]),
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::NAME => 'Sitemap',
+                        Block::RELATION_ELEMENTS => [
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => HostPage::CHANGE_FREQ,
+                                    Field::NAME => trans('narsil::validation.attributes.change_freq'),
+                                    Field::TRANSLATABLE => true,
+                                    Field::TYPE => SelectField::class,
+                                    Field::SETTINGS => app(SelectField::class)
+                                        ->setDefaultValue(ChangeFreqEnum::NEVER->value)
+                                        ->setDisplayValue(false)
+                                        ->setOptions(ChangeFreqEnum::options())
+                                        ->setRequired(true),
+                                ])
+                            ]),
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => HostPage::PRIORITY,
+                                    Field::NAME => trans('narsil::validation.attributes.priority'),
+                                    Field::TRANSLATABLE => true,
+                                    Field::TYPE => RangeField::class,
+                                    Field::SETTINGS => app(RangeField::class)
+                                        ->setMin(0)
+                                        ->setMax(1)
+                                        ->setStep(0.05),
+                                ])
                             ]),
                         ],
                     ]),

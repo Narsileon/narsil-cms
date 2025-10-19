@@ -87,6 +87,16 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function setDisplayValue(bool $displayValue): static
+    {
+        $this->props['displayValue'] = $displayValue;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function setMultiple(bool $multiple): static
     {
         $this->props['multiple'] = $multiple;

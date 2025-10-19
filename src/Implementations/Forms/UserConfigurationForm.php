@@ -51,7 +51,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
      */
     public function layout(): array
     {
-        $colorSelectOptions = static::getColorSelectOptions();
         $localeSelectOptions = static::getLocaleSelectOptions();
 
         return [
@@ -70,7 +69,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::TYPE => SelectField::class,
                 Field::SETTINGS => app(SelectField::class)
                     ->setDefaultValue(ColorEnum::GRAY->value)
-                    ->setOptions($colorSelectOptions)
+                    ->setOptions(ColorEnum::options())
                     ->setRequired(true),
             ]),
             new Field([
@@ -89,33 +88,6 @@ class UserConfigurationForm extends AbstractForm implements Contract
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * Get the color select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getColorSelectOptions(): array
-    {
-        $options = [];
-
-        foreach (ColorEnum::cases() as $case)
-        {
-            $optionLabel = view('narsil::components.bullet-label', [
-                'color' => $case->value,
-                'label' => trans("narsil::colors.$case->value"),
-            ])->render();
-
-            $options[] = new SelectOption(
-                label: $optionLabel,
-                value: $case->value,
-            );
-        }
-
-        return $options;
-    }
-
-    #endregion
 
     /**
      * Get the locale select options.

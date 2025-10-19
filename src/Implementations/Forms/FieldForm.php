@@ -71,7 +71,6 @@ class FieldForm extends AbstractForm implements Contract
             }
         }
 
-        $rulesSelectOptions = static::getRulesSelectOptions();
         $typeSelectOptions = static::getTypeSelectOptions();
 
         $content = [
@@ -134,7 +133,7 @@ class FieldForm extends AbstractForm implements Contract
                             Field::NAME => trans("narsil::ui.rules"),
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class)
-                                ->setOptions($rulesSelectOptions),
+                                ->setOptions(RuleEnum::options()),
                         ]),
                     ]),
                 ],
@@ -148,26 +147,6 @@ class FieldForm extends AbstractForm implements Contract
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * Get the rules select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getRulesSelectOptions(): array
-    {
-        $options = [];
-
-        foreach (RuleEnum::cases() as $case)
-        {
-            $options[] = new SelectOption(
-                label: trans("narsil::rules.$case->value"),
-                value: $case->value
-            );
-        }
-
-        return $options;
-    }
 
     /**
      * Get the type select options.

@@ -28,6 +28,15 @@ interface SelectField extends Contract
     public function setDefaultValue(string $value): static;
 
     /**
+     * Set the display value attribute.
+     *
+     * @param boolean $displayValue
+     *
+     * @return static
+     */
+    public function setDisplayValue(bool $displayValue): static;
+
+    /**
      * Set the multiple attribute.
      *
      * @param boolean $multiple

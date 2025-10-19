@@ -6,6 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Enums\SEO\ChangeFreqEnum;
+use Narsil\Enums\SEO\OpenGraphTypeEnum;
+use Narsil\Enums\SEO\RobotsEnum;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
@@ -147,8 +149,8 @@ return new class extends Migration
                 ->jsonb(HostPage::META_DESCRIPTION)
                 ->nullable();
             $blueprint
-                ->string(HostPage::OPEN_GRAPH_TYPE)
-                ->nullable();
+                ->enum(HostPage::OPEN_GRAPH_TYPE, OpenGraphTypeEnum::values())
+                ->default(OpenGraphTypeEnum::WEBSITE->value);
             $blueprint
                 ->jsonb(HostPage::OPEN_GRAPH_TITLE)
                 ->nullable();
@@ -159,8 +161,8 @@ return new class extends Migration
                 ->string(HostPage::OPEN_GRAPH_IMAGE)
                 ->nullable();
             $blueprint
-                ->string(HostPage::ROBOTS)
-                ->nullable();
+                ->enum(HostPage::ROBOTS, RobotsEnum::values())
+                ->default(RobotsEnum::ALL->value);
             $blueprint
                 ->enum(HostPage::CHANGE_FREQ, ChangeFreqEnum::values())
                 ->default(ChangeFreqEnum::NEVER->value);
