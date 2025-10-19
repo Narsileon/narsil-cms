@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class HostPage extends Model
 {
+    use HasTranslations;
+
     #region CONSTRUCTOR
 
     /**
@@ -43,6 +46,13 @@ class HostPage extends Model
     #region • COLUMNS
 
     /**
+     * The name of the "change freq" column.
+     *
+     * @var string
+     */
+    final public const CHANGE_FREQ = 'change_freq';
+
+    /**
      * The name of the "host id" column.
      *
      * @var string
@@ -64,6 +74,41 @@ class HostPage extends Model
     final public const LEFT_ID = 'left_id';
 
     /**
+     * The name of the "meta description" column.
+     *
+     * @var string
+     */
+    final public const META_DESCRIPTION = 'meta_description';
+
+    /**
+     * The name of the "open graph description" column.
+     *
+     * @var string
+     */
+    final public const OPEN_GRAPH_DESCRIPTION = 'open_graph_description';
+
+    /**
+     * The name of the "open graph image" column.
+     *
+     * @var string
+     */
+    final public const OPEN_GRAPH_IMAGE = 'open_graph_image';
+
+    /**
+     * The name of the "open graph title" column.
+     *
+     * @var string
+     */
+    final public const OPEN_GRAPH_TITLE = 'open_graph_title';
+
+    /**
+     * The name of the "open graph type" column.
+     *
+     * @var string
+     */
+    final public const OPEN_GRAPH_TYPE = 'open_graph_type';
+
+    /**
      * The name of the "parent id" column.
      *
      * @var string
@@ -71,11 +116,33 @@ class HostPage extends Model
     final public const PARENT_ID = 'parent_id';
 
     /**
+     * The name of the "priority" column.
+     *
+     * @var string
+     */
+    final public const PRIORITY = 'priority';
+
+    /**
      * The name of the "right id" column.
      *
      * @var string
      */
     final public const RIGHT_ID = 'right_id';
+
+    /**
+     * The name of the "robots" column.
+     *
+     * @var string
+     */
+    final public const ROBOTS = 'robots';
+
+    /**
+     * The name of the "title" column.
+     *
+     * @var string
+     */
+    final public const TITLE = 'title';
+
 
     #endregion
 

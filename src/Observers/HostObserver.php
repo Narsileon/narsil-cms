@@ -25,7 +25,7 @@ class HostObserver
      */
     public function created(Host $host): void
     {
-        $this->createNavigation($host);
+        $this->createRootPage($host);
     }
 
     #endregion
@@ -37,7 +37,7 @@ class HostObserver
      *
      * @return void
      */
-    protected function createNavigation(Host $host): void
+    protected function createRootPage(Host $host): void
     {
         HostPage::create([
             HostPage::HOST_ID => $host->{Host::ID},

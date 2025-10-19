@@ -5,6 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
@@ -116,7 +117,7 @@ return new class extends Migration
     }
 
     /**
-     * Create the host navigations table.
+     * Create the host pages table.
      *
      * @return void
      */
@@ -139,6 +140,33 @@ return new class extends Migration
             $blueprint
                 ->bigInteger(HostPage::RIGHT_ID)
                 ->nullable();
+            $blueprint
+                ->jsonb(HostPage::TITLE)
+                ->nullable();
+            $blueprint
+                ->jsonb(HostPage::META_DESCRIPTION)
+                ->nullable();
+            $blueprint
+                ->string(HostPage::OPEN_GRAPH_TYPE)
+                ->nullable();
+            $blueprint
+                ->jsonb(HostPage::OPEN_GRAPH_TITLE)
+                ->nullable();
+            $blueprint
+                ->jsonb(HostPage::OPEN_GRAPH_DESCRIPTION)
+                ->nullable();
+            $blueprint
+                ->string(HostPage::OPEN_GRAPH_IMAGE)
+                ->nullable();
+            $blueprint
+                ->string(HostPage::ROBOTS)
+                ->nullable();
+            $blueprint
+                ->enum(HostPage::CHANGE_FREQ, ChangeFreqEnum::values())
+                ->default(ChangeFreqEnum::NEVER->value);
+            $blueprint
+                ->decimal(HostPage::PRIORITY, 3, 2)
+                ->default(1.0);
             $blueprint
                 ->timestamps();
         });
