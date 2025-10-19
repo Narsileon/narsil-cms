@@ -5,7 +5,7 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\FileField;
-use Narsil\Contracts\Fields\RichTextField;
+use Narsil\Contracts\Fields\TextareaField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -23,7 +23,7 @@ use Narsil\Services\RouteService;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class HostForm extends AbstractForm implements Contract
+class HostPageForm extends AbstractForm implements Contract
 {
     #region CONSTRUCTOR
 
@@ -58,7 +58,7 @@ class HostForm extends AbstractForm implements Contract
                         Block::RELATION_ELEMENTS => [
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::OPEN_GRAPH_TITLE,
+                                    Field::HANDLE => HostPage::TITLE,
                                     Field::NAME => trans('narsil::validation.attributes.title'),
                                     Field::TRANSLATABLE => true,
                                     Field::TYPE => TextField::class,
@@ -67,18 +67,17 @@ class HostForm extends AbstractForm implements Contract
                             ]),
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::OPEN_GRAPH_DESCRIPTION,
+                                    Field::HANDLE => HostPage::META_DESCRIPTION,
                                     Field::NAME => trans('narsil::validation.attributes.description'),
                                     Field::TRANSLATABLE => true,
-                                    Field::TYPE => RichTextField::class,
-                                    Field::SETTINGS => app(RichTextField::class),
+                                    Field::TYPE => TextareaField::class,
+                                    Field::SETTINGS => app(TextareaField::class),
                                 ])
                             ]),
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
                                     Field::HANDLE => HostPage::ROBOTS,
                                     Field::NAME => trans('narsil::validation.attributes.robots'),
-                                    Field::TRANSLATABLE => true,
                                     Field::TYPE => TextField::class,
                                     Field::SETTINGS => app(TextField::class),
                                 ])
@@ -112,8 +111,8 @@ class HostForm extends AbstractForm implements Contract
                                     Field::HANDLE => HostPage::OPEN_GRAPH_DESCRIPTION,
                                     Field::NAME => trans('narsil::validation.attributes.description'),
                                     Field::TRANSLATABLE => true,
-                                    Field::TYPE => RichTextField::class,
-                                    Field::SETTINGS => app(RichTextField::class),
+                                    Field::TYPE => TextareaField::class,
+                                    Field::SETTINGS => app(TextareaField::class),
                                 ])
                             ]),
                             new BlockElement([

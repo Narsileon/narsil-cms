@@ -21,8 +21,8 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
         icon="menu"
         size="icon"
         variant="ghost"
-        onClick={(e) => {
-          onClick?.(e);
+        onClick={(event) => {
+          onClick?.(event);
 
           toggleSidebar();
         }}

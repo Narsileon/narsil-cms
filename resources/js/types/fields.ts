@@ -10,6 +10,7 @@ import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Slider } from "@narsil-cms/blocks/fields/slider";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
+import { Textarea } from "@narsil-cms/blocks/fields/textarea";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { InputContent } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
@@ -83,6 +84,11 @@ type TableField = {
   settings: ComponentProps<typeof Table>;
 };
 
+type TextareaField = {
+  type: "Narsil\\Contracts\\Fields\\TextareaField";
+  settings: ComponentProps<typeof Textarea>;
+};
+
 type TimeField = {
   type: "Narsil\\Contracts\\Fields\\TimeField";
   settings: ComponentProps<typeof InputContent> & { icon?: string };
@@ -106,5 +112,6 @@ export type FieldType =
   | SelectField
   | SwitchField
   | TableField
+  | TextareaField
   | TimeField
   | TreeField;

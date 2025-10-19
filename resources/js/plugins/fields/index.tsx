@@ -10,6 +10,7 @@ import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Slider } from "@narsil-cms/blocks/fields/slider";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
+import { Textarea } from "@narsil-cms/blocks/fields/textarea";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
@@ -176,6 +177,16 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\TableField"]: (props) => {
     return <Table {...props.element.settings} rows={props.value ?? []} setRows={props.setValue} />;
   },
+  ["Narsil\\Contracts\\Fields\\TextareaField"]: (props) => {
+    return (
+      <Textarea
+        {...props.element.settings}
+        name={props.id}
+        value={props.value}
+        onChange={(event) => props.setValue(event.target.value)}
+      />
+    );
+  },
   ["Narsil\\Contracts\\Fields\\TimeField"]: (props) => {
     return (
       <InputRoot>
@@ -205,7 +216,7 @@ const defaultRegistry: Registry = {
           id={props.id}
           name={props.id}
           value={props.value}
-          onChange={(e) => props.setValue(e.target.value)}
+          onChange={(event) => props.setValue(event.target.value)}
         />
         {props.element.settings.icon ? (
           <Icon className="opacity-50" name={props.element.settings.icon} />

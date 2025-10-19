@@ -25,6 +25,7 @@ return [
     \Narsil\Contracts\Fields\SwitchField::class => \Narsil\Implementations\Fields\SwitchField::class,
     \Narsil\Contracts\Fields\TableField::class => \Narsil\Implementations\Fields\TableField::class,
     \Narsil\Contracts\Fields\TextField::class => \Narsil\Implementations\Fields\TextField::class,
+    \Narsil\Contracts\Fields\TextareaField::class => \Narsil\Implementations\Fields\TextareaField::class,
     \Narsil\Contracts\Fields\TimeField::class => \Narsil\Implementations\Fields\TimeField::class,
     \Narsil\Contracts\Fields\TreeField::class => \Narsil\Implementations\Fields\TreeField::class,
 ];
