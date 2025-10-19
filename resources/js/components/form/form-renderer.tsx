@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { Heading } from "@narsil-cms/blocks";
-import { Builder } from "@narsil-cms/components/builder";
+import { Builder } from "@narsil-cms/blocks/fields/builder";
 import {
   CollapsibleContent,
   CollapsibleRoot,

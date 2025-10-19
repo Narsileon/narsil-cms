@@ -11,11 +11,11 @@ import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
 import { uniqueId } from "lodash";
 import { useRef, useState, type ComponentProps } from "react";
-import { type BuilderNode } from ".";
+import { type BuilderElement } from ".";
 
 type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
   sets: Block[];
-  onAdd: (node: BuilderNode) => void;
+  onAdd: (node: BuilderElement) => void;
 };
 
 function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
@@ -70,7 +70,7 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
                 onClick={() => {
                   const node = { uuid: uniqueId("id:"), block: set, values: {} };
 
-                  onAdd(node as BuilderNode);
+                  onAdd(node as BuilderElement);
                 }}
                 key={index}
               >

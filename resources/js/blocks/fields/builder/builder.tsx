@@ -16,7 +16,7 @@ import { useForm } from "@narsil-cms/components/form";
 import type { Block } from "@narsil-cms/types";
 import { get } from "lodash";
 import { Fragment, useState } from "react";
-import { type BuilderNode } from ".";
+import { type BuilderElement } from ".";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 
@@ -28,13 +28,13 @@ type BuilderProps = {
 function Builder({ name, sets }: BuilderProps) {
   const { data, setData } = useForm();
 
-  const nodes = get(data, name, []) as BuilderNode[];
+  const nodes = get(data, name, []) as BuilderElement[];
 
-  function setNodes(nodes: BuilderNode[]) {
+  function setNodes(nodes: BuilderElement[]) {
     setData?.(name, nodes);
   }
 
-  const [active, setActive] = useState<BuilderNode | null>(null);
+  const [active, setActive] = useState<BuilderElement | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor),

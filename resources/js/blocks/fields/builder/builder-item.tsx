@@ -1,11 +1,11 @@
 import { FormRenderer } from "@narsil-cms/components/form";
 import { SortableItem } from "@narsil-cms/components/sortable";
 import { type ComponentProps } from "react";
-import { Builder, BuilderNode } from ".";
+import { Builder, type BuilderElement } from ".";
 
 type BuilderItemProps = Omit<ComponentProps<typeof SortableItem>, "item"> & {
   baseHandle?: string;
-  node: BuilderNode;
+  node: BuilderElement;
 };
 
 function BuilderItem({ baseHandle, node, ...props }: BuilderItemProps) {

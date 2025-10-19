@@ -3,10 +3,10 @@ import Builder from "./builder";
 import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 
-export type BuilderNode = {
+type BuilderElement = {
   block_id: number;
   block: Block;
-  children: BuilderNode[];
+  children: BuilderElement[];
   entity_uuid: string;
   parent_id: number | null;
   position: number;
@@ -15,3 +15,5 @@ export type BuilderNode = {
 };
 
 export { Builder, BuilderAdd, BuilderItem };
+
+export type { BuilderElement };

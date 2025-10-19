@@ -34,11 +34,11 @@ export function flatTree(
   ]);
 }
 
-function getDragDepth(offset: number, indentationWidth: number) {
+export function getDragDepth(offset: number, indentationWidth: number) {
   return Math.round(offset / indentationWidth);
 }
 
-function getMaxDepth(previousItem: FlatNode) {
+export function getMaxDepth(previousItem: FlatNode) {
   if (previousItem) {
     return previousItem.depth + 1;
   }
@@ -46,7 +46,7 @@ function getMaxDepth(previousItem: FlatNode) {
   return 0;
 }
 
-function getMinDepth(nextItem: FlatNode) {
+export function getMinDepth(nextItem: FlatNode) {
   if (nextItem) {
     return nextItem.depth;
   }
