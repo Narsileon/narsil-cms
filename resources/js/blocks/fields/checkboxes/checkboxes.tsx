@@ -1,3 +1,4 @@
+import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   TableBody,
@@ -7,7 +8,6 @@ import {
   TableWrapper,
 } from "@narsil-cms/components/table";
 import type { GroupedSelectOption, SelectOption, UniqueIdentifier } from "@narsil-cms/types";
-import Checkbox from "./checkbox";
 
 type CheckboxesProps = {
   options: (GroupedSelectOption | SelectOption)[];
@@ -69,7 +69,7 @@ function Checkboxes({ options, values, onChange }: CheckboxesProps) {
                 <TableCell>
                   <div className="flex items-center justify-start gap-2">
                     <Checkbox checked={checked} onCheckedChange={() => toggleValue(option.value)} />
-                    <label>{option.label}</label>
+                    <label>{option.label as string}</label>
                   </div>
                 </TableCell>
               </TableRow>

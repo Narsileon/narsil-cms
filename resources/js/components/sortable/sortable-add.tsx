@@ -1,6 +1,6 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { Button } from "@narsil-cms/blocks";
-import { Combobox } from "@narsil-cms/blocks/fields";
+import { Combobox } from "@narsil-cms/blocks/fields/combobox";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";

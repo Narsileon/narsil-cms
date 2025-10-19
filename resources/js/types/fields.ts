@@ -1,17 +1,15 @@
-import {
-  Array,
-  Checkbox,
-  Checkboxes,
-  Combobox,
-  InputDate,
-  InputFile,
-  InputPassword,
-  Relations,
-  RichTextEditor,
-  Slider,
-  Switch,
-  Table,
-} from "@narsil-cms/blocks/fields";
+import { Array } from "@narsil-cms/blocks/fields/array";
+import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
+import { Checkboxes } from "@narsil-cms/blocks/fields/checkboxes";
+import { Combobox } from "@narsil-cms/blocks/fields/combobox";
+import { Datetime } from "@narsil-cms/blocks/fields/datetime";
+import { File } from "@narsil-cms/blocks/fields/file";
+import { Password } from "@narsil-cms/blocks/fields/password";
+import { Relations } from "@narsil-cms/blocks/fields/relations";
+import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
+import { Slider } from "@narsil-cms/blocks/fields/slider";
+import { Switch } from "@narsil-cms/blocks/fields/switch";
+import { Table } from "@narsil-cms/blocks/fields/table";
 import { InputContent } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList, SortableTree } from "@narsil-cms/components/sortable";
 import { type IconName } from "@narsil-cms/plugins/icons";
@@ -36,19 +34,19 @@ type CheckboxField = {
 
 type DateField = {
   type: "Narsil\\Contracts\\Fields\\DateField";
-  settings: ComponentProps<typeof InputDate>;
+  settings: ComponentProps<typeof Datetime>;
 };
 
 type FileField = {
   type: "Narsil\\Contracts\\Fields\\FileField";
-  settings: ComponentProps<typeof InputFile> & {
+  settings: ComponentProps<typeof File> & {
     icon?: IconName;
   };
 };
 
 type PasswordField = {
   type: "Narsil\\Contracts\\Fields\\PasswordField";
-  settings: ComponentProps<typeof InputPassword>;
+  settings: ComponentProps<typeof Password>;
 };
 
 type RangeField = {

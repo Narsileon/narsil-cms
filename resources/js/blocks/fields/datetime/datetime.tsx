@@ -10,12 +10,12 @@ import {
 import { cn } from "@narsil-cms/lib/utils";
 import { useState, type ComponentProps } from "react";
 
-type InputDateProps = Omit<ComponentProps<typeof InputContent>, "value"> & {
+type DatetimeProps = Omit<ComponentProps<typeof InputContent>, "value"> & {
   value: string | undefined;
   onChange: (value: string | undefined) => void;
 };
 
-function InputDate({ value, onChange, ...props }: InputDateProps) {
+function Datetime({ value, onChange, ...props }: DatetimeProps) {
   const [open, setOpen] = useState(false);
 
   const date = value ? new Date(value) : undefined;
@@ -53,4 +53,4 @@ function InputDate({ value, onChange, ...props }: InputDateProps) {
   );
 }
 
-export default InputDate;
+export default Datetime;

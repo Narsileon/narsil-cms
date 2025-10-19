@@ -1,6 +1,6 @@
 import { router } from "@inertiajs/react";
 import { Card, Label } from "@narsil-cms/blocks";
-import { Switch } from "@narsil-cms/blocks/fields";
+import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { useAuth } from "@narsil-cms/hooks/use-props";

@@ -77,7 +77,6 @@ function SortableItemForm({
               return (
                 <FormRoot className="grid-cols-12 gap-4">
                   {form.layout.map((element, index) => {
-                    console.log(element);
                     return <FormRenderer {...element} key={index} />;
                   })}
                 </FormRoot>

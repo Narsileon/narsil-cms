@@ -1,17 +1,15 @@
-import {
-  Array,
-  Checkbox,
-  Checkboxes,
-  Combobox,
-  InputDate,
-  InputFile,
-  InputPassword,
-  Relations,
-  RichTextEditor,
-  Slider,
-  Switch,
-  Table,
-} from "@narsil-cms/blocks/fields";
+import { Array } from "@narsil-cms/blocks/fields/array";
+import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
+import { Checkboxes } from "@narsil-cms/blocks/fields/checkboxes";
+import { Combobox } from "@narsil-cms/blocks/fields/combobox";
+import { Datetime } from "@narsil-cms/blocks/fields/datetime";
+import { File } from "@narsil-cms/blocks/fields/file";
+import { Password } from "@narsil-cms/blocks/fields/password";
+import { Relations } from "@narsil-cms/blocks/fields/relations";
+import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
+import { Slider } from "@narsil-cms/blocks/fields/slider";
+import { Switch } from "@narsil-cms/blocks/fields/switch";
+import { Table } from "@narsil-cms/blocks/fields/table";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList, SortableTree } from "@narsil-cms/components/sortable";
@@ -70,7 +68,7 @@ const defaultRegistry: Registry = {
   },
   ["Narsil\\Contracts\\Fields\\DateField"]: (props) => {
     return (
-      <InputDate
+      <Datetime
         {...props.element.settings}
         id={props.id}
         name={props.id}
@@ -81,7 +79,7 @@ const defaultRegistry: Registry = {
   },
   ["Narsil\\Contracts\\Fields\\FileField"]: (props) => {
     return (
-      <InputFile
+      <File
         {...props.element.settings}
         id={props.id}
         name={props.id}
@@ -91,12 +89,12 @@ const defaultRegistry: Registry = {
         {props.element.settings.icon ? (
           <Icon className="opacity-50" name={props.element.settings.icon} />
         ) : null}
-      </InputFile>
+      </File>
     );
   },
   ["Narsil\\Contracts\\Fields\\PasswordField"]: (props) => {
     return (
-      <InputPassword
+      <Password
         {...props.element.settings}
         id={props.id}
         name={props.id}

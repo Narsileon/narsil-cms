@@ -1,12 +1,12 @@
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useEffect, useState, type ComponentProps } from "react";
 
-type InputFileProps = Omit<ComponentProps<typeof InputContent>, "onChange"> & {
+type FileProps = Omit<ComponentProps<typeof InputContent>, "onChange"> & {
   value: File | string | undefined;
   onChange: (value: File | string | undefined) => void;
 };
 
-function InputFile({ accept, children, value, onChange, ...props }: InputFileProps) {
+function File({ accept, children, value, onChange, ...props }: FileProps) {
   const [preview, setPreview] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,4 +50,4 @@ function InputFile({ accept, children, value, onChange, ...props }: InputFilePro
   );
 }
 
-export default InputFile;
+export default File;

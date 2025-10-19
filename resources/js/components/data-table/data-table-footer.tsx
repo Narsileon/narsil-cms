@@ -1,5 +1,5 @@
 import { Pagination } from "@narsil-cms/blocks";
-import { Select } from "@narsil-cms/blocks/fields";
+import { Select } from "@narsil-cms/blocks/fields/select";
 import { useDataTable } from "@narsil-cms/components/data-table";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { DataTableCollection } from "@narsil-cms/types";

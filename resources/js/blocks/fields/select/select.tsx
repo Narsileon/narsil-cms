@@ -33,7 +33,7 @@ type SelectProps = ComponentProps<typeof SelectRoot> & {
   viewportProps?: Partial<ComponentProps<typeof SelectViewport>>;
 };
 
-const Select = ({
+function Select({
   children,
   contentProps,
   iconProps,
@@ -49,7 +49,7 @@ const Select = ({
   valueProps,
   viewportProps,
   ...props
-}: SelectProps) => {
+}: SelectProps) {
   const { locale } = useLocale();
 
   return (
@@ -79,6 +79,6 @@ const Select = ({
       </SelectPortal>
     </SelectRoot>
   );
-};
+}
 
 export default Select;

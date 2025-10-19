@@ -1,5 +1,5 @@
 import { Badge } from "@narsil-cms/blocks";
-import { Select } from "@narsil-cms/blocks/fields";
+import { Select } from "@narsil-cms/blocks/fields/select";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverContent,

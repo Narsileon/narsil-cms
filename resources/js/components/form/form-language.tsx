@@ -1,4 +1,4 @@
-import { Select } from "@narsil-cms/blocks/fields";
+import { Select } from "@narsil-cms/blocks/fields/select";
 import { type ComponentProps } from "react";
 import useForm from "./form-context";
 
