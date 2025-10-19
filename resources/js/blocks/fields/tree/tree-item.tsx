@@ -17,7 +17,7 @@ import {
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItemForm } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
-import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
+import type { FormType } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 import { FlatNode } from ".";
 
@@ -27,14 +27,12 @@ type TreeItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> & {
   disabled?: boolean;
   footer?: React.ReactNode;
   form?: FormType;
-  group?: GroupedSelectOption;
   id: UniqueIdentifier;
   item: FlatNode;
   label?: UniqueIdentifier;
   optionValue?: string;
   placeholder?: boolean;
   tooltip?: string;
-  widthOptions?: SelectOption[];
   onItemChange?: (value: FlatNode) => void;
   onItemRemove?: () => void;
 };
@@ -48,13 +46,11 @@ function TreeItem({
   disabled,
   footer,
   form,
-  group,
   id,
   label,
   optionValue,
   placeholder,
   style,
-  widthOptions,
   onItemChange,
   onItemRemove,
   ...props
