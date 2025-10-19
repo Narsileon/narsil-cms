@@ -10,8 +10,9 @@ import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Slider } from "@narsil-cms/blocks/fields/slider";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
+import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { InputContent } from "@narsil-cms/components/input";
-import { SortableGrid, SortableList, SortableTree } from "@narsil-cms/components/sortable";
+import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { type IconName } from "@narsil-cms/plugins/icons";
 import { type ComponentProps } from "react";
 
@@ -89,7 +90,7 @@ type TimeField = {
 
 type TreeField = {
   type: "Narsil\\Contracts\\Fields\\TreeField";
-  settings: ComponentProps<typeof SortableTree> & { icon?: string };
+  settings: ComponentProps<typeof Tree> & { icon?: string };
 };
 
 export type FieldType =

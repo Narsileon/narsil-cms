@@ -10,9 +10,10 @@ import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Slider } from "@narsil-cms/blocks/fields/slider";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
+import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
-import { SortableGrid, SortableList, SortableTree } from "@narsil-cms/components/sortable";
+import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Field } from "@narsil-cms/types";
 import { isArray } from "lodash";
@@ -194,13 +195,7 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\TreeField"]: (props) => {
-    return (
-      <SortableTree
-        {...props.element.settings}
-        items={props.value ?? []}
-        setItems={props.setValue}
-      />
-    );
+    return <Tree {...props.element.settings} items={props.value ?? []} setItems={props.setValue} />;
   },
   ["default"]: (props) => {
     return (

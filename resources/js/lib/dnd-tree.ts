@@ -1,6 +1,6 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { type FlatNode, type NestedNode } from "@narsil-cms/components/sortable";
+import { type FlatNode, type NestedNode } from "@narsil-cms/blocks/fields/tree";
 
 export function buildTree(flattenedItems: FlatNode[]): NestedNode[] {
   const root: NestedNode = { id: "root", children: [] };

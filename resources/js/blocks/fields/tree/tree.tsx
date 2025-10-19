@@ -15,17 +15,18 @@ import {
   type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { buildTree, flatTree, getProjection, removeChildren } from "@narsil-cms/lib/sortable";
+import { buildTree, flatTree, getProjection, removeChildren } from "@narsil-cms/lib/dnd-tree";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { NestedNode, SortableItem, type FlatNode } from ".";
+import { NestedNode, type FlatNode } from ".";
+import TreeItem from "./tree-item";
 
-type SortableTreeProps = {
+type TreeProps = {
   items: NestedNode[];
   setItems: (items: NestedNode[]) => void;
 };
 
-function SortableTree({ items, setItems }: SortableTreeProps) {
+function Tree({ items, setItems }: TreeProps) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [overId, setOverId] = useState<UniqueIdentifier | null>(null);
 
@@ -138,7 +139,7 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
           const depth = item.id === activeId && projected ? projected.depth : item.depth;
 
           return (
-            <SortableItem
+            <TreeItem
               disabled={depth === 0}
               label={item.id.toString()}
               id={item.id}
@@ -149,7 +150,7 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
         })}
         {createPortal(
           <DragOverlay>
-            {activeId && activeItem ? <SortableItem id={activeItem.id} /> : null}
+            {activeId && activeItem ? <TreeItem id={activeItem.id} /> : null}
           </DragOverlay>,
           document.body,
         )}
@@ -158,4 +159,4 @@ function SortableTree({ items, setItems }: SortableTreeProps) {
   );
 }
 
-export default SortableTree;
+export default Tree;

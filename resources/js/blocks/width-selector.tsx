@@ -4,7 +4,7 @@ import type { SelectOption } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 
 type WidthSelectorProps = Omit<ComponentProps<"div">, "defaultValue"> & {
-  defaultValue: number;
+  defaultValue?: number;
   options: SelectOption[];
   value: number;
   onValueChange: (value: number) => void;
