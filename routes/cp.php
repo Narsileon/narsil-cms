@@ -10,6 +10,7 @@ use Narsil\Http\Controllers\DashboardController;
 use Narsil\Http\Controllers\EntityController;
 use Narsil\Http\Controllers\FieldController;
 use Narsil\Http\Controllers\HostController;
+use Narsil\Http\Controllers\HostPageController;
 use Narsil\Http\Controllers\RoleController;
 use Narsil\Http\Controllers\SessionController;
 use Narsil\Http\Controllers\SiteController;
@@ -21,6 +22,7 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostPage;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 
@@ -81,6 +83,11 @@ Route::middleware([
             'show',
         ]);
         resource(Host::TABLE, HostController::class, [
+            'show',
+        ]);
+        Route::resource(HostPage::TABLE, HostPageController::class)->except([
+            'destroy',
+            'index',
             'show',
         ]);
         resource(Role::TABLE, RoleController::class, [

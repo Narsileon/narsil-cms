@@ -6,6 +6,8 @@ namespace Narsil\Http\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\RoleFormRequest as Contract;
+use Narsil\Models\Hosts\Host;
+use Narsil\Validation\FormRule;
 
 #endregion
 
@@ -22,7 +24,11 @@ class SiteFormRequest implements Contract
      */
     public function rules(?Model $model = null): array
     {
-        return [];
+        return [
+            Host::RELATION_PAGES => [
+                FormRule::ARRAY,
+            ],
+        ];
     }
 
     #endregion

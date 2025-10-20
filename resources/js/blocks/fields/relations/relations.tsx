@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogOverlay,
   DialogPortal,
   DialogRoot,
   DialogTitle,
@@ -150,6 +151,7 @@ function Relations({
         </InputRoot>
       </DialogTrigger>
       <DialogPortal>
+        <DialogOverlay />
         <DialogContent className="sm:max-w-full" variant="right">
           <DialogHeader className="border-b">
             <DialogTitle>Relations</DialogTitle>

@@ -4,7 +4,6 @@ import { useMinLg, useMinMd, useMinSm, useMinXl } from "@narsil-cms/hooks/use-br
 import { cn } from "@narsil-cms/lib/utils";
 
 type Item = {
-  handle: string;
   href: string;
   name: string;
 };
@@ -42,7 +41,7 @@ function Collections({ items }: CollectionsProps) {
           columns === 5 && "grid-cols-5",
         )}
       >
-        {items.map((item) => {
+        {items.map((item, index) => {
           return (
             <Card
               className="aspect-square h-48 w-48 cursor-pointer shadow-lg"
@@ -50,7 +49,7 @@ function Collections({ items }: CollectionsProps) {
                 className:
                   "p-0 h-full w-full hover:bg-accent hover:text-accent-foreground transition-all duration-300",
               }}
-              key={item.handle}
+              key={index}
             >
               <Link
                 className="flex h-full w-full items-center justify-center text-center"

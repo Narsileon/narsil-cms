@@ -15,11 +15,11 @@ import {
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { SortableHandle, SortableItemForm } from "@narsil-cms/components/sortable";
+import { SortableHandle } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { FormType } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
-import { FlatNode } from ".";
+import { FlatNode, TreeItemMenu } from ".";
 
 type TreeItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> & {
   collapsed?: boolean;
@@ -62,7 +62,6 @@ function TreeItem({
   const {
     attributes,
     isDragging,
-    items,
     listeners,
     transform,
     transition,
@@ -77,7 +76,6 @@ function TreeItem({
       ref={disabled ? undefined : setNodeRef}
       className={cn(
         isDragging && "opacity-50",
-        disabled && "pointer-events-none",
         placeholder &&
           "border-dashed bg-transparent opacity-50 will-change-transform hover:opacity-100",
         className,
@@ -94,7 +92,10 @@ function TreeItem({
           <CardContent className="flex h-full items-center justify-center">{children}</CardContent>
         ) : (
           <>
-            <CollapsibleTrigger className={cn(children && open && "border-b")} asChild={true}>
+            <CollapsibleTrigger
+              className={cn(children && open && "border-b", disabled && "cursor-default")}
+              asChild={true}
+            >
               <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
                 <div className="flex w-full items-center justify-start gap-2">
                   <SortableHandle
@@ -121,27 +122,7 @@ function TreeItem({
                   ) : null}
                 </div>
                 <div className="flex items-center justify-between gap-1 justify-self-end">
-                  {form && item && optionValue && onItemChange ? (
-                    <SortableItemForm
-                      form={form}
-                      ids={items}
-                      item={item}
-                      optionValue={optionValue}
-                      onItemChange={onItemChange}
-                    >
-                      <Button className="size-7" icon="edit" size="icon" variant="ghost" />
-                    </SortableItemForm>
-                  ) : null}
-                  {onItemRemove ? (
-                    <Button
-                      className="size-7"
-                      icon="trash"
-                      size="icon"
-                      tooltip={trans("ui.remove")}
-                      variant="ghost"
-                      onClick={onItemRemove}
-                    />
-                  ) : null}
+                  <TreeItemMenu item={item} />
                 </div>
               </CardHeader>
             </CollapsibleTrigger>

@@ -1,4 +1,6 @@
 import Tree from "./tree";
+import TreeItem from "./tree-item";
+import TreeItemMenu from "./tree-item-menu";
 
 type FlatNode = {
   children: NestedNode[];
@@ -8,6 +10,7 @@ type FlatNode = {
   id: number | string;
   parent_id: number | string | null;
   type?: string;
+  [key: string]: unknown;
 };
 
 type NestedNode = {
@@ -17,6 +20,6 @@ type NestedNode = {
   type?: string;
 };
 
-export { Tree };
+export { Tree, TreeItem, TreeItemMenu };
 
 export type { FlatNode, NestedNode };

@@ -5,6 +5,7 @@ namespace Narsil\Http\Resources\Summaries;
 #region USE
 
 use Illuminate\Http\Request;
+use Narsil\Http\Resources\AbstractSummaryResource;
 use Narsil\Models\Hosts\Host;
 
 #endregion
@@ -13,22 +14,8 @@ use Narsil\Models\Hosts\Host;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class SiteResource extends AbstractSummaryResource
+class SiteSummaryResource extends AbstractSummaryResource
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param Host $resource
-     *
-     * @return void
-     */
-    public function __construct(Host $resource)
-    {
-        parent::__construct($resource);
-    }
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -37,11 +24,8 @@ class SiteResource extends AbstractSummaryResource
     public function toArray(Request $request): array
     {
         return [
-            Host::HANDLE => $this->{Host::HANDLE},
-            Host::ID => $this->{Host::ID},
-            Host::NAME => $this->{Host::NAME},
-
             self::HREF => route('sites.edit', $this->{Host::HANDLE}),
+            self::NAME => $this->{Host::NAME},
         ];
     }
 

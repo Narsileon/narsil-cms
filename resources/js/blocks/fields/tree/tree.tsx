@@ -57,7 +57,7 @@ function Tree({ items, setItems }: TreeProps) {
     useSensor(KeyboardSensor, {}),
   );
 
-  const activeItem = activeId ? items.find(({ id }) => id === activeId) : null;
+  const activeItem = activeId ? flattenedItems.find(({ id }) => id === activeId) : null;
 
   const projected =
     activeId && overId ? getProjection(flattenedItems, activeId, overId, offsetLeft, 20) : null;
@@ -143,6 +143,7 @@ function Tree({ items, setItems }: TreeProps) {
               disabled={depth === 0}
               label={item.id.toString()}
               id={item.id}
+              item={item}
               style={{ marginLeft: `${depth * 16}px` }}
               key={item.id}
             />
@@ -150,7 +151,7 @@ function Tree({ items, setItems }: TreeProps) {
         })}
         {createPortal(
           <DragOverlay>
-            {activeId && activeItem ? <TreeItem id={activeItem.id} /> : null}
+            {activeId && activeItem ? <TreeItem id={activeItem.id} item={activeItem} /> : null}
           </DragOverlay>,
           document.body,
         )}

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Resources\Summaries\CollectionResource;
+use Narsil\Http\Resources\Summaries\CollectionSummaryResource;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 
@@ -41,7 +41,7 @@ class CollectionController extends AbstractController
             ->orderBy(Template::NAME . "->$locale", 'asc')
             ->get();
 
-        $items = CollectionResource::collection($templates)
+        $items = CollectionSummaryResource::collection($templates)
             ->resolve($request);
 
         return $this->render(

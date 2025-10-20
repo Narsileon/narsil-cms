@@ -4,6 +4,7 @@ import SortableGrid from "./sortable-grid";
 import SortableHandle from "./sortable-handle";
 import SortableItem from "./sortable-item";
 import SortableItemForm from "./sortable-item-form";
+import SortableItemMenu from "./sortable-item-menu";
 import SortableList from "./sortable-list";
 import SortableListContext from "./sortable-list-context";
 
@@ -18,6 +19,7 @@ export {
   SortableHandle,
   SortableItem,
   SortableItemForm,
+  SortableItemMenu,
   SortableList,
   SortableListContext,
 };

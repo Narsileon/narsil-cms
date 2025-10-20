@@ -119,11 +119,11 @@ function AuthLayout({ children }: AuthLayoutProps) {
             </DropdownMenuContent>
           </DropdownMenuRoot>
         </header>
-        <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
+        <div ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
           <ModalRenderer container={mainRef.current} />
           {children}
           <Toaster />
-        </main>
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );

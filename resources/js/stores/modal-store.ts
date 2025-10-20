@@ -1,12 +1,17 @@
 import { Link } from "@inertiajs/react";
+import { DialogContent } from "@narsil-cms/components/dialog";
 import { type ComponentProps } from "react";
 import { create } from "zustand";
+
+type LinkProps = ComponentProps<typeof Link>;
+type ModalVariant = ComponentProps<typeof DialogContent>["variant"];
 
 type ModalType = {
   component: string;
   componentProps: Record<string, unknown>;
   id: string;
-  linkProps: ComponentProps<typeof Link>;
+  linkProps: LinkProps;
+  variant: ModalVariant;
 };
 
 type ModalStoreState = {
@@ -16,13 +21,16 @@ type ModalStoreState = {
 type ModalStoreActions = {
   closeModal: (href: string) => void;
   closeTopModal: () => void;
-  openModal: (linkProps: ComponentProps<typeof Link>) => Promise<void>;
+  openModal: (linkProps: LinkProps, variant?: ModalVariant) => Promise<void>;
   reloadTopModal: () => Promise<void>;
 };
 
 type ModalStoreType = ModalStoreState & ModalStoreActions;
 
-async function fetchModalProps(linkProps: ComponentProps<typeof Link>): Promise<ModalType | null> {
+async function fetchModalProps(
+  linkProps: LinkProps,
+  variant?: ModalVariant,
+): Promise<ModalType | null> {
   try {
     const url = new URL(linkProps.href as string, window.location.origin);
 
@@ -49,6 +57,7 @@ async function fetchModalProps(linkProps: ComponentProps<typeof Link>): Promise<
       componentProps: data.props ?? {},
       id: crypto.randomUUID(),
       linkProps: linkProps,
+      variant: variant,
     };
   } catch (error) {
     console.error(error);
@@ -68,8 +77,8 @@ const useModalStore = create<ModalStoreType>((set, get) => ({
     set((state) => ({
       modals: state.modals.slice(0, -1),
     })),
-  openModal: async (linkProps: ComponentProps<typeof Link>) => {
-    const modal = await fetchModalProps(linkProps);
+  openModal: async (linkProps: LinkProps, variant?: ModalVariant) => {
+    const modal = await fetchModalProps(linkProps, variant);
 
     if (!modal) {
       return;

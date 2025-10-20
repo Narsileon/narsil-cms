@@ -23,11 +23,14 @@ class TreeField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.remove');
-
         $this->setDefaultValue([]);
+
+        app(TranslationsBag::class)
+            ->add('narsil::ui.add_child')
+            ->add('narsil::ui.edit')
+            ->add('narsil::ui.move_down')
+            ->add('narsil::ui.move_up')
+            ->add('narsil::ui.remove');
     }
 
     #endregion

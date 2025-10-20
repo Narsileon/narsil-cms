@@ -17,6 +17,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostPage;
@@ -58,121 +59,128 @@ class HostPageForm extends AbstractForm implements Contract
         return [
             static::mainSection([
                 new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => 'Meta',
-                        Block::RELATION_ELEMENTS => [
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::TITLE,
-                                    Field::NAME => trans('narsil::validation.attributes.title'),
-                                    Field::TRANSLATABLE => true,
-                                    Field::TYPE => TextField::class,
-                                    Field::SETTINGS => app(TextField::class),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::META_DESCRIPTION,
-                                    Field::NAME => trans('narsil::validation.attributes.description'),
-                                    Field::TRANSLATABLE => true,
-                                    Field::TYPE => TextareaField::class,
-                                    Field::SETTINGS => app(TextareaField::class),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::ROBOTS,
-                                    Field::NAME => trans('narsil::validation.attributes.robots'),
-                                    Field::TYPE => SelectField::class,
-                                    Field::SETTINGS => app(SelectField::class)
-                                        ->setDefaultValue(RobotsEnum::ALL->value)
-                                        ->setDisplayValue(false)
-                                        ->setOptions(RobotsEnum::options())
-                                        ->setRequired(true),
-                                ])
-                            ]),
-                        ],
-                    ]),
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => HostPage::TITLE,
+                        Field::NAME => trans('narsil::validation.attributes.title'),
+                        Field::TRANSLATABLE => true,
+                        Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(TextField::class)
+                            ->setRequired(true),
+                    ])
                 ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => 'Open Graph',
-                        Block::RELATION_ELEMENTS => [
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::OPEN_GRAPH_TYPE,
-                                    Field::NAME => trans('narsil::validation.attributes.type'),
-                                    Field::TYPE => SelectField::class,
-                                    Field::SETTINGS => app(SelectField::class)
-                                        ->setDefaultValue(OpenGraphTypeEnum::WEBSITE->value)
-                                        ->setDisplayValue(false)
-                                        ->setOptions(OpenGraphTypeEnum::options())
-                                        ->setRequired(true),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::OPEN_GRAPH_TITLE,
-                                    Field::NAME => trans('narsil::validation.attributes.title'),
-                                    Field::TRANSLATABLE => true,
-                                    Field::TYPE => TextField::class,
-                                    Field::SETTINGS => app(TextField::class),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::OPEN_GRAPH_DESCRIPTION,
-                                    Field::NAME => trans('narsil::validation.attributes.description'),
-                                    Field::TRANSLATABLE => true,
-                                    Field::TYPE => TextareaField::class,
-                                    Field::SETTINGS => app(TextareaField::class),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::OPEN_GRAPH_IMAGE,
-                                    Field::NAME => trans('narsil::validation.attributes.image'),
-                                    Field::TYPE => FileField::class,
-                                    Field::SETTINGS => app(FileField::class)
-                                        ->setAccept('image/*')
-                                        ->setIcon('image'),
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'SEO',
+                TemplateSection::NAME => 'SEO',
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Block([
+                            Block::NAME => 'Meta',
+                            Block::RELATION_ELEMENTS => [
+                                new BlockElement([
+                                    BlockElement::RELATION_ELEMENT => new Field([
+                                        Field::HANDLE => HostPage::META_DESCRIPTION,
+                                        Field::NAME => trans('narsil::validation.attributes.description'),
+                                        Field::TRANSLATABLE => true,
+                                        Field::TYPE => TextareaField::class,
+                                        Field::SETTINGS => app(TextareaField::class),
+                                    ])
                                 ]),
-                            ]),
-                        ],
+                                new BlockElement([
+                                    BlockElement::RELATION_ELEMENT => new Field([
+                                        Field::HANDLE => HostPage::ROBOTS,
+                                        Field::NAME => trans('narsil::validation.attributes.robots'),
+                                        Field::TYPE => SelectField::class,
+                                        Field::SETTINGS => app(SelectField::class)
+                                            ->setDefaultValue(RobotsEnum::ALL->value)
+                                            ->setDisplayValue(false)
+                                            ->setOptions(RobotsEnum::options())
+                                            ->setRequired(true),
+                                    ])
+                                ]),
+                            ],
+                        ]),
                     ]),
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => 'Sitemap',
-                        Block::RELATION_ELEMENTS => [
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::CHANGE_FREQ,
-                                    Field::NAME => trans('narsil::validation.attributes.change_freq'),
-                                    Field::TRANSLATABLE => true,
-                                    Field::TYPE => SelectField::class,
-                                    Field::SETTINGS => app(SelectField::class)
-                                        ->setDefaultValue(ChangeFreqEnum::NEVER->value)
-                                        ->setDisplayValue(false)
-                                        ->setOptions(ChangeFreqEnum::options())
-                                        ->setRequired(true),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => HostPage::PRIORITY,
-                                    Field::NAME => trans('narsil::validation.attributes.priority'),
-                                    Field::TRANSLATABLE => true,
-                                    Field::TYPE => RangeField::class,
-                                    Field::SETTINGS => app(RangeField::class)
-                                        ->setMin(0)
-                                        ->setMax(1)
-                                        ->setStep(0.05),
-                                ])
-                            ]),
-                        ],
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Block([
+                            Block::NAME => 'Open Graph',
+                            Block::RELATION_ELEMENTS => [
+                                new BlockElement([
+                                    BlockElement::RELATION_ELEMENT => new Field([
+                                        Field::HANDLE => HostPage::OPEN_GRAPH_TYPE,
+                                        Field::NAME => trans('narsil::validation.attributes.type'),
+                                        Field::TYPE => SelectField::class,
+                                        Field::SETTINGS => app(SelectField::class)
+                                            ->setDefaultValue(OpenGraphTypeEnum::WEBSITE->value)
+                                            ->setDisplayValue(false)
+                                            ->setOptions(OpenGraphTypeEnum::options())
+                                            ->setRequired(true),
+                                    ])
+                                ]),
+                                new BlockElement([
+                                    BlockElement::RELATION_ELEMENT => new Field([
+                                        Field::HANDLE => HostPage::OPEN_GRAPH_TITLE,
+                                        Field::NAME => trans('narsil::validation.attributes.title'),
+                                        Field::TRANSLATABLE => true,
+                                        Field::TYPE => TextField::class,
+                                        Field::SETTINGS => app(TextField::class),
+                                    ])
+                                ]),
+                                new BlockElement([
+                                    BlockElement::RELATION_ELEMENT => new Field([
+                                        Field::HANDLE => HostPage::OPEN_GRAPH_DESCRIPTION,
+                                        Field::NAME => trans('narsil::validation.attributes.description'),
+                                        Field::TRANSLATABLE => true,
+                                        Field::TYPE => TextareaField::class,
+                                        Field::SETTINGS => app(TextareaField::class),
+                                    ])
+                                ]),
+                                new BlockElement([
+                                    BlockElement::RELATION_ELEMENT => new Field([
+                                        Field::HANDLE => HostPage::OPEN_GRAPH_IMAGE,
+                                        Field::NAME => trans('narsil::validation.attributes.image'),
+                                        Field::TYPE => FileField::class,
+                                        Field::SETTINGS => app(FileField::class)
+                                            ->setAccept('image/*')
+                                            ->setIcon('image'),
+                                    ]),
+                                ]),
+                            ],
+                        ]),
                     ]),
-                ]),
+                ],
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'Sitemap',
+                TemplateSection::NAME => 'Sitemap',
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => HostPage::CHANGE_FREQ,
+                            Field::NAME => trans('narsil::validation.attributes.change_freq'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => SelectField::class,
+                            Field::SETTINGS => app(SelectField::class)
+                                ->setDefaultValue(ChangeFreqEnum::NEVER->value)
+                                ->setDisplayValue(false)
+                                ->setOptions(ChangeFreqEnum::options())
+                                ->setRequired(true),
+                        ])
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => HostPage::PRIORITY,
+                            Field::NAME => trans('narsil::validation.attributes.priority'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => RangeField::class,
+                            Field::SETTINGS => app(RangeField::class)
+                                ->setDefaultValue([1.0])
+                                ->setMax(1)
+                                ->setMin(0)
+                                ->setStep(0.05),
+                        ])
+                    ]),
+                ],
             ]),
             static::informationSection(),
         ];

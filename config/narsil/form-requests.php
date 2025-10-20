@@ -15,6 +15,7 @@ return [
     \Narsil\Contracts\FormRequests\EntityFormRequest::class => \Narsil\Http\Requests\EntityFormRequest::class,
     \Narsil\Contracts\FormRequests\FieldFormRequest::class => \Narsil\Http\Requests\FieldFormRequest::class,
     \Narsil\Contracts\FormRequests\HostFormRequest::class => \Narsil\Http\Requests\HostFormRequest::class,
+    \Narsil\Contracts\FormRequests\HostPageFormRequest::class => \Narsil\Http\Requests\HostPageFormRequest::class,
     \Narsil\Contracts\FormRequests\RoleFormRequest::class => \Narsil\Http\Requests\RoleFormRequest::class,
     \Narsil\Contracts\FormRequests\TemplateFormRequest::class => \Narsil\Http\Requests\TemplateFormRequest::class,
     \Narsil\Contracts\FormRequests\UserConfigurationFormRequest::class => \Narsil\Http\Requests\UserConfigurationFormRequest::class,

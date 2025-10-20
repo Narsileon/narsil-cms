@@ -7,6 +7,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostPage;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 
@@ -65,6 +66,10 @@ return [
             'replicated' => 'The host has been successfully duplicated.',
             'replicated_many' => 'The hosts have been successfully duplicated.',
             'updated' => 'The host has been successfully updated.',
+        ],
+        HostPage::TABLE => [
+            'created' => 'The page has been successfully created.',
+            'updated' => 'The page has been successfully updated.',
         ],
         Role::TABLE => [
             'created' => 'The role has been successfully created.',

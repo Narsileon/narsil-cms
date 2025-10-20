@@ -23,12 +23,12 @@ const dialogContentVariants = cva(
           "data-[state=open]:slide-in-from-bottom",
         ),
         left: cn(
-          "inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
+          "min-w-3/4 inset-y-0 left-0 h-full border-r sm:max-w-sm",
           "data-[state=closed]:slide-out-to-left",
           "data-[state=open]:slide-in-from-left",
         ),
         right: cn(
-          "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
+          "min-w-3/4 inset-y-0 right-0 h-full border-l sm:max-w-sm",
           "data-[state=closed]:slide-out-to-right",
           "data-[state=open]:slide-in-from-right",
         ),

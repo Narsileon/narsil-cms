@@ -161,7 +161,6 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
             ) : null}
           </>
         )}
-        {}
       </DropdownMenuContent>
     </DropdownMenuRoot>
   );

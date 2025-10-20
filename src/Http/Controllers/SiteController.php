@@ -13,7 +13,8 @@ use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Resources\Summaries\SiteResource;
+use Narsil\Http\Resources\SiteResource;
+use Narsil\Http\Resources\Summaries\SiteSummaryResource;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\Host;
 
@@ -44,7 +45,7 @@ class SiteController extends AbstractController
             ->orderBy(Host::NAME . "->$locale", 'asc')
             ->get();
 
-        $items = SiteResource::collection($hosts)
+        $items = SiteSummaryResource::collection($hosts)
             ->resolve($request);
 
         return $this->render(
@@ -81,7 +82,7 @@ class SiteController extends AbstractController
 
         $form = app(SiteForm::class)
             ->setAction(route('sites.update', $site))
-            ->setData($host->toArrayWithTranslations())
+            ->setData(new SiteResource($host)->toArray($request))
             ->setId($host->{Host::ID})
             ->setMethod(MethodEnum::PATCH)
             ->setLanguageOptions([])

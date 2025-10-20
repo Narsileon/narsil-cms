@@ -6,7 +6,8 @@ namespace Narsil\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Narsil\Models\User;
+use Narsil\Http\Resources\Trees\HostPageTreeResource;
+use Narsil\Models\Hosts\Host;
 
 #endregion
 
@@ -14,11 +15,14 @@ use Narsil\Models\User;
  * @author Jonathan Rigaux
  * @version 1.0.0
  */
-class AuthResource extends JsonResource
+class SiteResource extends JsonResource
 {
     #region PROPERTIES
 
-    public static $wrap = false;
+    /**
+     * {@inheritDoc}
+     */
+    public static $wrap = null;
 
     #endregion
 
@@ -30,11 +34,9 @@ class AuthResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            User::AVATAR => $this->{User::AVATAR},
-            User::EMAIL => $this->{User::EMAIL},
-            User::FIRST_NAME => $this->{User::FIRST_NAME},
-            User::LAST_NAME => $this->{User::LAST_NAME},
-            User::TWO_FACTOR_CONFIRMED_AT => $this->{User::TWO_FACTOR_CONFIRMED_AT},
+            Host::ID => $this->{Host::ID},
+
+            Host::RELATION_PAGES => HostPageTreeResource::collection($this->{Host::RELATION_PAGES})->toArray($request),
         ];
     }
 

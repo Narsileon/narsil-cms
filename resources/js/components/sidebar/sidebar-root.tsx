@@ -2,6 +2,8 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogOverlay,
+  DialogPortal,
   DialogRoot,
   DialogTitle,
 } from "@narsil-cms/components/dialog";
@@ -43,27 +45,30 @@ function SidebarRoot({
   if (isMobile) {
     return (
       <DialogRoot open={openMobile} onOpenChange={setOpenMobile} {...props}>
-        <DialogContent
-          data-slot="sidebar"
-          data-mobile="true"
-          data-sidebar="sidebar"
-          className={cn(
-            "w-(--sidebar-width) bg-sidebar text-sidebar-foreground p-0",
-            "[&>button]:hidden",
-          )}
-          style={
-            {
-              "--sidebar-width": mobileWidth,
-            } as React.CSSProperties
-          }
-          variant="left"
-        >
-          <DialogHeader className="sr-only">
-            <DialogTitle>Sidebar</DialogTitle>
-            <DialogDescription>Displays the mobile sidebar.</DialogDescription>
-          </DialogHeader>
-          <div className="flex h-full w-full flex-col">{children}</div>
-        </DialogContent>
+        <DialogPortal>
+          <DialogOverlay />
+          <DialogContent
+            data-slot="sidebar"
+            data-mobile="true"
+            data-sidebar="sidebar"
+            className={cn(
+              "w-(--sidebar-width) bg-sidebar text-sidebar-foreground p-0",
+              "[&>button]:hidden",
+            )}
+            style={
+              {
+                "--sidebar-width": mobileWidth,
+              } as React.CSSProperties
+            }
+            variant="left"
+          >
+            <DialogHeader className="sr-only">
+              <DialogTitle>Sidebar</DialogTitle>
+              <DialogDescription>Displays the mobile sidebar.</DialogDescription>
+            </DialogHeader>
+            <div className="flex h-full w-full flex-col">{children}</div>
+          </DialogContent>
+        </DialogPortal>
       </DialogRoot>
     );
   }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Resources\Summaries;
+namespace Narsil\Http\Resources;
 
 #region USE
 
@@ -22,6 +22,13 @@ abstract class AbstractSummaryResource extends JsonResource
      * @var string
      */
     final public const HREF = 'href';
+
+    /**
+     * The name of the "name" property.
+     *
+     * @var string
+     */
+    final public const NAME = 'name';
 
     #endregion
 

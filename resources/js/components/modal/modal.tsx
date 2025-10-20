@@ -4,6 +4,8 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogOverlay,
+  DialogPortal,
   DialogRoot,
   DialogTitle,
 } from "@narsil-cms/components/dialog";
@@ -55,23 +57,23 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
 
   return (
     <DialogRoot open={true} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent
-        className="max-h-[calc(100%-13rem)] max-w-[calc(100%-4rem)] overflow-hidden"
-        {...props}
-      >
-        <DialogHeader className="border-b">
-          <DialogTitle>{modal.componentProps.title}</DialogTitle>
-        </DialogHeader>
-        <VisuallyHidden asChild={true}>
-          <DialogDescription>{modal.componentProps.description}</DialogDescription>
-        </VisuallyHidden>
+      <DialogPortal>
+        <DialogOverlay />
+        <DialogContent className="overflow-hidden" variant={modal.variant} {...props}>
+          <DialogHeader className="border-b">
+            <DialogTitle>{modal.componentProps.title}</DialogTitle>
+          </DialogHeader>
+          <VisuallyHidden asChild={true}>
+            <DialogDescription>{modal.componentProps.description}</DialogDescription>
+          </VisuallyHidden>
 
-        <LocalizationProvider translations={modal.componentProps.translations}>
-          <DialogBody className="p-0">
-            {Component ? <Component modal={modal} {...modal.componentProps} /> : null}
-          </DialogBody>
-        </LocalizationProvider>
-      </DialogContent>
+          <LocalizationProvider translations={modal.componentProps.translations}>
+            <DialogBody className="p-0">
+              {Component ? <Component modal={modal} {...modal.componentProps} /> : null}
+            </DialogBody>
+          </LocalizationProvider>
+        </DialogContent>
+      </DialogPortal>
     </DialogRoot>
   );
 }

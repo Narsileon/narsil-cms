@@ -6,6 +6,8 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogOverlay,
+  DialogPortal,
   DialogRoot,
   DialogTitle,
   DialogTrigger,
@@ -58,58 +60,61 @@ function SortableItemForm({
           {children}
         </DialogTrigger>
       </Tooltip>
-      <DialogContent>
-        <DialogHeader className="border-b">
-          <DialogTitle>{form.title}</DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <VisuallyHidden>
-            <DialogDescription></DialogDescription>
-          </VisuallyHidden>
-          <FormProvider
-            id={form.id}
-            action={form.action}
-            elements={form.layout}
-            method={form.method}
-            initialValues={data}
-            languageOptions={form.languageOptions}
-            render={() => {
-              return (
-                <FormRoot className="grid-cols-12 gap-4">
-                  {form.layout.map((element, index) => {
-                    return <FormRenderer {...element} key={index} />;
-                  })}
-                </FormRoot>
-              );
-            }}
-          ></FormProvider>
-        </DialogBody>
-        <DialogFooter className="border-t">
-          <Button variant="ghost" onClick={() => onOpenChange(false)}>
-            {trans("ui.cancel")}
-          </Button>
-          <Button
-            onClick={() => {
-              const oldUniqueIdentifier = get(item, optionValue ?? "value");
-              const newUniqueIdentifier = get(data, optionValue ?? "value");
+      <DialogPortal>
+        <DialogOverlay />
+        <DialogContent>
+          <DialogHeader className="border-b">
+            <DialogTitle>{form.title}</DialogTitle>
+          </DialogHeader>
+          <DialogBody>
+            <VisuallyHidden>
+              <DialogDescription></DialogDescription>
+            </VisuallyHidden>
+            <FormProvider
+              id={form.id}
+              action={form.action}
+              elements={form.layout}
+              method={form.method}
+              initialValues={data}
+              languageOptions={form.languageOptions}
+              render={() => {
+                return (
+                  <FormRoot className="grid-cols-12 gap-4">
+                    {form.layout.map((element, index) => {
+                      return <FormRenderer {...element} key={index} />;
+                    })}
+                  </FormRoot>
+                );
+              }}
+            ></FormProvider>
+          </DialogBody>
+          <DialogFooter className="border-t">
+            <Button variant="ghost" onClick={() => onOpenChange(false)}>
+              {trans("ui.cancel")}
+            </Button>
+            <Button
+              onClick={() => {
+                const oldUniqueIdentifier = get(item, optionValue ?? "value");
+                const newUniqueIdentifier = get(data, optionValue ?? "value");
 
-              if (oldUniqueIdentifier !== newUniqueIdentifier) {
-                if (ids.includes(newUniqueIdentifier)) {
-                  setError(trans("validation.unique"));
+                if (oldUniqueIdentifier !== newUniqueIdentifier) {
+                  if (ids.includes(newUniqueIdentifier)) {
+                    setError(trans("validation.unique"));
 
-                  return;
+                    return;
+                  }
                 }
-              }
 
-              onItemChange(data as AnonymousItem);
+                onItemChange(data as AnonymousItem);
 
-              onOpenChange(false);
-            }}
-          >
-            {trans("ui.save")}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
+                onOpenChange(false);
+              }}
+            >
+              {trans("ui.save")}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </DialogPortal>
     </DialogRoot>
   );
 }
