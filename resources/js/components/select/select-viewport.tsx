@@ -9,7 +9,7 @@ function SelectViewport({ className, position = "popper", ...props }: SelectView
     <Select.Viewport
       className={cn(
         "p-1",
-        position === "popper" && "h-[var(--radix-select-trigger-height)] w-full scroll-my-1",
+        position === "popper" && "h-[--radix-select-trigger-height] w-full scroll-my-1",
         className,
       )}
       {...props}

@@ -1,6 +1,6 @@
 function BackgroundPaper() {
   return (
-    <div className="filter-[url(#paper)] absolute -z-10 h-full w-full">
+    <div className="filter-[url(#paper)] absolute -z-10 h-full w-full top-0">
       <svg className="absolute" width="0" height="0">
         <filter id="paper" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
           <feTurbulence
