@@ -12,7 +12,7 @@ const dialogContentVariants = cva(
     variants: {
       variant: {
         default: cn(
-          "left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] border",
+          "max-h-3/4 md:max-h-1/2 left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] border",
           "w-full max-w-[calc(100%-2rem)] rounded-xl shadow-lg md:max-w-lg",
           "data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
           "data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
