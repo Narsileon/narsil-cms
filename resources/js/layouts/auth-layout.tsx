@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from "@narsil-cms/blocks";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
+import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -66,7 +67,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
     <SidebarProvider isMobile={isMobile}>
       <Sidebar />
       <SidebarInset>
-        <header className="h-13 bg-background sticky top-0 z-10 flex items-center gap-2 border-b pl-2 pr-4 xl:pl-4">
+        <header className="h-13 sticky top-0 z-10 flex items-center gap-2 border-b pl-2 pr-4 xl:pl-4">
           {isMobile ? (
             <>
               <SidebarTrigger />
@@ -124,6 +125,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
           {children}
           <Toaster />
         </div>
+        <BackgroundPaper />
       </SidebarInset>
     </SidebarProvider>
   );

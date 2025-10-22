@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-const headingRootVariants = cva("font-medium tracking-tight", {
+const headingRootVariants = cva("text-foreground font-medium tracking-tight", {
   variants: {
     variant: {
       h1: "text-4xl",
