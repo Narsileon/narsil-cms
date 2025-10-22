@@ -21,21 +21,22 @@ import type { FormType } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 import { FlatNode, TreeItemMenu } from ".";
 
-type TreeItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> & {
-  collapsed?: boolean;
-  collapsible?: boolean;
-  disabled?: boolean;
-  footer?: React.ReactNode;
-  form?: FormType;
-  id: UniqueIdentifier;
-  item: FlatNode;
-  label?: UniqueIdentifier;
-  optionValue?: string;
-  placeholder?: boolean;
-  tooltip?: string;
-  onItemChange?: (value: FlatNode) => void;
-  onItemRemove?: () => void;
-};
+type TreeItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> &
+  Pick<ComponentProps<typeof TreeItemMenu>, "onMoveDown" | "onMoveUp"> & {
+    collapsed?: boolean;
+    collapsible?: boolean;
+    disabled?: boolean;
+    footer?: React.ReactNode;
+    form?: FormType;
+    id: UniqueIdentifier;
+    item: FlatNode;
+    label?: UniqueIdentifier;
+    optionValue?: string;
+    placeholder?: boolean;
+    tooltip?: string;
+    onItemChange?: (value: FlatNode) => void;
+    onItemRemove?: () => void;
+  };
 
 function TreeItem({
   children,
@@ -53,6 +54,8 @@ function TreeItem({
   style,
   onItemChange,
   onItemRemove,
+  onMoveDown,
+  onMoveUp,
   ...props
 }: TreeItemProps) {
   const { trans } = useLocalization();
@@ -96,7 +99,7 @@ function TreeItem({
               className={cn(children && open && "border-b", disabled && "cursor-default")}
               asChild={true}
             >
-              <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
+              <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0 pr-1 pl-0">
                 <div className="flex w-full items-center justify-start gap-2">
                   <SortableHandle
                     ref={setActivatorNodeRef}
@@ -122,7 +125,7 @@ function TreeItem({
                   ) : null}
                 </div>
                 <div className="flex items-center justify-between gap-1 justify-self-end">
-                  <TreeItemMenu item={item} />
+                  <TreeItemMenu item={item} onMoveDown={onMoveDown} onMoveUp={onMoveUp} />
                 </div>
               </CardHeader>
             </CollapsibleTrigger>

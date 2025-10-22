@@ -31,7 +31,7 @@ function SortableItemMenu({
         <DropdownMenuTrigger asChild={true} {...props}>
           <div className="flex items-center justify-end">
             <Button
-              className="hover:bg-secondary size-7"
+              className="size-7 hover:bg-secondary"
               aria-label={trans("accessibility.toggle_row_menu")}
               icon="more-horizontal"
               size="icon"
@@ -43,18 +43,14 @@ function SortableItemMenu({
       </Tooltip>
       <DropdownMenuContent align="end" onClick={(event) => event.stopPropagation()}>
         {children}
-        {onMoveUp ? (
-          <DropdownMenuItem onClick={onMoveUp}>
-            <Icon name="move-up" />
-            {trans("ui.move_up")}
-          </DropdownMenuItem>
-        ) : null}
-        {onMoveDown ? (
-          <DropdownMenuItem onClick={onMoveDown}>
-            <Icon name="move-down" />
-            {trans("ui.move_down")}
-          </DropdownMenuItem>
-        ) : null}
+        <DropdownMenuItem disabled={!onMoveUp} onClick={onMoveUp}>
+          <Icon name="move-up" />
+          {trans("ui.move_up")}
+        </DropdownMenuItem>
+        <DropdownMenuItem disabled={!onMoveDown} onClick={onMoveDown}>
+          <Icon name="move-down" />
+          {trans("ui.move_down")}
+        </DropdownMenuItem>
         {onRemove ? (
           <>
             <DropdownMenuSeparator />

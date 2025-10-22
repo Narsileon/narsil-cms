@@ -16,7 +16,7 @@
 
 @utility border-shine {
   @apply relative focus-visible:outline-none;
-  @apply before:absolute before:-inset-0.5 before:rounded-[inherit] before:content-[''];
+  @apply before:absolute before:-inset-[2px] before:rounded-[inherit] before:content-[''];
   @apply before:pointer-events-none before:border-2 before:border-transparent;
   @apply before:bg-size-[300%_300%] before:mask-exclude;
   @apply motion-safe:before:animate-shine before:will-change-[background-position];

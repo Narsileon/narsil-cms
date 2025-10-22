@@ -8,7 +8,9 @@ type FlatNode = {
   data?: Record<string, unknown>;
   depth: number;
   id: number | string;
+  left_id: number | string | null;
   parent_id: number | string | null;
+  right_id: number | string | null;
   type?: string;
   [key: string]: unknown;
 };

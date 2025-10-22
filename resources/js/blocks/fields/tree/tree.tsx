@@ -109,6 +109,34 @@ function Tree({ items, setItems }: TreeProps) {
     document.body.style.setProperty("cursor", "grabbing");
   }
 
+  function handleMove(id: UniqueIdentifier, direction: "up" | "down") {
+    const flatItems = flatTree(items);
+
+    const currentIndex = flatItems.findIndex((item) => item.id === id);
+
+    if (currentIndex === -1) {
+      return;
+    }
+
+    const currentItem = flatItems[currentIndex];
+    const targetId = direction === "up" ? currentItem.left_id : currentItem.right_id;
+
+    if (!targetId) {
+      return;
+    }
+
+    const targetIndex = flatItems.findIndex((item) => item.id === targetId);
+
+    if (targetIndex === -1) {
+      return;
+    }
+
+    const sortedItems = arrayMove(flatItems, currentIndex, targetIndex);
+    const newItems = buildTree(sortedItems);
+
+    setItems(newItems);
+  }
+
   function resetState() {
     setActiveId(null);
     setOffsetLeft(0);
@@ -141,10 +169,12 @@ function Tree({ items, setItems }: TreeProps) {
           return (
             <TreeItem
               disabled={depth === 0}
-              label={item.id.toString()}
               id={item.id}
               item={item}
+              label={item.id.toString()}
               style={{ marginLeft: `${depth * 16}px` }}
+              onMoveDown={item.right_id ? () => handleMove(item.id, "down") : undefined}
+              onMoveUp={item.left_id ? () => handleMove(item.id, "up") : undefined}
               key={item.id}
             />
           );

@@ -28,10 +28,21 @@ export function flatTree(
   parent_id: UniqueIdentifier | null = null,
   depth: number = 0,
 ): FlatNode[] {
-  return items.flatMap((item, index) => [
-    { ...item, depth: depth, index: index, parent_id: parent_id },
-    ...flatTree(item.children, item.id, depth + 1),
-  ]);
+  return items.flatMap((item, index) => {
+    const leftId = index > 0 ? items[index - 1].id : null;
+    const rightId = index < items.length - 1 ? items[index + 1].id : null;
+
+    const flatItem: FlatNode = {
+      ...item,
+      depth: depth,
+      index: index,
+      left_id: leftId,
+      parent_id: parent_id,
+      right_id: rightId,
+    };
+
+    return [flatItem, ...flatTree(item.children, item.id, depth + 1)];
+  });
 }
 
 export function getDragDepth(offset: number, indentationWidth: number) {
