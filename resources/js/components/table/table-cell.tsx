@@ -8,8 +8,8 @@ function TableCell({ className, ...props }: TableCellProps) {
     <td
       data-slot="table-cell"
       className={cn(
-        "h-9 whitespace-nowrap px-3 align-middle",
-        "[&>[role=checkbox]]:translate-y-[2px]",
+        "h-9 bg-inherit px-3 align-middle whitespace-nowrap",
+        "[&>[role=checkbox]]:translate-y-0.5",
         className,
       )}
       {...props}

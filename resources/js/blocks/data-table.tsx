@@ -20,7 +20,6 @@ import {
   TableWrapper,
 } from "@narsil-cms/components/table";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
-import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection } from "@narsil-cms/types";
 import { flexRender } from "@tanstack/react-table";
 import { route } from "ziggy-js";
@@ -108,7 +107,7 @@ function DataTable({ collection, title }: DataTableProps) {
             <TableHeader>
               {dataTable.getHeaderGroups().map((headerGroup) => {
                 return (
-                  <DataTableRow key={headerGroup.id}>
+                  <DataTableRow className="bg-sidebar" key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
                       if (header.isPlaceholder) {
                         return null;
@@ -139,10 +138,7 @@ function DataTable({ collection, title }: DataTableProps) {
                       {row.getVisibleCells().map((cell) => {
                         return (
                           <TableCell
-                            className={cn(
-                              "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent bg-clip-content transition-colors",
-                              cell.column.columnDef.meta?.className,
-                            )}
+                            className={cell.column.columnDef.meta?.className}
                             key={cell.id}
                           >
                             {flexRender(cell.column.columnDef.cell, cell.getContext() ?? "")}

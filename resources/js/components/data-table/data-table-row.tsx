@@ -11,7 +11,7 @@ function DataTableRow({ className, selected = false, ...props }: DataTableRowPro
     <TableRow
       data-slot="data-table-row"
       data-selected={selected}
-      className={cn("bg-background data-[selected=true]:bg-accent group", className)}
+      className={cn("data-[selected=true]:bg-accent", className)}
       {...props}
     />
   );

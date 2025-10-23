@@ -7,7 +7,7 @@ function TableRow({ className, ...props }: TableRowProps) {
   return (
     <tr
       data-slot="table-row"
-      className={cn("border-b transition-colors", "hover:bg-accent", className)}
+      className={cn("border-b bg-background transition-colors", "hover:bg-accent", className)}
       {...props}
     />
   );

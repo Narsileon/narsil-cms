@@ -12,14 +12,7 @@ type DataTableHeadProps = ComponentProps<typeof TableHead> & {
 
 function DataTableHead({ className, header, ...props }: DataTableHeadProps) {
   return (
-    <TableHead
-      className={cn(
-        "bg-linear-to-r to-background group-hover:to-accent group-data-[selected=true]:to-accent transition-colors",
-        className,
-      )}
-      colSpan={header.colSpan}
-      {...props}
-    >
+    <TableHead className={cn("bg-inherit", className)} colSpan={header.colSpan} {...props}>
       {typeof header.column.columnDef.header === "string" ? (
         <div className="flex items-center justify-start">
           {upperFirst(header.column.columnDef.header)}
