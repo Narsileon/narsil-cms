@@ -52,7 +52,7 @@ function DataTable({ collection, title }: DataTableProps) {
   }
 
   return (
-    <SectionRoot className="h-full gap-4 p-4">
+    <SectionRoot className="h-full animate-in gap-4 p-4 duration-300 fade-in-0">
       <SectionHeader className="flex items-center justify-between gap-2">
         <Heading level="h2" variant="h4" className="min-w-1/5">
           {title}

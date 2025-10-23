@@ -31,7 +31,7 @@ function Collections({ items }: CollectionsProps) {
   const columns = getColumns();
 
   return (
-    <div className="flex min-h-full w-full items-center justify-center">
+    <div className="flex min-h-full w-full animate-in items-center justify-center duration-300 fade-in-0">
       <div
         className={cn(
           "grid gap-6 p-6",

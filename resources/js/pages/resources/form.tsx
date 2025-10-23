@@ -129,7 +129,7 @@ function ResourceForm({
       render={({ language, setLanguage }) => {
         return (
           <FormRoot
-            className="overflow-hidden"
+            className="animate-in overflow-hidden duration-300 fade-in-0"
             options={{
               onSuccess: (response) => {
                 if (modal) {
