@@ -31,7 +31,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
 
   return (
     <>
-      <header className="h-13 bg-background sticky top-0 z-10 border-b">
+      <header className="sticky top-0 z-10 h-13 border-b bg-sidebar shadow">
         <Container className="flex items-center justify-between gap-4">
           <Logo />
           <DropdownMenuRoot>
@@ -72,7 +72,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
           </DropdownMenuRoot>
         </Container>
       </header>
-      <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
+      <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)] overflow-hidden">
         <ModalRenderer container={mainRef.current} />
         {children}
         <BackgroundPaper />
