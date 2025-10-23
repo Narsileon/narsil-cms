@@ -36,7 +36,7 @@ function FortifyForm({
 
   return (
     <Container className="gap-6 overflow-hidden" asChild={true} variant="centered">
-      <SectionRoot className="animate-in fade-in-0 slide-in-from-bottom-10 py-4 duration-500">
+      <SectionRoot className="animate-in py-4 duration-300 fade-in-0 slide-in-from-bottom-10">
         <SectionHeader>
           <Heading level="h1" variant="h4">
             {title}
