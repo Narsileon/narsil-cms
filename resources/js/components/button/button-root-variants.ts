@@ -21,10 +21,7 @@ const buttonRootVariants = cva(
           "focus-visible:bg-accent focus-visible:text-accent-foreground",
           "hover:bg-accent hover:text-accent-foreground",
         ),
-        ghost_secondary: cn(
-          "focus-visible:bg-secondary focus-visible:text-secondary-foreground",
-          "hover:bg-secondary hover:text-secondary-foreground",
-        ),
+
         outline: cn(
           "border border-input bg-background shadow-sm",
           "focus-visible:border-shine",
@@ -41,13 +38,19 @@ const buttonRootVariants = cva(
           "focus-visible:bg-secondary",
           "hover:bg-secondary",
         ),
+        ["ghost-secondary"]: cn(
+          "focus-visible:bg-secondary focus-visible:text-secondary-foreground",
+          "hover:bg-secondary hover:text-secondary-foreground",
+        ),
       },
       size: {
         default: "h-9 px-3 py-2 has-[>svg]:px-2",
         sm: "h-8 gap-1.5 px-3 has-[>svg]:px-2",
         lg: "h-10 px-6 has-[>svg]:px-2",
         icon: "size-9",
+
         link: "",
+        ["icon-sm"]: "size-7",
       },
     },
     defaultVariants: {

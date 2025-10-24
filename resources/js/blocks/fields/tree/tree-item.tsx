@@ -113,12 +113,11 @@ function TreeItem({
                   ) : null}
                   {collapsible ? (
                     <Button
-                      className="size-7"
                       iconProps={{
                         className: cn("duration-300", open && "rotate-180"),
                         name: "chevron-down",
                       }}
-                      size="icon"
+                      size="icon-sm"
                       variant="ghost"
                       onClick={() => setCollapsed(!open)}
                     />

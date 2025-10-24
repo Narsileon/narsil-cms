@@ -183,12 +183,11 @@ function SortableItem({ column, onRemove }: SortableItemProps) {
       />
       <span className="grow">{columnLabel}</span>
       <Button
-        className="size-7"
         iconProps={{
           className: "size-4",
           name: "x",
         }}
-        size="icon"
+        size="icon-sm"
         tooltip={hideColumnLabel}
         variant="ghost"
         onClick={() => onRemove(column)}

@@ -121,12 +121,11 @@ function SortableItem({
                   ) : null}
                   {collapsible ? (
                     <Button
-                      className="size-7"
                       iconProps={{
                         className: cn("duration-300", open && "rotate-180"),
                         name: "chevron-down",
                       }}
-                      size="icon"
+                      size="icon-sm"
                       variant="ghost"
                       onClick={() => setCollapsed(!open)}
                     />
@@ -148,14 +147,13 @@ function SortableItem({
                       optionValue={optionValue}
                       onItemChange={onItemChange}
                     >
-                      <Button className="size-7" icon="edit" size="icon" variant="ghost" />
+                      <Button icon="edit" size="icon-sm" variant="ghost" />
                     </SortableItemForm>
                   ) : null}
                   {onItemRemove ? (
                     <Button
-                      className="size-7"
                       icon="trash"
-                      size="icon"
+                      size="icon-sm"
                       tooltip={trans("ui.remove")}
                       variant="ghost"
                       onClick={onItemRemove}

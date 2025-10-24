@@ -61,21 +61,19 @@ function ArrayItem({ block, handle, index, item, id, labelKey, onItemRemove }: A
             <div className="flex items-center gap-1">
               {onItemRemove ? (
                 <Button
-                  className="size-7"
                   icon="trash"
-                  size="icon"
+                  size="icon-sm"
                   tooltip={trans("ui.remove")}
                   variant="ghost"
                   onClick={onItemRemove}
                 />
               ) : null}
               <Button
-                className="size-7"
                 iconProps={{
                   className: cn("duration-300", open && "rotate-180"),
                   name: "chevron-down",
                 }}
-                size="icon"
+                size="icon-sm"
                 variant="ghost"
                 onClick={() => setCollapsed(!open)}
               />

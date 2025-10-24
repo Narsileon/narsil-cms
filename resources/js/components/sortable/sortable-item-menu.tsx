@@ -31,11 +31,10 @@ function SortableItemMenu({
         <DropdownMenuTrigger asChild={true} {...props}>
           <div className="flex items-center justify-end">
             <Button
-              className="size-7 hover:bg-secondary"
               aria-label={trans("accessibility.toggle_row_menu")}
               icon="more-horizontal"
-              size="icon"
-              variant="ghost"
+              size="icon-sm"
+              variant="ghost-secondary"
               onClick={(event) => event.stopPropagation()}
             />
           </div>

@@ -1,6 +1,5 @@
 import { Button } from "@narsil-cms/blocks";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { cn } from "@narsil-cms/lib/utils";
 import type { Model } from "@narsil-cms/types";
 import { Header } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
@@ -27,14 +26,14 @@ function DataTableHeadSort({ className, header, ...props }: DataTableHeadSortPro
 
   return (
     <Button
-      className={cn("size-7", className)}
+      className={className}
       iconProps={{
         className: "size-4",
         name: getIconName(),
       }}
       size="icon"
       tooltip={tooltip}
-      variant="ghost_secondary"
+      variant="ghost-secondary"
       onClick={header.column.getToggleSortingHandler()}
       {...props}
     />

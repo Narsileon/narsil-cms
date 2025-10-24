@@ -55,10 +55,10 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
             <Button
               className={cn(
                 "size-0.5 rounded-full opacity-0 transition-all duration-300 ease-out hover:bg-secondary",
-                (hovered || open) && "size-7 opacity-100",
+                (hovered || open) && "opacity-100",
               )}
               icon="plus"
-              size="icon"
+              size="icon-sm"
               variant="secondary"
             />
           </DropdownMenuTrigger>

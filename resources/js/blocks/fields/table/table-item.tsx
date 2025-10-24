@@ -85,9 +85,8 @@ function TableItem({
       <TableCell className="px-1 py-0">
         {!placeholder && onRemove ? (
           <Button
-            className="size-7"
             icon="trash"
-            size="icon"
+            size="icon-sm"
             tooltip={trans("ui.remove")}
             variant="ghost"
             onClick={() => onRemove(id)}
