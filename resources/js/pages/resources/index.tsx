@@ -22,14 +22,14 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
 
   const finalColumns: ColumnDef<Model>[] = [
     ...(collection.meta.selectable !== false ? [selectColumn] : []),
-    ...(collection.meta.revisionable !== false ? [bulletColumn] : []),
+    ...(collection.meta.revisionable === true ? [bulletColumn] : []),
     ...collection.columns,
     ...(hasMenu ? [menuColumn] : []),
   ];
 
   const finalColumnOrder = [
     ...(collection.meta.selectable !== false ? ["_select"] : []),
-    ...(collection.meta.revisionable !== false ? ["_bullet"] : []),
+    ...(collection.meta.revisionable === true ? ["_bullet"] : []),
     ...collection.columnOrder,
     ...(hasMenu ? ["_menu"] : []),
   ];
