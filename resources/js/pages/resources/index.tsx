@@ -1,6 +1,7 @@
 import { DataTable } from "@narsil-cms/blocks";
 import {
   DataTableProvider,
+  getBulletColumn,
   getMenuColumn,
   getSelectColumn,
 } from "@narsil-cms/components/data-table";
@@ -15,17 +16,20 @@ type ResourceIndexProps = {
 function ResourceIndex({ collection, title }: ResourceIndexProps) {
   const hasMenu = collection.meta.routes.edit || collection.meta.routes.destroy;
 
+  const bulletColumn = getBulletColumn();
   const menuColumn = getMenuColumn(collection.meta.routes);
   const selectColumn = getSelectColumn();
 
   const finalColumns: ColumnDef<Model>[] = [
     ...(collection.meta.selectable !== false ? [selectColumn] : []),
+    ...(collection.meta.revisionable !== false ? [bulletColumn] : []),
     ...collection.columns,
     ...(hasMenu ? [menuColumn] : []),
   ];
 
   const finalColumnOrder = [
     ...(collection.meta.selectable !== false ? ["_select"] : []),
+    ...(collection.meta.revisionable !== false ? ["_bullet"] : []),
     ...collection.columnOrder,
     ...(hasMenu ? ["_menu"] : []),
   ];

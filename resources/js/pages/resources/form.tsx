@@ -154,7 +154,7 @@ function ResourceForm({
               </>
             ) : (
               <SectionRoot className="px-4 py-2">
-                <SectionHeader className="h-13 border-b !pb-2">
+                <SectionHeader className="h-13 border-b pb-2!">
                   <div className="flex items-end gap-2">
                     <Heading level="h1" variant="h4">
                       {title}

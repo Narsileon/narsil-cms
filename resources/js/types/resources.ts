@@ -35,6 +35,7 @@ export type DataTableCollection<T = Model> = {
   links: LaravelPaginationLinks;
   meta: LaravelPaginationMeta & {
     id: string;
+    revisionable?: boolean;
     selectable?: boolean;
     routes: RouteNames;
     title: string;
