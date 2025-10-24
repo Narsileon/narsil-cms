@@ -14,7 +14,7 @@ function DataTableHead({ className, header, ...props }: DataTableHeadProps) {
   return (
     <TableHead className={cn("bg-inherit", className)} colSpan={header.colSpan} {...props}>
       {typeof header.column.columnDef.header === "string" ? (
-        <div className="flex items-center justify-start">
+        <div className="flex items-center justify-start gap-1">
           {upperFirst(header.column.columnDef.header)}
 
           {header.column.getCanSort() ? <DataTableHeadSort header={header} /> : null}
