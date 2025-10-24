@@ -13,7 +13,7 @@ function RadioGroupIndicator({ className, ...props }: RadioGroupIndicatorProps) 
       {...props}
     >
       <Icon
-        className="fill-primary absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2"
+        className="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-primary"
         name="circle"
       />
     </RadioGroup.Indicator>

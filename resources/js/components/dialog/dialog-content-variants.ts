@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 const dialogContentVariants = cva(
   cn(
     "@container/dialog-content",
-    "bg-background fixed z-50 flex flex-col overflow-hidden transition ease-in-out",
+    "fixed z-50 flex flex-col overflow-hidden bg-background transition ease-in-out",
     "data-[state=closed]:animate-out data-[state=closed]:duration-300",
     "data-[state=open]:animate-in data-[state=open]:duration-300",
   ),
@@ -12,7 +12,7 @@ const dialogContentVariants = cva(
     variants: {
       variant: {
         default: cn(
-          "max-h-3/4 md:max-h-1/2 left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] border",
+          "top-[50%] left-[50%] max-h-3/4 translate-x-[-50%] translate-y-[-50%] border md:max-h-1/2",
           "w-full max-w-[calc(100%-2rem)] rounded-xl shadow-lg md:max-w-lg",
           "data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
           "data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
@@ -23,12 +23,12 @@ const dialogContentVariants = cva(
           "data-[state=open]:slide-in-from-bottom",
         ),
         left: cn(
-          "min-w-3/4 inset-y-0 left-0 h-full border-r sm:max-w-sm",
+          "inset-y-0 left-0 h-full min-w-3/4 border-r sm:max-w-sm",
           "data-[state=closed]:slide-out-to-left",
           "data-[state=open]:slide-in-from-left",
         ),
         right: cn(
-          "min-w-3/4 inset-y-0 right-0 h-full border-l sm:max-w-sm",
+          "inset-y-0 right-0 h-full min-w-3/4 border-l sm:max-w-sm",
           "data-[state=closed]:slide-out-to-right",
           "data-[state=open]:slide-in-from-right",
         ),

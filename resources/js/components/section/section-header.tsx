@@ -7,7 +7,7 @@ function SectionHeader({ className, ...props }: SectionHeaderProps) {
   return (
     <div
       data-slot="section-header"
-      className={cn("[.border-b]:pb-3 flex h-fit items-center justify-between", className)}
+      className={cn("flex h-fit items-center justify-between [.border-b]:pb-3", className)}
       {...props}
     />
   );

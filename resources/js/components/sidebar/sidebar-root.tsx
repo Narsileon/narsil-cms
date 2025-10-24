@@ -32,7 +32,7 @@ function SidebarRoot({
       <div
         data-slot="sidebar"
         className={cn(
-          "w-(--sidebar-width) bg-sidebar text-sidebar-foreground flex h-full flex-col",
+          "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
           className,
         )}
         {...props}
@@ -52,7 +52,7 @@ function SidebarRoot({
             data-mobile="true"
             data-sidebar="sidebar"
             className={cn(
-              "w-(--sidebar-width) bg-sidebar text-sidebar-foreground p-0",
+              "w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground",
               "[&>button]:hidden",
             )}
             style={
@@ -80,12 +80,12 @@ function SidebarRoot({
       data-side={side}
       data-state={state}
       data-variant={variant}
-      className="text-sidebar-foreground group peer hidden md:block"
+      className="group peer hidden text-sidebar-foreground md:block"
     >
       <div
         data-slot="sidebar-gap"
         className={cn(
-          "w-(--sidebar-width) relative bg-transparent transition-[width] duration-300 ease-linear",
+          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-300 ease-linear",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           variant === "floating" || variant === "inset"
@@ -96,7 +96,7 @@ function SidebarRoot({
       <div
         data-slot="sidebar-container"
         className={cn(
-          "w-(--sidebar-width) fixed inset-y-0 z-10 hidden h-svh transition-[left,right,width] duration-300 ease-linear md:flex",
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-300 ease-linear md:flex",
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -111,8 +111,8 @@ function SidebarRoot({
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
           className={cn(
-            "bg-sidebar flex h-full w-full flex-col",
-            "group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:rounded-md group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm",
+            "flex h-full w-full flex-col bg-sidebar",
+            "group-data-[variant=floating]:rounded-md group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm",
           )}
         >
           {children}

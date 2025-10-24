@@ -55,7 +55,7 @@ function ArrayItem({ block, handle, index, item, id, labelKey, onItemRemove }: A
     >
       <CardRoot>
         <CollapsibleTrigger className={cn(open && "border-b")} asChild={true}>
-          <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
+          <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
             <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
             <span className="grow text-start">{item[labelKey] ?? "item"}</span>
             <div className="flex items-center gap-1">

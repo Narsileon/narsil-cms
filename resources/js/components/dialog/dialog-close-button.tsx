@@ -20,12 +20,12 @@ function DialogCloseButton({ className, icon = "x", ...props }: DialogCloseButto
       <Dialog.Close
         data-slot="dialog-close"
         className={cn(
-          "ring-offset-background cursor-pointer rounded-full opacity-75 transition-opacity",
+          "cursor-pointer rounded-full opacity-75 ring-offset-background transition-opacity",
           "disabled:pointer-events-none",
-          "focus:ring-ring focus:outline-hidden focus:ring-2 focus:ring-offset-2",
+          "focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden",
           "hover:opacity-100",
           "data-[state=open]:bg-accent data-[state=open]:text-muted-foreground",
-          "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+          "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
           className,
         )}
         {...props}

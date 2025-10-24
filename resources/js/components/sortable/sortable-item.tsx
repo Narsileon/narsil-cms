@@ -17,6 +17,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
+import { IconName } from "@narsil-cms/plugins/icons";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 import { type AnonymousItem } from ".";
@@ -101,7 +102,7 @@ function SortableItem({
         ) : (
           <>
             <CollapsibleTrigger className={cn(children && open && "border-b")} asChild={true}>
-              <CardHeader className="flex min-h-9 items-center justify-between gap-2 !py-0 pl-0 pr-1">
+              <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
                 <div className="flex w-full items-center justify-start gap-2">
                   <SortableHandle
                     ref={setActivatorNodeRef}
@@ -112,7 +113,7 @@ function SortableItem({
                   />
                   {item?.icon ? (
                     <Tooltip tooltip={group?.label as string}>
-                      <Icon className="size-5" name={item.icon} />
+                      <Icon className="size-5" name={item.icon as IconName} />
                     </Tooltip>
                   ) : null}
                   {label ? (
@@ -135,7 +136,7 @@ function SortableItem({
                   {item && widthOptions ? (
                     <WidthSelector
                       options={widthOptions}
-                      value={item.width}
+                      value={item.width as number}
                       onValueChange={(value) => onItemChange?.({ ...item, width: value })}
                     />
                   ) : null}

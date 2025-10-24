@@ -8,11 +8,11 @@ function TextareaRoot({ className, ...props }: TextareaRootProps) {
     <textarea
       data-slot="textarea-root"
       className={cn(
-        "field-sizing-content border-input placeholder:text-muted-foreground flex min-h-16 w-full rounded-md border bg-transparent px-3 py-2 shadow-sm outline-none transition-[color,box-shadow]",
+        "flex field-sizing-content min-h-16 w-full rounded-md border border-input bg-transparent px-3 py-2 shadow-sm transition-[color,box-shadow] outline-none placeholder:text-muted-foreground",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
         "dark:bg-input/30 dark:aria-invalid:ring-destructive/40",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "focus-visible:border-shine focus-within:border-shine",
+        "focus-within:border-shine focus-visible:border-shine",
         className,
       )}
       {...props}

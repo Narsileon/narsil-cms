@@ -180,7 +180,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                     return (
                       <li className="flex items-center justify-between" key={bookmark.id}>
                         <Button
-                          className="text-foreground font-normal"
+                          className="font-normal text-foreground"
                           linkProps={{
                             href: bookmark.url,
                           }}

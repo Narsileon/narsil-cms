@@ -9,7 +9,7 @@ function CollapsibleTrigger({ className, ...props }: CollapsibleTriggerProps) {
     <Collapsible.Trigger
       data-slot="collapsible-trigger"
       className={cn(
-        "focus-visible:border-shine cursor-pointer data-[disabled]:cursor-default",
+        "cursor-pointer focus-visible:border-shine data-disabled:cursor-default",
         className,
       )}
       {...props}

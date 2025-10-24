@@ -9,14 +9,14 @@ function NavigationMenuIndicator({ className, ...props }: NavigationMenuIndicato
     <NavigationMenu.Indicator
       data-slot="navigation-menu-indicator"
       className={cn(
-        "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
+        "top-full z-1 flex h-1.5 items-end justify-center overflow-hidden",
         "data-[state=hidden]:fade-out data-[state=visible]:fade-in",
         "data-[state=hidden]:animate-out data-[state=visible]:animate-in",
         className,
       )}
       {...props}
     >
-      <div className="bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md" />
+      <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
     </NavigationMenu.Indicator>
   );
 }

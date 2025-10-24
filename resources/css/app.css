@@ -1,17 +1,17 @@
+@import "./font.css";
 @import "./theme.css";
 @import "./colors.css";
-@import "./font.css";
 @import "./utilities.css";
 
-@source inline('{col-span-{3,4,6,8,9}}');
-@source inline('{flex-{col,row}-reverse}');
+@source inline("{col-span-{3,4,6,8,9}}");
+@source inline("{flex-{col,row}-reverse}");
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground text-sm;
+    @apply bg-background text-sm text-foreground;
   }
 
   input:-webkit-autofill,

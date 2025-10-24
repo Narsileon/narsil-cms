@@ -31,7 +31,7 @@ function DialogContent({
     >
       <VisuallyHidden tabIndex={0}>Dialog</VisuallyHidden>
       {children}
-      {showCloseButton ? <DialogCloseButton className="absolute right-4 top-4" /> : null}
+      {showCloseButton ? <DialogCloseButton className="absolute top-4 right-4" /> : null}
     </Dialog.Content>
   );
 }

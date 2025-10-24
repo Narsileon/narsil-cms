@@ -9,7 +9,7 @@ function CheckboxRoot({ className, ...props }: CheckboxRootProps) {
     <Checkbox.Root
       data-slot="checkbox-root"
       className={cn(
-        "size-4.5 border-input peer shrink-0 cursor-pointer rounded-[4px] border shadow-sm outline-none transition-shadow",
+        "peer size-4.5 shrink-0 cursor-pointer rounded-md border border-input shadow-sm transition-shadow outline-none",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
         "dark:aria-invalid:ring-destructive/40",
         "data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",

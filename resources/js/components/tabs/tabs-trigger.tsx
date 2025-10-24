@@ -9,16 +9,16 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
     <Tabs.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "text-foreground inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-md border border-transparent px-2 py-1 transition-[color,box-shadow]",
+        "inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-2 py-1 whitespace-nowrap text-foreground transition-[color,box-shadow]",
         "disabled:pointer-events-none disabled:opacity-50",
         "focus-visible:border-shine",
         "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         "data-[orientation=horizontal]:flex-1",
         "data-[orientation=horizontal]:h-7 data-[orientation=vertical]:h-9",
-        "data-[orientation=vertical]:justify-start data-[orientation=horizontal]:justify-center",
+        "data-[orientation=horizontal]:justify-center data-[orientation=vertical]:justify-start",
         "data-[orientation=vertical]:w-full",
         "data-[state=active]:bg-sidebar-accent",
-        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}

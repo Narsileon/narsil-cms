@@ -11,9 +11,9 @@ const ScrollAreaViewport = ({ asChild = false, className, ...props }: ScrollArea
     <ScrollArea.Viewport
       data-slot="scroll-area-viewport"
       className={cn(
-        "size-full rounded-[inherit] outline-none transition-[color,box-shadow]",
-        "focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:ring-2",
-        asChild && "!block",
+        "size-full rounded-[inherit] transition-[color,box-shadow] outline-none",
+        "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-1",
+        asChild && "block!",
         className,
       )}
       asChild={asChild}

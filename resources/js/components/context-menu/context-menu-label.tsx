@@ -11,7 +11,7 @@ function ContextMenuLabel({ className, inset, ...props }: ContextMenuLabelProps)
     <ContextMenu.Label
       data-slot="context-menu-label"
       data-inset={inset}
-      className={cn("text-foreground px-2 py-1.5 font-medium", "data-[inset]:pl-8", className)}
+      className={cn("px-2 py-1.5 font-medium text-foreground", "data-inset:pl-8", className)}
       {...props}
     />
   );

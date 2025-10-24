@@ -9,7 +9,7 @@ function SliderRange({ className, ...props }: SliderRangeProps) {
     <Slider.Range
       data-slot="slider-range"
       className={cn(
-        "bg-primary absolute",
+        "absolute bg-primary",
         "data-[orientation=horizontal]:h-full",
         "data-[orientation=vertical]:w-full",
         className,

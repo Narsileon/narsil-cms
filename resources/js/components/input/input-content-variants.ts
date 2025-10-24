@@ -15,10 +15,10 @@ const inputContentVariants = cva(
           "appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none",
         ),
         file: cn(
-          "file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:file:font-medium",
+          "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:file:font-medium file:text-foreground",
         ),
         image:
-          "file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:file:font-medium",
+          "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:file:font-medium file:text-foreground",
         number: cn(
           "[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none",
         ),

@@ -26,7 +26,7 @@ function WidthSelector({
       onMouseLeave={() => setWidth(value ?? defaultValue)}
       {...props}
     >
-      <ul className="divide-input flex h-6 flex-row divide-x overflow-hidden rounded-md border">
+      <ul className="flex h-6 flex-row divide-x divide-input overflow-hidden rounded-md border">
         {options.map((option, index) => {
           const optionValue = Number(option.value);
 
@@ -45,7 +45,7 @@ function WidthSelector({
           );
         })}
       </ul>
-      <span className="text-accent-foreground pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+      <span className="pointer-events-none absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-accent-foreground">
         {`${width}%`}
       </span>
     </div>

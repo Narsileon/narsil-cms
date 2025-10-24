@@ -49,7 +49,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
               ) : (
                 <CollapsibleRoot
                   className={cn(
-                    "not-first:border-t group col-span-full -mx-4",
+                    "group col-span-full -mx-4 not-first:border-t",
                     "first:-mt-4",
                     "-mb-4",
                     "data-[state=closed]:not-last:border-b",
@@ -59,7 +59,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                 >
                   <CollapsibleTrigger
                     className={cn(
-                      "bg-accent flex w-full items-center justify-between p-4 text-center",
+                      "flex w-full items-center justify-between bg-accent p-4 text-center",
                       "data-[state=open]:border-b",
                     )}
                   >

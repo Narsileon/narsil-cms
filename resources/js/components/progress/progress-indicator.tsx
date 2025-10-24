@@ -9,7 +9,7 @@ function ProgressIndicator({ className, ...props }: ProgressIndicatorProps) {
     <Progress.Indicator
       data-slot="progress-indicator"
       className={cn(
-        "bg-primary h-full w-full flex-1 transition-all will-change-transform",
+        "h-full w-full flex-1 bg-primary transition-all will-change-transform",
         className,
       )}
       {...props}

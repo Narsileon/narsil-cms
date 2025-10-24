@@ -9,7 +9,7 @@ function TooltipContent({ className, sideOffset = 0, ...props }: TooltipContentP
     <Tooltip.Content
       data-slot="tooltip-content"
       className={cn(
-        "animate-in bg-primary text-primary-foreground fade-in-0 zoom-in-95 z-50 w-fit text-balance rounded-md border px-3 py-1.5 text-xs",
+        "z-50 w-fit animate-in rounded-md border bg-primary px-3 py-1.5 text-xs text-balance text-primary-foreground fade-in-0 zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2",
         "data-[side=left]:slide-in-from-right-2",
         "data-[side=right]:slide-in-from-left-2",

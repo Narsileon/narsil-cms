@@ -227,7 +227,7 @@ function Combobox({
 
                     return (
                       <CommandItem
-                        className={cn("absolute left-0 top-0 h-9 w-full will-change-transform")}
+                        className={cn("absolute top-0 left-0 h-9 w-full will-change-transform")}
                         value={optionValue.toString()}
                         onSelect={onSelect}
                         style={{
@@ -247,7 +247,7 @@ function Combobox({
                           <div className="min-w-1/2 grow truncate">{parse(optionLabel)}</div>
                           {displayValue && (
                             <Tooltip tooltip={optionValue}>
-                              <span className="text-muted-foreground truncate">{optionValue}</span>
+                              <span className="truncate text-muted-foreground">{optionValue}</span>
                             </Tooltip>
                           )}
                         </div>

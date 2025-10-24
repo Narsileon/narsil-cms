@@ -15,7 +15,7 @@ function BadgeClose({ className, icon = "x", ...props }: BadgeCloseProps) {
       type="button"
       {...props}
     >
-      <Icon className="hover:text-destructive size-3.5 text-current" name={icon} />
+      <Icon className="size-3.5 text-current hover:text-destructive" name={icon} />
     </button>
   );
 }

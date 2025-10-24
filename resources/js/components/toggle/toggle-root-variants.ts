@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 
 const toggleRootVariants = cva(
   cn(
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium outline-none transition-[color,box-shadow]",
+    "inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-[color,box-shadow] outline-none",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
     "dark:aria-invalid:ring-destructive/40",
     "dark:hover:bg-accent",
@@ -12,13 +12,13 @@ const toggleRootVariants = cva(
     "focus-visible:border-shine",
     "hover:bg-accent hover:text-accent-foreground",
     "data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
-    "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   ),
   {
     variants: {
       variant: {
         default: "bg-transparent",
-        outline: cn("border-input border bg-transparent shadow-sm"),
+        outline: cn("border border-input bg-transparent shadow-sm"),
       },
       size: {
         default: "h-9 min-w-9 px-4",

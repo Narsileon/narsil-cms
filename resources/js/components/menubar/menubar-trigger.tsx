@@ -9,7 +9,7 @@ function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
     <Menubar.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "outline-hidden flex select-none items-center rounded-md px-2 py-1 font-medium",
+        "flex items-center rounded-md px-2 py-1 font-medium outline-hidden select-none",
         "focus:bg-accent focus:text-accent-foreground",
         "data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
         className,

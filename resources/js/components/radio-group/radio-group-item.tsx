@@ -9,11 +9,11 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
     <RadioGroup.Item
       data-slot="radio-group-item"
       className={cn(
-        "border-input text-primary aspect-square size-4 shrink-0 rounded-full border shadow-sm outline-none transition-[color,box-shadow]",
+        "aspect-square size-4 shrink-0 rounded-full border border-input text-primary shadow-sm transition-[color,box-shadow] outline-none",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
         "dark:bg-input/30 dark:aria-invalid:ring-destructive/40",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2",
+        "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50",
         className,
       )}
       {...props}

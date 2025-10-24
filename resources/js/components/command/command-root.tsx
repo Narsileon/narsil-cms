@@ -9,7 +9,7 @@ function CommandRoot({ className, ...props }: CommandRootProps) {
     <Command
       data-slot="command-root"
       className={cn(
-        "bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-xl",
+        "flex h-full w-full flex-col overflow-hidden rounded-xl bg-popover text-popover-foreground",
         className,
       )}
       {...props}

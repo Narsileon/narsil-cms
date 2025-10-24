@@ -99,7 +99,7 @@ function Pagination({ contentProps, links, metaLinks, ...props }: PaginationProp
           ) : (
             <PaginationItem>
               <PaginationLink className="rounded-none" asChild={true} disabled={true}>
-                <PaginationEllipsis className="bg-accent border" key={index} />
+                <PaginationEllipsis className="border bg-accent" key={index} />
               </PaginationLink>
             </PaginationItem>
           );
