@@ -24,7 +24,7 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
   const [hovered, setHovered] = useState<boolean>(false);
   const [open, onOpenChange] = useState<boolean>(false);
 
-  const hoverTimeout = useRef(null);
+  const hoverTimeout = useRef<number>(0);
 
   const handleMouseEnter = () => {
     hoverTimeout.current = setTimeout(() => {
@@ -33,7 +33,10 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
   };
 
   const handleMouseLeave = () => {
-    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    if (hoverTimeout.current) {
+      clearTimeout(hoverTimeout.current);
+    }
+
     setHovered(false);
   };
 
@@ -54,7 +57,7 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
           <DropdownMenuTrigger asChild {...props}>
             <Button
               className={cn(
-                "size-0.5 rounded-full opacity-0 transition-all duration-300 ease-out hover:bg-secondary",
+                "size-0.5 rounded-full opacity-0 transition-all duration-300 ease-out",
                 (hovered || open) && "opacity-100",
               )}
               icon="plus"
