@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Narsil\Enums\Revisions\RevisionStatusEnum;
 
 #endregion
 
@@ -39,18 +40,18 @@ trait HasRevisions
     final public const ID = 'id';
 
     /**
-     * The name of the "revision version" column.
-     *
-     * @var string
-     */
-    final public const REVISION_VERSION = 'revision_version';
-
-    /**
      * The name of the "revision status" column.
      *
      * @var string
      */
     final public const REVISION_STATUS = 'revision_status';
+
+    /**
+     * The name of the "revision version" column.
+     *
+     * @var string
+     */
+    final public const REVISION_VERSION = 'revision_version';
 
     /**
      * The name of the "uuid" column.
@@ -86,6 +87,18 @@ trait HasRevisions
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * Initialize the trait on instantiation.
+     *
+     * @return void
+     */
+    final public function initializeHasTranslations(): void
+    {
+        $this->mergeCasts([
+            self::REVISION_STATUS => RevisionStatusEnum::class,
+        ]);
+    }
 
     /**
      * @param integer $max

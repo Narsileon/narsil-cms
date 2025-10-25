@@ -9,6 +9,8 @@ use Narsil\Traits\Enumerable;
 #endregion
 
 /**
+ * Enumeration of browser themes.
+ *
  * @version 1.0.0
  * @author Jonathan Rigaux
  */

@@ -45,8 +45,8 @@ class EntityTable extends AbstractTable
 
         $accesorKeys = [
             Entity::CREATED_BY => Entity::RELATION_CREATOR . '.' . User::ATTRIBUTE_FULL_NAME,
-            Entity::DELETED_BY => Entity::RELATION_DELETER . '.' . User::ATTRIBUTE_FULL_NAME,
-            Entity::UPDATED_BY => Entity::RELATION_UPDATER . '.' . User::ATTRIBUTE_FULL_NAME,
+            Entity::DELETED_BY => Entity::RELATION_REMOVER . '.' . User::ATTRIBUTE_FULL_NAME,
+            Entity::UPDATED_BY => Entity::RELATION_EDITOR . '.' . User::ATTRIBUTE_FULL_NAME,
         ];
 
         $visibilities = [

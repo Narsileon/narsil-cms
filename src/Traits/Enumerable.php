@@ -2,8 +2,11 @@
 
 namespace Narsil\Traits;
 
-use Illuminate\Support\Facades\Cache;
+#region USE
+
 use Narsil\Support\SelectOption;
+
+#endregion
 
 /**
  * @version 1.0.0
@@ -20,20 +23,17 @@ trait Enumerable
      */
     public static function options(): array
     {
-        return Cache::rememberForever(static::class . ':options', function ()
+        $options = [];
+
+        foreach (self::cases() as $case)
         {
-            $options = [];
+            $options[] = new SelectOption(
+                label: $case->value,
+                value: $case->value,
+            );
+        }
 
-            foreach (self::cases() as $case)
-            {
-                $options[] = new SelectOption(
-                    label: $case->value,
-                    value: $case->value,
-                );
-            }
-
-            return $options;
-        });
+        return $options;
     }
 
     /**

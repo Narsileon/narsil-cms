@@ -4,13 +4,14 @@ namespace Narsil\Enums\Configuration;
 
 #region USE
 
-use Illuminate\Support\Facades\Cache;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Enumerable;
 
 #endregion
 
 /**
+ * Enumeration of Tailwind CSS colors.
+ *
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
@@ -40,29 +41,28 @@ enum ColorEnum: string
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Get the enum as select options.
+     *
+     * @return array<SelectOption>
      */
     public static function options(): array
     {
-        return Cache::rememberForever(static::class . ':options', function ()
+        $options = [];
+
+        foreach (self::cases() as $case)
         {
-            $options = [];
+            $label = view('narsil::components.bullet-label', [
+                'color' => $case->value,
+                'label' => trans("narsil::colors.$case->value"),
+            ])->render();
 
-            foreach (self::cases() as $case)
-            {
-                $label = view('narsil::components.bullet-label', [
-                    'color' => $case->value,
-                    'label' => trans("narsil::colors.$case->value"),
-                ])->render();
+            $options[] = new SelectOption(
+                label: $label,
+                value: $case->value
+            );
+        }
 
-                $options[] = new SelectOption(
-                    label: $label,
-                    value: $case->value
-                );
-            }
-
-            return $options;
-        });
+        return $options;
     }
 
     #endregion

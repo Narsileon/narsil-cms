@@ -73,8 +73,8 @@ class EntityController extends AbstractController
         $query = Entity::query()
             ->with([
                 Entity::RELATION_CREATOR,
-                Entity::RELATION_DELETER,
-                Entity::RELATION_UPDATER,
+                Entity::RELATION_EDITOR,
+                Entity::RELATION_REMOVER,
             ]);
 
         $collection = new DataTableCollection($query, $template->{Template::HANDLE})

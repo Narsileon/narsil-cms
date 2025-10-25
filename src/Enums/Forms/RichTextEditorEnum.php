@@ -4,7 +4,6 @@ namespace Narsil\Enums\Forms;
 
 #region USE
 
-use Illuminate\Support\Facades\Cache;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Enumerable;
 
@@ -44,24 +43,23 @@ enum RichTextEditorEnum: string
     #region PUBLIC METHODS
 
     /**
-     * {@inheritDoc}
+     * Get the enum as select options.
+     *
+     * @return array<SelectOption>
      */
     public static function options(): array
     {
-        return Cache::rememberForever(static::class . ':options', function ()
+        $options = [];
+
+        foreach (self::cases() as $case)
         {
-            $options = [];
+            $options[] = new SelectOption(
+                label: trans("narsil::rich-text-editor.modules.$case->value"),
+                value: $case->value
+            );
+        }
 
-            foreach (self::cases() as $case)
-            {
-                $options[] = new SelectOption(
-                    label: trans("narsil::rich-text-editor.modules.$case->value"),
-                    value: $case->value
-                );
-            }
-
-            return $options;
-        });
+        return $options;
     }
 
     #endregion

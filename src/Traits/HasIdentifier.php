@@ -26,9 +26,11 @@ trait HasIdentifier
     #region ACCESSORS
 
     /**
+     * Get the associated identifier.
+     *
      * @return string
      */
-    public function getIdentifierAttribute(): string
+    final public function getIdentifierAttribute(): string
     {
         $key = $this->getKey();
         $table = $this->getTable();

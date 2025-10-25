@@ -54,18 +54,18 @@ trait Blameable
     final public const RELATION_CREATOR = 'creator';
 
     /**
-     * The name of the "deleter" relation.
+     * The name of the "editor" relation.
      *
      * @var string
      */
-    final public const RELATION_DELETER = 'deleter';
+    final public const RELATION_EDITOR = 'editor';
 
     /**
-     * The name of the "updater" relation.
+     * The name of the "remover" relation.
      *
      * @var string
      */
-    final public const RELATION_UPDATER = 'updater';
+    final public const RELATION_REMOVER = 'remover';
 
     #endregion
 
@@ -80,7 +80,7 @@ trait Blameable
      *
      * @return BelongsTo
      */
-    public function creator(): BelongsTo
+    final public function creator(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -91,31 +91,31 @@ trait Blameable
     }
 
     /**
-     * Get the user who deleted the model.
-     *
-     * @return BelongsTo
-     */
-    public function deleter(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                User::class,
-                self::DELETED_BY,
-                User::ID
-            );
-    }
-
-    /**
      * Get the user who updated the model.
      *
      * @return BelongsTo
      */
-    public function updater(): BelongsTo
+    final public function editor(): BelongsTo
     {
         return $this
             ->belongsTo(
                 User::class,
                 self::UPDATED_BY,
+                User::ID
+            );
+    }
+
+    /**
+     * Get the user who deleted the model.
+     *
+     * @return BelongsTo
+     */
+    final public function remover(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                User::class,
+                self::DELETED_BY,
                 User::ID
             );
     }
@@ -131,33 +131,69 @@ trait Blameable
      *
      * @return void
      */
-    protected static function bootBlameable(): void
+    final protected static function bootBlameable(): void
     {
         static::creating(function (Model $model)
         {
-            if (Auth::check())
-            {
-                $model->{self::CREATED_BY} = Auth::id();
-            }
+            static::setCreator($model);
         });
 
         static::deleting(function (Model $model)
         {
-            if (Auth::check())
-            {
-                $model->{self::DELETED_BY} = Auth::id();
-
-                $model->saveQuietly();
-            }
+            static::setRemover($model);
         });
 
         static::updating(function (Model $model)
         {
-            if (Auth::check())
-            {
-                $model->{self::UPDATED_BY} = Auth::id();
-            }
+            static::setEditor($model);
         });
+    }
+
+    /**
+     * Fill the "created by" column with the ID of the user who created the model.
+     *
+     * @param Model $model
+     *
+     * @return void
+     */
+    final protected static function setCreator(Model $model): void
+    {
+        if (Auth::check())
+        {
+            $model->{self::CREATED_BY} = Auth::id();
+        }
+    }
+
+    /**
+     * Fill the "updated by" column with the ID of the user who updated the model.
+     *
+     * @param Model $model
+     *
+     * @return void
+     */
+    final protected static function setEditor(Model $model): void
+    {
+        if (Auth::check())
+        {
+            $model->{self::UPDATED_BY} = Auth::id();
+        }
+    }
+
+    /**
+     * Fill the "deleted by" column with the ID of the user who deleted the model.
+     *
+     * @param Model $model
+     *
+     * @return void
+     */
+    final protected static function setRemover(Model $model): void
+    {
+        if (Auth::check())
+        {
+            $model->{self::DELETED_BY} = Auth::id();
+
+            $model->saveQuietly();
+        }
     }
 
     #endregion

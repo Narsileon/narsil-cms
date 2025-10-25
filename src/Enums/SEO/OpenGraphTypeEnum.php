@@ -4,12 +4,13 @@ namespace Narsil\Enums\SEO;
 
 #region USE
 
-use Narsil\Support\SelectOption;
 use Narsil\Traits\Enumerable;
 
 #endregion
 
 /**
+ * Enumeration of open graph types.
+ *
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
