@@ -3,6 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Narsil\Http\Controllers\Blocks\BlockCreateController;
 use Narsil\Http\Controllers\Blocks\BlockDestroyController;
 use Narsil\Http\Controllers\Blocks\BlockDestroyManyController;
@@ -32,7 +33,10 @@ use Narsil\Http\Controllers\Fields\FieldReplicateController;
 use Narsil\Http\Controllers\Fields\FieldReplicateManyController;
 use Narsil\Http\Controllers\Fields\FieldStoreController;
 use Narsil\Http\Controllers\Fields\FieldUpdateController;
-use Narsil\Http\Controllers\HostPageController;
+use Narsil\Http\Controllers\HostPages\HostPageCreateController;
+use Narsil\Http\Controllers\HostPages\HostPageEditController;
+use Narsil\Http\Controllers\HostPages\HostPageStoreController;
+use Narsil\Http\Controllers\HostPages\HostPageUpdateController;
 use Narsil\Http\Controllers\Hosts\HostCreateController;
 use Narsil\Http\Controllers\Hosts\HostDestroyController;
 use Narsil\Http\Controllers\Hosts\HostDestroyManyController;
@@ -64,7 +68,10 @@ use Narsil\Http\Controllers\Templates\TemplateReplicateController;
 use Narsil\Http\Controllers\Templates\TemplateReplicateManyController;
 use Narsil\Http\Controllers\Templates\TemplateStoreController;
 use Narsil\Http\Controllers\Templates\TemplateUpdateController;
-use Narsil\Http\Controllers\UserBookmarkController;
+use Narsil\Http\Controllers\UserBookmarks\UserBookmarkDestroyController;
+use Narsil\Http\Controllers\UserBookmarks\UserBookmarkIndexController;
+use Narsil\Http\Controllers\UserBookmarks\UserBookmarkStoreController;
+use Narsil\Http\Controllers\UserBookmarks\UserBookmarkUpdateController;
 use Narsil\Http\Controllers\UserConfigurationController;
 use Narsil\Http\Controllers\Users\UserCreateController;
 use Narsil\Http\Controllers\Users\UserDestroyController;
@@ -80,6 +87,7 @@ use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostPage;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
+use Narsil\Models\Users\UserBookmark;
 
 #endregion
 
@@ -95,12 +103,6 @@ Route::middleware([
         Route::redirect('/', '/narsil/dashboard');
 
         #region RESOURCES
-
-        Route::resource(HostPage::TABLE, HostPageController::class)->except([
-            'destroy',
-            'index',
-            'show',
-        ]);
 
         Route::prefix(Block::TABLE)->name(Block::TABLE . '.')->group(function ()
         {
@@ -168,6 +170,18 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
+        Route::prefix(Str::slug(HostPage::TABLE))->name(Str::slug(HostPage::TABLE) . '.')->group(function ()
+        {
+            Route::get('/create', HostPageCreateController::class)
+                ->name('create');
+            Route::post('/', HostPageStoreController::class)
+                ->name('store');
+            Route::get('/{hostPage}/edit', HostPageEditController::class)
+                ->name('edit');
+            Route::patch('/{hostPage}', HostPageUpdateController::class)
+                ->name('update');
+        });
+
         Route::prefix(Role::TABLE)->name(Role::TABLE . '.')->group(function ()
         {
             Route::get('/', RoleIndexController::class)
@@ -230,6 +244,18 @@ Route::middleware([
                 ->name('destroy-many');
         });
 
+        Route::prefix(Str::slug(UserBookmark::TABLE))->name(Str::slug(UserBookmark::TABLE) . '.')->group(function ()
+        {
+            Route::get('/', UserBookmarkIndexController::class)
+                ->name('index');;
+            Route::post('/', UserBookmarkStoreController::class)
+                ->name('store');
+            Route::patch('/{userBookmark}', UserBookmarkUpdateController::class)
+                ->name('update');
+            Route::delete('/{userBookmark}', UserBookmarkDestroyController::class)
+                ->name('destroy');
+        });
+
         Route::prefix('collections')->name('collections.')->group(function ()
         {
             Route::get('/', CollectionSummaryController::class)
@@ -267,14 +293,6 @@ Route::middleware([
         #endregion
 
         #region USERS
-
-        Route::resource('/user-bookmarks', UserBookmarkController::class)
-            ->only([
-                'index',
-                'store',
-                'update',
-                'destroy',
-            ]);
 
         Route::delete('/sessions', SessionController::class)
             ->name('sessions.delete');
