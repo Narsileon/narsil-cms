@@ -1,9 +1,9 @@
 import { DataTable } from "@narsil-cms/blocks";
 import {
   DataTableProvider,
-  getBulletColumn,
   getMenuColumn,
   getSelectColumn,
+  getStatusColumn,
 } from "@narsil-cms/components/data-table";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
 import { ColumnDef } from "@tanstack/react-table";
@@ -16,13 +16,13 @@ type ResourceIndexProps = {
 function ResourceIndex({ collection, title }: ResourceIndexProps) {
   const hasMenu = collection.meta.routes.edit || collection.meta.routes.destroy;
 
-  const bulletColumn = getBulletColumn();
   const menuColumn = getMenuColumn(collection.meta.routes);
   const selectColumn = getSelectColumn();
+  const statusColumn = getStatusColumn();
 
   const finalColumns: ColumnDef<Model>[] = [
     ...(collection.meta.selectable !== false ? [selectColumn] : []),
-    ...(collection.meta.revisionable === true ? [bulletColumn] : []),
+    ...(collection.meta.revisionable === true ? [statusColumn] : []),
     ...collection.columns,
     ...(hasMenu ? [menuColumn] : []),
   ];

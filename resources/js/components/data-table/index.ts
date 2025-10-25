@@ -1,8 +1,8 @@
 // https://ui.shadcn.com/docs/components/data-table
 
-import getBulletColumn from "./columns/bullet-column";
 import getMenuColumn from "./columns/menu-column";
 import getSelectColumn from "./columns/select-column";
+import getStatusColumn from "./columns/status-column";
 import DataTableColumns from "./data-table-columns";
 import useDataTable from "./data-table-context";
 import DataTableFilterDropdown from "./data-table-filter-dropdown";
@@ -34,8 +34,8 @@ export {
   DataTableProvider,
   DataTableRow,
   DataTableRowMenu,
-  getBulletColumn,
   getMenuColumn,
   getSelectColumn,
+  getStatusColumn,
   useDataTable,
 };

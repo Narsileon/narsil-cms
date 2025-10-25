@@ -1,0 +1,30 @@
+import { StatusItem, StatusRoot } from "@narsil-cms/components/status";
+import { cn } from "@narsil-cms/lib/utils";
+import type { Model } from "@narsil-cms/types";
+import { ColumnDef } from "@tanstack/react-table";
+
+function getStatusColumn(): ColumnDef<Model> {
+  return {
+    id: "_status",
+    cell: ({ row }) => {
+      return (
+        <StatusRoot>
+          {row.original.published ? <StatusItem className="bg-green-500" /> : null}
+          {row.original.saved ? <StatusItem className="bg-amber-500" /> : null}
+          {row.original.draft ? <StatusItem className="bg-red-500" /> : null}
+        </StatusRoot>
+      );
+    },
+    enableHiding: false,
+    enableSorting: false,
+    meta: {
+      className: cn(
+        "w-8 max-w-8 min-w-8 pl-2",
+        "hover:w-12 hover:max-w-12 hover:min-w-12",
+        "transition-[min-width,width,max-width] delay-100 duration-300",
+      ),
+    },
+  };
+}
+
+export default getStatusColumn;
