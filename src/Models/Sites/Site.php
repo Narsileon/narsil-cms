@@ -13,8 +13,8 @@ use Narsil\Traits\HasDatetimes;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class Site extends Model
 {

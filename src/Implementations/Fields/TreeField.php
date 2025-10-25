@@ -11,8 +11,8 @@ use Narsil\Support\TranslationsBag;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class TreeField extends AbstractField implements Contract
 {

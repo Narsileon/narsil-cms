@@ -19,8 +19,8 @@ use Narsil\Traits\HasTranslations;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class Block extends Model
 {

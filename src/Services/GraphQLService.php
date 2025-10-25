@@ -19,8 +19,8 @@ use Narsil\Services\TemplateService;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 abstract class GraphQLService
 {
@@ -32,7 +32,7 @@ abstract class GraphQLService
     protected const DEFAULT_FIELDS = [
         Entity::UUID => 'String',
         Entity::ID => 'Int',
-        Entity::REVISION => 'Int',
+        Entity::REVISION_VERSION => 'Int',
         Entity::CREATED_AT => 'DateTime',
         Entity::CREATED_BY => 'Int',
         Entity::UPDATED_AT => 'DateTime',

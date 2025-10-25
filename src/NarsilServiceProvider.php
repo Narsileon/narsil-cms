@@ -27,8 +27,8 @@ use Nuwave\Lighthouse\LighthouseServiceProvider;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class NarsilServiceProvider extends ServiceProvider
 {

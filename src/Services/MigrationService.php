@@ -28,8 +28,8 @@ use Narsil\Models\Elements\Template;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 abstract class MigrationService
 {

@@ -27,8 +27,8 @@ use ResourceBundle;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class HostForm extends AbstractForm implements Contract
 {

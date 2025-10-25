@@ -12,8 +12,8 @@ use Narsil\Models\Users\UserBookmark;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class UserBookmarkForm extends AbstractForm
 {

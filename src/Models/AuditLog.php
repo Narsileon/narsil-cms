@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class AuditLog extends Model
 {

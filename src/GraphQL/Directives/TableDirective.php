@@ -15,8 +15,8 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class TableDirective extends BaseDirective implements FieldMiddleware
 {

@@ -10,8 +10,8 @@ use Narsil\Models\Elements\Block;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 interface ArrayField extends Contract
 {

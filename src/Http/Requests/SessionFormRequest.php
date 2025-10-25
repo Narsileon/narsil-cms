@@ -11,8 +11,8 @@ use Illuminate\Foundation\Http\FormRequest;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class SessionFormRequest extends FormRequest
 {

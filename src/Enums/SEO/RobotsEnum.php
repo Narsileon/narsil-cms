@@ -9,8 +9,8 @@ use Narsil\Traits\Enumerable;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 enum RobotsEnum: string
 {

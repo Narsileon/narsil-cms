@@ -26,8 +26,8 @@ use Narsil\Services\RouteService;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class HostPageForm extends AbstractForm implements Contract
 {

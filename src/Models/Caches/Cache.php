@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class Cache extends Model
 {

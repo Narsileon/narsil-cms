@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Cache;
 use Narsil\Support\SelectOption;
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 trait Enumerable
 {

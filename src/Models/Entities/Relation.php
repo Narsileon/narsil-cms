@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\DB;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class Relation extends Model
 {

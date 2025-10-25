@@ -13,8 +13,8 @@ use Narsil\Support\MenuItem;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class AuthMenu extends AbstractMenu implements Contract
 {

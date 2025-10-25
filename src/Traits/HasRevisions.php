@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 trait HasRevisions
 {
@@ -39,11 +39,18 @@ trait HasRevisions
     final public const ID = 'id';
 
     /**
-     * The name of the "revision" column.
+     * The name of the "revision version" column.
      *
      * @var string
      */
-    final public const REVISION = 'revision';
+    final public const REVISION_VERSION = 'revision_version';
+
+    /**
+     * The name of the "revision status" column.
+     *
+     * @var string
+     */
+    final public const REVISION_STATUS = 'revision_status';
 
     /**
      * The name of the "uuid" column.
@@ -89,7 +96,7 @@ trait HasRevisions
     {
         $uuids = self::onlyTrashed()
             ->where(self::ID, $this->{self::ID})
-            ->orderByDesc(self::REVISION)
+            ->orderByDesc(self::REVISION_VERSION)
             ->skip($max)
             ->take(PHP_INT_MAX)
             ->pluck(self::UUID)
@@ -120,7 +127,7 @@ trait HasRevisions
             )
             ->withTrashed()
             ->whereNotNull(self::DELETED_AT)
-            ->orderByDesc(self::REVISION);
+            ->orderByDesc(self::REVISION_VERSION);
     }
 
     #endregion
@@ -143,9 +150,9 @@ trait HasRevisions
                 $model->{self::ID} = self::max(self::ID) + 1;
             }
 
-            if (empty($model->{self::REVISION}))
+            if (empty($model->{self::REVISION_VERSION}))
             {
-                $model->{self::REVISION} = 1;
+                $model->{self::REVISION_VERSION} = 1;
             }
         });
 
@@ -158,7 +165,7 @@ trait HasRevisions
 
         static::replicating(function (Model $model)
         {
-            $model->{self::REVISION} = $model->{self::REVISION} + 1;
+            $model->{self::REVISION_VERSION} = $model->{self::REVISION_VERSION} + 1;
         });
     }
 
@@ -178,11 +185,11 @@ trait HasRevisions
             ->withoutEagerLoads()
             ->select([
                 self::ID,
-                self::REVISION,
+                self::REVISION_VERSION,
                 self::UUID,
             ])
             ->where(self::ID, $id)
-            ->orderByDesc(self::REVISION);
+            ->orderByDesc(self::REVISION_VERSION);
     }
 
     #endregion

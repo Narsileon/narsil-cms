@@ -22,8 +22,8 @@ use ResourceBundle;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class UserConfigurationForm extends AbstractForm implements Contract
 {

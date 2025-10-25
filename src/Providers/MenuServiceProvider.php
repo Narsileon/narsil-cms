@@ -9,8 +9,8 @@ use Illuminate\Support\ServiceProvider;
 #endregion
 
 /**
- * @author Jonathan Rigaux
  * @version 1.0.0
+ * @author Jonathan Rigaux
  */
 class MenuServiceProvider extends ServiceProvider
 {
