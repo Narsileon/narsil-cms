@@ -29,7 +29,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
 
   const finalColumnOrder = [
     ...(collection.meta.selectable !== false ? ["_select"] : []),
-    ...(collection.meta.revisionable === true ? ["_bullet"] : []),
+    ...(collection.meta.revisionable === true ? ["_status"] : []),
     ...collection.columnOrder,
     ...(hasMenu ? ["_menu"] : []),
   ];

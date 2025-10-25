@@ -1,3 +1,4 @@
+import { useLocalization } from "@narsil-cms/components/localization";
 import { StatusItem, StatusRoot } from "@narsil-cms/components/status";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Model } from "@narsil-cms/types";
@@ -7,11 +8,19 @@ function getStatusColumn(): ColumnDef<Model> {
   return {
     id: "_status",
     cell: ({ row }) => {
+      const { trans } = useLocalization();
+
       return (
         <StatusRoot>
-          {row.original.published ? <StatusItem className="bg-green-500" /> : null}
-          {row.original.saved ? <StatusItem className="bg-amber-500" /> : null}
-          {row.original.draft ? <StatusItem className="bg-red-500" /> : null}
+          {row.original.published ? (
+            <StatusItem className="bg-green-500" tooltip={trans("revisions.published")} />
+          ) : null}
+          {row.original.saved ? (
+            <StatusItem className="bg-amber-500" tooltip={trans("revisions.saved")} />
+          ) : null}
+          {row.original.draft ? (
+            <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />
+          ) : null}
         </StatusRoot>
       );
     },
