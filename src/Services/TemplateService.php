@@ -4,7 +4,9 @@ namespace Narsil\Services;
 
 #region USE
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Template;
@@ -51,6 +53,33 @@ abstract class TemplateService
             {
                 return $collection->where(Field::TYPE, $type);
             });;
+    }
+
+    /**
+     * @param integer|string $collection
+     *
+     * @return ?Template
+     */
+    public static function getTemplate(int|string $collection): ?Template
+    {
+        $query = Template::query()
+            ->with([
+                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_BlOCKS,
+                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_FIELDS,
+            ]);
+
+        if (is_numeric($collection))
+        {
+            $template = $query
+                ->firstWhere(Template::ID, '=', $collection);
+        }
+        else
+        {
+            $template = $query
+                ->firstWhere(Template::HANDLE, '=', $collection);
+        }
+
+        return $template;
     }
 
     /**
@@ -101,6 +130,104 @@ abstract class TemplateService
             {
                 return $collection->where(Field::TYPE, $type);
             });
+    }
+
+    /**
+     * @param Template $template
+     *
+     * @return void
+     */
+    public static function replicateTemplate(Template $template): void
+    {
+        $replicated = $template->replicate();
+
+        $replicated
+            ->fill([
+                Template::HANDLE => DatabaseService::generateUniqueValue($replicated, Template::HANDLE, $template->{Template::HANDLE}),
+            ])
+            ->save();
+
+        static::syncSections($replicated, $template->sections()->get()->toArray());
+        static::syncSets($replicated, $template->sets()->get()->toArray());
+    }
+
+    /**
+     * @param TemplateSection $templateSection
+     * @param array $elements
+     *
+     * @return void
+     */
+    public static function syncElements(TemplateSection $templateSection, array $elements): void
+    {
+        $templateSection->blocks()->detach();
+        $templateSection->fields()->detach();
+
+        foreach ($elements as $position => $element)
+        {
+            $identifier = Arr::get($element, TemplateSectionElement::ATTRIBUTE_IDENTIFIER);
+
+            if (!$identifier || ! Str::contains($identifier, '-'))
+            {
+                continue;
+            }
+
+            [$table, $id] = explode('-', $identifier);
+
+            $attributes = [
+                TemplateSectionElement::HANDLE => Arr::get($element, TemplateSectionElement::HANDLE),
+                TemplateSectionElement::NAME => json_encode(Arr::get($element, TemplateSectionElement::NAME, [])),
+                TemplateSectionElement::POSITION => $position,
+                TemplateSectionElement::WIDTH => Arr::get($element, TemplateSectionElement::WIDTH),
+            ];
+
+            match ($table)
+            {
+                Block::TABLE => $templateSection->blocks()->attach($id, $attributes),
+                Field::TABLE => $templateSection->fields()->attach($id, $attributes),
+                default => null,
+            };
+        }
+    }
+
+    /**
+     * @param Template $block
+     * @param array $sections
+     *
+     * @return void
+     */
+    public static function syncSections(Template $template, array $sections): void
+    {
+        $ids = [];
+
+        foreach ($sections as $key => $section)
+        {
+            $templateSection = TemplateSection::updateOrCreate([
+                TemplateSection::TEMPLATE_ID => $template->{Template::ID},
+                TemplateSection::HANDLE => Arr::get($section, TemplateSection::HANDLE),
+            ], [
+                TemplateSection::POSITION => $key,
+                TemplateSection::NAME => Arr::get($section, TemplateSection::NAME),
+            ]);
+
+            static::syncElements($templateSection, Arr::get($section, TemplateSection::RELATION_ELEMENTS, []));
+
+            $ids[] = $templateSection->{TemplateSection::ID};
+        }
+
+        $template->sections()
+            ->whereNotIn(TemplateSection::ID, $ids)
+            ->delete();
+    }
+
+    /**
+     * @param Template $template
+     * @param array $blocks
+     *
+     * @return void
+     */
+    public static function syncSets(Template $template, array $blocks): void
+    {
+        $template->sets()->sync(collect($blocks)->pluck(Block::ID));
     }
 
     #endregion

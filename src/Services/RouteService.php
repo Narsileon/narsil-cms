@@ -30,11 +30,11 @@ abstract class RouteService
         $names = [
             'create' => "$tableName.create",
             'destroy' => "$tableName.destroy",
-            'destroyMany' => "$tableName.destroyMany",
+            'destroyMany' => "$tableName.destroy-many",
             'edit' => "$tableName.edit",
             'index' => "$tableName.index",
             'replicate' => "$tableName.replicate",
-            'replicateMany' => "$tableName.replicateMany",
+            'replicateMany' => "$tableName.replicate-many",
             'show' => "$tableName.show",
             'store' => "$tableName.store",
             'update' => "$tableName.update",

@@ -13,7 +13,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class DuplicateManyRequest extends FormRequest
+class ReplicateManyRequest extends FormRequest
 {
     #region CONSTANTS
 

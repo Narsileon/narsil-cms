@@ -21,26 +21,13 @@ class LoginController extends AbstractController
     #region CONSTRUCTOR
 
     /**
-     * @param LoginForm $form
-     *
      * @return void
      */
-    public function __construct(LoginForm $form)
+    public function __construct()
     {
-        $this->form = $form;
-
         app(TranslationsBag::class)
             ->add('narsil::passwords.link');
     }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var LoginForm
-     */
-    protected readonly LoginForm $form;
 
     #endregion
 
@@ -53,12 +40,44 @@ class LoginController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
+        $data = $this->getData();
+        $form = $this->getForm()
+            ->setData($data);
+
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            props: array_merge($this->form->jsonSerialize(), [
-                'status' => session('status'),
-            ]),
+            props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(): array
+    {
+        $data = [
+            'status' => session('status'),
+        ];
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @return LoginForm
+     */
+    protected function getForm(): LoginForm
+    {
+        $form = app()->make(LoginForm::class);
+
+        return $form;
     }
 
     #endregion

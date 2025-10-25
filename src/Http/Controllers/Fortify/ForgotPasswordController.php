@@ -17,29 +17,6 @@ use Narsil\Http\Controllers\AbstractController;
  */
 class ForgotPasswordController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param ForgotPasswordForm $form
-     *
-     * @return void
-     */
-    public function __construct(ForgotPasswordForm $form)
-    {
-        $this->form = $form;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var ForgotPasswordForm
-     */
-    protected readonly ForgotPasswordForm $form;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -49,12 +26,44 @@ class ForgotPasswordController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
+        $data = $this->getData();
+        $form = $this->getForm()
+            ->setData($data);
+
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            props: array_merge($this->form->jsonSerialize(), [
-                'status' => session('status'),
-            ]),
+            props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(): array
+    {
+        $data = [
+            'status' => session('status'),
+        ];
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @return ForgotPasswordForm
+     */
+    protected function getForm(): ForgotPasswordForm
+    {
+        $form = app()->make(ForgotPasswordForm::class);
+
+        return $form;
     }
 
     #endregion

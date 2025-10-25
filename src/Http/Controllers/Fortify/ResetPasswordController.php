@@ -17,29 +17,6 @@ use Narsil\Http\Controllers\AbstractController;
  */
 class ResetPasswordController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param ResetPasswordForm $form
-     *
-     * @return void
-     */
-    public function __construct(ResetPasswordForm $form)
-    {
-        $this->form = $form;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var ResetPasswordForm
-     */
-    protected readonly ResetPasswordForm $form;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -49,11 +26,13 @@ class ResetPasswordController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
+        $data = $this->getData();
+        $form = $this->getForm()
+            ->setData($data);
+
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            props: array_merge($this->form->jsonSerialize(), [
-                'data' => $this->getData(),
-            ])
+            props: $form->jsonSerialize(),
         );
     }
 
@@ -62,13 +41,29 @@ class ResetPasswordController extends AbstractController
     #region PROTECTED METHODS
 
     /**
+     * Get the associated data.
+     *
      * @return array<string,mixed>
      */
     protected function getData(): array
     {
-        return [
+        $data = [
             'token' => request()->route('token'),
         ];
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @return ResetPasswordForm
+     */
+    protected function getForm(): ResetPasswordForm
+    {
+        $form = app()->make(ResetPasswordForm::class);
+
+        return $form;
     }
 
     #endregion

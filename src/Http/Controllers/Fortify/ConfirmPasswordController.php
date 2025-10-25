@@ -17,29 +17,6 @@ use Narsil\Http\Controllers\AbstractController;
  */
 class ConfirmPasswordController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param ConfirmPasswordForm $form
-     *
-     * @return void
-     */
-    public function __construct(ConfirmPasswordForm $form)
-    {
-        $this->form = $form;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var ConfirmPasswordForm
-     */
-    protected readonly ConfirmPasswordForm $form;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -49,10 +26,28 @@ class ConfirmPasswordController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
+        $form = $this->getForm();
+
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return ConfirmPasswordForm
+     */
+    protected function getForm(): ConfirmPasswordForm
+    {
+        $form = app()->make(ConfirmPasswordForm::class);
+
+        return $form;
     }
 
     #endregion

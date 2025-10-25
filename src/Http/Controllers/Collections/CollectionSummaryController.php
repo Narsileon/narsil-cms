@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers;
+namespace Narsil\Http\Controllers\Collections;
 
 #region USE
 
@@ -20,7 +20,7 @@ use Narsil\Models\Entities\Entity;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class CollectionController extends AbstractController
+class CollectionSummaryController extends AbstractController
 {
     #region PUBLIC METHODS
 

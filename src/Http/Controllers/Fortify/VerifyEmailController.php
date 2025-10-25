@@ -17,6 +17,22 @@ use Narsil\Support\TranslationsBag;
  */
 class VerifyEmailController extends AbstractController
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        app(TranslationsBag::class)
+            ->add('narsil::verify-email.instruction')
+            ->add('narsil::verify-email.prompt')
+            ->add('narsil::verify-email.send_again')
+            ->add('narsil::verify-email.sent');
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -26,20 +42,35 @@ class VerifyEmailController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        app(TranslationsBag::class)
-            ->add('narsil::verify-email.instruction')
-            ->add('narsil::verify-email.prompt')
-            ->add('narsil::verify-email.send_again')
-            ->add('narsil::verify-email.sent');
+        $title = trans('narsil::ui.email_verify');
+        $description = trans('narsil::ui.email_verify');
+
+        $data = $this->getData();
 
         return $this->render(
             component: 'narsil/cms::fortify/verify-email',
-            description: trans('narsil::ui.email_verify'),
-            title: trans('narsil::ui.email_verify'),
-            props: [
-                'status' => session('status'),
-            ]
+            title: $title,
+            description: $description,
+            props: $data,
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(): array
+    {
+        $data = [
+            'status' => session('status'),
+        ];
+
+        return $data;
     }
 
     #endregion

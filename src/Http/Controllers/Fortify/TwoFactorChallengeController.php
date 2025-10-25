@@ -17,29 +17,6 @@ use Narsil\Http\Controllers\AbstractController;
  */
 class TwoFactorChallengeController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param TwoFactorChallengeForm $form
-     *
-     * @return void
-     */
-    public function __construct(TwoFactorChallengeForm $form)
-    {
-        $this->form = $form;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var TwoFactorChallengeForm
-     */
-    protected readonly TwoFactorChallengeForm $form;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -49,10 +26,28 @@ class TwoFactorChallengeController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
+        $form = $this->getForm();
+
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return TwoFactorChallengeForm
+     */
+    protected function getForm(): TwoFactorChallengeForm
+    {
+        $form = app()->make(TwoFactorChallengeForm::class);
+
+        return $form;
     }
 
     #endregion

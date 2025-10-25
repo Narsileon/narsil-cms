@@ -17,29 +17,6 @@ use Narsil\Http\Controllers\AbstractController;
  */
 class RegisterController extends AbstractController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param RegisterForm $form
-     *
-     * @return void
-     */
-    public function __construct(RegisterForm $form)
-    {
-        $this->form = $form;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var RegisterForm
-     */
-    protected readonly RegisterForm $form;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -49,10 +26,28 @@ class RegisterController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
+        $form = $this->getForm();
+
         return $this->render(
             component: 'narsil/cms::fortify/form',
-            props: $this->form->jsonSerialize(),
+            props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return RegisterForm
+     */
+    protected function getForm(): RegisterForm
+    {
+        $form = app()->make(RegisterForm::class);
+
+        return $form;
     }
 
     #endregion

@@ -3,7 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
-use Narsil\Http\Controllers\EntityController;
+use Narsil\Http\Controllers\Entities\EntityIndexController;
 
 #endregion
 
@@ -14,7 +14,7 @@ Route::middleware([
     {
         #region COLLECTIONS
 
-        Route::controller(EntityController::class)->group(function ()
+        Route::controller(EntityIndexController::class)->group(function ()
         {
             Route::get('collections/{collection}', 'index')
                 ->name('collections.index');

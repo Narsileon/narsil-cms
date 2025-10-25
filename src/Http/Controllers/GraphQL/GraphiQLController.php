@@ -25,10 +25,13 @@ class GraphiQLController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
+        $title = 'GraphiQL';
+        $description = 'GraphiQL';
+
         return $this->render(
             component: 'narsil/cms::graphiql/index',
-            description: 'GraphiQL',
-            title: 'GraphiQL',
+            title: $title,
+            description: $description,
         );
     }
 

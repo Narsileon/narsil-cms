@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Users;
+namespace Narsil\Http\Controllers\Fields;
 
 #region USE
 
@@ -10,7 +10,7 @@ use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\User;
+use Narsil\Models\Elements\Field;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserIndexController extends AbstractController
+class FieldIndexController extends AbstractController
 {
     #region PUBLIC METHODS
 
@@ -29,10 +29,10 @@ class UserIndexController extends AbstractController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, User::class);
+        $this->authorize(PermissionEnum::VIEW_ANY, Field::class);
 
-        $title = trans('narsil::tables.' . User::TABLE);
-        $description = trans('narsil::tables.' . User::TABLE);
+        $title = trans('narsil::tables.' . Field::TABLE);
+        $description = trans('narsil::tables.' . Field::TABLE);
         $collection = $this->getCollection();
 
         return $this->render(
@@ -50,13 +50,15 @@ class UserIndexController extends AbstractController
     #region PROTECTED METHODS
 
     /**
+     * Get the associated collection.
+     *
      * @return DataTableCollection
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = User::query();
+        $query = Field::query();
 
-        return new DataTableCollection($query, User::TABLE);
+        return new DataTableCollection($query, Field::TABLE);
     }
 
     #endregion
