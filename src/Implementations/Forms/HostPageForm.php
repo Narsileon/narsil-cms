@@ -41,10 +41,10 @@ class HostPageForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::models.host'))
+            ->setDescription(trans('narsil::models.' . Host::class))
             ->setRoutes(RouteService::getNames(Host::TABLE))
             ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::models.host'));
+            ->setTitle(trans('narsil::models.' . Host::class));
     }
 
     #endregion

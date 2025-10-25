@@ -40,9 +40,9 @@ class UserForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::models.user'))
+            ->setDescription(trans('narsil::models.' . User::class))
             ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::models.user'));
+            ->setTitle(trans('narsil::models.' . User::class));
     }
 
     #endregion

@@ -36,10 +36,10 @@ class FieldForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::models.field'))
+            ->setDescription(trans('narsil::models.' . Field::class))
             ->setRoutes(RouteService::getNames(Field::TABLE))
             ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::models.field'));
+            ->setTitle(trans('narsil::models.' . Field::class));
     }
 
     #endregion

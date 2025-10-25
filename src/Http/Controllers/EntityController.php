@@ -78,6 +78,7 @@ class EntityController extends AbstractController
             ]);
 
         $collection = new DataTableCollection($query, $template->{Template::HANDLE})
+            ->setRevisionable(true)
             ->toResponse($request)
             ->getData(true);
 

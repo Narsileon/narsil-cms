@@ -130,6 +130,26 @@ class DataTableCollection extends ResourceCollection
     #region • SETTERS
 
     /**
+     * @param boolean $revisionable
+     *
+     * @return static
+     */
+    public function setRevisionable(bool $revisionable): static
+    {
+        $this->options['revisionable'] = $revisionable;
+
+        if ($revisionable)
+        {
+            app(TranslationsBag::class)
+                ->add('narsil::revisions.draft')
+                ->add('narsil::revisions.published')
+                ->add('narsil::revisions.saved');
+        }
+
+        return $this;
+    }
+
+    /**
      * @param boolean $selectable
      *
      * @return static

@@ -37,10 +37,10 @@ class TemplateForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::models.template'))
+            ->setDescription(trans('narsil::models.' . Template::class))
             ->setRoutes(RouteService::getNames(Template::TABLE))
             ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::models.template'));
+            ->setTitle(trans('narsil::models.' . Template::class));
     }
 
     #endregion
@@ -97,7 +97,7 @@ class TemplateForm extends AbstractForm implements Contract
                                         ->setForm(app(BlockElementForm::class)->jsonSerialize())
                                         ->addOption(
                                             identifier: Block::TABLE,
-                                            label: trans('narsil::models.block'),
+                                            label: trans('narsil::models.' . Block::class),
                                             optionLabel: BlockElement::NAME,
                                             optionValue: BlockElement::HANDLE,
                                             options: $blockSelectOptions,
@@ -105,7 +105,7 @@ class TemplateForm extends AbstractForm implements Contract
                                         )
                                         ->addOption(
                                             identifier: Field::TABLE,
-                                            label: trans('narsil::models.field'),
+                                            label: trans('narsil::models.' . Field::class),
                                             optionLabel: BlockElement::NAME,
                                             optionValue: BlockElement::HANDLE,
                                             options: $fieldSelectOptions,
@@ -125,7 +125,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::SETTINGS => app(RelationsField::class)
                             ->addOption(
                                 identifier: Block::TABLE,
-                                label: trans('narsil::models.block'),
+                                label: trans('narsil::models.' . Block::class),
                                 optionLabel: BlockElement::NAME,
                                 optionValue: BlockElement::HANDLE,
                                 options: $setSelectOptions,
