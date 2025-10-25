@@ -18,6 +18,7 @@ type FormProps = FormType & {
 
 function ResourceForm({
   action,
+  autoSave,
   data,
   id,
   languageOptions,
@@ -130,6 +131,7 @@ function ResourceForm({
         return (
           <FormRoot
             className="animate-in overflow-hidden duration-300 fade-in-0"
+            autoSave={autoSave}
             options={{
               onSuccess: (response) => {
                 if (modal) {

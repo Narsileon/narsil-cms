@@ -56,11 +56,18 @@ abstract class AbstractForm implements Form
     #region PROPERTIES
 
     /**
-     * The action of the form.
+     * The "action" attribute of the form.
      *
      * @var string
      */
     protected string $action = '';
+
+    /**
+     * The "auto save" attribute of the form.
+     *
+     * @var boolean
+     */
+    protected bool $autoSave = false;
 
     /**
      * The data of the form.
@@ -77,7 +84,7 @@ abstract class AbstractForm implements Form
     protected string $description = '';
 
     /**
-     * The id of the form.
+     * The "id" attribute of the form.
      *
      * @var integer|string|null
      */
@@ -91,7 +98,7 @@ abstract class AbstractForm implements Form
     protected array $languageOptions = [];
 
     /**
-     * The method of the form.
+     * The "method" attribute of the form.
      *
      * @var MethodEnum
      */
@@ -136,6 +143,7 @@ abstract class AbstractForm implements Form
     {
         return [
             'action' => $this->getAction(),
+            'autoSave' => $this->getAutoSave(),
             'data' => $this->getData(),
             'description' => $this->getDescription(),
             'id' => $this->getDefaultId($this->id),
@@ -157,6 +165,14 @@ abstract class AbstractForm implements Form
     public function getAction(): string
     {
         return $this->action;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAutoSave(): bool
+    {
+        return $this->autoSave;
     }
 
     /**
@@ -241,6 +257,16 @@ abstract class AbstractForm implements Form
     public function setAction(string $action): static
     {
         $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAutoSave(string $autoSave): static
+    {
+        $this->autoSave = $autoSave;
 
         return $this;
     }

@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Narsil\Enums\Revisions\RevisionStatusEnum;
 
 #endregion
 
@@ -19,6 +18,7 @@ use Narsil\Enums\Revisions\RevisionStatusEnum;
  */
 trait HasRevisions
 {
+    use Publishable;
     use SoftDeletes;
 
     #region CONSTANTS
@@ -40,18 +40,11 @@ trait HasRevisions
     final public const ID = 'id';
 
     /**
-     * The name of the "revision status" column.
+     * The name of the "revision" column.
      *
      * @var string
      */
-    final public const REVISION_STATUS = 'revision_status';
-
-    /**
-     * The name of the "revision version" column.
-     *
-     * @var string
-     */
-    final public const REVISION_VERSION = 'revision_version';
+    final public const REVISION = 'revision';
 
     /**
      * The name of the "uuid" column.
@@ -89,18 +82,6 @@ trait HasRevisions
     #region PUBLIC METHODS
 
     /**
-     * Initialize the trait on instantiation.
-     *
-     * @return void
-     */
-    final public function initializeHasRevisions(): void
-    {
-        $this->mergeCasts([
-            self::REVISION_STATUS => RevisionStatusEnum::class,
-        ]);
-    }
-
-    /**
      * @param integer $max
      *
      * @return void
@@ -109,7 +90,8 @@ trait HasRevisions
     {
         $uuids = self::onlyTrashed()
             ->where(self::ID, $this->{self::ID})
-            ->orderByDesc(self::REVISION_VERSION)
+            ->where(self::PUBLISHED, false)
+            ->orderByDesc(self::REVISION)
             ->skip($max)
             ->take(PHP_INT_MAX)
             ->pluck(self::UUID)
@@ -121,13 +103,6 @@ trait HasRevisions
                 ->whereIn(self::UUID, $uuids)
                 ->forceDelete();
         }
-    }
-
-    public function publish(): void
-    {
-        $this->{self::REVISION_STATUS} = RevisionStatusEnum::PUBLISHED->value;
-
-        $this->saveQuietly();
     }
 
     #region • RELATIONSHIPS
@@ -147,7 +122,7 @@ trait HasRevisions
             )
             ->withTrashed()
             ->whereNotNull(self::DELETED_AT)
-            ->orderByDesc(self::REVISION_VERSION);
+            ->orderByDesc(self::REVISION);
     }
 
     #endregion
@@ -170,12 +145,10 @@ trait HasRevisions
                 $model->{self::ID} = self::max(self::ID) + 1;
             }
 
-            if (empty($model->{self::REVISION_VERSION}))
+            if (empty($model->{self::REVISION}))
             {
-                $model->{self::REVISION_VERSION} = 1;
+                $model->{self::REVISION} = 1;
             }
-
-            $model->{self::REVISION_STATUS} = RevisionStatusEnum::SAVED->value;
         });
 
         static::forceDeleting(function (Model $model)
@@ -187,7 +160,7 @@ trait HasRevisions
 
         static::replicating(function (Model $model)
         {
-            $model->{self::REVISION_VERSION} = $model->{self::REVISION_VERSION} + 1;
+            $model->{self::REVISION} = $model->{self::REVISION} + 1;
         });
     }
 
@@ -207,11 +180,11 @@ trait HasRevisions
             ->withoutEagerLoads()
             ->select([
                 self::ID,
-                self::REVISION_VERSION,
+                self::REVISION,
                 self::UUID,
             ])
             ->where(self::ID, $id)
-            ->orderByDesc(self::REVISION_VERSION);
+            ->orderByDesc(self::REVISION);
     }
 
     #endregion

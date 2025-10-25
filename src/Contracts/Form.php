@@ -28,11 +28,18 @@ interface Form extends JsonSerializable
     #region • GETTERS
 
     /**
-     * Get the action of the form.
+     * Get the "action" attribute of the form.
      *
      * @return string
      */
     public function getAction(): string;
+
+    /**
+     * Get the "auto save" attribute of the form.
+     *
+     * @return boolean
+     */
+    public function getAutoSave(): bool;
 
     /**
      * Get the data of the form.
@@ -49,7 +56,7 @@ interface Form extends JsonSerializable
     public function getDescription(): ?string;
 
     /**
-     * Get the id of the form.
+     * Get the "id" attribute of the form.
      *
      * @return integer|string
      */
@@ -63,7 +70,7 @@ interface Form extends JsonSerializable
     public function getLanguageOptions(): array;
 
     /**
-     * Get the method of the form.
+     * Get the "method" attribute of the form.
      *
      * @return MethodEnum
      */
@@ -102,13 +109,22 @@ interface Form extends JsonSerializable
     #region • SETTERS
 
     /**
-     * Set the action of the form.
+     * Set the "action" attribute of the form.
      *
      * @param string $action
      *
      * @return static
      */
     public function setAction(string $action): static;
+
+    /**
+     * Set the "auto save" attribute of the form.
+     *
+     * @param string $autoSave
+     *
+     * @return static
+     */
+    public function setAutoSave(string $autoSave): static;
 
     /**
      * Set the data of the form.
@@ -129,7 +145,7 @@ interface Form extends JsonSerializable
     public function setDescription(string $description): static;
 
     /**
-     * Set the id of the form.
+     * Set the "id" attribute of the form.
      *
      * @param mixed $id
      *
@@ -147,7 +163,7 @@ interface Form extends JsonSerializable
     public function setLanguageOptions(array $locales): static;
 
     /**
-     * Set the method of the form.
+     * Set the "method" attribute of the form.
      *
      * @param MethodEnum $method
      *

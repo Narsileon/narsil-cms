@@ -32,7 +32,7 @@ abstract class GraphQLService
     protected const DEFAULT_FIELDS = [
         Entity::UUID => 'String',
         Entity::ID => 'Int',
-        Entity::REVISION_VERSION => 'Int',
+        Entity::REVISION => 'Int',
         Entity::CREATED_AT => 'DateTime',
         Entity::CREATED_BY => 'Int',
         Entity::UPDATED_AT => 'DateTime',

@@ -34,7 +34,7 @@ class HostPageEditController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $hostPage);
 
         $form = app(HostPageForm::class)
-            ->setAction(route('host_pages.update', $hostPage->{HostPage::ID}))
+            ->setAction(route('host-pages.update', $hostPage->{HostPage::ID}))
             ->setData($hostPage->toArrayWithTranslations())
             ->setId($hostPage->{HostPage::ID})
             ->setMethod(MethodEnum::PATCH)

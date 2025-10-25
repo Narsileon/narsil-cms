@@ -7,8 +7,6 @@ namespace Narsil\Database\Migrations;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\Revisions\RevisionStatusEnum;
-use Narsil\Enums\Revisions\StatusEnum;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
@@ -94,11 +92,12 @@ class CollectionMigration extends Migration
                 ->bigInteger(Entity::ID)
                 ->index();
             $blueprint
-                ->bigInteger(Entity::REVISION_VERSION)
-                ->default(1);
+                ->bigInteger(Entity::REVISION)
+                ->default(1)
+                ->index();
             $blueprint
-                ->enum(Entity::REVISION_STATUS, RevisionStatusEnum::values())
-                ->default(RevisionStatusEnum::SAVED)
+                ->boolean(Entity::PUBLISHED)
+                ->default(false)
                 ->index();
             $blueprint
                 ->timestamp(Entity::CREATED_AT);

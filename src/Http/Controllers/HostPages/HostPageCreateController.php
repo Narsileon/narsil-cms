@@ -33,7 +33,7 @@ class HostPageCreateController extends AbstractController
         $this->authorize(PermissionEnum::CREATE, HostPage::class);
 
         $form = app(HostPageForm::class)
-            ->setAction(route('host_pages.store'))
+            ->setAction(route('host-pages.store'))
             ->setData($request->all())
             ->setMethod(MethodEnum::POST)
             ->setSubmitLabel(trans('narsil::ui.save'));

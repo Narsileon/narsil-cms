@@ -15,7 +15,7 @@ function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
   const isInitialized = useRef(false);
 
   const onSubmit = useCallback(
-    (event?: React.FormEvent) => {
+    (event?: React.FormEvent, autoSave?: boolean) => {
       event?.preventDefault();
 
       switch (method) {
@@ -23,6 +23,7 @@ function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
         case "put":
           transform?.((data) => ({
             ...data,
+            _autoSave: autoSave,
             _dirty: isDirty,
             _method: method,
           }));
@@ -49,7 +50,7 @@ function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
 
     const debounced = debounce(() => {
       if (isDirty) {
-        onSubmit();
+        onSubmit(undefined, true);
       }
     }, 500);
 

@@ -7,12 +7,11 @@ namespace Narsil\Http\Controllers\Entities;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\AbstractEntityController;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\EntityService;
 
@@ -22,7 +21,7 @@ use Narsil\Services\EntityService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityUpdateController extends AbstractController
+class EntityUpdateController extends AbstractEntityController
 {
     #region PUBLIC METHODS
 
@@ -35,22 +34,26 @@ class EntityUpdateController extends AbstractController
      */
     public function __invoke(Request $request, int|string $collection, int $id): RedirectResponse
     {
-        $entity = Entity::query()
-            ->firstWhere([
-                Entity::ID => $id
-            ]);
+        $entities = Entity::query()
+            ->where([
+                Entity::ID => $id,
+            ])
+            ->get();
 
-        $this->authorize(PermissionEnum::UPDATE, $entity);
+        $entity = $entities->firstWhere(Entity::REVISION, '>', 0);
+        $draftEntity = $entities->firstWhere(Entity::REVISION, '=', -1);
 
-        $template = Entity::getTemplate();
-
-        if (!$request->get('_dirty'))
+        if (!$draftEntity && !$request->get('_dirty'))
         {
             return $this
                 ->redirect(route('collections.index', [
                     'collection' => $collection
                 ]));
         }
+
+        $this->authorize(PermissionEnum::UPDATE, $entity);
+
+        $template = Entity::getTemplate();
 
         $data = $request->all();
 
@@ -61,44 +64,38 @@ class EntityUpdateController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        if ($request->get('_autosave'))
+        $attributes = array_merge($attributes, [
+            Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
+            Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
+            Entity::UPDATED_AT => Carbon::now(),
+            Entity::UPDATED_BY => Auth::id(),
+        ]);
+
+        if ($request->boolean('_autoSave') === true)
         {
-            $entity->fill(array_merge($attributes, [
-                Entity::UPDATED_AT => Carbon::now(),
-                Entity::UPDATED_BY => Auth::id(),
-            ]));
-
-            $entity->save();
-
-            if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
+            if (!$draftEntity)
             {
-                EntityService::syncBlocks($entity, $blocks);
+                $entity = $this->replicateEntity($entity, array_merge($attributes, [
+                    Entity::REVISION => -1,
+                ]));
+            }
+            else
+            {
+                $draftEntity->update($attributes);
             }
 
             return back();
         }
         else
         {
-            $replicated = $entity->replicate();
-
-            $replicated->fill(array_merge($attributes, [
-                Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
-                Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
-                Entity::UPDATED_AT => Carbon::now(),
-                Entity::UPDATED_BY => Auth::id(),
-            ]));
-
-            $replicated->save();
-
+            $this->replicateEntity($entity, $attributes);
 
             $entity->discardChanges();
             $entity->delete();
 
-            $replicated->pruneRevisions(2);
-
-            if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
+            if ($draftEntity)
             {
-                EntityService::syncBlocks($replicated, $blocks);
+                $draftEntity->forceDeleteQuietly();
             }
 
             return $this
@@ -107,6 +104,34 @@ class EntityUpdateController extends AbstractController
                 ]), $entity)
                 ->with('success', trans('narsil::toasts.success.entities.updated'));
         }
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Entity $entity
+     * @param array $attributes
+     *
+     * @return Entity
+     */
+    protected function replicateEntity(Entity $entity, array $attributes): Entity
+    {
+        $replicated = $entity->replicate();
+
+        $replicated->fill($attributes);
+
+        $replicated->save();
+
+        $replicated->pruneRevisions(2);
+
+        if ($blocks = request(Entity::RELATION_BLOCKS))
+        {
+            EntityService::syncBlocks($replicated, $blocks);
+        }
+
+        return $replicated;
     }
 
     #endregion

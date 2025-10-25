@@ -40,7 +40,8 @@ class EntityIndexController extends AbstractEntityController
                 Entity::RELATION_CREATOR,
                 Entity::RELATION_EDITOR,
                 Entity::RELATION_REMOVER,
-            ]);
+            ])
+            ->where(Entity::REVISION, '>', 0);
 
         $collection = new DataTableCollection($query, $template->{Template::HANDLE})
             ->setRevisionable(true)
