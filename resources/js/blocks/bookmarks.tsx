@@ -132,7 +132,6 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                   >
                     <FormRoot
                       className="grid-cols-12 gap-4"
-                      method="patch"
                       options={{
                         onSuccess: () => {
                           fetchBookmarks();

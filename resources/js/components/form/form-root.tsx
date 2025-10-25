@@ -1,33 +1,62 @@
 import { VisitOptions } from "@inertiajs/core";
 import { cn } from "@narsil-cms/lib/utils";
-import { type ComponentProps } from "react";
+import { debounce } from "lodash";
+import { useCallback, useEffect, useRef, type ComponentProps } from "react";
 import useForm from "./form-context";
 
-type FormRootProps = ComponentProps<"form"> & {
+type FormRootProps = Omit<ComponentProps<"form">, "autoSave"> & {
+  autoSave?: boolean;
   options?: Omit<VisitOptions, "data">;
 };
 
-function FormRoot({ className, options, ...props }: FormRootProps) {
-  const { action, id, isDirty, method, post, transform } = useForm();
+function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
+  const { action, data, id, isDirty, method, post, transform } = useForm();
 
-  function onSubmit(event?: React.FormEvent) {
-    event?.preventDefault();
+  const isInitialized = useRef(false);
 
-    switch (method) {
-      case "patch":
-      case "put":
-        transform?.((data) => ({
-          ...data,
-          _dirty: isDirty,
-          _method: method,
-        }));
-        post?.(action, { ...options, forceFormData: true });
-        break;
-      case "post":
-        post?.(action, options);
-        break;
+  const onSubmit = useCallback(
+    (event?: React.FormEvent) => {
+      event?.preventDefault();
+
+      switch (method) {
+        case "patch":
+        case "put":
+          transform?.((data) => ({
+            ...data,
+            _dirty: isDirty,
+            _method: method,
+          }));
+          post?.(action, { ...options, forceFormData: true });
+          break;
+        case "post":
+          post?.(action, options);
+          break;
+      }
+    },
+    [action, isDirty, method, options, post, transform],
+  );
+
+  useEffect(() => {
+    if (!autoSave) {
+      return;
     }
-  }
+
+    if (!isInitialized.current) {
+      isInitialized.current = true;
+
+      return;
+    }
+
+    const debounced = debounce(() => {
+      if (isDirty) {
+        onSubmit();
+      }
+    }, 500);
+
+    debounced();
+
+    return () => debounced.cancel();
+  }, [autoSave, data, isDirty, onSubmit]);
 
   return (
     <form
