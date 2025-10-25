@@ -17,7 +17,7 @@ type RadiusStoreType = RadiusStoreState & RadiusStoreActions;
 
 const debouncedSave = debounce((radius: number) => {
   router.post(
-    route("user-configuration.store"),
+    route("user-configurations.update"),
     {
       radius: radius,
     },

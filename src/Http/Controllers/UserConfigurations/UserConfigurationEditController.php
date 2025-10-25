@@ -1,25 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers;
+namespace Narsil\Http\Controllers\UserConfigurations;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 use Inertia\Response;
-use Narsil\Contracts\FormRequests\UserConfigurationFormRequest;
 use Narsil\Contracts\Forms\Fortify\ProfileForm;
 use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\User;
-use Narsil\Models\Users\UserConfiguration;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -28,14 +20,14 @@ use Narsil\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserConfigurationController extends AbstractController
+class UserConfigurationEditController extends AbstractController
 {
     #region PUBLIC METHODS
 
     /**
      * @return JsonResponse|Response
      */
-    public function index(Request $request): JsonResponse|Response
+    public function __invoke(Request $request): JsonResponse|Response
     {
         $profileForm = app(ProfileForm::class);
         $twoFactorForm = app(TwoFactorForm::class);
@@ -66,51 +58,6 @@ class UserConfigurationController extends AbstractController
                 'userConfigurationForm' => $userConfigurationForm->jsonSerialize(),
             ]
         );
-    }
-
-    /**
-     * @return RedirectResponse
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        $data = $request->all();
-
-        $rules = app(UserconfigurationFormRequest::class)->rules();
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
-
-        if ($user = Auth::user())
-        {
-            $configuration = UserConfiguration::query()
-                ->firstWhere([
-                    UserConfiguration::USER_ID => $user->{User::ID},
-                ]);
-
-            $configuration?->update($attributes);
-        }
-
-        if ($color = Arr::get($attributes, UserConfiguration::COLOR))
-        {
-            Session::put(UserConfiguration::COLOR, $color);
-        }
-
-        if ($language = Arr::get($attributes, UserConfiguration::LANGUAGE))
-        {
-            Session::put(UserConfiguration::LANGUAGE, $language);
-        }
-
-        if ($radius = Arr::get($attributes, UserConfiguration::RADIUS))
-        {
-            Session::put(UserConfiguration::RADIUS, $radius);
-        }
-
-        if ($theme = Arr::get($attributes, UserConfiguration::THEME))
-        {
-            Session::put(UserConfiguration::THEME, $theme);
-        }
-
-        return back();
     }
 
     #endregion

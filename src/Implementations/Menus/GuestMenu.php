@@ -72,7 +72,7 @@ class GuestMenu extends AbstractMenu implements Contract
         return [
             new MenuItem()
                 ->setGroup($group)
-                ->setHref(route('user-configuration.index'))
+                ->setHref(route('user-configurations.edit'))
                 ->setIcon('settings')
                 ->setLabel(trans('narsil::ui.settings'))
                 ->setModal(true),

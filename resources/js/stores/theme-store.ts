@@ -94,7 +94,7 @@ const useThemeStore = create<ThemeStoreType>()(
         }
 
         router.post(
-          route("user-configuration.store"),
+          route("user-configurations.update"),
           {
             theme: theme,
           },

@@ -72,7 +72,8 @@ use Narsil\Http\Controllers\UserBookmarks\UserBookmarkDestroyController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkIndexController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkStoreController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkUpdateController;
-use Narsil\Http\Controllers\UserConfigurationController;
+use Narsil\Http\Controllers\UserConfigurations\UserConfigurationEditController;
+use Narsil\Http\Controllers\UserConfigurations\UserConfigurationUpdateController;
 use Narsil\Http\Controllers\Users\UserCreateController;
 use Narsil\Http\Controllers\Users\UserDestroyController;
 use Narsil\Http\Controllers\Users\UserDestroyManyController;
@@ -88,6 +89,7 @@ use Narsil\Models\Hosts\HostPage;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
+use Narsil\Models\Users\UserConfiguration;
 
 #endregion
 
@@ -291,22 +293,20 @@ Route::middleware([
         });
 
         #endregion
-
-        #region USERS
-
-        Route::delete('/sessions', SessionController::class)
-            ->name('sessions.delete');
-
-        #endregion
     }
 );
 
 #region USERS
 
-Route::resource('/user-configuration', UserConfigurationController::class)
-    ->only([
-        'index',
-        'store',
-    ]);
+Route::prefix(Str::slug(UserConfiguration::TABLE))->name(Str::slug(UserConfiguration::TABLE) . '.')->group(function ()
+{
+    Route::get('/', UserConfigurationEditController::class)
+        ->name('edit');;
+    Route::post('/', UserConfigurationUpdateController::class)
+        ->name('update');
+});
+
+Route::delete('/sessions', SessionController::class)
+    ->name('sessions.delete');
 
 #endregion

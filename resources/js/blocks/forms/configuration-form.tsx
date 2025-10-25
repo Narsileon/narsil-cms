@@ -33,7 +33,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
         return;
       default:
         router.post(
-          route("user-configuration.store"),
+          route("user-configurations.update"),
           {
             [id]: value,
           },
