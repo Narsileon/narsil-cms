@@ -26,7 +26,10 @@ class TemplateFormRequest implements Contract
     {
         return [
             Template::HANDLE => [
-                ...FormRule::getSlugRules(),
+                FormRule::ALPHA_DASH,
+                FormRule::LOWERCASE,
+                FormRule::doesntStartWith('-'),
+                FormRule::doesntEndWith('-'),
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Template::class,

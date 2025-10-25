@@ -17,14 +17,19 @@ use Narsil\Http\Controllers\SiteController;
 use Narsil\Http\Controllers\TemplateController;
 use Narsil\Http\Controllers\UserBookmarkController;
 use Narsil\Http\Controllers\UserConfigurationController;
-use Narsil\Http\Controllers\UserController;
+use Narsil\Http\Controllers\Users\UserCreateController;
+use Narsil\Http\Controllers\Users\UserDestroyController;
+use Narsil\Http\Controllers\Users\UserDestroyManyController;
+use Narsil\Http\Controllers\Users\UserEditController;
+use Narsil\Http\Controllers\Users\UserIndexController;
+use Narsil\Http\Controllers\Users\UserStoreController;
+use Narsil\Http\Controllers\Users\UserUpdateController;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostPage;
 use Narsil\Models\Policies\Role;
-use Narsil\Models\User;
 
 #endregion
 
@@ -96,11 +101,24 @@ Route::middleware([
         resource(Template::TABLE, TemplateController::class, [
             'show',
         ]);
-        resource(User::TABLE, UserController::class, [
-            'replicate',
-            'replicateMany',
-            'show',
-        ]);
+
+        Route::prefix('users')->name('users.')->group(function ()
+        {
+            Route::get('/', UserIndexController::class)
+                ->name('index');
+            Route::get('/create', UserCreateController::class)
+                ->name('create');
+            Route::post('/', UserStoreController::class)
+                ->name('store');
+            Route::get('/{user}/edit', UserEditController::class)
+                ->name('edit');
+            Route::patch('/{user}', UserUpdateController::class)
+                ->name('update');
+            Route::delete('/{user}', UserDestroyController::class)
+                ->name('destroy');
+            Route::delete('/', UserDestroyManyController::class)
+                ->name('destroy-many');
+        });
 
         #endregion
 

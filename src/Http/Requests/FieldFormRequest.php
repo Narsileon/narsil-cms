@@ -26,7 +26,10 @@ class FieldFormRequest implements Contract
     {
         return [
             Field::HANDLE => [
-                ...FormRule::getSlugRules(),
+                FormRule::ALPHA_DASH,
+                FormRule::LOWERCASE,
+                FormRule::doesntStartWith('-'),
+                FormRule::doesntEndWith('-'),
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Field::class,

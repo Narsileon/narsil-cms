@@ -93,7 +93,7 @@ trait HasRevisions
      *
      * @return void
      */
-    final public function initializeHasTranslations(): void
+    final public function initializeHasRevisions(): void
     {
         $this->mergeCasts([
             self::REVISION_STATUS => RevisionStatusEnum::class,
@@ -121,6 +121,13 @@ trait HasRevisions
                 ->whereIn(self::UUID, $uuids)
                 ->forceDelete();
         }
+    }
+
+    public function publish(): void
+    {
+        $this->{self::REVISION_STATUS} = RevisionStatusEnum::PUBLISHED->value;
+
+        $this->saveQuietly();
     }
 
     #region • RELATIONSHIPS
@@ -167,6 +174,8 @@ trait HasRevisions
             {
                 $model->{self::REVISION_VERSION} = 1;
             }
+
+            $model->{self::REVISION_STATUS} = RevisionStatusEnum::SAVED->value;
         });
 
         static::forceDeleting(function (Model $model)

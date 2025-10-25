@@ -86,7 +86,7 @@ trait Blameable
             ->belongsTo(
                 User::class,
                 self::CREATED_BY,
-                User::ID
+                User::ID,
             );
     }
 
@@ -101,7 +101,7 @@ trait Blameable
             ->belongsTo(
                 User::class,
                 self::UPDATED_BY,
-                User::ID
+                User::ID,
             );
     }
 
@@ -116,7 +116,7 @@ trait Blameable
             ->belongsTo(
                 User::class,
                 self::DELETED_BY,
-                User::ID
+                User::ID,
             );
     }
 

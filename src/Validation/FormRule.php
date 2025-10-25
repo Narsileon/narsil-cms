@@ -148,6 +148,8 @@ abstract class FormRule extends Rule
     #region PUBLIC METHODS
 
     /**
+     * Get the "after" rule with the given value.
+     *
      * @param string $value
      *
      * @return string
@@ -158,6 +160,8 @@ abstract class FormRule extends Rule
     }
 
     /**
+     * Get the "after or equal" rule with the given value.
+     *
      * @param string $value
      *
      * @return string
@@ -168,6 +172,8 @@ abstract class FormRule extends Rule
     }
 
     /**
+     * Get the "before" rule with the given value.
+     *
      * @param string $value
      *
      * @return string
@@ -178,6 +184,8 @@ abstract class FormRule extends Rule
     }
 
     /**
+     * Get the "before or equal" rule with the given value.
+     *
      * @param string $value
      *
      * @return string
@@ -188,6 +196,8 @@ abstract class FormRule extends Rule
     }
 
     /**
+     * Get the "doesnt end with" rule with the given value.
+     *
      * @param string $value
      *
      * @return string
@@ -198,6 +208,8 @@ abstract class FormRule extends Rule
     }
 
     /**
+     * Get the "doesnt start with" rule with the given value.
+     *
      * @param string $value
      *
      * @return string
@@ -208,19 +220,8 @@ abstract class FormRule extends Rule
     }
 
     /**
-     * @return array
-     */
-    final public static function getSlugRules(): array
-    {
-        return [
-            self::ALPHA_DASH,
-            self::LOWERCASE,
-            self::doesntStartWith('-'),
-            self::doesntEndWith('-'),
-        ];
-    }
-
-    /**
+     * Get the "max" rule with the given value.
+     *
      * @param float $value
      *
      * @return string
@@ -231,6 +232,8 @@ abstract class FormRule extends Rule
     }
 
     /**
+     * Get the "min" rule with the given value.
+     *
      * @param float $value
      *
      * @return string

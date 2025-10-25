@@ -247,32 +247,52 @@ class EntityController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $replicated = $entity->replicate();
-
-        $replicated->fill(array_merge($attributes, [
-            Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
-            Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
-            Entity::UPDATED_AT => Carbon::now(),
-            Entity::UPDATED_BY => Auth::id(),
-        ]));
-
-        $replicated->save();
-
-        $entity->discardChanges();
-        $entity->delete();
-
-        $replicated->pruneRevisions(2);
-
-        if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
+        if ($request->get('_autosave'))
         {
-            $this->syncBlocks($replicated, $blocks);
-        }
+            $entity->fill(array_merge($attributes, [
+                Entity::UPDATED_AT => Carbon::now(),
+                Entity::UPDATED_BY => Auth::id(),
+            ]));
 
-        return $this
-            ->redirect(route('collections.index', [
-                'collection' => $collection
-            ]), $entity)
-            ->with('success', trans('narsil::toasts.success.entities.updated'));
+            $entity->save();
+
+            if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
+            {
+                $this->syncBlocks($entity, $blocks);
+            }
+
+            return back();
+        }
+        else
+        {
+            $replicated = $entity->replicate();
+
+            $replicated->fill(array_merge($attributes, [
+                Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
+                Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
+                Entity::UPDATED_AT => Carbon::now(),
+                Entity::UPDATED_BY => Auth::id(),
+            ]));
+
+            $replicated->save();
+
+
+            $entity->discardChanges();
+            $entity->delete();
+
+            $replicated->pruneRevisions(2);
+
+            if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
+            {
+                $this->syncBlocks($replicated, $blocks);
+            }
+
+            return $this
+                ->redirect(route('collections.index', [
+                    'collection' => $collection
+                ]), $entity)
+                ->with('success', trans('narsil::toasts.success.entities.updated'));
+        }
     }
 
     /**
