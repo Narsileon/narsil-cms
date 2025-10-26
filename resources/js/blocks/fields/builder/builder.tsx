@@ -30,10 +30,10 @@ type BuilderProps = {
 function Builder({ blocks, name }: BuilderProps) {
   const { data, setData } = useForm();
 
-  const nodes = get(data, name, []) as BuilderElement[];
+  const items = get(data, name, []) as BuilderElement[];
 
-  function setNodes(nodes: BuilderElement[]) {
-    setData?.(name, nodes);
+  function setItems(items: BuilderElement[]) {
+    setData?.(name, items);
   }
 
   const [active, setActive] = useState<BuilderElement | null>(null);
@@ -52,21 +52,41 @@ function Builder({ blocks, name }: BuilderProps) {
     setActive(null);
 
     if (over) {
-      const activeIndex = nodes.findIndex((node) => node.uuid == active.id);
-      const overIndex = nodes.findIndex((node) => node.uuid == over.id);
+      const activeIndex = items.findIndex((item) => item.uuid == active.id);
+      const overIndex = items.findIndex((item) => item.uuid == over.id);
 
       if (activeIndex !== overIndex) {
-        setNodes(arrayMove(nodes, activeIndex, overIndex));
+        setItems(arrayMove(items, activeIndex, overIndex));
       }
     }
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const node = nodes.find((node) => node.uuid == active.id);
+    const item = items.find((item) => item.uuid == active.id);
 
-    if (node) {
-      setActive(node);
+    if (item) {
+      setActive(item);
     }
+  }
+
+  function onMoveUp(uuid: string) {
+    const index = items.findIndex((item) => item.uuid === uuid);
+
+    if (index > 0) {
+      setItems(arrayMove(items, index, index - 1));
+    }
+  }
+
+  function onMoveDown(uuid: string) {
+    const index = items.findIndex((item) => item.uuid === uuid);
+
+    if (index !== -1 && index < items.length - 1) {
+      setItems(arrayMove(items, index, index + 1));
+    }
+  }
+
+  function onRemove(uuid: string) {
+    setItems(items.filter((item) => item.uuid !== uuid));
   }
 
   return (
@@ -78,7 +98,7 @@ function Builder({ blocks, name }: BuilderProps) {
       onDragStart={onDragStart}
     >
       <SortableContext
-        items={nodes.map((node) => node.uuid)}
+        items={items.map((item) => item.uuid)}
         strategy={verticalListSortingStrategy}
       >
         <div className="relative col-span-full flex flex-col items-center justify-center rounded p-4">
@@ -86,36 +106,43 @@ function Builder({ blocks, name }: BuilderProps) {
             <BackgroundGrid id={name} />
           </BackgroundRoot>
           <div className="size-4 rounded-full bg-constructive" />
-          {nodes.map((node, index) => {
+          {items.map((item, index) => {
             const baseHandle = `${name}.${index}`;
 
             return (
-              <Fragment key={node.uuid}>
+              <Fragment key={item.uuid}>
                 <BuilderAdd
                   blocks={blocks}
                   separatorClassName="border-constructive"
-                  onAdd={(node) => {
-                    const newNodes = [...nodes];
+                  onAdd={(item) => {
+                    const newItems = [...items];
 
-                    newNodes.splice(index, 0, node);
+                    newItems.splice(index, 0, item);
 
-                    setNodes(newNodes);
+                    setItems(newItems);
                   }}
                 />
-                <BuilderItem baseHandle={baseHandle} id={node.uuid} node={node} />
+                <BuilderItem
+                  baseHandle={baseHandle}
+                  id={item.uuid}
+                  item={item}
+                  onMoveDown={index < items.length - 1 ? () => onMoveDown(item.uuid) : undefined}
+                  onMoveUp={index !== 0 ? () => onMoveUp(item.uuid) : undefined}
+                  onRemove={() => onRemove(item.uuid)}
+                />
               </Fragment>
             );
           })}
           <BuilderAdd
             blocks={blocks}
             separatorClassName="border-destructive"
-            onAdd={(node) => setNodes([...nodes, node])}
+            onAdd={(item) => setItems([...items, item])}
           />
           <div className="size-4 rounded-full bg-destructive" />
         </div>
       </SortableContext>
       <DragOverlay>
-        {active ? <BuilderItem collapsed={true} id={active.uuid} node={active} /> : null}
+        {active ? <BuilderItem collapsed={true} id={active.uuid} item={active} /> : null}
       </DragOverlay>
     </DndContext>
   );

@@ -11,6 +11,7 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -28,6 +29,13 @@ class BuilderField extends AbstractField implements Contract
     public function __construct()
     {
         $this->setDefaultValue([]);
+
+        app(TranslationsBag::class)
+            ->add('narsil::ui.collapse')
+            ->add('narsil::ui.expand')
+            ->add('narsil::ui.move_down')
+            ->add('narsil::ui.move_up')
+            ->add('narsil::ui.remove');
     }
 
     #endregion
