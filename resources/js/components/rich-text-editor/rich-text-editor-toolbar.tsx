@@ -1,7 +1,6 @@
 import { Button, Separator, Tooltip } from "@narsil-cms/blocks";
 import {
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
@@ -86,11 +85,7 @@ function RichTextEditorToolbar({ className, modules, ...props }: RichTextEditorT
               {headings
                 .filter((level) => hasModule(`heading_${level}`) !== false)
                 .map((level) => {
-                  return (
-                    <DropdownMenuItem asChild={true} key={level}>
-                      <RichTextEditorHeading editor={editor} level={level} />
-                    </DropdownMenuItem>
-                  );
+                  return <RichTextEditorHeading editor={editor} level={level} key={level} />;
                 })}
             </DropdownMenuContent>
           </DropdownMenuRoot>

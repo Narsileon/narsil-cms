@@ -35,6 +35,9 @@ function RichTextEditorProvider({
           class: "list-disc list-outside ml-6",
         },
       },
+      heading: {
+        levels: [1, 2, 3, 4, 5, 6],
+      },
       orderedList: {
         HTMLAttributes: {
           class: "list-decimal list-outside ml-6",
@@ -59,6 +62,12 @@ function RichTextEditorProvider({
           "rounded-md rounded-t-none bg-background px-3 py-2 ring-offset-background",
           "focus-visible:border-shine",
           "disabled:cursor-not-allowed disabled:opacity-50",
+          "[&>h1]:text-4xl",
+          "[&>h2]:text-3xl",
+          "[&>h3]:text-2xl",
+          "[&>h4]:text-xl",
+          "[&>h5]:text-lg",
+          "[&>h6]:text-base",
           className,
         ),
       },
