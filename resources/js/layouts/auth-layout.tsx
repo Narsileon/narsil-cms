@@ -67,7 +67,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
     <SidebarProvider isMobile={isMobile}>
       <Sidebar />
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-13 items-center gap-2 border-b pr-4 pl-2 xl:pl-4">
+        <header className="sticky top-0 z-10 flex h-13 items-center gap-2 border-b bg-background pr-4 pl-2 text-foreground xl:pl-4">
           {isMobile ? (
             <>
               <SidebarTrigger />
