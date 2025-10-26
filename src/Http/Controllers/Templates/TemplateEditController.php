@@ -70,7 +70,8 @@ class TemplateEditController extends AbstractController
      */
     protected function getForm(Template $template): TemplateForm
     {
-        $form = app(TemplateForm::class)
+        $form = app()
+            ->make(TemplateForm::class)
             ->setAction(route('templates.update', $template->{Template::ID}))
             ->setId($template->{Template::ID})
             ->setMethod(MethodEnum::PATCH)

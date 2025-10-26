@@ -51,7 +51,8 @@ class TemplateCreateController extends AbstractController
      */
     protected function getForm(): TemplateForm
     {
-        $form = app(TemplateForm::class)
+        $form = app()
+            ->make(TemplateForm::class)
             ->setAction(route('templates.store'))
             ->setMethod(MethodEnum::POST)
             ->setSubmitLabel(trans('narsil::ui.save'));

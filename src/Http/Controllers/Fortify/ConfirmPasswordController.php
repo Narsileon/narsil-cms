@@ -45,7 +45,8 @@ class ConfirmPasswordController extends AbstractController
      */
     protected function getForm(): ConfirmPasswordForm
     {
-        $form = app()->make(ConfirmPasswordForm::class);
+        $form = app()
+            ->make(ConfirmPasswordForm::class);
 
         return $form;
     }

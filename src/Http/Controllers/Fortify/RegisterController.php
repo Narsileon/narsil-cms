@@ -45,7 +45,8 @@ class RegisterController extends AbstractController
      */
     protected function getForm(): RegisterForm
     {
-        $form = app()->make(RegisterForm::class);
+        $form = app()
+            ->make(RegisterForm::class);
 
         return $form;
     }

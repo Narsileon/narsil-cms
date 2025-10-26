@@ -11,6 +11,7 @@ use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractEntityController;
+use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 
@@ -32,6 +33,58 @@ class EntityEditController extends AbstractEntityController
      * @return JsonResponse|Response
      */
     public function __invoke(Request $request, int|string $collection, int $id): JsonResponse|Response
+    {
+        $entity = $this->getEntity($request, $id);
+
+        $revisions = Entity::revisionOptions($id)->get();
+
+        $this->authorize(PermissionEnum::UPDATE, $entity);
+
+        $template = Entity::getTemplate();
+
+        $data = $this->getData($entity);
+        $form = $this->getForm($template, $entity)
+            ->setData($data);
+
+        $title = $form->getTitle();
+
+        $form->setTitle("$title: $id");
+
+        return $this->render(
+            component: 'narsil/cms::resources/form',
+            props: array_merge($form->jsonSerialize(), [
+                'revisions' => $revisions,
+            ]),
+        );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param Entity $entity
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(Entity $entity): array
+    {
+        $data = $entity->toArrayWithTranslations();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated entity.
+     *
+     * @param Request $request
+     * @param integer $id
+     *
+     * @return Entity
+     */
+    protected function getEntity(Request $request, int $id): Entity
     {
         if ($revision = $request->query('revision'))
         {
@@ -56,37 +109,34 @@ class EntityEditController extends AbstractEntityController
             }
         }
 
-        $revisions = Entity::revisionOptions($id)->get();
+        return $entity;
+    }
 
-        $this->authorize(PermissionEnum::UPDATE, $entity);
-
-        $template = Entity::getTemplate();
-
+    /**
+     * Get the associated form.
+     *
+     * @param Template $template
+     * @param Entity $entity
+     *
+     * @return BlockForm
+     */
+    protected function getForm(Template $template, Entity $entity): EntityForm
+    {
         $form = app()
             ->make(EntityForm::class, [
                 'template' => $template,
             ])
             ->setAction(route('collections.update', [
                 'id' => $entity->{Entity::ID},
-                'collection' => $collection,
+                'collection' => $template->{Template::HANDLE},
             ]))
             ->setAutoSave(true)
-            ->setData($entity->toArrayWithTranslations())
             ->setId($entity->{Entity::UUID})
             ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->setMethod(MethodEnum::PATCH)
             ->setSubmitLabel(trans('narsil::ui.update'));
 
-        $title = $form->getTitle();
-
-        $form->setTitle("$title: $id");
-
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'revisions' => $revisions,
-            ]),
-        );
+        return $form;
     }
 
     #endregion

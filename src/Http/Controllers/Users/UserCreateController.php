@@ -51,7 +51,8 @@ class UserCreateController extends AbstractController
      */
     protected function getForm(): UserForm
     {
-        $form = app(UserForm::class)
+        $form = app()
+            ->make(UserForm::class)
             ->setAction(route('users.store'))
             ->setMethod(MethodEnum::POST)
             ->setSubmitLabel(trans('narsil::ui.save'));

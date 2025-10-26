@@ -11,6 +11,7 @@ use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractEntityController;
+use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 
@@ -36,21 +37,39 @@ class EntityCreateController extends AbstractEntityController
 
         $template = Entity::getTemplate();
 
-        $form = app()
-            ->make(EntityForm::class, [
-                'template' => $template
-            ])
-            ->setAction(route('collections.store', [
-                'collection' => $collection
-            ]))
-            ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+        $form = $this->getForm($template);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @param Template $template
+     *
+     * @return BlockForm
+     */
+    protected function getForm(Template $template): EntityForm
+    {
+        $form = app()
+            ->make(EntityForm::class, [
+                'template' => $template
+            ])
+            ->setAction(route('collections.store', [
+                'collection' => $template->{Template::HANDLE}
+            ]))
+            ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     #endregion

@@ -73,7 +73,8 @@ class RoleEditController extends AbstractController
      */
     protected function getForm(Role $role): RoleForm
     {
-        $form = app(RoleForm::class)
+        $form = app()
+            ->make(RoleForm::class)
             ->setAction(route('roles.update', $role->{Role::ID}))
             ->setId($role->{Role::ID})
             ->setMethod(MethodEnum::PATCH)

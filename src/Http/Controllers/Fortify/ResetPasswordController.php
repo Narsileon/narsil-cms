@@ -61,7 +61,8 @@ class ResetPasswordController extends AbstractController
      */
     protected function getForm(): ResetPasswordForm
     {
-        $form = app()->make(ResetPasswordForm::class);
+        $form = app()
+            ->make(ResetPasswordForm::class);
 
         return $form;
     }
