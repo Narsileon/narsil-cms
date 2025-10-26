@@ -95,13 +95,6 @@ trait HasRevisions
     final public const ATTRIBUTE_HAS_DRAFT = 'has_draft';
 
     /**
-     * The name of the "has newest revision" relation.
-     *
-     * @var string
-     */
-    final public const ATTRIBUTE_HAS_NEWEST_REVISION = 'has_newest_revision';
-
-    /**
      * The name of the "has published revision" relation.
      *
      * @var string
@@ -266,11 +259,7 @@ trait HasRevisions
         return new Attribute(
             get: function ()
             {
-                $this->loadMissing([
-                    self::RELATION_DRAFT,
-                ]);
-
-                return $this->{self::RELATION_DRAFT} !== null;
+                return $this->draft()->exists();
             },
         );
     }
@@ -285,11 +274,7 @@ trait HasRevisions
         return new Attribute(
             get: function ()
             {
-                $this->loadMissing([
-                    self::RELATION_PUBLISHED_REVISION,
-                ]);
-
-                return $this->{self::RELATION_PUBLISHED_REVISION} !== null;
+                return $this->published_revision()->exists();
             },
         );
     }

@@ -3,8 +3,10 @@ import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/di
 import { FormLanguage, FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
+import { StatusItem, StatusRoot } from "@narsil-cms/components/status";
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
+import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import type { FormType, Revision, TemplateSection } from "@narsil-cms/types";
 import { isEmpty } from "lodash";
@@ -157,8 +159,30 @@ function ResourceForm({
             ) : (
               <SectionRoot className="px-4 py-2">
                 <SectionHeader className="h-13 border-b pb-2!">
-                  <div className="flex items-end gap-2">
-                    <Heading level="h1" variant="h4">
+                  <div className="flex items-center gap-2">
+                    {revisions ? (
+                      <StatusRoot
+                        className={cn(
+                          "w-6",
+                          "hover:w-10",
+                          "transition-[width] delay-100 duration-300",
+                        )}
+                      >
+                        {data.has_published_revision ? (
+                          <StatusItem
+                            className="bg-green-500"
+                            tooltip={trans("revisions.published")}
+                          />
+                        ) : null}
+                        {!data.published ? (
+                          <StatusItem className="bg-amber-500" tooltip={trans("revisions.saved")} />
+                        ) : null}
+                        {data.has_draft ? (
+                          <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />
+                        ) : null}
+                      </StatusRoot>
+                    ) : null}
+                    <Heading className="whitespace-nowrap" level="h1" variant="h4">
                       {title}
                     </Heading>
                     <FormLanguage

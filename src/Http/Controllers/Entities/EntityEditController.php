@@ -71,6 +71,11 @@ class EntityEditController extends AbstractEntityController
      */
     protected function getData(Entity $entity): array
     {
+        $entity->append([
+            Entity::ATTRIBUTE_HAS_DRAFT,
+            Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION,
+        ]);
+
         $data = $entity->toArrayWithTranslations();
 
         return $data;

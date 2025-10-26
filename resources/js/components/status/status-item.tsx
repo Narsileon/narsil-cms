@@ -15,7 +15,7 @@ function StatusItem({ className, tooltip, ...props }: StatusItemProps) {
       }}
     >
       <li
-        className={cn("absolute top-3 size-3 rounded-full delay-100 duration-300", className)}
+        className={cn("size-3 shrink-0 rounded-full delay-100 duration-300", className)}
         {...props}
       />
     </Tooltip>
