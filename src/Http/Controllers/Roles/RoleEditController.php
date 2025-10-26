@@ -36,17 +36,50 @@ class RoleEditController extends AbstractController
 
         $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::NAME));
 
-        $form = app(RoleForm::class)
-            ->setAction(route('roles.update', $role->{Role::ID}))
-            ->setData($role->toArrayWithTranslations())
-            ->setId($role->{Role::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($role);
+        $form = $this->getForm($role)
+            ->setData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param Role $role
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(Role $role): array
+    {
+        $data = $role->toArrayWithTranslations();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param Role $role
+     *
+     * @return RoleForm
+     */
+    protected function getForm(Role $role): RoleForm
+    {
+        $form = app(RoleForm::class)
+            ->setAction(route('roles.update', $role->{Role::ID}))
+            ->setId($role->{Role::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion

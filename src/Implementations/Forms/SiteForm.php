@@ -5,7 +5,7 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\TreeField;
-use Narsil\Contracts\Forms\RoleForm as Contract;
+use Narsil\Contracts\Forms\SiteForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;

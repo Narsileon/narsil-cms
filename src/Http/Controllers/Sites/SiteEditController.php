@@ -46,18 +46,51 @@ class SiteEditController extends AbstractController
 
         $this->authorize(PermissionEnum::UPDATE, $host);
 
-        $form = app(SiteForm::class)
-            ->setAction(route('sites.update', $site))
-            ->setData(new SiteResource($host)->toArray($request))
-            ->setId($host->{Host::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setLanguageOptions([])
-            ->setSubmitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($host);
+        $form = $this->getForm($host)
+            ->setData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param Request $request
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(Host $host): array
+    {
+        $data = new SiteResource($host)->resolve();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param Host $host
+     *
+     * @return SiteForm
+     */
+    protected function getForm(Host $host): SiteForm
+    {
+        $form = app(SiteForm::class)
+            ->setAction(route('sites.update', $host->{Host::HANDLE}))
+            ->setId($host->{Host::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setLanguageOptions([])
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion

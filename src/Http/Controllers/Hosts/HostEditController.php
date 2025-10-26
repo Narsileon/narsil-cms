@@ -33,17 +33,50 @@ class HostEditController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $host);
 
-        $form = app(HostForm::class)
-            ->setAction(route('hosts.update', $host->{Host::ID}))
-            ->setData($host->toArrayWithTranslations())
-            ->setId($host->{Host::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($host);
+        $form = $this->getForm($host)
+            ->setData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param Host $host
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(Host $host): array
+    {
+        $data = $host->toArrayWithTranslations();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param Host $host
+     *
+     * @return HostForm
+     */
+    protected function getForm(Host $host): HostForm
+    {
+        $form = app(HostForm::class)
+            ->setAction(route('hosts.update', $host->{Host::ID}))
+            ->setId($host->{Host::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion

@@ -33,17 +33,50 @@ class TemplateEditController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $template);
 
-        $form = app(TemplateForm::class)
-            ->setAction(route('templates.update', $template->{Template::ID}))
-            ->setData($template->toArrayWithTranslations())
-            ->setId($template->{Template::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($template);
+        $form = $this->getForm($template)
+            ->setData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param Template $template
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(Template $template): array
+    {
+        $data = $template->toArrayWithTranslations();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param Template $template
+     *
+     * @return TemplateForm
+     */
+    protected function getForm(Template $template): TemplateForm
+    {
+        $form = app(TemplateForm::class)
+            ->setAction(route('templates.update', $template->{Template::ID}))
+            ->setId($template->{Template::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion

@@ -32,15 +32,31 @@ class RoleCreateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Role::class);
 
-        $form = app(RoleForm::class)
-            ->setAction(route('roles.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+        $form = $this->getForm();
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return RoleForm
+     */
+    protected function getForm(): RoleForm
+    {
+        $form = app(RoleForm::class)
+            ->setAction(route('roles.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     #endregion

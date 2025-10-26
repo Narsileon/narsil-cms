@@ -40,17 +40,50 @@ class UserEditController extends AbstractController
 
         $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::HANDLE));
 
-        $form = app(UserForm::class)
-            ->setAction(route('users.update', $user->{User::ID}))
-            ->setData($user)
-            ->setId($user->{User::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($user);
+        $form = $this->getForm($user)
+            ->setData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param User $user
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(User $user): array
+    {
+        $data = $user->toArray();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param User $user
+     *
+     * @return UserForm
+     */
+    protected function getForm(User $user): UserForm
+    {
+        $form = app(UserForm::class)
+            ->setAction(route('users.update', $user->{User::ID}))
+            ->setId($user->{User::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion

@@ -32,15 +32,31 @@ class UserCreateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, User::class);
 
-        $form = app(UserForm::class)
-            ->setAction(route('users.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+        $form = $this->getForm();
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return UserForm
+     */
+    protected function getForm(): UserForm
+    {
+        $form = app(UserForm::class)
+            ->setAction(route('users.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     #endregion

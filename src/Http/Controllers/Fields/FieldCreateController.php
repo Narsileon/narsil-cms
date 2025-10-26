@@ -32,15 +32,31 @@ class FieldCreateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
-        $form = app(FieldForm::class)
-            ->setAction(route('fields.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+        $form = $this->getForm();
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return FieldForm
+     */
+    protected function getForm(): FieldForm
+    {
+        $form = app(FieldForm::class)
+            ->setAction(route('fields.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     #endregion

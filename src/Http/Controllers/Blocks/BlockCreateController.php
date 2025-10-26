@@ -32,15 +32,31 @@ class BlockCreateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
-        $form = app(BlockForm::class)
-            ->setAction(route('blocks.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+        $form = $this->getForm();
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return BlockForm
+     */
+    protected function getForm(): BlockForm
+    {
+        $form = app(BlockForm::class)
+            ->setAction(route('blocks.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     #endregion

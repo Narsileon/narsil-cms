@@ -40,17 +40,50 @@ class FieldEditController extends AbstractController
             ]);
         }
 
-        $form = app(FieldForm::class)
-            ->setAction(route('fields.update', $field->{Field::ID}))
-            ->setData($field->toArrayWithTranslations())
-            ->setId($field->{Field::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($field);
+        $form = $this->getForm($field)
+            ->setData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param Field $field
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(Field $field): array
+    {
+        $data = $field->toArrayWithTranslations();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param Field $field
+     *
+     * @return FieldForm
+     */
+    protected function getForm(Field $field): FieldForm
+    {
+        $form = app(FieldForm::class)
+            ->setAction(route('fields.update', $field->{Field::ID}))
+            ->setId($field->{Field::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion

@@ -32,15 +32,31 @@ class TemplateCreateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
-        $form = app(TemplateForm::class)
-            ->setAction(route('templates.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+        $form = $this->getForm();
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return TemplateForm
+     */
+    protected function getForm(): TemplateForm
+    {
+        $form = app(TemplateForm::class)
+            ->setAction(route('templates.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     #endregion

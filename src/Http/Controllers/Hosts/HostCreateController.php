@@ -32,15 +32,31 @@ class HostCreateController extends AbstractController
     {
         $this->authorize(PermissionEnum::CREATE, Host::class);
 
-        $form = app(HostForm::class)
-            ->setAction(route('hosts.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+        $form = $this->getForm();
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated form.
+     *
+     * @return HostForm
+     */
+    protected function getForm(): HostForm
+    {
+        $form = app(HostForm::class)
+            ->setAction(route('hosts.store'))
+            ->setMethod(MethodEnum::POST)
+            ->setSubmitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     #endregion

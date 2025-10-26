@@ -38,17 +38,50 @@ class BlockEditController extends AbstractController
             Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
         ]);
 
-        $form = app(BlockForm::class)
-            ->setAction(route('blocks.update', $block->{Block::ID}))
-            ->setData($block->toArrayWithTranslations())
-            ->setId($block->{Block::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($block);
+        $form = $this->getForm($block)
+            ->setData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param Block $block
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(Block $block): array
+    {
+        $data = $block->toArrayWithTranslations();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param Block $block
+     *
+     * @return BlockForm
+     */
+    protected function getForm(Block $block): BlockForm
+    {
+        $form = app(BlockForm::class)
+            ->setAction(route('blocks.update', $block->{Block::ID}))
+            ->setId($block->{Block::ID})
+            ->setMethod(MethodEnum::PATCH)
+            ->setSubmitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion
