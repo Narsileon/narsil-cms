@@ -33,7 +33,9 @@ class EntityForm extends AbstractForm implements Contract
 
         $this
             ->setDescription($template->{Template::NAME})
-            ->setRoutes(RouteService::getNames(Template::HANDLE))
+            ->setRoutes(RouteService::getNames('collections', [
+                'collection' => $template->{Template::HANDLE},
+            ]))
             ->setSubmitLabel(trans('narsil::ui.save'))
             ->setTitle(Str::singular($template->{Template::NAME}));
     }

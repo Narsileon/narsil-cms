@@ -22,19 +22,23 @@ type SaveButtonProps = ComponentProps<typeof ButtonGroupRoot> & {
 
 function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
   const { trans } = useLocalization();
-
   const { action, data, id, isDirty, method, post, reset, transform } = useForm();
 
   function destroy() {
     if (routes?.destroy && data?.id) {
-      router.delete(route(routes.destroy, { id: data.id }));
+      router.delete(
+        route(routes.destroy, {
+          ...routes.params,
+          id: data.id,
+        }),
+      );
     }
   }
 
   function saveAndAdd() {
     if (routes?.create) {
       submit(action, method, {
-        _to: route(routes.create),
+        _to: route(routes.create, routes.params),
       });
     }
   }
@@ -47,7 +51,7 @@ function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
 
   function saveAsNew() {
     if (routes?.store) {
-      submit(route(routes.store), "post");
+      submit(route(routes.store, routes.params), "post");
     }
   }
 
