@@ -15,7 +15,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@floating-ui/dom": "^1.7.4",
     "@fontsource/roboto": "latest",
-    "@inertiajs/react": "^2.2.10",
+    "@inertiajs/react": "^2.2.11",
     "@tailwindcss/postcss": "^4.1.16",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.12",
@@ -51,7 +51,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@inertiajs/react": "^2.2.10",
+    "@inertiajs/react": "^2.2.11",
     "@tailwindcss/vite": "^4.1.16",
     "@tanstack/react-table": "^8.21.3",
     "@tiptap/react": "^3.8.0",

@@ -36,7 +36,6 @@ abstract class BlockService
             ->save();
 
         static::syncElements($replicated, $block->elements()->get()->toArray());
-        static::syncSets($replicated, $block->sets()->get()->toArray());
     }
 
     /**
@@ -75,17 +74,6 @@ abstract class BlockService
                 default => null,
             };
         }
-    }
-
-    /**
-     * @param Block $block
-     * @param array $blocks
-     *
-     * @return void
-     */
-    public static function syncSets(Block $block, array $blocks): void
-    {
-        $block->sets()->sync(collect($blocks)->pluck(Block::ID));
     }
 
     #endregion

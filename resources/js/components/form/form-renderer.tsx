@@ -1,6 +1,5 @@
 import { Link } from "@inertiajs/react";
 import { Heading } from "@narsil-cms/blocks";
-import { Builder } from "@narsil-cms/blocks/fields/builder";
 import {
   CollapsibleContent,
   CollapsibleRoot,
@@ -23,7 +22,6 @@ import FormMessage from "./form-message";
 type FormRendererProps = (Block | Field | TemplateSection) & {
   className?: string;
   conditions?: BlockElementCondition[];
-  sets?: Block[];
   width?: number;
   onChange?: (value: unknown) => void;
 };
@@ -78,12 +76,6 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                       name={element.name ?? childElement.name}
                       width={element.width}
                     />
-                    {childElement.sets && childElement.sets.length > 0 ? (
-                      <Builder
-                        sets={childElement.sets}
-                        name={element.handle ?? childElement.handle}
-                      />
-                    ) : null}
                   </CollapsibleContent>
                 </CollapsibleRoot>
               )}

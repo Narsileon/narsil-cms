@@ -6,9 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Template;
-use Narsil\Models\Elements\TemplateSet;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 
@@ -29,10 +27,6 @@ return new class extends Migration
         {
             $this->createTemplatesTable();
         }
-        if (!Schema::hasTable(TemplateSet::TABLE))
-        {
-            $this->createTemplateSetsTable();
-        }
         if (!Schema::hasTable(TemplateSection::TABLE))
         {
             $this->createTemplateSectionsTable();
@@ -52,35 +46,12 @@ return new class extends Migration
     {
         Schema::dropIfExists(TemplateSectionElement::TABLE);
         Schema::dropIfExists(TemplateSection::TABLE);
-        Schema::dropIfExists(TemplateSet::TABLE);
         Schema::dropIfExists(Template::TABLE);
     }
 
     #endregion
 
     #region PRIVATE METHODS
-
-    /**
-     * Create the template sets table.
-     *
-     * @return void
-     */
-    private function createTemplateSetsTable(): void
-    {
-        Schema::create(TemplateSet::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(TemplateSet::ID);
-            $blueprint
-                ->foreignId(TemplateSet::TEMPLATE_ID)
-                ->constrained(Template::TABLE, Template::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(TemplateSet::SET_ID)
-                ->constrained(Block::TABLE, Block::ID)
-                ->cascadeOnDelete();
-        });
-    }
 
     /**
      * Create the template section elements table.

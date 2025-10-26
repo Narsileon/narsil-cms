@@ -7,6 +7,7 @@ namespace Narsil\Services;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Template;
@@ -39,6 +40,11 @@ abstract class TemplateService
 
                 if ($blockElement->{BlockElement::ELEMENT_TYPE} === Field::class)
                 {
+                    if ($element->{Field::TYPE} === BuilderField::class)
+                    {
+                        return [];
+                    }
+
                     $field = clone $element;
 
                     $field->{Field::HANDLE} = $blockElement->{BlockElement::HANDLE};
@@ -52,7 +58,7 @@ abstract class TemplateService
             ->when($type, function ($collection) use ($type)
             {
                 return $collection->where(Field::TYPE, $type);
-            });;
+            });
     }
 
     /**
@@ -116,6 +122,11 @@ abstract class TemplateService
 
                 if ($templateSectionElement->{TemplateSectionElement::ELEMENT_TYPE} === Field::class)
                 {
+                    if ($element->{Field::TYPE} === BuilderField::class)
+                    {
+                        return [];
+                    }
+
                     $field = clone $element;
 
                     $field->{Field::HANDLE} = $templateSectionElement->{TemplateSectionElement::HANDLE};
@@ -148,7 +159,6 @@ abstract class TemplateService
             ->save();
 
         static::syncSections($replicated, $template->sections()->get()->toArray());
-        static::syncSets($replicated, $template->sets()->get()->toArray());
     }
 
     /**
@@ -217,17 +227,6 @@ abstract class TemplateService
         $template->sections()
             ->whereNotIn(TemplateSection::ID, $ids)
             ->delete();
-    }
-
-    /**
-     * @param Template $template
-     * @param array $blocks
-     *
-     * @return void
-     */
-    public static function syncSets(Template $template, array $blocks): void
-    {
-        $template->sets()->sync(collect($blocks)->pluck(Block::ID));
     }
 
     #endregion

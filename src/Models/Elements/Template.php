@@ -5,7 +5,6 @@ namespace Narsil\Models\Elements;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -42,7 +41,6 @@ class Template extends Model
 
         $this->with = [
             self::RELATION_SECTIONS,
-            self::RELATION_SETS,
         ];
 
         parent::__construct($attributes);
@@ -104,13 +102,6 @@ class Template extends Model
      */
     final public const RELATION_SECTIONS = 'sections';
 
-    /**
-     * The name of the "sets" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_SETS = 'sets';
-
     #endregion
 
     #endregion
@@ -133,22 +124,6 @@ class Template extends Model
                 self::ID,
             )
             ->orderBy(TemplateSection::POSITION);
-    }
-
-    /**
-     * Get the associated sets.
-     *
-     * @return BelongsToMany
-     */
-    public function sets(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Block::class,
-                TemplateSet::class,
-                TemplateSet::TEMPLATE_ID,
-                TemplateSet::SET_ID,
-            );
     }
 
     #endregion

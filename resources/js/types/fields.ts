@@ -1,4 +1,5 @@
 import { Array } from "@narsil-cms/blocks/fields/array";
+import { Builder } from "@narsil-cms/blocks/fields/builder";
 import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
 import { Checkboxes } from "@narsil-cms/blocks/fields/checkboxes";
 import { Combobox } from "@narsil-cms/blocks/fields/combobox";
@@ -27,6 +28,11 @@ type DefaultField = {
 type ArrayField = {
   type: "Narsil\\Contracts\\Fields\\ArrayField";
   settings: ComponentProps<typeof Array>;
+};
+
+type BuilderField = {
+  type: "Narsil\\Contracts\\Fields\\BuilderField";
+  settings: ComponentProps<typeof Builder>;
 };
 
 type CheckboxField = {
@@ -102,6 +108,7 @@ type TreeField = {
 export type FieldType =
   | DefaultField
   | ArrayField
+  | BuilderField
   | CheckboxField
   | DateField
   | FileField

@@ -14,7 +14,7 @@ use Narsil\Models\Elements\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockSet extends Pivot
+class FieldBlock extends Pivot
 {
     #region CONSTRUCTOR
 
@@ -43,7 +43,7 @@ class BlockSet extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'block_set';
+    final public const TABLE = 'field_block';
 
     #region • COLUMNS
 
@@ -55,18 +55,18 @@ class BlockSet extends Pivot
     final public const BLOCK_ID = 'block_id';
 
     /**
+     * The name of the "field id" column.
+     *
+     * @var string
+     */
+    final public const FIELD_ID = 'field_id';
+
+    /**
      * The name of the "id" column.
      *
      * @var string
      */
     final public const ID = 'id';
-
-    /**
-     * The name of the "set id" column.
-     *
-     * @var string
-     */
-    final public const SET_ID = 'set_id';
 
     #endregion
 
@@ -80,11 +80,11 @@ class BlockSet extends Pivot
     final public const RELATION_BLOCK = 'block';
 
     /**
-     * The name of the "set" relation.
+     * The name of the "field" relation.
      *
      * @var string
      */
-    final public const RELATION_SET = 'set';
+    final public const RELATION_FIELD = 'field';
 
     #endregion
 
@@ -114,13 +114,13 @@ class BlockSet extends Pivot
      *
      * @return BelongsTo
      */
-    public function set(): BelongsTo
+    public function field(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Block::class,
-                self::SET_ID,
-                Block::ID,
+                Field::class,
+                self::FIELD_ID,
+                Field::ID,
             );
     }
 

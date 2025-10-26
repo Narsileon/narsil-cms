@@ -31,7 +31,6 @@ type Block @model(class: "Narsil\\Models\\Elements\\Block") {
   blocks: [Block!]! @morphToMany
   elements: [BlockElement!]! @hasMany
   fields: [Field!]! @morphToMany
-  sets: [Block!]! @belongsToMany
 }
 
 type BlockElement @model(class: "Narsil\\Models\\Elements\\BlockElement") {
@@ -116,7 +115,6 @@ type Template @model(class: "Narsil\\Models\\Elements\\Template") {
   name: String!
   created_at: DateTime!
   updated_at: DateTime!
-  sets: [Block!]! @belongsToMany
 }
 
 type TemplateSection

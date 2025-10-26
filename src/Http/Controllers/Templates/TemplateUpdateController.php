@@ -48,11 +48,6 @@ class TemplateUpdateController extends AbstractController
         {
             TemplateService::syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
 
-            if ($sets = Arr::get($attributes, Template::RELATION_SETS))
-            {
-                TemplateService::syncSets($template, $sets);
-            }
-
             MigrationService::syncTable($template);
         }
 

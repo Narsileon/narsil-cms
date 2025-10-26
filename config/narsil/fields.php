@@ -12,6 +12,7 @@ return [
     */
 
     \Narsil\Contracts\Fields\ArrayField::class => \Narsil\Implementations\Fields\ArrayField::class,
+    \Narsil\Contracts\Fields\BuilderField::class => \Narsil\Implementations\Fields\BuilderField::class,
     \Narsil\Contracts\Fields\CheckboxField::class => \Narsil\Implementations\Fields\CheckboxField::class,
     \Narsil\Contracts\Fields\DateField::class => \Narsil\Implementations\Fields\DateField::class,
     \Narsil\Contracts\Fields\EmailField::class => \Narsil\Implementations\Fields\EmailField::class,

@@ -19,7 +19,6 @@ export type Block = {
   id: number;
   identifier: string;
   name: string;
-  sets: Block[];
 };
 
 export type Bookmark = Model & {
@@ -62,5 +61,4 @@ export type TemplateSection = Model & {
   id: number;
   identifier: string;
   name: string;
-  sets: Block[];
 };

@@ -5,6 +5,7 @@ namespace Narsil\Models\Elements;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Casts\JsonCast;
 use Narsil\Traits\HasAuditLogs;
@@ -40,6 +41,7 @@ class Field extends Model
         ];
 
         $this->with = [
+            self::RELATION_BLOCKS,
             self::RELATION_OPTIONS,
         ];
 
@@ -162,6 +164,13 @@ class Field extends Model
     #region • RELATIONS
 
     /**
+     * The name of the "blocks" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCKS = 'blocks';
+
+    /**
      * The name of the "options" relation.
      *
      * @var string
@@ -203,6 +212,22 @@ class Field extends Model
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated blocks.
+     *
+     * @return BelongsToMany
+     */
+    public function blocks(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Block::class,
+                FieldBlock::class,
+                FieldBlock::FIELD_ID,
+                FieldBlock::BLOCK_ID,
+            );
+    }
 
     /**
      * Get the associated options.

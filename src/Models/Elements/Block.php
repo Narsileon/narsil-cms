@@ -5,7 +5,6 @@ namespace Narsil\Models\Elements;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Arr;
@@ -44,7 +43,6 @@ class Block extends Model
 
         $this->with = [
             self::RELATION_ELEMENTS,
-            self::RELATION_SETS,
         ];
 
         $this->mergeAppends([
@@ -61,11 +59,6 @@ class Block extends Model
         if ($elements = Arr::get($attributes, self::RELATION_ELEMENTS))
         {
             $this->setRelation(self::RELATION_ELEMENTS, collect($elements));
-        }
-
-        if ($sets = Arr::get($attributes, self::RELATION_SETS))
-        {
-            $this->setRelation(self::RELATION_SETS, collect($sets));
         }
     }
 
@@ -171,13 +164,6 @@ class Block extends Model
      */
     final public const RELATION_FIELDS = 'fields';
 
-    /**
-     * The name of the "sets" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_SETS = 'sets';
-
     #endregion
 
     #endregion
@@ -193,7 +179,7 @@ class Block extends Model
      */
     public function getIconAttribute(): string
     {
-        return count($this->{self::RELATION_SETS}) === 0 ? 'box' : 'builder';
+        return 'box';
     }
 
     #endregion
@@ -247,22 +233,6 @@ class Block extends Model
                 BlockElement::TABLE,
                 BlockElement::BLOCK_ID,
                 BlockElement::ELEMENT_ID,
-            );
-    }
-
-    /**
-     * Get the associated sets.
-     *
-     * @return BelongsToMany
-     */
-    public function sets(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Block::class,
-                BlockSet::TABLE,
-                BlockSet::BLOCK_ID,
-                BlockSet::SET_ID,
             );
     }
 

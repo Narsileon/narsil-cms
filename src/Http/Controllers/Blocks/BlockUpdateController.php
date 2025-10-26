@@ -48,11 +48,6 @@ class BlockUpdateController extends AbstractController
             BlockService::syncElements($block, $elements);
         }
 
-        if ($sets = Arr::get($attributes, Block::RELATION_SETS))
-        {
-            BlockService::syncSets($block, $sets);
-        }
-
         return $this
             ->redirect(route('blocks.index'), $block)
             ->with('success', trans("narsil::toasts.success.blocks.updated"));

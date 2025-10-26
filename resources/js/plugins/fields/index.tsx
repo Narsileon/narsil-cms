@@ -1,4 +1,5 @@
 import { Array } from "@narsil-cms/blocks/fields/array";
+import { Builder } from "@narsil-cms/blocks/fields/builder";
 import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
 import { Checkboxes } from "@narsil-cms/blocks/fields/checkboxes";
 import { Combobox } from "@narsil-cms/blocks/fields/combobox";
@@ -43,6 +44,15 @@ const defaultRegistry: Registry = {
         id={props.id}
         items={props.value ?? []}
         setItems={props.setValue}
+      />
+    );
+  },
+  ["Narsil\\Contracts\\Fields\\BuilderField"]: (props) => {
+    return (
+      <Builder
+        {...props.element.settings}
+        blocks={props.element.blocks}
+        name={props.id.includes(".") ? props.id : "blocks"}
       />
     );
   },

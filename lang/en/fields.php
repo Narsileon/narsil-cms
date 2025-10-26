@@ -3,6 +3,7 @@
 #region USE
 
 use Narsil\Contracts\Fields\ArrayField;
+use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\DateField;
 use Narsil\Contracts\Fields\EmailField;
@@ -24,6 +25,7 @@ use Narsil\Contracts\Fields\TreeField;
 
 return [
     ArrayField::class => 'Array',
+    BuilderField::class => 'Builder',
     CheckboxField::class => 'Checkbox',
     DateField::class => 'Date',
     EmailField::class => 'Email',

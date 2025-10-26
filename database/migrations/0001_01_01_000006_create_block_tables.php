@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
-use Narsil\Models\Elements\BlockSet;
+use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\FieldBlock;
 
 #endregion
 
@@ -36,9 +37,10 @@ return new class extends Migration
         {
             $this->createBlockElementConditionsTable();
         }
-        if (!Schema::hasTable(BlockSet::TABLE))
+
+        if (!Schema::hasTable(FieldBlock::TABLE))
         {
-            $this->createBlockSetTable();
+            $this->createFieldBlockTable();
         }
     }
 
@@ -49,7 +51,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(BlockSet::TABLE);
+        Schema::dropIfExists(FieldBlock::TABLE);
+
         Schema::dropIfExists(BlockElementCondition::TABLE);
         Schema::dropIfExists(BlockElement::TABLE);
         Schema::dropIfExists(Block::TABLE);
@@ -149,19 +152,19 @@ return new class extends Migration
      *
      * @return void
      */
-    private function createBlockSetTable(): void
+    private function createFieldBlockTable(): void
     {
-        Schema::create(BlockSet::TABLE, function (Blueprint $blueprint)
+        Schema::create(FieldBlock::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(BlockSet::ID);
+                ->id(FieldBlock::ID);
             $blueprint
-                ->foreignId(BlockSet::BLOCK_ID)
+                ->foreignId(FieldBlock::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(BlockSet::SET_ID)
-                ->constrained(Block::TABLE, Block::ID)
+                ->foreignId(FieldBlock::FIELD_ID)
+                ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
         });
     }

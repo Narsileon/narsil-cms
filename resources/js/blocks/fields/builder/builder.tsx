@@ -21,11 +21,11 @@ import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 
 type BuilderProps = {
+  blocks: Block[];
   name: string;
-  sets: Block[];
 };
 
-function Builder({ name, sets }: BuilderProps) {
+function Builder({ blocks, name }: BuilderProps) {
   const { data, setData } = useForm();
 
   const nodes = get(data, name, []) as BuilderElement[];
@@ -87,7 +87,7 @@ function Builder({ name, sets }: BuilderProps) {
             return (
               <Fragment key={node.uuid}>
                 <BuilderAdd
-                  sets={sets}
+                  blocks={blocks}
                   onAdd={(node) => {
                     const newNodes = [...nodes];
 
@@ -100,7 +100,7 @@ function Builder({ name, sets }: BuilderProps) {
               </Fragment>
             );
           })}
-          <BuilderAdd sets={sets} onAdd={(node) => setNodes([...nodes, node])} />
+          <BuilderAdd blocks={blocks} onAdd={(node) => setNodes([...nodes, node])} />
           <div className="size-4 rounded-full bg-destructive" />
         </div>
       </SortableContext>

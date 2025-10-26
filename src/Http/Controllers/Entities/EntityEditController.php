@@ -70,6 +70,7 @@ class EntityEditController extends AbstractEntityController
                 'id' => $entity->{Entity::ID},
                 'collection' => $collection,
             ]))
+            ->setAutoSave(true)
             ->setData($entity->toArrayWithTranslations())
             ->setId($entity->{Entity::UUID})
             ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())

@@ -14,11 +14,11 @@ import { useRef, useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
 
 type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
-  sets: Block[];
+  blocks: Block[];
   onAdd: (node: BuilderElement) => void;
 };
 
-function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
+function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
   const { trans } = useLocalization();
 
   const [hovered, setHovered] = useState<boolean>(false);
@@ -57,8 +57,8 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
           <DropdownMenuTrigger asChild {...props}>
             <Button
               className={cn(
-                "size-0.5 rounded-full opacity-0 transition-all duration-300 ease-out",
-                (hovered || open) && "opacity-100",
+                "size-0.5 rounded-full opacity-0 transition-all duration-100 ease-out",
+                (hovered || open) && "size-7 opacity-100",
               )}
               icon="plus"
               size="icon-sm"
@@ -67,18 +67,18 @@ function BuilderAdd({ sets, onAdd, ...props }: BuilderAddProps) {
           </DropdownMenuTrigger>
         </Tooltip>
         <DropdownMenuContent>
-          {sets.map((set, index) => {
+          {blocks.map((block, index) => {
             return (
               <DropdownMenuItem
                 onClick={() => {
-                  const node = { uuid: uniqueId("id:"), block: set, values: {} };
+                  const node = { uuid: uniqueId("id:"), block: block, values: {} };
 
                   onAdd(node as BuilderElement);
                 }}
                 key={index}
               >
-                {set.icon ? <Icon name={set.icon} /> : null}
-                <span>{set.name}</span>
+                {block.icon ? <Icon name={block.icon} /> : null}
+                <span>{block.name}</span>
               </DropdownMenuItem>
             );
           })}

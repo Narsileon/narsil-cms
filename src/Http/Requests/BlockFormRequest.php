@@ -49,11 +49,6 @@ class BlockFormRequest implements Contract
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
-            Block::RELATION_SETS => [
-                FormRule::ARRAY,
-                FormRule::NULLABLE,
-                FormRule::SOMETIMES,
-            ],
         ];
     }
 
