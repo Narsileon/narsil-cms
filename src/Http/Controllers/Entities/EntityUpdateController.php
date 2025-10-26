@@ -73,16 +73,19 @@ class EntityUpdateController extends AbstractEntityController
 
         if ($request->boolean('_autoSave') === true)
         {
-            if (!$draftEntity)
+            $uuid = null;
+
+            if ($draftEntity)
             {
-                $entity = $this->replicateEntity($entity, array_merge($attributes, [
-                    Entity::REVISION => -1,
-                ]));
+                $uuid = $draftEntity->{Entity::UUID};
+
+                $draftEntity->forceDeleteQuietly();
             }
-            else
-            {
-                $draftEntity->update($attributes);
-            }
+
+            $this->replicateEntity($entity, array_merge($attributes, [
+                Entity::REVISION => -1,
+                Entity::UUID => $uuid,
+            ]));
 
             return back();
         }
