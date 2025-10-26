@@ -1,21 +1,25 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "@narsil-cms/blocks";
 import { CardContent, CardHeader, CardRoot } from "@narsil-cms/components/card";
 import {
   CollapsibleContent,
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
+import { DropdownMenuItem, DropdownMenuSeparator } from "@narsil-cms/components/dropdown-menu";
 import { FormRenderer } from "@narsil-cms/components/form";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { SortableHandle } from "@narsil-cms/components/sortable";
+import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
-import { useState } from "react";
+import { ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
 
-type ArrayItemProps = {
+type ArrayItemProps = Pick<
+  ComponentProps<typeof SortableItemMenu>,
+  "onMoveDown" | "onMoveUp" | "onRemove"
+> & {
   handle?: string;
   id: string | number;
   index?: number;
@@ -23,10 +27,19 @@ type ArrayItemProps = {
   labelKey: string;
   block?: Block;
   onItemChange?: (value: ArrayElement) => void;
-  onItemRemove?: () => void;
 };
 
-function ArrayItem({ block, handle, index, item, id, labelKey, onItemRemove }: ArrayItemProps) {
+function ArrayItem({
+  block,
+  handle,
+  index,
+  item,
+  id,
+  labelKey,
+  onMoveDown,
+  onMoveUp,
+  onRemove,
+}: ArrayItemProps) {
   const { trans } = useLocalization();
 
   const [open, setCollapsed] = useState<boolean>(true);
@@ -58,26 +71,13 @@ function ArrayItem({ block, handle, index, item, id, labelKey, onItemRemove }: A
           <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
             <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
             <span className="grow text-start">{item[labelKey] ?? "item"}</span>
-            <div className="flex items-center gap-1">
-              {onItemRemove ? (
-                <Button
-                  icon="trash"
-                  size="icon-sm"
-                  tooltip={trans("ui.remove")}
-                  variant="ghost"
-                  onClick={onItemRemove}
-                />
-              ) : null}
-              <Button
-                iconProps={{
-                  className: cn("duration-300", open && "rotate-180"),
-                  name: "chevron-down",
-                }}
-                size="icon-sm"
-                variant="ghost"
-                onClick={() => setCollapsed(!open)}
-              />
-            </div>
+            <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove}>
+              <DropdownMenuItem onClick={() => setCollapsed(!open)}>
+                <Icon name={open ? "chevron-up" : "chevron-down"} />
+                {open ? trans("ui.collapse") : trans("ui.expand")}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+            </SortableItemMenu>
           </CardHeader>
         </CollapsibleTrigger>
         {block ? (

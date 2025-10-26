@@ -56,8 +56,29 @@ function Array({ block, id, items, labelKey, setItems }: ArrayProps) {
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const item = items.find((item) => item.uuid === active.id) as ArrayElement;
-    setActive(item);
+    const item = items.find((item) => item.uuid === active.id);
+
+    setActive(item as ArrayElement);
+  }
+
+  function onMoveUp(uuid: string) {
+    const index = items.findIndex((item) => item.uuid === uuid);
+
+    if (index > 0) {
+      setItems(arrayMove(items, index, index - 1));
+    }
+  }
+
+  function onMoveDown(uuid: string) {
+    const index = items.findIndex((item) => item.uuid === uuid);
+
+    if (index !== -1 && index < items.length - 1) {
+      setItems(arrayMove(items, index, index + 1));
+    }
+  }
+
+  function onRemove(uuid: string) {
+    setItems(items.filter((item) => item.uuid !== uuid));
   }
 
   return (
@@ -83,9 +104,9 @@ function Array({ block, id, items, labelKey, setItems }: ArrayProps) {
                   index={index}
                   item={item}
                   labelKey={labelKey}
-                  onItemRemove={() => {
-                    setItems(items.filter((x) => x.uuid !== item.uuid));
-                  }}
+                  onMoveDown={index < items.length - 1 ? () => onMoveDown(item.uuid) : undefined}
+                  onMoveUp={index !== 0 ? () => onMoveUp(item.uuid) : undefined}
+                  onRemove={() => onRemove(item.uuid)}
                   key={item.uuid}
                 />
               );
