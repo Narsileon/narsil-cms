@@ -12,10 +12,10 @@ function getStatusColumn(): ColumnDef<Model> {
 
       return (
         <StatusRoot>
-          {row.original.published ? (
+          {row.original.published_revision ? (
             <StatusItem className="bg-green-500" tooltip={trans("revisions.published")} />
           ) : null}
-          {row.original.saved ? (
+          {row.original.published_revision?.uuid !== row.original.uuid ? (
             <StatusItem className="bg-amber-500" tooltip={trans("revisions.saved")} />
           ) : null}
           {row.original.draft ? (

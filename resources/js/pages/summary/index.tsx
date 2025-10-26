@@ -31,7 +31,7 @@ function Collections({ items }: CollectionsProps) {
   const columns = getColumns();
 
   return (
-    <div className="flex min-h-full w-full animate-in items-center justify-center duration-300 fade-in-0">
+    <div className="flex min-h-full w-full animate-in items-center justify-center fade-in-0">
       <div
         className={cn(
           "grid gap-6 p-6",
@@ -47,7 +47,7 @@ function Collections({ items }: CollectionsProps) {
               className="aspect-square h-48 w-48 cursor-pointer shadow-lg"
               contentProps={{
                 className:
-                  "p-0 h-full w-full hover:bg-accent hover:text-accent-foreground transition-all duration-300",
+                  "p-0 h-full w-full hover:bg-accent hover:text-accent-foreground transition-all ",
               }}
               key={index}
             >

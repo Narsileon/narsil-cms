@@ -130,7 +130,7 @@ function ResourceForm({
       render={({ language, setLanguage }) => {
         return (
           <FormRoot
-            className="animate-in overflow-hidden duration-300 fade-in-0"
+            className="animate-in overflow-hidden fade-in-0"
             autoSave={autoSave}
             options={{
               onSuccess: (response) => {

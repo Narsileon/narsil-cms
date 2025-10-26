@@ -43,9 +43,17 @@ class EntityEditController extends AbstractEntityController
         else
         {
             $entity = Entity::query()
+                ->with([
+                    Entity::RELATION_DRAFT,
+                ])
                 ->firstWhere([
                     Entity::ID => $id
                 ]);
+
+            if ($draft = $entity->{Entity::RELATION_DRAFT})
+            {
+                $entity = $draft;
+            }
         }
 
         $revisions = Entity::revisionOptions($id)->get();

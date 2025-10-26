@@ -38,7 +38,9 @@ class EntityIndexController extends AbstractEntityController
         $query = Entity::query()
             ->with([
                 Entity::RELATION_CREATOR,
+                Entity::RELATION_DRAFT,
                 Entity::RELATION_EDITOR,
+                Entity::RELATION_PUBLISHED_REVISION,
                 Entity::RELATION_REMOVER,
             ])
             ->where(Entity::REVISION, '>', 0);

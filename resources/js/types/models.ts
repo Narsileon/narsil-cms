@@ -5,9 +5,9 @@ export type Model = {
   created_at?: string;
   id: number;
   updated_at?: string;
-  published?: boolean;
+  published_revision?: Model;
   saved?: boolean;
-  draft?: boolean;
+  draft?: Model;
   [key: string]: unknown;
 };
 

@@ -4,14 +4,12 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\Elements\Template;
 use Narsil\Services\TemplateService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasRevisions;
 use Narsil\Traits\HasTemplate;
 use Narsil\Traits\HasTranslations;
@@ -26,8 +24,6 @@ class Entity extends Model
 {
     use Blameable;
     use HasAuditLogs;
-    use HasDatetimes;
-    use HasUuids;
     use HasRevisions;
     use HasTemplate;
     use HasTranslations;
