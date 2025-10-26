@@ -1,4 +1,5 @@
 import { Button, Container, Logo, ThemeToggleGroup, Toaster, Tooltip } from "@narsil-cms/blocks";
+import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import {
   DropdownMenuContent,
@@ -73,9 +74,11 @@ function GuestLayout({ children }: GuestLayoutProps) {
         </Container>
       </header>
       <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)] overflow-hidden">
+        <BackgroundRoot className="filter-[url(#paper)]">
+          <BackgroundPaper />
+        </BackgroundRoot>
         <ModalRenderer container={mainRef.current} />
         {children}
-        <BackgroundPaper />
         <Toaster />
       </main>
     </>

@@ -8,7 +8,7 @@ function CardRoot({ className, ...props }: CardRootProps) {
     <div
       data-slot="card-root"
       className={cn(
-        "flex flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm",
+        "relative z-10 flex flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm",
         className,
       )}
       {...props}

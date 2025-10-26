@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from "@narsil-cms/blocks";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
+import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import {
   DropdownMenuContent,
@@ -120,12 +121,14 @@ function AuthLayout({ children }: AuthLayoutProps) {
             </DropdownMenuContent>
           </DropdownMenuRoot>
         </header>
-        <div ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)]">
+        <div ref={mainRef} className="relative h-[calc(100vh-3.25rem)] overflow-y-auto">
+          <BackgroundRoot className="filter-[url(#paper)]">
+            <BackgroundPaper />
+          </BackgroundRoot>
           <ModalRenderer container={mainRef.current} />
           {children}
           <Toaster />
         </div>
-        <BackgroundPaper />
       </SidebarInset>
     </SidebarProvider>
   );

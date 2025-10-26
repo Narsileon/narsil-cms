@@ -1,21 +1,24 @@
-function BackgroundPaper() {
+import { cn } from "@narsil-cms/lib/utils";
+import { ComponentProps } from "react";
+
+type BackgroundPaperProps = ComponentProps<"svg">;
+
+function BackgroundPaper({ className, id = "paper", ...props }: BackgroundPaperProps) {
   return (
-    <div className="absolute top-0 -z-10 h-full w-full filter-[url(#paper)]">
-      <svg className="absolute" width="0" height="0">
-        <filter id="paper" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-          <feTurbulence
-            baseFrequency="0.02"
-            numOctaves="4"
-            result="noise"
-            stitchTiles="stitch"
-            type="fractalNoise"
-          />
-          <feDiffuseLighting in="noise" lightingColor="var(--color-binary)" surfaceScale="1.4">
-            <feDistantLight azimuth="35" elevation="70" />
-          </feDiffuseLighting>
-        </filter>
-      </svg>
-    </div>
+    <svg data-slot="background-paper" className={cn("absolute size-0", className)} {...props}>
+      <filter id={id} x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+        <feTurbulence
+          baseFrequency="0.02"
+          numOctaves="4"
+          result="noise"
+          stitchTiles="stitch"
+          type="fractalNoise"
+        />
+        <feDiffuseLighting in="noise" lightingColor="var(--color-binary)" surfaceScale="1.4">
+          <feDistantLight azimuth="35" elevation="70" />
+        </feDiffuseLighting>
+      </filter>
+    </svg>
   );
 }
 

@@ -12,6 +12,8 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { BackgroundRoot } from "@narsil-cms/components/background";
+import BackgroundGrid from "@narsil-cms/components/background/background-grid";
 import { useForm } from "@narsil-cms/components/form";
 import type { Block } from "@narsil-cms/types";
 import { get } from "lodash";
@@ -79,7 +81,10 @@ function Builder({ blocks, name }: BuilderProps) {
         items={nodes.map((node) => node.uuid)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="col-span-full flex flex-col items-center justify-center">
+        <div className="relative col-span-full flex flex-col items-center justify-center rounded p-4">
+          <BackgroundRoot>
+            <BackgroundGrid id={name} />
+          </BackgroundRoot>
           <div className="size-4 rounded-full bg-constructive" />
           {nodes.map((node, index) => {
             const baseHandle = `${name}.${index}`;
@@ -88,6 +93,7 @@ function Builder({ blocks, name }: BuilderProps) {
               <Fragment key={node.uuid}>
                 <BuilderAdd
                   blocks={blocks}
+                  separatorClassName="border-constructive"
                   onAdd={(node) => {
                     const newNodes = [...nodes];
 
@@ -100,7 +106,11 @@ function Builder({ blocks, name }: BuilderProps) {
               </Fragment>
             );
           })}
-          <BuilderAdd blocks={blocks} onAdd={(node) => setNodes([...nodes, node])} />
+          <BuilderAdd
+            blocks={blocks}
+            separatorClassName="border-destructive"
+            onAdd={(node) => setNodes([...nodes, node])}
+          />
           <div className="size-4 rounded-full bg-destructive" />
         </div>
       </SortableContext>

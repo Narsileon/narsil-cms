@@ -15,10 +15,11 @@ import { type BuilderElement } from ".";
 
 type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
   blocks: Block[];
+  separatorClassName?: string;
   onAdd: (node: BuilderElement) => void;
 };
 
-function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
+function BuilderAdd({ blocks, separatorClassName, onAdd, ...props }: BuilderAddProps) {
   const { trans } = useLocalization();
 
   const [hovered, setHovered] = useState<boolean>(false);
@@ -50,6 +51,7 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
         className={cn(
           "h-2 w-px border-l border-dashed transition-transform duration-300 ease-out",
           (hovered || open) && "h-4",
+          separatorClassName,
         )}
       />
       <DropdownMenuRoot open={open} onOpenChange={onOpenChange}>
@@ -88,6 +90,7 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
         className={cn(
           "h-2 w-px border-l border-dashed transition-transform duration-300 ease-out",
           (hovered || open) && "h-4",
+          separatorClassName,
         )}
       />
     </div>
