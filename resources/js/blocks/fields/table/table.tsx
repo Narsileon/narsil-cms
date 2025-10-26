@@ -90,6 +90,22 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
     setRows([...rows, { uuid: uuid }]);
   }
 
+  function onMoveUp(uuid: string) {
+    const index = rows.findIndex((row) => row.uuid === uuid);
+
+    if (index > 0) {
+      setRows(arrayMove(rows, index, index - 1));
+    }
+  }
+
+  function onMoveDown(uuid: string) {
+    const index = rows.findIndex((row) => row.uuid === uuid);
+
+    if (index >= 0 && index < rows.length - 1) {
+      setRows(arrayMove(rows, index, index + 1));
+    }
+  }
+
   function onRemove(uuid: string) {
     setRows(
       rows.filter((row) => {
@@ -131,9 +147,16 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {rows.map((row) => {
+              {rows.map((row, index) => {
                 return (
-                  <TableItem className="h-11" id={row.uuid} onRemove={onRemove} key={row.uuid}>
+                  <TableItem
+                    className="h-11"
+                    id={row.uuid}
+                    onMoveUp={index > 0 ? () => onMoveUp(row.uuid) : undefined}
+                    onMoveDown={index < rows.length - 1 ? () => onMoveDown(row.uuid) : undefined}
+                    onRemove={() => onRemove(row.uuid)}
+                    key={row.uuid}
+                  >
                     {columns.map((column, index) => {
                       const value = get(
                         row,

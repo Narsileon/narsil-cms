@@ -1,20 +1,19 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { SortableHandle } from "@narsil-cms/components/sortable";
+import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { TableCell, TableRow } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type TableItemProps = Omit<ComponentProps<typeof TableRow>, "id"> & {
-  colSpan?: number;
-  disabled?: boolean;
-  id: string;
-  placeholder?: boolean;
-  onRemove?: (id: string) => void;
-};
+type TableItemProps = Omit<ComponentProps<typeof TableRow>, "id"> &
+  Pick<ComponentProps<typeof SortableItemMenu>, "onMoveDown" | "onMoveUp" | "onRemove"> & {
+    colSpan?: number;
+    disabled?: boolean;
+    id: string;
+    placeholder?: boolean;
+  };
 
 function TableItem({
   children,
@@ -25,6 +24,8 @@ function TableItem({
   placeholder,
   style,
   onClick,
+  onMoveDown,
+  onMoveUp,
   onRemove,
   ...props
 }: TableItemProps) {
@@ -83,14 +84,8 @@ function TableItem({
         children
       )}
       <TableCell className="px-1 py-0">
-        {!placeholder && onRemove ? (
-          <Button
-            icon="trash"
-            size="icon-sm"
-            tooltip={trans("ui.remove")}
-            variant="ghost"
-            onClick={() => onRemove(id)}
-          />
+        {!placeholder ? (
+          <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
         ) : null}
       </TableCell>
     </TableRow>

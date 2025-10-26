@@ -123,9 +123,7 @@ function TreeItem({
                     />
                   ) : null}
                 </div>
-                <div className="flex items-center justify-between gap-1 justify-self-end">
-                  <TreeItemMenu item={item} onMoveDown={onMoveDown} onMoveUp={onMoveUp} />
-                </div>
+                <TreeItemMenu item={item} onMoveDown={onMoveDown} onMoveUp={onMoveUp} />
               </CardHeader>
             </CollapsibleTrigger>
             <CollapsibleContent>
