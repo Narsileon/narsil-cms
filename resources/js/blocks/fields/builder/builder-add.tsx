@@ -49,7 +49,7 @@ function BuilderAdd({ blocks, separatorClassName, onAdd, ...props }: BuilderAddP
     >
       <div
         className={cn(
-          "h-2 w-px border-l border-dashed transition-transform duration-300 ease-out",
+          "h-2 w-px border-l border-dashed transition-transform duration-500 ease-out",
           (hovered || open) && "h-4",
           separatorClassName,
         )}
@@ -59,7 +59,7 @@ function BuilderAdd({ blocks, separatorClassName, onAdd, ...props }: BuilderAddP
           <DropdownMenuTrigger asChild {...props}>
             <Button
               className={cn(
-                "size-0.5 rounded-full opacity-0 transition-all duration-100 ease-out",
+                "size-0.5 rounded-full opacity-0 transition-all duration-300 ease-out",
                 (hovered || open) && "size-7 opacity-100",
               )}
               icon="plus"
@@ -88,7 +88,7 @@ function BuilderAdd({ blocks, separatorClassName, onAdd, ...props }: BuilderAddP
       </DropdownMenuRoot>
       <div
         className={cn(
-          "h-2 w-px border-l border-dashed transition-transform duration-300 ease-out",
+          "h-2 w-px border-l border-dashed transition-transform duration-500 ease-out",
           (hovered || open) && "h-4",
           separatorClassName,
         )}
