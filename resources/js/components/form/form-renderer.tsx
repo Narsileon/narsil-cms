@@ -113,11 +113,11 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                   <FormLanguage
                     triggerProps={{
                       size: "sm",
-                      variant: "inline",
+                      variant: "secondary",
                     }}
                     valueProps={{
                       asChild: true,
-                      children: <span className="uppercase">- {language}</span>,
+                      children: <span className="uppercase">{language}</span>,
                     }}
                     value={language}
                     onValueChange={setLanguage}

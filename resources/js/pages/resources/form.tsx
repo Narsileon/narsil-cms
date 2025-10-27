@@ -186,10 +186,13 @@ function ResourceForm({
                       {title}
                     </Heading>
                     <FormLanguage
-                      showIcon={false}
                       triggerProps={{
-                        className: "bg-secondary",
                         size: "sm",
+                        variant: "secondary",
+                      }}
+                      valueProps={{
+                        asChild: true,
+                        children: <span className="uppercase">{language}</span>,
                       }}
                       value={language}
                       onValueChange={setLanguage}
