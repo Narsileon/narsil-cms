@@ -52,8 +52,8 @@ function Builder({ blocks, name }: BuilderProps) {
     setActive(null);
 
     if (over) {
-      const activeIndex = items.findIndex((item) => item.uuid == active.id);
-      const overIndex = items.findIndex((item) => item.uuid == over.id);
+      const activeIndex = items.findIndex((item) => item.uuid === active.id);
+      const overIndex = items.findIndex((item) => item.uuid === over.id);
 
       if (activeIndex !== overIndex) {
         setItems(arrayMove(items, activeIndex, overIndex));
@@ -62,7 +62,7 @@ function Builder({ blocks, name }: BuilderProps) {
   }
 
   function onDragStart({ active }: DragStartEvent) {
-    const item = items.find((item) => item.uuid == active.id);
+    const item = items.find((item) => item.uuid === active.id);
 
     if (item) {
       setActive(item);
