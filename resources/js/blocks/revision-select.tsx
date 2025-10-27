@@ -30,11 +30,10 @@ function RevisionSelect({ revisions }: RevisionSelectProps) {
   return (
     <Select
       options={options}
-      showIcon={false}
       value={revision}
       triggerProps={{
-        className: "bg-secondary",
         size: "sm",
+        variant: "secondary",
       }}
       onValueChange={onValueChange}
     />
