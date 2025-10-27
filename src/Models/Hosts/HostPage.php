@@ -34,6 +34,10 @@ class HostPage extends TreeModel
             self::TITLE,
         ];
 
+        $this->mergeGuarded([
+            self::ID,
+        ]);
+
         parent::__construct($attributes);
     }
 

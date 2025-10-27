@@ -131,7 +131,7 @@ function ResourceForm({
         _back: modal !== undefined,
         ...data,
       }}
-      render={({ language, setLanguage }) => {
+      render={({ formLanguage, setFormLanguage }) => {
         return (
           <FormRoot
             className="animate-in overflow-hidden fade-in-0"
@@ -194,10 +194,10 @@ function ResourceForm({
                       }}
                       valueProps={{
                         asChild: true,
-                        children: <span className="uppercase">{language}</span>,
+                        children: <span className="uppercase">{formLanguage}</span>,
                       }}
-                      value={language}
-                      onValueChange={setLanguage}
+                      value={formLanguage}
+                      onValueChange={setFormLanguage}
                     />
                     {revisions ? <RevisionSelect revisions={revisions} /> : null}
                   </div>

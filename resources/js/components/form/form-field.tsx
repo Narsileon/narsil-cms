@@ -9,28 +9,44 @@ type FormFieldProps = {
   field: Field;
   id: string;
   render: (field: {
+    fieldLanguage: string;
     handle: string;
-    language: string;
+    placeholder?: string;
     value: unknown;
     onFieldChange: (value: unknown) => void;
-    setLanguage: (value: string) => void;
+    setFieldLanguage: (value: string) => void;
   }) => React.ReactNode;
 };
 
 function FormField({ conditions, field, id, render }: FormFieldProps) {
-  const { data, errors, language: formLanguage, setData } = useForm();
+  const { data, defaultLanguage, errors, formLanguage, setData } = useForm();
 
-  const [language, setLanguage] = useState<string>("en");
+  const [fieldLanguage, setFieldLanguage] = useState<string>("en");
   const [visible, setVisible] = useState<boolean>(true);
 
   const error = get(errors, id);
 
+  function getPlaceholder() {
+    let placeholder = undefined;
+
+    if (field.translatable && defaultLanguage) {
+      const value = get(data, id);
+
+      if (isObject(value)) {
+        placeholder = get(value, defaultLanguage);
+      }
+    }
+
+    return placeholder;
+  }
+
   function getValue() {
     const defaultValue = (field.settings as Record<string, unknown>)?.value ?? "";
+
     let value = get(data, id, defaultValue);
 
     if (field.translatable && isObject(value)) {
-      value = get(value, language, defaultValue);
+      value = get(value, fieldLanguage, defaultValue);
     }
 
     return value;
@@ -62,28 +78,29 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   }, [data]);
 
   useEffect(() => {
-    setLanguage(formLanguage);
+    setFieldLanguage(formLanguage);
   }, [formLanguage]);
 
   const contextValue = {
     ...field,
     error: error,
-    language: language,
-    setLanguage: setLanguage,
+    fieldLanguage: fieldLanguage,
+    setFieldLanguage: setFieldLanguage,
   };
 
   return visible ? (
     <FormFieldContext.Provider value={contextValue}>
       {render({
         handle: id,
-        language: language,
+        fieldLanguage: fieldLanguage,
+        placeholder: getPlaceholder(),
         value: getValue(),
         onFieldChange: (value) => {
-          const key = field.translatable ? `${id}.${language}` : id;
+          const key = field.translatable ? `${id}.${fieldLanguage}` : id;
 
           setData?.(key, value);
         },
-        setLanguage: setLanguage,
+        setFieldLanguage: setFieldLanguage,
       })}
     </FormFieldContext.Provider>
   ) : null;

@@ -91,7 +91,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
       id={props.handle}
       conditions={conditions}
       field={props}
-      render={({ language, setLanguage, value, onFieldChange }) => {
+      render={({ fieldLanguage, placeholder, value, onFieldChange, setFieldLanguage }) => {
         function handleOnChange(value: unknown) {
           onChange?.(value);
           onFieldChange(value);
@@ -117,10 +117,10 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                     }}
                     valueProps={{
                       asChild: true,
-                      children: <span className="uppercase">{language}</span>,
+                      children: <span className="uppercase">{fieldLanguage}</span>,
                     }}
-                    value={language}
-                    onValueChange={setLanguage}
+                    value={fieldLanguage}
+                    onValueChange={setFieldLanguage}
                   />
                 ) : null}
               </div>
@@ -141,6 +141,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
             {getField(props.type, {
               id: props.handle,
               element: props,
+              placeholder: placeholder,
               value: value,
               setValue: handleOnChange,
             })}

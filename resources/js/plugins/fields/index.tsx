@@ -24,6 +24,7 @@ import { type ReactNode } from "react";
 export type FieldProps = {
   element: Field;
   id: string;
+  placeholder: string;
   value: any;
   setValue: (value: any) => void;
 };
@@ -225,6 +226,7 @@ const defaultRegistry: Registry = {
           {...props.element.settings}
           id={props.id}
           name={props.id}
+          placeholder={props.placeholder}
           value={props.value}
           onChange={(event) => props.setValue(event.target.value)}
         />

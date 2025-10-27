@@ -25,7 +25,7 @@ function FormProvider({
   method,
   render,
 }: FormProviderProps) {
-  const [language, setLanguage] = useState<string>("en");
+  const [formLanguage, setFormLanguage] = useState<string>("en");
 
   function flattenValues(elements: (Field | Block)[]): Record<string, unknown> {
     const receivedValues: Record<string, unknown> = {};
@@ -74,9 +74,9 @@ function FormProvider({
     data: data,
     defaultLanguage: defaultLanguage,
     errors: errors,
+    formLanguage: formLanguage,
     id: id,
     isDirty: isDirty,
-    language: language,
     languageOptions: languageOptions,
     method: method,
     processing: processing,
@@ -89,7 +89,7 @@ function FormProvider({
     setData: setData,
     setDefaults: setDefaults,
     setError: setError,
-    setLanguage: setLanguage,
+    setFormLanguage: setFormLanguage,
     submit: submit,
     transform: transform,
   };
