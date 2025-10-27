@@ -45,6 +45,7 @@ export type DataTableCollection<T = Model> = {
 export type FormType = {
   action: string;
   autoSave: boolean;
+  defaultLanguage: string;
   description: string;
   id: string;
   languageOptions: SelectOption[];

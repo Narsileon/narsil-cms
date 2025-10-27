@@ -33,6 +33,7 @@ abstract class AbstractForm implements Form
      */
     public function __construct()
     {
+        $this->setDefaultLanguage(config('app.locale'));
         $this->setLanguageOptions(config('narsil.locales'));
 
         app(TranslationsBag::class)
@@ -75,6 +76,13 @@ abstract class AbstractForm implements Form
      * @var Model|array
      */
     protected Model|array $data = [];
+
+    /**
+     * The default language of the form.
+     *
+     * @var string
+     */
+    protected string $defaultLanguage = '';
 
     /**
      * The description of the form.
@@ -145,6 +153,7 @@ abstract class AbstractForm implements Form
             'action' => $this->getAction(),
             'autoSave' => $this->getAutoSave(),
             'data' => $this->getData(),
+            'defaultLanguage' => $this->getDefaultLanguage(),
             'description' => $this->getDescription(),
             'id' => $this->getDefaultId($this->id),
             'languageOptions' => $this->getLanguageOptions(),
@@ -181,6 +190,14 @@ abstract class AbstractForm implements Form
     public function getData(): Model|array
     {
         return $this->data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDefaultLanguage(): string
+    {
+        return $this->defaultLanguage;
     }
 
     /**
@@ -277,6 +294,16 @@ abstract class AbstractForm implements Form
     public function setData(Model|array $data): static
     {
         $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDefaultLanguage(string $defaultLanguage): static
+    {
+        $this->defaultLanguage = $defaultLanguage;
 
         return $this;
     }

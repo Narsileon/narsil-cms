@@ -22,6 +22,7 @@ function ResourceForm({
   action,
   autoSave,
   data,
+  defaultLanguage,
   id,
   languageOptions,
   layout,
@@ -123,12 +124,13 @@ function ResourceForm({
       id={modal ? `${id}_${modal.id}` : id}
       action={action}
       elements={layout}
+      defaultLanguage={defaultLanguage}
+      languageOptions={languageOptions}
       method={method}
       initialValues={{
         _back: modal !== undefined,
         ...data,
       }}
-      languageOptions={languageOptions}
       render={({ language, setLanguage }) => {
         return (
           <FormRoot

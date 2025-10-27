@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 
 export type FormContextProps = Partial<InertiaFormProps<Record<string, unknown>>> & {
   action: string;
+  defaultLanguage?: string;
   id: string;
   language: string;
   languageOptions: SelectOption[];
@@ -13,6 +14,7 @@ export type FormContextProps = Partial<InertiaFormProps<Record<string, unknown>>
 
 export const FormContext = createContext<FormContextProps>({
   action: "#",
+  defaultLanguage: "en",
   id: "form",
   language: "en",
   languageOptions: [

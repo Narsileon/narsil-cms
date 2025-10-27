@@ -6,6 +6,7 @@ import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
   action: string;
+  defaultLanguage?: string;
   elements?: (Block | Field | TemplateSection)[];
   id: string;
   initialValues?: Record<string, unknown>;
@@ -16,6 +17,7 @@ type FormProviderProps = {
 
 function FormProvider({
   action,
+  defaultLanguage,
   elements = [],
   id,
   initialValues = {},
@@ -70,6 +72,7 @@ function FormProvider({
   const contextValue = {
     action: action,
     data: data,
+    defaultLanguage: defaultLanguage,
     errors: errors,
     id: id,
     isDirty: isDirty,

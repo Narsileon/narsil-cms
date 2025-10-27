@@ -49,6 +49,13 @@ interface Form extends JsonSerializable
     public function getData(): Model|array;
 
     /**
+     * Get the default language of the form.
+     *
+     * @return string|null
+     */
+    public function getDefaultLanguage(): ?string;
+
+    /**
      * Get the description of the form.
      *
      * @return string|null
@@ -134,6 +141,15 @@ interface Form extends JsonSerializable
      * @return static
      */
     public function setData(Model|array $data): static;
+
+    /**
+     * Set the default language of the form.
+     *
+     * @param string $defaultLanguage
+     *
+     * @return static
+     */
+    public function setDefaultLanguage(string $defaultLanguage): static;
 
     /**
      * Set the description of the form.
