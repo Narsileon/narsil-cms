@@ -28,6 +28,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 type ComboboxProps = {
   className?: string;
+  clearable?: boolean;
   collection?: string;
   disabled?: boolean;
   displayValue?: boolean;
@@ -45,6 +46,7 @@ type ComboboxProps = {
 
 function Combobox({
   className,
+  clearable = false,
   disabled,
   displayValue = true,
   id,
@@ -129,7 +131,16 @@ function Combobox({
         setValue([...selectedValues, selectedValue]);
       }
     } else {
-      setValue(selectedValue === value ? "" : selectedValue);
+      if (selectedValue === value) {
+        if (!clearable) {
+          setOpen(false);
+
+          return;
+        }
+        setValue("");
+      } else {
+        setValue(selectedValue);
+      }
     }
 
     if (reload) {
@@ -185,10 +196,20 @@ function Combobox({
           ) : (
             (placeholder ?? trans("placeholders.search"))
           )}
-          <Icon
-            className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
-            name="chevron-down"
-          />
+          {clearable && value ? (
+            <Icon
+              className={cn("ml-2 shrink-0")}
+              name="x"
+              onClick={() => {
+                setValue("");
+              }}
+            />
+          ) : (
+            <Icon
+              className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
+              name="chevron-down"
+            />
+          )}
         </InputRoot>
       </PopoverTrigger>
       <PopoverPortal>
