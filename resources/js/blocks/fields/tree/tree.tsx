@@ -163,28 +163,30 @@ function Tree({ items, setItems }: TreeProps) {
       sensors={sensors}
     >
       <SortableContext items={flattenedItems} strategy={verticalListSortingStrategy}>
-        {flattenedItems.map((item) => {
-          const depth = item.id === activeId && projected ? projected.depth : item.depth;
+        <div className="grid">
+          {flattenedItems.map((item) => {
+            const depth = item.id === activeId && projected ? projected.depth : item.depth;
 
-          return (
-            <TreeItem
-              disabled={depth === 0}
-              id={item.id}
-              item={item}
-              label={item.id.toString()}
-              style={{ marginLeft: `${depth * 16}px` }}
-              onMoveDown={item.right_id ? () => handleMove(item.id, "down") : undefined}
-              onMoveUp={item.left_id ? () => handleMove(item.id, "up") : undefined}
-              key={item.id}
-            />
-          );
-        })}
-        {createPortal(
-          <DragOverlay>
-            {activeId && activeItem ? <TreeItem id={activeItem.id} item={activeItem} /> : null}
-          </DragOverlay>,
-          document.body,
-        )}
+            return (
+              <TreeItem
+                disabled={depth === 0}
+                id={item.id}
+                item={item}
+                label={item.id.toString()}
+                style={{ marginLeft: `${depth * 16}px` }}
+                onMoveDown={item.right_id ? () => handleMove(item.id, "down") : undefined}
+                onMoveUp={item.left_id ? () => handleMove(item.id, "up") : undefined}
+                key={item.id}
+              />
+            );
+          })}
+          {createPortal(
+            <DragOverlay>
+              {activeId && activeItem ? <TreeItem id={activeItem.id} item={activeItem} /> : null}
+            </DragOverlay>,
+            document.body,
+          )}
+        </div>
       </SortableContext>
     </DndContext>
   );
