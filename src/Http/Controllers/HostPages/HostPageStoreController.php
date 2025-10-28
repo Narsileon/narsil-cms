@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostPageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Resources\Trees\HostPageTreeResource;
 use Narsil\Models\Hosts\HostPage;
 
 #endregion
@@ -39,9 +40,12 @@ class HostPageStoreController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        HostPage::create($attributes);
+        $hostPage = HostPage::create($attributes);
+
+        $resource = new HostPageTreeResource($hostPage)->resolve();
 
         return back()
+            ->with('data', $resource)
             ->with('success', trans('narsil::toasts.success.host_pages.created'));
     }
 

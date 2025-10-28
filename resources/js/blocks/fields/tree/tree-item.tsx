@@ -10,13 +10,11 @@ import { type ComponentProps } from "react";
 import { FlatNode, TreeItemMenu } from ".";
 
 type TreeItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> &
-  Pick<ComponentProps<typeof TreeItemMenu>, "onMoveDown" | "onMoveUp"> & {
+  Pick<ComponentProps<typeof TreeItemMenu>, "onMoveDown" | "onMoveUp" | "onRemove"> & {
     disabled?: boolean;
     id: UniqueIdentifier;
     item: FlatNode;
     label?: UniqueIdentifier;
-    onItemChange?: (value: FlatNode) => void;
-    onItemRemove?: () => void;
   };
 
 function TreeItem({
@@ -28,6 +26,7 @@ function TreeItem({
   style,
   onMoveDown,
   onMoveUp,
+  onRemove,
   ...props
 }: TreeItemProps) {
   const { trans } = useLocalization();
@@ -67,7 +66,12 @@ function TreeItem({
             {label ? (
               <CardTitle className="grow justify-self-start font-normal">{label}</CardTitle>
             ) : null}
-            <TreeItemMenu item={item} onMoveDown={onMoveDown} onMoveUp={onMoveUp} />
+            <TreeItemMenu
+              item={item}
+              onMoveDown={onMoveDown}
+              onMoveUp={onMoveUp}
+              onRemove={onRemove}
+            />
           </CardHeader>
         </CollapsibleTrigger>
       </CardRoot>

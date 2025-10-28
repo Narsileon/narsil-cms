@@ -158,7 +158,6 @@ class HostPageForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => HostPage::CHANGE_FREQ,
                             Field::NAME => trans('narsil::validation.attributes.change_freq'),
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->setDefaultValue(ChangeFreqEnum::NEVER->value)
@@ -171,7 +170,6 @@ class HostPageForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => HostPage::PRIORITY,
                             Field::NAME => trans('narsil::validation.attributes.priority'),
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => RangeField::class,
                             Field::SETTINGS => app(RangeField::class)
                                 ->setDefaultValue([1.0])

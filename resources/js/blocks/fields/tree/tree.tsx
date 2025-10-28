@@ -137,6 +137,35 @@ function Tree({ items, setItems }: TreeProps) {
     setItems(newItems);
   }
 
+  function onRemove(id: UniqueIdentifier) {
+    const flatItems = flatTree(items);
+
+    const target = flatItems.find((item) => item.id === id);
+
+    if (!target) {
+      return;
+    }
+
+    const idsToRemove = [id];
+
+    const collectChildren = (parentId: UniqueIdentifier) => {
+      flatItems.forEach((node) => {
+        if (node.parent_id === parentId) {
+          idsToRemove.push(node.id);
+          collectChildren(node.id);
+        }
+      });
+    };
+
+    collectChildren(id);
+
+    const remainingItems = flatItems.filter((item) => !idsToRemove.includes(item.id));
+
+    const newItems = buildTree(remainingItems);
+
+    setItems(newItems);
+  }
+
   function resetState() {
     setActiveId(null);
     setOffsetLeft(0);
@@ -176,6 +205,7 @@ function Tree({ items, setItems }: TreeProps) {
                 style={{ marginLeft: `${depth * 16}px` }}
                 onMoveDown={item.right_id ? () => handleMove(item.id, "down") : undefined}
                 onMoveUp={item.left_id ? () => handleMove(item.id, "up") : undefined}
+                onRemove={item.parent_id ? () => onRemove(item.id) : undefined}
                 key={item.id}
               />
             );
