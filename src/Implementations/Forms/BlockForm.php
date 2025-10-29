@@ -130,13 +130,14 @@ class BlockForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return new SelectOption(
-                    label: $block->getTranslations(Block::NAME),
-                    value: $block->{Block::HANDLE},
-                )
-                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
-                    ->setId($block->{Block::ID})
-                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                $option = new SelectOption()
+                    ->id($block->{Block::ID})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER})
+                    ->optionIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->optionLabel($block->getTranslations(Block::NAME))
+                    ->optionValue($block->{Block::HANDLE});
+
+                return $option;
             })
             ->toArray();
     }
@@ -153,13 +154,15 @@ class BlockForm extends AbstractForm implements Contract
             ->get()
             ->map(function (Field $field)
             {
-                return new SelectOption(
-                    label: $field->getTranslations(Field::NAME),
-                    value: $field->{Field::HANDLE},
-                )
-                    ->setIcon($field->{Field::ATTRIBUTE_ICON})
-                    ->setId($field->{Field::ID})
-                    ->setIdentifier($field->{Field::ATTRIBUTE_IDENTIFIER});
+
+                $option = new SelectOption()
+                    ->id($field->{Field::ID})
+                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER})
+                    ->optionIcon($field->{Field::ATTRIBUTE_ICON})
+                    ->optionLabel($field->getTranslations(Field::NAME))
+                    ->optionValue($field->{Field::HANDLE});
+
+                return $option;
             })
             ->toArray();
     }
@@ -171,14 +174,18 @@ class BlockForm extends AbstractForm implements Contract
      */
     protected static function getWidthSelectOptions(): array
     {
-        return [
-            new SelectOption('25%', '25'),
-            new SelectOption('33%', '33'),
-            new SelectOption('50%', '50'),
-            new SelectOption('67%', '67'),
-            new SelectOption('75%', '75'),
-            new SelectOption('100%', '100'),
-        ];
+        $widths = [25, 33, 50, 67, 75, 100];
+
+        $options = [];
+
+        foreach ($widths as $width)
+        {
+            $options[] = new SelectOption()
+                ->optionLabel($width . '%')
+                ->optionValue($width);
+        }
+
+        return $options;
     }
 
     #endregion

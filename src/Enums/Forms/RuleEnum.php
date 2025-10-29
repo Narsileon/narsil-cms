@@ -49,10 +49,13 @@ enum RuleEnum: string
 
         foreach (self::cases() as $case)
         {
-            $options[] = new SelectOption(
-                label: trans("narsil::rules.$case->value"),
-                value: $case->value
-            );
+            $label = trans("narsil::rules.$case->value");
+
+            $option = new SelectOption()
+                ->optionLabel($label)
+                ->optionValue($case->value);
+
+            $options[] = $option;
         }
 
         return $options;

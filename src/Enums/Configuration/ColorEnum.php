@@ -56,10 +56,11 @@ enum ColorEnum: string
                 'label' => trans("narsil::colors.$case->value"),
             ])->render();
 
-            $options[] = new SelectOption(
-                label: $label,
-                value: $case->value
-            );
+            $option = new SelectOption()
+                ->optionLabel($label)
+                ->optionValue($case->value);
+
+            $options[] = $option;
         }
 
         return $options;

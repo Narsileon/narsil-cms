@@ -337,10 +337,11 @@ abstract class AbstractForm implements Form
 
         foreach ($locales as $locale)
         {
-            $languageOptions[] = new SelectOption(
-                label: Str::ucfirst(Locale::getDisplayName($locale, App::getLocale())),
-                value: $locale
-            )->jsonSerialize();
+            $label = Str::ucfirst(Locale::getDisplayName($locale, App::getLocale()));
+
+            $languageOptions[] = new SelectOption()
+                ->optionLabel($label)
+                ->optionValue($locale);
         }
 
         $this->languageOptions = $languageOptions;

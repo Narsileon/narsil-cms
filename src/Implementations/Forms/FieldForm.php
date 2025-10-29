@@ -159,11 +159,12 @@ class FieldForm extends AbstractForm implements Contract
 
         foreach (config('narsil.fields', []) as $abstract => $concrete)
         {
-            $options[] = new SelectOption(
-                label: trans('narsil::fields.' . $abstract),
-                value: $abstract
-            )
-                ->setIcon($concrete::getIcon());
+            $label = trans('narsil::fields.' . $abstract);
+
+            $options[] = new SelectOption()
+                ->optionIcon($concrete::getIcon())
+                ->optionLabel($label)
+                ->optionValue($abstract);
         }
 
         return $options;

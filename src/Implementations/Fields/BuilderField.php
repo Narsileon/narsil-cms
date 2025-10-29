@@ -106,13 +106,14 @@ class BuilderField extends AbstractField implements Contract
             ->get()
             ->map(function (Block $block)
             {
-                return new SelectOption(
-                    label: $block->getTranslations(Block::NAME),
-                    value: $block->{Block::HANDLE},
-                )
-                    ->setIcon($block->{Block::ATTRIBUTE_ICON})
-                    ->setId($block->{Block::ID})
-                    ->setIdentifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+                $option = new SelectOption()
+                    ->id($block->{Block::ID})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER})
+                    ->optionIcon($block->{Block::ATTRIBUTE_ICON})
+                    ->optionLabel($block->getTranslations(Block::NAME))
+                    ->optionValue($block->{Block::HANDLE});
+
+                return $option;
             })
             ->toArray();
     }

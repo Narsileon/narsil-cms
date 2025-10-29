@@ -172,21 +172,21 @@ class HostForm extends AbstractForm implements Contract
                 continue;
             }
 
-            $options[] = new SelectOption(
-                label: ucfirst($label),
-                value: $code,
-            );
+            $options[] = new SelectOption()
+                ->optionLabel(ucfirst($label))
+                ->optionValue($code);
         }
 
         usort($options, function (SelectOption $a, SelectOption $b)
         {
-            return strcasecmp($a->getLabel(), $b->getLabel());
+            return strcasecmp($a->label, $b->label);
         });
 
-        array_unshift($options, new SelectOption(
-            label: trans('narsil::ui.default'),
-            value: 'default',
-        ));
+        $defaultOption = new SelectOption()
+            ->optionLabel(trans('narsil::ui.default'))
+            ->optionValue('default');
+
+        array_unshift($options, $defaultOption);
 
         return array_values($options);
     }
@@ -216,15 +216,14 @@ class HostForm extends AbstractForm implements Contract
                 continue;
             }
 
-            $options[] = new SelectOption(
-                label: ucfirst($label),
-                value: $code,
-            );
+            $options[] = new SelectOption()
+                ->optionLabel(ucfirst($label))
+                ->optionValue($code);
         }
 
         usort($options, function (SelectOption $a, SelectOption $b)
         {
-            return strcasecmp($a->getLabel(), $b->getLabel());
+            return strcasecmp($a->label, $b->label);
         });
 
         return array_values($options);

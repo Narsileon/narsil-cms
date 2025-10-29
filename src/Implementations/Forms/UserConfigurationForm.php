@@ -109,18 +109,19 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 continue;
             }
 
-            $options[] = new SelectOption(
-                label: Str::ucfirst(Locale::getDisplayName($locale, App::getLocale())),
-                value: $locale
-            )->jsonSerialize();
+            $label = Str::ucfirst(Locale::getDisplayName($locale, App::getLocale()));
+
+            $options[] = new SelectOption()
+                ->optionLabel($label)
+                ->optionValue($locale);
         }
 
         usort($options, function ($a, $b)
         {
-            return strcmp($a['label'], $b['label']);
+            return strcmp($a->label, $b->label);
         });
 
-        return array_values($options);
+        return $options;
     }
 
     #endregion

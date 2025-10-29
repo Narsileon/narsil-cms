@@ -222,10 +222,11 @@ class RelationsField extends AbstractField implements Contract
             ->get()
             ->map(function (Template $template)
             {
-                return new SelectOption(
-                    label: $template->{Template::NAME},
-                    value: (string)$template->{Template::ID},
-                );
+                $option = new SelectOption()
+                    ->optionLabel($template->{Template::NAME})
+                    ->optionValue((string)$template->{Template::ID});
+
+                return $option;
             })
             ->toArray();
     }

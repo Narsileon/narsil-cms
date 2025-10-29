@@ -27,10 +27,9 @@ trait Enumerable
 
         foreach (self::cases() as $case)
         {
-            $options[] = new SelectOption(
-                label: $case->value,
-                value: $case->value,
-            );
+            $options[] = new SelectOption()
+                ->optionLabel($case->value)
+                ->optionValue($case->value);
         }
 
         return $options;
