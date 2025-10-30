@@ -9,6 +9,7 @@ use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Forms\Fortify\LoginForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -31,20 +32,21 @@ class LoginForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setAction(route('login'))
-            ->setDescription(trans('narsil::ui.connection'))
-            ->setSubmitLabel(trans('narsil::ui.log_in'))
-            ->setTitle(trans('narsil::ui.connection'));
+            ->action(route('login'))
+            ->description(trans('narsil::ui.connection'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.log_in'))
+            ->title(trans('narsil::ui.connection'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

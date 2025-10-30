@@ -28,19 +28,19 @@ class TemplateSectionForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::ui.section'))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::ui.section'));
+            ->description(trans('narsil::ui.section'))
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(trans('narsil::ui.section'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

@@ -6,7 +6,6 @@ namespace Narsil\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
 use JsonSerializable;
-use Narsil\Enums\Forms\MethodEnum;
 
 #endregion
 
@@ -19,110 +18,13 @@ interface Form extends JsonSerializable
     #region PUBLIC METHODS
 
     /**
-     * Define the layout of the form.
-     *
-     * @return array
-     */
-    public function layout(): array;
-
-    #region • GETTERS
-
-    /**
-     * Get the "action" attribute of the form.
-     *
-     * @return string
-     */
-    public function getAction(): string;
-
-    /**
-     * Get the "auto save" attribute of the form.
-     *
-     * @return boolean
-     */
-    public function getAutoSave(): bool;
-
-    /**
-     * Get the data of the form.
-     *
-     * @return Model|array
-     */
-    public function getData(): Model|array;
-
-    /**
-     * Get the default language of the form.
-     *
-     * @return string|null
-     */
-    public function getDefaultLanguage(): ?string;
-
-    /**
-     * Get the description of the form.
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string;
-
-    /**
-     * Get the "id" attribute of the form.
-     *
-     * @return integer|string
-     */
-    public function getId(): int|string;
-
-    /**
-     * Get the language options of the form.
-     *
-     * @return array<SelectOption>
-     */
-    public function getLanguageOptions(): array;
-
-    /**
-     * Get the "method" attribute of the form.
-     *
-     * @return MethodEnum
-     */
-    public function getMethod(): MethodEnum;
-
-    /**
-     * Get the routes associated to the form.
-     *
-     * @return array<string,string>
-     */
-    public function getRoutes(): array;
-
-    /**
-     * Get the icon of the submit button.
-     *
-     * @return string|null
-     */
-    public function getSubmitIcon(): ?string;
-
-    /**
-     * Get the label of the submit button.
-     *
-     * @return string
-     */
-    public function getSubmitLabel(): string;
-
-    /**
-     * Get the title of the form.
-     *
-     * @return string
-     */
-    public function getTitle(): string;
-
-    #endregion
-
-    #region • SETTERS
-
-    /**
      * Set the "action" attribute of the form.
      *
      * @param string $action
      *
      * @return static
      */
-    public function setAction(string $action): static;
+    public function action(string $action): static;
 
     /**
      * Set the "auto save" attribute of the form.
@@ -131,16 +33,7 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setAutoSave(string $autoSave): static;
-
-    /**
-     * Set the data of the form.
-     *
-     * @param Model|array $data
-     *
-     * @return static
-     */
-    public function setData(Model|array $data): static;
+    public function autoSave(string $autoSave): static;
 
     /**
      * Set the default language of the form.
@@ -149,7 +42,7 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setDefaultLanguage(string $defaultLanguage): static;
+    public function defaultLanguage(string $defaultLanguage): static;
 
     /**
      * Set the description of the form.
@@ -158,7 +51,16 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setDescription(string $description): static;
+    public function description(string $description): static;
+
+    /**
+     * Set the data of the form.
+     *
+     * @param Model|array $data
+     *
+     * @return static
+     */
+    public function formData(Model|array $data): static;
 
     /**
      * Set the "id" attribute of the form.
@@ -167,7 +69,7 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setId(mixed $id): static;
+    public function id(mixed $id): static;
 
     /**
      * Set the language options of the form.
@@ -176,16 +78,25 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setLanguageOptions(array $locales): static;
+    public function languageOptions(array $locales): static;
+
+    /**
+     * Set the layout of the form.
+     *
+     * @param array $layout
+     *
+     * @return static
+     */
+    public function layout(array $layout): static;
 
     /**
      * Set the "method" attribute of the form.
      *
-     * @param MethodEnum $method
+     * @param string $method
      *
      * @return static
      */
-    public function setMethod(MethodEnum $method): static;
+    public function method(string $method): static;
 
     /**
      * Set the routes associated to the form.
@@ -194,7 +105,7 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setRoutes(array $routes): static;
+    public function routes(array $routes): static;
 
     /**
      * Set the icon of the submit button.
@@ -203,7 +114,7 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setSubmitIcon(?string $submitIcon): static;
+    public function submitIcon(?string $submitIcon): static;
 
     /**
      * Set the label of the submit button.
@@ -212,7 +123,7 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setSubmitLabel(string $submitLabel): static;
+    public function submitLabel(string $submitLabel): static;
 
     /**
      * Set the title of the form.
@@ -221,9 +132,7 @@ interface Form extends JsonSerializable
      *
      * @return static
      */
-    public function setTitle(string $title): static;
-
-    #endregion
+    public function title(string $title): static;
 
     #endregion
 }

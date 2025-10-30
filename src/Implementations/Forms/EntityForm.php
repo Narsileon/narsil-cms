@@ -27,17 +27,17 @@ class EntityForm extends AbstractForm implements Contract
      */
     public function __construct(Template $template)
     {
-        parent::__construct();
-
         $this->template = $template;
 
+        parent::__construct();
+
         $this
-            ->setDescription($template->{Template::NAME})
-            ->setRoutes(RouteService::getNames('collections', [
+            ->description($template->{Template::NAME})
+            ->routes(RouteService::getNames('collections', [
                 'collection' => $template->{Template::HANDLE},
             ]))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(Str::singular($template->{Template::NAME}));
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(Str::singular($template->{Template::NAME}));
     }
 
     #endregion
@@ -51,12 +51,12 @@ class EntityForm extends AbstractForm implements Contract
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return $this->template->{Template::RELATION_SECTIONS}->toArray();
     }

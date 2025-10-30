@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Forms\Fortify\ForgotPasswordForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -29,20 +30,21 @@ class ForgotPasswordForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setAction(route('password.email'))
-            ->setDescription(trans('narsil::ui.reset_password'))
-            ->setSubmitLabel(trans('narsil::ui.send'))
-            ->setTitle(trans('narsil::ui.reset_password'));
+            ->action(route('password.email'))
+            ->description(trans('narsil::ui.reset_password'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.send'))
+            ->title(trans('narsil::ui.reset_password'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

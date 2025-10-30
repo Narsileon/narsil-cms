@@ -40,19 +40,19 @@ class UserForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::models.' . User::class))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::models.' . User::class));
+            ->description(trans('narsil::models.' . User::class))
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(trans('narsil::models.' . User::class));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         $isPost = $this->method === MethodEnum::POST->value;
 

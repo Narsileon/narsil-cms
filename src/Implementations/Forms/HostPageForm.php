@@ -41,20 +41,20 @@ class HostPageForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::models.' . Host::class))
-            ->setRoutes(RouteService::getNames(Host::TABLE))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::models.' . Host::class));
+            ->description(trans('narsil::models.' . Host::class))
+            ->routes(RouteService::getNames(Host::TABLE))
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(trans('narsil::models.' . Host::class));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             static::mainSection([

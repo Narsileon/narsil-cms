@@ -34,11 +34,11 @@ class HostPageEditController extends AbstractController
         $this->authorize(PermissionEnum::UPDATE, $hostPage);
 
         $form = app(HostPageForm::class)
-            ->setAction(route('host-pages.update', $hostPage->{HostPage::ID}))
-            ->setData($hostPage->toArrayWithTranslations())
-            ->setId($hostPage->{HostPage::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('host-pages.update', $hostPage->{HostPage::ID}))
+            ->formData($hostPage->toArrayWithTranslations())
+            ->id($hostPage->{HostPage::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $this->render(
             component: 'narsil/cms::resources/form',

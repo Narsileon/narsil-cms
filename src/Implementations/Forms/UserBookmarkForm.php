@@ -27,19 +27,19 @@ class UserBookmarkForm extends AbstractForm
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::bookmarks.bookmark'))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::bookmarks.bookmark'));
+            ->description(trans('narsil::bookmarks.bookmark'))
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(trans('narsil::bookmarks.bookmark'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

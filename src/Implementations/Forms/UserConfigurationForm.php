@@ -37,19 +37,19 @@ class UserConfigurationForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setAction(route('user-configurations.update'))
-            ->setMethod(MethodEnum::PUT)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+            ->action(route('user-configurations.update'))
+            ->method(MethodEnum::PUT->value)
+            ->submitLabel(trans('narsil::ui.save'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         $localeSelectOptions = static::getLocaleSelectOptions();
 

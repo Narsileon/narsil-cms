@@ -35,7 +35,7 @@ class HostEditController extends AbstractController
 
         $data = $this->getData($host);
         $form = $this->getForm($host)
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -71,10 +71,10 @@ class HostEditController extends AbstractController
     protected function getForm(Host $host): HostForm
     {
         $form = app(HostForm::class)
-            ->setAction(route('hosts.update', $host->{Host::ID}))
-            ->setId($host->{Host::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('hosts.update', $host->{Host::ID}))
+            ->id($host->{Host::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

@@ -28,19 +28,19 @@ class BlockElementForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::ui.element'))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::ui.element'));
+            ->description(trans('narsil::ui.element'))
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(trans('narsil::ui.element'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

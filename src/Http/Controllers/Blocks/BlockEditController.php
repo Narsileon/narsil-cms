@@ -40,7 +40,7 @@ class BlockEditController extends AbstractController
 
         $data = $this->getData($block);
         $form = $this->getForm($block)
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -76,10 +76,10 @@ class BlockEditController extends AbstractController
     protected function getForm(Block $block): BlockForm
     {
         $form = app(BlockForm::class)
-            ->setAction(route('blocks.update', $block->{Block::ID}))
-            ->setId($block->{Block::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('blocks.update', $block->{Block::ID}))
+            ->id($block->{Block::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

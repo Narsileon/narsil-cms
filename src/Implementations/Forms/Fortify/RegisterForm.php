@@ -9,6 +9,7 @@ use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\RegisterForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -31,20 +32,21 @@ class RegisterForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setAction(route('register'))
-            ->setDescription(trans('narsil::ui.registration'))
-            ->setSubmitLabel(trans('narsil::ui.register'))
-            ->setTitle(trans('narsil::ui.registration'));
+            ->action(route('register'))
+            ->description(trans('narsil::ui.registration'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.register'))
+            ->title(trans('narsil::ui.registration'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

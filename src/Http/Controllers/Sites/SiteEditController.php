@@ -48,7 +48,7 @@ class SiteEditController extends AbstractController
 
         $data = $this->getData($host);
         $form = $this->getForm($host)
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -84,11 +84,11 @@ class SiteEditController extends AbstractController
     protected function getForm(Host $host): SiteForm
     {
         $form = app(SiteForm::class)
-            ->setAction(route('sites.update', $host->{Host::HANDLE}))
-            ->setId($host->{Host::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setLanguageOptions([])
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('sites.update', $host->{Host::HANDLE}))
+            ->id($host->{Host::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->languageOptions([])
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

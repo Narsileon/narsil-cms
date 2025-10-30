@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 
@@ -28,20 +29,21 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setAction(route('two-factor.login'))
-            ->setDescription(trans('narsil::ui.two_factor_authentication'))
-            ->setSubmitLabel(trans('narsil::ui.confirm'))
-            ->setTitle(trans('narsil::ui.two_factor_authentication'));
+            ->action(route('two-factor.login'))
+            ->description(trans('narsil::ui.two_factor_authentication'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.confirm'))
+            ->title(trans('narsil::ui.two_factor_authentication'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

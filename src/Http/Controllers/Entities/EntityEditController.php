@@ -44,11 +44,9 @@ class EntityEditController extends AbstractEntityController
 
         $data = $this->getData($entity);
         $form = $this->getForm($template, $entity)
-            ->setData($data);
+            ->formData($data);
 
-        $title = $form->getTitle();
-
-        $form->setTitle("$title: $id");
+        $form->title("$form->title: $id");
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -131,15 +129,15 @@ class EntityEditController extends AbstractEntityController
             ->make(EntityForm::class, [
                 'template' => $template,
             ])
-            ->setAction(route('collections.update', [
+            ->action(route('collections.update', [
                 'id' => $entity->{Entity::ID},
                 'collection' => $template->{Template::HANDLE},
             ]))
-            ->setAutoSave(true)
-            ->setId($entity->{Entity::UUID})
-            ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->autoSave(true)
+            ->id($entity->{Entity::UUID})
+            ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

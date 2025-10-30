@@ -38,7 +38,7 @@ class RoleEditController extends AbstractController
 
         $data = $this->getData($role);
         $form = $this->getForm($role)
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -74,10 +74,10 @@ class RoleEditController extends AbstractController
     protected function getForm(Role $role): RoleForm
     {
         $form = app(RoleForm::class)
-            ->setAction(route('roles.update', $role->{Role::ID}))
-            ->setId($role->{Role::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('roles.update', $role->{Role::ID}))
+            ->id($role->{Role::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

@@ -37,20 +37,20 @@ class TemplateForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::models.' . Template::class))
-            ->setRoutes(RouteService::getNames(Template::TABLE))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::models.' . Template::class));
+            ->description(trans('narsil::models.' . Template::class))
+            ->routes(RouteService::getNames(Template::TABLE))
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(trans('narsil::models.' . Template::class));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         $blockSelectOptions = static::getBlockSelectOptions();
         $fieldSelectOptions = static::getFieldSelectOptions();
@@ -120,10 +120,6 @@ class TemplateForm extends AbstractForm implements Contract
             static::informationSection(),
         ];
     }
-
-    #endregion
-
-    #region PROTECTED METHODS
 
     /**
      * Get the block select options.

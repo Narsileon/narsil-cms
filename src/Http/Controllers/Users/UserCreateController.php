@@ -52,9 +52,9 @@ class UserCreateController extends AbstractController
     protected function getForm(): UserForm
     {
         $form = app(UserForm::class)
-            ->setAction(route('users.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+            ->action(route('users.store'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

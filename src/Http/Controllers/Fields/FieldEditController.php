@@ -42,7 +42,7 @@ class FieldEditController extends AbstractController
 
         $data = $this->getData($field);
         $form = $this->getForm($field)
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -78,10 +78,10 @@ class FieldEditController extends AbstractController
     protected function getForm(Field $field): FieldForm
     {
         $form = app(FieldForm::class)
-            ->setAction(route('fields.update', $field->{Field::ID}))
-            ->setId($field->{Field::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('fields.update', $field->{Field::ID}))
+            ->id($field->{Field::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

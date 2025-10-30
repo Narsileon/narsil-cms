@@ -52,9 +52,9 @@ class BlockCreateController extends AbstractController
     protected function getForm(): BlockForm
     {
         $form = app(BlockForm::class)
-            ->setAction(route('blocks.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+            ->action(route('blocks.store'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

@@ -42,7 +42,7 @@ class LoginController extends AbstractController
     {
         $data = $this->getData();
         $form = $this->getForm()
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::fortify/form',

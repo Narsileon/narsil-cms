@@ -52,9 +52,9 @@ class FieldCreateController extends AbstractController
     protected function getForm(): FieldForm
     {
         $form = app(FieldForm::class)
-            ->setAction(route('fields.store'))
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+            ->action(route('fields.store'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

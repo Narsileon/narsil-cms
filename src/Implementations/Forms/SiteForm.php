@@ -30,19 +30,19 @@ class SiteForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setDescription(trans('narsil::ui.site'))
-            ->setSubmitLabel(trans('narsil::ui.save'))
-            ->setTitle(trans('narsil::ui.site'));
+            ->description(trans('narsil::ui.site'))
+            ->submitLabel(trans('narsil::ui.save'))
+            ->title(trans('narsil::ui.site'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new TemplateSection([

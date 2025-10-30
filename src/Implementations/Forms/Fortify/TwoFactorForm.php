@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\TwoFactorForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Support\TranslationsBag;
@@ -29,8 +30,9 @@ class TwoFactorForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setAction(route('two-factor.confirm'))
-            ->setSubmitLabel(trans('narsil::ui.confirm'));
+            ->action(route('two-factor.confirm'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.confirm'));
 
         app(TranslationsBag::class)
             ->add('validation.custom.code.invalid')
@@ -43,12 +45,12 @@ class TwoFactorForm extends AbstractForm implements Contract
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

@@ -62,12 +62,12 @@ class EntityCreateController extends AbstractEntityController
             ->make(EntityForm::class, [
                 'template' => $template
             ])
-            ->setAction(route('collections.store', [
+            ->action(route('collections.store', [
                 'collection' => $template->{Template::HANDLE}
             ]))
-            ->setLanguageOptions(HostLocaleLanguage::getUniqueLanguages())
-            ->setMethod(MethodEnum::POST)
-            ->setSubmitLabel(trans('narsil::ui.save'));
+            ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

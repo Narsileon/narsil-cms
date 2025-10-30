@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Forms\Fortify\ConfirmPasswordForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -29,20 +30,21 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
         parent::__construct();
 
         $this
-            ->setAction(route('password.confirm'))
-            ->setDescription(trans('narsil::ui.confirm_password'))
-            ->setSubmitLabel(trans('narsil::ui.confirm'))
-            ->setTitle(trans('narsil::ui.confirm_password'));
+            ->action(route('password.confirm'))
+            ->description(trans('narsil::ui.confirm_password'))
+            ->method(MethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.confirm'))
+            ->title(trans('narsil::ui.confirm_password'));
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function layout(): array
+    protected function getLayout(): array
     {
         return [
             new Field([

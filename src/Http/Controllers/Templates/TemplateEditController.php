@@ -35,7 +35,7 @@ class TemplateEditController extends AbstractController
 
         $data = $this->getData($template);
         $form = $this->getForm($template)
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -71,10 +71,10 @@ class TemplateEditController extends AbstractController
     protected function getForm(Template $template): TemplateForm
     {
         $form = app(TemplateForm::class)
-            ->setAction(route('templates.update', $template->{Template::ID}))
-            ->setId($template->{Template::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('templates.update', $template->{Template::ID}))
+            ->id($template->{Template::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

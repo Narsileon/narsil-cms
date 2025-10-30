@@ -42,7 +42,7 @@ class UserEditController extends AbstractController
 
         $data = $this->getData($user);
         $form = $this->getForm($user)
-            ->setData($data);
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -78,10 +78,10 @@ class UserEditController extends AbstractController
     protected function getForm(User $user): UserForm
     {
         $form = app(UserForm::class)
-            ->setAction(route('users.update', $user->{User::ID}))
-            ->setId($user->{User::ID})
-            ->setMethod(MethodEnum::PATCH)
-            ->setSubmitLabel(trans('narsil::ui.update'));
+            ->action(route('users.update', $user->{User::ID}))
+            ->id($user->{User::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }
