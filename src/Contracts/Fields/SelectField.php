@@ -16,8 +16,6 @@ interface SelectField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,7 +23,7 @@ interface SelectField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(string $value): static;
+    public function defaultValue(string $value): static;
 
     /**
      * Set the display value attribute.
@@ -34,7 +32,7 @@ interface SelectField extends Contract
      *
      * @return static
      */
-    public function setDisplayValue(bool $displayValue): static;
+    public function displayValue(bool $displayValue): static;
 
     /**
      * Set the multiple attribute.
@@ -43,7 +41,7 @@ interface SelectField extends Contract
      *
      * @return static
      */
-    public function setMultiple(bool $multiple): static;
+    public function multiple(bool $multiple): static;
 
     /**
      * Set the options attribute.
@@ -52,7 +50,7 @@ interface SelectField extends Contract
      *
      * @return static
      */
-    public function setOptions(array $options): static;
+    public function options(array $options): static;
 
     /**
      * Set the placeholder attribute.
@@ -61,7 +59,7 @@ interface SelectField extends Contract
      *
      * @return static
      */
-    public function setPlaceholder(string $placeholder): static;
+    public function placeholder(string $placeholder): static;
 
     /**
      * Set the reload attribute.
@@ -70,7 +68,7 @@ interface SelectField extends Contract
      *
      * @return static
      */
-    public function setReload(string $reload): static;
+    public function reload(string $reload): static;
 
     /**
      * Set the required attribute.
@@ -79,9 +77,7 @@ interface SelectField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
-
-    #endregion
+    public function required(bool $required): static;
 
     #endregion
 }

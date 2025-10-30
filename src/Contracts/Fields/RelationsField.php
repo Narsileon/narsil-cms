@@ -17,8 +17,6 @@ interface RelationsField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Add an option.
      *
@@ -47,7 +45,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setColumns(int $columns): static;
+    public function columns(int $columns): static;
 
     /**
      * Set the default value.
@@ -56,7 +54,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(array $value): static;
+    public function defaultValue(array $value): static;
 
     /**
      * Set the form attribute.
@@ -65,7 +63,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setForm(array $form): static;
+    public function form(array $form): static;
 
     /**
      * Set the intermediate attribute.
@@ -77,7 +75,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setIntermediate(
+    public function intermediate(
         Field $relation,
         string $label,
         string $optionLabel,
@@ -91,7 +89,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setMultiple(bool $multiple): static;
+    public function multiple(bool $multiple): static;
 
     /**
      * Set the options attribute
@@ -100,7 +98,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setOptions(array $options): static;
+    public function options(array $options): static;
 
     /**
      * Set the placeholder attribute.
@@ -109,7 +107,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setPlaceholder(string $placeholder): static;
+    public function placeholder(string $placeholder): static;
 
     /**
      * Set the unique attribute.
@@ -118,7 +116,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setUnique(bool $unique): static;
+    public function unique(bool $unique): static;
 
     /**
      * Set the width options.
@@ -127,7 +125,7 @@ interface RelationsField extends Contract
      *
      * @return static
      */
-    public function setWidthOptions(array $widthOptions): static;
+    public function widthOptions(array $widthOptions): static;
 
     #endregion
 

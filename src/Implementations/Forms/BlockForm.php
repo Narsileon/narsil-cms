@@ -63,7 +63,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
                 new TemplateSectionElement([
@@ -72,7 +72,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::ui.default_handle'),
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
                 new TemplateSectionElement([
@@ -89,7 +89,7 @@ class BlockForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.elements'),
                         Field::TYPE => RelationsField::class,
                         Field::SETTINGS => app(RelationsField::class)
-                            ->setForm(app(BlockElementForm::class)->jsonSerialize())
+                            ->form(app(BlockElementForm::class)->jsonSerialize())
                             ->addOption(
                                 identifier: Block::TABLE,
                                 label: trans('narsil::models.' . Block::class),
@@ -106,7 +106,7 @@ class BlockForm extends AbstractForm implements Contract
                                 options: $fieldSelectOptions,
                                 routes: RouteService::getNames(Field::TABLE),
                             )
-                            ->setWidthOptions($widthSelectOptions),
+                            ->widthOptions($widthSelectOptions),
                     ]),
                 ]),
             ]),

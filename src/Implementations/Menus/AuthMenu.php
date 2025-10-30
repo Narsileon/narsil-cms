@@ -57,11 +57,11 @@ class AuthMenu extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->setGroup($group)
-                ->setHref(route('logout'))
-                ->setIcon('log-out')
-                ->setLabel(trans('narsil::ui.log_out'))
-                ->setMethod(MethodEnum::POST),
+                ->group($group)
+                ->href(route('logout'))
+                ->icon('log-out')
+                ->label(trans('narsil::ui.log_out'))
+                ->method(MethodEnum::POST->value),
         ];
     }
 
@@ -74,11 +74,12 @@ class AuthMenu extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->setGroup($group)
-                ->setHref(route('user-configurations.edit'))
-                ->setIcon('settings')
-                ->setLabel(trans('narsil::ui.settings'))
-                ->setModal(true),
+                ->group($group)
+                ->href(route('user-configurations.edit'))
+                ->icon('settings')
+                ->label(trans('narsil::ui.settings'))
+                ->method(MethodEnum::GET->value)
+                ->modal(true),
         ];
     }
 

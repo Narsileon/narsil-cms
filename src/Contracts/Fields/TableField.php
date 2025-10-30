@@ -16,8 +16,6 @@ interface TableField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the columns.
      *
@@ -25,7 +23,7 @@ interface TableField extends Contract
      *
      * @return static
      */
-    public function setColumns(array $columns): static;
+    public function columns(array $columns): static;
 
     /**
      * Set the default value.
@@ -34,7 +32,7 @@ interface TableField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(array $value): static;
+    public function defaultValue(array $value): static;
 
     /**
      * Set the placeholder attribute.
@@ -43,9 +41,7 @@ interface TableField extends Contract
      *
      * @return static
      */
-    public function setPlaceholder(string $placeholder): static;
-
-    #endregion
+    public function placeholder(string $placeholder): static;
 
     #endregion
 }

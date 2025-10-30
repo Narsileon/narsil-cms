@@ -52,29 +52,29 @@ class LoginForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailField::class,
                 Field::SETTINGS => app(EmailField::class)
-                    ->setAutoComplete(AutoCompleteEnum::EMAIL)
-                    ->setIcon('email')
-                    ->setPlaceholder('email@example.com')
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::EMAIL->value)
+                    ->icon('email')
+                    ->placeholder('email@example.com')
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->setAppend(view('narsil::components.link', [
+                    ->append(view('narsil::components.link', [
                         'label' => trans("narsil::passwords.link"),
                         'route' => route("password.request"),
                     ])->render())
-                    ->setAutoComplete(AutoCompleteEnum::CURRENT_PASSWORD)
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::REMEMBER,
                 Field::NAME => trans('narsil::validation.attributes.remember'),
                 Field::TYPE => CheckboxField::class,
                 Field::SETTINGS => app(CheckboxField::class)
-                    ->setClassName('flex-row-reverse justify-end'),
+                    ->className('flex-row-reverse justify-end'),
             ]),
         ];
     }

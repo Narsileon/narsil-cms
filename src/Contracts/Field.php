@@ -31,7 +31,7 @@ interface Field
      *
      * @return static
      */
-    public function setAppend(string $append): static;
+    public function append(string $append): static;
 
     /**
      * Set the className attribute.
@@ -40,7 +40,7 @@ interface Field
      *
      * @return static
      */
-    public function setClassName(string $className): static;
+    public function className(string $className): static;
 
     #endregion
 

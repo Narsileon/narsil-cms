@@ -24,7 +24,7 @@ class RangeField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->setDefaultValue([0]);
+        $this->defaultValue([0]);
     }
 
     #endregion
@@ -42,29 +42,29 @@ class RangeField extends AbstractField implements Contract
                 Field::NAME => trans('narsil::validation.attributes.default_value'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
-                    ->setDefaultValue(0),
+                    ->defaultValue(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.min" : 'min',
                 Field::NAME => trans('narsil::validation.attributes.min'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
-                    ->setDefaultValue(0),
+                    ->defaultValue(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::NAME => trans('narsil::validation.attributes.max'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
-                    ->setDefaultValue(100),
+                    ->defaultValue(100),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.step" : 'step',
                 Field::NAME => trans('narsil::validation.attributes.step'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
-                    ->setMin(0)
-                    ->setDefaultValue(1),
+                    ->min(0)
+                    ->defaultValue(1),
             ]),
         ];
     }
@@ -82,9 +82,9 @@ class RangeField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(array $value): static
+    final public function defaultValue(array $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -92,9 +92,9 @@ class RangeField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMax(float|int $max): static
+    final public function max(float|int $max): static
     {
-        $this->props['max'] = $max;
+        $this->set('max', $max);
 
         return $this;
     }
@@ -102,9 +102,9 @@ class RangeField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMin(float|int $min): static
+    final public function min(float|int $min): static
     {
-        $this->props['min'] = $min;
+        $this->set('min', $min);
 
         return $this;
     }
@@ -112,9 +112,9 @@ class RangeField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setStep(float|int $step): static
+    final public function step(float|int $step): static
     {
-        $this->props['step'] = $step;
+        $this->set('step', $step);
 
         return $this;
     }

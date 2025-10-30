@@ -16,8 +16,6 @@ interface DateField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,7 +23,7 @@ interface DateField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(string $value): static;
+    public function defaultValue(string $value): static;
 
     /**
      * Set the max attribute.
@@ -34,7 +32,7 @@ interface DateField extends Contract
      *
      * @return static
      */
-    public function setMax(string $max): static;
+    public function max(string $max): static;
 
     /**
      * Set the min attribute.
@@ -43,7 +41,7 @@ interface DateField extends Contract
      *
      * @return static
      */
-    public function setMin(string $min): static;
+    public function min(string $min): static;
 
     /**
      * Set the required attribute.
@@ -52,9 +50,7 @@ interface DateField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
-
-    #endregion
+    public function required(bool $required): static;
 
     #endregion
 }

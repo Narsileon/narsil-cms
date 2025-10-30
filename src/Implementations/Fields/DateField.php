@@ -23,9 +23,9 @@ class DateField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->props['type'] = 'date';
+        $this->set('type', 'date');
 
-        $this->setDefaultValue('');
+        $this->defaultValue('');
     }
 
     #endregion
@@ -72,9 +72,9 @@ class DateField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(string $value): static
+    final public function defaultValue(string $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -82,9 +82,9 @@ class DateField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMax(string $max): static
+    final public function max(string $max): static
     {
-        $this->props['max'] = $max;
+        $this->set('max', $max);
 
         return $this;
     }
@@ -92,9 +92,9 @@ class DateField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMin(string $min): static
+    final public function min(string $min): static
     {
-        $this->props['min'] = $min;
+        $this->set('min', $min);
 
         return $this;
     }
@@ -102,9 +102,9 @@ class DateField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }

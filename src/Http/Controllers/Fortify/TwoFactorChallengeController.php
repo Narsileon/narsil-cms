@@ -45,8 +45,7 @@ class TwoFactorChallengeController extends AbstractController
      */
     protected function getForm(): TwoFactorChallengeForm
     {
-        $form = app()
-            ->make(TwoFactorChallengeForm::class);
+        $form = app(TwoFactorChallengeForm::class);
 
         return $form;
     }

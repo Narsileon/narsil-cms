@@ -16,8 +16,6 @@ interface SwitchField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,9 +23,7 @@ interface SwitchField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(bool $value): static;
-
-    #endregion
+    public function defaultValue(bool $value): static;
 
     #endregion
 }

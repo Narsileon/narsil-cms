@@ -28,7 +28,7 @@ class ArrayField extends AbstractField implements Contract
             ->add('narsil::ui.add')
             ->add('narsil::ui.remove');
 
-        $this->setDefaultValue([]);
+        $this->defaultValue([]);
     }
 
     #endregion
@@ -51,14 +51,14 @@ class ArrayField extends AbstractField implements Contract
         return 'array';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(array $value): static
+    final public function defaultValue(array $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -66,9 +66,9 @@ class ArrayField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setBlock(Block $block): static
+    final public function block(Block $block): static
     {
-        $this->props['block'] = $block;
+        $this->set('block', $block);
 
         return $this;
     }
@@ -76,9 +76,9 @@ class ArrayField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setLabelKey(string $labelKey): static
+    final public function labelKey(string $labelKey): static
     {
-        $this->props['labelKey'] = $labelKey;
+        $this->set('labelKey', $labelKey);
 
         return $this;
     }
@@ -86,9 +86,9 @@ class ArrayField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }

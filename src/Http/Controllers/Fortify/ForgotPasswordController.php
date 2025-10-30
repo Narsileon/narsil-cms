@@ -61,8 +61,7 @@ class ForgotPasswordController extends AbstractController
      */
     protected function getForm(): ForgotPasswordForm
     {
-        $form = app()
-            ->make(ForgotPasswordForm::class);
+        $form = app(ForgotPasswordForm::class);
 
         return $form;
     }

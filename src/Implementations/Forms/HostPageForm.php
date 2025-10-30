@@ -65,7 +65,7 @@ class HostPageForm extends AbstractForm implements Contract
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ])
                 ]),
             ]),
@@ -92,10 +92,10 @@ class HostPageForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.robots'),
                                         Field::TYPE => SelectField::class,
                                         Field::SETTINGS => app(SelectField::class)
-                                            ->setDefaultValue(RobotsEnum::ALL->value)
-                                            ->setDisplayValue(false)
-                                            ->setOptions(RobotsEnum::options())
-                                            ->setRequired(true),
+                                            ->defaultValue(RobotsEnum::ALL->value)
+                                            ->displayValue(false)
+                                            ->options(RobotsEnum::options())
+                                            ->required(true),
                                     ])
                                 ]),
                             ],
@@ -111,10 +111,10 @@ class HostPageForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.type'),
                                         Field::TYPE => SelectField::class,
                                         Field::SETTINGS => app(SelectField::class)
-                                            ->setDefaultValue(OpenGraphTypeEnum::WEBSITE->value)
-                                            ->setDisplayValue(false)
-                                            ->setOptions(OpenGraphTypeEnum::options())
-                                            ->setRequired(true),
+                                            ->defaultValue(OpenGraphTypeEnum::WEBSITE->value)
+                                            ->displayValue(false)
+                                            ->options(OpenGraphTypeEnum::options())
+                                            ->required(true),
                                     ])
                                 ]),
                                 new BlockElement([
@@ -141,8 +141,8 @@ class HostPageForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.image'),
                                         Field::TYPE => FileField::class,
                                         Field::SETTINGS => app(FileField::class)
-                                            ->setAccept('image/*')
-                                            ->setIcon('image'),
+                                            ->accept('image/*')
+                                            ->icon('image'),
                                     ]),
                                 ]),
                             ],
@@ -160,10 +160,10 @@ class HostPageForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.change_freq'),
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
-                                ->setDefaultValue(ChangeFreqEnum::NEVER->value)
-                                ->setDisplayValue(false)
-                                ->setOptions(ChangeFreqEnum::options())
-                                ->setRequired(true),
+                                ->defaultValue(ChangeFreqEnum::NEVER->value)
+                                ->displayValue(false)
+                                ->options(ChangeFreqEnum::options())
+                                ->required(true),
                         ])
                     ]),
                     new TemplateSectionElement([
@@ -172,10 +172,10 @@ class HostPageForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.priority'),
                             Field::TYPE => RangeField::class,
                             Field::SETTINGS => app(RangeField::class)
-                                ->setDefaultValue([1.0])
-                                ->setMax(1)
-                                ->setMin(0)
-                                ->setStep(0.05),
+                                ->defaultValue([1.0])
+                                ->max(1)
+                                ->min(0)
+                                ->step(0.05),
                         ])
                     ]),
                 ],

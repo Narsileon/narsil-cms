@@ -28,7 +28,7 @@ class BuilderField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->setDefaultValue([]);
+        $this->defaultValue([]);
 
         app(TranslationsBag::class)
             ->add('narsil::ui.collapse')
@@ -63,7 +63,7 @@ class BuilderField extends AbstractField implements Contract
                         options: $blockSelectOptions,
                         routes: RouteService::getNames(Block::TABLE),
                     )
-                    ->setUnique(true),
+                    ->unique(true),
             ]),
         ];
     }
@@ -76,14 +76,14 @@ class BuilderField extends AbstractField implements Contract
         return 'box';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(array $value): static
+    final public function defaultValue(array $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }

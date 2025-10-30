@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Menus;
 #region USE
 
 use Narsil\Contracts\Menus\GuestMenu as Contract;
+use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractMenu;
 use Narsil\Support\TranslationsBag;
 use Narsil\Support\MenuItem;
@@ -55,10 +56,11 @@ class GuestMenu extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->setGroup($group)
-                ->setHref(route('login'))
-                ->setIcon('log-in')
-                ->setLabel(trans('narsil::ui.log_in')),
+                ->group($group)
+                ->href(route('login'))
+                ->icon('log-in')
+                ->label(trans('narsil::ui.log_in'))
+                ->method(MethodEnum::GET->value),
         ];
     }
 
@@ -71,11 +73,12 @@ class GuestMenu extends AbstractMenu implements Contract
 
         return [
             new MenuItem()
-                ->setGroup($group)
-                ->setHref(route('user-configurations.edit'))
-                ->setIcon('settings')
-                ->setLabel(trans('narsil::ui.settings'))
-                ->setModal(true),
+                ->group($group)
+                ->href(route('user-configurations.edit'))
+                ->icon('settings')
+                ->label(trans('narsil::ui.settings'))
+                ->method(MethodEnum::GET->value)
+                ->modal(true),
         ];
     }
 

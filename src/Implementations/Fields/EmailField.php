@@ -26,9 +26,9 @@ class EmailField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->props['type'] = 'email';
+        $this->set('type', 'email');
 
-        $this->setDefaultvalue('');
+        $this->defaultvalue('');
     }
 
     #endregion
@@ -70,9 +70,9 @@ class EmailField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setAutoComplete(AutoCompleteEnum $autoComplete): static
+    final public function autoComplete(string $autoComplete): static
     {
-        $this->props['autoComplete'] = $autoComplete->value;
+        $this->set('autoComplete', $autoComplete);
 
         return $this;
     }
@@ -80,9 +80,9 @@ class EmailField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(string $value): static
+    final public function defaultValue(string $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -90,9 +90,9 @@ class EmailField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setIcon(string $icon): static
+    final public function icon(string $icon): static
     {
-        $this->props['icon'] = $icon;
+        $this->set('icon', $icon);
 
         return $this;
     }
@@ -100,9 +100,9 @@ class EmailField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMultiple(bool $multiple): static
+    final public function multiple(bool $multiple): static
     {
-        $this->props['multiple'] = $multiple;
+        $this->set('multiple', $multiple);
 
         return $this;
     }
@@ -110,9 +110,9 @@ class EmailField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }
@@ -120,9 +120,9 @@ class EmailField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }

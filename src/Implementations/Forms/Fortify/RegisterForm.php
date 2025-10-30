@@ -52,46 +52,46 @@ class RegisterForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailField::class,
                 Field::SETTINGS => app(EmailField::class)
-                    ->setIcon('email')
-                    ->setRequired(true),
+                    ->icon('email')
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                    ->setClassName('col-span-6')
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->className('col-span-6')
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                    ->setClassName('col-span-6')
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->className('col-span-6')
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.first_name'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setAutoComplete(AutoCompleteEnum::GIVEN_NAME)
-                    ->setClassName('col-span-6')
-                    ->setIcon('circle-user')
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                    ->className('col-span-6')
+                    ->icon('circle-user')
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.last_name'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setAutoComplete(AutoCompleteEnum::FAMILY_NAME)
-                    ->setClassName('col-span-6')
-                    ->setIcon('circle-user')
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                    ->className('col-span-6')
+                    ->icon('circle-user')
+                    ->required(true),
             ]),
         ];
     }

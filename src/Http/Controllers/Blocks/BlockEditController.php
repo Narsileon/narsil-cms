@@ -75,8 +75,7 @@ class BlockEditController extends AbstractController
      */
     protected function getForm(Block $block): BlockForm
     {
-        $form = app()
-            ->make(BlockForm::class)
+        $form = app(BlockForm::class)
             ->setAction(route('blocks.update', $block->{Block::ID}))
             ->setId($block->{Block::ID})
             ->setMethod(MethodEnum::PATCH)

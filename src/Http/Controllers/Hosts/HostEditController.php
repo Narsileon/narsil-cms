@@ -70,8 +70,7 @@ class HostEditController extends AbstractController
      */
     protected function getForm(Host $host): HostForm
     {
-        $form = app()
-            ->make(HostForm::class)
+        $form = app(HostForm::class)
             ->setAction(route('hosts.update', $host->{Host::ID}))
             ->setId($host->{Host::ID})
             ->setMethod(MethodEnum::PATCH)

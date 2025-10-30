@@ -38,7 +38,7 @@ class RelationsField extends AbstractField implements Contract
                 'attribute' => trans('narsil::validation.attributes.identifier'),
             ]);
 
-        $this->setDefaultValue([]);
+        $this->defaultValue([]);
     }
 
     #endregion
@@ -58,8 +58,8 @@ class RelationsField extends AbstractField implements Contract
                 Field::NAME => trans('narsil::ui.collections'),
                 Field::TYPE => SelectField::class,
                 Field::SETTINGS => app(SelectField::class)
-                    ->setOptions($templateSelectOptions)
-                    ->setMultiple(true),
+                    ->options($templateSelectOptions)
+                    ->multiple(true),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
@@ -92,7 +92,7 @@ class RelationsField extends AbstractField implements Contract
         array $routes = [],
     ): static
     {
-        $this->props['options'][] = [
+        $option = [
             'identifier' => $identifier,
             'label' => $label,
             'optionLabel' => $optionLabel,
@@ -101,15 +101,17 @@ class RelationsField extends AbstractField implements Contract
             'routes' => $routes,
         ];
 
+        $this->set('options', array_merge($this->get('options', []), [$option]));
+
         return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    final public function setColumns(int $columns): static
+    final public function columns(int $columns): static
     {
-        $this->props['columns'] = $columns;
+        $this->set('columns', $columns);
 
         return $this;
     }
@@ -117,9 +119,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(array $value): static
+    final public function defaultValue(array $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -127,9 +129,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setForm(array $form): static
+    final public function form(array $form): static
     {
-        $this->props['form'] = $form;
+        $this->set('form', $form);
 
         return $this;
     }
@@ -137,19 +139,19 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setIntermediate(
+    final public function intermediate(
         Field $relation,
         string $label,
         string $optionLabel,
         string $optionValue,
     ): static
     {
-        $this->props['intermediate'] = [
+        $this->set('intermediate', [
             'label' => $label,
             'optionLabel' => $optionLabel,
             'optionValue' => $optionValue,
             'relation' => $relation,
-        ];
+        ]);
 
         return $this;
     }
@@ -157,9 +159,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMultiple(bool $multiple): static
+    final public function multiple(bool $multiple): static
     {
-        $this->props['multiple'] = $multiple;
+        $this->set('multiple', $multiple);
 
         return $this;
     }
@@ -167,9 +169,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setOptions(array $options): static
+    final public function options(array $options): static
     {
-        $this->props['options'] = $options;
+        $this->set('options', $options);
 
         return $this;
     }
@@ -177,9 +179,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }
@@ -187,9 +189,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setUnique(bool $unique): static
+    final public function unique(bool $unique): static
     {
-        $this->props['unique'] = $unique;
+        $this->set('unique', $unique);
 
         return $this;
     }
@@ -197,9 +199,9 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setWidthOptions(array $widthOptions): static
+    final public function widthOptions(array $widthOptions): static
     {
-        $this->props['widthOptions'] = $widthOptions;
+        $this->set('widthOptions', $widthOptions);
 
         return $this;
     }

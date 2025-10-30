@@ -23,9 +23,9 @@ class NumberField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->props['type'] = 'number';
+        $this->set('type', 'number');
 
-        $this->setDefaultValue(0);
+        $this->defaultValue(0);
     }
 
     #endregion
@@ -49,22 +49,22 @@ class NumberField extends AbstractField implements Contract
                 Field::NAME => trans('narsil::validation.attributes.min'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->setDefaultValue(0),
+                    ->defaultValue(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'settings.max',
                 Field::NAME => trans('narsil::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->setDefaultValue(999999999),
+                    ->defaultValue(999999999),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.step" : 'settings.step',
                 Field::NAME => trans('narsil::validation.attributes.step'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
-                    ->setMin(0)
-                    ->setDefaultValue(1),
+                    ->min(0)
+                    ->defaultValue(1),
             ]),
         ];
     }
@@ -82,9 +82,9 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(float|int $value): static
+    final public function defaultValue(float|int $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -92,9 +92,9 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMax(string $max): static
+    final public function max(string $max): static
     {
-        $this->props['max'] = $max;
+        $this->set('max', $max);
 
         return $this;
     }
@@ -102,9 +102,9 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMin(string $min): static
+    final public function min(string $min): static
     {
-        $this->props['min'] = $min;
+        $this->set('min', $min);
 
         return $this;
     }
@@ -112,9 +112,9 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }
@@ -122,9 +122,9 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }
@@ -132,9 +132,9 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setStep(string $step): static
+    final public function step(string $step): static
     {
-        $this->props['step'] = $step;
+        $this->set('step', $step);
 
         return $this;
     }

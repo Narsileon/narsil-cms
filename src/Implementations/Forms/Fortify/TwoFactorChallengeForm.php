@@ -49,16 +49,16 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.code'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setAutoComplete(AutoCompleteEnum::ONE_TIME_CODE)
-                    ->setIcon('circle-check'),
+                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                    ->icon('circle-check'),
             ]),
             new Field([
                 Field::HANDLE => 'recovery_code',
                 Field::NAME => trans('narsil::validation.attributes.recovery_code'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setAutoComplete(AutoCompleteEnum::ONE_TIME_CODE)
-                    ->setIcon('circle-check'),
+                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                    ->icon('circle-check'),
             ]),
         ];
     }

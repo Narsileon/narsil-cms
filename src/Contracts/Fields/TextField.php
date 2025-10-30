@@ -17,16 +17,14 @@ interface TextField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
-     * Set the autocomplete attribute.
+     * Set the auto complete attribute.
      *
-     * @param AutoCompleteEnum $autoComplete
+     * @param string $autoComplete
      *
      * @return static
      */
-    public function setAutoComplete(AutoCompleteEnum $autoComplete): static;
+    public function autoComplete(string $autoComplete): static;
 
     /**
      * Set the default value.
@@ -35,7 +33,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setDefaultvalue(string $value): static;
+    public function defaultvalue(string $value): static;
 
     /**
      * Set the icon attribute.
@@ -44,7 +42,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setIcon(string $icon): static;
+    public function icon(string $icon): static;
 
     /**
      * Set the max length attribute.
@@ -53,7 +51,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setMaxLength(string $maxLength): static;
+    public function maxLength(string $maxLength): static;
 
     /**
      * Set the min length attribute.
@@ -62,7 +60,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setMinLength(string $minLength): static;
+    public function minLength(string $minLength): static;
 
     /**
      * Set the placeholder attribute.
@@ -71,7 +69,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setPlaceholder(string $placeholder): static;
+    public function placeholder(string $placeholder): static;
 
     /**
      * Set the required attribute.
@@ -80,7 +78,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
+    public function required(bool $required): static;
 
     /**
      * Set the smart values attribute.
@@ -89,7 +87,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setSmartValues(string $smartValues): static;
+    public function smartValues(string $smartValues): static;
 
     /**
      * Set the type attribute.
@@ -98,9 +96,7 @@ interface TextField extends Contract
      *
      * @return static
      */
-    public function setType(string $type): static;
-
-    #endregion
+    public function type(string $type): static;
 
     #endregion
 }

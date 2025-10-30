@@ -16,8 +16,6 @@ interface RangeField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,7 +23,7 @@ interface RangeField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(array $value): static;
+    public function defaultValue(array $value): static;
 
     /**
      * Set the max attribute.
@@ -34,7 +32,7 @@ interface RangeField extends Contract
      *
      * @return static
      */
-    public function setMax(float|int $max): static;
+    public function max(float|int $max): static;
 
     /**
      * Set the min attribute.
@@ -43,7 +41,7 @@ interface RangeField extends Contract
      *
      * @return static
      */
-    public function setMin(float|int $min): static;
+    public function min(float|int $min): static;
 
     /**
      * Set the step attribute.
@@ -52,9 +50,7 @@ interface RangeField extends Contract
      *
      * @return static
      */
-    public function setStep(float|int $step): static;
-
-    #endregion
+    public function step(float|int $step): static;
 
     #endregion
 }

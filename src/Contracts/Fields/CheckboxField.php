@@ -16,8 +16,6 @@ interface CheckboxField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,7 +23,7 @@ interface CheckboxField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(array|bool $value): static;
+    public function defaultValue(array|bool $value): static;
 
     /**
      * Set the options attribute.
@@ -34,7 +32,7 @@ interface CheckboxField extends Contract
      *
      * @return static
      */
-    public function setOptions(array $options): static;
+    public function options(array $options): static;
 
     /**
      * Set the required attribute.
@@ -43,9 +41,7 @@ interface CheckboxField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
-
-    #endregion
+    public function required(bool $required): static;
 
     #endregion
 }

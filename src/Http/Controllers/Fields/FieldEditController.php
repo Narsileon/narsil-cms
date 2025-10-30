@@ -77,8 +77,7 @@ class FieldEditController extends AbstractController
      */
     protected function getForm(Field $field): FieldForm
     {
-        $form = app()
-            ->make(FieldForm::class)
+        $form = app(FieldForm::class)
             ->setAction(route('fields.update', $field->{Field::ID}))
             ->setId($field->{Field::ID})
             ->setMethod(MethodEnum::PATCH)

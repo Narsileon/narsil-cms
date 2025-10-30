@@ -4,8 +4,7 @@ namespace Narsil\Support;
 
 #region USE
 
-use JsonSerializable;
-use Narsil\Enums\Forms\MethodEnum;
+use Illuminate\Support\Fluent;
 
 #endregion
 
@@ -13,154 +12,9 @@ use Narsil\Enums\Forms\MethodEnum;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MenuItem implements JsonSerializable
+class MenuItem extends Fluent
 {
-    #region PROPERTIES
-
-    /**
-     * The group of the menu item.
-     *
-     * @var ?string
-     */
-    protected ?string $group = null;
-
-    /**
-     * The href of the anchor.
-     *
-     * @var ?string
-     */
-    protected ?string $href = null;
-
-    /**
-     * The label of the menu item.
-     *
-     * @var ?string
-     */
-    protected ?string $label = null;
-
-    /**
-     * The icon of the menu item.
-     *
-     * @var ?string
-     */
-    protected ?string $icon = null;
-
-    /**
-     * The method of the anchor.
-     *
-     * @var ?string
-     */
-    protected ?string $method = MethodEnum::GET->value;
-
-    /**
-     * The modal toggle.
-     *
-     * @var ?boolean
-     */
-    protected ?bool $modal = null;
-
-    /**
-     * The target of the anchor.
-     *
-     * @var ?string
-     */
-    protected ?string $target = null;
-
-    #endregion
-
     #region PUBLIC METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    public function jsonSerialize(): mixed
-    {
-        return array_filter([
-            'group' => $this->getGroup(),
-            'href' => $this->getHref(),
-            'icon' => $this->getIcon(),
-            'label' => $this->getLabel(),
-            'method' => $this->getMethod(),
-            'modal' => $this->getModal(),
-            'target' => $this->getTarget(),
-        ]);
-    }
-
-    #region • GETTERS
-
-    /**
-     * Get the group of the menu item.
-     *
-     * @return string|null
-     */
-    final public function getGroup(): ?string
-    {
-        return $this->group;
-    }
-
-    /**
-     * Get the href of the anchor.
-     *
-     * @return string|null
-     */
-    final public function getHref(): ?string
-    {
-        return $this->href;
-    }
-
-    /**
-     * Get the icon of the menu item.
-     *
-     * @return string|null
-     */
-    final public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    /**
-     * Get the label of the menu item.
-     *
-     * @return string|null
-     */
-    final public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    /**
-     * Get the method of the anchor.
-     *
-     * @return string|null
-     */
-    final public function getMethod(): ?string
-    {
-        return $this->method;
-    }
-
-    /**
-     * Get the modal toggle.
-     *
-     * @return boolean|null
-     */
-    final public function getModal(): ?bool
-    {
-        return $this->modal;
-    }
-
-    /**
-     * Get the target of the anchor.
-     *
-     * @return string|null
-     */
-    final public function getTarget(): ?string
-    {
-        return $this->target;
-    }
-
-    #endregion
-
-    #region • SETTERS
 
     /**
      * Set the group of the menu item.
@@ -169,9 +23,9 @@ class MenuItem implements JsonSerializable
      *
      * @return static
      */
-    final public function setGroup(string $group): static
+    final public function group(string $group): static
     {
-        $this->group = $group;
+        $this->set('group', $group);
 
         return $this;
     }
@@ -183,9 +37,9 @@ class MenuItem implements JsonSerializable
      *
      * @return static
      */
-    final public function setHref(string $href): static
+    final public function href(string $href): static
     {
-        $this->href = $href;
+        $this->set('href', $href);
 
         return $this;
     }
@@ -197,9 +51,9 @@ class MenuItem implements JsonSerializable
      *
      * @return static
      */
-    final public function setIcon(string $icon): static
+    final public function icon(string $icon): static
     {
-        $this->icon = $icon;
+        $this->set('icon', $icon);
 
         return $this;
     }
@@ -211,9 +65,9 @@ class MenuItem implements JsonSerializable
      *
      * @return static
      */
-    final public function setLabel(string $label): static
+    final public function label(string $label): static
     {
-        $this->label = $label;
+        $this->set('label', $label);
 
         return $this;
     }
@@ -221,13 +75,13 @@ class MenuItem implements JsonSerializable
     /**
      * Set the method of the anchor.
      *
-     * @param MethodEnum $method
+     * @param string $method
      *
      * @return static
      */
-    final public function setMethod(MethodEnum $method): static
+    final public function method(string $method): static
     {
-        $this->method = $method->value;
+        $this->set('method', $method);
 
         return $this;
     }
@@ -239,9 +93,9 @@ class MenuItem implements JsonSerializable
      *
      * @return static
      */
-    final public function setModal(bool $modal): static
+    final public function modal(bool $modal): static
     {
-        $this->modal = $modal;
+        $this->set('modal', $modal);
 
         return $this;
     }
@@ -253,14 +107,12 @@ class MenuItem implements JsonSerializable
      *
      * @return static
      */
-    final public function setTarget(string $target): static
+    final public function target(string $target): static
     {
-        $this->target = $target;
+        $this->set('target', $target);
 
         return $this;
     }
-
-    #endregion
 
     #endregion
 }

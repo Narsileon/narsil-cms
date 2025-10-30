@@ -65,7 +65,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -74,7 +74,7 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.handle'),
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ])
                 ]),
                 new TemplateSectionElement([
@@ -83,8 +83,8 @@ class TemplateForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.sections'),
                         Field::TYPE => RelationsField::class,
                         Field::SETTINGS => app(RelationsField::class)
-                            ->setForm(app(TemplateSectionForm::class)->jsonSerialize())
-                            ->setIntermediate(
+                            ->form(app(TemplateSectionForm::class)->jsonSerialize())
+                            ->intermediate(
                                 label: trans('narsil::ui.section'),
                                 optionLabel: TemplateSection::NAME,
                                 optionValue: TemplateSection::HANDLE,
@@ -93,7 +93,7 @@ class TemplateForm extends AbstractForm implements Contract
                                     Field::NAME => trans('narsil::validation.attributes.elements'),
                                     Field::TYPE => RelationsField::class,
                                     Field::SETTINGS => app(RelationsField::class)
-                                        ->setForm(app(BlockElementForm::class)->jsonSerialize())
+                                        ->form(app(BlockElementForm::class)->jsonSerialize())
                                         ->addOption(
                                             identifier: Block::TABLE,
                                             label: trans('narsil::models.' . Block::class),
@@ -110,10 +110,10 @@ class TemplateForm extends AbstractForm implements Contract
                                             options: $fieldSelectOptions,
                                             routes: RouteService::getNames(Field::TABLE),
                                         )
-                                        ->setWidthOptions($widthSelectOptions),
+                                        ->widthOptions($widthSelectOptions),
                                 ])
                             )
-                            ->setPlaceholder(trans('narsil::ui.add_section')),
+                            ->placeholder(trans('narsil::ui.add_section')),
                     ])
                 ]),
             ]),

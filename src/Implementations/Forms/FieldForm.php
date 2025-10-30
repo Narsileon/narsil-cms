@@ -82,7 +82,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
                 new TemplateSectionElement([
@@ -91,7 +91,7 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::ui.default_handle'),
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
                 new TemplateSectionElement([
@@ -100,10 +100,10 @@ class FieldForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.type'),
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
-                            ->setOptions($typeSelectOptions)
-                            ->setPlaceholder(trans('narsil::placeholders.search'))
-                            ->setReload('layout')
-                            ->setRequired(true),
+                            ->options($typeSelectOptions)
+                            ->placeholder(trans('narsil::placeholders.search'))
+                            ->reload('layout')
+                            ->required(true),
 
                     ]),
                 ]),
@@ -133,7 +133,7 @@ class FieldForm extends AbstractForm implements Contract
                             Field::NAME => trans("narsil::ui.rules"),
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class)
-                                ->setOptions(RuleEnum::options()),
+                                ->options(RuleEnum::options()),
                         ]),
                     ]),
                 ],

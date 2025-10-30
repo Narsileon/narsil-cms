@@ -16,8 +16,6 @@ interface TextareaField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,7 +23,7 @@ interface TextareaField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(string $value): static;
+    public function defaultValue(string $value): static;
 
     /**
      * Set the placeholder attribute.
@@ -34,7 +32,7 @@ interface TextareaField extends Contract
      *
      * @return static
      */
-    public function setPlaceholder(string $placeholder): static;
+    public function placeholder(string $placeholder): static;
 
     /**
      * Set the required attribute.
@@ -43,9 +41,7 @@ interface TextareaField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
-
-    #endregion
+    public function required(bool $required): static;
 
     #endregion
 }

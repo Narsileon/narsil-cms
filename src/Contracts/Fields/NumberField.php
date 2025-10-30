@@ -16,8 +16,6 @@ interface NumberField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,7 +23,7 @@ interface NumberField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(float|int $value): static;
+    public function defaultValue(float|int $value): static;
 
     /**
      * Set the max attribute.
@@ -34,7 +32,7 @@ interface NumberField extends Contract
      *
      * @return static
      */
-    public function setMax(string $max): static;
+    public function max(string $max): static;
 
     /**
      * Set the min attribute.
@@ -43,7 +41,7 @@ interface NumberField extends Contract
      *
      * @return static
      */
-    public function setMin(string $min): static;
+    public function min(string $min): static;
 
     /**
      * Set the required attribute.
@@ -52,7 +50,7 @@ interface NumberField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
+    public function required(bool $required): static;
 
     /**
      * Set the step attribute.
@@ -61,9 +59,7 @@ interface NumberField extends Contract
      *
      * @return static
      */
-    public function setStep(string $step): static;
-
-    #endregion
+    public function step(string $step): static;
 
     #endregion
 }

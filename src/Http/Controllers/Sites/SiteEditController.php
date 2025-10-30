@@ -83,8 +83,7 @@ class SiteEditController extends AbstractController
      */
     protected function getForm(Host $host): SiteForm
     {
-        $form = app()
-            ->make(SiteForm::class)
+        $form = app(SiteForm::class)
             ->setAction(route('sites.update', $host->{Host::HANDLE}))
             ->setId($host->{Host::ID})
             ->setMethod(MethodEnum::PATCH)

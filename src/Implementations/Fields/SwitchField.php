@@ -23,7 +23,7 @@ class SwitchField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->setDefaultValue(false);
+        $this->defaultValue(false);
     }
 
     #endregion
@@ -58,9 +58,9 @@ class SwitchField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(array|bool $value): static
+    final public function defaultValue(array|bool $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }

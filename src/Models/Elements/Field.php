@@ -199,7 +199,7 @@ class Field extends Model
     {
         if ($type = $this->{self::TYPE})
         {
-            $class = app()->make($type);
+            $class = app($type);
 
             return $class::getIcon();
         }

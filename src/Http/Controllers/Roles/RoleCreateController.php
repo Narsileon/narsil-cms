@@ -51,8 +51,7 @@ class RoleCreateController extends AbstractController
      */
     protected function getForm(): RoleForm
     {
-        $form = app()
-            ->make(RoleForm::class)
+        $form = app(RoleForm::class)
             ->setAction(route('roles.store'))
             ->setMethod(MethodEnum::POST)
             ->setSubmitLabel(trans('narsil::ui.save'));

@@ -23,7 +23,7 @@ class TableField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->setDefaultValue([]);
+        $this->defaultValue([]);
 
         app(TranslationsBag::class)
             ->add('narsil::ui.move')
@@ -55,9 +55,9 @@ class TableField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setColumns(array $columns): static
+    final public function columns(array $columns): static
     {
-        $this->props['columns'] = $columns;
+        $this->set('columns', $columns);
 
         return $this;
     }
@@ -65,9 +65,9 @@ class TableField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(array $value): static
+    final public function defaultValue(array $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -75,9 +75,9 @@ class TableField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }

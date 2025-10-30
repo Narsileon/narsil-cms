@@ -49,14 +49,14 @@ class TemplateSectionForm extends AbstractForm implements Contract
                 Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setRequired(true),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => TemplateSection::HANDLE,
                 Field::NAME => trans('narsil::validation.attributes.handle'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setRequired(true),
+                    ->required(true),
             ]),
         ];
     }

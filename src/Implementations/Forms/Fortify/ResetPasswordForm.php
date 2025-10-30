@@ -51,25 +51,25 @@ class ResetPasswordForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.email'),
                 Field::TYPE => EmailField::class,
                 Field::SETTINGS => app(EmailField::class)
-                    ->setAutoComplete(AutoCompleteEnum::EMAIL)
-                    ->setIcon('email')
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::EMAIL->value)
+                    ->icon('email')
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->setAutoComplete(AutoCompleteEnum::NEW_PASSWORD)
-                    ->setRequired(true),
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                    ->required(true),
             ]),
         ];
     }

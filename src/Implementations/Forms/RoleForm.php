@@ -60,7 +60,7 @@ class RoleForm extends AbstractForm implements Contract
                     Field::NAME => trans("narsil::tables.{$category}"),
                     Field::TYPE => CheckboxField::class,
                     Field::SETTINGS => app(CheckboxField::class)
-                        ->setOptions($options),
+                        ->options($options),
                 ]),
             ]);
         })->values()->toArray();
@@ -74,7 +74,7 @@ class RoleForm extends AbstractForm implements Contract
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
                 new TemplateSectionElement([
@@ -83,7 +83,7 @@ class RoleForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.handle'),
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
             ]),

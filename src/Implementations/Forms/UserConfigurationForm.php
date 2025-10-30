@@ -59,28 +59,28 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.language'),
                 Field::TYPE => SelectField::class,
                 Field::SETTINGS => app(SelectField::class)
-                    ->setDefaultValue(App::getLocale())
-                    ->setOptions($localeSelectOptions)
-                    ->setRequired(true),
+                    ->defaultValue(App::getLocale())
+                    ->options($localeSelectOptions)
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::COLOR,
                 Field::NAME => trans('narsil::validation.attributes.color'),
                 Field::TYPE => SelectField::class,
                 Field::SETTINGS => app(SelectField::class)
-                    ->setDefaultValue(ColorEnum::GRAY->value)
-                    ->setOptions(ColorEnum::options())
-                    ->setRequired(true),
+                    ->defaultValue(ColorEnum::GRAY->value)
+                    ->options(ColorEnum::options())
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => UserConfiguration::RADIUS,
                 Field::NAME => trans('narsil::validation.attributes.radius'),
                 Field::TYPE => RangeField::class,
                 Field::SETTINGS => app(RangeField::class)
-                    ->setDefaultValue([0.50])
-                    ->setMax(1)
-                    ->setMin(0)
-                    ->setStep(0.05),
+                    ->defaultValue([0.50])
+                    ->max(1)
+                    ->min(0)
+                    ->step(0.05),
             ]),
         ];
     }

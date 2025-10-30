@@ -24,7 +24,7 @@ class TextareaField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->setDefaultValue('');
+        $this->defaultValue('');
     }
 
     #endregion
@@ -59,9 +59,9 @@ class TextareaField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(string $value): static
+    final public function defaultValue(string $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -69,9 +69,9 @@ class TextareaField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }
@@ -79,9 +79,9 @@ class TextareaField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }

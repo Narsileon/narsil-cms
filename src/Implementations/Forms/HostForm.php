@@ -69,7 +69,7 @@ class HostForm extends AbstractForm implements Contract
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
                 new TemplateSectionElement([
@@ -78,7 +78,7 @@ class HostForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.handle'),
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(TextField::class)
-                            ->setRequired(true),
+                            ->required(true),
                     ]),
                 ]),
                 new TemplateSectionElement([
@@ -87,7 +87,7 @@ class HostForm extends AbstractForm implements Contract
                         Field::NAME => trans('narsil::validation.attributes.locales'),
                         Field::TYPE => ArrayField::class,
                         Field::SETTINGS => app(ArrayField::class)
-                            ->setBlock(new Block([
+                            ->block(new Block([
                                 Block::RELATION_ELEMENTS => [
                                     new BlockElement([
                                         BlockElement::RELATION_ELEMENT => new Field([
@@ -95,7 +95,7 @@ class HostForm extends AbstractForm implements Contract
                                             Field::NAME => trans('narsil::validation.attributes.pattern'),
                                             Field::TYPE => TextField::class,
                                             Field::SETTINGS => app(TextField::class)
-                                                ->setRequired(true),
+                                                ->required(true),
                                         ]),
                                     ]),
                                     new BlockElement([
@@ -104,7 +104,7 @@ class HostForm extends AbstractForm implements Contract
                                             Field::NAME => trans('narsil::validation.attributes.country'),
                                             Field::TYPE => SelectField::class,
                                             Field::SETTINGS => app(SelectField::class)
-                                                ->setOptions($countrySelectOptions),
+                                                ->options($countrySelectOptions),
                                         ]),
                                     ]),
                                     new BlockElement([
@@ -113,22 +113,22 @@ class HostForm extends AbstractForm implements Contract
                                             Field::NAME => trans('narsil::validation.attributes.languages'),
                                             Field::TYPE => TableField::class,
                                             Field::SETTINGS => app(TableField::class)
-                                                ->setColumns([
+                                                ->columns([
                                                     new Field([
                                                         Field::HANDLE => HostLocaleLanguage::LANGUAGE,
                                                         Field::NAME => trans('narsil::validation.attributes.language'),
                                                         Field::TYPE => SelectField::class,
                                                         Field::SETTINGS => app(SelectField::class)
-                                                            ->setOptions($languageSelectOptions)
-                                                            ->setRequired(true),
+                                                            ->options($languageSelectOptions)
+                                                            ->required(true),
                                                     ]),
                                                 ])
-                                                ->setPlaceholder(trans('narsil::ui.add')),
+                                                ->placeholder(trans('narsil::ui.add')),
                                         ])
                                     ]),
                                 ],
                             ]))
-                            ->setLabelKey(HostLocale::COUNTRY),
+                            ->labelKey(HostLocale::COUNTRY),
                     ]),
                 ]),
             ]),

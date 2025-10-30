@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\SelectField as Contract;
 use Narsil\Contracts\Fields\TableField;
+use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
@@ -25,7 +26,7 @@ class SelectField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->setDefaultValue('');
+        $this->defaultValue('');
     }
 
     #endregion
@@ -43,23 +44,23 @@ class SelectField extends AbstractField implements Contract
                 Field::NAME => trans('narsil::validation.attributes.options'),
                 Field::TYPE => TableField::class,
                 Field::SETTINGS => app(TableField::class)
-                    ->setColumns([
+                    ->columns([
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
                             Field::NAME => trans('narsil::validation.attributes.value'),
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
-                                ->setRequired(true),
+                                ->required(true),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
                             Field::NAME => trans('narsil::validation.attributes.label'),
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
-                                ->setRequired(true),
+                                ->required(true),
                         ]),
                     ])
-                    ->setPlaceholder(trans('narsil::ui.add')),
+                    ->placeholder(trans('narsil::ui.add')),
             ]),
         ];
     }
@@ -77,9 +78,9 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(string $value): static
+    final public function defaultValue(string $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -87,9 +88,9 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDisplayValue(bool $displayValue): static
+    final public function displayValue(bool $displayValue): static
     {
-        $this->props['displayValue'] = $displayValue;
+        $this->set('displayValue', $displayValue);
 
         return $this;
     }
@@ -97,9 +98,9 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMultiple(bool $multiple): static
+    final public function multiple(bool $multiple): static
     {
-        $this->props['multiple'] = $multiple;
+        $this->set('multiple', $multiple);
 
         return $this;
     }
@@ -107,9 +108,9 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setOptions(array $options): static
+    final public function options(array $options): static
     {
-        $this->props['options'] = $options;
+        $this->set('options', $options);
 
         return $this;
     }
@@ -117,9 +118,9 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }
@@ -127,9 +128,9 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setReload(string $reload): static
+    final public function reload(string $reload): static
     {
-        $this->props['reload'] = $reload;
+        $this->set('reload', $reload);
 
         return $this;
     }
@@ -137,9 +138,9 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }

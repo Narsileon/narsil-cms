@@ -16,8 +16,6 @@ interface BuilderField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -25,9 +23,7 @@ interface BuilderField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(array $value): static;
-
-    #endregion
+    public function defaultValue(array $value): static;
 
     #endregion
 }

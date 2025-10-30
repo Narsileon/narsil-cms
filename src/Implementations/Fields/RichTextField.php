@@ -28,7 +28,7 @@ class RichTextField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->setDefaultValue('');
+        $this->defaultValue('');
 
         app(TranslationsBag::class)
             ->add('narsil::rich-text-editor.toggles.align_center')
@@ -75,7 +75,7 @@ class RichTextField extends AbstractField implements Contract
                 Field::NAME => trans("narsil::ui.modules"),
                 Field::TYPE => CheckboxField::class,
                 Field::SETTINGS => app(CheckboxField::class)
-                    ->setOptions(RichTextEditorEnum::options()),
+                    ->options(RichTextEditorEnum::options()),
             ]),
         ];
     }
@@ -93,9 +93,9 @@ class RichTextField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(string $value): static
+    final public function defaultValue(string $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -103,9 +103,9 @@ class RichTextField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setModules(array $modules): static
+    final public function modules(array $modules): static
     {
-        $this->props['modules'] = $modules;
+        $this->set('modules', $modules);
 
         return $this;
     }
@@ -113,9 +113,9 @@ class RichTextField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }
@@ -123,9 +123,9 @@ class RichTextField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }

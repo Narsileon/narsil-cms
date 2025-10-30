@@ -24,9 +24,9 @@ class FileField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->props['type'] = 'file';
+        $this->set('type', 'file');
 
-        $this->setDefaultValue('');
+        $this->defaultValue('');
     }
 
     #endregion
@@ -61,9 +61,9 @@ class FileField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setAccept(string $accept): static
+    final public function accept(string $accept): static
     {
-        $this->props['accept'] = $accept;
+        $this->set('accept', $accept);
 
         return $this;
     }
@@ -71,9 +71,9 @@ class FileField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(string $value): static
+    final public function defaultValue(string $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -81,9 +81,9 @@ class FileField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setIcon(string $icon): static
+    final public function icon(string $icon): static
     {
-        $this->props['icon'] = $icon;
+        $this->set('icon', $icon);
 
         return $this;
     }
@@ -91,9 +91,9 @@ class FileField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }

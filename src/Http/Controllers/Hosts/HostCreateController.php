@@ -51,8 +51,7 @@ class HostCreateController extends AbstractController
      */
     protected function getForm(): HostForm
     {
-        $form = app()
-            ->make(HostForm::class)
+        $form = app(HostForm::class)
             ->setAction(route('hosts.store'))
             ->setMethod(MethodEnum::POST)
             ->setSubmitLabel(trans('narsil::ui.save'));

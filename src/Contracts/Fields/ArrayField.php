@@ -17,8 +17,6 @@ interface ArrayField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
      * Set the default value.
      *
@@ -26,7 +24,7 @@ interface ArrayField extends Contract
      *
      * @return static
      */
-    public function setDefaultValue(array $value): static;
+    public function defaultValue(array $value): static;
 
     /**
      * Set the block attribute.
@@ -35,7 +33,7 @@ interface ArrayField extends Contract
      *
      * @return static
      */
-    public function setBlock(Block $block): static;
+    public function block(Block $block): static;
 
     /**
      * Set the label key.
@@ -44,7 +42,7 @@ interface ArrayField extends Contract
      *
      * @return static
      */
-    public function setLabelKey(string $labelKey): static;
+    public function labelKey(string $labelKey): static;
 
     /**
      * Set the required attribute.
@@ -53,9 +51,7 @@ interface ArrayField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
-
-    #endregion
+    public function required(bool $required): static;
 
     #endregion
 }

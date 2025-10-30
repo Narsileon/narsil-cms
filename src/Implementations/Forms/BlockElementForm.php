@@ -49,14 +49,14 @@ class BlockElementForm extends AbstractForm implements Contract
                 Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setRequired(true),
+                    ->required(true),
             ]),
             new Field([
                 Field::HANDLE => BlockElement::HANDLE,
                 Field::NAME => trans('narsil::validation.attributes.handle'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
-                    ->setRequired(true),
+                    ->required(true),
             ]),
         ];
     }

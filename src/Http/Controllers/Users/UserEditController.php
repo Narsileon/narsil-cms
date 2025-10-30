@@ -77,8 +77,7 @@ class UserEditController extends AbstractController
      */
     protected function getForm(User $user): UserForm
     {
-        $form = app()
-            ->make(UserForm::class)
+        $form = app(UserForm::class)
             ->setAction(route('users.update', $user->{User::ID}))
             ->setId($user->{User::ID})
             ->setMethod(MethodEnum::PATCH)

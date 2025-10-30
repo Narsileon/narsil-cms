@@ -75,8 +75,7 @@ class LoginController extends AbstractController
      */
     protected function getForm(): LoginForm
     {
-        $form = app()
-            ->make(LoginForm::class);
+        $form = app(LoginForm::class);
 
         return $form;
     }

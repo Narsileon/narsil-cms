@@ -4,7 +4,7 @@ namespace Narsil\Implementations;
 
 #region USE
 
-use JsonSerializable;
+use Illuminate\Support\Fluent;
 use Narsil\Contracts\Field;
 
 #endregion
@@ -13,37 +13,16 @@ use Narsil\Contracts\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractField implements Field, JsonSerializable
+abstract class AbstractField extends Fluent implements Field
 {
-    #region PROPERTIES
-
-    /**
-     * The props of the field.
-     *
-     * @var array The props of the field.
-     */
-    protected array $props = [];
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function jsonSerialize(): mixed
+    final public function append(string $append): static
     {
-        return $this->props;
-    }
-
-    #region • SETTERS
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function setAppend(string $append): static
-    {
-        $this->props['append'] = $append;
+        $this->set('append', $append);
 
         return $this;
     }
@@ -51,14 +30,12 @@ abstract class AbstractField implements Field, JsonSerializable
     /**
      * {@inheritDoc}
      */
-    final public function setClassName(string $className): static
+    final public function className(string $className): static
     {
-        $this->props['className'] = $className;
+        $this->set('className', $className);
 
         return $this;
     }
-
-    #endregion
 
     #endregion
 }

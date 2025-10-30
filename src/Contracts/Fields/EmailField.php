@@ -5,7 +5,6 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
-use Narsil\Enums\Forms\AutoCompleteEnum;
 
 #endregion
 
@@ -17,16 +16,14 @@ interface EmailField extends Contract
 {
     #region PUBLIC METHODS
 
-    #region • SETTERS
-
     /**
-     * Set the autocomplete attribute.
+     * Set the auto complete attribute.
      *
-     * @param AutoCompleteEnum $autoComplete
+     * @param string $autoComplete
      *
      * @return static
      */
-    public function setAutoComplete(AutoCompleteEnum $autoComplete): static;
+    public function autoComplete(string $autoComplete): static;
 
     /**
      * Set the default value.
@@ -35,7 +32,7 @@ interface EmailField extends Contract
      *
      * @return static
      */
-    public function setDefaultvalue(string $value): static;
+    public function defaultvalue(string $value): static;
 
     /**
      * Set the icon attribute.
@@ -44,7 +41,7 @@ interface EmailField extends Contract
      *
      * @return static
      */
-    public function setIcon(string $icon): static;
+    public function icon(string $icon): static;
 
     /**
      * Set the multiple attribute.
@@ -53,7 +50,7 @@ interface EmailField extends Contract
      *
      * @return static
      */
-    public function setMultiple(bool $multiple): static;
+    public function multiple(bool $multiple): static;
 
     /**
      * Set the placeholder attribute.
@@ -62,7 +59,7 @@ interface EmailField extends Contract
      *
      * @return static
      */
-    public function setPlaceholder(string $placeholder): static;
+    public function placeholder(string $placeholder): static;
 
     /**
      * Set the required attribute.
@@ -71,9 +68,7 @@ interface EmailField extends Contract
      *
      * @return static
      */
-    public function setRequired(bool $required): static;
-
-    #endregion
+    public function required(bool $required): static;
 
     #endregion
 }

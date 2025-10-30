@@ -25,9 +25,9 @@ class PasswordField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        $this->props['type'] = 'password';
+        $this->set('type', 'password');
 
-        $this->setDefaultValue('');
+        $this->defaultValue('');
 
         app(TranslationsBag::class)
             ->add('narsil::accessibility.hide_password')
@@ -55,19 +55,20 @@ class PasswordField extends AbstractField implements Contract
                 Field::NAME => trans('narsil::validation.attributes.min_length'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
-                    ->setMax(255)
-                    ->setMin(0)
-                    ->setStep(1),
+                    ->max(255)
+                    ->min(0)
+                    ->step(1)
+                    ->defaultValue(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
                 Field::NAME => trans('narsil::validation.attributes.max_length'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
-                    ->setMax(255)
-                    ->setMin(0)
-                    ->setStep(1)
-                    ->setDefaultValue(255),
+                    ->max(255)
+                    ->min(0)
+                    ->step(1)
+                    ->defaultValue(255),
             ]),
         ];
     }
@@ -85,9 +86,9 @@ class PasswordField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setAutoComplete(AutoCompleteEnum $autoComplete): static
+    final public function autoComplete(string $autoComplete): static
     {
-        $this->props['autoComplete'] = $autoComplete->value;
+        $this->set('autoComplete', $autoComplete);
 
         return $this;
     }
@@ -95,9 +96,9 @@ class PasswordField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setDefaultValue(string $value): static
+    final public function defaultValue(string $value): static
     {
-        $this->props['value'] = $value;
+        $this->set('value', $value);
 
         return $this;
     }
@@ -105,9 +106,9 @@ class PasswordField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setIcon(string $icon): static
+    final public function icon(string $icon): static
     {
-        $this->props['icon'] = $icon;
+        $this->set('icon', $icon);
 
         return $this;
     }
@@ -115,9 +116,9 @@ class PasswordField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMaxLength(string $maxLength): static
+    final public function maxLength(string $maxLength): static
     {
-        $this->props['maxLength'] = $maxLength;
+        $this->set('maxLength', $maxLength);
 
         return $this;
     }
@@ -125,9 +126,9 @@ class PasswordField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setMinLength(string $minLength): static
+    final public function minLength(string $minLength): static
     {
-        $this->props['minLength'] = $minLength;
+        $this->set('minLength', $minLength);
 
         return $this;
     }
@@ -135,9 +136,9 @@ class PasswordField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setPlaceholder(string $placeholder): static
+    final public function placeholder(string $placeholder): static
     {
-        $this->props['placeholder'] = $placeholder;
+        $this->set('placeholder', $placeholder);
 
         return $this;
     }
@@ -145,9 +146,9 @@ class PasswordField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function setRequired(bool $required): static
+    final public function required(bool $required): static
     {
-        $this->props['required'] = $required;
+        $this->set('required', $required);
 
         return $this;
     }
