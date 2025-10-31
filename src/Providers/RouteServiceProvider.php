@@ -42,8 +42,12 @@ class RouteServiceProvider extends ServiceProvider
     protected function bootApiRoutes(): void
     {
 
-        Route::middleware('api')
+        Route::middleware([
+            'api',
+            'auth:sanctum',
+        ])
             ->prefix('api')
+            ->as('api.')
             ->group(__DIR__ . '/../../routes/api.php');
     }
 
@@ -73,6 +77,8 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::middleware([
             'web',
+            'auth',
+            'verified',
             'narsil-web',
         ])
             ->prefix('narsil')

@@ -7,19 +7,5 @@ use Narsil\Http\Controllers\Entities\EntityIndexController;
 
 #endregion
 
-Route::middleware([
-    'auth:sanctum',
-])->as('api.')->group(
-    function ()
-    {
-        #region COLLECTIONS
-
-        Route::controller(EntityIndexController::class)->group(function ()
-        {
-            Route::get('collections/{collection}', 'index')
-                ->name('collections.index');
-        });
-
-        #endregion
-    }
-);
+Route::get('collections/{collection}', EntityIndexController::class)
+    ->name('collections.index');
