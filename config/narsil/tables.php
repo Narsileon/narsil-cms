@@ -1,24 +1,5 @@
 <?php
 
-#region USE
-
-use Narsil\Implementations\Tables\BlockTable;
-use Narsil\Implementations\Tables\EntityTable;
-use Narsil\Implementations\Tables\FieldTable;
-use Narsil\Implementations\Tables\HostTable;
-use Narsil\Implementations\Tables\RoleTable;
-use Narsil\Implementations\Tables\TemplateTable;
-use Narsil\Implementations\Tables\UserTable;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Policies\Role;
-use Narsil\Models\User;
-
-#endregion
-
 return [
 
     /*
@@ -26,15 +7,15 @@ return [
     | Tables Implementations
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between table names and their templates.
+    | Mapping between table names and their templates.
     |
     */
 
-    Block::TABLE => BlockTable::class,
-    Entity::TABLE => EntityTable::class,
-    Field::TABLE => FieldTable::class,
-    Host::TABLE => HostTable::class,
-    Role::TABLE => RoleTable::class,
-    Template::TABLE => TemplateTable::class,
-    User::TABLE => UserTable::class,
+    \Narsil\Models\Elements\Block::TABLE => \Narsil\Implementations\Tables\BlockTable::class,
+    \Narsil\Models\Elements\Field::TABLE => \Narsil\Implementations\Tables\FieldTable::class,
+    \Narsil\Models\Elements\Template::TABLE => \Narsil\Implementations\Tables\TemplateTable::class,
+    \Narsil\Models\Entities\Entity::TABLE => \Narsil\Implementations\Tables\EntityTable::class,
+    \Narsil\Models\Hosts\Host::TABLE => \Narsil\Implementations\Tables\HostTable::class,
+    \Narsil\Models\Policies\Role::TABLE => \Narsil\Implementations\Tables\RoleTable::class,
+    \Narsil\Models\User::TABLE => \Narsil\Implementations\Tables\UserTable::class,
 ];

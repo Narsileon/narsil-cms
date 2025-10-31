@@ -7,7 +7,7 @@ return [
     | Menu Implementations
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between component contracts and their concrete implementations.
+    | Mapping between component contracts and their concrete implementations.
     |
     */
 

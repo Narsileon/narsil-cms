@@ -7,7 +7,7 @@ return [
     | Model Observers
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between models and their obervers.
+    | Mapping between models and their obervers.
     |
     */
 

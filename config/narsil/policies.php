@@ -7,7 +7,7 @@ return [
     | Model Policies
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between models and their policies.
+    | Mapping between models and their policies.
     |
     */
 

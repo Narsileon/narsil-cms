@@ -4,10 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Form Request Implementations
+    | Narsil - Form Request Implementations
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between form request contracts and their concrete implementations.
+    | Mapping between form request contracts and their concrete implementations.
     |
     */
 
@@ -20,6 +20,15 @@ return [
     \Narsil\Contracts\FormRequests\TemplateFormRequest::class => \Narsil\Http\Requests\TemplateFormRequest::class,
     \Narsil\Contracts\FormRequests\UserConfigurationFormRequest::class => \Narsil\Http\Requests\UserConfigurationFormRequest::class,
     \Narsil\Contracts\FormRequests\UserFormRequest::class => \Narsil\Http\Requests\UserFormRequest::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Fortify - Form Request Implementations
+    |--------------------------------------------------------------------------
+    |
+    | Mapping between form request contracts and their concrete implementations.
+    |
+    */
 
     \Narsil\Contracts\FormRequests\Fortify\CreateNewUserFormRequest::class => \Narsil\Http\Requests\Fortify\CreateNewUserFormRequest::class,
     \Narsil\Contracts\FormRequests\Fortify\ResetUserPasswordFormRequest::class => \Narsil\Http\Requests\Fortify\ResetUserPasswordFormRequest::class,

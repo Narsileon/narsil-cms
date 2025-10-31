@@ -7,7 +7,7 @@ return [
     | Field Implementations
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between field contracts and their concrete implementations.
+    | Mapping between field contracts and their concrete implementations.
     |
     */
 

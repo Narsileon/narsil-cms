@@ -4,10 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Form Implementations
+    | Narsil - Form Implementations
     |--------------------------------------------------------------------------
     |
-    | This file defines a mapping between form contracts and their concrete implementations.
+    | Mapping between form contracts and their concrete implementations.
     |
     */
 
@@ -23,6 +23,15 @@ return [
     \Narsil\Contracts\Forms\TemplateSectionForm::class => \Narsil\Implementations\Forms\TemplateSectionForm::class,
     \Narsil\Contracts\Forms\UserConfigurationForm::class => \Narsil\Implementations\Forms\UserConfigurationForm::class,
     \Narsil\Contracts\Forms\UserForm::class => \Narsil\Implementations\Forms\UserForm::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Fortify - Form Implementations
+    |--------------------------------------------------------------------------
+    |
+    | Mapping between form contracts and their concrete implementations.
+    |
+    */
 
     \Narsil\Contracts\Forms\Fortify\ConfirmPasswordForm::class => \Narsil\Implementations\Forms\Fortify\ConfirmPasswordForm::class,
     \Narsil\Contracts\Forms\Fortify\ForgotPasswordForm::class => \Narsil\Implementations\Forms\Fortify\ForgotPasswordForm::class,
