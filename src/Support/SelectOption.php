@@ -86,5 +86,20 @@ class SelectOption extends Fluent
         return $this;
     }
 
+    /**
+     * Set the associated uuid.
+     *
+     * @param string $uuid
+     *
+     * @return static
+     */
+    final public function uuid(string $uuid): static
+    {
+        $this->set('uuid', $uuid);
+
+        return $this;
+    }
+
+
     #endregion
 }

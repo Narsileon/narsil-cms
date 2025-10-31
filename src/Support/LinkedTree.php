@@ -5,8 +5,7 @@ namespace Narsil\Support;
 #region USE
 
 use Illuminate\Support\Collection;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\TreeModel;
 
 #endregion
 
@@ -14,21 +13,18 @@ use Narsil\Models\Hosts\HostPage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostTree
+class LinkedTree
 {
     #region CONSTRUCTOR
 
     /**
-     * @param Host $host
+     * @param Collection<string,TreeModel> $collection
      *
      * @return void
      */
-    public function __construct(Host $host)
+    public function __construct(Collection $collection)
     {
-        $this->collection = HostPage::query()
-            ->where(HostPage::HOST_ID, $host->{Host::ID})
-            ->get()
-            ->groupBy(HostPage::PARENT_ID);
+        $this->collection = $collection;
     }
 
     #endregion
@@ -36,7 +32,7 @@ class HostTree
     #region PROPERTIES
 
     /**
-     * @var Collection<string,HostPage>
+     * @var Collection<string,TreeModel>
      */
     protected readonly Collection $collection;
 
@@ -49,9 +45,9 @@ class HostTree
      */
     public function getFlatTree(): array
     {
-        $hostPages = collect($this->collection->get('', []));
+        $nodes = collect($this->collection->get('', []));
 
-        $flatTree = $this->buildFlatTreeRecursively($hostPages);
+        $flatTree = $this->buildFlatTreeRecursively($nodes);
 
         return $flatTree->toArray();
     }
@@ -61,9 +57,9 @@ class HostTree
      */
     public function getNestedTree(): array
     {
-        $hostPages = collect($this->collection->get('', []));
+        $nodes = collect($this->collection->get('', []));
 
-        $nestedTree = $this->buildNestedTreeRecursively($hostPages);
+        $nestedTree = $this->buildNestedTreeRecursively($nodes);
 
         return $nestedTree->toArray();
     }
@@ -73,7 +69,7 @@ class HostTree
     #region PROTECTED METHODS
 
     /**
-     * @param Collection<HostPage> $collection
+     * @param Collection<TreeModel> $collection
      *
      * @return Collection
      */
@@ -83,20 +79,20 @@ class HostTree
 
         $collection = $this->sortByNeighbors($collection);
 
-        $collection->each(function ($hostPage) use (&$tree)
+        $collection->each(function ($model) use (&$tree)
         {
-            $children = $this->collection->get($hostPage->{HostPage::ID}, collect());
+            $children = $this->collection->get($model->{TreeModel::ID}, collect());
 
             $tree = $tree->merge($this->buildFlatTreeRecursively($children));
 
-            $tree->push($hostPage);
+            $tree->push($model);
         });
 
         return $tree;
     }
 
     /**
-     * @param Collection<HostPage> $collection
+     * @param Collection<TreeModel> $collection
      *
      * @return Collection
      */
@@ -106,20 +102,20 @@ class HostTree
 
         $collection = $this->sortByNeighbors($collection);
 
-        $collection->each(function ($hostPage) use (&$tree)
+        $collection->each(function ($model) use (&$tree)
         {
-            $children = $this->collection->get($hostPage->{HostPage::ID}, collect());
+            $children = $this->collection->get($model->{TreeModel::ID}, collect());
 
-            $hostPage->children = $this->buildNestedTreeRecursively($children);
+            $model->{TreeModel::RELATION_CHILDREN} = $this->buildNestedTreeRecursively($children);
 
-            $tree->push($hostPage);
+            $tree->push($model);
         });
 
         return $tree;
     }
 
     /**
-     * @param Collection<HostPage> $collection
+     * @param Collection<TreeModel> $collection
      *
      * @return Collection
      */
@@ -130,17 +126,17 @@ class HostTree
             return $collection;
         }
 
-        $keyedCollection = $collection->keyBy(HostPage::ID);
+        $keyedCollection = $collection->keyBy(TreeModel::ID);
 
         $sortedCollection = collect();
 
-        $current = $collection->firstWhere(HostPage::LEFT_ID, null);
+        $current = $collection->firstWhere(TreeModel::LEFT_ID, null);
 
         while ($current)
         {
             $sortedCollection->push($current);
 
-            $nextKey = $current->{HostPage::RIGHT_ID};
+            $nextKey = $current->{TreeModel::RIGHT_ID};
 
             $current = $nextKey ? $keyedCollection->get($nextKey) : null;
         }
