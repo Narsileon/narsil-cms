@@ -17,29 +17,6 @@ use Narsil\Models\User;
  */
 class CreateNewUser implements CreatesNewUsers
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param CreateNewUserFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(CreateNewUserFormRequest $formRequest)
-    {
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var CreateNewUserFormRequest
-     */
-    protected readonly CreateNewUserFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -49,7 +26,8 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        $rules = $this->formRequest->rules();
+        $rules = app(CreateNewUserFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($input, $rules)
             ->validated();

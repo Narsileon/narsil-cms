@@ -17,29 +17,6 @@ use Narsil\Models\User;
  */
 class ResetUserPassword implements ResetsUserPasswords
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param ResetUserPasswordFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(ResetUserPasswordFormRequest $formRequest)
-    {
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var ResetUserPasswordFormRequest
-     */
-    protected readonly ResetUserPasswordFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -50,7 +27,8 @@ class ResetUserPassword implements ResetsUserPasswords
      */
     public function reset(User $user, array $input): void
     {
-        $rules = $this->formRequest->rules();
+        $rules = app(ResetUserPasswordFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($input, $rules)
             ->validated();

@@ -35,7 +35,8 @@ class FieldStoreController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(FieldFormRequest::class)->rules();
+        $rules = app(FieldFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();

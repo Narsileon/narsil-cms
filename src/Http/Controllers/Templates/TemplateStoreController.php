@@ -36,7 +36,8 @@ class TemplateStoreController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(TemplateFormRequest::class)->rules();
+        $rules = app(TemplateFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();

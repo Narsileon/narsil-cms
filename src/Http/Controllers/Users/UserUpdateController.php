@@ -35,7 +35,8 @@ class UserUpdateController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(UserFormRequest::class)->rules($user);
+        $rules = app(UserFormRequest::class)
+            ->rules($user);
 
         if (empty(Arr::get($data, User::PASSWORD)))
         {

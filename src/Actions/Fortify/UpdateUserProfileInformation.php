@@ -17,29 +17,6 @@ use Narsil\Models\User;
  */
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param UpdateUserProfileInformationFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(UpdateUserProfileInformationFormRequest $formRequest)
-    {
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var UpdateUserProfileInformationFormRequest
-     */
-    protected readonly UpdateUserProfileInformationFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -50,7 +27,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
-        $rules = $this->formRequest->rules();
+        $rules = app(UpdateUserProfileInformationFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($input, $rules)
             ->validated();

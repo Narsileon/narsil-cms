@@ -37,7 +37,8 @@ class TemplateUpdateController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(TemplateFormRequest::class)->rules($template);
+        $rules = app(TemplateFormRequest::class)
+            ->rules($template);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

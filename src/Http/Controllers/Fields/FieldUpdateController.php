@@ -36,7 +36,8 @@ class FieldUpdateController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(FieldFormRequest::class)->rules($field);
+        $rules = app(FieldFormRequest::class)
+            ->rules($field);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

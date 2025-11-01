@@ -32,7 +32,8 @@ class UserConfigurationUpdateController extends AbstractController
     {
         $data = $request->all();
 
-        $rules = app(UserconfigurationFormRequest::class)->rules();
+        $rules = app(UserconfigurationFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();

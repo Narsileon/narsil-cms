@@ -17,29 +17,6 @@ use Narsil\Models\User;
  */
 class UpdateUserPassword implements UpdatesUserPasswords
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param UpdateUserPasswordFormRequest $formRequest
-     *
-     * @return void
-     */
-    public function __construct(UpdateUserPasswordFormRequest $formRequest)
-    {
-        $this->formRequest = $formRequest;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var UpdateUserPasswordFormRequest
-     */
-    protected readonly UpdateUserPasswordFormRequest $formRequest;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -50,7 +27,8 @@ class UpdateUserPassword implements UpdatesUserPasswords
      */
     public function update(User $user, array $input): void
     {
-        $rules = $this->formRequest->rules();
+        $rules = app(UpdateUserPasswordFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($input, $rules)
             ->validated();

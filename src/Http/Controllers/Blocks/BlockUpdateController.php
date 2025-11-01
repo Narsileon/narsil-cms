@@ -36,7 +36,8 @@ class BlockUpdateController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(BlockFormRequest::class)->rules($block);
+        $rules = app(BlockFormRequest::class)
+            ->rules($block);
 
         $attributes = Validator::make($data, $rules)
             ->validated();

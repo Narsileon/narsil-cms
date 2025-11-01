@@ -33,7 +33,8 @@ class UserStoreController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(UserFormRequest::class)->rules();
+        $rules = app(UserFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();

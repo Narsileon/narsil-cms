@@ -35,7 +35,8 @@ class BlockStoreController extends AbstractController
 
         $data = $request->all();
 
-        $rules = app(BlockFormRequest::class)->rules();
+        $rules = app(BlockFormRequest::class)
+            ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
