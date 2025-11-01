@@ -188,7 +188,9 @@ class Field extends Model
 
     #endregion
 
-    #region ACCESSORS
+    #region PUBLIC METHODS
+
+    #region • ACCESSORS
 
     /**
      * Get the icon of the field.
@@ -208,8 +210,6 @@ class Field extends Model
     }
 
     #endregion
-
-    #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
 

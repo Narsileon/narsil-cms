@@ -106,31 +106,38 @@ class FortifyServiceProvider extends ServiceProvider
     {
         Fortify::confirmPasswordView(function ()
         {
-            return app(ConfirmPasswordController::class)->__invoke(request());
+            return app(ConfirmPasswordController::class)
+                ->__invoke(request());
         });
         Fortify::loginView(function ()
         {
-            return app(LoginController::class)->__invoke(request());
+            return app(LoginController::class)
+                ->__invoke(request());
         });
         Fortify::registerView(function ()
         {
-            return app(RegisterController::class)->__invoke(request());
+            return app(RegisterController::class)
+                ->__invoke(request());
         });
         Fortify::requestPasswordResetLinkView(function ()
         {
-            return app(ForgotPasswordController::class)->__invoke(request());
+            return app(ForgotPasswordController::class)
+                ->__invoke(request());
         });
         Fortify::resetPasswordView(function ()
         {
-            return app(ResetPasswordController::class)->__invoke(request());
+            return app(ResetPasswordController::class)
+                ->__invoke(request());
         });
         Fortify::twoFactorChallengeView(function ()
         {
-            return app(TwoFactorChallengeController::class)->__invoke(request());
+            return app(TwoFactorChallengeController::class)
+                ->__invoke(request());
         });
         Fortify::verifyEmailView(function ()
         {
-            return app(VerifyEmailController::class)->__invoke(request());
+            return app(VerifyEmailController::class)
+                ->__invoke(request());
         });
     }
 
@@ -143,7 +150,8 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                return redirect()->intended(route('dashboard'))
+                return redirect()
+                    ->intended(route('dashboard'))
                     ->with('success', trans('narsil::toasts.success.logged_in'));
             }
         });
@@ -173,7 +181,8 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                return redirect()->intended(route('dashboard'))
+                return redirect()
+                    ->intended(route('dashboard'))
                     ->with('success', trans('narsil::toasts.success.password.confirmed'));
             }
         });

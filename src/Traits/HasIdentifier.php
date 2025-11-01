@@ -23,7 +23,9 @@ trait HasIdentifier
 
     #endregion
 
-    #region ACCESSORS
+    #region PUBLIC METHODS
+
+    #region • ACCESSORS
 
     /**
      * Get the associated identifier.
@@ -37,6 +39,8 @@ trait HasIdentifier
 
         return !empty($key) ? "$table-$key" : $table;
     }
+
+    #endregion
 
     #endregion
 }

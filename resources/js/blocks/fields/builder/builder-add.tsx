@@ -49,7 +49,7 @@ function BuilderAdd({ blocks, separatorClassName, onAdd, ...props }: BuilderAddP
     >
       <div
         className={cn(
-          "h-2 w-px border-l border-dashed transition-transform duration-500 ease-out",
+          "h-2 w-px border-x border-dashed transition-transform duration-500 ease-out",
           (hovered || open) && "h-4",
           separatorClassName,
         )}
@@ -88,7 +88,7 @@ function BuilderAdd({ blocks, separatorClassName, onAdd, ...props }: BuilderAddP
       </DropdownMenuRoot>
       <div
         className={cn(
-          "h-2 w-px border-l border-dashed transition-transform duration-500 ease-out",
+          "h-2 w-px border-x border-dashed transition-transform duration-500 ease-out",
           (hovered || open) && "h-4",
           separatorClassName,
         )}

@@ -105,7 +105,7 @@ function Builder({ blocks, name }: BuilderProps) {
           <BackgroundRoot>
             <BackgroundGrid id={name} />
           </BackgroundRoot>
-          <div className="size-4 rounded-full bg-constructive" />
+          <div className="size-2.5 rounded-full bg-constructive" />
           {items.map((item, index) => {
             const baseHandle = `${name}.${index}`;
 
@@ -138,7 +138,7 @@ function Builder({ blocks, name }: BuilderProps) {
             separatorClassName="border-destructive"
             onAdd={(item) => setItems([...items, item])}
           />
-          <div className="size-4 rounded-full bg-destructive" />
+          <div className="size-2.5 rounded-full bg-destructive" />
         </div>
       </SortableContext>
       <DragOverlay>
