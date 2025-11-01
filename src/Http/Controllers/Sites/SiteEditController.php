@@ -13,6 +13,8 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\Sites\SiteResource;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocale;
+use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -34,6 +36,7 @@ class SiteEditController extends AbstractController
     {
         $host = Host::query()
             ->with([
+                Host::RELATION_LOCALES,
                 Host::RELATION_PAGES,
             ])
             ->where(Host::HANDLE, $site)
@@ -50,15 +53,41 @@ class SiteEditController extends AbstractController
         $form = $this->getForm($host)
             ->formData($data);
 
+        $countries = $this->getCountrySelectOptions($host);
+
         return $this->render(
             component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
+            props: [
+                ...$form->jsonSerialize(),
+                'countries' => $countries,
+            ],
         );
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * Get the country select options.
+     *
+     * @param Host $host
+     *
+     * @return array<SelectOption>
+     */
+    protected function getCountrySelectOptions(Host $host): array
+    {
+        $options = [];
+
+        foreach ($host->{Host::RELATION_LOCALES} as $locale)
+        {
+            $options[] = new SelectOption()
+                ->optionLabel($locale->{HostLocale::COUNTRY})
+                ->optionValue($locale->{HostLocale::COUNTRY});
+        }
+
+        return $options;
+    }
 
     /**
      * Get the associated data.

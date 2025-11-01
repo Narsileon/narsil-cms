@@ -69,6 +69,13 @@ class HostPage extends TreeModel
     final public const HOST_ID = 'host_id';
 
     /**
+     * The name of the "host locale uuid" column.
+     *
+     * @var string
+     */
+    final public const HOST_LOCALE_UUID = 'host_locale_uuid';
+
+    /**
      * The name of the "meta description" column.
      *
      * @var string
@@ -136,6 +143,13 @@ class HostPage extends TreeModel
      */
     final public const RELATION_HOST = 'host';
 
+    /**
+     * The name of the "locale" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_LOCALE = 'locale';
+
     #endregion
 
     #endregion
@@ -156,6 +170,21 @@ class HostPage extends TreeModel
                 Host::class,
                 self::HOST_ID,
                 Host::ID
+            );
+    }
+
+    /**
+     * Get the associated locale.
+     *
+     * @return BelongsTo
+     */
+    public function locale(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                HostLocale::class,
+                self::HOST_LOCALE_UUID,
+                HostLocale::UUID
             );
     }
 

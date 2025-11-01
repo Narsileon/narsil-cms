@@ -41,6 +41,7 @@ class HostObserver
     {
         HostPage::create([
             HostPage::HOST_ID => $host->{Host::ID},
+            HostPage::TITLE => 'Root',
         ]);
     }
 

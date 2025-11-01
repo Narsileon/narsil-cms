@@ -6,6 +6,7 @@ namespace Narsil\Http\Controllers\HostPages;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostPageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -40,13 +41,49 @@ class HostPageStoreController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $hostPage = HostPage::create($attributes);
+        $lastChild = $this->findLastChild($attributes);
+
+        $hostPage = HostPage::create(array_merge($attributes, [
+            HostPage::LEFT_ID => $lastChild?->{HostPage::ID},
+        ]));
+
+        if ($lastChild)
+        {
+            $lastChild->update([
+                HostPage::RIGHT_ID => $hostPage->{HostPage::ID},
+            ]);
+        }
 
         $resource = new HostPageResource($hostPage)->resolve();
 
         return back()
             ->with('data', $resource)
             ->with('success', trans('narsil::toasts.success.host_pages.created'));
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the last child of the parent.
+     *
+     * @param array $attributes
+     *
+     * @return ?HostPage
+     */
+    protected static function findLastChild(array $attributes): ?HostPage
+    {
+        $hostId = Arr::get($attributes, HostPage::HOST_ID);
+        $parentId = Arr::get($attributes, HostPage::PARENT_ID);
+
+        $hostPage = HostPage::query()
+            ->where(HostPage::HOST_ID, $hostId)
+            ->where(HostPage::PARENT_ID, $parentId)
+            ->where(HostPage::RIGHT_ID, null)
+            ->first();
+
+        return $hostPage;
     }
 
     #endregion
