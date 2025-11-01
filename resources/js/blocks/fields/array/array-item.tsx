@@ -12,7 +12,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
-import type { Block } from "@narsil-cms/types";
+import type { Block, Field } from "@narsil-cms/types";
 import { ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
 
@@ -25,12 +25,12 @@ type ArrayItemProps = Pick<
   index?: number;
   item: ArrayElement;
   labelKey: string;
-  block?: Block;
+  form?: (Block | Field)[];
   onItemChange?: (value: ArrayElement) => void;
 };
 
 function ArrayItem({
-  block,
+  form,
   handle,
   index,
   item,
@@ -80,15 +80,15 @@ function ArrayItem({
             </SortableItemMenu>
           </CardHeader>
         </CollapsibleTrigger>
-        {block ? (
+        {form ? (
           <CollapsibleContent>
             <CardContent className="grow">
-              {block?.elements.map((item) => {
-                const defaultHandle = item.handle ?? item.element.handle;
+              {form?.map((item) => {
+                const defaultHandle = item.handle;
 
                 const finalHandle = `${handle}.${index}.${defaultHandle}`;
 
-                return <FormRenderer {...item.element} handle={finalHandle} key={defaultHandle} />;
+                return <FormRenderer {...item} handle={finalHandle} key={defaultHandle} />;
               })}
             </CardContent>
           </CollapsibleContent>

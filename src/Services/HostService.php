@@ -88,34 +88,31 @@ abstract class HostService
      */
     public static function syncLocales(Host $host, array $locales): void
     {
+        $currentLocales = $host->locales()->get()->keyBy(HostLocale::UUID);
+
         $processed = [];
 
         foreach ($locales as $position => $locale)
         {
-            $id = Arr::get($locale, HostLocale::UUID);
+            $uuid = Arr::get($locale, HostLocale::UUID);
 
-            $hostLocale = $host
-                ->locales()
-                ->find($id);
+            $attributes = [
+                HostLocale::COUNTRY  => Arr::get($locale, HostLocale::COUNTRY),
+                HostLocale::PATTERN  => Arr::get($locale, HostLocale::PATTERN),
+                HostLocale::POSITION => $position,
+            ];
+
+            $hostLocale = $currentLocales->get($uuid);
 
             if ($hostLocale)
             {
-                $hostLocale
-                    ->update([
-                        HostLocale::COUNTRY => Arr::get($locale, HostLocale::COUNTRY),
-                        HostLocale::PATTERN => Arr::get($locale, HostLocale::PATTERN),
-                        HostLocale::POSITION => $position,
-                    ]);
+                $hostLocale->update($attributes);
             }
             else
             {
                 $hostLocale = $host
                     ->locales()
-                    ->create([
-                        HostLocale::COUNTRY => Arr::get($locale, HostLocale::COUNTRY),
-                        HostLocale::PATTERN => Arr::get($locale, HostLocale::PATTERN),
-                        HostLocale::POSITION => $position,
-                    ]);
+                    ->create($attributes);
             }
 
             $processed[] = $hostLocale->{HostLocale::UUID};

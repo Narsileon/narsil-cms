@@ -66,9 +66,9 @@ class ArrayField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function block(Block $block): static
+    final public function form(array $form): static
     {
-        $this->set('block', $block);
+        $this->set('form', $form);
 
         return $this;
     }

@@ -6,6 +6,7 @@ namespace Narsil\Models\Hosts;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasTranslations;
@@ -36,6 +37,7 @@ class Host extends Model
         ];
 
         $this->with = [
+            self::RELATION_DEFAULT_LOCALE,
             self::RELATION_LOCALES,
         ];
 
@@ -94,6 +96,13 @@ class Host extends Model
     #region • RELATIONS
 
     /**
+     * The name of the "default locale" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_DEFAULT_LOCALE = 'default_locale';
+
+    /**
      * The name of the "locales" relation.
      *
      * @var string
@@ -116,6 +125,22 @@ class Host extends Model
     #region • RELATIONSHIPS
 
     /**
+     * Get the default locale.
+     *
+     * @return HasOne
+     */
+    public function default_locale(): HasOne
+    {
+        return $this
+            ->hasOne(
+                HostLocale::class,
+                HostLocale::HOST_ID,
+                self::ID,
+            )
+            ->where(HostLocale::COUNTRY, '=', 'default');
+    }
+
+    /**
      * Get the associated locales.
      *
      * @return HasMany
@@ -128,6 +153,7 @@ class Host extends Model
                 HostLocale::HOST_ID,
                 self::ID,
             )
+            ->where(HostLocale::COUNTRY, '!=', 'default')
             ->orderBy(HostLocale::POSITION);
     }
 

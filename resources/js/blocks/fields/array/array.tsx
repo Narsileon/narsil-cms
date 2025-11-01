@@ -14,20 +14,20 @@ import {
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Button } from "@narsil-cms/blocks";
 import { useLocalization } from "@narsil-cms/components/localization";
-import type { Block } from "@narsil-cms/types";
+import type { Block, Field } from "@narsil-cms/types";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrayItem, type ArrayElement } from ".";
 
 type ArrayProps = {
-  block: Block;
+  form: (Block | Field)[];
   id: string;
   items: ArrayElement[];
   labelKey: string;
   setItems: (items: ArrayElement[]) => void;
 };
 
-function Array({ block, id, items, labelKey, setItems }: ArrayProps) {
+function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
   const { trans } = useLocalization();
 
   const [active, setActive] = useState<ArrayElement | null>(null);
@@ -98,7 +98,7 @@ function Array({ block, id, items, labelKey, setItems }: ArrayProps) {
             {items.map((item, index) => {
               return (
                 <ArrayItem
-                  block={block}
+                  form={form}
                   handle={id}
                   id={item.uuid}
                   index={index}

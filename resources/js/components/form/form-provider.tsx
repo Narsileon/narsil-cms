@@ -1,6 +1,7 @@
 import { useForm } from "@inertiajs/react";
 import { getFieldDefaultValue } from "@narsil-cms/lib/field";
 import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
+import { set } from "lodash";
 import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 
@@ -38,11 +39,11 @@ function FormProvider({
           if ("elements" in childElement) {
             Object.assign(receivedValues, flattenValues([childElement]));
           } else if ("type" in childElement) {
-            receivedValues[blockElement.handle] = getFieldDefaultValue(childElement);
+            set(receivedValues, blockElement.handle, getFieldDefaultValue(childElement));
           }
         });
       } else if ("type" in element) {
-        receivedValues[element.handle] = getFieldDefaultValue(element);
+        set(receivedValues, element.handle, getFieldDefaultValue(element));
       }
     });
 

@@ -135,6 +135,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignUuid(HostPage::HOST_LOCALE_UUID)
+                ->nullable()
                 ->constrained(HostLocale::TABLE, HostLocale::UUID)
                 ->cascadeOnDelete();
             $blueprint

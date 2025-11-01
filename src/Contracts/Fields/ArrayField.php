@@ -27,13 +27,13 @@ interface ArrayField extends Contract
     public function defaultValue(array $value): static;
 
     /**
-     * Set the block attribute.
+     * Set the form attribute.
      *
-     * @param Block $block
+     * @param array $form
      *
      * @return static
      */
-    public function block(Block $block): static;
+    public function form(array $form): static;
 
     /**
      * Set the label key.

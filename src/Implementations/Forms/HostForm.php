@@ -4,12 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
-use Locale;
 use Narsil\Contracts\Fields\ArrayField;
-use Narsil\Contracts\Fields\SelectField;
-use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -19,10 +14,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
-use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Services\RouteService;
-use Narsil\Support\SelectOption;
-use ResourceBundle;
 
 #endregion
 
@@ -57,8 +49,7 @@ class HostForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
-        $countrySelectOptions = $this->getCountrySelectOptions();
-        $languageSelectOptions = $this->getLanguageSelectOptions();
+        $hostLocaleForm = app(HostLocaleForm::class);
 
         return [
             static::mainSection([
@@ -82,147 +73,40 @@ class HostForm extends AbstractForm implements Contract
                     ]),
                 ]),
                 new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Host::RELATION_LOCALES,
-                        Field::NAME => trans('narsil::validation.attributes.locales'),
-                        Field::TYPE => ArrayField::class,
-                        Field::SETTINGS => app(ArrayField::class)
-                            ->block(new Block([
-                                Block::RELATION_ELEMENTS => [
-                                    new BlockElement([
-                                        BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => HostLocale::PATTERN,
-                                            Field::NAME => trans('narsil::validation.attributes.pattern'),
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class)
-                                                ->required(true),
-                                        ]),
-                                    ]),
-                                    new BlockElement([
-                                        BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => HostLocale::COUNTRY,
-                                            Field::NAME => trans('narsil::validation.attributes.country'),
-                                            Field::TYPE => SelectField::class,
-                                            Field::SETTINGS => app(SelectField::class)
-                                                ->options($countrySelectOptions),
-                                        ]),
-                                    ]),
-                                    new BlockElement([
-                                        BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => HostLocale::RELATION_LANGUAGES,
-                                            Field::NAME => trans('narsil::validation.attributes.languages'),
-                                            Field::TYPE => TableField::class,
-                                            Field::SETTINGS => app(TableField::class)
-                                                ->columns([
-                                                    new Field([
-                                                        Field::HANDLE => HostLocaleLanguage::LANGUAGE,
-                                                        Field::NAME => trans('narsil::validation.attributes.language'),
-                                                        Field::TYPE => SelectField::class,
-                                                        Field::SETTINGS => app(SelectField::class)
-                                                            ->options($languageSelectOptions)
-                                                            ->required(true),
-                                                    ]),
-                                                ])
-                                                ->placeholder(trans('narsil::ui.add')),
-                                        ])
-                                    ]),
-                                ],
-                            ]))
-                            ->labelKey(HostLocale::COUNTRY),
+                    TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::NAME => 'Default',
+                        Block::RELATION_ELEMENTS => [
+                            new BlockElement([
+                                BlockElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
+                                BlockElement::RELATION_ELEMENT => $hostLocaleForm->getPatternField(),
+                            ]),
+                            new BlockElement([
+                                BlockElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
+                                BlockElement::RELATION_ELEMENT => $hostLocaleForm->getLanguagesField(),
+                            ]),
+                        ],
+                    ]),
+                ]),
+                new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Block([
+                        Block::NAME => 'Locales',
+                        Block::RELATION_ELEMENTS => [
+                            new BlockElement([
+                                BlockElement::RELATION_ELEMENT => new Field([
+                                    Field::HANDLE => Host::RELATION_LOCALES,
+                                    Field::NAME => trans('narsil::validation.attributes.locales'),
+                                    Field::TYPE => ArrayField::class,
+                                    Field::SETTINGS => app(ArrayField::class)
+                                        ->form($hostLocaleForm->layout)
+                                        ->labelKey(HostLocale::COUNTRY),
+                                ]),
+                            ]),
+                        ],
                     ]),
                 ]),
             ]),
             static::informationSection(),
         ];
-    }
-
-    /**
-     * Get the country select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected function getCountrySelectOptions(): array
-    {
-        $locales = \ResourceBundle::getLocales('');
-
-        $codes = array_filter(array_unique(array_map(function ($locale)
-        {
-            $region = Locale::getRegion($locale);
-
-            if ($region && preg_match('/^[A-Z]{2}$/', $region))
-            {
-                return $region;
-            }
-
-            return null;
-        }, $locales)));
-
-        $options = [];
-
-        foreach ($codes as $code)
-        {
-            $label = Locale::getDisplayRegion('_' . $code, App::getLocale());
-
-            if (!$label || $label === $code)
-            {
-                continue;
-            }
-
-            $options[] = new SelectOption()
-                ->optionLabel(ucfirst($label))
-                ->optionValue($code);
-        }
-
-        usort($options, function (SelectOption $a, SelectOption $b)
-        {
-            return strcasecmp($a->label, $b->label);
-        });
-
-        $defaultOption = new SelectOption()
-            ->optionLabel(trans('narsil::ui.default'))
-            ->optionValue('default');
-
-        array_unshift($options, $defaultOption);
-
-        return array_values($options);
-    }
-
-    /**
-     * Get the language select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected function getLanguageSelectOptions(): array
-    {
-        $locales = ResourceBundle::getLocales('');
-
-        $codes = array_unique(array_map(function ($locale)
-        {
-            return Str::substr($locale, 0, 2);
-        }, $locales));
-
-        $options = [];
-
-        foreach ($codes as $code)
-        {
-            $label = Locale::getDisplayLanguage($code, App::getLocale());
-
-            if (!$label || $label === $code)
-            {
-                continue;
-            }
-
-            $options[] = new SelectOption()
-                ->optionLabel(ucfirst($label))
-                ->optionValue($code);
-        }
-
-        usort($options, function (SelectOption $a, SelectOption $b)
-        {
-            return strcasecmp($a->label, $b->label);
-        });
-
-        return array_values($options);
     }
 
     #endregion
