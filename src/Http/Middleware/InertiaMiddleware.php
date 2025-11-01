@@ -12,7 +12,7 @@ use Inertia\Middleware;
 use Narsil\Contracts\Menus\AuthMenu;
 use Narsil\Contracts\Menus\GuestMenu;
 use Narsil\Contracts\Menus\Sidebar;
-use Narsil\Http\Resources\AuthResource;
+use Narsil\Http\Resources\Users\AuthResource;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Services\BreadcrumbService;
 

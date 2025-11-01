@@ -73,7 +73,7 @@ class SelectField extends AbstractField implements Contract
         return 'select';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}

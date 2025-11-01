@@ -56,7 +56,7 @@ class FileField extends AbstractField implements Contract
         return 'file';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}

@@ -65,7 +65,7 @@ class EmailField extends AbstractField implements Contract
         return 'email';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}

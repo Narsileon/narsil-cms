@@ -53,7 +53,7 @@ class TreeField extends AbstractField implements Contract
         return 'tree';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}

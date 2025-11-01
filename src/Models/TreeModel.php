@@ -52,6 +52,28 @@ class TreeModel extends Model
 
     #endregion
 
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "depth" relation.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_DEPTH = 'depth';
+
+    #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "children" count.
+     *
+     * @var string
+     */
+    final public const COUNT_CHILDREN = 'children_count';
+
+    #endregion
+
     #region • RELATIONS
 
     /**

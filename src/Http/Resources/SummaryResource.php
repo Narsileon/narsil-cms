@@ -12,7 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractSummaryResource extends JsonResource
+class SummaryResource extends JsonResource
 {
     #region CONSTANTS
 

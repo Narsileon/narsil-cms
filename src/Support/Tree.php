@@ -13,7 +13,7 @@ use Narsil\Models\TreeModel;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LinkedTree
+class Tree
 {
     #region CONSTRUCTOR
 
@@ -24,7 +24,7 @@ class LinkedTree
      */
     public function __construct(Collection $collection)
     {
-        $this->collection = $collection;
+        $this->collection = $collection->groupBy(TreeModel::PARENT_ID);
     }
 
     #endregion
@@ -41,27 +41,27 @@ class LinkedTree
     #region PUBLIC METHODS
 
     /**
-     * @return array
+     * @return Collection<TreeModel>
      */
-    public function getFlatTree(): array
+    public function getFlatTree(): Collection
     {
         $nodes = collect($this->collection->get('', []));
 
         $flatTree = $this->buildFlatTreeRecursively($nodes);
 
-        return $flatTree->toArray();
+        return $flatTree;
     }
 
     /**
-     * @return array
+     * @return Collection<TreeModel>
      */
-    public function getNestedTree(): array
+    public function getNestedTree(): Collection
     {
         $nodes = collect($this->collection->get('', []));
 
         $nestedTree = $this->buildNestedTreeRecursively($nodes);
 
-        return $nestedTree->toArray();
+        return $nestedTree;
     }
 
     #endregion
@@ -70,22 +70,26 @@ class LinkedTree
 
     /**
      * @param Collection<TreeModel> $collection
+     * @param int $depth
      *
      * @return Collection
      */
-    protected function buildFlatTreeRecursively(Collection $collection): Collection
+    protected function buildFlatTreeRecursively(Collection $collection, int $depth = 0): Collection
     {
         $tree = collect();
 
         $collection = $this->sortByNeighbors($collection);
 
-        $collection->each(function ($model) use (&$tree)
+        $collection->each(function ($model) use (&$tree, $depth)
         {
             $children = $this->collection->get($model->{TreeModel::ID}, collect());
 
-            $tree = $tree->merge($this->buildFlatTreeRecursively($children));
+            $model->{TreeModel::ATTRIBUTE_DEPTH} = $depth;
+            $model->{TreeModel::COUNT_CHILDREN} = $children;
 
             $tree->push($model);
+
+            $tree = $tree->merge($this->buildFlatTreeRecursively($children, $depth + 1));
         });
 
         return $tree;

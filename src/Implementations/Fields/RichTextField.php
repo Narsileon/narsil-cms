@@ -88,7 +88,7 @@ class RichTextField extends AbstractField implements Contract
         return 'rich-text';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}

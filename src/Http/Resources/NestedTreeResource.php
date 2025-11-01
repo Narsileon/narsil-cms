@@ -14,7 +14,7 @@ use Narsil\Models\TreeModel;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class AbstractTreeResource extends JsonResource
+class NestedTreeResource extends JsonResource
 {
     #region CONSTANTS
 

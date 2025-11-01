@@ -77,7 +77,7 @@ class RangeField extends AbstractField implements Contract
         return 'range';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}

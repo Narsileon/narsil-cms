@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Resources\Summaries\CollectionSummaryResource;
+use Narsil\Http\Resources\Collections\CollectionSummaryResource;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 

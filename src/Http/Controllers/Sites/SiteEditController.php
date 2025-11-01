@@ -11,7 +11,7 @@ use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Resources\SiteResource;
+use Narsil\Http\Resources\Sites\SiteResource;
 use Narsil\Models\Hosts\Host;
 
 #endregion

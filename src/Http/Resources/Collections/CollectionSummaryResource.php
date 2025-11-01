@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Http\Resources\Summaries;
+namespace Narsil\Http\Resources\Collections;
 
 #region USE
 
 use Illuminate\Http\Request;
-use Narsil\Http\Resources\AbstractSummaryResource;
+use Narsil\Http\Resources\SummaryResource;
 use Narsil\Models\Elements\Template;
 
 #endregion
@@ -14,7 +14,7 @@ use Narsil\Models\Elements\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class CollectionSummaryResource extends AbstractSummaryResource
+class CollectionSummaryResource extends SummaryResource
 {
     #region PUBLIC METHODS
 

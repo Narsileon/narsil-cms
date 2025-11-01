@@ -127,7 +127,7 @@ class DataTableCollection extends ResourceCollection
         ]);
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * @param boolean $revisionable

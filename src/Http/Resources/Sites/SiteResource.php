@@ -1,13 +1,14 @@
 <?php
 
-namespace Narsil\Http\Resources;
+namespace Narsil\Http\Resources\Sites;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Narsil\Http\Resources\Trees\HostPageTreeResource;
+use Narsil\Http\Resources\HostPages\HostPageResource;
 use Narsil\Models\Hosts\Host;
+use Narsil\Support\Tree;
 
 #endregion
 
@@ -33,10 +34,14 @@ class SiteResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            Host::ID => $this->{Host::ID},
+        $tree = new Tree($this->{Host::RELATION_PAGES})->getNestedTree();
 
-            Host::RELATION_PAGES => HostPageTreeResource::collection($this->{Host::RELATION_PAGES})->toArray($request),
+        return [
+            Host::HANDLE => $this->{Host::HANDLE},
+            Host::ID => $this->{Host::ID},
+            Host::NAME => $this->{Host::NAME},
+
+            Host::RELATION_PAGES => HostPageResource::collection($tree)->toArray($request),
         ];
     }
 

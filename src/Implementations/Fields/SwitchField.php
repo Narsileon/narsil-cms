@@ -53,7 +53,7 @@ class SwitchField extends AbstractField implements Contract
         return 'switch';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}

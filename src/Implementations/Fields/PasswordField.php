@@ -81,7 +81,7 @@ class PasswordField extends AbstractField implements Contract
         return 'password';
     }
 
-    #region • SETTERS
+    #region • FLUENT
 
     /**
      * {@inheritDoc}
