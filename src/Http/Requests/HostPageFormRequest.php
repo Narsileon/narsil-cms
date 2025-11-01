@@ -32,6 +32,10 @@ class HostPageFormRequest implements Contract
                 FormRule::INTEGER,
                 FormRule::REQUIRED,
             ],
+            HostPage::HOST_LOCALE_UUID => [
+                FormRule::STRING,
+                FormRule::REQUIRED,
+            ],
             HostPage::META_DESCRIPTION => [
                 FormRule::ARRAY,
             ],

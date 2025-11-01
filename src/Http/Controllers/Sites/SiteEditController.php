@@ -83,7 +83,7 @@ class SiteEditController extends AbstractController
         {
             $options[] = new SelectOption()
                 ->optionLabel($locale->{HostLocale::COUNTRY})
-                ->optionValue($locale->{HostLocale::COUNTRY});
+                ->optionValue($locale->{HostLocale::UUID});
         }
 
         return $options;
