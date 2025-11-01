@@ -1,6 +1,7 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import Badge from "@narsil-cms/blocks/badge";
 import { CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-cms/components/collapsible";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -53,7 +54,7 @@ function TreeItem({
     >
       <CardRoot {...props}>
         <CollapsibleTrigger className={cn(disabled && "cursor-default")} asChild={true}>
-          <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0 pr-1 pl-0">
+          <CardHeader className="flex min-h-9 items-center justify-start gap-2 py-0 pr-1 pl-0">
             <SortableHandle
               ref={setActivatorNodeRef}
               {...attributes}
@@ -61,10 +62,12 @@ function TreeItem({
               disabled={disabled}
               tooltip={trans("ui.move")}
             />
-            {item.label ? (
-              <CardTitle className="grow justify-self-start font-normal">{item.label}</CardTitle>
-            ) : null}
+            <div className="flex grow items-center justify-start gap-2">
+              {item.label ? <CardTitle className="font-normal">{item.label}</CardTitle> : null}
+              {item.badge ? <Badge variant="secondary">{item.badge}</Badge> : null}
+            </div>
             <TreeItemMenu
+              className="justify-end"
               item={item}
               onMoveDown={onMoveDown}
               onMoveUp={onMoveUp}

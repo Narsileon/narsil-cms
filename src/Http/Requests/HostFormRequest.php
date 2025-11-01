@@ -49,31 +49,31 @@ class HostFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
 
-            Host::RELATION_LOCALES => [
+            Host::RELATION_OTHER_LOCALES => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::COUNTRY => [
+            Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::COUNTRY => [
                 FormRule::STRING,
                 FormRule::NULLABLE,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::UUID => [
+            Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::UUID => [
                 FormRule::STRING,
                 FormRule::SOMETIMES,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::PATTERN => [
+            Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::PATTERN => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES => [
+            Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES => [
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::UUID => [
+            Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::UUID => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],
-            Host::RELATION_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::LANGUAGE => [
+            Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::LANGUAGE => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
             ],

@@ -54,9 +54,9 @@ class HostStoreController extends AbstractController
             HostLocaleService::syncLanguages($hostLocale, Arr::get($defaultLocale, HostLocale::RELATION_LANGUAGES, []));
         }
 
-        $locales = Arr::get($attributes, Host::RELATION_LOCALES, []);
+        $otherLocales = Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []);
 
-        HostService::syncLocales($host, $locales);
+        HostService::syncOtherLocales($host, $otherLocales);
 
         return $this
             ->redirect(route('hosts.index'))

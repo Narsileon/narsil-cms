@@ -33,6 +33,8 @@ abstract class HostService
                 Host::HANDLE => DatabaseService::generateUniqueValue($replicated, Host::HANDLE, $host->{Host::HANDLE}),
             ])
             ->save();
+
+        static::syncLocales($replicated, $host->locales()->get()->toArray());
     }
 
     /**
@@ -77,6 +79,52 @@ abstract class HostService
 
         $host
             ->locales()
+            ->whereNotIn(HostLocale::UUID, $processed)
+            ->delete();
+    }
+
+    /**
+     * @param Host $host
+     * @param array $locales
+     *
+     * @return void
+     */
+    public static function syncOtherLocales(Host $host, array $locales): void
+    {
+        $currentLocales = $host->other_locales()->get()->keyBy(HostLocale::UUID);
+
+        $processed = [];
+
+        foreach ($locales as $position => $locale)
+        {
+            $uuid = Arr::get($locale, HostLocale::UUID);
+
+            $attributes = [
+                HostLocale::COUNTRY  => Arr::get($locale, HostLocale::COUNTRY),
+                HostLocale::PATTERN  => Arr::get($locale, HostLocale::PATTERN),
+                HostLocale::POSITION => $position,
+            ];
+
+            $hostLocale = $currentLocales->get($uuid);
+
+            if ($hostLocale)
+            {
+                $hostLocale->update($attributes);
+            }
+            else
+            {
+                $hostLocale = $host
+                    ->other_locales()
+                    ->create($attributes);
+            }
+
+            $processed[] = $hostLocale->{HostLocale::UUID};
+
+            HostLocaleService::syncLanguages($hostLocale, Arr::get($locale, HostLocale::RELATION_LANGUAGES, []));
+        }
+
+        $host
+            ->other_locales()
             ->whereNotIn(HostLocale::UUID, $processed)
             ->delete();
     }

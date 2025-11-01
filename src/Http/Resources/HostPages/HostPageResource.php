@@ -6,6 +6,7 @@ namespace Narsil\Http\Resources\HostPages;
 
 use Illuminate\Http\Request;
 use Narsil\Http\Resources\NestedTreeResource;
+use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostPage;
 
 #endregion
@@ -26,12 +27,14 @@ class HostPageResource extends NestedTreeResource
         return [
             ...parent::toArray($request),
 
+            self::BADGE => $this->{HostPage::RELATION_LOCALE}?->{HostLocale::COUNTRY} ?? trans('narsil::ui.default'),
             self::CREATE_URL => route('host-pages.create', [
+                HostLocale::COUNTRY => request('country', 'default'),
                 HostPage::HOST_ID => $this->{HostPage::HOST_ID},
                 HostPage::PARENT_ID => $this->{HostPage::ID},
             ]),
             self::EDIT_URL => route('host-pages.edit', $this->{HostPage::ID}),
-            self::LABEL => $this->{HostPage::TITLE} . ' (' . $this->{HostPage::ID} . ')',
+            self::LABEL => $this->{HostPage::TITLE} . ' [' . $this->{HostPage::ID} . ']',
         ];
     }
 

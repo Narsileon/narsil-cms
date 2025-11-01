@@ -19,6 +19,13 @@ class NestedTreeResource extends JsonResource
     #region CONSTANTS
 
     /**
+     * The name of the "badge" property.
+     *
+     * @var string
+     */
+    final public const BADGE = 'badge';
+
+    /**
      * The name of the "create_url" property.
      *
      * @var string

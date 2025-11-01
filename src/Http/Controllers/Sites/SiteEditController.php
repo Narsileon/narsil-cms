@@ -6,7 +6,9 @@ namespace Narsil\Http\Controllers\Sites;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Inertia\Response;
+use Locale;
 use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -14,6 +16,7 @@ use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\Sites\SiteResource;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
+use Narsil\Models\Hosts\HostPage;
 use Narsil\Support\SelectOption;
 
 #endregion
@@ -38,6 +41,7 @@ class SiteEditController extends AbstractController
             ->with([
                 Host::RELATION_LOCALES,
                 Host::RELATION_PAGES,
+                Host::RELATION_PAGES . '.' . HostPage::RELATION_LOCALE,
             ])
             ->where(Host::HANDLE, $site)
             ->first();
@@ -77,13 +81,19 @@ class SiteEditController extends AbstractController
      */
     protected function getCountrySelectOptions(Host $host): array
     {
-        $options = [];
+        $options = [
+            new SelectOption()
+                ->optionLabel(trans('narsil::ui.default'))
+                ->optionValue('default')
+        ];
 
         foreach ($host->{Host::RELATION_LOCALES} as $locale)
         {
+            $label = Locale::getDisplayRegion('_' . $locale->{HostLocale::COUNTRY}, App::getLocale());
+
             $options[] = new SelectOption()
-                ->optionLabel($locale->{HostLocale::COUNTRY})
-                ->optionValue($locale->{HostLocale::UUID});
+                ->optionLabel($label)
+                ->optionValue($locale->{HostLocale::COUNTRY});
         }
 
         return $options;
@@ -117,7 +127,8 @@ class SiteEditController extends AbstractController
             ->id($host->{Host::ID})
             ->method(MethodEnum::PATCH->value)
             ->languageOptions([])
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'))
+            ->title($host->{Host::NAME});
 
         return $form;
     }

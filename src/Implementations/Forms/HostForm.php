@@ -93,7 +93,7 @@ class HostForm extends AbstractForm implements Contract
                         Block::RELATION_ELEMENTS => [
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => Host::RELATION_LOCALES,
+                                    Field::HANDLE => Host::RELATION_OTHER_LOCALES,
                                     Field::NAME => trans('narsil::validation.attributes.locales'),
                                     Field::TYPE => ArrayField::class,
                                     Field::SETTINGS => app(ArrayField::class)

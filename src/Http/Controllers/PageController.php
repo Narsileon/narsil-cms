@@ -45,6 +45,10 @@ class PageController extends Controller
         $handle = $request->getHost();
 
         $host = Host::query()
+            ->with([
+                Host::RELATION_LOCALES,
+                Host::RELATION_LOCALES . '.' . HostLocale::RELATION_LANGUAGES
+            ])
             ->where(Host::HANDLE, $handle)->firstOrFail();
 
         if (!$host)

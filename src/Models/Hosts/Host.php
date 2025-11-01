@@ -36,11 +36,6 @@ class Host extends Model
             self::NAME,
         ];
 
-        $this->with = [
-            self::RELATION_DEFAULT_LOCALE,
-            self::RELATION_LOCALES,
-        ];
-
         $this->mergeGuarded([
             self::ID,
         ]);
@@ -103,6 +98,13 @@ class Host extends Model
     final public const RELATION_DEFAULT_LOCALE = 'default_locale';
 
     /**
+     * The name of the "other locales" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OTHER_LOCALES = 'other_locales';
+
+    /**
      * The name of the "locales" relation.
      *
      * @var string
@@ -125,7 +127,7 @@ class Host extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the default locale.
+     * Get the default associated locale.
      *
      * @return HasOne
      */
@@ -141,6 +143,23 @@ class Host extends Model
     }
 
     /**
+     * Get the other associated locales.
+     *
+     * @return HasMany
+     */
+    public function other_locales(): HasMany
+    {
+        return $this
+            ->hasMany(
+                HostLocale::class,
+                HostLocale::HOST_ID,
+                self::ID,
+            )
+            ->where(HostLocale::COUNTRY, '!=', 'default')
+            ->orderBy(HostLocale::POSITION);
+    }
+
+    /**
      * Get the associated locales.
      *
      * @return HasMany
@@ -153,7 +172,6 @@ class Host extends Model
                 HostLocale::HOST_ID,
                 self::ID,
             )
-            ->where(HostLocale::COUNTRY, '!=', 'default')
             ->orderBy(HostLocale::POSITION);
     }
 

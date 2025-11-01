@@ -201,7 +201,6 @@ function Tree({ items, setItems }: TreeProps) {
                 disabled={depth === 0}
                 id={item.id}
                 item={item}
-                label={item.id.toString()}
                 style={{ marginLeft: `${depth * 16}px` }}
                 onMoveDown={item.right_id ? () => handleMove(item.id, "down") : undefined}
                 onMoveUp={item.left_id ? () => handleMove(item.id, "up") : undefined}

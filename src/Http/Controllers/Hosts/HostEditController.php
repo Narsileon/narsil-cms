@@ -12,6 +12,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocale;
 
 #endregion
 
@@ -32,6 +33,13 @@ class HostEditController extends AbstractController
     public function __invoke(Request $request, Host $host): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::UPDATE, $host);
+
+        $host->loadMissing([
+            Host::RELATION_DEFAULT_LOCALE,
+            Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
+            Host::RELATION_OTHER_LOCALES,
+            Host::RELATION_OTHER_LOCALES . '.' . HostLocale::RELATION_LANGUAGES
+        ]);
 
         $data = $this->getData($host);
         $form = $this->getForm($host)

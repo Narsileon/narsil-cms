@@ -37,7 +37,6 @@ class SiteSummaryController extends AbstractController
         $locale = App::getLocale();
 
         $hosts = Host::query()
-            ->withoutEagerLoads()
             ->orderBy(Host::NAME . "->$locale", 'asc')
             ->get();
 

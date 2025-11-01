@@ -3,6 +3,7 @@ import TreeItem from "./tree-item";
 import TreeItemMenu from "./tree-item-menu";
 
 type FlatNode = {
+  badge?: string;
   children: NestedNode[];
   collapsed?: boolean;
   data?: Record<string, unknown>;
@@ -17,6 +18,7 @@ type FlatNode = {
 };
 
 type NestedNode = {
+  badge?: string;
   children: NestedNode[];
   data?: Record<string, unknown>;
   id: number | string;

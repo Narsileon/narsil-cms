@@ -12,6 +12,7 @@ use Narsil\Contracts\FormRequests\HostPageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\HostPages\HostPageResource;
+use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostPage;
 
 #endregion
@@ -41,7 +42,11 @@ class HostPageStoreController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $lastChild = $this->findLastChild($attributes);
+        $hostLocale = static::getHostLocale($attributes[HostPage::HOST_ID]);
+
+        $attributes[HostPage::HOST_LOCALE_UUID] = $hostLocale?->{HostLocale::UUID};
+
+        $lastChild = static::findLastChild($attributes);
 
         $hostPage = HostPage::create(array_merge($attributes, [
             HostPage::LEFT_ID => $lastChild?->{HostPage::ID},
@@ -84,6 +89,29 @@ class HostPageStoreController extends AbstractController
             ->first();
 
         return $hostPage;
+    }
+
+    /**
+     * @param integer $hostId
+     *
+     * @return ?HostLocale
+     */
+    protected static function getHostLocale(int $hostId): ?HostLocale
+    {
+        $country = request()->get('country', 'default');
+
+        if ($country === 'default')
+        {
+            return null;
+        }
+
+        $hostLocale = HostLocale::query()
+            ->with(HostLocale::RELATION_HOST)
+            ->where(HostLocale::HOST_ID, $hostId)
+            ->where(HostLocale::COUNTRY, $country)
+            ->first();
+
+        return $hostLocale;
     }
 
     #endregion

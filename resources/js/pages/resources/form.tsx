@@ -1,4 +1,11 @@
-import { Button, Card, Heading, RevisionSelect, SaveButton } from "@narsil-cms/blocks";
+import {
+  Button,
+  Card,
+  CountrySelect,
+  Heading,
+  RevisionSelect,
+  SaveButton,
+} from "@narsil-cms/blocks";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import { FormLanguage, FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -8,11 +15,12 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type { FormType, Revision, TemplateSection } from "@narsil-cms/types";
+import type { FormType, Revision, SelectOption, TemplateSection } from "@narsil-cms/types";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
 type FormProps = FormType & {
+  countries?: SelectOption[];
   data: Record<string, unknown>;
   modal?: ModalType;
   revisions?: Revision[];
@@ -21,6 +29,7 @@ type FormProps = FormType & {
 function ResourceForm({
   action,
   autoSave,
+  countries,
   data,
   defaultLanguage,
   id,
@@ -199,6 +208,7 @@ function ResourceForm({
                       value={formLanguage}
                       onValueChange={setFormLanguage}
                     />
+                    {countries ? <CountrySelect countries={countries} /> : null}
                     {revisions ? <RevisionSelect revisions={revisions} /> : null}
                   </div>
                   <SaveButton
