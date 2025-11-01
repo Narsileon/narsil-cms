@@ -8,6 +8,7 @@ type FlatNode = {
   data?: Record<string, unknown>;
   depth: number;
   id: number | string;
+  label: string;
   left_id: number | string | null;
   parent_id: number | string | null;
   right_id: number | string | null;
@@ -19,6 +20,7 @@ type NestedNode = {
   children: NestedNode[];
   data?: Record<string, unknown>;
   id: number | string;
+  label: string;
   type?: string;
 };
 

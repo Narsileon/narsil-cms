@@ -14,7 +14,6 @@ type TreeItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> &
     disabled?: boolean;
     id: UniqueIdentifier;
     item: FlatNode;
-    label?: UniqueIdentifier;
   };
 
 function TreeItem({
@@ -22,7 +21,6 @@ function TreeItem({
   item,
   disabled,
   id,
-  label,
   style,
   onMoveDown,
   onMoveUp,
@@ -63,8 +61,8 @@ function TreeItem({
               disabled={disabled}
               tooltip={trans("ui.move")}
             />
-            {label ? (
-              <CardTitle className="grow justify-self-start font-normal">{label}</CardTitle>
+            {item.label ? (
+              <CardTitle className="grow justify-self-start font-normal">{item.label}</CardTitle>
             ) : null}
             <TreeItemMenu
               item={item}

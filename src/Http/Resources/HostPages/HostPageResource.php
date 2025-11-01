@@ -26,13 +26,12 @@ class HostPageResource extends NestedTreeResource
         return [
             ...parent::toArray($request),
 
-            HostPage::TITLE => $this->{HostPage::TITLE},
-
             self::CREATE_URL => route('host-pages.create', [
                 HostPage::HOST_ID => $this->{HostPage::HOST_ID},
                 HostPage::PARENT_ID => $this->{HostPage::ID},
             ]),
             self::EDIT_URL => route('host-pages.edit', $this->{HostPage::ID}),
+            self::LABEL => $this->{HostPage::TITLE} . ' (' . $this->{HostPage::ID} . ')',
         ];
     }
 
