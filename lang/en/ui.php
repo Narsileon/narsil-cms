@@ -49,6 +49,7 @@ return [
     'hide'               => 'Hide',
     'home'               => 'Home',
     'information'        => 'Information',
+    'localization'       => 'Localization',
     'log_in'             => 'Log in',
     'log_out'            => 'Log out',
     'main'               => 'Main',

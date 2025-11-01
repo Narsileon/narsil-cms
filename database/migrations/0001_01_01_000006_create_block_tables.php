@@ -116,10 +116,10 @@ return new class extends Migration
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->integer(BlockElement::POSITION)
-                ->nullable();
+                ->default(0);
             $blueprint
                 ->smallInteger(BlockElement::WIDTH)
-                ->nullable();
+                ->default(100);
         });
     }
 

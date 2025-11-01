@@ -106,9 +106,10 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->string(HostLocale::COUNTRY)
-                ->nullable();
+                ->default('default');
             $blueprint
-                ->integer(HostLocale::POSITION);
+                ->integer(HostLocale::POSITION)
+                ->default(0);
             $blueprint
                 ->string(HostLocale::PATTERN);
             $blueprint

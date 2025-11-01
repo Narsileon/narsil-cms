@@ -74,7 +74,7 @@ class HostForm extends AbstractForm implements Contract
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => 'Default',
+                        Block::NAME => trans('narsil::ui.default'),
                         Block::RELATION_ELEMENTS => [
                             new BlockElement([
                                 BlockElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
@@ -89,7 +89,7 @@ class HostForm extends AbstractForm implements Contract
                 ]),
                 new TemplateSectionElement([
                     TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => 'Locales',
+                        Block::NAME => trans('narsil::ui.localization'),
                         Block::RELATION_ELEMENTS => [
                             new BlockElement([
                                 BlockElement::RELATION_ELEMENT => new Field([

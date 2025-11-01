@@ -28,10 +28,8 @@ class HostFormRequest implements Contract
     {
         return [
             Host::HANDLE => [
-                FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
-                FormRule::doesntStartWith('-'),
-                FormRule::doesntEndWith('-'),
+                FormRule::STRING,
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Host::class,
@@ -39,6 +37,15 @@ class HostFormRequest implements Contract
                 )->ignore($model?->{Host::ID}),
             ],
             Host::NAME => [
+                FormRule::REQUIRED,
+            ],
+
+            Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN => [
+                FormRule::STRING,
+                FormRule::REQUIRED,
+            ],
+            Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES => [
+                FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
 

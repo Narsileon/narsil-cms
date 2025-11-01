@@ -36,51 +36,6 @@ abstract class HostService
     }
 
     /**
-     * @param HostLocale $hostLocale
-     * @param array $languages
-     *
-     * @return void
-     */
-    public static function syncLanguages(HostLocale $hostLocale, array $languages): void
-    {
-        $processed = [];
-
-        foreach ($languages as $position => $language)
-        {
-            $id = Arr::get($language, HostLocaleLanguage::UUID);
-
-            $hostLocaleLanguage = $hostLocale
-                ->languages()
-                ->find($id);
-
-            if ($hostLocaleLanguage)
-            {
-                $hostLocaleLanguage
-                    ->update([
-                        HostLocaleLanguage::LANGUAGE => Arr::get($language, HostLocaleLanguage::LANGUAGE),
-                        HostLocaleLanguage::POSITION => $position,
-                    ]);
-            }
-            else
-            {
-                $hostLocaleLanguage = $hostLocale
-                    ->languages()
-                    ->create([
-                        HostLocaleLanguage::LANGUAGE => Arr::get($language, HostLocaleLanguage::LANGUAGE),
-                        HostLocaleLanguage::POSITION => $position,
-                    ]);
-            }
-
-            $processed[] = $hostLocaleLanguage->{HostLocaleLanguage::UUID};
-        }
-
-        $hostLocale
-            ->languages()
-            ->whereNotIn(HostLocaleLanguage::UUID, $processed)
-            ->delete();
-    }
-
-    /**
      * @param Host $host
      * @param array $locales
      *
@@ -117,7 +72,7 @@ abstract class HostService
 
             $processed[] = $hostLocale->{HostLocale::UUID};
 
-            static::syncLanguages($hostLocale, Arr::get($locale, HostLocale::RELATION_LANGUAGES, []));
+            HostLocaleService::syncLanguages($hostLocale, Arr::get($locale, HostLocale::RELATION_LANGUAGES, []));
         }
 
         $host

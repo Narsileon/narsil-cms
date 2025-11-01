@@ -12,6 +12,8 @@ use Narsil\Contracts\FormRequests\HostFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocale;
+use Narsil\Services\HostLocaleService;
 use Narsil\Services\HostService;
 
 #endregion
@@ -43,6 +45,17 @@ class HostUpdateController extends AbstractController
             ->validated();
 
         $host->update($attributes);
+
+        if ($defaultLocale = Arr::get($attributes, Host::RELATION_DEFAULT_LOCALE))
+        {
+            $hostLocale = $host->{Host::RELATION_DEFAULT_LOCALE};
+
+            $hostLocale->update([
+                HostLocale::PATTERN  => Arr::get($defaultLocale, HostLocale::PATTERN),
+            ]);
+
+            HostLocaleService::syncLanguages($hostLocale, Arr::get($defaultLocale, HostLocale::RELATION_LANGUAGES, []));
+        }
 
         $locales = Arr::get($attributes, Host::RELATION_LOCALES, []);
 

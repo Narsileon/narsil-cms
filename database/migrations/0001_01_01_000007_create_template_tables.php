@@ -79,10 +79,10 @@ return new class extends Migration
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
                 ->integer(TemplateSectionElement::POSITION)
-                ->nullable();
+                ->default(0);
             $blueprint
                 ->smallInteger(TemplateSectionElement::WIDTH)
-                ->nullable();
+                ->default(100);
         });
     }
 
