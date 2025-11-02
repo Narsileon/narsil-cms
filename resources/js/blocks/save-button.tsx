@@ -124,7 +124,7 @@ function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
       <Separator orientation="vertical" />
       <DropdownMenuRoot>
         <DropdownMenuTrigger asChild={true}>
-          <Button className="w-7" icon="chevron-down" size="icon" />
+          <Button className="w-8" icon="chevron-down" size="icon" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={saveAndContinue}>

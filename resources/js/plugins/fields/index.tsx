@@ -24,7 +24,7 @@ import { type ReactNode } from "react";
 export type FieldProps = {
   element: Field;
   id: string;
-  placeholder: string;
+  placeholder?: string;
   value: any;
   setValue: (value: any) => void;
 };

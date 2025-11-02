@@ -134,7 +134,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
         <TableWrapper>
           <TableRoot className="w-full table-fixed">
             <TableHeader>
-              <TableRow>
+              <TableRow className="bg-accent">
                 <TableHead className="w-9" />
                 {columns.map((column, index) => {
                   return (

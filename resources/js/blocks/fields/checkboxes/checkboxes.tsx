@@ -46,7 +46,7 @@ function Checkboxes({ options, values, onChange }: CheckboxesProps) {
 
     return (
       <>
-        <TableRow>
+        <TableRow className="border-b-2 bg-accent">
           <TableCell>
             <div className="flex items-center justify-start gap-2">
               <Checkbox
