@@ -26,6 +26,7 @@ return [
     'content'            => 'Content',
     'continue'           => 'Continue',
     'copy_clipboard'     => 'Copy to clipboard',
+    'countries'          => 'Countries',
     'create'             => 'Create',
     'dashboard'          => 'Dashboard',
     'default'            => 'Default',

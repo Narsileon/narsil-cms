@@ -1,4 +1,5 @@
 import useForm from "./form-context";
+import FormCountry from "./form-country";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
 import useFormField from "./form-field-context";
@@ -12,6 +13,7 @@ import FormRenderer from "./form-renderer";
 import FormRoot from "./form-root";
 
 export {
+  FormCountry,
   FormDescription,
   FormField,
   FormFieldLanguage,

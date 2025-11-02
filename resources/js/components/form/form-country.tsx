@@ -1,33 +1,38 @@
-import { Badge } from "@narsil-cms/blocks";
-import { useLocalization } from "@narsil-cms/components/localization";
+import { router } from "@inertiajs/react";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
 import { cn } from "@narsil-cms/lib/utils";
+import { SelectOption } from "@narsil-cms/types";
 import { type ComponentProps } from "react";
-import useForm from "./form-context";
 
-type FormLanguageProps = Omit<ComponentProps<typeof ToggleGroupRoot>, "type"> & {
-  value: string;
-  onValueChange: (value: string) => void;
+type FormCountryProps = Omit<
+  ComponentProps<typeof ToggleGroupRoot>,
+  "defaultValue" | "onValueChange" | "value" | "type"
+> & {
+  countries: SelectOption[];
 };
 
-function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLanguageProps) {
-  const { languageOptions } = useForm();
-  const { trans } = useLocalization();
+function FormCountry({ countries, ...props }: FormCountryProps) {
+  const params = new URLSearchParams(window.location.search);
+
+  const value = params.get("country") ?? countries[0]?.value;
+
+  function onValueChange(value: string) {
+    router.reload({ data: { country: value } });
+  }
 
   return (
     <ToggleGroupRoot
-      defaultValue={languageOptions[0].value as string}
+      defaultValue={countries[0].value as string}
       orientation="vertical"
+      value={value as string}
       type="single"
+      onValueChange={(value) => onValueChange(value as string)}
       {...props}
     >
-      {languageOptions.map((option, index) => (
+      {countries.map((option) => (
         <ToggleGroupItem
           className="flex w-full items-center justify-between pr-2"
           value={option.value as string}
-          onClick={() => {
-            onValueChange(option.value as string);
-          }}
           key={option.value}
         >
           <span
@@ -40,16 +45,10 @@ function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLang
           >
             {option.label as string}
           </span>
-
-          {index === 0 ? (
-            <Badge className="bg-background" variant="outline">
-              {trans("ui.default_language")}
-            </Badge>
-          ) : null}
         </ToggleGroupItem>
       ))}
     </ToggleGroupRoot>
   );
 }
 
-export default FormLanguage;
+export default FormCountry;

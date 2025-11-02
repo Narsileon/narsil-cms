@@ -1,13 +1,12 @@
-import {
-  Button,
-  Card,
-  CountrySelect,
-  Heading,
-  RevisionSelect,
-  SaveButton,
-} from "@narsil-cms/blocks";
+import { Button, Card, Heading, RevisionSelect, SaveButton } from "@narsil-cms/blocks";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
-import { FormLanguage, FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import {
+  FormCountry,
+  FormLanguage,
+  FormProvider,
+  FormRenderer,
+  FormRoot,
+} from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
@@ -18,6 +17,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import type { FormType, Revision, SelectOption, TemplateSection } from "@narsil-cms/types";
 import { isEmpty } from "lodash";
+import { Slot } from "radix-ui";
 import { useEffect, useState } from "react";
 
 type FormProps = FormType & {
@@ -160,7 +160,9 @@ function ResourceForm({
                   <SectionContent>
                     <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
                       {tabsList ? (
-                        <div className="flex items-center border-b px-4">{tabsList}</div>
+                        <Slot.Root className="flex items-center border-b px-4">
+                          {tabsList}
+                        </Slot.Root>
                       ) : null}
                       {tabsContent}
                     </TabsRoot>
@@ -168,7 +170,32 @@ function ResourceForm({
                 </SectionRoot>
                 <SectionRoot className="min-h-full flex-1 border-l">
                   <SectionContent className="flex flex-col">
-                    <div className="flex h-13 flex-col items-end gap-2 border-b p-2">
+                    <div className="flex h-13 items-center justify-between gap-2 border-b px-4 py-2">
+                      {revisions ? (
+                        <StatusRoot
+                          className={cn(
+                            "w-6",
+                            "hover:w-10",
+                            "transition-[width] delay-100 duration-300",
+                          )}
+                        >
+                          {data.has_published_revision ? (
+                            <StatusItem
+                              className="bg-green-500"
+                              tooltip={trans("revisions.published")}
+                            />
+                          ) : null}
+                          {!data.published ? (
+                            <StatusItem
+                              className="bg-amber-500"
+                              tooltip={trans("revisions.saved")}
+                            />
+                          ) : null}
+                          {data.has_draft ? (
+                            <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />
+                          ) : null}
+                        </StatusRoot>
+                      ) : null}
                       <SaveButton
                         routes={routes}
                         submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
@@ -202,42 +229,34 @@ function ResourceForm({
                         </div>
                       ) : null}
                       {revisions ? <RevisionSelect revisions={revisions} /> : null}
-                      {countries ? <CountrySelect countries={countries} /> : null}
-                      {revisions ? (
-                        <StatusRoot
-                          className={cn(
-                            "w-6",
-                            "hover:w-10",
-                            "transition-[width] delay-100 duration-300",
-                          )}
-                        >
-                          {data.has_published_revision ? (
-                            <StatusItem
-                              className="bg-green-500"
-                              tooltip={trans("revisions.published")}
-                            />
-                          ) : null}
-                          {!data.published ? (
-                            <StatusItem
-                              className="bg-amber-500"
-                              tooltip={trans("revisions.saved")}
-                            />
-                          ) : null}
-                          {data.has_draft ? (
-                            <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />
-                          ) : null}
-                        </StatusRoot>
-                      ) : null}
                     </div>
-                    <div className="flex flex-col gap-1 border-b p-2">
-                      <div className="flex items-center justify-start gap-2 pl-2">
-                        <Icon className="size-4" name="globe" />
-                        <Heading level="h3" variant="discreet">
-                          {trans("ui.translations")}
-                        </Heading>
+                    {countries ? (
+                      <div className="flex flex-col gap-1 border-b p-2">
+                        <div className="flex items-center justify-start gap-2 pl-2">
+                          <Icon className="size-4" name="globe" />
+                          <Heading level="h3" variant="discreet">
+                            {trans("ui.countries")}
+                          </Heading>
+                        </div>
+                        <FormCountry className="pr-2" countries={countries} />
                       </div>
-                      <FormLanguage value={formLanguage} onValueChange={setFormLanguage} />
-                    </div>
+                    ) : null}
+                    {languageOptions?.length > 0 ? (
+                      <div className="flex flex-col gap-1 border-b p-2">
+                        <div className="flex items-center justify-start gap-2 pl-2">
+                          <Icon className="size-4" name="globe" />
+                          <Heading level="h3" variant="discreet">
+                            {trans("ui.translations")}
+                          </Heading>
+                        </div>
+                        <FormLanguage
+                          className="pr-2"
+                          value={formLanguage}
+                          onValueChange={setFormLanguage}
+                        />
+                      </div>
+                    ) : null}
+
                     <div className="flex flex-col gap-y-4 lg:col-span-4">
                       {sidebarContent ? (
                         <Card

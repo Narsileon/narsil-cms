@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'de',
     'en',
+    'de',
     'fr',
 ];

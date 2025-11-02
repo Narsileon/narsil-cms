@@ -37,10 +37,14 @@ class SiteResource extends JsonResource
         $tree = new Tree($this->{Host::RELATION_PAGES})->getNestedTree();
 
         return [
+            Host::CREATED_AT => $this->{Host::CREATED_AT},
             Host::HANDLE => $this->{Host::HANDLE},
             Host::ID => $this->{Host::ID},
             Host::NAME => $this->{Host::NAME},
+            Host::UPDATED_AT => $this->{Host::UPDATED_AT},
 
+            Host::RELATION_CREATOR => $this->{Host::RELATION_CREATOR},
+            Host::RELATION_EDITOR => $this->{Host::RELATION_EDITOR},
             Host::RELATION_PAGES => HostPageResource::collection($tree)->toArray($request),
         ];
     }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Locale;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -18,6 +19,7 @@ use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostPage;
 use Narsil\Support\SelectOption;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -39,7 +41,7 @@ class SiteEditController extends AbstractController
     {
         $host = Host::query()
             ->with([
-                Host::RELATION_LOCALES,
+                Host::RELATION_OTHER_LOCALES,
                 Host::RELATION_PAGES,
                 Host::RELATION_PAGES . '.' . HostPage::RELATION_LOCALE,
             ])
@@ -58,6 +60,9 @@ class SiteEditController extends AbstractController
             ->formData($data);
 
         $countries = $this->getCountrySelectOptions($host);
+
+        app(TranslationsBag::class)
+            ->add('narsil::ui.countries');
 
         return $this->render(
             component: 'narsil/cms::resources/form',
@@ -87,7 +92,7 @@ class SiteEditController extends AbstractController
                 ->optionValue('default')
         ];
 
-        foreach ($host->{Host::RELATION_LOCALES} as $locale)
+        foreach ($host->{Host::RELATION_OTHER_LOCALES} as $locale)
         {
             $label = Locale::getDisplayRegion('_' . $locale->{HostLocale::COUNTRY}, App::getLocale());
 
@@ -108,6 +113,13 @@ class SiteEditController extends AbstractController
      */
     protected function getData(Host $host): array
     {
+        $host->loadMissingCreatorAndEditor();
+
+        $host->mergeCasts([
+            Host::CREATED_AT => HumanDatetimeCast::class,
+            Host::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
         $data = new SiteResource($host)->resolve();
 
         return $data;
