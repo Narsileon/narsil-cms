@@ -12,6 +12,7 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
+import { BackgroundGrid, BackgroundRoot } from "@narsil-cms/components/background";
 import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
 import { SortableAdd, SortableItem, SortableListContext } from "@narsil-cms/components/sortable";
 import { useLocale } from "@narsil-cms/hooks/use-props";
@@ -82,7 +83,7 @@ function Sortable({ items, options, unique, setItems, ...props }: SortableProps)
 
   return (
     <CardRoot>
-      <CardContent>
+      <CardContent className="relative">
         <DndContext
           collisionDetection={closestCenter}
           sensors={sensors}
@@ -111,6 +112,9 @@ function Sortable({ items, options, unique, setItems, ...props }: SortableProps)
             document.body,
           )}
         </DndContext>
+        <BackgroundRoot>
+          <BackgroundGrid id="sortable-list" />
+        </BackgroundRoot>
       </CardContent>
       {options?.length > 0 ? (
         <CardFooter className="flex-col gap-4 border-t">

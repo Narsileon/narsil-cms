@@ -69,7 +69,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                       />
                     ) : null}
                   </CollapsibleTrigger>
-                  <CollapsibleContent className="grid grid-cols-12 gap-4 p-4">
+                  <CollapsibleContent className="grid grid-cols-12 gap-8 p-4">
                     <FormRenderer
                       {...childElement}
                       handle={element.handle ?? childElement.handle}

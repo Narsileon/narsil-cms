@@ -89,10 +89,8 @@ function ResourceForm({
 
   const tabsContent = tabs.map((tab, index) => {
     return (
-      <TabsContent value={tab.handle} key={index}>
-        <Card className="overflow-hidden" contentProps={{ className: "grid-cols-12 gap-4" }}>
-          <FormRenderer {...tab} />
-        </Card>
+      <TabsContent className="gap-8" value={tab.handle} key={index}>
+        <FormRenderer {...tab} />
       </TabsContent>
     );
   });

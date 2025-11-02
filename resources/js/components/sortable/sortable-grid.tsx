@@ -14,6 +14,7 @@ import {
   type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
+import { BackgroundGrid, BackgroundRoot } from "@narsil-cms/components/background";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { Field, FormType, GroupedSelectOption } from "@narsil-cms/types";
@@ -297,7 +298,7 @@ function SortableGrid({
       onDragOver={onDragOver}
       onDragStart={onDragStart}
     >
-      <div className={cn(`grid-cols-${columns} grid gap-4`)}>
+      <div className={cn(`relative grid-cols-${columns} grid gap-4 p-4`)}>
         <SortableContext
           items={items.map((container) => getContainerIdentifier(container))}
           strategy={rectSortingStrategy}
@@ -396,6 +397,9 @@ function SortableGrid({
             </SortableItemForm>
           ) : null}
         </SortableContext>
+        <BackgroundRoot>
+          <BackgroundGrid id="sortable-grid" />
+        </BackgroundRoot>
       </div>
       {createPortal(
         <DragOverlay>

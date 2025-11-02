@@ -101,19 +101,15 @@ function Builder({ blocks, name }: BuilderProps) {
         items={items.map((item) => item.uuid)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="relative col-span-full flex flex-col items-center justify-center rounded p-4">
-          <BackgroundRoot>
-            <BackgroundGrid id={name} />
-          </BackgroundRoot>
-          <div className="size-2.5 rounded-full bg-constructive" />
+        <div className="relative col-span-full flex flex-col items-center justify-center rounded px-4 py-2">
           {items.map((item, index) => {
             const baseHandle = `${name}.${index}`;
 
             return (
               <Fragment key={item.uuid}>
                 <BuilderAdd
+                  className="mb-2"
                   blocks={blocks}
-                  separatorClassName="border-constructive"
                   onAdd={(item) => {
                     const newItems = [...items];
 
@@ -134,11 +130,13 @@ function Builder({ blocks, name }: BuilderProps) {
             );
           })}
           <BuilderAdd
+            className="not-first:mt-2"
             blocks={blocks}
-            separatorClassName="border-destructive"
             onAdd={(item) => setItems([...items, item])}
           />
-          <div className="size-2.5 rounded-full bg-destructive" />
+          <BackgroundRoot>
+            <BackgroundGrid id={name} />
+          </BackgroundRoot>
         </div>
       </SortableContext>
       <DragOverlay>
