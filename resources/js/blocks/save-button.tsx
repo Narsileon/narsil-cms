@@ -118,7 +118,7 @@ function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
 
   return (
     <ButtonGroupRoot {...props}>
-      <Button form={id} icon="save" type="submit">
+      <Button form={id} type="submit">
         {submitLabel}
       </Button>
       <Separator orientation="vertical" />

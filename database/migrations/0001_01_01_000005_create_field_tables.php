@@ -10,6 +10,7 @@ use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
 use Narsil\Models\Elements\FieldRule;
+use Narsil\Models\User;
 
 #endregion
 
@@ -129,7 +130,19 @@ return new class extends Migration
                 ->jsonb(Field::SETTINGS)
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
-                ->timestamps();
+                ->timestamp(Field::CREATED_AT);
+            $blueprint
+                ->foreignId(Field::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Field::UPDATED_AT);
+            $blueprint
+                ->foreignId(Field::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
         });
     }
 

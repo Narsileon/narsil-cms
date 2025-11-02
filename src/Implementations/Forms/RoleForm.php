@@ -92,7 +92,6 @@ class RoleForm extends AbstractForm implements Contract
                 TemplateSection::NAME => trans('narsil::tables.permissions'),
                 TemplateSection::RELATION_ELEMENTS => $permissionElements,
             ]),
-            static::informationSection(),
         ];
     }
 

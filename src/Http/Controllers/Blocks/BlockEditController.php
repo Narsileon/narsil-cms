@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Blocks;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\BlockForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -61,6 +62,13 @@ class BlockEditController extends AbstractController
      */
     protected function getData(Block $block): array
     {
+        $block->loadMissingCreatorAndEditor();
+
+        $block->mergeCasts([
+            Block::CREATED_AT => HumanDatetimeCast::class,
+            Block::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
         $data = $block->toArrayWithTranslations();
 
         return $data;

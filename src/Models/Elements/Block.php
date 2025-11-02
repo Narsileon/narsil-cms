@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Arr;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\BlockElement;
+use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
@@ -23,6 +24,7 @@ use Narsil\Traits\HasTranslations;
  */
 class Block extends Model
 {
+    use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
     use HasIdentifier;

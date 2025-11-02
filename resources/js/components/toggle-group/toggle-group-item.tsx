@@ -21,11 +21,15 @@ function ToggleGroupItem({ className, size, variant, ...props }: ToggleGroupItem
           size: context.size || size,
           variant: context.variant || variant,
         }),
-        "min-w-0 flex-1 shrink-0 cursor-pointer rounded-none shadow-none",
-        "first:rounded-l-md",
-        "last:rounded-r-md",
-        "data-[variant=outline]:border-l-0",
-        "data-[variant=outline]:first:border-l",
+        "min-w-0 shrink-0 cursor-pointer shadow-none",
+        context.orientation === "horizontal" &&
+          cn(
+            "flex-1 rounded-none",
+            "first:rounded-l-md",
+            "last:rounded-r-md",
+            "data-[variant=outline]:border-l-0",
+            "data-[variant=outline]:first:border-l",
+          ),
         className,
       )}
       {...props}

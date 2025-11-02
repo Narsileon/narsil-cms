@@ -138,7 +138,6 @@ class FieldForm extends AbstractForm implements Contract
                     ]),
                 ],
             ]),
-            static::informationSection(),
         ];
 
         return $content;

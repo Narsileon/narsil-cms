@@ -6,6 +6,7 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasTranslations;
@@ -18,6 +19,7 @@ use Narsil\Traits\HasTranslations;
  */
 class Template extends Model
 {
+    use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
     use HasTranslations;

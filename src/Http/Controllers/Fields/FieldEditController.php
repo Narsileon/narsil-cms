@@ -7,11 +7,13 @@ namespace Narsil\Http\Controllers\Fields;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\User;
 
 #endregion
 
@@ -63,6 +65,13 @@ class FieldEditController extends AbstractController
      */
     protected function getData(Field $field): array
     {
+        $field->loadMissingCreatorAndEditor();
+
+        $field->mergeCasts([
+            Field::CREATED_AT => HumanDatetimeCast::class,
+            Field::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
         $data = $field->toArrayWithTranslations();
 
         return $data;

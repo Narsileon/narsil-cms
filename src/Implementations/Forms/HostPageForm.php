@@ -180,7 +180,6 @@ class HostPageForm extends AbstractForm implements Contract
                     ]),
                 ],
             ]),
-            static::informationSection(),
         ];
     }
 

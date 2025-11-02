@@ -12,6 +12,7 @@ use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\User;
 
 #endregion
 
@@ -216,7 +217,19 @@ return new class extends Migration
             $blueprint
                 ->jsonb(Host::NAME);
             $blueprint
-                ->timestamps();
+                ->timestamp(Host::CREATED_AT);
+            $blueprint
+                ->foreignId(Host::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Host::UPDATED_AT);
+            $blueprint
+                ->foreignId(Host::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
         });
     }
 

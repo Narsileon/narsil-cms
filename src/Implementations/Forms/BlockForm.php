@@ -110,7 +110,6 @@ class BlockForm extends AbstractForm implements Contract
                     ]),
                 ]),
             ]),
-            static::informationSection(),
         ];
     }
 

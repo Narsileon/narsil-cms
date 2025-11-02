@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Templates;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\TemplateForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -56,6 +57,13 @@ class TemplateEditController extends AbstractController
      */
     protected function getData(Template $template): array
     {
+        $template->loadMissingCreatorAndEditor();
+
+        $template->mergeCasts([
+            Template::CREATED_AT => HumanDatetimeCast::class,
+            Template::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
         $data = $template->toArrayWithTranslations();
 
         return $data;

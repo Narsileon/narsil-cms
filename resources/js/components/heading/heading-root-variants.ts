@@ -9,6 +9,7 @@ const headingRootVariants = cva("font-medium tracking-tight text-foreground", {
       h4: "text-xl",
       h5: "text-lg",
       h6: "text-base",
+      discreet: "flex h-8 items-center text-xs font-medium text-foreground/70",
     },
   },
   defaultVariants: {

@@ -220,7 +220,29 @@ return new class extends Migration
                 ->string(User::AVATAR)
                 ->nullable();
             $blueprint
-                ->timestamps();
+                ->timestamp(User::CREATED_AT);
+            $blueprint
+                ->bigInteger(User::CREATED_BY)
+                ->nullable();
+            $blueprint
+                ->timestamp(User::UPDATED_AT);
+            $blueprint
+                ->bigInteger(User::UPDATED_BY)
+                ->nullable();
+        });
+
+        Schema::table(User::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->foreign(User::CREATED_BY)
+                ->references(User::ID)
+                ->on(User::TABLE)
+                ->nullOnDelete();
+            $blueprint
+                ->foreign(User::UPDATED_BY)
+                ->references(User::ID)
+                ->on(User::TABLE)
+                ->nullOnDelete();
         });
     }
 

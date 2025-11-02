@@ -14,9 +14,9 @@ import { Fragment } from "react";
 import useForm from "./form-context";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
+import FormFieldLanguage from "./form-field-language";
 import FormItem from "./form-item";
 import FormLabel from "./form-label";
-import FormLanguage from "./form-language";
 import FormMessage from "./form-message";
 
 type FormRendererProps = (Block | Field | TemplateSection) & {
@@ -110,7 +110,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
               <div className="flex items-center gap-2">
                 <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
                 {props.translatable ? (
-                  <FormLanguage
+                  <FormFieldLanguage
                     triggerProps={{
                       size: "sm",
                       variant: "secondary",

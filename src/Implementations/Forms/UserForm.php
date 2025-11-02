@@ -153,7 +153,6 @@ class UserForm extends AbstractForm implements Contract
                     ]),
                 ],
             ]),
-            static::informationSection(),
         ];
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Casts\JsonCast;
+use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
@@ -21,6 +22,7 @@ use Narsil\Traits\HasTranslations;
  */
 class Field extends Model
 {
+    use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
     use HasIdentifier;

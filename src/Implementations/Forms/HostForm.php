@@ -105,7 +105,6 @@ class HostForm extends AbstractForm implements Contract
                     ]),
                 ]),
             ]),
-            static::informationSection(),
         ];
     }
 

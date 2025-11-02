@@ -29,13 +29,6 @@ trait Blameable
     final public const CREATED_BY = 'created_by';
 
     /**
-     * The name of the "deleted by" column.
-     *
-     * @var string
-     */
-    final public const DELETED_BY = 'deleted_by';
-
-    /**
      * The name of the "updated by" column.
      *
      * @var string
@@ -60,18 +53,36 @@ trait Blameable
      */
     final public const RELATION_EDITOR = 'editor';
 
-    /**
-     * The name of the "remover" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_REMOVER = 'remover';
-
     #endregion
 
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * @return void
+     */
+    public function loadMissingCreatorAndEditor(): void
+    {
+        $this->loadMissing([
+            self::RELATION_CREATOR => function ($query)
+            {
+                $query->select(
+                    User::ID,
+                    User::FIRST_NAME,
+                    User::LAST_NAME,
+                );
+            },
+            self::RELATION_EDITOR => function ($query)
+            {
+                $query->select(
+                    User::ID,
+                    User::FIRST_NAME,
+                    User::LAST_NAME,
+                );
+            },
+        ]);
+    }
 
     #region • RELATIONSHIPS
 
@@ -105,21 +116,6 @@ trait Blameable
             );
     }
 
-    /**
-     * Get the user who deleted the model.
-     *
-     * @return BelongsTo
-     */
-    final public function remover(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                User::class,
-                self::DELETED_BY,
-                User::ID,
-            );
-    }
-
     #endregion
 
     #endregion
@@ -136,11 +132,6 @@ trait Blameable
         static::creating(function (Model $model)
         {
             static::setCreator($model);
-        });
-
-        static::deleting(function (Model $model)
-        {
-            static::setRemover($model);
         });
 
         static::updating(function (Model $model)
@@ -176,23 +167,6 @@ trait Blameable
         if (Auth::check())
         {
             $model->{self::UPDATED_BY} = Auth::id();
-        }
-    }
-
-    /**
-     * Fill the "deleted by" column with the ID of the user who deleted the model.
-     *
-     * @param Model $model
-     *
-     * @return void
-     */
-    final protected static function setRemover(Model $model): void
-    {
-        if (Auth::check())
-        {
-            $model->{self::DELETED_BY} = Auth::id();
-
-            $model->saveQuietly();
         }
     }
 

@@ -9,11 +9,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Locale;
-use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Form;
-use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
-use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
 use ReflectionClass;
@@ -40,6 +37,9 @@ abstract class AbstractForm extends Fluent implements Form
 
         app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
+            ->add('narsil::datetime.by')
+            ->add('narsil::datetime.created')
+            ->add('narsil::datetime.updated')
             ->add('narsil::pagination.pages_empty')
             ->add('narsil::placeholders.choose')
             ->add('narsil::placeholders.search')
@@ -50,8 +50,10 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil::ui.continue')
             ->add('narsil::ui.create')
             ->add('narsil::ui.delete')
+            ->add('narsil::ui.default_language')
             ->add('narsil::ui.save')
-            ->add('narsil::ui.save_as_new');
+            ->add('narsil::ui.save_as_new')
+            ->add('narsil::ui.translations');
     }
 
     #endregion
@@ -222,42 +224,6 @@ abstract class AbstractForm extends Fluent implements Form
      * @return array
      */
     abstract protected function getLayout(): array;
-
-    /**
-     * @param ?array $elements
-     *
-     * @return TemplateSection
-     */
-    protected static function informationSection(?array $elements = null): TemplateSection
-    {
-        return new TemplateSection([
-            TemplateSection::HANDLE => 'information',
-            TemplateSection::NAME => trans('narsil::ui.information'),
-            TemplateSection::RELATION_ELEMENTS => [
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'id',
-                        Field::NAME => trans('narsil::validation.attributes.id'),
-                        Field::TYPE => TextField::class,
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'created_at',
-                        Field::NAME => trans('narsil::validation.attributes.created_at'),
-                        Field::TYPE => TextField::class,
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'updated_at',
-                        Field::NAME => trans('narsil::validation.attributes.updated_at'),
-                        Field::TYPE => TextField::class,
-                    ])
-                ]),
-            ]
-        ]);
-    }
 
     /**
      * @param array $elements

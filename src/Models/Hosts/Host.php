@@ -7,6 +7,7 @@ namespace Narsil\Models\Hosts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasTranslations;
@@ -19,6 +20,7 @@ use Narsil\Traits\HasTranslations;
  */
 class Host extends Model
 {
+    use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
     use HasTranslations;

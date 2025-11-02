@@ -8,8 +8,9 @@ import {
 } from "@narsil-cms/blocks";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import { FormLanguage, FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
+import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
 import { StatusItem, StatusRoot } from "@narsil-cms/components/status";
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
@@ -40,29 +41,19 @@ function ResourceForm({
   revisions,
   routes,
   submitLabel,
-  title,
 }: FormProps) {
   const { trans } = useLocalization();
   const { closeTopModal } = useModalStore();
 
   const minLg = useMinLg();
 
-  const { information, sidebar, tabs } = layout.reduce(
+  const { sidebar, tabs } = layout.reduce(
     (acc, element) => {
       if (!("elements" in element)) {
         return acc;
       }
 
       switch (element.handle) {
-        case "information":
-          if (data?.id) {
-            if (modal || !minLg) {
-              acc.tabs.push(element);
-            } else {
-              acc.information = element;
-            }
-          }
-          break;
         case "sidebar":
           if (!minLg) {
             acc.tabs.push(element);
@@ -78,15 +69,12 @@ function ResourceForm({
       return acc;
     },
     {
-      information: undefined as TemplateSection | undefined,
       sidebar: undefined as TemplateSection | undefined,
       tabs: [] as TemplateSection[],
     },
   );
 
   const [value, setValue] = useState(tabs[0].handle);
-
-  const informationContent = information ? <FormRenderer {...information} /> : null;
 
   const sidebarContent = sidebar ? <FormRenderer {...sidebar} /> : null;
 
@@ -143,7 +131,7 @@ function ResourceForm({
       render={({ formLanguage, setFormLanguage }) => {
         return (
           <FormRoot
-            className="animate-in overflow-hidden fade-in-0"
+            className="flex min-h-full animate-in overflow-hidden fade-in-0"
             autoSave={autoSave}
             options={{
               onSuccess: (response) => {
@@ -168,57 +156,82 @@ function ResourceForm({
                 </DialogFooter>
               </>
             ) : (
-              <SectionRoot className="px-4 py-2">
-                <SectionHeader className="h-13 border-b pb-2!">
-                  <div className="flex items-center gap-2">
-                    {revisions ? (
-                      <StatusRoot
-                        className={cn(
-                          "w-6",
-                          "hover:w-10",
-                          "transition-[width] delay-100 duration-300",
-                        )}
-                      >
-                        {data.has_published_revision ? (
-                          <StatusItem
-                            className="bg-green-500"
-                            tooltip={trans("revisions.published")}
-                          />
-                        ) : null}
-                        {!data.published ? (
-                          <StatusItem className="bg-amber-500" tooltip={trans("revisions.saved")} />
-                        ) : null}
-                        {data.has_draft ? (
-                          <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />
-                        ) : null}
-                      </StatusRoot>
-                    ) : null}
-                    <Heading className="whitespace-nowrap" level="h1" variant="h4">
-                      {title}
-                    </Heading>
-                    <FormLanguage
-                      triggerProps={{
-                        size: "sm",
-                        variant: "secondary",
-                      }}
-                      valueProps={{
-                        asChild: true,
-                        children: <span className="uppercase">{formLanguage}</span>,
-                      }}
-                      value={formLanguage}
-                      onValueChange={setFormLanguage}
-                    />
-                    {countries ? <CountrySelect countries={countries} /> : null}
-                    {revisions ? <RevisionSelect revisions={revisions} /> : null}
-                  </div>
-                  <SaveButton
-                    routes={routes}
-                    submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
-                  />
-                </SectionHeader>
-                <SectionContent className="grid gap-4 lg:grid-cols-12">
-                  {tabsContent}
-                  {minLg && (sidebarContent || informationContent) ? (
+              <>
+                <SectionRoot className="min-h-full flex-3">
+                  <SectionContent className="px-4">{tabsContent}</SectionContent>
+                </SectionRoot>
+                <SectionRoot className="min-h-full flex-1 border-l">
+                  <SectionContent className="flex flex-col">
+                    <div className="flex flex-col items-end gap-2 border-b p-2">
+                      <SaveButton
+                        routes={routes}
+                        submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
+                      />
+                    </div>
+                    <div className="flex flex-col items-start gap-2 border-b p-4">
+                      {data?.created_at ? (
+                        <div className="flex items-center gap-1 self-start">
+                          <span className="text-foreground/70">{trans("datetime.created")}</span>
+                          <span className="font-medium">{data.created_at}</span>
+                          {data?.creator ? (
+                            <>
+                              <span className="text-foreground/70">{trans("datetime.by")}</span>
+                              <span className="font-medium">{data.creator.full_name}</span>
+                            </>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      {data?.updated_at ? (
+                        <div className="flex items-center gap-1">
+                          <span className="text-foreground/70">{trans("datetime.updated")}</span>
+                          <span className="font-medium">{data.updated_at}</span>
+                          {data?.editor || data?.creator ? (
+                            <>
+                              <span className="text-foreground/70">{trans("datetime.by")}</span>
+                              <span className="font-medium">
+                                {data.editor?.full_name ?? data.creator?.full_name}
+                              </span>
+                            </>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      {revisions ? <RevisionSelect revisions={revisions} /> : null}
+                      {countries ? <CountrySelect countries={countries} /> : null}
+                      {revisions ? (
+                        <StatusRoot
+                          className={cn(
+                            "w-6",
+                            "hover:w-10",
+                            "transition-[width] delay-100 duration-300",
+                          )}
+                        >
+                          {data.has_published_revision ? (
+                            <StatusItem
+                              className="bg-green-500"
+                              tooltip={trans("revisions.published")}
+                            />
+                          ) : null}
+                          {!data.published ? (
+                            <StatusItem
+                              className="bg-amber-500"
+                              tooltip={trans("revisions.saved")}
+                            />
+                          ) : null}
+                          {data.has_draft ? (
+                            <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />
+                          ) : null}
+                        </StatusRoot>
+                      ) : null}
+                    </div>
+                    <div className="flex flex-col gap-1 border-b p-2">
+                      <div className="flex items-center justify-start gap-2 pl-2">
+                        <Icon className="size-4" name="globe" />
+                        <Heading level="h3" variant="discreet">
+                          {trans("ui.translations")}
+                        </Heading>
+                      </div>
+                      <FormLanguage value={formLanguage} onValueChange={setFormLanguage} />
+                    </div>
                     <div className="flex flex-col gap-y-4 lg:col-span-4">
                       {sidebarContent ? (
                         <Card
@@ -229,19 +242,10 @@ function ResourceForm({
                           {sidebarContent}
                         </Card>
                       ) : null}
-                      {informationContent ? (
-                        <Card
-                          contentProps={{
-                            className: "grid-cols-12 justify-between",
-                          }}
-                        >
-                          {informationContent}
-                        </Card>
-                      ) : null}
                     </div>
-                  ) : null}
-                </SectionContent>
-              </SectionRoot>
+                  </SectionContent>
+                </SectionRoot>
+              </>
             )}
           </FormRoot>
         );

@@ -32,8 +32,8 @@ function RevisionSelect({ revisions }: RevisionSelectProps) {
       options={options}
       value={revision}
       triggerProps={{
-        size: "sm",
         variant: "secondary",
+        className: "w-full",
       }}
       onValueChange={onValueChange}
     />

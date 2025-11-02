@@ -102,7 +102,19 @@ return new class extends Migration
             $blueprint
                 ->jsonb(Role::NAME);
             $blueprint
-                ->timestamps();
+                ->timestamp(Role::CREATED_AT);
+            $blueprint
+                ->foreignId(Role::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Role::UPDATED_AT);
+            $blueprint
+                ->foreignId(Role::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
         });
     }
 

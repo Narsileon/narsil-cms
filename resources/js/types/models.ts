@@ -62,3 +62,10 @@ export type TemplateSection = Model & {
   identifier: string;
   name: string;
 };
+
+export type User = Model & {
+  id: number;
+  first_name: string;
+  full_name: string;
+  last_name: string;
+};

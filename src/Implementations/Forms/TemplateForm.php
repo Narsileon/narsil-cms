@@ -117,7 +117,6 @@ class TemplateForm extends AbstractForm implements Contract
                     ])
                 ]),
             ]),
-            static::informationSection(),
         ];
     }
 

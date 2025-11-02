@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Hosts;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\HostForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -64,6 +65,13 @@ class HostEditController extends AbstractController
      */
     protected function getData(Host $host): array
     {
+        $host->loadMissingCreatorAndEditor();
+
+        $host->mergeCasts([
+            Host::CREATED_AT => HumanDatetimeCast::class,
+            Host::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
         $data = $host->toArrayWithTranslations();
 
         return $data;

@@ -11,6 +11,7 @@ use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldBlock;
+use Narsil\Models\User;
 
 #endregion
 
@@ -143,7 +144,19 @@ return new class extends Migration
                 ->boolean(Block::COLLAPSIBLE)
                 ->default(false);
             $blueprint
-                ->timestamps();
+                ->timestamp(Block::CREATED_AT);
+            $blueprint
+                ->foreignId(Block::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Block::UPDATED_AT);
+            $blueprint
+                ->foreignId(Block::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
         });
     }
 

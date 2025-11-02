@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Roles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\RoleForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -59,6 +60,13 @@ class RoleEditController extends AbstractController
      */
     protected function getData(Role $role): array
     {
+        $role->loadMissingCreatorAndEditor();
+
+        $role->mergeCasts([
+            Role::CREATED_AT => HumanDatetimeCast::class,
+            Role::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
         $data = $role->toArrayWithTranslations();
 
         return $data;

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\User;
 
 #endregion
 
@@ -130,7 +131,19 @@ return new class extends Migration
             $blueprint
                 ->jsonb(Template::NAME);
             $blueprint
-                ->timestamps();
+                ->timestamp(Template::CREATED_AT);
+            $blueprint
+                ->foreignId(Template::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Template::UPDATED_AT);
+            $blueprint
+                ->foreignId(Template::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
         });
     }
 

@@ -14,7 +14,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@floating-ui/dom": "^1.7.4",
-    "@fontsource/roboto": "latest",
+    "@fontsource/inter": "latest",
     "@inertiajs/react": "^2.2.15",
     "@tailwindcss/postcss": "^4.1.16",
     "@tanstack/react-table": "^8.21.3",

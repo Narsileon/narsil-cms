@@ -2,7 +2,12 @@ import { toggleRootVariants } from "@narsil-cms/components/toggle";
 import { type VariantProps } from "class-variance-authority";
 import { createContext, useContext } from "react";
 
-export const ToggleGroupContext = createContext<VariantProps<typeof toggleRootVariants>>({
+type ToggleGroupContextProps = VariantProps<typeof toggleRootVariants> & {
+  orientation: "horizontal" | "vertical";
+};
+
+export const ToggleGroupContext = createContext<ToggleGroupContextProps>({
+  orientation: "horizontal",
   size: "default",
   variant: "default",
 });

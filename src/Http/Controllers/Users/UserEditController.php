@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Users;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\UserForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -63,6 +64,13 @@ class UserEditController extends AbstractController
      */
     protected function getData(User $user): array
     {
+        $user->loadMissingCreatorAndEditor();
+
+        $user->mergeCasts([
+            User::CREATED_AT => HumanDatetimeCast::class,
+            User::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
         $data = $user->toArray();
 
         return $data;

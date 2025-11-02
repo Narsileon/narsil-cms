@@ -13,6 +13,7 @@ use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasRevisions;
 use Narsil\Traits\HasTemplate;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\SoftDeleteBlameable;
 
 #endregion
 
@@ -27,6 +28,7 @@ class Entity extends Model
     use HasRevisions;
     use HasTemplate;
     use HasTranslations;
+    use SoftDeleteBlameable;
 
     #region CONSTRUCTOR
 
