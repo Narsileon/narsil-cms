@@ -88,7 +88,11 @@ function ResourceForm({
 
   const tabsContent = tabs.map((tab, index) => {
     return (
-      <TabsContent className="gap-8" value={tab.handle} key={index}>
+      <TabsContent
+        className="w-full max-w-5xl gap-8 place-self-center"
+        value={tab.handle}
+        key={index}
+      >
         <FormRenderer {...tab} />
       </TabsContent>
     );
@@ -117,7 +121,7 @@ function ResourceForm({
       render={({ formLanguage, setFormLanguage }) => {
         return (
           <FormRoot
-            className="relative h-full max-h-full min-h-full w-full animate-in grid-cols-12 overflow-hidden fade-in-0"
+            className="relative h-full max-h-full min-h-full w-full animate-in grid-cols-12 items-center overflow-hidden fade-in-0"
             autoSave={autoSave}
             options={{
               onSuccess: (response) => {
