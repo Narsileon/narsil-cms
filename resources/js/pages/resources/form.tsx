@@ -17,7 +17,6 @@ import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import type { FormType, Revision, SelectOption, TemplateSection } from "@narsil-cms/types";
 import { isEmpty } from "lodash";
-import { Slot } from "radix-ui";
 import { useEffect, useState } from "react";
 
 type FormProps = FormType & {
@@ -76,7 +75,7 @@ function ResourceForm({
 
   const tabsList =
     tabs.length > 1 ? (
-      <TabsList className="w-full">
+      <TabsList className="flex w-full items-center border-b px-4">
         {tabs.map((tab, index) => {
           return (
             <TabsTrigger value={tab.handle} key={index}>
@@ -118,7 +117,7 @@ function ResourceForm({
       render={({ formLanguage, setFormLanguage }) => {
         return (
           <FormRoot
-            className="relative flex h-full max-h-full min-h-full animate-in overflow-hidden fade-in-0"
+            className="relative h-full max-h-full min-h-full w-full animate-in grid-cols-12 overflow-hidden fade-in-0"
             autoSave={autoSave}
             options={{
               onSuccess: (response) => {
@@ -132,18 +131,13 @@ function ResourceForm({
           >
             {modal ? (
               <>
-                <DialogBody>
-                  <TabsRoot
-                    defaultValue={tabs[0].handle}
-                    value={value}
-                    onValueChange={setValue}
-                    className="gap-4 lg:col-span-8"
-                  >
+                <DialogBody className="col-span-full p-0">
+                  <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
                     {tabsList}
                     {tabsContent}
                   </TabsRoot>
                 </DialogBody>
-                <DialogFooter className="h-fit border-t">
+                <DialogFooter className="col-span-full h-fit border-t">
                   <DialogClose asChild={true}>
                     <Button variant="ghost">{trans("ui.cancel")}</Button>
                   </DialogClose>
@@ -154,19 +148,15 @@ function ResourceForm({
               </>
             ) : (
               <>
-                <SectionRoot className="h-full max-h-full min-h-full flex-3 overflow-y-auto">
+                <SectionRoot className="col-span-9 h-full max-h-full min-h-full flex-3 overflow-y-auto">
                   <SectionContent>
                     <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
-                      {tabsList ? (
-                        <Slot.Root className="flex items-center border-b px-4">
-                          {tabsList}
-                        </Slot.Root>
-                      ) : null}
+                      {tabsList}
                       {tabsContent}
                     </TabsRoot>
                   </SectionContent>
                 </SectionRoot>
-                <SectionRoot className="h-full max-h-full min-h-full flex-1 overflow-y-auto border-l">
+                <SectionRoot className="col-span-3 h-full max-h-full min-h-full flex-1 overflow-y-auto border-l">
                   <SectionContent className="flex flex-col">
                     <div className="flex h-13 flex-row-reverse items-center justify-between gap-2 border-b px-4 py-2">
                       <SaveButton
