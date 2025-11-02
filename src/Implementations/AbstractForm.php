@@ -230,20 +230,6 @@ abstract class AbstractForm extends Fluent implements Form
      *
      * @return TemplateSection
      */
-    protected static function mainSection(array $elements): TemplateSection
-    {
-        return new TemplateSection([
-            TemplateSection::HANDLE => 'main',
-            TemplateSection::NAME => trans('narsil::ui.main'),
-            TemplateSection::RELATION_ELEMENTS => $elements
-        ]);
-    }
-
-    /**
-     * @param array $elements
-     *
-     * @return TemplateSection
-     */
     protected static function sidebarSection(array $elements): TemplateSection
     {
         return new TemplateSection([

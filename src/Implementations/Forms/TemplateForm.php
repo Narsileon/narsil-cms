@@ -57,65 +57,69 @@ class TemplateForm extends AbstractForm implements Contract
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            static::mainSection([
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Template::NAME,
-                        Field::NAME => trans('narsil::validation.attributes.name'),
-                        Field::TRANSLATABLE => true,
-                        Field::TYPE => TextField::class,
-                        Field::SETTINGS => app(TextField::class)
-                            ->required(true),
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Template::HANDLE,
-                        Field::NAME => trans('narsil::validation.attributes.handle'),
-                        Field::TYPE => TextField::class,
-                        Field::SETTINGS => app(TextField::class)
-                            ->required(true),
-                    ])
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Template::RELATION_SECTIONS,
-                        Field::NAME => trans('narsil::validation.attributes.sections'),
-                        Field::TYPE => RelationsField::class,
-                        Field::SETTINGS => app(RelationsField::class)
-                            ->form(app(TemplateSectionForm::class)->jsonSerialize())
-                            ->intermediate(
-                                label: trans('narsil::ui.section'),
-                                optionLabel: TemplateSection::NAME,
-                                optionValue: TemplateSection::HANDLE,
-                                relation: new Field([
-                                    Field::HANDLE => TemplateSection::RELATION_ELEMENTS,
-                                    Field::NAME => trans('narsil::validation.attributes.elements'),
-                                    Field::TYPE => RelationsField::class,
-                                    Field::SETTINGS => app(RelationsField::class)
-                                        ->form(app(BlockElementForm::class)->jsonSerialize())
-                                        ->addOption(
-                                            identifier: Block::TABLE,
-                                            label: trans('narsil::models.' . Block::class),
-                                            optionLabel: BlockElement::NAME,
-                                            optionValue: BlockElement::HANDLE,
-                                            options: $blockSelectOptions,
-                                            routes: RouteService::getNames(Block::TABLE),
-                                        )
-                                        ->addOption(
-                                            identifier: Field::TABLE,
-                                            label: trans('narsil::models.' . Field::class),
-                                            optionLabel: BlockElement::NAME,
-                                            optionValue: BlockElement::HANDLE,
-                                            options: $fieldSelectOptions,
-                                            routes: RouteService::getNames(Field::TABLE),
-                                        )
-                                        ->widthOptions($widthSelectOptions),
-                                ])
-                            )
-                            ->placeholder(trans('narsil::ui.add_section')),
-                    ])
-                ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'definition',
+                TemplateSection::NAME => trans('narsil::ui.definition'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Template::NAME,
+                            Field::NAME => trans('narsil::validation.attributes.name'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->required(true),
+                        ])
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Template::HANDLE,
+                            Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->required(true),
+                        ])
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Template::RELATION_SECTIONS,
+                            Field::NAME => trans('narsil::validation.attributes.sections'),
+                            Field::TYPE => RelationsField::class,
+                            Field::SETTINGS => app(RelationsField::class)
+                                ->form(app(TemplateSectionForm::class)->jsonSerialize())
+                                ->intermediate(
+                                    label: trans('narsil::ui.section'),
+                                    optionLabel: TemplateSection::NAME,
+                                    optionValue: TemplateSection::HANDLE,
+                                    relation: new Field([
+                                        Field::HANDLE => TemplateSection::RELATION_ELEMENTS,
+                                        Field::NAME => trans('narsil::validation.attributes.elements'),
+                                        Field::TYPE => RelationsField::class,
+                                        Field::SETTINGS => app(RelationsField::class)
+                                            ->form(app(BlockElementForm::class)->jsonSerialize())
+                                            ->addOption(
+                                                identifier: Block::TABLE,
+                                                label: trans('narsil::models.' . Block::class),
+                                                optionLabel: BlockElement::NAME,
+                                                optionValue: BlockElement::HANDLE,
+                                                options: $blockSelectOptions,
+                                                routes: RouteService::getNames(Block::TABLE),
+                                            )
+                                            ->addOption(
+                                                identifier: Field::TABLE,
+                                                label: trans('narsil::models.' . Field::class),
+                                                optionLabel: BlockElement::NAME,
+                                                optionValue: BlockElement::HANDLE,
+                                                options: $fieldSelectOptions,
+                                                routes: RouteService::getNames(Field::TABLE),
+                                            )
+                                            ->widthOptions($widthSelectOptions),
+                                    ])
+                                )
+                                ->placeholder(trans('narsil::ui.add_section')),
+                        ]),
+                    ]),
+                ],
             ]),
         ];
     }

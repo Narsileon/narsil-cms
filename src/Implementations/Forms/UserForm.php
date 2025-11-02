@@ -59,83 +59,79 @@ class UserForm extends AbstractForm implements Contract
         $roleSelectOptions = static::getRoleSelectOptions();
 
         return [
-            static::mainSection([
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => trans('narsil::ui.account'),
-                        Block::RELATION_ELEMENTS => [
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => User::EMAIL,
-                                    Field::NAME => trans('narsil::validation.attributes.email'),
-                                    Field::TYPE => EmailField::class,
-                                    Field::SETTINGS => app(EmailField::class)
-                                        ->icon('email')
-                                        ->required(true),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => User::PASSWORD,
-                                    Field::NAME => trans('narsil::validation.attributes.password'),
-                                    Field::TYPE => PasswordField::class,
-                                    Field::SETTINGS => app(PasswordField::class)
-                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                                        ->required($isPost),
-                                ])
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                                    Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
-                                    Field::TYPE => PasswordField::class,
-                                    Field::SETTINGS => app(PasswordField::class)
-                                        ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                                        ->required($isPost),
-                                ])
-                            ]),
-                        ],
+            new TemplateSection([
+                TemplateSection::HANDLE => 'account',
+                TemplateSection::NAME => trans('narsil::ui.account'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => User::EMAIL,
+                            Field::NAME => trans('narsil::validation.attributes.email'),
+                            Field::TYPE => EmailField::class,
+                            Field::SETTINGS => app(EmailField::class)
+                                ->icon('email')
+                                ->required(true),
+                        ]),
                     ]),
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::NAME => trans('narsil::ui.profile'),
-                        Block::RELATION_ELEMENTS => [
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => User::LAST_NAME,
-                                    Field::NAME => trans('narsil::validation.attributes.last_name'),
-                                    Field::TYPE => TextField::class,
-                                    Field::SETTINGS => app(TextField::class)
-                                        ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                                        ->icon('circle-user')
-                                        ->required(true),
-                                ]),
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => User::FIRST_NAME,
-                                    Field::NAME => trans('narsil::validation.attributes.first_name'),
-                                    Field::TYPE => TextField::class,
-                                    Field::SETTINGS => app(TextField::class)
-                                        ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                                        ->icon('circle-user')
-                                        ->required(true),
-                                ]),
-                            ]),
-                            new BlockElement([
-                                BlockElement::RELATION_ELEMENT => new Field([
-                                    Field::HANDLE => User::AVATAR,
-                                    Field::NAME => trans('narsil::validation.attributes.avatar'),
-                                    Field::TYPE => FileField::class,
-                                    Field::SETTINGS => app(FileField::class)
-                                        ->accept('image/*')
-                                        ->icon('image'),
-                                ]),
-                            ]),
-                        ],
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => User::PASSWORD,
+                            Field::NAME => trans('narsil::validation.attributes.password'),
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                                ->required($isPost),
+                        ]),
                     ]),
-                ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
+                            Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
+                                ->required($isPost),
+                        ]),
+                    ]),
+                ],
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'profile',
+                TemplateSection::NAME => trans('narsil::ui.profile'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => User::LAST_NAME,
+                            Field::NAME => trans('narsil::validation.attributes.last_name'),
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                                ->icon('circle-user')
+                                ->required(true),
+                        ]),
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => User::FIRST_NAME,
+                            Field::NAME => trans('narsil::validation.attributes.first_name'),
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                                ->icon('circle-user')
+                                ->required(true),
+                        ]),
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => User::AVATAR,
+                            Field::NAME => trans('narsil::validation.attributes.avatar'),
+                            Field::TYPE => FileField::class,
+                            Field::SETTINGS => app(FileField::class)
+                                ->accept('image/*')
+                                ->icon('image'),
+                        ]),
+                    ]),
+                ],
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'roles',

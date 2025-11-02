@@ -73,56 +73,60 @@ class FieldForm extends AbstractForm implements Contract
 
         $typeSelectOptions = static::getTypeSelectOptions();
 
-        $content = [
-            static::mainSection(array_merge([
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Field::NAME,
-                        Field::NAME => trans('narsil::ui.default_name'),
-                        Field::TRANSLATABLE => true,
-                        Field::TYPE => TextField::class,
-                        Field::SETTINGS => app(TextField::class)
-                            ->required(true),
+        return [
+            new TemplateSection([
+                TemplateSection::HANDLE => 'definition',
+                TemplateSection::NAME => trans('narsil::ui.definition'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Field::NAME,
+                            Field::NAME => trans('narsil::ui.default_name'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->required(true),
+                        ]),
                     ]),
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Field::HANDLE,
-                        Field::NAME => trans('narsil::ui.default_handle'),
-                        Field::TYPE => TextField::class,
-                        Field::SETTINGS => app(TextField::class)
-                            ->required(true),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Field::HANDLE,
+                            Field::NAME => trans('narsil::ui.default_handle'),
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->required(true),
+                        ]),
                     ]),
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Field::TYPE,
-                        Field::NAME => trans('narsil::validation.attributes.type'),
-                        Field::TYPE => SelectField::class,
-                        Field::SETTINGS => app(SelectField::class)
-                            ->options($typeSelectOptions)
-                            ->placeholder(trans('narsil::placeholders.search'))
-                            ->reload('layout')
-                            ->required(true),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Field::TYPE,
+                            Field::NAME => trans('narsil::validation.attributes.type'),
+                            Field::TYPE => SelectField::class,
+                            Field::SETTINGS => app(SelectField::class)
+                                ->options($typeSelectOptions)
+                                ->placeholder(trans('narsil::placeholders.search'))
+                                ->reload('layout')
+                                ->required(true),
 
+                        ]),
                     ]),
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Field::TRANSLATABLE,
-                        Field::NAME => trans('narsil::validation.attributes.translatable'),
-                        Field::TYPE => CheckboxField::class,
-                        Field::SETTINGS => app(CheckboxField::class),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Field::TRANSLATABLE,
+                            Field::NAME => trans('narsil::validation.attributes.translatable'),
+                            Field::TYPE => CheckboxField::class,
+                            Field::SETTINGS => app(CheckboxField::class),
+                        ]),
                     ]),
-                ]),
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Block([
-                        Block::COLLAPSIBLE => true,
-                        Block::NAME => trans('narsil::ui.settings'),
-                        Block::RELATION_ELEMENTS =>  $settings,
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Block([
+                            Block::COLLAPSIBLE => true,
+                            Block::NAME => trans('narsil::ui.settings'),
+                            Block::RELATION_ELEMENTS =>  $settings,
+                        ]),
                     ]),
-                ]),
-            ])),
+                ],
+            ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'validation',
                 TemplateSection::NAME => trans('narsil::ui.validation'),
@@ -139,8 +143,6 @@ class FieldForm extends AbstractForm implements Contract
                 ],
             ]),
         ];
-
-        return $content;
     }
 
     #endregion

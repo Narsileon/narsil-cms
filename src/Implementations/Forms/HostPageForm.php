@@ -57,17 +57,21 @@ class HostPageForm extends AbstractForm implements Contract
     protected function getLayout(): array
     {
         return [
-            static::mainSection([
-                new TemplateSectionElement([
-                    TemplateSectionElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => HostPage::TITLE,
-                        Field::NAME => trans('narsil::validation.attributes.title'),
-                        Field::TRANSLATABLE => true,
-                        Field::TYPE => TextField::class,
-                        Field::SETTINGS => app(TextField::class)
-                            ->required(true),
-                    ])
-                ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'main',
+                TemplateSection::NAME => trans('narsil::ui.main'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => HostPage::TITLE,
+                            Field::NAME => trans('narsil::validation.attributes.title'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->required(true),
+                        ])
+                    ]),
+                ]
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'SEO',

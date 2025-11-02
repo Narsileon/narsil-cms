@@ -33,6 +33,7 @@ return [
     'default_handle'     => 'Default handle',
     'default_language'   => 'Default language',
     'default_name'       => 'Default name',
+    'definition'         => 'Definition',
     'delete_selected'    => 'Delete selected',
     'delete'             => 'Delete',
     'deselect_all'       => 'Deselect all',
