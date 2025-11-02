@@ -26,14 +26,21 @@ class NestedTreeResource extends JsonResource
     final public const BADGE = 'badge';
 
     /**
-     * The name of the "create_url" property.
+     * The name of the "create url" property.
      *
      * @var string
      */
     final public const CREATE_URL = 'create_url';
 
     /**
-     * The name of the "edit_url" property.
+     * The name of the "destroy url" property.
+     *
+     * @var string
+     */
+    final public const DESTROY_URL = 'destroy_url';
+
+    /**
+     * The name of the "edit url" property.
      *
      * @var string
      */

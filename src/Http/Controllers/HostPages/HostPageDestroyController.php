@@ -31,6 +31,8 @@ class HostPageDestroyController extends AbstractController
     {
         $this->authorize(PermissionEnum::DELETE, $hostPage);
 
+        $this->updateNeighbors($hostPage);
+
         $site = $this->getSite($hostPage);
 
         $hostPage->delete();
@@ -50,9 +52,36 @@ class HostPageDestroyController extends AbstractController
      */
     final protected function getSite(HostPage $hostPage): string
     {
-        $hostPage->loadMissing(HostPage::RELATION_HOST);
+        $hostPage->loadMissing([
+            HostPage::RELATION_HOST,
+        ]);
 
         return $hostPage->{HostPage::RELATION_HOST}->{Host::HANDLE};
+    }
+
+    /**
+     * @param HostPage $hostPage
+     *
+     * @return void
+     */
+    final protected function updateNeighbors(HostPage $hostPage): void
+    {
+        $hostPage->loadMissing([
+            HostPage::RELATION_LEFT,
+            HostPage::RELATION_RIGHT,
+        ]);
+
+        if ($hostPage->{HostPage::RELATION_LEFT})
+        {
+            $hostPage->{HostPage::RELATION_LEFT}->{HostPage::RIGHT_ID} = $hostPage->{HostPage::RELATION_RIGHT}?->{HostPage::ID};
+            $hostPage->{HostPage::RELATION_LEFT}->save();
+        }
+
+        if ($hostPage->{HostPage::RELATION_RIGHT})
+        {
+            $hostPage->{HostPage::RELATION_RIGHT}->{HostPage::LEFT_ID} = $hostPage->{HostPage::RELATION_LEFT}?->{HostPage::ID};
+            $hostPage->{HostPage::RELATION_RIGHT}->save();
+        }
     }
 
     #endregion

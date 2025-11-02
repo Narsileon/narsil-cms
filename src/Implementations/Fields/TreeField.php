@@ -30,7 +30,7 @@ class TreeField extends AbstractField implements Contract
             ->add('narsil::ui.edit')
             ->add('narsil::ui.move_down')
             ->add('narsil::ui.move_up')
-            ->add('narsil::ui.remove');
+            ->add('narsil::ui.delete');
     }
 
     #endregion

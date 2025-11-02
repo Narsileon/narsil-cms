@@ -41,7 +41,6 @@ function SortableItemMenu({
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent align="end" onClick={(event) => event.stopPropagation()}>
-        {children}
         <DropdownMenuItem disabled={!onMoveUp} onClick={onMoveUp}>
           <Icon name="move-up" />
           {trans("ui.move_up")}
@@ -57,6 +56,12 @@ function SortableItemMenu({
               <Icon name="trash" />
               {trans("ui.remove")}
             </DropdownMenuItem>
+          </>
+        ) : null}
+        {children ? (
+          <>
+            <DropdownMenuSeparator />
+            {children}
           </>
         ) : null}
       </DropdownMenuContent>

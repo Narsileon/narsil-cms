@@ -34,6 +34,7 @@ use Narsil\Http\Controllers\Fields\FieldReplicateManyController;
 use Narsil\Http\Controllers\Fields\FieldStoreController;
 use Narsil\Http\Controllers\Fields\FieldUpdateController;
 use Narsil\Http\Controllers\HostPages\HostPageCreateController;
+use Narsil\Http\Controllers\HostPages\HostPageDestroyController;
 use Narsil\Http\Controllers\HostPages\HostPageEditController;
 use Narsil\Http\Controllers\HostPages\HostPageStoreController;
 use Narsil\Http\Controllers\HostPages\HostPageUpdateController;
@@ -182,6 +183,8 @@ Route::middleware([
                 ->name('edit');
             Route::patch('/{hostPage}', HostPageUpdateController::class)
                 ->name('update');
+            Route::delete('/{hostPage}', HostPageDestroyController::class)
+                ->name('destroy');
         });
 
         Route::prefix(Role::TABLE)->name(Role::TABLE . '.')->group(function ()

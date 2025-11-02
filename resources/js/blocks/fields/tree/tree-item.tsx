@@ -25,7 +25,6 @@ function TreeItem({
   style,
   onMoveDown,
   onMoveUp,
-  onRemove,
   ...props
 }: TreeItemProps) {
   const { trans } = useLocalization();
@@ -71,7 +70,6 @@ function TreeItem({
               item={item}
               onMoveDown={onMoveDown}
               onMoveUp={onMoveUp}
-              onRemove={onRemove}
             />
           </CardHeader>
         </CollapsibleTrigger>

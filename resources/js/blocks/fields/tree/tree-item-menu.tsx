@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 import { DropdownMenuItem, DropdownMenuSeparator } from "@narsil-cms/components/dropdown-menu";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -26,12 +27,20 @@ function TreeItemMenu({ item, ...props }: TreeItemMenuProps) {
       <DropdownMenuItem asChild={true}>
         {item.edit_url ? (
           <ModalLink href={item.edit_url as string} variant="right">
-            <Icon name="plus" />
+            <Icon name="edit" />
             {trans("ui.edit")}
           </ModalLink>
         ) : null}
       </DropdownMenuItem>
       <DropdownMenuSeparator />
+      <DropdownMenuItem asChild={true}>
+        {item.destroy_url ? (
+          <Link href={item.destroy_url as string} method="delete">
+            <Icon name="trash" />
+            {trans("ui.delete")}
+          </Link>
+        ) : null}
+      </DropdownMenuItem>
     </SortableItemMenu>
   );
 }
