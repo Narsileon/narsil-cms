@@ -55,11 +55,7 @@ function ResourceForm({
 
       switch (element.handle) {
         case "sidebar":
-          if (!minLg) {
-            acc.tabs.push(element);
-          } else {
-            acc.sidebar = element;
-          }
+          acc.sidebar = element;
           break;
         default:
           acc.tabs.push(element);
@@ -78,35 +74,28 @@ function ResourceForm({
 
   const sidebarContent = sidebar ? <FormRenderer {...sidebar} /> : null;
 
-  const tabsContent = (
-    <TabsRoot
-      defaultValue={tabs[0].handle}
-      value={value}
-      onValueChange={setValue}
-      className="gap-4 lg:col-span-8"
-    >
-      {tabs.length > 1 ? (
-        <TabsList className="w-full">
-          {tabs.map((tab, index) => {
-            return (
-              <TabsTrigger value={tab.handle} key={index}>
-                {tab.name}
-              </TabsTrigger>
-            );
-          })}
-        </TabsList>
-      ) : null}
-      {tabs.map((tab, index) => {
-        return (
-          <TabsContent className="p-0" value={tab.handle} key={index}>
-            <Card className="overflow-hidden" contentProps={{ className: "grid-cols-12 gap-4" }}>
-              <FormRenderer {...tab} />
-            </Card>
-          </TabsContent>
-        );
-      })}
-    </TabsRoot>
-  );
+  const tabsList =
+    tabs.length > 1 ? (
+      <TabsList className="w-full">
+        {tabs.map((tab, index) => {
+          return (
+            <TabsTrigger value={tab.handle} key={index}>
+              {tab.name}
+            </TabsTrigger>
+          );
+        })}
+      </TabsList>
+    ) : null;
+
+  const tabsContent = tabs.map((tab, index) => {
+    return (
+      <TabsContent value={tab.handle} key={index}>
+        <Card className="overflow-hidden" contentProps={{ className: "grid-cols-12 gap-4" }}>
+          <FormRenderer {...tab} />
+        </Card>
+      </TabsContent>
+    );
+  });
 
   useEffect(() => {
     const handles = tabs.map((tab) => tab.handle);
@@ -145,7 +134,17 @@ function ResourceForm({
           >
             {modal ? (
               <>
-                <DialogBody>{tabsContent}</DialogBody>
+                <DialogBody>
+                  <TabsRoot
+                    defaultValue={tabs[0].handle}
+                    value={value}
+                    onValueChange={setValue}
+                    className="gap-4 lg:col-span-8"
+                  >
+                    {tabsList}
+                    {tabsContent}
+                  </TabsRoot>
+                </DialogBody>
                 <DialogFooter className="h-fit border-t">
                   <DialogClose asChild={true}>
                     <Button variant="ghost">{trans("ui.cancel")}</Button>
@@ -158,11 +157,18 @@ function ResourceForm({
             ) : (
               <>
                 <SectionRoot className="min-h-full flex-3">
-                  <SectionContent className="px-4">{tabsContent}</SectionContent>
+                  <SectionContent>
+                    <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
+                      {tabsList ? (
+                        <div className="flex h-13 items-center border-b px-4">{tabsList}</div>
+                      ) : null}
+                      {tabsContent}
+                    </TabsRoot>
+                  </SectionContent>
                 </SectionRoot>
                 <SectionRoot className="min-h-full flex-1 border-l">
                   <SectionContent className="flex flex-col">
-                    <div className="flex flex-col items-end gap-2 border-b p-2">
+                    <div className="flex h-13 flex-col items-end gap-2 border-b p-2">
                       <SaveButton
                         routes={routes}
                         submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}

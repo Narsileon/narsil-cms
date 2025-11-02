@@ -9,14 +9,13 @@ function TabsList({ className, ...props }: TabsListProps) {
     <Tabs.List
       data-slot="tabs-list"
       className={cn(
-        "inline-flex gap-1 rounded-xl bg-sidebar text-sidebar-foreground",
-        "data-[orientation=horizontal]:border data-[orientation=vertical]:border-r",
+        "inline-flex justify-start gap-2",
+        "data-[orientation=vertical]:border-r",
         "data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col",
-        "data-[orientation=horizontal]:h-10",
+        "data-[orientation=horizontal]:h-9",
         "data-[orientation=horizontal]:items-center data-[orientation=vertical]:items-start",
-        "data-[orientation=horizontal]:justify-center data-[orientation=vertical]:justify-start",
         "data-[orientation=horizontal]:overflow-x-auto data-[orientation=vertical]:overflow-y-auto",
-        "data-[orientation=horizontal]:p-1 data-[orientation=vertical]:p-2",
+        "data-[orientation=vertical]:p-2",
         "data-[orientation=horizontal]:w-full data-[orientation=vertical]:min-w-40",
         "data-[orientation=vertical]:rounded-none",
         className,

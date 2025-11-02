@@ -25,7 +25,11 @@ function FormLabel({ children, className, required = false, ...props }: FormLabe
       <span className="first-letter:uppercase">{children}</span>
       {required && (
         <Tooltip tooltip={trans("accessibility.required")}>
-          <Icon className="size-3! cursor-help text-primary" aria-hidden="true" name="asterisk" />
+          <Icon
+            className="size-3! cursor-help text-destructive"
+            aria-hidden="true"
+            name="asterisk"
+          />
         </Tooltip>
       )}
     </Label>

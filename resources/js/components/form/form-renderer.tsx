@@ -107,21 +107,25 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
                 {props.translatable ? (
-                  <FormFieldLanguage
-                    triggerProps={{
-                      size: "sm",
-                      variant: "secondary",
-                    }}
-                    valueProps={{
-                      asChild: true,
-                      children: <span className="uppercase">{fieldLanguage}</span>,
-                    }}
-                    value={fieldLanguage}
-                    onValueChange={setFieldLanguage}
-                  />
+                  <>
+                    <Icon className="size-4" name="globe" />
+                    <span>-</span>
+                    <FormFieldLanguage
+                      triggerProps={{
+                        size: "sm",
+                        variant: "inline",
+                      }}
+                      valueProps={{
+                        asChild: true,
+                        children: <span className="uppercase">{fieldLanguage}</span>,
+                      }}
+                      value={fieldLanguage}
+                      onValueChange={setFieldLanguage}
+                    />
+                  </>
                 ) : null}
               </div>
               {props.settings?.append
