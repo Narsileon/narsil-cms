@@ -4,6 +4,7 @@ namespace Narsil\Models\Hosts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\TreeModel;
 use Narsil\Traits\HasTranslations;
@@ -155,6 +156,64 @@ class HostPage extends TreeModel
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
+    {
+        $ids = collect($data)->pluck(self::ID);
+
+        $nodes = $ids->map(function ($id) use ($collection)
+        {
+            return $collection->get($id);
+        })->filter();
+
+        $dataCollection = collect($data)->keyBy(self::ID);
+
+        $nodes->each(function ($node, $index) use ($collection, $dataCollection, $nodes, $parent)
+        {
+            $isLastNode = ($index === $nodes->count() - 1);
+
+            $leftNode = $nodes->get($index - 1);
+
+            if (
+                $leftNode?->{self::RIGHT_ID} !== $node?->{self::ID}
+            )
+            {
+                $node->fill([
+                    self::LEFT_ID => $leftNode?->{self::ID},
+                ]);
+
+                $leftNode?->fill([
+                    self::RIGHT_ID => $node?->{self::ID},
+                ]);
+            }
+
+            if ($isLastNode)
+            {
+                $node->fill([
+                    self::RIGHT_ID => null,
+                ]);
+            }
+
+            $node->save();
+
+            if ($leftNode && $leftNode->isDirty())
+            {
+                $leftNode->fill([
+                    self::RIGHT_ID => $node?->{self::ID},
+                ]);
+
+                $leftNode->save();
+            }
+
+            if ($children = $dataCollection->get($node->{self::ID})[self::RELATION_CHILDREN] ?? null)
+            {
+                $this->rebuildTreeRecursively($collection, $children, $node);
+            }
+        });
+    }
 
     #region • RELATIONSHIPS
 

@@ -29,6 +29,9 @@ return [
             'deleted_current' => 'You have been logged out from this device.',
             'deleted_others'  => 'You have been logged out from other devices.',
         ],
+        'sites' => [
+            'updated' => 'The site has been successfully updated.',
+        ],
         'two_factor' => [
             'confirmed' => 'Your two factor authentication has been successfully confirmed.',
             'disabled'  => 'Your two factor authentication has been successfully disabled.',
@@ -69,6 +72,7 @@ return [
         ],
         HostPage::TABLE => [
             'created' => 'The page has been successfully created.',
+            'deleted' => 'The page has been successfully deleted.',
             'updated' => 'The page has been successfully updated.',
         ],
         Role::TABLE => [

@@ -4,6 +4,8 @@ namespace Narsil\Models;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TreeModel extends Model
+abstract class TreeModel extends Model
 {
     #region CONSTANTS
 
@@ -110,6 +112,15 @@ class TreeModel extends Model
 
     #region PUBLIC METHODS
 
+    /**
+     * @param Collection<integer,TreeModel> $nodes
+     * @param array $data
+     * @param TreeModel|null $parent
+     *
+     * @return void
+     */
+    abstract protected function rebuildTreeRecursively(Collection $nodes, array $data, ?TreeModel $parent = null): void;
+
     #region • RELATIONSHIPS
 
     /**
@@ -171,6 +182,36 @@ class TreeModel extends Model
                 self::ID,
                 self::RIGHT_ID
             );
+    }
+
+    #endregion
+
+    #region • SCOPES
+
+    /**
+     * @param Builder $query
+     * @param ?array $tree
+     * @param string $hostLocaleUuid
+     *
+     * @return boolean|string
+     */
+    public function scopeRebuildTree(
+        Builder $query,
+        array $tree = [],
+    ): bool|string
+    {
+        $collection = $query
+            ->with([
+                self::RELATION_LEFT,
+                self::RELATION_PARENT,
+                self::RELATION_RIGHT,
+            ])
+            ->get()
+            ->keyBy(self::ID);
+
+        $this->rebuildTreeRecursively($collection, $tree);
+
+        return true;
     }
 
     #endregion
