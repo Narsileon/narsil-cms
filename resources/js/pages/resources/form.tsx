@@ -170,7 +170,11 @@ function ResourceForm({
                 </SectionRoot>
                 <SectionRoot className="min-h-full flex-1 border-l">
                   <SectionContent className="flex flex-col">
-                    <div className="flex h-13 items-center justify-between gap-2 border-b px-4 py-2">
+                    <div className="flex h-13 flex-row-reverse items-center justify-between gap-2 border-b px-4 py-2">
+                      <SaveButton
+                        routes={routes}
+                        submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
+                      />
                       {revisions ? (
                         <StatusRoot
                           className={cn(
@@ -196,10 +200,6 @@ function ResourceForm({
                           ) : null}
                         </StatusRoot>
                       ) : null}
-                      <SaveButton
-                        routes={routes}
-                        submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
-                      />
                     </div>
                     <div className="flex flex-col items-start gap-2 border-b p-4">
                       {data?.created_at ? (
