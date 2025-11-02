@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostPageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Http\Resources\HostPages\HostPageResource;
+use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostPage;
 
@@ -44,7 +44,10 @@ class HostPageStoreController extends AbstractController
 
         $hostLocale = static::getHostLocale($attributes[HostPage::HOST_ID]);
 
-        $attributes[HostPage::HOST_LOCALE_UUID] = $hostLocale?->{HostLocale::UUID};
+        if ($hostLocale->{HostLocale::COUNTRY} !== 'default')
+        {
+            $attributes[HostPage::HOST_LOCALE_UUID] = $hostLocale?->{HostLocale::UUID};
+        }
 
         $lastChild = static::findLastChild($attributes);
 
@@ -59,10 +62,7 @@ class HostPageStoreController extends AbstractController
             ]);
         }
 
-        $resource = new HostPageResource($hostPage)->resolve();
-
-        return back()
-            ->with('data', $resource)
+        return redirect(route('sites.edit', $hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE}))
             ->with('success', trans('narsil::toasts.success.host_pages.created'));
     }
 
@@ -99,11 +99,6 @@ class HostPageStoreController extends AbstractController
     protected static function getHostLocale(int $hostId): ?HostLocale
     {
         $country = request()->get('country', 'default');
-
-        if ($country === 'default')
-        {
-            return null;
-        }
 
         $hostLocale = HostLocale::query()
             ->with(HostLocale::RELATION_HOST)

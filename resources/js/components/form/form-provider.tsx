@@ -2,7 +2,7 @@ import { useForm } from "@inertiajs/react";
 import { getFieldDefaultValue } from "@narsil-cms/lib/field";
 import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
 import { set } from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
@@ -94,6 +94,10 @@ function FormProvider({
     submit: submit,
     transform: transform,
   };
+
+  useEffect(() => {
+    setData(mergedInitialValues);
+  }, [JSON.stringify(initialValues)]);
 
   return <FormContext.Provider value={contextValue}>{render(contextValue)}</FormContext.Provider>;
 }

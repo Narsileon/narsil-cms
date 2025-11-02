@@ -6,8 +6,6 @@ namespace Narsil\Http\Controllers\HostPages;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Narsil\Contracts\FormRequests\HostPageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Models\Hosts\Host;
@@ -19,7 +17,7 @@ use Narsil\Models\Hosts\HostPage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageUpdateController extends AbstractController
+class HostPageDestroyController extends AbstractController
 {
     #region PUBLIC METHODS
 
@@ -31,22 +29,14 @@ class HostPageUpdateController extends AbstractController
      */
     public function __invoke(Request $request, HostPage $hostPage): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $hostPage);
-
-        $data = $request->all();
-
-        $rules = app(HostPageFormRequest::class)
-            ->rules($hostPage);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
-
-        $hostPage->update($attributes);
+        $this->authorize(PermissionEnum::DELETE, $hostPage);
 
         $site = $this->getSite($hostPage);
 
+        $hostPage->delete();
+
         return redirect(route('sites.edit', $site))
-            ->with('success', trans('narsil::toasts.success.host_pages.updated'));
+            ->with('success', trans('narsil::toasts.success.host_pages.deleted'));
     }
 
     #endregion

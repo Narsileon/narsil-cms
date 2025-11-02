@@ -34,8 +34,10 @@ function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLang
             className={cn(
               "relative pl-4 font-normal",
               "before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2",
-              "before:size-1 before:rounded-full before:bg-constructive",
-              option.value === value ? "before:bg-constructive" : "before:bg-foreground",
+              "before:size-1.5 before:rounded-full before:bg-constructive",
+              option.value === value
+                ? "before:animate-pulse before:bg-constructive"
+                : "before:bg-foreground",
             )}
           >
             {option.label as string}
