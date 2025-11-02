@@ -120,7 +120,7 @@ function ResourceForm({
       render={({ formLanguage, setFormLanguage }) => {
         return (
           <FormRoot
-            className="flex min-h-full animate-in overflow-hidden fade-in-0"
+            className="flex max-h-full min-h-full animate-in overflow-hidden fade-in-0"
             autoSave={autoSave}
             options={{
               onSuccess: (response) => {
@@ -156,7 +156,7 @@ function ResourceForm({
               </>
             ) : (
               <>
-                <SectionRoot className="min-h-full flex-3">
+                <SectionRoot className="max-h-full min-h-full flex-3 overflow-y-auto">
                   <SectionContent>
                     <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
                       {tabsList ? (
@@ -168,7 +168,7 @@ function ResourceForm({
                     </TabsRoot>
                   </SectionContent>
                 </SectionRoot>
-                <SectionRoot className="min-h-full flex-1 border-l">
+                <SectionRoot className="max-h-full min-h-full flex-1 overflow-y-auto border-l">
                   <SectionContent className="flex flex-col">
                     <div className="flex h-13 flex-row-reverse items-center justify-between gap-2 border-b px-4 py-2">
                       <SaveButton
