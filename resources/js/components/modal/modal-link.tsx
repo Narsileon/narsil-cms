@@ -17,7 +17,15 @@ function ModalLink({ as = "button", variant = "default", onClick, ...props }: Mo
     openModal({ ...props }, variant);
   }
 
-  return <Comp data-slot="modal-link" aria-haspopup="dialog" onClick={handleClick} {...props} />;
+  return (
+    <Comp
+      data-slot="modal-link"
+      aria-haspopup="dialog"
+      type="button"
+      onClick={handleClick}
+      {...props}
+    />
+  );
 }
 
 export default ModalLink;

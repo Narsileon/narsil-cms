@@ -5,6 +5,7 @@ import Badge from "@narsil-cms/blocks/badge";
 import { CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-cms/components/collapsible";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { ModalLink } from "@narsil-cms/components/modal";
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
@@ -41,6 +42,13 @@ function TreeItem({
     id: id,
   });
 
+  const content = (
+    <div className="flex grow items-center justify-start gap-2">
+      {item.label ? <CardTitle className="font-normal">{item.label}</CardTitle> : null}
+      {item.badge ? <Badge variant="secondary">{item.badge}</Badge> : null}
+    </div>
+  );
+
   return (
     <CollapsibleRoot
       ref={disabled ? undefined : setNodeRef}
@@ -61,10 +69,17 @@ function TreeItem({
               disabled={disabled}
               tooltip={trans("ui.move")}
             />
-            <div className="flex grow items-center justify-start gap-2">
-              {item.label ? <CardTitle className="font-normal">{item.label}</CardTitle> : null}
-              {item.badge ? <Badge variant="secondary">{item.badge}</Badge> : null}
-            </div>
+            {item.edit_url ? (
+              <ModalLink
+                className="grow cursor-pointer"
+                href={item.edit_url as string}
+                variant="right"
+              >
+                {content}
+              </ModalLink>
+            ) : (
+              content
+            )}
             <TreeItemMenu
               className="justify-end"
               item={item}
