@@ -135,7 +135,7 @@ function ResourceForm({
           >
             {modal ? (
               <>
-                <DialogBody className="col-span-full p-0">
+                <DialogBody className="col-span-full h-full p-0">
                   <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
                     {tabsList}
                     {tabsContent}

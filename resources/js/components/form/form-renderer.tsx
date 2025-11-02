@@ -11,7 +11,6 @@ import { getField } from "@narsil-cms/plugins/fields";
 import type { Block, BlockElementCondition, Field, TemplateSection } from "@narsil-cms/types";
 import parse from "html-react-parser";
 import { Fragment } from "react";
-import useForm from "./form-context";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormFieldLanguage from "./form-field-language";
@@ -27,8 +26,6 @@ type FormRendererProps = (Block | Field | TemplateSection) & {
 };
 
 function FormRenderer({ className, conditions, width, onChange, ...props }: FormRendererProps) {
-  const { data } = useForm();
-
   if ("elements" in props) {
     return (
       <>
@@ -57,7 +54,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                 >
                   <CollapsibleTrigger
                     className={cn(
-                      "flex w-full items-center justify-between bg-accent p-4 text-center",
+                      "flex w-full items-center justify-between p-4 text-center",
                       "data-[state=open]:border-b",
                     )}
                   >
@@ -155,11 +152,6 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
         );
       }}
     />
-  ) : "type" in props ? (
-    <div className="col-span-full flex items-center justify-between">
-      <span className="first-letter:uppercase">{props.name}</span>
-      <span>{data?.[props.handle]}</span>
-    </div>
   ) : null;
 }
 
