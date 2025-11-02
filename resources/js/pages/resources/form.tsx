@@ -238,7 +238,7 @@ function ResourceForm({
                     </div>
                     {countries ? (
                       <div className="flex flex-col gap-1 border-b p-2">
-                        <div className="flex items-center justify-start gap-2 pl-2">
+                        <div className="flex items-center justify-start gap-2 pl-2.5">
                           <Icon className="size-4" name="globe" />
                           <Heading level="h3" variant="discreet">
                             {trans("ui.countries")}
@@ -249,7 +249,7 @@ function ResourceForm({
                     ) : null}
                     {languageOptions?.length > 0 ? (
                       <div className="flex flex-col gap-1 border-b p-2">
-                        <div className="flex items-center justify-start gap-2 pl-2">
+                        <div className="flex items-center justify-start gap-2 pl-2.5">
                           <Icon className="size-4" name="globe" />
                           <Heading level="h3" variant="discreet">
                             {trans("ui.translations")}
