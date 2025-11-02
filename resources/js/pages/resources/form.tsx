@@ -121,7 +121,7 @@ function ResourceForm({
       render={({ formLanguage, setFormLanguage }) => {
         return (
           <FormRoot
-            className="relative h-full max-h-full min-h-full w-full animate-in grid-cols-12 items-center overflow-hidden fade-in-0"
+            className="relative w-full animate-in grid-cols-12 items-center fade-in-0 md:h-full md:max-h-full md:min-h-full md:overflow-hidden"
             autoSave={autoSave}
             options={{
               onSuccess: (response) => {
@@ -152,7 +152,14 @@ function ResourceForm({
               </>
             ) : (
               <>
-                <SectionRoot className="col-span-9 h-full max-h-full min-h-full flex-3 overflow-y-auto">
+                <SectionRoot
+                  className={cn(
+                    "col-span-12 h-full max-h-full min-h-full flex-3",
+                    "md:col-span-7 md:overflow-y-auto",
+                    "lg:col-span-8",
+                    "2xl:col-span-9",
+                  )}
+                >
                   <SectionContent>
                     <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
                       {tabsList}
@@ -160,7 +167,14 @@ function ResourceForm({
                     </TabsRoot>
                   </SectionContent>
                 </SectionRoot>
-                <SectionRoot className="col-span-3 h-full max-h-full min-h-full flex-1 overflow-y-auto border-l">
+                <SectionRoot
+                  className={cn(
+                    "col-span-12 h-full max-h-full min-h-full flex-1 overflow-y-auto border-t",
+                    "md:col-span-5 md:border-t-0 md:border-l",
+                    "lg:col-span-4",
+                    "2xl:col-span-3",
+                  )}
+                >
                   <SectionContent className="flex flex-col">
                     <div className="flex h-13 flex-row-reverse items-center justify-between gap-2 border-b px-4 py-2">
                       <SaveButton

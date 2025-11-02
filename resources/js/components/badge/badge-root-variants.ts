@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 
 const badgeRootVariants = cva(
   cn(
-    "inline-flex h-7 w-fit shrink-0 items-center justify-center gap-2 overflow-hidden rounded-xs border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow]",
+    "inline-flex h-7 w-fit shrink-0 items-center justify-center gap-2 overflow-hidden rounded-sm border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow]",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
     "dark:aria-invalid:ring-destructive/50",
     "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50",
