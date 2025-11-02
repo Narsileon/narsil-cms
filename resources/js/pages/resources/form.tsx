@@ -160,7 +160,7 @@ function ResourceForm({
                   <SectionContent>
                     <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
                       {tabsList ? (
-                        <div className="flex h-13 items-center border-b px-4">{tabsList}</div>
+                        <div className="flex items-center border-b px-4">{tabsList}</div>
                       ) : null}
                       {tabsContent}
                     </TabsRoot>

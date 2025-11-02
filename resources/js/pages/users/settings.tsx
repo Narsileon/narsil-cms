@@ -26,6 +26,9 @@ function UserSettings({
     <Tabs
       defaultValue={auth ? "account" : "configuration"}
       orientation="vertical"
+      tabsListProps={{
+        className: "px-4 md:p-0 border-b",
+      }}
       elements={
         [
           auth && {
