@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Sites;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Inertia\Response;
 use Locale;
 use Narsil\Casts\HumanDatetimeCast;
@@ -42,7 +43,15 @@ class SiteEditController extends AbstractController
         $host = Host::query()
             ->with([
                 Host::RELATION_OTHER_LOCALES,
-                Host::RELATION_PAGES,
+                Host::RELATION_PAGES => function ($query)
+                {
+                    $query
+                        ->whereDoesntHave(HostPage::RELATION_LOCALE)
+                        ->orWhereHas(HostPage::RELATION_LOCALE, function ($subquery)
+                        {
+                            $subquery->where(HostLocale::COUNTRY, Session::get(HostLocale::COUNTRY));
+                        });
+                },
                 Host::RELATION_PAGES . '.' . HostPage::RELATION_LOCALE,
             ])
             ->where(Host::HANDLE, $site)
