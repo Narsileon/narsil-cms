@@ -128,7 +128,7 @@ abstract class TreeModel extends Model
      *
      * @return HasMany
      */
-    public function children(): HasMany
+    final public function children(): HasMany
     {
         return $this
             ->hasMany(
@@ -144,7 +144,7 @@ abstract class TreeModel extends Model
      *
      * @return HasOne
      */
-    public function left(): HasOne
+    final public function left(): HasOne
     {
         return $this
             ->hasOne(
@@ -159,7 +159,7 @@ abstract class TreeModel extends Model
      *
      * @return BelongsTo
      */
-    public function parent(): BelongsTo
+    final public function parent(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -174,7 +174,7 @@ abstract class TreeModel extends Model
      *
      * @return HasOne
      */
-    public function right(): HasOne
+    final public function right(): HasOne
     {
         return $this
             ->hasOne(

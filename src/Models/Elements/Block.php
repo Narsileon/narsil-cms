@@ -193,7 +193,7 @@ class Block extends Model
      *
      * @return MorphToMany
      */
-    public function blocks(): MorphToMany
+    final public function blocks(): MorphToMany
     {
         return $this
             ->morphedByMany(
@@ -210,7 +210,7 @@ class Block extends Model
      *
      * @return HasMany
      */
-    public function elements(): HasMany
+    final public function elements(): HasMany
     {
         return $this
             ->hasMany(
@@ -226,7 +226,7 @@ class Block extends Model
      *
      * @return MorphToMany
      */
-    public function fields(): MorphToMany
+    final public function fields(): MorphToMany
     {
         return $this
             ->morphedByMany(

@@ -117,7 +117,7 @@ class Template extends Model
      *
      * @return HasMany
      */
-    public function sections(): HasMany
+    final public function sections(): HasMany
     {
         return $this
             ->hasMany(

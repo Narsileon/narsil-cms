@@ -4,15 +4,10 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\Configuration\ColorEnum;
-use Narsil\Enums\Configuration\ThemeEnum;
 use Narsil\Models\User;
 use Narsil\Models\Users\PasswordResetToken;
 use Narsil\Models\Users\Session;
-use Narsil\Models\Users\UserBookmark;
-use Narsil\Models\Users\UserConfiguration;
 
 #endregion
 
@@ -39,14 +34,6 @@ return new class extends Migration
         {
             $this->createSessionsTable();
         }
-        if (!Schema::hasTable(UserConfiguration::TABLE))
-        {
-            $this->createUserConfigurationsTable();
-        }
-        if (!Schema::hasTable(UserBookmark::TABLE))
-        {
-            $this->createUserBookmarksTable();
-        }
     }
 
     /**
@@ -56,8 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(UserBookmark::TABLE);
-        Schema::dropIfExists(UserConfiguration::TABLE);
         Schema::dropIfExists(Session::TABLE);
         Schema::dropIfExists(PasswordResetToken::TABLE);
         Schema::dropIfExists(User::TABLE);
@@ -115,64 +100,6 @@ return new class extends Migration
             $blueprint
                 ->integer(Session::LAST_ACTIVITY)
                 ->index();
-        });
-    }
-
-    /**
-     * Create the user bookmarks table.
-     *
-     * @return void
-     */
-    private function createUserBookmarksTable(): void
-    {
-        Schema::create(UserBookmark::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(UserBookmark::ID);
-            $blueprint
-                ->foreignId(UserBookmark::USER_ID)
-                ->constrained(User::TABLE, User::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->string(UserBookmark::NAME);
-            $blueprint
-                ->string(UserBookmark::URL);
-            $blueprint
-                ->timestamps();
-        });
-    }
-
-    /**
-     * Create the user configurations table.
-     *
-     * @return void
-     */
-    private function createUserConfigurationsTable(): void
-    {
-        Schema::create(UserConfiguration::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->foreignId(UserConfiguration::USER_ID)
-                ->primary()
-                ->constrained(User::TABLE, User::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->string(UserConfiguration::LANGUAGE)
-                ->default(Config::get('app.locale'));
-            $blueprint
-                ->string(UserConfiguration::COLOR)
-                ->default(ColorEnum::GRAY->value);
-            $blueprint
-                ->decimal(UserConfiguration::RADIUS, 3, 2)
-                ->default(0.5);
-            $blueprint
-                ->string(UserConfiguration::THEME)
-                ->default(ThemeEnum::SYSTEM->value);
-            $blueprint
-                ->jsonb(UserConfiguration::PREFERENCES)
-                ->nullable();
-            $blueprint
-                ->timestamps();
         });
     }
 

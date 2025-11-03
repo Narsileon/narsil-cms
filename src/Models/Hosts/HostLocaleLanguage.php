@@ -101,7 +101,7 @@ class HostLocaleLanguage extends Model
      *
      * @return array<string>
      */
-    public static function getUniqueLanguages(): array
+    final public static function getUniqueLanguages(): array
     {
         return self::query()
             ->select(self::LANGUAGE)
@@ -118,7 +118,7 @@ class HostLocaleLanguage extends Model
      *
      * @return BelongsTo
      */
-    public function locale(): BelongsTo
+    final public function locale(): BelongsTo
     {
         return $this
             ->belongsTo(

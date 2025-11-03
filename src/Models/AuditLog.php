@@ -51,56 +51,56 @@ class AuditLog extends Model
      *
      * @var string
      */
-    public const TABLE = 'audit_logs';
+    final public const TABLE = 'audit_logs';
 
     #region • COLUMNS
 
     /**
      * @var string The name of the "event" column.
      */
-    public const EVENT = 'event';
+    final public const EVENT = 'event';
 
     /**
      * The name of the "model id" column.
      *
      * @var string
      */
-    public const MODEL_ID = 'model_id';
+    final public const MODEL_ID = 'model_id';
 
     /**
      * The name of the "model type" column.
      *
      * @var string
      */
-    public const MODEL_TYPE = 'model_type';
+    final public const MODEL_TYPE = 'model_type';
 
     /**
      * The name of the "new values" column.
      *
      * @var string
      */
-    public const NEW_VALUES = 'new_values';
+    final public const NEW_VALUES = 'new_values';
 
     /**
      * The name of the "old values" column.
      *
      * @var string
      */
-    public const OLD_VALUES = 'old_values';
+    final public const OLD_VALUES = 'old_values';
 
     /**
      * The name of the "user id" column.
      *
      * @var string
      */
-    public const USER_ID = 'user_id';
+    final public const USER_ID = 'user_id';
 
     /**
      * The name of the "uuid" column.
      *
      * @var string
      */
-    public const UUID = 'uuid';
+    final public const UUID = 'uuid';
 
     #endregion
 
@@ -111,14 +111,14 @@ class AuditLog extends Model
      *
      * @var string
      */
-    public const RELATION_MODEL = 'model';
+    final public const RELATION_MODEL = 'model';
 
     /**
      * The name of the "user" relation.
      *
      * @var string
      */
-    public const RELATION_USER = 'user';
+    final public const RELATION_USER = 'user';
 
     #endregion
 
@@ -133,7 +133,7 @@ class AuditLog extends Model
      *
      * @return MorphTo
      */
-    public function model(): MorphTo
+    final public function model(): MorphTo
     {
         return $this->morphTo(
             self::RELATION_MODEL,
@@ -147,7 +147,7 @@ class AuditLog extends Model
      *
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    final public function user(): BelongsTo
     {
         return $this
             ->belongsTo(

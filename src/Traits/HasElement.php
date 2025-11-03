@@ -144,7 +144,7 @@ trait HasElement
      *
      * @return MorphTo
      */
-    public function element(): MorphTo
+    final public function element(): MorphTo
     {
         return $this
             ->morphTo(

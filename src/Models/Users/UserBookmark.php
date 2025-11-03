@@ -97,7 +97,7 @@ class UserBookmark extends Model
      *
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    final public function user(): BelongsTo
     {
         return $this
             ->belongsTo(

@@ -93,7 +93,7 @@ class Role extends Model
      *
      * @return BelongsToMany
      */
-    public function permissions(): BelongsToMany
+    final public function permissions(): BelongsToMany
     {
         return $this
             ->belongsToMany(

@@ -115,7 +115,7 @@ class BlockElement extends Model
      *
      * @return BelongsTo
      */
-    public function block(): BelongsTo
+    final public function block(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -130,7 +130,7 @@ class BlockElement extends Model
      *
      * @return HasMany
      */
-    public function conditions(): HasMany
+    final public function conditions(): HasMany
     {
         return $this
             ->hasMany(

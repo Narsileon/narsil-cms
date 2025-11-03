@@ -6,6 +6,7 @@ namespace Narsil\Models\Hosts;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\TreeModel;
 use Narsil\Traits\HasTranslations;
 
@@ -151,6 +152,13 @@ class HostPage extends TreeModel
      */
     final public const RELATION_LOCALE = 'locale';
 
+    /**
+     * The name of the "overrides" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OVERRIDES = 'overrides';
+
     #endregion
 
     #endregion
@@ -222,7 +230,7 @@ class HostPage extends TreeModel
      *
      * @return BelongsTo
      */
-    public function host(): BelongsTo
+    final public function host(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -237,13 +245,28 @@ class HostPage extends TreeModel
      *
      * @return BelongsTo
      */
-    public function locale(): BelongsTo
+    final public function locale(): BelongsTo
     {
         return $this
             ->belongsTo(
                 HostLocale::class,
                 self::HOST_LOCALE_UUID,
                 HostLocale::UUID
+            );
+    }
+
+    /**
+     * Get the associated overrides.
+     *
+     * @return HasMany
+     */
+    final public function overrides(): HasMany
+    {
+        return $this
+            ->hasMany(
+                HostPageOverride::class,
+                HostPageOverride::HOST_PAGE_ID,
+                self::ID
             );
     }
 

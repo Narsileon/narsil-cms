@@ -184,7 +184,7 @@ class EntityBlock extends Model
      *
      * @return BelongsTo
      */
-    public function block(): BelongsTo
+    final public function block(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -199,7 +199,7 @@ class EntityBlock extends Model
      *
      * @return BelongsTo
      */
-    public function children(): HasMany
+    final public function children(): HasMany
     {
         return $this
             ->hasMany(
@@ -214,7 +214,7 @@ class EntityBlock extends Model
      *
      * @return BelongsTo
      */
-    public function entity(): BelongsTo
+    final public function entity(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -229,7 +229,7 @@ class EntityBlock extends Model
      *
      * @return HasMany
      */
-    public function fields(): HasMany
+    final public function fields(): HasMany
     {
         return $this
             ->hasMany(
@@ -245,7 +245,7 @@ class EntityBlock extends Model
      *
      * @return BelongsTo
      */
-    public function parent(): BelongsTo
+    final public function parent(): BelongsTo
     {
         return $this
             ->belongsTo(

@@ -1,12 +1,11 @@
 <?php
 
-namespace Narsil\Models\Elements;
+namespace Narsil\Models\Hosts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Elements\Block;
 
 #endregion
 
@@ -14,7 +13,7 @@ use Narsil\Models\Elements\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldBlock extends Pivot
+class HostPageOverride extends Model
 {
     #region CONSTRUCTOR
 
@@ -24,8 +23,6 @@ class FieldBlock extends Pivot
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->timestamps = false;
 
         $this->mergeGuarded([
             self::ID,
@@ -43,23 +40,23 @@ class FieldBlock extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'field_block';
+    final public const TABLE = 'host_page_overrides';
 
     #region • COLUMNS
 
     /**
-     * The name of the "block id" column.
+     * The name of the "host locale uuid" column.
      *
      * @var string
      */
-    final public const BLOCK_ID = 'block_id';
+    final public const HOST_LOCALE_UUID = 'host_locale_uuid';
 
     /**
-     * The name of the "field id" column.
+     * The name of the "host page id" column.
      *
      * @var string
      */
-    final public const FIELD_ID = 'field_id';
+    final public const HOST_PAGE_ID = 'host_page_id';
 
     /**
      * The name of the "id" column.
@@ -68,23 +65,30 @@ class FieldBlock extends Pivot
      */
     final public const ID = 'id';
 
+    /**
+     * The name of the "parent id" column.
+     *
+     * @var string
+     */
+    final public const PARENT_ID = 'parent_id';
+
     #endregion
 
     #region • RELATIONS
 
     /**
-     * The name of the "block" relation.
+     * The name of the "host page" relation.
      *
      * @var string
      */
-    final public const RELATION_BLOCK = 'block';
+    final public const RELATION_HOST = 'host_page';
 
     /**
-     * The name of the "field" relation.
+     * The name of the "parent" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELD = 'field';
+    final public const RELATION_PARENT = 'parent';
 
     #endregion
 
@@ -95,32 +99,32 @@ class FieldBlock extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated block.
+     * Get the associated host page.
      *
      * @return BelongsTo
      */
-    final public function block(): BelongsTo
+    final public function host_page(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Block::class,
-                self::BLOCK_ID,
-                Block::ID,
+                HostPage::class,
+                self::HOST_PAGE_ID,
+                HostPage::ID
             );
     }
 
     /**
-     * Get the associated field.
+     * Get the associated parent.
      *
      * @return BelongsTo
      */
-    final public function field(): BelongsTo
+    final public function parent(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Field::class,
-                self::FIELD_ID,
-                Field::ID,
+                HostPage::class,
+                self::PARENT_ID,
+                HostPage::ID
             );
     }
 

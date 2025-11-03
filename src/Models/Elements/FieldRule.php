@@ -90,7 +90,7 @@ class FieldRule extends Model
      *
      * @return BelongsTo
      */
-    public function field(): BelongsTo
+    final public function field(): BelongsTo
     {
         return $this
             ->belongsTo(

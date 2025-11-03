@@ -100,7 +100,7 @@ class UserPermission extends Pivot
      *
      * @return BelongsTo
      */
-    public function permission(): BelongsTo
+    final public function permission(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -115,7 +115,7 @@ class UserPermission extends Pivot
      *
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    final public function user(): BelongsTo
     {
         return $this
             ->belongsTo(

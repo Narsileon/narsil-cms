@@ -115,7 +115,7 @@ class BlockElementCondition extends Model
      *
      * @return BelongsTo
      */
-    public function owner(): BelongsTo
+    final public function owner(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -130,7 +130,7 @@ class BlockElementCondition extends Model
      *
      * @return BelongsTo
      */
-    public function target(): BelongsTo
+    final public function target(): BelongsTo
     {
         return $this
             ->belongsTo(

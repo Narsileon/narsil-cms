@@ -100,7 +100,7 @@ class UserRole extends Pivot
      *
      * @return BelongsTo
      */
-    public function role(): BelongsTo
+    final public function role(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -115,7 +115,7 @@ class UserRole extends Pivot
      *
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    final public function user(): BelongsTo
     {
         return $this
             ->belongsTo(

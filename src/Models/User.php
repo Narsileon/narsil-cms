@@ -262,7 +262,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return HasMany
      */
-    public function bookmarks(): HasMany
+    final public function bookmarks(): HasMany
     {
         return $this
             ->hasMany(
@@ -277,7 +277,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return HasOne
      */
-    public function configuration(): HasOne
+    final public function configuration(): HasOne
     {
         return $this
             ->hasOne(
@@ -290,7 +290,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * {@inheritDoc}
      */
-    public function permissions(): BelongsToMany
+    final public function permissions(): BelongsToMany
     {
         return $this
             ->belongsToMany(
@@ -304,7 +304,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * {@inheritDoc}
      */
-    public function roles(): BelongsToMany
+    final public function roles(): BelongsToMany
     {
         return $this
             ->belongsToMany(
@@ -320,7 +320,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return HasMany
      */
-    public function sessions(): HasMany
+    final public function sessions(): HasMany
     {
         return $this
             ->hasMany(

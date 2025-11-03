@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Policies\RolePermission;
-use Narsil\Models\Policies\UserPermission;
-use Narsil\Models\Policies\UserRole;
 use Narsil\Models\User;
 
 #endregion
@@ -29,21 +27,9 @@ return new class extends Migration
         {
             $this->createRolesTable();
         }
-        if (!Schema::hasTable(Permission::TABLE))
-        {
-            $this->createPermissionsTable();
-        }
         if (!Schema::hasTable(RolePermission::TABLE))
         {
             $this->createRolePermissionTable();
-        }
-        if (!Schema::hasTable(UserRole::TABLE))
-        {
-            $this->createUserRoleTable();
-        }
-        if (!Schema::hasTable(UserPermission::TABLE))
-        {
-            $this->createUserPermissionTable();
         }
     }
 
@@ -54,36 +40,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(UserPermission::TABLE);
-        Schema::dropIfExists(UserRole::TABLE);
         Schema::dropIfExists(RolePermission::TABLE);
-        Schema::dropIfExists(Permission::TABLE);
         Schema::dropIfExists(Role::TABLE);
     }
 
     #endregion
 
     #region PRIVATE METHODS
-
-    /**
-     * Create the permissions table.
-     *
-     * @return void
-     */
-    private function createPermissionsTable(): void
-    {
-        Schema::create(Permission::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(Permission::ID);
-            $blueprint
-                ->string(PERMISSION::NAME);
-            $blueprint
-                ->string(Permission::CATEGORY);
-            $blueprint
-                ->timestamps();
-        });
-    }
 
     /**
      * Create the roles table.
@@ -136,50 +99,6 @@ return new class extends Migration
             $blueprint
                 ->foreignId(RolePermission::PERMISSION_ID)
                 ->constrained(Permission::TABLE, Permission::ID)
-                ->cascadeOnDelete();
-        });
-    }
-
-    /**
-     * Create the user permissions table.
-     *
-     * @return void
-     */
-    private function createUserPermissionTable(): void
-    {
-        Schema::create(UserPermission::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(UserPermission::ID);
-            $blueprint
-                ->foreignId(UserPermission::USER_ID)
-                ->constrained(User::TABLE, User::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(UserPermission::PERMISSION_ID)
-                ->constrained(Permission::TABLE, Permission::ID)
-                ->cascadeOnDelete();
-        });
-    }
-
-    /**
-     * Create the user roles table.
-     *
-     * @return void
-     */
-    private function createUserRoleTable(): void
-    {
-        Schema::create(UserRole::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(UserRole::ID);
-            $blueprint
-                ->foreignId(UserRole::USER_ID)
-                ->constrained(User::TABLE, User::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(UserRole::ROLE_ID)
-                ->constrained(Role::TABLE, Role::ID)
                 ->cascadeOnDelete();
         });
     }

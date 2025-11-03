@@ -127,7 +127,7 @@ trait Blameable
      *
      * @return void
      */
-    final protected static function bootBlameable(): void
+    protected static function bootBlameable(): void
     {
         static::creating(function (Model $model)
         {

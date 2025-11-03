@@ -125,7 +125,7 @@ class EntityBlockField extends Model
     /**
      * {@inheritDoc}
      */
-    public static function getTableName(): string
+    final public static function getTableName(): string
     {
         $singular = Str::singular(static::$template?->{Template::HANDLE} ?? "");
 
@@ -139,7 +139,7 @@ class EntityBlockField extends Model
      *
      * @return BelongsTo
      */
-    public function block(): BelongsTo
+    final public function block(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -154,7 +154,7 @@ class EntityBlockField extends Model
      *
      * @return BelongsTo
      */
-    public function field(): BelongsTo
+    final public function field(): BelongsTo
     {
         return $this
             ->belongsTo(

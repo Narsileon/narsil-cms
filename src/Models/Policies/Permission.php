@@ -81,7 +81,7 @@ class Permission extends Model
     /**
      * {@inheritDoc}
      */
-    public function roles(): BelongsToMany
+    final public function roles(): BelongsToMany
     {
         return $this
             ->belongsToMany(

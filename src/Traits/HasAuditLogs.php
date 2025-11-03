@@ -83,7 +83,7 @@ trait HasAuditLogs
     /**
      * @return MorphMany
      */
-    public function audit_logs(): MorphMany
+    final public function audit_logs(): MorphMany
     {
         return $this->morphMany(
             AuditLog::class,

@@ -139,7 +139,7 @@ class HostLocale extends Model
      *
      * @return HasMany
      */
-    public function languages(): HasMany
+    final public function languages(): HasMany
     {
         return $this
             ->hasMany(
@@ -155,7 +155,7 @@ class HostLocale extends Model
      *
      * @return BelongsTo
      */
-    public function host(): BelongsTo
+    final public function host(): BelongsTo
     {
         return $this
             ->belongsTo(

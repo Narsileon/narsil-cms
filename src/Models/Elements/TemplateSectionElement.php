@@ -114,7 +114,7 @@ class TemplateSectionElement extends Model
      *
      * @return BelongsTo
      */
-    public function template_section(): BelongsTo
+    final public function template_section(): BelongsTo
     {
         return $this
             ->belongsTo(

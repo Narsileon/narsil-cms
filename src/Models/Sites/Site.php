@@ -92,7 +92,7 @@ class Site extends Model
      *
      * @return BelongsTo
      */
-    public function host(): BelongsTo
+    final public function host(): BelongsTo
     {
         return $this
             ->belongsTo(

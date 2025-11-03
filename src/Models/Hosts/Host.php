@@ -133,7 +133,7 @@ class Host extends Model
      *
      * @return HasOne
      */
-    public function default_locale(): HasOne
+    final public function default_locale(): HasOne
     {
         return $this
             ->hasOne(
@@ -149,7 +149,7 @@ class Host extends Model
      *
      * @return HasMany
      */
-    public function other_locales(): HasMany
+    final public function other_locales(): HasMany
     {
         return $this
             ->hasMany(
@@ -166,7 +166,7 @@ class Host extends Model
      *
      * @return HasMany
      */
-    public function locales(): HasMany
+    final public function locales(): HasMany
     {
         return $this
             ->hasMany(
@@ -182,7 +182,7 @@ class Host extends Model
      *
      * @return hasMany
      */
-    public function pages(): hasMany
+    final public function pages(): hasMany
     {
         return $this
             ->hasMany(

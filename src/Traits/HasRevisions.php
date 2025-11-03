@@ -163,7 +163,7 @@ trait HasRevisions
      *
      * @return HasOne
      */
-    public function draft(): HasOne
+    final public function draft(): HasOne
     {
         return $this
             ->hasOne(
@@ -179,7 +179,7 @@ trait HasRevisions
      *
      * @return HasOne
      */
-    public function published_revision(): HasOne
+    final public function published_revision(): HasOne
     {
         return $this
             ->hasOne(
@@ -196,7 +196,7 @@ trait HasRevisions
      *
      * @return HasMany
      */
-    public function revisions(): HasMany
+    final public function revisions(): HasMany
     {
         return $this
             ->hasMany(

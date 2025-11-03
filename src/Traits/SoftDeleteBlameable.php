@@ -73,7 +73,7 @@ trait SoftDeleteBlameable
      *
      * @return void
      */
-    final protected static function bootSoftDeleteBlameable(): void
+    protected static function bootSoftDeleteBlameable(): void
     {
         static::deleting(function (Model $model)
         {

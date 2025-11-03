@@ -220,7 +220,7 @@ class Field extends Model
      *
      * @return BelongsToMany
      */
-    public function blocks(): BelongsToMany
+    final public function blocks(): BelongsToMany
     {
         return $this
             ->belongsToMany(
@@ -236,7 +236,7 @@ class Field extends Model
      *
      * @return HasMany
      */
-    public function options(): HasMany
+    final public function options(): HasMany
     {
         return $this
             ->hasMany(
@@ -252,7 +252,7 @@ class Field extends Model
      *
      * @return HasMany
      */
-    public function rules(): HasMany
+    final public function rules(): HasMany
     {
         return $this
             ->hasMany(
