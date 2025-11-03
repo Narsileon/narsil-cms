@@ -5,6 +5,7 @@ namespace Narsil\Http\Resources\HostPages;
 #region USE
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Narsil\Http\Resources\NestedTreeResource;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostPage;
@@ -17,6 +18,34 @@ use Narsil\Models\Hosts\HostPage;
  */
 class HostPageResource extends NestedTreeResource
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param mixed $resource
+     * @param string $site
+     *
+     * @return void
+     */
+    public function __construct(mixed $resource, string $site)
+    {
+        $this->site = $site;
+
+        parent::__construct($resource);
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * The site associated to the request.
+     *
+     * @var string
+     */
+    protected readonly string $site;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -27,16 +56,90 @@ class HostPageResource extends NestedTreeResource
         return [
             ...parent::toArray($request),
 
-            self::BADGE => $this->{HostPage::RELATION_LOCALE}?->{HostLocale::COUNTRY} ?? trans('narsil::ui.default'),
-            self::CREATE_URL => route('host-pages.create', [
-                HostLocale::COUNTRY => request('country', 'default'),
-                HostPage::HOST_ID => $this->{HostPage::HOST_ID},
-                HostPage::PARENT_ID => $this->{HostPage::ID},
-            ]),
-            self::DESTROY_URL => route('host-pages.destroy', $this->{HostPage::ID}),
-            self::EDIT_URL => route('host-pages.edit', $this->{HostPage::ID}),
-            self::LABEL => $this->{HostPage::TITLE} . ' [' . $this->{HostPage::ID} . ']',
+            self::BADGE => $this->getBadge(),
+            self::CREATE_URL => $this->getCreateUrl(),
+            self::DESTROY_URL => $this->getDestroyUrl(),
+            self::EDIT_URL => $this->getEditUrl(),
+            self::LABEL => $this->getLabel(),
         ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the badge.
+     *
+     * @return string
+     */
+    protected function getBadge(): string
+    {
+        return $this->{HostPage::RELATION_LOCALE}?->{HostLocale::COUNTRY} ?? trans('narsil::ui.default');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getChildren(Request $request, Collection $children)
+    {
+        return $children->map(function ($child) use ($request)
+        {
+            $resource = new static($child, $this->site);
+
+            return $resource->toArray($request);
+        })->toArray();
+    }
+
+    /**
+     * Get the create url.
+     *
+     * @return string
+     */
+    protected function getCreateUrl(): string
+    {
+        return route('sites.pages.create', array_merge([
+            'site' => $this->site,
+        ], [
+            HostPage::HOST_ID => $this->{HostPage::HOST_ID},
+            HostPage::PARENT_ID => $this->{HostPage::ID},
+        ]));
+    }
+
+    /**
+     * Get the destroy url.
+     *
+     * @return string
+     */
+    protected function getDestroyUrl(): string
+    {
+        return route('sites.pages.destroy', [
+            'hostPage' => $this->{HostPage::ID},
+            'site' => $this->site,
+        ]);
+    }
+
+    /**
+     * Get the edit url.
+     *
+     * @return string
+     */
+    protected function getEditUrl(): string
+    {
+        return route('sites.pages.edit', [
+            'hostPage' => $this->{HostPage::ID},
+            'site' => $this->site,
+        ]);
+    }
+
+    /**
+     * Get the label.
+     *
+     * @return string
+     */
+    protected function getLabel(): string
+    {
+        return $this->{HostPage::TITLE} . ' [' . $this->{HostPage::ID} . ']';
     }
 
     #endregion

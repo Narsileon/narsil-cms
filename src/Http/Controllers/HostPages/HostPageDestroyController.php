@@ -8,7 +8,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostPage;
 
 #endregion
@@ -23,17 +22,16 @@ class HostPageDestroyController extends AbstractController
 
     /**
      * @param Request $request
+     * @param string $site
      * @param HostPage $hostPage
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, HostPage $hostPage): RedirectResponse
+    public function __invoke(Request $request, string $site, HostPage $hostPage): RedirectResponse
     {
         $this->authorize(PermissionEnum::DELETE, $hostPage);
 
         $this->updateNeighbors($hostPage);
-
-        $site = $this->getSite($hostPage);
 
         $hostPage->delete();
 
@@ -48,20 +46,6 @@ class HostPageDestroyController extends AbstractController
     /**
      * @param HostPage $hostPage
      *
-     * @return string
-     */
-    final protected function getSite(HostPage $hostPage): string
-    {
-        $hostPage->loadMissing([
-            HostPage::RELATION_HOST,
-        ]);
-
-        return $hostPage->{HostPage::RELATION_HOST}->{Host::HANDLE};
-    }
-
-    /**
-     * @param HostPage $hostPage
-     *
      * @return void
      */
     final protected function updateNeighbors(HostPage $hostPage): void
@@ -71,17 +55,17 @@ class HostPageDestroyController extends AbstractController
             HostPage::RELATION_RIGHT,
         ]);
 
-        if ($hostPage->{HostPage::RELATION_LEFT})
-        {
-            $hostPage->{HostPage::RELATION_LEFT}->{HostPage::RIGHT_ID} = $hostPage->{HostPage::RELATION_RIGHT}?->{HostPage::ID};
-            $hostPage->{HostPage::RELATION_LEFT}->save();
-        }
+        HostPage::query()
+            ->where(HostPage::LEFT_ID, $hostPage->{HostPage::ID})
+            ->update([
+                HostPage::LEFT_ID => $hostPage->{HostPage::RELATION_LEFT}?->{HostPage::ID},
+            ]);
 
-        if ($hostPage->{HostPage::RELATION_RIGHT})
-        {
-            $hostPage->{HostPage::RELATION_RIGHT}->{HostPage::LEFT_ID} = $hostPage->{HostPage::RELATION_LEFT}?->{HostPage::ID};
-            $hostPage->{HostPage::RELATION_RIGHT}->save();
-        }
+        HostPage::query()
+            ->where(HostPage::RIGHT_ID, $hostPage->{HostPage::ID})
+            ->update([
+                HostPage::RIGHT_ID => $hostPage->{HostPage::RELATION_RIGHT}?->{HostPage::ID},
+            ]);
     }
 
     #endregion

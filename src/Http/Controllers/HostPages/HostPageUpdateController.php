@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostPageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostPage;
 
 #endregion
@@ -25,11 +24,12 @@ class HostPageUpdateController extends AbstractController
 
     /**
      * @param Request $request
+     * @param string $site
      * @param HostPage $hostPage
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, HostPage $hostPage): RedirectResponse
+    public function __invoke(Request $request, string $site, HostPage $hostPage): RedirectResponse
     {
         $this->authorize(PermissionEnum::UPDATE, $hostPage);
 
@@ -43,26 +43,8 @@ class HostPageUpdateController extends AbstractController
 
         $hostPage->update($attributes);
 
-        $site = $this->getSite($hostPage);
-
         return redirect(route('sites.edit', $site))
             ->with('success', trans('narsil::toasts.success.host_pages.updated'));
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @param HostPage $hostPage
-     *
-     * @return string
-     */
-    final protected function getSite(HostPage $hostPage): string
-    {
-        $hostPage->loadMissing(HostPage::RELATION_HOST);
-
-        return $hostPage->{HostPage::RELATION_HOST}->{Host::HANDLE};
     }
 
     #endregion

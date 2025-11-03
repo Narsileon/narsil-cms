@@ -29,21 +29,58 @@ class HostPageEditController extends AbstractController
      *
      * @return JsonResponse|Response
      */
-    public function __invoke(Request $request, HostPage $hostPage): JsonResponse|Response
+    public function __invoke(Request $request, string $site, HostPage $hostPage): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::UPDATE, $hostPage);
 
-        $form = app(HostPageForm::class)
-            ->action(route('host-pages.update', $hostPage->{HostPage::ID}))
-            ->formData($hostPage->toArrayWithTranslations())
-            ->id($hostPage->{HostPage::ID})
-            ->method(MethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+        $data = $this->getData($hostPage);
+        $form = $this->getForm($site, $hostPage)
+            ->formData($data);
 
         return $this->render(
             component: 'narsil/cms::resources/form',
             props: $form->jsonSerialize(),
         );
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the associated data.
+     *
+     * @param HostPage $hostPage
+     *
+     * @return array<string,mixed>
+     */
+    protected function getData(HostPage $hostPage): array
+    {
+        $data = $hostPage->toArrayWithTranslations();
+
+        return $data;
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @param string $site
+     * @param HostPage $hostPage
+     *
+     * @return HostPageForm
+     */
+    protected function getForm(string $site, HostPage $hostPage): HostPageForm
+    {
+        $form = app(HostPageForm::class)
+            ->action(route('sites.pages.update', [
+                'hostPage' => $hostPage->{HostPage::ID},
+                'site' => $site,
+            ]))
+            ->id($hostPage->{HostPage::ID})
+            ->method(MethodEnum::PATCH->value)
+            ->submitLabel(trans('narsil::ui.update'));
+
+        return $form;
     }
 
     #endregion

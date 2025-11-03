@@ -34,8 +34,6 @@ class SiteResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $tree = new Tree($this->{Host::RELATION_PAGES})->getNestedTree();
-
         return [
             Host::CREATED_AT => $this->{Host::CREATED_AT},
             Host::HANDLE => $this->{Host::HANDLE},
@@ -45,8 +43,34 @@ class SiteResource extends JsonResource
 
             Host::RELATION_CREATOR => $this->{Host::RELATION_CREATOR},
             Host::RELATION_EDITOR => $this->{Host::RELATION_EDITOR},
-            Host::RELATION_PAGES => HostPageResource::collection($tree)->toArray($request),
+            Host::RELATION_PAGES => $this->getPages($request),
         ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the pages.
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
+    protected function getPages(Request $request): array
+    {
+        $tree = new Tree($this->{Host::RELATION_PAGES})
+            ->getNestedTree();
+
+        $pages = $tree->map(function ($page) use ($request)
+        {
+            $resource = new HostPageResource($page, $this->{Host::HANDLE});
+
+            return $resource->toArray($request);
+        })->toArray();
+
+        return $pages;
     }
 
     #endregion

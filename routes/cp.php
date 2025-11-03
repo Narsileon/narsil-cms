@@ -82,11 +82,11 @@ use Narsil\Http\Controllers\Users\UserEditController;
 use Narsil\Http\Controllers\Users\UserIndexController;
 use Narsil\Http\Controllers\Users\UserStoreController;
 use Narsil\Http\Controllers\Users\UserUpdateController;
+use Narsil\Http\Middleware\CountryMiddleware;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostPage;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
@@ -171,20 +171,6 @@ Route::middleware([
                 ->name('replicate');
             Route::post('/replicate-many', HostReplicateManyController::class)
                 ->name('replicate-many');
-        });
-
-        Route::prefix(Str::slug(HostPage::TABLE))->name(Str::slug(HostPage::TABLE) . '.')->group(function ()
-        {
-            Route::get('/create', HostPageCreateController::class)
-                ->name('create');
-            Route::post('/', HostPageStoreController::class)
-                ->name('store');
-            Route::get('/{hostPage}/edit', HostPageEditController::class)
-                ->name('edit');
-            Route::patch('/{hostPage}', HostPageUpdateController::class)
-                ->name('update');
-            Route::delete('/{hostPage}', HostPageDestroyController::class)
-                ->name('destroy');
         });
 
         Route::prefix(Role::TABLE)->name(Role::TABLE . '.')->group(function ()
@@ -290,9 +276,24 @@ Route::middleware([
             Route::get('/', SiteSummaryController::class)
                 ->name('summary');
             Route::get('/{site}/edit', SiteEditController::class)
+                ->middleware(CountryMiddleware::class)
                 ->name('edit');
             Route::patch('/{site}', SiteUpdateController::class)
                 ->name('update');
+
+            Route::name('pages.')->group(function ()
+            {
+                Route::get('/{site}/create', HostPageCreateController::class)
+                    ->name('create');
+                Route::post('/{site}', HostPageStoreController::class)
+                    ->name('store');
+                Route::get('/{site}/{hostPage}/edit', HostPageEditController::class)
+                    ->name('edit');
+                Route::patch('/{site}/{hostPage}', HostPageUpdateController::class)
+                    ->name('update');
+                Route::delete('/{site}/{hostPage}', HostPageDestroyController::class)
+                    ->name('destroy');
+            });
         });
 
         #endregion

@@ -9,7 +9,7 @@ use Narsil\Contracts\Fields\RangeField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextareaField;
 use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\HostForm as Contract;
+use Narsil\Contracts\Forms\HostPageForm as Contract;
 use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Enums\SEO\OpenGraphTypeEnum;
 use Narsil\Enums\SEO\RobotsEnum;

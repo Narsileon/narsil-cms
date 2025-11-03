@@ -4,6 +4,7 @@ namespace Narsil\Http\Resources;
 
 #region USE
 
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Narsil\Models\TreeModel;
@@ -77,8 +78,30 @@ class NestedTreeResource extends JsonResource
             TreeModel::PARENT_ID => $this->{TreeModel::PARENT_ID},
             TreeModel::RIGHT_ID => $this->{TreeModel::RIGHT_ID},
 
-            TreeModel::RELATION_CHILDREN => static::collection($this->{TreeModel::RELATION_CHILDREN})->toArray($request),
+            TreeModel::RELATION_CHILDREN => $this->getChildren($request, $this->{TreeModel::RELATION_CHILDREN}),
         ];
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the children.
+     *
+     * @param Request $request
+     * @param Collection<TreeModel> $children
+     *
+     * @return void
+     */
+    protected function getChildren(Request $request, Collection $children)
+    {
+        return $children->map(function ($child) use ($request)
+        {
+            $resource = new static($child);
+
+            return $resource->toArray($request);
+        })->toArray();
     }
 
     #endregion
