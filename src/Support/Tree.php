@@ -140,9 +140,7 @@ class Tree
         {
             $sortedCollection->push($current);
 
-            $nextKey = $current->{TreeModel::RIGHT_ID};
-
-            $current = $nextKey ? $keyedCollection->get($nextKey) : null;
+            $current = $collection->firstWhere(TreeModel::LEFT_ID, $current->{TreeModel::ID});
         }
 
         if ($sortedCollection->count() < $collection->count())
