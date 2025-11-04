@@ -1,4 +1,5 @@
 import Accordion from "./accordion";
+import AlertDialog from "./alert-dialog";
 import AspectRatio from "./aspect-ratio";
 import Badge from "./badge";
 import Bookmarks from "./bookmarks";
@@ -33,6 +34,7 @@ import WidthSelector from "./width-selector";
 
 export {
   Accordion,
+  AlertDialog,
   AspectRatio,
   Badge,
   Bookmarks,
