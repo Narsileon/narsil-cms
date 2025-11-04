@@ -7,8 +7,10 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Models\Sites\Site;
 use Narsil\Models\User;
 
 #endregion
@@ -28,9 +30,6 @@ return [
             'deleted_all'     => 'You have been logged out from all devices.',
             'deleted_current' => 'You have been logged out from this device.',
             'deleted_others'  => 'You have been logged out from other devices.',
-        ],
-        'sites' => [
-            'updated' => 'The site has been successfully updated.',
         ],
         'two_factor' => [
             'confirmed' => 'Your two factor authentication has been successfully confirmed.',
@@ -70,10 +69,8 @@ return [
             'replicated_many' => 'The hosts have been successfully duplicated.',
             'updated' => 'The host has been successfully updated.',
         ],
-        HostPage::TABLE => [
-            'created' => 'The page has been successfully created.',
-            'deleted' => 'The page has been successfully deleted.',
-            'updated' => 'The page has been successfully updated.',
+        Permission::TABLE => [
+            'updated' => 'The permission has been successfully updated.',
         ],
         Role::TABLE => [
             'created' => 'The role has been successfully created.',
@@ -82,6 +79,14 @@ return [
             'replicated' => 'The role has been successfully duplicated.',
             'replicated_many' => 'The roles have been successfully duplicated.',
             'updated' => 'The role has been successfully updated.',
+        ],
+        Site::VIRTUAL_TABLE => [
+            'updated' => 'The site has been successfully updated.',
+        ],
+        SitePage::TABLE => [
+            'created' => 'The page has been successfully created.',
+            'deleted' => 'The page has been successfully deleted.',
+            'updated' => 'The page has been successfully updated.',
         ],
         Template::TABLE => [
             'created' => 'The template has been successfully created.',

@@ -10,7 +10,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
-use Narsil\Models\Hosts\Host;
+use Narsil\Models\Sites\Site;
 
 #endregion
 
@@ -46,12 +46,12 @@ class SiteForm extends AbstractForm implements Contract
     {
         return [
             new TemplateSection([
-                TemplateSection::HANDLE => Host::RELATION_PAGES,
+                TemplateSection::HANDLE => Site::RELATION_PAGES,
                 TemplateSection::NAME => trans('narsil::ui.navigation'),
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Host::RELATION_PAGES,
+                            Field::HANDLE => Site::RELATION_PAGES,
                             Field::NAME => trans('narsil::ui.navigation'),
                             Field::TYPE => TreeField::class,
                             Field::SETTINGS => app(TreeField::class),

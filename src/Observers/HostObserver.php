@@ -5,7 +5,7 @@ namespace Narsil\Observers;
 #region USE
 
 use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -39,9 +39,9 @@ class HostObserver
      */
     protected function createRootPage(Host $host): void
     {
-        HostPage::create([
-            HostPage::HOST_ID => $host->{Host::ID},
-            HostPage::TITLE => 'Root',
+        SitePage::create([
+            SitePage::SITE_ID => $host->{Host::ID},
+            SitePage::TITLE => 'Root',
         ]);
     }
 

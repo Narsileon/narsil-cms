@@ -71,7 +71,8 @@ class TemplateObserver
             $key = $handle . '_' . $permission;
 
             Permission::firstOrCreate([
-                Permission::CATEGORY => $handle,
+                Permission::HANDLE => $key,
+            ], [
                 Permission::NAME => $key,
             ]);
         }

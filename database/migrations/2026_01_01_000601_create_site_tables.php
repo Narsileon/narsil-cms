@@ -1,0 +1,170 @@
+<?php
+
+#region USE
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Narsil\Enums\SEO\ChangeFreqEnum;
+use Narsil\Enums\SEO\OpenGraphTypeEnum;
+use Narsil\Enums\SEO\RobotsEnum;
+use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\SitePageOverride;
+
+#endregion
+
+return new class extends Migration
+{
+    #region PUBLIC METHODS
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up(): void
+    {
+        if (!Schema::hasTable(SitePage::TABLE))
+        {
+            $this->createSitePagesTable();
+        }
+        if (!Schema::hasTable(SitePageOverride::TABLE))
+        {
+            $this->createSitePageOverridesTable();
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists(SitePageOverride::TABLE);
+        Schema::dropIfExists(SitePage::TABLE);
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * Create the site page overrides table.
+     *
+     * @return void
+     */
+    private function createSitePageOverridesTable(): void
+    {
+        Schema::create(SitePageOverride::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(SitePageOverride::ID);
+            $blueprint
+                ->foreignId(SitePageOverride::SITE_PAGE_ID)
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(SitePageOverride::COUNTRY)
+                ->default('default');
+            $blueprint
+                ->foreignId(SitePageOverride::PARENT_ID)
+                ->nullable()
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->foreignId(SitePageOverride::LEFT_ID)
+                ->nullable()
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->foreignId(SitePageOverride::RIGHT_ID)
+                ->nullable()
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamps();
+        });
+    }
+
+    /**
+     * Create the site pages table.
+     *
+     * @return void
+     */
+    private function createSitePagesTable(): void
+    {
+        Schema::create(SitePage::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(SitePage::ID);
+            $blueprint
+                ->foreignId(SitePage::SITE_ID)
+                ->constrained(Site::TABLE, Site::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(SitePage::COUNTRY)
+                ->default('default');
+            $blueprint
+                ->bigInteger(SitePage::PARENT_ID)
+                ->nullable();
+            $blueprint
+                ->bigInteger(SitePage::LEFT_ID)
+                ->nullable();
+            $blueprint
+                ->bigInteger(SitePage::RIGHT_ID)
+                ->nullable();
+            $blueprint
+                ->jsonb(SitePage::TITLE)
+                ->nullable();
+            $blueprint
+                ->jsonb(SitePage::META_DESCRIPTION)
+                ->nullable();
+            $blueprint
+                ->enum(SitePage::OPEN_GRAPH_TYPE, OpenGraphTypeEnum::values())
+                ->default(OpenGraphTypeEnum::WEBSITE->value);
+            $blueprint
+                ->jsonb(SitePage::OPEN_GRAPH_TITLE)
+                ->nullable();
+            $blueprint
+                ->jsonb(SitePage::OPEN_GRAPH_DESCRIPTION)
+                ->nullable();
+            $blueprint
+                ->string(SitePage::OPEN_GRAPH_IMAGE)
+                ->nullable();
+            $blueprint
+                ->enum(SitePage::ROBOTS, RobotsEnum::values())
+                ->default(RobotsEnum::ALL->value);
+            $blueprint
+                ->enum(SitePage::CHANGE_FREQ, ChangeFreqEnum::values())
+                ->default(ChangeFreqEnum::NEVER->value);
+            $blueprint
+                ->decimal(SitePage::PRIORITY, 3, 2)
+                ->default(1.0);
+            $blueprint
+                ->timestamps();
+        });
+
+        Schema::table(SitePage::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->foreign(SitePage::PARENT_ID)
+                ->references(SitePage::ID)
+                ->on(SitePage::TABLE)
+                ->nullOnDelete();
+            $blueprint
+                ->foreign(SitePage::LEFT_ID)
+                ->references(SitePage::ID)
+                ->on(SitePage::TABLE)
+                ->nullOnDelete();
+            $blueprint
+                ->foreign(SitePage::RIGHT_ID)
+                ->references(SitePage::ID)
+                ->on(SitePage::TABLE)
+                ->nullOnDelete();
+        });
+    }
+
+    #endregion
+};

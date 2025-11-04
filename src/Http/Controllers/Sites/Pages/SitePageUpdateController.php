@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Http\Controllers\HostPages;
+namespace Narsil\Http\Controllers\Sites\Pages;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Narsil\Contracts\FormRequests\HostPageFormRequest;
+use Narsil\Contracts\FormRequests\SitePageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -18,33 +18,33 @@ use Narsil\Models\Hosts\HostPage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageUpdateController extends AbstractController
+class SitePageUpdateController extends AbstractController
 {
     #region PUBLIC METHODS
 
     /**
      * @param Request $request
      * @param string $site
-     * @param HostPage $hostPage
+     * @param SitePage $sitePage
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, string $site, HostPage $hostPage): RedirectResponse
+    public function __invoke(Request $request, string $site, SitePage $sitePage): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $hostPage);
+        $this->authorize(PermissionEnum::UPDATE, $sitePage);
 
         $data = $request->all();
 
-        $rules = app(HostPageFormRequest::class)
-            ->rules($hostPage);
+        $rules = app(SitePageFormRequest::class)
+            ->rules($sitePage);
 
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $hostPage->update($attributes);
+        $sitePage->update($attributes);
 
         return redirect(route('sites.edit', $site))
-            ->with('success', trans('narsil::toasts.success.host_pages.updated'));
+            ->with('success', trans('narsil::toasts.success.site_pages.updated'));
     }
 
     #endregion

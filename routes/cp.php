@@ -33,11 +33,11 @@ use Narsil\Http\Controllers\Fields\FieldReplicateController;
 use Narsil\Http\Controllers\Fields\FieldReplicateManyController;
 use Narsil\Http\Controllers\Fields\FieldStoreController;
 use Narsil\Http\Controllers\Fields\FieldUpdateController;
-use Narsil\Http\Controllers\HostPages\HostPageCreateController;
-use Narsil\Http\Controllers\HostPages\HostPageDestroyController;
-use Narsil\Http\Controllers\HostPages\HostPageEditController;
-use Narsil\Http\Controllers\HostPages\HostPageStoreController;
-use Narsil\Http\Controllers\HostPages\HostPageUpdateController;
+use Narsil\Http\Controllers\Sites\Pages\SitePageCreateController;
+use Narsil\Http\Controllers\Sites\Pages\SitePageDestroyController;
+use Narsil\Http\Controllers\Sites\Pages\SitePageEditController;
+use Narsil\Http\Controllers\Sites\Pages\SitePageStoreController;
+use Narsil\Http\Controllers\Sites\Pages\SitePageUpdateController;
 use Narsil\Http\Controllers\Hosts\HostCreateController;
 use Narsil\Http\Controllers\Hosts\HostDestroyController;
 use Narsil\Http\Controllers\Hosts\HostDestroyManyController;
@@ -47,6 +47,9 @@ use Narsil\Http\Controllers\Hosts\HostReplicateController;
 use Narsil\Http\Controllers\Hosts\HostReplicateManyController;
 use Narsil\Http\Controllers\Hosts\HostStoreController;
 use Narsil\Http\Controllers\Hosts\HostUpdateController;
+use Narsil\Http\Controllers\Permissions\PermissionEditController;
+use Narsil\Http\Controllers\Permissions\PermissionIndexController;
+use Narsil\Http\Controllers\Permissions\PermissionUpdateController;
 use Narsil\Http\Controllers\Roles\RoleCreateController;
 use Narsil\Http\Controllers\Roles\RoleDestroyController;
 use Narsil\Http\Controllers\Roles\RoleDestroyManyController;
@@ -87,7 +90,9 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Models\Sites\Site;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
@@ -171,6 +176,16 @@ Route::middleware([
                 ->name('replicate');
             Route::post('/replicate-many', HostReplicateManyController::class)
                 ->name('replicate-many');
+        });
+
+        Route::prefix(Permission::TABLE)->name(Permission::TABLE . '.')->group(function ()
+        {
+            Route::get('/', PermissionIndexController::class)
+                ->name('index');
+            Route::get('/{permission}/edit', PermissionEditController::class)
+                ->name('edit');
+            Route::patch('/{permission}', PermissionUpdateController::class)
+                ->name('update');
         });
 
         Route::prefix(Role::TABLE)->name(Role::TABLE . '.')->group(function ()
@@ -271,7 +286,7 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix('sites')->name('sites.')->group(function ()
+        Route::prefix(Site::VIRTUAL_TABLE)->name(Site::VIRTUAL_TABLE . '.')->group(function ()
         {
             Route::get('/', SiteSummaryController::class)
                 ->name('summary');
@@ -283,15 +298,15 @@ Route::middleware([
 
             Route::name('pages.')->group(function ()
             {
-                Route::get('/{site}/create', HostPageCreateController::class)
+                Route::get('/{site}/create', SitePageCreateController::class)
                     ->name('create');
-                Route::post('/{site}', HostPageStoreController::class)
+                Route::post('/{site}', SitePageStoreController::class)
                     ->name('store');
-                Route::get('/{site}/{hostPage}/edit', HostPageEditController::class)
+                Route::get('/{site}/{sitePage}/edit', SitePageEditController::class)
                     ->name('edit');
-                Route::patch('/{site}/{hostPage}', HostPageUpdateController::class)
+                Route::patch('/{site}/{sitePage}', SitePageUpdateController::class)
                     ->name('update');
-                Route::delete('/{site}/{hostPage}', HostPageDestroyController::class)
+                Route::delete('/{site}/{sitePage}', SitePageDestroyController::class)
                     ->name('destroy');
             });
         });

@@ -6,11 +6,13 @@ namespace Narsil\Http\Controllers\Sites;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\SiteFormRequest;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -30,6 +32,17 @@ class SiteUpdateController extends AbstractController
      */
     public function __invoke(Request $request, string $site): RedirectResponse
     {
+        $site = Site::query()
+            ->where(Site::HANDLE, $site)
+            ->first();
+
+        if (!$site)
+        {
+            abort(404);
+        }
+
+        $this->authorize(PermissionEnum::UPDATE, $site);
+
         $data = $request->all();
 
         $rules = app(SiteFormRequest::class)
@@ -38,9 +51,9 @@ class SiteUpdateController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $tree = $attributes[Host::RELATION_PAGES];
+        $tree = $attributes[Site::RELATION_PAGES];
 
-        HostPage::rebuildTree($tree);
+        SitePage::rebuildTree($tree);
 
         return back()
             ->with('success', trans('narsil::toasts.success.sites.updated'));

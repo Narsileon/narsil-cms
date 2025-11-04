@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\HostPages;
+namespace Narsil\Http\Controllers\Sites\Pages;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\Forms\HostPageForm;
+use Narsil\Contracts\Forms\SitePageForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -19,7 +19,7 @@ use Narsil\Models\Hosts\HostPage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageCreateController extends AbstractController
+class SitePageCreateController extends AbstractController
 {
     #region PUBLIC METHODS
 
@@ -31,7 +31,7 @@ class HostPageCreateController extends AbstractController
      */
     public function __invoke(Request $request, string $site): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, HostPage::class);
+        $this->authorize(PermissionEnum::CREATE, SitePage::class);
 
         $data = $request->query();
         $form = $this->getForm($site)
@@ -52,11 +52,11 @@ class HostPageCreateController extends AbstractController
      *
      * @param string $site
      *
-     * @return HostPageForm
+     * @return SitePageForm
      */
-    protected function getForm(string $site): HostPageForm
+    protected function getForm(string $site): SitePageForm
     {
-        $form = app(HostPageForm::class)
+        $form = app(SitePageForm::class)
             ->action(route('sites.pages.store', [
                 'site' => $site,
             ]))

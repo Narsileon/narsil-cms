@@ -5,8 +5,8 @@ namespace Narsil\Http\Requests;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\FormRequests\HostPageFormRequest as Contract;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Contracts\FormRequests\SitePageFormRequest as Contract;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -15,7 +15,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageFormRequest implements Contract
+class SitePageFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -25,36 +25,36 @@ class HostPageFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            HostPage::CHANGE_FREQ => [
+            SitePage::CHANGE_FREQ => [
                 FormRule::STRING,
             ],
-            HostPage::HOST_ID => [
-                FormRule::INTEGER,
-                FormRule::REQUIRED,
-            ],
-            HostPage::META_DESCRIPTION => [
+            SitePage::META_DESCRIPTION => [
                 FormRule::ARRAY,
             ],
-            HostPage::PARENT_ID => [
+            SitePage::PARENT_ID => [
                 FormRule::INTEGER,
                 FormRule::REQUIRED,
             ],
-            HostPage::PRIORITY => [
+            SitePage::PRIORITY => [
                 FormRule::NUMERIC,
             ],
-            HostPage::OPEN_GRAPH_DESCRIPTION => [
+            SitePage::OPEN_GRAPH_DESCRIPTION => [
                 FormRule::ARRAY,
             ],
-            HostPage::OPEN_GRAPH_TITLE => [
+            SitePage::OPEN_GRAPH_TITLE => [
                 FormRule::ARRAY,
             ],
-            HostPage::OPEN_GRAPH_TYPE => [
+            SitePage::OPEN_GRAPH_TYPE => [
                 FormRule::STRING,
             ],
-            HostPage::ROBOTS => [
+            SitePage::ROBOTS => [
                 FormRule::STRING,
             ],
-            HostPage::TITLE => [
+            SitePage::SITE_ID => [
+                FormRule::INTEGER,
+                FormRule::REQUIRED,
+            ],
+            SitePage::TITLE => [
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],

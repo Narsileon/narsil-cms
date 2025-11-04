@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Hosts;
+namespace Narsil\Models\Sites;
 
 #region USE
 
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageOverride extends Model
+class SitePageOverride extends Model
 {
     #region CONSTRUCTOR
 
@@ -40,7 +40,7 @@ class HostPageOverride extends Model
      *
      * @var string
      */
-    final public const TABLE = 'host_page_overrides';
+    final public const TABLE = 'site_page_overrides';
 
     #region • COLUMNS
 
@@ -50,13 +50,6 @@ class HostPageOverride extends Model
      * @var string
      */
     final public const COUNTRY = 'country';
-
-    /**
-     * The name of the "host page id" column.
-     *
-     * @var string
-     */
-    final public const HOST_PAGE_ID = 'host_page_id';
 
     /**
      * The name of the "id" column.
@@ -86,16 +79,16 @@ class HostPageOverride extends Model
      */
     final public const RIGHT_ID = 'right_id';
 
-    #endregion
-
-    #region • RELATIONS
-
     /**
-     * The name of the "host page" relation.
+     * The name of the "site page id" column.
      *
      * @var string
      */
-    final public const RELATION_HOST = 'host_page';
+    final public const SITE_PAGE_ID = 'site_page_id';
+
+    #endregion
+
+    #region • RELATIONS
 
     /**
      * The name of the "parent" relation.
@@ -103,6 +96,13 @@ class HostPageOverride extends Model
      * @var string
      */
     final public const RELATION_PARENT = 'parent';
+
+    /**
+     * The name of the "site page" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE_PAGE = 'site_page';
 
     #endregion
 
@@ -113,21 +113,6 @@ class HostPageOverride extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated host page.
-     *
-     * @return BelongsTo
-     */
-    final public function host_page(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                HostPage::class,
-                self::HOST_PAGE_ID,
-                HostPage::ID
-            );
-    }
-
-    /**
      * Get the associated parent.
      *
      * @return BelongsTo
@@ -136,9 +121,24 @@ class HostPageOverride extends Model
     {
         return $this
             ->belongsTo(
-                HostPage::class,
+                SitePage::class,
                 self::PARENT_ID,
-                HostPage::ID
+                SitePage::ID
+            );
+    }
+
+    /**
+     * Get the associated site page.
+     *
+     * @return BelongsTo
+     */
+    final public function site_page(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                SitePage::class,
+                self::SITE_PAGE_ID,
+                SitePage::ID
             );
     }
 

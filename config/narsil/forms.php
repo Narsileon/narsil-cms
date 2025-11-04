@@ -11,15 +11,16 @@ return [
     |
     */
 
-    \Narsil\Contracts\Forms\BlockForm::class => \Narsil\Implementations\Forms\BlockForm::class,
     \Narsil\Contracts\Forms\BlockElementForm::class => \Narsil\Implementations\Forms\BlockElementForm::class,
+    \Narsil\Contracts\Forms\BlockForm::class => \Narsil\Implementations\Forms\BlockForm::class,
     \Narsil\Contracts\Forms\EntityForm::class => \Narsil\Implementations\Forms\EntityForm::class,
     \Narsil\Contracts\Forms\FieldForm::class => \Narsil\Implementations\Forms\FieldForm::class,
     \Narsil\Contracts\Forms\HostForm::class => \Narsil\Implementations\Forms\HostForm::class,
     \Narsil\Contracts\Forms\HostLocaleForm::class => \Narsil\Implementations\Forms\HostLocaleForm::class,
-    \Narsil\Contracts\Forms\HostPageForm::class => \Narsil\Implementations\Forms\HostPageForm::class,
+    \Narsil\Contracts\Forms\PermissionForm::class => \Narsil\Implementations\Forms\PermissionForm::class,
     \Narsil\Contracts\Forms\RoleForm::class => \Narsil\Implementations\Forms\RoleForm::class,
     \Narsil\Contracts\Forms\SiteForm::class => \Narsil\Implementations\Forms\SiteForm::class,
+    \Narsil\Contracts\Forms\SitePageForm::class => \Narsil\Implementations\Forms\SitePageForm::class,
     \Narsil\Contracts\Forms\TemplateForm::class => \Narsil\Implementations\Forms\TemplateForm::class,
     \Narsil\Contracts\Forms\TemplateSectionForm::class => \Narsil\Implementations\Forms\TemplateSectionForm::class,
     \Narsil\Contracts\Forms\UserConfigurationForm::class => \Narsil\Implementations\Forms\UserConfigurationForm::class,

@@ -1,14 +1,13 @@
 <?php
 
-namespace Narsil\Http\Resources\HostPages;
+namespace Narsil\Http\Resources\SitePages;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Narsil\Http\Resources\NestedTreeResource;
-use Narsil\Models\Hosts\HostLocale;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -16,7 +15,7 @@ use Narsil\Models\Hosts\HostPage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageResource extends NestedTreeResource
+class SitePageResource extends NestedTreeResource
 {
     #region CONSTRUCTOR
 
@@ -75,7 +74,7 @@ class HostPageResource extends NestedTreeResource
      */
     protected function getBadge(): string
     {
-        return $this->{HostPage::COUNTRY};
+        return $this->{SitePage::COUNTRY};
     }
 
     /**
@@ -101,8 +100,8 @@ class HostPageResource extends NestedTreeResource
         return route('sites.pages.create', array_merge([
             'site' => $this->site,
         ], [
-            HostPage::HOST_ID => $this->{HostPage::HOST_ID},
-            HostPage::PARENT_ID => $this->{HostPage::ID},
+            SitePage::PARENT_ID => $this->{SitePage::ID},
+            SitePage::SITE_ID => $this->{SitePage::SITE_ID},
         ]));
     }
 
@@ -114,8 +113,8 @@ class HostPageResource extends NestedTreeResource
     protected function getDestroyUrl(): string
     {
         return route('sites.pages.destroy', [
-            'hostPage' => $this->{HostPage::ID},
             'site' => $this->site,
+            'sitePage' => $this->{SitePage::ID},
         ]);
     }
 
@@ -127,8 +126,8 @@ class HostPageResource extends NestedTreeResource
     protected function getEditUrl(): string
     {
         return route('sites.pages.edit', [
-            'hostPage' => $this->{HostPage::ID},
             'site' => $this->site,
+            'sitePage' => $this->{SitePage::ID},
         ]);
     }
 
@@ -139,7 +138,7 @@ class HostPageResource extends NestedTreeResource
      */
     protected function getLabel(): string
     {
-        return $this->{HostPage::TITLE} . ' [' . $this->{HostPage::ID} . ']';
+        return $this->{SitePage::TITLE} . ' [' . $this->{SitePage::ID} . ']';
     }
 
     #endregion

@@ -16,9 +16,9 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\Sites\SiteResource;
-use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\Site;
 use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
 
@@ -40,33 +40,33 @@ class SiteEditController extends AbstractController
      */
     public function __invoke(Request $request, string $site): JsonResponse|Response
     {
-        $host = Host::query()
+        $site = Site::query()
             ->with([
-                Host::RELATION_OTHER_LOCALES,
-                Host::RELATION_PAGES => function ($query)
+                Site::RELATION_OTHER_LOCALES,
+                Site::RELATION_PAGES => function ($query)
                 {
                     $query
-                        ->whereIn(HostPage::COUNTRY, [
-                            Session::get(HostPage::COUNTRY),
+                        ->whereIn(SitePage::COUNTRY, [
+                            Session::get(SitePage::COUNTRY),
                             'default',
                         ]);
                 }
             ])
-            ->where(Host::HANDLE, $site)
+            ->where(Site::HANDLE, $site)
             ->first();
 
-        if (!$host)
+        if (!$site)
         {
             abort(404);
         }
 
-        $this->authorize(PermissionEnum::UPDATE, $host);
+        $this->authorize(PermissionEnum::UPDATE, $site);
 
-        $data = $this->getData($host);
-        $form = $this->getForm($host)
+        $data = $this->getData($site);
+        $form = $this->getForm($site)
             ->formData($data);
 
-        $countries = $this->getCountrySelectOptions($host);
+        $countries = $this->getCountrySelectOptions($site);
 
         app(TranslationsBag::class)
             ->add('narsil::ui.countries');
@@ -87,11 +87,11 @@ class SiteEditController extends AbstractController
     /**
      * Get the country select options.
      *
-     * @param Host $host
+     * @param Site $site
      *
      * @return array<SelectOption>
      */
-    protected function getCountrySelectOptions(Host $host): array
+    protected function getCountrySelectOptions(Site $site): array
     {
         $options = [
             new SelectOption()
@@ -99,7 +99,7 @@ class SiteEditController extends AbstractController
                 ->optionValue('default')
         ];
 
-        foreach ($host->{Host::RELATION_OTHER_LOCALES} as $locale)
+        foreach ($site->{Site::RELATION_OTHER_LOCALES} as $locale)
         {
             $label = Locale::getDisplayRegion('_' . $locale->{HostLocale::COUNTRY}, App::getLocale());
 
@@ -118,16 +118,16 @@ class SiteEditController extends AbstractController
      *
      * @return array<string,mixed>
      */
-    protected function getData(Host $host): array
+    protected function getData(Site $site): array
     {
-        $host->loadMissingCreatorAndEditor();
+        $site->loadMissingCreatorAndEditor();
 
-        $host->mergeCasts([
-            Host::CREATED_AT => HumanDatetimeCast::class,
-            Host::UPDATED_AT => HumanDatetimeCast::class,
+        $site->mergeCasts([
+            Site::CREATED_AT => HumanDatetimeCast::class,
+            Site::UPDATED_AT => HumanDatetimeCast::class,
         ]);
 
-        $data = new SiteResource($host)->resolve();
+        $data = new SiteResource($site)->resolve();
 
         return $data;
     }
@@ -135,19 +135,19 @@ class SiteEditController extends AbstractController
     /**
      * Get the associated form.
      *
-     * @param Host $host
+     * @param Site $site
      *
      * @return SiteForm
      */
-    protected function getForm(Host $host): SiteForm
+    protected function getForm(Site $site): SiteForm
     {
         $form = app(SiteForm::class)
-            ->action(route('sites.update', $host->{Host::HANDLE}))
-            ->id($host->{Host::ID})
+            ->action(route('sites.update', $site->{Site::HANDLE}))
+            ->id($site->{Site::ID})
             ->method(MethodEnum::PATCH->value)
             ->languageOptions([])
             ->submitLabel(trans('narsil::ui.update'))
-            ->title($host->{Host::NAME});
+            ->title($site->{Site::NAME});
 
         return $form;
     }

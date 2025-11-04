@@ -23,6 +23,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable(Permission::TABLE))
+        {
+            $this->createPermissionsTable();
+        }
         if (!Schema::hasTable(Role::TABLE))
         {
             $this->createRolesTable();
@@ -42,11 +46,45 @@ return new class extends Migration
     {
         Schema::dropIfExists(RolePermission::TABLE);
         Schema::dropIfExists(Role::TABLE);
+        Schema::dropIfExists(Permission::TABLE);
     }
 
     #endregion
 
     #region PRIVATE METHODS
+
+    /**
+     * Create the permissions table.
+     *
+     * @return void
+     */
+    private function createPermissionsTable(): void
+    {
+        Schema::create(Permission::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(Permission::ID);
+            $blueprint
+                ->string(Permission::HANDLE)
+                ->unique();
+            $blueprint
+                ->jsonb(Permission::NAME);
+            $blueprint
+                ->timestamp(Permission::CREATED_AT);
+            $blueprint
+                ->foreignId(Permission::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Permission::UPDATED_AT);
+            $blueprint
+                ->foreignId(Permission::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+        });
+    }
 
     /**
      * Create the roles table.

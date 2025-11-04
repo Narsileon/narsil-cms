@@ -4,6 +4,9 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 #endregion
@@ -23,12 +26,26 @@ class MigrationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->bootEvent();
         $this->bootMigrations();
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * Boot the events.
+     *
+     * @return void
+     */
+    protected function bootEvent(): void
+    {
+        Event::listen(MigrationsEnded::class, function (MigrationsEnded $event)
+        {
+            Artisan::call('narsil:sync-permissions');
+        });
+    }
 
     /**
      * Boot the migrations.

@@ -113,13 +113,6 @@ class Host extends Model
      */
     final public const RELATION_LOCALES = 'locales';
 
-    /**
-     * The name of the "pages" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_PAGES = 'pages';
-
     #endregion
 
     #endregion
@@ -175,21 +168,6 @@ class Host extends Model
                 self::ID,
             )
             ->orderBy(HostLocale::POSITION);
-    }
-
-    /**
-     * Get the associated pages.
-     *
-     * @return hasMany
-     */
-    final public function pages(): hasMany
-    {
-        return $this
-            ->hasMany(
-                HostPage::class,
-                HostPage::HOST_ID,
-                self::ID,
-            );
     }
 
     #endregion

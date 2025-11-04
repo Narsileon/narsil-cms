@@ -11,8 +11,8 @@ use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Resources\Sites\SiteSummaryResource;
-use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Sites\Site;
 
 #endregion
 
@@ -32,7 +32,7 @@ class SiteSummaryController extends AbstractController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
+        $this->authorize(PermissionEnum::VIEW_ANY, Site::class);
 
         $locale = App::getLocale();
 

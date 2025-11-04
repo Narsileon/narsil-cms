@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Hosts;
+namespace Narsil\Models\Sites;
 
 #region USE
 
@@ -19,7 +19,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPage extends TreeModel
+class SitePage extends TreeModel
 {
     use HasTranslations;
 
@@ -59,7 +59,7 @@ class HostPage extends TreeModel
      *
      * @var string
      */
-    final public const TABLE = 'host_pages';
+    final public const TABLE = 'site_pages';
 
     #region • COLUMNS
 
@@ -76,13 +76,6 @@ class HostPage extends TreeModel
      * @var string
      */
     final public const COUNTRY = 'country';
-
-    /**
-     * The name of the "host id" column.
-     *
-     * @var string
-     */
-    final public const HOST_ID = 'host_id';
 
     /**
      * The name of the "meta description" column.
@@ -134,6 +127,13 @@ class HostPage extends TreeModel
     final public const ROBOTS = 'robots';
 
     /**
+     * The name of the "site id" column.
+     *
+     * @var string
+     */
+    final public const SITE_ID = 'site_id';
+
+    /**
      * The name of the "title" column.
      *
      * @var string
@@ -144,13 +144,6 @@ class HostPage extends TreeModel
     #endregion
 
     #region • RELATIONS
-
-    /**
-     * The name of the "host" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_HOST = 'host';
 
     /**
      * The name of the "override" relation.
@@ -166,6 +159,13 @@ class HostPage extends TreeModel
      */
     final public const RELATION_OVERRIDES = 'overrides';
 
+    /**
+     * The name of the "site" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE = 'site';
+
     #endregion
 
     #endregion
@@ -173,18 +173,18 @@ class HostPage extends TreeModel
     #region PUBLIC METHODS
 
     /**
-     * @param HostPage $hostPage
+     * @param SitePage $sitePage
      * @param array $attributes
      *
      * @return void
      */
-    public static function syncOverride(HostPage $hostPage, array $attributes): void
+    public static function syncOverride(SitePage $sitePage, array $attributes): void
     {
-        $hostPage->fill($attributes);
+        $sitePage->fill($attributes);
 
-        $override = $hostPage->{HostPage::RELATION_OVERRIDE};
+        $override = $sitePage->{SitePage::RELATION_OVERRIDE};
 
-        if ($hostPage->isDirty())
+        if ($sitePage->isDirty())
         {
             if ($override)
             {
@@ -192,9 +192,9 @@ class HostPage extends TreeModel
             }
             else
             {
-                HostPageOverride::create(array_merge($attributes, [
-                    HostPageOverride::COUNTRY => Session::get(HostLocale::COUNTRY),
-                    HostPageOverride::HOST_PAGE_ID => $hostPage->{HostPage::ID},
+                SitePageOverride::create(array_merge($attributes, [
+                    SitePageOverride::COUNTRY => Session::get(self::COUNTRY),
+                    SitePageOverride::SITE_PAGE_ID => $sitePage->{SitePage::ID},
                 ]));
             }
         }
@@ -207,21 +207,6 @@ class HostPage extends TreeModel
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated host.
-     *
-     * @return BelongsTo
-     */
-    final public function host(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Host::class,
-                self::HOST_ID,
-                Host::ID
-            );
-    }
-
-    /**
      * Get the associated override.
      *
      * @return HasOne
@@ -230,11 +215,11 @@ class HostPage extends TreeModel
     {
         return $this
             ->hasOne(
-                HostPageOverride::class,
-                HostPageOverride::HOST_PAGE_ID,
+                SitePageOverride::class,
+                SitePageOverride::SITE_PAGE_ID,
                 self::ID
             )
-            ->where(HostPageOverride::COUNTRY, Session::get(HostLocale::COUNTRY))
+            ->where(self::COUNTRY, Session::get(self::COUNTRY))
             ->latestOfMany();
     }
 
@@ -247,9 +232,24 @@ class HostPage extends TreeModel
     {
         return $this
             ->hasMany(
-                HostPageOverride::class,
-                HostPageOverride::HOST_PAGE_ID,
+                SitePageOverride::class,
+                SitePageOverride::SITE_PAGE_ID,
                 self::ID
+            );
+    }
+
+    /**
+     * Get the associated site.
+     *
+     * @return BelongsTo
+     */
+    final public function site(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Site::class,
+                self::SITE_ID,
+                Site::ID
             );
     }
 
@@ -264,7 +264,7 @@ class HostPage extends TreeModel
      */
     protected static function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
     {
-        $country = Session::get(HostLocale::COUNTRY);
+        $country = Session::get(SitePage::COUNTRY);
 
         $ids = collect($data)->pluck(self::ID);
 
@@ -339,7 +339,7 @@ class HostPage extends TreeModel
     protected function leftId(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{HostPageOverride::LEFT_ID} ?? $value
+            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::LEFT_ID} ?? $value
         );
     }
 
@@ -351,7 +351,7 @@ class HostPage extends TreeModel
     protected function parentId(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{HostPageOverride::PARENT_ID} ?? $value
+            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::PARENT_ID} ?? $value
         );
     }
 
@@ -363,7 +363,7 @@ class HostPage extends TreeModel
     protected function rightId(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{HostPageOverride::RIGHT_ID} ?? $value
+            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::RIGHT_ID} ?? $value
         );
     }
 

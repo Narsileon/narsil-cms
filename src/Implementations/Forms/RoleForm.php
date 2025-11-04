@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\RoleForm as Contract;
@@ -52,18 +53,25 @@ class RoleForm extends AbstractForm implements Contract
     {
         $permissionSelectOptions = static::getPermissionSelectOptions();
 
-        $permissionElements = $permissionSelectOptions->map(function ($options, $category)
-        {
-            return new TemplateSectionElement([
-                TemplateSectionElement::RELATION_ELEMENT => new Field([
-                    Field::HANDLE => Role::RELATION_PERMISSIONS,
-                    Field::NAME => trans("narsil::tables.{$category}"),
-                    Field::TYPE => CheckboxField::class,
-                    Field::SETTINGS => app(CheckboxField::class)
-                        ->options($options),
-                ]),
-            ]);
-        })->values()->toArray();
+        $permissionElements = $permissionSelectOptions
+            ->sortBy(function ($options, $group)
+            {
+                return $group;
+            })
+            ->map(function ($options, $group)
+            {
+                return new TemplateSectionElement([
+                    TemplateSectionElement::RELATION_ELEMENT => new Field([
+                        Field::HANDLE => Role::RELATION_PERMISSIONS,
+                        Field::NAME => $group,
+                        Field::TYPE => CheckboxField::class,
+                        Field::SETTINGS => app(CheckboxField::class)
+                            ->options($options),
+                    ]),
+                ]);
+            })
+            ->values()
+            ->toArray();
 
         return [
             new TemplateSection([
@@ -106,14 +114,19 @@ class RoleForm extends AbstractForm implements Contract
     {
         return Permission::query()
             ->get()
-            ->groupBy(Permission::CATEGORY)
+            ->groupBy(function (Permission $permission)
+            {
+                $key = Str::beforeLast($permission->{Permission::HANDLE}, '_');
+
+                return trans("narsil::tables.{$key}");
+            })
             ->map(function ($permissions)
             {
                 return $permissions->map(function (Permission $permission)
                 {
                     $option = new SelectOption()
                         ->optionLabel($permission->{Permission::NAME})
-                        ->optionValue($permission->{Permission::NAME});
+                        ->optionValue($permission->{Permission::HANDLE});
 
                     return $option;
                 })->toArray();

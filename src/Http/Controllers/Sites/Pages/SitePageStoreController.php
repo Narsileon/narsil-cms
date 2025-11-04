@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\HostPages;
+namespace Narsil\Http\Controllers\Sites\Pages;
 
 #region USE
 
@@ -9,11 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Narsil\Contracts\FormRequests\HostPageFormRequest;
+use Narsil\Contracts\FormRequests\SitePageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\Hosts\HostLocale;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -21,7 +20,7 @@ use Narsil\Models\Hosts\HostPage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageStoreController extends AbstractController
+class SitePageStoreController extends AbstractController
 {
     #region CONSTRUCTORS
 
@@ -30,7 +29,7 @@ class HostPageStoreController extends AbstractController
      */
     public function __construct()
     {
-        $this->country = Session::get(HostPage::COUNTRY, 'default');
+        $this->country = Session::get(SitePage::COUNTRY, 'default');
     }
 
     #endregion
@@ -55,33 +54,33 @@ class HostPageStoreController extends AbstractController
      */
     public function __invoke(Request $request, string $site): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, HostPage::class);
+        $this->authorize(PermissionEnum::CREATE, SitePage::class);
 
         $data = $request->all();
 
-        $rules = app(HostPageFormRequest::class)
+        $rules = app(SitePageFormRequest::class)
             ->rules();
 
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $attributes[HostPage::COUNTRY] = Session::get(HostPage::COUNTRY);
+        $attributes[SitePage::COUNTRY] = Session::get(SitePage::COUNTRY);
 
         $lastChild = $this->findLastChild($attributes);
 
-        $hostPage = HostPage::create(array_merge($attributes, [
-            HostPage::LEFT_ID => $lastChild?->{HostPage::ID},
+        $sitePage = SitePage::create(array_merge($attributes, [
+            SitePage::LEFT_ID => $lastChild?->{SitePage::ID},
         ]));
 
         if ($lastChild)
         {
             $lastChildAttributes = [
-                HostPage::RIGHT_ID => $hostPage->{HostPage::ID},
+                SitePage::RIGHT_ID => $sitePage->{SitePage::ID},
             ];
 
-            if ($this->country !== 'default' && $lastChild->{HostPage::COUNTRY} === 'default')
+            if ($this->country !== 'default' && $lastChild->{SitePage::COUNTRY} === 'default')
             {
-                HostPage::syncOverride($lastChild, $lastChildAttributes);
+                SitePage::syncOverride($lastChild, $lastChildAttributes);
             }
             else
             {
@@ -93,7 +92,7 @@ class HostPageStoreController extends AbstractController
             'country' => $this->country,
             'site' => $site,
         ]))
-            ->with('success', trans('narsil::toasts.success.host_pages.created'));
+            ->with('success', trans('narsil::toasts.success.site_pages.created'));
     }
 
     #endregion
@@ -105,31 +104,31 @@ class HostPageStoreController extends AbstractController
      *
      * @param array $attributes
      *
-     * @return ?HostPage
+     * @return ?SitePage
      */
-    protected function findLastChild(array $attributes): ?HostPage
+    protected function findLastChild(array $attributes): ?SitePage
     {
-        $hostId = Arr::get($attributes, HostPage::HOST_ID);
-        $parentId = Arr::get($attributes, HostPage::PARENT_ID);
+        $parentId = Arr::get($attributes, SitePage::PARENT_ID);
+        $siteId = Arr::get($attributes, SitePage::SITE_ID);
 
-        $candidates = HostPage::query()
-            ->where(HostPage::HOST_ID, $hostId)
-            ->where(HostPage::PARENT_ID, $parentId)
-            ->where(HostPage::RIGHT_ID, null)
-            ->whereIn(HostPage::COUNTRY, [
+        $candidates = SitePage::query()
+            ->where(SitePage::SITE_ID, $siteId)
+            ->where(SitePage::PARENT_ID, $parentId)
+            ->where(SitePage::RIGHT_ID, null)
+            ->whereIn(SitePage::COUNTRY, [
                 $this->country,
                 'default'
             ])
             ->get();
 
-        $hostPage = $candidates
+        $sitePage = $candidates
             ->sortBy(function ($candidate)
             {
-                return $candidate->{HostPage::COUNTRY} === $this->country ? 0 : 1;
+                return $candidate->{SitePage::COUNTRY} === $this->country ? 0 : 1;
             })
             ->first();
 
-        return $hostPage;
+        return $sitePage;
     }
 
     #endregion

@@ -12,7 +12,7 @@ use Narsil\Contracts\Form;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface HostPageForm extends Form
+interface PermissionForm extends Form
 {
     //
 }

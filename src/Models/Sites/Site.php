@@ -4,11 +4,8 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\Hosts\Host;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
 
 #endregion
 
@@ -16,68 +13,25 @@ use Narsil\Traits\HasDatetimes;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Site extends Model
+class Site extends Host
 {
-    use HasAuditLogs;
-    use HasDatetimes;
-
-    #region CONSTRUCTOR
-
-    /**
-     * {@inheritDoc}
-     */
-    public function __construct(array $attributes = [])
-    {
-        $this->table = self::TABLE;
-
-        $this->with = [
-            self::RELATION_HOST,
-        ];
-
-        $this->mergeGuarded([
-            self::ID,
-        ]);
-
-        parent::__construct($attributes);
-    }
-
-    #endregion
-
     #region CONSTANTS
 
     /**
-     * The table associated with the model.
+     * The virtual table associated with the model.
      *
      * @var string
      */
-    final public const TABLE = 'sites';
-
-    #region • COLUMNS
-
-    /**
-     * The name of the "host id" column.
-     *
-     * @var string
-     */
-    final public const HOST_ID = 'host_id';
-
-    /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    #endregion
+    final public const VIRTUAL_TABLE = 'sites';
 
     #region • RELATIONS
 
     /**
-     * The name of the "host" relation.
+     * The name of the "pages" relation.
      *
      * @var string
      */
-    final public const RELATION_HOST = 'host';
+    final public const RELATION_PAGES = 'pages';
 
     #endregion
 
@@ -88,17 +42,17 @@ class Site extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated host.
+     * Get the associated pages.
      *
-     * @return BelongsTo
+     * @return hasMany
      */
-    final public function host(): BelongsTo
+    final public function pages(): hasMany
     {
         return $this
-            ->belongsTo(
-                Host::class,
-                self::HOST_ID,
-                Host::ID,
+            ->hasMany(
+                SitePage::class,
+                SitePage::SITE_ID,
+                self::ID,
             );
     }
 

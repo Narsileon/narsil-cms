@@ -153,7 +153,7 @@ trait HasPermissions
         }
 
         $ids = [];
-        $names = [];
+        $handles = [];
 
         foreach ($permissions as $permission)
         {
@@ -167,14 +167,14 @@ trait HasPermissions
             }
         }
 
-        if (!empty($names))
+        if (!empty($handles))
         {
-            $names = Permission::query()
-                ->whereIn(Permission::NAME, $names)
+            $handles = Permission::query()
+                ->whereIn(Permission::HANDLE, $handles)
                 ->pluck(Permission::ID)
                 ->toArray();
 
-            $ids = array_merge($ids, $names);
+            $ids = array_merge($ids, $handles);
         }
 
         return array_values(array_unique($ids));
@@ -188,7 +188,7 @@ trait HasPermissions
     protected function findPermission(string|int $permission): ?Permission
     {
         return Permission::query()
-            ->where(Permission::NAME, $permission)
+            ->where(Permission::HANDLE, $permission)
             ->when(is_int($permission), function ($query) use ($permission)
             {
                 $query->orWhere(Permission::ID, $permission);

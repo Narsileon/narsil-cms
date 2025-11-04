@@ -6,8 +6,10 @@ namespace Narsil\Models\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasRoles;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -17,8 +19,10 @@ use Narsil\Traits\HasRoles;
  */
 class Permission extends Model
 {
+    use Blameable;
     use HasAuditLogs;
     use HasRoles;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -28,6 +32,10 @@ class Permission extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->translatable = [
+            self::NAME,
+        ];
 
         $this->mergeGuarded([
             self::ID,
@@ -50,11 +58,11 @@ class Permission extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "category" column.
+     * The name of the "handle" column.
      *
      * @var string
      */
-    final public const CATEGORY = 'category';
+    final public const HANDLE = 'handle';
 
     /**
      * The name of the "id" column.

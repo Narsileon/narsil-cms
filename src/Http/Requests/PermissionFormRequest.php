@@ -5,8 +5,8 @@ namespace Narsil\Http\Requests;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\FormRequests\RoleFormRequest as Contract;
-use Narsil\Models\Sites\Site;
+use Narsil\Contracts\FormRequests\PermissionFormRequest as Contract;
+use Narsil\Models\Policies\Permission;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -15,7 +15,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteFormRequest implements Contract
+class PermissionFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -25,8 +25,8 @@ class SiteFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            Site::RELATION_PAGES => [
-                FormRule::ARRAY,
+            Permission::NAME => [
+                FormRule::REQUIRED,
             ],
         ];
     }

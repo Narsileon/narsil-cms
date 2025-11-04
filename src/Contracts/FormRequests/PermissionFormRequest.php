@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequest;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface HostPageFormRequest extends FormRequest
+interface PermissionFormRequest extends FormRequest
 {
     //
 }

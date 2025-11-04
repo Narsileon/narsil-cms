@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\HostPages;
+namespace Narsil\Http\Controllers\Sites\Pages;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\Forms\HostPageForm;
+use Narsil\Contracts\Forms\SitePageForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -19,22 +19,22 @@ use Narsil\Models\Hosts\HostPage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageEditController extends AbstractController
+class SitePageEditController extends AbstractController
 {
     #region PUBLIC METHODS
 
     /**
      * @param Request $request
-     * @param HostPage $hostPage
+     * @param SitePage $sitePage
      *
      * @return JsonResponse|Response
      */
-    public function __invoke(Request $request, string $site, HostPage $hostPage): JsonResponse|Response
+    public function __invoke(Request $request, string $site, SitePage $sitePage): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $hostPage);
+        $this->authorize(PermissionEnum::UPDATE, $sitePage);
 
-        $data = $this->getData($hostPage);
-        $form = $this->getForm($site, $hostPage)
+        $data = $this->getData($sitePage);
+        $form = $this->getForm($site, $sitePage)
             ->formData($data);
 
         return $this->render(
@@ -50,13 +50,13 @@ class HostPageEditController extends AbstractController
     /**
      * Get the associated data.
      *
-     * @param HostPage $hostPage
+     * @param SitePage $sitePage
      *
      * @return array<string,mixed>
      */
-    protected function getData(HostPage $hostPage): array
+    protected function getData(SitePage $sitePage): array
     {
-        $data = $hostPage->toArrayWithTranslations();
+        $data = $sitePage->toArrayWithTranslations();
 
         return $data;
     }
@@ -65,18 +65,18 @@ class HostPageEditController extends AbstractController
      * Get the associated form.
      *
      * @param string $site
-     * @param HostPage $hostPage
+     * @param SitePage $sitePage
      *
-     * @return HostPageForm
+     * @return SitePageForm
      */
-    protected function getForm(string $site, HostPage $hostPage): HostPageForm
+    protected function getForm(string $site, SitePage $sitePage): SitePageForm
     {
-        $form = app(HostPageForm::class)
+        $form = app(SitePageForm::class)
             ->action(route('sites.pages.update', [
-                'hostPage' => $hostPage->{HostPage::ID},
+                'sitePage' => $sitePage->{SitePage::ID},
                 'site' => $site,
             ]))
-            ->id($hostPage->{HostPage::ID})
+            ->id($sitePage->{SitePage::ID})
             ->method(MethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 

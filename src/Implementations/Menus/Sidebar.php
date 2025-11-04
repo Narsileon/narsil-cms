@@ -106,6 +106,11 @@ class Sidebar extends AbstractMenu implements Contract
                 ->href(route('roles.index'))
                 ->icon('shield')
                 ->label(trans('narsil::tables.roles')),
+            new MenuItem()
+                ->group($group)
+                ->href(route('permissions.index'))
+                ->icon('shield')
+                ->label(trans('narsil::tables.permissions')),
         ];
     }
 

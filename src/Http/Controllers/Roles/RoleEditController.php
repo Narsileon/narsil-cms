@@ -35,7 +35,7 @@ class RoleEditController extends AbstractController
     {
         $this->authorize(PermissionEnum::UPDATE, $role);
 
-        $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::NAME));
+        $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::HANDLE));
 
         $data = $this->getData($role);
         $form = $this->getForm($role)

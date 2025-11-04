@@ -6,6 +6,7 @@ namespace Narsil\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\PermissionService;
 use ReflectionClass;
@@ -51,6 +52,8 @@ class SyncPermissions extends Command
 
             $policyReflection = new ReflectionClass($policy);
 
+            $baseHandle = $this->getFictiveTableName($model);
+
             $methods = $policyReflection->getMethods(\ReflectionMethod::IS_PUBLIC);
 
             foreach ($methods as $method)
@@ -62,12 +65,12 @@ class SyncPermissions extends Command
                     continue;
                 }
 
-                $permission = PermissionService::getName($model::TABLE, $methodName);
+                $permission = PermissionService::getName($baseHandle, $methodName);
 
-                Permission::updateOrCreate([
-                    Permission::NAME => $permission,
+                Permission::firstOrCreate([
+                    Permission::HANDLE => $permission,
                 ], [
-                    Permission::CATEGORY => $model::TABLE,
+                    Permission::NAME => $permission,
                 ]);
 
                 $this->line("The permission '{$permission}' has been created.");
@@ -75,6 +78,22 @@ class SyncPermissions extends Command
         }
 
         $this->info('The permissions have been successfully synchronized.');
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param string $model
+     *
+     * @return string
+     */
+    protected function getFictiveTableName(string $model): string
+    {
+        $modelName = class_basename($model);
+
+        return Str::plural(Str::snake($modelName));
     }
 
     #endregion

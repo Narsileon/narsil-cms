@@ -9,7 +9,7 @@ use Narsil\Contracts\Fields\RangeField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextareaField;
 use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\HostPageForm as Contract;
+use Narsil\Contracts\Forms\SitePageForm as Contract;
 use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Enums\SEO\OpenGraphTypeEnum;
 use Narsil\Enums\SEO\RobotsEnum;
@@ -20,7 +20,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostPage;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Services\RouteService;
 
 #endregion
@@ -29,7 +29,7 @@ use Narsil\Services\RouteService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostPageForm extends AbstractForm implements Contract
+class SitePageForm extends AbstractForm implements Contract
 {
     #region CONSTRUCTOR
 
@@ -63,7 +63,7 @@ class HostPageForm extends AbstractForm implements Contract
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => HostPage::TITLE,
+                            Field::HANDLE => SitePage::TITLE,
                             Field::NAME => trans('narsil::validation.attributes.title'),
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -83,7 +83,7 @@ class HostPageForm extends AbstractForm implements Contract
                             Block::RELATION_ELEMENTS => [
                                 new BlockElement([
                                     BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => HostPage::META_DESCRIPTION,
+                                        Field::HANDLE => SitePage::META_DESCRIPTION,
                                         Field::NAME => trans('narsil::validation.attributes.description'),
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextareaField::class,
@@ -92,7 +92,7 @@ class HostPageForm extends AbstractForm implements Contract
                                 ]),
                                 new BlockElement([
                                     BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => HostPage::ROBOTS,
+                                        Field::HANDLE => SitePage::ROBOTS,
                                         Field::NAME => trans('narsil::validation.attributes.robots'),
                                         Field::TYPE => SelectField::class,
                                         Field::SETTINGS => app(SelectField::class)
@@ -111,7 +111,7 @@ class HostPageForm extends AbstractForm implements Contract
                             Block::RELATION_ELEMENTS => [
                                 new BlockElement([
                                     BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => HostPage::OPEN_GRAPH_TYPE,
+                                        Field::HANDLE => SitePage::OPEN_GRAPH_TYPE,
                                         Field::NAME => trans('narsil::validation.attributes.type'),
                                         Field::TYPE => SelectField::class,
                                         Field::SETTINGS => app(SelectField::class)
@@ -123,7 +123,7 @@ class HostPageForm extends AbstractForm implements Contract
                                 ]),
                                 new BlockElement([
                                     BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => HostPage::OPEN_GRAPH_TITLE,
+                                        Field::HANDLE => SitePage::OPEN_GRAPH_TITLE,
                                         Field::NAME => trans('narsil::validation.attributes.title'),
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextField::class,
@@ -132,7 +132,7 @@ class HostPageForm extends AbstractForm implements Contract
                                 ]),
                                 new BlockElement([
                                     BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => HostPage::OPEN_GRAPH_DESCRIPTION,
+                                        Field::HANDLE => SitePage::OPEN_GRAPH_DESCRIPTION,
                                         Field::NAME => trans('narsil::validation.attributes.description'),
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextareaField::class,
@@ -141,7 +141,7 @@ class HostPageForm extends AbstractForm implements Contract
                                 ]),
                                 new BlockElement([
                                     BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => HostPage::OPEN_GRAPH_IMAGE,
+                                        Field::HANDLE => SitePage::OPEN_GRAPH_IMAGE,
                                         Field::NAME => trans('narsil::validation.attributes.image'),
                                         Field::TYPE => FileField::class,
                                         Field::SETTINGS => app(FileField::class)
@@ -160,7 +160,7 @@ class HostPageForm extends AbstractForm implements Contract
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => HostPage::CHANGE_FREQ,
+                            Field::HANDLE => SitePage::CHANGE_FREQ,
                             Field::NAME => trans('narsil::validation.attributes.change_freq'),
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
@@ -172,7 +172,7 @@ class HostPageForm extends AbstractForm implements Contract
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => HostPage::PRIORITY,
+                            Field::HANDLE => SitePage::PRIORITY,
                             Field::NAME => trans('narsil::validation.attributes.priority'),
                             Field::TYPE => RangeField::class,
                             Field::SETTINGS => app(RangeField::class)
