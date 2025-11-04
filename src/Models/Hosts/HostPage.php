@@ -4,9 +4,11 @@ namespace Narsil\Models\Hosts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Session;
 use Narsil\Models\TreeModel;
 use Narsil\Traits\HasTranslations;
@@ -38,7 +40,7 @@ class HostPage extends TreeModel
         ];
 
         $this->with = [
-            self::RELATION_OVERRIDES,
+            self::RELATION_OVERRIDE,
         ];
 
         $this->mergeGuarded([
@@ -69,18 +71,18 @@ class HostPage extends TreeModel
     final public const CHANGE_FREQ = 'change_freq';
 
     /**
+     * The name of the "country" column.
+     *
+     * @var string
+     */
+    final public const COUNTRY = 'country';
+
+    /**
      * The name of the "host id" column.
      *
      * @var string
      */
     final public const HOST_ID = 'host_id';
-
-    /**
-     * The name of the "host locale uuid" column.
-     *
-     * @var string
-     */
-    final public const HOST_LOCALE_UUID = 'host_locale_uuid';
 
     /**
      * The name of the "meta description" column.
@@ -151,11 +153,11 @@ class HostPage extends TreeModel
     final public const RELATION_HOST = 'host';
 
     /**
-     * The name of the "locale" relation.
+     * The name of the "override" relation.
      *
      * @var string
      */
-    final public const RELATION_LOCALE = 'locale';
+    final public const RELATION_OVERRIDE = 'override';
 
     /**
      * The name of the "overrides" relation.
@@ -171,9 +173,96 @@ class HostPage extends TreeModel
     #region PUBLIC METHODS
 
     /**
+     * @param HostPage $hostPage
+     * @param array $attributes
+     *
+     * @return void
+     */
+    public static function syncOverride(HostPage $hostPage, array $attributes): void
+    {
+        $hostPage->fill($attributes);
+
+        $override = $hostPage->{HostPage::RELATION_OVERRIDE};
+
+        if ($hostPage->isDirty())
+        {
+            if ($override)
+            {
+                $override->update($attributes);
+            }
+            else
+            {
+                HostPageOverride::create(array_merge($attributes, [
+                    HostPageOverride::COUNTRY => Session::get(HostLocale::COUNTRY),
+                    HostPageOverride::HOST_PAGE_ID => $hostPage->{HostPage::ID},
+                ]));
+            }
+        }
+        else if ($override)
+        {
+            $override->delete();
+        }
+    }
+
+    #region • RELATIONSHIPS
+
+    /**
+     * Get the associated host.
+     *
+     * @return BelongsTo
+     */
+    final public function host(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Host::class,
+                self::HOST_ID,
+                Host::ID
+            );
+    }
+
+    /**
+     * Get the associated override.
+     *
+     * @return HasOne
+     */
+    final public function override(): HasOne
+    {
+        return $this
+            ->hasOne(
+                HostPageOverride::class,
+                HostPageOverride::HOST_PAGE_ID,
+                self::ID
+            )
+            ->where(HostPageOverride::COUNTRY, Session::get(HostLocale::COUNTRY))
+            ->latestOfMany();
+    }
+
+    /**
+     * Get the associated overrides.
+     *
+     * @return HasMany
+     */
+    final public function overrides(): HasMany
+    {
+        return $this
+            ->hasMany(
+                HostPageOverride::class,
+                HostPageOverride::HOST_PAGE_ID,
+                self::ID
+            );
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
      * {@inheritDoc}
      */
-    protected function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
+    protected static function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
     {
         $country = Session::get(HostLocale::COUNTRY);
 
@@ -214,9 +303,9 @@ class HostPage extends TreeModel
 
             if ($left)
             {
-                if ($country !== 'default' && $left->{self::HOST_LOCALE_UUID} === null)
+                if ($country !== 'default' && $left->{self::COUNTRY} === 'default')
                 {
-                    // Overrides
+                    static::syncOverride($left, $leftAttributes);
                 }
                 else
                 {
@@ -224,9 +313,9 @@ class HostPage extends TreeModel
                 }
             }
 
-            if ($country !== 'default' && $node->{self::HOST_LOCALE_UUID} === null)
+            if ($country !== 'default' && $node->{self::COUNTRY} === 'default')
             {
-                // Overrides
+                static::syncOverride($node, $nodeAttributes);
             }
             else
             {
@@ -235,56 +324,47 @@ class HostPage extends TreeModel
 
             if ($children = $dataCollection->get($node->{self::ID})[self::RELATION_CHILDREN] ?? null)
             {
-                $this->rebuildTreeRecursively($collection, $children, $node);
+                static::rebuildTreeRecursively($collection, $children, $node);
             }
         });
     }
 
-    #region • RELATIONSHIPS
+    #region • ACCESSORS
 
     /**
-     * Get the associated host.
+     * Get the left id by applying the override if it exists.
      *
-     * @return BelongsTo
+     * @return Attribute
      */
-    final public function host(): BelongsTo
+    protected function leftId(): Attribute
     {
-        return $this
-            ->belongsTo(
-                Host::class,
-                self::HOST_ID,
-                Host::ID
-            );
+        return Attribute::make(
+            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{HostPageOverride::LEFT_ID} ?? $value
+        );
     }
 
     /**
-     * Get the associated locale.
+     * Get the parent id by applying the override if it exists.
      *
-     * @return BelongsTo
+     * @return Attribute
      */
-    final public function locale(): BelongsTo
+    protected function parentId(): Attribute
     {
-        return $this
-            ->belongsTo(
-                HostLocale::class,
-                self::HOST_LOCALE_UUID,
-                HostLocale::UUID
-            );
+        return Attribute::make(
+            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{HostPageOverride::PARENT_ID} ?? $value
+        );
     }
 
     /**
-     * Get the associated overrides.
+     * Get the right id by applying the override if it exists.
      *
-     * @return HasMany
+     * @return Attribute
      */
-    final public function overrides(): HasMany
+    protected function rightId(): Attribute
     {
-        return $this
-            ->hasMany(
-                HostPageOverride::class,
-                HostPageOverride::HOST_PAGE_ID,
-                self::ID
-            );
+        return Attribute::make(
+            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{HostPageOverride::RIGHT_ID} ?? $value
+        );
     }
 
     #endregion

@@ -45,11 +45,11 @@ class HostPageOverride extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "host locale uuid" column.
+     * The name of the "country" column.
      *
      * @var string
      */
-    final public const HOST_LOCALE_UUID = 'host_locale_uuid';
+    final public const COUNTRY = 'country';
 
     /**
      * The name of the "host page id" column.
@@ -66,11 +66,25 @@ class HostPageOverride extends Model
     final public const ID = 'id';
 
     /**
+     * The name of the "left id" column.
+     *
+     * @var string
+     */
+    final public const LEFT_ID = 'left_id';
+
+    /**
      * The name of the "parent id" column.
      *
      * @var string
      */
     final public const PARENT_ID = 'parent_id';
+
+    /**
+     * The name of the "right id" column.
+     *
+     * @var string
+     */
+    final public const RIGHT_ID = 'right_id';
 
     #endregion
 

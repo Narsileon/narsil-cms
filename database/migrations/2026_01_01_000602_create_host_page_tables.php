@@ -67,13 +67,25 @@ return new class extends Migration
                 ->constrained(HostPage::TABLE, HostPage::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(HostPageOverride::HOST_LOCALE_UUID)
-                ->constrained(HostLocale::TABLE, HostLocale::UUID)
-                ->cascadeOnDelete();
+                ->string(HostPageOverride::COUNTRY)
+                ->default('default');
             $blueprint
                 ->foreignId(HostPageOverride::PARENT_ID)
+                ->nullable()
                 ->constrained(HostPage::TABLE, HostPage::ID)
-                ->cascadeOnDelete();
+                ->nullOnDelete();
+            $blueprint
+                ->foreignId(HostPageOverride::LEFT_ID)
+                ->nullable()
+                ->constrained(HostPage::TABLE, HostPage::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->foreignId(HostPageOverride::RIGHT_ID)
+                ->nullable()
+                ->constrained(HostPage::TABLE, HostPage::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamps();
         });
     }
 
@@ -93,10 +105,8 @@ return new class extends Migration
                 ->constrained(Host::TABLE, Host::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(HostPage::HOST_LOCALE_UUID)
-                ->nullable()
-                ->constrained(HostLocale::TABLE, HostLocale::UUID)
-                ->cascadeOnDelete();
+                ->string(HostPage::COUNTRY)
+                ->default('default');
             $blueprint
                 ->bigInteger(HostPage::PARENT_ID)
                 ->nullable();

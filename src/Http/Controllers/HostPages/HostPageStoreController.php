@@ -30,7 +30,7 @@ class HostPageStoreController extends AbstractController
      */
     public function __construct()
     {
-        $this->country = Session::get(HostLocale::COUNTRY, 'default');
+        $this->country = Session::get(HostPage::COUNTRY, 'default');
     }
 
     #endregion
@@ -65,12 +65,7 @@ class HostPageStoreController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $hostLocale = $this->getHostLocale($attributes[HostPage::HOST_ID]);
-
-        if ($hostLocale->{HostLocale::COUNTRY} !== 'default')
-        {
-            $attributes[HostPage::HOST_LOCALE_UUID] = $hostLocale?->{HostLocale::UUID};
-        }
+        $attributes[HostPage::COUNTRY] = Session::get(HostPage::COUNTRY);
 
         $lastChild = $this->findLastChild($attributes);
 
@@ -78,11 +73,20 @@ class HostPageStoreController extends AbstractController
             HostPage::LEFT_ID => $lastChild?->{HostPage::ID},
         ]));
 
-        if ($lastChild && $lastChild->{HostPage::RELATION_LOCALE}?->{HostLocale::COUNTRY} === $this->country)
+        if ($lastChild)
         {
-            $lastChild->update([
+            $lastChildAttributes = [
                 HostPage::RIGHT_ID => $hostPage->{HostPage::ID},
-            ]);
+            ];
+
+            if ($this->country !== 'default' && $lastChild->{HostPage::COUNTRY} === 'default')
+            {
+                HostPage::syncOverride($lastChild, $lastChildAttributes);
+            }
+            else
+            {
+                $lastChild->update($lastChildAttributes);
+            }
         }
 
         return redirect(route('sites.edit', [
@@ -109,45 +113,23 @@ class HostPageStoreController extends AbstractController
         $parentId = Arr::get($attributes, HostPage::PARENT_ID);
 
         $candidates = HostPage::query()
-            ->with(HostPage::RELATION_LOCALE)
             ->where(HostPage::HOST_ID, $hostId)
             ->where(HostPage::PARENT_ID, $parentId)
             ->where(HostPage::RIGHT_ID, null)
-            ->where(function ($query)
-            {
-                $query
-                    ->whereDoesntHave(HostPage::RELATION_LOCALE)
-                    ->orWhereHas(HostPage::RELATION_LOCALE, function ($subquery)
-                    {
-                        $subquery->where(HostLocale::COUNTRY, $this->country);
-                    });
-            })
+            ->whereIn(HostPage::COUNTRY, [
+                $this->country,
+                'default'
+            ])
             ->get();
 
         $hostPage = $candidates
             ->sortBy(function ($candidate)
             {
-                return $candidate->{HostPage::RELATION_LOCALE}?->{HostLocale::COUNTRY} === $this->country ? 0 : 1;
+                return $candidate->{HostPage::COUNTRY} === $this->country ? 0 : 1;
             })
             ->first();
 
         return $hostPage;
-    }
-
-    /**
-     * @param integer $hostId
-     *
-     * @return ?HostLocale
-     */
-    protected function getHostLocale(int $hostId): ?HostLocale
-    {
-        $hostLocale = HostLocale::query()
-            ->with(HostLocale::RELATION_HOST)
-            ->where(HostLocale::HOST_ID, $hostId)
-            ->where(HostLocale::COUNTRY, $this->country)
-            ->first();
-
-        return $hostLocale;
     }
 
     #endregion

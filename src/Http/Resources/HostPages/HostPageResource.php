@@ -75,7 +75,7 @@ class HostPageResource extends NestedTreeResource
      */
     protected function getBadge(): string
     {
-        return $this->{HostPage::RELATION_LOCALE}?->{HostLocale::COUNTRY} ?? trans('narsil::ui.default');
+        return $this->{HostPage::COUNTRY};
     }
 
     /**

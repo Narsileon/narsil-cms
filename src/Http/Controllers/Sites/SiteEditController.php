@@ -46,13 +46,11 @@ class SiteEditController extends AbstractController
                 Host::RELATION_PAGES => function ($query)
                 {
                     $query
-                        ->whereDoesntHave(HostPage::RELATION_LOCALE)
-                        ->orWhereHas(HostPage::RELATION_LOCALE, function ($subquery)
-                        {
-                            $subquery->where(HostLocale::COUNTRY, Session::get(HostLocale::COUNTRY));
-                        });
-                },
-                Host::RELATION_PAGES . '.' . HostPage::RELATION_LOCALE,
+                        ->whereIn(HostPage::COUNTRY, [
+                            Session::get(HostPage::COUNTRY),
+                            'default',
+                        ]);
+                }
             ])
             ->where(Host::HANDLE, $site)
             ->first();

@@ -112,64 +112,6 @@ abstract class TreeModel extends Model
 
     #region PUBLIC METHODS
 
-    /**
-     * @param Collection<integer,TreeModel> $nodes
-     * @param array $data
-     * @param TreeModel|null $parent
-     *
-     * @return void
-     */
-    protected function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
-    {
-        $ids = collect($data)->pluck(self::ID);
-
-        $nodes = $ids->map(function ($id) use ($collection)
-        {
-            return $collection->get($id);
-        })->filter();
-
-        $dataCollection = collect($data)->keyBy(self::ID);
-
-        $nodes->each(function ($node, $index) use ($collection, $dataCollection, $nodes, $parent)
-        {
-            $leftAttributes = [];
-            $nodeAttributes = [];
-
-            $nodeAttributes[self::PARENT_ID] = $parent?->{self::ID};
-
-            $isLastNode = ($index === $nodes->count() - 1);
-
-            $left = $nodes->get($index - 1);
-
-            if ($left)
-            {
-                $leftAttributes[self::RIGHT_ID] = $node->{self::ID};
-                $nodeAttributes[self::LEFT_ID] = $left->{self::ID};
-            }
-            else
-            {
-                $nodeAttributes[self::LEFT_ID] = null;
-            }
-
-            if ($isLastNode)
-            {
-                $nodeAttributes[self::RIGHT_ID] = null;
-            }
-
-            if ($left)
-            {
-                $left->update($leftAttributes);
-            }
-
-            $node->update($nodeAttributes);
-
-            if ($children = $dataCollection->get($node->{self::ID})[self::RELATION_CHILDREN] ?? null)
-            {
-                $this->rebuildTreeRecursively($collection, $children, $node);
-            }
-        });
-    }
-
     #region • RELATIONSHIPS
 
     /**
@@ -258,12 +200,74 @@ abstract class TreeModel extends Model
             ->get()
             ->keyBy(self::ID);
 
-        $this->rebuildTreeRecursively($collection, $tree);
+        static::rebuildTreeRecursively($collection, $tree);
 
         return true;
     }
 
     #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Collection<integer,TreeModel> $nodes
+     * @param array $data
+     * @param TreeModel|null $parent
+     *
+     * @return void
+     */
+    protected static function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
+    {
+        $ids = collect($data)->pluck(self::ID);
+
+        $nodes = $ids->map(function ($id) use ($collection)
+        {
+            return $collection->get($id);
+        })->filter();
+
+        $dataCollection = collect($data)->keyBy(self::ID);
+
+        $nodes->each(function ($node, $index) use ($collection, $dataCollection, $nodes, $parent)
+        {
+            $leftAttributes = [];
+            $nodeAttributes = [];
+
+            $nodeAttributes[self::PARENT_ID] = $parent?->{self::ID};
+
+            $isLastNode = ($index === $nodes->count() - 1);
+
+            $left = $nodes->get($index - 1);
+
+            if ($left)
+            {
+                $leftAttributes[self::RIGHT_ID] = $node->{self::ID};
+                $nodeAttributes[self::LEFT_ID] = $left->{self::ID};
+            }
+            else
+            {
+                $nodeAttributes[self::LEFT_ID] = null;
+            }
+
+            if ($isLastNode)
+            {
+                $nodeAttributes[self::RIGHT_ID] = null;
+            }
+
+            if ($left)
+            {
+                $left->update($leftAttributes);
+            }
+
+            $node->update($nodeAttributes);
+
+            if ($children = $dataCollection->get($node->{self::ID})[self::RELATION_CHILDREN] ?? null)
+            {
+                static::rebuildTreeRecursively($collection, $children, $node);
+            }
+        });
+    }
 
     #endregion
 }
