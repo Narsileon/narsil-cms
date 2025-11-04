@@ -159,7 +159,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                       original = get(data, `${settings.generate}`, "") as string;
                     }
 
-                    setData?.(props.handle, kebabCase(original));
+                    handleOnChange?.(kebabCase(original));
                   }}
                 >
                   {trans("ui.generate")}
