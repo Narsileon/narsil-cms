@@ -36,6 +36,7 @@ class SitePage extends TreeModel
             self::META_DESCRIPTION,
             self::OPEN_GRAPH_DESCRIPTION,
             self::OPEN_GRAPH_TITLE,
+            self::SLUG,
             self::TITLE,
         ];
 
@@ -132,6 +133,13 @@ class SitePage extends TreeModel
      * @var string
      */
     final public const SITE_ID = 'site_id';
+
+    /**
+     * The name of the "slug" column.
+     *
+     * @var string
+     */
+    final public const SLUG = 'slug';
 
     /**
      * The name of the "title" column.

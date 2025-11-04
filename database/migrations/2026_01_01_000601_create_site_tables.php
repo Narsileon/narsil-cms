@@ -116,8 +116,9 @@ return new class extends Migration
                 ->bigInteger(SitePage::RIGHT_ID)
                 ->nullable();
             $blueprint
-                ->jsonb(SitePage::TITLE)
-                ->nullable();
+                ->jsonb(SitePage::TITLE);
+            $blueprint
+                ->jsonb(SitePage::SLUG);
             $blueprint
                 ->jsonb(SitePage::META_DESCRIPTION)
                 ->nullable();
