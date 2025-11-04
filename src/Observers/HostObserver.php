@@ -41,6 +41,7 @@ class HostObserver
     {
         SitePage::create([
             SitePage::SITE_ID => $host->{Host::ID},
+            SitePage::SLUG => 'root',
             SitePage::TITLE => 'Root',
         ]);
     }
