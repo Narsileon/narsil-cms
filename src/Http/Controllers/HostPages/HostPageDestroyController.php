@@ -33,7 +33,7 @@ class HostPageDestroyController extends AbstractController
 
         $this->updateNeighbors($hostPage);
 
-        $hostPage->delete();
+        $this->deleteRecursively($hostPage);
 
         return redirect(route('sites.edit', $site))
             ->with('success', trans('narsil::toasts.success.host_pages.deleted'));
@@ -42,6 +42,27 @@ class HostPageDestroyController extends AbstractController
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @param HostPage $hostPage
+     *
+     * @return void
+     */
+    final protected function deleteRecursively(HostPage $hostPage): void
+    {
+        $hostPage->loadMissing([
+            HostPage::RELATION_CHILDREN,
+        ]);
+
+        foreach ($hostPage->{HostPage::RELATION_CHILDREN} as $child)
+        {
+            $this->deleteRecursively($child, false);
+        }
+
+        $hostPage->children()->delete();
+
+        $hostPage->delete();
+    }
 
     /**
      * @param HostPage $hostPage

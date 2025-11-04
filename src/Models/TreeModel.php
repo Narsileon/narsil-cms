@@ -119,7 +119,64 @@ abstract class TreeModel extends Model
      *
      * @return void
      */
-    abstract protected function rebuildTreeRecursively(Collection $nodes, array $data, ?TreeModel $parent = null): void;
+    protected function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
+    {
+        $ids = collect($data)->pluck(self::ID);
+
+        $nodes = $ids->map(function ($id) use ($collection)
+        {
+            return $collection->get($id);
+        })->filter();
+
+        $dataCollection = collect($data)->keyBy(self::ID);
+
+        $nodes->each(function ($node, $index) use ($collection, $dataCollection, $nodes, $parent)
+        {
+            $node->fill([
+                self::PARENT_ID => $parent?->{self::ID} ?? null,
+            ]);
+
+            $isLastNode = ($index === $nodes->count() - 1);
+
+            $leftNode = $nodes->get($index - 1);
+
+            if (
+                $leftNode?->{self::RIGHT_ID} !== $node?->{self::ID}
+            )
+            {
+                $node->fill([
+                    self::LEFT_ID => $leftNode?->{self::ID},
+                ]);
+
+                $leftNode?->fill([
+                    self::RIGHT_ID => $node?->{self::ID},
+                ]);
+            }
+
+            if ($isLastNode)
+            {
+                $node->fill([
+                    self::RIGHT_ID => null,
+                ]);
+            }
+
+            $node->save();
+
+            if ($leftNode && $leftNode->isDirty())
+            {
+                $leftNode->fill([
+                    self::RIGHT_ID => $node?->{self::ID},
+                ]);
+
+                $leftNode->save();
+            }
+
+            if ($children = $dataCollection->get($node->{self::ID})[self::RELATION_CHILDREN] ?? null)
+            {
+                $this->rebuildTreeRecursively($collection, $children, $node);
+            }
+        });
+    }
 
     #region • RELATIONSHIPS
 

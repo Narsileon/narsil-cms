@@ -181,6 +181,10 @@ class HostPage extends TreeModel
 
         $nodes->each(function ($node, $index) use ($collection, $dataCollection, $nodes, $parent)
         {
+            $node->fill([
+                self::PARENT_ID => $parent?->{self::ID} ?? null,
+            ]);
+
             $isLastNode = ($index === $nodes->count() - 1);
 
             $leftNode = $nodes->get($index - 1);
