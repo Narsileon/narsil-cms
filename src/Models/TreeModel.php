@@ -132,44 +132,36 @@ abstract class TreeModel extends Model
 
         $nodes->each(function ($node, $index) use ($collection, $dataCollection, $nodes, $parent)
         {
-            $node->fill([
-                self::PARENT_ID => $parent?->{self::ID} ?? null,
-            ]);
+            $leftAttributes = [];
+            $nodeAttributes = [];
+
+            $nodeAttributes[self::PARENT_ID] = $parent?->{self::ID};
 
             $isLastNode = ($index === $nodes->count() - 1);
 
-            $leftNode = $nodes->get($index - 1);
+            $left = $nodes->get($index - 1);
 
-            if (
-                $leftNode?->{self::RIGHT_ID} !== $node?->{self::ID}
-            )
+            if ($left)
             {
-                $node->fill([
-                    self::LEFT_ID => $leftNode?->{self::ID},
-                ]);
-
-                $leftNode?->fill([
-                    self::RIGHT_ID => $node?->{self::ID},
-                ]);
+                $leftAttributes[self::RIGHT_ID] = $node->{self::ID};
+                $nodeAttributes[self::LEFT_ID] = $left->{self::ID};
+            }
+            else
+            {
+                $nodeAttributes[self::LEFT_ID] = null;
             }
 
             if ($isLastNode)
             {
-                $node->fill([
-                    self::RIGHT_ID => null,
-                ]);
+                $nodeAttributes[self::RIGHT_ID] = null;
             }
 
-            $node->save();
-
-            if ($leftNode && $leftNode->isDirty())
+            if ($left)
             {
-                $leftNode->fill([
-                    self::RIGHT_ID => $node?->{self::ID},
-                ]);
-
-                $leftNode->save();
+                $left->update($leftAttributes);
             }
+
+            $node->update($nodeAttributes);
 
             if ($children = $dataCollection->get($node->{self::ID})[self::RELATION_CHILDREN] ?? null)
             {

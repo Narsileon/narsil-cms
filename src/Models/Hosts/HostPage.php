@@ -7,6 +7,7 @@ namespace Narsil\Models\Hosts;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Session;
 use Narsil\Models\TreeModel;
 use Narsil\Traits\HasTranslations;
 
@@ -34,6 +35,10 @@ class HostPage extends TreeModel
             self::OPEN_GRAPH_DESCRIPTION,
             self::OPEN_GRAPH_TITLE,
             self::TITLE,
+        ];
+
+        $this->with = [
+            self::RELATION_OVERRIDES,
         ];
 
         $this->mergeGuarded([
@@ -170,6 +175,8 @@ class HostPage extends TreeModel
      */
     protected function rebuildTreeRecursively(Collection $collection, array $data, ?TreeModel $parent = null): void
     {
+        $country = Session::get(HostLocale::COUNTRY);
+
         $ids = collect($data)->pluck(self::ID);
 
         $nodes = $ids->map(function ($id) use ($collection)
@@ -179,45 +186,51 @@ class HostPage extends TreeModel
 
         $dataCollection = collect($data)->keyBy(self::ID);
 
-        $nodes->each(function ($node, $index) use ($collection, $dataCollection, $nodes, $parent)
+        $nodes->each(function ($node, $index) use ($collection, $country, $dataCollection, $nodes, $parent)
         {
-            $node->fill([
-                self::PARENT_ID => $parent?->{self::ID} ?? null,
-            ]);
+            $leftAttributes = [];
+            $nodeAttributes = [];
+
+            $nodeAttributes[self::PARENT_ID] = $parent?->{self::ID};
 
             $isLastNode = ($index === $nodes->count() - 1);
 
-            $leftNode = $nodes->get($index - 1);
+            $left = $nodes->get($index - 1);
 
-            if (
-                $leftNode?->{self::RIGHT_ID} !== $node?->{self::ID}
-            )
+            if ($left)
             {
-                $node->fill([
-                    self::LEFT_ID => $leftNode?->{self::ID},
-                ]);
-
-                $leftNode?->fill([
-                    self::RIGHT_ID => $node?->{self::ID},
-                ]);
+                $leftAttributes[self::RIGHT_ID] = $node->{self::ID};
+                $nodeAttributes[self::LEFT_ID] = $left->{self::ID};
+            }
+            else
+            {
+                $nodeAttributes[self::LEFT_ID] = null;
             }
 
             if ($isLastNode)
             {
-                $node->fill([
-                    self::RIGHT_ID => null,
-                ]);
+                $nodeAttributes[self::RIGHT_ID] = null;
             }
 
-            $node->save();
-
-            if ($leftNode && $leftNode->isDirty())
+            if ($left)
             {
-                $leftNode->fill([
-                    self::RIGHT_ID => $node?->{self::ID},
-                ]);
+                if ($country !== 'default' && $left->{self::HOST_LOCALE_UUID} === null)
+                {
+                    // Overrides
+                }
+                else
+                {
+                    $left->update($leftAttributes);
+                }
+            }
 
-                $leftNode->save();
+            if ($country !== 'default' && $node->{self::HOST_LOCALE_UUID} === null)
+            {
+                // Overrides
+            }
+            else
+            {
+                $node->update($nodeAttributes);
             }
 
             if ($children = $dataCollection->get($node->{self::ID})[self::RELATION_CHILDREN] ?? null)
