@@ -13,8 +13,6 @@ use Narsil\Contracts\Forms\UserForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;

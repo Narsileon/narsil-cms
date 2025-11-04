@@ -54,6 +54,10 @@ class SitePageFormRequest implements Contract
                 FormRule::INTEGER,
                 FormRule::REQUIRED,
             ],
+            SitePage::SLUG => [
+                FormRule::ARRAY,
+                FormRule::REQUIRED,
+            ],
             SitePage::TITLE => [
                 FormRule::ARRAY,
                 FormRule::REQUIRED,

@@ -7,7 +7,6 @@ namespace Narsil\Implementations\Fields;
 use Narsil\Contracts\Fields\EmailField as Contract;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
-use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 

@@ -5,7 +5,6 @@ namespace Narsil\Implementations\Fields;
 #region USE
 
 use Narsil\Contracts\Fields\PasswordField as Contract;
-use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
 use Narsil\Support\TranslationsBag;

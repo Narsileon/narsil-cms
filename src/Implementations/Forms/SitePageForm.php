@@ -71,6 +71,17 @@ class SitePageForm extends AbstractForm implements Contract
                                 ->required(true),
                         ])
                     ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => SitePage::SLUG,
+                            Field::NAME => trans('narsil::validation.attributes.slug'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->generate(SitePage::TITLE)
+                                ->required(true),
+                        ])
+                    ]),
                 ]
             ]),
             new TemplateSection([

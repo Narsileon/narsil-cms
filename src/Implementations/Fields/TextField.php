@@ -6,9 +6,9 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\NumberField;
 use Narsil\Contracts\Fields\TextField as Contract;
-use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Field;
+use Narsil\Support\TranslationsBag;
 
 #endregion
 
@@ -100,6 +100,19 @@ class TextField extends AbstractField implements Contract
     final public function defaultValue(string $value): static
     {
         $this->set('value', $value);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function generate(string $value): static
+    {
+        $this->set('generate', $value);
+
+        app(TranslationsBag::class)
+            ->add('narsil::ui.generate');
 
         return $this;
     }

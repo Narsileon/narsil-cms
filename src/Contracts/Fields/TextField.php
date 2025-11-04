@@ -5,7 +5,6 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
-use Narsil\Enums\Forms\AutoCompleteEnum;
 
 #endregion
 
@@ -34,6 +33,15 @@ interface TextField extends Contract
      * @return static
      */
     public function defaultvalue(string $value): static;
+
+    /**
+     * Set the generate attribute.
+     *
+     * @param string $generate
+     *
+     * @return static
+     */
+    public function generate(string $generate): static;
 
     /**
      * Set the icon attribute.

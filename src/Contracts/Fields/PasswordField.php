@@ -5,7 +5,6 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
-use Narsil\Enums\Forms\AutoCompleteEnum;
 
 #endregion
 

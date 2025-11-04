@@ -250,6 +250,7 @@ return [
         'roles'                   => 'roles',
         'section'                 => 'section',
         'sections'                => 'sections',
+        'slug'                    => 'slug',
         'step'                    => 'step',
         'theme'                   => 'theme',
         'title'                   => 'title',

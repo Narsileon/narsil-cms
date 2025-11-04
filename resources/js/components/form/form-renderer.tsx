@@ -1,16 +1,19 @@
 import { Link } from "@inertiajs/react";
-import { Heading } from "@narsil-cms/blocks";
+import { Button, Heading } from "@narsil-cms/blocks";
 import {
   CollapsibleContent,
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
 import { Icon } from "@narsil-cms/components/icon";
+import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { Block, BlockElementCondition, Field, TemplateSection } from "@narsil-cms/types";
 import parse from "html-react-parser";
+import { get, kebabCase } from "lodash";
 import { Fragment } from "react";
+import useForm from "./form-context";
 import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormFieldLanguage from "./form-field-language";
@@ -26,6 +29,9 @@ type FormRendererProps = (Block | Field | TemplateSection) & {
 };
 
 function FormRenderer({ className, conditions, width, onChange, ...props }: FormRendererProps) {
+  const { data, setData } = useForm();
+  const { trans } = useLocalization();
+
   if ("elements" in props) {
     return (
       <>
@@ -83,11 +89,27 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
     );
   }
 
-  return "settings" in props ? (
+  if (!("settings" in props)) {
+    return null;
+  }
+
+  const { description, settings, type } = props as {
+    description?: string;
+    settings: {
+      append?: string;
+      className?: string;
+      generate?: string;
+      required?: boolean;
+      type?: string;
+    };
+    type: Field["type"];
+  };
+
+  return (
     <FormField
       id={props.handle}
       conditions={conditions}
-      field={props}
+      field={props as Field}
       render={({ fieldLanguage, placeholder, value, onFieldChange, setFieldLanguage }) => {
         function handleOnChange(value: unknown) {
           onChange?.(value);
@@ -96,16 +118,12 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
 
         return (
           <FormItem
-            className={cn(
-              props.settings?.type === "hidden" && "hidden",
-              props.settings?.className,
-              className,
-            )}
+            className={cn(settings.type === "hidden" && "hidden", settings.className, className)}
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-1">
-                <FormLabel required={props.settings?.required}>{props.name}</FormLabel>
+                <FormLabel required={settings?.required}>{props.name}</FormLabel>
                 {props.translatable ? (
                   <>
                     <Icon className="size-4" name="globe" />
@@ -125,13 +143,37 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                   </>
                 ) : null}
               </div>
-              {props.settings?.append
-                ? parse(props.settings.append, {
+              {settings.generate ? (
+                <Button
+                  className="text-foreground/70"
+                  iconProps={{
+                    className: "text-foreground/70",
+                    name: "refresh",
+                  }}
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => {
+                    let original = get(data, `${settings.generate}.${fieldLanguage}`) as string;
+
+                    if (!original) {
+                      original = get(data, `${settings.generate}`, "") as string;
+                    }
+
+                    setData?.(props.handle, kebabCase(original));
+                  }}
+                >
+                  {trans("ui.generate")}
+                </Button>
+              ) : null}
+              {settings?.append
+                ? parse(settings.append, {
                     replace: (domNode) => {
-                      if (domNode.name === "a") {
+                      if (domNode.type === "tag" && domNode.name === "a") {
                         return (
                           <Link href={domNode.attribs.href} className={domNode.attribs.class}>
-                            {domNode.children.map((c) => c.data).join("")}
+                            {domNode.children
+                              .map((child) => ("data" in child ? child.data : ""))
+                              .join("")}
                           </Link>
                         );
                       }
@@ -139,20 +181,20 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                   })
                 : null}
             </div>
-            {getField(props.type, {
+            {getField(type, {
               id: props.handle,
-              element: props,
+              element: props as Field,
               placeholder: placeholder,
               value: value,
               setValue: handleOnChange,
             })}
-            {props.description ? <FormDescription>{props.description}</FormDescription> : null}
+            {props.description ? <FormDescription>{description}</FormDescription> : null}
             <FormMessage />
           </FormItem>
         );
       }}
     />
-  ) : null;
+  );
 }
 
 export default FormRenderer;
