@@ -97,8 +97,7 @@ function FormProvider({
 
   useEffect(() => {
     setData(mergedInitialValues);
-
-    reset();
+    setDefaults(mergedInitialValues);
   }, [JSON.stringify(initialValues)]);
 
   return <FormContext.Provider value={contextValue}>{render(contextValue)}</FormContext.Provider>;
