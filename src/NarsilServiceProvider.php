@@ -13,6 +13,7 @@ use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
 use Narsil\Providers\FormServiceProvider;
 use Narsil\Providers\FortifyServiceProvider;
+use Narsil\Providers\HorizonServiceProvider;
 use Narsil\Providers\LocalizationServiceProvider;
 use Narsil\Providers\MenuServiceProvider;
 use Narsil\Providers\MiddlewareServiceProvider;
@@ -64,6 +65,7 @@ class NarsilServiceProvider extends ServiceProvider
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);
+        $this->app->register(HorizonServiceProvider::class);
         $this->app->register(LighthouseServiceProvider::class);
         $this->app->register(LocalizationServiceProvider::class);
         $this->app->register(MenuServiceProvider::class);
