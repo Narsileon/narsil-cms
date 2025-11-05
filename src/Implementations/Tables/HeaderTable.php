@@ -41,6 +41,10 @@ class HeaderTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                id: Header::HANDLE,
+                visibility: true,
+            ),
+            new TableColumn(
                 id: Header::CREATED_AT,
                 visibility: false,
             ),

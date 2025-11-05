@@ -41,6 +41,10 @@ class FooterTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                id: Footer::HANDLE,
+                visibility: true,
+            ),
+            new TableColumn(
                 id: Footer::CREATED_AT,
                 visibility: false,
             ),
