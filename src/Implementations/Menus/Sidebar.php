@@ -109,7 +109,7 @@ class Sidebar extends AbstractMenu implements Contract
             new MenuItem()
                 ->group($group)
                 ->href(route('permissions.index'))
-                ->icon('shield')
+                ->icon('lock')
                 ->label(trans('narsil::tables.permissions')),
         ];
     }
@@ -181,7 +181,13 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('graphiql'))
                 ->icon('braces')
-                ->label(trans('narsil::ui.graphiql'))
+                ->label('GraphQL')
+                ->target('_blank'),
+            new MenuItem()
+                ->group($group)
+                ->href(route('horizon.index'))
+                ->icon('horizon')
+                ->label('Horizon')
                 ->target('_blank'),
         ];
     }

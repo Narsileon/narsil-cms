@@ -1,4 +1,5 @@
 import {
+  ActivityIcon,
   AlignCenterIcon,
   AlignJustifyIcon,
   AlignLeftIcon,
@@ -146,6 +147,7 @@ const defaultRegistry: Registry = {
   ["heading-5"]: Heading5Icon,
   ["heading-6"]: Heading6Icon,
   ["heading"]: HeadingIcon,
+  ["horizon"]: ActivityIcon,
   ["image"]: ImageIcon,
   ["input"]: RectangleEllipsisIcon,
   ["italic"]: ItalicIcon,
@@ -154,6 +156,7 @@ const defaultRegistry: Registry = {
   ["list-bullet"]: ListIcon,
   ["list-ordered"]: ListOrderedIcon,
   ["loader-circle"]: LoaderCircleIcon,
+  ["lock"]: LockIcon,
   ["log-in"]: LogInIcon,
   ["log-out"]: LogOutIcon,
   ["menu"]: MenuIcon,

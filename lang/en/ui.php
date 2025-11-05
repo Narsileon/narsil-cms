@@ -49,7 +49,6 @@ return [
     'filter'             => 'Filter',
     'filters'            => 'Filters',
     'generate'           => 'Generate',
-    'graphiql'           => 'GraphQL',
     'hide'               => 'Hide',
     'home'               => 'Home',
     'information'        => 'Information',
