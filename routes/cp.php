@@ -33,6 +33,22 @@ use Narsil\Http\Controllers\Fields\FieldReplicateController;
 use Narsil\Http\Controllers\Fields\FieldReplicateManyController;
 use Narsil\Http\Controllers\Fields\FieldStoreController;
 use Narsil\Http\Controllers\Fields\FieldUpdateController;
+use Narsil\Http\Controllers\Footers\FooterCreateController;
+use Narsil\Http\Controllers\Footers\FooterDestroyController;
+use Narsil\Http\Controllers\Footers\FooterDestroyManyController;
+use Narsil\Http\Controllers\Footers\FooterEditController;
+use Narsil\Http\Controllers\Footers\FooterIndexController;
+use Narsil\Http\Controllers\Footers\FooterReplicateController;
+use Narsil\Http\Controllers\Footers\FooterStoreController;
+use Narsil\Http\Controllers\Footers\FooterUpdateController;
+use Narsil\Http\Controllers\Headers\HeaderCreateController;
+use Narsil\Http\Controllers\Headers\HeaderDestroyController;
+use Narsil\Http\Controllers\Headers\HeaderDestroyManyController;
+use Narsil\Http\Controllers\Headers\HeaderEditController;
+use Narsil\Http\Controllers\Headers\HeaderIndexController;
+use Narsil\Http\Controllers\Headers\HeaderReplicateController;
+use Narsil\Http\Controllers\Headers\HeaderStoreController;
+use Narsil\Http\Controllers\Headers\HeaderUpdateController;
 use Narsil\Http\Controllers\Sites\Pages\SitePageCreateController;
 use Narsil\Http\Controllers\Sites\Pages\SitePageDestroyController;
 use Narsil\Http\Controllers\Sites\Pages\SitePageEditController;
@@ -89,6 +105,8 @@ use Narsil\Http\Middleware\CountryMiddleware;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Globals\Footer;
+use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
@@ -154,6 +172,46 @@ Route::middleware([
                 ->name('replicate');
             Route::post('/replicate-many', FieldReplicateManyController::class)
                 ->name('replicate-many');
+        });
+
+        Route::prefix(Footer::TABLE)->name(Footer::TABLE . '.')->group(function ()
+        {
+            Route::get('/', FooterIndexController::class)
+                ->name('index');
+            Route::get('/create', FooterCreateController::class)
+                ->name('create');
+            Route::post('/', FooterStoreController::class)
+                ->name('store');
+            Route::get('/{footer}/edit', FooterEditController::class)
+                ->name('edit');
+            Route::patch('/{footer}', FooterUpdateController::class)
+                ->name('update');
+            Route::delete('/{footer}', FooterDestroyController::class)
+                ->name('destroy');
+            Route::delete('/', FooterDestroyManyController::class)
+                ->name('destroy-many');
+            Route::post('/{footer}/replicate', FooterReplicateController::class)
+                ->name('replicate');
+        });
+
+        Route::prefix(Header::TABLE)->name(Header::TABLE . '.')->group(function ()
+        {
+            Route::get('/', HeaderIndexController::class)
+                ->name('index');
+            Route::get('/create', HeaderCreateController::class)
+                ->name('create');
+            Route::post('/', HeaderStoreController::class)
+                ->name('store');
+            Route::get('/{footer}/edit', HeaderEditController::class)
+                ->name('edit');
+            Route::patch('/{footer}', HeaderUpdateController::class)
+                ->name('update');
+            Route::delete('/{footer}', HeaderDestroyController::class)
+                ->name('destroy');
+            Route::delete('/', HeaderDestroyManyController::class)
+                ->name('destroy-many');
+            Route::post('/{footer}/replicate', HeaderReplicateController::class)
+                ->name('replicate');
         });
 
         Route::prefix(Host::TABLE)->name(Host::TABLE . '.')->group(function ()

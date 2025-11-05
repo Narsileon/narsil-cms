@@ -15,6 +15,8 @@ return [
     \Narsil\Models\Elements\Field::class => \Narsil\Policies\FieldPolicy::class,
     \Narsil\Models\Elements\Template::class => \Narsil\Policies\TemplatePolicy::class,
     \Narsil\Models\Entities\Entity::class => \Narsil\Policies\EntityPolicy::class,
+    \Narsil\Models\Globals\Footer::class => \Narsil\Policies\FooterPolicy::class,
+    \Narsil\Models\Globals\Header::class => \Narsil\Policies\HeaderPolicy::class,
     \Narsil\Models\Hosts\Host::class => \Narsil\Policies\HostPolicy::class,
     \Narsil\Models\Policies\Permission::class => \Narsil\Policies\PermissionPolicy::class,
     \Narsil\Models\Policies\Role::class => \Narsil\Policies\RolePolicy::class,

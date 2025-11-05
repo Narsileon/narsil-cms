@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Hosts;
+namespace Narsil\Http\Controllers\Footers;
 
 #region USE
 
@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\DestroyManyRequest;
-use Narsil\Models\Hosts\Host;
+use Narsil\Models\Globals\Footer;
 
 #endregion
 
@@ -16,7 +16,7 @@ use Narsil\Models\Hosts\Host;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostDestroyManyController extends AbstractController
+class FooterDestroyManyController extends AbstractController
 {
     #region PUBLIC METHODS
 
@@ -27,17 +27,17 @@ class HostDestroyManyController extends AbstractController
      */
     public function __invoke(DestroyManyRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE_ANY, Host::class);
+        $this->authorize(PermissionEnum::DELETE_ANY, Footer::class);
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Host::query()
-            ->whereIn(Host::ID, $ids)
+        Footer::query()
+            ->whereIn(Footer::ID, $ids)
             ->delete();
 
         return $this
-            ->redirect(route('hosts.index'))
-            ->with('success', trans('narsil::toasts.success.hosts.deleted_many'));
+            ->redirect(route('footers.index'))
+            ->with('success', trans('narsil::toasts.success.footers.deleted_many'));
     }
 
     #endregion

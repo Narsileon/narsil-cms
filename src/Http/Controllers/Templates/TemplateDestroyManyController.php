@@ -31,7 +31,9 @@ class TemplateDestroyManyController extends AbstractController
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Template::whereIn(Template::ID, $ids)->delete();
+        Template::query()
+            ->whereIn(Template::ID, $ids)
+            ->delete();
 
         return $this
             ->redirect(route('templates.index'))

@@ -6,6 +6,8 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Globals\Footer;
+use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Policies\Permission;
@@ -60,6 +62,20 @@ return [
             'replicated' => 'The field has been successfully duplicated.',
             'replicated_many' => 'The fields have been successfully duplicated.',
             'updated' => 'The field has been successfully updated.',
+        ],
+        Footer::TABLE => [
+            'created' => 'The footer has been successfully created.',
+            'deleted' => 'The footer has been successfully deleted.',
+            'deleted_many' => 'The footers have been successfully deleted.',
+            'replicated' => 'The footer has been successfully duplicated.',
+            'updated' => 'The footer has been successfully updated.',
+        ],
+        Header::TABLE => [
+            'created' => 'The header has been successfully created.',
+            'deleted' => 'The header has been successfully deleted.',
+            'deleted_many' => 'The headers have been successfully deleted.',
+            'replicated' => 'The header has been successfully duplicated.',
+            'updated' => 'The header has been successfully updated.',
         ],
         Host::TABLE => [
             'created' => 'The host has been successfully created.',

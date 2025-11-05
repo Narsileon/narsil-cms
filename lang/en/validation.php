@@ -227,6 +227,7 @@ return [
         'last_name'               => 'last name',
         'locale'                  => 'locale',
         'locales'                 => 'locales',
+        'logo'                    => 'logo',
         'max_length'              => 'max length',
         'max'                     => 'max',
         'min_length'              => 'min length',

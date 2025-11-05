@@ -31,7 +31,9 @@ class FieldDestroyManyController extends AbstractController
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Field::whereIn(Field::ID, $ids)->delete();
+        Field::query()
+            ->whereIn(Field::ID, $ids)
+            ->delete();
 
         return $this
             ->redirect(route('fields.index'))

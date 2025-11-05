@@ -237,7 +237,8 @@ trait HasRevisions
 
         static::forceDeleting(function (Model $model)
         {
-            self::where(self::ID, $model->{self::ID})
+            self::query()
+                ->where(self::ID, $model->{self::ID})
                 ->forceDelete();
         });
 

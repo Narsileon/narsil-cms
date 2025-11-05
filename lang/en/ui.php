@@ -49,6 +49,8 @@ return [
     'filter'             => 'Filter',
     'filters'            => 'Filters',
     'generate'           => 'Generate',
+    'global'             => 'Global',
+    'globals'            => 'Globals',
     'hide'               => 'Hide',
     'home'               => 'Home',
     'information'        => 'Information',

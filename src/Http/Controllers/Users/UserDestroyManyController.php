@@ -31,7 +31,9 @@ class UserDestroyManyController extends AbstractController
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        User::whereIn(User::ID, $ids)->delete();
+        User::query()
+            ->whereIn(User::ID, $ids)
+            ->delete();
 
         return $this
             ->redirect(route('users.index'))

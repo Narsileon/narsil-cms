@@ -33,7 +33,7 @@ class SitePageFormRequest implements Contract
             ],
             SitePage::PARENT_ID => [
                 FormRule::INTEGER,
-                FormRule::REQUIRED,
+                FormRule::NULLABLE,
             ],
             SitePage::PRIORITY => [
                 FormRule::NUMERIC,
@@ -57,6 +57,12 @@ class SitePageFormRequest implements Contract
             SitePage::SLUG => [
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
+            ],
+            SitePage::SLUG . '.*' => [
+                FormRule::ALPHA_DASH,
+                FormRule::LOWERCASE,
+                FormRule::doesntStartWith('-'),
+                FormRule::doesntEndWith('-'),
             ],
             SitePage::TITLE => [
                 FormRule::ARRAY,

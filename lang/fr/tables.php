@@ -6,6 +6,8 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Globals\Footer;
+use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
@@ -19,6 +21,8 @@ return [
     Block::TABLE => 'Blocs',
     Entity::TABLE => 'Entités',
     Field::TABLE => 'Champs',
+    Footer::TABLE => 'Pieds de page',
+    Header::TABLE => 'En-têtes',
     Host::TABLE => 'Hôtes',
     Permission::TABLE => 'Permissions',
     Role::TABLE => 'Rôles',

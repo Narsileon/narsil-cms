@@ -31,7 +31,9 @@ class BlockDestroyManyController extends AbstractController
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Block::whereIn(Block::ID, $ids)->delete();
+        Block::query()
+            ->whereIn(Block::ID, $ids)
+            ->delete();
 
         return $this
             ->redirect(route('blocks.index'))

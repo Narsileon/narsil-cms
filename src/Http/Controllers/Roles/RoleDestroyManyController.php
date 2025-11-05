@@ -31,7 +31,9 @@ class RoleDestroyManyController extends AbstractController
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Role::whereIn(Role::ID, $ids)->delete();
+        Role::query()
+            ->whereIn(Role::ID, $ids)
+            ->delete();
 
         return $this
             ->redirect(route('roles.index'))

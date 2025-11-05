@@ -14,6 +14,8 @@ return [
     \Narsil\Contracts\FormRequests\BlockFormRequest::class => \Narsil\Http\Requests\BlockFormRequest::class,
     \Narsil\Contracts\FormRequests\EntityFormRequest::class => \Narsil\Http\Requests\EntityFormRequest::class,
     \Narsil\Contracts\FormRequests\FieldFormRequest::class => \Narsil\Http\Requests\FieldFormRequest::class,
+    \Narsil\Contracts\FormRequests\FooterFormRequest::class => \Narsil\Http\Requests\FooterFormRequest::class,
+    \Narsil\Contracts\FormRequests\HeaderFormRequest::class => \Narsil\Http\Requests\HeaderFormRequest::class,
     \Narsil\Contracts\FormRequests\HostFormRequest::class => \Narsil\Http\Requests\HostFormRequest::class,
     \Narsil\Contracts\FormRequests\PermissionFormRequest::class => \Narsil\Http\Requests\PermissionFormRequest::class,
     \Narsil\Contracts\FormRequests\RoleFormRequest::class => \Narsil\Http\Requests\RoleFormRequest::class,
