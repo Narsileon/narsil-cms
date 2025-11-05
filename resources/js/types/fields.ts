@@ -22,6 +22,7 @@ type DefaultField = {
   type: "default";
   settings: Record<string, unknown> & {
     icon?: IconName;
+    readOnly?: boolean;
   };
 };
 

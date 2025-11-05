@@ -68,6 +68,7 @@ class PermissionForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.handle'),
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
+                                ->readOnly(true)
                                 ->required(true),
                         ]),
                     ]),

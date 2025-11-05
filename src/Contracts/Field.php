@@ -42,6 +42,15 @@ interface Field
      */
     public function className(string $className): static;
 
+    /**
+     * Set the read only attribute.
+     *
+     * @param boolean $readOnly
+     *
+     * @return static
+     */
+    public function readOnly(bool $readOnly): static;
+
     #endregion
 
     #endregion

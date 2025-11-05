@@ -3,9 +3,12 @@ import { type VariantProps } from "class-variance-authority";
 import { type ComponentProps } from "react";
 import inputWrapperVariants from "./input-root-variants";
 
-type InputRootProps = ComponentProps<"div"> & VariantProps<typeof inputWrapperVariants>;
+type InputRootProps = ComponentProps<"div"> &
+  VariantProps<typeof inputWrapperVariants> & {
+    readOnly?: boolean;
+  };
 
-function InputRoot({ className, variant, ...props }: InputRootProps) {
+function InputRoot({ className, readOnly, variant, ...props }: InputRootProps) {
   return (
     <div
       data-slot="input-root"
@@ -15,6 +18,7 @@ function InputRoot({ className, variant, ...props }: InputRootProps) {
           className: className,
         }),
       )}
+      aria-readonly={readOnly}
       {...props}
     />
   );

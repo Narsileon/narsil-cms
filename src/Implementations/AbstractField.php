@@ -37,5 +37,15 @@ abstract class AbstractField extends Fluent implements Field
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    final public function readOnly(bool $readOnly): static
+    {
+        $this->set('readOnly', $readOnly);
+
+        return $this;
+    }
+
     #endregion
 }

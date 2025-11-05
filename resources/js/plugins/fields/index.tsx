@@ -221,7 +221,7 @@ const defaultRegistry: Registry = {
   },
   ["default"]: (props) => {
     return (
-      <InputRoot>
+      <InputRoot readOnly={props.element.settings.readOnly}>
         <InputContent
           {...props.element.settings}
           id={props.id}
