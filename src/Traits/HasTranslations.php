@@ -354,16 +354,29 @@ trait HasTranslations
     {
         $translatedLocales = $this->getTranslatedLocales($key);
 
-        if (in_array($locale, $translatedLocales) || !$fallback)
+        if (in_array($locale, $translatedLocales))
         {
             return $locale;
         }
 
-        $fallbackLocale = App::getFallbackLocale();
-
-        if ($fallbackLocale && in_array($fallbackLocale, $translatedLocales))
+        if (!$fallback)
         {
-            return $fallbackLocale;
+            return $locale;
+        }
+
+        if ($fallback)
+        {
+            $fallbackLocale = App::getFallbackLocale();
+
+            if ($fallbackLocale && in_array($fallbackLocale, $translatedLocales))
+            {
+                return $fallbackLocale;
+            }
+        }
+
+        if (!empty($translatedLocales))
+        {
+            return $translatedLocales[0];
         }
 
         return $locale;
@@ -386,7 +399,7 @@ trait HasTranslations
      *
      * @return mixed
      */
-    final protected function getTranslation(string $key, string $locale, bool $fallback = true): mixed
+    final protected function getTranslation(string $key, string $locale, bool $fallback = false): mixed
     {
         $normalizedLocale = $this->getNormalizedLocale($key, $locale, $fallback);
 

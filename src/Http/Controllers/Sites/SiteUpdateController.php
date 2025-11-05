@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
 use Narsil\Http\Requests\SiteFormRequest;
+use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
 
@@ -54,6 +55,8 @@ class SiteUpdateController extends AbstractController
         $tree = $attributes[Site::RELATION_PAGES];
 
         SitePage::rebuildTree($tree);
+
+        SitemapJob::dispatch();
 
         return back()
             ->with('success', trans('narsil::toasts.success.sites.updated'));

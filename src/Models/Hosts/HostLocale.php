@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Narsil\Models\Hosts\Host;
 use Narsil\Traits\HasAuditLogs;
 
@@ -110,6 +111,17 @@ class HostLocale extends Model
      */
     final public const COUNT_LANGUAGES = 'languages_count';
 
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "urls" attribute.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_URLS = 'urls';
+
+    #endregion
+
     #region • RELATIONS
 
     /**
@@ -131,6 +143,39 @@ class HostLocale extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * Get the associated URLs.
+     *
+     * @return array<string,string>
+     */
+    public function getUrlsAttribute(): array
+    {
+        $this->loadMissing([
+            self::RELATION_HOST,
+            self::RELATION_LANGUAGES,
+        ]);
+
+        $pattern = $this->{self::PATTERN};
+
+
+        $urls = [];
+
+        foreach ($this->{self::RELATION_LANGUAGES} as $hostLocaleLanguage)
+        {
+            $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
+
+            $url = $pattern;
+
+            $url = Str::replace('{host}', $this->{self::RELATION_HOST}->{Host::HANDLE}, $url);
+            $url = Str::replace('{country}', $this->{self::COUNTRY}, $url);
+            $url = Str::replace('{language}', $language, $url);
+
+            $urls[$language] = Str::lower($url);
+        }
+
+        return $urls;
+    }
 
     #region • RELATIONSHIPS
 

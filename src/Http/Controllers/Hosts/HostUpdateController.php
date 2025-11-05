@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractController;
+use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Services\HostLocaleService;
@@ -60,6 +61,8 @@ class HostUpdateController extends AbstractController
         $otherLocales = Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []);
 
         HostService::syncOtherLocales($host, $otherLocales);
+
+        SitemapJob::dispatch();
 
         return $this
             ->redirect(route('hosts.index'))

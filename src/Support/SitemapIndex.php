@@ -4,11 +4,12 @@ namespace Narsil\Support;
 
 #region USE
 
+use DOMDocument;
+use DOMElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
-use SimpleXMLElement;
 
 #endregion
 
@@ -25,11 +26,14 @@ class SitemapIndex
      */
     public function __construct()
     {
-        $this->collection = HostLocale::query()
+        $this->document = $this->createDocument();
+
+        $this->hostLocales = HostLocale::query()
             ->with([
                 HostLocale::RELATION_HOST,
                 HostLocale::RELATION_LANGUAGES,
             ])
+            ->where(HostLocale::HOST_ID, '=', 1)
             ->orderBy(HostLocale::HOST_ID)
             ->orderBy(HostLocale::POSITION)
             ->get();
@@ -40,46 +44,138 @@ class SitemapIndex
     #region PROPERTIES
 
     /**
+     * The associated document.
+     *
+     * @var DomDocument
+     */
+    protected readonly DomDocument $document;
+
+    /**
+     * The associated host locales.
+     *
      * @var Collection<HostLocale>
      */
-    protected readonly Collection $collection;
+    protected readonly Collection $hostLocales;
 
     #endregion
 
     #region PUBLIC METHODS
 
+    /**
+     * Generate the sitemap index.
+     *
+     * @return void
+     */
     public function generate(): void
     {
-        $this->generateSitemapIndex();
+        $sitemapindex = $this->appendSitemapIndex();
+
+        foreach ($this->hostLocales as $hostLocale)
+        {
+            new Sitemap($hostLocale)->generate();
+
+            $sitemap = $this->appendSitemap($sitemapindex);
+
+            $location = $this->getLocation($hostLocale);
+
+            $this->appendLoc($sitemap, $location);
+        }
+
+        $this->saveDocument('sitemap_index.xml');
     }
 
     #endregion
 
     #region PROTECTED METHODS
 
-    protected function generateSitemapIndex(): void
+    /**
+     * Append a loc to the sitemap.
+     *
+     * @param DOMElement $sitemap
+     * @param string $location
+     *
+     * @return DOMElement
+     */
+    protected function appendLoc(DOMElement $sitemap, string $location): DOMElement
     {
-        $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><sitemapindex/>');
+        $loc = $this->document->createElement('loc', $location);
 
-        $xml->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+        $sitemap->appendChild($loc);
 
-        foreach ($this->collection as $hostLocale)
-        {
-            $host = $hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE};
-            $country = Str::lower($hostLocale->{HostLocale::COUNTRY});
+        return $loc;
+    }
 
-            $sitemap = $xml->addChild('sitemap');
+    /**
+     * Append a sitemap to the sitemap index.
+     *
+     * @param DOMElement $sitemapindex
+     *
+     * @return DOMElement
+     */
+    protected function appendSitemap(DOMElement $sitemapindex): DOMElement
+    {
+        $sitemap = $this->document->createElement('sitemap');
 
-            $sitemap->addChild('loc', url("https://{$host}/sitemap/{$country}.xml"));
-        }
+        $sitemapindex->appendChild($sitemap);
 
-        $dom = dom_import_simplexml($xml)->ownerDocument;
+        return $sitemap;
+    }
 
-        $dom->formatOutput = true;
+    /**
+     * Append a sitemap index to the document.
+     *
+     * @return DOMElement
+     */
+    protected function appendSitemapIndex(): DOMElement
+    {
+        $sitemapindex = $this->document->createElementNS('http://www.sitemaps.org/schemas/sitemap/0.9', 'sitemapindex');
 
-        $content = $dom->saveXML();
+        $this->document->appendChild($sitemapindex);
 
-        file_put_contents(public_path('sitemap_index.xml'), $content);
+        return $sitemapindex;
+    }
+
+    /**
+     * Create the document.
+     *
+     * @return DOMDocument
+     */
+    protected function createDocument(): DOMDocument
+    {
+        $document = new DOMDocument('1.0', 'UTF-8');
+
+        $document->formatOutput = true;
+
+        return $document;
+    }
+
+    /**
+     * Get the location of a sitemap.
+     *
+     * @param HostLocale $hostLocale
+     *
+     * @return string
+     */
+    protected function getLocation(HostLocale $hostLocale): string
+    {
+        $host = $hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE};
+        $country = Str::lower($hostLocale->{HostLocale::COUNTRY});
+
+        return "https://{$host}/sitemap/{$country}.xml";
+    }
+
+    /**
+     * Save the document.
+     *
+     * @param string $path
+     *
+     * @return void
+     */
+    protected function saveDocument(string $path): void
+    {
+        $filename = public_path($path);
+
+        file_put_contents($filename, $this->document->saveXML());
     }
 
     #endregion
