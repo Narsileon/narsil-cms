@@ -72,7 +72,9 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->bigInteger(FooterLegalLink::PAGE_ID)
-                ->nullable();
+                ->nullable()
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->nullOnDelete();
             $blueprint
                 ->jsonb(FooterLegalLink::LABEL)
                 ->nullable();
