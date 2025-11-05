@@ -30,7 +30,7 @@ const debouncedSave = debounce((radius: number) => {
 const useRadiusStore = create<RadiusStoreType>()(
   persist(
     (set, get) => ({
-      radius: 0.5,
+      radius: 0.25,
       applyRadius: () => {
         const root = window.document.documentElement;
 

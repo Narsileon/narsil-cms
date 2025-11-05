@@ -5,6 +5,7 @@ namespace Narsil\Models\Globals;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -31,6 +32,10 @@ class Footer extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->translatable = [
+            self::EMAIL,
+        ];
 
         $this->mergeGuarded([
             self::ID,
@@ -78,7 +83,7 @@ class Footer extends Model
      *
      * @var string
      */
-    final public const EMAIl = 'email';
+    final public const EMAIL = 'email';
 
     /**
      * The name of the "id" column.
@@ -100,6 +105,64 @@ class Footer extends Model
      * @var string
      */
     final public const PHONE = 'phone';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "legal links" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_LEGAL_LINKS = 'legal_links';
+
+    /**
+     * The name of the "social links" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SOCIAL_LINKS = 'social_links';
+
+    #endregion
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
+
+    /**
+     * Get the associated legal links.
+     *
+     * @return HasMany
+     */
+    final public function legal_links(): HasMany
+    {
+        return $this
+            ->hasOne(
+                FooterLegalLink::class,
+                FooterLegalLink::FOOTER_ID,
+                self::ID,
+            )
+            ->orderBy(FooterLegalLink::POSITION);
+    }
+
+    /**
+     * Get the associated social links.
+     *
+     * @return HasMany
+     */
+    final public function social_links(): HasMany
+    {
+        return $this
+            ->hasOne(
+                FooterSocialLink::class,
+                FooterSocialLink::FOOTER_ID,
+                self::ID,
+            )
+            ->orderBy(FooterSocialLink::POSITION);
+    }
 
     #endregion
 

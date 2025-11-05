@@ -77,7 +77,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.radius'),
                 Field::TYPE => RangeField::class,
                 Field::SETTINGS => app(RangeField::class)
-                    ->defaultValue([0.50])
+                    ->defaultValue([0.25])
                     ->max(1)
                     ->min(0)
                     ->step(0.05),

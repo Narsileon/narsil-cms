@@ -53,6 +53,9 @@ return new class extends Migration
             $blueprint
                 ->id(Header::ID);
             $blueprint
+                ->string(Header::LOGO)
+                ->nullable();
+            $blueprint
                 ->timestamp(Header::CREATED_AT);
             $blueprint
                 ->foreignId(Header::CREATED_BY)

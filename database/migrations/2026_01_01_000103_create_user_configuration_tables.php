@@ -66,7 +66,7 @@ return new class extends Migration
                 ->default(ColorEnum::GRAY->value);
             $blueprint
                 ->decimal(UserConfiguration::RADIUS, 3, 2)
-                ->default(0.5);
+                ->default(0.25);
             $blueprint
                 ->string(UserConfiguration::THEME)
                 ->default(ThemeEnum::SYSTEM->value);
