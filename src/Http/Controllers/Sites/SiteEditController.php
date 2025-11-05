@@ -144,6 +144,7 @@ class SiteEditController extends AbstractController
         $form = app(SiteForm::class)
             ->action(route('sites.update', $site->{Site::HANDLE}))
             ->id($site->{Site::ID})
+            ->languageOptions([])
             ->method(MethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'))
             ->title($site->{Site::NAME});
