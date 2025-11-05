@@ -71,10 +71,8 @@ return new class extends Migration
                 ->constrained(Footer::TABLE, Footer::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(FooterLegalLink::PAGE_ID)
-                ->nullable()
-                ->constrained(SitePage::TABLE, SitePage::ID)
-                ->nullOnDelete();
+                ->bigInteger(FooterLegalLink::PAGE_ID)
+                ->nullable();
             $blueprint
                 ->jsonb(FooterLegalLink::LABEL)
                 ->nullable();
