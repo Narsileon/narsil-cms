@@ -40,7 +40,17 @@ function DataTable({ collection, title }: DataTableProps) {
   const createLabel = trans("ui.create");
   const filterLabel = trans("ui.filters");
 
-  function onRowClick(id: number) {
+  function handleCreate() {
+    if (collection.meta.routes.create) {
+      router.visit(
+        route(collection.meta.routes.create, {
+          ...collection.meta.routes.params,
+        }),
+      );
+    }
+  }
+
+  function handleEdit(id: number) {
     if (collection.meta.routes.edit) {
       router.visit(
         route(collection.meta.routes.edit, {
@@ -131,7 +141,7 @@ function DataTable({ collection, title }: DataTableProps) {
                   return (
                     <DataTableRow
                       className="cursor-pointer"
-                      onClick={() => onRowClick(row.original.id)}
+                      onClick={() => handleEdit(row.original.id)}
                       selected={row.getIsSelected()}
                       key={row.id}
                     >
@@ -149,7 +159,7 @@ function DataTable({ collection, title }: DataTableProps) {
                   );
                 })
               ) : (
-                <DataTableRow>
+                <DataTableRow className="cursor-pointer" onClick={() => handleCreate()}>
                   <TableCell colSpan={dataTable.getVisibleFlatColumns().length} className="h-9" />
                 </DataTableRow>
               )}

@@ -26,6 +26,33 @@ class FooterFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
+            Footer::ADDRESS_LINE_1 => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
+            Footer::ADDRESS_LINE_2 => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
+            Footer::COMPANY => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
+            Footer::EMAIL => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+            ],
+            Footer::HANDLE => [
+                FormRule::ALPHA_DASH,
+                FormRule::LOWERCASE,
+                FormRule::doesntStartWith('-'),
+                FormRule::doesntEndWith('-'),
+                FormRule::REQUIRED,
+                FormRule::unique(
+                    Footer::class,
+                    Footer::HANDLE,
+                )->ignore($model?->{Footer::ID}),
+            ],
             Footer::LOGO => [
                 File::image()
                     ->dimensions(
@@ -33,6 +60,19 @@ class FooterFormRequest implements Contract
                             ->maxWidth(2048)
                             ->maxHeight(2048)
                     ),
+                FormRule::NULLABLE,
+            ],
+            Footer::PHONE => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
+
+            Footer::RELATION_LEGAL_LINKS => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+            ],
+            Footer::RELATION_SOCIAL_LINKS => [
+                FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
         ];

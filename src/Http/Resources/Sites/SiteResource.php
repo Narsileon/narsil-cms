@@ -36,7 +36,9 @@ class SiteResource extends JsonResource
     {
         return [
             Site::CREATED_AT => $this->{Site::CREATED_AT},
+            Site::FOOTER_ID => $this->{Site::FOOTER_ID},
             Site::HANDLE => $this->{Site::HANDLE},
+            Site::HEADER_ID => $this->{Site::HEADER_ID},
             Site::ID => $this->{Site::ID},
             Site::NAME => $this->{Site::NAME},
             Site::UPDATED_AT => $this->{Site::UPDATED_AT},

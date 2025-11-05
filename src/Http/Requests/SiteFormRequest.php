@@ -25,6 +25,14 @@ class SiteFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
+            Site::FOOTER_ID => [
+                FormRule::INTEGER,
+                FormRule::NULLABLE,
+            ],
+            Site::HEADER_ID => [
+                FormRule::INTEGER,
+                FormRule::NULLABLE,
+            ],
             Site::RELATION_PAGES => [
                 FormRule::ARRAY,
             ],

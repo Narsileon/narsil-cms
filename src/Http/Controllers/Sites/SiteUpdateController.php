@@ -52,6 +52,8 @@ class SiteUpdateController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
+        $site->update($attributes);
+
         $tree = $attributes[Site::RELATION_PAGES];
 
         SitePage::rebuildTree($tree);

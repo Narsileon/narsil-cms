@@ -53,6 +53,13 @@ class Header extends Model
     #region • COLUMNS
 
     /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
+
+    /**
      * The name of the "id" column.
      *
      * @var string

@@ -26,6 +26,17 @@ class HeaderFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
+            Header::HANDLE => [
+                FormRule::ALPHA_DASH,
+                FormRule::LOWERCASE,
+                FormRule::doesntStartWith('-'),
+                FormRule::doesntEndWith('-'),
+                FormRule::REQUIRED,
+                FormRule::unique(
+                    Header::class,
+                    Header::HANDLE,
+                )->ignore($model?->{Header::ID}),
+            ],
             Header::LOGO => [
                 File::image()
                     ->dimensions(

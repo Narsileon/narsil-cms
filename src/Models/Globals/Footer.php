@@ -86,6 +86,13 @@ class Footer extends Model
     final public const EMAIL = 'email';
 
     /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
+
+    /**
      * The name of the "id" column.
      *
      * @var string

@@ -131,6 +131,9 @@ return new class extends Migration
             $blueprint
                 ->id(Footer::ID);
             $blueprint
+                ->string(Footer::HANDLE)
+                ->unique();
+            $blueprint
                 ->string(Footer::LOGO)
                 ->nullable();
             $blueprint
