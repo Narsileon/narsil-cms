@@ -18,13 +18,13 @@ class SitePageObserver
     #region PUBLIC METHODS
 
     /**
-     * @param SitePage $host
+     * @param SitePage $sitePage
      *
      * @return void
      */
     public function created(SitePage $sitePage): void
     {
-        SitemapJob::dispatch();
+        $this->dispatchSitemapJob($sitePage);
     }
 
     /**
@@ -36,8 +36,21 @@ class SitePageObserver
     {
         if ($sitePage->wasChanged(SitePage::SLUG))
         {
-            SitemapJob::dispatch();
+            $this->dispatchSitemapJob($sitePage);
         }
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    protected function dispatchSitemapJob(SitePage $sitePage): void
+    {
+        $sitePage->laodMissing([
+            SitePage::RELATION_SITE,
+        ]);
+
+        SitemapJob::dispatch($sitePage->{SitePage::RELATION_SITE});
     }
 
     #endregion

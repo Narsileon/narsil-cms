@@ -39,7 +39,9 @@ class UserStoreController extends AbstractController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        User::create($attributes);
+        new User()
+            ->forceFill($attributes)
+            ->save();
 
         return $this
             ->redirect(route('users.index'))

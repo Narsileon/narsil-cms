@@ -6,7 +6,6 @@ namespace Narsil\Support;
 
 use DOMDocument;
 use DOMElement;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
@@ -24,19 +23,11 @@ class SitemapIndex
     /**
      * @return void
      */
-    public function __construct()
+    public function __construct(Host $host)
     {
         $this->document = $this->createDocument();
 
-        $this->hostLocales = HostLocale::query()
-            ->with([
-                HostLocale::RELATION_HOST,
-                HostLocale::RELATION_LANGUAGES,
-            ])
-            ->where(HostLocale::HOST_ID, '=', 1)
-            ->orderBy(HostLocale::HOST_ID)
-            ->orderBy(HostLocale::POSITION)
-            ->get();
+        $this->host = $host;
     }
 
     #endregion
@@ -51,11 +42,11 @@ class SitemapIndex
     protected readonly DomDocument $document;
 
     /**
-     * The associated host locales.
+     * The associated host.
      *
-     * @var Collection<HostLocale>
+     * @var Host
      */
-    protected readonly Collection $hostLocales;
+    protected readonly Host $host;
 
     #endregion
 
@@ -70,7 +61,7 @@ class SitemapIndex
     {
         $sitemapindex = $this->appendSitemapIndex();
 
-        foreach ($this->hostLocales as $hostLocale)
+        foreach ($this->host->{Host::RELATION_LOCALES} as $hostLocale)
         {
             new Sitemap($hostLocale)->generate();
 

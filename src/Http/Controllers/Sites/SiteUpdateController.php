@@ -58,7 +58,7 @@ class SiteUpdateController extends AbstractController
 
         SitePage::rebuildTree($tree);
 
-        SitemapJob::dispatch();
+        SitemapJob::dispatch($site);
 
         return back()
             ->with('success', trans('narsil::toasts.success.sites.updated'));

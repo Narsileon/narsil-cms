@@ -4,8 +4,10 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Narsil\Models\Hosts\Host;
 
 #endregion
 
@@ -13,8 +15,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SitePageOverride extends Model
+class SiteUrl extends Model
 {
+    use HasUuids;
+
     #region CONSTRUCTOR
 
     /**
@@ -24,8 +28,10 @@ class SitePageOverride extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
+
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -40,7 +46,7 @@ class SitePageOverride extends Model
      *
      * @var string
      */
-    final public const TABLE = 'site_page_overrides';
+    final public const TABLE = 'site_urls';
 
     #region • COLUMNS
 
@@ -52,18 +58,11 @@ class SitePageOverride extends Model
     final public const COUNTRY = 'country';
 
     /**
-     * The name of the "id" column.
+     * The name of the "language" column.
      *
      * @var string
      */
-    final public const ID = 'id';
-
-    /**
-     * The name of the "left id" column.
-     *
-     * @var string
-     */
-    final public const LEFT_ID = 'left_id';
+    final public const LANGUAGE = 'language';
 
     /**
      * The name of the "page id" column.
@@ -73,18 +72,25 @@ class SitePageOverride extends Model
     final public const PAGE_ID = 'page_id';
 
     /**
-     * The name of the "parent id" column.
+     * The name of the "path" column.
      *
      * @var string
      */
-    final public const PARENT_ID = 'parent_id';
+    final public const PATH = 'path';
 
     /**
-     * The name of the "right id" column.
+     * The name of the "site id" column.
      *
      * @var string
      */
-    final public const RIGHT_ID = 'right_id';
+    final public const SITE_ID = 'site_id';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 
@@ -98,11 +104,11 @@ class SitePageOverride extends Model
     final public const RELATION_PAGE = 'page';
 
     /**
-     * The name of the "parent" relation.
+     * The name of the "site" relation.
      *
      * @var string
      */
-    final public const RELATION_PARENT = 'parent';
+    final public const RELATION_SITE = 'site';
 
     #endregion
 
@@ -113,7 +119,7 @@ class SitePageOverride extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated site page.
+     * Get the associated page.
      *
      * @return BelongsTo
      */
@@ -128,17 +134,17 @@ class SitePageOverride extends Model
     }
 
     /**
-     * Get the associated parent.
+     * Get the associated site.
      *
      * @return BelongsTo
      */
-    final public function parent(): BelongsTo
+    final public function site(): BelongsTo
     {
         return $this
             ->belongsTo(
-                SitePage::class,
-                self::PARENT_ID,
-                SitePage::ID
+                Site::class,
+                self::SITE_ID,
+                Site::ID
             );
     }
 

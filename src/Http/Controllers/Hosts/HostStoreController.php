@@ -59,7 +59,7 @@ class HostStoreController extends AbstractController
 
         HostService::syncOtherLocales($host, $otherLocales);
 
-        SitemapJob::dispatch();
+        SitemapJob::dispatch($host);
 
         return $this
             ->redirect(route('hosts.index'))

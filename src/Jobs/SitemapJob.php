@@ -4,6 +4,7 @@ namespace Narsil\Jobs;
 
 #region USE
 
+use Narsil\Models\Hosts\Host;
 use Narsil\Support\SitemapIndex;
 
 #endregion
@@ -14,6 +15,31 @@ use Narsil\Support\SitemapIndex;
  */
 class SitemapJob extends AbstractJob
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param Host $host
+     *
+     * @return void
+     */
+    public function __construct(Host $host)
+    {
+        $this->host = $host;
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * The associated host.
+     *
+     * @var Host
+     */
+    protected readonly Host $host;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -23,7 +49,7 @@ class SitemapJob extends AbstractJob
      */
     public function handle(): void
     {
-        new SitemapIndex()
+        new SitemapIndex($this->host)
             ->generate();
     }
 

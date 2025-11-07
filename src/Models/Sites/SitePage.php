@@ -202,7 +202,7 @@ class SitePage extends TreeModel
             {
                 SitePageOverride::create(array_merge($attributes, [
                     SitePageOverride::COUNTRY => Session::get(self::COUNTRY),
-                    SitePageOverride::SITE_PAGE_ID => $sitePage->{SitePage::ID},
+                    SitePageOverride::PAGE_ID => $sitePage->{SitePage::ID},
                 ]));
             }
         }
@@ -224,7 +224,7 @@ class SitePage extends TreeModel
         return $this
             ->hasOne(
                 SitePageOverride::class,
-                SitePageOverride::SITE_PAGE_ID,
+                SitePageOverride::PAGE_ID,
                 self::ID
             )
             ->where(self::COUNTRY, Session::get(self::COUNTRY))
@@ -241,7 +241,7 @@ class SitePage extends TreeModel
         return $this
             ->hasMany(
                 SitePageOverride::class,
-                SitePageOverride::SITE_PAGE_ID,
+                SitePageOverride::PAGE_ID,
                 self::ID
             );
     }

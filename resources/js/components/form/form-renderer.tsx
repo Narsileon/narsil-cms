@@ -29,7 +29,7 @@ type FormRendererProps = (Block | Field | TemplateSection) & {
 };
 
 function FormRenderer({ className, conditions, width, onChange, ...props }: FormRendererProps) {
-  const { data, setData } = useForm();
+  const { data } = useForm();
   const { trans } = useLocalization();
 
   if ("elements" in props) {

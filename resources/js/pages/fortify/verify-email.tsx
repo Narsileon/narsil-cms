@@ -41,7 +41,7 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
                 method: "post",
               }}
             >
-              {trans("verify-email.send_again")}
+              {trans("ui.send_again")}
             </Button>
           </Card>
         </SectionContent>

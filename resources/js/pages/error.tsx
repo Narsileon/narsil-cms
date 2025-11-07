@@ -12,7 +12,7 @@ const Error = ({ description, title }: ErrorProps) => {
         <Heading className="text-center" level="h1" variant="h3">
           {title}
         </Heading>
-        <div className="text-center text-xl">{description}</div>
+        <div className="text-center text-base">{description}</div>
       </div>
     </Container>
   );

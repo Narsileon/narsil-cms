@@ -25,9 +25,9 @@ class VerifyEmailController extends AbstractController
     public function __construct()
     {
         app(TranslationsBag::class)
+            ->add('narsil::ui.send_again')
             ->add('narsil::verify-email.instruction')
             ->add('narsil::verify-email.prompt')
-            ->add('narsil::verify-email.send_again')
             ->add('narsil::verify-email.sent');
     }
 

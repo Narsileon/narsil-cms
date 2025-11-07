@@ -11,6 +11,7 @@ use Narsil\Enums\SEO\RobotsEnum;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Sites\SitePageOverride;
+use Narsil\Models\Sites\SiteUrl;
 
 #endregion
 
@@ -33,6 +34,10 @@ return new class extends Migration
         {
             $this->createSitePageOverridesTable();
         }
+        if (!Schema::hasTable(SiteUrl::TABLE))
+        {
+            $this->createSiteUrlsTable();
+        }
     }
 
     /**
@@ -42,6 +47,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(SiteUrl::TABLE);
         Schema::dropIfExists(SitePageOverride::TABLE);
         Schema::dropIfExists(SitePage::TABLE);
     }
@@ -62,7 +68,7 @@ return new class extends Migration
             $blueprint
                 ->id(SitePageOverride::ID);
             $blueprint
-                ->foreignId(SitePageOverride::SITE_PAGE_ID)
+                ->foreignId(SitePageOverride::PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
                 ->cascadeOnDelete();
             $blueprint
@@ -164,6 +170,38 @@ return new class extends Migration
                 ->references(SitePage::ID)
                 ->on(SitePage::TABLE)
                 ->nullOnDelete();
+        });
+    }
+
+    /**
+     * Create the site urls table.
+     *
+     * @return void
+     */
+    private function createSiteUrlsTable(): void
+    {
+        Schema::create(SiteUrl::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(SiteUrl::UUID)
+                ->primary();
+            $blueprint
+                ->foreignId(SiteUrl::SITE_ID)
+                ->constrained(Site::TABLE, Site::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(SiteUrl::PAGE_ID)
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(SiteUrl::COUNTRY)
+                ->default('default');
+            $blueprint
+                ->string(SiteUrl::LANGUAGE);
+            $blueprint
+                ->string(SiteUrl::PATH);
+            $blueprint
+                ->timestamps();
         });
     }
 

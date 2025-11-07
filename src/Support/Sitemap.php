@@ -54,7 +54,7 @@ class Sitemap
     /**
      * The associated host locale.
      *
-     * @var Collection<SitePage>
+     * @var HostLocale
      */
     protected readonly HostLocale $hostLocale;
 
