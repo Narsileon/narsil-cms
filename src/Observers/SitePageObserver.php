@@ -46,7 +46,7 @@ class SitePageObserver
 
     protected function dispatchSitemapJob(SitePage $sitePage): void
     {
-        $sitePage->laodMissing([
+        $sitePage->loadMissing([
             SitePage::RELATION_SITE,
         ]);
 

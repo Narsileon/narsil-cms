@@ -49,6 +49,10 @@ class MenuItem extends Fluent
 
                 foreach ($permissions as $permission)
                 {
+                    if ($user->can($permission))
+                    {
+                        return true;
+                    }
                     if (!$user->hasPermission($permission))
                     {
                         return false;
