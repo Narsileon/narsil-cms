@@ -4,6 +4,8 @@ namespace Narsil\Support;
 
 #region USE
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Fluent;
 
 #endregion
@@ -15,6 +17,48 @@ use Illuminate\Support\Fluent;
 class MenuItem extends Fluent
 {
     #region PUBLIC METHODS
+
+    /**
+     * Filters the menu items by permissions.
+     *
+     * @param Collection<MenuItem> $collection
+     *
+     * @return Collection
+     */
+    final public static function filterByPermissions(Collection $collection): Collection
+    {
+        /**
+         * @var User
+         */
+        $user = Auth::user();
+
+        return $collection
+            ->filter(function (MenuItem $item) use ($user)
+            {
+                $permissions = $item->get('permissions', []);
+
+                if (empty($permissions))
+                {
+                    return true;
+                }
+
+                if (!$user)
+                {
+                    return false;
+                }
+
+                foreach ($permissions as $permission)
+                {
+                    if (!$user->hasPermission($permission))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            })
+            ->values();
+    }
 
     /**
      * Set the group of the menu item.
@@ -96,6 +140,20 @@ class MenuItem extends Fluent
     final public function modal(bool $modal): static
     {
         $this->set('modal', $modal);
+
+        return $this;
+    }
+
+    /**
+     * Set the associated permissions.
+     *
+     * @param array<string> $permissions
+     *
+     * @return static
+     */
+    final public function permissions(array $permissions): static
+    {
+        $this->set('permissions', $permissions);
 
         return $this;
     }
