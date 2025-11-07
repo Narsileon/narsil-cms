@@ -24,7 +24,7 @@ class SitePageFormRequest implements Contract
      */
     public function rules(?Model $model = null): array
     {
-        return [
+        $rules = [
             SitePage::CHANGE_FREQ => [
                 FormRule::STRING,
             ],
@@ -69,6 +69,13 @@ class SitePageFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
         ];
+
+        if ($model)
+        {
+            unset($rules[SitePage::PARENT_ID]);
+        }
+
+        return $rules;
     }
 
     #endregion

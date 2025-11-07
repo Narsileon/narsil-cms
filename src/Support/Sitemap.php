@@ -33,11 +33,7 @@ class Sitemap
 
         $this->hostLocale = $hostLocale;
 
-        $this->pages = $this->getPages();
-
-        $collection = collect($this->pages->get('', []));
-
-        $this->tree = $this->buildFlatTreeRecursively($collection);
+        $this->tree = new SitemapUrls($hostLocale)->generate();
     }
 
     #endregion
@@ -216,47 +212,6 @@ class Sitemap
     }
 
     /**
-     * Build a flat tree.
-     *
-     * @param Collection<SitePage> $collection
-     * @param SitePage|null $parent
-     *
-     * @return Collection
-     */
-    protected function buildFlatTreeRecursively(Collection $collection, ?SitePage $parent = null): Collection
-    {
-        $tree = collect();
-
-        $collection->each(function ($page) use (&$tree, $parent)
-        {
-            $children = $this->pages->get($page->{SitePage::ID}, collect());
-
-            if (!$parent)
-            {
-                $page->{SitePage::SLUG} = null;
-            }
-            else
-            {
-                foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
-                {
-                    $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
-
-                    $parentSlug = $parent->getTranslationWithFallback(SitePage::SLUG, $language);
-                    $slug = $page->getTranslationWithFallback(SitePage::SLUG, $language);
-
-                    $page->setTranslation(SitePage::SLUG, $language, "$parentSlug$slug");
-                }
-            }
-
-            $tree->push($page);
-
-            $tree = $tree->merge($this->buildFlatTreeRecursively($children, $page));
-        });
-
-        return $tree;
-    }
-
-    /**
      * Create the document.
      *
      * @return DOMDocument
@@ -290,21 +245,6 @@ class Sitemap
         }
 
         return $hrefLang;
-    }
-
-    /**
-     * Get the pages grouped by parent id.
-     *
-     * @return Collection<integer,SitePage>
-     */
-    protected function getPages(): Collection
-    {
-        $pages = SitePage::query()
-            ->where(SitePage::SITE_ID, '=', $this->hostLocale->{HostLocale::HOST_ID})
-            ->get()
-            ->groupBy(SitePage::PARENT_ID);
-
-        return $pages;
     }
 
     /**
