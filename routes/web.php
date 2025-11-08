@@ -7,9 +7,9 @@ use Narsil\Http\Controllers\PageController;
 
 #endregion
 
-Route::get('/{slug?}', PageController::class)
-    ->where('slug', '.*');
+Route::get('/{path?}', PageController::class)
+    ->where('path', '.*');
 
 Route::domain('{subdomain}')
-    ->get('/{slug?}', PageController::class)
-    ->where('slug', '.*');
+    ->get('/{path?}', PageController::class)
+    ->where('path', '.*');

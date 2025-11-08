@@ -46,7 +46,7 @@ class HostLocaleObserver
             '\{country\}' => '(?P<country>[A-Za-z]{2})',
         ]);
 
-        return '#^' . $regex . '(?:/(?P<slug>.*))?$#i';
+        return '#^' . $regex . '(?:/(?P<path>.*))?$#i';
     }
 
     #endregion
