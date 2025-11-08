@@ -195,11 +195,15 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->string(SiteUrl::COUNTRY)
-                ->default('default');
+                ->default('default')
+                ->index();
             $blueprint
-                ->string(SiteUrl::LANGUAGE);
+                ->string(SiteUrl::LANGUAGE)
+                ->index();
             $blueprint
-                ->string(SiteUrl::PATH);
+                ->string(SiteUrl::PATH)
+                ->nullable()
+                ->index();
             $blueprint
                 ->timestamps();
         });
