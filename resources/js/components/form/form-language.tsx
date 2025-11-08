@@ -14,9 +14,12 @@ function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLang
   const { languageOptions } = useForm();
   const { trans } = useLocalization();
 
+  const currentOption =
+    languageOptions.find((option) => option.value === value) ?? languageOptions[0];
+
   return (
     <ToggleGroupRoot
-      defaultValue={languageOptions[0].value as string}
+      defaultValue={currentOption.value as string}
       orientation="vertical"
       type="single"
       {...props}
