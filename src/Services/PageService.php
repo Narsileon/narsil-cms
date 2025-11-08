@@ -96,11 +96,11 @@ abstract class PageService
      * @param string $host
      * @param string $country
      * @param string $language
-     * @param string $path
+     * @param string|null $path
      *
      * @return SitePage|null
      */
-    protected static function getPage(string $host, string $country, string $language, string $path): ?SitePage
+    protected static function getPage(string $host, string $country, string $language, ?string $path = null): ?SitePage
     {
         $siteUrl = SiteUrl::query()
             ->with([

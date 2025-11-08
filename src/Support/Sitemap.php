@@ -110,7 +110,7 @@ class Sitemap
 
                 $xlink->setAttribute('rel', 'alternate');
                 $xlink->setAttribute('hreflang', $hrefLang);
-                $xlink->setAttribute('href', "{$host}/{$slug}");
+                $xlink->setAttribute('href', $slug ? "{$host}/{$slug}" : $host);
 
                 $url->appendChild($xlink);
             }

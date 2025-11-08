@@ -115,30 +115,35 @@ class SitemapUrls
             {
                 $page->{SitePage::SLUG} = null;
             }
-            else
-            {
-                foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
-                {
-                    $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
 
+            foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
+            {
+                $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
+
+                if (!$parent)
+                {
+                    $path = null;
+                }
+                else
+                {
                     $parentSlug = $parent->getTranslationWithFallback(SitePage::SLUG, $language);
                     $slug = $page->getTranslationWithFallback(SitePage::SLUG, $language);
 
                     $path = $parentSlug ? "$parentSlug/$slug" : $slug;
 
                     $page->setTranslation(SitePage::SLUG, $language, $path);
-
-                    $this->urls[] = [
-                        SiteUrl::COUNTRY => $this->hostLocale->{HostLocale::COUNTRY},
-                        SiteUrl::CREATED_AT => now(),
-                        SiteUrl::LANGUAGE => $language,
-                        SiteUrl::PAGE_ID => $page->{SitePage::ID},
-                        SiteUrl::PATH => $path,
-                        SiteUrl::SITE_ID => $page->{SitePage::SITE_ID},
-                        SiteUrl::UPDATED_AT => now(),
-                        SiteUrl::UUID => Str::uuid(),
-                    ];
                 }
+
+                $this->urls[] = [
+                    SiteUrl::COUNTRY => $this->hostLocale->{HostLocale::COUNTRY},
+                    SiteUrl::CREATED_AT => now(),
+                    SiteUrl::LANGUAGE => $language,
+                    SiteUrl::PAGE_ID => $page->{SitePage::ID},
+                    SiteUrl::PATH => $path,
+                    SiteUrl::SITE_ID => $page->{SitePage::SITE_ID},
+                    SiteUrl::UPDATED_AT => now(),
+                    SiteUrl::UUID => Str::uuid(),
+                ];
             }
 
             $tree->push($page);
