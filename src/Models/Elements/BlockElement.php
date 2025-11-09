@@ -33,6 +33,8 @@ class BlockElement extends Model
     {
         $this->table = self::TABLE;
 
+        $this->timestamps = false;
+
         $this->translatable = [
             self::DESCRIPTION,
             self::NAME,

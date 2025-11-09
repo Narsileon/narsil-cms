@@ -1,0 +1,119 @@
+<?php
+
+namespace Narsil\Database\Seeders;
+
+#region USE
+
+use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\BlockElement;
+use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\FieldOption;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+abstract class ElementSeeder
+{
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function saveBlock(Block $block): Block
+    {
+        $model = Block::query()
+            ->where(Block::HANDLE, $block->{Block::HANDLE})
+            ->first();
+
+        if ($model)
+        {
+            return $model;
+        }
+
+        $model = Block::create([
+            Block::HANDLE => $block->{Block::HANDLE},
+            Block::NAME => $block->{Block::NAME},
+        ]);
+
+        if ($blockElements = $block->{Block::RELATION_ELEMENTS})
+        {
+            foreach ($blockElements as $position => $blockElement)
+            {
+                if ($element = $blockElement->{BlockElement::RELATION_ELEMENT})
+                {
+                    if ($element instanceof Field)
+                    {
+                        $element = $this->saveField($element);
+
+                        BlockElement::create([
+                            BlockElement::BLOCK_ID => $model->{Block::ID},
+                            BlockElement::ELEMENT_ID => $element->{Field::ID},
+                            BlockElement::ELEMENT_TYPE => Field::class,
+                            BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{Field::HANDLE},
+                            BlockElement::NAME => $element->{Field::NAME},
+                            BlockElement::POSITION => $position,
+                            BlockElement::WIDTH => $blockElement->{BlockElement::WIDTH} ?? 100,
+                        ]);
+                    }
+                    else if ($element instanceof Block)
+                    {
+                        $element = $this->saveBlock($element);
+
+                        BlockElement::create([
+                            BlockElement::BLOCK_ID => $model->{Block::ID},
+                            BlockElement::ELEMENT_ID => $element->{Block::ID},
+                            BlockElement::ELEMENT_TYPE => Block::class,
+                            BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{Block::HANDLE},
+                            BlockElement::NAME => $element->{Block::NAME},
+                            BlockElement::POSITION => $position,
+                            BlockElement::WIDTH => $blockElement->{BlockElement::WIDTH} ?? 100,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        return $model;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function saveField(Field $field): Field
+    {
+        $model = Field::query()
+            ->where(Field::HANDLE, $field->{Field::HANDLE})
+            ->first();
+
+        if ($model)
+        {
+            return $model;
+        }
+
+        $model = Field::create([
+            Field::HANDLE => $field->{Field::HANDLE},
+            Field::NAME => $field->{Field::NAME},
+            Field::TRANSLATABLE => $field->{Field::TRANSLATABLE} ?? false,
+            Field::TYPE => $field->{Field::TYPE},
+        ]);
+
+        if ($fieldOptions = $field->{Field::RELATION_OPTIONS})
+        {
+            foreach ($fieldOptions as $position => $fieldOption)
+            {
+                FieldOption::create([
+                    FieldOption::FIELD_ID => $model->{Field::ID},
+                    FieldOption::POSITION => $position,
+                    FieldOption::VALUE => $fieldOption->{FieldOption::VALUE},
+                ]);
+            }
+        }
+
+        return $model;
+    }
+
+    #endregion
+}
