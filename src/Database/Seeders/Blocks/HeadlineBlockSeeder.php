@@ -39,6 +39,8 @@ class HeadlineBlockSeeder extends BlockSeeder
                         Field::NAME => 'Headline',
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
+                        Field::SETTINGS => app(SelectField::class)
+                            ->required(true),
                     ]),
                 ]),
                 new BlockElement([
@@ -48,6 +50,9 @@ class HeadlineBlockSeeder extends BlockSeeder
                         Field::NAME => 'Level',
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $headlineOptions,
+                        Field::SETTINGS => app(SelectField::class)
+                            ->defaultValue('h1')
+                            ->required(true),
                     ]),
                 ]),
                 new BlockElement([
@@ -57,6 +62,9 @@ class HeadlineBlockSeeder extends BlockSeeder
                         Field::NAME => 'Style',
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $headlineOptions,
+                        Field::SETTINGS => app(SelectField::class)
+                            ->defaultValue('h6')
+                            ->required(true),
                     ]),
                 ]),
             ],

@@ -97,6 +97,7 @@ abstract class ElementSeeder
         $model = Field::create([
             Field::HANDLE => $field->{Field::HANDLE},
             Field::NAME => $field->{Field::NAME},
+            Field::SETTINGS => $field->{Field::SETTINGS},
             Field::TRANSLATABLE => $field->{Field::TRANSLATABLE} ?? false,
             Field::TYPE => $field->{Field::TYPE},
         ]);
