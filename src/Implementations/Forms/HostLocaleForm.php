@@ -39,8 +39,8 @@ class HostLocaleForm extends AbstractForm implements Contract
             Field::HANDLE => HostLocale::COUNTRY,
             Field::NAME => trans('narsil::validation.attributes.country'),
             Field::TYPE => SelectField::class,
-            Field::SETTINGS => app(SelectField::class)
-                ->options($countrySelectOptions),
+            Field::RELATION_OPTIONS => $countrySelectOptions,
+            Field::SETTINGS => app(SelectField::class),
         ]);
     }
 
@@ -61,8 +61,8 @@ class HostLocaleForm extends AbstractForm implements Contract
                         Field::HANDLE => HostLocaleLanguage::LANGUAGE,
                         Field::NAME => trans('narsil::validation.attributes.language'),
                         Field::TYPE => SelectField::class,
+                        Field::RELATION_OPTIONS => $languageSelectOptions,
                         Field::SETTINGS => app(SelectField::class)
-                            ->options($languageSelectOptions)
                             ->required(true),
                     ]),
                 ])

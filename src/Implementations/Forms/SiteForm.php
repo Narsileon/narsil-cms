@@ -61,8 +61,8 @@ class SiteForm extends AbstractForm implements Contract
                             Field::HANDLE => Site::HEADER_ID,
                             Field::NAME => trans('narsil::validation.attributes.header_id'),
                             Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class)
-                                ->options($headerSelectOptions),
+                            Field::RELATION_OPTIONS => $headerSelectOptions,
+                            Field::SETTINGS => app(SelectField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([
@@ -70,8 +70,8 @@ class SiteForm extends AbstractForm implements Contract
                             Field::HANDLE => Site::FOOTER_ID,
                             Field::NAME => trans('narsil::validation.attributes.footer_id'),
                             Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class)
-                                ->options($footerSelectOptions),
+                            Field::RELATION_OPTIONS => $footerSelectOptions,
+                            Field::SETTINGS => app(SelectField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([

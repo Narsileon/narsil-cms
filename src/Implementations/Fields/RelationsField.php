@@ -57,8 +57,8 @@ class RelationsField extends AbstractField implements Contract
                 Field::HANDLE => $prefix ? "$prefix.collections" : 'collections',
                 Field::NAME => trans('narsil::ui.collections'),
                 Field::TYPE => SelectField::class,
+                Field::RELATION_OPTIONS => $templateSelectOptions,
                 Field::SETTINGS => app(SelectField::class)
-                    ->options($templateSelectOptions)
                     ->multiple(true),
             ]),
             new Field([

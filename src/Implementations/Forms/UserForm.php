@@ -141,8 +141,8 @@ class UserForm extends AbstractForm implements Contract
                             Field::HANDLE => User::RELATION_ROLES,
                             Field::NAME => trans('narsil::validation.attributes.roles'),
                             Field::TYPE => CheckboxField::class,
-                            Field::SETTINGS => app(CheckboxField::class)
-                                ->options($roleSelectOptions),
+                            Field::RELATION_OPTIONS => $roleSelectOptions,
+                            Field::SETTINGS => app(CheckboxField::class),
                         ]),
                     ]),
                 ],

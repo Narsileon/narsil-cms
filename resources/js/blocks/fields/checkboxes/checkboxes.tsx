@@ -15,7 +15,7 @@ type CheckboxesProps = {
   onChange: (value: UniqueIdentifier[]) => void;
 };
 
-function Checkboxes({ options, values, onChange }: CheckboxesProps) {
+function Checkboxes({ options = [], values, onChange }: CheckboxesProps) {
   const { trans } = useLocalization();
 
   function toggleValue(value: UniqueIdentifier) {

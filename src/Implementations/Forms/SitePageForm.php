@@ -106,10 +106,10 @@ class SitePageForm extends AbstractForm implements Contract
                                         Field::HANDLE => SitePage::ROBOTS,
                                         Field::NAME => trans('narsil::validation.attributes.robots'),
                                         Field::TYPE => SelectField::class,
+                                        Field::RELATION_OPTIONS => RobotsEnum::options(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(RobotsEnum::ALL->value)
                                             ->displayValue(false)
-                                            ->options(RobotsEnum::options())
                                             ->required(true),
                                     ])
                                 ]),
@@ -125,10 +125,10 @@ class SitePageForm extends AbstractForm implements Contract
                                         Field::HANDLE => SitePage::OPEN_GRAPH_TYPE,
                                         Field::NAME => trans('narsil::validation.attributes.type'),
                                         Field::TYPE => SelectField::class,
+                                        Field::RELATION_OPTIONS => OpenGraphTypeEnum::options(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(OpenGraphTypeEnum::WEBSITE->value)
                                             ->displayValue(false)
-                                            ->options(OpenGraphTypeEnum::options())
                                             ->required(true),
                                     ])
                                 ]),
@@ -174,10 +174,10 @@ class SitePageForm extends AbstractForm implements Contract
                             Field::HANDLE => SitePage::CHANGE_FREQ,
                             Field::NAME => trans('narsil::validation.attributes.change_freq'),
                             Field::TYPE => SelectField::class,
+                            Field::RELATION_OPTIONS => ChangeFreqEnum::options(),
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ChangeFreqEnum::NEVER->value)
                                 ->displayValue(false)
-                                ->options(ChangeFreqEnum::options())
                                 ->required(true),
                         ])
                     ]),

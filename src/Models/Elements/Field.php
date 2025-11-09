@@ -7,6 +7,7 @@ namespace Narsil\Models\Elements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Arr;
 use Narsil\Casts\JsonCast;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
@@ -61,6 +62,11 @@ class Field extends Model
         ]);
 
         parent::__construct($attributes);
+
+        if ($options = Arr::get($attributes, self::RELATION_OPTIONS))
+        {
+            $this->setRelation(self::RELATION_OPTIONS, collect($options));
+        }
     }
 
     #endregion

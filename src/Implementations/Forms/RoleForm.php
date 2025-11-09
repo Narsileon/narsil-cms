@@ -65,8 +65,8 @@ class RoleForm extends AbstractForm implements Contract
                         Field::HANDLE => Role::RELATION_PERMISSIONS,
                         Field::NAME => $group,
                         Field::TYPE => CheckboxField::class,
-                        Field::SETTINGS => app(CheckboxField::class)
-                            ->options($options),
+                        Field::RELATION_OPTIONS => $options,
+                        Field::SETTINGS => app(CheckboxField::class),
                     ]),
                 ]);
             })

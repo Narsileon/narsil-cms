@@ -93,16 +93,6 @@ class CheckboxField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function options(array $options): static
-    {
-        $this->set('options', $options);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function required(bool $required): static
     {
         $this->set('required', $required);

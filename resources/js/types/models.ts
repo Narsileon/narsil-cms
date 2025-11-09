@@ -34,7 +34,14 @@ export type Field = {
   id: number;
   identifier: string;
   name: string;
+  options: FieldOption[];
   translatable: boolean;
+} & FieldType;
+
+export type FieldOption = {
+  id: number;
+  label: string;
+  value: string;
 } & FieldType;
 
 export type HasElement = Model & {

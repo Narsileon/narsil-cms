@@ -108,16 +108,6 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function options(array $options): static
-    {
-        $this->set('options', $options);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function placeholder(string $placeholder): static
     {
         $this->set('placeholder', $placeholder);

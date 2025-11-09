@@ -52,7 +52,7 @@ function Combobox({
   id,
   labelPath = "label",
   multiple = false,
-  options,
+  options = [],
   placeholder,
   reload,
   searchable = true,

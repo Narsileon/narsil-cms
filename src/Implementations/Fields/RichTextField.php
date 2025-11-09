@@ -74,8 +74,8 @@ class RichTextField extends AbstractField implements Contract
                 Field::HANDLE => $prefix ? "$prefix.modules" : 'modules',
                 Field::NAME => trans("narsil::ui.modules"),
                 Field::TYPE => CheckboxField::class,
-                Field::SETTINGS => app(CheckboxField::class)
-                    ->options(RichTextEditorEnum::options()),
+                Field::RELATION_OPTIONS => RichTextEditorEnum::options(),
+                Field::SETTINGS => app(CheckboxField::class),
             ]),
         ];
     }

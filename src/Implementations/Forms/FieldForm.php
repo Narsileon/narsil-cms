@@ -102,8 +102,8 @@ class FieldForm extends AbstractForm implements Contract
                             Field::HANDLE => Field::TYPE,
                             Field::NAME => trans('narsil::validation.attributes.type'),
                             Field::TYPE => SelectField::class,
+                            Field::RELATION_OPTIONS => $typeSelectOptions,
                             Field::SETTINGS => app(SelectField::class)
-                                ->options($typeSelectOptions)
                                 ->placeholder(trans('narsil::placeholders.search'))
                                 ->reload('layout')
                                 ->required(true),
@@ -136,8 +136,8 @@ class FieldForm extends AbstractForm implements Contract
                             Field::HANDLE => 'rules',
                             Field::NAME => trans("narsil::ui.rules"),
                             Field::TYPE => CheckboxField::class,
-                            Field::SETTINGS => app(CheckboxField::class)
-                                ->options(RuleEnum::options()),
+                            Field::RELATION_OPTIONS => RuleEnum::options(),
+                            Field::SETTINGS => app(CheckboxField::class),
                         ]),
                     ]),
                 ],

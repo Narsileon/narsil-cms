@@ -44,15 +44,6 @@ interface SelectField extends Contract
     public function multiple(bool $multiple): static;
 
     /**
-     * Set the options attribute.
-     *
-     * @param array $options
-     *
-     * @return static
-     */
-    public function options(array $options): static;
-
-    /**
      * Set the placeholder attribute.
      *
      * @param string $placeholder

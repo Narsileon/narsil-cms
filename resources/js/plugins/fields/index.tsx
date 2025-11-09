@@ -58,11 +58,11 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\CheckboxField"]: (props) => {
-    if ("options" in props.element.settings) {
+    if (props.element.options?.length > 0) {
       return (
         <Checkboxes
           {...props.element.settings}
-          options={props.element.settings.options}
+          options={props.element.options}
           values={isArray(props.value) ? props.value : []}
           onChange={props.setValue}
         />
@@ -170,6 +170,7 @@ const defaultRegistry: Registry = {
       <Combobox
         {...props.element.settings}
         id={props.id}
+        options={props.element.options}
         value={props.value}
         setValue={props.setValue}
       />
