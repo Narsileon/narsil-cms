@@ -43,16 +43,18 @@ class AccordionBlockSeeder extends BlockSeeder
                                 Block::RELATION_ELEMENTS => [
                                     new BlockElement([
                                         BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => 'trigger',
+                                            Field::HANDLE => 'accordion-item-trigger',
                                             Field::NAME => 'Trigger',
+                                            Field::TRANSLATABLE => true,
                                             Field::TYPE => TextField::class,
                                             Field::RELATION_BLOCKS => []
                                         ]),
                                     ]),
                                     new BlockElement([
                                         BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => 'content',
+                                            Field::HANDLE => 'accordion-item-content',
                                             Field::NAME => 'Content',
+                                            Field::TRANSLATABLE => true,
                                             Field::TYPE => RichTextField::class,
                                         ]),
                                     ]),

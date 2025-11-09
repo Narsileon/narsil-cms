@@ -87,7 +87,7 @@ class HeadlineBlockSeeder extends BlockSeeder
 
         foreach ($headlines as $headline)
         {
-            new FieldOption([
+            $options[] = new FieldOption([
                 FieldOption::LABEL => $headline,
                 FieldOption::VALUE => $headline,
             ]);

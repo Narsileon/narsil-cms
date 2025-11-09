@@ -63,6 +63,11 @@ class Field extends Model
 
         parent::__construct($attributes);
 
+        if ($blocks = Arr::get($attributes, self::RELATION_BLOCKS))
+        {
+            $this->setRelation(self::RELATION_BLOCKS, collect($blocks));
+        }
+
         if ($options = Arr::get($attributes, self::RELATION_OPTIONS))
         {
             $this->setRelation(self::RELATION_OPTIONS, collect($options));

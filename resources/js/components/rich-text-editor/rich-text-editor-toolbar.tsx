@@ -26,7 +26,7 @@ type RichTextEditorToolbarProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const headings = [1, 2, 3, 4, 5, 6] as const;
 
-function RichTextEditorToolbar({ className, modules, ...props }: RichTextEditorToolbarProps) {
+function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEditorToolbarProps) {
   const { editor } = useCurrentEditor();
   const { trans } = useLocalization();
 
@@ -35,10 +35,18 @@ function RichTextEditorToolbar({ className, modules, ...props }: RichTextEditorT
   }
 
   function hasModule(key: string) {
+    if (modules?.length === 0) {
+      return true;
+    }
+
     return modules?.includes(key);
   }
 
   function hasModules(keys: string[]) {
+    if (modules?.length === 0) {
+      return true;
+    }
+
     return keys?.some((key) => modules?.includes(key));
   }
 

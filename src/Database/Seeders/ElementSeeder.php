@@ -7,6 +7,7 @@ namespace Narsil\Database\Seeders;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\FieldBlock;
 use Narsil\Models\Elements\FieldOption;
 
 #endregion
@@ -100,12 +101,26 @@ abstract class ElementSeeder
             Field::TYPE => $field->{Field::TYPE},
         ]);
 
+        if ($fieldBlocks = $field->{Field::RELATION_BLOCKS})
+        {
+            foreach ($fieldBlocks as $position => $fieldBlock)
+            {
+                $block = $this->saveBlock($fieldBlock);
+
+                FieldBlock::create([
+                    FieldBlock::BLOCK_ID => $block->{Block::ID},
+                    FieldBlock::FIELD_ID => $model->{Field::ID},
+                ]);
+            }
+        }
+
         if ($fieldOptions = $field->{Field::RELATION_OPTIONS})
         {
             foreach ($fieldOptions as $position => $fieldOption)
             {
                 FieldOption::create([
                     FieldOption::FIELD_ID => $model->{Field::ID},
+                    FieldOption::LABEL => $fieldOption->{FieldOption::LABEL},
                     FieldOption::POSITION => $position,
                     FieldOption::VALUE => $fieldOption->{FieldOption::VALUE},
                 ]);
