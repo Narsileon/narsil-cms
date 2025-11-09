@@ -167,7 +167,7 @@ trait HasTranslations
 
         foreach ($translatables as $translatable)
         {
-            $attributes[$translatable] = $this->getTranslation($translatable, App::getLocale());
+            $attributes[$translatable] = $this->getTranslation($translatable, App::getLocale(), true);
         }
 
         return $attributes;
