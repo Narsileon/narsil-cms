@@ -16,8 +16,6 @@ return [
     \Narsil\Contracts\Forms\EntityForm::class => \Narsil\Implementations\Forms\EntityForm::class,
     \Narsil\Contracts\Forms\FieldForm::class => \Narsil\Implementations\Forms\FieldForm::class,
     \Narsil\Contracts\Forms\FooterForm::class => \Narsil\Implementations\Forms\FooterForm::class,
-    \Narsil\Contracts\Forms\FooterLegalLinkForm::class => \Narsil\Implementations\Forms\FooterLegalLinkForm::class,
-    \Narsil\Contracts\Forms\FooterSocialLinkForm::class => \Narsil\Implementations\Forms\FooterSocialLinkForm::class,
     \Narsil\Contracts\Forms\HeaderForm::class => \Narsil\Implementations\Forms\HeaderForm::class,
     \Narsil\Contracts\Forms\HostForm::class => \Narsil\Implementations\Forms\HostForm::class,
     \Narsil\Contracts\Forms\HostLocaleForm::class => \Narsil\Implementations\Forms\HostLocaleForm::class,

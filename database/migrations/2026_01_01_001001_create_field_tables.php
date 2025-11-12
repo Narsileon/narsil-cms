@@ -56,6 +56,7 @@ return new class extends Migration
 
     /**
      * Create the field options table.
+     *
      * @return void
      */
     private function createFieldOptionsTable(): void

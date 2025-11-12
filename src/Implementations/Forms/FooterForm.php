@@ -48,8 +48,34 @@ class FooterForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
-        $footerLegalLinkForm = app(FooterLegalLinkForm::class);
-        $footerSocialLinkForm = app(FooterSocialLinkForm::class);
+        $footerLegalLinkForm = [
+            new Field([
+                Field::HANDLE => FooterLegalLink::LABEL,
+                Field::NAME => trans('narsil::validation.attributes.label'),
+                Field::TRANSLATABLE => true,
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
+                    ->required(true),
+            ]),
+        ];
+
+        $footerSocialLinkForm = [
+            new Field([
+                Field::HANDLE => FooterSocialLink::LABEL,
+                Field::NAME => trans('narsil::validation.attributes.label'),
+                Field::TRANSLATABLE => true,
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
+                    ->required(true),
+            ]),
+            new Field([
+                Field::HANDLE => FooterSocialLink::URL,
+                Field::NAME => trans('narsil::validation.attributes.url'),
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class)
+                    ->required(true),
+            ]),
+        ];
 
         return [
             new TemplateSection([
@@ -122,7 +148,7 @@ class FooterForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.legal_links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
-                                ->form($footerLegalLinkForm->layout)
+                                ->form($footerLegalLinkForm)
                                 ->labelKey(FooterLegalLink::LABEL),
                         ]),
                     ]),
@@ -132,7 +158,7 @@ class FooterForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.social_links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
-                                ->form($footerSocialLinkForm->layout)
+                                ->form($footerSocialLinkForm)
                                 ->labelKey(FooterSocialLink::LABEL),
                         ]),
                     ]),
