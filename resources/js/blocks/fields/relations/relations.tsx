@@ -79,7 +79,9 @@ function Relations({
   const selectColumn = getSelectColumn();
 
   useEffect(() => {
-    if (!open || !collections || collections.length === 0) return;
+    if (!open || !collections || collections.length === 0) {
+      return;
+    }
 
     const fetchCollections = async () => {
       for (const collection of collections) {

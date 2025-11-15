@@ -1,11 +1,13 @@
-import { Button, Card, Heading, RevisionSelect, SaveButton, Status } from "@narsil-cms/blocks";
+import { Button, Card, Heading, RevisionSelect, Status } from "@narsil-cms/blocks";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import {
   FormCountry,
   FormLanguage,
+  FormMenu,
   FormProvider,
   FormRenderer,
   FormRoot,
+  FormSave,
   FormTimestamp,
 } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
@@ -177,10 +179,14 @@ function ResourceForm({
                 >
                   <SectionContent className="flex flex-col">
                     <div className="flex h-13 flex-row-reverse items-center justify-between gap-2 border-b px-4 py-2">
-                      <SaveButton
-                        routes={routes}
-                        submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
-                      />
+                      <div className="flex items-center gap-2">
+                        <FormSave
+                          routes={routes}
+                          submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
+                        />
+                        <FormMenu routes={routes} />
+                      </div>
+
                       {revisions ? (
                         <Status
                           className={cn(

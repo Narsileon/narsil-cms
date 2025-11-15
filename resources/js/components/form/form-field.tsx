@@ -82,7 +82,9 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   }, [data]);
 
   useEffect(() => {
-    setFieldLanguage(formLanguage);
+    requestAnimationFrame(() => {
+      setFieldLanguage(formLanguage);
+    });
   }, [formLanguage]);
 
   const contextValue = {

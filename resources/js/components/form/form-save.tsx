@@ -1,4 +1,3 @@
-import { router } from "@inertiajs/react";
 import { Button, Kbd, Separator } from "@narsil-cms/blocks";
 import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
 import {
@@ -15,25 +14,14 @@ import type { RouteNames } from "@narsil-cms/types";
 import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
-type SaveButtonProps = ComponentProps<typeof ButtonGroupRoot> & {
+type FormSaveProps = ComponentProps<typeof ButtonGroupRoot> & {
   routes?: RouteNames;
   submitLabel: string;
 };
 
-function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
+function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
   const { trans } = useLocalization();
   const { action, data, id, isDirty, method, post, reset, transform } = useForm();
-
-  function destroy() {
-    if (routes?.destroy && data?.id) {
-      router.delete(
-        route(routes.destroy, {
-          ...routes.params,
-          id: data.id,
-        }),
-      );
-    }
-  }
 
   function saveAndAdd() {
     if (routes?.create) {
@@ -104,10 +92,6 @@ function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
             event.preventDefault();
             saveAsNew();
             break;
-          case "KeyX":
-            event.preventDefault();
-            destroy();
-            break;
         }
       }
     }
@@ -149,20 +133,10 @@ function SaveButton({ routes, submitLabel, ...props }: SaveButtonProps) {
               </DropdownMenuItem>
             </>
           ) : null}
-          {routes?.destroy && data?.id ? (
-            <>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={destroy}>
-                <Icon name="trash" />
-                {trans("ui.delete")}
-                <Kbd className="ml-auto" elements={["Ctrl", "X"]} />
-              </DropdownMenuItem>
-            </>
-          ) : null}
         </DropdownMenuContent>
       </DropdownMenuRoot>
     </ButtonGroupRoot>
   );
 }
 
-export default SaveButton;
+export default FormSave;

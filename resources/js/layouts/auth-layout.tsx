@@ -53,15 +53,17 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
 
   useEffect(() => {
-    if (color) {
-      setColor(color);
-    }
-    if (radius) {
-      setRadius(radius);
-    }
-    if (theme) {
-      setTheme(theme);
-    }
+    requestAnimationFrame(() => {
+      if (color) {
+        setColor(color);
+      }
+      if (radius) {
+        setRadius(radius);
+      }
+      if (theme) {
+        setTheme(theme);
+      }
+    });
   }, []);
 
   return (

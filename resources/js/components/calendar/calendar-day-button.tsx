@@ -11,7 +11,9 @@ function CalendarDayButton({ className, day, modifiers, ...props }: CalendarDayB
   const defaultClassNames = getDefaultClassNames();
 
   useEffect(() => {
-    if (modifiers.focused) ref.current?.focus();
+    if (modifiers.focused) {
+      ref.current?.focus();
+    }
   }, [modifiers.focused]);
 
   return (

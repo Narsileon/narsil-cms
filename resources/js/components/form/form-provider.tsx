@@ -96,8 +96,10 @@ function FormProvider({
   };
 
   useEffect(() => {
-    setData(mergedInitialValues);
-    setDefaults(mergedInitialValues);
+    requestAnimationFrame(() => {
+      setData(mergedInitialValues);
+      setDefaults(mergedInitialValues);
+    });
   }, [JSON.stringify(initialValues)]);
 
   return <FormContext.Provider value={contextValue}>{render(contextValue)}</FormContext.Provider>;

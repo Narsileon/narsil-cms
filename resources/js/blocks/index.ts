@@ -19,7 +19,6 @@ import NavigationMenu from "./navigation-menu";
 import Pagination from "./pagination";
 import Progress from "./progress";
 import RevisionSelect from "./revision-select";
-import SaveButton from "./save-button";
 import ScrollArea from "./scroll-area";
 import Separator from "./separator";
 import Sidebar from "./sidebar";
@@ -55,7 +54,6 @@ export {
   Pagination,
   Progress,
   RevisionSelect,
-  SaveButton,
   ScrollArea,
   Separator,
   Sidebar,
