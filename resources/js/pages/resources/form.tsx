@@ -184,9 +184,8 @@ function ResourceForm({
                           routes={routes}
                           submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
                         />
-                        <FormMenu routes={routes} />
+                        {routes?.destroy && method !== "post" ? <FormMenu routes={routes} /> : null}
                       </div>
-
                       {revisions ? (
                         <Status
                           className={cn(
