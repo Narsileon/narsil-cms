@@ -1,5 +1,6 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { Button, Tooltip } from "@narsil-cms/blocks";
+import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -23,6 +24,7 @@ type DataTableRowMenuProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "i
 };
 
 function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTableRowMenuProps) {
+  const { setOpen } = useAlertDialog();
   const { trans } = useLocalization();
 
   if (!routes.edit && !routes.destroy) {
@@ -90,21 +92,28 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
             ) : null}
             <DropdownMenuSeparator />
             {routes.destroy ? (
-              <DropdownMenuItem asChild={true}>
-                <Link
-                  as="button"
-                  href={route(routes.destroy, {
+              <DropdownMenuItem
+                onClick={() => {
+                  const href = route(routes.destroy as string, {
                     ...routes.params,
                     id: id,
-                  })}
-                  method="delete"
-                  data={{
-                    _back: true,
-                  }}
-                >
-                  <Icon name="trash" />
-                  {trans("ui.delete")}
-                </Link>
+                  });
+
+                  setOpen({
+                    title: trans("dialogs.titles.delete"),
+                    description: trans("dialogs.descriptions.delete"),
+                    actionClick: () => {
+                      router.delete(href, {
+                        data: {
+                          _back: true,
+                        },
+                      });
+                    },
+                  });
+                }}
+              >
+                <Icon name="trash" />
+                {trans("ui.delete")}
               </DropdownMenuItem>
             ) : null}
           </>

@@ -14,6 +14,16 @@ function AlertDialogProvider({ children }: AlertDialogProviderProps) {
       {children}
       {open ? (
         <AlertDialog
+          actionLabel={open.actionLabel}
+          cancelLabel={open.cancelLabel}
+          description={open.description}
+          open={!!open}
+          title={open.title}
+          actionClick={(event) => {
+            open.actionClick?.(event);
+
+            setOpen(null);
+          }}
           cancelClick={(event) => {
             open.cancelClick?.(event);
 

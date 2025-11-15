@@ -11,7 +11,7 @@ function AlertDialogAction({ className, ...props }: AlertDialogActionProps) {
       className={cn(
         buttonRootVariants({
           className: className,
-          variant: "default",
+          variant: "primary",
         }),
       )}
       {...props}
