@@ -3,6 +3,7 @@ import { Builder } from "@narsil-cms/blocks/fields/builder";
 import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
 import { Checkboxes } from "@narsil-cms/blocks/fields/checkboxes";
 import { Combobox } from "@narsil-cms/blocks/fields/combobox";
+import { Date } from "@narsil-cms/blocks/fields/date";
 import { Datetime } from "@narsil-cms/blocks/fields/datetime";
 import { File } from "@narsil-cms/blocks/fields/file";
 import { Password } from "@narsil-cms/blocks/fields/password";
@@ -81,7 +82,7 @@ const defaultRegistry: Registry = {
   },
   ["Narsil\\Contracts\\Fields\\DateField"]: (props) => {
     return (
-      <Datetime
+      <Date
         {...props.element.settings}
         id={props.id}
         name={props.id}

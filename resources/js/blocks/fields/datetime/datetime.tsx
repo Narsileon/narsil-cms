@@ -1,4 +1,4 @@
-import { Calendar } from "@narsil-cms/blocks";
+import { Button, Calendar, Separator } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
@@ -8,7 +8,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { cn } from "@narsil-cms/lib/utils";
-import { useState, type ComponentProps } from "react";
+import { useMemo, useState, type ComponentProps, type WheelEvent } from "react";
 
 type DatetimeProps = Omit<ComponentProps<typeof InputContent>, "value"> & {
   value: string | undefined;
@@ -18,7 +18,45 @@ type DatetimeProps = Omit<ComponentProps<typeof InputContent>, "value"> & {
 function Datetime({ value, onChange, ...props }: DatetimeProps) {
   const [open, setOpen] = useState(false);
 
-  const date = value ? new Date(value) : undefined;
+  const datePart = value?.split("T")[0] ?? "";
+  const timePart = value?.split("T")[1] ?? "00:00";
+
+  const [hour, minute] = timePart.split(":").map(Number);
+
+  const date = value ? new Date(datePart) : undefined;
+
+  const hours = useMemo(() => {
+    return Array.from({ length: 24 }, (_, index) => index + 1);
+  }, []);
+
+  const minutes = useMemo(() => {
+    return Array.from({ length: 60 }, (_, index) => index.toString().padStart(2, "0"));
+  }, []);
+
+  function onWheel(event: WheelEvent) {
+    const element = event.currentTarget;
+    if (event.deltaY === 0) {
+      return;
+    }
+
+    event.preventDefault();
+
+    element.scrollTo({
+      left: element.scrollLeft + event.deltaY * 2,
+      behavior: "smooth",
+    });
+  }
+
+  function updateTime(newHour: number, newMinute: number) {
+    if (!datePart) {
+      return;
+    }
+
+    const h = String(newHour).padStart(2, "0");
+    const m = String(newMinute).padStart(2, "0");
+
+    onChange(`${datePart}T${h}:${m}`);
+  }
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen}>
@@ -26,7 +64,6 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
         <InputRoot className={cn(open && "border-shine")} variant="button">
           <InputContent
             className={cn(!value && "opacity-50")}
-            type="date"
             value={value}
             onChange={(event) => onChange(event.target.value)}
             {...props}
@@ -35,18 +72,54 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
         </InputRoot>
       </PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+        <PopoverContent
+          className="flex max-h-fit max-w-62 flex-col items-center overflow-hidden p-0"
+          align="start"
+        >
           <Calendar
             captionLayout="dropdown"
             mode="single"
             defaultMonth={date}
             selected={date}
             onSelect={(selected) => {
-              const newValue = selected ? selected.toLocaleDateString("en-CA") : undefined;
-              onChange?.(newValue);
-              setOpen(false);
+              const newDate = selected ? selected.toLocaleDateString("en-CA") : undefined;
+
+              const h = String(hour ?? 0).padStart(2, "0");
+              const m = String(minute ?? 0).padStart(2, "0");
+
+              onChange(`${newDate}T${h}:${m}`);
             }}
           />
+          <Separator />
+          <div className="flex w-full flex-col gap-4 p-4">
+            <div className="no-scrollbar flex gap-1 overflow-x-auto" onWheel={onWheel}>
+              {hours.map((hour) => (
+                <Button
+                  className="aspect-square shrink-0"
+                  disabled={!date}
+                  size="icon"
+                  variant={date && date.getHours() === hour ? "primary" : "ghost"}
+                  key={hour}
+                  onClick={() => updateTime(hour, minute ?? 0)}
+                >
+                  {hour}
+                </Button>
+              ))}
+            </div>
+            <div className="no-scrollbar flex gap-1 overflow-x-auto" onWheel={onWheel}>
+              {minutes.map((minute) => (
+                <Button
+                  className="aspect-square shrink-0"
+                  disabled={!date}
+                  size="icon"
+                  variant={date && date.getMinutes() === Number(minute) ? "primary" : "ghost"}
+                  onClick={() => updateTime(hour ?? 0, Number(minute))}
+                >
+                  {minute}
+                </Button>
+              ))}
+            </div>
+          </div>
         </PopoverContent>
       </PopoverPortal>
     </PopoverRoot>

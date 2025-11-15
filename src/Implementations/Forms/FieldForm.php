@@ -101,7 +101,7 @@ class FieldForm extends AbstractForm implements Contract
                             Field::RELATION_OPTIONS => $typeSelectOptions,
                             Field::SETTINGS => app(SelectField::class)
                                 ->placeholder(trans('narsil::placeholders.search'))
-                                ->reload('layout')
+                                ->reload('form')
                                 ->required(true),
 
                         ]),

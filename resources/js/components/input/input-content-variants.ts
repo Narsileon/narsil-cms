@@ -14,6 +14,9 @@ const inputContentVariants = cva(
         date: cn(
           "appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none",
         ),
+        datetime: cn(
+          "appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none",
+        ),
         file: cn(
           "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:file:font-medium file:text-foreground",
         ),

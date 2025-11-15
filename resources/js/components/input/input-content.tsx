@@ -6,10 +6,11 @@ import inputContentVariants from "./input-content-variants";
 type InputContentProps = ComponentProps<"input"> & VariantProps<typeof inputContentVariants>;
 
 const TYPES = {
-  date: "date",
-  file: "file",
-  image: "image",
-  number: "number",
+  ["date"]: "date",
+  ["datetime-local"]: "datetime",
+  ["file"]: "file",
+  ["image"]: "image",
+  ["number"]: "number",
 } as const;
 
 function InputContent({ className, type, variant, ...props }: InputContentProps) {

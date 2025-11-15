@@ -183,6 +183,13 @@ abstract class AbstractForm extends Fluent implements Form
     #region PROTECTED METHODS
 
     /**
+     * Define the layout of the form.
+     *
+     * @return array
+     */
+    abstract protected function getLayout(): array;
+
+    /**
      * @param mixed $id
      *
      * @return string
@@ -195,12 +202,6 @@ abstract class AbstractForm extends Fluent implements Form
 
         return $id ? "$slug-$id" : $slug;
     }
-    /**
-     * Define the layout of the form.
-     *
-     * @return array
-     */
-    abstract protected function getLayout(): array;
 
     /**
      * @param array $elements
