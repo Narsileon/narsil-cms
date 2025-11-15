@@ -2,7 +2,7 @@ import { AlertDialog } from "@narsil-cms/blocks";
 import { type ComponentProps, createContext, useContext } from "react";
 
 export type AlertDialogContextProps = {
-  setOpen: (props: ComponentProps<typeof AlertDialog>) => void;
+  setAlertDialog: (props: ComponentProps<typeof AlertDialog>) => void;
 };
 
 export const AlertDialogContext = createContext<AlertDialogContextProps | null>(null);

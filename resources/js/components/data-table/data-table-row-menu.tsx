@@ -24,7 +24,7 @@ type DataTableRowMenuProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "i
 };
 
 function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTableRowMenuProps) {
-  const { setOpen } = useAlertDialog();
+  const { setAlertDialog } = useAlertDialog();
   const { trans } = useLocalization();
 
   if (!routes.edit && !routes.destroy) {
@@ -99,7 +99,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                     id: id,
                   });
 
-                  setOpen({
+                  setAlertDialog({
                     title: trans("dialogs.titles.delete"),
                     description: trans("dialogs.descriptions.delete"),
                     actionClick: () => {
@@ -149,21 +149,28 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
             {routes.destroyMany ? (
               <>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild={true}>
-                  <Link
-                    as="button"
-                    href={route(routes.destroyMany, {
+                <DropdownMenuItem
+                  onClick={() => {
+                    const href = route(routes.destroyMany as string, {
                       ...routes.params,
                       ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
-                    })}
-                    method="delete"
-                    data={{
-                      _back: true,
-                    }}
-                  >
-                    <Icon name="trash" />
-                    {trans("ui.delete_selected")}
-                  </Link>
+                    });
+
+                    setAlertDialog({
+                      title: trans("dialogs.titles.delete"),
+                      description: trans("dialogs.descriptions.delete"),
+                      actionClick: () => {
+                        router.delete(href, {
+                          data: {
+                            _back: true,
+                          },
+                        });
+                      },
+                    });
+                  }}
+                >
+                  <Icon name="trash" />
+                  {trans("ui.delete_selected")}
                 </DropdownMenuItem>
               </>
             ) : null}

@@ -19,7 +19,7 @@ type FormMenuProps = ComponentProps<typeof Button> & {
 };
 
 function FormMenu({ routes, ...props }: FormMenuProps) {
-  const { setOpen } = useAlertDialog();
+  const { setAlertDialog } = useAlertDialog();
   const { trans } = useLocalization();
   const { data } = useForm();
 
@@ -37,7 +37,7 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
                 id: data.id,
               });
 
-              setOpen({
+              setAlertDialog({
                 title: trans("dialogs.titles.delete"),
                 description: trans("dialogs.descriptions.delete"),
                 actionClick: () => {

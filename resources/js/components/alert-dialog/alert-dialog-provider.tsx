@@ -7,27 +7,27 @@ type AlertDialogProviderProps = {
 };
 
 function AlertDialogProvider({ children }: AlertDialogProviderProps) {
-  const [open, setOpen] = useState<ComponentProps<typeof AlertDialog> | null>(null);
+  const [alertDialog, setAlertDialog] = useState<ComponentProps<typeof AlertDialog> | null>(null);
 
   return (
-    <AlertDialogContext.Provider value={{ setOpen: setOpen }}>
+    <AlertDialogContext.Provider value={{ setAlertDialog: setAlertDialog }}>
       {children}
-      {open ? (
+      {alertDialog ? (
         <AlertDialog
-          actionLabel={open.actionLabel}
-          cancelLabel={open.cancelLabel}
-          description={open.description}
-          open={!!open}
-          title={open.title}
+          open={!!alertDialog}
+          actionLabel={alertDialog.actionLabel}
+          cancelLabel={alertDialog.cancelLabel}
+          description={alertDialog.description}
+          title={alertDialog.title}
           actionClick={(event) => {
-            open.actionClick?.(event);
+            alertDialog.actionClick?.(event);
 
-            setOpen(null);
+            setAlertDialog(null);
           }}
           cancelClick={(event) => {
-            open.cancelClick?.(event);
+            alertDialog.cancelClick?.(event);
 
-            setOpen(null);
+            setAlertDialog(null);
           }}
         />
       ) : null}
