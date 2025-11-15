@@ -12,6 +12,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Globals\Header;
+use Narsil\Services\RouteService;
 
 #endregion
 
@@ -30,10 +31,7 @@ class HeaderForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . Header::class))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . Header::class));
+        $this->routes(RouteService::getNames(Header::TABLE));
     }
 
     #endregion

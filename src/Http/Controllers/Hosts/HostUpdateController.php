@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
@@ -23,7 +23,7 @@ use Narsil\Services\HostService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostUpdateController extends AbstractController
+class HostUpdateController extends RedirectController
 {
     #region PUBLIC METHODS
 

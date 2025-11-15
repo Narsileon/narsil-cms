@@ -18,23 +18,6 @@ use Narsil\Models\Elements\Field;
  */
 class BlockElementForm extends AbstractForm implements Contract
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this
-            ->description(trans('narsil::ui.element'))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::ui.element'));
-    }
-
-    #endregion
-
     #region PROTECTED METHODS
 
     /**

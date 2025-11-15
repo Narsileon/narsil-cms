@@ -35,11 +35,7 @@ class FieldForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . Field::class))
-            ->routes(RouteService::getNames(Field::TABLE))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . Field::class));
+        $this->routes(RouteService::getNames(Field::TABLE));
     }
 
     #endregion

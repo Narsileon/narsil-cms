@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Fortify;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\RegisterForm;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 
 #endregion
 
@@ -15,7 +15,7 @@ use Narsil\Http\Controllers\AbstractController;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RegisterController extends AbstractController
+class RegisterController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -28,15 +28,22 @@ class RegisterController extends AbstractController
     {
         $form = $this->getForm();
 
-        return $this->render(
-            component: 'narsil/cms::fortify/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::fortify/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::ui.registration');
+    }
 
     /**
      * Get the associated form.
@@ -48,6 +55,14 @@ class RegisterController extends AbstractController
         $form = app(RegisterForm::class);
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::ui.registration');
     }
 
     #endregion

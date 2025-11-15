@@ -11,7 +11,7 @@ use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\BlockForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 
@@ -21,7 +21,7 @@ use Narsil\Models\Elements\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockEditController extends AbstractController
+class BlockEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -43,10 +43,9 @@ class BlockEditController extends AbstractController
         $form = $this->getForm($block)
             ->formData($data);
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
@@ -75,6 +74,14 @@ class BlockEditController extends AbstractController
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Block::class);
+    }
+
+    /**
      * Get the associated form.
      *
      * @param Block $block
@@ -90,6 +97,14 @@ class BlockEditController extends AbstractController
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Block::class);
     }
 
     #endregion

@@ -7,21 +7,12 @@ import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
-type FortifyFormProps = FormType & {
-  data: Record<string, unknown>;
+type FortifyFormProps = {
+  form: FormType;
   status?: string;
 };
 
-function FortifyForm({
-  action,
-  data = {},
-  id,
-  layout,
-  method,
-  status,
-  submitLabel,
-  title,
-}: FortifyFormProps) {
+function FortifyForm({ form, status }: FortifyFormProps) {
   const { trans } = useLocalization();
 
   const hasStatus = useRef<boolean>(false);
@@ -39,7 +30,7 @@ function FortifyForm({
       <SectionRoot className="animate-in py-4 fade-in-0 slide-in-from-bottom-10">
         <SectionHeader>
           <Heading level="h1" variant="h4">
-            {title}
+            {form.title}
           </Heading>
         </SectionHeader>
         <SectionContent>
@@ -47,7 +38,7 @@ function FortifyForm({
             className="max-w-md"
             contentProps={{ className: "p-6" }}
             footerButtons={
-              id === "forgot-password-form"
+              form.id === "forgot-password-form"
                 ? [
                     {
                       className: "w-full",
@@ -61,19 +52,19 @@ function FortifyForm({
             footerProps={{ className: "border-t px-6" }}
           >
             <FormProvider
-              id={id}
-              action={action}
-              elements={layout}
-              method={method}
-              initialValues={data}
+              id={form.id}
+              action={form.action}
+              elements={form.layout}
+              method={form.method}
+              initialValues={form.data}
               render={() => {
                 return (
                   <FormRoot className="grid-cols-12 gap-6">
-                    {layout.map((element, index) => {
+                    {form.layout.map((element, index) => {
                       return <FormRenderer {...element} key={index} />;
                     })}
-                    <Button className="col-span-12 w-full" form={id} type="submit">
-                      {submitLabel}
+                    <Button className="col-span-12 w-full" form={form.id} type="submit">
+                      {form.submitLabel}
                     </Button>
                   </FormRoot>
                 );

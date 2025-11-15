@@ -18,6 +18,7 @@ use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
+use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
 #endregion
@@ -37,10 +38,7 @@ class UserForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . User::class))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . User::class));
+        $this->routes(RouteService::getNames(User::TABLE));
     }
 
     #endregion

@@ -11,7 +11,7 @@ use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\RoleForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 
@@ -21,7 +21,7 @@ use Narsil\Models\Policies\Role;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RoleEditController extends AbstractController
+class RoleEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -41,10 +41,9 @@ class RoleEditController extends AbstractController
         $form = $this->getForm($role)
             ->formData($data);
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
@@ -73,6 +72,14 @@ class RoleEditController extends AbstractController
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Role::class);
+    }
+
+    /**
      * Get the associated form.
      *
      * @param Role $role
@@ -88,6 +95,14 @@ class RoleEditController extends AbstractController
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Role::class);
     }
 
     #endregion

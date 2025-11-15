@@ -11,7 +11,7 @@ use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\HostForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 
@@ -21,7 +21,7 @@ use Narsil\Models\Hosts\HostLocale;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostEditController extends AbstractController
+class HostEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -46,10 +46,9 @@ class HostEditController extends AbstractController
         $form = $this->getForm($host)
             ->formData($data);
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
@@ -78,6 +77,14 @@ class HostEditController extends AbstractController
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Host::class);
+    }
+
+    /**
      * Get the associated form.
      *
      * @param Host $host
@@ -93,6 +100,14 @@ class HostEditController extends AbstractController
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Host::class);
     }
 
     #endregion

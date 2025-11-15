@@ -36,11 +36,7 @@ class TemplateForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . Template::class))
-            ->routes(RouteService::getNames(Template::TABLE))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . Template::class));
+        $this->routes(RouteService::getNames(Template::TABLE));
     }
 
     #endregion

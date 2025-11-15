@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HeaderFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Header;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Globals\Header;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HeaderStoreController extends AbstractController
+class HeaderStoreController extends RedirectController
 {
     #region PUBLIC METHODS
 

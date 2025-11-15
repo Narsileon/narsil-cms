@@ -31,10 +31,8 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
 
         $this
             ->action(route('password.confirm'))
-            ->description(trans('narsil::ui.confirm_password'))
             ->method(MethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.confirm'))
-            ->title(trans('narsil::ui.confirm_password'));
+            ->submitLabel(trans('narsil::ui.confirm'));
     }
 
     #endregion

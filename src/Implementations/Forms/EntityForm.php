@@ -31,13 +31,9 @@ class EntityForm extends AbstractForm implements Contract
 
         parent::__construct();
 
-        $this
-            ->description($template->{Template::NAME})
-            ->routes(RouteService::getNames('collections', [
-                'collection' => $template->{Template::HANDLE},
-            ]))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(Str::singular($template->{Template::NAME}));
+        $this->routes(RouteService::getNames('collections', [
+            'collection' => $template->{Template::HANDLE},
+        ]));
     }
 
     #endregion

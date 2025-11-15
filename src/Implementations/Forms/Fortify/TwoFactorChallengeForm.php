@@ -30,10 +30,8 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
 
         $this
             ->action(route('two-factor.login'))
-            ->description(trans('narsil::ui.two_factor_authentication'))
             ->method(MethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.confirm'))
-            ->title(trans('narsil::ui.two_factor_authentication'));
+            ->submitLabel(trans('narsil::ui.confirm'));
     }
 
     #endregion

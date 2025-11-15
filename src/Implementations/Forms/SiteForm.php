@@ -24,23 +24,6 @@ use Narsil\Support\SelectOption;
  */
 class SiteForm extends AbstractForm implements Contract
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this
-            ->description(trans('narsil::ui.site'))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::ui.site'));
-    }
-
-    #endregion
-
     #region PROTECTED METHODS
 
     /**

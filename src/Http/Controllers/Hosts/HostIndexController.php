@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Hosts\Host;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Hosts\Host;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostIndexController extends AbstractController
+class HostIndexController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -31,18 +31,11 @@ class HostIndexController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Host::class);
 
-        $title = trans('narsil::tables.' . Host::TABLE);
-        $description = trans('narsil::tables.' . Host::TABLE);
         $collection = $this->getCollection();
 
-        return $this->render(
-            component: 'narsil/cms::resources/index',
-            title: $title,
-            description: $description,
-            props: [
-                'collection' => $collection,
-            ]
-        );
+        return $this->render('narsil/cms::resources/index', [
+            'collection' => $collection,
+        ]);
     }
 
     #endregion
@@ -60,6 +53,22 @@ class HostIndexController extends AbstractController
             ->withCount(Host::RELATION_LOCALES);
 
         return new DataTableCollection($query, Host::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::tables.' . Host::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::tables.' . Host::TABLE);
     }
 
     #endregion

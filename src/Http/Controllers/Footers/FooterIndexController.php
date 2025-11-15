@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Globals\Footer;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Globals\Footer;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterIndexController extends AbstractController
+class FooterIndexController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -31,18 +31,11 @@ class FooterIndexController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Footer::class);
 
-        $title = trans('narsil::tables.' . Footer::TABLE);
-        $description = trans('narsil::tables.' . Footer::TABLE);
         $collection = $this->getCollection();
 
-        return $this->render(
-            component: 'narsil/cms::resources/index',
-            title: $title,
-            description: $description,
-            props: [
-                'collection' => $collection,
-            ]
-        );
+        return $this->render('narsil/cms::resources/index', [
+            'collection' => $collection,
+        ]);
     }
 
     #endregion
@@ -59,6 +52,22 @@ class FooterIndexController extends AbstractController
         $query = Footer::query();
 
         return new DataTableCollection($query, Footer::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::tables.' . Footer::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::tables.' . Footer::TABLE);
     }
 
     #endregion

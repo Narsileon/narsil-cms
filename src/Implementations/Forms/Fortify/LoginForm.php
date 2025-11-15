@@ -33,10 +33,8 @@ class LoginForm extends AbstractForm implements Contract
 
         $this
             ->action(route('login'))
-            ->description(trans('narsil::ui.connection'))
             ->method(MethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.log_in'))
-            ->title(trans('narsil::ui.connection'));
+            ->submitLabel(trans('narsil::ui.log_in'));
     }
 
     #endregion

@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Hosts;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Hosts\Host;
 
@@ -16,7 +16,7 @@ use Narsil\Models\Hosts\Host;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostDestroyManyController extends AbstractController
+class HostDestroyManyController extends RedirectController
 {
     #region PUBLIC METHODS
 

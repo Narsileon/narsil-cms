@@ -40,11 +40,7 @@ class SitePageForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . Host::class))
-            ->routes(RouteService::getNames(Host::TABLE))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . Host::class));
+        $this->routes(RouteService::getNames(Host::TABLE));
     }
 
     #endregion

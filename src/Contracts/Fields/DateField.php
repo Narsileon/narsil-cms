@@ -28,7 +28,7 @@ interface DateField extends Contract
     /**
      * Set the max attribute.
      *
-     * @param string $max e.g. "2000-01-01"
+     * @param string $max e.g. "2099-12-31"
      *
      * @return static
      */
@@ -37,7 +37,7 @@ interface DateField extends Contract
     /**
      * Set the min attribute.
      *
-     * @param string $min e.g. "2099-12-31"
+     * @param string $min e.g. "2000-01-01"
      *
      * @return static
      */

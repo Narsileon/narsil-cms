@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Templates;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Elements\Template;
 use Narsil\Services\TemplateService;
@@ -18,7 +18,7 @@ use Narsil\Services\TemplateService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateReplicateManyController extends AbstractController
+class TemplateReplicateManyController extends RedirectController
 {
     #region PUBLIC METHODS
 

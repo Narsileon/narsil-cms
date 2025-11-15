@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Headers;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Globals\Header;
 
@@ -16,7 +16,7 @@ use Narsil\Models\Globals\Header;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HeaderDestroyManyController extends AbstractController
+class HeaderDestroyManyController extends RedirectController
 {
     #region PUBLIC METHODS
 

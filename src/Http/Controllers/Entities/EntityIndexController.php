@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\AbstractEntityController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Traits\IsCollectionController;
 
 #endregion
 
@@ -19,8 +20,10 @@ use Narsil\Models\Entities\Entity;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityIndexController extends AbstractEntityController
+class EntityIndexController extends RenderController
 {
+    use IsCollectionController;
+
     #region PUBLIC METHODS
 
     /**
@@ -50,14 +53,33 @@ class EntityIndexController extends AbstractEntityController
             ->toResponse($request)
             ->getData(true);
 
-        return $this->render(
-            component: 'narsil/cms::resources/index',
-            title: $template->{Template::NAME},
-            description: $template->{Template::NAME},
-            props: [
-                'collection' => $collection,
-            ]
-        );
+        return $this->render('narsil/cms::resources/index', [
+            'collection' => $collection,
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        $template = Entity::getTemplate();
+
+        return $template->{Template::NAME};
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        $template = Entity::getTemplate();
+
+        return $template->{Template::NAME};
     }
 
     #endregion

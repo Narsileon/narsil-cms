@@ -20,6 +20,7 @@ return [
     \Narsil\Contracts\Forms\HostForm::class => \Narsil\Implementations\Forms\HostForm::class,
     \Narsil\Contracts\Forms\HostLocaleForm::class => \Narsil\Implementations\Forms\HostLocaleForm::class,
     \Narsil\Contracts\Forms\PermissionForm::class => \Narsil\Implementations\Forms\PermissionForm::class,
+    \Narsil\Contracts\Forms\PublishForm::class => \Narsil\Implementations\Forms\PublishForm::class,
     \Narsil\Contracts\Forms\RoleForm::class => \Narsil\Implementations\Forms\RoleForm::class,
     \Narsil\Contracts\Forms\SiteForm::class => \Narsil\Implementations\Forms\SiteForm::class,
     \Narsil\Contracts\Forms\SitePageForm::class => \Narsil\Implementations\Forms\SitePageForm::class,

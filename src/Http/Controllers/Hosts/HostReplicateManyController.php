@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Hosts;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Hosts\Host;
 use Narsil\Services\HostService;
@@ -18,7 +18,7 @@ use Narsil\Services\HostService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostReplicateManyController extends AbstractController
+class HostReplicateManyController extends RedirectController
 {
     #region PUBLIC METHODS
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\TemplateFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Template;
 use Narsil\Services\MigrationService;
 use Narsil\Services\TemplateService;
@@ -21,7 +21,7 @@ use Narsil\Services\TemplateService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateStoreController extends AbstractController
+class TemplateStoreController extends RedirectController
 {
     #region PUBLIC METHODS
 

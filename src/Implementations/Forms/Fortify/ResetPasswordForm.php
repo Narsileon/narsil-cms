@@ -32,10 +32,8 @@ class ResetPasswordForm extends AbstractForm implements Contract
 
         $this
             ->action(route('password.update'))
-            ->description(trans('narsil::ui.reset_password'))
             ->method(MethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.reset'))
-            ->title(trans('narsil::ui.reset_password'));
+            ->submitLabel(trans('narsil::ui.reset'));
     }
 
     #endregion

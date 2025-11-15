@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FooterFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Footer;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Globals\Footer;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterStoreController extends AbstractController
+class FooterStoreController extends RedirectController
 {
     #region PUBLIC METHODS
 

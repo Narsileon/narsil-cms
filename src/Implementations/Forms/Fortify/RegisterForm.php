@@ -33,10 +33,8 @@ class RegisterForm extends AbstractForm implements Contract
 
         $this
             ->action(route('register'))
-            ->description(trans('narsil::ui.registration'))
             ->method(MethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.register'))
-            ->title(trans('narsil::ui.registration'));
+            ->submitLabel(trans('narsil::ui.register'));
     }
 
     #endregion

@@ -90,6 +90,17 @@ const defaultRegistry: Registry = {
       />
     );
   },
+  ["Narsil\\Contracts\\Fields\\DatetimeField"]: (props) => {
+    return (
+      <Datetime
+        {...props.element.settings}
+        id={props.id}
+        name={props.id}
+        value={props.value}
+        onChange={props.setValue}
+      />
+    );
+  },
   ["Narsil\\Contracts\\Fields\\FileField"]: (props) => {
     return (
       <File

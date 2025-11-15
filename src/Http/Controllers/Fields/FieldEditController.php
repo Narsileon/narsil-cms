@@ -11,9 +11,8 @@ use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\User;
 
 #endregion
 
@@ -21,7 +20,7 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldEditController extends AbstractController
+class FieldEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -46,10 +45,9 @@ class FieldEditController extends AbstractController
         $form = $this->getForm($field)
             ->formData($data);
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
@@ -78,6 +76,14 @@ class FieldEditController extends AbstractController
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Field::class);
+    }
+
+    /**
      * Get the associated form.
      *
      * @param Field $field
@@ -93,6 +99,14 @@ class FieldEditController extends AbstractController
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Field::class);
     }
 
     #endregion

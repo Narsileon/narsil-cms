@@ -10,7 +10,7 @@ use Inertia\Response;
 use Narsil\Contracts\Forms\BlockForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Block;
 
 #endregion
@@ -19,7 +19,7 @@ use Narsil\Models\Elements\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockCreateController extends AbstractController
+class BlockCreateController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -34,15 +34,22 @@ class BlockCreateController extends AbstractController
 
         $form = $this->getForm();
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Block::class);
+    }
 
     /**
      * Get the associated form.
@@ -57,6 +64,14 @@ class BlockCreateController extends AbstractController
             ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Block::class);
     }
 
     #endregion

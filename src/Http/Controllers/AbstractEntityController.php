@@ -4,7 +4,7 @@ namespace Narsil\Http\Controllers;
 
 #region USE
 
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\TemplateService;
 
@@ -14,7 +14,7 @@ use Narsil\Services\TemplateService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractEntityController extends AbstractController
+abstract class AbstractEntityController extends RenderController
 {
     #region CONSTRUCTOR
 

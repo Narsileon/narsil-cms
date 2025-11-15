@@ -11,7 +11,7 @@ use Narsil\Contracts\Forms\Fortify\ProfileForm;
 use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -20,7 +20,7 @@ use Narsil\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserConfigurationEditController extends AbstractController
+class UserConfigurationEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -47,17 +47,32 @@ class UserConfigurationEditController extends AbstractController
             ->add('narsil::ui.security')
             ->add('narsil::ui.sessions');
 
-        return $this->render(
-            component: 'narsil/cms::users/settings',
-            title: trans('narsil::ui.settings'),
-            description: trans('narsil::ui.settings'),
-            props: [
-                'profileForm' => $profileForm->jsonSerialize(),
-                'twoFactorForm' => $twoFactorForm->jsonSerialize(),
-                'updatePasswordForm' => $updatePasswordForm->jsonSerialize(),
-                'userConfigurationForm' => $userConfigurationForm->jsonSerialize(),
-            ]
-        );
+        return $this->render('narsil/cms::users/settings', [
+            'profileForm' => $profileForm->jsonSerialize(),
+            'twoFactorForm' => $twoFactorForm->jsonSerialize(),
+            'updatePasswordForm' => $updatePasswordForm->jsonSerialize(),
+            'userConfigurationForm' => $userConfigurationForm->jsonSerialize(),
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::ui.settings');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::ui.settings');
     }
 
     #endregion

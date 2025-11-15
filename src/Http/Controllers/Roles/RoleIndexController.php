@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Policies\Role;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Policies\Role;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RoleIndexController extends AbstractController
+class RoleIndexController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -31,18 +31,11 @@ class RoleIndexController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Role::class);
 
-        $title = trans('narsil::tables.' . Role::TABLE);
-        $description = trans('narsil::tables.' . Role::TABLE);
         $collection = $this->getCollection();
 
-        return $this->render(
-            component: 'narsil/cms::resources/index',
-            title: $title,
-            description: $description,
-            props: [
-                'collection' => $collection,
-            ]
-        );
+        return $this->render('narsil/cms::resources/index', [
+            'collection' => $collection,
+        ]);
     }
 
     #endregion
@@ -59,6 +52,22 @@ class RoleIndexController extends AbstractController
         $query = Role::query();
 
         return new DataTableCollection($query, Role::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::tables.' . Role::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::tables.' . Role::TABLE);
     }
 
     #endregion

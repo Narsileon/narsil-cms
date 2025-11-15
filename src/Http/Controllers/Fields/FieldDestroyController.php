@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Fields;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Field;
 
 #endregion
@@ -16,7 +16,7 @@ use Narsil\Models\Elements\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldDestroyController extends AbstractController
+class FieldDestroyController extends RedirectController
 {
     #region PUBLIC METHODS
 

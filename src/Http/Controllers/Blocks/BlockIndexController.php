@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Block;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Elements\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockIndexController extends AbstractController
+class BlockIndexController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -31,18 +31,11 @@ class BlockIndexController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Block::class);
 
-        $title = trans('narsil::tables.' . Block::TABLE);
-        $description = trans('narsil::tables.' . Block::TABLE);
         $collection = $this->getCollection();
 
-        return $this->render(
-            component: 'narsil/cms::resources/index',
-            title: $title,
-            description: $description,
-            props: [
-                'collection' => $collection,
-            ]
-        );
+        return $this->render('narsil/cms::resources/index', [
+            'collection' => $collection,
+        ]);
     }
 
     #endregion
@@ -67,6 +60,22 @@ class BlockIndexController extends AbstractController
             ]);
 
         return new DataTableCollection($query, Block::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::tables.' . Block::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::tables.' . Block::TABLE);
     }
 
     #endregion

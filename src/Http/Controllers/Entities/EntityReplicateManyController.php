@@ -6,10 +6,11 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractEntityController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\EntityService;
+use Narsil\Traits\IsCollectionController;
 
 #endregion
 
@@ -17,9 +18,11 @@ use Narsil\Services\EntityService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityReplicateManyController extends AbstractEntityController
+class EntityReplicateManyController extends RedirectController
 {
-    #region CONSTRUCTOR
+    use IsCollectionController;
+
+    #region PUBLIC METHODS
 
     /**
      * @param ReplicateManyRequest $request

@@ -30,10 +30,13 @@ abstract class AbstractForm extends Fluent implements Form
      */
     public function __construct()
     {
-        $this->layout($this->getLayout());
+        $layout = $this->getLayout();
 
-        $this->defaultLanguage(config('app.locale'));
-        $this->languageOptions(config('narsil.locales'));
+        $this
+            ->defaultLanguage(config('app.locale'))
+            ->languageOptions(config('narsil.locales'))
+            ->layout($layout)
+            ->submitLabel(trans('narsil::ui.save'));
 
         app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
@@ -90,16 +93,6 @@ abstract class AbstractForm extends Fluent implements Form
     public function defaultLanguage(string $defaultLanguage): static
     {
         $this->set('defaultLanguage', $defaultLanguage);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function description(string $description): static
-    {
-        $this->set('description', $description);
 
         return $this;
     }
@@ -191,16 +184,6 @@ abstract class AbstractForm extends Fluent implements Form
     public function submitLabel(string $submitLabel): static
     {
         $this->set('submitLabel', $submitLabel);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function title(string $title): static
-    {
-        $this->set('title', $title);
 
         return $this;
     }

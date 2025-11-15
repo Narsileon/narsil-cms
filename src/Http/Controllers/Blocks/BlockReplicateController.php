@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Blocks;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
 use Narsil\Services\BlockService;
 
@@ -17,7 +17,7 @@ use Narsil\Services\BlockService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockReplicateController extends AbstractController
+class BlockReplicateController extends RedirectController
 {
     #region PUBLIC METHODS
 

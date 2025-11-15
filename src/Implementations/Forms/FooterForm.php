@@ -15,6 +15,7 @@ use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLegalLink;
 use Narsil\Models\Globals\FooterSocialLink;
+use Narsil\Services\RouteService;
 
 #endregion
 
@@ -33,10 +34,7 @@ class FooterForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . Footer::class))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . Footer::class));
+        $this->routes(RouteService::getNames(Footer::TABLE));
     }
 
     #endregion

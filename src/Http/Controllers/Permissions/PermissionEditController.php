@@ -11,7 +11,7 @@ use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\PermissionForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Policies\Permission;
 
 #endregion
@@ -20,7 +20,7 @@ use Narsil\Models\Policies\Permission;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class PermissionEditController extends AbstractController
+class PermissionEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -38,10 +38,9 @@ class PermissionEditController extends AbstractController
         $form = $this->getForm($permission)
             ->formData($data);
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
@@ -70,6 +69,14 @@ class PermissionEditController extends AbstractController
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Permission::class);
+    }
+
+    /**
      * Get the associated form.
      *
      * @param Permission $permission
@@ -85,6 +92,14 @@ class PermissionEditController extends AbstractController
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Permission::class);
     }
 
     #endregion

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\DateField;
+use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Fields\RichTextField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Fields\TimeField;
@@ -136,6 +137,7 @@ abstract class GraphQLService
             {
                 CheckboxField::class => "Boolean",
                 DateField::class => "Date",
+                DatetimeField::class => "Datetime",
                 RichTextField::class => "String",
                 TextField::class => "String",
                 TimeField::class => "Time",

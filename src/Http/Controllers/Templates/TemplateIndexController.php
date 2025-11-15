@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Elements\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateIndexController extends AbstractController
+class TemplateIndexController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -31,18 +31,11 @@ class TemplateIndexController extends AbstractController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Template::class);
 
-        $title = trans('narsil::tables.templates');
-        $description = trans('narsil::tables.templates');
         $collection = $this->getCollection();
 
-        return $this->render(
-            component: 'narsil/cms::resources/index',
-            title: $title,
-            description: $description,
-            props: [
-                'collection' => $collection,
-            ]
-        );
+        return $this->render('narsil/cms::resources/index', [
+            'collection' => $collection,
+        ]);
     }
 
     #endregion
@@ -59,6 +52,22 @@ class TemplateIndexController extends AbstractController
         $query = Template::query();
 
         return new DataTableCollection($query, Template::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::tables.' . Template::TABLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::tables.' . Template::TABLE);
     }
 
     #endregion

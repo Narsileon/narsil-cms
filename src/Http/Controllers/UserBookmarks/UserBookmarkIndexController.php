@@ -7,7 +7,6 @@ namespace Narsil\Http\Controllers\UserBookmarks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Narsil\Http\Collections\UserBookmarkCollection;
-use Narsil\Http\Controllers\AbstractController;
 use Narsil\Models\User;
 
 #endregion
@@ -16,7 +15,7 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserBookmarkIndexController extends AbstractController
+class UserBookmarkIndexController
 {
     #region PUBLIC METHODS
 

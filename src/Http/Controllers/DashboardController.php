@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 
 #endregion
 
@@ -14,7 +14,7 @@ use Narsil\Http\Controllers\AbstractController;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class DashboardController extends AbstractController
+class DashboardController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -25,14 +25,27 @@ class DashboardController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $title = trans('narsil::ui.dashboard');
-        $description = trans('narsil::ui.dashboard');
+        return $this->render('narsil/cms::dashboard/index');
+    }
 
-        return $this->render(
-            component: 'narsil/cms::dashboard/index',
-            description: $title,
-            title: $description,
-        );
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::ui.dashboard');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::ui.dashboard');
     }
 
     #endregion

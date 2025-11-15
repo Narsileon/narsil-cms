@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Field;
 use Narsil\Services\FieldService;
 
@@ -20,7 +20,7 @@ use Narsil\Services\FieldService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldStoreController extends AbstractController
+class FieldStoreController extends RedirectController
 {
     #region PUBLIC METHODS
 

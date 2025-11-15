@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\PermissionFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Permission;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Policies\Permission;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class PermissionUpdateController extends AbstractController
+class PermissionUpdateController extends RedirectController
 {
     #region PUBLIC METHODS
 

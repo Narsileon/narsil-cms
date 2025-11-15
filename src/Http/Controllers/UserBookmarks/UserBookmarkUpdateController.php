@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\UserBookmarks;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\UserBookmarkRequest;
 use Narsil\Models\Users\UserBookmark;
 
@@ -16,7 +16,7 @@ use Narsil\Models\Users\UserBookmark;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserBookmarkUpdateController extends AbstractController
+class UserBookmarkUpdateController extends RedirectController
 {
     #region PUBLIC METHODS
 

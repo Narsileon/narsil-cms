@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\DateField;
+use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\NumberField;
 use Narsil\Contracts\Fields\PasswordField;
@@ -91,6 +92,7 @@ abstract class MigrationService
             {
                 CheckboxField::class => $table->boolean($handle),
                 DateField::class => $table->date($handle),
+                DatetimeField::class => $table->datetime($handle),
                 EmailField::class => $table->string($handle),
                 NumberField::class => $table->integer($handle),
                 PasswordField::class => $table->string($handle),

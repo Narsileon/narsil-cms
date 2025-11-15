@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Roles;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Role;
 use Narsil\Services\RoleService;
 
@@ -17,7 +17,7 @@ use Narsil\Services\RoleService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RoleReplicateController extends AbstractController
+class RoleReplicateController extends RedirectController
 {
     #region PUBLIC METHODS
 

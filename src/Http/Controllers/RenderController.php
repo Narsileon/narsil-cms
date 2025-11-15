@@ -7,7 +7,6 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 use Narsil\Http\Requests\QueryRequest;
@@ -19,11 +18,25 @@ use Narsil\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractController
+abstract class RenderController
 {
     use AuthorizesRequests;
 
     #region PROTECTED METHODS
+
+    /**
+     * Get the description of the page.
+     *
+     * @return string
+     */
+    abstract protected function getDescription(): string;
+
+    /**
+     * Get the title of the page.
+     *
+     * @return string
+     */
+    abstract protected function getTitle(): string;
 
     /**
      * @param Builder $query
@@ -48,35 +61,12 @@ abstract class AbstractController
     }
 
     /**
-     * @param string|null $to
-     * @param mixed $data
-     *
-     * @return RedirectResponse
-     */
-    protected function redirect(?string $to = null, mixed $data = []): RedirectResponse
-    {
-        if (request()->get('_back'))
-        {
-            return back()
-                ->with('data', $data);
-        }
-        else
-        {
-            $to = request('_to', $to);
-
-            return redirect($to);
-        }
-    }
-
-    /**
      * @param string $component
-     * @param string $title
-     * @param string $description
      * @param array $props
      *
      * @return JsonResponse|Response
      */
-    protected function render(string $component, string $title = '', string $description = '', array $props = []): JsonResponse|Response
+    protected function render(string $component, array $props = []): JsonResponse|Response
     {
         $TranslationsBag = app(TranslationsBag::class);
 
@@ -91,9 +81,9 @@ abstract class AbstractController
                 'component' => $component,
                 'props' => array_merge([
                     '_modal' => true,
-                    'description' => $description,
+                    'description' => $this->getDescription(),
                     'translations' => $translations,
-                    'title' => $title,
+                    'title' => $this->getTitle(),
                 ], $props),
             ]);
         }
@@ -101,9 +91,9 @@ abstract class AbstractController
         $translations = $TranslationsBag->get();
 
         return Inertia::render($component, array_merge([
-            'description' => $description,
+            'description' => $this->getDescription(),
             'translations' => $translations,
-            'title' => $title,
+            'title' => $this->getTitle(),
         ], $props));
     }
 

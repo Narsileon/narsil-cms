@@ -24,6 +24,7 @@ trait HasRevisions
 {
     use HasDatetimes;
     use HasUuids;
+    use Publisheable;
     use SoftDeletes;
 
     #region CONSTANTS
@@ -50,13 +51,6 @@ trait HasRevisions
      * @var string
      */
     final public const ID = 'id';
-
-    /**
-     * The name of the "published" column.
-     *
-     * @var string
-     */
-    final public const PUBLISHED = 'published';
 
     /**
      * The name of the "revision" column.

@@ -7,9 +7,10 @@ namespace Narsil\Http\Controllers\Entities;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractEntityController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\EntityService;
+use Narsil\Traits\IsCollectionController;
 
 #endregion
 
@@ -17,8 +18,10 @@ use Narsil\Services\EntityService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityReplicateController extends AbstractEntityController
+class EntityReplicateController extends RedirectController
 {
+    use IsCollectionController;
+
     #region PUBLIC METHODS
 
     /**

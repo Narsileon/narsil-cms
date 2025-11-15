@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\BlockFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
 use Narsil\Services\BlockService;
 
@@ -20,7 +20,7 @@ use Narsil\Services\BlockService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockStoreController extends AbstractController
+class BlockStoreController extends RedirectController
 {
     #region PUBLIC METHODS
 

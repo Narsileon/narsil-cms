@@ -31,11 +31,7 @@ class PermissionForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . Permission::class))
-            ->routes(RouteService::getNames(Permission::TABLE))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . Permission::class));
+        $this->routes(RouteService::getNames(Permission::TABLE));
     }
 
     #endregion

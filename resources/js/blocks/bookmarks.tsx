@@ -171,7 +171,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
               headerProps={{
                 className: "flex items-center justify-between border-b",
               }}
-              title={translations["bookmarks.bookmarks"]}
+              title={translations["ui.bookmarks"]}
             >
               {bookmarks.length > 0 ? (
                 <ul className="-my-2 flex flex-col gap-1">

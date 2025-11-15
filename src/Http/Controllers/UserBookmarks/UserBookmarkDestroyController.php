@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\UserBookmarks;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Users\UserBookmark;
 
 #endregion
@@ -16,7 +16,7 @@ use Narsil\Models\Users\UserBookmark;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserBookmarkDestroyController extends AbstractController
+class UserBookmarkDestroyController extends RedirectController
 {
     #region PUBLIC METHODS
 

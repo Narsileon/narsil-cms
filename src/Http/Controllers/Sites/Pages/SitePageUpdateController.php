@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\SitePageFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Sites\SitePage;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Models\Sites\SitePage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SitePageUpdateController extends AbstractController
+class SitePageUpdateController extends RedirectController
 {
     #region PUBLIC METHODS
 

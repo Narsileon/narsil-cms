@@ -45,15 +45,6 @@ interface Form extends JsonSerializable
     public function defaultLanguage(string $defaultLanguage): static;
 
     /**
-     * Set the description of the form.
-     *
-     * @param string $description
-     *
-     * @return static
-     */
-    public function description(string $description): static;
-
-    /**
      * Set the data of the form.
      *
      * @param Model|array $data
@@ -124,15 +115,6 @@ interface Form extends JsonSerializable
      * @return static
      */
     public function submitLabel(string $submitLabel): static;
-
-    /**
-     * Set the title of the form.
-     *
-     * @param string $title
-     *
-     * @return static
-     */
-    public function title(string $title): static;
 
     #endregion
 }

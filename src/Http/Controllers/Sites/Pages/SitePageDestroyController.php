@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Sites\Pages;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Sites\SitePage;
 
 #endregion
@@ -16,7 +16,7 @@ use Narsil\Models\Sites\SitePage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SitePageDestroyController extends AbstractController
+class SitePageDestroyController extends RedirectController
 {
     #region PUBLIC METHODS
 

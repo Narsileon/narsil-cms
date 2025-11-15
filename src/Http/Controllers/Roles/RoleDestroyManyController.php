@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Roles;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Policies\Role;
 
@@ -16,7 +16,7 @@ use Narsil\Models\Policies\Role;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RoleDestroyManyController extends AbstractController
+class RoleDestroyManyController extends RedirectController
 {
     #region PUBLIC METHODS
 

@@ -6,6 +6,7 @@ use Narsil\Contracts\Fields\ArrayField;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\DateField;
+use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\NumberField;
@@ -28,6 +29,7 @@ return [
     BuilderField::class => 'Builder',
     CheckboxField::class => 'Kontrollkästchen',
     DateField::class => 'Datum',
+    DatetimeField::class => 'Datum und Zeit',
     EmailField::class => 'E-Mail',
     FileField::class => 'Datei',
     NumberField::class => 'Zahl',

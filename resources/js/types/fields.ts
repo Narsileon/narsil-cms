@@ -46,6 +46,11 @@ type DateField = {
   settings: ComponentProps<typeof Datetime>;
 };
 
+type DatetimeField = {
+  type: "Narsil\\Contracts\\Fields\\DatetimeField";
+  settings: ComponentProps<typeof Datetime>;
+};
+
 type FileField = {
   type: "Narsil\\Contracts\\Fields\\FileField";
   settings: ComponentProps<typeof File> & {
@@ -112,6 +117,7 @@ export type FieldType =
   | BuilderField
   | CheckboxField
   | DateField
+  | DatetimeField
   | FileField
   | PasswordField
   | RangeField

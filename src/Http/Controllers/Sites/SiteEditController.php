@@ -14,7 +14,7 @@ use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\SiteForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Http\Resources\Sites\SiteResource;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Sites\SitePage;
@@ -28,7 +28,7 @@ use Narsil\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteEditController extends AbstractController
+class SiteEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -71,13 +71,10 @@ class SiteEditController extends AbstractController
         app(TranslationsBag::class)
             ->add('narsil::ui.countries');
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: [
-                ...$form->jsonSerialize(),
-                'countries' => $countries,
-            ],
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'countries' => $countries,
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
@@ -133,6 +130,14 @@ class SiteEditController extends AbstractController
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Site::class);
+    }
+
+    /**
      * Get the associated form.
      *
      * @param Site $site
@@ -146,10 +151,17 @@ class SiteEditController extends AbstractController
             ->id($site->{Site::ID})
             ->languageOptions([])
             ->method(MethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'))
-            ->title($site->{Site::NAME});
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Site::class);
     }
 
     #endregion

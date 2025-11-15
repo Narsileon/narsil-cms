@@ -6,14 +6,17 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\AbstractEntityController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Traits\IsCollectionController;
 
 #endregion
 
@@ -21,8 +24,10 @@ use Narsil\Models\Hosts\HostLocaleLanguage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityEditController extends AbstractEntityController
+class EntityEditController extends RenderController
 {
+    use IsCollectionController;
+
     #region PUBLIC METHODS
 
     /**
@@ -46,14 +51,10 @@ class EntityEditController extends AbstractEntityController
         $form = $this->getForm($template, $entity)
             ->formData($data);
 
-        $form->title("$form->title: $id");
-
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: array_merge($form->jsonSerialize(), [
-                'revisions' => $revisions,
-            ]),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+            'revisions' => $revisions,
+        ]);
     }
 
     #endregion
@@ -77,6 +78,16 @@ class EntityEditController extends AbstractEntityController
         $data = $entity->toArrayWithTranslations();
 
         return $data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        $template = Entity::getTemplate();
+
+        return Str::singular($template->{Template::NAME});
     }
 
     /**
@@ -140,6 +151,16 @@ class EntityEditController extends AbstractEntityController
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        $template = Entity::getTemplate();
+
+        return Str::singular($template->{Template::NAME});
     }
 
     #endregion

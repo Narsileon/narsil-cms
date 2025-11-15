@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Http\Resources\Sites\SiteSummaryResource;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Sites\Site;
@@ -20,7 +20,7 @@ use Narsil\Models\Sites\Site;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteSummaryController extends AbstractController
+class SiteSummaryController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -43,14 +43,29 @@ class SiteSummaryController extends AbstractController
         $items = SiteSummaryResource::collection($hosts)
             ->resolve($request);
 
-        return $this->render(
-            component: 'narsil/cms::summary/index',
-            title: trans('narsil::ui.sites'),
-            description: trans('narsil::ui.sites'),
-            props: [
-                'items' => $items,
-            ]
-        );
+        return $this->render('narsil/cms::summary/index', [
+            'items' => $items,
+        ]);
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::ui.sites');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::ui.sites');
     }
 
     #endregion

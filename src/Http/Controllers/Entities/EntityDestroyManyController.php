@@ -6,9 +6,10 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractEntityController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Entities\Entity;
+use Narsil\Traits\IsCollectionController;
 
 #endregion
 
@@ -16,8 +17,10 @@ use Narsil\Models\Entities\Entity;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityDestroyManyController extends AbstractEntityController
+class EntityDestroyManyController extends RedirectController
 {
+    use IsCollectionController;
+
     #region PUBLIC METHODS
 
     /**

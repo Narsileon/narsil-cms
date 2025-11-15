@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Fortify;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\ForgotPasswordForm;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 
 #endregion
 
@@ -15,7 +15,7 @@ use Narsil\Http\Controllers\AbstractController;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ForgotPasswordController extends AbstractController
+class ForgotPasswordController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -26,14 +26,12 @@ class ForgotPasswordController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $data = $this->getData();
-        $form = $this->getForm()
-            ->formData($data);
+        $form = $this->getForm();
 
-        return $this->render(
-            component: 'narsil/cms::fortify/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::fortify/form', [
+            'form' => $form->jsonSerialize(),
+            'status' => session('status'),
+        ]);
     }
 
     #endregion
@@ -41,17 +39,11 @@ class ForgotPasswordController extends AbstractController
     #region PROTECTED METHODS
 
     /**
-     * Get the associated data.
-     *
-     * @return array<string,mixed>
+     * {@inheritDoc}
      */
-    protected function getData(): array
+    protected function getDescription(): string
     {
-        $data = [
-            'status' => session('status'),
-        ];
-
-        return $data;
+        return trans('narsil::ui.reset_password');
     }
 
     /**
@@ -64,6 +56,14 @@ class ForgotPasswordController extends AbstractController
         $form = app(ForgotPasswordForm::class);
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::ui.reset_password');
     }
 
     #endregion

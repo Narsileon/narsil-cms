@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Fortify;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -15,7 +15,7 @@ use Narsil\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class VerifyEmailController extends AbstractController
+class VerifyEmailController extends RenderController
 {
     #region CONSTRUCTOR
 
@@ -42,17 +42,9 @@ class VerifyEmailController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $title = trans('narsil::ui.email_verify');
-        $description = trans('narsil::ui.email_verify');
-
-        $data = $this->getData();
-
-        return $this->render(
-            component: 'narsil/cms::fortify/verify-email',
-            title: $title,
-            description: $description,
-            props: $data,
-        );
+        return $this->render('narsil/cms::fortify/verify-email', [
+            'status' => session('status'),
+        ]);
     }
 
     #endregion
@@ -60,17 +52,19 @@ class VerifyEmailController extends AbstractController
     #region PROTECTED METHODS
 
     /**
-     * Get the associated data.
-     *
-     * @return array<string,mixed>
+     * {@inheritDoc}
      */
-    protected function getData(): array
+    protected function getDescription(): string
     {
-        $data = [
-            'status' => session('status'),
-        ];
+        return trans('narsil::ui.email_verify');
+    }
 
-        return $data;
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::ui.email_verify');
     }
 
     #endregion

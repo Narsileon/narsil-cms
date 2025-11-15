@@ -35,11 +35,7 @@ class RoleForm extends AbstractForm implements Contract
     {
         parent::__construct();
 
-        $this
-            ->description(trans('narsil::models.' . Role::class))
-            ->routes(RouteService::getNames(Role::TABLE))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::models.' . Role::class));
+        $this->routes(RouteService::getNames(Role::TABLE));
     }
 
     #endregion

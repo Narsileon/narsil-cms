@@ -10,7 +10,7 @@ use Inertia\Response;
 use Narsil\Contracts\Forms\FieldForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Field;
 
 #endregion
@@ -19,7 +19,7 @@ use Narsil\Models\Elements\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldCreateController extends AbstractController
+class FieldCreateController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -34,15 +34,22 @@ class FieldCreateController extends AbstractController
 
         $form = $this->getForm();
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Field::class);
+    }
 
     /**
      * Get the associated form.
@@ -57,6 +64,14 @@ class FieldCreateController extends AbstractController
             ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Field::class);
     }
 
     #endregion

@@ -11,7 +11,7 @@ use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\TemplateForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
 
 #endregion
@@ -20,7 +20,7 @@ use Narsil\Models\Elements\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateEditController extends AbstractController
+class TemplateEditController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -38,10 +38,9 @@ class TemplateEditController extends AbstractController
         $form = $this->getForm($template)
             ->formData($data);
 
-        return $this->render(
-            component: 'narsil/cms::resources/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form->jsonSerialize(),
+        ]);
     }
 
     #endregion
@@ -70,6 +69,14 @@ class TemplateEditController extends AbstractController
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return trans('narsil::models.' . Template::class);
+    }
+
+    /**
      * Get the associated form.
      *
      * @param Template $template
@@ -85,6 +92,14 @@ class TemplateEditController extends AbstractController
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::models.' . Template::class);
     }
 
     #endregion

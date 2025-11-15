@@ -18,23 +18,6 @@ use Narsil\Models\Elements\TemplateSection;
  */
 class TemplateSectionForm extends AbstractForm implements Contract
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this
-            ->description(trans('narsil::ui.section'))
-            ->submitLabel(trans('narsil::ui.save'))
-            ->title(trans('narsil::ui.section'));
-    }
-
-    #endregion
-
     #region PROTECTED METHODS
 
     /**

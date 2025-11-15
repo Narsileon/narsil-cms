@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Templates;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Elements\Template;
 
@@ -16,7 +16,7 @@ use Narsil\Models\Elements\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateDestroyManyController extends AbstractController
+class TemplateDestroyManyController extends RedirectController
 {
     #region PUBLIC METHODS
 

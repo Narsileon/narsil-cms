@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Footers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Footer;
 
 #endregion
@@ -16,7 +16,7 @@ use Narsil\Models\Globals\Footer;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterDestroyController extends AbstractController
+class FooterDestroyController extends RedirectController
 {
     #region PUBLIC METHODS
 

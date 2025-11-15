@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\GraphQL;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 
 #endregion
 
@@ -14,7 +14,7 @@ use Narsil\Http\Controllers\AbstractController;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class GraphiQLController extends AbstractController
+class GraphiQLController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -25,14 +25,27 @@ class GraphiQLController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $title = 'GraphiQL';
-        $description = 'GraphiQL';
+        return $this->render('narsil/cms::graphiql/index');
+    }
 
-        return $this->render(
-            component: 'narsil/cms::graphiql/index',
-            title: $title,
-            description: $description,
-        );
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDescription(): string
+    {
+        return 'GraphQL';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return 'GraphQL';
     }
 
     #endregion

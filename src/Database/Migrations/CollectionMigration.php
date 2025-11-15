@@ -100,6 +100,12 @@ class CollectionMigration extends Migration
                 ->default(false)
                 ->index();
             $blueprint
+                ->dateTime(Entity::PUBLISHED_FROM)
+                ->nullable();
+            $blueprint
+                ->dateTime(Entity::PUBLISHED_TO)
+                ->nullable();
+            $blueprint
                 ->timestamp(Entity::CREATED_AT);
             $blueprint
                 ->foreignId(Entity::CREATED_BY)

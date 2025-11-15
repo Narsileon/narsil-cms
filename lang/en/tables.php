@@ -14,6 +14,7 @@ use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\User;
+use Narsil\Models\Users\UserBookmark;
 
 #endregion
 
@@ -30,4 +31,5 @@ return [
     SitePage::TABLE => 'Website pages',
     Template::TABLE => 'Templates',
     User::TABLE => 'Users',
+    UserBookmark::TABLE => 'Bookmarks',
 ];

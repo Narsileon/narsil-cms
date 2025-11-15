@@ -23,30 +23,29 @@ import { useEffect, useState } from "react";
 
 type FormProps = FormType & {
   countries?: SelectOption[];
-  data: Record<string, unknown>;
+  form: FormType;
   modal?: ModalType;
   revisions?: Revision[];
 };
 
-function ResourceForm({
-  action,
-  autoSave,
-  countries,
-  data,
-  defaultLanguage,
-  id,
-  languageOptions,
-  layout,
-  method,
-  modal,
-  revisions,
-  routes,
-  submitLabel,
-}: FormProps) {
+function ResourceForm({ countries, form, modal, revisions }: FormProps) {
   const { trans } = useLocalization();
   const { closeTopModal } = useModalStore();
 
   const minLg = useMinLg();
+
+  const {
+    action,
+    autoSave,
+    defaultLanguage,
+    data,
+    id,
+    languageOptions,
+    layout,
+    method,
+    routes,
+    submitLabel,
+  } = form;
 
   const { sidebar, tabs } = layout.reduce(
     (acc, element) => {
@@ -193,9 +192,9 @@ function ResourceForm({
                             "hover:w-10",
                             "transition-[width] delay-100 duration-300",
                           )}
-                          draft={!!data.has_draft}
-                          published={!!data.has_published_revision}
-                          saved={!data.published}
+                          draft={!!data?.has_draft}
+                          published={!!data?.has_published_revision}
+                          saved={!data?.published}
                         />
                       ) : null}
                     </div>

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\UserConfigurationFormRequest;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserConfiguration;
 
@@ -21,7 +21,7 @@ use Narsil\Models\Users\UserConfiguration;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserConfigurationUpdateController extends AbstractController
+class UserConfigurationUpdateController extends RedirectController
 {
     #region PUBLIC METHODS
 

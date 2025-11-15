@@ -7,7 +7,7 @@ namespace Narsil\Http\Controllers\Fortify;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\Fortify\LoginForm;
-use Narsil\Http\Controllers\AbstractController;
+use Narsil\Http\Controllers\RenderController;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -16,7 +16,7 @@ use Narsil\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LoginController extends AbstractController
+class LoginController extends RenderController
 {
     #region CONSTRUCTOR
 
@@ -40,14 +40,12 @@ class LoginController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $data = $this->getData();
-        $form = $this->getForm()
-            ->formData($data);
+        $form = $this->getForm();
 
-        return $this->render(
-            component: 'narsil/cms::fortify/form',
-            props: $form->jsonSerialize(),
-        );
+        return $this->render('narsil/cms::fortify/form', [
+            'form' => $form->jsonSerialize(),
+            'status' => session('status'),
+        ]);
     }
 
     #endregion
@@ -55,17 +53,11 @@ class LoginController extends AbstractController
     #region PROTECTED METHODS
 
     /**
-     * Get the associated data.
-     *
-     * @return array<string,mixed>
+     * {@inheritDoc}
      */
-    protected function getData(): array
+    protected function getDescription(): string
     {
-        $data = [
-            'status' => session('status'),
-        ];
-
-        return $data;
+        return trans('narsil::ui.connection');
     }
 
     /**
@@ -78,6 +70,14 @@ class LoginController extends AbstractController
         $form = app(LoginForm::class);
 
         return $form;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTitle(): string
+    {
+        return trans('narsil::ui.connection');
     }
 
     #endregion
