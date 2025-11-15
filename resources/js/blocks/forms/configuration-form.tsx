@@ -61,7 +61,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
           method={form.method}
           initialValues={{
             color: color,
-            locale: locale,
+            language: locale,
             radius: radius,
           }}
           render={() => {
