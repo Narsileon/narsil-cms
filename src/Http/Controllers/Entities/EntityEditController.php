@@ -11,7 +11,6 @@ use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\AbstractEntityController;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;

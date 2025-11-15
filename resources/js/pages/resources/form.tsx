@@ -198,23 +198,25 @@ function ResourceForm({ countries, form, modal, revisions }: FormProps) {
                         />
                       ) : null}
                     </div>
-                    <div className="flex flex-col items-start gap-2 border-b p-4">
-                      {data?.created_at ? (
-                        <FormTimestamp
-                          label={trans("datetime.created")}
-                          date={data.created_at}
-                          name={data.creator?.full_name}
-                        />
-                      ) : null}
-                      {data?.updated_at ? (
-                        <FormTimestamp
-                          label={trans("datetime.updated")}
-                          date={data.updated_at}
-                          name={data.editor?.full_name ?? data.creator?.full_name}
-                        />
-                      ) : null}
-                      {revisions ? <RevisionSelect revisions={revisions} /> : null}
-                    </div>
+                    {data?.created_at ? (
+                      <div className="flex flex-col items-start gap-2 border-b p-4">
+                        {data?.created_at ? (
+                          <FormTimestamp
+                            label={trans("datetime.created")}
+                            date={data.created_at}
+                            name={data.creator?.full_name}
+                          />
+                        ) : null}
+                        {data?.updated_at ? (
+                          <FormTimestamp
+                            label={trans("datetime.updated")}
+                            date={data.updated_at}
+                            name={data.editor?.full_name ?? data.creator?.full_name}
+                          />
+                        ) : null}
+                        {revisions ? <RevisionSelect revisions={revisions} /> : null}
+                      </div>
+                    ) : null}
                     {countries ? (
                       <div className="flex flex-col gap-1 border-b p-2">
                         <div className="flex items-center justify-start gap-2 pl-2.5">
