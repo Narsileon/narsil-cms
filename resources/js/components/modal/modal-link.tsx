@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
+import { DialogContent } from "@narsil-cms/components/dialog";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { type ComponentProps } from "react";
-import { DialogContent } from "../dialog";
 
 type ModalLinkProps = ComponentProps<typeof Link> & {
   variant?: ComponentProps<typeof DialogContent>["variant"];

@@ -1,4 +1,5 @@
-import { Link } from "@narsil-cms/blocks";
+import { router } from "@inertiajs/react";
+import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { DropdownMenuItem, DropdownMenuSeparator } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
@@ -13,6 +14,7 @@ type TreeItemMenuProps = ComponentProps<typeof SortableItemMenu> & {
 };
 
 function TreeItemMenu({ item, ...props }: TreeItemMenuProps) {
+  const { setAlertDialog } = useAlertDialog();
   const { isDirty } = useForm();
   const { trans } = useLocalization();
 
@@ -38,11 +40,19 @@ function TreeItemMenu({ item, ...props }: TreeItemMenuProps) {
       {item.destroy_url ? (
         <>
           <DropdownMenuSeparator />
-          <DropdownMenuItem asChild={true}>
-            <Link href={item.destroy_url as string} method="delete">
-              <Icon name="trash" />
-              {trans("ui.delete")}
-            </Link>
+          <DropdownMenuItem
+            onClick={() => {
+              setAlertDialog({
+                title: trans("dialogs.titles.delete"),
+                description: trans("dialogs.descriptions.delete"),
+                actionClick: () => {
+                  router.delete(item.destroy_url as string);
+                },
+              });
+            }}
+          >
+            <Icon name="trash" />
+            {trans("ui.delete")}
           </DropdownMenuItem>
         </>
       ) : null}
