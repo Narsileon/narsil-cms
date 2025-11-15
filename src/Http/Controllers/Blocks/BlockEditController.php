@@ -40,10 +40,10 @@ class BlockEditController extends RenderController
         ]);
 
         $data = $this->getData($block);
-        $form = $this->getForm($block)
-            ->formData($data);
+        $form = $this->getForm($block);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

@@ -34,10 +34,10 @@ class SitePageEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $sitePage);
 
         $data = $this->getData($sitePage);
-        $form = $this->getForm($site, $sitePage)
-            ->formData($data);
+        $form = $this->getForm($site, $sitePage);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

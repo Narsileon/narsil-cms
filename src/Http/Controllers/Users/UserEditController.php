@@ -42,10 +42,10 @@ class UserEditController extends RenderController
         $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::HANDLE));
 
         $data = $this->getData($user);
-        $form = $this->getForm($user)
-            ->formData($data);
+        $form = $this->getForm($user);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

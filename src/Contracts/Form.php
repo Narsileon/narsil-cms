@@ -4,7 +4,6 @@ namespace Narsil\Contracts;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use JsonSerializable;
 
 #endregion
@@ -43,15 +42,6 @@ interface Form extends JsonSerializable
      * @return static
      */
     public function defaultLanguage(string $defaultLanguage): static;
-
-    /**
-     * Set the data of the form.
-     *
-     * @param Model|array $data
-     *
-     * @return static
-     */
-    public function formData(Model|array $data): static;
 
     /**
      * Set the "id" attribute of the form.

@@ -35,10 +35,10 @@ class HeaderEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $header);
 
         $data = $this->getData($header);
-        $form = $this->getForm($header)
-            ->formData($data);
+        $form = $this->getForm($header);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

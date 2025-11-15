@@ -47,10 +47,10 @@ class EntityEditController extends RenderController
         $template = Entity::getTemplate();
 
         $data = $this->getData($entity);
-        $form = $this->getForm($template, $entity)
-            ->formData($data);
+        $form = $this->getForm($template, $entity);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
             'revisions' => $revisions,
         ]);

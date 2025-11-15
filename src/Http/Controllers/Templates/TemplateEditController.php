@@ -35,10 +35,10 @@ class TemplateEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $template);
 
         $data = $this->getData($template);
-        $form = $this->getForm($template)
-            ->formData($data);
+        $form = $this->getForm($template);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

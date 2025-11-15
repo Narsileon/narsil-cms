@@ -35,10 +35,10 @@ class FooterEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $footer);
 
         $data = $this->getData($footer);
-        $form = $this->getForm($footer)
-            ->formData($data);
+        $form = $this->getForm($footer);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

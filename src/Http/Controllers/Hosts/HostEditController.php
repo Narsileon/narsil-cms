@@ -43,10 +43,10 @@ class HostEditController extends RenderController
         ]);
 
         $data = $this->getData($host);
-        $form = $this->getForm($host)
-            ->formData($data);
+        $form = $this->getForm($host);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

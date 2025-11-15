@@ -34,10 +34,10 @@ class SitePageCreateController extends RenderController
         $this->authorize(PermissionEnum::CREATE, SitePage::class);
 
         $data = $request->query();
-        $form = $this->getForm($site)
-            ->formData($data);
+        $form = $this->getForm($site);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

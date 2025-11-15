@@ -8,11 +8,12 @@ import { toast } from "sonner";
 import { route } from "ziggy-js";
 
 type FortifyFormProps = {
+  data?: Record<string, unknown>;
   form: FormType;
   status?: string;
 };
 
-function FortifyForm({ form, status }: FortifyFormProps) {
+function FortifyForm({ data, form, status }: FortifyFormProps) {
   const { trans } = useLocalization();
 
   const hasStatus = useRef<boolean>(false);
@@ -56,7 +57,7 @@ function FortifyForm({ form, status }: FortifyFormProps) {
               action={form.action}
               elements={form.layout}
               method={form.method}
-              initialValues={form.data}
+              initialValues={data}
               render={() => {
                 return (
                   <FormRoot className="grid-cols-12 gap-6">

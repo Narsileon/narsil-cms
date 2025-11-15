@@ -100,16 +100,6 @@ abstract class AbstractForm extends Fluent implements Form
     /**
      * {@inheritDoc}
      */
-    public function formData(Model|array $data): static
-    {
-        $this->set('data', $data);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function id(mixed $id): static
     {
         $this->set('id', $id);

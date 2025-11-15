@@ -63,8 +63,7 @@ class SiteEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $site);
 
         $data = $this->getData($site);
-        $form = $this->getForm($site)
-            ->formData($data);
+        $form = $this->getForm($site);
 
         $countries = $this->getCountrySelectOptions($site);
 
@@ -73,6 +72,7 @@ class SiteEditController extends RenderController
 
         return $this->render('narsil/cms::resources/form', [
             'countries' => $countries,
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

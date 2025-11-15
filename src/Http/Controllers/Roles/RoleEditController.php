@@ -38,10 +38,10 @@ class RoleEditController extends RenderController
         $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::HANDLE));
 
         $data = $this->getData($role);
-        $form = $this->getForm($role)
-            ->formData($data);
+        $form = $this->getForm($role);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

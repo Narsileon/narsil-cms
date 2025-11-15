@@ -42,10 +42,10 @@ class FieldEditController extends RenderController
         }
 
         $data = $this->getData($field);
-        $form = $this->getForm($field)
-            ->formData($data);
+        $form = $this->getForm($field);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }

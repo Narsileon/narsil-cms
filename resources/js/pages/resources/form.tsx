@@ -17,18 +17,25 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type { FormType, Revision, SelectOption, TemplateSection } from "@narsil-cms/types";
+import type { FormType, Revision, SelectOption, TemplateSection, User } from "@narsil-cms/types";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
 type FormProps = FormType & {
   countries?: SelectOption[];
+  data?: {
+    created_at?: string;
+    creator?: User;
+    editor?: User;
+    updated_at?: string;
+    [key: string]: unknown;
+  };
   form: FormType;
   modal?: ModalType;
   revisions?: Revision[];
 };
 
-function ResourceForm({ countries, form, modal, revisions }: FormProps) {
+function ResourceForm({ countries, data, form, modal, revisions }: FormProps) {
   const { trans } = useLocalization();
   const { closeTopModal } = useModalStore();
 
@@ -38,7 +45,6 @@ function ResourceForm({ countries, form, modal, revisions }: FormProps) {
     action,
     autoSave,
     defaultLanguage,
-    data,
     id,
     languageOptions,
     layout,

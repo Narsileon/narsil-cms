@@ -35,10 +35,10 @@ class PermissionEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $permission);
 
         $data = $this->getData($permission);
-        $form = $this->getForm($permission)
-            ->formData($data);
+        $form = $this->getForm($permission);
 
         return $this->render('narsil/cms::resources/form', [
+            'data' => $data,
             'form' => $form->jsonSerialize(),
         ]);
     }
