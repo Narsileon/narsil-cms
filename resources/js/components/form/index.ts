@@ -11,6 +11,7 @@ import FormMessage from "./form-message";
 import FormProvider from "./form-provider";
 import FormRenderer from "./form-renderer";
 import FormRoot from "./form-root";
+import FormTimestamp from "./form-timestamps";
 
 export {
   FormCountry,
@@ -24,6 +25,7 @@ export {
   FormProvider,
   FormRenderer,
   FormRoot,
+  FormTimestamp,
   useForm,
   useFormField,
 };

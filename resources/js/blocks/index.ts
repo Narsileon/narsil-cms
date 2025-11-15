@@ -24,6 +24,7 @@ import ScrollArea from "./scroll-area";
 import Separator from "./separator";
 import Sidebar from "./sidebar";
 import Spinner from "./spinner";
+import Status from "./status";
 import Tabs from "./tabs";
 import ThemeToggleGroup from "./theme-toggle-group";
 import Toaster from "./toaster";
@@ -59,6 +60,7 @@ export {
   Separator,
   Sidebar,
   Spinner,
+  Status,
   Tabs,
   ThemeToggleGroup,
   Toaster,

@@ -117,7 +117,7 @@ abstract class MigrationService
 
     /**
      * @param string $table
-     * @param Collection $fields
+     * @param Collection<Field> $fields
      *
      * @return void
      */
@@ -137,7 +137,7 @@ abstract class MigrationService
 
     /**
      * @param string $table
-     * @param Collection $fields
+     * @param Collection<Field> $fields
      *
      * @return void
      */

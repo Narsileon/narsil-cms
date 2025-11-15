@@ -1,4 +1,4 @@
-import { Button, Card, Heading, RevisionSelect, SaveButton } from "@narsil-cms/blocks";
+import { Button, Card, Heading, RevisionSelect, SaveButton, Status } from "@narsil-cms/blocks";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import {
   FormCountry,
@@ -6,11 +6,11 @@ import {
   FormProvider,
   FormRenderer,
   FormRoot,
+  FormTimestamp,
 } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
-import { StatusItem, StatusRoot } from "@narsil-cms/components/status";
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
@@ -182,57 +182,32 @@ function ResourceForm({
                         submitLabel={isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
                       />
                       {revisions ? (
-                        <StatusRoot
+                        <Status
                           className={cn(
                             "w-6",
                             "hover:w-10",
                             "transition-[width] delay-100 duration-300",
                           )}
-                        >
-                          {data.has_published_revision ? (
-                            <StatusItem
-                              className="bg-green-500"
-                              tooltip={trans("revisions.published")}
-                            />
-                          ) : null}
-                          {!data.published ? (
-                            <StatusItem
-                              className="bg-amber-500"
-                              tooltip={trans("revisions.saved")}
-                            />
-                          ) : null}
-                          {data.has_draft ? (
-                            <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />
-                          ) : null}
-                        </StatusRoot>
+                          draft={!!data.has_draft}
+                          published={!!data.has_published_revision}
+                          saved={!data.published}
+                        />
                       ) : null}
                     </div>
                     <div className="flex flex-col items-start gap-2 border-b p-4">
                       {data?.created_at ? (
-                        <div className="flex items-center gap-1 self-start">
-                          <span className="text-foreground/70">{trans("datetime.created")}</span>
-                          <span className="font-medium">{data.created_at}</span>
-                          {data?.creator ? (
-                            <>
-                              <span className="text-foreground/70">{trans("datetime.by")}</span>
-                              <span className="font-medium">{data.creator.full_name}</span>
-                            </>
-                          ) : null}
-                        </div>
+                        <FormTimestamp
+                          label={trans("datetime.created")}
+                          date={data.created_at}
+                          name={data.creator?.full_name}
+                        />
                       ) : null}
                       {data?.updated_at ? (
-                        <div className="flex items-center gap-1">
-                          <span className="text-foreground/70">{trans("datetime.updated")}</span>
-                          <span className="font-medium">{data.updated_at}</span>
-                          {data?.editor || data?.creator ? (
-                            <>
-                              <span className="text-foreground/70">{trans("datetime.by")}</span>
-                              <span className="font-medium">
-                                {data.editor?.full_name ?? data.creator?.full_name}
-                              </span>
-                            </>
-                          ) : null}
-                        </div>
+                        <FormTimestamp
+                          label={trans("datetime.updated")}
+                          date={data.updated_at}
+                          name={data.editor?.full_name ?? data.creator?.full_name}
+                        />
                       ) : null}
                       {revisions ? <RevisionSelect revisions={revisions} /> : null}
                     </div>
