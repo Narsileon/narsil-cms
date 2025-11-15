@@ -12,21 +12,25 @@ import {
   AlertDialogTrigger,
 } from "@narsil-cms/components/alert-dialog";
 import { useLocalization } from "@narsil-cms/components/localization";
-import React, { type ComponentProps } from "react";
+import React, { type ComponentProps, type MouseEventHandler } from "react";
 
 type AlertDialogProps = ComponentProps<typeof AlertDialogRoot> & {
-  action?: React.ReactNode;
+  actionLabel?: React.ReactNode;
   cancelLabel?: string;
   description?: string;
   title?: string;
+  actionClick?: MouseEventHandler<HTMLButtonElement>;
+  cancelClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 function AlertDialog({
-  action,
+  actionLabel,
   cancelLabel,
   children,
   description,
   title,
+  actionClick,
+  cancelClick,
   ...props
 }: AlertDialogProps) {
   const { trans } = useLocalization();
@@ -44,8 +48,12 @@ function AlertDialog({
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>{cancelLabel ?? trans("ui.cancel")}</AlertDialogCancel>
-            <AlertDialogAction>{action}</AlertDialogAction>
+            <AlertDialogCancel onClick={cancelClick}>
+              {cancelLabel ?? trans("ui.cancel")}
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={actionClick}>
+              {actionLabel ?? trans("ui.confirm")}
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialogPortal>

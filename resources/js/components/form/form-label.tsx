@@ -1,5 +1,4 @@
 import { Label, Tooltip } from "@narsil-cms/blocks";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
@@ -25,11 +24,7 @@ function FormLabel({ children, className, required = false, ...props }: FormLabe
       <span className="first-letter:uppercase">{children}</span>
       {required && (
         <Tooltip tooltip={trans("accessibility.required")}>
-          <Icon
-            className="size-3! cursor-help text-destructive"
-            aria-hidden="true"
-            name="asterisk"
-          />
+          <span className="text-red-500">*</span>
         </Tooltip>
       )}
     </Label>

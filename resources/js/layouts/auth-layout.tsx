@@ -8,6 +8,7 @@ import {
   Toaster,
   Tooltip,
 } from "@narsil-cms/blocks";
+import { AlertDialogProvider } from "@narsil-cms/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
@@ -67,72 +68,74 @@ function AuthLayout({ children }: AuthLayoutProps) {
   }, []);
 
   return (
-    <SidebarProvider isMobile={isMobile}>
-      <Sidebar />
-      <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-13 items-center gap-2 border-b bg-background pr-4 pl-2 text-foreground xl:pl-4">
-          {isMobile ? (
-            <>
-              <SidebarTrigger />
-              <Separator orientation="vertical" />
-            </>
-          ) : null}
-          <Breadcrumb className="grow" />
-          <Bookmarks breadcrumb={navigation.breadcrumb} />
-          <DropdownMenuRoot>
-            <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
-              <DropdownMenuTrigger>
-                <AvatarRoot>
-                  {auth.avatar ? (
-                    <AvatarImage src={auth.avatar} alt={auth.full_name ?? "User"} />
-                  ) : null}
-                  <AvatarFallback>
-                    <Icon name="user" />
-                  </AvatarFallback>
-                </AvatarRoot>
-              </DropdownMenuTrigger>
-            </Tooltip>
-            <DropdownMenuContent align="end">
-              {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
-                return (
-                  <Fragment key={group}>
-                    {groupIndex > 0 && <DropdownMenuSeparator />}
-                    {items.map((item, index) => {
-                      return (
-                        <DropdownMenuItem asChild={true} key={index}>
-                          <Button
-                            icon={item.icon}
-                            linkProps={{
-                              href: item.href,
-                              method: item.method,
-                              modal: item.modal,
-                            }}
-                            size="sm"
-                            variant="ghost"
-                          >
-                            {item.label}
-                          </Button>
-                        </DropdownMenuItem>
-                      );
-                    })}
-                  </Fragment>
-                );
-              })}
-              <DropdownMenuSeparator />
-              <ThemeToggleGroup className="w-full" />
-            </DropdownMenuContent>
-          </DropdownMenuRoot>
-        </header>
-        <div ref={mainRef} className="relative h-[calc(100vh-3.25rem)] overflow-y-auto">
-          <BackgroundRoot className="filter-[url(#paper)]">
-            <BackgroundPaper />
-          </BackgroundRoot>
-          <ModalRenderer container={mainRef.current} />
-          {children}
-          <Toaster />
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <AlertDialogProvider>
+      <SidebarProvider isMobile={isMobile}>
+        <Sidebar />
+        <SidebarInset>
+          <header className="sticky top-0 z-10 flex h-13 items-center gap-2 border-b bg-background pr-4 pl-2 text-foreground xl:pl-4">
+            {isMobile ? (
+              <>
+                <SidebarTrigger />
+                <Separator orientation="vertical" />
+              </>
+            ) : null}
+            <Breadcrumb className="grow" />
+            <Bookmarks breadcrumb={navigation.breadcrumb} />
+            <DropdownMenuRoot>
+              <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
+                <DropdownMenuTrigger>
+                  <AvatarRoot>
+                    {auth.avatar ? (
+                      <AvatarImage src={auth.avatar} alt={auth.full_name ?? "User"} />
+                    ) : null}
+                    <AvatarFallback>
+                      <Icon name="user" />
+                    </AvatarFallback>
+                  </AvatarRoot>
+                </DropdownMenuTrigger>
+              </Tooltip>
+              <DropdownMenuContent align="end">
+                {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
+                  return (
+                    <Fragment key={group}>
+                      {groupIndex > 0 && <DropdownMenuSeparator />}
+                      {items.map((item, index) => {
+                        return (
+                          <DropdownMenuItem asChild={true} key={index}>
+                            <Button
+                              icon={item.icon}
+                              linkProps={{
+                                href: item.href,
+                                method: item.method,
+                                modal: item.modal,
+                              }}
+                              size="sm"
+                              variant="ghost"
+                            >
+                              {item.label}
+                            </Button>
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </Fragment>
+                  );
+                })}
+                <DropdownMenuSeparator />
+                <ThemeToggleGroup className="w-full" />
+              </DropdownMenuContent>
+            </DropdownMenuRoot>
+          </header>
+          <div ref={mainRef} className="relative h-[calc(100vh-3.25rem)] overflow-y-auto">
+            <BackgroundRoot className="filter-[url(#paper)]">
+              <BackgroundPaper />
+            </BackgroundRoot>
+            <ModalRenderer container={mainRef.current} />
+            {children}
+            <Toaster />
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    </AlertDialogProvider>
   );
 }
 

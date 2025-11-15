@@ -1,6 +1,6 @@
 import { Tooltip } from "@narsil-cms/blocks";
 import { cn } from "@narsil-cms/lib/utils";
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 
 type StatusItemProps = ComponentProps<"li"> & {
   tooltip: string;

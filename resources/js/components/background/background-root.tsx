@@ -1,5 +1,5 @@
 import { cn } from "@narsil-cms/lib/utils";
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 
 type BackgroundRootProps = ComponentProps<"div">;
 

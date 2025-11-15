@@ -13,7 +13,7 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block, Field } from "@narsil-cms/types";
-import { ComponentProps, useState } from "react";
+import { type ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
 
 type ArrayItemProps = Pick<

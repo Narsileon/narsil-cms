@@ -1,5 +1,5 @@
 import { Link as InertiaLink, InertiaLinkProps } from "@inertiajs/react";
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 
 type ExternalLinkProps = ComponentProps<"a">;
 type InternalLinkProps = InertiaLinkProps;
