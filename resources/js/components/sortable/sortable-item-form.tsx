@@ -64,7 +64,7 @@ function SortableItemForm({
         <DialogOverlay />
         <DialogContent>
           <DialogHeader className="border-b">
-            <DialogTitle>{form.title}</DialogTitle>
+            <DialogTitle>{data?.handle as string}</DialogTitle>
           </DialogHeader>
           <DialogBody>
             <VisuallyHidden>

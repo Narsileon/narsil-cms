@@ -29,7 +29,7 @@ class ForgotPasswordController extends RenderController
         $form = $this->getForm();
 
         return $this->render('narsil/cms::fortify/form', [
-            'form' => $form->jsonSerialize(),
+            'form' => $form,
             'status' => session('status'),
         ]);
     }

@@ -11,6 +11,7 @@ use Narsil\Models\Hosts\Host;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 
@@ -25,6 +26,7 @@ return [
     Permission::class => 'Berechtigung',
     Role::class => 'Rolle',
     Site::class => 'Webseite',
+    SitePage::class => 'Seite',
     Template::class => 'Vorlage',
     User::class => 'Benutzer',
     UserBookmark::class => 'Lesezeichen',

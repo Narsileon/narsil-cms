@@ -44,7 +44,7 @@ class EntityCreateController extends RenderController
         $form = $this->getForm($template);
 
         return $this->render('narsil/cms::resources/form', [
-            'form' => $form->jsonSerialize(),
+            'form' => $form,
         ]);
     }
 

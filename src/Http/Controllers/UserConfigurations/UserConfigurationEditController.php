@@ -48,10 +48,10 @@ class UserConfigurationEditController extends RenderController
             ->add('narsil::ui.sessions');
 
         return $this->render('narsil/cms::users/settings', [
-            'profileForm' => $profileForm->jsonSerialize(),
-            'twoFactorForm' => $twoFactorForm->jsonSerialize(),
-            'updatePasswordForm' => $updatePasswordForm->jsonSerialize(),
-            'userConfigurationForm' => $userConfigurationForm->jsonSerialize(),
+            'profileForm' => $profileForm,
+            'twoFactorForm' => $twoFactorForm,
+            'updatePasswordForm' => $updatePasswordForm,
+            'userConfigurationForm' => $userConfigurationForm,
         ]);
     }
 

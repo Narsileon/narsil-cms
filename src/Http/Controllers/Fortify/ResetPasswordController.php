@@ -30,7 +30,7 @@ class ResetPasswordController extends RenderController
         $token = $request->route('token');
 
         return $this->render('narsil/cms::fortify/form', [
-            'form' => $form->jsonSerialize(),
+            'form' => $form,
             'token' => $token,
         ]);
     }

@@ -73,7 +73,7 @@ class SiteEditController extends RenderController
         return $this->render('narsil/cms::resources/form', [
             'countries' => $countries,
             'data' => $data,
-            'form' => $form->jsonSerialize(),
+            'form' => $form,
         ]);
     }
 
