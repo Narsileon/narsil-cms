@@ -28,7 +28,7 @@ function FormProvider({
 }: FormProviderProps) {
   const [formLanguage, setFormLanguage] = useState<string>("en");
 
-  function flattenValues(elements: (Field | Block)[]): Record<string, unknown> {
+  function flattenValues(elements: (Block | Field | TemplateSection)[]): Record<string, unknown> {
     const receivedValues: Record<string, unknown> = {};
 
     elements.map((element) => {
@@ -43,7 +43,7 @@ function FormProvider({
           }
         });
       } else if ("type" in element) {
-        set(receivedValues, element.handle, getFieldDefaultValue(element));
+        set(receivedValues, element.handle, getFieldDefaultValue(element as Field));
       }
     });
 
