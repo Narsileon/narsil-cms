@@ -42,9 +42,9 @@ function AlertDialog({
         <AlertDialogOverlay />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>{title ?? trans("dialogs.titles.confirm")}</AlertDialogTitle>
+            <AlertDialogTitle>{title ?? trans("dialogs.titles.default")}</AlertDialogTitle>
             <AlertDialogDescription>
-              {description ?? trans("dialogs.descriptions.confirm")}
+              {description ?? trans("dialogs.descriptions.default")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

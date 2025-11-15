@@ -1,5 +1,6 @@
 import { router } from "@inertiajs/react";
 import { Button } from "@narsil-cms/blocks";
+import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -18,20 +19,9 @@ type FormMenuProps = ComponentProps<typeof Button> & {
 };
 
 function FormMenu({ routes, ...props }: FormMenuProps) {
+  const { setOpen } = useAlertDialog();
   const { trans } = useLocalization();
-
   const { data } = useForm();
-
-  function destroy() {
-    if (routes?.destroy && data?.id) {
-      router.delete(
-        route(routes.destroy, {
-          ...routes.params,
-          id: data.id,
-        }),
-      );
-    }
-  }
 
   return (
     <DropdownMenuRoot>
@@ -40,7 +30,22 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {routes?.destroy && data?.id ? (
-          <DropdownMenuItem onClick={destroy}>
+          <DropdownMenuItem
+            onClick={() => {
+              const href = route(routes.destroy as string, {
+                ...routes.params,
+                id: data.id,
+              });
+
+              setOpen({
+                title: trans("dialogs.titles.delete"),
+                description: trans("dialogs.descriptions.delete"),
+                actionClick: () => {
+                  router.delete(href);
+                },
+              });
+            }}
+          >
             <Icon name="trash" />
             {trans("ui.delete")}
           </DropdownMenuItem>
