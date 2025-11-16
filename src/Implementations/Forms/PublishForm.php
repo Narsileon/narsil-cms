@@ -8,7 +8,7 @@ use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Forms\PermissionForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\Policies\Role;
+use Narsil\Models\Entities\Entity;
 
 #endregion
 
@@ -18,18 +18,6 @@ use Narsil\Models\Policies\Role;
  */
 class PublishForm extends AbstractForm implements Contract
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    #endregion
-
     #region PROTECTED METHODS
 
     /**
@@ -39,15 +27,13 @@ class PublishForm extends AbstractForm implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => Role::NAME,
+                Field::HANDLE => Entity::PUBLISHED_FROM,
                 Field::NAME => trans('narsil::validation.attributes.published_from'),
-                Field::TRANSLATABLE => true,
                 Field::TYPE => DatetimeField::class,
                 Field::SETTINGS => app(DatetimeField::class),
             ]),
-
             new Field([
-                Field::HANDLE => Role::HANDLE,
+                Field::HANDLE => Entity::PUBLISHED_TO,
                 Field::NAME => trans('narsil::validation.attributes.published_to'),
                 Field::TYPE => DatetimeField::class,
                 Field::SETTINGS => app(DatetimeField::class),

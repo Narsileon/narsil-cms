@@ -18,8 +18,10 @@ type DatetimeProps = Omit<ComponentProps<typeof InputContent>, "value"> & {
 function Datetime({ value, onChange, ...props }: DatetimeProps) {
   const [open, setOpen] = useState(false);
 
-  const datePart = value?.split("T")[0] ?? "";
-  const timePart = value?.split("T")[1] ?? "00:00";
+  const normalized = value ? value.replace(" ", "T").slice(0, 16) : undefined;
+
+  const datePart = normalized?.split("T")[0] ?? "";
+  const timePart = normalized?.split("T")[1] ?? "00:00";
 
   const [hour, minute] = timePart.split(":").map(Number);
 
@@ -91,13 +93,13 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
             }}
           />
           <Separator />
-          <div className="flex w-full flex-col gap-4 p-4">
+          <div className="grid w-full gap-2 p-4">
             <div className="no-scrollbar flex gap-1 overflow-x-auto" onWheel={onWheel}>
               {hours.map((hour) => (
                 <Button
                   className="aspect-square shrink-0"
                   disabled={!date}
-                  size="icon"
+                  size="icon-sm"
                   variant={date && date.getHours() === hour ? "primary" : "ghost"}
                   key={hour}
                   onClick={() => updateTime(hour, minute ?? 0)}
@@ -111,7 +113,7 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
                 <Button
                   className="aspect-square shrink-0"
                   disabled={!date}
-                  size="icon"
+                  size="icon-sm"
                   variant={date && date.getMinutes() === Number(minute) ? "primary" : "ghost"}
                   onClick={() => updateTime(hour ?? 0, Number(minute))}
                 >

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
+use Narsil\Contracts\Forms\PublishForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
@@ -48,10 +49,12 @@ class EntityEditController extends RenderController
 
         $data = $this->getData($entity);
         $form = $this->getForm($template, $entity);
+        $publish = app(PublishForm::class)->layout;
 
         return $this->render('narsil/cms::resources/form', [
             'data' => $data,
             'form' => $form,
+            'publish' => $publish,
             'revisions' => $revisions,
         ]);
     }

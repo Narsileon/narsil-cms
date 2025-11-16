@@ -94,8 +94,8 @@ function SortableItemForm({
             </Button>
             <Button
               onClick={() => {
-                const oldUniqueIdentifier = get(item, optionValue ?? "value");
-                const newUniqueIdentifier = get(data, optionValue ?? "value");
+                const oldUniqueIdentifier = get(item, optionValue ?? "value") as UniqueIdentifier;
+                const newUniqueIdentifier = get(data, optionValue ?? "value") as UniqueIdentifier;
 
                 if (oldUniqueIdentifier !== newUniqueIdentifier) {
                   if (ids.includes(newUniqueIdentifier)) {

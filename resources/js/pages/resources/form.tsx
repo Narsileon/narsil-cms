@@ -10,6 +10,7 @@ import {
   FormSave,
   FormTimestamp,
 } from "@narsil-cms/components/form";
+import FormPublish from "@narsil-cms/components/form/form-publish";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
@@ -17,7 +18,14 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type { FormType, Revision, SelectOption, TemplateSection, User } from "@narsil-cms/types";
+import type {
+  Field,
+  FormType,
+  Revision,
+  SelectOption,
+  TemplateSection,
+  User,
+} from "@narsil-cms/types";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
@@ -32,10 +40,11 @@ type FormProps = FormType & {
   };
   form: FormType;
   modal?: ModalType;
+  publish?: Field[];
   revisions?: Revision[];
 };
 
-function ResourceForm({ countries, data, form, modal, revisions }: FormProps) {
+function ResourceForm({ countries, data, form, modal, publish, revisions }: FormProps) {
   const { trans } = useLocalization();
   const { closeTopModal } = useModalStore();
 
@@ -204,27 +213,31 @@ function ResourceForm({ countries, data, form, modal, revisions }: FormProps) {
                         />
                       ) : null}
                     </div>
-                    {data?.created_at ? (
-                      <div className="flex flex-col items-start gap-2 border-b p-4">
-                        {data?.created_at ? (
-                          <FormTimestamp
-                            label={trans("datetime.created")}
-                            date={data.created_at}
-                            name={data.creator?.full_name}
-                          />
-                        ) : null}
-                        {data?.updated_at ? (
-                          <FormTimestamp
-                            label={trans("datetime.updated")}
-                            date={data.updated_at}
-                            name={data.editor?.full_name ?? data.creator?.full_name}
-                          />
-                        ) : null}
+
+                    {publish || data?.created_at ? (
+                      <div className="grid items-start gap-4 border-b p-4">
+                        {publish ? <FormPublish fields={publish} /> : null}
+                        <div className="grid gap-2">
+                          {data?.created_at ? (
+                            <FormTimestamp
+                              label={trans("datetime.created")}
+                              date={data.created_at}
+                              name={data.creator?.full_name}
+                            />
+                          ) : null}
+                          {data?.updated_at ? (
+                            <FormTimestamp
+                              label={trans("datetime.updated")}
+                              date={data.updated_at}
+                              name={data.editor?.full_name ?? data.creator?.full_name}
+                            />
+                          ) : null}
+                        </div>
                         {revisions ? <RevisionSelect revisions={revisions} /> : null}
                       </div>
                     ) : null}
                     {countries ? (
-                      <div className="flex flex-col gap-1 border-b p-2">
+                      <div className="grid gap-1 border-b p-2">
                         <div className="flex items-center justify-start gap-2 pl-2.5">
                           <Icon className="size-4" name="globe" />
                           <Heading level="h3" variant="discreet">
@@ -235,7 +248,7 @@ function ResourceForm({ countries, data, form, modal, revisions }: FormProps) {
                       </div>
                     ) : null}
                     {languageOptions?.length > 0 ? (
-                      <div className="flex flex-col gap-1 border-b p-2">
+                      <div className="grid gap-1 border-b p-2">
                         <div className="flex items-center justify-start gap-2 pl-2.5">
                           <Icon className="size-4" name="globe" />
                           <Heading level="h3" variant="discreet">
@@ -250,7 +263,7 @@ function ResourceForm({ countries, data, form, modal, revisions }: FormProps) {
                       </div>
                     ) : null}
 
-                    <div className="flex flex-col gap-y-4 lg:col-span-4">
+                    <div className="grid gap-y-4 lg:col-span-4">
                       {sidebarContent ? (
                         <Card
                           contentProps={{

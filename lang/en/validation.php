@@ -250,6 +250,8 @@ return [
         'placeholder'             => 'placeholder',
         'primary'                 => 'primary',
         'priority'                => 'priority',
+        'published_from'          => 'published from',
+        'published_to'            => 'published to',
         'radius'                  => 'rounding',
         'recovery_code'           => 'recovery Code',
         'remember'                => 'remember me',

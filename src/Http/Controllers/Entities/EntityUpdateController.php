@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Entities;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
@@ -70,6 +71,8 @@ class EntityUpdateController extends RedirectController
         $attributes = array_merge($attributes, [
             Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
             Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
+            Entity::PUBLISHED_FROM => Arr::get($data, Entity::PUBLISHED_FROM),
+            Entity::PUBLISHED_TO => Arr::get($data, Entity::PUBLISHED_TO),
             Entity::UPDATED_AT => Carbon::now(),
             Entity::UPDATED_BY => Auth::id(),
         ]);
