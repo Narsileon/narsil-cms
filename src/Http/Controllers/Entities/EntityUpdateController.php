@@ -71,6 +71,7 @@ class EntityUpdateController extends RedirectController
         $attributes = array_merge($attributes, [
             Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
             Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
+            Entity::PUBLISHED => Arr::get($data, Entity::PUBLISHED),
             Entity::PUBLISHED_FROM => Arr::get($data, Entity::PUBLISHED_FROM),
             Entity::PUBLISHED_TO => Arr::get($data, Entity::PUBLISHED_TO),
             Entity::UPDATED_AT => Carbon::now(),

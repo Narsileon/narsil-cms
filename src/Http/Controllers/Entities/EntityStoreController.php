@@ -48,6 +48,12 @@ class EntityStoreController extends RedirectController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
+        $attributes = array_merge($attributes, [
+            Entity::PUBLISHED => Arr::get($data, Entity::PUBLISHED),
+            Entity::PUBLISHED_FROM => Arr::get($data, Entity::PUBLISHED_FROM),
+            Entity::PUBLISHED_TO => Arr::get($data, Entity::PUBLISHED_TO),
+        ]);
+
         $entity = Entity::create($attributes);
 
         if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
