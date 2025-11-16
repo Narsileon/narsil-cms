@@ -213,10 +213,9 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                         />
                       ) : null}
                     </div>
-
-                    {publish || data?.created_at ? (
+                    {publish ? <FormPublish fields={publish} /> : null}
+                    {data?.created_at ? (
                       <div className="grid items-start gap-4 border-b p-4">
-                        {publish ? <FormPublish fields={publish} /> : null}
                         {data?.created_at ? (
                           <div className="grid gap-2">
                             {data?.created_at ? (

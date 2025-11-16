@@ -9,7 +9,7 @@ type FormPublishProps = ComponentProps<"div"> & {
 
 function FormPublish({ className, fields, ...props }: FormPublishProps) {
   return (
-    <div className={cn("grid gap-2", className)} {...props}>
+    <div className={cn("grid gap-2 border-b px-4 pt-2 pb-4", className)} {...props}>
       {fields.map((field) => {
         return <FormRenderer key={field.handle} {...field} />;
       })}
