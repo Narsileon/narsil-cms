@@ -56,40 +56,40 @@ class RegisterForm extends AbstractForm implements Contract
                     ->required(true),
             ]),
             new Field([
+                Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->className('col-span-6')
                     ->required(true),
             ]),
             new Field([
+                Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
                     ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->className('col-span-6')
                     ->required(true),
             ]),
             new Field([
+                Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.first_name'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                    ->className('col-span-6')
                     ->icon('circle-user')
                     ->required(true),
             ]),
             new Field([
+                Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.last_name'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                    ->className('col-span-6')
                     ->icon('circle-user')
                     ->required(true),
             ]),

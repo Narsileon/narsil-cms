@@ -62,7 +62,7 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className="relative" asChild>
+      <PopoverTrigger className="relative basis-1/2" asChild>
         <InputRoot className={cn(open && "border-shine")} variant="button">
           <InputContent
             className={cn(!value && "opacity-50")}

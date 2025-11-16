@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\DatetimeField;
+use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Forms\PermissionForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
@@ -27,12 +28,21 @@ class PublishForm extends AbstractForm implements Contract
     {
         return [
             new Field([
+                Field::CLASS_NAME => 'flex-row justify-between',
+                Field::HANDLE => Entity::PUBLISHED,
+                Field::NAME => trans('narsil::validation.attributes.published'),
+                Field::TYPE => SwitchField::class,
+                Field::SETTINGS => app(SwitchField::class),
+            ]),
+            new Field([
+                Field::CLASS_NAME => 'flex-row justify-between',
                 Field::HANDLE => Entity::PUBLISHED_FROM,
                 Field::NAME => trans('narsil::validation.attributes.published_from'),
                 Field::TYPE => DatetimeField::class,
                 Field::SETTINGS => app(DatetimeField::class),
             ]),
             new Field([
+                Field::CLASS_NAME => 'flex-row justify-between',
                 Field::HANDLE => Entity::PUBLISHED_TO,
                 Field::NAME => trans('narsil::validation.attributes.published_to'),
                 Field::TYPE => DatetimeField::class,

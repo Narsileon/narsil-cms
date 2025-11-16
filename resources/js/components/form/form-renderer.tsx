@@ -118,7 +118,11 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
 
         return (
           <FormItem
-            className={cn(settings.type === "hidden" && "hidden", settings.className, className)}
+            className={cn(
+              settings.type === "hidden" && "hidden",
+              props.class_name ?? "",
+              className,
+            )}
             width={width}
           >
             <div className="flex items-center justify-between gap-3">

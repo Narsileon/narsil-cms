@@ -128,6 +128,9 @@ return new class extends Migration
                 ->boolean(Field::TRANSLATABLE)
                 ->default(false);
             $blueprint
+                ->string(Field::CLASS_NAME)
+                ->nullable();
+            $blueprint
                 ->jsonb(Field::SETTINGS)
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint

@@ -29,6 +29,7 @@ export type Bookmark = Model & {
 
 export type Field = {
   blocks: Block[];
+  class_name: string;
   description: string | null;
   handle: string;
   id: number;

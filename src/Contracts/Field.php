@@ -34,15 +34,6 @@ interface Field
     public function append(string $append): static;
 
     /**
-     * Set the className attribute.
-     *
-     * @param string $className
-     *
-     * @return static
-     */
-    public function className(string $className): static;
-
-    /**
      * Set the read only attribute.
      *
      * @param boolean $readOnly

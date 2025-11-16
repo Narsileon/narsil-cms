@@ -217,22 +217,24 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                     {publish || data?.created_at ? (
                       <div className="grid items-start gap-4 border-b p-4">
                         {publish ? <FormPublish fields={publish} /> : null}
-                        <div className="grid gap-2">
-                          {data?.created_at ? (
-                            <FormTimestamp
-                              label={trans("datetime.created")}
-                              date={data.created_at}
-                              name={data.creator?.full_name}
-                            />
-                          ) : null}
-                          {data?.updated_at ? (
-                            <FormTimestamp
-                              label={trans("datetime.updated")}
-                              date={data.updated_at}
-                              name={data.editor?.full_name ?? data.creator?.full_name}
-                            />
-                          ) : null}
-                        </div>
+                        {data?.created_at ? (
+                          <div className="grid gap-2">
+                            {data?.created_at ? (
+                              <FormTimestamp
+                                label={trans("datetime.created")}
+                                date={data.created_at}
+                                name={data.creator?.full_name}
+                              />
+                            ) : null}
+                            {data?.updated_at ? (
+                              <FormTimestamp
+                                label={trans("datetime.updated")}
+                                date={data.updated_at}
+                                name={data.editor?.full_name ?? data.creator?.full_name}
+                              />
+                            ) : null}
+                          </div>
+                        ) : null}
                         {revisions ? <RevisionSelect revisions={revisions} /> : null}
                       </div>
                     ) : null}

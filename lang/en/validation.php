@@ -250,6 +250,7 @@ return [
         'placeholder'             => 'placeholder',
         'primary'                 => 'primary',
         'priority'                => 'priority',
+        'published'               => 'published',
         'published_from'          => 'published from',
         'published_to'            => 'published to',
         'radius'                  => 'rounding',

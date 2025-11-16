@@ -30,16 +30,6 @@ abstract class AbstractField extends Fluent implements Field
     /**
      * {@inheritDoc}
      */
-    final public function className(string $className): static
-    {
-        $this->set('className', $className);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function readOnly(bool $readOnly): static
     {
         $this->set('readOnly', $readOnly);

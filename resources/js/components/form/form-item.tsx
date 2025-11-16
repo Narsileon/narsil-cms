@@ -11,7 +11,11 @@ function FormItem({ className, width, ...props }: FormItemProps) {
   return (
     <div
       data-slot="form-item"
-      className={cn("flex flex-col gap-2", widthClassName, className)}
+      className={cn(
+        "flex min-h-9 flex-col gap-2 [.flex-row]:items-center",
+        widthClassName,
+        className,
+      )}
       {...props}
     />
   );
