@@ -21,13 +21,17 @@ function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
       switch (method) {
         case "patch":
         case "put":
-          transform?.((data) => ({
-            ...data,
-            _autoSave: autoSave,
-            _dirty: isDirty,
-            _method: method,
-          }));
-          post?.(action, { ...options, forceFormData: true });
+          transform?.((data) => {
+            const transformedData = {
+              ...data,
+              _autoSave: autoSave,
+              _dirty: isDirty,
+              _method: method,
+            };
+
+            return transformedData;
+          });
+          post?.(action, { ...options });
           break;
         case "post":
           post?.(action, options);
