@@ -126,7 +126,7 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={saveAndPublish}>
-            <Icon name="save-and-continue" />
+            <Icon name="eye" />
             {`${submitLabel} & ${trans("ui.publish")}`}
             <Kbd className="ml-auto" elements={["Ctrl", "P"]} />
           </DropdownMenuItem>

@@ -209,6 +209,7 @@ return [
         'created_at'              => 'created at',
         'created_by'              => 'created by',
         'current_password'        => 'current password',
+        'default_language'        => 'default language',
         'default_value'           => 'default value',
         'deleted_at'              => 'deleted at',
         'deleted_by'              => 'deleted by',

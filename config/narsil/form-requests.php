@@ -12,6 +12,7 @@ return [
     */
 
     \Narsil\Contracts\FormRequests\BlockFormRequest::class => \Narsil\Http\Requests\BlockFormRequest::class,
+    \Narsil\Contracts\FormRequests\ConfigurationFormRequest::class => \Narsil\Http\Requests\ConfigurationFormRequest::class,
     \Narsil\Contracts\FormRequests\EntityFormRequest::class => \Narsil\Http\Requests\EntityFormRequest::class,
     \Narsil\Contracts\FormRequests\FieldFormRequest::class => \Narsil\Http\Requests\FieldFormRequest::class,
     \Narsil\Contracts\FormRequests\FooterFormRequest::class => \Narsil\Http\Requests\FooterFormRequest::class,

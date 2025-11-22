@@ -11,6 +11,7 @@ return [
     |
     */
 
+    \Narsil\Models\Configuration::class => \Narsil\Policies\ConfigurationPolicy::class,
     \Narsil\Models\Elements\Block::class => \Narsil\Policies\BlockPolicy::class,
     \Narsil\Models\Elements\Field::class => \Narsil\Policies\FieldPolicy::class,
     \Narsil\Models\Elements\Template::class => \Narsil\Policies\TemplatePolicy::class,

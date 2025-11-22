@@ -13,6 +13,7 @@ return [
 
     \Narsil\Contracts\Forms\BlockElementForm::class => \Narsil\Implementations\Forms\BlockElementForm::class,
     \Narsil\Contracts\Forms\BlockForm::class => \Narsil\Implementations\Forms\BlockForm::class,
+    \Narsil\Contracts\Forms\ConfigurationForm::class => \Narsil\Implementations\Forms\ConfigurationForm::class,
     \Narsil\Contracts\Forms\EntityForm::class => \Narsil\Implementations\Forms\EntityForm::class,
     \Narsil\Contracts\Forms\FieldForm::class => \Narsil\Implementations\Forms\FieldForm::class,
     \Narsil\Contracts\Forms\FooterForm::class => \Narsil\Implementations\Forms\FooterForm::class,

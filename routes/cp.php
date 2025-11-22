@@ -14,6 +14,8 @@ use Narsil\Http\Controllers\Blocks\BlockReplicateManyController;
 use Narsil\Http\Controllers\Blocks\BlockStoreController;
 use Narsil\Http\Controllers\Blocks\BlockUpdateController;
 use Narsil\Http\Controllers\Collections\CollectionSummaryController;
+use Narsil\Http\Controllers\Configurations\ConfigurationEditController;
+use Narsil\Http\Controllers\Configurations\ConfigurationUpdateController;
 use Narsil\Http\Controllers\DashboardController;
 use Narsil\Http\Controllers\Entities\EntityCreateController;
 use Narsil\Http\Controllers\Entities\EntityDestroyController;
@@ -269,6 +271,31 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
+        Route::prefix(Site::VIRTUAL_TABLE)->name(Site::VIRTUAL_TABLE . '.')->group(function ()
+        {
+            Route::get('/', SiteSummaryController::class)
+                ->name('summary');
+            Route::get('/{site}/edit', SiteEditController::class)
+                ->middleware(CountryMiddleware::class)
+                ->name('edit');
+            Route::patch('/{site}', SiteUpdateController::class)
+                ->name('update');
+
+            Route::name('pages.')->group(function ()
+            {
+                Route::get('/{site}/create', SitePageCreateController::class)
+                    ->name('create');
+                Route::post('/{site}', SitePageStoreController::class)
+                    ->name('store');
+                Route::get('/{site}/{sitePage}/edit', SitePageEditController::class)
+                    ->name('edit');
+                Route::patch('/{site}/{sitePage}', SitePageUpdateController::class)
+                    ->name('update');
+                Route::delete('/{site}/{sitePage}', SitePageDestroyController::class)
+                    ->name('destroy');
+            });
+        });
+
         Route::prefix(Template::TABLE)->name(Template::TABLE . '.')->group(function ()
         {
             Route::get('/', TemplateIndexController::class)
@@ -347,29 +374,12 @@ Route::middleware([
                 ->name('unpublish');
         });
 
-        Route::prefix(Site::VIRTUAL_TABLE)->name(Site::VIRTUAL_TABLE . '.')->group(function ()
+        Route::prefix('settings')->name('settings.')->group(function ()
         {
-            Route::get('/', SiteSummaryController::class)
-                ->name('summary');
-            Route::get('/{site}/edit', SiteEditController::class)
-                ->middleware(CountryMiddleware::class)
+            Route::get('/', ConfigurationEditController::class)
                 ->name('edit');
-            Route::patch('/{site}', SiteUpdateController::class)
+            Route::patch('/', ConfigurationUpdateController::class)
                 ->name('update');
-
-            Route::name('pages.')->group(function ()
-            {
-                Route::get('/{site}/create', SitePageCreateController::class)
-                    ->name('create');
-                Route::post('/{site}', SitePageStoreController::class)
-                    ->name('store');
-                Route::get('/{site}/{sitePage}/edit', SitePageEditController::class)
-                    ->name('edit');
-                Route::patch('/{site}/{sitePage}', SitePageUpdateController::class)
-                    ->name('update');
-                Route::delete('/{site}/{sitePage}', SitePageDestroyController::class)
-                    ->name('destroy');
-            });
         });
 
         #endregion

@@ -29,7 +29,7 @@ import type {
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
-type FormProps = FormType & {
+type FormProps = {
   countries?: SelectOption[];
   data?: {
     created_at?: string;

@@ -2,6 +2,7 @@
 
 #region USE
 
+use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
@@ -46,6 +47,9 @@ return [
             'replicated' => 'The block has been successfully duplicated.',
             'replicated_many' => 'The blocks have been successfully duplicated.',
             'updated' => 'The block has been successfully updated.',
+        ],
+        Configuration::TABLE => [
+            'updated' => 'The settings has been successfully updated.',
         ],
         Entity::TABLE => [
             'created' => 'The entity has been successfully created.',

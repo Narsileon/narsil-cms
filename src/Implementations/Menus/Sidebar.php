@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Menus;
 use Narsil\Contracts\Menus\Sidebar as Contract;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Implementations\AbstractMenu;
+use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
@@ -168,6 +169,14 @@ class Sidebar extends AbstractMenu implements Contract
                 ->label(trans('narsil::tables.permissions'))
                 ->permissions([
                     PermissionService::getName(Permission::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]),
+            new MenuItem()
+                ->group($group)
+                ->href(route('settings.edit'))
+                ->icon('settings')
+                ->label(trans('narsil::ui.settings'))
+                ->permissions([
+                    PermissionService::getName(Configuration::TABLE, PermissionEnum::UPDATE->value)
                 ]),
         ];
     }
