@@ -74,6 +74,7 @@ class EntityEditController extends RenderController
     {
         $entity->append([
             Entity::ATTRIBUTE_HAS_DRAFT,
+            Entity::ATTRIBUTE_HAS_NEW_REVISION,
             Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION,
         ]);
 

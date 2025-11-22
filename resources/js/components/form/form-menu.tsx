@@ -1,10 +1,11 @@
-import { router } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { Button } from "@narsil-cms/blocks";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuRoot,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
@@ -29,6 +30,24 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
         <Button icon="more-vertical" size="icon" variant="outline" {...props} />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        {routes?.unpublish && data?.id ? (
+          <>
+            <DropdownMenuItem asChild={true}>
+              <Link
+                as="button"
+                href={route(routes.unpublish, {
+                  ...routes.params,
+                  id: data?.id,
+                })}
+                method="post"
+              >
+                <Icon name="eye-off" />
+                {trans("ui.unpublish")}
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+          </>
+        ) : null}
         {routes?.destroy && data?.id ? (
           <DropdownMenuItem
             onClick={() => {

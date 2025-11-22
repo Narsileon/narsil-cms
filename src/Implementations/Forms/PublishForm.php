@@ -29,13 +29,6 @@ class PublishForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::CLASS_NAME => 'flex-row justify-between',
-                Field::HANDLE => Entity::PUBLISHED,
-                Field::NAME => trans('narsil::validation.attributes.published'),
-                Field::TYPE => SwitchField::class,
-                Field::SETTINGS => app(SwitchField::class),
-            ]),
-            new Field([
-                Field::CLASS_NAME => 'flex-row justify-between',
                 Field::HANDLE => Entity::PUBLISHED_FROM,
                 Field::NAME => trans('narsil::validation.attributes.published_from'),
                 Field::TYPE => DatetimeField::class,

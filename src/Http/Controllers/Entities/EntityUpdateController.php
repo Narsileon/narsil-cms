@@ -47,12 +47,26 @@ class EntityUpdateController extends RedirectController
         $entity = $entities->firstWhere(Entity::REVISION, '>', 0);
         $draftEntity = $entities->firstWhere(Entity::REVISION, '=', -1);
 
-        if (!$draftEntity && !$request->get('_dirty'))
+        if (!$request->get('_dirty'))
         {
-            return $this
-                ->redirect(route('collections.index', [
-                    'collection' => $collection
-                ]));
+            if ($request->get(Entity::PUBLISHED) && !$entity->{Entity::PUBLISHED})
+            {
+                $entity->updateQuietly([
+                    Entity::PUBLISHED => true,
+                ]);
+
+                return $this
+                    ->redirect(route('collections.index', [
+                        'collection' => $collection
+                    ]));
+            }
+            else if (!$draftEntity)
+            {
+                return $this
+                    ->redirect(route('collections.index', [
+                        'collection' => $collection
+                    ]));
+            }
         }
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
@@ -71,7 +85,6 @@ class EntityUpdateController extends RedirectController
         $attributes = array_merge($attributes, [
             Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
             Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
-            Entity::PUBLISHED => Arr::get($data, Entity::PUBLISHED),
             Entity::PUBLISHED_FROM => Arr::get($data, Entity::PUBLISHED_FROM),
             Entity::PUBLISHED_TO => Arr::get($data, Entity::PUBLISHED_TO),
             Entity::UPDATED_AT => Carbon::now(),
@@ -90,6 +103,7 @@ class EntityUpdateController extends RedirectController
             }
 
             $this->replicateEntity($entity, array_merge($attributes, [
+                Entity::PUBLISHED => false,
                 Entity::REVISION => -1,
                 Entity::UUID => $uuid,
             ]));
@@ -98,7 +112,9 @@ class EntityUpdateController extends RedirectController
         }
         else
         {
-            $this->replicateEntity($entity, $attributes);
+            $this->replicateEntity($entity, array_merge($attributes, [
+                Entity::PUBLISHED => false,
+            ]));
 
             $entity->discardChanges();
             $entity->delete();

@@ -97,6 +97,7 @@ export type RouteNames = {
   show?: string;
   store?: string;
   update?: string;
+  unpublish?: string;
 };
 
 export type SelectOption = {

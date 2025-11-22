@@ -37,6 +37,12 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
     });
   }
 
+  function saveAndPublish() {
+    submit(action, method, {
+      published: true,
+    });
+  }
+
   function saveAsNew() {
     if (routes?.store) {
       submit(route(routes.store, routes.params), "post");
@@ -79,18 +85,26 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.ctrlKey || event.metaKey) {
         switch (event.code) {
+          case "KeyD":
+            event.preventDefault();
+
+            saveAsNew();
+            break;
+
+          case "KeyP":
+            event.preventDefault();
+
+            saveAndPublish();
+            break;
+
           case "KeyS":
             event.preventDefault();
+
             if (event.shiftKey) {
               saveAndAdd();
             } else {
               saveAndContinue();
             }
-            break;
-
-          case "KeyD":
-            event.preventDefault();
-            saveAsNew();
             break;
         }
       }
@@ -111,6 +125,11 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
           <Button className="w-8" icon="chevron-down" size="icon" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+          <DropdownMenuItem onClick={saveAndPublish}>
+            <Icon name="save-and-continue" />
+            {`${submitLabel} & ${trans("ui.publish")}`}
+            <Kbd className="ml-auto" elements={["Ctrl", "P"]} />
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={saveAndContinue}>
             <Icon name="save-and-continue" />
             {`${submitLabel} & ${trans("ui.continue")}`}

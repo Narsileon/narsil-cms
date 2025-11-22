@@ -58,9 +58,11 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil::ui.create')
             ->add('narsil::ui.default_language')
             ->add('narsil::ui.delete')
+            ->add('narsil::ui.publish')
             ->add('narsil::ui.save')
             ->add('narsil::ui.save_as_new')
-            ->add('narsil::ui.translations');
+            ->add('narsil::ui.translations')
+            ->add('narsil::ui.unpublish');
     }
 
     #endregion

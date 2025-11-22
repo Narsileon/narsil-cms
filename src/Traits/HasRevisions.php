@@ -89,6 +89,13 @@ trait HasRevisions
     final public const ATTRIBUTE_HAS_DRAFT = 'has_draft';
 
     /**
+     * The name of the "has new revision" relation.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_HAS_NEW_REVISION = 'has_new_revision';
+
+    /**
      * The name of the "has published revision" relation.
      *
      * @var string
@@ -255,6 +262,31 @@ trait HasRevisions
             get: function ()
             {
                 return $this->draft()->exists();
+            },
+        );
+    }
+
+    /**
+     * Get the "has new revision" attribute.
+     *
+     * @return Attribute
+     */
+    final protected function hasNewRevision(): Attribute
+    {
+        return new Attribute(
+            get: function ()
+            {
+                $maxRevision = self::query()
+                    ->where(self::ID, $this->{self::ID})
+                    ->orderByDesc(self::REVISION)
+                    ->first();
+
+                if ($maxRevision && $maxRevision->{self::PUBLISHED})
+                {
+                    return false;
+                };
+
+                return true;
             },
         );
     }

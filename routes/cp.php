@@ -23,6 +23,7 @@ use Narsil\Http\Controllers\Entities\EntityIndexController;
 use Narsil\Http\Controllers\Entities\EntityReplicateController;
 use Narsil\Http\Controllers\Entities\EntityReplicateManyController;
 use Narsil\Http\Controllers\Entities\EntityStoreController;
+use Narsil\Http\Controllers\Entities\EntityUnpublishController;
 use Narsil\Http\Controllers\Entities\EntityUpdateController;
 use Narsil\Http\Controllers\Fields\FieldCreateController;
 use Narsil\Http\Controllers\Fields\FieldDestroyController;
@@ -342,6 +343,8 @@ Route::middleware([
                 ->name('replicate');
             Route::post('/{collection}/replicate-many', EntityReplicateManyController::class)
                 ->name('replicate-many');
+            Route::post('/{collection}/{id}/unpublish', EntityUnpublishController::class)
+                ->name('unpublish');
         });
 
         Route::prefix(Site::VIRTUAL_TABLE)->name(Site::VIRTUAL_TABLE . '.')->group(function ()

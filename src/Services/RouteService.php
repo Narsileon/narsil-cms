@@ -37,6 +37,7 @@ abstract class RouteService
             'replicateMany' => "$tableName.replicate-many",
             'show' => "$tableName.show",
             'store' => "$tableName.store",
+            'unpublish' => "$tableName.unpublish",
             'update' => "$tableName.update",
         ];
 

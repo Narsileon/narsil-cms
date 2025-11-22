@@ -209,7 +209,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                           )}
                           draft={!!data?.has_draft}
                           published={!!data?.has_published_revision}
-                          saved={!data?.published}
+                          saved={!!data?.has_new_revision}
                         />
                       ) : null}
                     </div>

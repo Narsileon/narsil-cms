@@ -68,6 +68,7 @@ return [
     'password'           => 'Password',
     'personalization'    => 'Personalization',
     'profile'            => 'Profile',
+    'publish'            => 'Publish',
     'recovery_codes'     => 'Recovery codes',
     'redo'               => 'Redo',
     'register'           => 'Register',
@@ -101,6 +102,7 @@ return [
     'tools'              => 'Tools',
     'translations'       => 'Translations',
     'undo'               => 'Undo',
+    'unpublish'          => 'Unpublish',
     'update'             => 'Update',
     'validation'         => 'Validation',
 ];

@@ -49,7 +49,6 @@ class EntityStoreController extends RedirectController
             ->validated();
 
         $attributes = array_merge($attributes, [
-            Entity::PUBLISHED => Arr::get($data, Entity::PUBLISHED),
             Entity::PUBLISHED_FROM => Arr::get($data, Entity::PUBLISHED_FROM),
             Entity::PUBLISHED_TO => Arr::get($data, Entity::PUBLISHED_TO),
         ]);
