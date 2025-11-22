@@ -189,6 +189,7 @@ trait HasRevisions
                 self::ID,
             )
             ->withTrashed()
+            ->orderByDesc(self::REVISION)
             ->where(self::PUBLISHED, true);
     }
 
