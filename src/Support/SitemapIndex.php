@@ -164,7 +164,9 @@ class SitemapIndex
      */
     protected function saveDocument(string $path): void
     {
-        $filename = public_path($path);
+        $host = $this->host->{Host::HANDLE};
+
+        $filename = public_path("$host/$path");
 
         file_put_contents($filename, $this->document->saveXML());
     }

@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\SitePage;
@@ -256,7 +257,9 @@ class Sitemap
      */
     protected function saveDocument(string $path): void
     {
-        $filename = public_path($path);
+        $host = $this->hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE};
+
+        $filename = public_path("$host/$path");
 
         if (!file_exists(dirname($filename)))
         {
