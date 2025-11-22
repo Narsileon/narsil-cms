@@ -53,7 +53,7 @@ return new class extends Migration
                 ->id(Configuration::ID);
             $blueprint
                 ->string(Configuration::DEFAULT_LANGUAGE)
-                ->default('en');
+                ->nullable();
             $blueprint
                 ->timestamps();
         });

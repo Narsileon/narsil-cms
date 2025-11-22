@@ -13,6 +13,7 @@ use Narsil\Contracts\Forms\PublishForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
+use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
@@ -139,6 +140,8 @@ class EntityEditController extends RenderController
      */
     protected function getForm(Template $template, Entity $entity): EntityForm
     {
+        $configuration = Configuration::firstOrCreate();
+
         $form = app()
             ->make(EntityForm::class, [
                 'template' => $template,
@@ -149,6 +152,7 @@ class EntityEditController extends RenderController
             ]))
             ->autoSave(true)
             ->id($entity->{Entity::UUID})
+            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE})
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(MethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));

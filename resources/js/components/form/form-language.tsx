@@ -2,7 +2,7 @@ import { Badge } from "@narsil-cms/blocks";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
 import { cn } from "@narsil-cms/lib/utils";
-import { type ComponentProps } from "react";
+import { useMemo, type ComponentProps } from "react";
 import useForm from "./form-context";
 
 type FormLanguageProps = Omit<ComponentProps<typeof ToggleGroupRoot>, "type"> & {
@@ -11,11 +11,20 @@ type FormLanguageProps = Omit<ComponentProps<typeof ToggleGroupRoot>, "type"> & 
 };
 
 function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLanguageProps) {
-  const { languageOptions } = useForm();
+  const { defaultLanguage, languageOptions } = useForm();
   const { trans } = useLocalization();
 
+  const orderedOptions = useMemo(() => {
+    const defaultOption = languageOptions.filter((o) => o.value === defaultLanguage);
+    const otherOptions = languageOptions
+      .filter((o) => o.value !== defaultLanguage)
+      .sort((a, b) => String(a.label).localeCompare(String(b.label)));
+
+    return [...defaultOption, ...otherOptions];
+  }, [defaultLanguage, languageOptions]);
+
   const currentOption =
-    languageOptions.find((option) => option.value === value) ?? languageOptions[0];
+    orderedOptions.find((option) => option.value === value) ?? orderedOptions[0];
 
   return (
     <ToggleGroupRoot
@@ -24,7 +33,7 @@ function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLang
       type="single"
       {...props}
     >
-      {languageOptions.map((option, index) => (
+      {orderedOptions.map((option, index) => (
         <ToggleGroupItem
           className="flex w-full items-center justify-between pr-2"
           value={option.value as string}
@@ -46,7 +55,7 @@ function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLang
             {option.label as string}
           </span>
 
-          {index === 0 ? (
+          {option.value === defaultLanguage ? (
             <Badge className="bg-background" variant="outline">
               {trans("ui.default_language")}
             </Badge>
