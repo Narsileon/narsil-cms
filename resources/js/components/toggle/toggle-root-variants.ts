@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 
 const toggleRootVariants = cva(
   cn(
-    "inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-[color,box-shadow] outline-none",
+    "inline-flex shrink-0 items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-[color,box-shadow] outline-none",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
     "dark:aria-invalid:ring-destructive/40",
     "dark:hover:bg-accent",

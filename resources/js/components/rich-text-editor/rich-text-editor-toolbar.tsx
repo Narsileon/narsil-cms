@@ -53,7 +53,7 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
   return (
     <div
       className={cn(
-        "border-color border-color flex h-11 flex-wrap items-center gap-1 border-b px-1",
+        "border-color border-color no-scrollbar flex h-11 items-center gap-1 overflow-x-auto border-b px-1",
         className,
       )}
       {...props}
