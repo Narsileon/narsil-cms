@@ -57,6 +57,12 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   }
 
   useEffect(() => {
+    if (get(data, id) === undefined) {
+      setData?.(id, getValue());
+    }
+  }, []);
+
+  useEffect(() => {
     let nextVisible = true;
 
     for (const condition of conditions || []) {

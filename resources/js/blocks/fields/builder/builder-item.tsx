@@ -94,6 +94,10 @@ function BuilderItem({
               const childName = element.name ?? childElement.name;
               let childHandle = `${baseHandle}.fields.${index}.value`;
 
+              if ("type" in childElement && !childElement.translatable) {
+                childHandle = `${childHandle}.en`;
+              }
+
               if (
                 "type" in childElement &&
                 childElement.type === "Narsil\\Contracts\\Fields\\BuilderField"
