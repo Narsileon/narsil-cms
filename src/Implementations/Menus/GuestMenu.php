@@ -76,7 +76,7 @@ class GuestMenu extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('user-configurations.edit'))
                 ->icon('settings')
-                ->label(trans('narsil::ui.settings'))
+                ->label(trans('narsil::tables.user_configurations'))
                 ->method(MethodEnum::GET->value)
                 ->modal(true),
         ];

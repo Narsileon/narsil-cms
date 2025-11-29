@@ -2,6 +2,7 @@
 
 #region USE
 
+use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
@@ -15,11 +16,13 @@ use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
+use Narsil\Models\Users\UserConfiguration;
 
 #endregion
 
 return [
     Block::TABLE => 'Blocks',
+    Configuration::TABLE => 'Einstellungen',
     Entity::TABLE => 'Entitäten',
     Field::TABLE => 'Felder',
     Footer::TABLE => 'Fußzeilen',
@@ -32,4 +35,5 @@ return [
     Template::TABLE => 'Vorlagen',
     User::TABLE => 'Benutzer',
     UserBookmark::TABLE => 'Lesezeichen',
+    UserConfiguration::TABLE => 'Einstellungen',
 ];

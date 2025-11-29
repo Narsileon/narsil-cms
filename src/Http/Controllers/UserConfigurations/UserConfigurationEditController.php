@@ -12,6 +12,7 @@ use Narsil\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
 use Narsil\Http\Controllers\RenderController;
+use Narsil\Models\Users\UserConfiguration;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -64,7 +65,7 @@ class UserConfigurationEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.settings');
+        return trans('narsil::models.' . UserConfiguration::class);
     }
 
     /**
@@ -72,7 +73,7 @@ class UserConfigurationEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.settings');
+        return trans('narsil::models.' . UserConfiguration::class);
     }
 
     #endregion

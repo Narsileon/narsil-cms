@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
+use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasRoles;
 use Narsil\Traits\HasTranslations;
 
@@ -21,6 +22,7 @@ class Permission extends Model
 {
     use Blameable;
     use HasAuditLogs;
+    use HasDatetimes;
     use HasRoles;
     use HasTranslations;
 

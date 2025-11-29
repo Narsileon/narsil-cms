@@ -70,7 +70,7 @@ class ConfigurationEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.settings');
+        return trans('narsil::models.' . Configuration::class);
     }
 
     /**
@@ -96,7 +96,7 @@ class ConfigurationEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.settings');
+        return trans('narsil::models.' . Configuration::class);
     }
 
     #endregion

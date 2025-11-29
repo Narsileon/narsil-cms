@@ -174,7 +174,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('settings.edit'))
                 ->icon('settings')
-                ->label(trans('narsil::ui.settings'))
+                ->label(trans('narsil::tables.configurations'))
                 ->permissions([
                     PermissionService::getName(Configuration::TABLE, PermissionEnum::UPDATE->value)
                 ]),
