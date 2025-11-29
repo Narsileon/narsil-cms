@@ -6,6 +6,7 @@ namespace Narsil\Http\Controllers\Configurations;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\ConfigurationForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\RenderController;
@@ -33,7 +34,7 @@ class ConfigurationEditController extends RenderController
         $data = $this->getData($configuration);
         $form = $this->getForm($configuration);
 
-        return $this->render('narsil/cms::settings/form', [
+        return $this->render('narsil/cms::resources/form', [
             'data' => $data,
             'form' => $form,
         ]);
@@ -52,7 +53,14 @@ class ConfigurationEditController extends RenderController
      */
     protected function getData(Configuration $configuration): array
     {
-        $data = $configuration->toArray();
+        $configuration->loadMissingCreatorAndEditor();
+
+        $configuration->mergeCasts([
+            Configuration::CREATED_AT => HumanDatetimeCast::class,
+            Configuration::UPDATED_AT => HumanDatetimeCast::class,
+        ]);
+
+        $data = $configuration->toArrayWithTranslations();
 
         return $data;
     }

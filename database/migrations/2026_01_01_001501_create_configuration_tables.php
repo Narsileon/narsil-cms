@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Configuration;
+use Narsil\Models\User;
 
 #endregion
 
@@ -55,7 +56,19 @@ return new class extends Migration
                 ->string(Configuration::DEFAULT_LANGUAGE)
                 ->nullable();
             $blueprint
-                ->timestamps();
+                ->timestamp(Configuration::CREATED_AT);
+            $blueprint
+                ->foreignId(Configuration::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Configuration::UPDATED_AT);
+            $blueprint
+                ->foreignId(Configuration::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
         });
     }
 

@@ -5,6 +5,10 @@ namespace Narsil\Models;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Traits\Blameable;
+use Narsil\Traits\HasAuditLogs;
+use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -14,6 +18,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Configuration extends Model
 {
+    use Blameable;
+    use HasAuditLogs;
+    use HasDatetimes;
+    use HasTranslations;
+
     #region CONSTRUCTOR
 
     /**

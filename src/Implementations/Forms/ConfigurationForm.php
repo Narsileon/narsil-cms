@@ -5,12 +5,15 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Locale;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Forms\ConfigurationForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\TemplateSection;
+use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -44,16 +47,41 @@ class ConfigurationForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
-        $languageSelectOptions = $this->getLanguageSelectOptions();
+        $frontendLanguages = HostLocaleLanguage::getUniqueLanguages();
+        $backendLanguages = Config::get('narsil.locales');
 
         return [
-            new Field([
-                Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                Field::NAME => trans('narsil::validation.attributes.default_language'),
-                Field::TYPE => SelectField::class,
-                Field::RELATION_OPTIONS => $languageSelectOptions,
-                Field::SETTINGS => app(SelectField::class)
-                    ->required(true),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'frontend',
+                TemplateSection::NAME => trans('narsil::ui.frontend'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
+                            Field::NAME => trans('narsil::validation.attributes.default_language'),
+                            Field::TYPE => SelectField::class,
+                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($frontendLanguages),
+                            Field::SETTINGS => app(SelectField::class)
+                                ->required(true),
+                        ]),
+                    ]),
+                ],
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'backend',
+                TemplateSection::NAME => trans('narsil::ui.backend'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
+                            Field::NAME => trans('narsil::validation.attributes.default_language'),
+                            Field::TYPE => SelectField::class,
+                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($backendLanguages),
+                            Field::SETTINGS => app(SelectField::class)
+                                ->required(true),
+                        ]),
+                    ]),
+                ],
             ]),
         ];
     }
@@ -61,12 +89,12 @@ class ConfigurationForm extends AbstractForm implements Contract
     /**
      * Get the language select options.
      *
+     * @param array<string> $languages
+     *
      * @return array<SelectOption>
      */
-    protected function getLanguageSelectOptions(): array
+    protected function getLanguageSelectOptions(array $languages): array
     {
-        $languages = HostLocaleLanguage::getUniqueLanguages();
-
         $options = [];
 
         foreach ($languages as $language)
