@@ -84,7 +84,7 @@ class EntityCreateController extends RenderController
             ->action(route('collections.store', [
                 'collection' => $template->{Template::HANDLE}
             ]))
-            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE})
+            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(MethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.save'));

@@ -152,7 +152,7 @@ class EntityEditController extends RenderController
             ]))
             ->autoSave(true)
             ->id($entity->{Entity::UUID})
-            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE})
+            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(MethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));

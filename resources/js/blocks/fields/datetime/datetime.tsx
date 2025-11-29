@@ -95,30 +95,30 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
           <Separator />
           <div className="grid w-full gap-2 p-4">
             <div className="no-scrollbar flex gap-1 overflow-x-auto" onWheel={onWheel}>
-              {hours.map((hour) => (
+              {hours.map((h) => (
                 <Button
                   className="aspect-square shrink-0"
                   disabled={!date}
                   size="icon-sm"
-                  variant={date && date.getHours() === hour ? "primary" : "ghost"}
-                  onClick={() => updateTime(hour, minute ?? 0)}
-                  key={hour}
+                  variant={date && hour === h ? "primary" : "ghost"}
+                  onClick={() => updateTime(h, minute ?? 0)}
+                  key={h}
                 >
-                  {hour}
+                  {h}
                 </Button>
               ))}
             </div>
             <div className="no-scrollbar flex gap-1 overflow-x-auto" onWheel={onWheel}>
-              {minutes.map((minute) => (
+              {minutes.map((m) => (
                 <Button
                   className="aspect-square shrink-0"
                   disabled={!date}
                   size="icon-sm"
-                  variant={date && date.getMinutes() === Number(minute) ? "primary" : "ghost"}
-                  onClick={() => updateTime(hour ?? 0, Number(minute))}
-                  key={minute}
+                  variant={date && minute === Number(m) ? "primary" : "ghost"}
+                  onClick={() => updateTime(hour ?? 0, Number(m))}
+                  key={m}
                 >
-                  {minute}
+                  {m}
                 </Button>
               ))}
             </div>
