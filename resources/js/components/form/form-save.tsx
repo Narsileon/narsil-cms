@@ -125,11 +125,13 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
           <Button className="w-8" icon="chevron-down" size="icon" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={saveAndPublish}>
-            <Icon name="eye" />
-            {`${submitLabel} & ${trans("ui.publish")}`}
-            <Kbd className="ml-auto" elements={["Ctrl", "P"]} />
-          </DropdownMenuItem>
+          {routes?.unpublish ? (
+            <DropdownMenuItem onClick={saveAndPublish}>
+              <Icon name="eye" />
+              {`${submitLabel} & ${trans("ui.publish")}`}
+              <Kbd className="ml-auto" elements={["Ctrl", "P"]} />
+            </DropdownMenuItem>
+          ) : null}
           <DropdownMenuItem onClick={saveAndContinue}>
             <Icon name="save-and-continue" />
             {`${submitLabel} & ${trans("ui.continue")}`}

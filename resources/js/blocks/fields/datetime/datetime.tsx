@@ -101,8 +101,8 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
                   disabled={!date}
                   size="icon-sm"
                   variant={date && date.getHours() === hour ? "primary" : "ghost"}
-                  key={hour}
                   onClick={() => updateTime(hour, minute ?? 0)}
+                  key={hour}
                 >
                   {hour}
                 </Button>
@@ -116,6 +116,7 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
                   size="icon-sm"
                   variant={date && date.getMinutes() === Number(minute) ? "primary" : "ghost"}
                   onClick={() => updateTime(hour ?? 0, Number(minute))}
+                  key={minute}
                 >
                   {minute}
                 </Button>
