@@ -6,6 +6,9 @@ namespace Narsil\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
+use Narsil\Services\PageService;
 
 #endregion
 
@@ -19,13 +22,14 @@ class PageController extends Controller
 
     /**
      * @param Request $request
-     * @param string|null $slug
      *
      * @return mixed
      */
-    public function __invoke(Request $request): mixed
+    public function __invoke(Request $request): Response
     {
-        return back();
+        $props = PageService::resolveURL(request());
+
+        return Inertia::render('index', $props ?? []);
     }
 
     #endregion
