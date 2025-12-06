@@ -4,8 +4,11 @@ namespace Narsil\Models\Globals;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Database\Factories\FooterFactory;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -17,11 +20,13 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(FooterFactory::class)]
 class Footer extends Model
 {
     use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
+    use HasFactory;
     use HasTranslations;
 
     #region CONSTRUCTOR

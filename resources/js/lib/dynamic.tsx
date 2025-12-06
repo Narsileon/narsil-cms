@@ -10,7 +10,7 @@ export default function dynamic<T extends object = {}>(
   importer: DynamicImport<T>,
   options: DynamicOptions = {},
 ) {
-  const { loading: Loading = () => <div>Loading...</div> } = options;
+  const { loading: Loading = () => <div></div> } = options;
 
   const LazyComponent = lazy(importer);
 
