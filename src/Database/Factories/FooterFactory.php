@@ -47,14 +47,14 @@ class FooterFactory extends Factory
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
     /**
      * @param Footer $footer
      *
      * @return void
      */
-    private function createSocialLink(Footer $footer): void
+    protected function createSocialLink(Footer $footer): void
     {
         $socialLinks = [[
             FooterSocialLink::ICON => 'linkedin',

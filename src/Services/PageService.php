@@ -27,27 +27,38 @@ abstract class PageService
     /**
      * @param Request $request
      *
-     * @return SitePage|null
+     * @return Site
      */
-    public static function resolveURL(Request $request): ?SitePage
+    public static function resolveSite(Request $request): ?Site
     {
         $handle = $request->getHost();
 
-        $host = Host::query()
+        $site = Site::query()
             ->with([
-                Host::RELATION_LOCALES,
-                Host::RELATION_LOCALES . '.' . HostLocale::RELATION_LANGUAGES
+                Site::RELATION_LOCALES,
+                Site::RELATION_LOCALES . '.' . HostLocale::RELATION_LANGUAGES
             ])
-            ->where(Host::HANDLE, $handle)->firstOrFail();
+            ->where(Site::HANDLE, $handle)->firstOrFail();
 
-        if (!$host)
+        if (!$site)
         {
             abort(404);
         }
 
+        return $site;
+    }
+
+    /**
+     * @param Request $request
+     * @param Site $site
+     *
+     * @return SitePage|null
+     */
+    public static function resolvePage(Request $request, Site $site): ?SitePage
+    {
         $url = $request->fullUrl();
 
-        foreach ($host->{Host::RELATION_LOCALES} as $hostLocale)
+        foreach ($site->{Host::RELATION_LOCALES} as $hostLocale)
         {
             $regex = $hostLocale->{HostLocale::REGEX};
 

@@ -6,9 +6,11 @@ namespace Narsil\Providers;
 
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Models\Globals\Footer;
+use Narsil\Models\Sites\Site;
 
 #endregion
 
@@ -46,7 +48,10 @@ class MigrationServiceProvider extends ServiceProvider
         {
             Artisan::call('narsil:sync-permissions');
 
-            Footer::factory()->create();
+            if (!Site::exists())
+            {
+                $this->createFirstWebsite();
+            }
         });
     }
 
@@ -59,6 +64,23 @@ class MigrationServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom([
             __DIR__ . '/../../database/migrations',
+        ]);
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    private function createFirstWebsite(): void
+    {
+        $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
+
+        $footer = Footer::factory()->create();
+
+        Site::factory()->create([
+            Site::FOOTER_ID => $footer->{Footer::ID},
+            Site::HANDLE => $baseUrl,
+            Site::NAME => $baseUrl,
         ]);
     }
 

@@ -4,9 +4,12 @@ namespace Narsil\Models\Hosts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Narsil\Database\Factories\HostFactory;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -18,11 +21,13 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(HostFactory::class)]
 class Host extends Model
 {
     use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
+    use HasFactory;
     use HasTranslations;
 
     #region CONSTRUCTOR

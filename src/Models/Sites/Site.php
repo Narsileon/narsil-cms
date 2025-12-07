@@ -4,8 +4,10 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Database\Factories\SiteFactory;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -16,6 +18,7 @@ use Narsil\Models\Hosts\Host;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(SiteFactory::class)]
 class Site extends Host
 {
     #region CONSTANTS
