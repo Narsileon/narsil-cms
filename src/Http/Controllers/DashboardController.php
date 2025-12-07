@@ -25,7 +25,7 @@ class DashboardController extends RenderController
      */
     public function __invoke(Request $request): Response
     {
-        return $this->render('narsil/cms::dashboard/index');
+        return $this->render('narsil/cms::index');
     }
 
     #endregion
