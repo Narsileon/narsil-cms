@@ -120,7 +120,7 @@ abstract class PageService
                 SiteUrl::RELATION_SITE,
             ])
             ->whereRelation(SiteUrl::RELATION_SITE, Site::HANDLE, '=', $host)
-            ->where(SiteUrl::COUNTRY, '=', Str::upper($country))
+            ->where(SiteUrl::COUNTRY, '=', $country === 'default' ? $country : Str::upper($country))
             ->where(SiteUrl::LANGUAGE, '=', $language)
             ->where(SiteUrl::PATH, '=', $path)
             ->first();
