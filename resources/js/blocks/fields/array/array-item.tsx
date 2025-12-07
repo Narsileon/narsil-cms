@@ -11,7 +11,8 @@ import { FormRenderer } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
-import { cn } from "@narsil-cms/lib/utils";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { cn, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { Block, Field } from "@narsil-cms/types";
 import { type ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
@@ -40,6 +41,7 @@ function ArrayItem({
   onMoveUp,
   onRemove,
 }: ArrayItemProps) {
+  const { locale } = useLocale();
   const { trans } = useLocalization();
 
   const [open, setCollapsed] = useState<boolean>(true);
@@ -70,7 +72,9 @@ function ArrayItem({
         <CollapsibleTrigger className={cn(open && "border-b")} asChild={true}>
           <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
             <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
-            <span className="grow text-start">{item[labelKey] ?? "item"}</span>
+            <span className="grow text-start">
+              {getTranslatableSelectOption(item, labelKey, locale) ?? "item"}
+            </span>
             <div className="flex items-center gap-1">
               <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
               <Button

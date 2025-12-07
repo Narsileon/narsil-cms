@@ -8,6 +8,7 @@ use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Models\Globals\Footer;
 
 #endregion
 
@@ -44,6 +45,8 @@ class MigrationServiceProvider extends ServiceProvider
         Event::listen(MigrationsEnded::class, function (MigrationsEnded $event)
         {
             Artisan::call('narsil:sync-permissions');
+
+            Footer::factory()->create();
         });
     }
 

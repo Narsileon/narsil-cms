@@ -42,6 +42,11 @@ class Footer extends Model
             self::EMAIL,
         ];
 
+        $this->with = [
+            self::RELATION_LEGAL_LINKS,
+            self::RELATION_SOCIAL_LINKS,
+        ];
+
         $this->mergeGuarded([
             self::ID,
         ]);
@@ -152,7 +157,7 @@ class Footer extends Model
     final public function legal_links(): HasMany
     {
         return $this
-            ->hasOne(
+            ->hasMany(
                 FooterLegalLink::class,
                 FooterLegalLink::FOOTER_ID,
                 self::ID,
@@ -168,7 +173,7 @@ class Footer extends Model
     final public function social_links(): HasMany
     {
         return $this
-            ->hasOne(
+            ->hasMany(
                 FooterSocialLink::class,
                 FooterSocialLink::FOOTER_ID,
                 self::ID,
