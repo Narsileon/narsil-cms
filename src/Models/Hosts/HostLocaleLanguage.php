@@ -7,6 +7,8 @@ namespace Narsil\Models\Hosts;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\App;
+use Locale;
 use Narsil\Traits\HasAuditLogs;
 
 #endregion
@@ -30,6 +32,10 @@ class HostLocaleLanguage extends Model
         $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
+
+        $this->mergeAppends([
+            self::ATTRIBUTE_LABEL,
+        ]);
 
         $this->mergeGuarded([
             self::UUID,
@@ -81,6 +87,17 @@ class HostLocaleLanguage extends Model
 
     #endregion
 
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "label" attribute.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_LABEL = 'label';
+
+    #endregion
+
     #region • RELATIONS
 
     /**
@@ -110,6 +127,20 @@ class HostLocaleLanguage extends Model
             ->pluck(self::LANGUAGE)
             ->toArray();
     }
+
+    #region • ACCESSORS
+
+    /**
+     * Get the icon of the block.
+     *
+     * @return string
+     */
+    public function getLabelAttribute(): string
+    {
+        return Locale::getDisplayLanguage($this->{self::LANGUAGE}, App::getLocale());
+    }
+
+    #endregion
 
     #region • RELATIONSHIPS
 

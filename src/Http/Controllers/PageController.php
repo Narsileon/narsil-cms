@@ -38,6 +38,7 @@ class PageController extends Controller
         $page = PageService::resolvePage($request, $host);
 
         return Inertia::render('frontend/index', [
+            'locales' => $host->{Site::RELATION_LOCALES},
             'footer' => $host->{Site::RELATION_FOOTER},
             'header' => $host->{Site::RELATION_HEADER},
             'page' => $page,

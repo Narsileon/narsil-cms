@@ -56,6 +56,16 @@ export type HasElement = Model & {
   width: number;
 };
 
+export type HostLocale = Model & {
+  country: string;
+  languages: HostLocaleLanguage[];
+};
+
+export type HostLocaleLanguage = Model & {
+  language: string;
+  label: string;
+};
+
 export type Template = Model & {
   handle: string;
   id: number;
