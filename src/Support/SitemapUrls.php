@@ -6,8 +6,10 @@ namespace Narsil\Support;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\SitePage;
@@ -32,6 +34,7 @@ class SitemapUrls
     {
         $this->hostLocale = $hostLocale;
 
+        $this->baseUrls = $this->getBaseUrls();
         $this->pages = $this->getPages();
     }
 
@@ -54,11 +57,18 @@ class SitemapUrls
     protected Collection $pages;
 
     /**
-     * The associated urls.
+     * The associated base urls.
      *
      * @var array
      */
-    protected array $urls = [];
+    protected array $baseUrls = [];
+
+    /**
+     * The associated site urls.
+     *
+     * @var array
+     */
+    protected array $siteUrls = [];
 
     #endregion
 
@@ -74,17 +84,16 @@ class SitemapUrls
         return DB::transaction(function ()
         {
             SiteUrl::query()
-                ->where(SiteUrl::SITE_ID, '=', $this->hostLocale->{HostLocale::HOST_ID})
-                ->where(SiteUrl::COUNTRY, '=', $this->hostLocale->{HostLocale::COUNTRY})
+                ->whereIn(SiteUrl::HOST_LOCALE_LANGUAGE_UUID, $this->hostLocale->{HostLocale::RELATION_LANGUAGES}->pluck(HostLocaleLanguage::UUID))
                 ->delete();
 
             $collection = collect($this->pages->get('', []));
 
             $tree = $this->buildFlatTreeRecursively($collection);
 
-            if (!empty($this->urls))
+            if (!empty($this->siteUrls))
             {
-                SiteUrl::insert($this->urls);
+                SiteUrl::insert($this->siteUrls);
             }
 
             return $tree;
@@ -111,18 +120,15 @@ class SitemapUrls
         {
             $children = $this->pages->get($page->{SitePage::ID}, collect());
 
-            if (!$parent)
-            {
-                $page->{SitePage::SLUG} = null;
-            }
-
             foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
             {
                 $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
 
                 if (!$parent)
                 {
-                    $path = null;
+                    $url = $this->baseUrls[$language];
+
+                    $page->setTranslation(SitePage::SLUG, $language, $url);
                 }
                 else
                 {
@@ -131,17 +137,17 @@ class SitemapUrls
 
                     $path = $parentSlug ? "$parentSlug/$slug" : $slug;
 
-                    $page->setTranslation(SitePage::SLUG, $language, $path);
+                    $url = $this->baseUrls[$language] . '/' . $path;
+
+                    $page->setTranslation(SitePage::SLUG, $language, $url);
                 }
 
-                $this->urls[] = [
-                    SiteUrl::COUNTRY => $this->hostLocale->{HostLocale::COUNTRY},
+                $this->siteUrls[] = [
                     SiteUrl::CREATED_AT => now(),
-                    SiteUrl::LANGUAGE => $language,
+                    SiteUrl::HOST_LOCALE_LANGUAGE_UUID => $hostLocaleLanguage->{HostLocaleLanguage::UUID},
                     SiteUrl::PAGE_ID => $page->{SitePage::ID},
-                    SiteUrl::PATH => $path,
-                    SiteUrl::SITE_ID => $page->{SitePage::SITE_ID},
                     SiteUrl::UPDATED_AT => now(),
+                    SiteUrl::URL => $url,
                     SiteUrl::UUID => Str::uuid(),
                 ];
             }
@@ -152,6 +158,33 @@ class SitemapUrls
         });
 
         return $tree;
+    }
+
+    /**
+     * Get the base URLs.
+     *
+     * @return array<string,string>
+     */
+    protected function getBaseUrls(): array
+    {
+        $urls = [];
+
+        $pattern = $this->hostLocale->{HostLocale::PATTERN};
+
+        foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
+        {
+            $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
+
+            $url = $pattern;
+
+            $url = Str::replace('{host}', $this->hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE}, $url);
+            $url = Str::replace('{country}', $this->hostLocale->{HostLocale::COUNTRY}, $url);
+            $url = Str::replace('{language}', $language, $url);
+
+            $urls[$language] = Str::lower($url);
+        }
+
+        return $urls;
     }
 
     /**

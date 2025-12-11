@@ -34,7 +34,7 @@ class HostLocaleLanguage extends Model
         $this->primaryKey = self::UUID;
 
         $this->mergeAppends([
-            self::ATTRIBUTE_LABEL,
+            self::ATTRIBUTE_DISPLAY_LANGUAGE,
         ]);
 
         $this->mergeGuarded([
@@ -94,7 +94,7 @@ class HostLocaleLanguage extends Model
      *
      * @var string
      */
-    final public const ATTRIBUTE_LABEL = 'label';
+    final public const ATTRIBUTE_DISPLAY_LANGUAGE = 'display_language';
 
     #endregion
 
@@ -135,7 +135,7 @@ class HostLocaleLanguage extends Model
      *
      * @return string
      */
-    public function getLabelAttribute(): string
+    public function getDisplayLanguageAttribute(): string
     {
         return Locale::getDisplayLanguage($this->{self::LANGUAGE}, App::getLocale());
     }

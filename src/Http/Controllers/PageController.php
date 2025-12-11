@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use Narsil\Models\Sites\Site;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Services\PageService;
 
 #endregion
@@ -28,19 +29,11 @@ class PageController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $host = PageService::resolveSite($request);
-
-        $host->loadMissing([
-            Site::RELATION_FOOTER,
-            Site::RELATION_HEADER,
-        ]);
-
-        $page = PageService::resolvePage($request, $host);
+        $page = PageService::resolvePage($request);
 
         return Inertia::render('frontend/index', [
-            'locales' => $host->{Site::RELATION_LOCALES},
-            'footer' => $host->{Site::RELATION_FOOTER},
-            'header' => $host->{Site::RELATION_HEADER},
+            'footer' => $page->{SitePage::RELATION_SITE}->{Site::RELATION_FOOTER},
+            'header' => $page->{SitePage::RELATION_SITE}->{Site::RELATION_HEADER},
             'page' => $page,
         ]);
     }

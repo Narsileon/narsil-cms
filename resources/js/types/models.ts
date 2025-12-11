@@ -62,8 +62,13 @@ export type HostLocale = Model & {
 };
 
 export type HostLocaleLanguage = Model & {
+  display_language: string;
   language: string;
-  label: string;
+};
+
+export type SiteUrl = Model & {
+  host_locale_language: HostLocaleLanguage;
+  url: string;
 };
 
 export type Template = Model & {

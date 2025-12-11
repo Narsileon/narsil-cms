@@ -174,6 +174,13 @@ class SitePage extends TreeModel
      */
     final public const RELATION_SITE = 'site';
 
+    /**
+     * The name of the "urls" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_URLS = 'urls';
+
     #endregion
 
     #endregion
@@ -258,6 +265,21 @@ class SitePage extends TreeModel
                 Site::class,
                 self::SITE_ID,
                 Site::ID
+            );
+    }
+
+    /**
+     * Get the associated urls.
+     *
+     * @return HasMany
+     */
+    final public function urls(): HasMany
+    {
+        return $this
+            ->hasMany(
+                SiteUrl::class,
+                SiteUrl::PAGE_ID,
+                self::ID,
             );
     }
 

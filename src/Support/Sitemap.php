@@ -84,34 +84,29 @@ class Sitemap
 
         $country = $this->hostLocale->{HostLocale::COUNTRY};
         $languages = $this->hostLocale->{HostLocale::RELATION_LANGUAGES};
-        $urls = $this->hostLocale->{HostLocale::ATTRIBUTE_URLS};
 
         $defaultLanguage = $languages->first();
 
         foreach ($this->tree as $page)
         {
-            $host = $urls[$defaultLanguage->{HostLocaleLanguage::LANGUAGE}];
-            $slug = $page->getTranslationWithoutFallback(SitePage::SLUG, $defaultLanguage->{HostLocaleLanguage::LANGUAGE});
+            $location = $page->getTranslationWithoutFallback(SitePage::SLUG, $defaultLanguage->{HostLocaleLanguage::LANGUAGE});
 
             $url = $this->appendUrl($urlSet);
-
-            $location = "$host/$slug";
 
             $this->appendLoc($url, $location);
 
             foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
             {
                 $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
-                $host = $urls[$language];
 
-                $slug = $page->getTranslationWithoutFallback(SitePage::SLUG, $language);
+                $location = $page->getTranslationWithoutFallback(SitePage::SLUG, $language);
                 $hrefLang = $this->getHrefLang($country, $language);
 
                 $xlink = $this->document->createElementNS('http://www.w3.org/1999/xhtml', 'xhtml:link');
 
                 $xlink->setAttribute('rel', 'alternate');
                 $xlink->setAttribute('hreflang', $hrefLang);
-                $xlink->setAttribute('href', $slug ? "{$host}/{$slug}" : $host);
+                $xlink->setAttribute('href', $location);
 
                 $url->appendChild($xlink);
             }

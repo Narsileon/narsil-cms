@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Enums\SEO\OpenGraphTypeEnum;
 use Narsil\Enums\SEO\RobotsEnum;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Sites\SitePageOverride;
@@ -186,23 +187,15 @@ return new class extends Migration
                 ->uuid(SiteUrl::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(SiteUrl::SITE_ID)
-                ->constrained(Site::TABLE, Site::ID)
+                ->foreignUuid(SiteUrl::HOST_LOCALE_LANGUAGE_UUID)
+                ->constrained(HostLocaleLanguage::TABLE, HostLocaleLanguage::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(SiteUrl::PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(SiteUrl::COUNTRY)
-                ->default('default')
-                ->index();
-            $blueprint
-                ->string(SiteUrl::LANGUAGE)
-                ->index();
-            $blueprint
-                ->string(SiteUrl::PATH)
-                ->nullable()
+                ->string(SiteUrl::URL)
                 ->index();
             $blueprint
                 ->timestamps();

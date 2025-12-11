@@ -7,7 +7,7 @@ namespace Narsil\Models\Sites;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
@@ -51,18 +51,11 @@ class SiteUrl extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "country" column.
+     * The name of the "host locale language uuid" column.
      *
      * @var string
      */
-    final public const COUNTRY = 'country';
-
-    /**
-     * The name of the "language" column.
-     *
-     * @var string
-     */
-    final public const LANGUAGE = 'language';
+    final public const HOST_LOCALE_LANGUAGE_UUID = 'host_locale_language_uuid';
 
     /**
      * The name of the "page id" column.
@@ -72,18 +65,11 @@ class SiteUrl extends Model
     final public const PAGE_ID = 'page_id';
 
     /**
-     * The name of the "path" column.
+     * The name of the "url" column.
      *
      * @var string
      */
-    final public const PATH = 'path';
-
-    /**
-     * The name of the "site id" column.
-     *
-     * @var string
-     */
-    final public const SITE_ID = 'site_id';
+    final public const URL = 'url';
 
     /**
      * The name of the "uuid" column.
@@ -97,18 +83,18 @@ class SiteUrl extends Model
     #region • RELATIONS
 
     /**
+     * The name of the "host locale language" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_HOST_LOCALE_LANGUAGE = 'host_locale_language';
+
+    /**
      * The name of the "page" relation.
      *
      * @var string
      */
     final public const RELATION_PAGE = 'page';
-
-    /**
-     * The name of the "site" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_SITE = 'site';
 
     #endregion
 
@@ -117,6 +103,21 @@ class SiteUrl extends Model
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated host locale language.
+     *
+     * @return BelongsTo
+     */
+    final public function host_locale_language(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                HostLocaleLanguage::class,
+                self::HOST_LOCALE_LANGUAGE_UUID,
+                HostLocaleLanguage::UUID,
+            );
+    }
 
     /**
      * Get the associated page.
@@ -133,20 +134,6 @@ class SiteUrl extends Model
             );
     }
 
-    /**
-     * Get the associated site.
-     *
-     * @return BelongsTo
-     */
-    final public function site(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Site::class,
-                self::SITE_ID,
-                Site::ID
-            );
-    }
 
     #endregion
 
