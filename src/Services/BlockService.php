@@ -64,7 +64,7 @@ abstract class BlockService
                 BlockElement::HANDLE => Arr::get($element, BlockElement::HANDLE),
                 BlockElement::NAME => json_encode(Arr::get($element, BlockElement::NAME)),
                 BlockElement::POSITION => $position,
-                BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH),
+                BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH, 100),
             ];
 
             match ($table)

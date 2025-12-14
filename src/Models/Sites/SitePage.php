@@ -154,6 +154,13 @@ class SitePage extends TreeModel
     #region • RELATIONS
 
     /**
+     * The name of the "entities" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ENTITIES = 'entities';
+
+    /**
      * The name of the "override" relation.
      *
      * @var string

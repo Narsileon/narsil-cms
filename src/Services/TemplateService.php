@@ -187,7 +187,7 @@ abstract class TemplateService
                 TemplateSectionElement::HANDLE => Arr::get($element, TemplateSectionElement::HANDLE),
                 TemplateSectionElement::NAME => json_encode(Arr::get($element, TemplateSectionElement::NAME, [])),
                 TemplateSectionElement::POSITION => $position,
-                TemplateSectionElement::WIDTH => Arr::get($element, TemplateSectionElement::WIDTH),
+                TemplateSectionElement::WIDTH => Arr::get($element, TemplateSectionElement::WIDTH, 100),
             ];
 
             match ($table)
