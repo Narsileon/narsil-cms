@@ -30,6 +30,7 @@ type RelationsProps = {
   collections?: string[];
   disabled?: boolean;
   id: string;
+  multiple?: boolean;
   placeholder?: string;
   value: string | string[];
   setValue: (value: string | string[]) => void;
@@ -62,6 +63,7 @@ function Relations({
   collections,
   disabled,
   id,
+  multiple = false,
   placeholder,
   value,
   setValue,
@@ -184,6 +186,7 @@ function Relations({
                       id={collection.meta.id}
                       columns={finalColumns}
                       data={collection.data}
+                      enableMultiRowSelection={multiple}
                       initialState={{
                         columnOrder: finalColumnOrder,
                         columnVisibility: collection.columnVisibility,
@@ -196,6 +199,7 @@ function Relations({
                           const oldSelection = prev[collection.meta.id] ?? {};
                           const newSelection =
                             typeof updater === "function" ? updater(oldSelection) : updater;
+
                           return {
                             ...prev,
                             [collection.meta.id]: newSelection,
