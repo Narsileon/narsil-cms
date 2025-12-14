@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Forms;
 
 use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\RangeField;
+use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextareaField;
 use Narsil\Contracts\Fields\TextField;
@@ -17,6 +18,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Hosts\Host;
@@ -52,6 +54,8 @@ class SitePageForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
+        $collections = $this->getCollections();
+
         return [
             new TemplateSection([
                 TemplateSection::HANDLE => 'main',
@@ -78,6 +82,18 @@ class SitePageForm extends AbstractForm implements Contract
                                 ->required(true),
                         ])
                     ]),
+                    new BlockElement([
+                        BlockElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => SitePage::CONTENT,
+                            Field::NAME => trans('narsil::validation.attributes.content'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => RelationsField::class,
+                            Field::SETTINGS => app(RelationsField::class)
+                                ->collections($collections)
+                                ->defaultValue([])
+                                ->multiple(true),
+                        ])
+                    ]),
                 ]
             ]),
             new TemplateSection([
@@ -94,7 +110,8 @@ class SitePageForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.description'),
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextareaField::class,
-                                        Field::SETTINGS => app(TextareaField::class),
+                                        Field::SETTINGS => app(TextareaField::class)
+                                            ->required(true),
                                     ])
                                 ]),
                                 new BlockElement([
@@ -192,6 +209,16 @@ class SitePageForm extends AbstractForm implements Contract
                 ],
             ]),
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getCollections(): array
+    {
+        return Template::query()
+            ->pluck(Template::ID)
+            ->toArray();
     }
 
     #endregion

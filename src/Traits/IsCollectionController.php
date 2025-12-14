@@ -30,6 +30,10 @@ trait IsCollectionController
         {
             Entity::setTemplate($template);
         }
+        else
+        {
+            abort(404);
+        }
     }
 
     #endregion

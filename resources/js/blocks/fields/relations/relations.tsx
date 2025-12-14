@@ -18,7 +18,7 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
 import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
-import { flatMap, isArray } from "lodash";
+import { flatMap, isArray, isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
@@ -71,7 +71,7 @@ function Relations({
   const { addTranslations, trans } = useLocalization();
 
   if (!isArray(value)) {
-    value = value ? [value] : [];
+    value = !isEmpty(value) ? [value] : [];
   }
 
   const [dataTables, setDataTables] = useState<TablesState>({});

@@ -109,6 +109,16 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function collections(array $collections): static
+    {
+        $this->set('collections', $collections);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function columns(int $columns): static
     {
         $this->set('columns', $columns);
