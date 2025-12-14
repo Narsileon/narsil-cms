@@ -46,12 +46,15 @@ abstract class PageService
         App::setLocale($siteUrl->{SiteUrl::RELATION_HOST_LOCALE_LANGUAGE}->{HostLocaleLanguage::LANGUAGE});
 
         $siteUrl->loadMissing([
+            SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_PAGE_RELATIONS,
             SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_SITE . '.' . Site::RELATION_FOOTER,
             SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_SITE . '.' . Site::RELATION_HEADER,
             SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_URLS . '.' . SiteUrl::RELATION_HOST_LOCALE_LANGUAGE,
         ]);
 
-        return $siteUrl?->{SiteUrl::RELATION_PAGE};
+        $siteUrl->{SiteUrl::RELATION_PAGE}->append(SitePage::ATTRIBUTE_ENTITIES);
+
+        return $siteUrl->{SiteUrl::RELATION_PAGE};
     }
 
     #endregion

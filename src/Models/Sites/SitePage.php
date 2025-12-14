@@ -158,6 +158,16 @@ class SitePage extends TreeModel
      */
     final public const TITLE = 'title';
 
+    #endregion
+
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "entities" attribute.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_ENTITIES = 'entities';
 
     #endregion
 
@@ -178,11 +188,11 @@ class SitePage extends TreeModel
     final public const RELATION_OVERRIDES = 'overrides';
 
     /**
-     * The name of the "relations" relation.
+     * The name of the "page relations" relation.
      *
      * @var string
      */
-    final public const RELATION_RELATIONS = 'relations';
+    final public const RELATION_PAGE_RELATIONS = 'page_relations';
 
     /**
      * The name of the "site" relation.
@@ -204,40 +214,7 @@ class SitePage extends TreeModel
 
     #region PUBLIC METHODS
 
-    /**
-     * @return array
-     */
-    public function resolvedRelations(): array
-    {
-        $groupedRelations = $this->{self::RELATION_RELATIONS}
-            ->groupBy(SitePageRelation::TARGET_TABLE);
 
-        $resolved = [];
-
-        foreach ($groupedRelations as $table => $relations)
-        {
-            $template = TemplateService::getTemplate($table);
-
-            if ($template)
-            {
-                Entity::setTemplate($template);
-            }
-
-            $ids = $relations
-                ->pluck(SitePageRelation::TARGET_ID)
-                ->all();
-
-            if (!empty($ids))
-            {
-                $resolved[] = Entity::query($table)
-                    ->whereIn(Entity::ID, $ids)
-                    ->get()
-                    ->keyBy(Entity::ATTRIBUTE_IDENTIFIER);
-            }
-        }
-
-        return $resolved;
-    }
 
     /**
      * @param SitePage $sitePage
@@ -306,11 +283,11 @@ class SitePage extends TreeModel
     }
 
     /**
-     * Get the associated overrides.
+     * Get the associated page relations.
      *
      * @return HasMany
      */
-    final public function relations(): HasMany
+    final public function page_relations(): HasMany
     {
         return $this
             ->hasMany(
@@ -355,6 +332,46 @@ class SitePage extends TreeModel
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @return array
+     */
+    protected function getEntities(): array
+    {
+        $groupedRelations = $this->{self::RELATION_PAGE_RELATIONS}
+            ->groupBy(SitePageRelation::TARGET_TABLE);
+
+        $entities = [];
+
+        foreach ($groupedRelations as $table => $relations)
+        {
+            $template = TemplateService::getTemplate($table);
+
+            if ($template)
+            {
+                Entity::setTemplate($template);
+
+                $ids = $relations
+                    ->pluck(SitePageRelation::TARGET_ID)
+                    ->toArray();
+
+                if (!empty($ids))
+                {
+                    $keyedEntities = Entity::query($table)
+                        ->whereIn(Entity::ID, $ids)
+                        ->get()
+                        ->keyBy(Entity::ATTRIBUTE_IDENTIFIER);
+
+                    foreach ($keyedEntities as $identifier => $entity)
+                    {
+                        $entities[$identifier] = $entity;
+                    }
+                }
+            }
+        }
+
+        return $entities;
+    }
 
     /**
      * {@inheritDoc}
@@ -427,6 +444,18 @@ class SitePage extends TreeModel
     }
 
     #region • ACCESSORS
+
+    /**
+     * Get the entities.
+     *
+     * @return Attribute
+     */
+    protected function entities(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->getEntities(),
+        );
+    }
 
     /**
      * Get the left id by applying the override if it exists.

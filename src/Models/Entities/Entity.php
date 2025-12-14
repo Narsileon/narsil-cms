@@ -135,6 +135,23 @@ class Entity extends Model
         EntityBlockField::setTemplate($template);
     }
 
+    #region • ACCESSORS
+
+    /**
+     * Get the associated identifier.
+     *
+     * @return string
+     */
+    final public function getIdentifierAttribute(): string
+    {
+        $key = $this->{self::ID};
+        $table = $this->getTable();
+
+        return !empty($key) ? "$table-$key" : $table;
+    }
+
+    #endregion
+
     #region • RELATIONSHIPS
 
     /**
