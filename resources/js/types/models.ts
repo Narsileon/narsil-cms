@@ -83,6 +83,18 @@ export type HostLocaleLanguage = Model & {
   language: string;
 };
 
+export type SitePage = Model & {
+  content: string[];
+  entities: Record<string, Entity>;
+  meta_description: string;
+  open_graph_description: string;
+  open_graph_image: string;
+  open_graph_title: string;
+  open_graph_type: string;
+  title: string;
+  urls: SiteUrl[];
+};
+
 export type SiteUrl = Model & {
   host_locale_language: HostLocaleLanguage;
   url: string;
