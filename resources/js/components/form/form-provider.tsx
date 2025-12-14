@@ -2,7 +2,7 @@ import { useForm } from "@inertiajs/react";
 import { getFieldDefaultValue } from "@narsil-cms/lib/field";
 import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
 import { set } from "lodash";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
@@ -95,12 +95,12 @@ function FormProvider({
     transform: transform,
   };
 
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      setData(mergedInitialValues);
-      setDefaults(mergedInitialValues);
-    });
-  }, [JSON.stringify(initialValues)]);
+  //   useEffect(() => {
+  //     requestAnimationFrame(() => {
+  //       setData(mergedInitialValues);
+  //       setDefaults(mergedInitialValues);
+  //     });
+  //   }, [JSON.stringify(initialValues)]);
 
   return <FormContext.Provider value={contextValue}>{render(contextValue)}</FormContext.Provider>;
 }

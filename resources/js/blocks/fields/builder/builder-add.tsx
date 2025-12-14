@@ -35,7 +35,7 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
           return (
             <DropdownMenuItem
               onClick={() => {
-                const node = { uuid: uniqueId("id:"), block: block, values: {} };
+                const node = { uuid: uniqueId("id:"), block: block, children: [], values: {} };
 
                 onAdd(node as BuilderElement);
               }}

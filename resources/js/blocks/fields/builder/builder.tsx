@@ -132,7 +132,11 @@ function Builder({ blocks, name }: BuilderProps) {
           <BuilderAdd
             className="not-first:mt-2"
             blocks={blocks}
-            onAdd={(item) => setItems([...items, item])}
+            onAdd={(item) => {
+              const nextItems = [...items, item];
+
+              setItems(nextItems);
+            }}
           />
           <BackgroundRoot>
             <BackgroundGrid id={name} />

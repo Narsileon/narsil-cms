@@ -10,13 +10,19 @@ type FormRootProps = Omit<ComponentProps<"form">, "autoSave"> & {
 };
 
 function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
-  const { action, data, id, isDirty, method, post, transform } = useForm();
+  const { action, data, id, isDirty, method, post, setDefaults, transform } = useForm();
 
   const isInitialized = useRef(false);
 
   const onSubmit = useCallback(
     (event?: React.FormEvent, autoSave?: boolean) => {
       event?.preventDefault();
+
+      const submitOptions: VisitOptions = {
+        ...options,
+        preserveScroll: autoSave ? true : options?.preserveScroll,
+        preserveState: autoSave ? true : options?.preserveState,
+      };
 
       switch (method) {
         case "patch":
@@ -31,10 +37,10 @@ function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
 
             return transformedData;
           });
-          post?.(action, { ...options });
+          post?.(action, submitOptions);
           break;
         case "post":
-          post?.(action, options);
+          post?.(action, submitOptions);
           break;
       }
     },
@@ -55,6 +61,7 @@ function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
     const debounced = debounce(() => {
       if (isDirty) {
         onSubmit(undefined, true);
+        setDefaults?.(data ?? {});
       }
     }, 500);
 
