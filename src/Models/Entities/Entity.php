@@ -10,6 +10,7 @@ use Narsil\Models\Elements\Template;
 use Narsil\Services\TemplateService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
+use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasRevisions;
 use Narsil\Traits\HasTemplate;
 use Narsil\Traits\HasTranslations;
@@ -25,6 +26,7 @@ class Entity extends Model
 {
     use Blameable;
     use HasAuditLogs;
+    use HasIdentifier;
     use HasRevisions;
     use HasTemplate;
     use HasTranslations;
@@ -42,6 +44,10 @@ class Entity extends Model
         $this->primaryKey = self::UUID;
 
         $this->guarded = [];
+
+        $this->translatable = [
+            self::SLUG,
+        ];
 
         $this->with = [
             self::RELATION_BLOCKS,
@@ -67,6 +73,17 @@ class Entity extends Model
      * @var string
      */
     final public const TABLE = 'entities';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "slug" column.
+     *
+     * @var string
+     */
+    final public const SLUG = 'slug';
+
+    #endregion
 
     #region • RELATIONS
 

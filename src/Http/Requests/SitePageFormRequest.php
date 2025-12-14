@@ -28,6 +28,9 @@ class SitePageFormRequest implements Contract
             SitePage::CHANGE_FREQ => [
                 FormRule::STRING,
             ],
+            SitePage::CONTENT => [
+                FormRule::ARRAY,
+            ],
             SitePage::META_DESCRIPTION => [
                 FormRule::ARRAY,
             ],

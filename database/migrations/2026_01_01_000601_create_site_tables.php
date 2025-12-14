@@ -12,6 +12,7 @@ use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Sites\SitePageOverride;
+use Narsil\Models\Sites\SitePageRelation;
 use Narsil\Models\Sites\SiteUrl;
 
 #endregion
@@ -35,6 +36,10 @@ return new class extends Migration
         {
             $this->createSitePageOverridesTable();
         }
+        if (!Schema::hasTable(SitePageRelation::TABLE))
+        {
+            $this->createSitePageRelationsTable();
+        }
         if (!Schema::hasTable(SiteUrl::TABLE))
         {
             $this->createSiteUrlsTable();
@@ -49,6 +54,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists(SiteUrl::TABLE);
+        Schema::dropIfExists(SitePageRelation::TABLE);
         Schema::dropIfExists(SitePageOverride::TABLE);
         Schema::dropIfExists(SitePage::TABLE);
     }
@@ -96,6 +102,28 @@ return new class extends Migration
     }
 
     /**
+     * Create the site page relations table.
+     *
+     * @return void
+     */
+    private function createSitePageRelationsTable(): void
+    {
+        Schema::create(SitePageRelation::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(SitePageRelation::ID);
+            $blueprint
+                ->foreignId(SitePageRelation::PAGE_ID)
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(SitePageRelation::TARGET_TABLE);
+            $blueprint
+                ->bigInteger(SitePageRelation::TARGET_ID);
+        });
+    }
+
+    /**
      * Create the site pages table.
      *
      * @return void
@@ -126,6 +154,9 @@ return new class extends Migration
                 ->jsonb(SitePage::TITLE);
             $blueprint
                 ->jsonb(SitePage::SLUG);
+            $blueprint
+                ->jsonb(SitePage::CONTENT)
+                ->nullable();
             $blueprint
                 ->jsonb(SitePage::META_DESCRIPTION)
                 ->nullable();

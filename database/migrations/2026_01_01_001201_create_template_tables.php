@@ -108,7 +108,7 @@ return new class extends Migration
                 ->jsonb(TemplateSection::NAME);
             $blueprint
                 ->integer(TemplateSection::POSITION)
-                ->nullable();
+                ->default(0);
             $blueprint
                 ->timestamps();
         });

@@ -6,6 +6,7 @@ namespace Narsil\Observers;
 
 use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\SitePageRelation;
 
 #endregion
 
@@ -25,6 +26,16 @@ class SitePageObserver
     public function created(SitePage $sitePage): void
     {
         $this->dispatchSitemapJob($sitePage);
+    }
+
+    /**
+     * @param SitePage $sitePage
+     *
+     * @return void
+     */
+    public function saved(SitePage $sitePage): void
+    {
+        $this->syncRelations($sitePage);
     }
 
     /**
@@ -51,6 +62,30 @@ class SitePageObserver
         ]);
 
         SitemapJob::dispatch($sitePage->{SitePage::RELATION_SITE});
+    }
+
+    /**
+     * @param SitePage $sitePage
+     *
+     * @return void
+     */
+    protected function syncRelations(SitePage $sitePage): void
+    {
+        $translations = $sitePage->getTranslations(SitePage::CONTENT);
+
+        foreach ($translations as $relations)
+        {
+            foreach ($relations as $relation)
+            {
+                [$table, $id] = explode('-', $relation, 2);
+
+                SitePageRelation::firstOrCreate([
+                    SitePageRelation::PAGE_ID => $sitePage->{SitePage::ID},
+                    SitePageRelation::TARGET_ID => $id,
+                    SitePageRelation::TARGET_TABLE => $table,
+                ]);
+            }
+        }
     }
 
     #endregion

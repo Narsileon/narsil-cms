@@ -51,6 +51,7 @@ class EntityTable extends AbstractTable
 
         $visibilities = [
             Entity::ID,
+            Entity::SLUG,
             Entity::CREATED_AT,
             Entity::UPDATED_AT,
         ];

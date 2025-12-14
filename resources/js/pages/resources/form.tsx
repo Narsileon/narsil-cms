@@ -1,4 +1,4 @@
-import { Button, Card, Heading, RevisionSelect, Status } from "@narsil-cms/blocks";
+import { Button, Heading, RevisionSelect, Status } from "@narsil-cms/blocks";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import {
   FormCountry,
@@ -264,17 +264,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                       </div>
                     ) : null}
 
-                    <div className="grid gap-y-4 lg:col-span-4">
-                      {sidebarContent ? (
-                        <Card
-                          contentProps={{
-                            className: "grid-cols-12",
-                          }}
-                        >
-                          {sidebarContent}
-                        </Card>
-                      ) : null}
-                    </div>
+                    <div className="grid gap-y-4 p-4 lg:col-span-4">{sidebarContent}</div>
                   </SectionContent>
                 </SectionRoot>
               </>

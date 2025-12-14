@@ -71,12 +71,12 @@ return new class extends Migration
                 ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->integer(FieldOption::POSITION)
-                ->default(0);
+                ->string(FieldOption::VALUE);
             $blueprint
                 ->jsonb(FieldOption::LABEL);
             $blueprint
-                ->string(FieldOption::VALUE);
+                ->integer(FieldOption::POSITION)
+                ->default(0);
             $blueprint
                 ->timestamps();
         });

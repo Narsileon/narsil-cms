@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Entities\Entity;
 use Narsil\Services\TemplateService;
+use Narsil\Validation\FormRule;
 
 #endregion
 
@@ -50,7 +52,12 @@ class EntityFormRequest implements Contract
     {
         $fields = TemplateService::getTemplateFields($this->template);
 
-        $rules = [];
+        $rules = [
+            Entity::SLUG => [
+                FormRule::ARRAY,
+                FormRule::REQUIRED,
+            ],
+        ];
 
         foreach ($fields as $field)
         {

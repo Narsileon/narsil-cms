@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Session;
+use Narsil\Models\Entities\Entity;
 use Narsil\Models\TreeModel;
+use Narsil\Services\TemplateService;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -33,6 +35,7 @@ class SitePage extends TreeModel
         $this->table = self::TABLE;
 
         $this->translatable = [
+            self::CONTENT,
             self::META_DESCRIPTION,
             self::OPEN_GRAPH_DESCRIPTION,
             self::OPEN_GRAPH_TITLE,
@@ -70,6 +73,13 @@ class SitePage extends TreeModel
      * @var string
      */
     final public const CHANGE_FREQ = 'change_freq';
+
+    /**
+     * The name of the "content" column.
+     *
+     * @var string
+     */
+    final public const CONTENT = 'content';
 
     /**
      * The name of the "country" column.
@@ -154,13 +164,6 @@ class SitePage extends TreeModel
     #region • RELATIONS
 
     /**
-     * The name of the "entities" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITIES = 'entities';
-
-    /**
      * The name of the "override" relation.
      *
      * @var string
@@ -173,6 +176,13 @@ class SitePage extends TreeModel
      * @var string
      */
     final public const RELATION_OVERRIDES = 'overrides';
+
+    /**
+     * The name of the "relations" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_RELATIONS = 'relations';
 
     /**
      * The name of the "site" relation.
@@ -193,6 +203,41 @@ class SitePage extends TreeModel
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * @return array
+     */
+    public function resolvedRelations(): array
+    {
+        $groupedRelations = $this->{self::RELATION_RELATIONS}
+            ->groupBy(SitePageRelation::TARGET_TABLE);
+
+        $resolved = [];
+
+        foreach ($groupedRelations as $table => $relations)
+        {
+            $template = TemplateService::getTemplate($table);
+
+            if ($template)
+            {
+                Entity::setTemplate($template);
+            }
+
+            $ids = $relations
+                ->pluck(SitePageRelation::TARGET_ID)
+                ->all();
+
+            if (!empty($ids))
+            {
+                $resolved[] = Entity::query($table)
+                    ->whereIn(Entity::ID, $ids)
+                    ->get()
+                    ->keyBy(Entity::ATTRIBUTE_IDENTIFIER);
+            }
+        }
+
+        return $resolved;
+    }
 
     /**
      * @param SitePage $sitePage
@@ -256,6 +301,21 @@ class SitePage extends TreeModel
             ->hasMany(
                 SitePageOverride::class,
                 SitePageOverride::PAGE_ID,
+                self::ID
+            );
+    }
+
+    /**
+     * Get the associated overrides.
+     *
+     * @return HasMany
+     */
+    final public function relations(): HasMany
+    {
+        return $this
+            ->hasMany(
+                SitePageRelation::class,
+                SitePageRelation::PAGE_ID,
                 self::ID
             );
     }

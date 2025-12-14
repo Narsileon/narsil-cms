@@ -92,6 +92,8 @@ class CollectionMigration extends Migration
                 ->bigInteger(Entity::ID)
                 ->index();
             $blueprint
+                ->string(Entity::SLUG);
+            $blueprint
                 ->bigInteger(Entity::REVISION)
                 ->default(1)
                 ->index();
