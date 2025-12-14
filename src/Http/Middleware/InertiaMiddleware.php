@@ -68,7 +68,6 @@ class InertiaMiddleware extends Middleware
 
         return [
             ...parent::share($request),
-
             'auth' => $auth,
             'navigation' => $navigation,
             'locale' => $locale,
