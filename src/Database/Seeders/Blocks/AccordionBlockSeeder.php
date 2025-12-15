@@ -33,17 +33,17 @@ class AccordionBlockSeeder extends BlockSeeder
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'accordion-builder',
+                        Field::HANDLE => 'accordion_builder',
                         Field::NAME => 'Items',
                         Field::TYPE => BuilderField::class,
                         Field::RELATION_BLOCKS => [
                             new Block([
-                                Block::HANDLE => 'accordion-item',
+                                Block::HANDLE => 'accordion_item',
                                 Block::NAME => 'Accordion Item',
                                 Block::RELATION_ELEMENTS => [
                                     new BlockElement([
                                         BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => 'accordion-item-trigger',
+                                            Field::HANDLE => 'accordion_item_trigger',
                                             Field::NAME => 'Trigger',
                                             Field::TRANSLATABLE => true,
                                             Field::TYPE => TextField::class,
@@ -52,7 +52,7 @@ class AccordionBlockSeeder extends BlockSeeder
                                     ]),
                                     new BlockElement([
                                         BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => 'accordion-item-content',
+                                            Field::HANDLE => 'accordion_item_content',
                                             Field::NAME => 'Content',
                                             Field::TRANSLATABLE => true,
                                             Field::TYPE => RichTextField::class,

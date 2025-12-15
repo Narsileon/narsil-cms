@@ -28,7 +28,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
     protected function block(): Block
     {
         return new Block([
-            Block::HANDLE => 'hero-header',
+            Block::HANDLE => 'hero_header',
             Block::NAME => 'Hero Header',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
@@ -47,7 +47,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                 ]),
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'hero-header-buttons',
+                        Field::HANDLE => 'hero_header_buttons',
                         Field::NAME => 'Buttons',
                         Field::TYPE => BuilderField::class,
                         Field::RELATION_BLOCKS => [

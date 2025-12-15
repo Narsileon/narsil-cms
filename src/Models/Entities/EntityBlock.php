@@ -125,7 +125,7 @@ class EntityBlock extends Model
     final public const RELATION_ENTITY = 'entity';
 
     /**
-     * The name of the "children" relation.
+     * The name of the "fields" relation.
      *
      * @var string
      */
