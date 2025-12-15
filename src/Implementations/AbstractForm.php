@@ -4,7 +4,6 @@ namespace Narsil\Implementations;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;

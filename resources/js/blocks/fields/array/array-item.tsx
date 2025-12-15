@@ -84,8 +84,8 @@ function ArrayItem({
                 onClick={() => setCollapsed(!open)}
               >
                 <Icon
-                  className={cn("duration-300", open ? "rotate-0" : "rotate-180")}
-                  name="chevron-down"
+                  className={cn("duration-300", open ? "rotate-90" : "rotate-0")}
+                  name="chevron-right"
                 />
               </Button>
             </div>

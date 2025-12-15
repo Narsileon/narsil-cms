@@ -59,8 +59,8 @@ class AccordionBlockSeeder extends BlockSeeder
                                         ]),
                                     ]),
                                 ],
-                            ])
-                        ]
+                            ]),
+                        ],
                     ]),
                 ]),
             ],
