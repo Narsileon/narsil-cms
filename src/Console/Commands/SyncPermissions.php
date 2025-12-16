@@ -6,7 +6,6 @@ namespace Narsil\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Str;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\PermissionService;
 use ReflectionClass;

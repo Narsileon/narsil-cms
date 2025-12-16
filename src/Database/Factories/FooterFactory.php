@@ -35,12 +35,12 @@ class FooterFactory extends Factory
     public function definition(): array
     {
         return [
-            Footer::COMPANY        => $this->faker->company(),
             Footer::ADDRESS_LINE_1 => $this->faker->buildingNumber() . ' ' . $this->faker->streetName(),
             Footer::ADDRESS_LINE_2 => $this->faker->postcode() . ' ' . $this->faker->city(),
-            Footer::EMAIL          => $this->faker->unique()->safeEmail(),
-            Footer::HANDLE         => $this->faker->slug(),
-            Footer::PHONE          => $this->faker->phoneNumber(),
+            Footer::COMPANY => $this->faker->company(),
+            Footer::EMAIL => $this->faker->unique()->safeEmail(),
+            Footer::HANDLE > $this->faker->slug(1),
+            Footer::PHONE => $this->faker->phoneNumber(),
         ];
     }
 
