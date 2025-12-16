@@ -234,7 +234,7 @@ class EntityBlock extends Model
         return $this
             ->hasMany(
                 EntityBlockField::class,
-                EntityBlockField::BLOCK_UUID,
+                EntityBlockField::ENTITY_BLOCK_UUID,
                 self::UUID,
             );
     }

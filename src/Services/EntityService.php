@@ -60,7 +60,7 @@ abstract class EntityService
             foreach ($elements as $key => $element)
             {
                 EntityBlockField::create([
-                    EntityBlockField::BLOCK_UUID => $entityBlock->{EntityBlock::UUID},
+                    EntityBlockField::ENTITY_BLOCK_UUID => $entityBlock->{EntityBlock::UUID},
                     EntityBlockField::FIELD_ID => Arr::get($element, BlockElement::ELEMENT_ID),
                     EntityBlockField::VALUE => Arr::get($block, EntityBlock::RELATION_FIELDS . '.' . $key . '.' . EntityBlockField::VALUE),
                 ]);

@@ -131,6 +131,7 @@ class Entity extends Model
 
         static::$template = $template;
 
+        EntityFieldBlock::setTemplate($template);
         EntityBlock::setTemplate($template);
         EntityBlockField::setTemplate($template);
     }

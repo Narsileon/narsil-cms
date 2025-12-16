@@ -7,10 +7,7 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
-use Narsil\Casts\JsonCast;
-use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Traits\HasTemplate;
 use Narsil\Traits\HasTranslations;
@@ -21,7 +18,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityBlockField extends Model
+class EntityFieldBlock extends Model
 {
     use HasTemplate;
     use HasTranslations;
@@ -39,19 +36,6 @@ class EntityBlockField extends Model
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->translatable = [
-            self::VALUE,
-        ];
-
-        $this->with = [
-            self::RELATION_ENTITY_BLOCKS,
-            self::RELATION_FIELD,
-        ];
-
-        $this->mergeCasts([
-            self::VALUE => JsonCast::class,
-        ]);
-
         $this->mergeGuarded([
             self::UUID,
         ]);
@@ -68,7 +52,7 @@ class EntityBlockField extends Model
      *
      * @var string
      */
-    final public const TABLE = 'entity_block_fields';
+    final public const TABLE = 'entity_field_block';
 
     #region • COLUMNS
 
@@ -77,14 +61,14 @@ class EntityBlockField extends Model
      *
      * @var string
      */
-    final public const ENTITY_BLOCK_UUID = 'block_uuid';
+    final public const ENTITY_BLOCK_UUID = 'entity_block_uuid';
 
     /**
-     * The name of the "field id" column.
+     * The name of the "entity block field uuid" column.
      *
      * @var string
      */
-    final public const FIELD_ID = 'field_id';
+    final public const ENTITY_BLOCK_FIELD_UUID = 'entity_block_field_uuid';
 
     /**
      * The name of the "uuid" column.
@@ -93,23 +77,9 @@ class EntityBlockField extends Model
      */
     final public const UUID = 'uuid';
 
-    /**
-     * The name of the "value" column.
-     *
-     * @var string
-     */
-    final public const VALUE = 'value';
-
     #endregion
 
     #region • RELATIONS
-
-    /**
-     * The name of the "entity block" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY_BLOCK = 'entity_block';
 
     /**
      * The name of the "entity blocks" relation.
@@ -119,11 +89,11 @@ class EntityBlockField extends Model
     final public const RELATION_ENTITY_BLOCKS = 'entity_blocks';
 
     /**
-     * The name of the "field" relation.
+     * The name of the "entity field" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELD = 'field';
+    final public const RELATION_ENTITY_FIELD = 'entity_field';
 
     #endregion
 
@@ -138,17 +108,17 @@ class EntityBlockField extends Model
     {
         $singular = Str::singular(static::$template?->{Template::HANDLE} ?? "");
 
-        return $singular . '_block_fields';
+        return $singular . '_field_block';
     }
 
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated block.
+     * Get the associated entity block.
      *
      * @return BelongsTo
      */
-    final public function entity_block(): BelongsTo
+    final public function entity_blocks(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -159,32 +129,17 @@ class EntityBlockField extends Model
     }
 
     /**
-     * Get the associated block.
+     * Get the associated entity field.
      *
      * @return BelongsTo
      */
-    public function entity_blocks(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            EntityBlock::class,
-            EntityFieldBlock::getTableName(),
-            EntityFieldBlock::ENTITY_BLOCK_FIELD_UUID,
-            EntityFieldBlock::ENTITY_BLOCK_UUID,
-        );
-    }
-
-    /**
-     * Get the associated field.
-     *
-     * @return BelongsTo
-     */
-    final public function field(): BelongsTo
+    final public function entity_field(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Field::class,
-                self::FIELD_ID,
-                Field::ID,
+                EntityBlockField::class,
+                self::ENTITY_BLOCK_FIELD_UUID,
+                EntityBlockField::UUID,
             );
     }
 

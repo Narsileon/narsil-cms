@@ -44,7 +44,7 @@ class EntityBlockFieldObserver
     {
         $entityBlockField->loadMissing([
             EntityBlockField::RELATION_FIELD,
-            EntityBlockField::RELATION_BLOCK . '.' . EntityBlock::RELATION_ENTITY,
+            EntityBlockField::RELATION_ENTITY_BLOCK . '.' . EntityBlock::RELATION_ENTITY,
         ]);
 
         $field = $entityBlockField->{EntityBlockField::RELATION_FIELD};
@@ -54,7 +54,7 @@ class EntityBlockFieldObserver
             return;
         }
 
-        $entity = $entityBlockField->{EntityBlockField::RELATION_BLOCK}?->{EntityBlock::RELATION_ENTITY};
+        $entity = $entityBlockField->{EntityBlockField::RELATION_ENTITY_BLOCK}?->{EntityBlock::RELATION_ENTITY};
 
         if ($field->{Field::TRANSLATABLE})
         {
