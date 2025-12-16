@@ -108,7 +108,7 @@ class Sitemap
 
         foreach ($this->tree as $page)
         {
-            $slug = $page->getTranslationWithoutFallback(SitePage::SLUG, $defaultLanguage->{HostLocaleLanguage::LANGUAGE});
+            $slug = $page->getTranslationWithoutFallback(SitePage::RELATION_URLS, $defaultLanguage->{HostLocaleLanguage::LANGUAGE});
 
             $location = $this->getLocation($defaultLanguage->{HostLocaleLanguage::LANGUAGE}, $slug);
 
@@ -119,6 +119,8 @@ class Sitemap
             foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
             {
                 $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
+
+                $slug = $page->getTranslationWithoutFallback(SitePage::RELATION_URLS, $language);
 
                 $location = $this->getLocation($language, $slug);
 

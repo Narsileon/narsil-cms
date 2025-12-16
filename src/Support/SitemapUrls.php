@@ -138,7 +138,7 @@ class SitemapUrls
                 {
                     $url = $this->baseUrls[$language];
 
-                    $page->setTranslation(SitePage::SLUG, $language, '');
+                    $page->setTranslation(SitePage::RELATION_URLS, $language, '');
                 }
                 else
                 {
@@ -148,7 +148,7 @@ class SitemapUrls
                     $path = $parentSlug ? "$parentSlug/$slug" : $slug;
                     $url = $this->baseUrls[$language] . '/' . $path;
 
-                    $page->setTranslation(SitePage::SLUG, $language, $path);
+                    $page->setTranslation(SitePage::RELATION_URLS, $language, $path);
                 }
 
                 $this->siteUrls[] = [
