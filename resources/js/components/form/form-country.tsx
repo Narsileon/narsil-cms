@@ -17,7 +17,15 @@ function FormCountry({ countries, ...props }: FormCountryProps) {
   const value = params.get("country") ?? countries[0]?.value;
 
   function onValueChange(value: string) {
-    router.reload({ data: { country: value } });
+    router.get(
+      window.location.pathname,
+      { country: value },
+      {
+        preserveState: false,
+        preserveScroll: true,
+        replace: true,
+      },
+    );
   }
 
   return (
