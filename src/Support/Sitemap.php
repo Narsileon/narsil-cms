@@ -7,6 +7,7 @@ namespace Narsil\Support;
 use DOMDocument;
 use DOMElement;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
@@ -24,17 +25,21 @@ class Sitemap
     #region CONSTRUCTOR
 
     /**
+     * @param Host $host
      * @param HostLocale $hostLocale
      *
      * @return void
      */
-    public function __construct(HostLocale $hostLocale)
+    public function __construct(Host $host, HostLocale $hostLocale)
     {
         $this->document = $this->createDocument();
 
+        $this->host = $host;
         $this->hostLocale = $hostLocale;
 
-        $this->tree = new SitemapUrls($hostLocale)->generate();
+        $this->baseUrls = $this->getBaseUrls();
+
+        $this->tree = new SitemapUrls($host, $hostLocale, $this->baseUrls)->generate();
     }
 
     #endregion
@@ -47,6 +52,13 @@ class Sitemap
      * @var DomDocument
      */
     protected readonly DomDocument $document;
+
+    /**
+     * The associated host.
+     *
+     * @var Host
+     */
+    protected readonly Host $host;
 
     /**
      * The associated host locale.
@@ -69,6 +81,13 @@ class Sitemap
      */
     protected Collection $tree;
 
+    /**
+     * The associated base urls.
+     *
+     * @var array
+     */
+    protected array $baseUrls = [];
+
     #endregion
 
     #region PUBLIC METHODS
@@ -89,7 +108,9 @@ class Sitemap
 
         foreach ($this->tree as $page)
         {
-            $location = $page->getTranslationWithoutFallback(SitePage::SLUG, $defaultLanguage->{HostLocaleLanguage::LANGUAGE});
+            $slug = $page->getTranslationWithoutFallback(SitePage::SLUG, $defaultLanguage->{HostLocaleLanguage::LANGUAGE});
+
+            $location = $this->getLocation($defaultLanguage->{HostLocaleLanguage::LANGUAGE}, $slug);
 
             $url = $this->appendUrl($urlSet);
 
@@ -99,7 +120,8 @@ class Sitemap
             {
                 $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
 
-                $location = $page->getTranslationWithoutFallback(SitePage::SLUG, $language);
+                $location = $this->getLocation($language, $slug);
+
                 $hrefLang = $this->getHrefLang($country, $language);
 
                 $xlink = $this->document->createElementNS('http://www.w3.org/1999/xhtml', 'xhtml:link');
@@ -222,6 +244,33 @@ class Sitemap
     }
 
     /**
+     * Get the base URLs.
+     *
+     * @return array<string,string>
+     */
+    protected function getBaseUrls(): array
+    {
+        $urls = [];
+
+        $pattern = $this->hostLocale->{HostLocale::PATTERN};
+
+        foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
+        {
+            $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
+
+            $url = $pattern;
+
+            $url = Str::replace('{host}', $this->host->{Host::HANDLE}, $url);
+            $url = Str::replace('{country}', $this->hostLocale->{HostLocale::COUNTRY}, $url);
+            $url = Str::replace('{language}', $language, $url);
+
+            $urls[$language] = Str::lower($url);
+        }
+
+        return $urls;
+    }
+
+    /**
      * Get the href lang.
      *
      * @param string $country
@@ -244,6 +293,20 @@ class Sitemap
     }
 
     /**
+     * Get the location.
+     *
+     * @param string $language
+     *
+     * @return string
+     */
+    protected function getLocation(string $language, string $slug): string
+    {
+        $baseUrl = $this->baseUrls[$language];
+
+        return $slug ? "{$baseUrl}/{$slug}" : $baseUrl;
+    }
+
+    /**
      * Save the document.
      *
      * @param string $path
@@ -252,16 +315,13 @@ class Sitemap
      */
     protected function saveDocument(string $path): void
     {
-        $host = $this->hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE};
+        $host = $this->host->{Host::HANDLE};
 
-        $filename = public_path("$host/$path");
-
-        if (!file_exists(dirname($filename)))
-        {
-            mkdir(dirname($filename), 0755, true);
-        }
-
-        file_put_contents($filename, $this->document->saveXML());
+        Storage::disk('public')
+            ->put(
+                "{$host}/{$path}",
+                $this->document->saveXML()
+            );
     }
 
     #endregion

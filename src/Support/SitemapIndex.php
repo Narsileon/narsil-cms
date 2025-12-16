@@ -6,6 +6,7 @@ namespace Narsil\Support;
 
 use DOMDocument;
 use DOMElement;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
@@ -25,21 +26,15 @@ class SitemapIndex
      */
     public function __construct(Host $host)
     {
-        $this->document = $this->createDocument();
-
         $this->host = $host;
+
+        $this->document = $this->createDocument();
     }
 
     #endregion
 
     #region PROPERTIES
 
-    /**
-     * The associated document.
-     *
-     * @var DomDocument
-     */
-    protected readonly DomDocument $document;
 
     /**
      * The associated host.
@@ -47,6 +42,13 @@ class SitemapIndex
      * @var Host
      */
     protected readonly Host $host;
+
+    /**
+     * The associated document.
+     *
+     * @var DomDocument
+     */
+    protected readonly DomDocument $document;
 
     #endregion
 
@@ -63,7 +65,7 @@ class SitemapIndex
 
         foreach ($this->host->{Host::RELATION_LOCALES} as $hostLocale)
         {
-            new Sitemap($hostLocale)->generate();
+            new Sitemap($this->host, $hostLocale)->generate();
 
             $sitemap = $this->appendSitemap($sitemapindex);
 
@@ -149,7 +151,8 @@ class SitemapIndex
      */
     protected function getLocation(HostLocale $hostLocale): string
     {
-        $host = $hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE};
+        $host = $this->host->{Host::HANDLE};
+
         $country = Str::lower($hostLocale->{HostLocale::COUNTRY});
 
         return "https://{$host}/sitemap/{$country}.xml";
@@ -166,9 +169,11 @@ class SitemapIndex
     {
         $host = $this->host->{Host::HANDLE};
 
-        $filename = public_path("$host/$path");
-
-        file_put_contents($filename, $this->document->saveXML());
+        Storage::disk('public')
+            ->put(
+                "{$host}/{$path}",
+                $this->document->saveXML()
+            );
     }
 
     #endregion

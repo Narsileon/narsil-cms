@@ -6,7 +6,6 @@ namespace Narsil\Support;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Narsil\Models\Hosts\Host;
@@ -26,21 +25,32 @@ class SitemapUrls
     #region CONSTRUCTOR
 
     /**
+     * @param Host $host
      * @param HostLocale $hostLocale
+     * @param array $baseUrls
      *
      * @return void
      */
-    public function __construct(HostLocale $hostLocale)
+    public function __construct(Host $host, HostLocale $hostLocale, array $baseUrls)
     {
+        $this->host = $host;
         $this->hostLocale = $hostLocale;
 
-        $this->baseUrls = $this->getBaseUrls();
+        $this->baseUrls = $baseUrls;
+
         $this->pages = $this->getPages();
     }
 
     #endregion
 
     #region PROPERTIES
+
+    /**
+     * The associated host.
+     *
+     * @var Host
+     */
+    protected readonly Host $host;
 
     /**
      * The associated host locale.
@@ -128,18 +138,17 @@ class SitemapUrls
                 {
                     $url = $this->baseUrls[$language];
 
-                    $page->setTranslation(SitePage::SLUG, $language, $url);
+                    $page->setTranslation(SitePage::SLUG, $language, '');
                 }
                 else
                 {
-                    $parentSlug = $parent->getTranslationWithFallback(SitePage::SLUG, $language);
+                    $parentSlug = $parent->{SitePage::PARENT_ID} !== null ? $parent->getTranslationWithFallback(SitePage::SLUG, $language) : '';
                     $slug = $page->getTranslationWithFallback(SitePage::SLUG, $language);
 
                     $path = $parentSlug ? "$parentSlug/$slug" : $slug;
-
                     $url = $this->baseUrls[$language] . '/' . $path;
 
-                    $page->setTranslation(SitePage::SLUG, $language, $url);
+                    $page->setTranslation(SitePage::SLUG, $language, $path);
                 }
 
                 $this->siteUrls[] = [
@@ -158,33 +167,6 @@ class SitemapUrls
         });
 
         return $tree;
-    }
-
-    /**
-     * Get the base URLs.
-     *
-     * @return array<string,string>
-     */
-    protected function getBaseUrls(): array
-    {
-        $urls = [];
-
-        $pattern = $this->hostLocale->{HostLocale::PATTERN};
-
-        foreach ($this->hostLocale->{HostLocale::RELATION_LANGUAGES} as $hostLocaleLanguage)
-        {
-            $language = $hostLocaleLanguage->{HostLocaleLanguage::LANGUAGE};
-
-            $url = $pattern;
-
-            $url = Str::replace('{host}', $this->hostLocale->{HostLocale::RELATION_HOST}->{Host::HANDLE}, $url);
-            $url = Str::replace('{country}', $this->hostLocale->{HostLocale::COUNTRY}, $url);
-            $url = Str::replace('{language}', $language, $url);
-
-            $urls[$language] = Str::lower($url);
-        }
-
-        return $urls;
     }
 
     /**

@@ -6,6 +6,7 @@ namespace Narsil\Http\Controllers\Sitemaps;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 #endregion
 
@@ -27,15 +28,17 @@ class SitemapController extends Controller
     {
         $host = $request->getHost();
 
-        $path = public_path("{$host}/sitemap/{$country}.xml");
+        $path = "{$host}/sitemap/{$country}.xml";
 
-        if (!file_exists($path))
+        if (!Storage::disk('public')->exists($path))
         {
             abort(404);
         }
 
-        return response()->file($path, [
-            'Content-Type' => 'application/xml'
+        $file = Storage::disk('public')->get($path);
+
+        return response($file, 200, [
+            'Content-Type' => 'application/xml',
         ]);
     }
 
