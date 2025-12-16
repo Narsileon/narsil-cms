@@ -12,6 +12,7 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { useFormField } from "@narsil-cms/components/form";
 import {
   TableBody,
   TableCell,
@@ -37,6 +38,8 @@ type TableProps = {
 };
 
 function Table({ columns, placeholder, rows, setRows }: TableProps) {
+  const { fieldLanguage } = useFormField();
+
   const [active, setActive] = useState<TableElement | null>(null);
 
   const sensors = useSensors(
@@ -160,7 +163,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
                     {columns.map((column, index) => {
                       const value = get(
                         row,
-                        column.handle,
+                        column.translatable ? `${column.handle}.${fieldLanguage}` : column.handle,
                         "value" in column.settings ? column.settings.value : null,
                       );
 

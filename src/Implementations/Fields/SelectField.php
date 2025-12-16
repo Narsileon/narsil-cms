@@ -55,6 +55,7 @@ class SelectField extends AbstractField implements Contract
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
                             Field::NAME => trans('narsil::validation.attributes.label'),
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->required(true),
