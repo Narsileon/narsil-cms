@@ -29,7 +29,7 @@ class EntityBlockResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            $this->{EntityBlock::RELATION_BLOCK}->{Block::HANDLE} => array_merge($this->getFields(), $this->getBlocks()),
+            $this->{EntityBlock::RELATION_BLOCK}->{Block::HANDLE} => $this->getFields(),
         ];
     }
 
@@ -37,29 +37,17 @@ class EntityBlockResource extends JsonResource
 
     #region PROTECTED METHODS
 
-    protected function getBlocks()
+    protected function getFields(): array
     {
         $entityBlockResource = Config::get('narsil.resources.' . EntityBlock::class, EntityBlockResource::class);
 
-        $blocks = [];
-
-        foreach ($this->{EntityBlock::RELATION_CHILDREN} as $entityBlock)
-        {
-            $blocks[$entityBlock->{EntityBlock::RELATION_BLOCK}->{Block::HANDLE}] = new $entityBlockResource($entityBlock);
-        }
-
-        return $blocks;
-    }
-
-    protected function getFields(): array
-    {
         $fields = [];
 
         foreach ($this->{EntityBlock::RELATION_FIELDS} as $entityBlockField)
         {
             if ($entityBlockField->{EntityBlockField::RELATION_FIELD}->{Field::TYPE} === BuilderField::class)
             {
-                continue;
+                $fields[$entityBlockField->{EntityBlockField::RELATION_FIELD}->{Field::HANDLE}] = $entityBlockResource::collection($entityBlockField->{EntityBlockField::RELATION_BLOCKS});
             }
             else
             {
