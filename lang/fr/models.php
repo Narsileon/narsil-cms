@@ -2,6 +2,7 @@
 
 #region USE
 
+use Dom\Entity;
 use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
@@ -20,18 +21,19 @@ use Narsil\Models\Users\UserConfiguration;
 #endregion
 
 return [
-    Block::class => 'Bloc',
-    Configuration::class => 'Paramètres',
-    Field::class => 'Champ',
-    Footer::class => 'Pied de page',
-    Header::class => 'En-tête',
-    Host::class => 'Hôte',
-    Permission::class => 'Permission',
-    Role::class => 'Rôle',
-    Site::class => 'Site web',
-    SitePage::class => 'Page',
-    Template::class => 'Modèle',
-    User::class => 'Utilisateur',
-    UserBookmark::class => 'Signet',
-    UserConfiguration::class => 'Paramètres',
+    Block::class => 'bloc',
+    Configuration::class => 'paramètres',
+    Entity::class => 'entité',
+    Field::class => 'champ',
+    Footer::class => 'pied de page',
+    Header::class => 'en-tête',
+    Host::class => 'hôte',
+    Permission::class => 'permission',
+    Role::class => 'rôle',
+    Site::class => 'site web',
+    SitePage::class => 'page',
+    Template::class => 'modèle',
+    User::class => 'utilisateur',
+    UserBookmark::class => 'signet',
+    UserConfiguration::class => 'paramètres',
 ];

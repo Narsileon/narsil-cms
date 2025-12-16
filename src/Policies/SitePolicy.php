@@ -29,7 +29,7 @@ class SitePolicy
      */
     public function update(User $user, Site $model): bool
     {
-        $permission = PermissionService::getName(Site::VIRTUAL_TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(Site::VIRTUAL_TABLE, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -44,7 +44,7 @@ class SitePolicy
      */
     public function view(User $user, Site $model): bool
     {
-        $permission = PermissionService::getName(Site::VIRTUAL_TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Site::VIRTUAL_TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -58,7 +58,7 @@ class SitePolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(Site::VIRTUAL_TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Site::VIRTUAL_TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

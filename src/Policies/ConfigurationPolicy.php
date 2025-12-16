@@ -29,7 +29,7 @@ class ConfigurationPolicy
      */
     public function update(User $user, Configuration $model): bool
     {
-        $permission = PermissionService::getName(Configuration::TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(Configuration::TABLE, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }

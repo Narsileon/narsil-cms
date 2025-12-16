@@ -6,6 +6,7 @@ use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Entities\Entity;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -22,6 +23,7 @@ use Narsil\Models\Users\UserConfiguration;
 return [
     Block::class => 'Block',
     Configuration::class => 'Einstellungen',
+    Entity::class => 'Entität',
     Field::class => 'Feld',
     Footer::class => 'Fußzeile',
     Header::class => 'Kopfzeile',

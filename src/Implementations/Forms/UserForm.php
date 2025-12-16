@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\FileField;
@@ -131,7 +132,7 @@ class UserForm extends AbstractForm implements Contract
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'roles',
-                TemplateSection::NAME => trans('narsil::tables.roles'),
+                TemplateSection::NAME => Str::ucfirst(trans('narsil::tables.roles')),
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT =>

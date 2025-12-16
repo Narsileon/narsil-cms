@@ -52,48 +52,39 @@ class SyncPermissions extends Command
 
             $policyReflection = new ReflectionClass($policy);
 
-            $baseHandle = $this->getFictiveTableName($model);
+            $table = $model::TABLE;
 
             $methods = $policyReflection->getMethods(\ReflectionMethod::IS_PUBLIC);
 
             foreach ($methods as $method)
             {
-                $methodName = $method->getName();
+                $permission = $method->getName();
 
-                if (in_array($methodName, ['__construct', 'before']))
+                if (in_array($permission, ['__construct', 'before']))
                 {
                     continue;
                 }
 
-                $permission = PermissionService::getName($baseHandle, $methodName);
+                $handle = PermissionService::getHandle($table, $permission);
+
+                $names = [];
+
+                foreach (Config::get('narsil.locales', ['en']) as $locale)
+                {
+                    $names[$locale] = PermissionService::getName($model, $permission, $locale);
+                }
 
                 Permission::firstOrCreate([
-                    Permission::HANDLE => $permission,
+                    Permission::HANDLE => $handle,
                 ], [
-                    Permission::NAME => $permission,
+                    Permission::NAME => $names,
                 ]);
 
-                $this->line("The permission '{$permission}' has been created.");
+                $this->line("The permission '{$handle}' has been created.");
             }
         }
 
         $this->info('The permissions have been successfully synchronized.');
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @param string $model
-     *
-     * @return string
-     */
-    protected function getFictiveTableName(string $model): string
-    {
-        $modelName = class_basename($model);
-
-        return Str::plural(Str::snake($modelName));
     }
 
     #endregion

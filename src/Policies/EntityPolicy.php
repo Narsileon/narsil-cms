@@ -28,7 +28,7 @@ class EntityPolicy
      */
     public function create(User $user): bool
     {
-        $permission = PermissionService::getName(Entity::getTableName(), PermissionEnum::CREATE->value);
+        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::CREATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -43,7 +43,7 @@ class EntityPolicy
      */
     public function delete(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getName(Entity::getTableName(), PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -57,7 +57,7 @@ class EntityPolicy
      */
     public function deleteAny(User $user): bool
     {
-        $permission = PermissionService::getName(Entity::getTableName(), PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -72,7 +72,7 @@ class EntityPolicy
      */
     public function update(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getName(Entity::getTableName(), PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -87,7 +87,7 @@ class EntityPolicy
      */
     public function view(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getName(Entity::getTableName(), PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -101,7 +101,7 @@ class EntityPolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(Entity::getTableName(), PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

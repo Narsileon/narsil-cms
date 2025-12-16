@@ -4,11 +4,13 @@ namespace Narsil\Observers;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Database\Migrations\CollectionMigration;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\GraphQLService;
+use Narsil\Services\PermissionService;
 
 #endregion
 
@@ -57,8 +59,6 @@ class TemplateObserver
      */
     protected function createPermissions(Template $template): void
     {
-        $handle = $template->{Template::HANDLE};
-
         $permissions = [
             PermissionEnum::VIEW->value,
             PermissionEnum::CREATE->value,
@@ -68,12 +68,17 @@ class TemplateObserver
 
         foreach ($permissions as $permission)
         {
-            $key = $handle . '_' . $permission;
+            $handle = PermissionService::getHandle($template->{Template::HANDLE}, $permission);
+
+            $name = trans("narsil::permissions.$permission", [
+                'model' => Str::singular($template->{Template::NAME}),
+                'table' => $template->{Template::NAME},
+            ]);
 
             Permission::firstOrCreate([
-                Permission::HANDLE => $key,
+                Permission::HANDLE => $handle,
             ], [
-                Permission::NAME => $key,
+                Permission::NAME => $name,
             ]);
         }
     }

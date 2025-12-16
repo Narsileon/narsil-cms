@@ -28,7 +28,7 @@ class SitePagePolicy
      */
     public function create(User $user): bool
     {
-        $permission = PermissionService::getName(SitePage::TABLE, PermissionEnum::CREATE->value);
+        $permission = PermissionService::getHandle(SitePage::TABLE, PermissionEnum::CREATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -43,7 +43,7 @@ class SitePagePolicy
      */
     public function delete(User $user, SitePage $model): bool
     {
-        $permission = PermissionService::getName(SitePage::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(SitePage::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -57,7 +57,7 @@ class SitePagePolicy
      */
     public function deleteAny(User $user): bool
     {
-        $permission = PermissionService::getName(SitePage::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(SitePage::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -72,7 +72,7 @@ class SitePagePolicy
      */
     public function update(User $user, SitePage $model): bool
     {
-        $permission = PermissionService::getName(SitePage::TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(SitePage::TABLE, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -87,7 +87,7 @@ class SitePagePolicy
      */
     public function view(User $user, SitePage $model): bool
     {
-        $permission = PermissionService::getName(SitePage::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(SitePage::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -101,7 +101,7 @@ class SitePagePolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(SitePage::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(SitePage::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

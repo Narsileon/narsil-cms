@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\BuilderField as Contract;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Implementations\AbstractField;
@@ -57,7 +58,7 @@ class BuilderField extends AbstractField implements Contract
                 Field::SETTINGS => app(RelationsField::class)
                     ->addOption(
                         identifier: Block::TABLE,
-                        label: trans('narsil::models.' . Block::class),
+                        label: Str::ucfirst(trans('narsil::models.' . Block::class)),
                         optionLabel: Block::NAME,
                         optionValue: Block::HANDLE,
                         options: $blockSelectOptions,

@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm;
@@ -95,7 +96,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             ->form(app(BlockElementForm::class)->jsonSerialize())
                                             ->addOption(
                                                 identifier: Block::TABLE,
-                                                label: trans('narsil::models.' . Block::class),
+                                                label: Str::ucfirst(trans('narsil::models.' . Block::class)),
                                                 optionLabel: BlockElement::NAME,
                                                 optionValue: BlockElement::HANDLE,
                                                 options: $blockSelectOptions,
@@ -103,7 +104,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             )
                                             ->addOption(
                                                 identifier: Field::TABLE,
-                                                label: trans('narsil::models.' . Field::class),
+                                                label: Str::ucfirst(trans('narsil::models.' . Field::class)),
                                                 optionLabel: BlockElement::NAME,
                                                 optionValue: BlockElement::HANDLE,
                                                 options: $fieldSelectOptions,

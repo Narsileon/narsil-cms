@@ -7,6 +7,7 @@ namespace Narsil\Support;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
 
 #endregion
 
@@ -113,9 +114,9 @@ class MenuItem extends Fluent
      *
      * @return static
      */
-    final public function label(string $label): static
+    final public function label(string $label, bool $upperFirst = true): static
     {
-        $this->set('label', $label);
+        $this->set('label', $upperFirst ? Str::ucfirst($label) : $label);
 
         return $this;
     }

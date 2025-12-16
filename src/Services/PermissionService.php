@@ -18,14 +18,29 @@ abstract class PermissionService
     #region PUBLIC METHODS
 
     /**
-     * @param string $base
+     * @param string $table
      * @param string $permission
      *
      * @return string
      */
-    public static function getName(string $base, string $permission): string
+    public static function getHandle(string $table, string $permission): string
     {
-        return $base . '_' . $permission;
+        return $table . '_' . $permission;
+    }
+
+    /**
+     * @param string $model
+     * @param string $permission
+     * @param string|null $locale
+     *
+     * @return string
+     */
+    public static function getName(string $model, string $permission, ?string $locale = null): string
+    {
+        return trans("narsil::permissions.$permission", [
+            'model' => trans('narsil::models.' . $model, [], $locale),
+            'table' => trans('narsil::tables.' . $model::TABLE, [], $locale),
+        ], $locale);
     }
 
     /**

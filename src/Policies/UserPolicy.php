@@ -27,7 +27,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        $permission = PermissionService::getName(User::TABLE, PermissionEnum::CREATE->value);
+        $permission = PermissionService::getHandle(User::TABLE, PermissionEnum::CREATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -42,7 +42,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        $permission = PermissionService::getName(User::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(User::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -56,7 +56,7 @@ class UserPolicy
      */
     public function deleteAny(User $user): bool
     {
-        $permission = PermissionService::getName(User::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(User::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -71,7 +71,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        $permission = PermissionService::getName(User::TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(User::TABLE, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -86,7 +86,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        $permission = PermissionService::getName(User::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(User::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -100,7 +100,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(User::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(User::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

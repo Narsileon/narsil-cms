@@ -51,7 +51,7 @@ abstract class BreadcrumbService
 
                 $key = Str::replace('-', '_', $segment);
 
-                $label = trans('narsil::tables.' . $key);
+                $label = Str::ucfirst(trans('narsil::tables.' . $key));
 
                 if (Str::contains($label, '::'))
                 {

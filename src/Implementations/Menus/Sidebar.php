@@ -96,7 +96,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('layers')
                 ->label($template->{Template::NAME})
                 ->permissions([
-                    PermissionService::getName(Entity::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Entity::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]);
         }
 
@@ -117,7 +117,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('header')
                 ->label(trans('narsil::tables.headers'))
                 ->permissions([
-                    PermissionService::getName(Header::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Header::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
@@ -125,7 +125,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('footer')
                 ->label(trans('narsil::tables.footers'))
                 ->permissions([
-                    PermissionService::getName(Footer::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Footer::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
         ];
     }
@@ -144,7 +144,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('server')
                 ->label(trans('narsil::tables.hosts'))
                 ->permissions([
-                    PermissionService::getName(Host::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Host::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
@@ -152,7 +152,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('users')
                 ->label(trans('narsil::tables.users'))
                 ->permissions([
-                    PermissionService::getName(User::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(User::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
@@ -160,7 +160,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('shield')
                 ->label(trans('narsil::tables.roles'))
                 ->permissions([
-                    PermissionService::getName(Role::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Role::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
@@ -168,7 +168,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('lock')
                 ->label(trans('narsil::tables.permissions'))
                 ->permissions([
-                    PermissionService::getName(Permission::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
@@ -176,7 +176,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('settings')
                 ->label(trans('narsil::tables.configurations'))
                 ->permissions([
-                    PermissionService::getName(Configuration::TABLE, PermissionEnum::UPDATE->value)
+                    PermissionService::getHandle(Configuration::TABLE, PermissionEnum::UPDATE->value)
                 ]),
         ];
     }
@@ -203,9 +203,9 @@ class Sidebar extends AbstractMenu implements Contract
                     'site' => $site->{Site::HANDLE}
                 ]))
                 ->icon('globe')
-                ->label($site->{Site::NAME})
+                ->label($site->{Site::NAME}, false)
                 ->permissions([
-                    PermissionService::getName(Site::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Site::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]);
         }
 
@@ -227,7 +227,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('layout')
                 ->label(trans('narsil::tables.templates'))
                 ->permissions([
-                    PermissionService::getName(Template::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
@@ -235,7 +235,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('box')
                 ->label(trans('narsil::tables.blocks'))
                 ->permissions([
-                    PermissionService::getName(Block::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Block::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
@@ -243,7 +243,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->icon('input')
                 ->label(trans('narsil::tables.fields'))
                 ->permissions([
-                    PermissionService::getName(Field::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Field::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
         ];
     }

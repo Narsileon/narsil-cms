@@ -29,7 +29,7 @@ class PermissionPolicy
      */
     public function update(User $user, Permission $model): bool
     {
-        $permission = PermissionService::getName(Permission::TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(Permission::TABLE, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -44,7 +44,7 @@ class PermissionPolicy
      */
     public function view(User $user, Permission $model): bool
     {
-        $permission = PermissionService::getName(Permission::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -58,7 +58,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(Permission::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

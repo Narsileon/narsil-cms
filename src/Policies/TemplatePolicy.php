@@ -28,7 +28,7 @@ class TemplatePolicy
      */
     public function create(User $user): bool
     {
-        $permission = PermissionService::getName(Template::TABLE, PermissionEnum::CREATE->value);
+        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::CREATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -43,7 +43,7 @@ class TemplatePolicy
      */
     public function delete(User $user, Template $model): bool
     {
-        $permission = PermissionService::getName(Template::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -57,7 +57,7 @@ class TemplatePolicy
      */
     public function deleteAny(User $user): bool
     {
-        $permission = PermissionService::getName(Template::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -72,7 +72,7 @@ class TemplatePolicy
      */
     public function update(User $user, Template $model): bool
     {
-        $permission = PermissionService::getName(Template::TABLE, PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -87,7 +87,7 @@ class TemplatePolicy
      */
     public function view(User $user, Template $model): bool
     {
-        $permission = PermissionService::getName(Template::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -101,7 +101,7 @@ class TemplatePolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getName(Template::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

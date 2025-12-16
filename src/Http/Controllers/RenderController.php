@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 use Narsil\Http\Requests\QueryRequest;
@@ -68,11 +69,14 @@ abstract class RenderController
      */
     protected function render(string $component, array $props = []): JsonResponse|Response
     {
-        $TranslationsBag = app(TranslationsBag::class);
+        $translationsBag = app(TranslationsBag::class);
+
+        $description = Str::ucfirst($this->getDescription());
+        $title = Str::ucfirst($this->getTitle());
 
         if (request()->boolean('_modal'))
         {
-            $translations = $TranslationsBag
+            $translations = $translationsBag
                 ->add('narsil::accessibility.close_dialog')
                 ->add('narsil::ui.cancel')
                 ->get();
@@ -81,19 +85,19 @@ abstract class RenderController
                 'component' => $component,
                 'props' => array_merge([
                     '_modal' => true,
-                    'description' => $this->getDescription(),
+                    'description' => $description,
                     'translations' => $translations,
-                    'title' => $this->getTitle(),
+                    'title' => $title,
                 ], $props),
             ]);
         }
 
-        $translations = $TranslationsBag->get();
+        $translations = $translationsBag->get();
 
         return Inertia::render($component, array_merge([
-            'description' => $this->getDescription(),
+            'description' => $description,
             'translations' => $translations,
-            'title' => $this->getTitle(),
+            'title' => $title,
         ], $props));
     }
 
