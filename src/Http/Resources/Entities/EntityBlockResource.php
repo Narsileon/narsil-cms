@@ -6,6 +6,7 @@ namespace Narsil\Http\Resources\Entities;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Config;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
@@ -38,11 +39,13 @@ class EntityBlockResource extends JsonResource
 
     protected function getBlocks()
     {
+        $entityBlockResource = Config::get('narsil.resources.' . EntityBlock::class, EntityBlockResource::class);
+
         $blocks = [];
 
         foreach ($this->{EntityBlock::RELATION_CHILDREN} as $entityBlock)
         {
-            $blocks[$entityBlock->{EntityBlock::RELATION_BLOCK}->{Block::HANDLE}] = new EntityBlockResource($entityBlock);
+            $blocks[$entityBlock->{EntityBlock::RELATION_BLOCK}->{Block::HANDLE}] = new $entityBlockResource($entityBlock);
         }
 
         return $blocks;

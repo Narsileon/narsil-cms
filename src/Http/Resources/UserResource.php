@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Resources\Users;
+namespace Narsil\Http\Resources;
 
 #region USE
 
@@ -14,7 +14,7 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class AuthResource extends JsonResource
+class UserResource extends JsonResource
 {
     #region PROPERTIES
 

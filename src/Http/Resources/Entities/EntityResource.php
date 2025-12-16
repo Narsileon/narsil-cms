@@ -6,7 +6,9 @@ namespace Narsil\Http\Resources\Entities;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Config;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityBlock;
 
 #endregion
 
@@ -32,8 +34,10 @@ class EntityResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $entityBlockResource = Config::get('narsil.resources.' . EntityBlock::class, EntityBlockResource::class);
+
         return [
-            Entity::RELATION_BLOCKS => EntityBlockResource::collection($this->{Entity::RELATION_BLOCKS}),
+            Entity::RELATION_BLOCKS => $entityBlockResource::collection($this->{Entity::RELATION_BLOCKS}),
         ];
     }
 
