@@ -5,7 +5,6 @@ import BuilderItem from "./builder-item";
 
 type BuilderElement = {
   block: Block;
-  children: BuilderElement[];
   uuid: string;
   values: Record<string, unknown>;
 };

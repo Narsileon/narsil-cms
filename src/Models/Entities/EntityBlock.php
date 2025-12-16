@@ -40,7 +40,6 @@ class EntityBlock extends Model
 
         $this->with = [
             self::RELATION_BLOCK,
-            self::RELATION_CHILDREN,
             self::RELATION_FIELDS,
         ];
 

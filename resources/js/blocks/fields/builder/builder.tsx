@@ -16,7 +16,7 @@ import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundGrid from "@narsil-cms/components/background/background-grid";
 import { useForm } from "@narsil-cms/components/form";
 import type { Block } from "@narsil-cms/types";
-import { get } from "lodash";
+import { get, isEmpty } from "lodash";
 import { Fragment, useState } from "react";
 import { type BuilderElement } from ".";
 import BuilderAdd from "./builder-add";
@@ -30,8 +30,12 @@ type BuilderProps = {
 function Builder({ blocks, name }: BuilderProps) {
   const { data, setData } = useForm();
 
-  const items = get(data, name, []) as BuilderElement[];
+  let items = get(data, name, []) as BuilderElement[];
 
+  if (isEmpty(items)) {
+    items = [];
+  }
+  console.log(data);
   function setItems(items: BuilderElement[]) {
     setData?.(name, items);
   }

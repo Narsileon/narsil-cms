@@ -44,7 +44,7 @@ class EntityBlockField extends Model
         ];
 
         $this->with = [
-            self::RELATION_ENTITY_BLOCKS,
+            self::RELATION_BLOCKS,
             self::RELATION_FIELD,
         ];
 
@@ -105,18 +105,18 @@ class EntityBlockField extends Model
     #region • RELATIONS
 
     /**
+     * The name of the "blocks" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCKS = 'blocks';
+
+    /**
      * The name of the "entity block" relation.
      *
      * @var string
      */
     final public const RELATION_ENTITY_BLOCK = 'entity_block';
-
-    /**
-     * The name of the "entity blocks" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY_BLOCKS = 'entity_blocks';
 
     /**
      * The name of the "field" relation.
@@ -163,7 +163,7 @@ class EntityBlockField extends Model
      *
      * @return BelongsTo
      */
-    public function entity_blocks(): BelongsToMany
+    public function blocks(): BelongsToMany
     {
         return $this->belongsToMany(
             EntityBlock::class,

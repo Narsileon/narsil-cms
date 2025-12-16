@@ -102,7 +102,7 @@ function BuilderItem({
                 "type" in childElement &&
                 childElement.type === "Narsil\\Contracts\\Fields\\BuilderField"
               ) {
-                childHandle = `${baseHandle}.children`;
+                childHandle = `${baseHandle}.fields.${index}.blocks`;
               }
 
               return (
