@@ -6,11 +6,10 @@ namespace Narsil\Http\Controllers\Sites;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\SiteFormRequest;
+use Narsil\Implementations\Requests\SiteFormRequest;
 use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;

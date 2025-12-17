@@ -8,8 +8,6 @@ use Narsil\Contracts\Fields\ArrayField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;

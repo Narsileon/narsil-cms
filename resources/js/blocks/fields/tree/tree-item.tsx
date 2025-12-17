@@ -82,6 +82,7 @@ function TreeItem({
             )}
             <TreeItemMenu
               className="justify-end"
+              disabled={disabled}
               item={item}
               onMoveDown={onMoveDown}
               onMoveUp={onMoveUp}

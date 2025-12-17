@@ -10,10 +10,11 @@ import { type ComponentProps } from "react";
 import { FlatNode } from ".";
 
 type TreeItemMenuProps = ComponentProps<typeof SortableItemMenu> & {
+  disabled?: boolean;
   item: FlatNode;
 };
 
-function TreeItemMenu({ item, ...props }: TreeItemMenuProps) {
+function TreeItemMenu({ disabled, item, ...props }: TreeItemMenuProps) {
   const { setAlertDialog } = useAlertDialog();
   const { isDirty } = useForm();
   const { trans } = useLocalization();
@@ -37,7 +38,7 @@ function TreeItemMenu({ item, ...props }: TreeItemMenuProps) {
           </ModalLink>
         </DropdownMenuItem>
       ) : null}
-      {item.destroy_url ? (
+      {item.destroy_url && !disabled ? (
         <>
           <DropdownMenuSeparator />
           <DropdownMenuItem
