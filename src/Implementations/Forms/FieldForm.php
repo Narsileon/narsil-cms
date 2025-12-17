@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Forms;
 
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\SelectField;
+use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FieldForm as Contract;
 use Narsil\Enums\Forms\RuleEnum;
@@ -131,8 +132,8 @@ class FieldForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Field::REQUIRED,
                             Field::NAME => trans('narsil::validation.attributes.required'),
-                            Field::TYPE => CheckboxField::class,
-                            Field::SETTINGS => app(CheckboxField::class),
+                            Field::TYPE => SwitchField::class,
+                            Field::SETTINGS => app(SwitchField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([
