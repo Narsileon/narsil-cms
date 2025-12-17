@@ -61,19 +61,19 @@ class BlockForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::NAME,
                             Field::NAME => trans('narsil::ui.default_name'),
+                            Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::HANDLE,
                             Field::NAME => trans('narsil::ui.default_handle'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([

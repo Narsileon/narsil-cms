@@ -53,6 +53,7 @@ export type Field = {
   identifier: string;
   name: string;
   options: FieldOption[];
+  required: boolean;
   translatable: boolean;
 } & FieldType;
 
@@ -70,6 +71,8 @@ export type HasElement = Model & {
   id: number;
   name: string;
   position: number;
+  required: boolean;
+  translatable: boolean;
   width: number;
 };
 

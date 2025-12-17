@@ -108,16 +108,6 @@ class EmailField extends AbstractField implements Contract
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    final public function required(bool $required): static
-    {
-        $this->set('required', $required);
-
-        return $this;
-    }
-
     #endregion
 
     #endregion

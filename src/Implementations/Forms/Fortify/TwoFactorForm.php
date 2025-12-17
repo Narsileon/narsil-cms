@@ -57,11 +57,11 @@ class TwoFactorForm extends AbstractForm implements Contract
                 Field::DESCRIPTION => trans('narsil::two-factor.code_description'),
                 Field::HANDLE => 'code',
                 Field::NAME => trans('narsil::validation.attributes.code'),
+                Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->icon('circle-check')
-                    ->required(true),
+                    ->icon('circle-check'),
             ]),
         ];
     }

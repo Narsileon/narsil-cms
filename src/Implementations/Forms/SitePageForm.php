@@ -65,21 +65,21 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => SitePage::TITLE,
                             Field::NAME => trans('narsil::validation.attributes.title'),
+                            Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => SitePage::SLUG,
                             Field::NAME => trans('narsil::validation.attributes.slug'),
+                            Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
-                                ->generate(SitePage::TITLE)
-                                ->required(true),
+                                ->generate(SitePage::TITLE),
                         ])
                     ]),
                     new BlockElement([
@@ -108,22 +108,22 @@ class SitePageForm extends AbstractForm implements Contract
                                     BlockElement::RELATION_ELEMENT => new Field([
                                         Field::HANDLE => SitePage::META_DESCRIPTION,
                                         Field::NAME => trans('narsil::validation.attributes.description'),
+                                        Field::REQUIRED => true,
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextareaField::class,
-                                        Field::SETTINGS => app(TextareaField::class)
-                                            ->required(true),
+                                        Field::SETTINGS => app(TextareaField::class),
                                     ])
                                 ]),
                                 new BlockElement([
                                     BlockElement::RELATION_ELEMENT => new Field([
                                         Field::HANDLE => SitePage::ROBOTS,
                                         Field::NAME => trans('narsil::validation.attributes.robots'),
+                                        Field::REQUIRED => true,
                                         Field::TYPE => SelectField::class,
                                         Field::RELATION_OPTIONS => RobotsEnum::options(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(RobotsEnum::ALL->value)
-                                            ->displayValue(false)
-                                            ->required(true),
+                                            ->displayValue(false),
                                     ])
                                 ]),
                             ],
@@ -137,12 +137,12 @@ class SitePageForm extends AbstractForm implements Contract
                                     BlockElement::RELATION_ELEMENT => new Field([
                                         Field::HANDLE => SitePage::OPEN_GRAPH_TYPE,
                                         Field::NAME => trans('narsil::validation.attributes.type'),
+                                        Field::REQUIRED => true,
                                         Field::TYPE => SelectField::class,
                                         Field::RELATION_OPTIONS => OpenGraphTypeEnum::options(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(OpenGraphTypeEnum::WEBSITE->value)
-                                            ->displayValue(false)
-                                            ->required(true),
+                                            ->displayValue(false),
                                     ])
                                 ]),
                                 new BlockElement([
@@ -186,18 +186,19 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => SitePage::CHANGE_FREQ,
                             Field::NAME => trans('narsil::validation.attributes.change_freq'),
+                            Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
                             Field::RELATION_OPTIONS => ChangeFreqEnum::options(),
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ChangeFreqEnum::NEVER->value)
-                                ->displayValue(false)
-                                ->required(true),
+                                ->displayValue(false),
                         ])
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => SitePage::PRIORITY,
                             Field::NAME => trans('narsil::validation.attributes.priority'),
+                            Field::REQUIRED => true,
                             Field::TYPE => RangeField::class,
                             Field::SETTINGS => app(RangeField::class)
                                 ->defaultValue([1.0])

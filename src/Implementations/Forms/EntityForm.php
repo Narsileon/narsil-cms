@@ -64,10 +64,10 @@ class EntityForm extends AbstractForm implements Contract
                 TemplateSectionElement::RELATION_ELEMENT => new Field([
                     Field::HANDLE => Entity::SLUG,
                     Field::NAME => trans('narsil::validation.attributes.slug'),
+                    Field::REQUIRED => true,
                     Field::TRANSLATABLE => true,
                     Field::TYPE => TextField::class,
-                    Field::SETTINGS => app(TextField::class)
-                        ->required(true),
+                    Field::SETTINGS => app(TextField::class),
                 ]),
             ]),
         ]);

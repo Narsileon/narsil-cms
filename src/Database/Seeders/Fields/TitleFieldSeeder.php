@@ -26,10 +26,10 @@ class TitleFieldSeeder extends FieldSeeder
         return new Field([
             Field::HANDLE => 'title',
             Field::NAME => 'Title',
+            Field::REQUIRED => true,
             Field::TRANSLATABLE => true,
             Field::TYPE => TextField::class,
-            Field::SETTINGS => app(TextField::class)
-                ->required(true),
+            Field::SETTINGS => app(TextField::class),
         ]);
     }
 

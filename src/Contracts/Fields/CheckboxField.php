@@ -25,14 +25,5 @@ interface CheckboxField extends Contract
      */
     public function defaultValue(array|bool $value): static;
 
-    /**
-     * Set the required attribute.
-     *
-     * @param boolean $required
-     *
-     * @return static
-     */
-    public function required(bool $required): static;
-
     #endregion
 }

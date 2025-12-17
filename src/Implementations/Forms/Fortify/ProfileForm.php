@@ -50,20 +50,20 @@ class ProfileForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::LAST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.last_name'),
+                Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                    ->icon('circle-user')
-                    ->required(true),
+                    ->icon('circle-user'),
             ]),
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
                 Field::NAME => trans('narsil::validation.attributes.first_name'),
+                Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                    ->icon('circle-user')
-                    ->required(true),
+                    ->icon('circle-user'),
             ]),
             new Field([
                 Field::HANDLE => User::AVATAR,

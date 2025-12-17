@@ -58,26 +58,26 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.current_password'),
+                Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value)
-                    ->required(true),
+                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value),
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
+                Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true),
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                 Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
+                Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                    ->required(true),
+                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
             ]),
         ];
     }

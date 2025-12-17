@@ -62,9 +62,9 @@ class TemplateForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
                     new TemplateSectionElement([
@@ -72,10 +72,10 @@ class TemplateForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::SINGULAR,
                             Field::NAME => trans('narsil::validation.attributes.singular'),
+                            Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
                     new TemplateSectionElement([
@@ -83,10 +83,10 @@ class TemplateForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::PLURAL,
                             Field::NAME => trans('narsil::validation.attributes.plural'),
+                            Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
                     new TemplateSectionElement([

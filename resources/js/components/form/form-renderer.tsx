@@ -24,6 +24,8 @@ import FormMessage from "./form-message";
 type FormRendererProps = (Block | Field | TemplateSection) & {
   className?: string;
   conditions?: BlockElementCondition[];
+  required?: boolean;
+  translatable?: boolean;
   width?: number;
   onChange?: (value: unknown) => void;
 };
@@ -45,6 +47,8 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                   {...childElement}
                   handle={element.handle ?? childElement.handle}
                   name={element.name ?? childElement.name}
+                  required={element.required ?? childElement.required}
+                  translatable={element.translatable ?? childElement.translatable}
                   width={element.width}
                 />
               ) : (
@@ -93,8 +97,11 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
     return null;
   }
 
-  const { description, settings, type } = props as {
+  const { description, required, settings, translatable, type } = props as {
     description?: string;
+    required?: boolean;
+    translatable?: boolean;
+    type: Field["type"];
     settings: {
       append?: string;
       className?: string;
@@ -102,7 +109,6 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
       required?: boolean;
       type?: string;
     };
-    type: Field["type"];
   };
 
   return (
@@ -127,8 +133,8 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-1">
-                <FormLabel required={settings?.required}>{props.name}</FormLabel>
-                {props.translatable ? (
+                <FormLabel required={required}>{props.name}</FormLabel>
+                {translatable ? (
                   <>
                     <Icon className="size-4" name="globe" />
                     <span>-</span>

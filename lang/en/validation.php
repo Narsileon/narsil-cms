@@ -259,6 +259,7 @@ return [
         'radius'                  => 'rounding',
         'recovery_code'           => 'recovery Code',
         'remember'                => 'remember me',
+        'required'                => 'required',
         'revision'                => 'revision',
         'revisions'               => 'revisions',
         'robots'                  => 'robots',

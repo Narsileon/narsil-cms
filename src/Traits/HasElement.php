@@ -73,6 +73,20 @@ trait HasElement
     final public const POSITION = 'position';
 
     /**
+     * The name of the "required" column.
+     *
+     * @var string
+     */
+    final public const REQUIRED = 'required';
+
+    /**
+     * The name of the "translatable" column.
+     *
+     * @var string
+     */
+    final public const TRANSLATABLE = 'translatable';
+
+    /**
      * The name of the "width" column.
      *
      * @var string

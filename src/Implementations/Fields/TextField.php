@@ -162,16 +162,6 @@ class TextField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function required(bool $required): static
-    {
-        $this->set('required', $required);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function type(string $type): static
     {
         $this->set('type', $type);

@@ -43,14 +43,5 @@ interface RichTextField extends Contract
      */
     public function placeholder(string $placeholder): static;
 
-    /**
-     * Set the required attribute.
-     *
-     * @param boolean $required
-     *
-     * @return static
-     */
-    public function required(bool $required): static;
-
     #endregion
 }

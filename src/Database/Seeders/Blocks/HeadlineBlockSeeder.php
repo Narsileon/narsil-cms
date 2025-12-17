@@ -37,10 +37,10 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'headline',
                         Field::NAME => 'Headline',
+                        Field::REQUIRED => true,
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
-                        Field::SETTINGS => app(SelectField::class)
-                            ->required(true),
+                        Field::SETTINGS => app(SelectField::class),
                     ]),
                 ]),
                 new BlockElement([
@@ -48,11 +48,11 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'headline_level',
                         Field::NAME => 'Level',
+                        Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $headlineOptions,
                         Field::SETTINGS => app(SelectField::class)
-                            ->defaultValue('h1')
-                            ->required(true),
+                            ->defaultValue('h1'),
                     ]),
                 ]),
                 new BlockElement([
@@ -60,11 +60,11 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'headline_style',
                         Field::NAME => 'Style',
+                        Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $headlineOptions,
                         Field::SETTINGS => app(SelectField::class)
-                            ->defaultValue('h6')
-                            ->required(true),
+                            ->defaultValue('h6'),
                     ]),
                 ]),
             ],

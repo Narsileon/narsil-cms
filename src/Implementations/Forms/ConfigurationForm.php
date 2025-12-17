@@ -59,10 +59,10 @@ class ConfigurationForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
                             Field::NAME => trans('narsil::validation.attributes.default_language'),
+                            Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
                             Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($frontendLanguages),
-                            Field::SETTINGS => app(SelectField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(SelectField::class),
                         ]),
                     ]),
                 ],
@@ -75,10 +75,10 @@ class ConfigurationForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
                             Field::NAME => trans('narsil::validation.attributes.default_language'),
+                            Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
                             Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($backendLanguages),
-                            Field::SETTINGS => app(SelectField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(SelectField::class),
                         ]),
                     ]),
                 ],

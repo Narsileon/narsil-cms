@@ -53,16 +53,16 @@ class CheckboxField extends AbstractField implements Contract
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
                             Field::NAME => trans('narsil::validation.attributes.value'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
                             Field::NAME => trans('narsil::validation.attributes.label'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                     ])
                     ->placeholder(trans('narsil::ui.add')),
@@ -78,16 +78,6 @@ class CheckboxField extends AbstractField implements Contract
     final public function defaultValue(array|bool $value): static
     {
         $this->set('value', $value);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function required(bool $required): static
-    {
-        $this->set('required', $required);
 
         return $this;
     }

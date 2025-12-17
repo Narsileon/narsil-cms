@@ -114,16 +114,6 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function required(bool $required): static
-    {
-        $this->set('required', $required);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function step(string $step): static
     {
         $this->set('step', $step);

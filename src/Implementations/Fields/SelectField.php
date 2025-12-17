@@ -48,17 +48,17 @@ class SelectField extends AbstractField implements Contract
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
                             Field::NAME => trans('narsil::validation.attributes.value'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
                             Field::NAME => trans('narsil::validation.attributes.label'),
+                            Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                     ])
                     ->placeholder(trans('narsil::ui.add')),
@@ -114,16 +114,6 @@ class SelectField extends AbstractField implements Contract
     final public function reload(string $reload): static
     {
         $this->set('reload', $reload);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function required(bool $required): static
-    {
-        $this->set('required', $required);
 
         return $this;
     }

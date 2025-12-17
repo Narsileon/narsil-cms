@@ -64,30 +64,30 @@ class UserForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::EMAIL,
                             Field::NAME => trans('narsil::validation.attributes.email'),
+                            Field::REQUIRED => true,
                             Field::TYPE => EmailField::class,
                             Field::SETTINGS => app(EmailField::class)
-                                ->icon('email')
-                                ->required(true),
+                                ->icon('email'),
                         ]),
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::PASSWORD,
                             Field::NAME => trans('narsil::validation.attributes.password'),
+                            Field::REQUIRED => true,
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
-                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                                ->required($isPost),
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
                         ]),
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                             Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
+                            Field::REQUIRED => true,
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
-                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value)
-                                ->required($isPost),
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
                         ]),
                     ]),
                 ],
@@ -100,22 +100,22 @@ class UserForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::LAST_NAME,
                             Field::NAME => trans('narsil::validation.attributes.last_name'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                                ->icon('circle-user')
-                                ->required(true),
+                                ->icon('circle-user'),
                         ]),
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::FIRST_NAME,
                             Field::NAME => trans('narsil::validation.attributes.first_name'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                                ->icon('circle-user')
-                                ->required(true),
+                                ->icon('circle-user'),
                         ]),
                     ]),
                     new TemplateSectionElement([

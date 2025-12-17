@@ -116,6 +116,12 @@ return new class extends Migration
                 ->jsonb(BlockElement::DESCRIPTION)
                 ->default(new Expression('(JSON_OBJECT())'));
             $blueprint
+                ->boolean(BlockElement::REQUIRED)
+                ->nullable();
+            $blueprint
+                ->boolean(BlockElement::TRANSLATABLE)
+                ->nullable();
+            $blueprint
                 ->integer(BlockElement::POSITION)
                 ->default(0);
             $blueprint

@@ -52,9 +52,9 @@ class HeaderForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Header::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([

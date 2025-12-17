@@ -60,10 +60,10 @@ class HostLocaleForm extends AbstractForm implements Contract
                     new Field([
                         Field::HANDLE => HostLocaleLanguage::LANGUAGE,
                         Field::NAME => trans('narsil::validation.attributes.language'),
+                        Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $languageSelectOptions,
-                        Field::SETTINGS => app(SelectField::class)
-                            ->required(true),
+                        Field::SETTINGS => app(SelectField::class),
                     ]),
                 ])
                 ->placeholder(trans('narsil::ui.add')),
@@ -78,9 +78,9 @@ class HostLocaleForm extends AbstractForm implements Contract
         return new Field([
             Field::HANDLE => HostLocale::PATTERN,
             Field::NAME => trans('narsil::validation.attributes.pattern'),
+            Field::REQUIRED => true,
             Field::TYPE => TextField::class,
-            Field::SETTINGS => app(TextField::class)
-                ->required(true),
+            Field::SETTINGS => app(TextField::class),
         ]);
     }
 

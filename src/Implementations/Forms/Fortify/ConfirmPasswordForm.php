@@ -48,10 +48,10 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => User::PASSWORD,
                 Field::NAME => trans('narsil::validation.attributes.password'),
+                Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->required(true),
+                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value),
             ]),
         ];
     }

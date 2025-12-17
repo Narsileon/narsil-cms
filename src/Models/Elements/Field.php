@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Narsil\Casts\JsonCast;
 use Narsil\Services\FieldService;
 use Narsil\Traits\Blameable;
@@ -52,9 +51,11 @@ class Field extends Model
 
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
-            self::ATTRIBUTE_IDENTIFIER,
+            self
+            ::ATTRIBUTE_IDENTIFIER,
         ]);
         $this->mergeCasts([
+            self::REQUIRED => 'boolean',
             self::SETTINGS => JsonCast::class,
             self::TRANSLATABLE => 'boolean',
         ]);
@@ -123,6 +124,13 @@ class Field extends Model
      * @var string
      */
     final public const NAME = 'name';
+
+    /**
+     * The name of the "required" column.
+     *
+     * @var string
+     */
+    final public const REQUIRED = 'required';
 
     /**
      * The name of the "rules" column.

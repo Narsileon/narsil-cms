@@ -80,15 +80,6 @@ interface TextField extends Contract
     public function placeholder(string $placeholder): static;
 
     /**
-     * Set the required attribute.
-     *
-     * @param boolean $required
-     *
-     * @return static
-     */
-    public function required(bool $required): static;
-
-    /**
      * Set the smart values attribute.
      *
      * @param string $smartValues

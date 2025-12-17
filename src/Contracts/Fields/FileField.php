@@ -43,14 +43,5 @@ interface FileField extends Contract
      */
     public function icon(string $icon): static;
 
-    /**
-     * Set the required attribute.
-     *
-     * @param boolean $required
-     *
-     * @return static
-     */
-    public function required(bool $required): static;
-
     #endregion
 }

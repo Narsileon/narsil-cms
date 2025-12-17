@@ -50,10 +50,10 @@ class FooterForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => FooterLegalLink::LABEL,
                 Field::NAME => trans('narsil::validation.attributes.label'),
+                Field::REQUIRED => true,
                 Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true),
+                Field::SETTINGS => app(TextField::class),
             ]),
         ];
 
@@ -61,17 +61,17 @@ class FooterForm extends AbstractForm implements Contract
             new Field([
                 Field::HANDLE => FooterSocialLink::LABEL,
                 Field::NAME => trans('narsil::validation.attributes.label'),
+                Field::REQUIRED => true,
                 Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true),
+                Field::SETTINGS => app(TextField::class),
             ]),
             new Field([
                 Field::HANDLE => FooterSocialLink::URL,
                 Field::NAME => trans('narsil::validation.attributes.url'),
+                Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->required(true),
+                Field::SETTINGS => app(TextField::class),
             ]),
         ];
 
@@ -84,9 +84,9 @@ class FooterForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->required(true),
+                            Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([
