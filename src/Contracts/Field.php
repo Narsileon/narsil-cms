@@ -17,11 +17,6 @@ interface Field
      */
     public static function getForm(?string $prefix = null): array;
 
-    /**
-     * @return string
-     */
-    public static function getIcon(): string;
-
     #region • FLUENT
 
     /**

@@ -6,7 +6,6 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Contracts\Forms\PublishForm;
@@ -91,7 +90,7 @@ class EntityEditController extends RenderController
     {
         $template = Entity::getTemplate();
 
-        return Str::singular($template->{Template::NAME});
+        return $template->{Template::SINGULAR};
     }
 
     /**
@@ -167,7 +166,7 @@ class EntityEditController extends RenderController
     {
         $template = Entity::getTemplate();
 
-        return Str::singular($template->{Template::NAME});
+        return $template->{Template::SINGULAR};
     }
 
     #endregion

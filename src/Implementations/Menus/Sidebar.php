@@ -83,7 +83,7 @@ class Sidebar extends AbstractMenu implements Contract
         $group = trans('narsil::ui.collections');
 
         $templates = Template::query()
-            ->orderBy(Template::NAME)
+            ->orderBy(Template::PLURAL)
             ->get();
 
         foreach ($templates as $template)
@@ -94,7 +94,7 @@ class Sidebar extends AbstractMenu implements Contract
                     'collection' => $template->{Template::HANDLE},
                 ]))
                 ->icon('layers')
-                ->label($template->{Template::NAME})
+                ->label($template->{Template::PLURAL})
                 ->permissions([
                     PermissionService::getHandle(Entity::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]);

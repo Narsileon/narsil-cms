@@ -25,7 +25,7 @@ class CollectionSummaryResource extends SummaryResource
     {
         return [
             self::HREF => route("collections.index", $this->{Template::HANDLE}),
-            self::NAME => $this->{Template::NAME},
+            self::NAME => $this->{Template::PLURAL},
         ];
     }
 

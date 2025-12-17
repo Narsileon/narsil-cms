@@ -74,14 +74,6 @@ class TextField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'text';
-    }
-
     #region • FLUENT
 
     /**

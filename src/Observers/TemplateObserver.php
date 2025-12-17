@@ -4,7 +4,6 @@ namespace Narsil\Observers;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Database\Migrations\CollectionMigration;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Models\Elements\Template;
@@ -71,8 +70,8 @@ class TemplateObserver
             $handle = PermissionService::getHandle($template->{Template::HANDLE}, $permission);
 
             $name = trans("narsil::permissions.$permission", [
-                'model' => Str::singular($template->{Template::NAME}),
-                'table' => $template->{Template::NAME},
+                'model' => $template->{Template::SINGULAR},
+                'table' => $template->{Template::PLURAL},
             ]);
 
             Permission::firstOrCreate([

@@ -48,14 +48,6 @@ class FileField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'file';
-    }
-
     #region • FLUENT
 
     /**

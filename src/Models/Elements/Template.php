@@ -38,7 +38,8 @@ class Template extends Model
         ]);
 
         $this->translatable = [
-            self::NAME,
+            self::SINGULAR,
+            self::PLURAL,
         ];
 
         $this->with = [
@@ -76,11 +77,18 @@ class Template extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "name" column.
+     * The name of the "plural" column.
      *
      * @var string
      */
-    final public const NAME = 'name';
+    final public const PLURAL = 'plural';
+
+    /**
+     * The name of the "singular" column.
+     *
+     * @var string
+     */
+    final public const SINGULAR = 'singular';
 
     #endregion
 

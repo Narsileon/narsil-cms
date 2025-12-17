@@ -66,14 +66,6 @@ class SelectField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'select';
-    }
-
     #region • FLUENT
 
     /**

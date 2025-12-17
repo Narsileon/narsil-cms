@@ -198,6 +198,7 @@ const defaultRegistry: Registry = {
   ["switch"]: ToggleRight,
   ["table"]: TableIcon,
   ["text"]: TextCursorInput,
+  ["textarea"]: TypeIcon,
   ["time"]: ClockIcon,
   ["trash"]: TrashIcon,
   ["tree"]: FolderTreeIcon,

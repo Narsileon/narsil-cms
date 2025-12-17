@@ -38,7 +38,7 @@ class CollectionSummaryController extends RenderController
 
         $templates = Template::query()
             ->withoutEagerLoads()
-            ->orderBy(Template::NAME . "->$locale", 'asc')
+            ->orderBy(Template::PLURAL . "->$locale", 'asc')
             ->get();
 
         $items = CollectionSummaryResource::collection($templates)

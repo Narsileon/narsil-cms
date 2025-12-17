@@ -80,14 +80,6 @@ class RichTextField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'rich-text';
-    }
-
     #region • FLUENT
 
     /**

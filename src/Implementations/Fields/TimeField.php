@@ -61,14 +61,6 @@ class TimeField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'time';
-    }
-
     #region • FLUENT
 
     /**

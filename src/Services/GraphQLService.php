@@ -77,7 +77,7 @@ abstract class GraphQLService
             $plural = $template->{Template::HANDLE};
             $singular = Str::singular($plural);
 
-            $name = $template->{Template::NAME};
+            $name = $template->{Template::PLURAL};
 
             $model = 'Narsil\\\\Models\\\\Entities\\\\Entity';
 
@@ -115,7 +115,7 @@ abstract class GraphQLService
      */
     protected static function getCollectionType(Template $template): string
     {
-        $collectionName = $template->{Template::NAME};
+        $collectionName = $template->{Template::PLURAL};
         $collectionBlockName = static::getCollectionBlockName($template);
 
         $definition = "";
@@ -160,7 +160,7 @@ abstract class GraphQLService
      */
     protected static function getCollectionBlockName(Template $template): string
     {
-        return Str::singular($template->{Template::NAME}) . "Block";;
+        return $template->{Template::SINGULAR} . "Block";;
     }
 
     /**

@@ -70,14 +70,6 @@ class CheckboxField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'checkbox';
-    }
-
     #region • FLUENT
 
     /**

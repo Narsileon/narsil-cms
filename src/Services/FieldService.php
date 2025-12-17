@@ -4,6 +4,7 @@ namespace Narsil\Services;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
 
@@ -16,6 +17,20 @@ use Narsil\Models\Elements\FieldOption;
 abstract class FieldService
 {
     #region PUBLIC METHODS
+
+    /**
+     * Get the icon of the field.
+     *
+     * @return string
+     */
+    public static function getIcon(string $type): string
+    {
+        $baseName = class_basename($type);
+
+        $fieldName  = Str::beforeLast($baseName, 'Field');
+
+        return Str::kebab($fieldName);
+    }
 
     /**
      * @param Field $field

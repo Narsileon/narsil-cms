@@ -70,14 +70,6 @@ class RelationsField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'relations';
-    }
-
     #region • FLUENT
 
     /**
@@ -230,12 +222,12 @@ class RelationsField extends AbstractField implements Contract
     protected static function getTemplateSelectOptions(): array
     {
         return Template::query()
-            ->orderBy(Template::NAME)
+            ->orderBy(Template::PLURAL)
             ->get()
             ->map(function (Template $template)
             {
                 $option = new SelectOption()
-                    ->optionLabel($template->{Template::NAME})
+                    ->optionLabel($template->{Template::PLURAL})
                     ->optionValue((string)$template->{Template::ID});
 
                 return $option;

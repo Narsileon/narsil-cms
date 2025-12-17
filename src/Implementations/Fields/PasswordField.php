@@ -72,14 +72,6 @@ class PasswordField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'password';
-    }
-
     #region • FLUENT
 
     /**

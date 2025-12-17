@@ -69,14 +69,6 @@ class BuilderField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'box';
-    }
-
     #region • FLUENT
 
     /**

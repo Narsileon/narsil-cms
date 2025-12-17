@@ -33,6 +33,7 @@ class ButtonBlockSeeder extends BlockSeeder
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'label',
                         Field::NAME => 'Label',
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                         Field::RELATION_BLOCKS => []
                     ]),
@@ -41,6 +42,7 @@ class ButtonBlockSeeder extends BlockSeeder
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'url',
                         Field::NAME => 'URL',
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                     ]),
                 ]),

@@ -15,6 +15,7 @@ use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Services\FieldService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -156,10 +157,11 @@ class FieldForm extends AbstractForm implements Contract
 
         foreach (config('narsil.fields', []) as $abstract => $concrete)
         {
+            $icon = FieldService::getIcon($abstract);
             $label = trans('narsil::fields.' . $abstract);
 
             $options[] = new SelectOption()
-                ->optionIcon($concrete::getIcon())
+                ->optionIcon($icon)
                 ->optionLabel($label)
                 ->optionValue($abstract);
         }

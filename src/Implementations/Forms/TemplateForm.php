@@ -60,8 +60,18 @@ class TemplateForm extends AbstractForm implements Contract
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Template::NAME,
-                            Field::NAME => trans('narsil::validation.attributes.name'),
+                            Field::HANDLE => Template::HANDLE,
+                            Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->required(true),
+                        ])
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::WIDTH => 50,
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Template::SINGULAR,
+                            Field::NAME => trans('narsil::validation.attributes.singular'),
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
@@ -69,9 +79,11 @@ class TemplateForm extends AbstractForm implements Contract
                         ])
                     ]),
                     new TemplateSectionElement([
+                        TemplateSectionElement::WIDTH => 50,
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Template::HANDLE,
-                            Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::HANDLE => Template::PLURAL,
+                            Field::NAME => trans('narsil::validation.attributes.plural'),
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->required(true),

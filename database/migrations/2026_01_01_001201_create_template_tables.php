@@ -129,7 +129,9 @@ return new class extends Migration
                 ->string(Template::HANDLE)
                 ->unique();
             $blueprint
-                ->jsonb(Template::NAME);
+                ->jsonb(Template::SINGULAR);
+            $blueprint
+                ->jsonb(Template::PLURAL);
             $blueprint
                 ->timestamp(Template::CREATED_AT);
             $blueprint

@@ -45,14 +45,6 @@ class TreeField extends AbstractField implements Contract
         return [];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'tree';
-    }
-
     #region • FLUENT
 
     /**

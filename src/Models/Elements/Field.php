@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Narsil\Casts\JsonCast;
+use Narsil\Services\FieldService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -221,9 +223,7 @@ class Field extends Model
     {
         if ($type = $this->{self::TYPE})
         {
-            $class = app($type);
-
-            return $class::getIcon();
+            return FieldService::getIcon($type);
         }
 
         return null;

@@ -56,14 +56,6 @@ class EmailField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'email';
-    }
-
     #region • FLUENT
 
     /**

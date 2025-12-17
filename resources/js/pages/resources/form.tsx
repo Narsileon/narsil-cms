@@ -105,7 +105,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
   const tabsContent = tabs.map((tab, index) => {
     return (
       <TabsContent
-        className="w-full max-w-5xl gap-8 place-self-center"
+        className="grid w-full max-w-5xl grid-cols-12 gap-x-4 gap-y-8 place-self-center"
         value={tab.handle}
         key={index}
       >

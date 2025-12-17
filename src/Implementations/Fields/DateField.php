@@ -59,14 +59,6 @@ class DateField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'date';
-    }
-
     #region • FLUENT
 
     /**

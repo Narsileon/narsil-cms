@@ -69,7 +69,7 @@ class EntityIndexController extends RenderController
     {
         $template = Entity::getTemplate();
 
-        return $template->{Template::NAME};
+        return $template->{Template::PLURAL};
     }
 
     /**
@@ -79,7 +79,7 @@ class EntityIndexController extends RenderController
     {
         $template = Entity::getTemplate();
 
-        return $template->{Template::NAME};
+        return $template->{Template::PLURAL};
     }
 
     #endregion

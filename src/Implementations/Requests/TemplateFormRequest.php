@@ -36,7 +36,12 @@ class TemplateFormRequest implements Contract
                     Template::HANDLE,
                 )->ignore($model?->{Template::ID}),
             ],
-            Template::NAME => [
+            Template::PLURAL => [
+                FormRule::ARRAY,
+                FormRule::REQUIRED,
+            ],
+            Template::SINGULAR => [
+                FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
 

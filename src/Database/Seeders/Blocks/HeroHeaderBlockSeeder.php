@@ -35,6 +35,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'headline',
                         Field::NAME => 'Headline',
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
                     ]),
                 ]),
@@ -42,6 +43,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'excerpt',
                         Field::NAME => 'Excerpt',
+                        Field::TRANSLATABLE => true,
                         Field::TYPE => RichTextField::class,
                     ]),
                 ]),

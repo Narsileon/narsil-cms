@@ -45,14 +45,6 @@ class SwitchField extends AbstractField implements Contract
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getIcon(): string
-    {
-        return 'switch';
-    }
-
     #region • FLUENT
 
     /**
