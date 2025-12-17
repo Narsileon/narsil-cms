@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Resources;
 
 use Illuminate\Http\Request;
 use Narsil\Contracts\Fields\BuilderField;
-use Narsil\Contracts\Resources\EntityResource as Contract;
+use Narsil\Contracts\Resources\EntityBlockResource as Contract;
 use Narsil\Implementations\AbstractResource;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
