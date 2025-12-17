@@ -3,10 +3,10 @@ import { type ComponentProps } from "react";
 
 type RichTextEditorContentProps = Omit<ComponentProps<typeof EditorContent>, "editor">;
 
-function RichTextEditorContent({ id, ...props }: RichTextEditorContentProps) {
+function RichTextEditorContent({ ...props }: RichTextEditorContentProps) {
   const { editor } = useCurrentEditor();
 
-  return <EditorContent id={id} editor={editor} {...props} />;
+  return <EditorContent editor={editor} {...props} />;
 }
 
 export default RichTextEditorContent;

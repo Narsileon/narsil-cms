@@ -91,22 +91,30 @@ function BuilderItem({
             {item.block.elements?.map((element, index) => {
               const childElement = element.element;
 
+              const isField = "type" in childElement;
+
               const childName = element.name ?? childElement.name;
               let childHandle = `${baseHandle}.fields.${index}.value`;
 
-              if ("type" in childElement && !childElement.translatable) {
+              if (isField && !childElement.translatable) {
                 childHandle = `${childHandle}.en`;
               }
 
-              if (
-                "type" in childElement &&
-                childElement.type === "Narsil\\Contracts\\Fields\\BuilderField"
-              ) {
+              if (isField && childElement.type === "Narsil\\Contracts\\Fields\\BuilderField") {
                 childHandle = `${baseHandle}.fields.${index}.blocks`;
               }
 
               return (
-                <FormRenderer {...childElement} handle={childHandle} name={childName} key={index} />
+                <FormRenderer
+                  {...childElement}
+                  handle={childHandle}
+                  name={childName}
+                  required={isField ? (element.required ?? childElement.required) : undefined}
+                  translatable={
+                    isField ? (element.translatable ?? childElement.translatable) : undefined
+                  }
+                  key={index}
+                />
               );
             })}
           </CardContent>

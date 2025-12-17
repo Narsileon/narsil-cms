@@ -32,6 +32,8 @@ class HeroHeaderBlockSeeder extends BlockSeeder
             Block::NAME => 'Hero Header',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
+                    BlockElement::REQUIRED => true,
+                    BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'headline',
                         Field::NAME => 'Headline',
@@ -40,6 +42,8 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     ]),
                 ]),
                 new BlockElement([
+                    BlockElement::REQUIRED => true,
+                    BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'excerpt',
                         Field::NAME => 'Excerpt',

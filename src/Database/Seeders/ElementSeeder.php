@@ -56,6 +56,8 @@ abstract class ElementSeeder
                             BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{Field::HANDLE},
                             BlockElement::NAME => $element->{Field::NAME},
                             BlockElement::POSITION => $position,
+                            BlockElement::REQUIRED => $blockElement->{BlockElement::REQUIRED},
+                            BlockElement::TRANSLATABLE => $blockElement->{BlockElement::TRANSLATABLE},
                             BlockElement::WIDTH => $blockElement->{BlockElement::WIDTH} ?? 100,
                         ]);
                     }
@@ -70,6 +72,8 @@ abstract class ElementSeeder
                             BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{Block::HANDLE},
                             BlockElement::NAME => $element->{Block::NAME},
                             BlockElement::POSITION => $position,
+                            BlockElement::REQUIRED => $blockElement->{BlockElement::REQUIRED},
+                            BlockElement::TRANSLATABLE => $blockElement->{BlockElement::TRANSLATABLE},
                             BlockElement::WIDTH => $blockElement->{BlockElement::WIDTH} ?? 100,
                         ]);
                     }
