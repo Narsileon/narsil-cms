@@ -51,15 +51,18 @@ class SitePageResource extends AbstractResource implements Contract
     /**
      * Get the content.
      * 
-     * @return EntityResource
+     * @return EntityResource|null
      */
-    protected function getContent(): EntityResource
+    protected function getContent(): ?EntityResource
     {
-        $identifier = Arr::first($this->{SitePage::CONTENT});
+        $content = null;
 
-        $entity = Arr::get($this->{SitePage::ATTRIBUTE_ENTITIES}, $identifier);
+        if ($identifier = Arr::first($this->{SitePage::CONTENT}))
+        {
+            $content = Arr::get($this->{SitePage::ATTRIBUTE_ENTITIES}, $identifier);
+        }
 
-        return $entity;
+        return $content;
     }
 
     /**
