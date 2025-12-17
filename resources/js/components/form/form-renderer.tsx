@@ -106,7 +106,6 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
       append?: string;
       className?: string;
       generate?: string;
-      required?: boolean;
       type?: string;
     };
   };
@@ -195,6 +194,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
               id: props.handle,
               element: props as Field,
               placeholder: placeholder,
+              required: required,
               value: value,
               setValue: handleOnChange,
             })}

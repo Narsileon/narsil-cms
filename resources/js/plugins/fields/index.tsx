@@ -26,6 +26,7 @@ export type FieldProps = {
   element: Field;
   id: string;
   placeholder?: string;
+  required?: boolean;
   value: any;
   setValue: (value: any) => void;
 };
@@ -76,6 +77,7 @@ const defaultRegistry: Registry = {
           name={props.id}
           checked={[true, "1", "true", 1].includes(props.value)}
           onCheckedChange={props.setValue}
+          required={props.required}
         />
       );
     }
@@ -99,6 +101,7 @@ const defaultRegistry: Registry = {
         name={props.id}
         value={props.value}
         onChange={props.setValue}
+        required={props.required}
       />
     );
   },
@@ -110,6 +113,7 @@ const defaultRegistry: Registry = {
         name={props.id}
         value={props.value}
         onChange={props.setValue}
+        required={props.required}
       >
         {props.element.settings.icon ? (
           <Icon className="opacity-50" name={props.element.settings.icon} />
@@ -125,6 +129,7 @@ const defaultRegistry: Registry = {
         name={props.id}
         value={props.value}
         onChange={(event) => props.setValue(event.target.value)}
+        required={props.required}
       />
     );
   },
@@ -174,6 +179,7 @@ const defaultRegistry: Registry = {
         id={props.id}
         value={props.value}
         onChange={props.setValue}
+        required={props.required}
       />
     );
   },
@@ -195,6 +201,7 @@ const defaultRegistry: Registry = {
         name={props.id}
         checked={props.value}
         onCheckedChange={props.setValue}
+        required={props.required}
       />
     );
   },
@@ -208,6 +215,7 @@ const defaultRegistry: Registry = {
         name={props.id}
         value={props.value}
         onChange={(event) => props.setValue(event.target.value)}
+        required={props.required}
       />
     );
   },
@@ -224,6 +232,7 @@ const defaultRegistry: Registry = {
           )}
           value={props.value}
           onChange={(event) => props.setValue(event.target.value)}
+          required={props.required}
         />
         <Icon className="opacity-50" name="clock" />
       </InputRoot>
@@ -242,6 +251,7 @@ const defaultRegistry: Registry = {
           placeholder={props.placeholder}
           value={props.value}
           onChange={(event) => props.setValue(event.target.value)}
+          required={props.required}
         />
         {props.element.settings.icon ? (
           <Icon className="opacity-50" name={props.element.settings.icon} />

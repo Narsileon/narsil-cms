@@ -7,17 +7,24 @@ import {
 import { type ComponentProps } from "react";
 
 type RichTextEditorProps = ComponentProps<typeof RichTextEditorProvider> &
-  Pick<ComponentProps<typeof RichTextEditorContent>, "id"> &
+  Pick<ComponentProps<typeof RichTextEditorContent>, "id" | "required"> &
   Pick<ComponentProps<typeof RichTextEditorToolbar>, "modules"> & {
     toolbar?: boolean;
   };
 
-function RichTextEditor({ className, id, modules, toolbar = true, ...props }: RichTextEditorProps) {
+function RichTextEditor({
+  className,
+  id,
+  modules,
+  required,
+  toolbar = true,
+  ...props
+}: RichTextEditorProps) {
   return (
     <RichTextEditorRoot className={className}>
       <RichTextEditorProvider {...props}>
         {toolbar ? <RichTextEditorToolbar modules={modules} /> : null}
-        <RichTextEditorContent id={id} />
+        <RichTextEditorContent id={id} required={required} />
       </RichTextEditorProvider>
     </RichTextEditorRoot>
   );

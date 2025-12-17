@@ -29,10 +29,12 @@ abstract class AbstractForm extends Fluent implements Form
      */
     public function __construct()
     {
+        $id = $this->getDefaultId();
         $layout = $this->getLayout();
 
         $this
             ->defaultLanguage(config('app.locale'))
+            ->id($id)
             ->languageOptions(config('narsil.locales'))
             ->layout($layout)
             ->submitLabel(trans('narsil::ui.save'));
