@@ -12,7 +12,7 @@ function FormItem({ className, width, ...props }: FormItemProps) {
     <div
       data-slot="form-item"
       className={cn(
-        "flex min-h-9 max-w-full flex-col gap-2 overflow-hidden [.flex-row]:items-center [.flex-row-reverse]:items-center",
+        "flex min-h-9 max-w-full flex-col gap-1 overflow-hidden [.flex-row]:items-center [.flex-row-reverse]:items-center",
         widthClassName,
         className,
       )}

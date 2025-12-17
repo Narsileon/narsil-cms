@@ -17,7 +17,7 @@ function FormLabel({ children, className, required = false, ...props }: FormLabe
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-destructive", className)}
+      className={cn("min-h-7 items-center data-[error=true]:text-destructive", className)}
       htmlFor={handle}
       {...props}
     >

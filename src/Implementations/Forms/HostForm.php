@@ -72,36 +72,34 @@ class HostForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
+                ],
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'default_country',
+                TemplateSection::NAME => trans('narsil::ui.default_country'),
+                TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Block([
-                            Block::NAME => trans('narsil::ui.default'),
-                            Block::RELATION_ELEMENTS => [
-                                new BlockElement([
-                                    BlockElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
-                                    BlockElement::RELATION_ELEMENT => $hostLocaleForm->getPatternField(),
-                                ]),
-                                new BlockElement([
-                                    BlockElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
-                                    BlockElement::RELATION_ELEMENT => $hostLocaleForm->getLanguagesField(),
-                                ]),
-                            ],
-                        ]),
+                        TemplateSectionElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
+                        TemplateSectionElement::RELATION_ELEMENT => $hostLocaleForm->getPatternField(),
                     ]),
                     new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Block([
-                            Block::NAME => trans('narsil::ui.localization'),
-                            Block::RELATION_ELEMENTS => [
-                                new BlockElement([
-                                    BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => Host::RELATION_OTHER_LOCALES,
-                                        Field::NAME => trans('narsil::validation.attributes.locales'),
-                                        Field::TYPE => ArrayField::class,
-                                        Field::SETTINGS => app(ArrayField::class)
-                                            ->form($hostLocaleForm->layout)
-                                            ->labelKey(HostLocale::COUNTRY),
-                                    ]),
-                                ]),
-                            ],
+                        TemplateSectionElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
+                        TemplateSectionElement::RELATION_ELEMENT => $hostLocaleForm->getLanguagesField(),
+                    ]),
+                ],
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'other_countries',
+                TemplateSection::NAME => trans('narsil::ui.other_countries'),
+                TemplateSection::RELATION_ELEMENTS => [
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Host::RELATION_OTHER_LOCALES,
+                            Field::NAME => trans('narsil::validation.attributes.locales'),
+                            Field::TYPE => ArrayField::class,
+                            Field::SETTINGS => app(ArrayField::class)
+                                ->form($hostLocaleForm->layout)
+                                ->labelKey(HostLocale::COUNTRY),
                         ]),
                     ]),
                 ],
