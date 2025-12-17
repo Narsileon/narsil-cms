@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Session;
-use Narsil\Http\Resources\Entities\EntityResource;
+use Narsil\Implementations\Resources\EntityResource;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\TreeModel;
 use Narsil\Services\TemplateService;

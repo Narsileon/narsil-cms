@@ -11,7 +11,7 @@ return [
     |
     */
 
-    \Narsil\Models\Entities\Entity::class => \Narsil\Http\Resources\Entities\EntityResource::class,
-    \Narsil\Models\Entities\EntityBlock::class => \Narsil\Http\Resources\Entities\EntityBlockResource::class,
-    \Narsil\Models\User::class => \Narsil\Http\Resources\UserResource::class,
+    \Narsil\Models\Entities\Entity::class => \Narsil\Implementations\Resources\EntityResource::class,
+    \Narsil\Models\Entities\EntityBlock::class => \Narsil\Implementations\Resources\EntityBlockResource::class,
+    \Narsil\Models\User::class => \Narsil\Implementations\Resources\UserResource::class,
 ];

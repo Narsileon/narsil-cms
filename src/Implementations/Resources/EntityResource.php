@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Resources\Entities;
+namespace Narsil\Implementations\Resources;
 
 #region USE
 
