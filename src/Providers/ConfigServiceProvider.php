@@ -65,6 +65,7 @@ class ConfigServiceProvider extends ServiceProvider
             'narsil.menus' => __DIR__ . '/../../config/narsil/menus.php',
             'narsil.observers' => __DIR__ . '/../../config/narsil/observers.php',
             'narsil.policies' => __DIR__ . '/../../config/narsil/policies.php',
+            'narsil.resources' => __DIR__ . '/../../config/narsil/resources.php',
             'narsil.tables' => __DIR__ . '/../../config/narsil/tables.php',
         ];
 

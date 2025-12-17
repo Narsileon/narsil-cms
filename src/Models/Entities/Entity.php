@@ -53,6 +53,10 @@ class Entity extends Model
             self::RELATION_BLOCKS,
         ];
 
+        $this->mergeAppends([
+            self::ATTRIBUTE_TYPE,
+        ]);
+
         if (static::$template)
         {
             $casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
@@ -82,6 +86,17 @@ class Entity extends Model
      * @var string
      */
     final public const SLUG = 'slug';
+
+    #endregion
+
+    #region • ATTRIBUTES
+
+    /**
+     * The name of the "type" attribute.
+     *
+     * @var string
+     */
+    final public const ATTRIBUTE_TYPE = 'type';
 
     #endregion
 
@@ -148,6 +163,16 @@ class Entity extends Model
         $table = $this->getTable();
 
         return !empty($key) ? "$table-$key" : $table;
+    }
+
+    /**
+     * Get the associated type.
+     *
+     * @return string
+     */
+    final public function getTypeAttribute(): string
+    {
+        return $this->getTable();
     }
 
     #endregion

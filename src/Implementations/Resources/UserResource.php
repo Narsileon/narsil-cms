@@ -5,7 +5,8 @@ namespace Narsil\Implementations\Resources;
 #region USE
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Narsil\Contracts\Resources\UserResource as Contract;
+use Narsil\Implementations\AbstractResource;
 use Narsil\Models\User;
 
 #endregion
@@ -14,14 +15,8 @@ use Narsil\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserResource extends JsonResource
+class UserResource extends AbstractResource implements Contract
 {
-    #region PROPERTIES
-
-    public static $wrap = false;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Session;
-use Narsil\Implementations\Resources\EntityResource;
+use Narsil\Contracts\Resources\EntityResource;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\TreeModel;
 use Narsil\Services\TemplateService;
@@ -215,8 +215,6 @@ class SitePage extends TreeModel
 
     #region PUBLIC METHODS
 
-
-
     /**
      * @param SitePage $sitePage
      * @param array $attributes
@@ -339,8 +337,6 @@ class SitePage extends TreeModel
      */
     protected function getEntities(): array
     {
-        $entityResource = config('narsil.resources.' . SitePage::class, EntityResource::class);
-
         $groupedRelations = $this->{self::RELATION_PAGE_RELATIONS}
             ->groupBy(SitePageRelation::TARGET_TABLE);
 
@@ -367,7 +363,9 @@ class SitePage extends TreeModel
 
                     foreach ($keyedEntities as $identifier => $entity)
                     {
-                        $entities[$identifier] = new $entityResource($entity);
+                        $entities[$identifier] = app(EntityResource::class, [
+                            'resource' => $entity
+                        ]);
                     }
                 }
             }

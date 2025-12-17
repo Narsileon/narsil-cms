@@ -5,9 +5,9 @@ namespace Narsil\Implementations\Resources;
 #region USE
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Config;
 use Narsil\Contracts\Fields\BuilderField;
+use Narsil\Contracts\Resources\EntityResource as Contract;
+use Narsil\Implementations\AbstractResource;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Entities\EntityBlock;
@@ -19,7 +19,7 @@ use Narsil\Models\Entities\EntityBlockField;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityBlockResource extends JsonResource
+class EntityBlockResource extends AbstractResource implements Contract
 {
     #region PUBLIC METHODS
 
@@ -29,7 +29,9 @@ class EntityBlockResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            $this->{EntityBlock::RELATION_BLOCK}->{Block::HANDLE} => $this->getFields(),
+            Block::HANDLE => $this->{EntityBlock::RELATION_BLOCK}->{Block::HANDLE},
+
+            ...$this->getFields(),
         ];
     }
 
@@ -37,17 +39,18 @@ class EntityBlockResource extends JsonResource
 
     #region PROTECTED METHODS
 
+    /**
+     * @return array
+     */
     protected function getFields(): array
     {
-        $entityBlockResource = Config::get('narsil.resources.' . EntityBlock::class, EntityBlockResource::class);
-
         $fields = [];
 
         foreach ($this->{EntityBlock::RELATION_FIELDS} as $entityBlockField)
         {
             if ($entityBlockField->{EntityBlockField::RELATION_FIELD}->{Field::TYPE} === BuilderField::class)
             {
-                $fields[$entityBlockField->{EntityBlockField::RELATION_FIELD}->{Field::HANDLE}] = $entityBlockResource::collection($entityBlockField->{EntityBlockField::RELATION_BLOCKS});
+                $fields[$entityBlockField->{EntityBlockField::RELATION_FIELD}->{Field::HANDLE}] = $this->getFieldBlocks($entityBlockField);
             }
             else
             {
@@ -56,6 +59,25 @@ class EntityBlockResource extends JsonResource
         }
 
         return $fields;
+    }
+
+    /**
+     * @param EntityBlockField $entityBlockField
+     * 
+     * @return array
+     */
+    protected function getFieldBlocks(EntityBlockField $entityBlockField): array
+    {
+        $blocks = [];
+
+        foreach ($entityBlockField->{EntityBlockField::RELATION_BLOCKS} as $entityBlock)
+        {
+            $blocks[] = app(EntityBlockResource::class, [
+                'resource' => $entityBlock,
+            ]);
+        }
+
+        return $blocks;
     }
 
     #endregion

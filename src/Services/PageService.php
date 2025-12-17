@@ -7,6 +7,7 @@ namespace Narsil\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use Narsil\Contracts\Resources\SitePageResource;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
@@ -25,9 +26,9 @@ abstract class PageService
     /**
      * @param Request $request
      *
-     * @return SitePage|null
+     * @return SitePageResource
      */
-    public static function resolvePage(Request $request): ?SitePage
+    public static function resolvePage(Request $request): SitePageResource
     {
         $url = Str::lower($request->url());
 
@@ -54,7 +55,9 @@ abstract class PageService
 
         $siteUrl->{SiteUrl::RELATION_PAGE}->append(SitePage::ATTRIBUTE_ENTITIES);
 
-        return $siteUrl->{SiteUrl::RELATION_PAGE};
+        return app(SitePageResource::class, [
+            'resource' => $siteUrl->{SiteUrl::RELATION_PAGE},
+        ]);
     }
 
     #endregion
