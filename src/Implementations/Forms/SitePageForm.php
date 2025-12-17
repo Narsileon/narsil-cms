@@ -91,7 +91,7 @@ class SitePageForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(RelationsField::class)
                                 ->collections($collections)
                                 ->defaultValue([])
-                                ->multiple(true),
+                                ->multiple(false),
                         ])
                     ]),
                 ]

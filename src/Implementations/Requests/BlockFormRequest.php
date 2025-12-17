@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Http\Requests;
+namespace Narsil\Implementations\Requests;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\FormRequests\TemplateFormRequest as Contract;
-use Narsil\Models\Elements\Template;
+use Narsil\Contracts\FormRequests\BlockFormRequest as Contract;
+use Narsil\Models\Elements\Block;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -15,7 +15,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateFormRequest implements Contract
+class BlockFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -25,25 +25,29 @@ class TemplateFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            Template::HANDLE => [
+            Block::COLLAPSIBLE => [
+                FormRule::BOOLEAN,
+            ],
+            Block::HANDLE => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
                 FormRule::doesntStartWith('-'),
                 FormRule::doesntEndWith('-'),
                 FormRule::REQUIRED,
                 FormRule::unique(
-                    Template::class,
-                    Template::HANDLE,
-                )->ignore($model?->{Template::ID}),
+                    Block::class,
+                    Block::HANDLE,
+                )->ignore($model?->{Block::ID}),
+
             ],
-            Template::NAME => [
+            Block::NAME => [
                 FormRule::REQUIRED,
             ],
 
-            Template::RELATION_SECTIONS => [
+            Block::RELATION_ELEMENTS => [
                 FormRule::ARRAY,
-                FormRule::SOMETIMES,
                 FormRule::NULLABLE,
+                FormRule::SOMETIMES,
             ],
         ];
     }

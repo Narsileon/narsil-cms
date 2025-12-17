@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Requests\Fortify;
+namespace Narsil\Implementations\Requests\Fortify;
 
 #region USE
 

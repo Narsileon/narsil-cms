@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Requests;
+namespace Narsil\Implementations\Requests;
 
 #region USE
 

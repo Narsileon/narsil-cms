@@ -1,12 +1,13 @@
 <?php
 
-namespace Narsil\Http\Requests;
+namespace Narsil\Implementations\Requests;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\FormRequests\BlockFormRequest as Contract;
-use Narsil\Models\Elements\Block;
+use Illuminate\Validation\Rules\File;
+use Narsil\Contracts\FormRequests\HeaderFormRequest as Contract;
+use Narsil\Models\Globals\Header;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -15,7 +16,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockFormRequest implements Contract
+class HeaderFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -25,29 +26,25 @@ class BlockFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            Block::COLLAPSIBLE => [
-                FormRule::BOOLEAN,
-            ],
-            Block::HANDLE => [
+            Header::HANDLE => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
                 FormRule::doesntStartWith('-'),
                 FormRule::doesntEndWith('-'),
                 FormRule::REQUIRED,
                 FormRule::unique(
-                    Block::class,
-                    Block::HANDLE,
-                )->ignore($model?->{Block::ID}),
-
+                    Header::class,
+                    Header::HANDLE,
+                )->ignore($model?->{Header::ID}),
             ],
-            Block::NAME => [
-                FormRule::REQUIRED,
-            ],
-
-            Block::RELATION_ELEMENTS => [
-                FormRule::ARRAY,
+            Header::LOGO => [
+                File::image()
+                    ->dimensions(
+                        FormRule::dimensions()
+                            ->maxWidth(2048)
+                            ->maxHeight(2048)
+                    ),
                 FormRule::NULLABLE,
-                FormRule::SOMETIMES,
             ],
         ];
     }

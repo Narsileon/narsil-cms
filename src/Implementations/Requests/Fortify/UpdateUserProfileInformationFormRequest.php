@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Http\Requests;
+namespace Narsil\Implementations\Requests\Fortify;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rules\File;
-use Narsil\Contracts\FormRequests\HeaderFormRequest as Contract;
-use Narsil\Models\Globals\Header;
+use Narsil\Contracts\FormRequests\Fortify\UpdateUserProfileInformationFormRequest as Contract;
+use Narsil\Models\User;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -16,7 +16,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HeaderFormRequest implements Contract
+class UpdateUserProfileInformationFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -26,18 +26,7 @@ class HeaderFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
-            Header::HANDLE => [
-                FormRule::ALPHA_DASH,
-                FormRule::LOWERCASE,
-                FormRule::doesntStartWith('-'),
-                FormRule::doesntEndWith('-'),
-                FormRule::REQUIRED,
-                FormRule::unique(
-                    Header::class,
-                    Header::HANDLE,
-                )->ignore($model?->{Header::ID}),
-            ],
-            Header::LOGO => [
+            User::AVATAR => [
                 File::image()
                     ->dimensions(
                         FormRule::dimensions()
@@ -45,6 +34,18 @@ class HeaderFormRequest implements Contract
                             ->maxHeight(2048)
                     ),
                 FormRule::NULLABLE,
+            ],
+            User::FIRST_NAME => [
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::max(255),
+                FormRule::SOMETIMES,
+            ],
+            User::LAST_NAME => [
+                FormRule::STRING,
+                FormRule::min(1),
+                FormRule::max(255),
+                FormRule::SOMETIMES,
             ],
         ];
     }
