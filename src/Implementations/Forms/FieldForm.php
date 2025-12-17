@@ -111,8 +111,8 @@ class FieldForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Field::TRANSLATABLE,
                             Field::NAME => trans('narsil::validation.attributes.translatable'),
-                            Field::TYPE => CheckboxField::class,
-                            Field::SETTINGS => app(CheckboxField::class),
+                            Field::TYPE => SwitchField::class,
+                            Field::SETTINGS => app(SwitchField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([
