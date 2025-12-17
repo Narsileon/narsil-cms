@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\TextField;
@@ -114,7 +115,9 @@ class RoleForm extends AbstractForm implements Contract
             {
                 $key = Str::beforeLast($permission->{Permission::HANDLE}, '_');
 
-                return trans("narsil::tables.{$key}");
+                $translationKey = "narsil::tables.{$key}";
+
+                return Lang::has($translationKey) ? trans($translationKey) : $key;
             })
             ->map(function ($permissions)
             {
