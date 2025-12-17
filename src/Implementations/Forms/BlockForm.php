@@ -5,8 +5,8 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Support\Str;
-use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField;
+use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm;
 use Narsil\Contracts\Forms\BlockForm as Contract;
@@ -80,8 +80,8 @@ class BlockForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::COLLAPSIBLE,
                             Field::NAME => trans('narsil::validation.attributes.collapsible'),
-                            Field::TYPE => CheckboxField::class,
-                            Field::SETTINGS => app(CheckboxField::class),
+                            Field::TYPE => SwitchField::class,
+                            Field::SETTINGS => app(SwitchField::class),
                         ]),
                     ]),
                     new TemplateSectionElement([
