@@ -93,10 +93,14 @@ function BuilderItem({
 
               const isField = "type" in childElement;
 
+              const translatable = isField
+                ? (element.translatable ?? childElement.translatable)
+                : undefined;
+
               const childName = element.name ?? childElement.name;
               let childHandle = `${baseHandle}.fields.${index}.value`;
 
-              if (isField && !childElement.translatable) {
+              if (isField && !translatable) {
                 childHandle = `${childHandle}.en`;
               }
 
@@ -110,9 +114,7 @@ function BuilderItem({
                   handle={childHandle}
                   name={childName}
                   required={isField ? (element.required ?? childElement.required) : undefined}
-                  translatable={
-                    isField ? (element.translatable ?? childElement.translatable) : undefined
-                  }
+                  translatable={translatable}
                   key={index}
                 />
               );

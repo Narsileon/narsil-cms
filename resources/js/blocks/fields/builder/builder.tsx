@@ -35,7 +35,7 @@ function Builder({ blocks, name }: BuilderProps) {
   if (isEmpty(items)) {
     items = [];
   }
-  console.log(data);
+
   function setItems(items: BuilderElement[]) {
     setData?.(name, items);
   }
