@@ -71,18 +71,18 @@ class EntityBlock extends Model
     final public const BLOCK_ID = 'block_id';
 
     /**
+     * The name of the "entity field uuid" column.
+     *
+     * @var string
+     */
+    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
+
+    /**
      * The name of the "entity uuid" column.
      *
      * @var string
      */
     final public const ENTITY_UUID = 'entity_uuid';
-
-    /**
-     * The name of the "parent uuid" column.
-     *
-     * @var string
-     */
-    final public const PARENT_UUID = 'parent_uuid';
 
     /**
      * The name of the "position" column.
@@ -110,13 +110,6 @@ class EntityBlock extends Model
     final public const RELATION_BLOCK = 'block';
 
     /**
-     * The name of the "children" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_CHILDREN = 'children';
-
-    /**
      * The name of the "entity" relation.
      *
      * @var string
@@ -129,13 +122,6 @@ class EntityBlock extends Model
      * @var string
      */
     final public const RELATION_FIELDS = 'fields';
-
-    /**
-     * The name of the "parent" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_PARENT = 'parent';
 
     #endregion
 
@@ -194,21 +180,6 @@ class EntityBlock extends Model
     }
 
     /**
-     * Get the associated children.
-     *
-     * @return BelongsTo
-     */
-    final public function children(): HasMany
-    {
-        return $this
-            ->hasMany(
-                self::class,
-                self::PARENT_UUID,
-                self::UUID
-            );
-    }
-
-    /**
      * Get the associated entity.
      *
      * @return BelongsTo
@@ -234,22 +205,6 @@ class EntityBlock extends Model
             ->hasMany(
                 EntityBlockField::class,
                 EntityBlockField::ENTITY_BLOCK_UUID,
-                self::UUID,
-            );
-    }
-
-
-    /**
-     * Get the associated parent.
-     *
-     * @return BelongsTo
-     */
-    final public function parent(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                self::class,
-                self::PARENT_UUID,
                 self::UUID,
             );
     }

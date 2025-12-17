@@ -131,7 +131,6 @@ class Entity extends Model
 
         static::$template = $template;
 
-        EntityFieldBlock::setTemplate($template);
         EntityBlock::setTemplate($template);
         EntityBlockField::setTemplate($template);
     }
@@ -168,7 +167,7 @@ class Entity extends Model
                 EntityBlock::ENTITY_UUID,
                 self::UUID,
             )
-            ->whereNull(EntityBlock::PARENT_UUID);
+            ->whereNull(EntityBlock::ENTITY_FIELD_UUID);
     }
 
     #endregion

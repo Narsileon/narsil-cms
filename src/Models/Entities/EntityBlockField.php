@@ -7,7 +7,7 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Narsil\Casts\JsonCast;
 use Narsil\Models\Elements\Field;
@@ -161,15 +161,14 @@ class EntityBlockField extends Model
     /**
      * Get the associated block.
      *
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function blocks(): BelongsToMany
+    public function blocks(): HasMany
     {
-        return $this->belongsToMany(
+        return $this->hasMany(
             EntityBlock::class,
-            EntityFieldBlock::getTableName(),
-            EntityFieldBlock::ENTITY_BLOCK_FIELD_UUID,
-            EntityFieldBlock::ENTITY_BLOCK_UUID,
+            EntityBlock::ENTITY_FIELD_UUID,
+            self::UUID,
         );
     }
 
