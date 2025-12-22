@@ -1,12 +1,13 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Services\Models;
 
 #region USE
 
 use Illuminate\Support\Str;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -47,7 +48,7 @@ abstract class FieldService
             ])
             ->save();
 
-        static::syncOptions($replicated, $field->options()->get()->toArray());
+        static::syncFieldOptions($replicated, $field->options()->get()->toArray());
     }
 
     /**
@@ -56,7 +57,7 @@ abstract class FieldService
      *
      * @return void
      */
-    public static function syncOptions(Field $field, array $options): void
+    public static function syncFieldOptions(Field $field, array $options): void
     {
         $uuids = [];
 
@@ -73,7 +74,8 @@ abstract class FieldService
             $uuids[] = $fieldOption->{FieldOption::UUID};
         }
 
-        $field->options()
+        $field
+            ->options()
             ->whereNotIn(FieldOption::UUID, $uuids)
             ->delete();
     }

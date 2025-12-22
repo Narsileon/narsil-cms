@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Field;
-use Narsil\Services\FieldService;
+use Narsil\Services\Models\FieldService;
 
 #endregion
 
@@ -45,7 +45,7 @@ class FieldStoreController extends RedirectController
 
         if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
         {
-            FieldService::syncOptions($field, $options);
+            FieldService::syncFieldOptions($field, $options);
         }
 
         return $this

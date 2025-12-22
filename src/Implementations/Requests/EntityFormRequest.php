@@ -9,7 +9,7 @@ use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Services\TemplateService;
+use Narsil\Services\CollectionService;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -50,7 +50,7 @@ class EntityFormRequest implements Contract
      */
     public function rules(?Model $model = null): array
     {
-        $fields = TemplateService::getTemplateFields($this->template);
+        $fields = CollectionService::getTemplateFields($this->template);
 
         $rules = [
             Entity::SLUG => [

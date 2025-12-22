@@ -7,10 +7,10 @@ namespace Narsil\Http\Controllers\Fields;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\ReplicateManyRequest;
+use Narsil\Http\Controllers\RedirectController;;
+
 use Narsil\Models\Elements\Field;
-use Narsil\Services\FieldService;
+use Narsil\Services\Models\FieldService;
 
 #endregion
 

@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers;
 
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Entities\Entity;
-use Narsil\Services\TemplateService;
+use Narsil\Services\CollectionService;
 
 #endregion
 
@@ -25,7 +25,7 @@ abstract class AbstractEntityController extends RenderController
     {
         $collection = request()->route('collection');
 
-        $template = TemplateService::getTemplate($collection);
+        $template = CollectionService::getTemplate($collection);
 
         if ($template)
         {

@@ -10,7 +10,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Hosts\Host;
-use Narsil\Services\HostService;
+use Narsil\Services\Models\HostService;
 
 #endregion
 

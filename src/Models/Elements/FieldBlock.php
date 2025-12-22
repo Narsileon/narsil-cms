@@ -6,7 +6,6 @@ namespace Narsil\Models\Elements;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Elements\Block;
 
 #endregion
 

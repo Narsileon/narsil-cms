@@ -44,6 +44,33 @@ use Narsil\Http\Controllers\Footers\FooterIndexController;
 use Narsil\Http\Controllers\Footers\FooterReplicateController;
 use Narsil\Http\Controllers\Footers\FooterStoreController;
 use Narsil\Http\Controllers\Footers\FooterUpdateController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetCreateController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetDestroyController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetDestroyManyController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetEditController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetIndexController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetReplicateController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetReplicateManyController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetStoreController;
+use Narsil\Http\Controllers\Forms\Fieldsets\FormFieldsetUpdateController;
+use Narsil\Http\Controllers\Forms\FormCreateController;
+use Narsil\Http\Controllers\Forms\FormDestroyController;
+use Narsil\Http\Controllers\Forms\FormDestroyManyController;
+use Narsil\Http\Controllers\Forms\FormEditController;
+use Narsil\Http\Controllers\Forms\FormIndexController;
+use Narsil\Http\Controllers\Forms\FormReplicateController;
+use Narsil\Http\Controllers\Forms\FormReplicateManyController;
+use Narsil\Http\Controllers\Forms\FormStoreController;
+use Narsil\Http\Controllers\Forms\FormUpdateController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputCreateController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputDestroyController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputDestroyManyController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputEditController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputIndexController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputReplicateController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputReplicateManyController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputStoreController;
+use Narsil\Http\Controllers\Forms\Inputs\FormInputUpdateController;
 use Narsil\Http\Controllers\Headers\HeaderCreateController;
 use Narsil\Http\Controllers\Headers\HeaderDestroyController;
 use Narsil\Http\Controllers\Headers\HeaderDestroyManyController;
@@ -108,6 +135,9 @@ use Narsil\Http\Middleware\CountryMiddleware;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
+use Narsil\Models\Forms\Form;
+use Narsil\Models\Forms\FormFieldset;
+use Narsil\Models\Forms\FormInput;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -195,6 +225,72 @@ Route::middleware([
                 ->name('destroy-many');
             Route::post('/{footer}/replicate', FooterReplicateController::class)
                 ->name('replicate');
+        });
+
+        Route::prefix(Str::slug(Form::TABLE))->name(Str::slug(Form::TABLE) . '.')->group(function ()
+        {
+            Route::get('/', FormIndexController::class)
+                ->name('index');
+            Route::get('/create', FormCreateController::class)
+                ->name('create');
+            Route::post('/', FormStoreController::class)
+                ->name('store');
+            Route::get('/{form}/edit', FormEditController::class)
+                ->name('edit');
+            Route::patch('/{form}', FormUpdateController::class)
+                ->name('update');
+            Route::delete('/{form}', FormDestroyController::class)
+                ->name('destroy');
+            Route::delete('/', FormDestroyManyController::class)
+                ->name('destroy-many');
+            Route::post('/{form}/replicate', FormReplicateController::class)
+                ->name('replicate');
+            Route::post('/replicate-many', FormReplicateManyController::class)
+                ->name('replicate-many');
+        });
+
+        Route::prefix(Str::slug(FormFieldset::TABLE))->name(Str::slug(FormFieldset::TABLE) . '.')->group(function ()
+        {
+            Route::get('/', FormFieldsetIndexController::class)
+                ->name('index');
+            Route::get('/create', FormFieldsetCreateController::class)
+                ->name('create');
+            Route::post('/', FormFieldsetStoreController::class)
+                ->name('store');
+            Route::get('/{formFieldset}/edit', FormFieldsetEditController::class)
+                ->name('edit');
+            Route::patch('/{formFieldset}', FormFieldsetUpdateController::class)
+                ->name('update');
+            Route::delete('/{formFieldset}', FormFieldsetDestroyController::class)
+                ->name('destroy');
+            Route::delete('/', FormFieldsetDestroyManyController::class)
+                ->name('destroy-many');
+            Route::post('/{formFieldset}/replicate', FormFieldsetReplicateController::class)
+                ->name('replicate');
+            Route::post('/replicate-many', FormFieldsetReplicateManyController::class)
+                ->name('replicate-many');
+        });
+
+        Route::prefix(Str::slug(FormInput::TABLE))->name(Str::slug(FormInput::TABLE) . '.')->group(function ()
+        {
+            Route::get('/', FormInputIndexController::class)
+                ->name('index');
+            Route::get('/create', FormInputCreateController::class)
+                ->name('create');
+            Route::post('/', FormInputStoreController::class)
+                ->name('store');
+            Route::get('/{formInput}/edit', FormInputEditController::class)
+                ->name('edit');
+            Route::patch('/{formInput}', FormInputUpdateController::class)
+                ->name('update');
+            Route::delete('/{formInput}', FormInputDestroyController::class)
+                ->name('destroy');
+            Route::delete('/', FormInputDestroyManyController::class)
+                ->name('destroy-many');
+            Route::post('/{formInput}/replicate', FormInputReplicateController::class)
+                ->name('replicate');
+            Route::post('/replicate-many', FormInputReplicateManyController::class)
+                ->name('replicate-many');
         });
 
         Route::prefix(Header::TABLE)->name(Header::TABLE . '.')->group(function ()

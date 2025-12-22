@@ -13,8 +13,8 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
-use Narsil\Services\HostLocaleService;
-use Narsil\Services\HostService;
+use Narsil\Services\Models\HostLocaleService;
+use Narsil\Services\Models\HostService;
 
 #endregion
 

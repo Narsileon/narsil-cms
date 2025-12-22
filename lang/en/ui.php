@@ -50,6 +50,7 @@ return [
     'expand'             => 'Expand',
     'filter'             => 'Filter',
     'filters'            => 'Filters',
+    'forms'              => 'Forms',
     'frontend'           => 'Frontend',
     'generate'           => 'Generate',
     'global'             => 'Global',

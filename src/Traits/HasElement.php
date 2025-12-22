@@ -5,8 +5,6 @@ namespace Narsil\Traits;
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\Field;
 use Narsil\Traits\HasIdentifier;
 
 #endregion
@@ -128,12 +126,7 @@ trait HasElement
      */
     public function getIconAttribute(): ?string
     {
-        return match ($this->{self::ELEMENT_TYPE})
-        {
-            Block::class => $this->{self::RELATION_ELEMENT}->{Block::ATTRIBUTE_ICON},
-            Field::class => $this->{self::RELATION_ELEMENT}->{Field::ATTRIBUTE_ICON},
-            default => null
-        };
+        return $this->{self::RELATION_ELEMENT}->{self::ATTRIBUTE_ICON} ?? null;
     }
 
     /**

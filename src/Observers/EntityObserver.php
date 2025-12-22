@@ -8,7 +8,7 @@ use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\Relation;
-use Narsil\Services\TemplateService;
+use Narsil\Services\CollectionService;
 
 #endregion
 
@@ -63,7 +63,7 @@ class EntityObserver
      */
     protected function syncRelations(Entity $entity): void
     {
-        $fields = TemplateService::getTemplateFields($entity::getTemplate(), RelationsField::class);
+        $fields = CollectionService::getTemplateFields($entity::getTemplate(), RelationsField::class);
 
         foreach ($fields as $field)
         {

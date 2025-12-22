@@ -1,11 +1,12 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Services\Models;
 
 #region USE
 
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -32,9 +33,9 @@ abstract class RoleService
             ])
             ->save();
 
-        $replicated
-            ->syncPermissions($role->{Role::RELATION_PERMISSIONS}
-                ->pluck(Permission::ID));
+        $permissionIds = $role->{Role::RELATION_PERMISSIONS}->pluck(Permission::ID);
+
+        $replicated->syncPermissions($permissionIds);
     }
 
     #endregion

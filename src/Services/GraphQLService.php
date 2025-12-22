@@ -15,7 +15,7 @@ use Narsil\Contracts\Fields\TimeField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Services\TemplateService;
+use Narsil\Services\CollectionService;
 
 #endregion
 
@@ -127,7 +127,7 @@ abstract class GraphQLService
             $definition .= "\t$handle: $type\n";
         }
 
-        $fields = TemplateService::getTemplateFields($template);
+        $fields = CollectionService::getTemplateFields($template);
 
         foreach ($fields as $field)
         {

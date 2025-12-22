@@ -46,6 +46,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists(FieldRule::TABLE);
         Schema::dropIfExists(FieldOption::TABLE);
         Schema::dropIfExists(Field::TABLE);
     }

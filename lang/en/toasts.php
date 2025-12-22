@@ -7,6 +7,9 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Forms\Form;
+use Narsil\Models\Forms\FormFieldset;
+use Narsil\Models\Forms\FormInput;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -73,6 +76,30 @@ return [
             'deleted_many' => 'The footers have been successfully deleted.',
             'replicated' => 'The footer has been successfully duplicated.',
             'updated' => 'The footer has been successfully updated.',
+        ],
+        Form::TABLE => [
+            'created' => 'The form has been successfully created.',
+            'deleted' => 'The form has been successfully deleted.',
+            'deleted_many' => 'The forms have been successfully deleted.',
+            'replicated' => 'The form has been successfully duplicated.',
+            'replicated_many' => 'The forms have been successfully duplicated.',
+            'updated' => 'The form has been successfully updated.',
+        ],
+        FormFieldset::TABLE => [
+            'created' => 'The fieldset has been successfully created.',
+            'deleted' => 'The fieldset has been successfully deleted.',
+            'deleted_many' => 'The fieldsets have been successfully deleted.',
+            'replicated' => 'The fieldset has been successfully duplicated.',
+            'replicated_many' => 'The fieldsets have been successfully duplicated.',
+            'updated' => 'The fieldset has been successfully updated.',
+        ],
+        FormInput::TABLE => [
+            'created' => 'The input has been successfully created.',
+            'deleted' => 'The input has been successfully deleted.',
+            'deleted_many' => 'The inputs have been successfully deleted.',
+            'replicated' => 'The input has been successfully duplicated.',
+            'replicated_many' => 'The inputs have been successfully duplicated.',
+            'updated' => 'The input has been successfully updated.',
         ],
         Header::TABLE => [
             'created' => 'The header has been successfully created.',

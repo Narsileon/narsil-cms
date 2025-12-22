@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Narsil\Http\Middleware\InertiaMiddleware;
 use Narsil\Http\Middleware\LocaleMiddleware;
 use Narsil\Http\Middleware\UserConfigurationMiddleware;
+use Narsil\Http\Middleware\WithoutSsr;
 
 #endregion
 
@@ -44,6 +45,7 @@ class MiddlewareServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
 
         $router->middlewareGroup('narsil-web', [
+            WithoutSsr::class,
             UserConfigurationMiddleware::class,
             LocaleMiddleware::class,
             InertiaMiddleware::class,

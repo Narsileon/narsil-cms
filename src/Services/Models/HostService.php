@@ -1,12 +1,13 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Services\Models;
 
 #region USE
 
 use Illuminate\Support\Arr;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
