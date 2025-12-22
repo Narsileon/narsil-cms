@@ -14,10 +14,6 @@ export default function dynamic<T extends object = {}>(
 ) {
   const { loading: Loading = () => <div></div> } = options;
 
-  if (isServer) {
-    return (props: T) => <Loading />;
-  }
-
   const LazyComponent = lazy(importer);
 
   const DynamicWrapper = (props: T) => (
