@@ -11,7 +11,7 @@ import {
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
-import { groupBy } from "lodash";
+import { groupBy } from "lodash-es";
 import { useRef } from "react";
 import { Fragment } from "react/jsx-runtime";
 

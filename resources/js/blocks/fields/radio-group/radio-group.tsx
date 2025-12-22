@@ -4,7 +4,7 @@ import {
   RadioGroupItem,
   RadioGroupRoot,
 } from "@narsil-cms/components/radio-group";
-import { get, isString } from "lodash";
+import { get, isString } from "lodash-es";
 import { type ComponentProps } from "react";
 
 type RadioGroupOption =

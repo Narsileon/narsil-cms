@@ -18,7 +18,7 @@ import { BackgroundGrid, BackgroundRoot } from "@narsil-cms/components/backgroun
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { Field, FormType, GroupedSelectOption } from "@narsil-cms/types";
-import { get } from "lodash";
+import { get } from "lodash-es";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import {

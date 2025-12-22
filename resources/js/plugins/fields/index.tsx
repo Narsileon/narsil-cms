@@ -19,7 +19,7 @@ import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Field } from "@narsil-cms/types";
-import { isArray } from "lodash";
+import { isArray } from "lodash-es";
 import { type ReactNode } from "react";
 
 export type FieldProps = {

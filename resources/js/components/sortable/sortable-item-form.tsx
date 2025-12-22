@@ -15,7 +15,7 @@ import {
 import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { FormType } from "@narsil-cms/types";
-import { get } from "lodash";
+import { get } from "lodash-es";
 import { useState } from "react";
 import { type AnonymousItem } from ".";
 

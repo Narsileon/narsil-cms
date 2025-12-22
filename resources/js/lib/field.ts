@@ -1,5 +1,5 @@
 import { Field } from "@narsil-cms/types";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 
 function getFieldDefaultValue(field: Field) {
   let defaultValue = (field.settings as Record<string, unknown>)?.value ?? "";

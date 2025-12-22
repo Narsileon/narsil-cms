@@ -26,7 +26,7 @@ import type {
   TemplateSection,
   User,
 } from "@narsil-cms/types";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 
 type FormProps = {

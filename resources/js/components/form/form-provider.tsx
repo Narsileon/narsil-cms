@@ -1,7 +1,7 @@
 import { useForm } from "@inertiajs/react";
 import { getFieldDefaultValue } from "@narsil-cms/lib/field";
 import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
-import { set } from "lodash";
+import { set } from "lodash-es";
 import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 

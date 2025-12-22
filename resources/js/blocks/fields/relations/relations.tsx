@@ -18,7 +18,7 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
 import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
-import { flatMap, isArray, isEmpty } from "lodash";
+import { flatMap, isArray, isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
