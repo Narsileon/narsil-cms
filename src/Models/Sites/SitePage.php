@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Narsil\Contracts\Resources\EntityResource;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\TreeModel;
-use Narsil\Services\TemplateService;
+use Narsil\Services\CollectionService;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -344,7 +344,7 @@ class SitePage extends TreeModel
 
         foreach ($groupedRelations as $table => $relations)
         {
-            $template = TemplateService::getTemplate($table);
+            $template = CollectionService::getTemplate($table);
 
             if ($template)
             {

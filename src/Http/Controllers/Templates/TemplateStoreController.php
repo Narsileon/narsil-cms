@@ -13,7 +13,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Template;
 use Narsil\Services\MigrationService;
-use Narsil\Services\TemplateService;
+use Narsil\Services\Models\TemplateService;
 
 #endregion
 
@@ -44,7 +44,7 @@ class TemplateStoreController extends RedirectController
 
         $template = Template::create($attributes);
 
-        TemplateService::syncSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
+        TemplateService::syncTemplateSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
 
         MigrationService::syncTable($template);
 

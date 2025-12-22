@@ -16,7 +16,7 @@ use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
-use Narsil\Services\FieldService;
+use Narsil\Services\Models\FieldService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 

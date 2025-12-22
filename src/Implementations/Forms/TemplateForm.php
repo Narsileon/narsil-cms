@@ -12,7 +12,6 @@ use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Contracts\Forms\TemplateSectionForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Elements\TemplateSection;
@@ -109,16 +108,16 @@ class TemplateForm extends AbstractForm implements Contract
                                             ->addOption(
                                                 identifier: Block::TABLE,
                                                 label: Str::ucfirst(trans('narsil::models.' . Block::class)),
-                                                optionLabel: BlockElement::NAME,
-                                                optionValue: BlockElement::HANDLE,
+                                                optionLabel: TemplateSectionElement::NAME,
+                                                optionValue: TemplateSectionElement::HANDLE,
                                                 options: $blockSelectOptions,
                                                 routes: RouteService::getNames(Block::TABLE),
                                             )
                                             ->addOption(
                                                 identifier: Field::TABLE,
                                                 label: Str::ucfirst(trans('narsil::models.' . Field::class)),
-                                                optionLabel: BlockElement::NAME,
-                                                optionValue: BlockElement::HANDLE,
+                                                optionLabel: TemplateSectionElement::NAME,
+                                                optionValue: TemplateSectionElement::HANDLE,
                                                 options: $fieldSelectOptions,
                                                 routes: RouteService::getNames(Field::TABLE),
                                             )

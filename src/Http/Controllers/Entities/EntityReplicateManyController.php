@@ -9,7 +9,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Entities\Entity;
-use Narsil\Services\EntityService;
+use Narsil\Services\Models\EntityService;
 use Narsil\Traits\IsCollectionController;
 
 #endregion

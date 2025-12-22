@@ -7,6 +7,9 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Forms\Form;
+use Narsil\Models\Forms\FormFieldset;
+use Narsil\Models\Forms\FormInput;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -26,6 +29,9 @@ return [
     Entity::class => 'entity',
     Field::class => 'field',
     Footer::class => 'footer',
+    Form::class => 'form',
+    FormFieldset::class => 'fieldset',
+    FormInput::class => 'input',
     Header::class => 'header',
     Host::class => 'host',
     Permission::class => 'permission',

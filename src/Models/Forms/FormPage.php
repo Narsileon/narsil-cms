@@ -1,0 +1,207 @@
+<?php
+
+namespace Narsil\Models\Forms;
+
+#region USE
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Narsil\Traits\HasTranslations;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class FormPage extends Model
+{
+    use HasTranslations;
+
+    #region CONSTRUCTOR
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->table = self::TABLE;
+
+        $this->touches = [
+            self::RELATION_TEMPLATE,
+        ];
+
+        $this->translatable = [
+            self::NAME,
+        ];
+
+        $this->with = [
+            self::RELATION_ELEMENTS,
+        ];
+
+        $this->mergeGuarded([
+            self::ID,
+        ]);
+
+        parent::__construct($attributes);
+    }
+
+    #endregion
+
+    #region CONSTANTS
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    final public const TABLE = 'form_pages';
+
+    #region • COLUMNS
+
+    /**
+     * The name of the "form id" column.
+     *
+     * @var string
+     */
+    final public const FORM_ID = 'form_id';
+
+    /**
+     * The name of the "handle" column.
+     *
+     * @var string
+     */
+    final public const HANDLE = 'handle';
+
+    /**
+     * The name of the "id" column.
+     *
+     * @var string
+     */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "name" column.
+     *
+     * @var string
+     */
+    final public const NAME = 'name';
+
+    /**
+     * The name of the "position" column.
+     *
+     * @var string
+     */
+    final public const POSITION = 'position';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "blocks" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BlOCKS = 'blocks';
+
+    /**
+     * The name of the "elements" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ELEMENTS = 'elements';
+
+    /**
+     * The name of the "fields" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FIELDS = 'fields';
+
+    /**
+     * The name of the "template" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TEMPLATE = 'template';
+
+    #endregion
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
+
+    /**
+     * Get the associated elements.
+     *
+     * @return HasMany
+     */
+    final public function elements(): HasMany
+    {
+        return $this
+            ->hasMany(
+                FormPageElement::class,
+                FormPageElement::PAGE_ID,
+                self::ID,
+            )
+            ->orderBy(FormPageElement::POSITION);
+    }
+
+    /**
+     * Get the associated fieldsets.
+     *
+     * @return MorphToMany
+     */
+    final public function fieldsets(): MorphToMany
+    {
+        return $this
+            ->morphedByMany(
+                FormFieldset::class,
+                FormPageElement::RELATION_ELEMENT,
+                FormPageElement::TABLE,
+                FormPageElement::PAGE_ID,
+                FormPageElement::ELEMENT_ID,
+            );
+    }
+
+    /**
+     * Get the associated inputs.
+     *
+     * @return MorphToMany
+     */
+    final public function inputs(): MorphToMany
+    {
+        return $this
+            ->morphedByMany(
+                FormInput::class,
+                FormPageElement::RELATION_ELEMENT,
+                FormPageElement::TABLE,
+                FormPageElement::PAGE_ID,
+                FormPageElement::ELEMENT_ID,
+            );
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @return BelongsTo
+     */
+    final public function form(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Form::class,
+                self::FORM_ID,
+                Form::ID,
+            );
+    }
+
+    #endregion
+
+    #endregion
+}

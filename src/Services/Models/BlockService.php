@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Services\Models;
 
 #region USE
 
@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
 use Narsil\Models\Elements\Field;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -35,7 +36,7 @@ abstract class BlockService
             ])
             ->save();
 
-        static::syncElements($replicated, $block->elements()->get()->toArray());
+        static::syncBlockElements($replicated, $block->elements()->get()->toArray());
     }
 
     /**
@@ -44,7 +45,7 @@ abstract class BlockService
      *
      * @return void
      */
-    public static function syncElements(Block $block, array $elements): void
+    public static function syncBlockElements(Block $block, array $elements): void
     {
         $block->blocks()->detach();
         $block->fields()->detach();

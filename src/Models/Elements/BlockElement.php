@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElementCondition;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
 

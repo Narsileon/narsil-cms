@@ -11,7 +11,7 @@ use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
-use Narsil\Services\TemplateService;
+use Narsil\Services\CollectionService;
 
 #endregion
 
@@ -79,7 +79,7 @@ trait HasTemplate
     {
         $casts = [];
 
-        $fields = TemplateService::getTemplateFields(static::$template);
+        $fields = CollectionService::getTemplateFields(static::$template);
 
         foreach ($fields as $field)
         {

@@ -12,7 +12,7 @@ use Narsil\Contracts\FormRequests\BlockFormRequest;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
-use Narsil\Services\BlockService;
+use Narsil\Services\Models\BlockService;
 
 #endregion
 
@@ -45,7 +45,7 @@ class BlockStoreController extends RedirectController
 
         if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
         {
-            BlockService::syncElements($block, $elements);
+            BlockService::syncBlockElements($block, $elements);
         }
 
         return $this

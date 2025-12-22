@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Menus;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Contracts\Menus\Sidebar as Contract;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Implementations\AbstractMenu;
@@ -12,6 +13,9 @@ use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Forms\Form;
+use Narsil\Models\Forms\FormFieldset;
+use Narsil\Models\Forms\FormInput;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -61,8 +65,9 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(trans('narsil::ui.dashboard')),
             ],
             $this->getSiteGroup(),
-            $this->getCollectionGroup(),
             $this->getGlobalsGroup(),
+            $this->getCollectionGroup(),
+            $this->getFormsGroup(),
             $this->getStructuresGroup(),
             $this->getManagementGroup(),
             $this->getToolsGroup(),
@@ -101,6 +106,41 @@ class Sidebar extends AbstractMenu implements Contract
         }
 
         return $menuItems;
+    }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getFormsGroup(): array
+    {
+        $group = trans('narsil::ui.forms');
+
+        return [
+            new MenuItem()
+                ->group($group)
+                ->href(route('forms.index'))
+                ->icon('layout')
+                ->label(trans('narsil::tables.' . Form::TABLE))
+                ->permissions([
+                    PermissionService::getHandle(Form::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]),
+            new MenuItem()
+                ->group($group)
+                ->href(route('form-fieldsets.index'))
+                ->icon('box')
+                ->label(trans('narsil::tables.' . FormFieldset::TABLE))
+                ->permissions([
+                    PermissionService::getHandle(FormFieldset::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]),
+            new MenuItem()
+                ->group($group)
+                ->href(route('form-inputs.index'))
+                ->icon('input')
+                ->label(trans('narsil::tables.' . FormInput::TABLE))
+                ->permissions([
+                    PermissionService::getHandle(FormInput::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]),
+        ];
     }
 
     /**
@@ -211,7 +251,6 @@ class Sidebar extends AbstractMenu implements Contract
 
         return $menuItems;
     }
-
 
     /**
      * @return array<MenuItem>

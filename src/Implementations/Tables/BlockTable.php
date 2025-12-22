@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Elements\Block;
+use Narsil\Models\Elements\Field;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -37,6 +38,9 @@ class BlockTable extends AbstractTable
      */
     protected function columns(): array
     {
+        $blockCountHeader = trans('narsil::tables.' . Block::TABLE);
+        $fieldCountHeader = trans('narsil::tables.' . Field::TABLE);
+
         return [
             new TableColumn(
                 id: Block::ID,
@@ -51,14 +55,14 @@ class BlockTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: Str::ucfirst(trans('narsil::tables.fields')),
+                header: Str::ucfirst($fieldCountHeader),
                 id: Block::COUNT_FIELDS,
                 type: TypeNameEnum::INTEGER->value,
                 visibility: true,
 
             ),
             new TableColumn(
-                header: Str::ucfirst(trans('narsil::tables.blocks')),
+                header: Str::ucfirst($blockCountHeader),
                 id: Block::COUNT_BLOCKS,
                 type: TypeNameEnum::INTEGER->value,
                 visibility: true,

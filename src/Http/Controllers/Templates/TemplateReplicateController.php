@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Template;
-use Narsil\Services\TemplateService;
+use Narsil\Services\Models\TemplateService;
 
 #endregion
 

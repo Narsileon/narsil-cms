@@ -244,6 +244,7 @@ return [
         'multiple'                => 'multiple',
         'name'                    => 'name',
         'options'                 => 'options',
+        'pages'                   => 'pages',
         'password_confirmation'   => 'password confirmation',
         'password'                => 'password',
         'pattern'                 => 'pattern',

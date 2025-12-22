@@ -7,7 +7,6 @@ namespace Narsil\Models\Elements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
-use Narsil\Models\Elements\TemplateSection;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
 

@@ -7,7 +7,7 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\Elements\Template;
-use Narsil\Services\TemplateService;
+use Narsil\Services\CollectionService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasIdentifier;
@@ -59,7 +59,7 @@ class Entity extends Model
 
         if (static::$template)
         {
-            $casts = $this->generateCasts(TemplateService::getTemplateFields(static::$template));
+            $casts = $this->generateCasts(CollectionService::getTemplateFields(static::$template));
 
             $this->mergeCasts($casts);
         }
