@@ -6,8 +6,6 @@ type DynamicOptions = {
   loading?: ComponentType;
 };
 
-const isServer = typeof window === 'undefined';
-
 export default function dynamic<T extends object = {}>(
   importer: DynamicImport<T>,
   options: DynamicOptions = {},
