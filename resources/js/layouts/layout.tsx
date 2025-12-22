@@ -4,7 +4,7 @@ import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import AuthLayout from "./auth-layout";

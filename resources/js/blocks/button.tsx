@@ -4,7 +4,7 @@ import { ButtonRoot } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type IconName } from "@narsil-cms/plugins/icons";
-import { omit } from "lodash";
+import { omit } from "lodash-es";
 import { type ComponentProps } from "react";
 
 type ButtonProps = ComponentProps<typeof ButtonRoot> & {

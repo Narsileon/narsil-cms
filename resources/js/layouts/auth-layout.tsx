@@ -28,7 +28,7 @@ import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
-import { groupBy } from "lodash";
+import { groupBy } from "lodash-es";
 import { useEffect, useRef } from "react";
 import { Fragment } from "react/jsx-runtime";
 

@@ -11,7 +11,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { Block, BlockElementCondition, Field, TemplateSection } from "@narsil-cms/types";
 import parse from "html-react-parser";
-import { get, kebabCase } from "lodash";
+import { get, kebabCase } from "lodash-es";
 import { Fragment } from "react";
 import useForm from "./form-context";
 import FormDescription from "./form-description";

@@ -17,7 +17,7 @@ import {
 } from "@narsil-cms/components/sidebar";
 import { useNavigation } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
-import { groupBy } from "lodash";
+import { groupBy } from "lodash-es";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 

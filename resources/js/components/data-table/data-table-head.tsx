@@ -2,7 +2,7 @@ import { TableHead } from "@narsil-cms/components/table";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Model } from "@narsil-cms/types";
 import { flexRender, Header } from "@tanstack/react-table";
-import { upperFirst } from "lodash";
+import { upperFirst } from "lodash-es";
 import { type ComponentProps } from "react";
 import DataTableHeadSort from "./data-table-head-sort";
 

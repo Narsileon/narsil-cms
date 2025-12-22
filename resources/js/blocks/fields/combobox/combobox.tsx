@@ -23,7 +23,7 @@ import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/li
 import type { SelectOption } from "@narsil-cms/types";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
-import { debounce, isArray, isNumber, isString, lowerCase } from "lodash";
+import { debounce, isArray, isNumber, isString, lowerCase } from "lodash-es";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 type ComboboxProps = {

@@ -1,6 +1,6 @@
 import { VisitOptions } from "@inertiajs/core";
 import { cn } from "@narsil-cms/lib/utils";
-import { debounce } from "lodash";
+import { debounce } from "lodash-es";
 import { useCallback, useEffect, useRef, type ComponentProps } from "react";
 import useForm from "./form-context";
 

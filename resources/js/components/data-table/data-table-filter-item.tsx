@@ -9,7 +9,7 @@ import {
 } from "@narsil-cms/components/popover";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { Field } from "@narsil-cms/types";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import { useEffect, useState, type ComponentProps } from "react";
 import { type ColumnFilter } from ".";
 import useDataTable from "./data-table-context";

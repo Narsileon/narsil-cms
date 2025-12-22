@@ -14,7 +14,7 @@ import {
   type Updater,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { debounce } from "lodash";
+import { debounce } from "lodash-es";
 import { useCallback, useEffect, useMemo, type ReactNode } from "react";
 import { DataTableContext } from "./data-table-context";
 

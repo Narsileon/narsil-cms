@@ -24,7 +24,7 @@ import {
 } from "@narsil-cms/components/table";
 import { getField } from "@narsil-cms/plugins/fields";
 import type { Field } from "@narsil-cms/types";
-import { get, set, upperFirst } from "lodash";
+import { get, set, upperFirst } from "lodash-es";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { type TableElement } from ".";

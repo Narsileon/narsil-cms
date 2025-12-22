@@ -18,7 +18,7 @@ import {
 import { SortableHandle } from "@narsil-cms/components/sortable";
 import type { Model } from "@narsil-cms/types";
 import { type Column } from "@tanstack/react-table";
-import { concat, upperFirst } from "lodash";
+import { concat, upperFirst } from "lodash-es";
 import { type ComponentProps } from "react";
 
 type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger>;

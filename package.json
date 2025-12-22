@@ -35,7 +35,7 @@
     "graphiql": "^5.2.2",
     "graphql": "^16.12.0",
     "html-react-parser": "^5.2.11",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.22",
     "lucide-react": "0.562",
     "motion": "^12.23.26",
     "radix-ui": "^1.4.3",

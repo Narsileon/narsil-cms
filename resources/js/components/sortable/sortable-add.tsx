@@ -5,7 +5,7 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
-import { isNumber } from "lodash";
+import { isNumber } from "lodash-es";
 import { useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 import { type AnonymousItem } from ".";

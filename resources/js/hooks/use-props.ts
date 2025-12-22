@@ -1,7 +1,7 @@
 import { usePage } from "@inertiajs/react";
 import { type Theme } from "@narsil-cms/stores/theme-store";
 import type { MenuItem } from "@narsil-cms/types";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 
 export type GlobalProps = {
   auth: AuthProps;

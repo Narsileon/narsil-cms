@@ -9,7 +9,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import type { Bookmark, FormType } from "@narsil-cms/types";
-import { sortBy } from "lodash";
+import { sortBy } from "lodash-es";
 import { useEffect, useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 

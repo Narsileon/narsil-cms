@@ -1,5 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
-import { get, isObject, isString } from "lodash";
+import { get, isObject, isString } from "lodash-es";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {

@@ -4,7 +4,7 @@ import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import { isString } from "lodash";
+import { isString } from "lodash-es";
 import { type ComponentProps } from "react";
 import useDataTable from "./data-table-context";
 
