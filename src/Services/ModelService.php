@@ -51,7 +51,7 @@ abstract class ModelService
      * 
      * @return string
      */
-    public static function getSuccessToast(string $model, EventEnum $event): string
+    public static function getSuccessMessage(string $model, EventEnum $event): string
     {
         $isEntity = $model === Entity::class;
 
