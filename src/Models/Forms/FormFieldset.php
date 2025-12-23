@@ -187,6 +187,7 @@ class FormFieldset extends Model
                 FormInput::class,
                 FormFieldsetElement::RELATION_ELEMENT,
                 FormFieldsetElement::TABLE,
+                FormFieldsetElement::FIELDSET_ID,
                 FormFieldsetElement::ELEMENT_ID,
             );
     }
