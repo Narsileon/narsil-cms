@@ -36,7 +36,7 @@ class RoleDestroyController extends RedirectController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', ModelService::getSuccessToast(Role::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Role::class, EventEnum::DELETED));
     }
 
     #endregion

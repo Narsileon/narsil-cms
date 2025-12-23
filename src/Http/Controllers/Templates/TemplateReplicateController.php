@@ -36,7 +36,7 @@ class TemplateReplicateController extends RedirectController
         TemplateService::replicateTemplate($template);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Template::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Template::class, EventEnum::REPLICATED));
     }
 
     #endregion

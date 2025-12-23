@@ -44,7 +44,7 @@ class FormReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Form::class, EventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Form::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion

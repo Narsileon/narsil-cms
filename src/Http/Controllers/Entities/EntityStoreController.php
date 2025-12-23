@@ -66,7 +66,7 @@ class EntityStoreController extends RedirectController
             ->redirect(route('collections.index', [
                 'collection' => $collection,
             ]), $entity)
-            ->with('success', ModelService::getSuccessToast(Entity::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Entity::class, EventEnum::CREATED));
     }
 
     #endregion

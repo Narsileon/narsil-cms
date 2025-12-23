@@ -44,7 +44,7 @@ class FieldReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Field::class, EventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Field::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion

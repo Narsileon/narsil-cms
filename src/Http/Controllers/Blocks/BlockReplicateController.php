@@ -36,7 +36,7 @@ class BlockReplicateController extends RedirectController
         BlockService::replicateBlock($block);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Block::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Block::class, EventEnum::REPLICATED));
     }
 
     #endregion

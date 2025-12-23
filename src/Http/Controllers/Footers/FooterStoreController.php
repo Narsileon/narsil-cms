@@ -45,7 +45,7 @@ class FooterStoreController extends RedirectController
 
         return $this
             ->redirect(route('footers.index'))
-            ->with('success', ModelService::getSuccessToast(Footer::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Footer::class, EventEnum::CREATED));
     }
 
     #endregion

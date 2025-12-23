@@ -46,7 +46,7 @@ class HeaderUpdateController extends RedirectController
 
         return $this
             ->redirect(route('headers.index'))
-            ->with('success', ModelService::getSuccessToast(Header::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Header::class, EventEnum::UPDATED));
     }
 
     #endregion

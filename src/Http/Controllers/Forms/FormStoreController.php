@@ -49,7 +49,7 @@ class FormStoreController extends RedirectController
 
         return $this
             ->redirect(route('forms.index'))
-            ->with('success', ModelService::getSuccessToast(Form::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Form::class, EventEnum::CREATED));
     }
 
     #endregion

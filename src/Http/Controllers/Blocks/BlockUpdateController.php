@@ -53,7 +53,7 @@ class BlockUpdateController extends RedirectController
 
         return $this
             ->redirect(route('blocks.index'), $block)
-            ->with('success', ModelService::getSuccessToast(Block::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Block::class, EventEnum::UPDATED));
     }
 
     #endregion

@@ -39,7 +39,7 @@ class TemplateDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', ModelService::getSuccessToast(Template::class, EventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Template::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

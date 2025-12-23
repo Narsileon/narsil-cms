@@ -52,7 +52,7 @@ class FormFieldsetStoreController extends RedirectController
 
         return $this
             ->redirect(route('form-fieldsets.index'), $formFieldset)
-            ->with('success', ModelService::getSuccessToast(FormFieldset::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(FormFieldset::class, EventEnum::CREATED));
     }
 
     #endregion

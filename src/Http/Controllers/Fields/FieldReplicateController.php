@@ -36,7 +36,7 @@ class FieldReplicateController extends RedirectController
         FieldService::replicateField($field);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Field::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Field::class, EventEnum::REPLICATED));
     }
 
     #endregion

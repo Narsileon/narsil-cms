@@ -36,7 +36,7 @@ class FormInputReplicateController extends RedirectController
         FormInputService::replicateFormInput($formInput);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(FormInput::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(FormInput::class, EventEnum::REPLICATED));
     }
 
     #endregion

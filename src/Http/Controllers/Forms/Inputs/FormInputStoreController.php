@@ -52,7 +52,7 @@ class FormInputStoreController extends RedirectController
 
         return $this
             ->redirect(route('form-inputs.index'), $formInput)
-            ->with('success', ModelService::getSuccessToast(FormInput::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(FormInput::class, EventEnum::CREATED));
     }
 
     #endregion

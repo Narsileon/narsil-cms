@@ -36,7 +36,7 @@ class FormInputDestroyController extends RedirectController
 
         return $this
             ->redirect(route('form-inputs.index'))
-            ->with('success', ModelService::getSuccessToast(FormInput::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(FormInput::class, EventEnum::DELETED));
     }
 
     #endregion

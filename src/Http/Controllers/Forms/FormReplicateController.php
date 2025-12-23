@@ -36,7 +36,7 @@ class FormReplicateController extends RedirectController
         FormService::replicateForm($form);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Form::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Form::class, EventEnum::REPLICATED));
     }
 
     #endregion

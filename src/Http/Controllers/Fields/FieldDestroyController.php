@@ -36,7 +36,7 @@ class FieldDestroyController extends RedirectController
 
         return $this
             ->redirect(route('fields.index'))
-            ->with('success', ModelService::getSuccessToast(Field::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Field::class, EventEnum::DELETED));
     }
 
     #endregion

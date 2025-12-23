@@ -52,7 +52,7 @@ class FieldStoreController extends RedirectController
 
         return $this
             ->redirect(route('fields.index'), $field)
-            ->with('success', ModelService::getSuccessToast(Field::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Field::class, EventEnum::CREATED));
     }
 
     #endregion

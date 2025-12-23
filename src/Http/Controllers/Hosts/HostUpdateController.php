@@ -68,7 +68,7 @@ class HostUpdateController extends RedirectController
 
         return $this
             ->redirect(route('hosts.index'))
-            ->with('success', ModelService::getSuccessToast(Host::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Host::class, EventEnum::UPDATED));
     }
 
     #endregion

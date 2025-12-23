@@ -36,7 +36,7 @@ class FormDestroyController extends RedirectController
 
         return $this
             ->redirect(route('forms.index'))
-            ->with('success', ModelService::getSuccessToast(Form::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Form::class, EventEnum::DELETED));
     }
 
     #endregion

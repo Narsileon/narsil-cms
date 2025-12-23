@@ -53,7 +53,7 @@ class UserUpdateController extends RedirectController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', ModelService::getSuccessToast(User::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(User::class, EventEnum::UPDATED));
     }
 
     #endregion

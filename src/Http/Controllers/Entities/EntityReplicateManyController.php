@@ -47,7 +47,7 @@ class EntityReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Entity::class, EventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Entity::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion

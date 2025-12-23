@@ -39,7 +39,7 @@ class HeaderDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('headers.index'))
-            ->with('success', ModelService::getSuccessToast(Header::class, EventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Header::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

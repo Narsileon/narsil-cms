@@ -36,7 +36,7 @@ class BlockDestroyController extends RedirectController
 
         return $this
             ->redirect(route('blocks.index'))
-            ->with('success', ModelService::getSuccessToast(Block::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Block::class, EventEnum::DELETED));
     }
 
     #endregion

@@ -47,7 +47,7 @@ class UserStoreController extends RedirectController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', ModelService::getSuccessToast(User::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(User::class, EventEnum::CREATED));
     }
 
     #endregion

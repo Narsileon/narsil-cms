@@ -53,7 +53,7 @@ class FormInputUpdateController extends RedirectController
 
         return $this
             ->redirect(route('form-inputs.index'), $formInput)
-            ->with('success', ModelService::getSuccessToast(FormInput::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(FormInput::class, EventEnum::UPDATED));
     }
 
     #endregion

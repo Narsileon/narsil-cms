@@ -36,7 +36,7 @@ class RoleReplicateController extends RedirectController
         RoleService::replicateRole($role);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Role::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Role::class, EventEnum::REPLICATED));
     }
 
     #endregion

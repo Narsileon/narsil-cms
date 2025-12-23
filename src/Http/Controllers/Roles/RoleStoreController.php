@@ -51,7 +51,7 @@ class RoleStoreController extends RedirectController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', ModelService::getSuccessToast(Role::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Role::class, EventEnum::CREATED));
     }
 
     #endregion

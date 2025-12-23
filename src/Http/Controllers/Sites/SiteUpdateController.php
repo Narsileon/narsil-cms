@@ -62,7 +62,7 @@ class SiteUpdateController extends RedirectController
         SitemapJob::dispatch($site);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Site::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Site::class, EventEnum::UPDATED));
     }
 
     #endregion

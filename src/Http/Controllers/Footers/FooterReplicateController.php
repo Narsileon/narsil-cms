@@ -37,7 +37,7 @@ class FooterReplicateController extends RedirectController
         $replicated->save();
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Footer::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Footer::class, EventEnum::REPLICATED));
     }
 
     #endregion

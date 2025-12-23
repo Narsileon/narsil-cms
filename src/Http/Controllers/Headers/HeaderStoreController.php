@@ -45,7 +45,7 @@ class HeaderStoreController extends RedirectController
 
         return $this
             ->redirect(route('headers.index'))
-            ->with('success', ModelService::getSuccessToast(Header::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Header::class, EventEnum::CREATED));
     }
 
     #endregion

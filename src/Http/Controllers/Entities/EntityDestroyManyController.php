@@ -45,7 +45,7 @@ class EntityDestroyManyController extends RedirectController
             ->redirect(route('collections.index', [
                 'collection' => $collection,
             ]))
-            ->with('success', ModelService::getSuccessToast(Entity::class, EventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Entity::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

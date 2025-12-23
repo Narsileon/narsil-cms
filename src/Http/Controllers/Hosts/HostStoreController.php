@@ -62,7 +62,7 @@ class HostStoreController extends RedirectController
 
         return $this
             ->redirect(route('hosts.index'))
-            ->with('success', ModelService::getSuccessToast(Host::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Host::class, EventEnum::CREATED));
     }
 
     #endregion

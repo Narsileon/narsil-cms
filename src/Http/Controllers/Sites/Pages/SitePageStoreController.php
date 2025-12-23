@@ -94,7 +94,7 @@ class SitePageStoreController extends RedirectController
             'country' => $this->country,
             'site' => $site,
         ]))
-            ->with('success', ModelService::getSuccessToast(SitePage::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(SitePage::class, EventEnum::CREATED));
     }
 
     #endregion

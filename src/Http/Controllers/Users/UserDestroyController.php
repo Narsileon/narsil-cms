@@ -36,7 +36,7 @@ class UserDestroyController extends RedirectController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', ModelService::getSuccessToast(User::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(User::class, EventEnum::DELETED));
     }
 
     #endregion

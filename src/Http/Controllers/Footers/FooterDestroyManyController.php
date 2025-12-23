@@ -39,7 +39,7 @@ class FooterDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('footers.index'))
-            ->with('success', ModelService::getSuccessToast(Footer::class, EventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Footer::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

@@ -44,7 +44,7 @@ class BlockReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Block::class, EventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Block::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion

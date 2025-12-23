@@ -53,7 +53,7 @@ class FormFieldsetUpdateController extends RedirectController
 
         return $this
             ->redirect(route('form-fieldsets.index'), $formFieldset)
-            ->with('success', ModelService::getSuccessToast(FormFieldset::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(FormFieldset::class, EventEnum::UPDATED));
     }
 
     #endregion

@@ -130,7 +130,7 @@ class EntityUpdateController extends RedirectController
                 ->redirect(route('collections.index', [
                     'collection' => $collection
                 ]), $entity)
-                ->with('success', ModelService::getSuccessToast(Entity::class, EventEnum::UPDATED));
+                ->with('success', ModelService::getSuccessMessage(Entity::class, EventEnum::UPDATED));
         }
     }
 

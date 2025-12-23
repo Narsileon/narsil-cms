@@ -39,7 +39,7 @@ class RoleDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', ModelService::getSuccessToast(Role::class, EventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Role::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

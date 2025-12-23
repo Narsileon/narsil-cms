@@ -36,7 +36,7 @@ class FormFieldsetReplicateController extends RedirectController
         FormFieldsetService::replicateFormFieldset($formFieldset);
 
         return back()
-            ->with('success', ModelService::getSuccessToast(FormFieldset::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(FormFieldset::class, EventEnum::REPLICATED));
     }
 
     #endregion

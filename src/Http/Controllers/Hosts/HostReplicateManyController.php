@@ -44,7 +44,7 @@ class HostReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessToast(Host::class, EventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Host::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion
