@@ -3,6 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
+use Narsil\Http\Controllers\Forms\FormSubmitController;
 use Narsil\Http\Controllers\Sitemaps\SitemapController;
 use Narsil\Http\Controllers\Sitemaps\SitemapIndexController;
 
@@ -10,3 +11,5 @@ use Narsil\Http\Controllers\Sitemaps\SitemapIndexController;
 
 Route::get('/sitemap_index.xml', SitemapIndexController::class);
 Route::get('/sitemap/{country}.xml', SitemapController::class);
+
+Route::get('/forms/{form}/submit', FormSubmitController::class);
