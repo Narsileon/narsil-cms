@@ -11,6 +11,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\User;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -57,7 +58,7 @@ class UserIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::tables.' . User::TABLE);
+        return ModelService::getTableLabel(User::TABLE);
     }
 
     /**
@@ -65,7 +66,7 @@ class UserIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::tables.' . User::TABLE);
+        return ModelService::getTableLabel(User::TABLE);
     }
 
     #endregion

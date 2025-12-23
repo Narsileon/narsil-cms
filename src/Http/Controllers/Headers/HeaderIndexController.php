@@ -11,6 +11,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Globals\Header;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -59,7 +60,7 @@ class HeaderIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::tables.' . Header::TABLE);
+        return ModelService::getTableLabel(Header::TABLE);
     }
 
     /**
@@ -67,7 +68,7 @@ class HeaderIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::tables.' . Header::TABLE);
+        return ModelService::getTableLabel(Header::TABLE);
     }
 
     #endregion

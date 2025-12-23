@@ -13,6 +13,7 @@ use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm;
 use Narsil\Contracts\Forms\UserConfigurationForm;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Users\UserConfiguration;
+use Narsil\Services\ModelService;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -65,7 +66,7 @@ class UserConfigurationEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . UserConfiguration::class);
+        return ModelService::getModelLabel(UserConfiguration::class);
     }
 
     /**
@@ -73,7 +74,7 @@ class UserConfigurationEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . UserConfiguration::class);
+        return ModelService::getModelLabel(UserConfiguration::class);
     }
 
     #endregion

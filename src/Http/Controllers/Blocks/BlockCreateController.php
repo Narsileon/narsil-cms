@@ -12,6 +12,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Block;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -48,7 +49,7 @@ class BlockCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . Block::class);
+        return ModelService::getModelLabel(Block::class);
     }
 
     /**
@@ -71,7 +72,7 @@ class BlockCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . Block::class);
+        return ModelService::getModelLabel(Block::class);
     }
 
     #endregion

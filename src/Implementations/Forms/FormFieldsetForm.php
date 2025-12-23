@@ -4,7 +4,6 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FormFieldsetForm as Contract;
@@ -16,6 +15,7 @@ use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormFieldsetElement;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -84,7 +84,7 @@ class FormFieldsetForm extends AbstractForm implements Contract
                                 ->form(app(FormFieldsetElementForm::class)->jsonSerialize())
                                 ->addOption(
                                     identifier: FormInput::TABLE,
-                                    label: Str::ucfirst(trans('narsil::models.' . FormInput::class)),
+                                    label: ModelService::getModelLabel(FormInput::class),
                                     optionLabel: FormFieldsetElement::NAME,
                                     optionValue: FormFieldsetElement::HANDLE,
                                     options: $formInputSelectOptions,

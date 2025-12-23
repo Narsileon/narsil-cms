@@ -4,7 +4,6 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FormFieldsetElementForm;
@@ -19,6 +18,7 @@ use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormInput;
 use Narsil\Models\Forms\FormPage;
 use Narsil\Models\Forms\FormPageElement;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -110,7 +110,7 @@ class FormForm extends AbstractForm implements Contract
                                             ->form(app(FormFieldsetElementForm::class)->jsonSerialize())
                                             ->addOption(
                                                 identifier: FormFieldset::TABLE,
-                                                label: Str::ucfirst(trans('narsil::models.' . FormFieldset::class)),
+                                                label: ModelService::getModelLabel(FormFieldset::class),
                                                 optionLabel: FormPageElement::NAME,
                                                 optionValue: FormPageElement::HANDLE,
                                                 options: $formFieldsetSelectOptions,
@@ -118,7 +118,7 @@ class FormForm extends AbstractForm implements Contract
                                             )
                                             ->addOption(
                                                 identifier: FormInput::TABLE,
-                                                label: Str::ucfirst(trans('narsil::models.' . FormInput::class)),
+                                                label: ModelService::getModelLabel(FormInput::class),
                                                 optionLabel: FormPageElement::NAME,
                                                 optionValue: FormPageElement::HANDLE,
                                                 options: $formInputSelectOptions,

@@ -11,6 +11,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -59,7 +60,7 @@ class FormInputIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::tables.' . FormInput::TABLE);
+        return ModelService::getTableLabel(FormInput::TABLE);
     }
 
     /**
@@ -67,7 +68,7 @@ class FormInputIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::tables.' . FormInput::TABLE);
+        return ModelService::getTableLabel(FormInput::TABLE);
     }
 
     #endregion

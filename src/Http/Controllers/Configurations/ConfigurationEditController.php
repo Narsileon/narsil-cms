@@ -11,6 +11,7 @@ use Narsil\Contracts\Forms\ConfigurationForm;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -70,7 +71,7 @@ class ConfigurationEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . Configuration::class);
+        return ModelService::getModelLabel(Configuration::class);
     }
 
     /**
@@ -96,7 +97,7 @@ class ConfigurationEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . Configuration::class);
+        return ModelService::getModelLabel(Configuration::class);
     }
 
     #endregion

@@ -19,6 +19,7 @@ use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -132,7 +133,7 @@ class UserForm extends AbstractForm implements Contract
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'roles',
-                TemplateSection::NAME => Str::ucfirst(trans('narsil::tables.roles')),
+                TemplateSection::NAME => ModelService::getTableLabel(Role::TABLE),
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT =>

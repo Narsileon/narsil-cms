@@ -14,6 +14,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -81,7 +82,7 @@ class HostEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . Host::class);
+        return ModelService::getModelLabel(Host::class);
     }
 
     /**
@@ -107,7 +108,7 @@ class HostEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . Host::class);
+        return ModelService::getModelLabel(Host::class);
     }
 
     #endregion

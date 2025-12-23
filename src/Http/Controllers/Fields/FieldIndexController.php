@@ -11,6 +11,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Field;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -59,7 +60,7 @@ class FieldIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::tables.' . Field::TABLE);
+        return ModelService::getTableLabel(Field::TABLE);
     }
 
     /**
@@ -67,7 +68,7 @@ class FieldIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::tables.' . Field::TABLE);
+        return ModelService::getTableLabel(Field::TABLE);
     }
 
     #endregion

@@ -23,6 +23,7 @@ use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\User;
+use Narsil\Services\ModelService;
 use Narsil\Services\PermissionService;
 use Narsil\Support\TranslationsBag;
 use Narsil\Support\MenuItem;
@@ -119,16 +120,16 @@ class Sidebar extends AbstractMenu implements Contract
             new MenuItem()
                 ->group($group)
                 ->href(route('forms.index'))
-                ->icon('layout')
-                ->label(trans('narsil::tables.' . Form::TABLE))
+                ->icon('form')
+                ->label(ModelService::getTableLabel(Form::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Form::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('form-fieldsets.index'))
-                ->icon('box')
-                ->label(trans('narsil::tables.' . FormFieldset::TABLE))
+                ->icon('fieldset')
+                ->label(ModelService::getTableLabel(FormFieldset::TABLE))
                 ->permissions([
                     PermissionService::getHandle(FormFieldset::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
@@ -136,7 +137,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('form-inputs.index'))
                 ->icon('input')
-                ->label(trans('narsil::tables.' . FormInput::TABLE))
+                ->label(ModelService::getTableLabel(FormInput::TABLE))
                 ->permissions([
                     PermissionService::getHandle(FormInput::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
@@ -155,7 +156,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('headers.index'))
                 ->icon('header')
-                ->label(trans('narsil::tables.headers'))
+                ->label(ModelService::getTableLabel(Header::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Header::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
@@ -163,7 +164,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('footers.index'))
                 ->icon('footer')
-                ->label(trans('narsil::tables.footers'))
+                ->label(ModelService::getTableLabel(Footer::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Footer::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
@@ -182,31 +183,31 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('hosts.index'))
                 ->icon('server')
-                ->label(trans('narsil::tables.hosts'))
+                ->label(ModelService::getTableLabel(Host::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Host::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('users.index'))
-                ->icon('users')
-                ->label(trans('narsil::tables.users'))
+                ->icon('user')
+                ->label(ModelService::getTableLabel(User::TABLE))
                 ->permissions([
                     PermissionService::getHandle(User::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('roles.index'))
-                ->icon('shield')
-                ->label(trans('narsil::tables.roles'))
+                ->icon('role')
+                ->label(ModelService::getTableLabel(Role::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Role::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('permissions.index'))
-                ->icon('lock')
-                ->label(trans('narsil::tables.permissions'))
+                ->icon('permission')
+                ->label(ModelService::getTableLabel(Permission::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
@@ -214,7 +215,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('settings.edit'))
                 ->icon('settings')
-                ->label(trans('narsil::tables.configurations'))
+                ->label(ModelService::getTableLabel(Configuration::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Configuration::TABLE, PermissionEnum::UPDATE->value)
                 ]),
@@ -263,24 +264,24 @@ class Sidebar extends AbstractMenu implements Contract
             new MenuItem()
                 ->group($group)
                 ->href(route('templates.index'))
-                ->icon('layout')
-                ->label(trans('narsil::tables.templates'))
+                ->icon('template')
+                ->label(ModelService::getTableLabel(Template::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('blocks.index'))
-                ->icon('box')
-                ->label(trans('narsil::tables.blocks'))
+                ->icon('block')
+                ->label(ModelService::getTableLabel(Block::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Block::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('fields.index'))
-                ->icon('input')
-                ->label(trans('narsil::tables.fields'))
+                ->icon('field')
+                ->label(ModelService::getTableLabel(Field::TABLE))
                 ->permissions([
                     PermissionService::getHandle(Field::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
@@ -298,7 +299,7 @@ class Sidebar extends AbstractMenu implements Contract
             new MenuItem()
                 ->group($group)
                 ->href(route('graphiql'))
-                ->icon('braces')
+                ->icon('graph-ql')
                 ->label('GraphQL')
                 ->target('_blank'),
             new MenuItem()

@@ -13,6 +13,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -73,7 +74,7 @@ class TemplateEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . Template::class);
+        return ModelService::getModelLabel(Template::class);
     }
 
     /**
@@ -99,7 +100,7 @@ class TemplateEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . Template::class);
+        return ModelService::getModelLabel(Template::class);
     }
 
     #endregion

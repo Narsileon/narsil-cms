@@ -4,12 +4,12 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\BuilderField as Contract;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
@@ -53,12 +53,12 @@ class BuilderField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::RELATION_BLOCKS,
-                Field::NAME => trans('narsil::tables.' . Block::TABLE),
+                Field::NAME => ModelService::getTableLabel(Block::TABLE),
                 Field::TYPE => RelationsField::class,
                 Field::SETTINGS => app(RelationsField::class)
                     ->addOption(
                         identifier: Block::TABLE,
-                        label: Str::ucfirst(trans('narsil::models.' . Block::class)),
+                        label: ModelService::getModelLabel(Block::class),
                         optionLabel: Block::NAME,
                         optionValue: Block::HANDLE,
                         options: $blockSelectOptions,

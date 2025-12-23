@@ -11,6 +11,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -59,7 +60,7 @@ class TemplateIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::tables.' . Template::TABLE);
+        return ModelService::getTableLabel(Template::TABLE);
     }
 
     /**
@@ -67,7 +68,7 @@ class TemplateIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::tables.' . Template::TABLE);
+        return ModelService::getTableLabel(Template::TABLE);
     }
 
     #endregion

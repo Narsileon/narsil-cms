@@ -11,6 +11,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Block;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -67,7 +68,7 @@ class BlockIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::tables.' . Block::TABLE);
+        return ModelService::getTableLabel(Block::TABLE);
     }
 
     /**
@@ -75,7 +76,7 @@ class BlockIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::tables.' . Block::TABLE);
+        return ModelService::getTableLabel(Block::TABLE);
     }
 
     #endregion

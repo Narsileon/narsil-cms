@@ -11,6 +11,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Hosts\Host;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -60,7 +61,7 @@ class HostIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::tables.' . Host::TABLE);
+        return ModelService::getTableLabel(Host::TABLE);
     }
 
     /**
@@ -68,7 +69,7 @@ class HostIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::tables.' . Host::TABLE);
+        return ModelService::getTableLabel(Host::TABLE);
     }
 
     #endregion

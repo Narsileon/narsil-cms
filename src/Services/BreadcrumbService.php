@@ -49,9 +49,9 @@ abstract class BreadcrumbService
             else
             {
 
-                $key = Str::replace('-', '_', $segment);
+                $key = Str::replace('-', '_', (string)$segment);
 
-                $label = Str::ucfirst(trans('narsil::tables.' . $key));
+                $label = ModelService::getTableLabel($key);
 
                 if (Str::contains($label, '::'))
                 {

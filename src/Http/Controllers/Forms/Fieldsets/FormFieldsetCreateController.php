@@ -12,6 +12,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Forms\FormFieldset;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -48,7 +49,7 @@ class FormFieldsetCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . FormFieldset::class);
+        return ModelService::getModelLabel(FormFieldset::class);
     }
 
     /**
@@ -71,7 +72,7 @@ class FormFieldsetCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . FormFieldset::class);
+        return ModelService::getModelLabel(FormFieldset::class);
     }
 
     #endregion

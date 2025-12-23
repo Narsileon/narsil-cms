@@ -5,7 +5,6 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\TextField;
@@ -16,6 +15,7 @@ use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -98,7 +98,7 @@ class RoleForm extends AbstractForm implements Contract
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => Role::RELATION_PERMISSIONS,
-                TemplateSection::NAME => Str::ucfirst(trans('narsil::tables.permissions')),
+                TemplateSection::NAME => ModelService::getTableLabel(Permission::TABLE),
                 TemplateSection::RELATION_ELEMENTS => $permissionElements,
             ]),
         ];
@@ -115,9 +115,7 @@ class RoleForm extends AbstractForm implements Contract
             {
                 $key = Str::beforeLast($permission->{Permission::HANDLE}, '_');
 
-                $translationKey = "narsil::tables.{$key}";
-
-                return Lang::has($translationKey) ? trans($translationKey) : $key;
+                return ModelService::getTableLabel($key);
             })
             ->map(function ($permissions)
             {

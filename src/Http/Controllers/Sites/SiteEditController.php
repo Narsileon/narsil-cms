@@ -19,6 +19,7 @@ use Narsil\Http\Resources\Sites\SiteResource;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Sites\Site;
+use Narsil\Services\ModelService;
 use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
 
@@ -134,7 +135,7 @@ class SiteEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . Site::class);
+        return ModelService::getModelLabel(Site::class);
     }
 
     /**
@@ -161,7 +162,7 @@ class SiteEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . Site::class);
+        return ModelService::getModelLabel(Site::class);
     }
 
     #endregion

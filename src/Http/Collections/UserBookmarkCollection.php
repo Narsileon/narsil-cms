@@ -9,6 +9,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use JsonSerializable;
 use Narsil\Implementations\Forms\UserBookmarkForm;
 use Narsil\Models\Users\UserBookmark;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -59,7 +60,7 @@ class UserBookmarkCollection extends ResourceCollection
             'translations' => [
                 'bookmarks.instruction' => trans('narsil::bookmarks.instruction'),
                 'ui.add' => trans('narsil::ui.add'),
-                'ui.bookmarks' => trans('narsil::tables.' . UserBookmark::TABLE),
+                'ui.bookmarks' => ModelService::getTableLabel(UserBookmark::TABLE),
                 'ui.cancel' => trans('narsil::ui.cancel'),
                 'ui.edit' => trans('narsil::ui.edit'),
                 'ui.remove' => trans('narsil::ui.remove'),

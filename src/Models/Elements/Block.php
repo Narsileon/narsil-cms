@@ -179,7 +179,7 @@ class Block extends Model
      */
     public function getIconAttribute(): string
     {
-        return 'box';
+        return 'block';
     }
 
     #endregion

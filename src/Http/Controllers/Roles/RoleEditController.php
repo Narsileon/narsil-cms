@@ -14,6 +14,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -76,7 +77,7 @@ class RoleEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . Role::class);
+        return ModelService::getModelLabel(Role::class);
     }
 
     /**
@@ -102,7 +103,7 @@ class RoleEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . Role::class);
+        return ModelService::getModelLabel(Role::class);
     }
 
     #endregion

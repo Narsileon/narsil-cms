@@ -12,6 +12,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -51,7 +52,7 @@ class SitePageCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . SitePage::class);
+        return ModelService::getModelLabel(SitePage::class);
     }
 
     /**
@@ -78,7 +79,7 @@ class SitePageCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . SitePage::class);
+        return ModelService::getModelLabel(SitePage::class);
     }
 
     #endregion

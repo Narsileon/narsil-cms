@@ -12,6 +12,7 @@ use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\User;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -48,7 +49,7 @@ class UserCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::models.' . User::class);
+        return ModelService::getModelLabel(User::class);
     }
 
     /**
@@ -71,7 +72,7 @@ class UserCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::models.' . User::class);
+        return ModelService::getModelLabel(User::class);
     }
 
     #endregion

@@ -7,6 +7,8 @@ namespace Narsil\Implementations\Menus;
 use Narsil\Contracts\Menus\AuthMenu as Contract;
 use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractMenu;
+use Narsil\Models\Users\UserConfiguration;
+use Narsil\Services\ModelService;
 use Narsil\Support\TranslationsBag;
 use Narsil\Support\MenuItem;
 
@@ -77,7 +79,7 @@ class AuthMenu extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('user-configurations.edit'))
                 ->icon('settings')
-                ->label(trans('narsil::tables.user_configurations'))
+                ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
                 ->method(MethodEnum::GET->value)
                 ->modal(true),
         ];

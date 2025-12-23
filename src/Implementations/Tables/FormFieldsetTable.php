@@ -4,11 +4,11 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -38,8 +38,6 @@ class FormFieldsetTable extends AbstractTable
      */
     protected function columns(): array
     {
-        $inputCountHeader = trans(('narsil::tables.' . FormInput::TABLE));
-
         return [
             new TableColumn(
                 id: FormFieldset::ID,
@@ -54,7 +52,7 @@ class FormFieldsetTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: Str::ucfirst($inputCountHeader),
+                header: ModelService::getTableLabel(FormInput::TABLE),
                 id: FormFieldset::COUNT_INPUTS,
                 type: TypeNameEnum::INTEGER->value,
                 visibility: true,
