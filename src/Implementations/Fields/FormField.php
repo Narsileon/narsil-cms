@@ -1,0 +1,57 @@
+<?php
+
+namespace Narsil\Implementations\Fields;
+
+#region USE
+
+use Narsil\Contracts\Fields\FormField as Contract;
+use Narsil\Implementations\AbstractField;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class FormField extends AbstractField implements Contract
+{
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->defaultValue('');
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getForm(?string $prefix = null): array
+    {
+        return [
+            //
+        ];
+    }
+
+    #region • FLUENT
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function defaultValue(string $value): static
+    {
+        $this->set('value', $value);
+
+        return $this;
+    }
+
+    #endregion
+
+    #endregion
+}

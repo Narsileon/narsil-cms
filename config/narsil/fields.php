@@ -18,6 +18,7 @@ return [
     \Narsil\Contracts\Fields\DatetimeField::class,
     \Narsil\Contracts\Fields\EmailField::class,
     \Narsil\Contracts\Fields\FileField::class,
+    \Narsil\Contracts\Fields\FormField::class,
     \Narsil\Contracts\Fields\NumberField::class,
     \Narsil\Contracts\Fields\PasswordField::class,
     \Narsil\Contracts\Fields\RangeField::class,

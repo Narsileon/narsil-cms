@@ -9,6 +9,7 @@ use Narsil\Contracts\Fields\DateField;
 use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\FileField;
+use Narsil\Contracts\Fields\FormField;
 use Narsil\Contracts\Fields\NumberField;
 use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Fields\RangeField;
@@ -32,6 +33,7 @@ return [
     DatetimeField::class => 'Datetime',
     EmailField::class => 'Email',
     FileField::class => 'File',
+    FormField::class => 'Form',
     NumberField::class => 'Number',
     PasswordField::class => 'Password',
     RangeField::class => 'Range',

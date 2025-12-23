@@ -76,7 +76,7 @@ class FieldForm extends AbstractForm implements Contract
             new TemplateSection([
                 TemplateSection::HANDLE => 'definition',
                 TemplateSection::NAME => trans('narsil::ui.definition'),
-                TemplateSection::RELATION_ELEMENTS => [
+                TemplateSection::RELATION_ELEMENTS => array_filter([
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Field::NAME,
@@ -116,14 +116,14 @@ class FieldForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(SwitchField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
+                    !empty($settings) ? new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Block([
                             Block::COLLAPSIBLE => true,
                             Block::NAME => trans('narsil::ui.settings'),
                             Block::RELATION_ELEMENTS =>  $settings,
                         ]),
-                    ]),
-                ],
+                    ]) : null,
+                ]),
             ]),
             new TemplateSection([
                 TemplateSection::HANDLE => 'validation',
