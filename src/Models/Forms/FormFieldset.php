@@ -152,7 +152,7 @@ class FormFieldset extends Model
      */
     public function getIconAttribute(): string
     {
-        return 'box';
+        return 'fieldset';
     }
 
     #endregion

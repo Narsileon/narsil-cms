@@ -30,7 +30,7 @@ class FormPage extends Model
         $this->table = self::TABLE;
 
         $this->touches = [
-            self::RELATION_TEMPLATE,
+            self::RELATION_FORM,
         ];
 
         $this->translatable = [
@@ -122,11 +122,11 @@ class FormPage extends Model
     final public const RELATION_FIELDS = 'fields';
 
     /**
-     * The name of the "template" relation.
+     * The name of the "form" relation.
      *
      * @var string
      */
-    final public const RELATION_TEMPLATE = 'template';
+    final public const RELATION_FORM = 'form';
 
     #endregion
 
