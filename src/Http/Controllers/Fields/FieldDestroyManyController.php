@@ -5,10 +5,12 @@ namespace Narsil\Http\Controllers\Fields;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Elements\Field;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -37,7 +39,7 @@ class FieldDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('fields.index'))
-            ->with('success', trans('narsil::toasts.success.fields.deleted_many'));
+            ->with('success', ModelService::getSuccessToast(Field::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

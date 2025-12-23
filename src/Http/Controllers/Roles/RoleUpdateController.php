@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\RoleFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Role;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -50,7 +52,7 @@ class RoleUpdateController extends RedirectController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', trans('narsil::toasts.success.roles.updated'));
+            ->with('success', ModelService::getSuccessToast(Role::class, EventEnum::UPDATED));
     }
 
     #endregion

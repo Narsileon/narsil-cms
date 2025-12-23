@@ -5,10 +5,12 @@ namespace Narsil\Http\Controllers\Forms\Fieldsets;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Forms\FormFieldset;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -37,7 +39,7 @@ class FormFieldsetDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('form-fieldsets.index'))
-            ->with('success', trans('narsil::toasts.success.form-fieldsets.deleted_many'));
+            ->with('success', ModelService::getSuccessToast(FormFieldset::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

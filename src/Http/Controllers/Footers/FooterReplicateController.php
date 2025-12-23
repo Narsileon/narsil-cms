@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Footers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Footer;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -35,7 +37,7 @@ class FooterReplicateController extends RedirectController
         $replicated->save();
 
         return back()
-            ->with('success', trans('narsil::toasts.success.footers.replicated'));
+            ->with('success', ModelService::getSuccessToast(Footer::class, EventEnum::REPLICATED));
     }
 
     #endregion

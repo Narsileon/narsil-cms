@@ -8,9 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\UserFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\User;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -45,7 +47,7 @@ class UserStoreController extends RedirectController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', trans('narsil::toasts.success.users.created'));
+            ->with('success', ModelService::getSuccessToast(User::class, EventEnum::CREATED));
     }
 
     #endregion

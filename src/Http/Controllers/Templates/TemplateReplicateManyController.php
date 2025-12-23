@@ -6,11 +6,13 @@ namespace Narsil\Http\Controllers\Templates;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Elements\Template;
 use Narsil\Services\Models\TemplateService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -42,7 +44,7 @@ class TemplateReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', trans('narsil::toasts.success.templates.replicated_many'));
+            ->with('success', ModelService::getSuccessToast(Template::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion

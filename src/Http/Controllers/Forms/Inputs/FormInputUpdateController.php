@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FormInputFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\FormInput;
 use Narsil\Services\Models\FormInputService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -51,7 +53,7 @@ class FormInputUpdateController extends RedirectController
 
         return $this
             ->redirect(route('form-inputs.index'), $formInput)
-            ->with('success', trans('narsil::toasts.success.form-inputs.updated'));
+            ->with('success', ModelService::getSuccessToast(FormInput::class, EventEnum::UPDATED));
     }
 
     #endregion

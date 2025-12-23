@@ -6,10 +6,12 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\Models\EntityService;
+use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -43,7 +45,7 @@ class EntityReplicateController extends RedirectController
         EntityService::replicateEntity($entity);
 
         return back()
-            ->with('success', trans('narsil::toasts.success.entities.replicated'));
+            ->with('success', ModelService::getSuccessToast(Entity::class, EventEnum::REPLICATED));
     }
 
     #endregion

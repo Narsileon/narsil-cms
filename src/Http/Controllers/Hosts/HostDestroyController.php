@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Hosts;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Hosts\Host;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -34,7 +36,7 @@ class HostDestroyController extends RedirectController
 
         return $this
             ->redirect(route('hosts.index'))
-            ->with('success', trans('narsil::toasts.success.hosts.deleted'));
+            ->with('success', ModelService::getSuccessToast(Host::class, EventEnum::DELETED));
     }
 
     #endregion

@@ -5,10 +5,12 @@ namespace Narsil\Http\Controllers\Blocks;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Elements\Block;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -37,7 +39,7 @@ class BlockDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('blocks.index'))
-            ->with('success', trans('narsil::toasts.success.blocks.deleted_many'));
+            ->with('success', ModelService::getSuccessToast(Block::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

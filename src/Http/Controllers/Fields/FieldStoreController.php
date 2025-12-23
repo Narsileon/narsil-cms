@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Field;
 use Narsil\Services\Models\FieldService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -50,7 +52,7 @@ class FieldStoreController extends RedirectController
 
         return $this
             ->redirect(route('fields.index'), $field)
-            ->with('success', trans('narsil::toasts.success.fields.created'));
+            ->with('success', ModelService::getSuccessToast(Field::class, EventEnum::CREATED));
     }
 
     #endregion

@@ -18,6 +18,9 @@ enum EventEnum: string
 
     case CREATED = 'created';
     case DELETED = 'deleted';
+    case DELETED_MANY = 'deleted_many';
+    case REPLICATED = 'replicated';
+    case REPLICATED_MANY = 'replicated_many';
     case RESTORED = 'restored';
     case UPDATED = 'updated';
 }

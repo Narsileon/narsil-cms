@@ -8,9 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HeaderFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Header;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -43,7 +45,7 @@ class HeaderStoreController extends RedirectController
 
         return $this
             ->redirect(route('headers.index'))
-            ->with('success', trans('narsil::toasts.success.headers.created'));
+            ->with('success', ModelService::getSuccessToast(Header::class, EventEnum::CREATED));
     }
 
     #endregion

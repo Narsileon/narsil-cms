@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Forms\Inputs;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -34,7 +36,7 @@ class FormInputDestroyController extends RedirectController
 
         return $this
             ->redirect(route('form-inputs.index'))
-            ->with('success', trans('narsil::toasts.success.form-inputs.deleted'));
+            ->with('success', ModelService::getSuccessToast(FormInput::class, EventEnum::DELETED));
     }
 
     #endregion

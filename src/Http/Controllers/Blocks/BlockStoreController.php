@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\BlockFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
 use Narsil\Services\Models\BlockService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -50,7 +52,7 @@ class BlockStoreController extends RedirectController
 
         return $this
             ->redirect(route('blocks.index'), $block)
-            ->with('success', trans('narsil::toasts.success.blocks.created'));
+            ->with('success', ModelService::getSuccessToast(Block::class, EventEnum::CREATED));
     }
 
     #endregion

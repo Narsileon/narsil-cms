@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Headers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Header;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -34,7 +36,7 @@ class HeaderDestroyController extends RedirectController
 
         return $this
             ->redirect(route('headers.index'))
-            ->with('success', trans('narsil::toasts.success.headers.deleted'));
+            ->with('success', ModelService::getSuccessToast(Header::class, EventEnum::DELETED));
     }
 
     #endregion

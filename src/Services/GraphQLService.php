@@ -160,7 +160,7 @@ abstract class GraphQLService
      */
     protected static function getCollectionBlockName(Template $template): string
     {
-        return $template->{Template::SINGULAR} . "Block";;
+        return $template->{Template::SINGULAR} . "Block";
     }
 
     /**

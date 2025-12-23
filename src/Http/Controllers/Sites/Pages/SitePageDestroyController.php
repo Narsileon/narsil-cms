@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Sites\Pages;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -36,7 +38,7 @@ class SitePageDestroyController extends RedirectController
         $this->deleteRecursively($sitePage);
 
         return redirect(route('sites.edit', $site))
-            ->with('success', trans('narsil::toasts.success.site_pages.deleted'));
+            ->with('success', ModelService::getSuccessToast(SitePage::class, EventEnum::DELETED));
     }
 
     #endregion

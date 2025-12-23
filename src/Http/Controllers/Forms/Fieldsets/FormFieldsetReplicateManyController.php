@@ -6,11 +6,13 @@ namespace Narsil\Http\Controllers\Forms\Fieldsets;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Services\Models\FormFieldsetService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -42,7 +44,7 @@ class FormFieldsetReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', trans('narsil::toasts.success.form-fieldsets.replicated_many'));
+            ->with('success', ModelService::getSuccessToast(FormFieldset::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion

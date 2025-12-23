@@ -7,12 +7,14 @@ namespace Narsil\Http\Controllers\Sites;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Implementations\Requests\SiteFormRequest;
 use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -60,7 +62,7 @@ class SiteUpdateController extends RedirectController
         SitemapJob::dispatch($site);
 
         return back()
-            ->with('success', trans('narsil::toasts.success.sites.updated'));
+            ->with('success', ModelService::getSuccessToast(Site::class, EventEnum::UPDATED));
     }
 
     #endregion

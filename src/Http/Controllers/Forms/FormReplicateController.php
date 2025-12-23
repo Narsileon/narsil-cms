@@ -6,10 +6,12 @@ namespace Narsil\Http\Controllers\Forms;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\Form;
 use Narsil\Services\Models\FormService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -34,7 +36,7 @@ class FormReplicateController extends RedirectController
         FormService::replicateForm($form);
 
         return back()
-            ->with('success', trans('narsil::toasts.success.forms.replicated'));
+            ->with('success', ModelService::getSuccessToast(Form::class, EventEnum::REPLICATED));
     }
 
     #endregion

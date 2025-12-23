@@ -8,9 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\PermissionFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Permission;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -44,7 +46,7 @@ class PermissionUpdateController extends RedirectController
 
         return $this
             ->redirect(route('permissions.index'))
-            ->with('success', trans('narsil::toasts.success.permissions.updated'));
+            ->with('success', ModelService::getSuccessToast(Permission::class, EventEnum::UPDATED));
     }
 
     #endregion

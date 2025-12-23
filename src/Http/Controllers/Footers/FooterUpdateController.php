@@ -8,9 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FooterFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Footer;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -44,7 +46,7 @@ class FooterUpdateController extends RedirectController
 
         return $this
             ->redirect(route('footers.index'))
-            ->with('success', trans('narsil::toasts.success.footers.updated'));
+            ->with('success', ModelService::getSuccessToast(Footer::class, EventEnum::UPDATED));
     }
 
     #endregion

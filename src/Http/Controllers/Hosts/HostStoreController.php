@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Services\Models\HostLocaleService;
 use Narsil\Services\Models\HostService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -60,7 +62,7 @@ class HostStoreController extends RedirectController
 
         return $this
             ->redirect(route('hosts.index'))
-            ->with('success', trans('narsil::toasts.success.hosts.created'));
+            ->with('success', ModelService::getSuccessToast(Host::class, EventEnum::CREATED));
     }
 
     #endregion

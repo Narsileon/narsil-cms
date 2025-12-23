@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Users;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\User;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -34,7 +36,7 @@ class UserDestroyController extends RedirectController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', trans('narsil::toasts.success.users.deleted'));
+            ->with('success', ModelService::getSuccessToast(User::class, EventEnum::DELETED));
     }
 
     #endregion

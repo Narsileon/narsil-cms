@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Headers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Header;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -35,7 +37,7 @@ class HeaderReplicateController extends RedirectController
         $replicated->save();
 
         return back()
-            ->with('success', trans('narsil::toasts.success.headers.replicated'));
+            ->with('success', ModelService::getSuccessToast(Header::class, EventEnum::REPLICATED));
     }
 
     #endregion

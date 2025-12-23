@@ -6,11 +6,13 @@ namespace Narsil\Http\Controllers\Fields;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
 use Narsil\Models\Elements\Field;
 use Narsil\Services\Models\FieldService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -42,7 +44,7 @@ class FieldReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', trans('narsil::toasts.success.fields.replicated_many'));
+            ->with('success', ModelService::getSuccessToast(Field::class, EventEnum::REPLICATED_MANY));
     }
 
     #endregion

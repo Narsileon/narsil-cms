@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\TemplateFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Template;
 use Narsil\Services\MigrationService;
 use Narsil\Services\Models\TemplateService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -54,7 +56,7 @@ class TemplateUpdateController extends RedirectController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', trans('narsil::toasts.success.templates.updated'));
+            ->with('success', ModelService::getSuccessToast(Template::class, EventEnum::UPDATED));
     }
 
     #endregion

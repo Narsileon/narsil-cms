@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Blocks;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -34,7 +36,7 @@ class BlockDestroyController extends RedirectController
 
         return $this
             ->redirect(route('blocks.index'))
-            ->with('success', trans('narsil::toasts.success.blocks.deleted'));
+            ->with('success', ModelService::getSuccessToast(Block::class, EventEnum::DELETED));
     }
 
     #endregion

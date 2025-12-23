@@ -8,9 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\ConfigurationFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Configuration;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -44,7 +46,7 @@ class ConfigurationUpdateController extends RedirectController
         $configuration->update($attributes);
 
         return back()
-            ->with('success', trans('narsil::toasts.success.configurations.updated'));
+            ->with('success', ModelService::getSuccessToast(Configuration::class, EventEnum::UPDATED));
     }
 
     #endregion

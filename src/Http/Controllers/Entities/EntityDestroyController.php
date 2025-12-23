@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
+use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -45,7 +47,7 @@ class EntityDestroyController extends RedirectController
             ->redirect(route('collections.index', [
                 'collection' => $collection,
             ]))
-            ->with('success', trans('narsil::toasts.success.entities.deleted'));
+            ->with('success', ModelService::getSuccessToast(Entity::class, EventEnum::DELETED));
     }
 
     #endregion

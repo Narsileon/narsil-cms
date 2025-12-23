@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\Models\EntityService;
+use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -64,7 +66,7 @@ class EntityStoreController extends RedirectController
             ->redirect(route('collections.index', [
                 'collection' => $collection,
             ]), $entity)
-            ->with('success', trans('narsil::toasts.success.entities.created'));
+            ->with('success', ModelService::getSuccessToast(Entity::class, EventEnum::CREATED));
     }
 
     #endregion

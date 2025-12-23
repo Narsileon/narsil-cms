@@ -5,6 +5,9 @@ namespace Narsil\Services;
 #region USE
 
 use Illuminate\Support\Str;
+use Narsil\Enums\Database\EventEnum;
+use Narsil\Models\Elements\Template;
+use Narsil\Models\Entities\Entity;
 
 #endregion
 
@@ -40,6 +43,25 @@ abstract class ModelService
         }
 
         return $label;
+    }
+
+    /**
+     * @param string $model
+     * @param EventEnum $event
+     * 
+     * @return string
+     */
+    public static function getSuccessToast(string $model, EventEnum $event): string
+    {
+        $isEntity = $model === Entity::class;
+
+        $modelLabel = $isEntity ? Entity::getTemplate()?->{Template::SINGULAR} : static::getModelLabel($model, false);
+        $tableLabel = $isEntity ? Entity::getTemplate()?->{Template::PLURAL} : static::getTableLabel($model::TABLE, false);
+
+        return trans("narsil::toasts.success.$event->value", [
+            'model' => $modelLabel,
+            'table' => $tableLabel,
+        ]);
     }
 
     /**

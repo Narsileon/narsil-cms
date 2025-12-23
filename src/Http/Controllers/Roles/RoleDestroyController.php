@@ -6,9 +6,11 @@ namespace Narsil\Http\Controllers\Roles;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Role;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -34,7 +36,7 @@ class RoleDestroyController extends RedirectController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', trans('narsil::toasts.success.roles.deleted'));
+            ->with('success', ModelService::getSuccessToast(Role::class, EventEnum::DELETED));
     }
 
     #endregion

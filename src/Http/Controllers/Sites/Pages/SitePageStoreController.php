@@ -10,9 +10,11 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\SitePageFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -92,7 +94,7 @@ class SitePageStoreController extends RedirectController
             'country' => $this->country,
             'site' => $site,
         ]))
-            ->with('success', trans('narsil::toasts.success.site_pages.created'));
+            ->with('success', ModelService::getSuccessToast(SitePage::class, EventEnum::CREATED));
     }
 
     #endregion

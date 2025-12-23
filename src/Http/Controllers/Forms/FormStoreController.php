@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FormFormRequest;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\Form;
 use Narsil\Services\Models\FormService;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -47,7 +49,7 @@ class FormStoreController extends RedirectController
 
         return $this
             ->redirect(route('forms.index'))
-            ->with('success', trans('narsil::toasts.success.forms.created'));
+            ->with('success', ModelService::getSuccessToast(Form::class, EventEnum::CREATED));
     }
 
     #endregion

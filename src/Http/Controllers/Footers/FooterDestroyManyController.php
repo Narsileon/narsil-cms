@@ -5,10 +5,12 @@ namespace Narsil\Http\Controllers\Footers;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Globals\Footer;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -37,7 +39,7 @@ class FooterDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('footers.index'))
-            ->with('success', trans('narsil::toasts.success.footers.deleted_many'));
+            ->with('success', ModelService::getSuccessToast(Footer::class, EventEnum::DELETED_MANY));
     }
 
     #endregion

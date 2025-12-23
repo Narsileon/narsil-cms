@@ -435,7 +435,7 @@ Route::middleware([
         Route::prefix(Str::slug(UserBookmark::TABLE))->name(Str::slug(UserBookmark::TABLE) . '.')->group(function ()
         {
             Route::get('/', UserBookmarkIndexController::class)
-                ->name('index');;
+                ->name('index');
             Route::post('/', UserBookmarkStoreController::class)
                 ->name('store');
             Route::patch('/{userBookmark}', UserBookmarkUpdateController::class)
@@ -487,7 +487,7 @@ Route::middleware([
 Route::prefix(Str::slug(UserConfiguration::TABLE))->name(Str::slug(UserConfiguration::TABLE) . '.')->group(function ()
 {
     Route::get('/', UserConfigurationEditController::class)
-        ->name('edit');;
+        ->name('edit');
     Route::post('/', UserConfigurationUpdateController::class)
         ->name('update');
 });

@@ -224,7 +224,7 @@ class Sitemap
     {
         $urlSet = $this->document->createElementNS('http://www.sitemaps.org/schemas/sitemap/0.9', 'urlset');
 
-        $urlSet->setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xhtml', 'http://www.w3.org/1999/xhtml');;
+        $urlSet->setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xhtml', 'http://www.w3.org/1999/xhtml');
 
         $this->document->appendChild($urlSet);
 

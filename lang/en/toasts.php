@@ -2,27 +2,20 @@
 
 #region USE
 
-use Narsil\Models\Configuration;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormFieldset;
-use Narsil\Models\Forms\FormInput;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\Header;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\Policies\Role;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\User;
+use Narsil\Enums\Database\EventEnum;
 
 #endregion
 
 return [
     'success' => [
+        EventEnum::CREATED->value => 'The :model has been successfully created.',
+        EventEnum::DELETED_MANY->value => 'The :table have been successfully deleted.',
+        EventEnum::DELETED->value => 'The :model has been successfully deleted.',
+        EventEnum::REPLICATED_MANY->value => 'The :table have been successfully duplicated.',
+        EventEnum::REPLICATED->value => 'The :model has been successfully duplicated.',
+        EventEnum::RESTORED->value => 'The :model has been successfully restored.',
+        EventEnum::UPDATED->value => 'The :model has been successfully updated.',
+
         'logged_in'  => 'You have been successfully logged in.',
         'logged_out' => 'You have been successfully logged out.',
         'password'   => [
@@ -40,114 +33,6 @@ return [
         'two_factor' => [
             'confirmed' => 'Your two factor authentication has been successfully confirmed.',
             'disabled'  => 'Your two factor authentication has been successfully disabled.',
-        ],
-
-        // Models
-        Block::TABLE => [
-            'created' => 'The block has been successfully created.',
-            'deleted' => 'The block has been successfully deleted.',
-            'deleted_many' => 'The blocks have been successfully deleted.',
-            'replicated' => 'The block has been successfully duplicated.',
-            'replicated_many' => 'The blocks have been successfully duplicated.',
-            'updated' => 'The block has been successfully updated.',
-        ],
-        Configuration::TABLE => [
-            'updated' => 'The settings has been successfully updated.',
-        ],
-        Entity::TABLE => [
-            'created' => 'The entity has been successfully created.',
-            'deleted' => 'The entity has been successfully deleted.',
-            'deleted_many' => 'The entities have been successfully deleted.',
-            'replicated' => 'The entity has been successfully duplicated.',
-            'replicated_many' => 'The entities have been successfully duplicated.',
-            'updated' => 'The entity has been successfully updated.',
-        ],
-        Field::TABLE => [
-            'created' => 'The field has been successfully created.',
-            'deleted' => 'The field has been successfully deleted.',
-            'deleted_many' => 'The fields have been successfully deleted.',
-            'replicated' => 'The field has been successfully duplicated.',
-            'replicated_many' => 'The fields have been successfully duplicated.',
-            'updated' => 'The field has been successfully updated.',
-        ],
-        Footer::TABLE => [
-            'created' => 'The footer has been successfully created.',
-            'deleted' => 'The footer has been successfully deleted.',
-            'deleted_many' => 'The footers have been successfully deleted.',
-            'replicated' => 'The footer has been successfully duplicated.',
-            'updated' => 'The footer has been successfully updated.',
-        ],
-        Form::TABLE => [
-            'created' => 'The form has been successfully created.',
-            'deleted' => 'The form has been successfully deleted.',
-            'deleted_many' => 'The forms have been successfully deleted.',
-            'replicated' => 'The form has been successfully duplicated.',
-            'replicated_many' => 'The forms have been successfully duplicated.',
-            'updated' => 'The form has been successfully updated.',
-        ],
-        FormFieldset::TABLE => [
-            'created' => 'The fieldset has been successfully created.',
-            'deleted' => 'The fieldset has been successfully deleted.',
-            'deleted_many' => 'The fieldsets have been successfully deleted.',
-            'replicated' => 'The fieldset has been successfully duplicated.',
-            'replicated_many' => 'The fieldsets have been successfully duplicated.',
-            'updated' => 'The fieldset has been successfully updated.',
-        ],
-        FormInput::TABLE => [
-            'created' => 'The input has been successfully created.',
-            'deleted' => 'The input has been successfully deleted.',
-            'deleted_many' => 'The inputs have been successfully deleted.',
-            'replicated' => 'The input has been successfully duplicated.',
-            'replicated_many' => 'The inputs have been successfully duplicated.',
-            'updated' => 'The input has been successfully updated.',
-        ],
-        Header::TABLE => [
-            'created' => 'The header has been successfully created.',
-            'deleted' => 'The header has been successfully deleted.',
-            'deleted_many' => 'The headers have been successfully deleted.',
-            'replicated' => 'The header has been successfully duplicated.',
-            'updated' => 'The header has been successfully updated.',
-        ],
-        Host::TABLE => [
-            'created' => 'The host has been successfully created.',
-            'deleted' => 'The host has been successfully deleted.',
-            'deleted_many' => 'The hosts have been successfully deleted.',
-            'replicated' => 'The host has been successfully duplicated.',
-            'replicated_many' => 'The hosts have been successfully duplicated.',
-            'updated' => 'The host has been successfully updated.',
-        ],
-        Permission::TABLE => [
-            'updated' => 'The permission has been successfully updated.',
-        ],
-        Role::TABLE => [
-            'created' => 'The role has been successfully created.',
-            'deleted' => 'The role has been successfully deleted.',
-            'deleted_many' => 'The roles have been successfully deleted.',
-            'replicated' => 'The role has been successfully duplicated.',
-            'replicated_many' => 'The roles have been successfully duplicated.',
-            'updated' => 'The role has been successfully updated.',
-        ],
-        Site::VIRTUAL_TABLE => [
-            'updated' => 'The site has been successfully updated.',
-        ],
-        SitePage::TABLE => [
-            'created' => 'The page has been successfully created.',
-            'deleted' => 'The page has been successfully deleted.',
-            'updated' => 'The page has been successfully updated.',
-        ],
-        Template::TABLE => [
-            'created' => 'The template has been successfully created.',
-            'deleted' => 'The template has been successfully deleted.',
-            'deleted_many' => 'The templates have been successfully deleted.',
-            'replicated' => 'The template has been successfully duplicated.',
-            'replicated_many' => 'The templates have been successfully duplicated.',
-            'updated' => 'The template has been successfully updated.',
-        ],
-        User::TABLE => [
-            'created' => 'The user has been successfully created.',
-            'deleted' => 'The user has been successfully deleted.',
-            'deleted_many' => 'The users have been successfully deleted.',
-            'updated' => 'The user has been successfully updated.',
         ],
     ],
 ];
