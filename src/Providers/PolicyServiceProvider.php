@@ -4,6 +4,7 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Models\User;
@@ -47,7 +48,7 @@ class PolicyServiceProvider extends ServiceProvider
      */
     protected function bootPolicies(): void
     {
-        $config = config('narsil.policies', []);
+        $config = Config::get('narsil.models.policies', []);
 
         foreach ($config as $model => $policy)
         {

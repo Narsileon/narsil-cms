@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Tables Implementations
+    | Model Tables
     |--------------------------------------------------------------------------
     |
     | Mapping between table names and their templates.

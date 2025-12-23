@@ -4,6 +4,7 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 #endregion
@@ -35,7 +36,7 @@ class FormServiceProvider extends ServiceProvider
      */
     protected function registerForms(): void
     {
-        $config = config('narsil.forms', []);
+        $config = Config::get('narsil.bindings.forms', []);
 
         foreach ($config as $abstract => $concrete)
         {

@@ -4,6 +4,7 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 #endregion
@@ -37,7 +38,7 @@ class ObserverServiceProvider extends ServiceProvider
      */
     protected function bootObservers(): void
     {
-        $config = config('narsil.observers', []);
+        $config = Config::get('narsil.models.observers', []);
 
         foreach ($config as $model => $observer)
         {

@@ -45,12 +45,12 @@ abstract class MigrationService
     {
         $table = $template->{Template::HANDLE};
 
-        $originalFields = TemplateService::getTemplateFields($template);
+        $originalFields = CollectionService::getTemplateFields($template);
         $originalHandles = $originalFields->pluck(Field::HANDLE);
 
         $template = $template->refresh();
 
-        $fields = TemplateService::getTemplateFields($template);
+        $fields = CollectionService::getTemplateFields($template);
         $handles = $fields->pluck(Field::HANDLE);
 
         $deletedHandles = $originalHandles->diff($handles);

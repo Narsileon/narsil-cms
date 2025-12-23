@@ -7,7 +7,7 @@ return [
     | Model Observers
     |--------------------------------------------------------------------------
     |
-    | Mapping between models and their obervers.
+    | Mapping between model classes and their obervers.
     |
     */
 

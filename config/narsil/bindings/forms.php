@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Narsil - Form Implementations
+    | Narsil - Form Bindings
     |--------------------------------------------------------------------------
     |
     | Mapping between form contracts and their concrete implementations.
@@ -37,7 +37,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fortify - Form Implementations
+    | Fortify - Form Bindings
     |--------------------------------------------------------------------------
     |
     | Mapping between form contracts and their concrete implementations.

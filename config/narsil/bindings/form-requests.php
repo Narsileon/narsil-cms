@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Narsil - Form Request Implementations
+    | Narsil - Form Request Bindings
     |--------------------------------------------------------------------------
     |
     | Mapping between form request contracts and their concrete implementations.
@@ -30,7 +30,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fortify - Form Request Implementations
+    | Fortify - Form Request Bindings
     |--------------------------------------------------------------------------
     |
     | Mapping between form request contracts and their concrete implementations.

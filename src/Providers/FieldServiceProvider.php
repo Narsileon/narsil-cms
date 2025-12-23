@@ -4,6 +4,7 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 #endregion
@@ -35,7 +36,7 @@ class FieldServiceProvider extends ServiceProvider
      */
     protected function registerFields(): void
     {
-        $config = config('narsil.fields', []);
+        $config = Config::get('narsil.bindings.fields', []);
 
         foreach ($config as $abstract => $concrete)
         {

@@ -7,7 +7,7 @@ return [
     | Model Policies
     |--------------------------------------------------------------------------
     |
-    | Mapping between models and their policies.
+    | Mapping between model classes and their policies.
     |
     */
 

@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Menu Implementations
+    | Menu Bindings
     |--------------------------------------------------------------------------
     |
     | Mapping between component contracts and their concrete implementations.

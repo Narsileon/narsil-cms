@@ -4,6 +4,7 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 #endregion
@@ -35,7 +36,7 @@ class TableServiceProvider extends ServiceProvider
      */
     protected function registerTables(): void
     {
-        $config = config('narsil.tables', []);
+        $config = Config::get('narsil.models.tables', []);
 
         foreach ($config as $table => $template)
         {

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Providers\CommandServiceProvider;
-use Narsil\Providers\ConfigServiceProvider;
+use Narsil\Providers\ConfigurationServiceProvider;
 use Narsil\Providers\FieldServiceProvider;
 use Narsil\Providers\FormRequestServiceProvider;
 use Narsil\Providers\FormServiceProvider;
@@ -61,7 +61,7 @@ class NarsilServiceProvider extends ServiceProvider
     protected function registerProviders(): void
     {
         $this->app->register(CommandServiceProvider::class);
-        $this->app->register(ConfigServiceProvider::class);
+        $this->app->register(ConfigurationServiceProvider::class);
         $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);

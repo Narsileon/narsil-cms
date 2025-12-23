@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Support\Facades\Config;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\SwitchField;
@@ -56,7 +57,7 @@ class FormInputForm extends AbstractForm implements Contract
 
         if ($abstract)
         {
-            $concrete = config("narsil.fields.$abstract");
+            $concrete = Config::get("narsil.bindings.fields.$abstract");
 
             $elements = $concrete::getForm(FormInput::SETTINGS);
 
@@ -157,15 +158,15 @@ class FormInputForm extends AbstractForm implements Contract
     {
         $options = [];
 
-        foreach (config('narsil.fields', []) as $abstract => $concrete)
+        foreach (Config::get('narsil.inputs', []) as $input)
         {
-            $icon = FieldService::getIcon($abstract);
-            $label = trans('narsil::fields.' . $abstract);
+            $icon = FieldService::getIcon($input);
+            $label = trans('narsil::fields.' . $input);
 
             $options[] = new SelectOption()
                 ->optionIcon($icon)
                 ->optionLabel($label)
-                ->optionValue($abstract);
+                ->optionValue($input);
         }
 
         return $options;

@@ -5,6 +5,7 @@ namespace Narsil\Implementations;
 #region USE
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Locale;
@@ -29,13 +30,16 @@ abstract class AbstractForm extends Fluent implements Form
      */
     public function __construct()
     {
+        $defaultLanguage = Config::get('app.locale', 'en');
+        $languageOptions = Config::get('narsil.locales', []);
+
         $id = $this->getDefaultId();
         $layout = $this->getLayout();
 
         $this
-            ->defaultLanguage(config('app.locale'))
+            ->defaultLanguage($defaultLanguage)
             ->id($id)
-            ->languageOptions(config('narsil.locales'))
+            ->languageOptions($languageOptions)
             ->layout($layout)
             ->submitLabel(trans('narsil::ui.save'));
 
