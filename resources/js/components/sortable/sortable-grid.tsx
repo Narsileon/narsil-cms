@@ -314,10 +314,10 @@ function SortableGrid({
                 item={container}
                 label={getFormattedLabel(container)}
                 optionValue={intermediate.optionValue}
-                onItemChange={(value: AnonymousItem) => {
+                onItemChange={(data: AnonymousItem) => {
                   setItems(
                     items.map((container) =>
-                      getContainerIdentifier(container) === identifier ? value : container,
+                      getContainerIdentifier(container) === identifier ? data : container,
                     ),
                   );
                 }}
@@ -377,15 +377,15 @@ function SortableGrid({
               form={form}
               ids={items.map((container) => getContainerIdentifier(container))}
               optionValue={intermediate.optionValue}
-              onItemChange={(data) =>
+              onItemChange={(data) => {
                 setItems([
                   ...items,
                   {
                     ...(data as AnonymousItem),
                     id: crypto.randomUUID(),
                   },
-                ])
-              }
+                ]);
+              }}
             >
               <SortableItem
                 id={PLACEHOLDER_ID}

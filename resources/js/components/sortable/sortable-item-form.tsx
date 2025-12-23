@@ -66,53 +66,62 @@ function SortableItemForm({
           <DialogHeader className="border-b">
             <DialogTitle>{data?.handle as string}</DialogTitle>
           </DialogHeader>
-          <DialogBody>
-            <VisuallyHidden>
-              <DialogDescription></DialogDescription>
-            </VisuallyHidden>
-            <FormProvider
-              id={form.id}
-              action={form.action}
-              elements={form.layout}
-              method={form.method}
-              initialValues={data}
-              languageOptions={form.languageOptions}
-              render={() => {
-                return (
-                  <FormRoot className="grid-cols-12 gap-4">
-                    {form.layout.map((element, index) => {
-                      return <FormRenderer {...element} key={index} />;
-                    })}
-                  </FormRoot>
-                );
-              }}
-            ></FormProvider>
-          </DialogBody>
-          <DialogFooter className="border-t">
-            <Button variant="ghost" onClick={() => onOpenChange(false)}>
-              {trans("ui.cancel")}
-            </Button>
-            <Button
-              onClick={() => {
-                const oldUniqueIdentifier = get(item, optionValue ?? "value") as UniqueIdentifier;
-                const newUniqueIdentifier = get(data, optionValue ?? "value") as UniqueIdentifier;
 
-                if (oldUniqueIdentifier !== newUniqueIdentifier) {
-                  if (ids.includes(newUniqueIdentifier)) {
-                    setError(trans("validation.unique"));
+          <FormProvider
+            id={form.id}
+            action={form.action}
+            elements={form.layout}
+            method={form.method}
+            initialValues={data}
+            languageOptions={form.languageOptions}
+            render={({ data }) => {
+              return (
+                <>
+                  <DialogBody>
+                    <VisuallyHidden>
+                      <DialogDescription></DialogDescription>
+                    </VisuallyHidden>
+                    <FormRoot className="grid-cols-12 gap-4">
+                      {form.layout.map((element, index) => {
+                        return <FormRenderer {...element} key={index} />;
+                      })}
+                    </FormRoot>
+                  </DialogBody>
+                  <DialogFooter className="border-t">
+                    <Button variant="ghost" onClick={() => onOpenChange(false)}>
+                      {trans("ui.cancel")}
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        const oldUniqueIdentifier = get(
+                          item,
+                          optionValue ?? "value",
+                        ) as UniqueIdentifier;
+                        const newUniqueIdentifier = get(
+                          data,
+                          optionValue ?? "value",
+                        ) as UniqueIdentifier;
 
-                    return;
-                  }
-                }
+                        if (oldUniqueIdentifier !== newUniqueIdentifier) {
+                          if (ids.includes(newUniqueIdentifier)) {
+                            setError(trans("validation.unique"));
 
-                onItemChange(data as AnonymousItem);
+                            return;
+                          }
+                        }
 
-                onOpenChange(false);
-              }}
-            >
-              {trans("ui.save")}
-            </Button>
-          </DialogFooter>
+                        onItemChange(data as AnonymousItem);
+
+                        onOpenChange(false);
+                      }}
+                    >
+                      {trans("ui.save")}
+                    </Button>
+                  </DialogFooter>
+                </>
+              );
+            }}
+          />
         </DialogContent>
       </DialogPortal>
     </DialogRoot>
