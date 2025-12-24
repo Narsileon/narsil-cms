@@ -48,7 +48,13 @@ class UserIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = User::query();
+        $query = User::query()
+            ->with([
+                User::RELATION_ROLES,
+            ])
+            ->withCount([
+                User::RELATION_ROLES,
+            ]);;
 
         return new DataTableCollection($query, User::TABLE);
     }
