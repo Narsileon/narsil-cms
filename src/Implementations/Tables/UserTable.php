@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
@@ -58,7 +58,7 @@ class UserTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(Role::TABLE),
                 id: User::COUNT_ROLES,
-                type: TypeNameEnum::INTEGER->value,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

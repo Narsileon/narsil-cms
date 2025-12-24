@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Templates;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Template;
@@ -36,7 +36,7 @@ class TemplateReplicateController extends RedirectController
         TemplateService::replicateTemplate($template);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Template::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::REPLICATED));
     }
 
     #endregion

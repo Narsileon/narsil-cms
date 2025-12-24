@@ -9,7 +9,7 @@ use Narsil\Contracts\Fields\NumberField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Fields\TimeField;
 use Narsil\Enums\Database\OperatorEnum;
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Models\Elements\Field;
 
 #endregion
@@ -102,41 +102,41 @@ class TableColumn
 
         switch ($type)
         {
-            case TypeNameEnum::BIGINT->value:
-            case TypeNameEnum::DECIMAL->value:
-            case TypeNameEnum::DOUBLE->value:
-            case TypeNameEnum::FLOAT->value:
-            case TypeNameEnum::FLOAT4->value:
-            case TypeNameEnum::FLOAT8->value:
-            case TypeNameEnum::INT2->value:
-            case TypeNameEnum::INT4->value:
-            case TypeNameEnum::INT8->value:
-            case TypeNameEnum::INTEGER->value:
-            case TypeNameEnum::NUMERIC->value:
-            case TypeNameEnum::SMALLINT->value:
+            case DataTypeEnum::BIGINT->value:
+            case DataTypeEnum::DECIMAL->value:
+            case DataTypeEnum::DOUBLE->value:
+            case DataTypeEnum::FLOAT->value:
+            case DataTypeEnum::FLOAT4->value:
+            case DataTypeEnum::FLOAT8->value:
+            case DataTypeEnum::INT2->value:
+            case DataTypeEnum::INT4->value:
+            case DataTypeEnum::INT8->value:
+            case DataTypeEnum::INTEGER->value:
+            case DataTypeEnum::NUMERIC->value:
+            case DataTypeEnum::SMALLINT->value:
                 $field = new Field([
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class),
                 ]);
                 break;
-            case TypeNameEnum::DATE->value:
-            case TypeNameEnum::DATETIME->value:
-            case TypeNameEnum::TIMESTAMP->value:
+            case DataTypeEnum::DATE->value:
+            case DataTypeEnum::DATETIME->value:
+            case DataTypeEnum::TIMESTAMP->value:
                 $field = new Field([
                     Field::TYPE => DateField::class,
                     Field::SETTINGS => app(DateField::class),
                 ]);
                 break;
-            case TypeNameEnum::TIME->value:
+            case DataTypeEnum::TIME->value:
                 $field = new Field([
                     Field::TYPE => TimeField::class,
                     Field::SETTINGS => app(TimeField::class),
                 ]);
                 break;
-            case TypeNameEnum::STRING->value:
-            case TypeNameEnum::TEXT->value:
-            case TypeNameEnum::VARCHAR->value:
-            case TypeNameEnum::UUID->value:
+            case DataTypeEnum::STRING->value:
+            case DataTypeEnum::TEXT->value:
+            case DataTypeEnum::VARCHAR->value:
+            case DataTypeEnum::UUID->value:
             default:
                 $field = new Field([
                     Field::TYPE => TextField::class,
@@ -161,16 +161,16 @@ class TableColumn
 
         switch ($type)
         {
-            case TypeNameEnum::BOOLEAN->value:
+            case DataTypeEnum::BOOLEAN->value:
                 $operators = [
                     OperatorEnum::EQUALS->value,
                     OperatorEnum::NOT_EQUALS->value,
                 ];
                 break;
-            case TypeNameEnum::DATE->value:
-            case TypeNameEnum::DATETIME->value:
-            case TypeNameEnum::TIMESTAMP->value:
-            case TypeNameEnum::TIME->value:
+            case DataTypeEnum::DATE->value:
+            case DataTypeEnum::DATETIME->value:
+            case DataTypeEnum::TIMESTAMP->value:
+            case DataTypeEnum::TIME->value:
                 $operators = [
                     OperatorEnum::EQUALS->value,
                     OperatorEnum::NOT_EQUALS->value,
@@ -180,12 +180,12 @@ class TableColumn
                     OperatorEnum::AFTER_OR_EQUAL->value,
                 ];
                 break;
-            case TypeNameEnum::INTEGER->value:
-            case TypeNameEnum::BIGINT->value:
-            case TypeNameEnum::SMALLINT->value:
-            case TypeNameEnum::DECIMAL->value:
-            case TypeNameEnum::FLOAT->value:
-            case TypeNameEnum::DOUBLE->value:
+            case DataTypeEnum::INTEGER->value:
+            case DataTypeEnum::BIGINT->value:
+            case DataTypeEnum::SMALLINT->value:
+            case DataTypeEnum::DECIMAL->value:
+            case DataTypeEnum::FLOAT->value:
+            case DataTypeEnum::DOUBLE->value:
                 $operators = [
                     OperatorEnum::EQUALS->value,
                     OperatorEnum::NOT_EQUALS->value,
@@ -196,10 +196,10 @@ class TableColumn
 
                 ];
                 break;
-            case TypeNameEnum::STRING->value:
-            case TypeNameEnum::TEXT->value:
-            case TypeNameEnum::VARCHAR->value:
-            case TypeNameEnum::UUID->value:
+            case DataTypeEnum::STRING->value:
+            case DataTypeEnum::TEXT->value:
+            case DataTypeEnum::VARCHAR->value:
+            case DataTypeEnum::UUID->value:
             default:
                 $operators = [
                     OperatorEnum::EQUALS->value,

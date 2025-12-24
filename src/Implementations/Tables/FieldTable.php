@@ -4,10 +4,10 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldRule;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
@@ -60,9 +60,9 @@ class FieldTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: ModelService::getTableLabel(FieldRule::TABLE),
-                id: Field::COUNT_RULES,
-                type: TypeNameEnum::INTEGER->value,
+                header: ModelService::getTableLabel(ValidationRule::TABLE),
+                id: Field::COUNT_VALIDATION_RULES,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

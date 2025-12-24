@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\HostForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Hosts\Host;
@@ -97,7 +97,7 @@ class HostEditController extends RenderController
         $form = app(HostForm::class)
             ->action(route('hosts.update', $host->{Host::ID}))
             ->id($host->{Host::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

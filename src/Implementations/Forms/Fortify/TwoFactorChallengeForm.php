@@ -7,7 +7,7 @@ namespace Narsil\Implementations\Forms\Fortify;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 
@@ -30,7 +30,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
 
         $this
             ->action(route('two-factor.login'))
-            ->method(MethodEnum::POST->value)
+            ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.confirm'));
     }
 

@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Forms;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\Form;
@@ -36,7 +36,7 @@ class FormDestroyController extends RedirectController
 
         return $this
             ->redirect(route('forms.index'))
-            ->with('success', ModelService::getSuccessMessage(Form::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Form::class, ModelEventEnum::DELETED));
     }
 
     #endregion

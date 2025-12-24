@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\SitePageFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Sites\SitePage;
@@ -46,7 +46,7 @@ class SitePageUpdateController extends RedirectController
         $sitePage->update($attributes);
 
         return redirect(route('sites.edit', $site))
-            ->with('success', ModelService::getSuccessMessage(SitePage::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(SitePage::class, ModelEventEnum::UPDATED));
     }
 
     #endregion

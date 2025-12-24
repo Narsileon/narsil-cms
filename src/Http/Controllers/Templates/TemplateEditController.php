@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\TemplateForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
@@ -89,7 +89,7 @@ class TemplateEditController extends RenderController
         $form = app(TemplateForm::class)
             ->action(route('templates.update', $template->{Template::ID}))
             ->id($template->{Template::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

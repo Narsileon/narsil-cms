@@ -5,7 +5,7 @@ namespace Narsil\Http\Controllers\Roles;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
@@ -39,7 +39,7 @@ class RoleDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', ModelService::getSuccessMessage(Role::class, EventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Role::class, ModelEventEnum::DELETED_MANY));
     }
 
     #endregion

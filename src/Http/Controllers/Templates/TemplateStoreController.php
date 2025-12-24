@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\TemplateFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Template;
@@ -52,7 +52,7 @@ class TemplateStoreController extends RedirectController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', ModelService::getSuccessMessage(Template::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::CREATED));
     }
 
     #endregion

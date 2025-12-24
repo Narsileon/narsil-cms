@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\FormFieldsetForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Forms\FormFieldset;
@@ -94,7 +94,7 @@ class FormFieldsetEditController extends RenderController
         $form = app(FormFieldsetForm::class)
             ->action(route('form-fieldsets.update', $formfieldset->{FormFieldset::ID}))
             ->id($formfieldset->{FormFieldset::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

@@ -52,10 +52,10 @@ class FieldIndexController extends RenderController
     {
         $query = Field::query()
             ->with([
-                Field::RELATION_RULES,
+                Field::RELATION_VALIDATION_RULES,
             ])
             ->withCount([
-                Field::RELATION_RULES,
+                Field::RELATION_VALIDATION_RULES,
             ]);
 
         return new DataTableCollection($query, Field::TABLE);

@@ -8,7 +8,7 @@ use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\ProfileForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -32,7 +32,7 @@ class ProfileForm extends AbstractForm implements Contract
 
         $this
             ->action(route('user-profile-information.update'))
-            ->method(MethodEnum::PUT->value)
+            ->method(RequestMethodEnum::PUT->value)
             ->submitIcon('save')
             ->submitLabel(trans('narsil::ui.save'));
     }

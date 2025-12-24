@@ -4,7 +4,6 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\FileField;
@@ -12,7 +11,6 @@ use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\UserForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
-use Narsil\Enums\Forms\MethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
@@ -21,7 +19,6 @@ use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
-use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -52,10 +49,6 @@ class UserForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
-        $isPost = $this->method === MethodEnum::POST->value;
-
-        $roleSelectOptions = static::getRoleSelectOptions();
-
         return [
             new TemplateSection([
                 TemplateSection::HANDLE => 'account',
@@ -141,38 +134,13 @@ class UserForm extends AbstractForm implements Contract
                             Field::HANDLE => User::RELATION_ROLES,
                             Field::NAME => trans('narsil::validation.attributes.roles'),
                             Field::TYPE => CheckboxField::class,
-                            Field::RELATION_OPTIONS => $roleSelectOptions,
+                            Field::RELATION_OPTIONS => Role::selectOptions(),
                             Field::SETTINGS => app(CheckboxField::class),
                         ]),
                     ]),
                 ],
             ]),
         ];
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * Get the role select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getRoleSelectOptions(): array
-    {
-        return Role::query()
-            ->orderBy(Role::NAME)
-            ->get()
-            ->map(function (Role $role)
-            {
-                $option = new SelectOption()
-                    ->optionLabel($role->{Role::NAME})
-                    ->optionValue($role->{Role::HANDLE});
-
-                return $option;
-            })
-            ->toArray();
     }
 
     #endregion

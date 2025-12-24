@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Enums\Database;
+namespace Narsil\Enums;
 
 #region USE
 
@@ -12,7 +12,7 @@ use Narsil\Traits\Enumerable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-enum TypeNameEnum: string
+enum DataTypeEnum: string
 {
     use Enumerable;
 

@@ -1,19 +1,20 @@
 <?php
 
-namespace Narsil\Enums\Forms;
+namespace Narsil\Enums;
 
 #region USE
 
-use Narsil\Support\SelectOption;
 use Narsil\Traits\Enumerable;
 
 #endregion
 
 /**
+ * Enumeration of validation rules.
+ *
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-enum RuleEnum: string
+enum ValidationRuleEnum: string
 {
     use Enumerable;
 
@@ -35,31 +36,4 @@ enum RuleEnum: string
     case STRING = 'string';
     case URL = 'url';
     case UUID = 'uuid';
-
-    #region PUBLIC METHODS
-
-    /**
-     * Get the enum as select options.
-     *
-     * @return array<SelectOption>
-     */
-    public static function options(): array
-    {
-        $options = [];
-
-        foreach (self::cases() as $case)
-        {
-            $label = trans("narsil::rules.$case->value");
-
-            $option = new SelectOption()
-                ->optionLabel($label)
-                ->optionValue($case->value);
-
-            $options[] = $option;
-        }
-
-        return $options;
-    }
-
-    #endregion
 }

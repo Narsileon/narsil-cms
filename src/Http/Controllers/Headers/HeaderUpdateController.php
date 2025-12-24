@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HeaderFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Header;
@@ -46,7 +46,7 @@ class HeaderUpdateController extends RedirectController
 
         return $this
             ->redirect(route('headers.index'))
-            ->with('success', ModelService::getSuccessMessage(Header::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Header::class, ModelEventEnum::UPDATED));
     }
 
     #endregion

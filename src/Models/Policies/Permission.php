@@ -6,6 +6,8 @@ namespace Narsil\Models\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Cache;
+use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -85,6 +87,25 @@ class Permission extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * Get the permissions as select options.
+     *
+     * @param boolean $flush
+     *
+     * @return array<SelectOption>
+     */
+    public static function selectOptions(bool $flush = false): array
+    {
+        return self::all()
+            ->map(function (Permission $permission)
+            {
+                return new SelectOption()
+                    ->optionLabel($permission->{self::NAME})
+                    ->optionValue($permission->{self::ID});
+            })
+            ->all();
+    }
 
     #region • RELATIONSHIPS
 

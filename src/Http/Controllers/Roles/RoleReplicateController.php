@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Roles;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Role;
@@ -36,7 +36,7 @@ class RoleReplicateController extends RedirectController
         RoleService::replicateRole($role);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Role::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Role::class, ModelEventEnum::REPLICATED));
     }
 
     #endregion

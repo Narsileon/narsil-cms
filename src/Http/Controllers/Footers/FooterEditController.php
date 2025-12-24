@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\FooterForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Globals\Footer;
@@ -89,7 +89,7 @@ class FooterEditController extends RenderController
         $form = app(FooterForm::class)
             ->action(route('footers.update', $footer->{Footer::ID}))
             ->id($footer->{Footer::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

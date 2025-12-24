@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\TemplateForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Template;
@@ -61,7 +61,7 @@ class TemplateCreateController extends RenderController
     {
         $form = app(TemplateForm::class)
             ->action(route('templates.store'))
-            ->method(MethodEnum::POST->value)
+            ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.save'));
 
         return $form;

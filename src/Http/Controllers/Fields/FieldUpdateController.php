@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
@@ -47,9 +47,8 @@ class FieldUpdateController extends RedirectController
 
         $field->update($attributes);
 
-        $field->blocks()->sync(
-            Arr::pluck(Arr::get($attributes, Field::RELATION_BLOCKS, []), Block::ID)
-        );
+        $field->blocks()->sync(Arr::pluck(Arr::get($attributes, Field::RELATION_BLOCKS, []), Block::ID));
+        $field->validation_rules()->sync(Arr::get($attributes, Field::RELATION_VALIDATION_RULES, []));
 
         if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
         {
@@ -58,7 +57,7 @@ class FieldUpdateController extends RedirectController
 
         return $this
             ->redirect(route('fields.index'), $field)
-            ->with('success', ModelService::getSuccessMessage(Field::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Field::class, ModelEventEnum::UPDATED));
     }
 
     #endregion

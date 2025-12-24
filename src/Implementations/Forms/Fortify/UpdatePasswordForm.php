@@ -8,7 +8,7 @@ use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\Fortify\UpdatePasswordForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -32,7 +32,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
 
         $this
             ->action(route('user-password.update'))
-            ->method(MethodEnum::PUT->value)
+            ->method(RequestMethodEnum::PUT->value)
             ->submitIcon('save')
             ->submitLabel(trans('narsil::ui.save'));
     }

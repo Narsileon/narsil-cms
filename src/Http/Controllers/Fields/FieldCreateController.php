@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\FieldForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Field;
@@ -61,7 +61,7 @@ class FieldCreateController extends RenderController
     {
         $form = app(FieldForm::class)
             ->action(route('fields.store'))
-            ->method(MethodEnum::POST->value)
+            ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.save'));
 
         return $form;

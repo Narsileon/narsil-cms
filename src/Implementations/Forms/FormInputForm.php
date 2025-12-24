@@ -10,7 +10,6 @@ use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FormInputForm as Contract;
-use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\BlockElement;
@@ -18,6 +17,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\Models\FieldService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -132,10 +132,10 @@ class FormInputForm extends AbstractForm implements Contract
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => FormInput::RELATION_RULES,
+                            Field::HANDLE => FormInput::RELATION_VALIDATION_RULES,
                             Field::NAME => trans("narsil::ui.rules"),
                             Field::TYPE => CheckboxField::class,
-                            Field::RELATION_OPTIONS => RuleEnum::options(),
+                            Field::RELATION_OPTIONS => ValidationRule::selectOptions(),
                             Field::SETTINGS => app(CheckboxField::class)
                                 ->defaultValue([]),
                         ]),

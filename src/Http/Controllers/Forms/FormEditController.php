@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\FormForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Forms\Form;
@@ -89,7 +89,7 @@ class FormEditController extends RenderController
         $form = app(FormForm::class)
             ->action(route('forms.update', $form->{Form::ID}))
             ->id($form->{Form::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

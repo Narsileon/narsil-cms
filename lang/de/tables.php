@@ -5,13 +5,11 @@
 use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldRule;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormInput;
-use Narsil\Models\Forms\FormInputRule;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterSocialLink;
 use Narsil\Models\Globals\Header;
@@ -24,6 +22,7 @@ use Narsil\Models\Sites\SitePage;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
+use Narsil\Models\ValidationRule;
 
 #endregion
 
@@ -32,13 +31,11 @@ return [
     Configuration::TABLE => 'Einstellungen',
     Entity::TABLE => 'Entitäten',
     Field::TABLE => 'Felder',
-    FieldRule::TABLE => 'Regeln',
     Footer::TABLE => 'Fußzeilen',
     FooterSocialLink::TABLE => 'Sozialen Netzwerke',
     Form::TABLE => 'Formulare',
     FormFieldset::TABLE => 'Feldgruppen',
     FormInput::TABLE => 'Eingaben',
-    FormInputRule::TABLE => 'Regeln',
     Header::TABLE => 'Kopfzeilen',
     Host::TABLE => 'Hosts',
     HostLocale::TABLE => 'Locales',
@@ -50,4 +47,5 @@ return [
     User::TABLE => 'Benutzer',
     UserBookmark::TABLE => 'Lesezeichen',
     UserConfiguration::TABLE => 'Einstellungen',
+    ValidationRule::TABLE => 'Validierungsregeln',
 ];

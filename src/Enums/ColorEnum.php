@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Enums\Configuration;
+namespace Narsil\Enums;
 
 #region USE
 
@@ -45,7 +45,7 @@ enum ColorEnum: string
      *
      * @return array<SelectOption>
      */
-    public static function options(): array
+    public static function selectOptions(): array
     {
         $options = [];
 

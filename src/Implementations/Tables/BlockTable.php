@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
@@ -54,13 +54,13 @@ class BlockTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(Field::TABLE),
                 id: Block::COUNT_FIELDS,
-                type: TypeNameEnum::INTEGER->value,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(Block::TABLE),
                 id: Block::COUNT_BLOCKS,
-                type: TypeNameEnum::INTEGER->value,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

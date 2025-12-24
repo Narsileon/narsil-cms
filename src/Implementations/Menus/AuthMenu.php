@@ -5,7 +5,7 @@ namespace Narsil\Implementations\Menus;
 #region USE
 
 use Narsil\Contracts\Menus\AuthMenu as Contract;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractMenu;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Services\ModelService;
@@ -63,7 +63,7 @@ class AuthMenu extends AbstractMenu implements Contract
                 ->href(route('logout'))
                 ->icon('log-out')
                 ->label(trans('narsil::ui.log_out'))
-                ->method(MethodEnum::POST->value),
+                ->method(RequestMethodEnum::POST->value),
         ];
     }
 
@@ -80,7 +80,7 @@ class AuthMenu extends AbstractMenu implements Contract
                 ->href(route('user-configurations.edit'))
                 ->icon('settings')
                 ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
-                ->method(MethodEnum::GET->value)
+                ->method(RequestMethodEnum::GET->value)
                 ->modal(true),
         ];
     }

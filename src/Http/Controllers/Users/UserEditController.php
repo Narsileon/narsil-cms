@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\UserForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Policies\Role;
@@ -40,7 +40,7 @@ class UserEditController extends RenderController
             User::RELATION_ROLES,
         ]);
 
-        $user->setRelation(User::RELATION_ROLES, $user->{User::RELATION_ROLES}->pluck(Role::HANDLE));
+        $this->transformRoles($user);
 
         $data = $this->getData($user);
         $form = $this->getForm($user);
@@ -96,7 +96,7 @@ class UserEditController extends RenderController
         $form = app(UserForm::class)
             ->action(route('users.update', $user->{User::ID}))
             ->id($user->{User::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
@@ -108,6 +108,22 @@ class UserEditController extends RenderController
     protected function getTitle(): string
     {
         return ModelService::getModelLabel(User::class);
+    }
+
+    /**
+     * Transform the roles for the form.
+     *
+     * @param User $user
+     *
+     * @return void
+     */
+    protected function transformRoles(User $user): void
+    {
+        $roleIds = $user->{User::RELATION_ROLES}
+            ->pluck(Role::ID)
+            ->map(fn($id) => (string)$id);
+
+        $user->setRelation(User::RELATION_ROLES, $roleIds);
     }
 
     #endregion

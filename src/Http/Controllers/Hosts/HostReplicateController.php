@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Hosts;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Hosts\Host;
@@ -36,7 +36,7 @@ class HostReplicateController extends RedirectController
         HostService::replicateHost($host);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Host::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Host::class, ModelEventEnum::REPLICATED));
     }
 
     #endregion

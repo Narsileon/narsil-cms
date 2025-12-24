@@ -5,7 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Models\AuditLog;
 use Narsil\Models\User;
 
@@ -63,7 +63,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained(User::TABLE, User::ID);
             $blueprint
-                ->enum(AuditLog::EVENT, EventEnum::values());
+                ->enum(AuditLog::EVENT, ModelEventEnum::values());
             $blueprint
                 ->json(AuditLog::OLD_VALUES)
                 ->nullable();

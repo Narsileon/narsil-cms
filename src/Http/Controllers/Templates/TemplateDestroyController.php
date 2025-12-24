@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Templates;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Template;
@@ -36,7 +36,7 @@ class TemplateDestroyController extends RedirectController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', ModelService::getSuccessMessage(Template::class, EventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::DELETED));
     }
 
     #endregion

@@ -5,7 +5,7 @@ namespace Narsil\Implementations\Menus;
 #region USE
 
 use Narsil\Contracts\Menus\GuestMenu as Contract;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractMenu;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Services\ModelService;
@@ -62,7 +62,7 @@ class GuestMenu extends AbstractMenu implements Contract
                 ->href(route('login'))
                 ->icon('log-in')
                 ->label(trans('narsil::ui.log_in'))
-                ->method(MethodEnum::GET->value),
+                ->method(RequestMethodEnum::GET->value),
         ];
     }
 
@@ -79,7 +79,7 @@ class GuestMenu extends AbstractMenu implements Contract
                 ->href(route('user-configurations.edit'))
                 ->icon('settings')
                 ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
-                ->method(MethodEnum::GET->value)
+                ->method(RequestMethodEnum::GET->value)
                 ->modal(true),
         ];
     }

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Models\AuditLog;
 use ReflectionClass;
 
@@ -103,14 +103,14 @@ trait HasAuditLogs
     protected static function getEvents(): Collection
     {
         $events = collect([
-            EventEnum::CREATED->value,
-            EventEnum::DELETED->value,
-            EventEnum::UPDATED->value,
+            ModelEventEnum::CREATED->value,
+            ModelEventEnum::DELETED->value,
+            ModelEventEnum::UPDATED->value,
         ]);
 
         if (collect(class_uses_recursive(static::class))->contains(SoftDeletes::class))
         {
-            $events->push(EventEnum::RESTORED->value);
+            $events->push(ModelEventEnum::RESTORED->value);
         }
 
         return $events;

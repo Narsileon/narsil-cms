@@ -2,7 +2,7 @@
 
 #region USE
 
-use Narsil\Enums\Configuration\ThemeEnum;
+use Narsil\Enums\ThemeEnum;
 
 #endregion
 

@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Templates;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\ReplicateManyRequest;
@@ -44,7 +44,7 @@ class TemplateReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Template::class, EventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::REPLICATED_MANY));
     }
 
     #endregion

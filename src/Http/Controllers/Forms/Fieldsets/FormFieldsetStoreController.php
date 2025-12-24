@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FormFieldsetFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\FormFieldset;
@@ -52,7 +52,7 @@ class FormFieldsetStoreController extends RedirectController
 
         return $this
             ->redirect(route('form-fieldsets.index'), $formFieldset)
-            ->with('success', ModelService::getSuccessMessage(FormFieldset::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(FormFieldset::class, ModelEventEnum::CREATED));
     }
 
     #endregion

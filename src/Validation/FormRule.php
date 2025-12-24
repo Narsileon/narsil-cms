@@ -5,7 +5,7 @@ namespace Narsil\Validation;
 #region USE
 
 use Illuminate\Validation\Rule;
-use Narsil\Enums\Forms\RuleEnum;
+use Narsil\Enums\ValidationRuleEnum;
 
 #endregion
 
@@ -22,126 +22,126 @@ abstract class FormRule extends Rule
      *
      * @var string
      */
-    final public const ALPHA_DASH = RuleEnum::ALPHA_DASH->value;
+    final public const ALPHA_DASH = ValidationRuleEnum::ALPHA_DASH->value;
 
     /**
      * The name of the "array" rule.
      *
      * @var string
      */
-    final public const ARRAY = RuleEnum::ARRAY->value;
+    final public const ARRAY = ValidationRuleEnum::ARRAY->value;
 
     /**
      * The name of the "boolean" rule.
      *
      * @var string
      */
-    final public const BOOLEAN = RuleEnum::BOOLEAN->value;
+    final public const BOOLEAN = ValidationRuleEnum::BOOLEAN->value;
 
     /**
      * The name of the "confirmed" rule.
      *
      * @var string
      */
-    final public const CONFIRMED = RuleEnum::CONFIRMED->value;
+    final public const CONFIRMED = ValidationRuleEnum::CONFIRMED->value;
 
     /**
      * The name of the "date" rule.
      *
      * @var string
      */
-    final public const DATE = RuleEnum::DATE->value;
+    final public const DATE = ValidationRuleEnum::DATE->value;
 
     /**
      * The name of the "decimal" rule.
      *
      * @var string
      */
-    final public const DECIMAL = RuleEnum::DECIMAL->value;
+    final public const DECIMAL = ValidationRuleEnum::DECIMAL->value;
 
     /**
      * The name of the "distinct" rule.
      *
      * @var string
      */
-    final public const DISTINCT = RuleEnum::DISTINCT->value;
+    final public const DISTINCT = ValidationRuleEnum::DISTINCT->value;
 
     /**
      * The name of the "email" rule.
      *
      * @var string
      */
-    final public const EMAIL = RuleEnum::EMAIL->value;
+    final public const EMAIL = ValidationRuleEnum::EMAIL->value;
 
     /**
      * The name of the "image" rule.
      *
      * @var string
      */
-    final public const IMAGE = RuleEnum::IMAGE->value;
+    final public const IMAGE = ValidationRuleEnum::IMAGE->value;
 
     /**
      * The name of the "integer" rule.
      *
      * @var string
      */
-    final public const INTEGER = RuleEnum::INTEGER->value;
+    final public const INTEGER = ValidationRuleEnum::INTEGER->value;
 
     /**
      * The name of the "lowercase" rule.
      *
      * @var string
      */
-    final public const LOWERCASE = RuleEnum::LOWERCASE->value;
+    final public const LOWERCASE = ValidationRuleEnum::LOWERCASE->value;
 
     /**
      * The name of the "nullable" rule.
      *
      * @var string
      */
-    final public const NULLABLE = RuleEnum::NULLABLE->value;
+    final public const NULLABLE = ValidationRuleEnum::NULLABLE->value;
 
     /**
      * The name of the "numeric" rule.
      *
      * @var string
      */
-    final public const NUMERIC = RuleEnum::NUMERIC->value;
+    final public const NUMERIC = ValidationRuleEnum::NUMERIC->value;
 
     /**
      * The name of the "required" rule.
      *
      * @var string
      */
-    final public const REQUIRED = RuleEnum::REQUIRED->value;
+    final public const REQUIRED = 'required';
 
     /**
      * The name of the "sometimes" rule.
      *
      * @var string
      */
-    final public const SOMETIMES = RuleEnum::SOMETIMES->value;
+    final public const SOMETIMES = ValidationRuleEnum::SOMETIMES->value;
 
     /**
      * The name of the "string" rule.
      *
      * @var string
      */
-    final public const STRING = RuleEnum::STRING->value;
+    final public const STRING = ValidationRuleEnum::STRING->value;
 
     /**
      * The name of the "url" rule.
      *
      * @var string
      */
-    final public const URL = RuleEnum::URL->value;
+    final public const URL = ValidationRuleEnum::URL->value;
 
     /**
      * The name of the "uuid" rule.
      *
      * @var string
      */
-    final public const UUID = RuleEnum::UUID->value;
+    final public const UUID = ValidationRuleEnum::UUID->value;
 
     #endregion
 

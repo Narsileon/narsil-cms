@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Database\Seeders\ValidationRuleSeeder;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Sites\Site;
 
@@ -46,12 +47,14 @@ class MigrationServiceProvider extends ServiceProvider
     {
         Event::listen(MigrationsEnded::class, function (MigrationsEnded $event)
         {
-            Artisan::call('narsil:sync-permissions');
+            $this->syncPermissions();
 
             if (!Site::exists())
             {
-                $this->createFirstWebsite();
+                $this->createSite();
             }
+
+            $this->seedValidationRules();
         });
     }
 
@@ -69,9 +72,12 @@ class MigrationServiceProvider extends ServiceProvider
 
     #endregion
 
-    #region PRIVATE METHODS
+    #region PROTECTED METHODS
 
-    private function createFirstWebsite(): void
+    /**
+     * @return void
+     */
+    protected function createSite(): void
     {
         $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
 
@@ -82,6 +88,23 @@ class MigrationServiceProvider extends ServiceProvider
             Site::HANDLE => $baseUrl,
             Site::NAME => $baseUrl,
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function seedValidationRules(): void
+    {
+        new ValidationRuleSeeder()
+            ->run();
+    }
+
+    /**
+     * @return void
+     */
+    protected function syncPermissions(): void
+    {
+        Artisan::call('narsil:sync-permissions');
     }
 
     #endregion

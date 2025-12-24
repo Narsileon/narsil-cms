@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Narsil\Enums\Database\OperatorEnum;
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 
 #endregion
 
@@ -114,10 +114,10 @@ abstract class QueryService
         {
             switch ($column->type)
             {
-                case TypeNameEnum::JSONB->value:
-                case TypeNameEnum::LONGTEXT->value:
+                case DataTypeEnum::JSONB->value:
+                case DataTypeEnum::LONGTEXT->value:
                     $query->orWhereLike("$column->name->$locale", '%' . $search . '%');
-                case TypeNameEnum::VARCHAR->value:
+                case DataTypeEnum::VARCHAR->value:
                     $query->orWhereLike($column->name, '%' . $search . '%');
                     break;
                 default:

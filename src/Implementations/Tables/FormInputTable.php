@@ -4,10 +4,10 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Forms\FormInput;
-use Narsil\Models\Forms\FormInputRule;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
@@ -56,9 +56,9 @@ class FormInputTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: ModelService::getTableLabel(FormInputRule::TABLE),
-                id: FormInput::COUNT_RULES,
-                type: TypeNameEnum::INTEGER->value,
+                header: ModelService::getTableLabel(ValidationRule::TABLE),
+                id: FormInput::COUNT_VALIDATION_RULES,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

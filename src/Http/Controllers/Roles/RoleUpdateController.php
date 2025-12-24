@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\RoleFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Role;
@@ -45,14 +45,11 @@ class RoleUpdateController extends RedirectController
 
         $role->update($attributes);
 
-        if ($permissions = Arr::get($attributes, Role::RELATION_PERMISSIONS))
-        {
-            $role->syncPermissions($permissions);
-        }
+        $role->permissions()->sync(Arr::get($attributes, Role::RELATION_PERMISSIONS, []));
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', ModelService::getSuccessMessage(Role::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Role::class, ModelEventEnum::UPDATED));
     }
 
     #endregion

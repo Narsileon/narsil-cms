@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\RoleForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Policies\Permission;
@@ -36,7 +36,7 @@ class RoleEditController extends RenderController
     {
         $this->authorize(PermissionEnum::UPDATE, $role);
 
-        $role->setRelation(Role::RELATION_PERMISSIONS, $role->{Role::RELATION_PERMISSIONS}->pluck(PERMISSION::HANDLE));
+        $this->transformPermissions($role);
 
         $data = $this->getData($role);
         $form = $this->getForm($role);
@@ -92,7 +92,7 @@ class RoleEditController extends RenderController
         $form = app(RoleForm::class)
             ->action(route('roles.update', $role->{Role::ID}))
             ->id($role->{Role::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
@@ -104,6 +104,22 @@ class RoleEditController extends RenderController
     protected function getTitle(): string
     {
         return ModelService::getModelLabel(Role::class);
+    }
+
+    /**
+     * Transform the permissions for the form.
+     *
+     * @param Role $role
+     *
+     * @return void
+     */
+    protected function transformPermissions(Role $role): void
+    {
+        $permissionIds = $role->{Role::RELATION_PERMISSIONS}
+            ->pluck(Permission::ID)
+            ->map(fn($id) => (string)$id);
+
+        $role->setRelation(Role::RELATION_PERMISSIONS, $permissionIds);
     }
 
     #endregion

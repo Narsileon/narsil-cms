@@ -9,7 +9,7 @@ use Narsil\Traits\Enumerable;
 #endregion
 
 /**
- * Enumeration of robots meta tag directives.
+ * Enumeration of robots meta tags.
  *
  * @version 1.0.0
  * @author Jonathan Rigaux

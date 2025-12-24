@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
@@ -130,7 +130,7 @@ class EntityUpdateController extends RedirectController
                 ->redirect(route('collections.index', [
                     'collection' => $collection
                 ]), $entity)
-                ->with('success', ModelService::getSuccessMessage(Entity::class, EventEnum::UPDATED));
+                ->with('success', ModelService::getSuccessMessage(Entity::class, ModelEventEnum::UPDATED));
         }
     }
 

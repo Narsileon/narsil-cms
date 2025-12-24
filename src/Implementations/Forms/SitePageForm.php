@@ -120,7 +120,7 @@ class SitePageForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.robots'),
                                         Field::REQUIRED => true,
                                         Field::TYPE => SelectField::class,
-                                        Field::RELATION_OPTIONS => RobotsEnum::options(),
+                                        Field::RELATION_OPTIONS => RobotsEnum::selectOptions(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(RobotsEnum::ALL->value)
                                             ->displayValue(false),
@@ -139,7 +139,7 @@ class SitePageForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.type'),
                                         Field::REQUIRED => true,
                                         Field::TYPE => SelectField::class,
-                                        Field::RELATION_OPTIONS => OpenGraphTypeEnum::options(),
+                                        Field::RELATION_OPTIONS => OpenGraphTypeEnum::selectOptions(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(OpenGraphTypeEnum::WEBSITE->value)
                                             ->displayValue(false),
@@ -188,7 +188,7 @@ class SitePageForm extends AbstractForm implements Contract
                             Field::NAME => trans('narsil::validation.attributes.change_freq'),
                             Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => ChangeFreqEnum::options(),
+                            Field::RELATION_OPTIONS => ChangeFreqEnum::selectOptions(),
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ChangeFreqEnum::NEVER->value)
                                 ->displayValue(false),

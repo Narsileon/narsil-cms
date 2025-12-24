@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
@@ -54,7 +54,7 @@ class HostTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(HostLocale::TABLE),
                 id: Host::COUNT_LOCALES,
-                type: TypeNameEnum::INTEGER->value,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

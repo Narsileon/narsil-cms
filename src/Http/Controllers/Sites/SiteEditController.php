@@ -12,7 +12,7 @@ use Inertia\Response;
 use Locale;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\SiteForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Http\Resources\Sites\SiteResource;
@@ -151,7 +151,7 @@ class SiteEditController extends RenderController
             ->action(route('sites.update', $site->{Site::HANDLE}))
             ->id($site->{Site::ID})
             ->languageOptions([])
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

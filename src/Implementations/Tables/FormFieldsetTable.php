@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\Database\TypeNameEnum;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormInput;
@@ -54,7 +54,7 @@ class FormFieldsetTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(FormInput::TABLE),
                 id: FormFieldset::COUNT_INPUTS,
-                type: TypeNameEnum::INTEGER->value,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

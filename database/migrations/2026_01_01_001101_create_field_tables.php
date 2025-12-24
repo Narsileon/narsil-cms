@@ -5,11 +5,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\FieldOption;
-use Narsil\Models\Elements\FieldRule;
+use Narsil\Models\Elements\FieldValidationRule;
 use Narsil\Models\User;
+use Narsil\Models\ValidationRule;
 
 #endregion
 
@@ -32,9 +32,9 @@ return new class extends Migration
         {
             $this->createFieldOptionsTable();
         }
-        if (!Schema::hasTable(FieldRule::TABLE))
+        if (!Schema::hasTable(FieldValidationRule::TABLE))
         {
-            $this->createFieldRulesTable();
+            $this->createFieldValidationRuleTable();
         }
     }
 
@@ -45,7 +45,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FieldRule::TABLE);
+        Schema::dropIfExists(FieldValidationRule::TABLE);
         Schema::dropIfExists(FieldOption::TABLE);
         Schema::dropIfExists(Field::TABLE);
     }
@@ -83,24 +83,25 @@ return new class extends Migration
     }
 
     /**
-     * Create the field rules table.
+     * Create the field validation rule table.
      *
      * @return void
      */
-    private function createFieldRulesTable(): void
+    private function createFieldValidationRuleTable(): void
     {
-        Schema::create(FieldRule::TABLE, function (Blueprint $blueprint)
+        Schema::create(FieldValidationRule::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FieldRule::UUID)
+                ->uuid(FieldValidationRule::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FieldRule::FIELD_ID)
+                ->foreignId(FieldValidationRule::FIELD_ID)
                 ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->enum(FieldRule::RULE, RuleEnum::values())
-                ->default(RuleEnum::STRING->value);
+                ->foreignId(FieldValidationRule::VALIDATION_RULE_ID)
+                ->constrained(ValidationRule::TABLE, ValidationRule::ID)
+                ->cascadeOnDelete();
         });
     }
 

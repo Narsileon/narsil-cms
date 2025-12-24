@@ -9,7 +9,7 @@ use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Contracts\Forms\Fortify\ResetPasswordForm as Contract;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
 
@@ -32,7 +32,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
 
         $this
             ->action(route('password.update'))
-            ->method(MethodEnum::POST->value)
+            ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.reset'));
     }
 

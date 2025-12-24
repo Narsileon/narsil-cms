@@ -123,7 +123,7 @@ class RoleForm extends AbstractForm implements Contract
                 {
                     $option = new SelectOption()
                         ->optionLabel($permission->{Permission::NAME})
-                        ->optionValue($permission->{Permission::HANDLE});
+                        ->optionValue($permission->{Permission::ID});
 
                     return $option;
                 })->toArray();

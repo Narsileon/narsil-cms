@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Forms\Fieldsets;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\FormFieldset;
@@ -36,7 +36,7 @@ class FormFieldsetReplicateController extends RedirectController
         FormFieldsetService::replicateFormFieldset($formFieldset);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(FormFieldset::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(FormFieldset::class, ModelEventEnum::REPLICATED));
     }
 
     #endregion

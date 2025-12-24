@@ -6,7 +6,9 @@ namespace Narsil\Models\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Cache;
 use Narsil\Models\User;
+use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -108,6 +110,23 @@ class Role extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * Get the roles as select options.
+     *
+     * @return array<SelectOption>
+     */
+    public static function selectOptions(): array
+    {
+        return self::all()
+            ->map(function (Role $role)
+            {
+                return new SelectOption()
+                    ->optionLabel($role->{self::NAME})
+                    ->optionValue($role->{self::ID});
+            })
+            ->all();
+    }
 
     #region • RELATIONSHIPS
 

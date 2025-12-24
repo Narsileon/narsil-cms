@@ -1,12 +1,13 @@
 <?php
 
-namespace Narsil\Models\Elements;
+namespace Narsil\Models\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Models\ValidationRule;
 
 #endregion
 
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldRule extends Model
+class FormInputValidationRule extends Pivot
 {
     use HasUuids;
 
@@ -46,23 +47,23 @@ class FieldRule extends Model
      *
      * @var string
      */
-    final public const TABLE = 'field_rules';
+    final public const TABLE = 'form_input_validation_rule';
 
     #region • COLUMNS
 
     /**
-     * The name of the "field id" column.
+     * The name of the "input id" column.
      *
      * @var string
      */
-    final public const FIELD_ID = 'field_id';
+    final public const INPUT_ID = 'input_id';
 
     /**
-     * The name of the "rule" column.
+     * The name of the "rule id" column.
      *
      * @var string
      */
-    final public const RULE = 'rule';
+    final public const VALIDATION_RULE_ID = 'validation_rule_id';
 
     /**
      * The name of the "uuid" column.
@@ -76,11 +77,18 @@ class FieldRule extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "field" relation.
+     * The name of the "input" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELD = 'field';
+    final public const RELATION_INPUT = 'input';
+
+    /**
+     * The name of the "validation rule" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_VALIDATION_RULE = 'validation_rule';
 
     #endregion
 
@@ -91,17 +99,32 @@ class FieldRule extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated field.
+     * Get the associated input.
      *
      * @return BelongsTo
      */
-    final public function field(): BelongsTo
+    final public function input(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Field::class,
-                self::FIELD_ID,
-                Field::ID,
+                FormInput::class,
+                self::INPUT_ID,
+                FormInput::ID,
+            );
+    }
+
+    /**
+     * Get the associated validation rule.
+     *
+     * @return BelongsTo
+     */
+    final public function validation_rule(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                ValidationRule::class,
+                self::VALIDATION_RULE_ID,
+                ValidationRule::ID,
             );
     }
 

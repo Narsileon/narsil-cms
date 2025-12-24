@@ -5,14 +5,17 @@ namespace Narsil\Models\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Casts\JsonCast;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\Models\FieldService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\HasValidationRules;
 
 #endregion
 
@@ -27,6 +30,7 @@ class FormInput extends Model
     use HasDatetimes;
     use HasIdentifier;
     use HasTranslations;
+    use HasValidationRules;
 
     #region CONSTRUCTOR
 
@@ -44,7 +48,7 @@ class FormInput extends Model
 
         $this->with = [
             self::RELATION_OPTIONS,
-            self::RELATION_RULES,
+            self::RELATION_VALIDATION_RULES,
         ];
 
         $this->mergeAppends([
@@ -113,13 +117,6 @@ class FormInput extends Model
     final public const REQUIRED = 'required';
 
     /**
-     * The name of the "rules" column.
-     *
-     * @var string
-     */
-    final public const RULES = 'rules';
-
-    /**
      * The name of the "settings" column.
      *
      * @var string
@@ -155,13 +152,6 @@ class FormInput extends Model
      */
     final public const COUNT_OPTIONS = 'options_count';
 
-    /**
-     * The name of the "rules" count.
-     *
-     * @var string
-     */
-    final public const COUNT_RULES = 'rules_count';
-
     #endregion
 
     #region • RELATIONS
@@ -172,13 +162,6 @@ class FormInput extends Model
      * @var string
      */
     final public const RELATION_OPTIONS = 'options';
-
-    /**
-     * The name of the "rules" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_RULES = 'rules';
 
     #endregion
 
@@ -224,18 +207,20 @@ class FormInput extends Model
     }
 
     /**
-     * Get the associated rules.
+     * Get the associated validation rules.
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
-    final public function rules(): HasMany
+    final public function validation_rules(): BelongsToMany
     {
         return $this
-            ->hasMany(
-                FormInputRule::class,
-                FormInputRule::INPUT_ID,
-                self::ID,
-            );
+            ->belongsToMany(
+                ValidationRule::class,
+                FormInputValidationRule::class,
+                FormInputValidationRule::INPUT_ID,
+                FormInputValidationRule::VALIDATION_RULE_ID,
+            )
+            ->using(FormInputValidationRule::class);
     }
 
     #endregion

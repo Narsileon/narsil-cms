@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FormInputFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\FormInput;
@@ -45,6 +45,8 @@ class FormInputStoreController extends RedirectController
 
         $formInput = FormInput::create($attributes);
 
+        $formInput->validation_rules()->sync(Arr::get($attributes, FormInput::RELATION_VALIDATION_RULES, []));
+
         if ($options = Arr::get($attributes, FormInput::RELATION_OPTIONS))
         {
             FormInputService::syncFormInputOptions($formInput, $options);
@@ -52,7 +54,7 @@ class FormInputStoreController extends RedirectController
 
         return $this
             ->redirect(route('form-inputs.index'), $formInput)
-            ->with('success', ModelService::getSuccessMessage(FormInput::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(FormInput::class, ModelEventEnum::CREATED));
     }
 
     #endregion

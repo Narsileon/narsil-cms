@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Enums\Configuration;
+namespace Narsil\Enums;
 
 #region USE
 

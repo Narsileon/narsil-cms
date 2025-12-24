@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\FieldForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\ModelService;
 
 #endregion
@@ -41,6 +42,8 @@ class FieldEditController extends RenderController
                 Field::TYPE => $field->{Field::TYPE},
             ]);
         }
+
+        $this->transformValidationRules($field);
 
         $data = $this->getData($field);
         $form = $this->getForm($field);
@@ -96,7 +99,7 @@ class FieldEditController extends RenderController
         $form = app(FieldForm::class)
             ->action(route('fields.update', $field->{Field::ID}))
             ->id($field->{Field::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
@@ -108,6 +111,22 @@ class FieldEditController extends RenderController
     protected function getTitle(): string
     {
         return ModelService::getModelLabel(Field::class);
+    }
+
+    /**
+     * Transform the validation rules for the form.
+     *
+     * @param Field $field
+     *
+     * @return void
+     */
+    protected function transformValidationRules(Field $field): void
+    {
+        $validationRuleIds = $field->{Field::RELATION_VALIDATION_RULES}
+            ->pluck(ValidationRule::ID)
+            ->map(fn($id) => (string)$id);
+
+        $field->setRelation(Field::RELATION_VALIDATION_RULES, $validationRuleIds);
     }
 
     #endregion

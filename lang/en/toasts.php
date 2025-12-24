@@ -2,19 +2,19 @@
 
 #region USE
 
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 
 #endregion
 
 return [
     'success' => [
-        EventEnum::CREATED->value => 'The :model has been successfully created.',
-        EventEnum::DELETED_MANY->value => 'The :table have been successfully deleted.',
-        EventEnum::DELETED->value => 'The :model has been successfully deleted.',
-        EventEnum::REPLICATED_MANY->value => 'The :table have been successfully duplicated.',
-        EventEnum::REPLICATED->value => 'The :model has been successfully duplicated.',
-        EventEnum::RESTORED->value => 'The :model has been successfully restored.',
-        EventEnum::UPDATED->value => 'The :model has been successfully updated.',
+        ModelEventEnum::CREATED->value => 'The :model has been successfully created.',
+        ModelEventEnum::DELETED_MANY->value => 'The :table have been successfully deleted.',
+        ModelEventEnum::DELETED->value => 'The :model has been successfully deleted.',
+        ModelEventEnum::REPLICATED_MANY->value => 'The :table have been successfully duplicated.',
+        ModelEventEnum::REPLICATED->value => 'The :model has been successfully duplicated.',
+        ModelEventEnum::RESTORED->value => 'The :model has been successfully restored.',
+        ModelEventEnum::UPDATED->value => 'The :model has been successfully updated.',
 
         'logged_in'  => 'You have been successfully logged in.',
         'logged_out' => 'You have been successfully logged out.',

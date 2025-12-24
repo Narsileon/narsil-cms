@@ -5,7 +5,7 @@ namespace Narsil\Services;
 #region USE
 
 use Illuminate\Support\Str;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 
@@ -23,7 +23,7 @@ abstract class ModelService
      * @param string $model
      * @param boolean $ucFirst
      * @param string|null $locale
-     * 
+     *
      * @return string
      */
     public static function getModelLabel(string $model, bool $ucFirst = true, ?string $locale = null): string
@@ -47,11 +47,11 @@ abstract class ModelService
 
     /**
      * @param string $model
-     * @param EventEnum $event
-     * 
+     * @param ModelEventEnum $event
+     *
      * @return string
      */
-    public static function getSuccessMessage(string $model, EventEnum $event): string
+    public static function getSuccessMessage(string $model, ModelEventEnum $event): string
     {
         $isEntity = $model === Entity::class;
 
@@ -68,7 +68,7 @@ abstract class ModelService
      * @param string $table
      * @param boolean $ucFirst
      * @param string|null $locale
-     * 
+     *
      * @return string
      */
     public static function getTableLabel(string $table, bool $ucFirst = true, ?string $locale = null): string

@@ -5,16 +5,16 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\Forms\RuleEnum;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormFieldsetElement;
 use Narsil\Models\Forms\FormInput;
 use Narsil\Models\Forms\FormInputOption;
-use Narsil\Models\Forms\FormInputRule;
+use Narsil\Models\Forms\FormInputValidationRule;
 use Narsil\Models\Forms\FormPage;
 use Narsil\Models\Forms\FormPageElement;
 use Narsil\Models\User;
+use Narsil\Models\ValidationRule;
 
 #endregion
 
@@ -37,9 +37,9 @@ return new class extends Migration
         {
             $this->createFormInputOptionsTable();
         }
-        if (!Schema::hasTable(FormInputRule::TABLE))
+        if (!Schema::hasTable(FormInputValidationRule::TABLE))
         {
-            $this->createFormInputRulesTable();
+            $this->createFormInputValidationRuleTable();
         }
 
         if (!Schema::hasTable(FormFieldset::TABLE))
@@ -72,7 +72,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FormInputRule::TABLE);
+        Schema::dropIfExists(FormInputValidationRule::TABLE);
         Schema::dropIfExists(FormInputOption::TABLE);
         Schema::dropIfExists(FormInput::TABLE);
 
@@ -117,24 +117,25 @@ return new class extends Migration
     }
 
     /**
-     * Create the form input rules table.
+     * Create the form input validation rule table.
      *
      * @return void
      */
-    private function createFormInputRulesTable(): void
+    private function createFormInputValidationRuleTable(): void
     {
-        Schema::create(FormInputRule::TABLE, function (Blueprint $blueprint)
+        Schema::create(FormInputValidationRule::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FormInputRule::UUID)
+                ->uuid(FormInputValidationRule::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FormInputRule::INPUT_ID)
+                ->foreignId(FormInputValidationRule::INPUT_ID)
                 ->constrained(FormInput::TABLE, FormInput::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->enum(FormInputRule::RULE, RuleEnum::values())
-                ->default(RuleEnum::STRING->value);
+                ->foreignId(FormInputValidationRule::VALIDATION_RULE_ID)
+                ->constrained(ValidationRule::TABLE, ValidationRule::ID)
+                ->cascadeOnDelete();
         });
     }
 

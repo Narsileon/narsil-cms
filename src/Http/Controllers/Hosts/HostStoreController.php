@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Hosts\Host;
@@ -62,7 +62,7 @@ class HostStoreController extends RedirectController
 
         return $this
             ->redirect(route('hosts.index'))
-            ->with('success', ModelService::getSuccessMessage(Host::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Host::class, ModelEventEnum::CREATED));
     }
 
     #endregion

@@ -9,7 +9,7 @@ use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Forms\Fortify\LoginForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\User;
@@ -33,7 +33,7 @@ class LoginForm extends AbstractForm implements Contract
 
         $this
             ->action(route('login'))
-            ->method(MethodEnum::POST->value)
+            ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.log_in'));
     }
 

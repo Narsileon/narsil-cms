@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Contracts\Forms\PublishForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
@@ -153,7 +153,7 @@ class EntityEditController extends RenderController
             ->id($entity->{Entity::UUID})
             ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

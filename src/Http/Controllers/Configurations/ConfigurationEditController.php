@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\ConfigurationForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
 use Narsil\Services\ModelService;
@@ -86,7 +86,7 @@ class ConfigurationEditController extends RenderController
         $form = app(ConfigurationForm::class)
             ->action(route('settings.update', $configuration->{Configuration::ID}))
             ->id($configuration->{Configuration::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

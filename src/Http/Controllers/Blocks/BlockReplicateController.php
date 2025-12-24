@@ -6,7 +6,7 @@ namespace Narsil\Http\Controllers\Blocks;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
@@ -36,7 +36,7 @@ class BlockReplicateController extends RedirectController
         BlockService::replicateBlock($block);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Block::class, EventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Block::class, ModelEventEnum::REPLICATED));
     }
 
     #endregion

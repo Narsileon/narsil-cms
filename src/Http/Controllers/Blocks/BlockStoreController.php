@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\BlockFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Elements\Block;
@@ -52,7 +52,7 @@ class BlockStoreController extends RedirectController
 
         return $this
             ->redirect(route('blocks.index'), $block)
-            ->with('success', ModelService::getSuccessMessage(Block::class, EventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Block::class, ModelEventEnum::CREATED));
     }
 
     #endregion

@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Casts\HumanDatetimeCast;
 use Narsil\Contracts\Forms\FormInputForm;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\ModelService;
 
 #endregion
@@ -42,6 +43,8 @@ class FormInputEditController extends RenderController
             ]);
         }
 
+        $this->transformValidationRules($formInput);
+
         $data = $this->getData($formInput);
         $form = $this->getForm($formInput);
 
@@ -58,20 +61,20 @@ class FormInputEditController extends RenderController
     /**
      * Get the associated data.
      *
-     * @param FormInput $input
+     * @param FormInput $formInput
      *
      * @return array<string,mixed>
      */
-    protected function getData(FormInput $input): array
+    protected function getData(FormInput $formInput): array
     {
-        $input->loadMissingCreatorAndEditor();
+        $formInput->loadMissingCreatorAndEditor();
 
-        $input->mergeCasts([
+        $formInput->mergeCasts([
             FormInput::CREATED_AT => HumanDatetimeCast::class,
             FormInput::UPDATED_AT => HumanDatetimeCast::class,
         ]);
 
-        $data = $input->toArrayWithTranslations();
+        $data = $formInput->toArrayWithTranslations();
 
         return $data;
     }
@@ -87,16 +90,16 @@ class FormInputEditController extends RenderController
     /**
      * Get the associated form.
      *
-     * @param FormInput $input
+     * @param FormInput $formInput
      *
      * @return FormInputForm
      */
-    protected function getForm(FormInput $input): FormInputForm
+    protected function getForm(FormInput $formInput): FormInputForm
     {
         $form = app(FormInputForm::class)
-            ->action(route('form-inputs.update', $input->{FormInput::ID}))
-            ->id($input->{FormInput::ID})
-            ->method(MethodEnum::PATCH->value)
+            ->action(route('form-inputs.update', $formInput->{FormInput::ID}))
+            ->id($formInput->{FormInput::ID})
+            ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
@@ -108,6 +111,22 @@ class FormInputEditController extends RenderController
     protected function getTitle(): string
     {
         return ModelService::getModelLabel(FormInput::class);
+    }
+
+    /**
+     * Transform the validation rules for the form.
+     *
+     * @param FormInput $formInput
+     *
+     * @return void
+     */
+    protected function transformValidationRules(FormInput $formInput): void
+    {
+        $validationRuleIds = $formInput->{FormInput::RELATION_VALIDATION_RULES}
+            ->pluck(ValidationRule::ID)
+            ->map(fn($id) => (string)$id);
+
+        $formInput->setRelation(FormInput::RELATION_VALIDATION_RULES, $validationRuleIds);
     }
 
     #endregion

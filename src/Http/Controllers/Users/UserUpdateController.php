@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\UserFormRequest;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\User;
@@ -49,16 +49,14 @@ class UserUpdateController extends RedirectController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $user->update($attributes);
+        $user
+            ->update($attributes);
 
-        if ($roles = Arr::get($attributes, User::RELATION_ROLES))
-        {
-            $user->syncRoles($roles);
-        }
+        $user->roles()->sync(Arr::get($attributes, User::RELATION_ROLES, []));
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', ModelService::getSuccessMessage(User::class, EventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(User::class, ModelEventEnum::UPDATED));
     }
 
     #endregion

@@ -11,8 +11,8 @@ use Locale;
 use Narsil\Contracts\Fields\RangeField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Forms\UserConfigurationForm as Contract;
-use Narsil\Enums\Configuration\ColorEnum;
-use Narsil\Enums\Forms\MethodEnum;
+use Narsil\Enums\ColorEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Elements\Field;
 use Narsil\Models\Users\UserConfiguration;
@@ -38,7 +38,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
 
         $this
             ->action(route('user-configurations.update'))
-            ->method(MethodEnum::PUT->value)
+            ->method(RequestMethodEnum::PUT->value)
             ->submitLabel(trans('narsil::ui.save'));
     }
 
@@ -68,7 +68,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 Field::NAME => trans('narsil::validation.attributes.color'),
                 Field::REQUIRED => true,
                 Field::TYPE => SelectField::class,
-                Field::RELATION_OPTIONS => ColorEnum::options(),
+                Field::RELATION_OPTIONS => ColorEnum::selectOptions(),
                 Field::SETTINGS => app(SelectField::class)
                     ->defaultValue(ColorEnum::GRAY->value),
             ]),

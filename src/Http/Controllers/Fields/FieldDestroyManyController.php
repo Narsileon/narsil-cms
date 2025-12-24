@@ -5,7 +5,7 @@ namespace Narsil\Http\Controllers\Fields;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Enums\Database\EventEnum;
+use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
@@ -39,7 +39,7 @@ class FieldDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('fields.index'))
-            ->with('success', ModelService::getSuccessMessage(Field::class, EventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Field::class, ModelEventEnum::DELETED_MANY));
     }
 
     #endregion

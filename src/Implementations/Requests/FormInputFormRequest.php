@@ -57,7 +57,7 @@ class FormInputFormRequest implements Contract
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
-            FormInput::RELATION_RULES => [
+            FormInput::RELATION_VALIDATION_RULES => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,

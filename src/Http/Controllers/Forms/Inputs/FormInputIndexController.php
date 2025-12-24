@@ -52,10 +52,10 @@ class FormInputIndexController extends RenderController
     {
         $query = FormInput::query()
             ->with([
-                FormInput::RELATION_RULES,
+                FormInput::RELATION_VALIDATION_RULES,
             ])
             ->withCount([
-                FormInput::RELATION_RULES,
+                FormInput::RELATION_VALIDATION_RULES,
             ]);
 
         return new DataTableCollection($query, FormInput::TABLE);

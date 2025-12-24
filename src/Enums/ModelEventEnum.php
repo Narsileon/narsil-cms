@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Enums\Database;
+namespace Narsil\Enums;
 
 #region USE
 
@@ -9,10 +9,12 @@ use Narsil\Traits\Enumerable;
 #endregion
 
 /**
+ * Enumeration of model events.
+ *
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-enum EventEnum: string
+enum ModelEventEnum: string
 {
     use Enumerable;
 

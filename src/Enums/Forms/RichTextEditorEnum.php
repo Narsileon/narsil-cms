@@ -47,7 +47,7 @@ enum RichTextEditorEnum: string
      *
      * @return array<SelectOption>
      */
-    public static function options(): array
+    public static function selectOptions(): array
     {
         $options = [];
 
