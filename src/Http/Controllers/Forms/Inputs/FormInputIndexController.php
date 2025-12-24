@@ -50,7 +50,13 @@ class FormInputIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = FormInput::query();
+        $query = FormInput::query()
+            ->with([
+                FormInput::RELATION_RULES,
+            ])
+            ->withCount([
+                FormInput::RELATION_RULES,
+            ]);;
 
         return new DataTableCollection($query, FormInput::TABLE);
     }

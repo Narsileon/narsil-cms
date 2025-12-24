@@ -5,11 +5,13 @@
 use Narsil\Models\Configuration;
 use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\FieldRule;
 use Narsil\Models\Elements\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Models\Forms\FormInputRule;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -28,10 +30,12 @@ return [
     Configuration::TABLE => 'Einstellungen',
     Entity::TABLE => 'Entitäten',
     Field::TABLE => 'Felder',
+    FieldRule::TABLE => 'Regeln',
     Footer::TABLE => 'Fußzeilen',
     Form::TABLE => 'Formulare',
     FormFieldset::TABLE => 'Feldgruppen',
     FormInput::TABLE => 'Eingaben',
+    FormInputRule::TABLE => 'Regeln',
     Header::TABLE => 'Kopfzeilen',
     Host::TABLE => 'Hosts',
     Permission::TABLE => 'Berechtigungen',

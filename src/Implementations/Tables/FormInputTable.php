@@ -4,8 +4,11 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Forms\FormInput;
+use Narsil\Models\Forms\FormInputRule;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -46,6 +49,16 @@ class FormInputTable extends AbstractTable
             ),
             new TableColumn(
                 id: FormInput::HANDLE,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: FormInput::REQUIRED,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(FormInputRule::TABLE),
+                id: FormInput::COUNT_RULES,
+                type: TypeNameEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

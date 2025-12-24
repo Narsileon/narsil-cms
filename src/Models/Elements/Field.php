@@ -189,6 +189,13 @@ class Field extends Model
      */
     final public const COUNT_OPTIONS = 'options_count';
 
+    /**
+     * The name of the "rules" count.
+     *
+     * @var string
+     */
+    final public const COUNT_RULES = 'rules_count';
+
     #endregion
 
     #region • RELATIONS

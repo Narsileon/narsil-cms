@@ -4,8 +4,11 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Elements\Field;
+use Narsil\Models\Elements\FieldRule;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -46,6 +49,20 @@ class FieldTable extends AbstractTable
             ),
             new TableColumn(
                 id: Field::HANDLE,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Field::TRANSLATABLE,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Field::REQUIRED,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(FieldRule::TABLE),
+                id: Field::COUNT_RULES,
+                type: TypeNameEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

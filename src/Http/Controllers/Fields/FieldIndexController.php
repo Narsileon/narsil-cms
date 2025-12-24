@@ -50,7 +50,13 @@ class FieldIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = Field::query();
+        $query = Field::query()
+            ->with([
+                Field::RELATION_RULES,
+            ])
+            ->withCount([
+                Field::RELATION_RULES,
+            ]);
 
         return new DataTableCollection($query, Field::TABLE);
     }

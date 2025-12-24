@@ -10,6 +10,7 @@ import {
   DataTableRow,
   useDataTable,
 } from "@narsil-cms/components/data-table";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import {
@@ -146,12 +147,24 @@ function DataTable({ collection, title }: DataTableProps) {
                       key={row.id}
                     >
                       {row.getVisibleCells().map((cell) => {
+                        let content = null;
+
+                        if (cell.column.columnDef.meta?.type === "bool") {
+                          content = cell.getValue() ? (
+                            <Icon className="text-constructive" name="check" />
+                          ) : (
+                            <Icon className="text-destructive" name="x" />
+                          );
+                        } else {
+                          content = flexRender(cell.column.columnDef.cell, cell.getContext() ?? "");
+                        }
+
                         return (
                           <TableCell
                             className={cell.column.columnDef.meta?.className}
                             key={cell.id}
                           >
-                            {flexRender(cell.column.columnDef.cell, cell.getContext() ?? "")}
+                            {content}
                           </TableCell>
                         );
                       })}
