@@ -50,7 +50,13 @@ class FooterIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = Footer::query();
+        $query = Footer::query()
+            ->with([
+                Footer::RELATION_SOCIAL_LINKS,
+            ])
+            ->withCount([
+                Footer::RELATION_SOCIAL_LINKS,
+            ]);
 
         return new DataTableCollection($query, Footer::TABLE);
     }

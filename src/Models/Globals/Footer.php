@@ -125,6 +125,17 @@ class Footer extends Model
 
     #endregion
 
+    #region • COUNTS
+
+    /**
+     * The name of the "social links" count.
+     *
+     * @var string
+     */
+    final public const COUNT_SOCIAL_LINKS = 'social_links_count';
+
+    #endregion
+
     #region • RELATIONS
 
     /**

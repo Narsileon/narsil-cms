@@ -13,8 +13,10 @@ use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormInput;
 use Narsil\Models\Forms\FormInputRule;
 use Narsil\Models\Globals\Footer;
+use Narsil\Models\Globals\FooterSocialLink;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
@@ -32,12 +34,14 @@ return [
     Field::TABLE => 'fields',
     FieldRule::TABLE => 'rules',
     Footer::TABLE => 'footers',
+    FooterSocialLink::TABLE => 'social links',
     Form::TABLE => 'forms',
     FormFieldset::TABLE => 'fieldsets',
     FormInput::TABLE => 'inputs',
     FormInputRule::TABLE => 'rules',
     Header::TABLE => 'headers',
     Host::TABLE => 'hosts',
+    HostLocale::TABLE => 'locales',
     Permission::TABLE => 'permissions',
     Role::TABLE => 'roles',
     Site::VIRTUAL_TABLE => 'websites',

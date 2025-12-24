@@ -54,7 +54,7 @@ class UserIndexController extends RenderController
             ])
             ->withCount([
                 User::RELATION_ROLES,
-            ]);;
+            ]);
 
         return new DataTableCollection($query, User::TABLE);
     }

@@ -7,6 +7,8 @@ namespace Narsil\Implementations\Tables;
 use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocale;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -50,18 +52,18 @@ class HostTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: trans('narsil::validation.attributes.locales'),
+                header: ModelService::getTableLabel(HostLocale::TABLE),
                 id: Host::COUNT_LOCALES,
                 type: TypeNameEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
                 id: Host::CREATED_AT,
-                visibility: false,
+                visibility: true,
             ),
             new TableColumn(
                 id: Host::UPDATED_AT,
-                visibility: false,
+                visibility: true,
             ),
         ];
     }

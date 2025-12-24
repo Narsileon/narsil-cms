@@ -4,8 +4,11 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\Database\TypeNameEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Globals\Footer;
+use Narsil\Models\Globals\FooterSocialLink;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -45,12 +48,38 @@ class FooterTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Footer::CREATED_AT,
+                id: Footer::ADDRESS_LINE_1,
                 visibility: false,
             ),
             new TableColumn(
-                id: Footer::UPDATED_AT,
+                id: Footer::ADDRESS_LINE_2,
                 visibility: false,
+            ),
+            new TableColumn(
+                id: Footer::COMPANY,
+                visibility: false,
+            ),
+            new TableColumn(
+                id: Footer::EMAIL,
+                visibility: false,
+            ),
+            new TableColumn(
+                id: Footer::PHONE,
+                visibility: false,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(FooterSocialLink::TABLE),
+                id: Footer::COUNT_SOCIAL_LINKS,
+                type: TypeNameEnum::INTEGER->value,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Footer::CREATED_AT,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Footer::UPDATED_AT,
+                visibility: true,
             ),
         ];
     }

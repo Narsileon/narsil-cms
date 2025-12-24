@@ -46,11 +46,11 @@ class HeaderTable extends AbstractTable
             ),
             new TableColumn(
                 id: Header::CREATED_AT,
-                visibility: false,
+                visibility: true,
             ),
             new TableColumn(
                 id: Header::UPDATED_AT,
-                visibility: false,
+                visibility: true,
             ),
         ];
     }
