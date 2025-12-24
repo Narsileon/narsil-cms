@@ -73,7 +73,8 @@ return new class extends Migration
         Schema::create(SitePageOverride::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(SitePageOverride::ID);
+                ->uuid(SitePageOverride::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(SitePageOverride::PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
@@ -111,7 +112,8 @@ return new class extends Migration
         Schema::create(SitePageRelation::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(SitePageRelation::ID);
+                ->uuid(SitePageRelation::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(SitePageRelation::PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)

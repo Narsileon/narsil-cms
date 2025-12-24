@@ -22,9 +22,9 @@ export type Block = {
 };
 
 export type Bookmark = Model & {
-  id: number;
   name: string;
   url: string;
+  uuid: string;
 };
 
 export type Entity = Model & {

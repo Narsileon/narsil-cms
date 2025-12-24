@@ -29,9 +29,9 @@ class UserBookmarkCollection extends ResourceCollection
         return $this->collection->map(function ($item)
         {
             return [
-                UserBookmark::ID => $item->{UserBookmark::ID},
                 UserBookmark::NAME => $item->{UserBookmark::NAME},
                 UserBookmark::URL => $item->{UserBookmark::URL},
+                UserBookmark::UUID => $item->{UserBookmark::UUID},
             ];
         });
     }

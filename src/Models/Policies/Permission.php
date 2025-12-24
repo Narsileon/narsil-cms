@@ -99,7 +99,8 @@ class Permission extends Model
                 RolePermission::TABLE,
                 RolePermission::PERMISSION_ID,
                 RolePermission::ROLE_ID,
-            );
+            )
+            ->using(RolePermission::class);
     }
 
     #endregion

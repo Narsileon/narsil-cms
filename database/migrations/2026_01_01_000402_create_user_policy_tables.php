@@ -59,7 +59,8 @@ return new class extends Migration
         Schema::create(UserPermission::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(UserPermission::ID);
+                ->uuid(UserPermission::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(UserPermission::USER_ID)
                 ->constrained(User::TABLE, User::ID)
@@ -81,7 +82,8 @@ return new class extends Migration
         Schema::create(UserRole::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(UserRole::ID);
+                ->uuid(UserRole::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(UserRole::USER_ID)
                 ->constrained(User::TABLE, User::ID)

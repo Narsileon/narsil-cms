@@ -93,7 +93,8 @@ return new class extends Migration
         Schema::create(FieldRule::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FieldRule::ID);
+                ->uuid(FieldRule::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(FieldRule::FIELD_ID)
                 ->constrained(Field::TABLE, Field::ID)

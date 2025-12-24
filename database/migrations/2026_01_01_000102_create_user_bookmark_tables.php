@@ -51,7 +51,8 @@ return new class extends Migration
         Schema::create(UserBookmark::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(UserBookmark::ID);
+                ->uuid(UserBookmark::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(UserBookmark::USER_ID)
                 ->constrained(User::TABLE, User::ID)

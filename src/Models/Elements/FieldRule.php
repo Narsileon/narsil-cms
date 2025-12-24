@@ -4,6 +4,7 @@ namespace Narsil\Models\Elements;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class FieldRule extends Model
 {
+    use HasUuids;
+
     #region CONSTRUCTOR
 
     /**
@@ -24,8 +27,10 @@ class FieldRule extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
+
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -52,18 +57,18 @@ class FieldRule extends Model
     final public const FIELD_ID = 'field_id';
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "rule" column.
      *
      * @var string
      */
     final public const RULE = 'rule';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 

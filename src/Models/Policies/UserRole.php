@@ -4,6 +4,7 @@ namespace Narsil\Models\Policies;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Policies\Role;
@@ -17,6 +18,8 @@ use Narsil\Models\User;
  */
 class UserRole extends Pivot
 {
+    use HasUuids;
+
     #region CONSTRUCTOR
 
     /**
@@ -26,10 +29,11 @@ class UserRole extends Pivot
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -49,13 +53,6 @@ class UserRole extends Pivot
     #region • COLUMNS
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "role id" column.
      *
      * @var string
@@ -68,6 +65,13 @@ class UserRole extends Pivot
      * @var string
      */
     final public const USER_ID = 'user_id';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 

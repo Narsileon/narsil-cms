@@ -4,6 +4,7 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 #endregion
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SitePageRelation extends Model
 {
+    use HasUuids;
+
     #region CONSTRUCTOR
 
     /**
@@ -23,10 +26,11 @@ class SitePageRelation extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -44,13 +48,6 @@ class SitePageRelation extends Model
     final public const TABLE = 'site_page_relations';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
 
     /**
      * The name of the "page id" column.
@@ -72,6 +69,13 @@ class SitePageRelation extends Model
      * @var string
      */
     final public const TARGET_TABLE = 'target_table';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 

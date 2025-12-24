@@ -254,7 +254,8 @@ class Field extends Model
                 FieldBlock::class,
                 FieldBlock::FIELD_ID,
                 FieldBlock::BLOCK_ID,
-            );
+            )
+            ->using(FieldBlock::class);
     }
 
     /**

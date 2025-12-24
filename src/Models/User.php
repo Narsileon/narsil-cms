@@ -298,7 +298,8 @@ class User extends Authenticatable implements MustVerifyEmail
                 UserPermission::TABLE,
                 UserPermission::USER_ID,
                 UserPermission::PERMISSION_ID,
-            );
+            )
+            ->using(UserPermission::class);
     }
 
     /**
@@ -312,7 +313,8 @@ class User extends Authenticatable implements MustVerifyEmail
                 UserRole::TABLE,
                 UserRole::USER_ID,
                 UserRole::ROLE_ID,
-            );
+            )
+            ->using(UserRole::class);
     }
 
     /**

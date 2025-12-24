@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Narsil\Contracts\Resources\EntityResource;
 use Narsil\Models\Entities\Entity;
@@ -227,18 +228,25 @@ class SitePage extends TreeModel
 
         $override = $sitePage->{SitePage::RELATION_OVERRIDE};
 
-        if ($sitePage->isDirty())
+
+        $overrides = Arr::only($sitePage->getDirty(), [
+            SitePage::LEFT_ID,
+            SitePage::PARENT_ID,
+            SitePage::RIGHT_ID,
+        ]);
+
+        if (!empty($overrides))
         {
             if ($override)
             {
-                $override->update($attributes);
+                $override->update($overrides);
             }
             else
             {
-                SitePageOverride::create(array_merge($attributes, [
+                SitePageOverride::updateOrCreate([
                     SitePageOverride::COUNTRY => Session::get(self::COUNTRY),
                     SitePageOverride::PAGE_ID => $sitePage->{SitePage::ID},
-                ]));
+                ], $overrides);
             }
         }
         else if ($override)
@@ -262,8 +270,7 @@ class SitePage extends TreeModel
                 SitePageOverride::PAGE_ID,
                 self::ID
             )
-            ->where(self::COUNTRY, Session::get(self::COUNTRY))
-            ->latestOfMany();
+            ->where(self::COUNTRY, Session::get(self::COUNTRY));
     }
 
     /**

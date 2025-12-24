@@ -49,8 +49,8 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
     );
   }
 
-  function onDelete(id: number) {
-    router.delete(route("user-bookmarks.destroy", id), {
+  function onDelete(uuid: string) {
+    router.delete(route("user-bookmarks.destroy", uuid), {
       onSuccess: () => {
         fetchBookmarks();
       },
@@ -98,7 +98,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
         <PopoverContent className="border-none p-0">
           {bookmark && form ? (
             <FormProvider
-              action={route("user-bookmarks.update", bookmark.id)}
+              action={route("user-bookmarks.update", bookmark.uuid)}
               id={form.id}
               elements={form.layout}
               method="patch"
@@ -161,7 +161,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                   variant: "ghost",
                   onClick: () => {
                     if (currentBookmark) {
-                      onDelete(currentBookmark.id);
+                      onDelete(currentBookmark.uuid);
                     } else {
                       onAdd();
                     }
@@ -177,7 +177,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                 <ul className="-my-2 flex flex-col gap-1">
                   {bookmarks.map((bookmark) => {
                     return (
-                      <li className="flex items-center justify-between" key={bookmark.id}>
+                      <li className="flex items-center justify-between" key={bookmark.uuid}>
                         <Button
                           className="font-normal text-foreground"
                           linkProps={{
@@ -213,7 +213,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                             tooltip={translations["ui.remove"]}
                             variant="ghost"
                             onClick={() => {
-                              onDelete(bookmark.id);
+                              onDelete(bookmark.uuid);
                             }}
                           />
                         </div>

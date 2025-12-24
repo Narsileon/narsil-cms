@@ -129,7 +129,8 @@ return new class extends Migration
         Schema::create(RolePermission::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(RolePermission::ID);
+                ->uuid(RolePermission::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(RolePermission::ROLE_ID)
                 ->constrained(Role::TABLE, Role::ID)
