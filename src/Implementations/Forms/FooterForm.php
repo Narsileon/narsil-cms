@@ -146,8 +146,8 @@ class FooterForm extends AbstractForm implements Contract
                 ],
             ]),
             new TemplateSection([
-                TemplateSection::HANDLE => 'social_networks',
-                TemplateSection::NAME => trans('narsil::ui.social_networks'),
+                TemplateSection::HANDLE => 'social_media',
+                TemplateSection::NAME => trans('narsil::ui.social_media'),
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([

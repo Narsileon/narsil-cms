@@ -101,7 +101,7 @@ return [
     'sidebar'            => 'Sidebar',
     'site'               => 'Site',
     'sites'              => 'Sites',
-    'social_networks'    => 'Social networks',
+    'social_media'       => 'Social media',
     'structure'          => 'Structure',
     'structures'         => 'Structures',
     'system'             => 'System',
