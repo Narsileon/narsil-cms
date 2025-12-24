@@ -4,6 +4,7 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class FormInputRule extends Model
 {
+    use HasUuids;
+
     #region CONSTRUCTOR
 
     /**
@@ -24,8 +27,11 @@ class FormInputRule extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
+        $this->timestamps = false;
+
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -45,13 +51,6 @@ class FormInputRule extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "input id" column.
      *
      * @var string
@@ -64,6 +63,13 @@ class FormInputRule extends Model
      * @var string
      */
     final public const RULE = 'rule';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 

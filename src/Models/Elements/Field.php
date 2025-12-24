@@ -51,9 +51,9 @@ class Field extends Model
 
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
-            self
-            ::ATTRIBUTE_IDENTIFIER,
+            self::ATTRIBUTE_IDENTIFIER,
         ]);
+
         $this->mergeCasts([
             self::REQUIRED => 'boolean',
             self::SETTINGS => JsonCast::class,

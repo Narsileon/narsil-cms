@@ -84,7 +84,7 @@ abstract class MigrationService
         {
             $column = $table
                 ->jsonb($handle)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
         }
         else
         {

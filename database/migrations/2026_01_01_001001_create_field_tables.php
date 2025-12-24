@@ -125,7 +125,7 @@ return new class extends Migration
                 ->jsonb(Field::NAME);
             $blueprint
                 ->jsonb(Field::DESCRIPTION)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->boolean(Field::REQUIRED)
                 ->default(false);
@@ -137,7 +137,7 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->jsonb(Field::SETTINGS)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->timestamp(Field::CREATED_AT);
             $blueprint

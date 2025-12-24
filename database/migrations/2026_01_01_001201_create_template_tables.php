@@ -77,7 +77,7 @@ return new class extends Migration
                 ->jsonb(TemplateSectionElement::NAME);
             $blueprint
                 ->jsonb(TemplateSectionElement::DESCRIPTION)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->boolean(TemplateSectionElement::REQUIRED)
                 ->nullable();

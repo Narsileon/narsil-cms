@@ -4,6 +4,7 @@ namespace Narsil\Models\Elements;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class FieldBlock extends Pivot
 {
+    use HasUuids;
+
     #region CONSTRUCTOR
 
     /**
@@ -24,10 +27,11 @@ class FieldBlock extends Pivot
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -61,11 +65,11 @@ class FieldBlock extends Pivot
     final public const FIELD_ID = 'field_id';
 
     /**
-     * The name of the "id" column.
+     * The name of the "uuid" column.
      *
      * @var string
      */
-    final public const ID = 'id';
+    final public const UUID = 'uuid';
 
     #endregion
 

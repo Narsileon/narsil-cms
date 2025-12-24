@@ -28,6 +28,7 @@ class FieldRule extends Model
         $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
+        $this->timestamps = false;
 
         $this->mergeGuarded([
             self::UUID,

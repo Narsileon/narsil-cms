@@ -14,6 +14,8 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
  */
 class JsonCast implements CastsAttributes
 {
+    #region PUBLIC METHODS
+
     /**
      * {@inheritDoc}
      */
@@ -34,4 +36,6 @@ class JsonCast implements CastsAttributes
 
         return $value ? json_encode($value) : null;
     }
+
+    #endregion
 }

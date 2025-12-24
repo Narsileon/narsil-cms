@@ -114,7 +114,7 @@ return new class extends Migration
                 ->jsonb(BlockElement::NAME);
             $blueprint
                 ->jsonb(BlockElement::DESCRIPTION)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->boolean(BlockElement::REQUIRED)
                 ->nullable();
@@ -176,7 +176,8 @@ return new class extends Migration
         Schema::create(FieldBlock::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FieldBlock::ID);
+                ->uuid(FieldBlock::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(FieldBlock::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)

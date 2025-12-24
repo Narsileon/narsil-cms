@@ -127,7 +127,8 @@ return new class extends Migration
         Schema::create(FormInputRule::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FormInputRule::ID);
+                ->uuid(FormInputRule::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(FormInputRule::INPUT_ID)
                 ->constrained(FormInput::TABLE, FormInput::ID)
@@ -158,13 +159,13 @@ return new class extends Migration
                 ->jsonb(FormInput::NAME);
             $blueprint
                 ->jsonb(FormInput::DESCRIPTION)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->boolean(FormInput::REQUIRED)
                 ->default(false);
             $blueprint
                 ->jsonb(FormInput::SETTINGS)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->timestamp(FormInput::CREATED_AT);
             $blueprint
@@ -205,7 +206,7 @@ return new class extends Migration
                 ->jsonb(FormFieldsetElement::NAME);
             $blueprint
                 ->jsonb(FormFieldsetElement::DESCRIPTION)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->boolean(FormFieldsetElement::REQUIRED)
                 ->nullable();
@@ -277,7 +278,7 @@ return new class extends Migration
                 ->jsonb(FormPageElement::NAME);
             $blueprint
                 ->jsonb(FormPageElement::DESCRIPTION)
-                ->default(new Expression('(JSON_OBJECT())'));
+                ->nullable();
             $blueprint
                 ->boolean(FormPageElement::REQUIRED)
                 ->nullable();
