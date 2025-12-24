@@ -53,6 +53,10 @@ class SitePageFormRequest implements Contract
             SitePage::ROBOTS => [
                 FormRule::STRING,
             ],
+            SitePage::SHOW_IN_MENU => [
+                FormRule::BOOLEAN,
+                FormRule::REQUIRED,
+            ],
             SitePage::SITE_ID => [
                 FormRule::INTEGER,
                 FormRule::REQUIRED,

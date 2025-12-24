@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Forms;
 
 use Narsil\Contracts\Fields\ArrayField;
 use Narsil\Contracts\Fields\FileField;
+use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FooterForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -13,7 +14,7 @@ use Narsil\Models\Elements\Field;
 use Narsil\Models\Elements\TemplateSection;
 use Narsil\Models\Elements\TemplateSectionElement;
 use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterLegalLink;
+use Narsil\Models\Globals\FooterSitePage;
 use Narsil\Models\Globals\FooterSocialLink;
 use Narsil\Services\RouteService;
 
@@ -46,35 +47,6 @@ class FooterForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
-        $footerLegalLinkForm = [
-            new Field([
-                Field::HANDLE => FooterLegalLink::LABEL,
-                Field::NAME => trans('narsil::validation.attributes.label'),
-                Field::REQUIRED => true,
-                Field::TRANSLATABLE => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
-        ];
-
-        $footerSocialLinkForm = [
-            new Field([
-                Field::HANDLE => FooterSocialLink::LABEL,
-                Field::NAME => trans('narsil::validation.attributes.label'),
-                Field::REQUIRED => true,
-                Field::TRANSLATABLE => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
-            new Field([
-                Field::HANDLE => FooterSocialLink::URL,
-                Field::NAME => trans('narsil::validation.attributes.url'),
-                Field::REQUIRED => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
-        ];
-
         return [
             new TemplateSection([
                 TemplateSection::HANDLE => 'definition',
@@ -140,23 +112,66 @@ class FooterForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
+                ],
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'meta_navigation',
+                TemplateSection::NAME => trans('narsil::ui.meta_navigation'),
+                TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::RELATION_LEGAL_LINKS,
-                            Field::NAME => trans('narsil::validation.attributes.legal_links'),
+                            Field::HANDLE => Footer::RELATION_SITE_PAGES,
+                            Field::NAME => trans('narsil::ui.links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
-                                ->form($footerLegalLinkForm)
-                                ->labelKey(FooterLegalLink::LABEL),
+                                ->form([
+                                    new Field([
+                                        Field::HANDLE => FooterSitePage::LABEL,
+                                        Field::NAME => trans('narsil::validation.attributes.label'),
+                                        Field::TRANSLATABLE => true,
+                                        Field::TYPE => TextField::class,
+                                        Field::SETTINGS => app(TextField::class),
+                                    ]),
+                                    new Field([
+                                        Field::HANDLE => FooterSitePage::SITE_PAGE_ID,
+                                        Field::NAME => trans('narsil::validation.attributes.site_page_id'),
+                                        Field::REQUIRED => true,
+                                        Field::TYPE => SelectField::class,
+                                        Field::SETTINGS => app(SelectField::class),
+                                    ]),
+                                ])
+                                ->labelKey(FooterSitePage::LABEL),
                         ]),
                     ]),
+                ],
+            ]),
+            new TemplateSection([
+                TemplateSection::HANDLE => 'social_networks',
+                TemplateSection::NAME => trans('narsil::ui.social_networks'),
+                TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::RELATION_SOCIAL_LINKS,
-                            Field::NAME => trans('narsil::validation.attributes.social_links'),
+                            Field::NAME => trans('narsil::ui.links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
-                                ->form($footerSocialLinkForm)
+                                ->form([
+                                    new Field([
+                                        Field::HANDLE => FooterSocialLink::LABEL,
+                                        Field::NAME => trans('narsil::validation.attributes.label'),
+                                        Field::REQUIRED => true,
+                                        Field::TRANSLATABLE => true,
+                                        Field::TYPE => TextField::class,
+                                        Field::SETTINGS => app(TextField::class),
+                                    ]),
+                                    new Field([
+                                        Field::HANDLE => FooterSocialLink::URL,
+                                        Field::NAME => trans('narsil::validation.attributes.url'),
+                                        Field::REQUIRED => true,
+                                        Field::TYPE => TextField::class,
+                                        Field::SETTINGS => app(TextField::class),
+                                    ]),
+                                ])
                                 ->labelKey(FooterSocialLink::LABEL),
                         ]),
                     ]),

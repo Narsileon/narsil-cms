@@ -27,6 +27,8 @@ class TableField extends AbstractField implements Contract
 
         app(TranslationsBag::class)
             ->add('narsil::ui.move')
+            ->add('narsil::ui.move_down')
+            ->add('narsil::ui.move_up')
             ->add('narsil::ui.remove');
     }
 

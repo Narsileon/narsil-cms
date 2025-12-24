@@ -58,6 +58,8 @@ function ArrayItem({
     id: id,
   });
 
+  const title = getTranslatableSelectOption(item, labelKey, locale);
+
   return (
     <CollapsibleRoot
       ref={setNodeRef}
@@ -72,9 +74,7 @@ function ArrayItem({
         <CollapsibleTrigger className={cn(open && "border-b")} asChild={true}>
           <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
             <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
-            <span className="grow text-start">
-              {getTranslatableSelectOption(item, labelKey, locale) ?? "item"}
-            </span>
+            <span className="grow text-start">{title ? title : index}</span>
             <div className="flex items-center gap-1">
               <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
               <Button

@@ -184,6 +184,9 @@ return new class extends Migration
                 ->decimal(SitePage::PRIORITY, 3, 2)
                 ->default(1.0);
             $blueprint
+                ->boolean(SitePage::SHOW_IN_MENU)
+                ->default(true);
+            $blueprint
                 ->timestamps();
         });
 

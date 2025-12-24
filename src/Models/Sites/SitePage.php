@@ -49,6 +49,10 @@ class SitePage extends TreeModel
             self::RELATION_OVERRIDE,
         ];
 
+        $this->mergeCasts([
+            self::SHOW_IN_MENU => 'boolean',
+        ]);
+
         $this->mergeGuarded([
             self::ID,
         ]);
@@ -138,6 +142,13 @@ class SitePage extends TreeModel
      * @var string
      */
     final public const ROBOTS = 'robots';
+
+    /**
+     * The name of the "show in menu" column.
+     *
+     * @var string
+     */
+    final public const SHOW_IN_MENU = 'show_in_menu';
 
     /**
      * The name of the "site id" column.

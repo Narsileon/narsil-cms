@@ -6,7 +6,6 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\ArrayField as Contract;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Block;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -26,6 +25,8 @@ class ArrayField extends AbstractField implements Contract
     {
         app(TranslationsBag::class)
             ->add('narsil::ui.add')
+            ->add('narsil::ui.move_down')
+            ->add('narsil::ui.move_up')
             ->add('narsil::ui.remove');
 
         $this->defaultValue([]);

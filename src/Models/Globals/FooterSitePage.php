@@ -5,11 +5,9 @@ namespace Narsil\Models\Globals;
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -18,11 +16,8 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterLegalLink extends Model
+class FooterSitePage extends Pivot
 {
-    use Blameable;
-    use HasAuditLogs;
-    use HasDatetimes;
     use HasTranslations;
     use HasUuids;
 
@@ -36,6 +31,7 @@ class FooterLegalLink extends Model
         $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
+        $this->timestamps = false;
 
         $this->translatable = [
             self::LABEL,
@@ -57,7 +53,7 @@ class FooterLegalLink extends Model
      *
      * @var string
      */
-    final public const TABLE = 'footer_legal_links';
+    final public const TABLE = 'footer_site_page';
 
     #region • COLUMNS
 
@@ -76,11 +72,11 @@ class FooterLegalLink extends Model
     final public const LABEL = 'label';
 
     /**
-     * The name of the "page id" column.
+     * The name of the "site page id" column.
      *
      * @var string
      */
-    final public const PAGE_ID = 'page_id';
+    final public const SITE_PAGE_ID = 'site_page_id';
 
     /**
      * The name of the "position" column.
@@ -107,6 +103,13 @@ class FooterLegalLink extends Model
      */
     final public const RELATION_FOOTER = 'footer';
 
+    /**
+     * The name of the "site page" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE_PAGE = 'site_page';
+
     #endregion
 
     #endregion
@@ -127,6 +130,21 @@ class FooterLegalLink extends Model
                 Footer::class,
                 self::FOOTER_ID,
                 Footer::ID,
+            );
+    }
+
+    /**
+     * Get the associated site page.
+     *
+     * @return BelongsTo
+     */
+    final public function site_page(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                SitePage::class,
+                self::SITE_PAGE_ID,
+                SitePage::ID,
             );
     }
 

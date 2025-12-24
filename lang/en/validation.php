@@ -268,6 +268,7 @@ return [
         'section'                 => 'section',
         'sections'                => 'sections',
         'singular'                => 'singular',
+        'site_page_id'            => 'page',
         'slug'                    => 'slug',
         'social_links'            => 'social links',
         'step'                    => 'step',

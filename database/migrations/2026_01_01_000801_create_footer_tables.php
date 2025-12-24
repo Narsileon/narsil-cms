@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterLegalLink;
+use Narsil\Models\Globals\FooterSitePage;
 use Narsil\Models\Globals\FooterSocialLink;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\User;
@@ -28,9 +28,9 @@ return new class extends Migration
         {
             $this->createFootersTable();
         }
-        if (!Schema::hasTable(FooterLegalLink::TABLE))
+        if (!Schema::hasTable(FooterSitePage::TABLE))
         {
-            $this->createFooterLegalLinksTable();
+            $this->createFooterSitePageTable();
         }
         if (!Schema::hasTable(FooterSocialLink::TABLE))
         {
@@ -46,7 +46,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists(FooterSocialLink::TABLE);
-        Schema::dropIfExists(FooterLegalLink::TABLE);
+        Schema::dropIfExists(FooterSitePage::TABLE);
         Schema::dropIfExists(Footer::TABLE);
     }
 
@@ -55,34 +55,31 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the footer legal links table.
+     * Create the footer site page table.
      *
      * @return void
      */
-    private function createFooterLegalLinksTable(): void
+    private function createFooterSitePageTable(): void
     {
-        Schema::create(FooterLegalLink::TABLE, function (Blueprint $blueprint)
+        Schema::create(FooterSitePage::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FooterLegalLink::UUID)
+                ->uuid(FooterSitePage::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FooterLegalLink::FOOTER_ID)
+                ->foreignId(FooterSitePage::FOOTER_ID)
                 ->constrained(Footer::TABLE, Footer::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->bigInteger(FooterLegalLink::PAGE_ID)
-                ->nullable()
+                ->bigInteger(FooterSitePage::SITE_PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
-                ->nullOnDelete();
+                ->cascadeOnDelete();
             $blueprint
-                ->jsonb(FooterLegalLink::LABEL)
+                ->jsonb(FooterSitePage::LABEL)
                 ->nullable();
             $blueprint
-                ->integer(FooterLegalLink::POSITION)
+                ->integer(FooterSitePage::POSITION)
                 ->default(0);
-            $blueprint
-                ->timestamps();
         });
     }
 

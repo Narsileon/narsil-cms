@@ -7,8 +7,10 @@ namespace Narsil\Models\Globals;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Database\Factories\FooterFactory;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -43,7 +45,7 @@ class Footer extends Model
         ];
 
         $this->with = [
-            self::RELATION_LEGAL_LINKS,
+            self::RELATION_SITE_PAGES,
             self::RELATION_SOCIAL_LINKS,
         ];
 
@@ -139,11 +141,11 @@ class Footer extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "legal links" relation.
+     * The name of the "site pages" relation.
      *
      * @var string
      */
-    final public const RELATION_LEGAL_LINKS = 'legal_links';
+    final public const RELATION_SITE_PAGES = 'site_pages';
 
     /**
      * The name of the "social links" relation.
@@ -161,19 +163,20 @@ class Footer extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated legal links.
+     * Get the associated site pages.
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
-    final public function legal_links(): HasMany
+    final public function site_pages(): BelongsToMany
     {
         return $this
-            ->hasMany(
-                FooterLegalLink::class,
-                FooterLegalLink::FOOTER_ID,
-                self::ID,
+            ->belongsToMany(
+                SitePage::class,
+                FooterSitePage::TABLE,
+                FooterSitePage::FOOTER_ID,
+                FooterSitePage::SITE_PAGE_ID,
             )
-            ->orderBy(FooterLegalLink::POSITION);
+            ->using(FooterSitePage::class);
     }
 
     /**
