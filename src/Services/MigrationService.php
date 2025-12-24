@@ -4,7 +4,6 @@ namespace Narsil\Services;
 
 #region USE
 
-use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;

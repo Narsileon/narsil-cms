@@ -12,6 +12,7 @@ use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Enums\Database\EventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
+use Narsil\Models\Elements\Block;
 use Narsil\Models\Elements\Field;
 use Narsil\Services\Models\FieldService;
 use Narsil\Services\ModelService;
@@ -44,6 +45,10 @@ class FieldStoreController extends RedirectController
             ->validated();
 
         $field = Field::create($attributes);
+
+        $field->blocks()->sync(
+            Arr::pluck(Arr::get($attributes, Field::RELATION_BLOCKS, []), Block::ID)
+        );
 
         if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
         {
