@@ -159,7 +159,7 @@ trait HasPermissions
         {
             if (is_string($permission))
             {
-                $names[] = $permission;
+                $handles[] = $permission;
             }
             else if (is_int($permission))
             {
