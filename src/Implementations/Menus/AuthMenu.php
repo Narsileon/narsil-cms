@@ -55,7 +55,7 @@ class AuthMenu extends AbstractMenu implements Contract
      */
     protected function getLogoutGroup(): array
     {
-        $group = "logout-group";
+        $group = 'logout-group';
 
         return [
             new MenuItem()
@@ -72,7 +72,7 @@ class AuthMenu extends AbstractMenu implements Contract
      */
     protected function getSettingsGroup(): array
     {
-        $group = "settings-group";
+        $group = 'settings-group';
 
         return [
             new MenuItem()

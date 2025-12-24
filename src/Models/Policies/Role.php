@@ -6,6 +6,7 @@ namespace Narsil\Models\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Narsil\Models\User;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -82,6 +83,28 @@ class Role extends Model
 
     #endregion
 
+    #region • COUNTS
+
+    /**
+     * The name of the "users" count.
+     *
+     * @var string
+     */
+    final public const COUNT_USERS = 'users_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "users" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_USERS = 'users';
+
+    #endregion
+
     #endregion
 
     #region PUBLIC METHODS
@@ -103,6 +126,23 @@ class Role extends Model
                 RolePermission::PERMISSION_ID,
             )
             ->using(RolePermission::class);
+    }
+
+    /**
+     * Get the associated users.
+     *
+     * @return BelongsToMany
+     */
+    final public function users(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                User::class,
+                UserRole::TABLE,
+                UserRole::ROLE_ID,
+                UserRole::USER_ID,
+            )
+            ->using(UserRole::class);
     }
 
     #endregion

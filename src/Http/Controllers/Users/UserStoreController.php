@@ -6,6 +6,7 @@ namespace Narsil\Http\Controllers\Users;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\UserFormRequest;
 use Narsil\Enums\Database\EventEnum;
@@ -41,9 +42,15 @@ class UserStoreController extends RedirectController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        new User()
-            ->forceFill($attributes)
-            ->save();
+        $user = new User()
+            ->forceFill($attributes);
+
+        $user->save();
+
+        if ($roles = Arr::get($attributes, User::RELATION_ROLES))
+        {
+            $user->syncRoles($roles);
+        }
 
         return $this
             ->redirect(route('users.index'))

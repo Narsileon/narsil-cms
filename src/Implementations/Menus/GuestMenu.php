@@ -54,7 +54,7 @@ class GuestMenu extends AbstractMenu implements Contract
      */
     protected function getLoginGroup(): array
     {
-        $group = "login-group";
+        $group = 'login-group';
 
         return [
             new MenuItem()
@@ -71,7 +71,7 @@ class GuestMenu extends AbstractMenu implements Contract
      */
     protected function getSettingsGroup(): array
     {
-        $group = "settings-group";
+        $group = 'settings-group';
 
         return [
             new MenuItem()

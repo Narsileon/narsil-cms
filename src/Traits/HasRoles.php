@@ -35,7 +35,7 @@ trait HasRoles
      *
      * @var string
      */
-    final public const RELATION_ROLES = "roles";
+    final public const RELATION_ROLES = 'roles';
 
     #endregion
 

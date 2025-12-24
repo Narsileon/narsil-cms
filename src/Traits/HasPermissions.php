@@ -36,7 +36,7 @@ trait HasPermissions
      *
      * @var string
      */
-    final public const RELATION_PERMISSIONS = "permissions";
+    final public const RELATION_PERMISSIONS = 'permissions';
 
     #endregion
 

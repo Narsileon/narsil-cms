@@ -64,6 +64,17 @@ class UserFormRequest implements Contract
                 FormRule::CONFIRMED,
                 $model ? FormRule::SOMETIMES : FormRule::REQUIRED
             ],
+
+            User::RELATION_PERMISSIONS => [
+                FormRule::ARRAY,
+                FormRule::SOMETIMES,
+                FormRule::NULLABLE,
+            ],
+            User::RELATION_ROLES => [
+                FormRule::ARRAY,
+                FormRule::SOMETIMES,
+                FormRule::NULLABLE,
+            ],
         ];
     }
 

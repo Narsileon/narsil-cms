@@ -51,6 +51,11 @@ class UserUpdateController extends RedirectController
 
         $user->update($attributes);
 
+        if ($roles = Arr::get($attributes, User::RELATION_ROLES))
+        {
+            $user->syncRoles($roles);
+        }
+
         return $this
             ->redirect(route('users.index'))
             ->with('success', ModelService::getSuccessMessage(User::class, EventEnum::UPDATED));

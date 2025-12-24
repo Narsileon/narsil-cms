@@ -50,7 +50,15 @@ class RoleIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = Role::query();
+        $query = Role::query()
+            ->with([
+                Role::RELATION_PERMISSIONS,
+                Role::RELATION_USERS,
+            ])
+            ->withCount([
+                Role::RELATION_PERMISSIONS,
+                Role::RELATION_USERS,
+            ]);
 
         return new DataTableCollection($query, Role::TABLE);
     }

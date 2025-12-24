@@ -56,7 +56,6 @@ class BlockTable extends AbstractTable
                 id: Block::COUNT_FIELDS,
                 type: TypeNameEnum::INTEGER->value,
                 visibility: true,
-
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(Block::TABLE),
