@@ -11,6 +11,8 @@ use Narsil\Contracts\Menu;
 /**
  * @version 1.0.0s
  * @author Jonathan Rigaux
+ *
+ * @see vendor/narsil/cms/config/narsil/bindings/menus.php
  */
 interface Sidebar extends Menu
 {

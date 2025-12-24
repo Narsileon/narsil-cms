@@ -12,6 +12,8 @@ use Narsil\Models\Elements\Field;
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
+ *
+ * @see vendor/narsil/cms/config/narsil/bindings/fields.php
  */
 interface RelationsField extends Contract
 {

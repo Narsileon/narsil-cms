@@ -11,6 +11,8 @@ use Narsil\Contracts\Form;
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
+ *
+ * @see vendor/narsil/cms/config/narsil/bindings/forms.php
  */
 interface HostForm extends Form
 {

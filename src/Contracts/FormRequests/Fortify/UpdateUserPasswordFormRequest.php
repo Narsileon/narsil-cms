@@ -11,6 +11,8 @@ use Narsil\Contracts\FormRequest;
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
+ *
+ * @see vendor/narsil/cms/config/narsil/bindings/form-requests.php
  */
 interface UpdateUserPasswordFormRequest extends FormRequest
 {

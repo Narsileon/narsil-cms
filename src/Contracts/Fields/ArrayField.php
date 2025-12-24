@@ -5,13 +5,14 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
-use Narsil\Models\Elements\Block;
 
 #endregion
 
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
+ *
+ * @see vendor/narsil/cms/config/narsil/bindings/fields.php
  */
 interface ArrayField extends Contract
 {
