@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterSitePage;
+use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Globals\FooterSocialMedium;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\User;
@@ -28,9 +28,9 @@ return new class extends Migration
         {
             $this->createFootersTable();
         }
-        if (!Schema::hasTable(FooterSitePage::TABLE))
+        if (!Schema::hasTable(FooterLink::TABLE))
         {
-            $this->createFooterSitePageTable();
+            $this->createFooterLinkTable();
         }
         if (!Schema::hasTable(FooterSocialMedium::TABLE))
         {
@@ -46,7 +46,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists(FooterSocialMedium::TABLE);
-        Schema::dropIfExists(FooterSitePage::TABLE);
+        Schema::dropIfExists(FooterLink::TABLE);
         Schema::dropIfExists(Footer::TABLE);
     }
 
@@ -59,26 +59,26 @@ return new class extends Migration
      *
      * @return void
      */
-    private function createFooterSitePageTable(): void
+    private function createFooterLinkTable(): void
     {
-        Schema::create(FooterSitePage::TABLE, function (Blueprint $blueprint)
+        Schema::create(FooterLink::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FooterSitePage::UUID)
+                ->uuid(FooterLink::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FooterSitePage::FOOTER_ID)
+                ->foreignId(FooterLink::FOOTER_ID)
                 ->constrained(Footer::TABLE, Footer::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->bigInteger(FooterSitePage::SITE_PAGE_ID)
+                ->bigInteger(FooterLink::SITE_PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->jsonb(FooterSitePage::LABEL)
+                ->jsonb(FooterLink::LABEL)
                 ->nullable();
             $blueprint
-                ->integer(FooterSitePage::POSITION)
+                ->integer(FooterLink::POSITION)
                 ->default(0);
         });
     }

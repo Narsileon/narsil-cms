@@ -14,7 +14,7 @@ use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\TemplateSection;
 use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterSitePage;
+use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Globals\FooterSocialMedium;
 use Narsil\Services\RouteService;
 
@@ -120,20 +120,20 @@ class FooterForm extends AbstractForm implements Contract
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::RELATION_SITE_PAGES,
+                            Field::HANDLE => Footer::RELATION_LINKS,
                             Field::NAME => trans('narsil::ui.links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
                                     new Field([
-                                        Field::HANDLE => FooterSitePage::LABEL,
+                                        Field::HANDLE => FooterLink::LABEL,
                                         Field::NAME => trans('narsil::validation.attributes.label'),
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextField::class,
                                         Field::SETTINGS => app(TextField::class),
                                     ]),
                                     new Field([
-                                        Field::HANDLE => FooterSitePage::SITE_PAGE_ID,
+                                        Field::HANDLE => FooterLink::SITE_PAGE_ID,
                                         Field::NAME => trans('narsil::validation.attributes.site_page_id'),
                                         Field::REQUIRED => true,
                                         Field::TYPE => SelectField::class,
@@ -141,7 +141,7 @@ class FooterForm extends AbstractForm implements Contract
                                             ->href(route('site-pages.search')),
                                     ]),
                                 ])
-                                ->labelKey(FooterSitePage::LABEL),
+                                ->labelKey(FooterLink::LABEL),
                         ]),
                     ]),
                 ],

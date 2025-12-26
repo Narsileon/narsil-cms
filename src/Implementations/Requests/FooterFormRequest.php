@@ -67,7 +67,7 @@ class FooterFormRequest implements Contract
                 FormRule::NULLABLE,
             ],
 
-            Footer::RELATION_SITE_PAGES => [
+            Footer::RELATION_LINKS => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],

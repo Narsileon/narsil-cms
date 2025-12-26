@@ -16,7 +16,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterSitePage extends Pivot
+class FooterLink extends Pivot
 {
     use HasTranslations;
     use HasUuids;
@@ -53,7 +53,7 @@ class FooterSitePage extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'footer_site_page';
+    final public const TABLE = 'footer_links';
 
     #region • COLUMNS
 

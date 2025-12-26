@@ -45,7 +45,7 @@ class Footer extends Model
         ];
 
         $this->with = [
-            self::RELATION_SITE_PAGES,
+            self::RELATION_LINKS,
             self::RELATION_SOCIAL_MEDIA,
         ];
 
@@ -130,6 +130,13 @@ class Footer extends Model
     #region • COUNTS
 
     /**
+     * The name of the "links" count.
+     *
+     * @var string
+     */
+    final public const COUNT_LINKS = 'links_count';
+
+    /**
      * The name of the "social media" count.
      *
      * @var string
@@ -141,11 +148,11 @@ class Footer extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "site pages" relation.
+     * The name of the "links" relation.
      *
      * @var string
      */
-    final public const RELATION_SITE_PAGES = 'site_pages';
+    final public const RELATION_LINKS = 'links';
 
     /**
      * The name of the "social media" relation.
@@ -163,20 +170,20 @@ class Footer extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated site pages.
+     * Get the associated links.
      *
      * @return BelongsToMany
      */
-    final public function site_pages(): BelongsToMany
+    final public function links(): BelongsToMany
     {
         return $this
             ->belongsToMany(
                 SitePage::class,
-                FooterSitePage::TABLE,
-                FooterSitePage::FOOTER_ID,
-                FooterSitePage::SITE_PAGE_ID,
+                FooterLink::TABLE,
+                FooterLink::FOOTER_ID,
+                FooterLink::SITE_PAGE_ID,
             )
-            ->using(FooterSitePage::class);
+            ->using(FooterLink::class);
     }
 
     /**
