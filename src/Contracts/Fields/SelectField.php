@@ -37,6 +37,15 @@ interface SelectField extends Contract
     public function displayValue(bool $displayValue): static;
 
     /**
+     * Set the href attribute.
+     *
+     * @param string $href
+     *
+     * @return static
+     */
+    public function href(string $href): static;
+
+    /**
      * Set the multiple attribute.
      *
      * @param boolean $multiple

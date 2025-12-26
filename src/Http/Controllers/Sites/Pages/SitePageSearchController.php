@@ -5,8 +5,9 @@ namespace Narsil\Http\Controllers\Sites\Pages;
 #region USE
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Narsil\Http\Controllers\RedirectController;
+use Narsil\Http\Requests\SearchRequest;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Support\SelectOption;
 
@@ -21,18 +22,22 @@ class SitePageSearchController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param SearchRequest $request
      * @param string $search
      *
      * @return JsonResponse
      */
-    public function __invoke(Request $request, string $search): JsonResponse
+    public function __invoke(SearchRequest $request): JsonResponse
     {
+        $locale = App::getLocale();
+
+        $search = $request->validated(SearchRequest::SEARCH);
+
         $selectOptions = SitePage::query()
-            ->when($search, function ($query) use ($search)
+            ->when($search, function ($query) use ($locale, $search)
             {
                 return $query
-                    ->where(SitePage::SLUG, 'like', "%$search%");
+                    ->where(SitePage::SLUG . '->' . $locale, 'like', "%$search%");
             })
             ->get()
             ->map(function (SitePage $sitePage)
@@ -43,7 +48,7 @@ class SitePageSearchController extends RedirectController
             })
             ->all();
 
-        return redirect()
+        return response()
             ->json($selectOptions);
     }
 

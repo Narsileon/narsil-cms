@@ -165,7 +165,7 @@ Route::middleware([
 
         #region RESOURCES
 
-        Route::prefix(Block::TABLE)->name(Block::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Block::TABLE))->name(Str::slug(Block::TABLE) . '.')->group(function ()
         {
             Route::get('/', BlockIndexController::class)
                 ->name('index');
@@ -187,7 +187,7 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Field::TABLE)->name(Field::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Field::TABLE))->name(Str::slug(Field::TABLE) . '.')->group(function ()
         {
             Route::get('/', FieldIndexController::class)
                 ->name('index');
@@ -231,7 +231,7 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Footer::TABLE)->name(Footer::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Footer::TABLE))->name(Str::slug(Footer::TABLE) . '.')->group(function ()
         {
             Route::get('/', FooterIndexController::class)
                 ->name('index');
@@ -273,7 +273,7 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Header::TABLE)->name(Header::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Header::TABLE))->name(Str::slug(Header::TABLE) . '.')->group(function ()
         {
             Route::get('/', HeaderIndexController::class)
                 ->name('index');
@@ -293,7 +293,7 @@ Route::middleware([
                 ->name('replicate');
         });
 
-        Route::prefix(Host::TABLE)->name(Host::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Host::TABLE))->name(Str::slug(Host::TABLE) . '.')->group(function ()
         {
             Route::get('/', HostIndexController::class)
                 ->name('index');
@@ -337,7 +337,7 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Permission::TABLE)->name(Permission::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Permission::TABLE))->name(Str::slug(Permission::TABLE) . '.')->group(function ()
         {
             Route::get('/', PermissionIndexController::class)
                 ->name('index');
@@ -347,7 +347,7 @@ Route::middleware([
                 ->name('update');
         });
 
-        Route::prefix(Role::TABLE)->name(Role::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Role::TABLE))->name(Str::slug(Role::TABLE) . '.')->group(function ()
         {
             Route::get('/', RoleIndexController::class)
                 ->name('index');
@@ -369,7 +369,7 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Site::VIRTUAL_TABLE)->name(Site::VIRTUAL_TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Site::VIRTUAL_TABLE))->name(Str::slug(Site::VIRTUAL_TABLE) . '.')->group(function ()
         {
             Route::get('/', SiteSummaryController::class)
                 ->name('summary');
@@ -397,10 +397,10 @@ Route::middleware([
         Route::prefix(Str::slug(SitePage::TABLE))->name(Str::slug(SitePage::TABLE) . '.')->group(function ()
         {
             Route::get('/search', SitePageSearchController::class)
-                ->name('create');
+                ->name('search');
         });
 
-        Route::prefix(Template::TABLE)->name(Template::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(Template::TABLE))->name(Str::slug(Template::TABLE) . '.')->group(function ()
         {
             Route::get('/', TemplateIndexController::class)
                 ->name('index');
@@ -422,7 +422,7 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(User::TABLE)->name(User::TABLE . '.')->group(function ()
+        Route::prefix(Str::slug(User::TABLE))->name(Str::slug(User::TABLE) . '.')->group(function ()
         {
             Route::get('/', UserIndexController::class)
                 ->name('index');

@@ -91,6 +91,16 @@ class SelectField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
+    final public function href(string $href): static
+    {
+        $this->set('href', $href);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     final public function multiple(bool $multiple): static
     {
         $this->set('multiple', $multiple);

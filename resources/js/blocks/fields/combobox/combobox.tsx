@@ -32,12 +32,14 @@ type ComboboxProps = {
   collection?: string;
   disabled?: boolean;
   displayValue?: boolean;
+  href?: string;
   id: string;
   labelPath?: string;
   multiple?: boolean;
   options: SelectOption[] | string[];
   placeholder?: string;
   reload?: string;
+  route?: string;
   searchable?: boolean;
   value: string | string[];
   valuePath?: string;
@@ -49,6 +51,7 @@ function Combobox({
   clearable = false,
   disabled,
   displayValue = true,
+  href,
   id,
   labelPath = "label",
   multiple = false,
@@ -71,41 +74,82 @@ function Combobox({
 
   const parentRef = useRef<HTMLDivElement | null>(null);
 
+  const [fetchedOptions, setFetchedOptions] = useState<SelectOption[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
   const [search, setSearch] = useState<string>("");
+
+  const resolvedOptions = href ? fetchedOptions : options;
+
+  const debouncedSetFetchedOptions = useMemo(
+    () =>
+      debounce(async (query: string) => {
+        if (!href || query.length < 3) {
+          return;
+        }
+
+        setLoading(true);
+
+        try {
+          const response = await fetch(`${href}?search=${encodeURIComponent(query)}`);
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch options");
+          }
+
+          const data = await response.json();
+
+          setFetchedOptions(data);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+      }, 400),
+    [href],
+  );
 
   const debouncedSetSearch = useMemo(() => debounce((value: string) => setSearch(value), 300), []);
 
   function onValueChange(value: string) {
     setInput(value);
     debouncedSetSearch(value);
+
+    if (href && value.length >= 3) {
+      debouncedSetFetchedOptions(value);
+    }
   }
 
   const filteredOptions = useMemo(() => {
+    if (href) {
+      return resolvedOptions;
+    }
+
     if (!search) {
-      return options;
+      return resolvedOptions;
     }
 
     const searchedLabel = lowerCase(search);
 
-    return options.filter((option) => {
+    return resolvedOptions.filter((option) => {
       const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
 
       return lowerCase(optionLabel).includes(searchedLabel);
     });
-  }, [options, search]);
+  }, [locale, href, resolvedOptions, search]);
 
   const selectedValues = useMemo<string[]>(() => {
     return multiple ? (value as string[]) : value ? [value as string] : [];
   }, [value, multiple]);
 
   const selectedOptions = useMemo(() => {
-    return options.filter((option) => selectedValues.includes(getSelectOption(option, valuePath)));
-  }, [options, selectedValues, valuePath]);
+    return resolvedOptions.filter((option) =>
+      selectedValues.includes(getSelectOption(option, valuePath)),
+    );
+  }, [resolvedOptions, selectedValues, valuePath]);
 
-  const option = options.find((option) => {
+  const option = resolvedOptions.find((option) => {
     const optionValue = getSelectOption(option, valuePath);
 
     return optionValue == value;
@@ -151,6 +195,13 @@ function Combobox({
 
     setOpen(false);
   }
+
+  useEffect(() => {
+    return () => {
+      debouncedSetFetchedOptions.cancel();
+      debouncedSetSearch.cancel();
+    };
+  }, []);
 
   useEffect(() => {
     if (open) {

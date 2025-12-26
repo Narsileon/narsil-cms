@@ -137,7 +137,8 @@ class FooterForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.site_page_id'),
                                         Field::REQUIRED => true,
                                         Field::TYPE => SelectField::class,
-                                        Field::SETTINGS => app(SelectField::class),
+                                        Field::SETTINGS => app(SelectField::class)
+                                            ->href(route('site-pages.search')),
                                     ]),
                                 ])
                                 ->labelKey(FooterSitePage::LABEL),
