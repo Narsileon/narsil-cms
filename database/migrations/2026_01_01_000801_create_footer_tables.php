@@ -111,8 +111,6 @@ return new class extends Migration
             $blueprint
                 ->integer(FooterSocialMedium::POSITION)
                 ->default(0);
-            $blueprint
-                ->timestamps();
         });
     }
 

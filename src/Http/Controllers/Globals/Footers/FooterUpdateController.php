@@ -6,12 +6,14 @@ namespace Narsil\Http\Controllers\Globals\Footers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FooterFormRequest;
 use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Footer;
+use Narsil\Services\Models\FooterService;
 use Narsil\Services\ModelService;
 
 #endregion
@@ -43,6 +45,9 @@ class FooterUpdateController extends RedirectController
             ->validated();
 
         $footer->update($attributes);
+
+        FooterService::syncLinks($footer, Arr::get($attributes, Footer::RELATION_LINKS, []));
+        FooterService::syncSocialMedia($footer, Arr::get($attributes, Footer::RELATION_SOCIAL_MEDIA, []));
 
         return $this
             ->redirect(route('footers.index'))

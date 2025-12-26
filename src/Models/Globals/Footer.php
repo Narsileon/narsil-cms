@@ -172,18 +172,17 @@ class Footer extends Model
     /**
      * Get the associated links.
      *
-     * @return BelongsToMany
+     * @return HasMany
      */
-    final public function links(): BelongsToMany
+    final public function links(): HasMany
     {
         return $this
-            ->belongsToMany(
-                SitePage::class,
-                FooterLink::TABLE,
+            ->hasMany(
+                FooterLink::class,
                 FooterLink::FOOTER_ID,
-                FooterLink::SITE_PAGE_ID,
+                self::ID
             )
-            ->using(FooterLink::class);
+            ->orderBy(FooterLink::POSITION);
     }
 
     /**

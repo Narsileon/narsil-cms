@@ -7,9 +7,6 @@ namespace Narsil\Models\Globals;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -20,9 +17,6 @@ use Narsil\Traits\HasTranslations;
  */
 class FooterSocialMedium extends Model
 {
-    use Blameable;
-    use HasAuditLogs;
-    use HasDatetimes;
     use HasTranslations;
     use HasUuids;
 
@@ -36,6 +30,7 @@ class FooterSocialMedium extends Model
         $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
+        $this->timestamps = false;
 
         $this->translatable = [
             self::LABEL,
