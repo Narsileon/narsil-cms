@@ -14,8 +14,8 @@ use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormFieldset;
-use Narsil\Models\Forms\FormInput;
+use Narsil\Models\Forms\Fieldset;
+use Narsil\Models\Forms\Input;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
@@ -127,19 +127,19 @@ class Sidebar extends AbstractMenu implements Contract
                 ]),
             new MenuItem()
                 ->group($group)
-                ->href(route('form-fieldsets.index'))
+                ->href(route('fieldsets.index'))
                 ->icon('fieldset')
-                ->label(ModelService::getTableLabel(FormFieldset::TABLE))
+                ->label(ModelService::getTableLabel(Fieldset::TABLE))
                 ->permissions([
-                    PermissionService::getHandle(FormFieldset::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Fieldset::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
-                ->href(route('form-inputs.index'))
+                ->href(route('inputs.index'))
                 ->icon('input')
-                ->label(ModelService::getTableLabel(FormInput::TABLE))
+                ->label(ModelService::getTableLabel(Input::TABLE))
                 ->permissions([
-                    PermissionService::getHandle(FormInput::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Input::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
         ];
     }

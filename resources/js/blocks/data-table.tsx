@@ -118,7 +118,7 @@ function DataTable({ collection, title }: DataTableProps) {
             <TableHeader>
               {dataTable.getHeaderGroups().map((headerGroup) => {
                 return (
-                  <DataTableRow className="bg-accent" key={headerGroup.id}>
+                  <DataTableRow className="sticky top-0 z-10 bg-accent" key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
                       if (header.isPlaceholder) {
                         return null;

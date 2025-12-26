@@ -3,13 +3,10 @@
 #region USE
 
 use Narsil\Models\Configuration;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormFieldset;
-use Narsil\Models\Forms\FormInput;
+use Narsil\Models\Forms\Input;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterSocialLink;
 use Narsil\Models\Globals\Header;
@@ -19,6 +16,9 @@ use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
@@ -34,8 +34,8 @@ return [
     Footer::TABLE => 'footers',
     FooterSocialLink::TABLE => 'social links',
     Form::TABLE => 'forms',
-    FormFieldset::TABLE => 'fieldsets',
-    FormInput::TABLE => 'inputs',
+    Fieldset::TABLE => 'fieldsets',
+    Input::TABLE => 'inputs',
     Header::TABLE => 'headers',
     Host::TABLE => 'hosts',
     HostLocale::TABLE => 'locales',

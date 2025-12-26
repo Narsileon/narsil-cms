@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Forms;
 
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\FormFieldsetElementForm;
+use Narsil\Contracts\Forms\FieldsetElementForm;
 use Narsil\Contracts\Forms\FormPageForm;
 use Narsil\Contracts\Forms\FormForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -14,8 +14,8 @@ use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\TemplateSection;
 use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormFieldset;
-use Narsil\Models\Forms\FormInput;
+use Narsil\Models\Forms\Fieldset;
+use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\FormPage;
 use Narsil\Models\Forms\FormPageElement;
 use Narsil\Services\ModelService;
@@ -51,8 +51,8 @@ class FormForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
-        $formFieldsetSelectOptions = static::getFormFieldsetsSelectOptions();
-        $formInputSelectOptions = static::getFormInputSelectOptions();
+        $fieldsetSelectOptions = static::getFieldsetsSelectOptions();
+        $inputSelectOptions = static::getInputSelectOptions();
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
@@ -107,22 +107,22 @@ class FormForm extends AbstractForm implements Contract
                                         Field::NAME => trans('narsil::validation.attributes.elements'),
                                         Field::TYPE => RelationsField::class,
                                         Field::SETTINGS => app(RelationsField::class)
-                                            ->form(app(FormFieldsetElementForm::class)->jsonSerialize())
+                                            ->form(app(FieldsetElementForm::class)->jsonSerialize())
                                             ->addOption(
-                                                identifier: FormFieldset::TABLE,
-                                                label: ModelService::getModelLabel(FormFieldset::class),
+                                                identifier: Fieldset::TABLE,
+                                                label: ModelService::getModelLabel(Fieldset::class),
                                                 optionLabel: FormPageElement::NAME,
                                                 optionValue: FormPageElement::HANDLE,
-                                                options: $formFieldsetSelectOptions,
-                                                routes: RouteService::getNames(FormFieldset::TABLE),
+                                                options: $fieldsetSelectOptions,
+                                                routes: RouteService::getNames(Fieldset::TABLE),
                                             )
                                             ->addOption(
-                                                identifier: FormInput::TABLE,
-                                                label: ModelService::getModelLabel(FormInput::class),
+                                                identifier: Input::TABLE,
+                                                label: ModelService::getModelLabel(Input::class),
                                                 optionLabel: FormPageElement::NAME,
                                                 optionValue: FormPageElement::HANDLE,
-                                                options: $formInputSelectOptions,
-                                                routes: RouteService::getNames(FormInput::TABLE),
+                                                options: $inputSelectOptions,
+                                                routes: RouteService::getNames(Input::TABLE),
                                             )
                                             ->widthOptions($widthSelectOptions),
                                     ])
@@ -140,19 +140,19 @@ class FormForm extends AbstractForm implements Contract
      *
      * @return array<SelectOption>
      */
-    protected static function getFormFieldsetsSelectOptions(): array
+    protected static function getFieldsetsSelectOptions(): array
     {
-        return FormFieldset::query()
-            ->orderBy(FormFieldset::NAME)
+        return Fieldset::query()
+            ->orderBy(Fieldset::NAME)
             ->get()
-            ->map(function (FormFieldset $formFieldset)
+            ->map(function (Fieldset $fieldset)
             {
                 $option = new SelectOption()
-                    ->id($formFieldset->{FormFieldset::ID})
-                    ->identifier($formFieldset->{FormFieldset::ATTRIBUTE_IDENTIFIER})
-                    ->optionIcon($formFieldset->{FormFieldset::ATTRIBUTE_ICON})
-                    ->optionLabel($formFieldset->getTranslations(FormFieldset::NAME))
-                    ->optionValue($formFieldset->{FormFieldset::HANDLE});
+                    ->id($fieldset->{Fieldset::ID})
+                    ->identifier($fieldset->{Fieldset::ATTRIBUTE_IDENTIFIER})
+                    ->optionIcon($fieldset->{Fieldset::ATTRIBUTE_ICON})
+                    ->optionLabel($fieldset->getTranslations(Fieldset::NAME))
+                    ->optionValue($fieldset->{Fieldset::HANDLE});
 
                 return $option;
             })
@@ -160,23 +160,23 @@ class FormForm extends AbstractForm implements Contract
     }
 
     /**
-     * Get the form input select options.
+     * Get the input select options.
      *
      * @return array<SelectOption>
      */
-    protected static function getFormInputSelectOptions(): array
+    protected static function getInputSelectOptions(): array
     {
-        return FormInput::query()
-            ->orderBy(FormInput::NAME)
+        return Input::query()
+            ->orderBy(Input::NAME)
             ->get()
-            ->map(function (FormInput $formInput)
+            ->map(function (Input $input)
             {
                 return new SelectOption()
-                    ->id($formInput->{FormInput::ID})
-                    ->identifier($formInput->{FormInput::ATTRIBUTE_IDENTIFIER})
-                    ->optionIcon($formInput->{FormInput::ATTRIBUTE_ICON})
-                    ->optionLabel($formInput->getTranslations(FormInput::NAME))
-                    ->optionValue($formInput->{FormInput::HANDLE});
+                    ->id($input->{Input::ID})
+                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER})
+                    ->optionIcon($input->{Input::ATTRIBUTE_ICON})
+                    ->optionLabel($input->getTranslations(Input::NAME))
+                    ->optionValue($input->{Input::HANDLE});
             })
             ->toArray();
     }

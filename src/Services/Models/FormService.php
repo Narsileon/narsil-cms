@@ -7,8 +7,8 @@ namespace Narsil\Services\Models;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormFieldset;
-use Narsil\Models\Forms\FormInput;
+use Narsil\Models\Forms\Fieldset;
+use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\FormPage;
 use Narsil\Models\Forms\FormPageElement;
 use Narsil\Services\DatabaseService;
@@ -72,8 +72,8 @@ abstract class FormService
 
             match ($table)
             {
-                FormFieldset::TABLE => $formPage->fieldsets()->attach($id, $attributes),
-                FormInput::TABLE => $formPage->inputs()->attach($id, $attributes),
+                Fieldset::TABLE => $formPage->fieldsets()->attach($id, $attributes),
+                Input::TABLE => $formPage->inputs()->attach($id, $attributes),
                 default => null,
             };
         }

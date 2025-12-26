@@ -239,7 +239,6 @@ class SitePage extends TreeModel
 
         $override = $sitePage->{SitePage::RELATION_OVERRIDE};
 
-
         $overrides = Arr::only($sitePage->getDirty(), [
             SitePage::LEFT_ID,
             SitePage::PARENT_ID,

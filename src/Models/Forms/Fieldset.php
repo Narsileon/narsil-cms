@@ -5,9 +5,12 @@ namespace Narsil\Models\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Narsil\Traits\Blameable;
+use Narsil\Traits\HasAuditLogs;
+use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -16,8 +19,12 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormPage extends Model
+class Fieldset extends Model
 {
+    use Blameable;
+    use HasAuditLogs;
+    use HasDatetimes;
+    use HasIdentifier;
     use HasTranslations;
 
     #region CONSTRUCTOR
@@ -29,10 +36,6 @@ class FormPage extends Model
     {
         $this->table = self::TABLE;
 
-        $this->touches = [
-            self::RELATION_FORM,
-        ];
-
         $this->translatable = [
             self::NAME,
         ];
@@ -40,6 +43,11 @@ class FormPage extends Model
         $this->with = [
             self::RELATION_ELEMENTS,
         ];
+
+        $this->mergeAppends([
+            self::ATTRIBUTE_ICON,
+            self::ATTRIBUTE_IDENTIFIER,
+        ]);
 
         $this->mergeGuarded([
             self::ID,
@@ -57,16 +65,9 @@ class FormPage extends Model
      *
      * @var string
      */
-    final public const TABLE = 'form_pages';
+    final public const TABLE = 'fieldsets';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "form id" column.
-     *
-     * @var string
-     */
-    final public const FORM_ID = 'form_id';
 
     /**
      * The name of the "handle" column.
@@ -89,23 +90,38 @@ class FormPage extends Model
      */
     final public const NAME = 'name';
 
+    #endregion
+
+    #region • ATTRIBUTES
+
     /**
-     * The name of the "position" column.
+     * The name of the "icon" attribute.
      *
      * @var string
      */
-    final public const POSITION = 'position';
+    final public const ATTRIBUTE_ICON = 'icon';
+
+    #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "elements" count.
+     *
+     * @var string
+     */
+    final public const COUNT_ELEMENTS = 'elements_count';
+
+    /**
+     * The name of the "input" count.
+     *
+     * @var string
+     */
+    final public const COUNT_INPUTS = 'input_count';
 
     #endregion
 
     #region • RELATIONS
-
-    /**
-     * The name of the "blocks" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_BlOCKS = 'blocks';
 
     /**
      * The name of the "elements" relation.
@@ -115,24 +131,31 @@ class FormPage extends Model
     final public const RELATION_ELEMENTS = 'elements';
 
     /**
-     * The name of the "fields" relation.
+     * The name of the "inputs" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELDS = 'fields';
-
-    /**
-     * The name of the "form" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_FORM = 'form';
+    final public const RELATION_INPUTS = 'inputs';
 
     #endregion
 
     #endregion
 
     #region PUBLIC METHODS
+
+    #region • ACCESSORS
+
+    /**
+     * Get the icon of the fieldset.
+     *
+     * @return string
+     */
+    public function getIconAttribute(): string
+    {
+        return 'fieldset';
+    }
+
+    #endregion
 
     #region • RELATIONSHIPS
 
@@ -145,28 +168,11 @@ class FormPage extends Model
     {
         return $this
             ->hasMany(
-                FormPageElement::class,
-                FormPageElement::PAGE_ID,
+                FieldsetElement::class,
+                FieldsetElement::FIELDSET_ID,
                 self::ID,
             )
-            ->orderBy(FormPageElement::POSITION);
-    }
-
-    /**
-     * Get the associated fieldsets.
-     *
-     * @return MorphToMany
-     */
-    final public function fieldsets(): MorphToMany
-    {
-        return $this
-            ->morphedByMany(
-                Fieldset::class,
-                FormPageElement::RELATION_ELEMENT,
-                FormPageElement::TABLE,
-                FormPageElement::PAGE_ID,
-                FormPageElement::ELEMENT_ID,
-            );
+            ->orderBy(FieldsetElement::POSITION);
     }
 
     /**
@@ -179,25 +185,10 @@ class FormPage extends Model
         return $this
             ->morphedByMany(
                 Input::class,
-                FormPageElement::RELATION_ELEMENT,
-                FormPageElement::TABLE,
-                FormPageElement::PAGE_ID,
-                FormPageElement::ELEMENT_ID,
-            );
-    }
-
-    /**
-     * Get the associated form.
-     *
-     * @return BelongsTo
-     */
-    final public function form(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Form::class,
-                self::FORM_ID,
-                Form::ID,
+                FieldsetElement::RELATION_ELEMENT,
+                FieldsetElement::TABLE,
+                FieldsetElement::FIELDSET_ID,
+                FieldsetElement::ELEMENT_ID,
             );
     }
 

@@ -5,14 +5,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Models\Forms\Fieldset;
+use Narsil\Models\Forms\FieldsetElement;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormFieldset;
-use Narsil\Models\Forms\FormFieldsetElement;
-use Narsil\Models\Forms\FormInput;
-use Narsil\Models\Forms\FormInputOption;
-use Narsil\Models\Forms\FormInputValidationRule;
 use Narsil\Models\Forms\FormPage;
 use Narsil\Models\Forms\FormPageElement;
+use Narsil\Models\Forms\Input;
+use Narsil\Models\Forms\InputOption;
+use Narsil\Models\Forms\InputValidationRule;
 use Narsil\Models\User;
 use Narsil\Models\ValidationRule;
 
@@ -29,26 +29,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(FormInput::TABLE))
+        if (!Schema::hasTable(Input::TABLE))
         {
-            $this->createFormInputsTable();
+            $this->createInputsTable();
         }
-        if (!Schema::hasTable(FormInputOption::TABLE))
+        if (!Schema::hasTable(InputOption::TABLE))
         {
-            $this->createFormInputOptionsTable();
+            $this->createInputOptionsTable();
         }
-        if (!Schema::hasTable(FormInputValidationRule::TABLE))
+        if (!Schema::hasTable(InputValidationRule::TABLE))
         {
-            $this->createFormInputValidationRuleTable();
+            $this->createInputValidationRuleTable();
         }
 
-        if (!Schema::hasTable(FormFieldset::TABLE))
+        if (!Schema::hasTable(Fieldset::TABLE))
         {
-            $this->createFormFieldsetsTable();
+            $this->createFieldsetsTable();
         }
-        if (!Schema::hasTable(FormFieldsetElement::TABLE))
+        if (!Schema::hasTable(FieldsetElement::TABLE))
         {
-            $this->createFormFieldsetElementTable();
+            $this->createFieldsetElementTable();
         }
 
         if (!Schema::hasTable(Form::TABLE))
@@ -72,12 +72,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FormInputValidationRule::TABLE);
-        Schema::dropIfExists(FormInputOption::TABLE);
-        Schema::dropIfExists(FormInput::TABLE);
+        Schema::dropIfExists(InputValidationRule::TABLE);
+        Schema::dropIfExists(InputOption::TABLE);
+        Schema::dropIfExists(Input::TABLE);
 
-        Schema::dropIfExists(FormFieldsetElement::TABLE);
-        Schema::dropIfExists(FormFieldset::TABLE);
+        Schema::dropIfExists(FieldsetElement::TABLE);
+        Schema::dropIfExists(Fieldset::TABLE);
 
         Schema::dropIfExists(FormPageElement::TABLE);
         Schema::dropIfExists(FormPage::TABLE);
@@ -89,27 +89,27 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the form input options table.
+     * Create the input options table.
      *
      * @return void
      */
-    private function createFormInputOptionsTable(): void
+    private function createInputOptionsTable(): void
     {
-        Schema::create(FormInputOption::TABLE, function (Blueprint $blueprint)
+        Schema::create(InputOption::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FormInputOption::UUID)
+                ->uuid(InputOption::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FormInputOption::INPUT_ID)
-                ->constrained(FormInput::TABLE, FormInput::ID)
+                ->foreignId(InputOption::INPUT_ID)
+                ->constrained(Input::TABLE, Input::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(FormInputOption::VALUE);
+                ->string(InputOption::VALUE);
             $blueprint
-                ->jsonb(FormInputOption::LABEL);
+                ->jsonb(InputOption::LABEL);
             $blueprint
-                ->integer(FormInputOption::POSITION)
+                ->integer(InputOption::POSITION)
                 ->default(0);
             $blueprint
                 ->timestamps();
@@ -117,66 +117,66 @@ return new class extends Migration
     }
 
     /**
-     * Create the form input validation rule table.
+     * Create the input validation rule table.
      *
      * @return void
      */
-    private function createFormInputValidationRuleTable(): void
+    private function createInputValidationRuleTable(): void
     {
-        Schema::create(FormInputValidationRule::TABLE, function (Blueprint $blueprint)
+        Schema::create(InputValidationRule::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FormInputValidationRule::UUID)
+                ->uuid(InputValidationRule::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FormInputValidationRule::INPUT_ID)
-                ->constrained(FormInput::TABLE, FormInput::ID)
+                ->foreignId(InputValidationRule::INPUT_ID)
+                ->constrained(Input::TABLE, Input::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(FormInputValidationRule::VALIDATION_RULE_ID)
+                ->foreignId(InputValidationRule::VALIDATION_RULE_ID)
                 ->constrained(ValidationRule::TABLE, ValidationRule::ID)
                 ->cascadeOnDelete();
         });
     }
 
     /**
-     * Create the form inputs table.
+     * Create the inputs table.
      *
      * @return void
      */
-    private function createFormInputsTable(): void
+    private function createInputsTable(): void
     {
-        Schema::create(FormInput::TABLE, function (Blueprint $blueprint)
+        Schema::create(Input::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FormInput::ID);
+                ->id(Input::ID);
             $blueprint
-                ->string(FormInput::HANDLE)
+                ->string(Input::HANDLE)
                 ->unique();
             $blueprint
-                ->string(FormInput::TYPE);
+                ->string(Input::TYPE);
             $blueprint
-                ->jsonb(FormInput::NAME);
+                ->jsonb(Input::NAME);
             $blueprint
-                ->jsonb(FormInput::DESCRIPTION)
+                ->jsonb(Input::DESCRIPTION)
                 ->nullable();
             $blueprint
-                ->boolean(FormInput::REQUIRED)
+                ->boolean(Input::REQUIRED)
                 ->default(false);
             $blueprint
-                ->jsonb(FormInput::SETTINGS)
+                ->jsonb(Input::SETTINGS)
                 ->nullable();
             $blueprint
-                ->timestamp(FormInput::CREATED_AT);
+                ->timestamp(Input::CREATED_AT);
             $blueprint
-                ->foreignId(FormInput::CREATED_BY)
+                ->foreignId(Input::CREATED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
             $blueprint
-                ->timestamp(FormInput::UPDATED_AT);
+                ->timestamp(Input::UPDATED_AT);
             $blueprint
-                ->foreignId(FormInput::UPDATED_BY)
+                ->foreignId(Input::UPDATED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
@@ -188,36 +188,36 @@ return new class extends Migration
      *
      * @return void
      */
-    private function createFormFieldsetElementTable(): void
+    private function createFieldsetElementTable(): void
     {
-        Schema::create(FormFieldsetElement::TABLE, function (Blueprint $blueprint)
+        Schema::create(FieldsetElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FormFieldsetElement::ID);
+                ->id(FieldsetElement::ID);
             $blueprint
-                ->foreignId(FormFieldsetElement::FIELDSET_ID)
-                ->constrained(FormFieldset::TABLE, FormFieldset::ID)
+                ->foreignId(FieldsetElement::FIELDSET_ID)
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(FormFieldsetElement::RELATION_ELEMENT);
+                ->morphs(FieldsetElement::RELATION_ELEMENT);
             $blueprint
-                ->string(FormFieldsetElement::HANDLE);
+                ->string(FieldsetElement::HANDLE);
             $blueprint
-                ->jsonb(FormFieldsetElement::NAME);
+                ->jsonb(FieldsetElement::NAME);
             $blueprint
-                ->jsonb(FormFieldsetElement::DESCRIPTION)
+                ->jsonb(FieldsetElement::DESCRIPTION)
                 ->nullable();
             $blueprint
-                ->boolean(FormFieldsetElement::REQUIRED)
+                ->boolean(FieldsetElement::REQUIRED)
                 ->nullable();
             $blueprint
-                ->boolean(FormFieldsetElement::TRANSLATABLE)
+                ->boolean(FieldsetElement::TRANSLATABLE)
                 ->nullable();
             $blueprint
-                ->integer(FormFieldsetElement::POSITION)
+                ->integer(FieldsetElement::POSITION)
                 ->default(0);
             $blueprint
-                ->smallInteger(FormFieldsetElement::WIDTH)
+                ->smallInteger(FieldsetElement::WIDTH)
                 ->default(100);
         });
     }
@@ -227,28 +227,28 @@ return new class extends Migration
      *
      * @return void
      */
-    private function createFormFieldsetsTable(): void
+    private function createFieldsetsTable(): void
     {
-        Schema::create(FormFieldset::TABLE, function (Blueprint $blueprint)
+        Schema::create(Fieldset::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FormFieldset::ID);
+                ->id(Fieldset::ID);
             $blueprint
-                ->string(FormFieldset::HANDLE)
+                ->string(Fieldset::HANDLE)
                 ->unique();
             $blueprint
-                ->jsonb(FormFieldset::NAME);
+                ->jsonb(Fieldset::NAME);
             $blueprint
-                ->timestamp(FormFieldset::CREATED_AT);
+                ->timestamp(Fieldset::CREATED_AT);
             $blueprint
-                ->foreignId(FormFieldset::CREATED_BY)
+                ->foreignId(Fieldset::CREATED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
             $blueprint
-                ->timestamp(FormFieldset::UPDATED_AT);
+                ->timestamp(Fieldset::UPDATED_AT);
             $blueprint
-                ->foreignId(FormFieldset::UPDATED_BY)
+                ->foreignId(Fieldset::UPDATED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
