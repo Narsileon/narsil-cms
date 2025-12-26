@@ -8,7 +8,7 @@ use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterSocialLink;
+use Narsil\Models\Globals\FooterSocialMedium;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
@@ -32,7 +32,7 @@ return [
     Entity::TABLE => 'Entitäten',
     Field::TABLE => 'Felder',
     Footer::TABLE => 'Fußzeilen',
-    FooterSocialLink::TABLE => 'Sozialen Netzwerke',
+    FooterSocialMedium::TABLE => 'Soziale Medien',
     Form::TABLE => 'Formulare',
     Fieldset::TABLE => 'Feldgruppen',
     Input::TABLE => 'Eingaben',

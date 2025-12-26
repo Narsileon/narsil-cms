@@ -6,7 +6,7 @@ namespace Narsil\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterSocialLink;
+use Narsil\Models\Globals\FooterSocialMedium;
 
 #endregion
 
@@ -25,7 +25,7 @@ class FooterFactory extends Factory
     {
         return $this->afterCreating(function (Footer $footer)
         {
-            $this->createSocialLink($footer);
+            $this->createSocialMedia($footer);
         });
     }
 
@@ -53,26 +53,26 @@ class FooterFactory extends Factory
      *
      * @return void
      */
-    protected function createSocialLink(Footer $footer): void
+    protected function createSocialMedia(Footer $footer): void
     {
-        $socialLinks = [[
-            FooterSocialLink::ICON => 'linkedin',
-            FooterSocialLink::LABEL => 'LinkedIn',
-            FooterSocialLink::URL => 'https://linkedin.com'
+        $socialMedia = [[
+            FooterSocialMedium::ICON => 'linkedin',
+            FooterSocialMedium::LABEL => 'LinkedIn',
+            FooterSocialMedium::URL => 'https://linkedin.com'
         ], [
-            FooterSocialLink::ICON => 'instagram',
-            FooterSocialLink::LABEL => 'Instagram',
-            FooterSocialLink::URL => 'https://instagram.com'
+            FooterSocialMedium::ICON => 'instagram',
+            FooterSocialMedium::LABEL => 'Instagram',
+            FooterSocialMedium::URL => 'https://instagram.com'
         ]];
 
-        foreach ($socialLinks as $key => $socialLink)
+        foreach ($socialMedia as $key => $socialMedium)
         {
-            FooterSocialLink::create([
-                FooterSocialLink::FOOTER_ID => $footer->id,
-                FooterSocialLink::ICON => $socialLink[FooterSocialLink::ICON],
-                FooterSocialLink::LABEL => $socialLink[FooterSocialLink::LABEL],
-                FooterSocialLink::POSITION  => $key,
-                FooterSocialLink::URL => $socialLink[FooterSocialLink::URL],
+            FooterSocialMedium::create([
+                FooterSocialMedium::FOOTER_ID => $footer->id,
+                FooterSocialMedium::ICON => $socialMedium[FooterSocialMedium::ICON],
+                FooterSocialMedium::LABEL => $socialMedium[FooterSocialMedium::LABEL],
+                FooterSocialMedium::POSITION  => $key,
+                FooterSocialMedium::URL => $socialMedium[FooterSocialMedium::URL],
             ]);
         }
     }

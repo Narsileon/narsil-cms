@@ -18,7 +18,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterSocialLink extends Model
+class FooterSocialMedium extends Model
 {
     use Blameable;
     use HasAuditLogs;
@@ -57,7 +57,7 @@ class FooterSocialLink extends Model
      *
      * @var string
      */
-    final public const TABLE = 'footer_social_links';
+    final public const TABLE = 'footer_social_media';
 
     #region • COLUMNS
 

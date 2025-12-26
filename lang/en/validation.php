@@ -270,7 +270,7 @@ return [
         'singular'                => 'singular',
         'site_page_id'            => 'page',
         'slug'                    => 'slug',
-        'social_links'            => 'social links',
+        'social_media'            => 'social media',
         'step'                    => 'step',
         'theme'                   => 'theme',
         'title'                   => 'title',

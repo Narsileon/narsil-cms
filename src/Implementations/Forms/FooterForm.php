@@ -15,7 +15,7 @@ use Narsil\Models\Structures\TemplateSection;
 use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterSitePage;
-use Narsil\Models\Globals\FooterSocialLink;
+use Narsil\Models\Globals\FooterSocialMedium;
 use Narsil\Services\RouteService;
 
 #endregion
@@ -152,13 +152,13 @@ class FooterForm extends AbstractForm implements Contract
                 TemplateSection::RELATION_ELEMENTS => [
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::RELATION_SOCIAL_LINKS,
+                            Field::HANDLE => Footer::RELATION_SOCIAL_MEDIA,
                             Field::NAME => trans('narsil::ui.links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
                                     new Field([
-                                        Field::HANDLE => FooterSocialLink::LABEL,
+                                        Field::HANDLE => FooterSocialMedium::LABEL,
                                         Field::NAME => trans('narsil::validation.attributes.label'),
                                         Field::REQUIRED => true,
                                         Field::TRANSLATABLE => true,
@@ -166,14 +166,14 @@ class FooterForm extends AbstractForm implements Contract
                                         Field::SETTINGS => app(TextField::class),
                                     ]),
                                     new Field([
-                                        Field::HANDLE => FooterSocialLink::URL,
+                                        Field::HANDLE => FooterSocialMedium::URL,
                                         Field::NAME => trans('narsil::validation.attributes.url'),
                                         Field::REQUIRED => true,
                                         Field::TYPE => TextField::class,
                                         Field::SETTINGS => app(TextField::class),
                                     ]),
                                 ])
-                                ->labelKey(FooterSocialLink::LABEL),
+                                ->labelKey(FooterSocialMedium::LABEL),
                         ]),
                     ]),
                 ],

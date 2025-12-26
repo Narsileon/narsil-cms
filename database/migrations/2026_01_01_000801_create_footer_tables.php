@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterSitePage;
-use Narsil\Models\Globals\FooterSocialLink;
+use Narsil\Models\Globals\FooterSocialMedium;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\User;
 
@@ -32,9 +32,9 @@ return new class extends Migration
         {
             $this->createFooterSitePageTable();
         }
-        if (!Schema::hasTable(FooterSocialLink::TABLE))
+        if (!Schema::hasTable(FooterSocialMedium::TABLE))
         {
-            $this->createFooterSocialLinksTable();
+            $this->createFooterSocialMediaTable();
         }
     }
 
@@ -45,7 +45,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FooterSocialLink::TABLE);
+        Schema::dropIfExists(FooterSocialMedium::TABLE);
         Schema::dropIfExists(FooterSitePage::TABLE);
         Schema::dropIfExists(Footer::TABLE);
     }
@@ -84,32 +84,32 @@ return new class extends Migration
     }
 
     /**
-     * Create the footer social links table.
+     * Create the footer social modia table.
      *
      * @return void
      */
-    private function createFooterSocialLinksTable(): void
+    private function createFooterSocialMediaTable(): void
     {
-        Schema::create(FooterSocialLink::TABLE, function (Blueprint $blueprint)
+        Schema::create(FooterSocialMedium::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FooterSocialLink::UUID)
+                ->uuid(FooterSocialMedium::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FooterSocialLink::FOOTER_ID)
+                ->foreignId(FooterSocialMedium::FOOTER_ID)
                 ->constrained(Footer::TABLE, Footer::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(FooterSocialLink::ICON)
+                ->string(FooterSocialMedium::ICON)
                 ->nullable();
             $blueprint
-                ->jsonb(FooterSocialLink::LABEL)
+                ->jsonb(FooterSocialMedium::LABEL)
                 ->nullable();
             $blueprint
-                ->string(FooterSocialLink::URL)
+                ->string(FooterSocialMedium::URL)
                 ->nullable();
             $blueprint
-                ->integer(FooterSocialLink::POSITION)
+                ->integer(FooterSocialMedium::POSITION)
                 ->default(0);
             $blueprint
                 ->timestamps();

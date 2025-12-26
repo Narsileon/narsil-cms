@@ -7,7 +7,7 @@ namespace Narsil\Implementations\Tables;
 use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterSocialLink;
+use Narsil\Models\Globals\FooterSocialMedium;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
@@ -68,8 +68,8 @@ class FooterTable extends AbstractTable
                 visibility: false,
             ),
             new TableColumn(
-                header: ModelService::getTableLabel(FooterSocialLink::TABLE),
-                id: Footer::COUNT_SOCIAL_LINKS,
+                header: ModelService::getTableLabel(FooterSocialMedium::TABLE),
+                id: Footer::COUNT_SOCIAL_MEDIA,
                 type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),

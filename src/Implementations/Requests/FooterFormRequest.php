@@ -67,11 +67,11 @@ class FooterFormRequest implements Contract
                 FormRule::NULLABLE,
             ],
 
-            Footer::RELATION_LEGAL_LINKS => [
+            Footer::RELATION_SITE_PAGES => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
-            Footer::RELATION_SOCIAL_LINKS => [
+            Footer::RELATION_SOCIAL_MEDIA => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],

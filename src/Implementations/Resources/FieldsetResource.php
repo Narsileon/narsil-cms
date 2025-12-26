@@ -5,7 +5,7 @@ namespace Narsil\Implementations\Resources;
 #region USE
 
 use Illuminate\Http\Request;
-use Narsil\Contracts\Resources\FooterSocialLinkResource as Contract;
+use Narsil\Contracts\Resources\FieldsetResource as Contract;
 use Narsil\Implementations\AbstractResource;
 
 #endregion

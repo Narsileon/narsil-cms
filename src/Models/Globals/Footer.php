@@ -46,7 +46,7 @@ class Footer extends Model
 
         $this->with = [
             self::RELATION_SITE_PAGES,
-            self::RELATION_SOCIAL_LINKS,
+            self::RELATION_SOCIAL_MEDIA,
         ];
 
         $this->mergeGuarded([
@@ -130,11 +130,11 @@ class Footer extends Model
     #region • COUNTS
 
     /**
-     * The name of the "social links" count.
+     * The name of the "social media" count.
      *
      * @var string
      */
-    final public const COUNT_SOCIAL_LINKS = 'social_links_count';
+    final public const COUNT_SOCIAL_MEDIA = 'social_media_count';
 
     #endregion
 
@@ -148,11 +148,11 @@ class Footer extends Model
     final public const RELATION_SITE_PAGES = 'site_pages';
 
     /**
-     * The name of the "social links" relation.
+     * The name of the "social media" relation.
      *
      * @var string
      */
-    final public const RELATION_SOCIAL_LINKS = 'social_links';
+    final public const RELATION_SOCIAL_MEDIA = 'social_media';
 
     #endregion
 
@@ -180,19 +180,19 @@ class Footer extends Model
     }
 
     /**
-     * Get the associated social links.
+     * Get the associated social media.
      *
      * @return HasMany
      */
-    final public function social_links(): HasMany
+    final public function social_media(): HasMany
     {
         return $this
             ->hasMany(
-                FooterSocialLink::class,
-                FooterSocialLink::FOOTER_ID,
+                FooterSocialMedium::class,
+                FooterSocialMedium::FOOTER_ID,
                 self::ID,
             )
-            ->orderBy(FooterSocialLink::POSITION);
+            ->orderBy(FooterSocialMedium::POSITION);
     }
 
     #endregion

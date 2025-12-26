@@ -15,7 +15,7 @@ return [
     \Narsil\Contracts\Resources\EntityResource::class => \Narsil\Implementations\Resources\EntityResource::class,
     \Narsil\Contracts\Resources\FieldsetResource::class => \Narsil\Implementations\Resources\FieldsetResource::class,
     \Narsil\Contracts\Resources\FooterResource::class => \Narsil\Implementations\Resources\FooterResource::class,
-    \Narsil\Contracts\Resources\FooterSocialLinkResource::class => \Narsil\Implementations\Resources\FooterSocialLinkResource::class,
+    \Narsil\Contracts\Resources\FooterSocialMediumResource::class => \Narsil\Implementations\Resources\FooterSocialMediumResource::class,
     \Narsil\Contracts\Resources\FormResource::class => \Narsil\Implementations\Resources\FormResource::class,
     \Narsil\Contracts\Resources\HeaderResource::class => \Narsil\Implementations\Resources\HeaderResource::class,
     \Narsil\Contracts\Resources\InputOptionResource::class => \Narsil\Implementations\Resources\InputOptionResource::class,

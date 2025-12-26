@@ -52,10 +52,10 @@ class FooterIndexController extends RenderController
     {
         $query = Footer::query()
             ->with([
-                Footer::RELATION_SOCIAL_LINKS,
+                Footer::RELATION_SOCIAL_MEDIA,
             ])
             ->withCount([
-                Footer::RELATION_SOCIAL_LINKS,
+                Footer::RELATION_SOCIAL_MEDIA,
             ]);
 
         return new DataTableCollection($query, Footer::TABLE);

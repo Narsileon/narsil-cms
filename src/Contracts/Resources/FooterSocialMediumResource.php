@@ -14,7 +14,7 @@ use Narsil\Contracts\Resource;
  *
  * @see vendor/narsil/cms/config/narsil/bindings/resources.php
  */
-interface FooterSocialLinkResource extends Resource
+interface FooterSocialMediumResource extends Resource
 {
     //
 }
