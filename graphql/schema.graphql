@@ -21,7 +21,7 @@ extend type Query {
   users: [User!]! @all
 }
 
-type Block @model(class: "Narsil\\Models\\Elements\\Block") {
+type Block @model(class: "Narsil\\Models\\Structures\\Block") {
   id: ID!
   handle: String!
   icon: String!
@@ -33,7 +33,7 @@ type Block @model(class: "Narsil\\Models\\Elements\\Block") {
   fields: [Field!]! @morphToMany
 }
 
-type BlockElement @model(class: "Narsil\\Models\\Elements\\BlockElement") {
+type BlockElement @model(class: "Narsil\\Models\\Structures\\BlockElement") {
   id: ID!
   block_id: ID!
   element_id: ID!
@@ -49,7 +49,7 @@ type BlockElement @model(class: "Narsil\\Models\\Elements\\BlockElement") {
 }
 
 type BlockElementCondition
-  @model(class: "Narsil\\Models\\Elements\\BlockElementCondition") {
+  @model(class: "Narsil\\Models\\Structures\\BlockElementCondition") {
   id: ID!
   owner_id: Int!
   key: String!
@@ -57,7 +57,7 @@ type BlockElementCondition
   value: String
 }
 
-type Field @model(class: "Narsil\\Models\\Elements\\Field") {
+type Field @model(class: "Narsil\\Models\\Structures\\Field") {
   id: ID!
   handle: String!
   name: String!
@@ -72,7 +72,7 @@ type Field @model(class: "Narsil\\Models\\Elements\\Field") {
   options: [FieldOption!]! @hasMany
 }
 
-type FieldOption @model(class: "Narsil\\Models\\Elements\\FieldOption") {
+type FieldOption @model(class: "Narsil\\Models\\Structures\\FieldOption") {
   id: ID!
   field_id: Int!
   key: String!
@@ -91,7 +91,7 @@ type Permission @model(class: "Narsil\\Models\\Policies\\Permission") {
   roles: [Role!]! @belongsToMany
 }
 
-type Relation @model(class: "Narsil\\Models\\Entities\\Relation") {
+type Relation @model(class: "Narsil\\Models\\Structures\\Relation") {
   deleted_at: DateTime!
   id: ID!
   owner_id: ID!
@@ -109,7 +109,7 @@ type Role @model(class: "Narsil\\Models\\Policies\\Role") {
   permissions: [Permission!]! @belongsToMany
 }
 
-type Template @model(class: "Narsil\\Models\\Elements\\Template") {
+type Template @model(class: "Narsil\\Models\\Structures\\Template") {
   id: ID!
   handle: String!
   name: String!
@@ -118,7 +118,7 @@ type Template @model(class: "Narsil\\Models\\Elements\\Template") {
 }
 
 type TemplateSection
-  @model(class: "Narsil\\Models\\Elements\\TemplateSection") {
+  @model(class: "Narsil\\Models\\Structures\\TemplateSection") {
   id: ID!
   handle: String!
   name: String!
@@ -133,7 +133,7 @@ type TemplateSection
 }
 
 type TemplateSectionElement
-  @model(class: "Narsil\\Models\\Elements\\TemplateSectionElement") {
+  @model(class: "Narsil\\Models\\Structures\\TemplateSectionElement") {
   id: ID!
   element_id: ID!
   element_type: String!

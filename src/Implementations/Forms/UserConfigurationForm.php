@@ -14,7 +14,7 @@ use Narsil\Contracts\Forms\UserConfigurationForm as Contract;
 use Narsil\Enums\ColorEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Support\SelectOption;
 use ResourceBundle;

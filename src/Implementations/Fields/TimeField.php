@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\TimeField as Contract;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 
 #endregion
 

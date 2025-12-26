@@ -11,9 +11,9 @@ return [
     |
     */
 
-    \Narsil\Models\Elements\Block::TABLE => \Narsil\Implementations\Tables\BlockTable::class,
-    \Narsil\Models\Elements\Field::TABLE => \Narsil\Implementations\Tables\FieldTable::class,
-    \Narsil\Models\Elements\Template::TABLE => \Narsil\Implementations\Tables\TemplateTable::class,
+    \Narsil\Models\Structures\Block::TABLE => \Narsil\Implementations\Tables\BlockTable::class,
+    \Narsil\Models\Structures\Field::TABLE => \Narsil\Implementations\Tables\FieldTable::class,
+    \Narsil\Models\Structures\Template::TABLE => \Narsil\Implementations\Tables\TemplateTable::class,
     \Narsil\Models\Entities\Entity::TABLE => \Narsil\Implementations\Tables\EntityTable::class,
     \Narsil\Models\Forms\Form::TABLE => \Narsil\Implementations\Tables\FormTable::class,
     \Narsil\Models\Forms\FormFieldset::TABLE => \Narsil\Implementations\Tables\FormFieldsetTable::class,

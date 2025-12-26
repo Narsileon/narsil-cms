@@ -5,7 +5,7 @@ namespace Narsil\Observers;
 #region USE
 
 use Narsil\Contracts\Fields\RelationsField;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
 use Narsil\Models\Entities\EntityBlockField;

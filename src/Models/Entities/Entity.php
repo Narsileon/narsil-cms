@@ -6,7 +6,7 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Template;
 use Narsil\Services\CollectionService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;

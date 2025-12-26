@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Narsil\Casts\JsonCast;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 use Narsil\Traits\HasTemplate;
 use Narsil\Traits\HasTranslations;
 

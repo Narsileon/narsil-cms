@@ -8,8 +8,8 @@ use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField as Contract;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 use Narsil\Support\TranslationsBag;
 use Narsil\Support\SelectOption;
 

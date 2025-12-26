@@ -5,7 +5,7 @@ namespace Narsil\Implementations\Tables;
 #region USE
 
 use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Template;
 use Narsil\Support\TableColumn;
 
 #endregion

@@ -7,9 +7,9 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FormPageForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Forms\FormPage;
 
 #endregion

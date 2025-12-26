@@ -6,7 +6,7 @@ namespace Narsil\Database\Seeders\Fields;
 
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Database\Seeders\FieldSeeder;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 
 #endregion
 

@@ -8,9 +8,9 @@ use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HeaderForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\TemplateSection;
-use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateSection;
+use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\Globals\Header;
 use Narsil\Services\RouteService;
 

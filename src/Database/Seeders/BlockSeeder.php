@@ -4,7 +4,7 @@ namespace Narsil\Database\Seeders;
 
 #region USE
 
-use Narsil\Models\Elements\Block;
+use Narsil\Models\Structures\Block;
 
 #endregion
 

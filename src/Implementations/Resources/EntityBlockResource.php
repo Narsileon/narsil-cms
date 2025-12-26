@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\Resources\EntityBlockResource as Contract;
 use Narsil\Implementations\AbstractResource;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Entities\EntityBlock;
 use Narsil\Models\Entities\EntityBlockField;
 
@@ -63,7 +63,7 @@ class EntityBlockResource extends AbstractResource implements Contract
 
     /**
      * @param EntityBlockField $entityBlockField
-     * 
+     *
      * @return array
      */
     protected function getFieldBlocks(EntityBlockField $entityBlockField): array

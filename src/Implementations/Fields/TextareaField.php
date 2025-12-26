@@ -7,7 +7,7 @@ namespace Narsil\Implementations\Fields;
 use Narsil\Contracts\Fields\TextareaField as Contract;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 
 #endregion
 

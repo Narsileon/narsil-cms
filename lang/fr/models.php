@@ -4,9 +4,9 @@
 
 use Dom\Entity;
 use Narsil\Models\Configuration;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormFieldset;
 use Narsil\Models\Forms\FormInput;

@@ -12,7 +12,7 @@ use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostLocaleForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Support\SelectOption;

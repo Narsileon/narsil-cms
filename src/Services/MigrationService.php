@@ -22,8 +22,8 @@ use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Fields\TimeField;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 
 #endregion
 

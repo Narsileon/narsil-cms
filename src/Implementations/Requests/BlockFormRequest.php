@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\BlockFormRequest as Contract;
-use Narsil\Models\Elements\Block;
+use Narsil\Models\Structures\Block;
 use Narsil\Validation\FormRule;
 
 #endregion

@@ -4,11 +4,11 @@ namespace Narsil\Database\Seeders;
 
 #region USE
 
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldBlock;
-use Narsil\Models\Elements\FieldOption;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\FieldBlock;
+use Narsil\Models\Structures\FieldOption;
 
 #endregion
 

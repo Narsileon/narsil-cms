@@ -6,8 +6,8 @@ namespace Narsil\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\CollectionService;
 use Narsil\Validation\FormRule;

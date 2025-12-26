@@ -13,7 +13,7 @@ use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Traits\IsCollectionController;

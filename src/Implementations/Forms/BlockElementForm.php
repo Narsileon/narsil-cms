@@ -8,9 +8,9 @@ use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\Field;
 
 #endregion
 

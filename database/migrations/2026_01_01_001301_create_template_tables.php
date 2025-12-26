@@ -5,9 +5,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Elements\Template;
-use Narsil\Models\Elements\TemplateSection;
-use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\Structures\Template;
+use Narsil\Models\Structures\TemplateSection;
+use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\User;
 
 #endregion

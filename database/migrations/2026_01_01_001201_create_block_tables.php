@@ -5,11 +5,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\BlockElementCondition;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldBlock;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\BlockElementCondition;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\FieldBlock;
 use Narsil\Models\User;
 
 #endregion

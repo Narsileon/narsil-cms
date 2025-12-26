@@ -10,7 +10,7 @@ use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Contracts\Forms\Fortify\ResetPasswordForm as Contract;
 use Narsil\Enums\RequestMethodEnum;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\User;
 
 #endregion

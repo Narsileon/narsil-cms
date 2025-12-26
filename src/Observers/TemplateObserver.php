@@ -6,7 +6,7 @@ namespace Narsil\Observers;
 
 use Narsil\Database\Migrations\CollectionMigration;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\GraphQLService;
 use Narsil\Services\PermissionService;

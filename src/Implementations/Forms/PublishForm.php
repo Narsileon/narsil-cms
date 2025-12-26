@@ -8,7 +8,7 @@ use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Forms\PermissionForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Entities\Entity;
 
 #endregion

@@ -9,7 +9,7 @@ use Narsil\Contracts\Forms\Fortify\ConfirmPasswordForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\User;
 
 #endregion

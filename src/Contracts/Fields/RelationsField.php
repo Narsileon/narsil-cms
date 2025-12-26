@@ -5,7 +5,7 @@ namespace Narsil\Contracts\Fields;
 #region USE
 
 use Narsil\Contracts\Field as Contract;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 
 #endregion
 

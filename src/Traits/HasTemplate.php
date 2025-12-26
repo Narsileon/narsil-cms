@@ -9,8 +9,8 @@ use Narsil\Casts\JsonCast;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\SwitchField;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 use Narsil\Services\CollectionService;
 
 #endregion

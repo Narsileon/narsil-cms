@@ -8,8 +8,8 @@ use Narsil\Contracts\Fields\SelectField as Contract;
 use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\FieldOption;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\FieldOption;
 
 #endregion
 

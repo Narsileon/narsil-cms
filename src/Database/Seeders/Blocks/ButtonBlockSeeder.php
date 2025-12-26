@@ -6,9 +6,9 @@ namespace Narsil\Database\Seeders\Blocks;
 
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Database\Seeders\BlockSeeder;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\Field;
 
 #endregion
 

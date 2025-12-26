@@ -6,12 +6,12 @@ namespace Narsil\Services;
 
 use Illuminate\Support\Collection;
 use Narsil\Contracts\Fields\BuilderField;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
-use Narsil\Models\Elements\Template;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\TemplateSection;
-use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateSection;
+use Narsil\Models\Structures\TemplateSectionElement;
 
 #endregion
 

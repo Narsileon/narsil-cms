@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Forms;
 
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Users\UserBookmark;
 
 #endregion

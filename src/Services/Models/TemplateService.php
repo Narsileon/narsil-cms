@@ -6,11 +6,11 @@ namespace Narsil\Services\Models;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\Template;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\TemplateSection;
-use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateSection;
+use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Services\DatabaseService;
 
 #endregion

@@ -11,7 +11,7 @@ use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Http\Resources\Collections\CollectionSummaryResource;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
 
 #endregion

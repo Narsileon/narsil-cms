@@ -1,0 +1,59 @@
+<?php
+
+namespace Narsil\Http\Controllers\Structures\Blocks;
+
+#region USE
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Narsil\Contracts\FormRequests\BlockFormRequest;
+use Narsil\Enums\ModelEventEnum;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Http\Controllers\RedirectController;
+use Narsil\Models\Structures\Block;
+use Narsil\Services\Models\BlockService;
+use Narsil\Services\ModelService;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class BlockStoreController extends RedirectController
+{
+    #region PUBLIC METHODS
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function __invoke(Request $request): RedirectResponse
+    {
+        $this->authorize(PermissionEnum::CREATE, Block::class);
+
+        $data = $request->all();
+
+        $rules = app(BlockFormRequest::class)
+            ->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
+
+        $block = Block::create($attributes);
+
+        if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
+        {
+            BlockService::syncBlockElements($block, $elements);
+        }
+
+        return $this
+            ->redirect(route('blocks.index'), $block)
+            ->with('success', ModelService::getSuccessMessage(Block::class, ModelEventEnum::CREATED));
+    }
+
+    #endregion
+}

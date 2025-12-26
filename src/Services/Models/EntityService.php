@@ -5,8 +5,8 @@ namespace Narsil\Services\Models;
 #region USE
 
 use Illuminate\Support\Arr;
-use Narsil\Models\Elements\Block;
-use Narsil\Models\Elements\BlockElement;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
 use Narsil\Models\Entities\EntityBlockField;

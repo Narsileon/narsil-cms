@@ -10,7 +10,7 @@ use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Locale;
 use Narsil\Contracts\Form;
-use Narsil\Models\Elements\TemplateSection;
+use Narsil\Models\Structures\TemplateSection;
 use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
 use ReflectionClass;

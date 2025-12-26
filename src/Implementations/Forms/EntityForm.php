@@ -7,9 +7,9 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\EntityForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
-use Narsil\Models\Elements\TemplateSectionElement;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
+use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\RouteService;
 

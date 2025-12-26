@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Tables;
 
 use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\ValidationRule;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;

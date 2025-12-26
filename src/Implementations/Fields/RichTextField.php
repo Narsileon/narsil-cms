@@ -9,7 +9,7 @@ use Narsil\Contracts\Fields\RichTextField as Contract;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Enums\Forms\RichTextEditorEnum;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 use Narsil\Support\TranslationsBag;
 use Narsil\Support\SelectOption;
 

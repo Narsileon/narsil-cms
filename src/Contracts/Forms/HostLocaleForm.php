@@ -5,7 +5,7 @@ namespace Narsil\Contracts\Forms;
 #region USE
 
 use Narsil\Contracts\Form;
-use Narsil\Models\Elements\Field;
+use Narsil\Models\Structures\Field;
 
 #endregion
 

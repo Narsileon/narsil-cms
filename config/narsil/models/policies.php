@@ -12,9 +12,9 @@ return [
     */
 
     \Narsil\Models\Configuration::class => \Narsil\Policies\ConfigurationPolicy::class,
-    \Narsil\Models\Elements\Block::class => \Narsil\Policies\BlockPolicy::class,
-    \Narsil\Models\Elements\Field::class => \Narsil\Policies\FieldPolicy::class,
-    \Narsil\Models\Elements\Template::class => \Narsil\Policies\TemplatePolicy::class,
+    \Narsil\Models\Structures\Block::class => \Narsil\Policies\BlockPolicy::class,
+    \Narsil\Models\Structures\Field::class => \Narsil\Policies\FieldPolicy::class,
+    \Narsil\Models\Structures\Template::class => \Narsil\Policies\TemplatePolicy::class,
     \Narsil\Models\Entities\Entity::class => \Narsil\Policies\EntityPolicy::class,
     \Narsil\Models\Forms\Form::class => \Narsil\Policies\FormPolicy::class,
     \Narsil\Models\Forms\FormFieldset::class => \Narsil\Policies\FormFieldsetPolicy::class,

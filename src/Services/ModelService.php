@@ -6,7 +6,7 @@ namespace Narsil\Services;
 
 use Illuminate\Support\Str;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
 
 #endregion

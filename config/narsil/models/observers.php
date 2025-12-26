@@ -11,7 +11,7 @@ return [
     |
     */
 
-    \Narsil\Models\Elements\Template::class => \Narsil\Observers\TemplateObserver::class,
+    \Narsil\Models\Structures\Template::class => \Narsil\Observers\TemplateObserver::class,
     \Narsil\Models\Entities\Entity::class => \Narsil\Observers\EntityObserver::class,
     \Narsil\Models\Entities\EntityBlockField::class => \Narsil\Observers\EntityBlockFieldObserver::class,
     \Narsil\Models\Hosts\Host::class => \Narsil\Observers\HostObserver::class,

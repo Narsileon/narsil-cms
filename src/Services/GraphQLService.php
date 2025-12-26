@@ -12,8 +12,8 @@ use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Fields\RichTextField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Fields\TimeField;
-use Narsil\Models\Elements\Field;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\CollectionService;
 

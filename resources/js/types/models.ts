@@ -65,7 +65,7 @@ export type FieldOption = {
 
 export type HasElement = Model & {
   element_id: number;
-  element_type: "Narsil\\Models\\Elements\\Block" | "Narsil\\Models\\Elements\\Field";
+  element_type: "Narsil\\Models\\Structures\\Block" | "Narsil\\Models\\Structures\\Field";
   element: Block | Field;
   handle: string;
   id: number;

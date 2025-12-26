@@ -6,7 +6,7 @@ namespace Narsil\Http\Resources\Collections;
 
 use Illuminate\Http\Request;
 use Narsil\Http\Resources\SummaryResource;
-use Narsil\Models\Elements\Template;
+use Narsil\Models\Structures\Template;
 
 #endregion
 
