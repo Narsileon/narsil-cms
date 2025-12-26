@@ -4,9 +4,11 @@ namespace Narsil\Models\Policies;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Cache;
+use Narsil\Observers\ModelObserver;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
@@ -20,6 +22,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[ObservedBy([ModelObserver::class])]
 class Permission extends Model
 {
     use Blameable;
@@ -91,20 +94,22 @@ class Permission extends Model
     /**
      * Get the permissions as select options.
      *
-     * @param boolean $flush
-     *
      * @return array<SelectOption>
      */
-    public static function selectOptions(bool $flush = false): array
+    public static function selectOptions(): array
     {
-        return self::all()
-            ->map(function (Permission $permission)
+        return Cache::tags([self::TABLE])
+            ->rememberForever('select_options', function ()
             {
-                return new SelectOption()
-                    ->optionLabel($permission->{self::NAME})
-                    ->optionValue($permission->{self::ID});
-            })
-            ->all();
+                return self::all()
+                    ->map(function (Permission $permission)
+                    {
+                        return (new SelectOption())
+                            ->optionLabel($permission->{self::NAME})
+                            ->optionValue($permission->{self::ID});
+                    })
+                    ->all();
+            });
     }
 
     #region • RELATIONSHIPS

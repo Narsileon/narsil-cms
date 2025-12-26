@@ -4,10 +4,12 @@ namespace Narsil\Models\Policies;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Cache;
 use Narsil\Models\User;
+use Narsil\Observers\ModelObserver;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
@@ -21,6 +23,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[ObservedBy([ModelObserver::class])]
 class Role extends Model
 {
     use Blameable;
@@ -118,14 +121,18 @@ class Role extends Model
      */
     public static function selectOptions(): array
     {
-        return self::all()
-            ->map(function (Role $role)
+        return Cache::tags([self::TABLE])
+            ->rememberForever('select_options', function ()
             {
-                return new SelectOption()
-                    ->optionLabel($role->{self::NAME})
-                    ->optionValue($role->{self::ID});
-            })
-            ->all();
+                return self::all()
+                    ->map(function (Role $role)
+                    {
+                        return (new SelectOption())
+                            ->optionLabel($role->{self::NAME})
+                            ->optionValue($role->{self::ID});
+                    })
+                    ->all();
+            });
     }
 
     #region • RELATIONSHIPS
