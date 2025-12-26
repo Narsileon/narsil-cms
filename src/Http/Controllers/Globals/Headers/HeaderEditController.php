@@ -86,7 +86,7 @@ class HeaderEditController extends RenderController
      */
     protected function getForm(Header $header): HeaderForm
     {
-        $form = app(HeaderForm::class)
+        $form = app(HeaderForm::class, ['model' => $header])
             ->action(route('headers.update', $header->{Header::ID}))
             ->id($header->{Header::ID})
             ->method(RequestMethodEnum::PATCH->value)

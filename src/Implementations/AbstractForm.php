@@ -4,6 +4,7 @@ namespace Narsil\Implementations;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Fluent;
@@ -26,9 +27,11 @@ abstract class AbstractForm extends Fluent implements Form
     #region CONSTRUCTOR
 
     /**
+     * @param Model|null $model
+     *
      * @return void
      */
-    public function __construct()
+    public function __construct(?Model $model = null)
     {
         $defaultLanguage = Config::get('app.locale', 'en');
         $languageOptions = Config::get('narsil.locales', []);

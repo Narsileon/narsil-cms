@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\EntityForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -25,14 +26,15 @@ class EntityForm extends AbstractForm implements Contract
 
     /**
      * @param Template $template
+     * @param Model|null $model
      *
      * @return void
      */
-    public function __construct(Template $template)
+    public function __construct(Template $template, ?Model $model = null)
     {
         $this->template = $template;
 
-        parent::__construct();
+        parent::__construct($model);
 
         $this->routes(RouteService::getNames('collections', [
             'collection' => $template->{Template::HANDLE},

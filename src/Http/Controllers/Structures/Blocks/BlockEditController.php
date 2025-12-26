@@ -91,7 +91,7 @@ class BlockEditController extends RenderController
      */
     protected function getForm(Block $block): BlockForm
     {
-        $form = app(BlockForm::class)
+        $form = app(BlockForm::class, ['model' => $block])
             ->action(route('blocks.update', $block->{Block::ID}))
             ->id($block->{Block::ID})
             ->method(RequestMethodEnum::PATCH->value)

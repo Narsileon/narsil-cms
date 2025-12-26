@@ -86,7 +86,7 @@ class TemplateEditController extends RenderController
      */
     protected function getForm(Template $template): TemplateForm
     {
-        $form = app(TemplateForm::class)
+        $form = app(TemplateForm::class, ['model' => $template])
             ->action(route('templates.update', $template->{Template::ID}))
             ->id($template->{Template::ID})
             ->method(RequestMethodEnum::PATCH->value)

@@ -89,7 +89,7 @@ class RoleEditController extends RenderController
      */
     protected function getForm(Role $role): RoleForm
     {
-        $form = app(RoleForm::class)
+        $form = app(RoleForm::class, ['model' => $role])
             ->action(route('roles.update', $role->{Role::ID}))
             ->id($role->{Role::ID})
             ->method(RequestMethodEnum::PATCH->value)

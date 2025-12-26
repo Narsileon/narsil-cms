@@ -86,7 +86,7 @@ class PermissionEditController extends RenderController
      */
     protected function getForm(Permission $permission): PermissionForm
     {
-        $form = app(PermissionForm::class)
+        $form = app(PermissionForm::class, ['model' => $permission])
             ->action(route('permissions.update', $permission->{Permission::ID}))
             ->id($permission->{Permission::ID})
             ->method(RequestMethodEnum::PATCH->value)

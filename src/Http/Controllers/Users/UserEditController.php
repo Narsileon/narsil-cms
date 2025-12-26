@@ -93,7 +93,7 @@ class UserEditController extends RenderController
      */
     protected function getForm(User $user): UserForm
     {
-        $form = app(UserForm::class)
+        $form = app(UserForm::class, ['model' => $user])
             ->action(route('users.update', $user->{User::ID}))
             ->id($user->{User::ID})
             ->method(RequestMethodEnum::PATCH->value)

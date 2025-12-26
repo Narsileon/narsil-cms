@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\ArrayField;
 use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\SelectField;
@@ -29,11 +30,11 @@ class FooterForm extends AbstractForm implements Contract
     #region CONSTRUCTOR
 
     /**
-     * @return void
+     * {@inheritDoc}
      */
-    public function __construct()
+    public function __construct(?Model $model = null)
     {
-        parent::__construct();
+        parent::__construct($model);
 
         $this->routes(RouteService::getNames(Footer::TABLE));
     }

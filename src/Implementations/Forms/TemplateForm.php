@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm;
@@ -30,11 +31,11 @@ class TemplateForm extends AbstractForm implements Contract
     #region CONSTRUCTOR
 
     /**
-     * @return void
+     * {@inheritDoc}
      */
-    public function __construct()
+    public function __construct(?Model $model = null)
     {
-        parent::__construct();
+        parent::__construct($model);
 
         $this->routes(RouteService::getNames(Template::TABLE));
     }

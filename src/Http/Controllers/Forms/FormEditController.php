@@ -86,7 +86,7 @@ class FormEditController extends RenderController
      */
     protected function getForm(Form $form): FormForm
     {
-        $form = app(FormForm::class)
+        $form = app(FormForm::class, ['model' => $form])
             ->action(route('forms.update', $form->{Form::ID}))
             ->id($form->{Form::ID})
             ->method(RequestMethodEnum::PATCH->value)

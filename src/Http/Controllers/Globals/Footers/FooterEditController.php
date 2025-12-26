@@ -86,7 +86,7 @@ class FooterEditController extends RenderController
      */
     protected function getForm(Footer $footer): FooterForm
     {
-        $form = app(FooterForm::class)
+        $form = app(FooterForm::class, ['model' => $footer])
             ->action(route('footers.update', $footer->{Footer::ID}))
             ->id($footer->{Footer::ID})
             ->method(RequestMethodEnum::PATCH->value)

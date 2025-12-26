@@ -56,20 +56,20 @@ class FieldsetEditController extends RenderController
     /**
      * Get the associated data.
      *
-     * @param Fieldset $formfieldset
+     * @param Fieldset $fieldset
      *
      * @return array<string,mixed>
      */
-    protected function getData(Fieldset $formfieldset): array
+    protected function getData(Fieldset $fieldset): array
     {
-        $formfieldset->loadMissingCreatorAndEditor();
+        $fieldset->loadMissingCreatorAndEditor();
 
-        $formfieldset->mergeCasts([
+        $fieldset->mergeCasts([
             Fieldset::CREATED_AT => HumanDatetimeCast::class,
             Fieldset::UPDATED_AT => HumanDatetimeCast::class,
         ]);
 
-        $data = $formfieldset->toArrayWithTranslations();
+        $data = $fieldset->toArrayWithTranslations();
 
         return $data;
     }
@@ -85,15 +85,15 @@ class FieldsetEditController extends RenderController
     /**
      * Get the associated form.
      *
-     * @param Fieldset $formfieldset
+     * @param Fieldset $fieldset
      *
      * @return FieldsetForm
      */
-    protected function getForm(Fieldset $formfieldset): FieldsetForm
+    protected function getForm(Fieldset $fieldset): FieldsetForm
     {
-        $form = app(FieldsetForm::class)
-            ->action(route('fieldsets.update', $formfieldset->{Fieldset::ID}))
-            ->id($formfieldset->{Fieldset::ID})
+        $form = app(FieldsetForm::class, ['model' => $fieldset])
+            ->action(route('fieldsets.update', $fieldset->{Fieldset::ID}))
+            ->id($fieldset->{Fieldset::ID})
             ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 

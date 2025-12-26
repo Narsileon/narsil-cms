@@ -94,7 +94,7 @@ class HostEditController extends RenderController
      */
     protected function getForm(Host $host): HostForm
     {
-        $form = app(HostForm::class)
+        $form = app(HostForm::class, ['model' => $host])
             ->action(route('hosts.update', $host->{Host::ID}))
             ->id($host->{Host::ID})
             ->method(RequestMethodEnum::PATCH->value)

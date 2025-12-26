@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\SelectField;
@@ -32,11 +33,11 @@ class FieldForm extends AbstractForm implements Contract
     #region CONSTRUCTOR
 
     /**
-     * @return void
+     * {@inheritDoc}
      */
-    public function __construct()
+    public function __construct(?Model $model = null)
     {
-        parent::__construct();
+        parent::__construct($model);
 
         $this->routes(RouteService::getNames(Field::TABLE));
     }

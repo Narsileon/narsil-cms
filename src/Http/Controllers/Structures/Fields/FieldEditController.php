@@ -96,7 +96,7 @@ class FieldEditController extends RenderController
      */
     protected function getForm(Field $field): FieldForm
     {
-        $form = app(FieldForm::class)
+        $form = app(FieldForm::class, ['model' => $field])
             ->action(route('fields.update', $field->{Field::ID}))
             ->id($field->{Field::ID})
             ->method(RequestMethodEnum::PATCH->value)

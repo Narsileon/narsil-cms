@@ -5,7 +5,6 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\DatetimeField;
-use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Forms\PermissionForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;

@@ -4,6 +4,7 @@ namespace Narsil\Implementations\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\EmailField;
 use Narsil\Contracts\Fields\FileField;
@@ -31,11 +32,11 @@ class UserForm extends AbstractForm implements Contract
     #region CONSTRUCTOR
 
     /**
-     * @return void
+     * {@inheritDoc}
      */
-    public function __construct()
+    public function __construct(?Model $model = null)
     {
-        parent::__construct();
+        parent::__construct($model);
 
         $this->routes(RouteService::getNames(User::TABLE));
     }

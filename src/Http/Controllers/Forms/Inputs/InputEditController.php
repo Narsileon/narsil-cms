@@ -96,7 +96,7 @@ class InputEditController extends RenderController
      */
     protected function getForm(Input $input): InputForm
     {
-        $form = app(InputForm::class)
+        $form = app(InputForm::class, ['model' => $input])
             ->action(route('inputs.update', $input->{Input::ID}))
             ->id($input->{Input::ID})
             ->method(RequestMethodEnum::PATCH->value)
