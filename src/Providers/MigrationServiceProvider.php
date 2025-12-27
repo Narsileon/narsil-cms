@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Database\Seeders\ValidationRuleSeeder;
-use Narsil\Models\Globals\Footer;
 use Narsil\Models\Sites\Site;
 
 #endregion
@@ -45,7 +44,7 @@ class MigrationServiceProvider extends ServiceProvider
      */
     protected function bootEvent(): void
     {
-        Event::listen(MigrationsEnded::class, function (MigrationsEnded $event)
+        Event::listen(MigrationsEnded::class, function ()
         {
             $this->syncPermissions();
 
@@ -81,10 +80,7 @@ class MigrationServiceProvider extends ServiceProvider
     {
         $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
 
-        $footer = Footer::factory()->create();
-
         Site::factory()->create([
-            Site::FOOTER_ID => $footer->{Footer::ID},
             Site::HANDLE => $baseUrl,
             Site::NAME => $baseUrl,
         ]);
