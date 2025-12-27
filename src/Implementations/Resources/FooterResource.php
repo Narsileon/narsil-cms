@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Resources;
 #region USE
 
 use Illuminate\Http\Request;
+use Narsil\Contracts\Resources\FooterLinkResource;
 use Narsil\Contracts\Resources\FooterResource as Contract;
 use Narsil\Contracts\Resources\FooterSocialMediumResource;
 use Narsil\Implementations\AbstractResource;
@@ -33,6 +34,7 @@ class FooterResource extends AbstractResource implements Contract
             Footer::LOGO => $this->{Footer::LOGO},
             Footer::PHONE => $this->{Footer::PHONE},
 
+            Footer::RELATION_LINKS => $this->getLinks(),
             Footer::RELATION_SOCIAL_MEDIA => $this->getSocialMedia(),
         ];
     }
@@ -40,6 +42,23 @@ class FooterResource extends AbstractResource implements Contract
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @return array
+     */
+    protected function getLinks(): array
+    {
+        $links = [];
+
+        foreach ($this->{Footer::RELATION_LINKS} as $link)
+        {
+            $links[] = app(FooterLinkResource::class, [
+                'resource' => $link,
+            ]);
+        }
+
+        return $links;
+    }
 
     /**
      * @return array

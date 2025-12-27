@@ -14,6 +14,7 @@ return [
     \Narsil\Contracts\Resources\EntityBlockResource::class => \Narsil\Implementations\Resources\EntityBlockResource::class,
     \Narsil\Contracts\Resources\EntityResource::class => \Narsil\Implementations\Resources\EntityResource::class,
     \Narsil\Contracts\Resources\FieldsetResource::class => \Narsil\Implementations\Resources\FieldsetResource::class,
+    \Narsil\Contracts\Resources\FooterLinkResource::class => \Narsil\Implementations\Resources\FooterLinkResource::class,
     \Narsil\Contracts\Resources\FooterResource::class => \Narsil\Implementations\Resources\FooterResource::class,
     \Narsil\Contracts\Resources\FooterSocialMediumResource::class => \Narsil\Implementations\Resources\FooterSocialMediumResource::class,
     \Narsil\Contracts\Resources\FormResource::class => \Narsil\Implementations\Resources\FormResource::class,
