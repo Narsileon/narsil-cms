@@ -195,6 +195,7 @@ return [
 
     'attributes' => [
         'accept'                  => 'accept',
+        'adapter'                 => 'adapter',
         'address'                 => 'address',
         'address_line_1'          => 'address line 1',
         'address_line_2'          => 'address line 2',
@@ -203,6 +204,7 @@ return [
         'change_freq'             => 'change frequency',
         'code'                    => 'code',
         'collapsible'             => 'collapsible',
+        'collection'              => 'collection',
         'color'                   => 'color',
         'company'                 => 'company',
         'content'                 => 'content',
@@ -221,6 +223,7 @@ return [
         'email_verified_at'       => 'email verified at',
         'email'                   => 'email',
         'enabled'                 => 'enabled',
+        'entity'                  => 'entity',
         'first_name'              => 'first name',
         'footer_id'               => 'footer',
         'group'                   => 'group',

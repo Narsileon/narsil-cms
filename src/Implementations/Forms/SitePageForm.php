@@ -126,13 +126,10 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateSectionElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => SitePage::COLLECTION,
                             Field::NAME => trans('narsil::validation.attributes.collection'),
-                            Field::TRANSLATABLE => true,
-                            Field::TYPE => RelationsField::class,
-                            Field::SETTINGS => app(RelationsField::class)
-                                ->collections($collections)
-                                ->defaultValue([])
-                                ->multiple(false),
-                        ])
+                            Field::TYPE => SelectField::class,
+                            Field::RELATION_OPTIONS => Template::selectOptions(),
+                            Field::SETTINGS => app(SelectField::class),
+                        ]),
                     ]),
                     new TemplateSectionElement([
                         TemplateSectionElement::RELATION_ELEMENT => new Field([

@@ -4,8 +4,12 @@ namespace Narsil\Models\Structures;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Cache;
+use Narsil\Observers\ModelObserver;
+use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -17,6 +21,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[ObservedBy([ModelObserver::class])]
 class Template extends Model
 {
     use Blameable;
@@ -117,6 +122,27 @@ class Template extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * Get the templates as select options.
+     *
+     * @return array<SelectOption>
+     */
+    public static function selectOptions(): array
+    {
+        return Cache::tags([self::TABLE])
+            ->rememberForever('select_options', function ()
+            {
+                return self::all()
+                    ->map(function (Template $template)
+                    {
+                        return (new SelectOption())
+                            ->optionLabel($template->{Template::PLURAL})
+                            ->optionValue((string)$template->{Template::ID});
+                    })
+                    ->all();
+            });
+    }
 
     #region • RELATIONSHIPS
 
