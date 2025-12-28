@@ -19,7 +19,7 @@ function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
     },
   });
 
-  const tooltip = trans("ui.undo");
+  const tooltip = trans("rich-text-editor.undo");
 
   return (
     <Button

@@ -26,7 +26,7 @@ function RichTextEditorOrderedList({
     },
   });
 
-  const tooltip = trans("rich-text-editor.toggles.ordered_list");
+  const tooltip = trans("rich-text-editor.ordered_list");
 
   return (
     <Toggle

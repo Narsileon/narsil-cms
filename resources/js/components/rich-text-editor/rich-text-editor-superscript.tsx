@@ -27,7 +27,7 @@ function RichTextEditorSuperscript({
     },
   });
 
-  const tooltip = trans("rich-text-editor.toggles.superscript");
+  const tooltip = trans("rich-text-editor.superscript");
 
   return (
     <Toggle

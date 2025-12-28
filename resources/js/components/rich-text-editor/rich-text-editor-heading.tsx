@@ -21,7 +21,7 @@ function RichTextEditorHeading({ editor, level, ...props }: RichTextEditorHeadin
     },
   });
 
-  const tooltip = trans(`rich-text-editor.toggles.heading_${level}`);
+  const tooltip = trans(`rich-text-editor.heading_${level}`);
 
   return (
     <Toggle

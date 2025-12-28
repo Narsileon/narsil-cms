@@ -23,7 +23,7 @@ function RichTextEditorItalic({ editor, icon = "italic", ...props }: RichTextEdi
     },
   });
 
-  const tooltip = trans("rich-text-editor.toggles.italic");
+  const tooltip = trans("rich-text-editor.italic");
 
   return (
     <Toggle

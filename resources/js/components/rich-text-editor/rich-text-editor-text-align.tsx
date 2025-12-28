@@ -12,7 +12,7 @@ type RichTextEditorTextAlignProps = ComponentProps<typeof Toggle> & {
 function RichTextEditorTextAlign({ alignment, editor, ...props }: RichTextEditorTextAlignProps) {
   const { trans } = useLocalization();
 
-  const tooltip = trans(`rich-text-editor.toggles.align_${alignment}`);
+  const tooltip = trans(`rich-text-editor.align_${alignment}`);
 
   return (
     <Toggle

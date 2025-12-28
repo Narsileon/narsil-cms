@@ -26,7 +26,7 @@ function RichTextEditorBulletList({
     },
   });
 
-  const tooltip = trans("rich-text-editor.toggles.bullet_list");
+  const tooltip = trans("rich-text-editor.bullet_list");
 
   return (
     <Toggle

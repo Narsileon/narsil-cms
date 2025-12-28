@@ -79,12 +79,12 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
         <>
           <Separator orientation="vertical" />
           <DropdownMenuRoot>
-            <Tooltip tooltip={trans("rich-text-editor.toggles.heading_menu")}>
+            <Tooltip tooltip={trans("rich-text-editor.headings")}>
               <DropdownMenuTrigger asChild={true}>
                 <Button
                   icon="heading"
                   size="icon"
-                  tooltip={trans("rich-text-editor.toggles.heading_menu")}
+                  tooltip={trans("rich-text-editor.headings")}
                   variant="ghost"
                 />
               </DropdownMenuTrigger>

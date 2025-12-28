@@ -23,7 +23,7 @@ function RichTextEditorBold({ editor, icon = "bold", ...props }: RichTextEditorB
     },
   });
 
-  const tooltip = trans("rich-text-editor.toggles.bold");
+  const tooltip = trans("rich-text-editor.bold");
 
   return (
     <Toggle

@@ -27,7 +27,7 @@ function RichTextEditorSubscript({
     },
   });
 
-  const tooltip = trans("rich-text-editor.toggles.subscript");
+  const tooltip = trans("rich-text-editor.subscript");
 
   return (
     <Toggle
