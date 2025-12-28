@@ -16,7 +16,9 @@ use Narsil\Contracts\Forms\SitePageForm as Contract;
 use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Enums\SEO\OpenGraphTypeEnum;
 use Narsil\Enums\SEO\RobotsEnum;
+use Narsil\Enums\SitePageAdapterEnum;
 use Narsil\Implementations\AbstractForm;
+use Narsil\Models\Condition;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
@@ -25,6 +27,7 @@ use Narsil\Models\Structures\TemplateSection;
 use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Structures\BlockElementCondition;
 use Narsil\Services\RouteService;
 
 #endregion
@@ -84,10 +87,46 @@ class SitePageForm extends AbstractForm implements Contract
                                 ->generate(SitePage::TITLE),
                         ])
                     ]),
-                    new BlockElement([
-                        BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::CONTENT,
-                            Field::NAME => trans('narsil::validation.attributes.content'),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => SitePage::ADAPTER,
+                            Field::NAME => trans('narsil::validation.attributes.adapter'),
+                            Field::TYPE => SelectField::class,
+                            Field::RELATION_OPTIONS => SitePageAdapterEnum::selectOptions(),
+                            Field::SETTINGS => app(SelectField::class)
+                                ->defaultValue(SitePageAdapterEnum::ENTITY->value),
+                        ])
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_CONDITIONS => [
+                            new Condition([
+                                Condition::HANDLE => SitePage::ADAPTER,
+                                Condition::OPERATOR => '=',
+                                Condition::VALUE => SitePageAdapterEnum::ENTITY->value,
+                            ]),
+                        ],
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => SitePage::ENTITY,
+                            Field::NAME => trans('narsil::validation.attributes.entity'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => RelationsField::class,
+                            Field::SETTINGS => app(RelationsField::class)
+                                ->collections($collections)
+                                ->defaultValue([])
+                                ->multiple(false),
+                        ])
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_CONDITIONS => [
+                            new Condition([
+                                Condition::HANDLE => SitePage::ADAPTER,
+                                Condition::OPERATOR => '=',
+                                Condition::VALUE => SitePageAdapterEnum::COLLECTION->value,
+                            ]),
+                        ],
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => SitePage::COLLECTION,
+                            Field::NAME => trans('narsil::validation.attributes.collection'),
                             Field::TRANSLATABLE => true,
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)

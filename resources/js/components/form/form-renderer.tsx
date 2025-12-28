@@ -45,6 +45,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
               {"type" in childElement ? (
                 <FormRenderer
                   {...childElement}
+                  conditions={element.conditions}
                   handle={element.handle ?? childElement.handle}
                   name={element.name ?? childElement.name}
                   required={element.required ?? childElement.required}

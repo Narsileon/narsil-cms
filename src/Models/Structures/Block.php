@@ -200,7 +200,8 @@ class Block extends Model
                 BlockElement::TABLE,
                 BlockElement::BLOCK_ID,
                 BlockElement::ELEMENT_ID,
-            );
+            )
+            ->using(BlockElement::class);
     }
 
     /**
@@ -233,7 +234,8 @@ class Block extends Model
                 BlockElement::TABLE,
                 BlockElement::BLOCK_ID,
                 BlockElement::ELEMENT_ID,
-            );
+            )
+            ->using(BlockElement::class);
     }
 
     #endregion

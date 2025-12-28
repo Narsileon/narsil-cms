@@ -166,7 +166,8 @@ class FormPage extends Model
                 FormPageElement::TABLE,
                 FormPageElement::PAGE_ID,
                 FormPageElement::ELEMENT_ID,
-            );
+            )
+            ->using(FormPageElement::class);
     }
 
     /**
@@ -183,7 +184,8 @@ class FormPage extends Model
                 FormPageElement::TABLE,
                 FormPageElement::PAGE_ID,
                 FormPageElement::ELEMENT_ID,
-            );
+            )
+            ->using(FormPageElement::class);
     }
 
     /**

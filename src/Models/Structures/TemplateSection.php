@@ -4,6 +4,7 @@ namespace Narsil\Models\Structures;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,6 +21,7 @@ use Narsil\Traits\HasTranslations;
 class TemplateSection extends Model
 {
     use HasTranslations;
+    use HasUuids;
 
     #region CONSTRUCTOR
 
@@ -29,6 +31,8 @@ class TemplateSection extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->primaryKey = self::UUID;
 
         $this->touches = [
             self::RELATION_TEMPLATE,
@@ -43,7 +47,7 @@ class TemplateSection extends Model
         ];
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -75,13 +79,6 @@ class TemplateSection extends Model
     final public const HANDLE = 'handle';
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "name" column.
      *
      * @var string
@@ -101,6 +98,13 @@ class TemplateSection extends Model
      * @var string
      */
     final public const TEMPLATE_ID = 'template_id';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 
@@ -154,9 +158,10 @@ class TemplateSection extends Model
                 Block::class,
                 TemplateSectionElement::RELATION_ELEMENT,
                 TemplateSectionElement::TABLE,
-                TemplateSectionElement::TEMPLATE_SECTION_ID,
+                TemplateSectionElement::TEMPLATE_SECTION_UUID,
                 TemplateSectionElement::ELEMENT_ID,
-            );
+            )
+            ->using(TemplateSectionElement::class);
     }
 
     /**
@@ -169,8 +174,8 @@ class TemplateSection extends Model
         return $this
             ->hasMany(
                 TemplateSectionElement::class,
-                TemplateSectionElement::TEMPLATE_SECTION_ID,
-                self::ID,
+                TemplateSectionElement::TEMPLATE_SECTION_UUID,
+                self::UUID,
             )
             ->orderBy(TemplateSectionElement::POSITION);
     }
@@ -187,9 +192,10 @@ class TemplateSection extends Model
                 Field::class,
                 TemplateSectionElement::RELATION_ELEMENT,
                 TemplateSectionElement::TABLE,
-                TemplateSectionElement::TEMPLATE_SECTION_ID,
+                TemplateSectionElement::TEMPLATE_SECTION_UUID,
                 TemplateSectionElement::ELEMENT_ID,
-            );
+            )
+            ->using(TemplateSectionElement::class);
     }
 
     /**

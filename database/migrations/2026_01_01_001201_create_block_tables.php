@@ -7,7 +7,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\BlockElementCondition;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\FieldBlock;
 use Narsil\Models\User;
@@ -33,10 +32,7 @@ return new class extends Migration
         {
             $this->createBlockElementTable();
         }
-        if (!Schema::hasTable(BlockElementCondition::TABLE))
-        {
-            $this->createBlockElementConditionsTable();
-        }
+
 
         if (!Schema::hasTable(FieldBlock::TABLE))
         {
@@ -53,7 +49,6 @@ return new class extends Migration
     {
         Schema::dropIfExists(FieldBlock::TABLE);
 
-        Schema::dropIfExists(BlockElementCondition::TABLE);
         Schema::dropIfExists(BlockElement::TABLE);
         Schema::dropIfExists(Block::TABLE);
     }
@@ -61,34 +56,6 @@ return new class extends Migration
     #endregion
 
     #region PRIVATE METHODS
-
-    /**
-     * Create the block element conditions table.
-     *
-     * @return void
-     */
-    private function createBlockElementConditionsTable(): void
-    {
-        Schema::create(BlockElementCondition::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(BlockElementCondition::ID);
-            $blueprint
-                ->foreignId(BlockElementCondition::OWNER_ID)
-                ->constrained(BlockElement::TABLE, BlockElement::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(BlockElementCondition::TARGET_ID)
-                ->constrained(BlockElement::TABLE, BlockElement::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->string(BlockElementCondition::OPERATOR);
-            $blueprint
-                ->string(BlockElementCondition::VALUE);
-            $blueprint
-                ->timestamps();
-        });
-    }
 
     /**
      * Create the block elements table.
@@ -100,7 +67,8 @@ return new class extends Migration
         Schema::create(BlockElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(BlockElement::ID);
+                ->uuid(BlockElement::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(BlockElement::BLOCK_ID)
                 ->constrained(Block::TABLE, Block::ID)

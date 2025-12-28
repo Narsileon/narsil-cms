@@ -193,7 +193,8 @@ return new class extends Migration
         Schema::create(FieldsetElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FieldsetElement::ID);
+                ->uuid(FieldsetElement::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(FieldsetElement::FIELDSET_ID)
                 ->constrained(Fieldset::TABLE, Fieldset::ID)
@@ -265,7 +266,8 @@ return new class extends Migration
         Schema::create(FormPageElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FormPageElement::ID);
+                ->uuid(FormPageElement::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(FormPageElement::PAGE_ID)
                 ->constrained(FormPage::TABLE, FormPage::ID)

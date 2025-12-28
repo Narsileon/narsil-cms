@@ -56,9 +56,7 @@ class HostStoreController extends RedirectController
             HostLocaleService::syncLanguages($hostLocale, Arr::get($defaultLocale, HostLocale::RELATION_LANGUAGES, []));
         }
 
-        $otherLocales = Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []);
-
-        HostService::syncOtherLocales($host, $otherLocales);
+        HostService::syncOtherLocales($host, Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []));
 
         return $this
             ->redirect(route('hosts.index'))

@@ -4,9 +4,8 @@ namespace Narsil\Models\Structures;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Support\Arr;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
@@ -17,7 +16,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockElement extends Model
+class BlockElement extends MorphPivot
 {
     use HasElement;
     use HasTranslations;
@@ -31,6 +30,7 @@ class BlockElement extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->translatable = [
@@ -39,6 +39,7 @@ class BlockElement extends Model
         ];
 
         $this->with = [
+            self::RELATION_CONDITIONS,
             self::RELATION_ELEMENT,
         ];
 
@@ -48,7 +49,7 @@ class BlockElement extends Model
         ]);
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -95,13 +96,6 @@ class BlockElement extends Model
      */
     final public const RELATION_BLOCK = 'block';
 
-    /**
-     * The name of the "conditions" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_CONDITIONS = 'conditions';
-
     #endregion
 
     #endregion
@@ -122,21 +116,6 @@ class BlockElement extends Model
                 Block::class,
                 self::BLOCK_ID,
                 Block::ID,
-            );
-    }
-
-    /**
-     * Get the associated conditions.
-     *
-     * @return HasMany
-     */
-    final public function conditions(): HasMany
-    {
-        return $this
-            ->hasMany(
-                BlockElementCondition::class,
-                BlockElementCondition::OWNER_ID,
-                self::ID,
             );
     }
 

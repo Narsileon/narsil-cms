@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\SitePageFormRequest as Contract;
+use Narsil\Enums\SitePageAdapterEnum;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Validation\FormRule;
 
@@ -25,11 +26,19 @@ class SitePageFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         $rules = [
+            SitePage::ADAPTER => [
+                FormRule::enum(SitePageAdapterEnum::class),
+            ],
             SitePage::CHANGE_FREQ => [
                 FormRule::STRING,
             ],
-            SitePage::CONTENT => [
+            SitePage::COLLECTION => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
+            SitePage::ENTITY => [
                 FormRule::ARRAY,
+                FormRule::NULLABLE,
             ],
             SitePage::META_DESCRIPTION => [
                 FormRule::ARRAY,

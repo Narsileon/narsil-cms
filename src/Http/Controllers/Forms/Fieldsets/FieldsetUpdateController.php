@@ -46,10 +46,7 @@ class FieldsetUpdateController extends RedirectController
 
         $fieldset->update($attributes);
 
-        if ($elements = Arr::get($attributes, Fieldset::RELATION_ELEMENTS))
-        {
-            FieldsetService::syncFieldsetElements($fieldset, $elements);
-        }
+        FieldsetService::syncFieldsetElements($fieldset, Arr::get($attributes, Fieldset::RELATION_ELEMENTS, []));
 
         return $this
             ->redirect(route('fieldsets.index'), $fieldset)

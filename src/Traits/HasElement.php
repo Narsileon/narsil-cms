@@ -4,8 +4,10 @@ namespace Narsil\Traits;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Narsil\Traits\HasIdentifier;
+use Narsil\Models\Condition;
 
 #endregion
 
@@ -16,6 +18,7 @@ use Narsil\Traits\HasIdentifier;
 trait HasElement
 {
     use HasIdentifier;
+    use HasUuids;
 
     #region CONSTANTS
 
@@ -50,13 +53,6 @@ trait HasElement
     final public const HANDLE = 'handle';
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "name" column.
      *
      * @var string
@@ -85,6 +81,13 @@ trait HasElement
     final public const TRANSLATABLE = 'translatable';
 
     /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
+
+    /**
      * The name of the "width" column.
      *
      * @var string
@@ -105,6 +108,13 @@ trait HasElement
     #endregion
 
     #region • RELATIONS
+
+    /**
+     * The name of the "conditions" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_CONDITIONS = 'conditions';
 
     /**
      * The name of the "element" relation.
@@ -145,6 +155,21 @@ trait HasElement
     #endregion
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated conditions.
+     *
+     * @return MorphMany
+     */
+    final public function conditions(): MorphMany
+    {
+        return $this
+            ->morphMany(
+                Condition::class,
+                Condition::RELATION_OWNER,
+            );
+    }
+
 
     /**
      * Get the associated element.

@@ -63,10 +63,11 @@ return new class extends Migration
         Schema::create(TemplateSectionElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(TemplateSectionElement::ID);
+                ->uuid(TemplateSectionElement::UUID)
+                ->primary();
             $blueprint
-                ->foreignId(TemplateSectionElement::TEMPLATE_SECTION_ID)
-                ->constrained(TemplateSection::TABLE, TemplateSection::ID)
+                ->foreignUuid(TemplateSectionElement::TEMPLATE_SECTION_UUID)
+                ->constrained(TemplateSection::TABLE, TemplateSection::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(TemplateSectionElement::RELATION_ELEMENT);
@@ -102,7 +103,8 @@ return new class extends Migration
         Schema::create(TemplateSection::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(TemplateSection::ID);
+                ->uuid(TemplateSection::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(TemplateSection::TEMPLATE_ID)
                 ->constrained(Template::TABLE, Template::ID)

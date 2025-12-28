@@ -20,14 +20,6 @@ declare module "@tanstack/react-table" {
   }
 }
 
-export type BlockElementCondition = {
-  id: number;
-  operator: string;
-  owner_id: number;
-  target_id: number;
-  value: string;
-};
-
 export type DataTableCollection<T = Model> = {
   columns: ColumnDef<T>[];
   columnOrder: ColumnOrderState;

@@ -47,10 +47,7 @@ class FormUpdateController extends RedirectController
 
         $form->update($attributes);
 
-        if (Arr::get($data, '_dirty', false))
-        {
-            FormService::syncFormPages($form, Arr::get($attributes, Form::RELATION_PAGES, []));
-        }
+        FormService::syncFormPages($form, Arr::get($attributes, Form::RELATION_PAGES, []));
 
         return $this
             ->redirect(route('forms.index'))

@@ -4,8 +4,8 @@ namespace Narsil\Models\Structures;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Support\Arr;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
@@ -16,7 +16,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateSectionElement extends Model
+class TemplateSectionElement extends MorphPivot
 {
     use HasElement;
     use HasTranslations;
@@ -30,6 +30,7 @@ class TemplateSectionElement extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->touches = [
@@ -42,6 +43,7 @@ class TemplateSectionElement extends Model
         ];
 
         $this->with = [
+            self::RELATION_CONDITIONS,
             self::RELATION_ELEMENT,
         ];
 
@@ -51,10 +53,15 @@ class TemplateSectionElement extends Model
         ]);
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
+
+        if ($conditions = Arr::get($attributes, self::RELATION_CONDITIONS))
+        {
+            $this->setRelation(self::RELATION_CONDITIONS, collect($conditions));
+        }
 
         if ($element = Arr::get($attributes, self::RELATION_ELEMENT))
         {
@@ -76,18 +83,11 @@ class TemplateSectionElement extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "id" column.
+     * The name of the "template section uuid" column.
      *
      * @var string
      */
-    final public const ID = 'id';
-
-    /**
-     * The name of the "template section id" column.
-     *
-     * @var string
-     */
-    final public const TEMPLATE_SECTION_ID = 'template_section_id';
+    final public const TEMPLATE_SECTION_UUID = 'template_section_uuid';
 
     #endregion
 
@@ -118,8 +118,8 @@ class TemplateSectionElement extends Model
         return $this
             ->belongsTo(
                 TemplateSection::class,
-                self::TEMPLATE_SECTION_ID,
-                TemplateSection::ID,
+                self::TEMPLATE_SECTION_UUID,
+                TemplateSection::UUID,
             );
     }
 

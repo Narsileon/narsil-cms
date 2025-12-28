@@ -65,7 +65,7 @@ abstract class FormService
 
             $attributes = [
                 FormPageElement::HANDLE => Arr::get($element, FormPageElement::HANDLE),
-                FormPageElement::NAME => json_encode(Arr::get($element, FormPageElement::NAME, [])),
+                FormPageElement::NAME => Arr::get($element, FormPageElement::NAME, []),
                 FormPageElement::POSITION => $position,
                 FormPageElement::WIDTH => Arr::get($element, FormPageElement::WIDTH, 100),
             ];

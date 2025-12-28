@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Enums\SEO\OpenGraphTypeEnum;
 use Narsil\Enums\SEO\RobotsEnum;
+use Narsil\Enums\SitePageAdapterEnum;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
@@ -157,7 +158,13 @@ return new class extends Migration
             $blueprint
                 ->jsonb(SitePage::SLUG);
             $blueprint
-                ->jsonb(SitePage::CONTENT)
+                ->enum(SitePage::ADAPTER, SitePageAdapterEnum::values())
+                ->default(SitePageAdapterEnum::ENTITY->value);
+            $blueprint
+                ->jsonb(SitePage::ENTITY)
+                ->nullable();
+            $blueprint
+                ->string(SitePage::COLLECTION)
                 ->nullable();
             $blueprint
                 ->jsonb(SitePage::META_DESCRIPTION)

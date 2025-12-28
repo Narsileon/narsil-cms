@@ -21,6 +21,12 @@ export type Block = {
   name: string;
 };
 
+export type Condition = {
+  handle: number;
+  operator: string;
+  value: string;
+};
+
 export type Bookmark = Model & {
   name: string;
   url: string;
@@ -64,6 +70,7 @@ export type FieldOption = {
 } & FieldType;
 
 export type HasElement = Model & {
+  conditions?: Condition[];
   element_id: number;
   element_type: "Narsil\\Models\\Structures\\Block" | "Narsil\\Models\\Structures\\Field";
   element: Block | Field;

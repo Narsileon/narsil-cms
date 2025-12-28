@@ -4,8 +4,8 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
 
@@ -15,7 +15,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldsetElement extends Model
+class FieldsetElement extends MorphPivot
 {
     use HasElement;
     use HasTranslations;
@@ -29,6 +29,7 @@ class FieldsetElement extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->translatable = [
@@ -46,7 +47,7 @@ class FieldsetElement extends Model
         ]);
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);

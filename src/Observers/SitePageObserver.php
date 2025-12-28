@@ -71,7 +71,7 @@ class SitePageObserver
      */
     protected function syncRelations(SitePage $sitePage): void
     {
-        $translations = $sitePage->getTranslations(SitePage::CONTENT);
+        $translations = $sitePage->getTranslations(SitePage::ENTITY);
 
         foreach ($translations as $relations)
         {

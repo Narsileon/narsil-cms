@@ -49,8 +49,7 @@ class UserUpdateController extends RedirectController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $user
-            ->update($attributes);
+        $user->update($attributes);
 
         $user->roles()->sync(Arr::get($attributes, User::RELATION_ROLES, []));
 

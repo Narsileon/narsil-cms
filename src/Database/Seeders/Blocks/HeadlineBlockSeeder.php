@@ -27,7 +27,7 @@ class HeadlineBlockSeeder extends BlockSeeder
      */
     protected function block(): Block
     {
-        $headlineOptions = $this->getHeadlineOptions();
+        $headlineSelectOptions = $this->getHeadlineSelectOptions();
 
         return new Block([
             Block::HANDLE => 'headline',
@@ -53,7 +53,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                         Field::NAME => 'Level',
                         Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
-                        Field::RELATION_OPTIONS => $headlineOptions,
+                        Field::RELATION_OPTIONS => $headlineSelectOptions,
                         Field::SETTINGS => app(SelectField::class)
                             ->defaultValue('h1'),
                     ]),
@@ -66,7 +66,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                         Field::NAME => 'Style',
                         Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
-                        Field::RELATION_OPTIONS => $headlineOptions,
+                        Field::RELATION_OPTIONS => $headlineSelectOptions,
                         Field::SETTINGS => app(SelectField::class)
                             ->defaultValue('h6'),
                     ]),
@@ -84,7 +84,7 @@ class HeadlineBlockSeeder extends BlockSeeder
      *
      * @return array<FieldOption>
      */
-    protected function getHeadlineOptions(): array
+    protected function getHeadlineSelectOptions(): array
     {
         $headlines = [
             'h1',

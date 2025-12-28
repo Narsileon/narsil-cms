@@ -4,8 +4,8 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Narsil\Models\Forms\FormPage;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
@@ -16,7 +16,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormPageElement extends Model
+class FormPageElement extends MorphPivot
 {
     use HasElement;
     use HasTranslations;
@@ -30,6 +30,7 @@ class FormPageElement extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->touches = [
@@ -51,7 +52,7 @@ class FormPageElement extends Model
         ]);
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -69,13 +70,6 @@ class FormPageElement extends Model
     final public const TABLE = 'form_page_element';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
 
     /**
      * The name of the "page id" column.

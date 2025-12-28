@@ -189,7 +189,8 @@ class Fieldset extends Model
                 FieldsetElement::TABLE,
                 FieldsetElement::FIELDSET_ID,
                 FieldsetElement::ELEMENT_ID,
-            );
+            )
+            ->using(FieldsetElement::class);
     }
 
     #endregion

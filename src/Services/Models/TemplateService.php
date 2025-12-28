@@ -65,7 +65,7 @@ abstract class TemplateService
 
             $attributes = [
                 TemplateSectionElement::HANDLE => Arr::get($element, TemplateSectionElement::HANDLE),
-                TemplateSectionElement::NAME => json_encode(Arr::get($element, TemplateSectionElement::NAME, [])),
+                TemplateSectionElement::NAME => Arr::get($element, TemplateSectionElement::NAME, []),
                 TemplateSectionElement::POSITION => $position,
                 TemplateSectionElement::WIDTH => Arr::get($element, TemplateSectionElement::WIDTH, 100),
             ];
@@ -87,7 +87,7 @@ abstract class TemplateService
      */
     public static function syncTemplateSections(Template $template, array $sections): void
     {
-        $ids = [];
+        $uuids = [];
 
         foreach ($sections as $key => $section)
         {
@@ -101,12 +101,12 @@ abstract class TemplateService
 
             static::syncTemplateSectionElements($templateSection, Arr::get($section, TemplateSection::RELATION_ELEMENTS, []));
 
-            $ids[] = $templateSection->{TemplateSection::ID};
+            $uuids[] = $templateSection->{TemplateSection::UUID};
         }
 
         $template
             ->sections()
-            ->whereNotIn(TemplateSection::ID, $ids)
+            ->whereNotIn(TemplateSection::UUID, $uuids)
             ->delete();
     }
 

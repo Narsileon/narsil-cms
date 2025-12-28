@@ -62,7 +62,7 @@ abstract class FieldsetService
 
             $attributes = [
                 FieldsetElement::HANDLE => Arr::get($element, FieldsetElement::HANDLE),
-                FieldsetElement::NAME => json_encode(Arr::get($element, FieldsetElement::NAME)),
+                FieldsetElement::NAME => Arr::get($element, FieldsetElement::NAME),
                 FieldsetElement::POSITION => $position,
                 FieldsetElement::WIDTH => Arr::get($element, FieldsetElement::WIDTH, 100),
             ];

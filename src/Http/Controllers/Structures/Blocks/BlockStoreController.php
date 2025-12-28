@@ -45,10 +45,7 @@ class BlockStoreController extends RedirectController
 
         $block = Block::create($attributes);
 
-        if ($elements = Arr::get($attributes, Block::RELATION_ELEMENTS))
-        {
-            BlockService::syncBlockElements($block, $elements);
-        }
+        BlockService::syncBlockElements($block, Arr::get($attributes, Block::RELATION_ELEMENTS, []));
 
         return $this
             ->redirect(route('blocks.index'), $block)

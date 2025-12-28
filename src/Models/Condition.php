@@ -1,11 +1,12 @@
 <?php
 
-namespace Narsil\Models\Structures;
+namespace Narsil\Models;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 #endregion
 
@@ -13,8 +14,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockElementCondition extends Model
+class Condition extends Model
 {
+    use HasUuids;
+
     #region CONSTRUCTOR
 
     /**
@@ -24,12 +27,10 @@ class BlockElementCondition extends Model
     {
         $this->table = self::TABLE;
 
-        $this->with = [
-            self::RELATION_TARGET,
-        ];
+        $this->primaryKey = self::UUID;
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -44,16 +45,16 @@ class BlockElementCondition extends Model
      *
      * @var string
      */
-    final public const TABLE = 'block_element_conditions';
+    final public const TABLE = 'conditions';
 
     #region • COLUMNS
 
     /**
-     * The name of the "id" column.
+     * The name of the "handle" column.
      *
      * @var string
      */
-    final public const ID = 'id';
+    final public const HANDLE = 'handle';
 
     /**
      * The name of the "operator" column.
@@ -63,18 +64,18 @@ class BlockElementCondition extends Model
     final public const OPERATOR = 'operator';
 
     /**
-     * The name of the "owner id" column.
+     * The name of the "owner uuid" column.
      *
      * @var string
      */
-    final public const OWNER_ID = 'owner_id';
+    final public const OWNER_UUID = 'owner_uuid';
 
     /**
-     * The name of the "target id" column.
+     * The name of the "owner type" column.
      *
      * @var string
      */
-    final public const TARGET_ID = 'target_id';
+    final public const OWNER_TYPE = 'owner_type';
 
     /**
      * The name of the "value" column.
@@ -82,6 +83,13 @@ class BlockElementCondition extends Model
      * @var string
      */
     final public const VALUE = 'value';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 
@@ -94,13 +102,6 @@ class BlockElementCondition extends Model
      */
     final public const RELATION_OWNER = 'owner';
 
-    /**
-     * The name of the "target" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_TARGET = 'target';
-
     #endregion
 
     #endregion
@@ -112,30 +113,15 @@ class BlockElementCondition extends Model
     /**
      * Get the associated owner.
      *
-     * @return BelongsTo
+     * @return MorphTo
      */
-    final public function owner(): BelongsTo
+    final public function owner(): MorphTo
     {
         return $this
-            ->belongsTo(
-                Field::class,
-                self::OWNER_ID,
-                Field::ID,
-            );
-    }
-
-    /**
-     * Get the associated target.
-     *
-     * @return BelongsTo
-     */
-    final public function target(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Field::class,
-                self::TARGET_ID,
-                Field::ID,
+            ->morphTo(
+                self::RELATION_OWNER,
+                self::OWNER_TYPE,
+                self::OWNER_UUID,
             );
     }
 

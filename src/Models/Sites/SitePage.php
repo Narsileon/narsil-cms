@@ -37,7 +37,7 @@ class SitePage extends TreeModel
         $this->table = self::TABLE;
 
         $this->translatable = [
-            self::CONTENT,
+            self::ENTITY,
             self::META_DESCRIPTION,
             self::OPEN_GRAPH_DESCRIPTION,
             self::OPEN_GRAPH_TITLE,
@@ -74,6 +74,13 @@ class SitePage extends TreeModel
     #region • COLUMNS
 
     /**
+     * The name of the "adapter" column.
+     *
+     * @var string
+     */
+    final public const ADAPTER = 'adapter';
+
+    /**
      * The name of the "change freq" column.
      *
      * @var string
@@ -81,11 +88,11 @@ class SitePage extends TreeModel
     final public const CHANGE_FREQ = 'change_freq';
 
     /**
-     * The name of the "content" column.
+     * The name of the "collection" column.
      *
      * @var string
      */
-    final public const CONTENT = 'content';
+    final public const COLLECTION = 'collection';
 
     /**
      * The name of the "country" column.
@@ -93,6 +100,13 @@ class SitePage extends TreeModel
      * @var string
      */
     final public const COUNTRY = 'country';
+
+    /**
+     * The name of the "entity" column.
+     *
+     * @var string
+     */
+    final public const ENTITY = 'entity';
 
     /**
      * The name of the "meta description" column.
