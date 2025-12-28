@@ -9,6 +9,7 @@ use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\RangeField;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\SelectField;
+use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextareaField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\SitePageForm as Contract;
@@ -93,6 +94,17 @@ class SitePageForm extends AbstractForm implements Contract
                                 ->collections($collections)
                                 ->defaultValue([])
                                 ->multiple(false),
+                        ])
+                    ]),
+                    new TemplateSectionElement([
+                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => SitePage::SHOW_IN_MENU,
+                            Field::NAME => trans('narsil::validation.attributes.show_in_menu'),
+                            Field::REQUIRED => true,
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => SwitchField::class,
+                            Field::SETTINGS => app(SwitchField::class)
+                                ->defaultValue(true),
                         ])
                     ]),
                 ]

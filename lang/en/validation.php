@@ -267,6 +267,7 @@ return [
         'roles'                   => 'roles',
         'section'                 => 'section',
         'sections'                => 'sections',
+        'show_in_menu'            => 'show in menu',
         'singular'                => 'singular',
         'site_page_id'            => 'page',
         'slug'                    => 'slug',
