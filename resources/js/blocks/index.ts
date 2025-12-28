@@ -15,7 +15,6 @@ import Kbd from "./kbd";
 import Label from "./label";
 import Link from "./link";
 import Logo from "./logo";
-import NavigationMenu from "./navigation-menu";
 import Pagination from "./pagination";
 import Progress from "./progress";
 import RevisionSelect from "./revision-select";
@@ -50,7 +49,6 @@ export {
   Label,
   Link,
   Logo,
-  NavigationMenu,
   Pagination,
   Progress,
   RevisionSelect,
