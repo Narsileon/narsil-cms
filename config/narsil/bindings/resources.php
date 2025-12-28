@@ -21,6 +21,7 @@ return [
     \Narsil\Contracts\Resources\HeaderResource::class => \Narsil\Implementations\Resources\HeaderResource::class,
     \Narsil\Contracts\Resources\InputOptionResource::class => \Narsil\Implementations\Resources\InputOptionResource::class,
     \Narsil\Contracts\Resources\InputResource::class => \Narsil\Implementations\Resources\InputResource::class,
+    \Narsil\Contracts\Resources\NavigationMenuResource::class => \Narsil\Implementations\Resources\NavigationMenuResource::class,
     \Narsil\Contracts\Resources\SitePageResource::class => \Narsil\Implementations\Resources\SitePageResource::class,
     \Narsil\Contracts\Resources\SitePageUrlResource::class => \Narsil\Implementations\Resources\SitePageUrlResource::class,
     \Narsil\Contracts\Resources\UserResource::class => \Narsil\Implementations\Resources\UserResource::class,

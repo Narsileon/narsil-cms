@@ -15,7 +15,7 @@ use Narsil\Models\Sites\SitePage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SitePageResource extends NestedTreeResource
+class SitePageNestedTreeResource extends NestedTreeResource
 {
     #region CONSTRUCTOR
 

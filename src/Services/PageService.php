@@ -64,6 +64,15 @@ abstract class PageService
                     },
                 ]);
             },
+            SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_SITE . '.' . Site::RELATION_PAGES . '.' . SitePage::RELATION_URLS => function ($query) use ($siteUrl)
+            {
+                $query
+                    ->where(
+                        SiteUrl::HOST_LOCALE_LANGUAGE_UUID,
+                        $siteUrl->{SiteUrl::RELATION_HOST_LOCALE_LANGUAGE}->{HostLocaleLanguage::UUID}
+                    )
+                    ->with(SiteUrl::RELATION_HOST_LOCALE_LANGUAGE);
+            },
         ]);
 
         $siteUrl->{SiteUrl::RELATION_PAGE}->append(SitePage::ATTRIBUTE_ENTITIES);

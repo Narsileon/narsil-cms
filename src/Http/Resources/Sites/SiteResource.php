@@ -6,7 +6,7 @@ namespace Narsil\Http\Resources\Sites;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Narsil\Http\Resources\SitePages\SitePageResource;
+use Narsil\Http\Resources\SitePages\SitePageNestedTreeResource;
 use Narsil\Models\Sites\Site;
 use Narsil\Support\Tree;
 
@@ -67,7 +67,7 @@ class SiteResource extends JsonResource
 
         $pages = $tree->map(function ($page) use ($request)
         {
-            $resource = new SitePageResource($page, $this->{Site::HANDLE});
+            $resource = new SitePageNestedTreeResource($page, $this->{Site::HANDLE});
 
             return $resource->toArray($request);
         })->toArray();
