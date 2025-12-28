@@ -9,7 +9,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/plugins/fields";
-import type { Block, BlockElementCondition, Field, TemplateSection } from "@narsil-cms/types";
+import type { Block, Condition, Field, TemplateSection } from "@narsil-cms/types";
 import parse from "html-react-parser";
 import { get, kebabCase } from "lodash-es";
 import { Fragment } from "react";
@@ -23,7 +23,7 @@ import FormMessage from "./form-message";
 
 type FormRendererProps = (Block | Field | TemplateSection) & {
   className?: string;
-  conditions?: BlockElementCondition[];
+  conditions?: Condition[];
   required?: boolean;
   translatable?: boolean;
   width?: number;

@@ -44,12 +44,12 @@ type BlockElement @model(class: "Narsil\\Models\\Structures\\BlockElement") {
   position: Int!
   width: Int!
   block: Block! @belongsTo
-  conditions: [BlockElementCondition!]! @hasMany
+  conditions: [Condition!]! @hasMany
   element: Element! @morphTo
 }
 
-type BlockElementCondition
-  @model(class: "Narsil\\Models\\Structures\\BlockElementCondition") {
+type Condition
+  @model(class: "Narsil\\Models\\Condition") {
   id: ID!
   owner_id: Int!
   key: String!

@@ -1,11 +1,11 @@
-import type { BlockElementCondition, Field } from "@narsil-cms/types";
+import type { Condition, Field } from "@narsil-cms/types";
 import { cloneDeep, get, isObject, unset } from "lodash-es";
 import { useEffect, useState } from "react";
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
 
 type FormFieldProps = {
-  conditions?: BlockElementCondition[];
+  conditions?: Condition[];
   field: Field;
   id: string;
   render: (field: {

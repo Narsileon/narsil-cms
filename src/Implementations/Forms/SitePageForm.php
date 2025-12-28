@@ -27,7 +27,6 @@ use Narsil\Models\Structures\TemplateSection;
 use Narsil\Models\Structures\TemplateSectionElement;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Structures\BlockElementCondition;
 use Narsil\Services\RouteService;
 
 #endregion
