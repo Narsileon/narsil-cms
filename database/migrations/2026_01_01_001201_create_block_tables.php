@@ -84,8 +84,6 @@ return new class extends Migration
                 ->string(BlockElementCondition::OPERATOR);
             $blueprint
                 ->string(BlockElementCondition::VALUE);
-            $blueprint
-                ->timestamps();
         });
     }
 

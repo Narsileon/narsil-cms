@@ -51,7 +51,7 @@ abstract class EntityService
             $entityBlock = EntityBlock::create([
                 EntityBlock::ENTITY_UUID => $entity->{Entity::UUID},
                 EntityBlock::BLOCK_ID => Arr::get($block, EntityBlock::RELATION_BLOCK . '.' . Block::ID),
-                EntityBlock::ENTITY_FIELD_UUID => $parentField?->{EntityBlockField::UUID},
+                EntityBlock::ENTITY_BLOCK_FIELD_UUID => $parentField?->{EntityBlockField::UUID},
                 EntityBlock::POSITION => $key,
             ]);
 

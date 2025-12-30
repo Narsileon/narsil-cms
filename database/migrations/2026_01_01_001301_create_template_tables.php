@@ -83,8 +83,6 @@ return new class extends Migration
                 ->string(TemplateTabElementCondition::OPERATOR);
             $blueprint
                 ->string(TemplateTabElementCondition::VALUE);
-            $blueprint
-                ->timestamps();
         });
     }
 

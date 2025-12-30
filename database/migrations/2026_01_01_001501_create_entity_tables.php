@@ -164,7 +164,7 @@ return new class extends Migration
         Schema::table(EntityBlock::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->foreign(EntityBlock::ENTITY_FIELD_UUID)
+                ->foreign(EntityBlock::ENTITY_BLOCK_FIELD_UUID)
                 ->references(EntityBlockField::UUID)
                 ->on(EntityBlockField::TABLE)
                 ->nullOnDelete();
@@ -188,7 +188,7 @@ return new class extends Migration
                 ->constrained(Entity::TABLE, Entity::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->uuid(EntityBlock::ENTITY_FIELD_UUID)
+                ->uuid(EntityBlock::ENTITY_BLOCK_FIELD_UUID)
                 ->nullable();
             $blueprint
                 ->foreignId(EntityBlock::BLOCK_ID)

@@ -184,7 +184,7 @@ class Entity extends Model
                 EntityBlock::ENTITY_UUID,
                 self::UUID,
             )
-            ->whereNull(EntityBlock::ENTITY_FIELD_UUID);
+            ->whereNull(EntityBlock::ENTITY_BLOCK_FIELD_UUID);
     }
 
     /**

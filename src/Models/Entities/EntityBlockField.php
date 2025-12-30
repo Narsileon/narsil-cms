@@ -153,7 +153,7 @@ class EntityBlockField extends Model
     {
         return $this->hasMany(
             EntityBlock::class,
-            EntityBlock::ENTITY_FIELD_UUID,
+            EntityBlock::ENTITY_BLOCK_FIELD_UUID,
             self::UUID,
         );
     }

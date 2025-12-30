@@ -122,8 +122,6 @@ return new class extends Migration
                 ->string(FieldsetElementCondition::OPERATOR);
             $blueprint
                 ->string(FieldsetElementCondition::VALUE);
-            $blueprint
-                ->timestamps();
         });
     }
 
@@ -232,8 +230,6 @@ return new class extends Migration
                 ->string(FormTabElementCondition::OPERATOR);
             $blueprint
                 ->string(FormTabElementCondition::VALUE);
-            $blueprint
-                ->timestamps();
         });
     }
 

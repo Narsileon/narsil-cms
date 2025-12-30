@@ -25,6 +25,7 @@ abstract class AbstractCondition extends Model
     public function __construct(array $attributes = [])
     {
         $this->primaryKey = self::UUID;
+        $this->timestamps = false;
 
         $this->mergeGuarded([
             self::UUID,

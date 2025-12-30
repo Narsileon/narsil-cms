@@ -66,11 +66,11 @@ class EntityBlock extends Model
     final public const BLOCK_ID = 'block_id';
 
     /**
-     * The name of the "entity field uuid" column.
+     * The name of the "entity block field uuid" column.
      *
      * @var string
      */
-    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
+    final public const ENTITY_BLOCK_FIELD_UUID = 'entity_block_field_uuid';
 
     /**
      * The name of the "entity uuid" column.
@@ -153,6 +153,21 @@ class EntityBlock extends Model
                 Entity::class,
                 self::ENTITY_UUID,
                 Entity::UUID,
+            );
+    }
+
+    /**
+     * Get the associated entity block field.
+     *
+     * @return BelongsTo
+     */
+    final public function entity_block_field(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                EntityBlockField::class,
+                self::ENTITY_BLOCK_FIELD_UUID,
+                EntityBlockField::UUID,
             );
     }
 
