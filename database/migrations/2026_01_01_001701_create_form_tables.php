@@ -196,8 +196,18 @@ return new class extends Migration
                 ->uuid(FieldsetElement::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FieldsetElement::FIELDSET_ID)
+                ->foreignId(FieldsetElement::OWNER_ID)
                 ->constrained(Fieldset::TABLE, Fieldset::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(FieldsetElement::FIELDSET_ID)
+                ->nullable()
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(FieldsetElement::INPUT_ID)
+                ->nullable()
+                ->constrained(Input::TABLE, Input::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(FieldsetElement::RELATION_ELEMENT);
@@ -269,8 +279,18 @@ return new class extends Migration
                 ->uuid(FormPageElement::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FormPageElement::PAGE_ID)
-                ->constrained(FormPage::TABLE, FormPage::ID)
+                ->foreignUuid(FormPageElement::OWNER_UUID)
+                ->constrained(FormPage::TABLE, FormPage::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(FieldsetElement::FIELDSET_ID)
+                ->nullable()
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(FieldsetElement::INPUT_ID)
+                ->nullable()
+                ->constrained(Input::TABLE, Input::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(FormPageElement::RELATION_ELEMENT);
@@ -306,7 +326,8 @@ return new class extends Migration
         Schema::create(FormPage::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->id(FormPage::ID);
+                ->uuid(FormPage::UUID)
+                ->primary();
             $blueprint
                 ->foreignId(FormPage::FORM_ID)
                 ->constrained(Form::TABLE, Form::ID)

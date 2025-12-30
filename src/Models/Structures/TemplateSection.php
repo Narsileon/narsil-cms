@@ -158,7 +158,7 @@ class TemplateSection extends Model
                 Block::class,
                 TemplateSectionElement::RELATION_ELEMENT,
                 TemplateSectionElement::TABLE,
-                TemplateSectionElement::TEMPLATE_SECTION_UUID,
+                TemplateSectionElement::OWNER_UUID,
                 TemplateSectionElement::ELEMENT_ID,
             )
             ->using(TemplateSectionElement::class);
@@ -174,7 +174,7 @@ class TemplateSection extends Model
         return $this
             ->hasMany(
                 TemplateSectionElement::class,
-                TemplateSectionElement::TEMPLATE_SECTION_UUID,
+                TemplateSectionElement::OWNER_UUID,
                 self::UUID,
             )
             ->orderBy(TemplateSectionElement::POSITION);
@@ -192,7 +192,7 @@ class TemplateSection extends Model
                 Field::class,
                 TemplateSectionElement::RELATION_ELEMENT,
                 TemplateSectionElement::TABLE,
-                TemplateSectionElement::TEMPLATE_SECTION_UUID,
+                TemplateSectionElement::OWNER_UUID,
                 TemplateSectionElement::ELEMENT_ID,
             )
             ->using(TemplateSectionElement::class);

@@ -4,6 +4,7 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +20,7 @@ use Narsil\Traits\HasTranslations;
 class FormPage extends Model
 {
     use HasTranslations;
+    use HasUuids;
 
     #region CONSTRUCTOR
 
@@ -28,6 +30,8 @@ class FormPage extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
+
+        $this->primaryKey = self::UUID;
 
         $this->touches = [
             self::RELATION_FORM,
@@ -42,7 +46,7 @@ class FormPage extends Model
         ];
 
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -76,13 +80,6 @@ class FormPage extends Model
     final public const HANDLE = 'handle';
 
     /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
      * The name of the "name" column.
      *
      * @var string
@@ -95,6 +92,13 @@ class FormPage extends Model
      * @var string
      */
     final public const POSITION = 'position';
+
+    /**
+     * The name of the "uuid" column.
+     *
+     * @var string
+     */
+    final public const UUID = 'uuid';
 
     #endregion
 
@@ -146,8 +150,8 @@ class FormPage extends Model
         return $this
             ->hasMany(
                 FormPageElement::class,
-                FormPageElement::PAGE_ID,
-                self::ID,
+                FormPageElement::OWNER_UUID,
+                self::UUID,
             )
             ->orderBy(FormPageElement::POSITION);
     }
@@ -164,7 +168,7 @@ class FormPage extends Model
                 Fieldset::class,
                 FormPageElement::RELATION_ELEMENT,
                 FormPageElement::TABLE,
-                FormPageElement::PAGE_ID,
+                FormPageElement::OWNER_UUID,
                 FormPageElement::ELEMENT_ID,
             )
             ->using(FormPageElement::class);
@@ -182,7 +186,7 @@ class FormPage extends Model
                 Input::class,
                 FormPageElement::RELATION_ELEMENT,
                 FormPageElement::TABLE,
-                FormPageElement::PAGE_ID,
+                FormPageElement::OWNER_UUID,
                 FormPageElement::ELEMENT_ID,
             )
             ->using(FormPageElement::class);

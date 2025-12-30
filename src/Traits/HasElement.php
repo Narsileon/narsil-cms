@@ -170,7 +170,6 @@ trait HasElement
             );
     }
 
-
     /**
      * Get the associated element.
      *

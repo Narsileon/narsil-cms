@@ -33,10 +33,6 @@ class TemplateSectionElement extends MorphPivot
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->touches = [
-            self::RELATION_TEMPLATE_SECTION,
-        ];
-
         $this->translatable = [
             self::DESCRIPTION,
             self::NAME,
@@ -83,22 +79,50 @@ class TemplateSectionElement extends MorphPivot
     #region • COLUMNS
 
     /**
-     * The name of the "template section uuid" column.
+     * The name of the "block id" column.
      *
      * @var string
      */
-    final public const TEMPLATE_SECTION_UUID = 'template_section_uuid';
+    final public const BLOCK_ID = 'block_id';
+
+    /**
+     * The name of the "field id" column.
+     *
+     * @var string
+     */
+    final public const FIELD_ID = 'field_id';
+
+    /**
+     * The name of the "owner uuid" column.
+     *
+     * @var string
+     */
+    final public const OWNER_UUID = 'owner_uuid';
 
     #endregion
 
     #region • RELATIONS
 
     /**
-     * The name of the "template section" relation.
+     * The name of the "block" relation.
      *
      * @var string
      */
-    final public const RELATION_TEMPLATE_SECTION = 'template_section';
+    final public const RELATION_BLOCK = 'block';
+
+    /**
+     * The name of the "field" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FIELD = 'field';
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
 
     #endregion
 
@@ -109,16 +133,46 @@ class TemplateSectionElement extends MorphPivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated template section.
+     * Get the associated block.
      *
      * @return BelongsTo
      */
-    final public function template_section(): BelongsTo
+    final public function block(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Block::class,
+                self::BLOCK_ID,
+                Block::ID,
+            );
+    }
+
+    /**
+     * Get the associated field.
+     *
+     * @return BelongsTo
+     */
+    final public function field(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Field::class,
+                self::BLOCK_ID,
+                Field::ID,
+            );
+    }
+
+    /**
+     * Get the associated owner.
+     *
+     * @return BelongsTo
+     */
+    final public function owner(): BelongsTo
     {
         return $this
             ->belongsTo(
                 TemplateSection::class,
-                self::TEMPLATE_SECTION_UUID,
+                self::OWNER_UUID,
                 TemplateSection::UUID,
             );
     }

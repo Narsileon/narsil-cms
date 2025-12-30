@@ -85,6 +85,20 @@ class BlockElement extends MorphPivot
      */
     final public const BLOCK_ID = 'block_id';
 
+    /**
+     * The name of the "field id" column.
+     *
+     * @var string
+     */
+    final public const FIELD_ID = 'field_id';
+
+    /**
+     * The name of the "owner id" column.
+     *
+     * @var string
+     */
+    final public const OWNER_ID = 'owner_id';
+
     #endregion
 
     #region • RELATIONS
@@ -95,6 +109,20 @@ class BlockElement extends MorphPivot
      * @var string
      */
     final public const RELATION_BLOCK = 'block';
+
+    /**
+     * The name of the "field" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FIELD = 'field';
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
 
     #endregion
 
@@ -115,6 +143,36 @@ class BlockElement extends MorphPivot
             ->belongsTo(
                 Block::class,
                 self::BLOCK_ID,
+                Block::ID,
+            );
+    }
+
+    /**
+     * Get the associated field.
+     *
+     * @return BelongsTo
+     */
+    final public function field(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Field::class,
+                self::BLOCK_ID,
+                Field::ID,
+            );
+    }
+
+    /**
+     * Get the associated owner.
+     *
+     * @return BelongsTo
+     */
+    final public function owner(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Block::class,
+                self::OWNER_ID,
                 Block::ID,
             );
     }

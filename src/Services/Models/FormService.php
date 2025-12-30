@@ -87,7 +87,7 @@ abstract class FormService
      */
     public static function syncFormPages(Form $form, array $pages): void
     {
-        $ids = [];
+        $uuids = [];
 
         foreach ($pages as $key => $page)
         {
@@ -101,12 +101,12 @@ abstract class FormService
 
             static::syncFormPageElements($formPage, Arr::get($page, FormPage::RELATION_ELEMENTS, []));
 
-            $ids[] = $formPage->{FormPage::ID};
+            $uuids[] = $formPage->{FormPage::UUID};
         }
 
         $form
             ->pages()
-            ->whereNotIn(FormPage::ID, $ids)
+            ->whereNotIn(FormPage::UUID, $uuids)
             ->delete();
     }
 

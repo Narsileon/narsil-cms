@@ -284,30 +284,4 @@ class Field extends Model
     #endregion
 
     #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    protected static function booted(): void
-    {
-        static::deleting(function ($element)
-        {
-            $models = [
-                BlockElement::class,
-                TemplateSectionElement::class,
-            ];
-
-            foreach ($models as $model)
-            {
-                $model::query()
-                    ->where('element_type', $element::class)
-                    ->where('element_id', $element->getKey())
-                    ->delete();
-            }
-        });
-    }
-
-    #endregion
 }

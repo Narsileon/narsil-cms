@@ -70,8 +70,18 @@ return new class extends Migration
                 ->uuid(BlockElement::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(BlockElement::BLOCK_ID)
+                ->foreignId(BlockElement::OWNER_ID)
                 ->constrained(Block::TABLE, Block::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(BlockElement::BLOCK_ID)
+                ->nullable()
+                ->constrained(Block::TABLE, Block::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(BlockElement::FIELD_ID)
+                ->nullable()
+                ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(BlockElement::RELATION_ELEMENT);

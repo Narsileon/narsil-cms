@@ -33,10 +33,6 @@ class FormPageElement extends MorphPivot
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->touches = [
-            self::RELATION_PAGE,
-        ];
-
         $this->translatable = [
             self::DESCRIPTION,
             self::NAME,
@@ -72,22 +68,50 @@ class FormPageElement extends MorphPivot
     #region • COLUMNS
 
     /**
-     * The name of the "page id" column.
+     * The name of the "fieldset id" column.
      *
      * @var string
      */
-    final public const PAGE_ID = 'page_id';
+    final public const FIELDSET_ID = 'fieldset_id';
+
+    /**
+     * The name of the "input id" column.
+     *
+     * @var string
+     */
+    final public const INPUT_ID = 'input_id';
+
+    /**
+     * The name of the "owner uuid" column.
+     *
+     * @var string
+     */
+    final public const OWNER_UUID = 'owner_uuid';
 
     #endregion
 
     #region • RELATIONS
 
     /**
-     * The name of the "page" relation.
+     * The name of the "fieldset" relation.
      *
      * @var string
      */
-    final public const RELATION_PAGE = 'page';
+    final public const RELATION_FIELDSET = 'fieldset';
+
+    /**
+     * The name of the "input" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_INPUT = 'input';
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
 
     #endregion
 
@@ -98,17 +122,47 @@ class FormPageElement extends MorphPivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated page.
+     * Get the associated fieldset.
      *
      * @return BelongsTo
      */
-    final public function page(): BelongsTo
+    final public function fieldset(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Fieldset::class,
+                self::FIELDSET_ID,
+                Fieldset::ID,
+            );
+    }
+
+    /**
+     * Get the associated input.
+     *
+     * @return BelongsTo
+     */
+    final public function input(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Input::class,
+                self::INPUT_ID,
+                Input::ID,
+            );
+    }
+
+    /**
+     * Get the associated owner.
+     *
+     * @return BelongsTo
+     */
+    final public function owner(): BelongsTo
     {
         return $this
             ->belongsTo(
                 FormPage::class,
-                self::PAGE_ID,
-                FormPage::ID,
+                self::OWNER_UUID,
+                FormPage::UUID,
             );
     }
 

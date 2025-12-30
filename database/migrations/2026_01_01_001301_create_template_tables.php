@@ -5,6 +5,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Structures\TemplateSection;
 use Narsil\Models\Structures\TemplateSectionElement;
@@ -66,8 +68,18 @@ return new class extends Migration
                 ->uuid(TemplateSectionElement::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(TemplateSectionElement::TEMPLATE_SECTION_UUID)
+                ->foreignUuid(TemplateSectionElement::OWNER_UUID)
                 ->constrained(TemplateSection::TABLE, TemplateSection::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(TemplateSectionElement::BLOCK_ID)
+                ->nullable()
+                ->constrained(Block::TABLE, Block::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(TemplateSectionElement::FIELD_ID)
+                ->nullable()
+                ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(TemplateSectionElement::RELATION_ELEMENT);

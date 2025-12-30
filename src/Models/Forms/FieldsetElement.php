@@ -73,6 +73,20 @@ class FieldsetElement extends MorphPivot
      */
     final public const FIELDSET_ID = 'fieldset_id';
 
+    /**
+     * The name of the "input id" column.
+     *
+     * @var string
+     */
+    final public const INPUT_ID = 'input_id';
+
+    /**
+     * The name of the "owner id" column.
+     *
+     * @var string
+     */
+    final public const OWNER_ID = 'owner_id';
+
     #endregion
 
     #region • RELATIONS
@@ -83,6 +97,20 @@ class FieldsetElement extends MorphPivot
      * @var string
      */
     final public const RELATION_FIELDSET = 'fieldset';
+
+    /**
+     * The name of the "input" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_INPUT = 'input';
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
 
     #endregion
 
@@ -103,6 +131,36 @@ class FieldsetElement extends MorphPivot
             ->belongsTo(
                 Fieldset::class,
                 self::FIELDSET_ID,
+                Fieldset::ID,
+            );
+    }
+
+    /**
+     * Get the associated input.
+     *
+     * @return BelongsTo
+     */
+    final public function input(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Input::class,
+                self::INPUT_ID,
+                Input::ID,
+            );
+    }
+
+    /**
+     * Get the associated owner.
+     *
+     * @return BelongsTo
+     */
+    final public function owner(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Fieldset::class,
+                self::OWNER_ID,
                 Fieldset::ID,
             );
     }

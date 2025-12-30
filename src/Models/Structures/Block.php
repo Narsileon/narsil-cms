@@ -198,7 +198,7 @@ class Block extends Model
                 Block::class,
                 BlockElement::RELATION_ELEMENT,
                 BlockElement::TABLE,
-                BlockElement::BLOCK_ID,
+                BlockElement::OWNER_ID,
                 BlockElement::ELEMENT_ID,
             )
             ->using(BlockElement::class);
@@ -214,7 +214,7 @@ class Block extends Model
         return $this
             ->hasMany(
                 BlockElement::class,
-                BlockElement::BLOCK_ID,
+                BlockElement::OWNER_ID,
                 self::ID,
             )
             ->orderBy(BlockElement::POSITION);
@@ -232,39 +232,13 @@ class Block extends Model
                 Field::class,
                 BlockElement::RELATION_ELEMENT,
                 BlockElement::TABLE,
-                BlockElement::BLOCK_ID,
+                BlockElement::OWNER_ID,
                 BlockElement::ELEMENT_ID,
             )
             ->using(BlockElement::class);
     }
 
     #endregion
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    protected static function booted(): void
-    {
-        static::deleting(function ($element)
-        {
-            $models = [
-                BlockElement::class,
-                TemplateSectionElement::class,
-            ];
-
-            foreach ($models as $model)
-            {
-                $model::query()
-                    ->where('element_type', $element::class)
-                    ->where('element_id', $element->getKey())
-                    ->delete();
-            }
-        });
-    }
 
     #endregion
 }
