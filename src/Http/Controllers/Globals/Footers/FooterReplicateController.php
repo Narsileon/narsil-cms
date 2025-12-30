@@ -10,6 +10,7 @@ use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Footer;
+use Narsil\Services\Models\FooterService;
 use Narsil\Services\ModelService;
 
 #endregion
@@ -32,9 +33,7 @@ class FooterReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Footer::class);
 
-        $replicated = $footer->replicate();
-
-        $replicated->save();
+        FooterService::replicate($footer);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Footer::class, ModelEventEnum::REPLICATED));

@@ -40,7 +40,7 @@ class TemplateReplicateManyController extends RedirectController
 
         foreach ($templates as $template)
         {
-            TemplateService::replicateTemplate($template);
+            TemplateService::replicate($template);
         }
 
         return back()

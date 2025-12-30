@@ -26,7 +26,7 @@ abstract class EntityService
      *
      * @return void
      */
-    public static function replicateEntity(Entity $entity): void
+    public static function replicate(Entity $entity): void
     {
         $replicated = $entity->replicate();
 

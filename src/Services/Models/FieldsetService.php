@@ -26,7 +26,7 @@ abstract class FieldsetService
      *
      * @return void
      */
-    public static function replicateFieldset(Fieldset $fieldset): void
+    public static function replicate(Fieldset $fieldset): void
     {
         $replicated = $fieldset->replicate();
 

@@ -28,7 +28,7 @@ abstract class FormService
      *
      * @return void
      */
-    public static function replicateForm(Form $form): void
+    public static function replicate(Form $form): void
     {
         $replicated = $form->replicate();
 

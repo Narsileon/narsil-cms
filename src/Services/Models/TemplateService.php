@@ -28,7 +28,7 @@ abstract class TemplateService
      *
      * @return void
      */
-    public static function replicateTemplate(Template $template): void
+    public static function replicate(Template $template): void
     {
         $replicated = $template->replicate();
 

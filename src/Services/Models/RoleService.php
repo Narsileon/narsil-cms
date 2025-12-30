@@ -23,7 +23,7 @@ abstract class RoleService
      *
      * @return void
      */
-    public static function replicateRole(Role $role): void
+    public static function replicate(Role $role): void
     {
         $replicated = $role->replicate();
 

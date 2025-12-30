@@ -39,7 +39,7 @@ abstract class FieldService
      *
      * @return void
      */
-    public static function replicateField(Field $field): void
+    public static function replicate(Field $field): void
     {
         $replicated = $field->replicate();
 

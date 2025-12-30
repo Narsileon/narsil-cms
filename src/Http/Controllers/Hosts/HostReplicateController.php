@@ -33,7 +33,7 @@ class HostReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Host::class);
 
-        HostService::replicateHost($host);
+        HostService::replicate($host);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Host::class, ModelEventEnum::REPLICATED));

@@ -40,7 +40,7 @@ class BlockReplicateManyController extends RedirectController
 
         foreach ($blocks as $block)
         {
-            BlockService::replicateBlock($block);
+            BlockService::replicate($block);
         }
 
         return back()

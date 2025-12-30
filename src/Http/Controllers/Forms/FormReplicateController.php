@@ -33,7 +33,7 @@ class FormReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Form::class);
 
-        FormService::replicateForm($form);
+        FormService::replicate($form);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Form::class, ModelEventEnum::REPLICATED));

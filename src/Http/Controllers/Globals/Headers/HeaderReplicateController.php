@@ -10,6 +10,7 @@ use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Globals\Header;
+use Narsil\Services\Models\HeaderService;
 use Narsil\Services\ModelService;
 
 #endregion
@@ -32,9 +33,7 @@ class HeaderReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Header::class);
 
-        $replicated = $header->replicate();
-
-        $replicated->save();
+        HeaderService::replicate($header);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Header::class, ModelEventEnum::REPLICATED));

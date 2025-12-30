@@ -33,7 +33,7 @@ class RoleReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Role::class);
 
-        RoleService::replicateRole($role);
+        RoleService::replicate($role);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Role::class, ModelEventEnum::REPLICATED));

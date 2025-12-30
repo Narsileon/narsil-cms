@@ -40,7 +40,7 @@ class FormReplicateManyController extends RedirectController
 
         foreach ($forms as $form)
         {
-            FormService::replicateForm($form);
+            FormService::replicate($form);
         }
 
         return back()

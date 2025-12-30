@@ -42,7 +42,7 @@ class EntityReplicateController extends RedirectController
                 Entity::ID => $id
             ]);
 
-        EntityService::replicateEntity($entity);
+        EntityService::replicate($entity);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Entity::class, ModelEventEnum::REPLICATED));

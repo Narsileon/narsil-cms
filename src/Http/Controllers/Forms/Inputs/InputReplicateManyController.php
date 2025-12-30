@@ -40,7 +40,7 @@ class InputReplicateManyController extends RedirectController
 
         foreach ($inputs as $input)
         {
-            InputService::replicateInput($input);
+            InputService::replicate($input);
         }
 
         return back()

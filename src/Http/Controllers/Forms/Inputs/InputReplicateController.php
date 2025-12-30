@@ -33,7 +33,7 @@ class InputReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Input::class);
 
-        InputService::replicateInput($input);
+        InputService::replicate($input);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Input::class, ModelEventEnum::REPLICATED));

@@ -33,7 +33,7 @@ class BlockReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Block::class);
 
-        BlockService::replicateBlock($block);
+        BlockService::replicate($block);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Block::class, ModelEventEnum::REPLICATED));

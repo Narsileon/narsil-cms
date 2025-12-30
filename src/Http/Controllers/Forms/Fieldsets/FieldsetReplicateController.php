@@ -33,7 +33,7 @@ class FieldsetReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Fieldset::class);
 
-        FieldsetService::replicateFieldset($fieldset);
+        FieldsetService::replicate($fieldset);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Fieldset::class, ModelEventEnum::REPLICATED));

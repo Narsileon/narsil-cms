@@ -24,7 +24,7 @@ abstract class InputService
      *
      * @return void
      */
-    public static function replicateInput(Input $input): void
+    public static function replicate(Input $input): void
     {
         $replicated = $input->replicate();
 

@@ -40,7 +40,7 @@ class HostReplicateManyController extends RedirectController
 
         foreach ($hosts as $host)
         {
-            HostService::replicateHost($host);
+            HostService::replicate($host);
         }
 
         return back()

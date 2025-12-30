@@ -41,7 +41,7 @@ class RoleReplicateManyController extends RedirectController
 
         foreach ($roles as $role)
         {
-            RoleService::replicateRole($role);
+            RoleService::replicate($role);
         }
 
         return back()

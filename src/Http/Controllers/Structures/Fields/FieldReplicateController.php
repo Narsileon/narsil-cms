@@ -33,7 +33,7 @@ class FieldReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Field::class);
 
-        FieldService::replicateField($field);
+        FieldService::replicate($field);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Field::class, ModelEventEnum::REPLICATED));

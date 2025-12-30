@@ -24,7 +24,7 @@ abstract class HostService
      *
      * @return void
      */
-    public static function replicateHost(Host $host): void
+    public static function replicate(Host $host): void
     {
         $replicated = $host->replicate();
 

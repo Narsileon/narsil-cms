@@ -40,7 +40,7 @@ class FieldsetReplicateManyController extends RedirectController
 
         foreach ($fieldsets as $fieldset)
         {
-            FieldsetService::replicateFieldset($fieldset);
+            FieldsetService::replicate($fieldset);
         }
 
         return back()

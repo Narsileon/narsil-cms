@@ -40,7 +40,7 @@ class FieldReplicateManyController extends RedirectController
 
         foreach ($fields as $field)
         {
-            FieldService::replicateField($field);
+            FieldService::replicate($field);
         }
 
         return back()

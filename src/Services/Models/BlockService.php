@@ -26,7 +26,7 @@ abstract class BlockService
      *
      * @return void
      */
-    public static function replicateBlock(Block $block): void
+    public static function replicate(Block $block): void
     {
         $replicated = $block->replicate();
 

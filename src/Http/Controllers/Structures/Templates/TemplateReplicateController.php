@@ -33,7 +33,7 @@ class TemplateReplicateController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Template::class);
 
-        TemplateService::replicateTemplate($template);
+        TemplateService::replicate($template);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::REPLICATED));

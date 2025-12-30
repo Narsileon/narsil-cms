@@ -7,6 +7,7 @@ namespace Narsil\Services\Models;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Globals\FooterSocialMedium;
+use Narsil\Services\DatabaseService;
 
 #endregion
 
@@ -17,6 +18,25 @@ use Narsil\Models\Globals\FooterSocialMedium;
 abstract class FooterService
 {
     #region PUBLIC METHODS
+
+    /**
+     * @param Footer $footer
+     *
+     * @return void
+     */
+    public static function replicate(Footer $footer): void
+    {
+        $replicated = $footer->replicate();
+
+        $replicated
+            ->fill([
+                Footer::HANDLE => DatabaseService::generateUniqueValue($replicated, Footer::HANDLE, $footer->{Footer::HANDLE}),
+            ])
+            ->save();
+
+        static::syncLinks($replicated, $footer->links()->get()->toArray());
+        static::syncSocialMedia($replicated, $footer->social_media()->get()->toArray());
+    }
 
     /**
      * @param Footer $footer
@@ -33,7 +53,10 @@ abstract class FooterService
             $fieldOption = FooterLink::updateOrCreate([
                 FooterLink::FOOTER_ID => $footer->{Footer::ID},
                 FooterLink::POSITION => $key,
-            ], $link);
+            ], [
+                ...$link,
+                FooterLink::FOOTER_ID => $footer->{Footer::ID},
+            ]);
 
             $uuids[] = $fieldOption->{FooterLink::UUID};
         }
@@ -59,7 +82,10 @@ abstract class FooterService
             $fieldOption = FooterSocialMedium::updateOrCreate([
                 FooterSocialMedium::FOOTER_ID => $footer->{Footer::ID},
                 FooterSocialMedium::POSITION => $key,
-            ], $socialMedium);
+            ], [
+                ...$socialMedium,
+                FooterSocialMedium::FOOTER_ID => $footer->{Footer::ID},
+            ]);
 
             $uuids[] = $fieldOption->{FooterLink::UUID};
         }

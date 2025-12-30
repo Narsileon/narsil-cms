@@ -43,7 +43,7 @@ class EntityReplicateManyController extends RedirectController
 
         foreach ($entities as $entity)
         {
-            EntityService::replicateEntity($entity);
+            EntityService::replicate($entity);
         }
 
         return back()
