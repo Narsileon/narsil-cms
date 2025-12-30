@@ -6,6 +6,7 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
@@ -66,7 +67,7 @@ class EntityIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        return $this->template->{Template::PLURAL};
+        return Str::ucfirst($this->template->{Template::PLURAL});
     }
 
     /**
@@ -74,7 +75,7 @@ class EntityIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        return $this->template->{Template::PLURAL};
+        return Str::ucfirst($this->template->{Template::PLURAL});
     }
 
     #endregion

@@ -6,6 +6,7 @@ namespace Narsil\Http\Controllers\Entities;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Contracts\Forms\PublishForm;
@@ -59,7 +60,7 @@ class EntityCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return $this->template->{Template::SINGULAR};
+        return Str::ucfirst($this->template->{Template::SINGULAR});
     }
 
     /**
@@ -91,7 +92,7 @@ class EntityCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return $this->template->{Template::SINGULAR};
+        return Str::ucfirst($this->template->{Template::SINGULAR});
     }
 
     #endregion
