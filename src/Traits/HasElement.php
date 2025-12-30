@@ -5,9 +5,7 @@ namespace Narsil\Traits;
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Narsil\Models\Condition;
 
 #endregion
 
@@ -110,13 +108,6 @@ trait HasElement
     #region • RELATIONS
 
     /**
-     * The name of the "conditions" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_CONDITIONS = 'conditions';
-
-    /**
      * The name of the "element" relation.
      *
      * @var string
@@ -155,20 +146,6 @@ trait HasElement
     #endregion
 
     #region • RELATIONSHIPS
-
-    /**
-     * Get the associated conditions.
-     *
-     * @return MorphMany
-     */
-    final public function conditions(): MorphMany
-    {
-        return $this
-            ->morphMany(
-                Condition::class,
-                Condition::RELATION_OWNER,
-            );
-    }
 
     /**
      * Get the associated element.

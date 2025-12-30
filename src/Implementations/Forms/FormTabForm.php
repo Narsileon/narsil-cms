@@ -5,12 +5,12 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\TemplateForm as Contract;
+use Narsil\Contracts\Forms\FormTabForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Forms\FormTab;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Models\Structures\TemplateSectionElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateSectionForm extends AbstractForm implements Contract
+class FormTabForm extends AbstractForm implements Contract
 {
     #region PROTECTED METHODS
 
@@ -32,7 +32,7 @@ class TemplateSectionForm extends AbstractForm implements Contract
                 Block::RELATION_ELEMENTS => [
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => TemplateSectionElement::NAME,
+                            Field::HANDLE => FormTab::NAME,
                             Field::NAME => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
@@ -42,7 +42,7 @@ class TemplateSectionForm extends AbstractForm implements Contract
                     ]),
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => TemplateSectionElement::HANDLE,
+                            Field::HANDLE => FormTab::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,

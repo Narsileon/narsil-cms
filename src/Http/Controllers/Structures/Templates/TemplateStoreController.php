@@ -46,7 +46,7 @@ class TemplateStoreController extends RedirectController
 
         $template = Template::create($attributes);
 
-        TemplateService::syncTemplateSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
+        TemplateService::syncTemplateTabs($template, Arr::get($attributes, Template::RELATION_TABS, []));
 
         MigrationService::syncTable($template);
 

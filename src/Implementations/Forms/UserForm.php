@@ -14,8 +14,8 @@ use Narsil\Contracts\Forms\UserForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\User;
 use Narsil\Services\ModelService;
@@ -51,12 +51,12 @@ class UserForm extends AbstractForm implements Contract
     protected function getLayout(): array
     {
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => 'account',
-                TemplateSection::NAME => trans('narsil::ui.account'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'account',
+                TemplateTab::NAME => trans('narsil::ui.account'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::EMAIL,
                             Field::NAME => trans('narsil::validation.attributes.email'),
                             Field::REQUIRED => true,
@@ -65,8 +65,8 @@ class UserForm extends AbstractForm implements Contract
                                 ->icon('email'),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::PASSWORD,
                             Field::NAME => trans('narsil::validation.attributes.password'),
                             Field::REQUIRED => true,
@@ -75,8 +75,8 @@ class UserForm extends AbstractForm implements Contract
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                             Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
                             Field::REQUIRED => true,
@@ -87,12 +87,12 @@ class UserForm extends AbstractForm implements Contract
                     ]),
                 ],
             ]),
-            new TemplateSection([
-                TemplateSection::HANDLE => 'profile',
-                TemplateSection::NAME => trans('narsil::ui.profile'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'profile',
+                TemplateTab::NAME => trans('narsil::ui.profile'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::LAST_NAME,
                             Field::NAME => trans('narsil::validation.attributes.last_name'),
                             Field::REQUIRED => true,
@@ -102,8 +102,8 @@ class UserForm extends AbstractForm implements Contract
                                 ->icon('circle-user'),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::FIRST_NAME,
                             Field::NAME => trans('narsil::validation.attributes.first_name'),
                             Field::REQUIRED => true,
@@ -113,8 +113,8 @@ class UserForm extends AbstractForm implements Contract
                                 ->icon('circle-user'),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::AVATAR,
                             Field::NAME => trans('narsil::validation.attributes.avatar'),
                             Field::TYPE => FileField::class,
@@ -125,12 +125,12 @@ class UserForm extends AbstractForm implements Contract
                     ]),
                 ],
             ]),
-            new TemplateSection([
-                TemplateSection::HANDLE => 'roles',
-                TemplateSection::NAME => ModelService::getTableLabel(Role::TABLE),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT =>
+            new TemplateTab([
+                TemplateTab::HANDLE => 'roles',
+                TemplateTab::NAME => ModelService::getTableLabel(Role::TABLE),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT =>
                         new Field([
                             Field::HANDLE => User::RELATION_ROLES,
                             Field::NAME => trans('narsil::validation.attributes.roles'),

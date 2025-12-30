@@ -18,7 +18,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateSection extends Model
+class TemplateTab extends Model
 {
     use HasTranslations;
     use HasUuids;
@@ -67,7 +67,7 @@ class TemplateSection extends Model
      *
      * @var string
      */
-    final public const TABLE = 'template_sections';
+    final public const TABLE = 'template_tabs';
 
     #region • COLUMNS
 
@@ -156,12 +156,12 @@ class TemplateSection extends Model
         return $this
             ->morphedByMany(
                 Block::class,
-                TemplateSectionElement::RELATION_ELEMENT,
-                TemplateSectionElement::TABLE,
-                TemplateSectionElement::OWNER_UUID,
-                TemplateSectionElement::ELEMENT_ID,
+                TemplateTabElement::RELATION_ELEMENT,
+                TemplateTabElement::TABLE,
+                TemplateTabElement::OWNER_UUID,
+                TemplateTabElement::ELEMENT_ID,
             )
-            ->using(TemplateSectionElement::class);
+            ->using(TemplateTabElement::class);
     }
 
     /**
@@ -173,11 +173,11 @@ class TemplateSection extends Model
     {
         return $this
             ->hasMany(
-                TemplateSectionElement::class,
-                TemplateSectionElement::OWNER_UUID,
+                TemplateTabElement::class,
+                TemplateTabElement::OWNER_UUID,
                 self::UUID,
             )
-            ->orderBy(TemplateSectionElement::POSITION);
+            ->orderBy(TemplateTabElement::POSITION);
     }
 
     /**
@@ -190,12 +190,12 @@ class TemplateSection extends Model
         return $this
             ->morphedByMany(
                 Field::class,
-                TemplateSectionElement::RELATION_ELEMENT,
-                TemplateSectionElement::TABLE,
-                TemplateSectionElement::OWNER_UUID,
-                TemplateSectionElement::ELEMENT_ID,
+                TemplateTabElement::RELATION_ELEMENT,
+                TemplateTabElement::TABLE,
+                TemplateTabElement::OWNER_UUID,
+                TemplateTabElement::ELEMENT_ID,
             )
-            ->using(TemplateSectionElement::class);
+            ->using(TemplateTabElement::class);
     }
 
     /**

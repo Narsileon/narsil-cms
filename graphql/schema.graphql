@@ -117,8 +117,8 @@ type Template @model(class: "Narsil\\Models\\Structures\\Template") {
   updated_at: DateTime!
 }
 
-type TemplateSection
-  @model(class: "Narsil\\Models\\Structures\\TemplateSection") {
+type TemplateTab
+  @model(class: "Narsil\\Models\\Structures\\TemplateTab") {
   id: ID!
   handle: String!
   name: String!
@@ -127,13 +127,13 @@ type TemplateSection
   created_at: DateTime!
   updated_at: DateTime!
   blocks: [Block!]! @morphToMany
-  elements: [TemplateSectionElement!]! @hasMany
+  elements: [TemplateTabElement!]! @hasMany
   fields: [Field!]! @morphToMany
   template: Template! @belongsTo
 }
 
-type TemplateSectionElement
-  @model(class: "Narsil\\Models\\Structures\\TemplateSectionElement") {
+type TemplateTabElement
+  @model(class: "Narsil\\Models\\Structures\\TemplateTabElement") {
   id: ID!
   element_id: ID!
   element_type: String!
@@ -141,10 +141,10 @@ type TemplateSectionElement
   icon: String!
   name: String!
   position: Int!
-  template_section_d: ID!
+  template_tab_d: ID!
   width: Int!
   element: Element! @morphTo
-  templateSection: TemplateSection! @belongsTo
+  templateTab: TemplateTab! @belongsTo
 }
 
 type User @model(class: "Narsil\\Models\\User") {

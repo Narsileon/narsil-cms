@@ -13,8 +13,8 @@ use Narsil\Contracts\Forms\ConfigurationForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Configuration;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -52,12 +52,12 @@ class ConfigurationForm extends AbstractForm implements Contract
         $backendLanguages = Config::get('narsil.locales');
 
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => 'frontend',
-                TemplateSection::NAME => trans('narsil::ui.frontend'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'frontend',
+                TemplateTab::NAME => trans('narsil::ui.frontend'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
                             Field::NAME => trans('narsil::validation.attributes.default_language'),
                             Field::REQUIRED => true,
@@ -68,12 +68,12 @@ class ConfigurationForm extends AbstractForm implements Contract
                     ]),
                 ],
             ]),
-            new TemplateSection([
-                TemplateSection::HANDLE => 'backend',
-                TemplateSection::NAME => trans('narsil::ui.backend'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'backend',
+                TemplateTab::NAME => trans('narsil::ui.backend'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
                             Field::NAME => trans('narsil::validation.attributes.default_language'),
                             Field::REQUIRED => true,

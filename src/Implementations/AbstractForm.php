@@ -11,7 +11,7 @@ use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Locale;
 use Narsil\Contracts\Form;
-use Narsil\Models\Structures\TemplateSection;
+use Narsil\Models\Structures\TemplateTab;
 use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
 use ReflectionClass;
@@ -216,14 +216,14 @@ abstract class AbstractForm extends Fluent implements Form
     /**
      * @param array $elements
      *
-     * @return TemplateSection
+     * @return TemplateTab
      */
-    protected static function sidebarSection(array $elements): TemplateSection
+    protected static function sidebarTab(array $elements): TemplateTab
     {
-        return new TemplateSection([
-            TemplateSection::HANDLE => 'sidebar',
-            TemplateSection::NAME => trans('narsil::ui.sidebar'),
-            TemplateSection::RELATION_ELEMENTS => $elements
+        return new TemplateTab([
+            TemplateTab::HANDLE => 'sidebar',
+            TemplateTab::NAME => trans('narsil::ui.sidebar'),
+            TemplateTab::RELATION_ELEMENTS => $elements
         ]);
     }
 

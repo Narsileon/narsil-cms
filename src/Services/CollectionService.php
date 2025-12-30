@@ -10,8 +10,8 @@ use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 
 #endregion
 
@@ -68,8 +68,8 @@ abstract class CollectionService
     {
         $query = Template::query()
             ->with([
-                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_BlOCKS,
-                Template::RELATION_SECTIONS . '.' . TemplateSection::RELATION_FIELDS,
+                Template::RELATION_TABS . '.' . TemplateTab::RELATION_BlOCKS,
+                Template::RELATION_TABS . '.' . TemplateTab::RELATION_FIELDS,
             ]);
 
         if (is_numeric($collection))
@@ -94,10 +94,10 @@ abstract class CollectionService
      */
     public static function getTemplateFields(Template $template, ?string $type = null): Collection
     {
-        return $template->{Template::RELATION_SECTIONS}
-            ->flatMap(function ($templateSection)
+        return $template->{Template::RELATION_TABS}
+            ->flatMap(function ($templateTab)
             {
-                return static::getTemplateSectionFields($templateSection);
+                return static::getTemplateTabFields($templateTab);
             })
             ->when($type, function ($collection) use ($type)
             {
@@ -106,19 +106,19 @@ abstract class CollectionService
     }
 
     /**
-     * @param TemplateSection $templateSection
+     * @param TemplateTab $templateTab
      * @param ?string $type
      *
      * @return Collection<Field>
      */
-    public static function getTemplateSectionFields(TemplateSection $templateSection, ?string $type = null): Collection
+    public static function getTemplateTabFields(TemplateTab $templateTab, ?string $type = null): Collection
     {
-        return $templateSection->{TemplateSection::RELATION_ELEMENTS}
-            ->flatMap(function ($templateSectionElement)
+        return $templateTab->{TemplateTab::RELATION_ELEMENTS}
+            ->flatMap(function ($templateTabElement)
             {
-                $element = $templateSectionElement->{TemplateSectionElement::RELATION_ELEMENT};
+                $element = $templateTabElement->{TemplateTabElement::RELATION_ELEMENT};
 
-                if ($templateSectionElement->{TemplateSectionElement::ELEMENT_TYPE} === Field::class)
+                if ($templateTabElement->{TemplateTabElement::ELEMENT_TYPE} === Field::class)
                 {
                     if ($element->{Field::TYPE} === BuilderField::class)
                     {
@@ -127,8 +127,8 @@ abstract class CollectionService
 
                     $field = clone $element;
 
-                    $field->{Field::HANDLE} = $templateSectionElement->{TemplateSectionElement::HANDLE};
-                    $field->{Field::NAME} = $templateSectionElement->{TemplateSectionElement::NAME};
+                    $field->{Field::HANDLE} = $templateTabElement->{TemplateTabElement::HANDLE};
+                    $field->{Field::NAME} = $templateTabElement->{TemplateTabElement::NAME};
 
                     return [$field];
                 }

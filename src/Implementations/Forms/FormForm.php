@@ -8,17 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FieldsetElementForm;
-use Narsil\Contracts\Forms\FormPageForm;
+use Narsil\Contracts\Forms\FormTabForm;
 use Narsil\Contracts\Forms\FormForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Input;
-use Narsil\Models\Forms\FormPage;
-use Narsil\Models\Forms\FormPageElement;
+use Narsil\Models\Forms\FormTab;
+use Narsil\Models\Forms\FormTabElement;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -57,12 +57,12 @@ class FormForm extends AbstractForm implements Contract
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => 'definition',
-                TemplateSection::NAME => trans('narsil::ui.definition'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'definition',
+                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Form::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
@@ -70,9 +70,9 @@ class FormForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::WIDTH => 50,
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Form::TITLE,
                             Field::NAME => trans('narsil::validation.attributes.title'),
                             Field::REQUIRED => true,
@@ -81,9 +81,9 @@ class FormForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::WIDTH => 50,
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Form::DESCRIPTION,
                             Field::NAME => trans('narsil::validation.attributes.description'),
                             Field::REQUIRED => true,
@@ -92,19 +92,19 @@ class FormForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Form::RELATION_PAGES,
                             Field::NAME => trans('narsil::validation.attributes.pages'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
-                                ->form(app(FormPageForm::class)->jsonSerialize())
+                                ->form(app(FormTabForm::class)->jsonSerialize())
                                 ->intermediate(
                                     label: trans('narsil::ui.page'),
-                                    optionLabel: FormPage::NAME,
-                                    optionValue: FormPage::HANDLE,
+                                    optionLabel: FormTab::NAME,
+                                    optionValue: FormTab::HANDLE,
                                     relation: new Field([
-                                        Field::HANDLE => FormPage::RELATION_ELEMENTS,
+                                        Field::HANDLE => FormTab::RELATION_ELEMENTS,
                                         Field::NAME => trans('narsil::validation.attributes.elements'),
                                         Field::TYPE => RelationsField::class,
                                         Field::SETTINGS => app(RelationsField::class)
@@ -112,23 +112,23 @@ class FormForm extends AbstractForm implements Contract
                                             ->addOption(
                                                 identifier: Fieldset::TABLE,
                                                 label: ModelService::getModelLabel(Fieldset::class),
-                                                optionLabel: FormPageElement::NAME,
-                                                optionValue: FormPageElement::HANDLE,
+                                                optionLabel: FormTabElement::NAME,
+                                                optionValue: FormTabElement::HANDLE,
                                                 options: $fieldsetSelectOptions,
                                                 routes: RouteService::getNames(Fieldset::TABLE),
                                             )
                                             ->addOption(
                                                 identifier: Input::TABLE,
                                                 label: ModelService::getModelLabel(Input::class),
-                                                optionLabel: FormPageElement::NAME,
-                                                optionValue: FormPageElement::HANDLE,
+                                                optionLabel: FormTabElement::NAME,
+                                                optionValue: FormTabElement::HANDLE,
                                                 options: $inputSelectOptions,
                                                 routes: RouteService::getNames(Input::TABLE),
                                             )
                                             ->widthOptions($widthSelectOptions),
                                     ])
                                 )
-                                ->placeholder(trans('narsil::ui.add_section')),
+                                ->placeholder(trans('narsil::ui.add_tab')),
                         ]),
                     ]),
                 ],

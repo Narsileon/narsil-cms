@@ -1,6 +1,6 @@
 import { useForm } from "@inertiajs/react";
 import { getFieldDefaultValue } from "@narsil-cms/lib/field";
-import type { Block, Field, SelectOption, TemplateSection } from "@narsil-cms/types";
+import type { Block, Field, SelectOption, TemplateTab } from "@narsil-cms/types";
 import { set } from "lodash-es";
 import { useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
@@ -8,7 +8,7 @@ import { FormContext, type FormContextProps } from "./form-context";
 type FormProviderProps = {
   action: string;
   defaultLanguage?: string;
-  elements?: (Block | Field | TemplateSection)[];
+  elements?: (Block | Field | TemplateTab)[];
   id: string;
   initialValues?: Record<string, unknown>;
   languageOptions?: SelectOption[];
@@ -28,7 +28,7 @@ function FormProvider({
 }: FormProviderProps) {
   const [formLanguage, setFormLanguage] = useState<string>("en");
 
-  function flattenValues(elements: (Block | Field | TemplateSection)[]): Record<string, unknown> {
+  function flattenValues(elements: (Block | Field | TemplateTab)[]): Record<string, unknown> {
     const receivedValues: Record<string, unknown> = {};
 
     elements.map((element) => {

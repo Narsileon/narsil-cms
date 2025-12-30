@@ -5,6 +5,7 @@ namespace Narsil\Models\Structures;
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Support\Arr;
 use Narsil\Traits\HasElement;
@@ -16,7 +17,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateSectionElement extends MorphPivot
+class TemplateTabElement extends MorphPivot
 {
     use HasElement;
     use HasTranslations;
@@ -74,7 +75,7 @@ class TemplateSectionElement extends MorphPivot
      *
      * @var string
      */
-    final public const TABLE = 'template_section_element';
+    final public const TABLE = 'template_tab_element';
 
     #region • COLUMNS
 
@@ -109,6 +110,13 @@ class TemplateSectionElement extends MorphPivot
      * @var string
      */
     final public const RELATION_BLOCK = 'block';
+
+    /**
+     * The name of the "conditions" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_CONDITIONS = 'conditions';
 
     /**
      * The name of the "field" relation.
@@ -148,6 +156,21 @@ class TemplateSectionElement extends MorphPivot
     }
 
     /**
+     * Get the associated conditions.
+     *
+     * @return HasMany
+     */
+    final public function conditions(): HasMany
+    {
+        return $this
+            ->hasMany(
+                TemplateTabElementCondition::class,
+                TemplateTabElementCondition::TEMPLATE_TAB_ELEMENT_UUID,
+                self::UUID,
+            );
+    }
+
+    /**
      * Get the associated field.
      *
      * @return BelongsTo
@@ -171,9 +194,9 @@ class TemplateSectionElement extends MorphPivot
     {
         return $this
             ->belongsTo(
-                TemplateSection::class,
+                TemplateTab::class,
                 self::OWNER_UUID,
-                TemplateSection::UUID,
+                TemplateTab::UUID,
             );
     }
 

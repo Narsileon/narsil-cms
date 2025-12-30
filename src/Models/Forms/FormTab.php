@@ -17,7 +17,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormPage extends Model
+class FormTab extends Model
 {
     use HasTranslations;
     use HasUuids;
@@ -61,7 +61,7 @@ class FormPage extends Model
      *
      * @var string
      */
-    final public const TABLE = 'form_pages';
+    final public const TABLE = 'form_tabs';
 
     #region • COLUMNS
 
@@ -149,11 +149,11 @@ class FormPage extends Model
     {
         return $this
             ->hasMany(
-                FormPageElement::class,
-                FormPageElement::OWNER_UUID,
+                FormTabElement::class,
+                FormTabElement::OWNER_UUID,
                 self::UUID,
             )
-            ->orderBy(FormPageElement::POSITION);
+            ->orderBy(FormTabElement::POSITION);
     }
 
     /**
@@ -166,12 +166,12 @@ class FormPage extends Model
         return $this
             ->morphedByMany(
                 Fieldset::class,
-                FormPageElement::RELATION_ELEMENT,
-                FormPageElement::TABLE,
-                FormPageElement::OWNER_UUID,
-                FormPageElement::ELEMENT_ID,
+                FormTabElement::RELATION_ELEMENT,
+                FormTabElement::TABLE,
+                FormTabElement::OWNER_UUID,
+                FormTabElement::ELEMENT_ID,
             )
-            ->using(FormPageElement::class);
+            ->using(FormTabElement::class);
     }
 
     /**
@@ -184,12 +184,12 @@ class FormPage extends Model
         return $this
             ->morphedByMany(
                 Input::class,
-                FormPageElement::RELATION_ELEMENT,
-                FormPageElement::TABLE,
-                FormPageElement::OWNER_UUID,
-                FormPageElement::ELEMENT_ID,
+                FormTabElement::RELATION_ELEMENT,
+                FormTabElement::TABLE,
+                FormTabElement::OWNER_UUID,
+                FormTabElement::ELEMENT_ID,
             )
-            ->using(FormPageElement::class);
+            ->using(FormTabElement::class);
     }
 
     /**

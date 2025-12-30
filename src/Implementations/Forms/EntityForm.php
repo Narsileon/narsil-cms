@@ -10,7 +10,7 @@ use Narsil\Contracts\Forms\EntityForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\RouteService;
 
@@ -59,11 +59,11 @@ class EntityForm extends AbstractForm implements Contract
      */
     protected function getLayout(): array
     {
-        $templateSections = $this->template->{Template::RELATION_SECTIONS}->toArray();
+        $templateTabs = $this->template->{Template::RELATION_TABS}->toArray();
 
-        $templateSections[] = static::sidebarSection([
-            new TemplateSectionElement([
-                TemplateSectionElement::RELATION_ELEMENT => new Field([
+        $templateTabs[] = static::sidebarTab([
+            new TemplateTabElement([
+                TemplateTabElement::RELATION_ELEMENT => new Field([
                     Field::HANDLE => Entity::SLUG,
                     Field::NAME => trans('narsil::validation.attributes.slug'),
                     Field::REQUIRED => true,
@@ -74,7 +74,7 @@ class EntityForm extends AbstractForm implements Contract
             ]),
         ]);
 
-        return $templateSections;
+        return $templateTabs;
     }
 
     #endregion

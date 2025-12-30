@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Structures\TemplateTabElementCondition;
 use Narsil\Models\User;
 
 #endregion
@@ -29,13 +30,17 @@ return new class extends Migration
         {
             $this->createTemplatesTable();
         }
-        if (!Schema::hasTable(TemplateSection::TABLE))
+        if (!Schema::hasTable(TemplateTab::TABLE))
         {
-            $this->createTemplateSectionsTable();
+            $this->createTemplateTabsTable();
         }
-        if (!Schema::hasTable(TemplateSectionElement::TABLE))
+        if (!Schema::hasTable(TemplateTabElement::TABLE))
         {
-            $this->createTemplateSectionElementTable();
+            $this->createTemplateTabElementTable();
+        }
+        if (!Schema::hasTable(TemplateTabElementCondition::TABLE))
+        {
+            $this->createTemplateTabElementConditionsTable();
         }
     }
 
@@ -46,8 +51,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(TemplateSectionElement::TABLE);
-        Schema::dropIfExists(TemplateSection::TABLE);
+        Schema::dropIfExists(TemplateTabElementCondition::TABLE);
+        Schema::dropIfExists(TemplateTabElement::TABLE);
+        Schema::dropIfExists(TemplateTab::TABLE);
         Schema::dropIfExists(Template::TABLE);
     }
 
@@ -56,77 +62,104 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the template section elements table.
+     * Create the template tab element conditions table.
      *
      * @return void
      */
-    private function createTemplateSectionElementTable(): void
+    private function createTemplateTabElementConditionsTable(): void
     {
-        Schema::create(TemplateSectionElement::TABLE, function (Blueprint $blueprint)
+        Schema::create(TemplateTabElementCondition::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(TemplateSectionElement::UUID)
+                ->uuid(TemplateTabElementCondition::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(TemplateSectionElement::OWNER_UUID)
-                ->constrained(TemplateSection::TABLE, TemplateSection::UUID)
+                ->foreignUuid(TemplateTabElementCondition::TEMPLATE_TAB_ELEMENT_UUID)
+                ->constrained(TemplateTabElement::TABLE, TemplateTabElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(TemplateSectionElement::BLOCK_ID)
+                ->string(TemplateTabElementCondition::HANDLE);
+            $blueprint
+                ->string(TemplateTabElementCondition::OPERATOR);
+            $blueprint
+                ->string(TemplateTabElementCondition::VALUE);
+            $blueprint
+                ->timestamps();
+        });
+    }
+
+    /**
+     * Create the template tab elements table.
+     *
+     * @return void
+     */
+    private function createTemplateTabElementTable(): void
+    {
+        Schema::create(TemplateTabElement::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(TemplateTabElement::UUID)
+                ->primary();
+            $blueprint
+                ->foreignUuid(TemplateTabElement::OWNER_UUID)
+                ->constrained(TemplateTab::TABLE, TemplateTab::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->morphs(TemplateTabElement::RELATION_ELEMENT);
+            $blueprint
+                ->foreignId(TemplateTabElement::BLOCK_ID)
                 ->nullable()
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(TemplateSectionElement::FIELD_ID)
+                ->foreignId(TemplateTabElement::FIELD_ID)
                 ->nullable()
                 ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(TemplateSectionElement::RELATION_ELEMENT);
+                ->string(TemplateTabElement::HANDLE);
             $blueprint
-                ->string(TemplateSectionElement::HANDLE);
+                ->jsonb(TemplateTabElement::NAME);
             $blueprint
-                ->jsonb(TemplateSectionElement::NAME);
-            $blueprint
-                ->jsonb(TemplateSectionElement::DESCRIPTION)
+                ->jsonb(TemplateTabElement::DESCRIPTION)
                 ->nullable();
             $blueprint
-                ->boolean(TemplateSectionElement::REQUIRED)
+                ->boolean(TemplateTabElement::REQUIRED)
                 ->nullable();
             $blueprint
-                ->boolean(TemplateSectionElement::TRANSLATABLE)
+                ->boolean(TemplateTabElement::TRANSLATABLE)
                 ->nullable();
             $blueprint
-                ->integer(TemplateSectionElement::POSITION)
+                ->integer(TemplateTabElement::POSITION)
                 ->default(0);
             $blueprint
-                ->smallInteger(TemplateSectionElement::WIDTH)
+                ->smallInteger(TemplateTabElement::WIDTH)
                 ->default(100);
         });
     }
 
     /**
-     * Create the template sections table.
+     * Create the template tabs table.
      *
      * @return void
      */
-    private function createTemplateSectionsTable(): void
+    private function createTemplateTabsTable(): void
     {
-        Schema::create(TemplateSection::TABLE, function (Blueprint $blueprint)
+        Schema::create(TemplateTab::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(TemplateSection::UUID)
+                ->uuid(TemplateTab::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(TemplateSection::TEMPLATE_ID)
+                ->foreignId(TemplateTab::TEMPLATE_ID)
                 ->constrained(Template::TABLE, Template::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(TemplateSection::HANDLE);
+                ->string(TemplateTab::HANDLE);
             $blueprint
-                ->jsonb(TemplateSection::NAME);
+                ->jsonb(TemplateTab::NAME);
             $blueprint
-                ->integer(TemplateSection::POSITION)
+                ->integer(TemplateTab::POSITION)
                 ->default(0);
             $blueprint
                 ->timestamps();

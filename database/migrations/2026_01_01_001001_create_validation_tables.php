@@ -5,7 +5,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Condition;
 use Narsil\Models\ValidationRule;
 
 #endregion
@@ -21,10 +20,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(Condition::TABLE))
-        {
-            $this->createConditionsTable();
-        }
         if (!Schema::hasTable(ValidationRule::TABLE))
         {
             $this->createValidationRulesTable();
@@ -39,36 +34,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists(ValidationRule::TABLE);
-        Schema::dropIfExists(Condition::TABLE);
     }
 
     #endregion
 
     #region PRIVATE METHODS
-
-    /**
-     * Create the conditions table.
-     *
-     * @return void
-     */
-    private function createConditionsTable(): void
-    {
-        Schema::create(Condition::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(Condition::UUID);
-            $blueprint
-                ->uuidMorphs(Condition::RELATION_OWNER);
-            $blueprint
-                ->string(Condition::HANDLE);
-            $blueprint
-                ->string(Condition::OPERATOR);
-            $blueprint
-                ->string(Condition::VALUE);
-            $blueprint
-                ->timestamps();
-        });
-    }
 
     /**
      * Create the validation rules table.

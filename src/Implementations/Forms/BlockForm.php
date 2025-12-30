@@ -14,8 +14,8 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -54,12 +54,12 @@ class BlockForm extends AbstractForm implements Contract
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => 'definition',
-                TemplateSection::NAME => trans('narsil::ui.definition'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'definition',
+                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::NAME,
                             Field::NAME => trans('narsil::ui.default_name'),
                             Field::REQUIRED => true,
@@ -68,8 +68,8 @@ class BlockForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::HANDLE,
                             Field::NAME => trans('narsil::ui.default_handle'),
                             Field::REQUIRED => true,
@@ -77,16 +77,16 @@ class BlockForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::COLLAPSIBLE,
                             Field::NAME => trans('narsil::validation.attributes.collapsible'),
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::RELATION_ELEMENTS,
                             Field::NAME => trans('narsil::validation.attributes.elements'),
                             Field::TYPE => RelationsField::class,

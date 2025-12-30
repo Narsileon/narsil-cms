@@ -45,7 +45,7 @@ class TemplateFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
 
-            Template::RELATION_SECTIONS => [
+            Template::RELATION_TABS => [
                 FormRule::ARRAY,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,

@@ -4,7 +4,7 @@ import {
   type LaravelPaginationMeta,
 } from "@narsil-cms/blocks/pagination";
 import { type IconName } from "@narsil-cms/plugins/icons";
-import type { Block, Field, Model, TemplateSection } from "@narsil-cms/types";
+import type { Block, Field, Model, TemplateTab } from "@narsil-cms/types";
 import {
   type ColumnDef,
   type ColumnOrderState,
@@ -42,7 +42,7 @@ export type FormType = {
   description: string;
   id: string;
   languageOptions: SelectOption[];
-  layout: (Block | Field | TemplateSection)[];
+  layout: (Block | Field | TemplateTab)[];
   method: string;
   routes: RouteNames;
   submitIcon?: IconName;

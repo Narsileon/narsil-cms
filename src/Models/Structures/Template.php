@@ -48,7 +48,7 @@ class Template extends Model
         ];
 
         $this->with = [
-            self::RELATION_SECTIONS,
+            self::RELATION_TABS,
         ];
 
         parent::__construct($attributes);
@@ -111,11 +111,11 @@ class Template extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "sections" relation.
+     * The name of the "tabs" relation.
      *
      * @var string
      */
-    final public const RELATION_SECTIONS = 'sections';
+    final public const RELATION_TABS = 'tabs';
 
     #endregion
 
@@ -147,19 +147,19 @@ class Template extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated sections.
+     * Get the associated tabs.
      *
      * @return HasMany
      */
-    final public function sections(): HasMany
+    final public function tabs(): HasMany
     {
         return $this
             ->hasMany(
-                TemplateSection::class,
-                TemplateSection::TEMPLATE_ID,
+                TemplateTab::class,
+                TemplateTab::TEMPLATE_ID,
                 self::ID,
             )
-            ->orderBy(TemplateSection::POSITION);
+            ->orderBy(TemplateTab::POSITION);
     }
 
     #endregion

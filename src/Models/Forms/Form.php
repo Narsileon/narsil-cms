@@ -6,6 +6,8 @@ namespace Narsil\Models\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Models\Caches\Cache;
+use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -114,6 +116,27 @@ class Form extends Model
 
     #region PUBLIC METHODS
 
+    /**
+     * Get the forms as select options.
+     *
+     * @return array<SelectOption>
+     */
+    public static function selectOptions(): array
+    {
+        return Cache::tags([self::TABLE])
+            ->rememberForever('select_options', function ()
+            {
+                return self::all()
+                    ->map(function (Form $form)
+                    {
+                        return (new SelectOption())
+                            ->optionLabel($form->{self::HANDLE})
+                            ->optionValue($form->{self::ID});
+                    })
+                    ->all();
+            });
+    }
+
     #region • RELATIONSHIPS
 
     /**
@@ -125,11 +148,11 @@ class Form extends Model
     {
         return $this
             ->hasMany(
-                FormPage::class,
-                FormPage::FORM_ID,
+                FormTab::class,
+                FormTab::FORM_ID,
                 self::ID,
             )
-            ->orderBy(FormPage::POSITION);
+            ->orderBy(FormTab::POSITION);
     }
 
     /**

@@ -9,8 +9,8 @@ use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\PermissionForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Services\RouteService;
@@ -45,12 +45,12 @@ class PermissionForm extends AbstractForm implements Contract
     protected function getLayout(): array
     {
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => 'definition',
-                TemplateSection::NAME => trans('narsil::ui.definition'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'definition',
+                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Role::NAME,
                             Field::NAME => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
@@ -59,8 +59,8 @@ class PermissionForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Role::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,

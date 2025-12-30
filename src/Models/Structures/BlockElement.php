@@ -5,6 +5,7 @@ namespace Narsil\Models\Structures;
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Support\Arr;
 use Narsil\Traits\HasElement;
@@ -111,6 +112,13 @@ class BlockElement extends MorphPivot
     final public const RELATION_BLOCK = 'block';
 
     /**
+     * The name of the "conditions" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_CONDITIONS = 'conditions';
+
+    /**
      * The name of the "field" relation.
      *
      * @var string
@@ -144,6 +152,21 @@ class BlockElement extends MorphPivot
                 Block::class,
                 self::BLOCK_ID,
                 Block::ID,
+            );
+    }
+
+    /**
+     * Get the associated conditions.
+     *
+     * @return HasMany
+     */
+    final public function conditions(): HasMany
+    {
+        return $this
+            ->hasMany(
+                BlockElementCondition::class,
+                BlockElementCondition::BLOCK_ELEMENT_UUID,
+                self::UUID,
             );
     }
 

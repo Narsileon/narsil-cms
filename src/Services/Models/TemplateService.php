@@ -9,8 +9,8 @@ use Illuminate\Support\Str;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -38,23 +38,23 @@ abstract class TemplateService
             ])
             ->save();
 
-        static::syncTemplateSections($replicated, $template->sections()->get()->toArray());
+        static::syncTemplateTabs($replicated, $template->tabs()->get()->toArray());
     }
 
     /**
-     * @param TemplateSection $templateSection
+     * @param TemplateTab $templateTab
      * @param array $elements
      *
      * @return void
      */
-    public static function syncTemplateSectionElements(TemplateSection $templateSection, array $elements): void
+    public static function syncTemplateTabElements(TemplateTab $templateTab, array $elements): void
     {
-        $templateSection->blocks()->detach();
-        $templateSection->fields()->detach();
+        $templateTab->blocks()->detach();
+        $templateTab->fields()->detach();
 
         foreach ($elements as $position => $element)
         {
-            $identifier = Arr::get($element, TemplateSectionElement::ATTRIBUTE_IDENTIFIER);
+            $identifier = Arr::get($element, TemplateTabElement::ATTRIBUTE_IDENTIFIER);
 
             if (!$identifier || ! Str::contains($identifier, '-'))
             {
@@ -64,16 +64,16 @@ abstract class TemplateService
             [$table, $id] = explode('-', $identifier);
 
             $attributes = [
-                TemplateSectionElement::HANDLE => Arr::get($element, TemplateSectionElement::HANDLE),
-                TemplateSectionElement::NAME => Arr::get($element, TemplateSectionElement::NAME, []),
-                TemplateSectionElement::POSITION => $position,
-                TemplateSectionElement::WIDTH => Arr::get($element, TemplateSectionElement::WIDTH, 100),
+                TemplateTabElement::HANDLE => Arr::get($element, TemplateTabElement::HANDLE),
+                TemplateTabElement::NAME => Arr::get($element, TemplateTabElement::NAME, []),
+                TemplateTabElement::POSITION => $position,
+                TemplateTabElement::WIDTH => Arr::get($element, TemplateTabElement::WIDTH, 100),
             ];
 
             match ($table)
             {
-                Block::TABLE => $templateSection->blocks()->attach($id, $attributes),
-                Field::TABLE => $templateSection->fields()->attach($id, $attributes),
+                Block::TABLE => $templateTab->blocks()->attach($id, $attributes),
+                Field::TABLE => $templateTab->fields()->attach($id, $attributes),
                 default => null,
             };
         }
@@ -81,32 +81,32 @@ abstract class TemplateService
 
     /**
      * @param Template $template
-     * @param array $sections
+     * @param array $tabs
      *
      * @return void
      */
-    public static function syncTemplateSections(Template $template, array $sections): void
+    public static function syncTemplateTabs(Template $template, array $tabs): void
     {
         $uuids = [];
 
-        foreach ($sections as $key => $section)
+        foreach ($tabs as $key => $tab)
         {
-            $templateSection = TemplateSection::updateOrCreate([
-                TemplateSection::TEMPLATE_ID => $template->{Template::ID},
-                TemplateSection::HANDLE => Arr::get($section, TemplateSection::HANDLE),
+            $templateTab = TemplateTab::updateOrCreate([
+                TemplateTab::TEMPLATE_ID => $template->{Template::ID},
+                TemplateTab::HANDLE => Arr::get($tab, TemplateTab::HANDLE),
             ], [
-                TemplateSection::POSITION => $key,
-                TemplateSection::NAME => Arr::get($section, TemplateSection::NAME),
+                TemplateTab::POSITION => $key,
+                TemplateTab::NAME => Arr::get($tab, TemplateTab::NAME),
             ]);
 
-            static::syncTemplateSectionElements($templateSection, Arr::get($section, TemplateSection::RELATION_ELEMENTS, []));
+            static::syncTemplateTabElements($templateTab, Arr::get($tab, TemplateTab::RELATION_ELEMENTS, []));
 
-            $uuids[] = $templateSection->{TemplateSection::UUID};
+            $uuids[] = $templateTab->{TemplateTab::UUID};
         }
 
         $template
-            ->sections()
-            ->whereNotIn(TemplateSection::UUID, $uuids)
+            ->tabs()
+            ->whereNotIn(TemplateTab::UUID, $uuids)
             ->delete();
     }
 

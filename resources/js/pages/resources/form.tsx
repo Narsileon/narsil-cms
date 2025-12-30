@@ -18,14 +18,7 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type {
-  Field,
-  FormType,
-  Revision,
-  SelectOption,
-  TemplateSection,
-  User,
-} from "@narsil-cms/types";
+import type { Field, FormType, Revision, SelectOption, TemplateTab, User } from "@narsil-cms/types";
 import { isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 
@@ -80,8 +73,8 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
       return acc;
     },
     {
-      sidebar: undefined as TemplateSection | undefined,
-      tabs: [] as TemplateSection[],
+      sidebar: undefined as TemplateTab | undefined,
+      tabs: [] as TemplateTab[],
     },
   );
 

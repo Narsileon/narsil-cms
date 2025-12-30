@@ -5,6 +5,7 @@ namespace Narsil\Models\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
@@ -38,6 +39,7 @@ class FieldsetElement extends MorphPivot
         ];
 
         $this->with = [
+            self::RELATION_CONDITIONS,
             self::RELATION_ELEMENT,
         ];
 
@@ -92,6 +94,13 @@ class FieldsetElement extends MorphPivot
     #region • RELATIONS
 
     /**
+     * The name of the "conditions" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_CONDITIONS = 'conditions';
+
+    /**
      * The name of the "fieldset" relation.
      *
      * @var string
@@ -119,6 +128,21 @@ class FieldsetElement extends MorphPivot
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated conditions.
+     *
+     * @return HasMany
+     */
+    final public function conditions(): HasMany
+    {
+        return $this
+            ->hasMany(
+                FieldsetElementCondition::class,
+                FieldsetElementCondition::FIELDSET_ELEMENT_UUID,
+                self::UUID,
+            );
+    }
 
     /**
      * Get the associated fieldset.

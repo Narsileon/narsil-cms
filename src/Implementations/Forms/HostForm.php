@@ -10,8 +10,8 @@ use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Services\RouteService;
@@ -48,12 +48,12 @@ class HostForm extends AbstractForm implements Contract
         $hostLocaleForm = app(HostLocaleForm::class);
 
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => 'definition',
-                TemplateSection::NAME => trans('narsil::ui.definition'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'definition',
+                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Host::NAME,
                             Field::NAME => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
@@ -62,8 +62,8 @@ class HostForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Host::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
@@ -73,26 +73,26 @@ class HostForm extends AbstractForm implements Contract
                     ]),
                 ],
             ]),
-            new TemplateSection([
-                TemplateSection::HANDLE => 'default_country',
-                TemplateSection::NAME => trans('narsil::ui.default_country'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
-                        TemplateSectionElement::RELATION_ELEMENT => $hostLocaleForm->getPatternField(),
+            new TemplateTab([
+                TemplateTab::HANDLE => 'default_country',
+                TemplateTab::NAME => trans('narsil::ui.default_country'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
+                        TemplateTabElement::RELATION_ELEMENT => $hostLocaleForm->getPatternField(),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
-                        TemplateSectionElement::RELATION_ELEMENT => $hostLocaleForm->getLanguagesField(),
+                    new TemplateTabElement([
+                        TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
+                        TemplateTabElement::RELATION_ELEMENT => $hostLocaleForm->getLanguagesField(),
                     ]),
                 ],
             ]),
-            new TemplateSection([
-                TemplateSection::HANDLE => 'other_countries',
-                TemplateSection::NAME => trans('narsil::ui.other_countries'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'other_countries',
+                TemplateTab::NAME => trans('narsil::ui.other_countries'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Host::RELATION_OTHER_LOCALES,
                             Field::NAME => trans('narsil::validation.attributes.locales'),
                             Field::TYPE => ArrayField::class,

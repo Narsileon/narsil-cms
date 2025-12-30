@@ -9,8 +9,8 @@ use Illuminate\Support\Str;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Input;
-use Narsil\Models\Forms\FormPage;
-use Narsil\Models\Forms\FormPageElement;
+use Narsil\Models\Forms\FormTab;
+use Narsil\Models\Forms\FormTabElement;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -38,23 +38,23 @@ abstract class FormService
             ])
             ->save();
 
-        static::syncFormPages($replicated, $form->pages()->get()->toArray());
+        static::syncFormTabs($replicated, $form->pages()->get()->toArray());
     }
 
     /**
-     * @param FormPage $formPage
+     * @param FormTab $formTab
      * @param array $elements
      *
      * @return void
      */
-    public static function syncFormPageElements(FormPage $formPage, array $elements): void
+    public static function syncFormTabElements(FormTab $formTab, array $elements): void
     {
-        $formPage->fieldsets()->detach();
-        $formPage->inputs()->detach();
+        $formTab->fieldsets()->detach();
+        $formTab->inputs()->detach();
 
         foreach ($elements as $position => $element)
         {
-            $identifier = Arr::get($element, FormPageElement::ATTRIBUTE_IDENTIFIER);
+            $identifier = Arr::get($element, FormTabElement::ATTRIBUTE_IDENTIFIER);
 
             if (!$identifier || ! Str::contains($identifier, '-'))
             {
@@ -64,16 +64,16 @@ abstract class FormService
             [$table, $id] = explode('-', $identifier);
 
             $attributes = [
-                FormPageElement::HANDLE => Arr::get($element, FormPageElement::HANDLE),
-                FormPageElement::NAME => Arr::get($element, FormPageElement::NAME, []),
-                FormPageElement::POSITION => $position,
-                FormPageElement::WIDTH => Arr::get($element, FormPageElement::WIDTH, 100),
+                FormTabElement::HANDLE => Arr::get($element, FormTabElement::HANDLE),
+                FormTabElement::NAME => Arr::get($element, FormTabElement::NAME, []),
+                FormTabElement::POSITION => $position,
+                FormTabElement::WIDTH => Arr::get($element, FormTabElement::WIDTH, 100),
             ];
 
             match ($table)
             {
-                Fieldset::TABLE => $formPage->fieldsets()->attach($id, $attributes),
-                Input::TABLE => $formPage->inputs()->attach($id, $attributes),
+                Fieldset::TABLE => $formTab->fieldsets()->attach($id, $attributes),
+                Input::TABLE => $formTab->inputs()->attach($id, $attributes),
                 default => null,
             };
         }
@@ -85,28 +85,28 @@ abstract class FormService
      *
      * @return void
      */
-    public static function syncFormPages(Form $form, array $pages): void
+    public static function syncFormTabs(Form $form, array $pages): void
     {
         $uuids = [];
 
         foreach ($pages as $key => $page)
         {
-            $formPage = FormPage::updateOrCreate([
-                FormPage::FORM_ID => $form->{Form::ID},
-                FormPage::HANDLE => Arr::get($page, FormPage::HANDLE),
+            $formTab = FormTab::updateOrCreate([
+                FormTab::FORM_ID => $form->{Form::ID},
+                FormTab::HANDLE => Arr::get($page, FormTab::HANDLE),
             ], [
-                FormPage::POSITION => $key,
-                FormPage::NAME => Arr::get($page, FormPage::NAME),
+                FormTab::POSITION => $key,
+                FormTab::NAME => Arr::get($page, FormTab::NAME),
             ]);
 
-            static::syncFormPageElements($formPage, Arr::get($page, FormPage::RELATION_ELEMENTS, []));
+            static::syncFormTabElements($formTab, Arr::get($page, FormTab::RELATION_ELEMENTS, []));
 
-            $uuids[] = $formPage->{FormPage::UUID};
+            $uuids[] = $formTab->{FormTab::UUID};
         }
 
         $form
             ->pages()
-            ->whereNotIn(FormPage::UUID, $uuids)
+            ->whereNotIn(FormTab::UUID, $uuids)
             ->delete();
     }
 

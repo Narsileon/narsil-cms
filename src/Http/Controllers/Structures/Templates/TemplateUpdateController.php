@@ -49,7 +49,7 @@ class TemplateUpdateController extends RedirectController
 
         if (Arr::get($data, '_dirty', false))
         {
-            TemplateService::syncTemplateSections($template, Arr::get($attributes, Template::RELATION_SECTIONS, []));
+            TemplateService::syncTemplateTabs($template, Arr::get($attributes, Template::RELATION_TABS, []));
 
             MigrationService::syncTable($template);
         }

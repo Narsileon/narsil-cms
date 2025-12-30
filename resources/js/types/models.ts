@@ -116,7 +116,7 @@ export type Template = Model & {
   name: string;
 };
 
-export type TemplateSection = Model & {
+export type TemplateTab = Model & {
   elements?: HasElement[];
   handle: string;
   icon?: IconName;

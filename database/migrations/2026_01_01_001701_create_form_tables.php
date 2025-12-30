@@ -7,9 +7,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\FieldsetElement;
+use Narsil\Models\Forms\FieldsetElementCondition;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormPage;
-use Narsil\Models\Forms\FormPageElement;
+use Narsil\Models\Forms\FormTab;
+use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Forms\FormTabElementCondition;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\InputOption;
 use Narsil\Models\Forms\InputValidationRule;
@@ -50,18 +52,26 @@ return new class extends Migration
         {
             $this->createFieldsetElementTable();
         }
+        if (!Schema::hasTable(FieldsetElementCondition::TABLE))
+        {
+            $this->createFieldsetElementConditionsTable();
+        }
 
         if (!Schema::hasTable(Form::TABLE))
         {
             $this->createFormsTable();
         }
-        if (!Schema::hasTable(FormPage::TABLE))
+        if (!Schema::hasTable(FormTab::TABLE))
         {
-            $this->createFormPagesTable();
+            $this->createFormTabsTable();
         }
-        if (!Schema::hasTable(FormPageElement::TABLE))
+        if (!Schema::hasTable(FormTabElement::TABLE))
         {
-            $this->createFormPageElementTable();
+            $this->createFormTabElementTable();
+        }
+        if (!Schema::hasTable(FormTabElementCondition::TABLE))
+        {
+            $this->createFormTabElementConditionsTable();
         }
     }
 
@@ -76,17 +86,269 @@ return new class extends Migration
         Schema::dropIfExists(InputOption::TABLE);
         Schema::dropIfExists(Input::TABLE);
 
+        Schema::dropIfExists(FieldsetElementCondition::TABLE);
         Schema::dropIfExists(FieldsetElement::TABLE);
         Schema::dropIfExists(Fieldset::TABLE);
 
-        Schema::dropIfExists(FormPageElement::TABLE);
-        Schema::dropIfExists(FormPage::TABLE);
+        Schema::dropIfExists(FormTabElementCondition::TABLE);
+        Schema::dropIfExists(FormTabElement::TABLE);
+        Schema::dropIfExists(FormTab::TABLE);
         Schema::dropIfExists(Form::TABLE);
     }
 
     #endregion
 
     #region PRIVATE METHODS
+
+    /**
+     * Create the fieldset element conditions table.
+     *
+     * @return void
+     */
+    private function createFieldsetElementConditionsTable(): void
+    {
+        Schema::create(FieldsetElementCondition::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(FieldsetElementCondition::UUID)
+                ->primary();
+            $blueprint
+                ->foreignUuid(FieldsetElementCondition::FIELDSET_ELEMENT_UUID)
+                ->constrained(FieldsetElement::TABLE, FieldsetElement::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(FieldsetElementCondition::HANDLE);
+            $blueprint
+                ->string(FieldsetElementCondition::OPERATOR);
+            $blueprint
+                ->string(FieldsetElementCondition::VALUE);
+            $blueprint
+                ->timestamps();
+        });
+    }
+
+    /**
+     * Create the form fieldset elements table.
+     *
+     * @return void
+     */
+    private function createFieldsetElementTable(): void
+    {
+        Schema::create(FieldsetElement::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(FieldsetElement::UUID)
+                ->primary();
+            $blueprint
+                ->foreignId(FieldsetElement::OWNER_ID)
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->morphs(FieldsetElement::RELATION_ELEMENT);
+            $blueprint
+                ->foreignId(FieldsetElement::FIELDSET_ID)
+                ->nullable()
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(FieldsetElement::INPUT_ID)
+                ->nullable()
+                ->constrained(Input::TABLE, Input::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(FieldsetElement::HANDLE);
+            $blueprint
+                ->jsonb(FieldsetElement::NAME);
+            $blueprint
+                ->jsonb(FieldsetElement::DESCRIPTION)
+                ->nullable();
+            $blueprint
+                ->boolean(FieldsetElement::REQUIRED)
+                ->nullable();
+            $blueprint
+                ->boolean(FieldsetElement::TRANSLATABLE)
+                ->nullable();
+            $blueprint
+                ->integer(FieldsetElement::POSITION)
+                ->default(0);
+            $blueprint
+                ->smallInteger(FieldsetElement::WIDTH)
+                ->default(100);
+        });
+    }
+
+    /**
+     * Create the form fieldsets table.
+     *
+     * @return void
+     */
+    private function createFieldsetsTable(): void
+    {
+        Schema::create(Fieldset::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(Fieldset::ID);
+            $blueprint
+                ->string(Fieldset::HANDLE)
+                ->unique();
+            $blueprint
+                ->jsonb(Fieldset::NAME);
+            $blueprint
+                ->timestamp(Fieldset::CREATED_AT);
+            $blueprint
+                ->foreignId(Fieldset::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Fieldset::UPDATED_AT);
+            $blueprint
+                ->foreignId(Fieldset::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+        });
+    }
+
+    /**
+     * Create the form tab element conditions table.
+     *
+     * @return void
+     */
+    private function createFormTabElementConditionsTable(): void
+    {
+        Schema::create(FormTabElementCondition::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(FormTabElementCondition::UUID)
+                ->primary();
+            $blueprint
+                ->foreignUuid(FormTabElementCondition::FORM_TAB_ELEMENT_UUID)
+                ->constrained(FormTabElement::TABLE, FormTabElement::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(FormTabElementCondition::HANDLE);
+            $blueprint
+                ->string(FormTabElementCondition::OPERATOR);
+            $blueprint
+                ->string(FormTabElementCondition::VALUE);
+            $blueprint
+                ->timestamps();
+        });
+    }
+
+    /**
+     * Create the form tab elements table.
+     *
+     * @return void
+     */
+    private function createFormTabElementTable(): void
+    {
+        Schema::create(FormTabElement::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(FormTabElement::UUID)
+                ->primary();
+            $blueprint
+                ->foreignUuid(FormTabElement::OWNER_UUID)
+                ->constrained(FormTab::TABLE, FormTab::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->morphs(FormTabElement::RELATION_ELEMENT);
+            $blueprint
+                ->foreignId(FieldsetElement::FIELDSET_ID)
+                ->nullable()
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignId(FieldsetElement::INPUT_ID)
+                ->nullable()
+                ->constrained(Input::TABLE, Input::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(FormTabElement::HANDLE);
+            $blueprint
+                ->jsonb(FormTabElement::NAME);
+            $blueprint
+                ->jsonb(FormTabElement::DESCRIPTION)
+                ->nullable();
+            $blueprint
+                ->boolean(FormTabElement::REQUIRED)
+                ->nullable();
+            $blueprint
+                ->boolean(FormTabElement::TRANSLATABLE)
+                ->nullable();
+            $blueprint
+                ->integer(FormTabElement::POSITION)
+                ->default(0);
+            $blueprint
+                ->smallInteger(FormTabElement::WIDTH)
+                ->default(100);
+        });
+    }
+
+    /**
+     * Create the form tabs table.
+     *
+     * @return void
+     */
+    private function createFormTabsTable(): void
+    {
+        Schema::create(FormTab::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(FormTab::UUID)
+                ->primary();
+            $blueprint
+                ->foreignId(FormTab::FORM_ID)
+                ->constrained(Form::TABLE, Form::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->string(FormTab::HANDLE);
+            $blueprint
+                ->jsonb(FormTab::NAME);
+            $blueprint
+                ->integer(FormTab::POSITION)
+                ->default(0);
+            $blueprint
+                ->timestamps();
+        });
+    }
+
+    /**
+     * Create the forms table.
+     *
+     * @return void
+     */
+    private function createFormsTable(): void
+    {
+        Schema::create(Form::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->id(Form::ID);
+            $blueprint
+                ->string(Form::HANDLE)
+                ->unique();
+            $blueprint
+                ->jsonb(Form::TITLE);
+            $blueprint
+                ->jsonb(Form::DESCRIPTION);
+            $blueprint
+                ->timestamp(Form::CREATED_AT);
+            $blueprint
+                ->foreignId(Form::CREATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+            $blueprint
+                ->timestamp(Form::UPDATED_AT);
+            $blueprint
+                ->foreignId(Form::UPDATED_BY)
+                ->nullable()
+                ->constrained(User::TABLE, User::ID)
+                ->nullOnDelete();
+        });
+    }
 
     /**
      * Create the input options table.
@@ -177,202 +439,6 @@ return new class extends Migration
                 ->timestamp(Input::UPDATED_AT);
             $blueprint
                 ->foreignId(Input::UPDATED_BY)
-                ->nullable()
-                ->constrained(User::TABLE, User::ID)
-                ->nullOnDelete();
-        });
-    }
-
-    /**
-     * Create the form fieldset elements table.
-     *
-     * @return void
-     */
-    private function createFieldsetElementTable(): void
-    {
-        Schema::create(FieldsetElement::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->uuid(FieldsetElement::UUID)
-                ->primary();
-            $blueprint
-                ->foreignId(FieldsetElement::OWNER_ID)
-                ->constrained(Fieldset::TABLE, Fieldset::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(FieldsetElement::FIELDSET_ID)
-                ->nullable()
-                ->constrained(Fieldset::TABLE, Fieldset::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(FieldsetElement::INPUT_ID)
-                ->nullable()
-                ->constrained(Input::TABLE, Input::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->morphs(FieldsetElement::RELATION_ELEMENT);
-            $blueprint
-                ->string(FieldsetElement::HANDLE);
-            $blueprint
-                ->jsonb(FieldsetElement::NAME);
-            $blueprint
-                ->jsonb(FieldsetElement::DESCRIPTION)
-                ->nullable();
-            $blueprint
-                ->boolean(FieldsetElement::REQUIRED)
-                ->nullable();
-            $blueprint
-                ->boolean(FieldsetElement::TRANSLATABLE)
-                ->nullable();
-            $blueprint
-                ->integer(FieldsetElement::POSITION)
-                ->default(0);
-            $blueprint
-                ->smallInteger(FieldsetElement::WIDTH)
-                ->default(100);
-        });
-    }
-
-    /**
-     * Create the form fieldsets table.
-     *
-     * @return void
-     */
-    private function createFieldsetsTable(): void
-    {
-        Schema::create(Fieldset::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(Fieldset::ID);
-            $blueprint
-                ->string(Fieldset::HANDLE)
-                ->unique();
-            $blueprint
-                ->jsonb(Fieldset::NAME);
-            $blueprint
-                ->timestamp(Fieldset::CREATED_AT);
-            $blueprint
-                ->foreignId(Fieldset::CREATED_BY)
-                ->nullable()
-                ->constrained(User::TABLE, User::ID)
-                ->nullOnDelete();
-            $blueprint
-                ->timestamp(Fieldset::UPDATED_AT);
-            $blueprint
-                ->foreignId(Fieldset::UPDATED_BY)
-                ->nullable()
-                ->constrained(User::TABLE, User::ID)
-                ->nullOnDelete();
-        });
-    }
-
-    /**
-     * Create the form page elements table.
-     *
-     * @return void
-     */
-    private function createFormPageElementTable(): void
-    {
-        Schema::create(FormPageElement::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->uuid(FormPageElement::UUID)
-                ->primary();
-            $blueprint
-                ->foreignUuid(FormPageElement::OWNER_UUID)
-                ->constrained(FormPage::TABLE, FormPage::UUID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(FieldsetElement::FIELDSET_ID)
-                ->nullable()
-                ->constrained(Fieldset::TABLE, Fieldset::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignId(FieldsetElement::INPUT_ID)
-                ->nullable()
-                ->constrained(Input::TABLE, Input::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->morphs(FormPageElement::RELATION_ELEMENT);
-            $blueprint
-                ->string(FormPageElement::HANDLE);
-            $blueprint
-                ->jsonb(FormPageElement::NAME);
-            $blueprint
-                ->jsonb(FormPageElement::DESCRIPTION)
-                ->nullable();
-            $blueprint
-                ->boolean(FormPageElement::REQUIRED)
-                ->nullable();
-            $blueprint
-                ->boolean(FormPageElement::TRANSLATABLE)
-                ->nullable();
-            $blueprint
-                ->integer(FormPageElement::POSITION)
-                ->default(0);
-            $blueprint
-                ->smallInteger(FormPageElement::WIDTH)
-                ->default(100);
-        });
-    }
-
-    /**
-     * Create the form pages table.
-     *
-     * @return void
-     */
-    private function createFormPagesTable(): void
-    {
-        Schema::create(FormPage::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->uuid(FormPage::UUID)
-                ->primary();
-            $blueprint
-                ->foreignId(FormPage::FORM_ID)
-                ->constrained(Form::TABLE, Form::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->string(FormPage::HANDLE);
-            $blueprint
-                ->jsonb(FormPage::NAME);
-            $blueprint
-                ->integer(FormPage::POSITION)
-                ->default(0);
-            $blueprint
-                ->timestamps();
-        });
-    }
-
-    /**
-     * Create the forms table.
-     *
-     * @return void
-     */
-    private function createFormsTable(): void
-    {
-        Schema::create(Form::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->id(Form::ID);
-            $blueprint
-                ->string(Form::HANDLE)
-                ->unique();
-            $blueprint
-                ->jsonb(Form::TITLE);
-            $blueprint
-                ->jsonb(Form::DESCRIPTION);
-            $blueprint
-                ->timestamp(Form::CREATED_AT);
-            $blueprint
-                ->foreignId(Form::CREATED_BY)
-                ->nullable()
-                ->constrained(User::TABLE, User::ID)
-                ->nullOnDelete();
-            $blueprint
-                ->timestamp(Form::UPDATED_AT);
-            $blueprint
-                ->foreignId(Form::UPDATED_BY)
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();

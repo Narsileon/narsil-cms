@@ -5,8 +5,9 @@ namespace Narsil\Models\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
-use Narsil\Models\Forms\FormPage;
+use Narsil\Models\Forms\FormTab;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
 
@@ -16,7 +17,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormPageElement extends MorphPivot
+class FormTabElement extends MorphPivot
 {
     use HasElement;
     use HasTranslations;
@@ -39,6 +40,7 @@ class FormPageElement extends MorphPivot
         ];
 
         $this->with = [
+            self::RELATION_CONDITIONS,
             self::RELATION_ELEMENT,
         ];
 
@@ -63,7 +65,7 @@ class FormPageElement extends MorphPivot
      *
      * @var string
      */
-    final public const TABLE = 'form_page_element';
+    final public const TABLE = 'form_tab_element';
 
     #region • COLUMNS
 
@@ -93,6 +95,13 @@ class FormPageElement extends MorphPivot
     #region • RELATIONS
 
     /**
+     * The name of the "conditions" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_CONDITIONS = 'conditions';
+
+    /**
      * The name of the "fieldset" relation.
      *
      * @var string
@@ -120,6 +129,21 @@ class FormPageElement extends MorphPivot
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated conditions.
+     *
+     * @return HasMany
+     */
+    final public function conditions(): HasMany
+    {
+        return $this
+            ->hasMany(
+                FormTabElementCondition::class,
+                FormTabElementCondition::FORM_TAB_ELEMENT_UUID,
+                self::UUID,
+            );
+    }
 
     /**
      * Get the associated fieldset.
@@ -160,9 +184,9 @@ class FormPageElement extends MorphPivot
     {
         return $this
             ->belongsTo(
-                FormPage::class,
+                FormTab::class,
                 self::OWNER_UUID,
-                FormPage::UUID,
+                FormTab::UUID,
             );
     }
 

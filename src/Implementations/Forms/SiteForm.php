@@ -9,8 +9,8 @@ use Narsil\Contracts\Fields\TreeField;
 use Narsil\Contracts\Forms\SiteForm as Contract;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Sites\Site;
@@ -35,12 +35,12 @@ class SiteForm extends AbstractForm implements Contract
         $footerSelectOptions = static::getFooterSelectOptions();
 
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => Site::RELATION_PAGES,
-                TemplateSection::NAME => trans('narsil::ui.navigation'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => Site::RELATION_PAGES,
+                TemplateTab::NAME => trans('narsil::ui.navigation'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Site::HEADER_ID,
                             Field::NAME => trans('narsil::validation.attributes.header_id'),
                             Field::TYPE => SelectField::class,
@@ -48,8 +48,8 @@ class SiteForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(SelectField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Site::FOOTER_ID,
                             Field::NAME => trans('narsil::validation.attributes.footer_id'),
                             Field::TYPE => SelectField::class,
@@ -57,8 +57,8 @@ class SiteForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(SelectField::class),
                         ]),
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Site::RELATION_PAGES,
                             Field::NAME => trans('narsil::ui.navigation'),
                             Field::TYPE => TreeField::class,

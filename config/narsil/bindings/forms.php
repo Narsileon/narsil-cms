@@ -20,7 +20,7 @@ return [
     \Narsil\Contracts\Forms\FieldsetForm::class => \Narsil\Implementations\Forms\FieldsetForm::class,
     \Narsil\Contracts\Forms\FooterForm::class => \Narsil\Implementations\Forms\FooterForm::class,
     \Narsil\Contracts\Forms\FormForm::class => \Narsil\Implementations\Forms\FormForm::class,
-    \Narsil\Contracts\Forms\FormPageForm::class => \Narsil\Implementations\Forms\FormPageForm::class,
+    \Narsil\Contracts\Forms\FormTabForm::class => \Narsil\Implementations\Forms\FormTabForm::class,
     \Narsil\Contracts\Forms\HeaderForm::class => \Narsil\Implementations\Forms\HeaderForm::class,
     \Narsil\Contracts\Forms\HostForm::class => \Narsil\Implementations\Forms\HostForm::class,
     \Narsil\Contracts\Forms\HostLocaleForm::class => \Narsil\Implementations\Forms\HostLocaleForm::class,
@@ -31,7 +31,7 @@ return [
     \Narsil\Contracts\Forms\SiteForm::class => \Narsil\Implementations\Forms\SiteForm::class,
     \Narsil\Contracts\Forms\SitePageForm::class => \Narsil\Implementations\Forms\SitePageForm::class,
     \Narsil\Contracts\Forms\TemplateForm::class => \Narsil\Implementations\Forms\TemplateForm::class,
-    \Narsil\Contracts\Forms\TemplateSectionForm::class => \Narsil\Implementations\Forms\TemplateSectionForm::class,
+    \Narsil\Contracts\Forms\TemplateTabForm::class => \Narsil\Implementations\Forms\TemplateTabForm::class,
     \Narsil\Contracts\Forms\UserConfigurationForm::class => \Narsil\Implementations\Forms\UserConfigurationForm::class,
     \Narsil\Contracts\Forms\UserForm::class => \Narsil\Implementations\Forms\UserForm::class,
 

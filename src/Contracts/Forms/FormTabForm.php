@@ -14,7 +14,7 @@ use Narsil\Contracts\Form;
  *
  * @see vendor/narsil/cms/config/narsil/bindings/forms.php
  */
-interface FormPageForm extends Form
+interface FormTabForm extends Form
 {
     //
 }

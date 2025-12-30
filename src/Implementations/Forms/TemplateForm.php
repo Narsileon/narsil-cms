@@ -9,13 +9,13 @@ use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm;
 use Narsil\Contracts\Forms\TemplateForm as Contract;
-use Narsil\Contracts\Forms\TemplateSectionForm;
+use Narsil\Contracts\Forms\TemplateTabForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateSection;
-use Narsil\Models\Structures\TemplateSectionElement;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -54,12 +54,12 @@ class TemplateForm extends AbstractForm implements Contract
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            new TemplateSection([
-                TemplateSection::HANDLE => 'definition',
-                TemplateSection::NAME => trans('narsil::ui.definition'),
-                TemplateSection::RELATION_ELEMENTS => [
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+            new TemplateTab([
+                TemplateTab::HANDLE => 'definition',
+                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::HANDLE,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
@@ -67,9 +67,9 @@ class TemplateForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::WIDTH => 50,
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::SINGULAR,
                             Field::NAME => trans('narsil::validation.attributes.singular'),
                             Field::REQUIRED => true,
@@ -78,9 +78,9 @@ class TemplateForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::WIDTH => 50,
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
+                    new TemplateTabElement([
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::PLURAL,
                             Field::NAME => trans('narsil::validation.attributes.plural'),
                             Field::REQUIRED => true,
@@ -89,19 +89,19 @@ class TemplateForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ])
                     ]),
-                    new TemplateSectionElement([
-                        TemplateSectionElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Template::RELATION_SECTIONS,
-                            Field::NAME => trans('narsil::validation.attributes.sections'),
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Template::RELATION_TABS,
+                            Field::NAME => trans('narsil::validation.attributes.tabs'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
-                                ->form(app(TemplateSectionForm::class)->jsonSerialize())
+                                ->form(app(TemplateTabForm::class)->jsonSerialize())
                                 ->intermediate(
-                                    label: trans('narsil::ui.section'),
-                                    optionLabel: TemplateSection::NAME,
-                                    optionValue: TemplateSection::HANDLE,
+                                    label: trans('narsil::validation.attributes.tab'),
+                                    optionLabel: TemplateTab::NAME,
+                                    optionValue: TemplateTab::HANDLE,
                                     relation: new Field([
-                                        Field::HANDLE => TemplateSection::RELATION_ELEMENTS,
+                                        Field::HANDLE => TemplateTab::RELATION_ELEMENTS,
                                         Field::NAME => trans('narsil::validation.attributes.elements'),
                                         Field::TYPE => RelationsField::class,
                                         Field::SETTINGS => app(RelationsField::class)
@@ -109,23 +109,23 @@ class TemplateForm extends AbstractForm implements Contract
                                             ->addOption(
                                                 identifier: Block::TABLE,
                                                 label: ModelService::getModelLabel(Block::class),
-                                                optionLabel: TemplateSectionElement::NAME,
-                                                optionValue: TemplateSectionElement::HANDLE,
+                                                optionLabel: TemplateTabElement::NAME,
+                                                optionValue: TemplateTabElement::HANDLE,
                                                 options: $blockSelectOptions,
                                                 routes: RouteService::getNames(Block::TABLE),
                                             )
                                             ->addOption(
                                                 identifier: Field::TABLE,
                                                 label: ModelService::getModelLabel(Field::class),
-                                                optionLabel: TemplateSectionElement::NAME,
-                                                optionValue: TemplateSectionElement::HANDLE,
+                                                optionLabel: TemplateTabElement::NAME,
+                                                optionValue: TemplateTabElement::HANDLE,
                                                 options: $fieldSelectOptions,
                                                 routes: RouteService::getNames(Field::TABLE),
                                             )
                                             ->widthOptions($widthSelectOptions),
                                     ])
                                 )
-                                ->placeholder(trans('narsil::ui.add_section')),
+                                ->placeholder(trans('narsil::ui.add_tab')),
                         ]),
                     ]),
                 ],
