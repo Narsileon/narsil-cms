@@ -281,15 +281,15 @@ Route::middleware([
                 ->name('create');
             Route::post('/', HeaderStoreController::class)
                 ->name('store');
-            Route::get('/{footer}/edit', HeaderEditController::class)
+            Route::get('/{header}/edit', HeaderEditController::class)
                 ->name('edit');
-            Route::patch('/{footer}', HeaderUpdateController::class)
+            Route::patch('/{header}', HeaderUpdateController::class)
                 ->name('update');
-            Route::delete('/{footer}', HeaderDestroyController::class)
+            Route::delete('/{header}', HeaderDestroyController::class)
                 ->name('destroy');
             Route::delete('/', HeaderDestroyManyController::class)
                 ->name('destroy-many');
-            Route::post('/{footer}/replicate', HeaderReplicateController::class)
+            Route::post('/{header}/replicate', HeaderReplicateController::class)
                 ->name('replicate');
         });
 
