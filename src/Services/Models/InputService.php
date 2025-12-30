@@ -6,6 +6,7 @@ namespace Narsil\Services\Models;
 
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\InputOption;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -34,6 +35,8 @@ abstract class InputService
             ->save();
 
         static::syncInputOptions($replicated, $input->options()->get()->toArray());
+
+        $replicated->validation_rules()->sync($input->{Input::RELATION_VALIDATION_RULES}->pluck(ValidationRule::ID)->toArray());
     }
 
     /**
