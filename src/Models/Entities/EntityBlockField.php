@@ -8,11 +8,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 use Narsil\Casts\JsonCast;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
-use Narsil\Traits\HasTemplate;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -23,7 +20,6 @@ use Narsil\Traits\HasTranslations;
  */
 class EntityBlockField extends Model
 {
-    use HasTemplate;
     use HasTranslations;
     use HasUuids;
 
@@ -34,7 +30,7 @@ class EntityBlockField extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = static::getTableName();
+        $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
@@ -131,16 +127,6 @@ class EntityBlockField extends Model
 
     #region PUBLIC METHODS
 
-    /**
-     * {@inheritDoc}
-     */
-    final public static function getTableName(): string
-    {
-        $singular = Str::singular(static::$template?->{Template::HANDLE} ?? "");
-
-        return $singular . '_block_fields';
-    }
-
     #region • RELATIONSHIPS
 
     /**
@@ -159,7 +145,7 @@ class EntityBlockField extends Model
     }
 
     /**
-     * Get the associated block.
+     * Get the associated blocks.
      *
      * @return HasMany
      */

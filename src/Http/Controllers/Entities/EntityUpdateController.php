@@ -7,14 +7,15 @@ namespace Narsil\Http\Controllers\Entities;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Narsil\Contracts\FormRequests\EntityDataFormRequest;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityData;
 use Narsil\Services\Models\EntityService;
 use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
@@ -73,22 +74,14 @@ class EntityUpdateController extends RedirectController
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
-        $template = Entity::getTemplate();
-
         $data = $request->all();
 
-        $rules = app(EntityFormRequest::class, [
-            'template' => $template,
-        ])->rules($entity);
+        $entityAttribute = $this->getEntityAttribute($data);
+        $entityDataAttribute = $this->getEntityDataAttribute($data);
 
-        $attributes = Validator::make($data, $rules)
-            ->validated();
-
-        $attributes = array_merge($attributes, [
+        $entityAttribute = array_merge($entityAttribute, [
             Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
             Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
-            Entity::PUBLISHED_FROM => Arr::get($data, Entity::PUBLISHED_FROM),
-            Entity::PUBLISHED_TO => Arr::get($data, Entity::PUBLISHED_TO),
             Entity::UPDATED_AT => Carbon::now(),
             Entity::UPDATED_BY => Auth::id(),
         ]);
@@ -104,19 +97,29 @@ class EntityUpdateController extends RedirectController
                 $draftEntity->forceDeleteQuietly();
             }
 
-            $this->replicateEntity($entity, array_merge($attributes, [
+            $replicated = $this->replicateEntity($entity, array_merge($entityAttribute, [
                 Entity::PUBLISHED => false,
                 Entity::REVISION => -1,
                 Entity::UUID => $uuid,
             ]));
 
+            EntityData::create([
+                EntityData::ENTITY_UUID => $replicated->{Entity::UUID},
+                ...$entityDataAttribute,
+            ]);
+
             return back();
         }
         else
         {
-            $this->replicateEntity($entity, array_merge($attributes, [
+            $replicated = $this->replicateEntity($entity, array_merge($entityAttribute, [
                 Entity::PUBLISHED => false,
             ]));
+
+            EntityData::create([
+                EntityData::ENTITY_UUID => $replicated->{Entity::UUID},
+                ...$entityDataAttribute,
+            ]);
 
             $entity->discardChanges();
             $entity->delete();
@@ -137,6 +140,32 @@ class EntityUpdateController extends RedirectController
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function getEntityAttribute(array $data): array
+    {
+        $rules = app(EntityFormRequest::class)->rules();
+
+        return Validator::make($data, $rules)->validated();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function getEntityDataAttribute(array $data): array
+    {
+        $rules = app(EntityDataFormRequest::class, [
+            'template' => $this->template,
+        ])->rules();
+
+        return Validator::make($data, $rules)->validated();
+    }
 
     /**
      * @param Entity $entity

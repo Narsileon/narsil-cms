@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Narsil\Enums\ModelEventEnum;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityData;
 
 #endregion
 
@@ -55,8 +56,8 @@ abstract class ModelService
     {
         $isEntity = $model === Entity::class;
 
-        $modelLabel = $isEntity ? Entity::getTemplate()?->{Template::SINGULAR} : static::getModelLabel($model, false);
-        $tableLabel = $isEntity ? Entity::getTemplate()?->{Template::PLURAL} : static::getTableLabel($model::TABLE, false);
+        $modelLabel = $isEntity ? EntityData::getTemplate()?->{Template::SINGULAR} : static::getModelLabel($model, false);
+        $tableLabel = $isEntity ? EntityData::getTemplate()?->{Template::PLURAL} : static::getTableLabel($model::TABLE, false);
 
         return trans("narsil::toasts.success.$event->value", [
             'model' => $modelLabel,

@@ -8,11 +8,14 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
+use Narsil\Contracts\FormRequests\EntityDataFormRequest;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityData;
+use Narsil\Models\Structures\Template;
 use Narsil\Services\Models\EntityService;
 use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
@@ -39,23 +42,20 @@ class EntityStoreController extends RedirectController
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
-        $template = Entity::getTemplate();
-
         $data = $request->all();
 
-        $rules = app(EntityFormRequest::class, [
-            'template' => $template,
-        ])->rules();
+        $entityAttribute = $this->getEntityAttribute($data);
+        $entityDataAttribute = $this->getEntityDataAttribute($data);
 
-        $attributes = Validator::make($data, $rules)
-            ->validated();
-
-        $attributes = array_merge($attributes, [
-            Entity::PUBLISHED_FROM => Arr::get($data, Entity::PUBLISHED_FROM),
-            Entity::PUBLISHED_TO => Arr::get($data, Entity::PUBLISHED_TO),
+        $entity = Entity::create([
+            Entity::TEMPLATE_ID => $this->template->{Template::ID},
+            ...$entityAttribute
         ]);
 
-        $entity = Entity::create($attributes);
+        EntityData::create([
+            EntityData::ENTITY_UUID => $entity->{Entity::UUID},
+            ...$entityDataAttribute,
+        ]);
 
         if ($blocks = Arr::get($data, Entity::RELATION_BLOCKS))
         {
@@ -67,6 +67,36 @@ class EntityStoreController extends RedirectController
                 'collection' => $collection,
             ]), $entity)
             ->with('success', ModelService::getSuccessMessage(Entity::class, ModelEventEnum::CREATED));
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function getEntityAttribute(array $data): array
+    {
+        $rules = app(EntityFormRequest::class)->rules();
+
+        return Validator::make($data, $rules)->validated();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function getEntityDataAttribute(array $data): array
+    {
+        $rules = app(EntityDataFormRequest::class, [
+            'template' => $this->template,
+        ])->rules();
+
+        return Validator::make($data, $rules)->validated();
     }
 
     #endregion

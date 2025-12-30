@@ -13,6 +13,7 @@ return [
 
     \Narsil\Contracts\FormRequests\BlockFormRequest::class => \Narsil\Implementations\Requests\BlockFormRequest::class,
     \Narsil\Contracts\FormRequests\ConfigurationFormRequest::class => \Narsil\Implementations\Requests\ConfigurationFormRequest::class,
+    \Narsil\Contracts\FormRequests\EntityDataFormRequest::class => \Narsil\Implementations\Requests\EntityDataFormRequest::class,
     \Narsil\Contracts\FormRequests\EntityFormRequest::class => \Narsil\Implementations\Requests\EntityFormRequest::class,
     \Narsil\Contracts\FormRequests\FieldFormRequest::class => \Narsil\Implementations\Requests\FieldFormRequest::class,
     \Narsil\Contracts\FormRequests\FieldsetFormRequest::class => \Narsil\Implementations\Requests\FieldsetFormRequest::class,

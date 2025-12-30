@@ -5,14 +5,17 @@ namespace Narsil\Models\Entities;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Narsil\Models\Forms\Form;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Structures\Template;
-use Narsil\Services\CollectionService;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasRevisions;
-use Narsil\Traits\HasTemplate;
 use Narsil\Traits\HasTranslations;
 use Narsil\Traits\SoftDeleteBlameable;
 
@@ -28,7 +31,6 @@ class Entity extends Model
     use HasAuditLogs;
     use HasIdentifier;
     use HasRevisions;
-    use HasTemplate;
     use HasTranslations;
     use SoftDeleteBlameable;
 
@@ -39,7 +41,7 @@ class Entity extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = static::getTableName();
+        $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
 
@@ -51,18 +53,11 @@ class Entity extends Model
 
         $this->with = [
             self::RELATION_BLOCKS,
+            self::RELATION_DATA,
+            self::RELATION_ENTITIES,
+            self::RELATION_FORMS,
+            self::RELATION_SITE_PAGES,
         ];
-
-        $this->mergeAppends([
-            self::ATTRIBUTE_TYPE,
-        ]);
-
-        if (static::$template)
-        {
-            $casts = $this->generateCasts(CollectionService::getTemplateFields(static::$template));
-
-            $this->mergeCasts($casts);
-        }
 
         parent::__construct($attributes);
     }
@@ -87,6 +82,13 @@ class Entity extends Model
      */
     final public const SLUG = 'slug';
 
+    /**
+     * The name of the "template id" column.
+     *
+     * @var string
+     */
+    final public const TEMPLATE_ID = 'template_id';
+
     #endregion
 
     #region • ATTRIBUTES
@@ -110,45 +112,45 @@ class Entity extends Model
     final public const RELATION_BLOCKS = 'blocks';
 
     /**
+     * The name of the "data" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_DATA = 'data';
+
+    /**
      * The name of the "entities" relation.
      *
      * @var string
      */
     final public const RELATION_ENTITIES = 'entities';
 
+    /**
+     * The name of the "forms" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FORMS = 'forms';
+
+    /**
+     * The name of the "site pages" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE_PAGES = 'site_pages';
+
+    /**
+     * The name of the "template" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TEMPLATE = 'template';
+
     #endregion
 
     #endregion
 
     #region PUBLIC METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function getTableName(): string
-    {
-        return static::$template?->{Template::HANDLE} ?? "";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function setTemplate(Template|string $template): void
-    {
-        if (is_string($template))
-        {
-            $template = Template::query()
-                ->firstWhere([
-                    Template::HANDLE,
-                    $template
-                ]);
-        }
-
-        static::$template = $template;
-
-        EntityBlock::setTemplate($template);
-        EntityBlockField::setTemplate($template);
-    }
 
     #region • ACCESSORS
 
@@ -163,16 +165,6 @@ class Entity extends Model
         $table = $this->getTable();
 
         return !empty($key) ? "$table-$key" : $table;
-    }
-
-    /**
-     * Get the associated type.
-     *
-     * @return string
-     */
-    final public function getTypeAttribute(): string
-    {
-        return $this->getTable();
     }
 
     #endregion
@@ -193,6 +185,87 @@ class Entity extends Model
                 self::UUID,
             )
             ->whereNull(EntityBlock::ENTITY_FIELD_UUID);
+    }
+
+    /**
+     * Get the associated data.
+     *
+     * @return HasOne
+     */
+    final public function data(): HasOne
+    {
+        return $this
+            ->hasOne(
+                EntityData::class,
+                EntityData::ENTITY_UUID,
+                self::UUID,
+            );
+    }
+
+    /**
+     * Get the associated entities.
+     *
+     * @return BelongsToMany
+     */
+    final public function entities(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Entity::class,
+                EntityEntity::TABLE,
+                EntityEntity::OWNER_UUID,
+                EntityEntity::TARGET_UUID,
+            )
+            ->using(EntityEntity::class);
+    }
+
+    /**
+     * Get the associated forms.
+     *
+     * @return BelongsToMany
+     */
+    final public function forms(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Form::class,
+                EntityForm::TABLE,
+                EntityForm::ENTITY_UUID,
+                EntityForm::FORM_ID,
+            )
+            ->using(EntityForm::class);
+    }
+
+    /**
+     * Get the associated site pages.
+     *
+     * @return BelongsToMany
+     */
+    final public function site_pages(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                SitePage::class,
+                EntitySitePage::TABLE,
+                EntitySitePage::ENTITY_UUID,
+                EntitySitePage::SITE_PAGE_ID,
+            )
+            ->using(EntitySitePage::class);
+    }
+
+    /**
+     * Get the associated template.
+     *
+     * @return BelongsTo
+     */
+    final public function template(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Template::class,
+                self::TEMPLATE_ID,
+                Template::ID,
+            );
     }
 
     #endregion

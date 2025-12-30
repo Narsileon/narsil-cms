@@ -7,7 +7,7 @@ namespace Narsil\Observers;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\Relation;
+use Narsil\Models\Entities\EntityEntity;
 use Narsil\Services\CollectionService;
 
 #endregion
@@ -19,16 +19,6 @@ use Narsil\Services\CollectionService;
 class EntityObserver
 {
     #region PUBLIC METHODS
-
-    /**
-     * @param Entity $entity
-     *
-     * @return void
-     */
-    public function deleted(Entity $entity): void
-    {
-        $this->deleteRelations($entity);
-    }
 
     /**
      * @param Entity $entity
@@ -49,21 +39,9 @@ class EntityObserver
      *
      * @return void
      */
-    protected function deleteRelations(Entity $entity): void
-    {
-        Relation::query()
-            ->where(Relation::OWNER_UUID, $entity->{Entity::UUID})
-            ->delete();
-    }
-
-    /**
-     * @param Entity $entity
-     *
-     * @return void
-     */
     protected function syncRelations(Entity $entity): void
     {
-        $fields = CollectionService::getTemplateFields($entity::getTemplate(), RelationsField::class);
+        $fields = CollectionService::getTemplateFields($entity->{Entity::RELATION_TEMPLATE}, RelationsField::class);
 
         foreach ($fields as $field)
         {
@@ -75,14 +53,9 @@ class EntityObserver
                 {
                     foreach ($relations as $relation)
                     {
-                        [$table, $id] = explode('-', $relation, 2);
-
-                        Relation::firstOrCreate([
-                            Relation::OWNER_ID => $entity->{Entity::ID},
-                            Relation::OWNER_TABLE => $entity->getTable(),
-                            Relation::OWNER_UUID => $entity->{Entity::UUID},
-                            Relation::TARGET_ID => $id,
-                            Relation::TARGET_TABLE => $table,
+                        EntityEntity::firstOrCreate([
+                            EntityEntity::OWNER_UUID => $entity->{Entity::UUID},
+                            EntityEntity::TARGET_UUID => $relation,
                         ]);
                     }
                 }
@@ -93,14 +66,9 @@ class EntityObserver
 
                 foreach ($relations as $relation)
                 {
-                    [$table, $id] = explode('-', $relation, 2);
-
-                    Relation::firstOrCreate([
-                        Relation::OWNER_ID => $entity->{Entity::ID},
-                        Relation::OWNER_TABLE => $entity->getTable(),
-                        Relation::OWNER_UUID => $entity->{Entity::UUID},
-                        Relation::TARGET_ID => $id,
-                        Relation::TARGET_TABLE => $table,
+                    EntityEntity::firstOrCreate([
+                        EntityEntity::OWNER_UUID => $entity->{Entity::UUID},
+                        EntityEntity::TARGET_UUID => $relation,
                     ]);
                 }
             }

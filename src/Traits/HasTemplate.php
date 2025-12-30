@@ -21,6 +21,8 @@ use Narsil\Services\CollectionService;
  */
 trait HasTemplate
 {
+    use HasTranslations;
+
     #region PROPERTIES
 
     /**

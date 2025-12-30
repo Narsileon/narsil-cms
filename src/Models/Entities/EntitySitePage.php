@@ -5,11 +5,10 @@ namespace Narsil\Models\Entities;
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Models\Structures\Block;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -17,7 +16,7 @@ use Narsil\Models\Entities\Entity;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityBlock extends Model
+class EntitySitePage extends Pivot
 {
     use HasUuids;
 
@@ -32,11 +31,6 @@ class EntityBlock extends Model
 
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
-
-        $this->with = [
-            self::RELATION_BLOCK,
-            self::RELATION_FIELDS,
-        ];
 
         $this->mergeGuarded([
             self::UUID,
@@ -54,23 +48,9 @@ class EntityBlock extends Model
      *
      * @var string
      */
-    final public const TABLE = 'entity_blocks';
+    final public const TABLE = 'entity_site_pages';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "block id" column.
-     *
-     * @var string
-     */
-    final public const BLOCK_ID = 'block_id';
-
-    /**
-     * The name of the "entity field uuid" column.
-     *
-     * @var string
-     */
-    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
 
     /**
      * The name of the "entity uuid" column.
@@ -80,11 +60,11 @@ class EntityBlock extends Model
     final public const ENTITY_UUID = 'entity_uuid';
 
     /**
-     * The name of the "position" column.
+     * The name of the "site page id" column.
      *
      * @var string
      */
-    final public const POSITION = 'position';
+    final public const SITE_PAGE_ID = 'site_page_id';
 
     /**
      * The name of the "uuid" column.
@@ -98,13 +78,6 @@ class EntityBlock extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "block" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_BLOCK = 'block';
-
-    /**
      * The name of the "entity" relation.
      *
      * @var string
@@ -112,11 +85,11 @@ class EntityBlock extends Model
     final public const RELATION_ENTITY = 'entity';
 
     /**
-     * The name of the "fields" relation.
+     * The name of the "site page" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELDS = 'fields';
+    final public const RELATION_SITE_PAGE = 'site_page';
 
     #endregion
 
@@ -125,21 +98,6 @@ class EntityBlock extends Model
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
-
-    /**
-     * Get the associated block.
-     *
-     * @return BelongsTo
-     */
-    final public function block(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Block::class,
-                self::BLOCK_ID,
-                Block::ID,
-            );
-    }
 
     /**
      * Get the associated entity.
@@ -157,17 +115,17 @@ class EntityBlock extends Model
     }
 
     /**
-     * Get the associated fields.
+     * Get the associated site page.
      *
-     * @return HasMany
+     * @return BelongsTo
      */
-    final public function fields(): HasMany
+    final public function site_page(): BelongsTo
     {
         return $this
-            ->hasMany(
-                EntityBlockField::class,
-                EntityBlockField::ENTITY_BLOCK_UUID,
-                self::UUID,
+            ->belongsTo(
+                SitePage::class,
+                self::SITE_PAGE_ID,
+                SitePage::ID,
             );
     }
 

@@ -4,8 +4,11 @@ namespace Narsil\Observers;
 
 #region USE
 
-use Narsil\Database\Migrations\CollectionMigration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityData;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\GraphQLService;
@@ -28,7 +31,10 @@ class TemplateObserver
      */
     public function created(Template $template): void
     {
-        new CollectionMigration($template)->up();
+        if (!Schema::hasTable($template->{Template::HANDLE}))
+        {
+            $this->createTable($template);
+        }
 
         GraphQLService::generateTemplatesSchema();
 
@@ -42,7 +48,7 @@ class TemplateObserver
      */
     public function deleted(Template $template): void
     {
-        new CollectionMigration($template)->down();
+        Schema::dropIfExists($template->{Template::HANDLE});
 
         GraphQLService::generateTemplatesSchema();
     }
@@ -80,6 +86,27 @@ class TemplateObserver
                 Permission::NAME => $name,
             ]);
         }
+    }
+
+    /**
+     * @param Template $template
+     *
+     * @return void
+     */
+    protected function createTable(Template $template): void
+    {
+        $table = $template->{Template::HANDLE};
+
+        Schema::create($table, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(EntityData::UUID)
+                ->primary();
+            $blueprint
+                ->foreignUuid(EntityData::ENTITY_UUID)
+                ->constrained(Entity::TABLE, Entity::UUID)
+                ->cascadeOnDelete();
+        });
     }
 
     #endregion

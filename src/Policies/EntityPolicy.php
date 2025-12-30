@@ -6,6 +6,7 @@ namespace Narsil\Policies;
 
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityData;
 use Narsil\Models\User;
 use Narsil\Services\PermissionService;
 
@@ -28,7 +29,7 @@ class EntityPolicy
      */
     public function create(User $user): bool
     {
-        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::CREATE->value);
+        $permission = PermissionService::getHandle(EntityData::getTableName(), PermissionEnum::CREATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -43,7 +44,7 @@ class EntityPolicy
      */
     public function delete(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(EntityData::getTableName(), PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -57,7 +58,7 @@ class EntityPolicy
      */
     public function deleteAny(User $user): bool
     {
-        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle(EntityData::getTableName(), PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -72,7 +73,7 @@ class EntityPolicy
      */
     public function update(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle(EntityData::getTableName(), PermissionEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }
@@ -87,7 +88,7 @@ class EntityPolicy
      */
     public function view(User $user, Entity $model): bool
     {
-        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(EntityData::getTableName(), PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -101,7 +102,7 @@ class EntityPolicy
      */
     public function viewAny(User $user): bool
     {
-        $permission = PermissionService::getHandle(Entity::getTableName(), PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle(EntityData::getTableName(), PermissionEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

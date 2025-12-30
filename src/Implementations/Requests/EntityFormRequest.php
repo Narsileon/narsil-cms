@@ -6,10 +6,7 @@ namespace Narsil\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Services\CollectionService;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -20,29 +17,6 @@ use Narsil\Validation\FormRule;
  */
 class EntityFormRequest implements Contract
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param Template $template
-     *
-     * @return void
-     */
-    public function __construct(Template $template)
-    {
-        $this->template = $template;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var Template
-     */
-    protected readonly Template $template;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
@@ -50,21 +24,22 @@ class EntityFormRequest implements Contract
      */
     public function rules(?Model $model = null): array
     {
-        $fields = CollectionService::getTemplateFields($this->template);
-
-        $rules = [
+        return [
+            Entity::PUBLISHED_FROM => [
+                FormRule::DATE,
+                FormRule::SOMETIMES,
+                FormRule::NULLABLE,
+            ],
+            Entity::PUBLISHED_TO => [
+                FormRule::DATE,
+                FormRule::SOMETIMES,
+                FormRule::NULLABLE,
+            ],
             Entity::SLUG => [
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
         ];
-
-        foreach ($fields as $field)
-        {
-            $rules[$field->{Field::HANDLE}] = [];
-        }
-
-        return $rules;
     }
 
     #endregion

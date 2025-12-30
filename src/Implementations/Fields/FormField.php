@@ -6,7 +6,6 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\FormField as Contract;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Structures\Field;
 
 #endregion
 
@@ -35,14 +34,7 @@ class FormField extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
-        return [
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.accept" : 'accept',
-                Field::NAME => trans('narsil::validation.attributes.accept'),
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
-        ];
+        return [];
     }
 
     #region • FLUENT

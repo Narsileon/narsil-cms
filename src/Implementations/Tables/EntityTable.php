@@ -4,11 +4,10 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\User;
 use Narsil\Services\RouteService;
 use Narsil\Support\TableColumn;
 
@@ -41,19 +40,27 @@ class EntityTable extends AbstractTable
      */
     protected function columns(): array
     {
-        $columns = [];
-
-        $accesorKeys = [
-            Entity::CREATED_BY => Entity::RELATION_CREATOR . '.' . User::ATTRIBUTE_FULL_NAME,
-            Entity::DELETED_BY => Entity::RELATION_REMOVER . '.' . User::ATTRIBUTE_FULL_NAME,
-            Entity::UPDATED_BY => Entity::RELATION_EDITOR . '.' . User::ATTRIBUTE_FULL_NAME,
-        ];
-
-        $visibilities = [
-            Entity::ID,
-            Entity::SLUG,
-            Entity::CREATED_AT,
-            Entity::UPDATED_AT,
+        $columns = [
+            new TableColumn(
+                id: Entity::ID,
+                type: DataTypeEnum::INTEGER->value,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Entity::SLUG,
+                type: DataTypeEnum::STRING->value,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Entity::CREATED_AT,
+                type: DataTypeEnum::STRING->value,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Entity::UPDATED_AT,
+                type: DataTypeEnum::STRING->value,
+                visibility: true,
+            ),
         ];
 
         $columnListing = Schema::getColumnListing($this->name);
@@ -61,9 +68,9 @@ class EntityTable extends AbstractTable
         foreach ($columnListing as $column)
         {
             $columns[] = new TableColumn(
-                accessorKey: Arr::get($accesorKeys, $column),
+                accessorKey: Entity::RELATION_DATA . '.' . $column,
                 id: $column,
-                visibility: in_array($column, $visibilities),
+                visibility: false,
             );
         }
 

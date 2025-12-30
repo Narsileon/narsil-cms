@@ -36,8 +36,6 @@ class EntityIndexController extends RenderController
     {
         $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
 
-        $template = Entity::getTemplate();
-
         $query = Entity::query()
             ->with([
                 Entity::RELATION_CREATOR,
@@ -46,9 +44,10 @@ class EntityIndexController extends RenderController
                 Entity::RELATION_PUBLISHED_REVISION,
                 Entity::RELATION_REMOVER,
             ])
+            ->where(Entity::TEMPLATE_ID, $this->template->{Template::ID})
             ->where(Entity::REVISION, '>', 0);
 
-        $collection = new DataTableCollection($query, $template->{Template::HANDLE})
+        $collection = new DataTableCollection($query, $this->template->{Template::HANDLE})
             ->setRevisionable(true)
             ->toResponse($request)
             ->getData(true);
@@ -67,9 +66,7 @@ class EntityIndexController extends RenderController
      */
     protected function getDescription(): string
     {
-        $template = Entity::getTemplate();
-
-        return $template->{Template::PLURAL};
+        return $this->template->{Template::PLURAL};
     }
 
     /**
@@ -77,9 +74,7 @@ class EntityIndexController extends RenderController
      */
     protected function getTitle(): string
     {
-        $template = Entity::getTemplate();
-
-        return $template->{Template::PLURAL};
+        return $this->template->{Template::PLURAL};
     }
 
     #endregion

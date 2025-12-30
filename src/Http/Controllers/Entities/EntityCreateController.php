@@ -40,9 +40,8 @@ class EntityCreateController extends RenderController
     {
         $this->authorize(PermissionEnum::CREATE, Entity::class);
 
-        $template = Entity::getTemplate();
+        $form = $this->getForm();
 
-        $form = $this->getForm($template);
         $publish = app(PublishForm::class)->layout;
 
         return $this->render('narsil/cms::resources/form', [
@@ -60,28 +59,24 @@ class EntityCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        $template = Entity::getTemplate();
-
-        return $template->{Template::SINGULAR};
+        return $this->template->{Template::SINGULAR};
     }
 
     /**
      * Get the associated form.
      *
-     * @param Template $template
-     *
      * @return BlockForm
      */
-    protected function getForm(Template $template): EntityForm
+    protected function getForm(): EntityForm
     {
         $configuration = Configuration::firstOrCreate();
 
         $form = app()
             ->make(EntityForm::class, [
-                'template' => $template
+                'template' => $this->template
             ])
             ->action(route('collections.store', [
-                'collection' => $template->{Template::HANDLE}
+                'collection' => $this->template->{Template::HANDLE}
             ]))
             ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
@@ -96,9 +91,7 @@ class EntityCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        $template = Entity::getTemplate();
-
-        return $template->{Template::SINGULAR};
+        return $this->template->{Template::SINGULAR};
     }
 
     #endregion

@@ -15,6 +15,7 @@ use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityData;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Traits\IsCollectionController;
 
@@ -41,14 +42,14 @@ class EntityEditController extends RenderController
     {
         $entity = $this->getEntity($request, $id);
 
-        $revisions = Entity::revisionOptions($id)->get();
+        $revisions = Entity::query()
+            ->revisionOptions($id)
+            ->get();
 
         $this->authorize(PermissionEnum::UPDATE, $entity);
 
-        $template = Entity::getTemplate();
-
         $data = $this->getData($entity);
-        $form = $this->getForm($template, $entity);
+        $form = $this->getForm($entity);
         $publish = app(PublishForm::class)->layout;
 
         return $this->render('narsil/cms::resources/form', [
@@ -78,6 +79,21 @@ class EntityEditController extends RenderController
             Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION,
         ]);
 
+        foreach ($entity->{Entity::RELATION_DATA}->getAttributes() as $key => $attribute)
+        {
+            if (in_array($key, [
+                EntityData::UUID,
+                EntityData::ENTITY_UUID,
+            ]))
+            {
+                continue;
+            }
+
+            $entity->setAttribute($key, $attribute);
+        }
+
+        $entity->mergeCasts($entity->{Entity::RELATION_DATA}->getCasts());
+
         $data = $entity->toArrayWithTranslations();
 
         return $data;
@@ -88,9 +104,7 @@ class EntityEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        $template = Entity::getTemplate();
-
-        return $template->{Template::SINGULAR};
+        return $this->template->{Template::SINGULAR};
     }
 
     /**
@@ -133,21 +147,20 @@ class EntityEditController extends RenderController
      * Get the associated form.
      *
      * @param Template $template
-     * @param Entity $entity
      *
      * @return BlockForm
      */
-    protected function getForm(Template $template, Entity $entity): EntityForm
+    protected function getForm(Entity $entity): EntityForm
     {
         $configuration = Configuration::firstOrCreate();
 
         $form = app()
             ->make(EntityForm::class, [
-                'template' => $template,
+                'template' => $this->template,
             ])
             ->action(route('collections.update', [
                 'id' => $entity->{Entity::ID},
-                'collection' => $template->{Template::HANDLE},
+                'collection' => $this->template->{Template::HANDLE},
             ]))
             ->autoSave(true)
             ->id($entity->{Entity::UUID})
@@ -164,9 +177,7 @@ class EntityEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        $template = Entity::getTemplate();
-
-        return $template->{Template::SINGULAR};
+        return $this->template->{Template::SINGULAR};
     }
 
     #endregion
