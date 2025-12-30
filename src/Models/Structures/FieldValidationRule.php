@@ -5,8 +5,8 @@ namespace Narsil\Models\Structures;
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\ValidationRule;
 
 #endregion
@@ -15,7 +15,7 @@ use Narsil\Models\ValidationRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldValidationRule extends Model
+class FieldValidationRule extends Pivot
 {
     use HasUuids;
 

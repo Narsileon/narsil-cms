@@ -7,6 +7,7 @@ namespace Narsil\Services\Models;
 use Illuminate\Support\Str;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\FieldOption;
+use Narsil\Models\ValidationRule;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -49,6 +50,9 @@ abstract class FieldService
             ->save();
 
         static::syncFieldOptions($replicated, $field->options()->get()->toArray());
+
+        $replicated->blocks()->sync($field->{Field::RELATION_BLOCKS}->pluck(ValidationRule::ID)->toArray());
+        $replicated->validation_rules()->sync($field->{Field::RELATION_VALIDATION_RULES}->pluck(ValidationRule::ID)->toArray());
     }
 
     /**

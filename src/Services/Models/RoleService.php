@@ -33,9 +33,7 @@ abstract class RoleService
             ])
             ->save();
 
-        $permissionIds = $role->{Role::RELATION_PERMISSIONS}->pluck(Permission::ID);
-
-        $replicated->syncPermissions($permissionIds);
+        $replicated->permissions()->sync($role->{Role::RELATION_PERMISSIONS}->pluck(Permission::ID)->toArray());
     }
 
     #endregion

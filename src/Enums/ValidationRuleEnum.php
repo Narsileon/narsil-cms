@@ -18,7 +18,6 @@ enum ValidationRuleEnum: string
 {
     use Enumerable;
 
-    case REQUIRED = 'required';
     case ALPHA_DASH = 'alpha_dash';
     case ARRAY = 'array';
     case BOOLEAN = 'boolean';

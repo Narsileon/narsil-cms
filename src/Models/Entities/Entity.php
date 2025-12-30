@@ -279,7 +279,7 @@ class Entity extends Model
      */
     protected static function maxRevisions(): ?int
     {
-        return null;
+        return 10;
     }
 
     #endregion
