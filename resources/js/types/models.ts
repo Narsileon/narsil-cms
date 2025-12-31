@@ -58,6 +58,7 @@ export type Field = {
   id: number;
   identifier: string;
   name: string;
+  placeholder: string;
   options: FieldOption[];
   required: boolean;
   translatable: boolean;

@@ -44,10 +44,10 @@ class PasswordField extends AbstractField implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
+                Field::HANDLE => Field::PLACEHOLDER,
                 Field::NAME => trans('narsil::validation.attributes.placeholder'),
-                Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
@@ -120,16 +120,6 @@ class PasswordField extends AbstractField implements Contract
     final public function minLength(string $minLength): static
     {
         $this->set('minLength', $minLength);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->set('placeholder', $placeholder);
 
         return $this;
     }

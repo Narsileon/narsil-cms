@@ -27,14 +27,5 @@ interface TextareaField extends Contract
      */
     public function defaultValue(string $value): static;
 
-    /**
-     * Set the placeholder attribute.
-     *
-     * @param string $placeholder
-     *
-     * @return static
-     */
-    public function placeholder(string $placeholder): static;
-
     #endregion
 }

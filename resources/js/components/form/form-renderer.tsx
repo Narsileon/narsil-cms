@@ -121,7 +121,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
           onChange?.(value);
           onFieldChange(value);
         }
-
+        console.log(placeholder, props);
         return (
           <FormItem
             className={cn(
@@ -194,7 +194,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
             {getField(type, {
               id: props.handle,
               element: props as Field,
-              placeholder: placeholder,
+              placeholder: placeholder ?? props.placeholder,
               required: required,
               value: value,
               setValue: handleOnChange,

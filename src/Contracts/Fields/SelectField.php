@@ -55,15 +55,6 @@ interface SelectField extends Contract
     public function multiple(bool $multiple): static;
 
     /**
-     * Set the placeholder attribute.
-     *
-     * @param string $placeholder
-     *
-     * @return static
-     */
-    public function placeholder(string $placeholder): static;
-
-    /**
      * Set the reload attribute.
      *
      * @param string $reload

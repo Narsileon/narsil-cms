@@ -14,27 +14,27 @@ use Narsil\Contracts\Field as Contract;
  *
  * @see vendor/narsil/cms/config/narsil/bindings/fields.php
  */
-interface TableField extends Contract
+interface LinkField extends Contract
 {
     #region PUBLIC METHODS
 
     /**
-     * Set the columns.
-     *
-     * @param array $columns
-     *
-     * @return static
-     */
-    public function columns(array $columns): static;
-
-    /**
      * Set the default value.
      *
-     * @param array $value
+     * @param string $value
      *
      * @return static
      */
-    public function defaultValue(array $value): static;
+    public function defaultvalue(string $value): static;
+
+    /**
+     * Set the multiple attribute.
+     *
+     * @param boolean $multiple
+     *
+     * @return static
+     */
+    public function multiple(bool $multiple): static;
 
     #endregion
 }

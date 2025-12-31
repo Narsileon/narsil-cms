@@ -45,6 +45,7 @@ class Field extends Model
         $this->translatable = [
             self::DESCRIPTION,
             self::NAME,
+            self::PLACEHOLDER,
         ];
 
         $this->with = [
@@ -128,6 +129,13 @@ class Field extends Model
      * @var string
      */
     final public const NAME = 'name';
+
+    /**
+     * The name of the "placeholder" column.
+     *
+     * @var string
+     */
+    final public const PLACEHOLDER = 'placeholder';
 
     /**
      * The name of the "required" column.

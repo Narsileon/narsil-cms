@@ -4,7 +4,7 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\FormField as Contract;
+use Narsil\Contracts\Fields\LinkField as Contract;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Structures\Field;
 
@@ -14,7 +14,7 @@ use Narsil\Models\Structures\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormField extends AbstractField implements Contract
+class LinkField extends AbstractField implements Contract
 {
     #region CONSTRUCTOR
 
@@ -42,6 +42,12 @@ class FormField extends AbstractField implements Contract
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class),
             ]),
+            new Field([
+                Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
+                Field::NAME => trans('narsil::validation.attributes.multiple'),
+                Field::TYPE => SwitchField::class,
+                Field::SETTINGS => app(SwitchField::class),
+            ]),
         ];
     }
 
@@ -53,6 +59,16 @@ class FormField extends AbstractField implements Contract
     final public function defaultValue(string $value): static
     {
         $this->set('value', $value);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function multiple(bool $multiple): static
+    {
+        $this->set('multiple', $multiple);
 
         return $this;
     }

@@ -54,6 +54,7 @@ class HostLocaleForm extends AbstractForm implements Contract
         return new Field([
             Field::HANDLE => HostLocale::RELATION_LANGUAGES,
             Field::NAME => trans('narsil::validation.attributes.languages'),
+            Field::PLACEHOLDER => trans('narsil::ui.add'),
             Field::TYPE => TableField::class,
             Field::SETTINGS => app(TableField::class)
                 ->columns([
@@ -65,8 +66,7 @@ class HostLocaleForm extends AbstractForm implements Contract
                         Field::RELATION_OPTIONS => $languageSelectOptions,
                         Field::SETTINGS => app(SelectField::class),
                     ]),
-                ])
-                ->placeholder(trans('narsil::ui.add')),
+                ]),
         ]);
     }
 

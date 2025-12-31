@@ -112,15 +112,6 @@ interface RelationsField extends Contract
     public function options(array $options): static;
 
     /**
-     * Set the placeholder attribute.
-     *
-     * @param string $placeholder
-     *
-     * @return static
-     */
-    public function placeholder(string $placeholder): static;
-
-    /**
      * Set the unique attribute.
      *
      * @param boolean $unique

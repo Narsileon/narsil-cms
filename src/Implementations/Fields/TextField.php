@@ -40,14 +40,14 @@ class TextField extends AbstractField implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::NAME => trans('narsil::validation.attributes.default_value'),
-                Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
+                Field::HANDLE => Field::PLACEHOLDER,
+                Field::NAME => trans('narsil::validation.attributes.placeholder'),
+                Field::TYPE => TextField::class,
+                Field::SETTINGS => app(TextField::class),
             ]),
             new Field([
-                Field::HANDLE => $prefix ? "$prefix.placeholder" : 'placeholder',
-                Field::NAME => trans('narsil::validation.attributes.placeholder'),
+                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
+                Field::NAME => trans('narsil::validation.attributes.default_value'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class),
             ]),
@@ -135,16 +135,6 @@ class TextField extends AbstractField implements Contract
     final public function minLength(string $minLength): static
     {
         $this->set('minLength', $minLength);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->set('placeholder', $placeholder);
 
         return $this;
     }

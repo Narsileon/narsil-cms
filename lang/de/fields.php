@@ -8,8 +8,10 @@ use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\DateField;
 use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Fields\EmailField;
+use Narsil\Contracts\Fields\EntityField;
 use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\FormField;
+use Narsil\Contracts\Fields\LinkField;
 use Narsil\Contracts\Fields\NumberField;
 use Narsil\Contracts\Fields\PasswordField;
 use Narsil\Contracts\Fields\RangeField;
@@ -32,8 +34,10 @@ return [
     DateField::class => 'Datum',
     DatetimeField::class => 'Datum und Zeit',
     EmailField::class => 'E-Mail',
+    EntityField::class => 'Entität',
     FileField::class => 'Datei',
     FormField::class => 'Formular',
+    LinkField::class => 'Link',
     NumberField::class => 'Zahl',
     PasswordField::class => 'Passwort',
     RangeField::class => 'Bereich',

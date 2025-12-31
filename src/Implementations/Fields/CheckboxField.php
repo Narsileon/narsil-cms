@@ -47,6 +47,7 @@ class CheckboxField extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => Field::RELATION_OPTIONS,
                 Field::NAME => trans('narsil::validation.attributes.options'),
+                Field::PLACEHOLDER => trans('narsil::ui.add'),
                 Field::TYPE => TableField::class,
                 Field::SETTINGS => app(TableField::class)
                     ->columns([
@@ -64,8 +65,7 @@ class CheckboxField extends AbstractField implements Contract
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
-                    ])
-                    ->placeholder(trans('narsil::ui.add')),
+                    ]),
             ]),
         ];
     }

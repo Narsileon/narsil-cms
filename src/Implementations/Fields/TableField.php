@@ -66,16 +66,6 @@ class TableField extends AbstractField implements Contract
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->set('placeholder', $placeholder);
-
-        return $this;
-    }
-
     #endregion
 
     #endregion

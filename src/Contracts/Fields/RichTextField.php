@@ -36,14 +36,5 @@ interface RichTextField extends Contract
      */
     public function modules(array $modules): static;
 
-    /**
-     * Set the placeholder attribute.
-     *
-     * @param string $placeholder
-     *
-     * @return static
-     */
-    public function placeholder(string $placeholder): static;
-
     #endregion
 }

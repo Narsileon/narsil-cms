@@ -99,22 +99,22 @@ class FieldForm extends AbstractForm implements Contract
                     ]),
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Field::TYPE,
-                            Field::NAME => trans('narsil::validation.attributes.type'),
-                            Field::REQUIRED => true,
-                            Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => $typeSelectOptions,
-                            Field::SETTINGS => app(SelectField::class)
-                                ->placeholder(trans('narsil::placeholders.search'))
-                                ->reload('form'),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Field::TRANSLATABLE,
                             Field::NAME => trans('narsil::validation.attributes.translatable'),
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
+                        ]),
+                    ]),
+                    new TemplateTabElement([
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Field::TYPE,
+                            Field::NAME => trans('narsil::validation.attributes.type'),
+                            Field::PLACEHOLDER => trans('narsil::placeholders.search'),
+                            Field::REQUIRED => true,
+                            Field::TYPE => SelectField::class,
+                            Field::RELATION_OPTIONS => $typeSelectOptions,
+                            Field::SETTINGS => app(SelectField::class)
+                                ->reload('form'),
                         ]),
                     ]),
                     !empty($settings) ? new TemplateTabElement([

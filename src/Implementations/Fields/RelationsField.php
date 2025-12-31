@@ -179,16 +179,6 @@ class RelationsField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->set('placeholder', $placeholder);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function unique(bool $unique): static
     {
         $this->set('unique', $unique);

@@ -82,6 +82,7 @@ const defaultRegistry: Registry = {
         {...props.element.settings}
         id={props.id}
         name={props.id}
+        placeholder={props.placeholder}
         value={props.value}
         onChange={props.setValue}
       />
@@ -93,9 +94,10 @@ const defaultRegistry: Registry = {
         {...props.element.settings}
         id={props.id}
         name={props.id}
+        placeholder={props.placeholder}
+        required={props.required}
         value={props.value}
         onChange={props.setValue}
-        required={props.required}
       />
     );
   },
@@ -105,6 +107,7 @@ const defaultRegistry: Registry = {
         {...props.element.settings}
         id={props.id}
         name={props.id}
+        placeholder={props.placeholder}
         value={props.value}
         onChange={props.setValue}
         required={props.required}
@@ -121,9 +124,10 @@ const defaultRegistry: Registry = {
         {...props.element.settings}
         id={props.id}
         name={props.id}
+        placeholder={props.placeholder}
+        required={props.required}
         value={props.value}
         onChange={(event) => props.setValue(event.target.value)}
-        required={props.required}
       />
     );
   },
@@ -144,6 +148,7 @@ const defaultRegistry: Registry = {
         <SortableGrid
           {...props.element.settings}
           items={props.value ?? []}
+          placeholder={props.placeholder as string}
           setItems={props.setValue}
         />
       );
@@ -160,6 +165,7 @@ const defaultRegistry: Registry = {
         <Relations
           {...props.element.settings}
           id={props.id}
+          placeholder={props.placeholder}
           value={props.value}
           setValue={props.setValue}
         />
@@ -171,6 +177,7 @@ const defaultRegistry: Registry = {
       <RichTextEditor
         {...props.element.settings}
         id={props.id}
+        placeholder={props.placeholder}
         value={props.value}
         onChange={props.setValue}
         required={props.required}
@@ -183,6 +190,7 @@ const defaultRegistry: Registry = {
         {...props.element.settings}
         id={props.id}
         options={props.element.options}
+        placeholder={props.placeholder}
         value={props.value}
         setValue={props.setValue}
       />
@@ -207,6 +215,7 @@ const defaultRegistry: Registry = {
       <Textarea
         {...props.element.settings}
         name={props.id}
+        placeholder={props.placeholder}
         value={props.value}
         onChange={(event) => props.setValue(event.target.value)}
         required={props.required}
@@ -224,9 +233,10 @@ const defaultRegistry: Registry = {
             !props.value && "opacity-50",
             "[&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none",
           )}
+          placeholder={props.placeholder}
+          required={props.required}
           value={props.value}
           onChange={(event) => props.setValue(event.target.value)}
-          required={props.required}
         />
         <Icon className="opacity-50" name="clock" />
       </InputRoot>

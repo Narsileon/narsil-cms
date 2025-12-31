@@ -127,6 +127,9 @@ return new class extends Migration
                 ->jsonb(Field::DESCRIPTION)
                 ->nullable();
             $blueprint
+                ->jsonb(Field::PLACEHOLDER)
+                ->nullable();
+            $blueprint
                 ->boolean(Field::REQUIRED)
                 ->default(false);
             $blueprint

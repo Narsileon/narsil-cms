@@ -41,7 +41,7 @@ class EmailField extends AbstractField implements Contract
     {
         return [
             new Field([
-                Field::HANDLE => $prefix ? "$prefix.placeholder" : ' placeholder',
+                Field::HANDLE => Field::PLACEHOLDER,
                 Field::NAME => trans('narsil::validation.attributes.placeholder'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class),
@@ -52,7 +52,6 @@ class EmailField extends AbstractField implements Contract
                 Field::TYPE => SwitchField::class,
                 Field::SETTINGS => app(SwitchField::class),
             ]),
-
         ];
     }
 
@@ -94,16 +93,6 @@ class EmailField extends AbstractField implements Contract
     final public function multiple(bool $multiple): static
     {
         $this->set('multiple', $multiple);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->set('placeholder', $placeholder);
 
         return $this;
     }

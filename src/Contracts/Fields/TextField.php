@@ -73,15 +73,6 @@ interface TextField extends Contract
     public function minLength(string $minLength): static;
 
     /**
-     * Set the placeholder attribute.
-     *
-     * @param string $placeholder
-     *
-     * @return static
-     */
-    public function placeholder(string $placeholder): static;
-
-    /**
      * Set the smart values attribute.
      *
      * @param string $smartValues

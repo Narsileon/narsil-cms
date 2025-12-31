@@ -25,6 +25,10 @@ class FieldFormRequest implements Contract
     public function rules(?Model $model = null): array
     {
         return [
+            Field::DESCRIPTION => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+            ],
             Field::HANDLE => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
@@ -38,6 +42,10 @@ class FieldFormRequest implements Contract
             ],
             Field::NAME => [
                 FormRule::REQUIRED,
+            ],
+            Field::PLACEHOLDER => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
             ],
             Field::REQUIRED => [
                 FormRule::BOOLEAN,

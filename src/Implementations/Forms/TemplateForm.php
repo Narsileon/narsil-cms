@@ -93,6 +93,7 @@ class TemplateForm extends AbstractForm implements Contract
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::RELATION_TABS,
                             Field::NAME => trans('narsil::validation.attributes.tabs'),
+                            Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(TemplateTabForm::class)->jsonSerialize())
@@ -124,8 +125,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             )
                                             ->widthOptions($widthSelectOptions),
                                     ])
-                                )
-                                ->placeholder(trans('narsil::ui.add_tab')),
+                                ),
                         ]),
                     ]),
                 ],

@@ -104,16 +104,6 @@ class NumberField extends AbstractField implements Contract
     /**
      * {@inheritDoc}
      */
-    final public function placeholder(string $placeholder): static
-    {
-        $this->set('placeholder', $placeholder);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     final public function step(string $step): static
     {
         $this->set('step', $step);

@@ -63,14 +63,5 @@ interface PasswordField extends Contract
      */
     public function minLength(string $minLength): static;
 
-    /**
-     * Set the placeholder attribute.
-     *
-     * @param string $placeholder
-     *
-     * @return static
-     */
-    public function placeholder(string $placeholder): static;
-
     #endregion
 }
