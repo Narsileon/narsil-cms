@@ -40,7 +40,7 @@ class EntityTable extends AbstractTable
      */
     protected function columns(): array
     {
-        $columns = [
+        return [
             new TableColumn(
                 id: Entity::ID,
                 type: DataTypeEnum::INTEGER->value,
@@ -62,19 +62,6 @@ class EntityTable extends AbstractTable
                 visibility: true,
             ),
         ];
-
-        $columnListing = Schema::getColumnListing($this->name);
-
-        foreach ($columnListing as $column)
-        {
-            $columns[] = new TableColumn(
-                accessorKey: Entity::RELATION_DATA . '.' . $column,
-                id: $column,
-                visibility: false,
-            );
-        }
-
-        return $columns;
     }
 
     #endregion

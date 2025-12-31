@@ -19,7 +19,6 @@ type FormFieldProps = {
 };
 
 function FormField({ conditions, field, id, render }: FormFieldProps) {
-  console.log(conditions);
   const { data, defaultLanguage, errors, formLanguage, setData } = useForm();
 
   const [fieldLanguage, setFieldLanguage] = useState<string>("en");
@@ -67,8 +66,6 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
     let nextVisible = true;
 
     for (const condition of conditions || []) {
-      console.log(data?.[condition.handle], condition.value);
-      console.log(data?.[condition.handle] != condition.value);
       if (data?.[condition.handle] != condition.value) {
         nextVisible = false;
         break;

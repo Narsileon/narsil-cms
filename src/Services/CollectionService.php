@@ -5,7 +5,6 @@ namespace Narsil\Services;
 #region USE
 
 use Illuminate\Support\Collection;
-use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Template;
@@ -24,42 +23,6 @@ abstract class CollectionService
     #region PUBLIC METHODS
 
     /**
-     * @param Block $block
-     * @param ?string $type
-     *
-     * @return Collection<Field>
-     */
-    public static function getBlockFields(Block $block, ?string $type = null): Collection
-    {
-        return $block->{Block::RELATION_ELEMENTS}
-            ->flatMap(function ($blockElement)
-            {
-                $element = $blockElement->{BlockElement::RELATION_ELEMENT};
-
-                if ($blockElement->{BlockElement::ELEMENT_TYPE} === Field::class)
-                {
-                    if ($element->{Field::TYPE} === BuilderField::class)
-                    {
-                        return [];
-                    }
-
-                    $field = clone $element;
-
-                    $field->{Field::HANDLE} = $blockElement->{BlockElement::HANDLE};
-                    $field->{Field::NAME} = $blockElement->{BlockElement::NAME};
-
-                    return [$field];
-                }
-
-                return static::getBlockFields($element);
-            })
-            ->when($type, function ($collection) use ($type)
-            {
-                return $collection->where(Field::TYPE, $type);
-            });
-    }
-
-    /**
      * @param integer|string $collection
      *
      * @return ?Template
@@ -68,8 +31,7 @@ abstract class CollectionService
     {
         $query = Template::query()
             ->with([
-                Template::RELATION_TABS . '.' . TemplateTab::RELATION_BlOCKS,
-                Template::RELATION_TABS . '.' . TemplateTab::RELATION_FIELDS,
+                Template::RELATION_TABS . '.' . TemplateTab::RELATION_ELEMENTS . '.' . TemplateTabElement::RELATION_BLOCK,
             ]);
 
         if (is_numeric($collection))
@@ -88,56 +50,61 @@ abstract class CollectionService
 
     /**
      * @param Template $template
-     * @param ?string $type
      *
-     * @return Collection<Field>
+     * @return Collection<BlockElement|TemplateTabElement>
      */
-    public static function getTemplateFields(Template $template, ?string $type = null): Collection
+    public static function getFieldElements(Template $template): Collection
     {
         return $template->{Template::RELATION_TABS}
             ->flatMap(function ($templateTab)
             {
-                return static::getTemplateTabFields($templateTab);
-            })
-            ->when($type, function ($collection) use ($type)
+                return static::getTabFieldElements($templateTab);
+            });
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @param Block $block
+     *
+     * @return Collection<BlockElement|TemplateTabElement>
+     */
+    protected static function getBlockFieldElements(Block $block): Collection
+    {
+        return $block->{Block::RELATION_ELEMENTS}
+            ->flatMap(function ($blockElement)
             {
-                return $collection->where(Field::TYPE, $type);
+                if ($blockElement->{BlockElement::ELEMENT_TYPE} === Field::class)
+                {
+                    return [$blockElement];
+                }
+                else
+                {
+                    return static::getBlockFieldElements($blockElement->{BlockElement::RELATION_BLOCK});
+                }
             });
     }
 
     /**
      * @param TemplateTab $templateTab
-     * @param ?string $type
      *
-     * @return Collection<Field>
+     * @return Collection<BlockElement|TemplateTabElement>
      */
-    public static function getTemplateTabFields(TemplateTab $templateTab, ?string $type = null): Collection
+    protected static function getTabFieldElements(TemplateTab $templateTab): Collection
     {
         return $templateTab->{TemplateTab::RELATION_ELEMENTS}
             ->flatMap(function ($templateTabElement)
             {
-                $element = $templateTabElement->{TemplateTabElement::RELATION_ELEMENT};
-
                 if ($templateTabElement->{TemplateTabElement::ELEMENT_TYPE} === Field::class)
                 {
-                    if ($element->{Field::TYPE} === BuilderField::class)
-                    {
-                        return [];
-                    }
-
-                    $field = clone $element;
-
-                    $field->{Field::HANDLE} = $templateTabElement->{TemplateTabElement::HANDLE};
-                    $field->{Field::NAME} = $templateTabElement->{TemplateTabElement::NAME};
-
-                    return [$field];
+                    return [$templateTabElement];
                 }
-
-                return static::getBlockFields($element);
-            })
-            ->when($type, function ($collection) use ($type)
-            {
-                return $collection->where(Field::TYPE, $type);
+                else
+                {
+                    return static::getBlockFieldElements($templateTabElement->{TemplateTabElement::RELATION_BLOCK});
+                }
             });
     }
 

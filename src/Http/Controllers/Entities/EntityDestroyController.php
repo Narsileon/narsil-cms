@@ -10,7 +10,7 @@ use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
-use Narsil\Services\ModelService;
+use Narsil\Models\Structures\Template;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -47,7 +47,10 @@ class EntityDestroyController extends RedirectController
             ->redirect(route('collections.index', [
                 'collection' => $collection,
             ]))
-            ->with('success', ModelService::getSuccessMessage(Entity::class, ModelEventEnum::DELETED));
+            ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::DELETED->value, [
+                'model' => $this->template->{Template::SINGULAR},
+                'table' => $this->template->{Template::PLURAL},
+            ]));
     }
 
     #endregion

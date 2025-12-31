@@ -6,11 +6,7 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Narsil\Models\Forms\Form;
-use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Structures\Template;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
@@ -52,11 +48,7 @@ class Entity extends Model
         ];
 
         $this->with = [
-            self::RELATION_BLOCKS,
-            self::RELATION_DATA,
-            self::RELATION_ENTITIES,
-            self::RELATION_FORMS,
-            self::RELATION_SITE_PAGES,
+            self::RELATION_FIELDS,
         ];
 
         parent::__construct($attributes);
@@ -91,53 +83,14 @@ class Entity extends Model
 
     #endregion
 
-    #region • ATTRIBUTES
-
-    /**
-     * The name of the "type" attribute.
-     *
-     * @var string
-     */
-    final public const ATTRIBUTE_TYPE = 'type';
-
-    #endregion
-
     #region • RELATIONS
 
     /**
-     * The name of the "blocks" relation.
+     * The name of the "fields" relation.
      *
      * @var string
      */
-    final public const RELATION_BLOCKS = 'blocks';
-
-    /**
-     * The name of the "data" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_DATA = 'data';
-
-    /**
-     * The name of the "entities" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITIES = 'entities';
-
-    /**
-     * The name of the "forms" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_FORMS = 'forms';
-
-    /**
-     * The name of the "site pages" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_SITE_PAGES = 'site_pages';
+    final public const RELATION_FIELDS = 'fields';
 
     /**
      * The name of the "template" relation.
@@ -172,85 +125,19 @@ class Entity extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated blocks.
+     * Get the associated fields.
      *
      * @return HasMany
      */
-    final public function blocks(): HasMany
+    final public function fields(): HasMany
     {
         return $this
             ->hasMany(
-                EntityBlock::class,
-                EntityBlock::ENTITY_UUID,
+                EntityField::class,
+                EntityField::ENTITY_UUID,
                 self::UUID,
             )
-            ->whereNull(EntityBlock::ENTITY_BLOCK_FIELD_UUID);
-    }
-
-    /**
-     * Get the associated data.
-     *
-     * @return HasOne
-     */
-    final public function data(): HasOne
-    {
-        return $this
-            ->hasOne(
-                EntityData::class,
-                EntityData::ENTITY_UUID,
-                self::UUID,
-            );
-    }
-
-    /**
-     * Get the associated entities.
-     *
-     * @return BelongsToMany
-     */
-    final public function entities(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Entity::class,
-                EntityEntity::TABLE,
-                EntityEntity::OWNER_UUID,
-                EntityEntity::TARGET_UUID,
-            )
-            ->using(EntityEntity::class);
-    }
-
-    /**
-     * Get the associated forms.
-     *
-     * @return BelongsToMany
-     */
-    final public function forms(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Form::class,
-                EntityForm::TABLE,
-                EntityForm::ENTITY_UUID,
-                EntityForm::FORM_ID,
-            )
-            ->using(EntityForm::class);
-    }
-
-    /**
-     * Get the associated site pages.
-     *
-     * @return BelongsToMany
-     */
-    final public function site_pages(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                SitePage::class,
-                EntitySitePage::TABLE,
-                EntitySitePage::ENTITY_UUID,
-                EntitySitePage::SITE_PAGE_ID,
-            )
-            ->using(EntitySitePage::class);
+            ->whereNull(EntityField::ENTITY_BLOCK_UUID);
     }
 
     /**

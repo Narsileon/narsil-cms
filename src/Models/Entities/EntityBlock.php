@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Narsil\Models\Structures\Block;
-use Narsil\Models\Entities\Entity;
 
 #endregion
 
@@ -35,6 +35,7 @@ class EntityBlock extends Model
 
         $this->with = [
             self::RELATION_BLOCK,
+            self::RELATION_ELEMENT,
             self::RELATION_FIELDS,
         ];
 
@@ -66,11 +67,25 @@ class EntityBlock extends Model
     final public const BLOCK_ID = 'block_id';
 
     /**
-     * The name of the "entity block field uuid" column.
+     * The name of the "element id" column.
      *
      * @var string
      */
-    final public const ENTITY_BLOCK_FIELD_UUID = 'entity_block_field_uuid';
+    final public const ELEMENT_ID = 'element_id';
+
+    /**
+     * The name of the "element type" column.
+     *
+     * @var string
+     */
+    final public const ELEMENT_TYPE = 'element_type';
+
+    /**
+     * The name of the "entity field uuid" column.
+     *
+     * @var string
+     */
+    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
 
     /**
      * The name of the "entity uuid" column.
@@ -105,11 +120,25 @@ class EntityBlock extends Model
     final public const RELATION_BLOCK = 'block';
 
     /**
+     * The name of the "element" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ELEMENT = 'element';
+
+    /**
      * The name of the "entity" relation.
      *
      * @var string
      */
     final public const RELATION_ENTITY = 'entity';
+
+    /**
+     * The name of the "entity field" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ENTITY_FIELD = 'entity_field';
 
     /**
      * The name of the "fields" relation.
@@ -142,6 +171,21 @@ class EntityBlock extends Model
     }
 
     /**
+     * Get the associated element.
+     *
+     * @return MorphTo
+     */
+    final public function element(): MorphTo
+    {
+        return $this
+            ->morphTo(
+                self::RELATION_ELEMENT,
+                self::ELEMENT_TYPE,
+                self::ELEMENT_ID,
+            );
+    }
+
+    /**
      * Get the associated entity.
      *
      * @return BelongsTo
@@ -157,17 +201,17 @@ class EntityBlock extends Model
     }
 
     /**
-     * Get the associated entity block field.
+     * Get the associated entity field.
      *
      * @return BelongsTo
      */
-    final public function entity_block_field(): BelongsTo
+    final public function entity_field(): BelongsTo
     {
         return $this
             ->belongsTo(
-                EntityBlockField::class,
-                self::ENTITY_BLOCK_FIELD_UUID,
-                EntityBlockField::UUID,
+                EntityField::class,
+                self::ENTITY_FIELD_UUID,
+                EntityField::UUID,
             );
     }
 
@@ -180,8 +224,8 @@ class EntityBlock extends Model
     {
         return $this
             ->hasMany(
-                EntityBlockField::class,
-                EntityBlockField::ENTITY_BLOCK_UUID,
+                EntityField::class,
+                EntityField::ENTITY_BLOCK_UUID,
                 self::UUID,
             );
     }

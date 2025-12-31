@@ -51,13 +51,7 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\BuilderField"]: (props) => {
-    return (
-      <Builder
-        {...props.element.settings}
-        blocks={props.element.blocks}
-        name={props.id.includes(".") ? props.id : "blocks"}
-      />
-    );
+    return <Builder {...props.element.settings} blocks={props.element.blocks} name={props.id} />;
   },
   ["Narsil\\Contracts\\Fields\\CheckboxField"]: (props) => {
     if (props.element.options?.length > 0) {

@@ -5,12 +5,9 @@ namespace Narsil\Models\Entities;
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Models\Structures\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Services\CollectionService;
-use Narsil\Traits\HasTemplate;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -18,9 +15,8 @@ use Narsil\Traits\HasTemplate;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityData extends Model
+class EntityFieldSitePage extends Pivot
 {
-    use HasTemplate;
     use HasUuids;
 
     #region CONSTRUCTOR
@@ -30,7 +26,7 @@ class EntityData extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = static::getTableName();
+        $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
@@ -38,13 +34,6 @@ class EntityData extends Model
         $this->mergeGuarded([
             self::UUID,
         ]);
-
-        if (static::$template)
-        {
-            $casts = $this->generateCasts(CollectionService::getTemplateFields(static::$template));
-
-            $this->mergeCasts($casts);
-        }
 
         parent::__construct($attributes);
     }
@@ -58,7 +47,7 @@ class EntityData extends Model
      *
      * @var string
      */
-    final public const TABLE = 'entity_data';
+    final public const TABLE = 'entity_field_site_pages';
 
     #region • COLUMNS
 
@@ -67,7 +56,14 @@ class EntityData extends Model
      *
      * @var string
      */
-    final public const ENTITY_UUID = 'entity_uuid';
+    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
+
+    /**
+     * The name of the "site page id" column.
+     *
+     * @var string
+     */
+    final public const SITE_PAGE_ID = 'site_page_id';
 
     /**
      * The name of the "uuid" column.
@@ -81,11 +77,18 @@ class EntityData extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "entity" relation.
+     * The name of the "entity field" relation.
      *
      * @var string
      */
-    final public const RELATION_ENTITY = 'entity';
+    final public const RELATION_ENTITY_FIELD = 'entity_field';
+
+    /**
+     * The name of the "site page" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE_PAGE = 'site_page';
 
     #endregion
 
@@ -93,28 +96,35 @@ class EntityData extends Model
 
     #region PUBLIC METHODS
 
-    /**
-     * {@inheritDoc}
-     */
-    public static function getTableName(): string
-    {
-        return static::$template?->{Template::HANDLE} ?? "";
-    }
-
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated entity.
+     * Get the associated entity field.
      *
      * @return BelongsTo
      */
-    final public function entity(): BelongsTo
+    final public function entity_field(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Entity::class,
-                self::ENTITY_UUID,
-                Entity::UUID,
+                EntityField::class,
+                self::ENTITY_FIELD_UUID,
+                EntityField::UUID,
+            );
+    }
+
+    /**
+     * Get the associated site page.
+     *
+     * @return BelongsTo
+     */
+    final public function site_page(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                SitePage::class,
+                self::SITE_PAGE_ID,
+                SitePage::ID,
             );
     }
 

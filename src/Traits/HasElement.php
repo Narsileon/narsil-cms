@@ -72,13 +72,6 @@ trait HasElement
     final public const REQUIRED = 'required';
 
     /**
-     * The name of the "translatable" column.
-     *
-     * @var string
-     */
-    final public const TRANSLATABLE = 'translatable';
-
-    /**
      * The name of the "uuid" column.
      *
      * @var string
@@ -154,12 +147,11 @@ trait HasElement
      */
     final public function element(): MorphTo
     {
-        return $this
-            ->morphTo(
-                self::RELATION_ELEMENT,
-                self::ELEMENT_TYPE,
-                self::ELEMENT_ID,
-            );
+        return $this->morphTo(
+            self::RELATION_ELEMENT,
+            self::ELEMENT_TYPE,
+            self::ELEMENT_ID,
+        );
     }
 
     #endregion

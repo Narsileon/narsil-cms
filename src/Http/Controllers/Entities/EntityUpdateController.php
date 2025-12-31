@@ -7,17 +7,16 @@ namespace Narsil\Http\Controllers\Entities;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Narsil\Contracts\FormRequests\EntityDataFormRequest;
 use Narsil\Contracts\FormRequests\EntityFormRequest;
 use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityData;
+use Narsil\Models\Structures\Template;
 use Narsil\Services\Models\EntityService;
-use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -76,15 +75,22 @@ class EntityUpdateController extends RedirectController
 
         $data = $request->all();
 
-        $entityAttribute = $this->getEntityAttribute($data);
-        $entityDataAttribute = $this->getEntityDataAttribute($data);
+        $rules = app(EntityFormRequest::class, [
+            'template' => $this->template
+        ])->rules();
 
-        $entityAttribute = array_merge($entityAttribute, [
+        $attributes = Validator::make($data, $rules)
+            ->validated();
+
+        $entityAttribute = [
             Entity::CREATED_AT => $entity->{Entity::CREATED_AT},
             Entity::CREATED_BY => $entity->{Entity::CREATED_BY},
+            Entity::PUBLISHED_FROM => Arr::get($attributes, Entity::PUBLISHED_FROM),
+            Entity::PUBLISHED_TO => Arr::get($attributes, Entity::PUBLISHED_TO),
+            Entity::SLUG => Arr::get($attributes, Entity::SLUG),
             Entity::UPDATED_AT => Carbon::now(),
             Entity::UPDATED_BY => Auth::id(),
-        ]);
+        ];
 
         if ($request->boolean('_autoSave') === true)
         {
@@ -103,10 +109,7 @@ class EntityUpdateController extends RedirectController
                 Entity::UUID => $uuid,
             ]));
 
-            EntityData::create([
-                EntityData::ENTITY_UUID => $replicated->{Entity::UUID},
-                ...$entityDataAttribute,
-            ]);
+            EntityService::syncFields($replicated, $this->template, $attributes);
 
             return back();
         }
@@ -116,10 +119,7 @@ class EntityUpdateController extends RedirectController
                 Entity::PUBLISHED => false,
             ]));
 
-            EntityData::create([
-                EntityData::ENTITY_UUID => $replicated->{Entity::UUID},
-                ...$entityDataAttribute,
-            ]);
+            EntityService::syncFields($replicated, $this->template, $attributes);
 
             $entity->discardChanges();
             $entity->delete();
@@ -133,39 +133,16 @@ class EntityUpdateController extends RedirectController
                 ->redirect(route('collections.index', [
                     'collection' => $collection
                 ]), $entity)
-                ->with('success', ModelService::getSuccessMessage(Entity::class, ModelEventEnum::UPDATED));
+                ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::UPDATED->value, [
+                    'model' => $this->template->{Template::SINGULAR},
+                    'table' => $this->template->{Template::PLURAL},
+                ]));
         }
     }
 
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
-    protected function getEntityAttribute(array $data): array
-    {
-        $rules = app(EntityFormRequest::class)->rules();
-
-        return Validator::make($data, $rules)->validated();
-    }
-
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
-    protected function getEntityDataAttribute(array $data): array
-    {
-        $rules = app(EntityDataFormRequest::class, [
-            'template' => $this->template,
-        ])->rules();
-
-        return Validator::make($data, $rules)->validated();
-    }
 
     /**
      * @param Entity $entity
@@ -182,11 +159,6 @@ class EntityUpdateController extends RedirectController
         $replicated->save();
 
         $replicated->pruneRevisions(2);
-
-        if ($blocks = request(Entity::RELATION_BLOCKS))
-        {
-            EntityService::syncBlocks($replicated, $blocks);
-        }
 
         return $replicated;
     }

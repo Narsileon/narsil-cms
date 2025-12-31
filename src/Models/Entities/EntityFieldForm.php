@@ -7,7 +7,6 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Form;
 
 #endregion
@@ -16,7 +15,7 @@ use Narsil\Models\Forms\Form;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityForm extends Pivot
+class EntityFieldForm extends Pivot
 {
     use HasUuids;
 
@@ -48,16 +47,16 @@ class EntityForm extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'entity_form';
+    final public const TABLE = 'entity_field_form';
 
     #region • COLUMNS
 
     /**
-     * The name of the "entity uuid" column.
+     * The name of the "entity field uuid" column.
      *
      * @var string
      */
-    final public const ENTITY_UUID = 'entity_uuid';
+    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
 
     /**
      * The name of the "form id" column.
@@ -78,11 +77,11 @@ class EntityForm extends Pivot
     #region • RELATIONS
 
     /**
-     * The name of the "entity" relation.
+     * The name of the "entity field" relation.
      *
      * @var string
      */
-    final public const RELATION_ENTITY = 'entity';
+    final public const RELATION_ENTITY_FIELD = 'entity_field';
 
     /**
      * The name of the "form" relation.
@@ -100,17 +99,17 @@ class EntityForm extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated entity.
+     * Get the associated entity field.
      *
      * @return BelongsTo
      */
-    final public function entity(): BelongsTo
+    final public function entity_field(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Entity::class,
-                self::ENTITY_UUID,
-                Entity::UUID,
+                EntityField::class,
+                self::ENTITY_FIELD_UUID,
+                EntityField::UUID,
             );
     }
 

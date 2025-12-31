@@ -4,7 +4,6 @@ namespace Narsil\Traits;
 
 #region USE
 
-use Narsil\Models\Entities\EntityData;
 use Narsil\Models\Structures\Template;
 use Narsil\Services\CollectionService;
 
@@ -30,8 +29,6 @@ trait IsCollectionController
         if ($template)
         {
             $this->template = $template;
-
-            EntityData::setTemplate($template);
         }
         else
         {

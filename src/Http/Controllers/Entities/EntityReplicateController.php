@@ -10,8 +10,8 @@ use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Structures\Template;
 use Narsil\Services\Models\EntityService;
-use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -45,7 +45,10 @@ class EntityReplicateController extends RedirectController
         EntityService::replicate($entity);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Entity::class, ModelEventEnum::REPLICATED));
+            ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::REPLICATED->value, [
+                'model' => $this->template->{Template::SINGULAR},
+                'table' => $this->template->{Template::PLURAL},
+            ]));
     }
 
     #endregion

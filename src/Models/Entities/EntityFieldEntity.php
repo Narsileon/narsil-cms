@@ -7,8 +7,6 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -16,7 +14,7 @@ use Narsil\Models\Sites\SitePage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntitySitePage extends Pivot
+class EntityFieldEntity extends Pivot
 {
     use HasUuids;
 
@@ -31,6 +29,10 @@ class EntitySitePage extends Pivot
 
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
+
+        $this->with = [
+            self::RELATION_ENTITY,
+        ];
 
         $this->mergeGuarded([
             self::UUID,
@@ -48,7 +50,7 @@ class EntitySitePage extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'entity_site_pages';
+    final public const TABLE = 'entity_entity';
 
     #region • COLUMNS
 
@@ -60,11 +62,11 @@ class EntitySitePage extends Pivot
     final public const ENTITY_UUID = 'entity_uuid';
 
     /**
-     * The name of the "site page id" column.
+     * The name of the "entity field uuid" column.
      *
      * @var string
      */
-    final public const SITE_PAGE_ID = 'site_page_id';
+    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
 
     /**
      * The name of the "uuid" column.
@@ -85,11 +87,11 @@ class EntitySitePage extends Pivot
     final public const RELATION_ENTITY = 'entity';
 
     /**
-     * The name of the "site page" relation.
+     * The name of the "entity field" relation.
      *
      * @var string
      */
-    final public const RELATION_SITE_PAGE = 'site_page';
+    final public const RELATION_ENTITY_FIELD = 'entity_field';
 
     #endregion
 
@@ -115,17 +117,17 @@ class EntitySitePage extends Pivot
     }
 
     /**
-     * Get the associated site page.
+     * Get the associated entity field.
      *
      * @return BelongsTo
      */
-    final public function site_page(): BelongsTo
+    final public function entity_field(): BelongsTo
     {
         return $this
             ->belongsTo(
-                SitePage::class,
-                self::SITE_PAGE_ID,
-                SitePage::ID,
+                EntityField::class,
+                self::ENTITY_FIELD_UUID,
+                EntityField::UUID,
             );
     }
 

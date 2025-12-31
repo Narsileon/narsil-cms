@@ -85,35 +85,43 @@ type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
 type EntityBlock @model(class: "Narsil\\Models\\Entities\\EntityBlock") {
   uuid: String!
 	block_id: ID!
-	entity_block_field_uuid: String!
-	entity_uuid: String!
+	element_type: String!
+	entity_field_uuid: String!
+	position: Int!
+  element_id: String!
 	block: Block! @belongsTo
-	entity_block_field: EntityBlockField! @belongsTo
-	entity: Entity! @belongsTo
+	element: HasElement! @morphTo
+	entity_field: EntityField! @belongsTo
 }
 
-type EntityBlockField @model(class: "Narsil\\Models\\Entities\\EntityBlockField") {
+type EntityField @model(class: "Narsil\\Models\\Entities\\EntityField") {
   uuid: String!
-  block_uuid: String!
-	field_id: ID!
+	element_type: String!
+	entity_block_uuid: String
+	entity_uuid: String!
+	value: String!
+  element_id: String!
 	blocks: [EntityBlock!]! @hasMany
+	element: HasElement! @morphTo
+	entities: [Entity!]! @belongsToMany
 	entity_block: EntityBlock! @belongsTo
-	field: Field! @belongsTo
+	entity: Entity! @belongsTo
+	form: [Form!]! @belongsToMany
 }
 
-type EntityEntity @model(class: "Narsil\\Models\\Entities\\EntityEntity") {
-  uuid: String!
-  owner_uuid: String!
-  target_uuid: String!
-	owner: Entity! @belongsTo
-  target: Entity! @belongsTo
-}
-
-type EntityForm @model(class: "Narsil\\Models\\Entities\\EntityForm") {
+type EntityFieldEntity @model(class: "Narsil\\Models\\Entities\\EntityFieldEntity") {
   uuid: String!
   entity_uuid: String!
-  form_id: ID!
+  entity_field_uuid: String!
 	entity: Entity! @belongsTo
+  entity_field: EntityField! @belongsTo
+}
+
+type EntityFieldForm @model(class: "Narsil\\Models\\Entities\\EntityFieldForm") {
+  uuid: String!
+  entity_field_uuid: String!
+  form_id: ID!
+  entity_field: EntityField! @belongsTo
   form: Form! @belongsTo
 }
 
@@ -384,3 +392,5 @@ type ValidationRule @model(class: "Narsil\\Models\\User") {
 }
 
 union Element = Block | Field | Fieldset | Input
+
+union HasElement = BlockElement | TemplateTabElement

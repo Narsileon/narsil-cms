@@ -16,8 +16,9 @@ use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityData;
+use Narsil\Models\Entities\EntityField;
 use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -80,20 +81,19 @@ class EntityEditController extends RenderController
             Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION,
         ]);
 
-        foreach ($entity->{Entity::RELATION_DATA}->getAttributes() as $key => $attribute)
+        foreach ($entity->{Entity::RELATION_FIELDS} as $field)
         {
-            if (in_array($key, [
-                EntityData::UUID,
-                EntityData::ENTITY_UUID,
-            ]))
+            $key = $field->{EntityField::RELATION_ELEMENT}->{BlockElement::HANDLE};
+
+            if ($blocks = $field->{EntityField::RELATION_BLOCKS})
             {
-                continue;
+                $entity->setAttribute($key, $blocks);
             }
-
-            $entity->setAttribute($key, $attribute);
+            else
+            {
+                $entity->setAttribute($key, $field->getTranslations(EntityField::VALUE));
+            }
         }
-
-        $entity->mergeCasts($entity->{Entity::RELATION_DATA}->getCasts());
 
         $data = $entity->toArrayWithTranslations();
 

@@ -13,7 +13,6 @@ use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Structures\Template;
-use Narsil\Services\MigrationService;
 use Narsil\Services\Models\TemplateService;
 use Narsil\Services\ModelService;
 
@@ -47,8 +46,6 @@ class TemplateStoreController extends RedirectController
         $template = Template::create($attributes);
 
         TemplateService::syncTemplateTabs($template, Arr::get($attributes, Template::RELATION_TABS, []));
-
-        MigrationService::syncTable($template);
 
         return $this
             ->redirect(route('templates.index'))

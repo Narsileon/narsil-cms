@@ -100,6 +100,13 @@ class BlockElement extends MorphPivot
      */
     final public const OWNER_ID = 'owner_id';
 
+    /**
+     * The name of the "translatable" column.
+     *
+     * @var string
+     */
+    final public const TRANSLATABLE = 'translatable';
+
     #endregion
 
     #region • RELATIONS

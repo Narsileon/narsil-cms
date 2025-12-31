@@ -100,6 +100,13 @@ class TemplateTabElement extends MorphPivot
      */
     final public const OWNER_UUID = 'owner_uuid';
 
+    /**
+     * The name of the "translatable" column.
+     *
+     * @var string
+     */
+    final public const TRANSLATABLE = 'translatable';
+
     #endregion
 
     #region • RELATIONS
