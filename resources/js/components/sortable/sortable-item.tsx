@@ -17,7 +17,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
-import { IconName } from "@narsil-cms/plugins/icons";
+import { IconName } from "@narsil-cms/repositories/icons";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 import { type AnonymousItem } from ".";

@@ -1,6 +1,6 @@
 import { Icon } from "@narsil-cms/components/icon";
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
-import { type IconName } from "@narsil-cms/plugins/icons";
+import { type IconName } from "@narsil-cms/repositories/icons";
 import { type ComponentProps } from "react";
 
 type TabsElement = {

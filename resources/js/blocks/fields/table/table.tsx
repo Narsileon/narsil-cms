@@ -22,7 +22,7 @@ import {
   TableRow,
   TableWrapper,
 } from "@narsil-cms/components/table";
-import { getField } from "@narsil-cms/plugins/fields";
+import { getField } from "@narsil-cms/repositories/fields";
 import type { Field } from "@narsil-cms/types";
 import { get, set, upperFirst } from "lodash-es";
 import { useState } from "react";

@@ -8,7 +8,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\Field;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -47,34 +46,37 @@ abstract class BlockService
      */
     public static function syncBlockElements(Block $block, array $elements): void
     {
-        $block->blocks()->detach();
-        $block->fields()->detach();
+        $uuids = [];
 
         foreach ($elements as $position => $element)
         {
             $identifier = Arr::get($element, BlockElement::ATTRIBUTE_IDENTIFIER);
 
-            if (!$identifier || !Str::contains($identifier, '-'))
+            if (!$identifier || ! Str::contains($identifier, '-'))
             {
                 continue;
             }
 
             [$table, $id] = explode('-', $identifier);
 
-            $attributes = [
+            $blockElement = BlockElement::updateOrCreate([
+                BlockElement::OWNER_ID => $block->{Block::ID},
                 BlockElement::HANDLE => Arr::get($element, BlockElement::HANDLE),
-                BlockElement::NAME => Arr::get($element, BlockElement::NAME),
+                BlockElement::ELEMENT_TYPE => $table,
+                BlockElement::ELEMENT_ID => $id,
+            ], [
+                BlockElement::NAME => Arr::get($element, BlockElement::NAME, []),
                 BlockElement::POSITION => $position,
                 BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH, 100),
-            ];
+            ]);
 
-            match ($table)
-            {
-                Block::TABLE => $block->blocks()->attach($id, $attributes),
-                Field::TABLE => $block->fields()->attach($id, $attributes),
-                default => null,
-            };
+            $uuids[] = $blockElement->{BlockElement::UUID};
         }
+
+        $block
+            ->elements()
+            ->whereNotIn(BlockElement::UUID, $uuids)
+            ->delete();
     }
 
     #endregion

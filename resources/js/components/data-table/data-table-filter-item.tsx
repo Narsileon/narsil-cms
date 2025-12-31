@@ -7,7 +7,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
-import { getField } from "@narsil-cms/plugins/fields";
+import { getField } from "@narsil-cms/repositories/fields";
 import type { Field } from "@narsil-cms/types";
 import { isEmpty } from "lodash-es";
 import { useEffect, useState, type ComponentProps } from "react";

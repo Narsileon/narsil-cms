@@ -66,7 +66,7 @@ abstract class EntityService
             {
                 $entityField = EntityField::create([
                     EntityField::ENTITY_UUID  => $entity->{Entity::UUID},
-                    EntityField::ELEMENT_TYPE => $fieldElement::class,
+                    EntityField::ELEMENT_TYPE => $fieldElement::TABLE,
                     EntityField::ELEMENT_ID => $fieldElement->uuid,
                 ]);
 
@@ -76,7 +76,7 @@ abstract class EntityService
             {
                 EntityField::create([
                     EntityField::ENTITY_UUID  => $entity->{Entity::UUID},
-                    EntityField::ELEMENT_TYPE => $fieldElement::class,
+                    EntityField::ELEMENT_TYPE => $fieldElement::TABLE,
                     EntityField::ELEMENT_ID => $fieldElement->uuid,
                     EntityField::VALUE => $value,
                 ]);
@@ -110,7 +110,7 @@ abstract class EntityService
                 $nextEntityField = EntityField::create([
                     EntityField::ENTITY_UUID => $entityBlock->{EntityBlock::ENTITY_UUID},
                     EntityField::ENTITY_BLOCK_UUID => $entityBlock->{EntityBlock::UUID},
-                    EntityField::ELEMENT_TYPE => BlockElement::class,
+                    EntityField::ELEMENT_TYPE => BlockElement::TABLE,
                     EntityField::ELEMENT_ID => Arr::get($element, BlockElement::UUID),
                     EntityField::VALUE => Arr::get($field, EntityField::VALUE),
                 ]);

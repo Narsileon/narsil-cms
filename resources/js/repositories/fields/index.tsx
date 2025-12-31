@@ -21,6 +21,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import type { Field } from "@narsil-cms/types";
 import { isArray } from "lodash-es";
 import { type ReactNode } from "react";
+import { route } from "ziggy-js";
 
 export type FieldProps = {
   element: Field;
@@ -101,6 +102,19 @@ const defaultRegistry: Registry = {
       />
     );
   },
+  ["Narsil\\Contracts\\Fields\\EntityField"]: (props) => {
+    return (
+      <Combobox
+        {...props.element.settings}
+        href={route("entities.search")}
+        id={props.id}
+        options={props.element.options}
+        placeholder={props.placeholder}
+        value={props.value}
+        setValue={props.setValue}
+      />
+    );
+  },
   ["Narsil\\Contracts\\Fields\\FileField"]: (props) => {
     return (
       <File
@@ -116,6 +130,32 @@ const defaultRegistry: Registry = {
           <Icon className="opacity-50" name={props.element.settings.icon} />
         ) : null}
       </File>
+    );
+  },
+  ["Narsil\\Contracts\\Fields\\FormField"]: (props) => {
+    return (
+      <Combobox
+        {...props.element.settings}
+        href={route("forms.search")}
+        id={props.id}
+        options={props.element.options}
+        placeholder={props.placeholder}
+        value={props.value}
+        setValue={props.setValue}
+      />
+    );
+  },
+  ["Narsil\\Contracts\\Fields\\LinkField"]: (props) => {
+    return (
+      <Combobox
+        {...props.element.settings}
+        href={route("site-pages.search")}
+        id={props.id}
+        options={props.element.options}
+        placeholder={props.placeholder}
+        value={props.value}
+        setValue={props.setValue}
+      />
     );
   },
   ["Narsil\\Contracts\\Fields\\PasswordField"]: (props) => {

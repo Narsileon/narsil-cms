@@ -6,9 +6,7 @@ namespace Narsil\Services\Models;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Services\DatabaseService;
@@ -49,8 +47,7 @@ abstract class TemplateService
      */
     public static function syncTemplateTabElements(TemplateTab $templateTab, array $elements): void
     {
-        $templateTab->blocks()->detach();
-        $templateTab->fields()->detach();
+        $uuids = [];
 
         foreach ($elements as $position => $element)
         {
@@ -63,20 +60,24 @@ abstract class TemplateService
 
             [$table, $id] = explode('-', $identifier);
 
-            $attributes = [
+            $templateTabElement = TemplateTabElement::updateOrCreate([
+                TemplateTabElement::OWNER_UUID => $templateTab->{TemplateTab::UUID},
                 TemplateTabElement::HANDLE => Arr::get($element, TemplateTabElement::HANDLE),
+                TemplateTabElement::ELEMENT_TYPE => $table,
+                TemplateTabElement::ELEMENT_ID => $id,
+            ], [
                 TemplateTabElement::NAME => Arr::get($element, TemplateTabElement::NAME, []),
                 TemplateTabElement::POSITION => $position,
                 TemplateTabElement::WIDTH => Arr::get($element, TemplateTabElement::WIDTH, 100),
-            ];
+            ]);
 
-            match ($table)
-            {
-                Block::TABLE => $templateTab->blocks()->attach($id, $attributes),
-                Field::TABLE => $templateTab->fields()->attach($id, $attributes),
-                default => null,
-            };
+            $uuids[] = $templateTabElement->{TemplateTabElement::UUID};
         }
+
+        $templateTab
+            ->elements()
+            ->whereNotIn(TemplateTabElement::UUID, $uuids)
+            ->delete();
     }
 
     /**

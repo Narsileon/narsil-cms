@@ -1,5 +1,5 @@
 import { cn } from "@narsil-cms/lib/utils";
-import { getIcon, IconName } from "@narsil-cms/plugins/icons";
+import { getIcon, IconName } from "@narsil-cms/repositories/icons";
 import { startCase } from "lodash-es";
 import { type ComponentProps } from "react";
 

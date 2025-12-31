@@ -46,30 +46,6 @@ trait HasRoles
     /**
      * @param string|integer|array<string|integer> $roles
      *
-     * @return void
-     */
-    final public function attachRoles(string|int|array $roles): void
-    {
-        $roleIds = $this->getRoleIds($roles);
-
-        $this->roles()->attach($roleIds);
-    }
-
-    /**
-     * @param string|integer|array<string|integer> $roles
-     *
-     * @return void
-     */
-    final public function detachRoles(string|int|array $roles): void
-    {
-        $roleIds = $this->getRoleIds($roles);
-
-        $this->roles()->detach($roleIds);
-    }
-
-    /**
-     * @param string|integer|array<string|integer> $roles
-     *
      * @return bool
      */
     final public function hasRole(string|int|array $roles): bool
@@ -102,18 +78,6 @@ trait HasRoles
         return $hasRole;
     }
 
-    /**
-     * @param string|integer|array<string|integer> $roles
-     *
-     * @return void
-     */
-    final public function syncRoles(string|int|array $roles): void
-    {
-        $roleIds = $this->getRoleIds($roles);
-
-        $this->roles()->sync($roleIds);
-    }
-
     #region • RELATIONSHIPS
 
     /**
@@ -124,50 +88,6 @@ trait HasRoles
     abstract public function roles(): BelongsToMany;
 
     #endregion
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @param string|integer|array<string|integer> $roles
-     *
-     * @return array<int>
-     */
-    protected function getRoleIds(string|int|array $roles): array
-    {
-        if (!is_array($roles))
-        {
-            $roles = [$roles];
-        }
-
-        $ids = [];
-        $handles = [];
-
-        foreach ($roles as $role)
-        {
-            if (is_string($role))
-            {
-                $handles[] = $role;
-            }
-            else if (is_int($role))
-            {
-                $ids[] = $role;
-            }
-        }
-
-        if (!empty($handles))
-        {
-            $handles = Role::query()
-                ->whereIn(Role::HANDLE, $handles)
-                ->pluck(Role::ID)
-                ->toArray();
-
-            $ids = array_merge($ids, $handles);
-        }
-
-        return array_values(array_unique($ids));
-    }
 
     #endregion
 }

@@ -246,8 +246,10 @@ function Combobox({
             ) : (
               parse(getTranslatableSelectOption(selectedOptions[0], labelPath, locale))
             )
+          ) : placeholder ? (
+            placeholder
           ) : (
-            (placeholder ?? trans("placeholders.search"))
+            trans("placeholders.search")
           )}
           {clearable && value ? (
             <Icon

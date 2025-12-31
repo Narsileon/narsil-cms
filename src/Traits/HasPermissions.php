@@ -45,30 +45,6 @@ trait HasPermissions
     #region PUBLIC METHODS
 
     /**
-     * @param string|integer|array<string|integer> $permissions
-     *
-     * @return void
-     */
-    final public function attachPermissions(string|int|array $permissions): void
-    {
-        $permissionIds = $this->getPermissionIds($permissions);
-
-        $this->permissions()->attach($permissionIds);
-    }
-
-    /**
-     * @param string|integer|array<string|integer> $permissions
-     *
-     * @return void
-     */
-    final public function detachPermissions(string|int|array $permissions): void
-    {
-        $permissionIds = $this->getPermissionIds($permissions);
-
-        $this->permissions()->detach($permissionIds);
-    }
-
-    /**
      * @param string|integer $permission
      *
      * @return bool
@@ -113,18 +89,6 @@ trait HasPermissions
         return $this->hasRole($roles);
     }
 
-    /**
-     * @param string|integer|array<string|integer> $permissions
-     *
-     * @return void
-     */
-    final public function syncPermissions(string|int|array $permissions): void
-    {
-        $permissionIds = $this->getPermissionIds($permissions);
-
-        $this->permissions()->sync($permissionIds);
-    }
-
     #region • RELATIONSHIPS
 
     /**
@@ -139,46 +103,6 @@ trait HasPermissions
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * @param string|integer|array<string|integer> $permissions
-     *
-     * @return array<int>
-     */
-    protected function getPermissionIds(array|int|string $permissions): array
-    {
-        if (!is_array($permissions))
-        {
-            $permissions = [$permissions];
-        }
-
-        $ids = [];
-        $handles = [];
-
-        foreach ($permissions as $permission)
-        {
-            if (is_string($permission))
-            {
-                $handles[] = $permission;
-            }
-            else if (is_int($permission))
-            {
-                $ids[] = $permission;
-            }
-        }
-
-        if (!empty($handles))
-        {
-            $handles = Permission::query()
-                ->whereIn(Permission::HANDLE, $handles)
-                ->pluck(Permission::ID)
-                ->toArray();
-
-            $ids = array_merge($ids, $handles);
-        }
-
-        return array_values(array_unique($ids));
-    }
 
     /**
      * @param string|integer $permission

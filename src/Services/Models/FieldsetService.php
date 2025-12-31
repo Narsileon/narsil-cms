@@ -8,7 +8,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\FieldsetElement;
-use Narsil\Models\Forms\Input;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -47,32 +46,37 @@ abstract class FieldsetService
      */
     public static function syncFieldsetElements(Fieldset $fieldset, array $elements): void
     {
-        $fieldset->inputs()->detach();
+        $uuids = [];
 
         foreach ($elements as $position => $element)
         {
             $identifier = Arr::get($element, FieldsetElement::ATTRIBUTE_IDENTIFIER);
 
-            if (!$identifier || !Str::contains($identifier, '-'))
+            if (!$identifier || ! Str::contains($identifier, '-'))
             {
                 continue;
             }
 
             [$table, $id] = explode('-', $identifier);
 
-            $attributes = [
+            $fieldsetElement = FieldsetElement::updateOrCreate([
+                FieldsetElement::OWNER_ID => $fieldset->{Fieldset::ID},
                 FieldsetElement::HANDLE => Arr::get($element, FieldsetElement::HANDLE),
-                FieldsetElement::NAME => Arr::get($element, FieldsetElement::NAME),
+                FieldsetElement::ELEMENT_TYPE => $table,
+                FieldsetElement::ELEMENT_ID => $id,
+            ], [
+                FieldsetElement::NAME => Arr::get($element, FieldsetElement::NAME, []),
                 FieldsetElement::POSITION => $position,
                 FieldsetElement::WIDTH => Arr::get($element, FieldsetElement::WIDTH, 100),
-            ];
+            ]);
 
-            match ($table)
-            {
-                Input::TABLE => $fieldset->inputs()->attach($id, $attributes),
-                default => null,
-            };
+            $uuids[] = $fieldsetElement->{FieldsetElement::UUID};
         }
+
+        $fieldset
+            ->elements()
+            ->whereNotIn(FieldsetElement::UUID, $uuids)
+            ->delete();
     }
 
     #endregion

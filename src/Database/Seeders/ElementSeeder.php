@@ -51,7 +51,7 @@ abstract class ElementSeeder
 
                         BlockElement::create([
                             BlockElement::ELEMENT_ID => $element->{Field::ID},
-                            BlockElement::ELEMENT_TYPE => Field::class,
+                            BlockElement::ELEMENT_TYPE => Field::TABLE,
                             BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{Field::HANDLE},
                             BlockElement::NAME => $element->{Field::NAME},
                             BlockElement::OWNER_ID => $model->{Block::ID},
@@ -67,7 +67,7 @@ abstract class ElementSeeder
 
                         BlockElement::create([
                             BlockElement::ELEMENT_ID => $element->{Block::ID},
-                            BlockElement::ELEMENT_TYPE => Block::class,
+                            BlockElement::ELEMENT_TYPE => Block::TABLE,
                             BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{Block::HANDLE},
                             BlockElement::NAME => $element->{Block::NAME},
                             BlockElement::OWNER_ID => $model->{Block::ID},

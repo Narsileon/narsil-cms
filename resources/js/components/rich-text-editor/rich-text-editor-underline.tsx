@@ -1,7 +1,7 @@
 import { Toggle } from "@narsil-cms/blocks";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { type IconName } from "@narsil-cms/plugins/icons";
+import { type IconName } from "@narsil-cms/repositories/icons";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 

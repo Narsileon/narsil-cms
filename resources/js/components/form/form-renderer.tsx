@@ -8,7 +8,7 @@ import {
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
-import { getField } from "@narsil-cms/plugins/fields";
+import { getField } from "@narsil-cms/repositories/fields";
 import type { Block, Condition, Field, TemplateTab } from "@narsil-cms/types";
 import parse from "html-react-parser";
 import { get, kebabCase } from "lodash-es";

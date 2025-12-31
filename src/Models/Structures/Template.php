@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Narsil\Models\Entities\Entity;
 use Narsil\Observers\ModelObserver;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
@@ -111,6 +112,13 @@ class Template extends Model
     #region • RELATIONS
 
     /**
+     * The name of the "entities" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ENTITIES = 'entities';
+
+    /**
      * The name of the "tabs" relation.
      *
      * @var string
@@ -145,6 +153,21 @@ class Template extends Model
     }
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated entities.
+     *
+     * @return HasMany
+     */
+    final public function entities(): HasMany
+    {
+        return $this
+            ->hasMany(
+                Entity::class,
+                Entity::TEMPLATE_ID,
+                self::ID,
+            );
+    }
 
     /**
      * Get the associated tabs.

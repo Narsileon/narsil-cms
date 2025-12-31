@@ -76,7 +76,7 @@ abstract class CollectionService
         return $block->{Block::RELATION_ELEMENTS}
             ->flatMap(function ($blockElement)
             {
-                if ($blockElement->{BlockElement::ELEMENT_TYPE} === Field::class)
+                if ($blockElement->{BlockElement::ELEMENT_TYPE} === Field::TABLE)
                 {
                     return [$blockElement];
                 }
@@ -97,7 +97,7 @@ abstract class CollectionService
         return $templateTab->{TemplateTab::RELATION_ELEMENTS}
             ->flatMap(function ($templateTabElement)
             {
-                if ($templateTabElement->{TemplateTabElement::ELEMENT_TYPE} === Field::class)
+                if ($templateTabElement->{TemplateTabElement::ELEMENT_TYPE} === Field::TABLE)
                 {
                     return [$templateTabElement];
                 }

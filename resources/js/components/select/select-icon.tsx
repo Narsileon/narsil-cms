@@ -1,5 +1,5 @@
 import { Icon } from "@narsil-cms/components/icon";
-import { type IconName } from "@narsil-cms/plugins/icons";
+import { type IconName } from "@narsil-cms/repositories/icons";
 import { Select } from "radix-ui";
 import { type ComponentProps } from "react";
 

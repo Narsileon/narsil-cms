@@ -7,8 +7,6 @@ namespace Narsil\Services\Models;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\Fieldset;
-use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\FormTab;
 use Narsil\Models\Forms\FormTabElement;
 use Narsil\Services\DatabaseService;
@@ -49,8 +47,7 @@ abstract class FormService
      */
     public static function syncFormTabElements(FormTab $formTab, array $elements): void
     {
-        $formTab->fieldsets()->detach();
-        $formTab->inputs()->detach();
+        $uuids = [];
 
         foreach ($elements as $position => $element)
         {
@@ -63,20 +60,24 @@ abstract class FormService
 
             [$table, $id] = explode('-', $identifier);
 
-            $attributes = [
+            $formTabElement = FormTabElement::updateOrCreate([
+                FormTabElement::OWNER_UUID => $formTab->{FormTab::UUID},
                 FormTabElement::HANDLE => Arr::get($element, FormTabElement::HANDLE),
+                FormTabElement::ELEMENT_TYPE => $table,
+                FormTabElement::ELEMENT_ID => $id,
+            ], [
                 FormTabElement::NAME => Arr::get($element, FormTabElement::NAME, []),
                 FormTabElement::POSITION => $position,
                 FormTabElement::WIDTH => Arr::get($element, FormTabElement::WIDTH, 100),
-            ];
+            ]);
 
-            match ($table)
-            {
-                Fieldset::TABLE => $formTab->fieldsets()->attach($id, $attributes),
-                Input::TABLE => $formTab->inputs()->attach($id, $attributes),
-                default => null,
-            };
+            $uuids[] = $formTabElement->{FormTabElement::UUID};
         }
+
+        $formTab
+            ->elements()
+            ->whereNotIn(FormTabElement::UUID, $uuids)
+            ->delete();
     }
 
     /**

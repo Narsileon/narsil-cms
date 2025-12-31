@@ -20,6 +20,7 @@ use Narsil\Providers\MiddlewareServiceProvider;
 use Narsil\Providers\MigrationServiceProvider;
 use Narsil\Providers\ObserverServiceProvider;
 use Narsil\Providers\PolicyServiceProvider;
+use Narsil\Providers\RelationServiceProvider;
 use Narsil\Providers\ResourceServiceProvider;
 use Narsil\Providers\RouteServiceProvider;
 use Narsil\Providers\TableServiceProvider;
@@ -74,6 +75,7 @@ class NarsilServiceProvider extends ServiceProvider
         $this->app->register(MigrationServiceProvider::class);
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
+        $this->app->register(RelationServiceProvider::class);
         $this->app->register(ResourceServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(TableServiceProvider::class);
