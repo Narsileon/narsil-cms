@@ -53,6 +53,9 @@ return new class extends Migration
             $blueprint
                 ->id(Header::ID);
             $blueprint
+                ->uuid(Header::UUID)
+                ->unique();
+            $blueprint
                 ->string(Header::HANDLE)
                 ->unique();
             $blueprint

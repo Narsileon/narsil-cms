@@ -117,6 +117,9 @@ return new class extends Migration
             $blueprint
                 ->id(Field::ID);
             $blueprint
+                ->uuid(Field::UUID)
+                ->unique();
+            $blueprint
                 ->string(Field::HANDLE)
                 ->unique();
             $blueprint

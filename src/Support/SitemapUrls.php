@@ -157,7 +157,7 @@ class SitemapUrls
                     SiteUrl::PAGE_ID => $page->{SitePage::ID},
                     SiteUrl::UPDATED_AT => now(),
                     SiteUrl::URL => $url,
-                    SiteUrl::UUID => Str::uuid(),
+                    SiteUrl::UUID => Str::uuid7(),
                 ];
             }
 

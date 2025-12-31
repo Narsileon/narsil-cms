@@ -176,6 +176,9 @@ return new class extends Migration
             $blueprint
                 ->id(Template::ID);
             $blueprint
+                ->uuid(Template::UUID)
+                ->unique();
+            $blueprint
                 ->string(Template::HANDLE)
                 ->unique();
             $blueprint

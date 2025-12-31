@@ -149,6 +149,9 @@ return new class extends Migration
             $blueprint
                 ->id(Block::ID);
             $blueprint
+                ->uuid(Block::UUID)
+                ->unique();
+            $blueprint
                 ->string(Block::HANDLE)
                 ->unique();
             $blueprint
