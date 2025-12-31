@@ -50,7 +50,7 @@ class EntityFieldEntity extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'entity_entity';
+    final public const TABLE = 'entity_field_entity';
 
     #region • COLUMNS
 
