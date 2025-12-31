@@ -9,11 +9,12 @@ use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Enums\SEO\OpenGraphTypeEnum;
 use Narsil\Enums\SEO\RobotsEnum;
 use Narsil\Enums\SitePageAdapterEnum;
+use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\SitePageEntity;
 use Narsil\Models\Sites\SitePageOverride;
-use Narsil\Models\Sites\SitePageRelation;
 use Narsil\Models\Sites\SiteUrl;
 
 #endregion
@@ -37,9 +38,9 @@ return new class extends Migration
         {
             $this->createSitePageOverridesTable();
         }
-        if (!Schema::hasTable(SitePageRelation::TABLE))
+        if (!Schema::hasTable(SitePageEntity::TABLE))
         {
-            $this->createSitePageRelationsTable();
+            $this->createSitePageEntityTable();
         }
         if (!Schema::hasTable(SiteUrl::TABLE))
         {
@@ -55,7 +56,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists(SiteUrl::TABLE);
-        Schema::dropIfExists(SitePageRelation::TABLE);
+        Schema::dropIfExists(SitePageEntity::TABLE);
         Schema::dropIfExists(SitePageOverride::TABLE);
         Schema::dropIfExists(SitePage::TABLE);
     }
@@ -63,6 +64,27 @@ return new class extends Migration
     #endregion
 
     #region PRIVATE METHODS
+
+    /**
+     * Create the site page entity table.
+     *
+     * @return void
+     */
+    private function createSitePageEntityTable(): void
+    {
+        Schema::create(SitePageEntity::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(SitePageEntity::UUID)
+                ->primary();
+            $blueprint
+                ->foreignId(SitePageEntity::SITE_PAGE_ID)
+                ->constrained(SitePage::TABLE, SitePage::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->bigInteger(SitePageEntity::ENTITY_ID);
+        });
+    }
 
     /**
      * Create the site page overrides table.
@@ -77,7 +99,7 @@ return new class extends Migration
                 ->uuid(SitePageOverride::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(SitePageOverride::PAGE_ID)
+                ->foreignId(SitePageOverride::SITE_PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
                 ->cascadeOnDelete();
             $blueprint
@@ -100,29 +122,6 @@ return new class extends Migration
                 ->nullOnDelete();
             $blueprint
                 ->timestamps();
-        });
-    }
-
-    /**
-     * Create the site page relations table.
-     *
-     * @return void
-     */
-    private function createSitePageRelationsTable(): void
-    {
-        Schema::create(SitePageRelation::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->uuid(SitePageRelation::UUID)
-                ->primary();
-            $blueprint
-                ->foreignId(SitePageRelation::PAGE_ID)
-                ->constrained(SitePage::TABLE, SitePage::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->string(SitePageRelation::TARGET_TABLE);
-            $blueprint
-                ->bigInteger(SitePageRelation::TARGET_ID);
         });
     }
 

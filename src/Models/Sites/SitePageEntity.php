@@ -5,8 +5,9 @@ namespace Narsil\Models\Sites;
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Models\Entities\Entity;
 
 #endregion
 
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SitePageOverride extends Model
+class SitePageEntity extends Pivot
 {
     use HasUuids;
 
@@ -28,6 +29,7 @@ class SitePageOverride extends Model
         $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
+        $this->timestamps = false;
 
         $this->mergeGuarded([
             self::UUID,
@@ -45,37 +47,16 @@ class SitePageOverride extends Model
      *
      * @var string
      */
-    final public const TABLE = 'site_page_overrides';
+    final public const TABLE = 'site_page_entity';
 
     #region • COLUMNS
 
     /**
-     * The name of the "country" column.
+     * The name of the "target id" column.
      *
      * @var string
      */
-    final public const COUNTRY = 'country';
-
-    /**
-     * The name of the "left id" column.
-     *
-     * @var string
-     */
-    final public const LEFT_ID = 'left_id';
-
-    /**
-     * The name of the "parent id" column.
-     *
-     * @var string
-     */
-    final public const PARENT_ID = 'parent_id';
-
-    /**
-     * The name of the "right id" column.
-     *
-     * @var string
-     */
-    final public const RIGHT_ID = 'right_id';
+    final public const ENTITY_ID = 'entity_id';
 
     /**
      * The name of the "site page id" column.
@@ -96,18 +77,18 @@ class SitePageOverride extends Model
     #region • RELATIONS
 
     /**
+     * The name of the "entity" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ENTITY = 'entity';
+
+    /**
      * The name of the "site page" relation.
      *
      * @var string
      */
-    final public const RELATION_SITE_PAGE = 'page';
-
-    /**
-     * The name of the "parent" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_PARENT = 'parent';
+    final public const RELATION_SITE_PAGE = 'site_page';
 
     #endregion
 
@@ -116,6 +97,21 @@ class SitePageOverride extends Model
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
+
+    /**
+     * Get the associated entity.
+     *
+     * @return BelongsTo
+     */
+    final public function entity(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Entity::class,
+                self::ENTITY_ID,
+                Entity::ID
+            );
+    }
 
     /**
      * Get the associated site page.
@@ -128,21 +124,6 @@ class SitePageOverride extends Model
             ->belongsTo(
                 SitePage::class,
                 self::SITE_PAGE_ID,
-                SitePage::ID
-            );
-    }
-
-    /**
-     * Get the associated parent.
-     *
-     * @return BelongsTo
-     */
-    final public function parent(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                SitePage::class,
-                self::PARENT_ID,
                 SitePage::ID
             );
     }

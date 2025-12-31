@@ -6,6 +6,7 @@ namespace Narsil\Observers;
 
 use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\SitePageEntity;
 use Narsil\Models\Sites\SitePageRelation;
 
 #endregion
@@ -79,10 +80,9 @@ class SitePageObserver
             {
                 [$table, $id] = explode('-', $relation, 2);
 
-                SitePageRelation::firstOrCreate([
-                    SitePageRelation::PAGE_ID => $sitePage->{SitePage::ID},
-                    SitePageRelation::TARGET_ID => $id,
-                    SitePageRelation::TARGET_TABLE => $table,
+                SitePageEntity::firstOrCreate([
+                    SitePageEntity::ENTITY_ID => $id,
+                    SitePageEntity::SITE_PAGE_ID => $sitePage->{SitePage::ID},
                 ]);
             }
         }

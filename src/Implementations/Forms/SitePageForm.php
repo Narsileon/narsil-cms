@@ -135,7 +135,6 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => SitePage::SHOW_IN_MENU,
                             Field::NAME => trans('narsil::validation.attributes.show_in_menu'),
-                            Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class)

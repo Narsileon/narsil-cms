@@ -7,14 +7,13 @@ namespace Narsil\Models\Sites;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
-use Narsil\Contracts\Resources\EntityResource;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\TreeModel;
-use Narsil\Services\CollectionService;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -187,18 +186,14 @@ class SitePage extends TreeModel
 
     #endregion
 
-    #region • ATTRIBUTES
+    #region • RELATIONS
 
     /**
-     * The name of the "entities" attribute.
+     * The name of the "entities" relation.
      *
      * @var string
      */
-    final public const ATTRIBUTE_ENTITIES = 'entities';
-
-    #endregion
-
-    #region • RELATIONS
+    final public const RELATION_ENTITIES = 'entities';
 
     /**
      * The name of the "override" relation.
@@ -213,13 +208,6 @@ class SitePage extends TreeModel
      * @var string
      */
     final public const RELATION_OVERRIDES = 'overrides';
-
-    /**
-     * The name of the "page relations" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_PAGE_RELATIONS = 'page_relations';
 
     /**
      * The name of the "site" relation.
@@ -269,7 +257,7 @@ class SitePage extends TreeModel
             {
                 SitePageOverride::updateOrCreate([
                     SitePageOverride::COUNTRY => Session::get(self::COUNTRY),
-                    SitePageOverride::PAGE_ID => $sitePage->{SitePage::ID},
+                    SitePageOverride::SITE_PAGE_ID => $sitePage->{SitePage::ID},
                 ], $overrides);
             }
         }
@@ -282,6 +270,25 @@ class SitePage extends TreeModel
     #region • RELATIONSHIPS
 
     /**
+     * Get the associated entities.
+     *
+     * @return BelongsToMany
+     */
+    final public function entities(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Entity::class,
+                SitePageEntity::TABLE,
+                SitePageEntity::SITE_PAGE_ID,
+                SitePageEntity::ENTITY_ID,
+                self::ID,
+                Entity::ID,
+            )
+            ->using(SitePageEntity::class);
+    }
+
+    /**
      * Get the associated override.
      *
      * @return HasOne
@@ -291,7 +298,7 @@ class SitePage extends TreeModel
         return $this
             ->hasOne(
                 SitePageOverride::class,
-                SitePageOverride::PAGE_ID,
+                SitePageOverride::SITE_PAGE_ID,
                 self::ID
             )
             ->where(self::COUNTRY, Session::get(self::COUNTRY));
@@ -307,22 +314,7 @@ class SitePage extends TreeModel
         return $this
             ->hasMany(
                 SitePageOverride::class,
-                SitePageOverride::PAGE_ID,
-                self::ID
-            );
-    }
-
-    /**
-     * Get the associated page relations.
-     *
-     * @return HasMany
-     */
-    final public function page_relations(): HasMany
-    {
-        return $this
-            ->hasMany(
-                SitePageRelation::class,
-                SitePageRelation::PAGE_ID,
+                SitePageOverride::SITE_PAGE_ID,
                 self::ID
             );
     }
@@ -362,48 +354,6 @@ class SitePage extends TreeModel
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * @return array
-     */
-    protected function getEntities(): array
-    {
-        $groupedRelations = $this->{self::RELATION_PAGE_RELATIONS}
-            ->groupBy(SitePageRelation::TARGET_TABLE);
-
-        $entities = [];
-
-        foreach ($groupedRelations as $table => $relations)
-        {
-            $template = CollectionService::getTemplate($table);
-
-            if ($template)
-            {
-                Entity::setTemplate($template);
-
-                $ids = $relations
-                    ->pluck(SitePageRelation::TARGET_ID)
-                    ->toArray();
-
-                if (!empty($ids))
-                {
-                    $keyedEntities = Entity::query($table)
-                        ->whereIn(Entity::ID, $ids)
-                        ->get()
-                        ->keyBy(Entity::ATTRIBUTE_IDENTIFIER);
-
-                    foreach ($keyedEntities as $identifier => $entity)
-                    {
-                        $entities[$identifier] = app(EntityResource::class, [
-                            'resource' => $entity
-                        ]);
-                    }
-                }
-            }
-        }
-
-        return $entities;
-    }
 
     /**
      * {@inheritDoc}
@@ -476,18 +426,6 @@ class SitePage extends TreeModel
     }
 
     #region • ACCESSORS
-
-    /**
-     * Get the entities.
-     *
-     * @return Attribute
-     */
-    protected function entities(): Attribute
-    {
-        return Attribute::make(
-            get: fn() => $this->getEntities(),
-        );
-    }
 
     /**
      * Get the left id by applying the override if it exists.
