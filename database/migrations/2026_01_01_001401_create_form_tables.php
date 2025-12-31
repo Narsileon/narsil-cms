@@ -187,9 +187,6 @@ return new class extends Migration
             $blueprint
                 ->id(Fieldset::ID);
             $blueprint
-                ->uuid(Fieldset::UUID)
-                ->unique();
-            $blueprint
                 ->string(Fieldset::HANDLE)
                 ->unique();
             $blueprint
@@ -326,9 +323,6 @@ return new class extends Migration
             $blueprint
                 ->id(Form::ID);
             $blueprint
-                ->uuid(Form::UUID)
-                ->unique();
-            $blueprint
                 ->string(Form::HANDLE)
                 ->unique();
             $blueprint
@@ -414,9 +408,6 @@ return new class extends Migration
         {
             $blueprint
                 ->id(Input::ID);
-            $blueprint
-                ->uuid(Input::UUID)
-                ->unique();
             $blueprint
                 ->string(Input::HANDLE)
                 ->unique();

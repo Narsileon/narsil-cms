@@ -15,7 +15,6 @@ use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasIdentifier;
-use Narsil\Traits\HasSecondaryUUID;
 use Narsil\Traits\HasTranslations;
 use Narsil\Traits\HasValidationRules;
 
@@ -31,7 +30,6 @@ class Field extends Model
     use HasAuditLogs;
     use HasDatetimes;
     use HasIdentifier;
-    use HasSecondaryUUID;
     use HasTranslations;
     use HasValidationRules;
 

@@ -14,7 +14,6 @@ use Narsil\Models\Sites\SitePage;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasSecondaryUUID;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -30,7 +29,6 @@ class Footer extends Model
     use HasAuditLogs;
     use HasDatetimes;
     use HasFactory;
-    use HasSecondaryUUID;
     use HasTranslations;
 
     #region CONSTRUCTOR
