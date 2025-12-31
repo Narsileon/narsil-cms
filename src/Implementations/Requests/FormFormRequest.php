@@ -29,7 +29,7 @@ class FormFormRequest implements Contract
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
-            Form::HANDLE => [
+            Form::SLUG => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
                 FormRule::doesntStartWith('-'),
@@ -37,7 +37,7 @@ class FormFormRequest implements Contract
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Form::class,
-                    Form::HANDLE,
+                    Form::SLUG,
                 )->ignore($model?->{Form::ID}),
             ],
             Form::TITLE => [

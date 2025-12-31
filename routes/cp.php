@@ -15,6 +15,7 @@ use Narsil\Http\Controllers\Entities\EntityEditController;
 use Narsil\Http\Controllers\Entities\EntityIndexController;
 use Narsil\Http\Controllers\Entities\EntityReplicateController;
 use Narsil\Http\Controllers\Entities\EntityReplicateManyController;
+use Narsil\Http\Controllers\Entities\EntitySearchController;
 use Narsil\Http\Controllers\Entities\EntityStoreController;
 use Narsil\Http\Controllers\Entities\EntityUnpublishController;
 use Narsil\Http\Controllers\Entities\EntityUpdateController;
@@ -34,6 +35,7 @@ use Narsil\Http\Controllers\Forms\FormEditController;
 use Narsil\Http\Controllers\Forms\FormIndexController;
 use Narsil\Http\Controllers\Forms\FormReplicateController;
 use Narsil\Http\Controllers\Forms\FormReplicateManyController;
+use Narsil\Http\Controllers\Forms\FormSearchController;
 use Narsil\Http\Controllers\Forms\FormStoreController;
 use Narsil\Http\Controllers\Forms\FormUpdateController;
 use Narsil\Http\Controllers\Forms\Inputs\InputCreateController;
@@ -133,6 +135,7 @@ use Narsil\Http\Controllers\Users\UserIndexController;
 use Narsil\Http\Controllers\Users\UserStoreController;
 use Narsil\Http\Controllers\Users\UserUpdateController;
 use Narsil\Http\Middleware\CountryMiddleware;
+use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\Input;
@@ -185,6 +188,12 @@ Route::middleware([
                 ->name('replicate');
             Route::post('/replicate-many', BlockReplicateManyController::class)
                 ->name('replicate-many');
+        });
+
+        Route::prefix(Str::slug(Entity::TABLE))->name(Str::slug(Entity::TABLE) . '.')->group(function ()
+        {
+            Route::get('/search', EntitySearchController::class)
+                ->name('search');
         });
 
         Route::prefix(Str::slug(Field::TABLE))->name(Str::slug(Field::TABLE) . '.')->group(function ()
@@ -271,6 +280,8 @@ Route::middleware([
                 ->name('replicate');
             Route::post('/replicate-many', FormReplicateManyController::class)
                 ->name('replicate-many');
+            Route::get('/search', FormSearchController::class)
+                ->name('search');
         });
 
         Route::prefix(Str::slug(Header::TABLE))->name(Str::slug(Header::TABLE) . '.')->group(function ()

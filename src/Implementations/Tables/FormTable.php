@@ -41,7 +41,7 @@ class FormTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Form::HANDLE,
+                id: Form::SLUG,
                 visibility: true,
             ),
             new TableColumn(

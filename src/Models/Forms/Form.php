@@ -72,18 +72,18 @@ class Form extends Model
     final public const DESCRIPTION = 'description';
 
     /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
      * The name of the "id" column.
      *
      * @var string
      */
     final public const ID = 'id';
+
+    /**
+     * The name of the "slug" column.
+     *
+     * @var string
+     */
+    final public const SLUG = 'slug';
 
     /**
      * The name of the "title" column.
@@ -130,7 +130,7 @@ class Form extends Model
                     ->map(function (Form $form)
                     {
                         return (new SelectOption())
-                            ->optionLabel($form->{self::HANDLE})
+                            ->optionLabel($form->{self::SLUG})
                             ->optionValue($form->{self::ID});
                     })
                     ->all();

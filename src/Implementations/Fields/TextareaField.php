@@ -40,6 +40,7 @@ class TextareaField extends AbstractField implements Contract
             new Field([
                 Field::HANDLE => Field::PLACEHOLDER,
                 Field::NAME => trans('narsil::validation.attributes.placeholder'),
+                Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class),
             ]),

@@ -34,7 +34,7 @@ abstract class FormService
 
         $replicated
             ->fill([
-                Form::HANDLE => DatabaseService::generateUniqueValue($replicated, Form::HANDLE, $form->{Form::HANDLE}),
+                Form::SLUG => DatabaseService::generateUniqueValue($replicated, Form::SLUG, $form->{Form::SLUG}),
             ])
             ->save();
 

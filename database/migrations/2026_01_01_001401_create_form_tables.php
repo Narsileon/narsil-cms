@@ -317,7 +317,7 @@ return new class extends Migration
             $blueprint
                 ->id(Form::ID);
             $blueprint
-                ->string(Form::HANDLE)
+                ->string(Form::SLUG)
                 ->unique();
             $blueprint
                 ->jsonb(Form::TITLE);
