@@ -85,9 +85,9 @@ class EntityEditController extends RenderController
         {
             $key = $field->{EntityField::RELATION_ELEMENT}->{BlockElement::HANDLE};
 
-            if ($blocks = $field->{EntityField::RELATION_BLOCKS})
+            if ($field->{EntityField::RELATION_BLOCKS}->count() > 0)
             {
-                $entity->setAttribute($key, $blocks);
+                $entity->setAttribute($key, $field->{EntityField::RELATION_BLOCKS});
             }
             else
             {

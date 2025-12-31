@@ -10,7 +10,6 @@ use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityBlock;
-use Narsil\Models\Entities\EntityBlockField;
 use Narsil\Models\Entities\EntityField;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
