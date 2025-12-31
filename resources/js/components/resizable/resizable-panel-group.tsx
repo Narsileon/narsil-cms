@@ -1,12 +1,12 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
-import { PanelGroup } from "react-resizable-panels";
+import { Group } from "react-resizable-panels";
 
-type ResizablePanelGroupProps = ComponentProps<typeof PanelGroup>;
+type ResizablePanelGroupProps = ComponentProps<typeof Group>;
 
 function ResizablePanelGroup({ className, ...props }: ResizablePanelGroupProps) {
   return (
-    <PanelGroup
+    <Group
       data-slot="resizable-panel-group"
       className={cn(
         "flex h-full w-full",

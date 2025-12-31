@@ -2,15 +2,15 @@ import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/repositories/icons";
 import { type ComponentProps } from "react";
-import { PanelResizeHandle } from "react-resizable-panels";
+import { Separator } from "react-resizable-panels";
 
-type ResizableHandleProps = ComponentProps<typeof PanelResizeHandle> & {
+type ResizableHandleProps = ComponentProps<typeof Separator> & {
   icon?: IconName | null;
 };
 
 function ResizableHandle({ className, icon = "grip-vertical", ...props }: ResizableHandleProps) {
   return (
-    <PanelResizeHandle
+    <Separator
       data-slot="resizable-handle"
       className={cn(
         "relative flex w-px items-center justify-center bg-border",
@@ -29,7 +29,7 @@ function ResizableHandle({ className, icon = "grip-vertical", ...props }: Resiza
           <Icon className="size-2.5" name={icon} />
         </div>
       )}
-    </PanelResizeHandle>
+    </Separator>
   );
 }
 
