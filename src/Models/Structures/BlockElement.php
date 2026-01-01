@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Support\Arr;
+use Narsil\Interfaces\IStructureHasElement;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
 
@@ -17,7 +18,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockElement extends MorphPivot
+class BlockElement extends MorphPivot implements IStructureHasElement
 {
     use HasElement;
     use HasTranslations;
@@ -47,6 +48,11 @@ class BlockElement extends MorphPivot
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
+        ]);
+
+        $this->mergeCasts([
+            self::TRANSLATABLE => 'boolean',
+            self::REQUIRED => 'boolean',
         ]);
 
         $this->mergeGuarded([
@@ -100,13 +106,6 @@ class BlockElement extends MorphPivot
      */
     final public const OWNER_ID = 'owner_id';
 
-    /**
-     * The name of the "translatable" column.
-     *
-     * @var string
-     */
-    final public const TRANSLATABLE = 'translatable';
-
     #endregion
 
     #region • RELATIONS
@@ -119,25 +118,11 @@ class BlockElement extends MorphPivot
     final public const RELATION_BLOCK = 'block';
 
     /**
-     * The name of the "conditions" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_CONDITIONS = 'conditions';
-
-    /**
      * The name of the "field" relation.
      *
      * @var string
      */
     final public const RELATION_FIELD = 'field';
-
-    /**
-     * The name of the "owner" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_OWNER = 'owner';
 
     #endregion
 
@@ -163,9 +148,7 @@ class BlockElement extends MorphPivot
     }
 
     /**
-     * Get the associated conditions.
-     *
-     * @return HasMany
+     * {@inheritDoc}
      */
     final public function conditions(): HasMany
     {
@@ -193,9 +176,7 @@ class BlockElement extends MorphPivot
     }
 
     /**
-     * Get the associated owner.
-     *
-     * @return BelongsTo
+     * {@inheritDoc}
      */
     final public function owner(): BelongsTo
     {

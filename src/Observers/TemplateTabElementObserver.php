@@ -27,8 +27,8 @@ class TemplateTabElementObserver
     {
         match ($model->{TemplateTabElement::ELEMENT_TYPE})
         {
-            Block::class => $model->{TemplateTabElement::BLOCK_ID} = $model->{TemplateTabElement::ELEMENT_ID},
-            Field::class => $model->{TemplateTabElement::FIELD_ID} = $model->{TemplateTabElement::ELEMENT_ID},
+            Block::TABLE => $model->{TemplateTabElement::BLOCK_ID} = $model->{TemplateTabElement::ELEMENT_ID},
+            Field::TABLE => $model->{TemplateTabElement::FIELD_ID} = $model->{TemplateTabElement::ELEMENT_ID},
             default => null,
         };
     }

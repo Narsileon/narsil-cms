@@ -7,9 +7,14 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Narsil\Casts\JsonCast;
+use Narsil\Models\Forms\Form;
+use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Structures\Block;
+use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -17,8 +22,9 @@ use Narsil\Models\Structures\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityBlock extends Model
+class EntityNode extends Model
 {
+    use HasTranslations;
     use HasUuids;
 
     #region CONSTRUCTOR
@@ -33,11 +39,13 @@ class EntityBlock extends Model
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->with = [
-            self::RELATION_BLOCK,
-            self::RELATION_ELEMENT,
-            self::RELATION_FIELDS,
+        $this->translatable = [
+            self::VALUE,
         ];
+
+        $this->mergeCasts([
+            self::VALUE => JsonCast::class,
+        ]);
 
         $this->mergeGuarded([
             self::UUID,
@@ -55,7 +63,7 @@ class EntityBlock extends Model
      *
      * @var string
      */
-    final public const TABLE = 'entity_blocks';
+    final public const TABLE = 'entity_nodes';
 
     #region • COLUMNS
 
@@ -81,18 +89,18 @@ class EntityBlock extends Model
     final public const ELEMENT_TYPE = 'element_type';
 
     /**
-     * The name of the "entity field uuid" column.
-     *
-     * @var string
-     */
-    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
-
-    /**
      * The name of the "entity uuid" column.
      *
      * @var string
      */
     final public const ENTITY_UUID = 'entity_uuid';
+
+    /**
+     * The name of the "parent uuid" column.
+     *
+     * @var string
+     */
+    final public const PARENT_UUID = 'parent_uuid';
 
     /**
      * The name of the "position" column.
@@ -108,16 +116,23 @@ class EntityBlock extends Model
      */
     final public const UUID = 'uuid';
 
+    /**
+     * The name of the "value" column.
+     *
+     * @var string
+     */
+    final public const VALUE = 'value';
+
     #endregion
 
     #region • RELATIONS
 
     /**
-     * The name of the "block" relation.
+     * The name of the "children" relation.
      *
      * @var string
      */
-    final public const RELATION_BLOCK = 'block';
+    final public const RELATION_CHILDREN = 'children';
 
     /**
      * The name of the "element" relation.
@@ -127,6 +142,13 @@ class EntityBlock extends Model
     final public const RELATION_ELEMENT = 'element';
 
     /**
+     * The name of the "entities" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_ENTITIES = 'entities';
+
+    /**
      * The name of the "entity" relation.
      *
      * @var string
@@ -134,18 +156,25 @@ class EntityBlock extends Model
     final public const RELATION_ENTITY = 'entity';
 
     /**
-     * The name of the "entity field" relation.
+     * The name of the "forms" relation.
      *
      * @var string
      */
-    final public const RELATION_ENTITY_FIELD = 'entity_field';
+    final public const RELATION_FORMS = 'forms';
 
     /**
-     * The name of the "fields" relation.
+     * The name of the "parent" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELDS = 'fields';
+    final public const RELATION_PARENT = 'parent';
+
+    /**
+     * The name of the "site pages" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE_PAGES = 'site_pages';
 
     #endregion
 
@@ -167,6 +196,21 @@ class EntityBlock extends Model
                 Block::class,
                 self::BLOCK_ID,
                 Block::ID,
+            );
+    }
+
+    /**
+     * Get the associated children.
+     *
+     * @return HasMany
+     */
+    final public function children(): HasMany
+    {
+        return $this
+            ->hasMany(
+                EntityNode::class,
+                EntityNode::PARENT_UUID,
+                self::UUID,
             );
     }
 
@@ -201,33 +245,69 @@ class EntityBlock extends Model
     }
 
     /**
-     * Get the associated entity field.
+     * Get the associated entities.
+     *
+     * @return BelongsToMany
+     */
+    final public function entities(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Entity::class,
+                EntityNodeEntity::TABLE,
+                EntityNodeEntity::ENTITY_NODE_UUID,
+                EntityNodeEntity::ENTITY_UUID,
+            )
+            ->using(EntityNodeEntity::class);
+    }
+
+    /**
+     * Get the associated forms.
+     *
+     * @return BelongsToMany
+     */
+    final public function forms(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                Form::class,
+                EntityNodeForm::TABLE,
+                EntityNodeForm::ENTITY_NODE_UUID,
+                EntityNodeForm::FORM_ID,
+            )
+            ->using(EntityNodeForm::class);
+    }
+
+    /**
+     * Get the associated parent.
      *
      * @return BelongsTo
      */
-    final public function entity_field(): BelongsTo
+    public function parent(): BelongsTo
     {
         return $this
             ->belongsTo(
-                EntityField::class,
-                self::ENTITY_FIELD_UUID,
-                EntityField::UUID,
+                EntityNode::class,
+                self::PARENT_UUID,
+                EntityNode::UUID,
             );
     }
 
     /**
-     * Get the associated fields.
+     * Get the associated site pages.
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
-    final public function fields(): HasMany
+    final public function site_pages(): BelongsToMany
     {
         return $this
-            ->hasMany(
-                EntityField::class,
-                EntityField::ENTITY_BLOCK_UUID,
-                self::UUID,
-            );
+            ->belongsToMany(
+                SitePage::class,
+                EntityNodeSitePage::TABLE,
+                EntityNodeSitePage::ENTITY_NODE_UUID,
+                EntityNodeSitePage::SITE_PAGE_ID,
+            )
+            ->using(EntityNodeSitePage::class);
     }
 
     #endregion

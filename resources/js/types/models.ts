@@ -34,19 +34,11 @@ export type Bookmark = Model & {
 };
 
 export type Entity = Model & {
-  blocks: EntityBlock[];
+  nodes: EntityNode[];
 };
 
-export type EntityBlock = Model & {
-  block: Block;
-  children: EntityBlock[];
-  fields: EntityBlockField[];
-  uuid: string;
-};
-
-export type EntityBlockField = Model & {
-  field: Field;
-  value: string;
+export type EntityNode = Model & {
+  children: EntityNode[];
   uuid: string;
 };
 

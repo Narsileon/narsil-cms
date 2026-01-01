@@ -157,6 +157,9 @@ return new class extends Migration
                 ->boolean(Block::COLLAPSIBLE)
                 ->default(false);
             $blueprint
+                ->boolean(Block::VIRTUAL)
+                ->default(false);
+            $blueprint
                 ->timestamp(Block::CREATED_AT);
             $blueprint
                 ->foreignId(Block::CREATED_BY)

@@ -15,7 +15,7 @@ use Narsil\Models\Sites\SitePage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityFieldSitePage extends Pivot
+class EntityNodeSitePage extends Pivot
 {
     use HasUuids;
 
@@ -47,7 +47,7 @@ class EntityFieldSitePage extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'entity_field_site_pages';
+    final public const TABLE = 'entity_node_site_pages';
 
     #region • COLUMNS
 
@@ -56,7 +56,7 @@ class EntityFieldSitePage extends Pivot
      *
      * @var string
      */
-    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
+    final public const ENTITY_NODE_UUID = 'entity_node_uuid';
 
     /**
      * The name of the "site page id" column.
@@ -81,7 +81,7 @@ class EntityFieldSitePage extends Pivot
      *
      * @var string
      */
-    final public const RELATION_ENTITY_FIELD = 'entity_field';
+    final public const RELATION_ENTITY_NODE = 'entity_node';
 
     /**
      * The name of the "site page" relation.
@@ -103,13 +103,13 @@ class EntityFieldSitePage extends Pivot
      *
      * @return BelongsTo
      */
-    final public function entity_field(): BelongsTo
+    final public function entity_node(): BelongsTo
     {
         return $this
             ->belongsTo(
-                EntityField::class,
-                self::ENTITY_FIELD_UUID,
-                EntityField::UUID,
+                EntityNode::class,
+                self::ENTITY_NODE_UUID,
+                EntityNode::UUID,
             );
     }
 

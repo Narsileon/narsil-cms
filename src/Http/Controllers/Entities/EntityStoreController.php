@@ -55,7 +55,7 @@ class EntityStoreController extends RedirectController
             Entity::TEMPLATE_ID => $this->template->{Template::ID},
         ]);
 
-        EntityService::syncFields($entity, $this->template, $attributes);
+        EntityService::syncNodes($entity, $this->template, $attributes);
 
         return $this
             ->redirect(route('collections.index', [

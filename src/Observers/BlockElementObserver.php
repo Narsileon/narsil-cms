@@ -27,8 +27,8 @@ class BlockElementObserver
     {
         match ($model->{BlockElement::ELEMENT_TYPE})
         {
-            Block::class => $model->{BlockElement::BLOCK_ID} = $model->{BlockElement::ELEMENT_ID},
-            Field::class => $model->{BlockElement::FIELD_ID} = $model->{BlockElement::ELEMENT_ID},
+            Block::TABLE => $model->{BlockElement::BLOCK_ID} = $model->{BlockElement::ELEMENT_ID},
+            Field::TABLE => $model->{BlockElement::FIELD_ID} = $model->{BlockElement::ELEMENT_ID},
             default => null,
         };
     }

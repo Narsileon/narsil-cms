@@ -78,9 +78,19 @@ class BlockForm extends AbstractForm implements Contract
                         ]),
                     ]),
                     new TemplateTabElement([
+                        TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Block::COLLAPSIBLE,
                             Field::NAME => trans('narsil::validation.attributes.collapsible'),
+                            Field::TYPE => SwitchField::class,
+                            Field::SETTINGS => app(SwitchField::class),
+                        ]),
+                    ]),
+                    new TemplateTabElement([
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => Block::VIRTUAL,
+                            Field::NAME => trans('narsil::validation.attributes.virtual'),
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
                         ]),

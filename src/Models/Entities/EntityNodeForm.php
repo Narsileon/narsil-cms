@@ -7,6 +7,7 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Models\Forms\Form;
 
 #endregion
 
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityFieldEntity extends Pivot
+class EntityNodeForm extends Pivot
 {
     use HasUuids;
 
@@ -29,10 +30,6 @@ class EntityFieldEntity extends Pivot
 
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
-
-        $this->with = [
-            self::RELATION_ENTITY,
-        ];
 
         $this->mergeGuarded([
             self::UUID,
@@ -50,23 +47,23 @@ class EntityFieldEntity extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'entity_field_entity';
+    final public const TABLE = 'entity_node_form';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "entity uuid" column.
-     *
-     * @var string
-     */
-    final public const ENTITY_UUID = 'entity_uuid';
 
     /**
      * The name of the "entity field uuid" column.
      *
      * @var string
      */
-    final public const ENTITY_FIELD_UUID = 'entity_field_uuid';
+    final public const ENTITY_NODE_UUID = 'entity_node_uuid';
+
+    /**
+     * The name of the "form id" column.
+     *
+     * @var string
+     */
+    final public const FORM_ID = 'form_id';
 
     /**
      * The name of the "uuid" column.
@@ -80,18 +77,18 @@ class EntityFieldEntity extends Pivot
     #region • RELATIONS
 
     /**
-     * The name of the "entity" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY = 'entity';
-
-    /**
      * The name of the "entity field" relation.
      *
      * @var string
      */
-    final public const RELATION_ENTITY_FIELD = 'entity_field';
+    final public const RELATION_ENTITY_NODE = 'entity_node';
+
+    /**
+     * The name of the "form" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FORM = 'form';
 
     #endregion
 
@@ -102,32 +99,32 @@ class EntityFieldEntity extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated entity.
+     * Get the associated entity node.
      *
      * @return BelongsTo
      */
-    final public function entity(): BelongsTo
+    final public function entity_node(): BelongsTo
     {
         return $this
             ->belongsTo(
-                Entity::class,
-                self::ENTITY_UUID,
-                Entity::UUID,
+                EntityNode::class,
+                self::ENTITY_NODE_UUID,
+                EntityNode::UUID,
             );
     }
 
     /**
-     * Get the associated entity field.
+     * Get the associated form.
      *
      * @return BelongsTo
      */
-    final public function entity_field(): BelongsTo
+    final public function form(): BelongsTo
     {
         return $this
             ->belongsTo(
-                EntityField::class,
-                self::ENTITY_FIELD_UUID,
-                EntityField::UUID,
+                Form::class,
+                self::FORM_ID,
+                Form::ID,
             );
     }
 

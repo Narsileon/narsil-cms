@@ -23,6 +23,18 @@ class ValidationRuleSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->syncValidationRules();
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return void
+     */
+    protected function syncValidationRules(): void
+    {
         foreach (ValidationRuleEnum::cases() as $case)
         {
             ValidationRule::firstOrCreate([

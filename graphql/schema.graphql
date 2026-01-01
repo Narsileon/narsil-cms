@@ -82,46 +82,34 @@ type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
 	template: Template! @belongsTo
 }
 
-type EntityBlock @model(class: "Narsil\\Models\\Entities\\EntityBlock") {
-  uuid: String!
-	block_id: ID!
-	element_type: String!
-	entity_field_uuid: String!
-	position: Int!
-  element_id: String!
-	block: Block! @belongsTo
-	element: HasElement! @morphTo
-	entity_field: EntityField! @belongsTo
-}
-
-type EntityField @model(class: "Narsil\\Models\\Entities\\EntityField") {
+type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
   uuid: String!
 	element_type: String!
 	entity_block_uuid: String
 	entity_uuid: String!
 	value: String!
   element_id: String!
-	blocks: [EntityBlock!]! @hasMany
+	blocks: [EntityNode!]! @hasMany
 	element: HasElement! @morphTo
 	entities: [Entity!]! @belongsToMany
-	entity_block: EntityBlock! @belongsTo
+	entity_block: EntityNode! @belongsTo
 	entity: Entity! @belongsTo
 	form: [Form!]! @belongsToMany
 }
 
-type EntityFieldEntity @model(class: "Narsil\\Models\\Entities\\EntityFieldEntity") {
+type EntityNodeEntity @model(class: "Narsil\\Models\\Entities\\EntityNodeEntity") {
   uuid: String!
   entity_uuid: String!
-  entity_field_uuid: String!
+  entity_node_uuid: String!
 	entity: Entity! @belongsTo
-  entity_field: EntityField! @belongsTo
+  entity_node: EntityNode! @belongsTo
 }
 
-type EntityFieldForm @model(class: "Narsil\\Models\\Entities\\EntityFieldForm") {
+type EntityNodeForm @model(class: "Narsil\\Models\\Entities\\EntityNodeForm") {
   uuid: String!
-  entity_field_uuid: String!
+  entity_node_uuid: String!
   form_id: ID!
-  entity_field: EntityField! @belongsTo
+  entity_node: EntityNode! @belongsTo
   form: Form! @belongsTo
 }
 

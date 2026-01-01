@@ -109,7 +109,7 @@ class EntityUpdateController extends RedirectController
                 Entity::UUID => $uuid,
             ]));
 
-            EntityService::syncFields($replicated, $this->template, $attributes);
+            EntityService::syncNodes($replicated, $this->template, $attributes);
 
             return back();
         }
@@ -119,7 +119,7 @@ class EntityUpdateController extends RedirectController
                 Entity::PUBLISHED => false,
             ]));
 
-            EntityService::syncFields($replicated, $this->template, $attributes);
+            EntityService::syncNodes($replicated, $this->template, $attributes);
 
             $entity->discardChanges();
             $entity->delete();

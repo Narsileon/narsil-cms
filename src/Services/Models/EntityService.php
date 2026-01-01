@@ -9,8 +9,7 @@ use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityBlock;
-use Narsil\Models\Entities\EntityField;
+use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
 use Narsil\Services\CollectionService;
@@ -48,7 +47,7 @@ abstract class EntityService
      *
      * @return void
      */
-    public static function syncFields(Entity $entity, Template $template, array $attributes): void
+    public static function syncNodes(Entity $entity, Template $template, array $attributes): void
     {
         $fieldElements = CollectionService::getFieldElements($template)
             ->keyBy(Field::HANDLE);
@@ -64,63 +63,63 @@ abstract class EntityService
 
             if ($fieldElement->{BlockElement::RELATION_ELEMENT}->{Field::TYPE} === BuilderField::class)
             {
-                $entityField = EntityField::create([
-                    EntityField::ENTITY_UUID  => $entity->{Entity::UUID},
-                    EntityField::ELEMENT_TYPE => $fieldElement::TABLE,
-                    EntityField::ELEMENT_ID => $fieldElement->uuid,
-                ]);
+                // $EntityNode = EntityNode::create([
+                //     EntityNode::ENTITY_UUID  => $entity->{Entity::UUID},
+                //     EntityNode::ELEMENT_TYPE => $fieldElement::TABLE,
+                //     EntityNode::ELEMENT_ID => $fieldElement->uuid,
+                // ]);
 
-                static::syncFieldBlocks($entityField, $value);
+                // static::syncFieldBlocks($EntityNode, $value);
             }
             else
             {
-                EntityField::create([
-                    EntityField::ENTITY_UUID  => $entity->{Entity::UUID},
-                    EntityField::ELEMENT_TYPE => $fieldElement::TABLE,
-                    EntityField::ELEMENT_ID => $fieldElement->uuid,
-                    EntityField::VALUE => $value,
+                EntityNode::create([
+                    EntityNode::ENTITY_UUID  => $entity->{Entity::UUID},
+                    EntityNode::ELEMENT_TYPE => $fieldElement::TABLE,
+                    EntityNode::ELEMENT_ID => $fieldElement->uuid,
+                    EntityNode::VALUE => $value,
                 ]);
             }
         }
     }
 
     /**
-     * @param EntityField $entityField
+     * @param EntityNode $EntityNode
      * @param array $blocks
      *
      * @return void
      */
-    public static function syncFieldBlocks(EntityField $entityField, array $blocks): void
+    public static function syncFieldBlocks(EntityNode $EntityNode, array $blocks): void
     {
-        foreach ($blocks as $key => $block)
-        {
-            $entityBlock = EntityBlock::create([
-                EntityBlock::ENTITY_UUID => $entityField->{EntityField::ENTITY_UUID},
-                EntityBlock::BLOCK_ID => Arr::get($block, EntityBlock::RELATION_BLOCK . '.' . Block::ID),
-                EntityBlock::ENTITY_FIELD_UUID => $entityField?->{EntityField::UUID},
-                EntityBlock::POSITION => $key,
-            ]);
+        // foreach ($blocks as $key => $block)
+        // {
+        //     $entityNode = EntityNode::create([
+        //         EntityNode::ENTITY_UUID => $EntityNode->{EntityNode::ENTITY_UUID},
+        //         EntityNode::BLOCK_ID => Arr::get($block, EntityNode::RELATION_BLOCK . '.' . Block::ID),
+        //         EntityNode::ENTITY_NODE_UUID => $EntityNode?->{EntityNode::UUID},
+        //         EntityNode::POSITION => $key,
+        //     ]);
 
-            $elements = Arr::get($block, EntityBlock::RELATION_BLOCK . '.' . Block::RELATION_ELEMENTS, []);
+        //     $elements = Arr::get($block, EntityNode::RELATION_BLOCK . '.' . Block::RELATION_ELEMENTS, []);
 
-            foreach ($elements as $key => $element)
-            {
-                $field = Arr::get($block, EntityBlock::RELATION_FIELDS . '.' . $key);
+        //     foreach ($elements as $key => $element)
+        //     {
+        //         $field = Arr::get($block, EntityNode::RELATION_FIELDS . '.' . $key);
 
-                $nextEntityField = EntityField::create([
-                    EntityField::ENTITY_UUID => $entityBlock->{EntityBlock::ENTITY_UUID},
-                    EntityField::ENTITY_BLOCK_UUID => $entityBlock->{EntityBlock::UUID},
-                    EntityField::ELEMENT_TYPE => BlockElement::TABLE,
-                    EntityField::ELEMENT_ID => Arr::get($element, BlockElement::UUID),
-                    EntityField::VALUE => Arr::get($field, EntityField::VALUE),
-                ]);
+        //         $nextEntityNode = EntityNode::create([
+        //             EntityNode::ENTITY_UUID => $entityNode->{EntityNode::ENTITY_UUID},
+        //             EntityNode::ENTITY_BLOCK_UUID => $entityNode->{EntityNode::UUID},
+        //             EntityNode::ELEMENT_TYPE => BlockElement::TABLE,
+        //             EntityNode::ELEMENT_ID => Arr::get($element, BlockElement::UUID),
+        //             EntityNode::VALUE => Arr::get($field, EntityNode::VALUE),
+        //         ]);
 
-                if ($childrenBlocks = Arr::get($field, EntityField::RELATION_BLOCKS, []))
-                {
-                    static::syncFieldBlocks($nextEntityField, $childrenBlocks);
-                }
-            }
-        }
+        //         if ($childrenBlocks = Arr::get($field, EntityNode::RELATION_BLOCKS, []))
+        //         {
+        //             static::syncFieldBlocks($nextEntityNode, $childrenBlocks);
+        //         }
+        //     }
+        // }
     }
 
     #endregion

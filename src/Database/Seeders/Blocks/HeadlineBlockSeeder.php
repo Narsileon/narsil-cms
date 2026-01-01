@@ -46,7 +46,6 @@ class HeadlineBlockSeeder extends BlockSeeder
                     ]),
                 ]),
                 new BlockElement([
-                    BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'headline_level',
@@ -59,7 +58,6 @@ class HeadlineBlockSeeder extends BlockSeeder
                     ]),
                 ]),
                 new BlockElement([
-                    BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'headline_style',
@@ -80,7 +78,7 @@ class HeadlineBlockSeeder extends BlockSeeder
     #region PROTECTED METHODS
 
     /**
-     * Get the headline select options.
+     * Get the headlines as field options.
      *
      * @return array<FieldOption>
      */

@@ -5,10 +5,13 @@ namespace Narsil\Implementations\Resources;
 #region USE
 
 use Illuminate\Http\Request;
-use Narsil\Contracts\Resources\EntityBlockResource;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Narsil\Contracts\Resources\EntityResource as Contract;
 use Narsil\Implementations\AbstractResource;
+use Narsil\Interfaces\IStructureHasElement;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityNode;
 
 #endregion
 
@@ -18,6 +21,42 @@ use Narsil\Models\Entities\Entity;
  */
 class EntityResource extends AbstractResource implements Contract
 {
+    #region CONSTRUCTOR
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct(mixed $resource)
+    {
+        $nodes = $resource->{Entity::RELATION_NODES};
+
+        $nodes->loadMissing([
+            EntityNode::RELATION_ELEMENT,
+        ]);
+
+        $this->nodes = $nodes->groupBy(EntityNode::PARENT_UUID);
+
+        return parent::__construct($resource);
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * The nodes of the entity grouped by parent uuid.
+     *
+     * @var Collection<string,EntityNode>
+     */
+    protected readonly Collection $nodes;
+
+    /**
+     * @var array
+     */
+    protected array $data = [];
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -25,15 +64,19 @@ class EntityResource extends AbstractResource implements Contract
      */
     public function toArray(Request $request): array
     {
-        return [
+        $this->data = [
             Entity::ID => $this->{Entity::ID},
-            Entity::SLUG => $this->{Entity::SLUG},
+            Entity::SLUG => $this->getTranslations(Entity::SLUG),
             Entity::UUID => $this->{Entity::UUID},
 
-            Entity::ATTRIBUTE_TYPE => $this->{Entity::ATTRIBUTE_TYPE},
-
-            Entity::RELATION_BLOCKS => $this->getBlocks(),
+            Entity::ATTRIBUTE_HAS_DRAFT => $this->{Entity::ATTRIBUTE_HAS_DRAFT},
+            Entity::ATTRIBUTE_HAS_NEW_REVISION => $this->{Entity::ATTRIBUTE_HAS_NEW_REVISION},
+            Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION => $this->{Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION},
         ];
+
+        $this->processNodes();
+
+        return $this->data;
     }
 
     #endregion
@@ -41,22 +84,33 @@ class EntityResource extends AbstractResource implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Get the blocks.
-     * 
+     * @param string|null $parentUuid
+     *
      * @return array
      */
-    protected function getBlocks(): array
+    protected function processNodes(?string $parentUuid = null): array
     {
-        $blocks = [];
+        $nodes = $this->nodes->get($parentUuid);
 
-        foreach ($this->{Entity::RELATION_BLOCKS} as $block)
+        foreach ($nodes as $node)
         {
-            $blocks[] = app(EntityBlockResource::class, [
-                'resource' => $block,
-            ]);
+            $element = $node->{EntityNode::RELATION_ELEMENT};
+
+            $key = $element->{IStructureHasElement::HANDLE};
+
+            if ($element->{IStructureHasElement::TRANSLATABLE})
+            {
+                $value = $node->getTranslations(EntityNode::VALUE);
+            }
+            else
+            {
+                $value = $node->{EntityNode::VALUE};
+            }
+
+            Arr::set($this->data, $key, $value);
         }
 
-        return $blocks;
+        return [];
     }
 
     #endregion

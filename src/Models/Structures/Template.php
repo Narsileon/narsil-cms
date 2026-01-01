@@ -7,6 +7,7 @@ namespace Narsil\Models\Structures;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Narsil\Models\Entities\Entity;
 use Narsil\Observers\ModelObserver;
@@ -53,6 +54,11 @@ class Template extends Model
         ];
 
         parent::__construct($attributes);
+
+        if ($tabs = Arr::get($attributes, self::RELATION_TABS))
+        {
+            $this->setRelation(self::RELATION_TABS, collect($tabs));
+        }
     }
 
     #endregion

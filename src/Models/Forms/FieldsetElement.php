@@ -7,6 +7,7 @@ namespace Narsil\Models\Forms;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
+use Narsil\Interfaces\IFormHasElement;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
 
@@ -16,7 +17,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldsetElement extends MorphPivot
+class FieldsetElement extends MorphPivot implements IFormHasElement
 {
     use HasElement;
     use HasTranslations;
@@ -46,6 +47,10 @@ class FieldsetElement extends MorphPivot
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
             self::ATTRIBUTE_IDENTIFIER,
+        ]);
+
+        $this->mergeCasts([
+            self::REQUIRED => 'boolean',
         ]);
 
         $this->mergeGuarded([
@@ -94,13 +99,6 @@ class FieldsetElement extends MorphPivot
     #region • RELATIONS
 
     /**
-     * The name of the "conditions" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_CONDITIONS = 'conditions';
-
-    /**
      * The name of the "fieldset" relation.
      *
      * @var string
@@ -114,13 +112,6 @@ class FieldsetElement extends MorphPivot
      */
     final public const RELATION_INPUT = 'input';
 
-    /**
-     * The name of the "owner" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_OWNER = 'owner';
-
     #endregion
 
     #endregion
@@ -130,9 +121,7 @@ class FieldsetElement extends MorphPivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated conditions.
-     *
-     * @return HasMany
+     * {@inheritDoc}
      */
     final public function conditions(): HasMany
     {
@@ -175,9 +164,7 @@ class FieldsetElement extends MorphPivot
     }
 
     /**
-     * Get the associated owner.
-     *
-     * @return BelongsTo
+     * {@inheritDoc}
      */
     final public function owner(): BelongsTo
     {

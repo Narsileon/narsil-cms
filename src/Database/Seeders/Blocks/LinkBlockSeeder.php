@@ -4,7 +4,7 @@ namespace Narsil\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Contracts\Fields\TextField;
+use Narsil\Contracts\Fields\LinkField;
 use Narsil\Database\Seeders\BlockSeeder;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
@@ -16,7 +16,7 @@ use Narsil\Models\Structures\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ButtonBlockSeeder extends BlockSeeder
+class LinkBlockSeeder extends BlockSeeder
 {
     #region PROTECTED METHODS
 
@@ -25,25 +25,18 @@ class ButtonBlockSeeder extends BlockSeeder
      */
     protected function block(): Block
     {
-        $linkBlock = new LinkBlockSeeder()->block();
-
         return new Block([
-            Block::HANDLE => 'button',
-            Block::NAME => 'Button',
+            Block::HANDLE => 'link',
+            Block::NAME => 'Link',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'label',
-                        Field::NAME => 'Label',
-                        Field::TYPE => TextField::class,
+                        Field::HANDLE => 'link',
+                        Field::NAME => 'Link',
+                        Field::TYPE => LinkField::class,
                     ]),
-                ]),
-                new BlockElement([
-                    BlockElement::REQUIRED => true,
-                    BlockElement::TRANSLATABLE => true,
-                    BlockElement::RELATION_ELEMENT => $linkBlock,
                 ]),
             ],
         ]);

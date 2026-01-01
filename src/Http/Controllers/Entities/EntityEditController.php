@@ -10,15 +10,14 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Contracts\Forms\PublishForm;
+use Narsil\Contracts\Resources\EntityResource;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityField;
 use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Models\Structures\BlockElement;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -81,21 +80,9 @@ class EntityEditController extends RenderController
             Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION,
         ]);
 
-        foreach ($entity->{Entity::RELATION_FIELDS} as $field)
-        {
-            $key = $field->{EntityField::RELATION_ELEMENT}->{BlockElement::HANDLE};
-
-            if ($field->{EntityField::RELATION_BLOCKS}->count() > 0)
-            {
-                $entity->setAttribute($key, $field->{EntityField::RELATION_BLOCKS});
-            }
-            else
-            {
-                $entity->setAttribute($key, $field->getTranslations(EntityField::VALUE));
-            }
-        }
-
-        $data = $entity->toArrayWithTranslations();
+        $data = app(EntityResource::class, [
+            'resource' => $entity
+        ])->toArray(request());
 
         return $data;
     }

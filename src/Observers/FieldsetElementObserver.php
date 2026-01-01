@@ -27,8 +27,8 @@ class FieldsetElementObserver
     {
         match ($model->{FieldsetElement::ELEMENT_TYPE})
         {
-            Fieldset::class => $model->{FieldsetElement::FIELDSET_ID} = $model->{FieldsetElement::ELEMENT_ID},
-            Input::class => $model->{FieldsetElement::INPUT_ID} = $model->{FieldsetElement::ELEMENT_ID},
+            Fieldset::TABLE => $model->{FieldsetElement::FIELDSET_ID} = $model->{FieldsetElement::ELEMENT_ID},
+            Input::TABLE => $model->{FieldsetElement::INPUT_ID} = $model->{FieldsetElement::ELEMENT_ID},
             default => null,
         };
     }

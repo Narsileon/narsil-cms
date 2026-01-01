@@ -6,7 +6,6 @@ namespace Narsil\Database\Seeders\Blocks;
 
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\Fields\RichTextField;
-use Narsil\Contracts\Fields\TextField;
 use Narsil\Database\Seeders\BlockSeeder;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
@@ -27,6 +26,8 @@ class HeroHeaderBlockSeeder extends BlockSeeder
      */
     protected function block(): Block
     {
+        $headlineBlock = new HeadlineBlockSeeder()->block();
+
         return new Block([
             Block::HANDLE => 'hero_header',
             Block::NAME => 'Hero Header',
@@ -34,12 +35,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                 new BlockElement([
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'headline',
-                        Field::NAME => 'Headline',
-                        Field::TRANSLATABLE => true,
-                        Field::TYPE => TextField::class,
-                    ]),
+                    BlockElement::RELATION_ELEMENT => $headlineBlock,
                 ]),
                 new BlockElement([
                     BlockElement::REQUIRED => true,

@@ -6,6 +6,7 @@ namespace Narsil\Traits;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Narsil\Interfaces\IHasElement;
 
 #endregion
 
@@ -18,99 +19,6 @@ trait HasElement
     use HasIdentifier;
     use HasUuids;
 
-    #region CONSTANTS
-
-    #region • COLUMNS
-
-    /**
-     * The name of the "description" column.
-     *
-     * @var string
-     */
-    final public const DESCRIPTION = 'description';
-
-    /**
-     * The name of the "element id" column.
-     *
-     * @var string
-     */
-    final public const ELEMENT_ID = 'element_id';
-
-    /**
-     * The name of the "element type" column.
-     *
-     * @var string
-     */
-    final public const ELEMENT_TYPE = 'element_type';
-
-    /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
-     * The name of the "name" column.
-     *
-     * @var string
-     */
-    final public const NAME = 'name';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
-
-    /**
-     * The name of the "required" column.
-     *
-     * @var string
-     */
-    final public const REQUIRED = 'required';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
-
-    /**
-     * The name of the "width" column.
-     *
-     * @var string
-     */
-    final public const WIDTH = 'width';
-
-    #endregion
-
-    #region • ATTRIBUTES
-
-    /**
-     * The name of the "icon" attribute.
-     *
-     * @var string
-     */
-    final public const ATTRIBUTE_ICON = 'icon';
-
-    #endregion
-
-    #region • RELATIONS
-
-    /**
-     * The name of the "element" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ELEMENT = 'element';
-
-    #endregion
-
-    #endregion
-
     #region PUBLIC METHODS
 
     #region • ACCESSORS
@@ -120,7 +28,7 @@ trait HasElement
      */
     public function getIconAttribute(): ?string
     {
-        return $this->{self::RELATION_ELEMENT}->{self::ATTRIBUTE_ICON} ?? null;
+        return $this->{IHasElement::RELATION_ELEMENT}->{IHasElement::ATTRIBUTE_ICON} ?? null;
     }
 
     /**
@@ -128,7 +36,7 @@ trait HasElement
      */
     public function getIdentifierAttribute(): string
     {
-        $element = $this->{self::RELATION_ELEMENT};
+        $element = $this->{IHasElement::RELATION_ELEMENT};
 
         $key = $element->getKey();
         $table = $element->getTable();
@@ -148,9 +56,9 @@ trait HasElement
     final public function element(): MorphTo
     {
         return $this->morphTo(
-            self::RELATION_ELEMENT,
-            self::ELEMENT_TYPE,
-            self::ELEMENT_ID,
+            IHasElement::RELATION_ELEMENT,
+            IHasElement::ELEMENT_TYPE,
+            IHasElement::ELEMENT_ID,
         );
     }
 

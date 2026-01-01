@@ -43,6 +43,9 @@ class BlockFormRequest implements Contract
             Block::NAME => [
                 FormRule::REQUIRED,
             ],
+            Block::VIRTUAL => [
+                FormRule::BOOLEAN,
+            ],
 
             Block::RELATION_ELEMENTS => [
                 FormRule::ARRAY,

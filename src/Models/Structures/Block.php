@@ -103,6 +103,13 @@ class Block extends Model
      */
     final public const NAME = 'name';
 
+    /**
+     * The name of the "virtual" column.
+     *
+     * @var string
+     */
+    final public const VIRTUAL = 'virtual';
+
     #endregion
 
     #region • ATTRIBUTES

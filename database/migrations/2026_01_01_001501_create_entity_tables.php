@@ -6,11 +6,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityBlock;
-use Narsil\Models\Entities\EntityField;
-use Narsil\Models\Entities\EntityFieldEntity;
-use Narsil\Models\Entities\EntityFieldForm;
-use Narsil\Models\Entities\EntityFieldSitePage;
+use Narsil\Models\Entities\EntityNode;
+use Narsil\Models\Entities\EntityNodeEntity;
+use Narsil\Models\Entities\EntityNodeForm;
+use Narsil\Models\Entities\EntityNodeSitePage;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Structures\Block;
@@ -34,25 +33,21 @@ return new class extends Migration
         {
             $this->createEntitiesTable();
         }
-        if (!Schema::hasTable(EntityField::TABLE))
+        if (!Schema::hasTable(EntityNode::TABLE))
         {
-            $this->createEntityFieldsTable();
+            $this->createEntityNodesTable();
         }
-        if (!Schema::hasTable(EntityBlock::TABLE))
+        if (!Schema::hasTable(EntityNodeEntity::TABLE))
         {
-            $this->createEntityBlocksTable();
+            $this->createEntityNodeEntityTable();
         }
-        if (!Schema::hasTable(EntityFieldEntity::TABLE))
+        if (!Schema::hasTable(EntityNodeForm::TABLE))
         {
-            $this->createEntityFieldEntityTable();
+            $this->createEntityNodeFormTable();
         }
-        if (!Schema::hasTable(EntityFieldForm::TABLE))
+        if (!Schema::hasTable(EntityNodeSitePage::TABLE))
         {
-            $this->createEntityFieldFormTable();
-        }
-        if (!Schema::hasTable(EntityFieldSitePage::TABLE))
-        {
-            $this->createEntityFieldSitePageTable();
+            $this->createEntityNodeSitePageTable();
         }
     }
 
@@ -63,11 +58,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(EntityFieldSitePage::TABLE);
-        Schema::dropIfExists(EntityFieldForm::TABLE);
-        Schema::dropIfExists(EntityFieldEntity::TABLE);
-        Schema::dropIfExists(EntityBlock::TABLE);
-        Schema::dropIfExists(EntityField::TABLE);
+        Schema::dropIfExists(EntityNodeSitePage::TABLE);
+        Schema::dropIfExists(EntityNodeForm::TABLE);
+        Schema::dropIfExists(EntityNodeEntity::TABLE);
+        Schema::dropIfExists(EntityNode::TABLE);
         Schema::dropIfExists(Entity::TABLE);
     }
 
@@ -136,92 +130,23 @@ return new class extends Migration
     }
 
     /**
-     * Create the entity fields table.
-     *
-     * @return void
-     */
-    protected function createEntityFieldsTable(): void
-    {
-        Schema::create(EntityField::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->uuid(EntityField::UUID)
-                ->primary();
-            $blueprint
-                ->foreignUuid(EntityField::ENTITY_UUID)
-                ->constrained(Entity::TABLE, Entity::UUID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->uuid(EntityField::ENTITY_BLOCK_UUID)
-                ->nullable();
-            $blueprint
-                ->uuidMorphs(EntityField::RELATION_ELEMENT);
-            $blueprint
-                ->jsonb(EntityField::VALUE)
-                ->nullable();
-        });
-    }
-
-    /**
-     * Create the entity blocks table.
-     *
-     * @return void
-     */
-    protected function createEntityBlocksTable(): void
-    {
-        Schema::create(EntityBlock::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->uuid(EntityBlock::UUID)
-                ->primary();
-            $blueprint
-                ->foreignUuid(EntityBlock::ENTITY_UUID)
-                ->constrained(Entity::TABLE, Entity::UUID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->foreignUuid(EntityBlock::ENTITY_FIELD_UUID)
-                ->constrained(EntityField::TABLE, EntityField::UUID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->nullableUuidMorphs(EntityBlock::RELATION_ELEMENT);
-            $blueprint
-                ->foreignId(EntityBlock::BLOCK_ID)
-                ->nullable()
-                ->constrained(Block::TABLE, Block::ID)
-                ->cascadeOnDelete();
-            $blueprint
-                ->integer(EntityBlock::POSITION)
-                ->default(0);
-        });
-
-        Schema::table(EntityField::TABLE, function (Blueprint $blueprint)
-        {
-            $blueprint
-                ->foreign(EntityField::ENTITY_BLOCK_UUID)
-                ->references(EntityBlock::UUID)
-                ->on(EntityBlock::TABLE)
-                ->cascadeOnDelete();
-        });
-    }
-
-    /**
      * Create the entity field entity table.
      *
      * @return void
      */
-    private function createEntityFieldEntityTable(): void
+    private function createEntityNodeEntityTable(): void
     {
-        Schema::create(EntityFieldEntity::TABLE, function (Blueprint $blueprint)
+        Schema::create(EntityNodeEntity::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(EntityFieldEntity::UUID)
+                ->uuid(EntityNodeEntity::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(EntityFieldEntity::ENTITY_FIELD_UUID)
-                ->constrained(EntityField::TABLE, EntityField::UUID)
+                ->foreignUuid(EntityNodeEntity::ENTITY_NODE_UUID)
+                ->constrained(EntityNode::TABLE, EntityNode::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(EntityFieldEntity::ENTITY_UUID)
+                ->foreignUuid(EntityNodeEntity::ENTITY_UUID)
                 ->constrained(Entity::TABLE, Entity::UUID)
                 ->cascadeOnDelete();
         });
@@ -232,19 +157,19 @@ return new class extends Migration
      *
      * @return void
      */
-    private function createEntityFieldFormTable(): void
+    private function createEntityNodeFormTable(): void
     {
-        Schema::create(EntityFieldForm::TABLE, function (Blueprint $blueprint)
+        Schema::create(EntityNodeForm::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(EntityFieldForm::UUID)
+                ->uuid(EntityNodeForm::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(EntityFieldForm::ENTITY_FIELD_UUID)
-                ->constrained(EntityField::TABLE, EntityField::UUID)
+                ->foreignUuid(EntityNodeForm::ENTITY_NODE_UUID)
+                ->constrained(EntityNode::TABLE, EntityNode::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(EntityFieldForm::FORM_ID)
+                ->foreignId(EntityNodeForm::FORM_ID)
                 ->constrained(Form::TABLE, Form::ID)
                 ->cascadeOnDelete();
         });
@@ -255,20 +180,64 @@ return new class extends Migration
      *
      * @return void
      */
-    private function createEntityFieldSitePageTable(): void
+    private function createEntityNodeSitePageTable(): void
     {
-        Schema::create(EntityFieldSitePage::TABLE, function (Blueprint $blueprint)
+        Schema::create(EntityNodeSitePage::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(EntityFieldSitePage::UUID)
+                ->uuid(EntityNodeSitePage::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(EntityFieldSitePage::ENTITY_FIELD_UUID)
-                ->constrained(EntityField::TABLE, EntityField::UUID)
+                ->foreignUuid(EntityNodeSitePage::ENTITY_NODE_UUID)
+                ->constrained(EntityNode::TABLE, EntityNode::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignId(EntityFieldSitePage::SITE_PAGE_ID)
+                ->foreignId(EntityNodeSitePage::SITE_PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
+                ->cascadeOnDelete();
+        });
+    }
+
+    /**
+     * Create the entity blocks table.
+     *
+     * @return void
+     */
+    protected function createEntityNodesTable(): void
+    {
+        Schema::create(EntityNode::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(EntityNode::UUID)
+                ->primary();
+            $blueprint
+                ->foreignUuid(EntityNode::ENTITY_UUID)
+                ->constrained(Entity::TABLE, Entity::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->uuid(EntityNode::PARENT_UUID)
+                ->nullable();
+            $blueprint
+                ->nullableUuidMorphs(EntityNode::RELATION_ELEMENT);
+            $blueprint
+                ->foreignId(EntityNode::BLOCK_ID)
+                ->nullable()
+                ->constrained(Block::TABLE, Block::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->integer(EntityNode::POSITION)
+                ->default(0);
+            $blueprint
+                ->jsonb(EntityNode::VALUE)
+                ->nullable();
+        });
+
+        Schema::table(EntityNode::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->foreign(EntityNode::PARENT_UUID)
+                ->references(EntityNode::UUID)
+                ->on(EntityNode::TABLE)
                 ->cascadeOnDelete();
         });
     }

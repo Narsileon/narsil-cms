@@ -27,8 +27,8 @@ class FormTabElementObserver
     {
         match ($model->{FormTabElement::ELEMENT_TYPE})
         {
-            Fieldset::class => $model->{FormTabElement::FIELDSET_ID} = $model->{FormTabElement::ELEMENT_ID},
-            Input::class => $model->{FormTabElement::INPUT_ID} = $model->{FormTabElement::ELEMENT_ID},
+            Fieldset::TABLE => $model->{FormTabElement::FIELDSET_ID} = $model->{FormTabElement::ELEMENT_ID},
+            Input::TABLE => $model->{FormTabElement::INPUT_ID} = $model->{FormTabElement::ELEMENT_ID},
             default => null,
         };
     }

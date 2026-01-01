@@ -12,7 +12,7 @@ use Narsil\Models\Structures\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class BlockSeeder extends ElementSeeder
+abstract class BlockSeeder extends StructureSeeder
 {
     #region PUBLIC METHODS
 

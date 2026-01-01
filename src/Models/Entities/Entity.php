@@ -48,7 +48,7 @@ class Entity extends Model
         ];
 
         $this->with = [
-            self::RELATION_FIELDS,
+            self::RELATION_NODES,
         ];
 
         parent::__construct($attributes);
@@ -86,11 +86,11 @@ class Entity extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "fields" relation.
+     * The name of the "nodes" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELDS = 'fields';
+    final public const RELATION_NODES = 'nodes';
 
     /**
      * The name of the "template" relation.
@@ -125,19 +125,18 @@ class Entity extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated fields.
+     * Get the associated nodes.
      *
      * @return HasMany
      */
-    final public function fields(): HasMany
+    final public function nodes(): HasMany
     {
         return $this
             ->hasMany(
-                EntityField::class,
-                EntityField::ENTITY_UUID,
+                EntityNode::class,
+                EntityNode::ENTITY_UUID,
                 self::UUID,
-            )
-            ->whereNull(EntityField::ENTITY_BLOCK_UUID);
+            );
     }
 
     /**

@@ -286,6 +286,7 @@ return [
         'url'                     => 'URL',
         'uuid'                    => 'UUID',
         'value'                   => 'value',
+        'virtual'                 => 'virtual',
     ],
 
 ];

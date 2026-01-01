@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Database\Seeders\Templates\ContentSeeder;
 use Narsil\Database\Seeders\ValidationRuleSeeder;
 use Narsil\Models\Sites\Site;
 
@@ -51,9 +52,11 @@ class MigrationServiceProvider extends ServiceProvider
             if (!Site::exists())
             {
                 $this->createSite();
+
+                new ContentSeeder()->run();
             }
 
-            $this->seedValidationRules();
+            new ValidationRuleSeeder()->run();
         });
     }
 
@@ -84,15 +87,6 @@ class MigrationServiceProvider extends ServiceProvider
             Site::HANDLE => $baseUrl,
             Site::NAME => $baseUrl,
         ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function seedValidationRules(): void
-    {
-        new ValidationRuleSeeder()
-            ->run();
     }
 
     /**
