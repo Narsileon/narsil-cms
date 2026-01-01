@@ -45,7 +45,7 @@ class FormFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
 
-            Form::RELATION_PAGES => [
+            Form::RELATION_TABS => [
                 FormRule::ARRAY,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,

@@ -7,6 +7,7 @@ namespace Narsil\Models\Forms;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Arr;
 use Narsil\Casts\JsonCast;
 use Narsil\Models\ValidationRule;
 use Narsil\Services\Models\FieldService;
@@ -66,6 +67,11 @@ class Input extends Model
         ]);
 
         parent::__construct($attributes);
+
+        if ($options = Arr::get($attributes, self::RELATION_OPTIONS))
+        {
+            $this->setRelation(self::RELATION_OPTIONS, collect($options));
+        }
     }
 
     #endregion

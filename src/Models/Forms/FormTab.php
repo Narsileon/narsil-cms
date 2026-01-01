@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Arr;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -50,6 +51,11 @@ class FormTab extends Model
         ]);
 
         parent::__construct($attributes);
+
+        if ($elements = Arr::get($attributes, self::RELATION_ELEMENTS))
+        {
+            $this->setRelation(self::RELATION_ELEMENTS, collect($elements));
+        }
     }
 
     #endregion

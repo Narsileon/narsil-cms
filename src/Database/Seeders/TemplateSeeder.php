@@ -12,7 +12,7 @@ use Narsil\Models\Structures\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class TemplateSeeder extends StructureSeeder
+abstract class TemplateSeeder extends StructuresSeeder
 {
     #region PUBLIC METHODS
 

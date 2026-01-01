@@ -18,6 +18,17 @@ use Narsil\Models\Structures\Field;
  */
 class ButtonBlockSeeder extends BlockSeeder
 {
+    #region CONSTANTS
+
+    /**
+     * The name of the "label" handle
+     *
+     * @var string
+     */
+    const LABEL = 'label';
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**

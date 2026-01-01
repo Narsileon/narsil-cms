@@ -4,6 +4,7 @@ namespace Narsil\Database\Seeders;
 
 #region USE
 
+use Illuminate\Database\Seeder;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
@@ -19,7 +20,7 @@ use Narsil\Models\Structures\TemplateTabElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class StructureSeeder
+abstract class StructuresSeeder extends Seeder
 {
     #region PROTECTED METHODS
 

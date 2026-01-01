@@ -19,6 +19,31 @@ use Narsil\Models\Structures\Field;
  */
 class HeroHeaderBlockSeeder extends BlockSeeder
 {
+    #region CONSTANTS
+
+    /**
+     * The name of the "buttons" handle
+     *
+     * @var string
+     */
+    const BUTTONS = 'buttons';
+
+    /**
+     * The name of the "excerpt" handle
+     *
+     * @var string
+     */
+    const EXCERPT = 'excerpt';
+
+    /**
+     * The name of the "hero header" handle
+     *
+     * @var string
+     */
+    const HERO_HEADER = 'hero_header';
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -29,7 +54,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
         $headlineBlock = new HeadlineBlockSeeder()->block();
 
         return new Block([
-            Block::HANDLE => 'hero_header',
+            Block::HANDLE => self::HERO_HEADER,
             Block::NAME => 'Hero Header',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
@@ -41,7 +66,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'excerpt',
+                        Field::HANDLE => self::EXCERPT,
                         Field::NAME => 'Excerpt',
                         Field::TRANSLATABLE => true,
                         Field::TYPE => RichTextField::class,
@@ -49,7 +74,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                 ]),
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'hero_header_buttons',
+                        Field::HANDLE => self::BUTTONS,
                         Field::NAME => 'Buttons',
                         Field::TYPE => BuilderField::class,
                         Field::RELATION_BLOCKS => [

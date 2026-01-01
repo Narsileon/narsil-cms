@@ -18,6 +18,17 @@ use Narsil\Models\Structures\Field;
  */
 class FormBlockSeeder extends BlockSeeder
 {
+    #region CONSTANTS
+
+    /**
+     * The name of the "form" handle
+     *
+     * @var string
+     */
+    const FORM = 'form';
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -26,12 +37,12 @@ class FormBlockSeeder extends BlockSeeder
     protected function block(): Block
     {
         return new Block([
-            Block::HANDLE => 'form',
+            Block::HANDLE => self::FORM,
             Block::NAME => 'Form',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'form',
+                        Field::HANDLE => self::FORM,
                         Field::NAME => 'Form',
                         Field::TYPE => FormField::class,
                     ]),

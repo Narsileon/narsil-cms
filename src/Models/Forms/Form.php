@@ -6,6 +6,7 @@ namespace Narsil\Models\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Arr;
 use Narsil\Models\Caches\Cache;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
@@ -45,10 +46,15 @@ class Form extends Model
         ];
 
         $this->with = [
-            self::RELATION_PAGES,
+            self::RELATION_TABS,
         ];
 
         parent::__construct($attributes);
+
+        if ($tabs = Arr::get($attributes, self::RELATION_TABS))
+        {
+            $this->setRelation(self::RELATION_TABS, collect($tabs));
+        }
     }
 
     #endregion
@@ -97,18 +103,18 @@ class Form extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "pages" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_PAGES = 'pages';
-
-    /**
-     * The name of the "pages" relation.
+     * The name of the "submissions" relation.
      *
      * @var string
      */
     final public const RELATION_SUBMISSIONS = 'submissions';
+
+    /**
+     * The name of the "tabs" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TABS = 'tabs';
 
     #endregion
 
@@ -140,11 +146,11 @@ class Form extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated pages.
+     * Get the associated tabs.
      *
      * @return HasMany
      */
-    final public function pages(): HasMany
+    final public function tabs(): HasMany
     {
         return $this
             ->hasMany(

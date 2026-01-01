@@ -20,6 +20,45 @@ use Narsil\Models\Structures\Field;
  */
 class AccordionBlockSeeder extends BlockSeeder
 {
+    #region CONSTANTS
+
+    /**
+     * The name of the "accordion" handle
+     *
+     * @var string
+     */
+    const ACCORDION = 'accordion';
+
+    /**
+     * The name of the "accordion builder" handle
+     *
+     * @var string
+     */
+    const ACCORDION_BUILDER = 'accordion_builder';
+
+    /**
+     * The name of the "accordion item" handle
+     *
+     * @var string
+     */
+    const ACCORDION_ITEM = 'accordion_item';
+
+    /**
+     * The name of the "accordion item content" handle
+     *
+     * @var string
+     */
+    const ACCORDION_ITEM_CONTENT = 'accordion_item_content';
+
+    /**
+     * The name of the "accordion item trigger" handle
+     *
+     * @var string
+     */
+    const ACCORDION_ITEM_TRIGGER = 'accordion_item_trigger';
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -28,22 +67,22 @@ class AccordionBlockSeeder extends BlockSeeder
     protected function block(): Block
     {
         return new Block([
-            Block::HANDLE => 'accordion',
+            Block::HANDLE => self::ACCORDION,
             Block::NAME => 'Accordion',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'accordion_builder',
+                        Field::HANDLE => self::ACCORDION_BUILDER,
                         Field::NAME => 'Items',
                         Field::TYPE => BuilderField::class,
                         Field::RELATION_BLOCKS => [
                             new Block([
-                                Block::HANDLE => 'accordion_item',
+                                Block::HANDLE => self::ACCORDION_ITEM,
                                 Block::NAME => 'Accordion Item',
                                 Block::RELATION_ELEMENTS => [
                                     new BlockElement([
                                         BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => 'accordion_item_trigger',
+                                            Field::HANDLE => self::ACCORDION_ITEM_TRIGGER,
                                             Field::NAME => 'Trigger',
                                             Field::TRANSLATABLE => true,
                                             Field::TYPE => TextField::class,
@@ -52,7 +91,7 @@ class AccordionBlockSeeder extends BlockSeeder
                                     ]),
                                     new BlockElement([
                                         BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => 'accordion_item_content',
+                                            Field::HANDLE => self::ACCORDION_ITEM_CONTENT,
                                             Field::NAME => 'Content',
                                             Field::TRANSLATABLE => true,
                                             Field::TYPE => RichTextField::class,

@@ -20,6 +20,31 @@ use Narsil\Models\Structures\FieldOption;
  */
 class HeadlineBlockSeeder extends BlockSeeder
 {
+    #region CONSTANTS
+
+    /**
+     * The name of the "headline" handle
+     *
+     * @var string
+     */
+    const HEADLINE = 'headline';
+
+    /**
+     * The name of the "headline level" handle
+     *
+     * @var string
+     */
+    const HEADLINE_LEVEL = 'headline_level';
+
+    /**
+     * The name of the "headline style" handle
+     *
+     * @var string
+     */
+    const HEADLINE_STYLE = 'headline_style';
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -30,14 +55,14 @@ class HeadlineBlockSeeder extends BlockSeeder
         $headlineSelectOptions = $this->getHeadlineSelectOptions();
 
         return new Block([
-            Block::HANDLE => 'headline',
+            Block::HANDLE => self::HEADLINE,
             Block::NAME => 'Headline',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'headline',
+                        Field::HANDLE => self::HEADLINE,
                         Field::NAME => 'Headline',
                         Field::REQUIRED => true,
                         Field::TRANSLATABLE => true,
@@ -48,7 +73,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                 new BlockElement([
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'headline_level',
+                        Field::HANDLE => self::HEADLINE_LEVEL,
                         Field::NAME => 'Level',
                         Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
@@ -60,7 +85,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                 new BlockElement([
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'headline_style',
+                        Field::HANDLE => self::HEADLINE_STYLE,
                         Field::NAME => 'Style',
                         Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,

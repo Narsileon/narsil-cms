@@ -12,7 +12,7 @@ use Narsil\Models\Structures\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class FieldSeeder extends StructureSeeder
+abstract class FieldSeeder extends StructuresSeeder
 {
     #region PUBLIC METHODS
 

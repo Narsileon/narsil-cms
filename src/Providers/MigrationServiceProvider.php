@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Database\Seeders\Templates\ContentSeeder;
+use Narsil\Database\Seeders\DatabaseSeeder;
 use Narsil\Database\Seeders\ValidationRuleSeeder;
 use Narsil\Models\Sites\Site;
 
@@ -53,7 +53,7 @@ class MigrationServiceProvider extends ServiceProvider
             {
                 $this->createSite();
 
-                new ContentSeeder()->run();
+                new DatabaseSeeder()->run();
             }
 
             new ValidationRuleSeeder()->run();

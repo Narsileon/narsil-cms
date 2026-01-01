@@ -7,6 +7,7 @@ namespace Narsil\Models\Forms;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
+use Illuminate\Support\Arr;
 use Narsil\Interfaces\IFormHasElement;
 use Narsil\Models\Forms\FormTab;
 use Narsil\Traits\HasElement;
@@ -59,6 +60,16 @@ class FormTabElement extends MorphPivot implements IFormHasElement
         ]);
 
         parent::__construct($attributes);
+
+        if ($conditions = Arr::get($attributes, self::RELATION_CONDITIONS))
+        {
+            $this->setRelation(self::RELATION_CONDITIONS, collect($conditions));
+        }
+
+        if ($element = Arr::get($attributes, self::RELATION_ELEMENT))
+        {
+            $this->setRelation(self::RELATION_ELEMENT, $element);
+        }
     }
 
     #endregion

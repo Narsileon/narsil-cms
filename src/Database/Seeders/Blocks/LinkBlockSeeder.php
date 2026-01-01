@@ -18,6 +18,17 @@ use Narsil\Models\Structures\Field;
  */
 class LinkBlockSeeder extends BlockSeeder
 {
+    #region CONSTANTS
+
+    /**
+     * The name of the "link" handle
+     *
+     * @var string
+     */
+    const LINK = 'link';
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -26,14 +37,14 @@ class LinkBlockSeeder extends BlockSeeder
     protected function block(): Block
     {
         return new Block([
-            Block::HANDLE => 'link',
+            Block::HANDLE => self::LINK,
             Block::NAME => 'Link',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'link',
+                        Field::HANDLE => self::LINK,
                         Field::NAME => 'Link',
                         Field::TYPE => LinkField::class,
                     ]),
