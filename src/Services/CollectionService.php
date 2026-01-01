@@ -82,7 +82,7 @@ abstract class CollectionService
                 }
                 else
                 {
-                    return static::getBlockFieldElements($blockElement->{BlockElement::RELATION_BLOCK});
+                    return static::getBlockFieldElements($blockElement->{BlockElement::RELATION_ELEMENT});
                 }
             });
     }

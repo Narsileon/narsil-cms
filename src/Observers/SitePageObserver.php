@@ -7,7 +7,6 @@ namespace Narsil\Observers;
 use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Sites\SitePageEntity;
-use Narsil\Models\Sites\SitePageRelation;
 
 #endregion
 

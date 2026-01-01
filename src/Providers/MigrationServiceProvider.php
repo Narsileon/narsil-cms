@@ -51,9 +51,9 @@ class MigrationServiceProvider extends ServiceProvider
 
             if (!Site::exists())
             {
-                $this->createSite();
-
                 new DatabaseSeeder()->run();
+
+                $this->createSite();
             }
 
             new ValidationRuleSeeder()->run();
