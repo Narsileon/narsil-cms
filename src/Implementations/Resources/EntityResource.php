@@ -7,11 +7,14 @@ namespace Narsil\Implementations\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\Resources\EntityResource as Contract;
 use Narsil\Implementations\AbstractResource;
 use Narsil\Interfaces\IStructureHasElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
+use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\Field;
 
 #endregion
 
@@ -85,32 +88,71 @@ class EntityResource extends AbstractResource implements Contract
 
     /**
      * @param string|null $parentUuid
+     * @param string|null $path
      *
-     * @return array
+     * @return void
      */
-    protected function processNodes(?string $parentUuid = null): array
+    protected function processNodes(?string $parentUuid = null, ?string $path = null): void
     {
-        $nodes = $this->nodes->get($parentUuid);
+        $nodes = $this->nodes->get($parentUuid, []);
 
         foreach ($nodes as $node)
         {
             $element = $node->{EntityNode::RELATION_ELEMENT};
 
-            $key = $element->{IStructureHasElement::HANDLE};
+            $handle = $element->{IStructureHasElement::HANDLE};
 
-            if ($element->{IStructureHasElement::TRANSLATABLE})
+            if ($element->{IStructureHasElement::ELEMENT_TYPE} === Field::TABLE)
             {
-                $value = $node->getTranslations(EntityNode::VALUE);
+                $field = $element->{IStructureHasElement::RELATION_ELEMENT};
+
+                $key = $path ? "$path.$handle" : $handle;
+
+                if ($field->{Field::TYPE} === BuilderField::class)
+                {
+                    $blockNodes = $this->nodes->get($node->{EntityNode::UUID}, []);
+
+                    foreach ($blockNodes as $index => $blockNode)
+                    {
+                        Arr::set($this->data, "$key.$index", [
+                            EntityNode::BLOCK_ID => $blockNode->{EntityNode::BLOCK_ID},
+                        ]);
+
+                        $nextPath = "$key.$index." . EntityNode::RELATION_CHILDREN;
+
+                        $this->processNodes($blockNode->{EntityNode::UUID}, $nextPath);
+                    }
+                }
+                else
+                {
+                    if ($element->{IStructureHasElement::TRANSLATABLE})
+                    {
+                        $value = $node->getTranslations(EntityNode::VALUE);
+                    }
+                    else
+                    {
+                        $value = $node->{EntityNode::VALUE};
+                    }
+
+                    Arr::set($this->data, $key, $value);
+                }
             }
             else
             {
-                $value = $node->{EntityNode::VALUE};
+                $block = $element->{IStructureHasElement::RELATION_ELEMENT};
+
+                if ($block->{Block::VIRTUAL})
+                {
+                    $nextPath = $path;
+                }
+                else
+                {
+                    $nextPath = $path ? "$path.$handle" : $handle;
+                }
+
+                $this->processNodes($node->{EntityNode::UUID}, $nextPath);
             }
-
-            Arr::set($this->data, $key, $value);
         }
-
-        return [];
     }
 
     #endregion

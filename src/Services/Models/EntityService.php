@@ -67,7 +67,7 @@ abstract class EntityService
      */
     public static function syncElements(Entity $entity, Collection $elements, array $attributes, ?EntityNode $parent = null, ?string $path = null): void
     {
-        foreach ($elements as $element)
+        foreach ($elements as $position => $element)
         {
             $handle = $element->{IStructureHasElement::HANDLE};
 
@@ -99,6 +99,7 @@ abstract class EntityService
                             EntityNode::BLOCK_ID => Arr::get($block, EntityNode::BLOCK_ID),
                             EntityNode::ENTITY_UUID => $entity->{Entity::UUID},
                             EntityNode::PARENT_UUID => $fieldEntityNode->getKey(),
+                            EntityNode::POSITION => $index,
                         ]);
 
                         $blockEntityNode->loadMissing([
@@ -117,6 +118,7 @@ abstract class EntityService
                         EntityNode::ELEMENT_TYPE => $element->getTable(),
                         EntityNode::ELEMENT_ID => $element->getKey(),
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
+                        EntityNode::POSITION => $position,
                         EntityNode::VALUE => $value,
                     ]);
                 }
@@ -130,6 +132,7 @@ abstract class EntityService
                     EntityNode::ELEMENT_TYPE => $element->getTable(),
                     EntityNode::ELEMENT_ID => $element->getKey(),
                     EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
+                    EntityNode::POSITION => $position,
                 ]);
 
                 if ($block->{Block::VIRTUAL})

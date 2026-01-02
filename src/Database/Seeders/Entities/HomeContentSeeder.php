@@ -7,7 +7,10 @@ namespace Narsil\Database\Seeders\Entities;
 use Narsil\Database\Seeders\Blocks\HeadlineBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Database\Seeders\EntitySeeder;
+use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
 use Narsil\Models\Entities\Entity;
+use Narsil\Models\Entities\EntityNode;
+use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Template;
 use Narsil\Services\CollectionService;
 
@@ -26,14 +29,19 @@ class HomeContentSeeder extends EntitySeeder
      */
     protected function data(): array
     {
+        $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
+
         return [
-            HeroHeaderBlockSeeder::HERO_HEADER => [
-                HeadlineBlockSeeder::HEADLINE => [
-                    HeadlineBlockSeeder::HEADLINE => 'Welcome to Narsil CMS!',
-                    HeadlineBlockSeeder::HEADLINE_LEVEL => 'h1',
-                    HeadlineBlockSeeder::HEADLINE_STYLE => 'h1',
+            ContentTemplateSeeder::CONTENT => [[
+                EntityNode::BLOCK_ID => $heroHeaderBlock->{Block::ID},
+                EntityNode::RELATION_CHILDREN => [
+                    HeadlineBlockSeeder::HEADLINE => [
+                        HeadlineBlockSeeder::HEADLINE => 'Welcome to Narsil CMS!',
+                        HeadlineBlockSeeder::HEADLINE_LEVEL => 'h1',
+                        HeadlineBlockSeeder::HEADLINE_STYLE => 'h1',
+                    ],
                 ],
-            ],
+            ]],
         ];
     }
 
