@@ -5,7 +5,6 @@ namespace Narsil\Database\Seeders\Templates;
 #region USE
 
 use Narsil\Contracts\Fields\BuilderField;
-use Narsil\Contracts\Fields\TextField;
 use Narsil\Database\Seeders\Blocks\AccordionBlockSeeder;
 use Narsil\Database\Seeders\Blocks\FormBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
@@ -50,22 +49,6 @@ class ContentTemplateSeeder extends TemplateSeeder
             Template::PLURAL => 'contents',
             Template::SINGULAR => 'content',
             Template::RELATION_TABS => [
-                new TemplateTab([
-                    TemplateTab::HANDLE => 'test',
-                    TemplateTab::NAME => 'test',
-                    TemplateTab::RELATION_ELEMENTS => [
-                        new TemplateTabElement([
-                            TemplateTabElement::RELATION_ELEMENT => new Field([
-                                Field::HANDLE => 'title',
-                                Field::NAME => 'title',
-                                Field::TYPE => TextField::class,
-                            ]),
-                        ]),
-                        new TemplateTabElement([
-                            TemplateTabElement::RELATION_ELEMENT => $heroHeaderBlock,
-                        ]),
-                    ],
-                ]),
                 new TemplateTab([
                     TemplateTab::HANDLE => 'content',
                     TemplateTab::NAME => 'content',
