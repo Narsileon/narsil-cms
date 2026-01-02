@@ -48,6 +48,10 @@ function Builder({ blocks, name }: BuilderProps) {
     useSensor(KeyboardSensor),
   );
 
+  function getBlock(id: number): Block {
+    return blocks.find((block) => block.id === id) as Block;
+  }
+
   function onDragCancel({}: DragCancelEvent) {
     setActive(null);
   }
@@ -124,6 +128,7 @@ function Builder({ blocks, name }: BuilderProps) {
                 />
                 <BuilderItem
                   baseHandle={baseHandle}
+                  block={getBlock(item.block_id)}
                   id={item.uuid}
                   item={item}
                   onMoveDown={index < items.length - 1 ? () => onMoveDown(item.uuid) : undefined}
@@ -148,7 +153,14 @@ function Builder({ blocks, name }: BuilderProps) {
         </div>
       </SortableContext>
       <DragOverlay>
-        {active ? <BuilderItem collapsed={true} id={active.uuid} item={active} /> : null}
+        {active ? (
+          <BuilderItem
+            block={getBlock(active.block_id)}
+            collapsed={true}
+            id={active.uuid}
+            item={active}
+          />
+        ) : null}
       </DragOverlay>
     </DndContext>
   );

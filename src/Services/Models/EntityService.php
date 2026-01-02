@@ -93,6 +93,11 @@ abstract class EntityService
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
                     ]);
 
+                    if (!is_array($value))
+                    {
+                        continue;
+                    }
+
                     foreach ($value as $index => $block)
                     {
                         $blockEntityNode = EntityNode::create([

@@ -116,6 +116,7 @@ class EntityResource extends AbstractResource implements Contract
                     {
                         Arr::set($this->data, "$key.$index", [
                             EntityNode::BLOCK_ID => $blockNode->{EntityNode::BLOCK_ID},
+                            EntityNode::UUID => $blockNode->{EntityNode::UUID},
                         ]);
 
                         $nextPath = "$key.$index." . EntityNode::RELATION_CHILDREN;

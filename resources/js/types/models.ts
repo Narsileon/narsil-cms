@@ -19,6 +19,7 @@ export type Block = {
   id: number;
   identifier: string;
   name: string;
+  virtual: boolean;
 };
 
 export type Condition = {

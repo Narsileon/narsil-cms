@@ -5,6 +5,7 @@ namespace Narsil\Http\Resources\Collections;
 #region USE
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Narsil\Http\Resources\SummaryResource;
 use Narsil\Models\Structures\Template;
 
@@ -25,7 +26,7 @@ class CollectionSummaryResource extends SummaryResource
     {
         return [
             self::HREF => route("collections.index", $this->{Template::HANDLE}),
-            self::NAME => $this->{Template::PLURAL},
+            self::NAME => Str::ucfirst($this->{Template::PLURAL}),
         ];
     }
 

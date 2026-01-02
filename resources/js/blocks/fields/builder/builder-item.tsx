@@ -12,17 +12,20 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItem, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
+import type { Block } from "@narsil-cms/types";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
 
 type BuilderItemProps = Omit<ComponentProps<typeof SortableItem>, "item"> &
   Pick<ComponentProps<typeof SortableItemMenu>, "onMoveDown" | "onMoveUp" | "onRemove"> & {
     baseHandle?: string;
+    block: Block;
     item: BuilderElement;
   };
 
 function BuilderItem({
   baseHandle,
+  block,
   className,
   collapsed = false,
   id,
@@ -69,7 +72,7 @@ function BuilderItem({
               {...listeners}
               tooltip={trans("ui.move")}
             />
-            <CardTitle className="grow justify-self-start font-normal">{item.block.name}</CardTitle>
+            <CardTitle className="grow justify-self-start font-normal">{block.name}</CardTitle>
             <div className="flex items-center gap-1">
               <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
               <Button
@@ -87,8 +90,8 @@ function BuilderItem({
           </CardHeader>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <CardContent>
-            {item.block.elements?.map((element, index) => {
+          <CardContent className="grid-cols-12">
+            {block.elements?.map((element, index) => {
               const childElement = element.element;
 
               const isField = "type" in childElement;
@@ -98,14 +101,14 @@ function BuilderItem({
                 : undefined;
 
               const childName = element.name ?? childElement.name;
-              let childHandle = `${baseHandle}.fields.${index}.value`;
+              let childHandle = `${baseHandle}.children.${element.handle}`;
 
-              if (isField && !translatable) {
+              if (
+                isField &&
+                childElement.type !== "Narsil\\Contracts\\Fields\\BuilderField" &&
+                !translatable
+              ) {
                 childHandle = `${childHandle}.en`;
-              }
-
-              if (isField && childElement.type === "Narsil\\Contracts\\Fields\\BuilderField") {
-                childHandle = `${baseHandle}.fields.${index}.blocks`;
               }
 
               return (

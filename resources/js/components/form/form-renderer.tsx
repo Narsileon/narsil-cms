@@ -40,13 +40,19 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
         {props.elements?.map((element, index) => {
           const childElement = element.element;
 
+          let childHandle = element.handle ?? childElement.handle;
+
+          if (props.virtual === false) {
+            childHandle = `${props.handle}.${childHandle}`;
+          }
+
           return (
             <Fragment key={index}>
               {"type" in childElement ? (
                 <FormRenderer
                   {...childElement}
                   conditions={element.conditions}
-                  handle={element.handle ?? childElement.handle}
+                  handle={childHandle}
                   name={element.name ?? childElement.name}
                   required={element.required ?? childElement.required}
                   translatable={element.translatable ?? childElement.translatable}
@@ -121,7 +127,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
           onChange?.(value);
           onFieldChange(value);
         }
-        console.log(placeholder, props);
+
         return (
           <FormItem
             className={cn(
@@ -194,7 +200,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
             {getField(type, {
               id: props.handle,
               element: props as Field,
-              placeholder: placeholder ?? props.placeholder,
+              placeholder: placeholder ?? (props.placeholder as string),
               required: required,
               value: value,
               setValue: handleOnChange,

@@ -9,7 +9,6 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
-import { uniqueId } from "lodash-es";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
 
@@ -35,7 +34,7 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
           return (
             <DropdownMenuItem
               onClick={() => {
-                const node = { uuid: uniqueId("id:"), block: block, fields: [], values: {} };
+                const node = { uuid: crypto.randomUUID(), block_id: block.id, children: {} };
 
                 onAdd(node as BuilderElement);
               }}
