@@ -21,23 +21,23 @@ class TemplateObserver
     #region PUBLIC METHODS
 
     /**
-     * @param Template $template
+     * @param Template $model
      *
      * @return void
      */
-    public function created(Template $template): void
+    public function created(Template $model): void
     {
-        $this->createPermissions($template);
+        $this->createPermissions($model);
     }
 
     /**
-     * @param Template $template
+     * @param Template $model
      *
      * @return void
      */
-    public function deleted(Template $template): void
+    public function deleted(Template $model): void
     {
-        Schema::dropIfExists($template->{Template::HANDLE});
+        Schema::dropIfExists($model->{Template::HANDLE});
     }
 
     #endregion
@@ -49,7 +49,7 @@ class TemplateObserver
      *
      * @return void
      */
-    protected function createPermissions(Template $template): void
+    protected function createPermissions(Template $model): void
     {
         $permissions = [
             PermissionEnum::VIEW->value,
@@ -60,11 +60,11 @@ class TemplateObserver
 
         foreach ($permissions as $permission)
         {
-            $handle = PermissionService::getHandle($template->{Template::HANDLE}, $permission);
+            $handle = PermissionService::getHandle($model->{Template::HANDLE}, $permission);
 
             $name = trans("narsil::permissions.$permission", [
-                'model' => $template->{Template::SINGULAR},
-                'table' => $template->{Template::PLURAL},
+                'model' => $model->{Template::SINGULAR},
+                'table' => $model->{Template::PLURAL},
             ]);
 
             Permission::firstOrCreate([

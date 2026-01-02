@@ -21,30 +21,30 @@ class SiteObserver
     #region PUBLIC METHODS
 
     /**
-     * @param Site $site
+     * @param Site $model
      *
      * @return void
      */
-    public function creating(Site $site): void
+    public function creating(Site $model): void
     {
         if (Site::count() === 0)
         {
-            $this->createFooter($site);
+            $this->createFooter($model);
         }
     }
 
     /**
-     * @param Site $site
+     * @param Site $model
      *
      * @return void
      */
-    public function created(Site $site): void
+    public function created(Site $model): void
     {
-        $homePage = $this->createHomePage($site);
+        $homePage = $this->createHomePage($model);
 
         if (Site::count() === 1)
         {
-            $this->createPages($site, $homePage);
+            $this->createPages($model, $homePage);
         }
     }
 
@@ -53,60 +53,60 @@ class SiteObserver
     #region PROTECTED METHODS
 
     /**
-     * @param Site $site
+     * @param Site $model
      *
      * @return void
      */
-    protected function createFooter(Site $site): void
+    protected function createFooter(Site $model): void
     {
         $footer = Footer::factory()->create([
-            Footer::HANDLE => $site->{Site::HANDLE},
+            Footer::HANDLE => $model->{Site::HANDLE},
         ]);
 
-        $site->fill([
+        $model->fill([
             Site::FOOTER_ID => $footer->{Footer::ID},
         ]);
     }
 
     /**
-     * @param Site $site
+     * @param Site $model
      *
      * @return SitePage
      */
-    protected function createHomePage(Site $site): SitePage
+    protected function createHomePage(Site $model): SitePage
     {
         return SitePage::create([
-            SitePage::SITE_ID => $site->{Host::ID},
+            SitePage::SITE_ID => $model->{Host::ID},
             SitePage::SLUG => 'home',
             SitePage::TITLE => 'Home',
         ]);
     }
 
     /**
-     * @param Site $site
+     * @param Site $model
      * @param SitePage $homePage
      *
      * @return void
      */
-    protected function createPages(Site $site, SitePage $homePage): void
+    protected function createPages(Site $model, SitePage $homePage): void
     {
         $contactPage = SitePage::create([
             SitePage::SHOW_IN_MENU => true,
-            SitePage::SITE_ID => $site->{Site::ID},
+            SitePage::SITE_ID => $model->{Site::ID},
             SitePage::SLUG => 'contact',
             SitePage::TITLE => 'Contact',
         ]);
 
         $imprintPage = SitePage::create([
             SitePage::SHOW_IN_MENU => false,
-            SitePage::SITE_ID => $site->{Site::ID},
+            SitePage::SITE_ID => $model->{Site::ID},
             SitePage::SLUG => 'imprint',
             SitePage::TITLE => 'Imprint',
         ]);
 
         $privacyNoticePage = SitePage::create([
             SitePage::SHOW_IN_MENU => false,
-            SitePage::SITE_ID => $site->{Site::ID},
+            SitePage::SITE_ID => $model->{Site::ID},
             SitePage::SLUG => 'pricacy-notice',
             SitePage::TITLE => 'Privacy Notice',
         ]);
@@ -128,12 +128,12 @@ class SiteObserver
         ]);
 
         FooterLink::create([
-            FooterLink::FOOTER_ID => $site->{Footer::ID},
+            FooterLink::FOOTER_ID => $model->{Footer::ID},
             FooterLink::SITE_PAGE_ID => $imprintPage->{SitePage::ID},
         ]);
 
         FooterLink::create([
-            FooterLink::FOOTER_ID => $site->{Footer::ID},
+            FooterLink::FOOTER_ID => $model->{Footer::ID},
             FooterLink::SITE_PAGE_ID => $privacyNoticePage->{SitePage::ID},
         ]);
     }

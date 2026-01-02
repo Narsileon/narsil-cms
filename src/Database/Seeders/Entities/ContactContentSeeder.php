@@ -6,9 +6,11 @@ namespace Narsil\Database\Seeders\Entities;
 
 use Narsil\Database\Seeders\Blocks\FormBlockSeeder;
 use Narsil\Database\Seeders\EntitySeeder;
+use Narsil\Database\Seeders\Forms\ContactFormSeeder;
 use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
+use Narsil\Models\Forms\Form;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Template;
 use Narsil\Services\CollectionService;
@@ -29,11 +31,14 @@ class ContactContentSeeder extends EntitySeeder
     protected function data(): array
     {
         $formBlock = new FormBlockSeeder()->run();
+        $contactForm = new ContactFormSeeder()->run();
 
         return [
             ContentTemplateSeeder::CONTENT => [[
                 EntityNode::BLOCK_ID => $formBlock->{Block::ID},
-                EntityNode::RELATION_CHILDREN => [],
+                EntityNode::RELATION_CHILDREN => [
+                    FormBlockSeeder::FORM => $contactForm->{Form::ID},
+                ],
             ]],
         ];
     }

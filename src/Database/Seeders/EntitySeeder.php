@@ -72,7 +72,9 @@ abstract class EntitySeeder extends Seeder
             Entity::TEMPLATE_ID => $template->{Template::ID},
         ]);
 
-        EntityService::syncNodes($model, $template, $this->data());
+        $data = $this->data();
+
+        EntityService::syncNodes($model, $template, $data);
 
         return $model;
     }

@@ -19,35 +19,35 @@ class SitePageObserver
     #region PUBLIC METHODS
 
     /**
-     * @param SitePage $sitePage
+     * @param SitePage $model
      *
      * @return void
      */
-    public function created(SitePage $sitePage): void
+    public function created(SitePage $model): void
     {
-        $this->dispatchSitemapJob($sitePage);
+        $this->dispatchSitemapJob($model);
     }
 
     /**
-     * @param SitePage $sitePage
+     * @param SitePage $model
      *
      * @return void
      */
-    public function saved(SitePage $sitePage): void
+    public function saved(SitePage $model): void
     {
-        $this->syncRelations($sitePage);
+        $this->syncRelations($model);
     }
 
     /**
-     * @param SitePage $host
+     * @param SitePage $model
      *
      * @return void
      */
-    public function updated(SitePage $sitePage): void
+    public function updated(SitePage $model): void
     {
-        if ($sitePage->wasChanged(SitePage::SLUG))
+        if ($model->wasChanged(SitePage::SLUG))
         {
-            $this->dispatchSitemapJob($sitePage);
+            $this->dispatchSitemapJob($model);
         }
     }
 
@@ -55,23 +55,23 @@ class SitePageObserver
 
     #region PROTECTED METHODS
 
-    protected function dispatchSitemapJob(SitePage $sitePage): void
+    protected function dispatchSitemapJob(SitePage $model): void
     {
-        $sitePage->loadMissing([
+        $model->loadMissing([
             SitePage::RELATION_SITE,
         ]);
 
-        SitemapJob::dispatch($sitePage->{SitePage::RELATION_SITE});
+        SitemapJob::dispatch($model->{SitePage::RELATION_SITE});
     }
 
     /**
-     * @param SitePage $sitePage
+     * @param SitePage $model
      *
      * @return void
      */
-    protected function syncRelations(SitePage $sitePage): void
+    protected function syncRelations(SitePage $model): void
     {
-        $translations = $sitePage->getTranslations(SitePage::ENTITY);
+        $translations = $model->getTranslations(SitePage::ENTITY);
 
         foreach ($translations as $relations)
         {
@@ -81,7 +81,7 @@ class SitePageObserver
 
                 SitePageEntity::firstOrCreate([
                     SitePageEntity::ENTITY_ID => $id,
-                    SitePageEntity::SITE_PAGE_ID => $sitePage->{SitePage::ID},
+                    SitePageEntity::SITE_PAGE_ID => $model->{SitePage::ID},
                 ]);
             }
         }

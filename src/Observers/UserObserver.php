@@ -17,13 +17,13 @@ class UserObserver
     #region PUBLIC METHODS
 
     /**
-     * @param User $user
+     * @param User $model
      *
      * @return void
      */
-    public function created(User $user): void
+    public function created(User $model): void
     {
-        $this->createUserConfiguration($user);
+        $this->createUserConfiguration($model);
     }
 
     #endregion
@@ -31,15 +31,15 @@ class UserObserver
     #region PROTECTED METHODS
 
     /**
-     * @param User $user
+     * @param User $model
      *
      * @return void
      */
-    protected function createUserConfiguration(User $user): void
+    protected function createUserConfiguration(User $model): void
     {
-        if (!$user->configuration()->exists())
+        if (!$model->configuration()->exists())
         {
-            $user->configuration()->create();
+            $model->configuration()->create();
         }
     }
 

@@ -13,7 +13,9 @@ use Narsil\Models\Entities\EntityNodeSitePage;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Template;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\User;
 
 #endregion
@@ -219,6 +221,16 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->nullableUuidMorphs(EntityNode::RELATION_ELEMENT);
+            $blueprint
+                ->foreignUuid(EntityNode::BLOCK_ELEMENT_UUID)
+                ->nullable()
+                ->constrained(BlockElement::TABLE, BlockElement::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignUuid(EntityNode::TEMPLATE_TAB_ELEMENT_UUID)
+                ->nullable()
+                ->foreignUuid(TemplateTabElement::TABLE, TemplateTabElement::UUID)
+                ->cascadeOnDelete();
             $blueprint
                 ->foreignId(EntityNode::BLOCK_ID)
                 ->nullable()

@@ -14,6 +14,8 @@ use Narsil\Casts\JsonCast;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -75,6 +77,13 @@ class EntityNode extends Model
     final public const BLOCK_ID = 'block_id';
 
     /**
+     * The name of the "block element uuid" column.
+     *
+     * @var string
+     */
+    final public const BLOCK_ELEMENT_UUID = 'block_element_uuid';
+
+    /**
      * The name of the "element id" column.
      *
      * @var string
@@ -110,6 +119,13 @@ class EntityNode extends Model
     final public const POSITION = 'position';
 
     /**
+     * The name of the "template tab element uuid" column.
+     *
+     * @var string
+     */
+    final public const TEMPLATE_TAB_ELEMENT_UUID = 'template_tab_element_uuid';
+
+    /**
      * The name of the "uuid" column.
      *
      * @var string
@@ -126,6 +142,20 @@ class EntityNode extends Model
     #endregion
 
     #region • RELATIONS
+
+    /**
+     * The name of the "block" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCK = 'block';
+
+    /**
+     * The name of the "block element" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_BLOCK_ELEMENT = 'block_element';
 
     /**
      * The name of the "children" relation.
@@ -176,6 +206,13 @@ class EntityNode extends Model
      */
     final public const RELATION_SITE_PAGES = 'site_pages';
 
+    /**
+     * The name of the "template tab element" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TEMPLATE_TAB_ELEMENT = 'template_tab_element';
+
     #endregion
 
     #endregion
@@ -196,6 +233,21 @@ class EntityNode extends Model
                 Block::class,
                 self::BLOCK_ID,
                 Block::ID,
+            );
+    }
+
+    /**
+     * Get the associated block element.
+     *
+     * @return BelongsTo
+     */
+    final public function block_element(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                BlockElement::class,
+                self::BLOCK_ELEMENT_UUID,
+                BlockElement::UUID,
             );
     }
 
@@ -283,7 +335,7 @@ class EntityNode extends Model
      *
      * @return BelongsTo
      */
-    public function parent(): BelongsTo
+    final public function parent(): BelongsTo
     {
         return $this
             ->belongsTo(
@@ -308,6 +360,21 @@ class EntityNode extends Model
                 EntityNodeSitePage::SITE_PAGE_ID,
             )
             ->using(EntityNodeSitePage::class);
+    }
+
+    /**
+     * Get the associated template tab element.
+     *
+     * @return BelongsTo
+     */
+    final public function template_tab_element(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                TemplateTabElement::class,
+                self::TEMPLATE_TAB_ELEMENT_UUID,
+                TemplateTabElement::UUID,
+            );
     }
 
     #endregion

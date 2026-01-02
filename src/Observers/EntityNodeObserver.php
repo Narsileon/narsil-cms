@@ -10,6 +10,7 @@ use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Entities\EntityNodeEntity;
 use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Structures\TemplateTabElement;
 
 #endregion
 
@@ -22,13 +23,28 @@ class EntityNodeObserver
     #region PUBLIC METHODS
 
     /**
-     * @param EntityNode $EntityNode
+     * @param EntityNode $model
      *
      * @return void
      */
-    public function saved(EntityNode $EntityNode): void
+    public function saved(EntityNode $model): void
     {
         // $this->syncRelations($EntityNode);
+    }
+
+    /**
+     * @param EntityNode $model
+     *
+     * @return void
+     */
+    public function saving(EntityNode $model): void
+    {
+        match ($model->{EntityNode::ELEMENT_TYPE})
+        {
+            BlockElement::TABLE => $model->{EntityNode::BLOCK_ELEMENT_UUID} = $model->{EntityNode::ELEMENT_ID},
+            TemplateTabElement::TABLE => $model->{EntityNode::TEMPLATE_TAB_ELEMENT_UUID} = $model->{EntityNode::ELEMENT_ID},
+            default => null,
+        };
     }
 
     #endregion
