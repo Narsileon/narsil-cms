@@ -100,17 +100,19 @@ type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
 type EntityNodeEntity @model(class: "Narsil\\Models\\Entities\\EntityNodeEntity") {
   uuid: String!
   entity_node_uuid: String!
-  owner_uuid: String!
+  entity_uuid: String!
   target_uuid: String!
+  entity: Entity! @belongsTo
   entity_node: EntityNode! @belongsTo
-  owner: Entity! @belongsTo
   target: Entity! @belongsTo
 }
 
 type EntityNodeForm @model(class: "Narsil\\Models\\Entities\\EntityNodeForm") {
   uuid: String!
   entity_node_uuid: String!
+  entity_uuid: String!
   form_id: ID!
+  entity: Entity! @belongsTo
   entity_node: EntityNode! @belongsTo
   form: Form! @belongsTo
 }

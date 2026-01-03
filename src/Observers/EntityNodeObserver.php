@@ -84,7 +84,7 @@ class EntityNodeObserver
 
                     EntityNodeEntity::firstOrCreate([
                         EntityNodeEntity::ENTITY_NODE_UUID => $EntityNode->{EntityNode::UUID},
-                        EntityNodeEntity::OWNER_UUID => $EntityNode->{EntityNode::ENTITY_UUID},
+                        EntityNodeEntity::ENTITY_UUID => $EntityNode->{EntityNode::ENTITY_UUID},
                         EntityNodeEntity::TARGET_UUID => $entity->{Entity::ID},
                     ]);
                 }
@@ -100,7 +100,7 @@ class EntityNodeObserver
 
                 EntityNodeEntity::firstOrCreate([
                     EntityNodeEntity::ENTITY_NODE_UUID => $EntityNode->{EntityNode::UUID},
-                    EntityNodeEntity::OWNER_UUID => $EntityNode->{EntityNode::ENTITY_UUID},
+                    EntityNodeEntity::ENTITY_UUID => $EntityNode->{EntityNode::ENTITY_UUID},
                     EntityNodeEntity::TARGET_UUID => $entity->{Entity::ID},
                 ]);
             }

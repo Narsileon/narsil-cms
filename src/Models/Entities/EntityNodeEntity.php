@@ -6,7 +6,6 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 #endregion
 
@@ -14,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityNodeEntity extends Pivot
+class EntityNodeEntity extends AbstractEntityNodeRelation
 {
     use HasUuids;
 
@@ -26,13 +25,6 @@ class EntityNodeEntity extends Pivot
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
-        $this->timestamps = false;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -51,50 +43,15 @@ class EntityNodeEntity extends Pivot
     #region • COLUMNS
 
     /**
-     * The name of the "entity field uuid" column.
-     *
-     * @var string
-     */
-    final public const ENTITY_NODE_UUID = 'entity_node_uuid';
-
-    /**
-     * The name of the "owner uuid" column.
-     *
-     * @var string
-     */
-    final public const OWNER_UUID = 'owner_uuid';
-
-    /**
      * The name of the "target uuid" column.
      *
      * @var string
      */
     final public const TARGET_UUID = 'target_uuid';
 
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
-
     #endregion
 
     #region • RELATIONS
-
-    /**
-     * The name of the "entity field" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY_NODE = 'entity_node';
-
-    /**
-     * The name of the "owner" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_OWNER = 'owner';
 
     /**
      * The name of the "target" relation.
@@ -110,36 +67,6 @@ class EntityNodeEntity extends Pivot
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
-
-    /**
-     * Get the associated entity field.
-     *
-     * @return BelongsTo
-     */
-    final public function entity_node(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                EntityNode::class,
-                self::ENTITY_NODE_UUID,
-                EntityNode::UUID,
-            );
-    }
-
-    /**
-     * Get the associated owner.
-     *
-     * @return BelongsTo
-     */
-    final public function owner(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Entity::class,
-                self::OWNER_UUID,
-                Entity::UUID,
-            );
-    }
 
     /**
      * Get the associated target.
