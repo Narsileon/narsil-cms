@@ -5,7 +5,6 @@ namespace Narsil\Implementations\Requests;
 #region USE
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
 use Narsil\Implementations\AbstractFormRequest;
@@ -54,6 +53,21 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
     /**
      * {@inheritDoc}
      */
+    public function attributes(): array
+    {
+        $attributes = [];
+
+        foreach ($this->template->{Template::RELATION_TABS} as $templateTab)
+        {
+            $this->populateAttributes($attributes, $templateTab->{TemplateTab::RELATION_ELEMENTS});
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function rules(): array
     {
         $rules = [
@@ -86,7 +100,55 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
     #region PROTECTED METHODS
 
     /**
-     * @param array &$rules
+     * @param array $attributes
+     * @param Collection $elements
+     * @param string|null $path
+     *
+     * @return void
+     */
+    protected function populateAttributes(array &$attributes, Collection $elements, ?string $path = null): void
+    {
+        foreach ($elements as $element)
+        {
+            $handle = $element->{IStructureHasElement::HANDLE};
+
+            $key = $path ? "$path.$handle" : $handle;
+
+            if ($element->{IStructureHasElement::ELEMENT_TYPE} === Field::TABLE)
+            {
+                $field = $element->{IStructureHasElement::RELATION_ELEMENT};
+
+                if ($field->{Field::TRANSLATABLE})
+                {
+                    $attributes[$key] = $handle;
+                }
+                else if ($field->{Field::TYPE} === BuilderField::class)
+                {
+                    $attributes["$key.*"] = $handle;
+
+                    foreach ($field->{Field::RELATION_BLOCKS} ?? [] as $block)
+                    {
+                        $this->populateAttributes($attributes, $block->{Block::RELATION_ELEMENTS}, "$key.*.children");
+                    }
+                }
+                else
+                {
+                    $attributes[$key] = $handle;
+                }
+            }
+            else
+            {
+                $block = $element->{IStructureHasElement::RELATION_ELEMENT};
+
+                $nextPath = $block->{Block::VIRTUAL} ? $path : $key;
+
+                $this->populateAttributes($attributes, $block->{Block::RELATION_ELEMENTS}, $nextPath);
+            }
+        }
+    }
+
+    /**
+     * @param array $rules
      * @param Collection $elements
      * @param string|null $path
      *
@@ -126,7 +188,7 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
 
                     foreach ($field->{Field::RELATION_BLOCKS} ?? [] as $block)
                     {
-                        $this->populateRules($rules, $block->{Block::RELATION_ELEMENTS}, "$key.*");
+                        $this->populateRules($rules, $block->{Block::RELATION_ELEMENTS}, "$key.*.children");
                     }
                 }
                 else

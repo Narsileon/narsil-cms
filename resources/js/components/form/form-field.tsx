@@ -25,9 +25,7 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   const [visible, setVisible] = useState<boolean>(true);
 
   function getError() {
-    const path = field.translatable ? `${id}.${fieldLanguage}` : id;
-
-    return get(errors, path);
+    return get(errors, id);
   }
 
   function getPlaceholder() {
