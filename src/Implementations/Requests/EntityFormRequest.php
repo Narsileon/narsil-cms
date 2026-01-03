@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Requests;
 #region USE
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
 use Narsil\Implementations\AbstractFormRequest;
@@ -166,11 +167,19 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
             {
                 $field = $element->{IStructureHasElement::RELATION_ELEMENT};
 
-                $fieldRules = $field->{Field::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
+                $fieldValidationRules =  $field->{Field::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
+
+                $fieldRules = [];
 
                 if ($element->{IStructureHasElement::REQUIRED})
                 {
+
                     $fieldRules[] = FormRule::REQUIRED;
+
+                    if (Str::contains($path, 'children'))
+                    {
+                        $fieldRules[] = FormRule::SOMETIMES;
+                    }
                 }
                 else
                 {
@@ -181,6 +190,8 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
                 if ($field->{Field::TRANSLATABLE})
                 {
                     $rules[$key] = array_merge([FormRule::ARRAY], $fieldRules);
+
+                    $rules["$key.*"] = $fieldValidationRules;
                 }
                 else if ($field->{Field::TYPE} === BuilderField::class)
                 {
@@ -193,7 +204,7 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
                 }
                 else
                 {
-                    $rules[$key] = $fieldRules;
+                    $rules[$key] = array_merge($fieldRules, $fieldValidationRules);
                 }
             }
             else
