@@ -133,6 +133,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
             className="relative w-full animate-in grid-cols-12 items-center fade-in-0 md:h-full md:max-h-full md:min-h-full md:overflow-hidden"
             autoSave={autoSave}
             options={{
+              preserveState: true,
               onSuccess: (response) => {
                 if (modal) {
                   modal.linkProps?.onSuccess?.(response);
@@ -265,7 +266,6 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
           </FormRoot>
         );
       }}
-      key={modal ? `${id}_${modal.id}` : id}
     />
   );
 }
