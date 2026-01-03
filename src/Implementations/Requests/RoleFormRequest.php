@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\RoleFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Models\Policies\Role;
 use Narsil\Validation\FormRule;
 
@@ -15,14 +17,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class RoleFormRequest implements Contract
+class RoleFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->role)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->role);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Role::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Role::HANDLE => [
@@ -34,7 +49,7 @@ class RoleFormRequest implements Contract
                 FormRule::unique(
                     Role::class,
                     Role::HANDLE,
-                )->ignore($model?->{Role::ID}),
+                )->ignore($this?->{Role::ID}),
             ],
             Role::NAME => [
                 FormRule::REQUIRED,

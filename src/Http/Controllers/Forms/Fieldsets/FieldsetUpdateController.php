@@ -5,12 +5,9 @@ namespace Narsil\Http\Controllers\Forms\Fieldsets;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FieldsetFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Services\Models\FieldsetService;
@@ -27,22 +24,14 @@ class FieldsetUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param FieldsetFormRequest $request
      * @param Fieldset $fieldset
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Fieldset $fieldset): RedirectResponse
+    public function __invoke(FieldsetFormRequest $request, Fieldset $fieldset): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $fieldset);
-
-        $data = $request->all();
-
-        $rules = app(FieldsetFormRequest::class)
-            ->rules($fieldset);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $fieldset->update($attributes);
 

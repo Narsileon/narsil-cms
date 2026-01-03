@@ -4,9 +4,11 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\SitePageFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Enums\SitePageAdapterEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Validation\FormRule;
 
@@ -16,14 +18,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SitePageFormRequest implements Contract
+class SitePageFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->sitePage)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->sitePage);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, SitePage::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         $rules = [
             SitePage::ADAPTER => [
@@ -86,7 +101,7 @@ class SitePageFormRequest implements Contract
             ],
         ];
 
-        if ($model)
+        if ($this->sitePage)
         {
             unset($rules[SitePage::PARENT_ID]);
         }

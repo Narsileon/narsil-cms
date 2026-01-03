@@ -5,12 +5,9 @@ namespace Narsil\Http\Controllers\Structures\Templates;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\TemplateFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Structures\Template;
 use Narsil\Services\Models\TemplateService;
@@ -27,29 +24,18 @@ class TemplateUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param TemplateFormRequest $request
      * @param Template $template
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Template $template): RedirectResponse
+    public function __invoke(TemplateFormRequest $request, Template $template): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $template);
-
-        $data = $request->all();
-
-        $rules = app(TemplateFormRequest::class)
-            ->rules($template);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $template->update($attributes);
 
-        if (Arr::get($data, '_dirty', false))
-        {
-            TemplateService::syncTemplateTabs($template, Arr::get($attributes, Template::RELATION_TABS, []));
-        }
+        TemplateService::syncTemplateTabs($template, Arr::get($attributes, Template::RELATION_TABS, []));
 
         return $this
             ->redirect(route('templates.index'))

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Interfaces\IStructureHasElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Structures\Block;
@@ -23,7 +24,7 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityFormRequest implements Contract
+class EntityFormRequest extends AbstractFormRequest implements Contract
 {
     #region CONSTRUCTOR
 
@@ -53,7 +54,7 @@ class EntityFormRequest implements Contract
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function rules(): array
     {
         $rules = [
             Entity::PUBLISHED_FROM => [
@@ -105,9 +106,21 @@ class EntityFormRequest implements Contract
 
                 $fieldRules = $field->{Field::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
 
-                $fieldRules[FormRule::REQUIRED] = $element->{IStructureHasElement::REQUIRED};
+                if ($element->{IStructureHasElement::REQUIRED})
+                {
+                    $fieldRules[] = FormRule::REQUIRED;
+                }
+                else
+                {
+                    $fieldRules[] = FormRule::SOMETIMES;
+                    $fieldRules[] = FormRule::NULLABLE;
+                }
 
-                if ($field->{Field::TYPE} === BuilderField::class)
+                if ($field->{Field::TRANSLATABLE})
+                {
+                    $rules[$key] = array_merge([FormRule::ARRAY], $fieldRules);
+                }
+                else if ($field->{Field::TYPE} === BuilderField::class)
                 {
                     $rules["$key.*"] = $fieldRules;
 

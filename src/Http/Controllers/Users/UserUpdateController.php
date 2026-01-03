@@ -5,12 +5,9 @@ namespace Narsil\Http\Controllers\Users;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\UserFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\User;
 use Narsil\Services\ModelService;
@@ -26,32 +23,26 @@ class UserUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param UserFormRequest $request
      * @param User $user
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, User $user): RedirectResponse
+    public function __invoke(UserFormRequest $request, User $user): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $user);
+        $attributes = $request->validated();
 
-        $data = $request->all();
-
-        $rules = app(UserFormRequest::class)
-            ->rules($user);
-
-        if (empty(Arr::get($data, User::PASSWORD)))
+        if (empty(Arr::get($attributes, User::PASSWORD)))
         {
-            unset($data[User::PASSWORD]);
-            unset($data[User::ATTRIBUTE_PASSWORD_CONFIRMATION]);
+            unset($attributes[User::PASSWORD]);
+            unset($attributes[User::ATTRIBUTE_PASSWORD_CONFIRMATION]);
         }
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
 
         $user->update($attributes);
 
-        $user->roles()->sync(Arr::get($attributes, User::RELATION_ROLES, []));
+        $user
+            ->roles()
+            ->sync(Arr::get($attributes, User::RELATION_ROLES, []));
 
         return $this
             ->redirect(route('users.index'))

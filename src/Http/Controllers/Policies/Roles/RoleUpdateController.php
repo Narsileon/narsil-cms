@@ -5,12 +5,9 @@ namespace Narsil\Http\Controllers\Policies\Roles;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\RoleFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Role;
 use Narsil\Services\ModelService;
@@ -26,26 +23,20 @@ class RoleUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param RoleFormRequest $request
      * @param Role $role
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Role $role): RedirectResponse
+    public function __invoke(RoleFormRequest $request, Role $role): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $role);
-
-        $data = $request->all();
-
-        $rules = app(RoleFormRequest::class)
-            ->rules($role);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $role->update($attributes);
 
-        $role->permissions()->sync(Arr::get($attributes, Role::RELATION_PERMISSIONS, []));
+        $role
+            ->permissions()
+            ->sync(Arr::get($attributes, Role::RELATION_PERMISSIONS, []));
 
         return $this
             ->redirect(route('roles.index'))

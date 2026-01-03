@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\RoleFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Sites\Site;
 use Narsil\Validation\FormRule;
 
@@ -15,14 +17,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteFormRequest implements Contract
+class SiteFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->site)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->site);
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Site::FOOTER_ID => [

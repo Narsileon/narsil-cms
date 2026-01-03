@@ -5,8 +5,6 @@ namespace Narsil\Http\Controllers\Configurations;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\ConfigurationFormRequest;
 use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -25,23 +23,17 @@ class ConfigurationUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param ConfigurationFormRequest $request
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(ConfigurationFormRequest $request): RedirectResponse
     {
         $configuration = Configuration::firstOrCreate();
 
         $this->authorize(PermissionEnum::UPDATE, $configuration);
 
-        $data = $request->all();
-
-        $rules = app(ConfigurationFormRequest::class)
-            ->rules($configuration);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $configuration->update($attributes);
 

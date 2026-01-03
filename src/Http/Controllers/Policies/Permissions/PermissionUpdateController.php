@@ -5,11 +5,8 @@ namespace Narsil\Http\Controllers\Policies\Permissions;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\PermissionFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\ModelService;
@@ -25,22 +22,14 @@ class PermissionUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param PermissionFormRequest $request
      * @param Permission $permission
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Permission $permission): RedirectResponse
+    public function __invoke(PermissionFormRequest $request, Permission $permission): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $permission);
-
-        $data = $request->all();
-
-        $rules = app(PermissionFormRequest::class)
-            ->rules($permission);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $permission->update($attributes);
 

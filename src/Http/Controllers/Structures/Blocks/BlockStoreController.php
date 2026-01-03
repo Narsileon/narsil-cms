@@ -5,12 +5,9 @@ namespace Narsil\Http\Controllers\Structures\Blocks;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\BlockFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Structures\Block;
 use Narsil\Services\Models\BlockService;
@@ -27,21 +24,13 @@ class BlockStoreController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param BlockFormRequest $request
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(BlockFormRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Block::class);
-
-        $data = $request->all();
-
-        $rules = app(BlockFormRequest::class)
-            ->rules();
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $block = Block::create($attributes);
 

@@ -5,9 +5,7 @@ namespace Narsil\Http\Controllers\Structures\Fields;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FieldFormRequest;
 use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
@@ -28,32 +26,28 @@ class FieldUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param FieldFormRequest $request
      * @param Field $field
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Field $field): RedirectResponse
+    public function __invoke(FieldFormRequest $request, Field $field): RedirectResponse
     {
         $this->authorize(PermissionEnum::UPDATE, $field);
 
-        $data = $request->all();
-
-        $rules = app(FieldFormRequest::class)
-            ->rules($field);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $field->update($attributes);
 
-        $field->blocks()->sync(Arr::pluck(Arr::get($attributes, Field::RELATION_BLOCKS, []), Block::ID));
-        $field->validation_rules()->sync(Arr::get($attributes, Field::RELATION_VALIDATION_RULES, []));
+        $field
+            ->blocks()
+            ->sync(Arr::pluck(Arr::get($attributes, Field::RELATION_BLOCKS, []), Block::ID));
 
-        if ($options = Arr::get($attributes, Field::RELATION_OPTIONS))
-        {
-            FieldService::syncFieldOptions($field, $options);
-        }
+        $field
+            ->validation_rules()
+            ->sync(Arr::get($attributes, Field::RELATION_VALIDATION_RULES, []));
+
+        FieldService::syncFieldOptions($field, Arr::get($attributes, Field::RELATION_OPTIONS));
 
         return $this
             ->redirect(route('fields.index'), $field)

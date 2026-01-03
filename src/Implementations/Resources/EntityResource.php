@@ -129,6 +129,11 @@ class EntityResource extends AbstractResource implements Contract
                     if ($element->{IStructureHasElement::TRANSLATABLE})
                     {
                         $value = $node->getTranslations(EntityNode::VALUE);
+
+                        if (empty($value))
+                        {
+                            $value = (object)[];
+                        }
                     }
                     else
                     {

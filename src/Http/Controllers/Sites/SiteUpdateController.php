@@ -5,10 +5,8 @@ namespace Narsil\Http\Controllers\Sites;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Implementations\Requests\SiteFormRequest;
 use Narsil\Jobs\SitemapJob;
@@ -27,35 +25,18 @@ class SiteUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
-     * @param string $site
+     * @param SiteFormRequest $request
+     * @param Site $site
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, string $site): RedirectResponse
+    public function __invoke(SiteFormRequest $request, Site $site): RedirectResponse
     {
-        $site = Site::query()
-            ->where(Site::HANDLE, $site)
-            ->first();
-
-        if (!$site)
-        {
-            abort(404);
-        }
-
-        $this->authorize(PermissionEnum::UPDATE, $site);
-
-        $data = $request->all();
-
-        $rules = app(SiteFormRequest::class)
-            ->rules();
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $site->update($attributes);
 
-        $tree = $attributes[Site::RELATION_PAGES];
+        $tree = Arr::get($attributes, Site::RELATION_PAGES, []);
 
         SitePage::rebuildTree($tree);
 

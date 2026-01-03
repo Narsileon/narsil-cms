@@ -4,9 +4,11 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
 use Narsil\Contracts\FormRequests\UserFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\User;
 use Narsil\Validation\FormRule;
 
@@ -16,14 +18,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserFormRequest implements Contract
+class UserFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->user)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->user);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, User::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             User::AVATAR => [
@@ -43,7 +58,7 @@ class UserFormRequest implements Contract
                 FormRule::unique(
                     User::class,
                     User::EMAIL,
-                )->ignore($model?->{User::ID}),
+                )->ignore($this->user?->{User::ID}),
             ],
             User::FIRST_NAME => [
                 FormRule::STRING,
@@ -62,7 +77,7 @@ class UserFormRequest implements Contract
                 FormRule::min(8),
                 FormRule::max(255),
                 FormRule::CONFIRMED,
-                $model ? FormRule::SOMETIMES : FormRule::REQUIRED
+                $this->user ? FormRule::SOMETIMES : FormRule::REQUIRED
             ],
 
             User::RELATION_PERMISSIONS => [

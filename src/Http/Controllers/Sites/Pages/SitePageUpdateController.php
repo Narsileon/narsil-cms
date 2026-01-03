@@ -5,11 +5,8 @@ namespace Narsil\Http\Controllers\Sites\Pages;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\SitePageFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Services\ModelService;
@@ -25,23 +22,15 @@ class SitePageUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param SitePageFormRequest $request
      * @param string $site
      * @param SitePage $sitePage
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, string $site, SitePage $sitePage): RedirectResponse
+    public function __invoke(SitePageFormRequest $request, string $site, SitePage $sitePage): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $sitePage);
-
-        $data = $request->all();
-
-        $rules = app(SitePageFormRequest::class)
-            ->rules($sitePage);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $sitePage->update($attributes);
 

@@ -387,7 +387,7 @@ Route::middleware([
             Route::get('/{site}/edit', SiteEditController::class)
                 ->middleware(CountryMiddleware::class)
                 ->name('edit');
-            Route::patch('/{site}', SiteUpdateController::class)
+            Route::patch('/{site:handle}', SiteUpdateController::class)
                 ->name('update');
 
             Route::name('pages.')->group(function ()

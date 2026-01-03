@@ -4,8 +4,8 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\ConfigurationFormRequest as Contract;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Configuration;
 use Narsil\Validation\FormRule;
 
@@ -15,14 +15,14 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ConfigurationFormRequest implements Contract
+class ConfigurationFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function rules(): array
     {
         return [
             Configuration::DEFAULT_LANGUAGE => [

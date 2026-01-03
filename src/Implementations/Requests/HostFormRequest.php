@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\HostFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
@@ -17,14 +19,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostFormRequest implements Contract
+class HostFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->host)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->host);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Host::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Host::HANDLE => [
@@ -34,7 +49,7 @@ class HostFormRequest implements Contract
                 FormRule::unique(
                     Host::class,
                     Host::HANDLE,
-                )->ignore($model?->{Host::ID}),
+                )->ignore($this->host?->{Host::ID}),
             ],
             Host::NAME => [
                 FormRule::REQUIRED,

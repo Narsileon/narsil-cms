@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\BlockFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Structures\Block;
 use Narsil\Validation\FormRule;
 
@@ -15,14 +17,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockFormRequest implements Contract
+class BlockFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->block)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->block);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Block::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Block::COLLAPSIBLE => [
@@ -37,7 +52,7 @@ class BlockFormRequest implements Contract
                 FormRule::unique(
                     Block::class,
                     Block::HANDLE,
-                )->ignore($model?->{Block::ID}),
+                )->ignore($this->block?->{Block::ID}),
 
             ],
             Block::NAME => [

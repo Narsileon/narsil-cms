@@ -5,12 +5,9 @@ namespace Narsil\Http\Controllers\Hosts;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Jobs\SitemapJob;
 use Narsil\Models\Hosts\Host;
@@ -30,22 +27,14 @@ class HostUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param HostFormRequest $request
      * @param Host $host
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Host $host): RedirectResponse
+    public function __invoke(HostFormRequest $request, Host $host): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $host);
-
-        $data = $request->all();
-
-        $rules = app(HostFormRequest::class)
-            ->rules($host);
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $host->update($attributes);
 

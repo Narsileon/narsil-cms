@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\TemplateFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Structures\Template;
 use Narsil\Validation\FormRule;
 
@@ -15,14 +17,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateFormRequest implements Contract
+class TemplateFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->template)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->template);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Template::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Template::HANDLE => [
@@ -34,7 +49,7 @@ class TemplateFormRequest implements Contract
                 FormRule::unique(
                     Template::class,
                     Template::HANDLE,
-                )->ignore($model?->{Template::ID}),
+                )->ignore($this->template?->{Template::ID}),
             ],
             Template::PLURAL => [
                 FormRule::ARRAY,

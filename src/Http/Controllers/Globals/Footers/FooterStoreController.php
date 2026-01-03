@@ -5,7 +5,6 @@ namespace Narsil\Http\Controllers\Globals\Footers;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\FooterFormRequest;
@@ -27,21 +26,13 @@ class FooterStoreController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param FooterFormRequest $request
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(FooterFormRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Footer::class);
-
-        $data = $request->all();
-
-        $rules = app(FooterFormRequest::class)
-            ->rules();
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $footer = Footer::create($attributes);
 

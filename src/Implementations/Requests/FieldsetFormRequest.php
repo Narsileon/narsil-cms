@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\FieldsetFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Validation\FormRule;
 
@@ -15,14 +17,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldsetFormRequest implements Contract
+class FieldsetFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->fieldset)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->fieldset);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Fieldset::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Fieldset::HANDLE => [
@@ -34,7 +49,7 @@ class FieldsetFormRequest implements Contract
                 FormRule::unique(
                     Fieldset::class,
                     Fieldset::HANDLE,
-                )->ignore($model?->{Fieldset::ID}),
+                )->ignore($this->fieldset?->{Fieldset::ID}),
 
             ],
             Fieldset::NAME => [

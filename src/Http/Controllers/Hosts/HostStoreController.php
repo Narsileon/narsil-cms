@@ -5,12 +5,9 @@ namespace Narsil\Http\Controllers\Hosts;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\HostFormRequest;
 use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
@@ -29,21 +26,13 @@ class HostStoreController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param HostFormRequest $request
      *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(HostFormRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Host::class);
-
-        $data = $request->all();
-
-        $rules = app(HostFormRequest::class)
-            ->rules();
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         $host = Host::create($attributes);
 

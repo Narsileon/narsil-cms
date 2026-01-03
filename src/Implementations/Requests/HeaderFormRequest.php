@@ -4,9 +4,11 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
 use Narsil\Contracts\FormRequests\HeaderFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Globals\Header;
 use Narsil\Validation\FormRule;
 
@@ -16,14 +18,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HeaderFormRequest implements Contract
+class HeaderFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->header)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->header);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Header::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Header::HANDLE => [
@@ -35,7 +50,7 @@ class HeaderFormRequest implements Contract
                 FormRule::unique(
                     Header::class,
                     Header::HANDLE,
-                )->ignore($model?->{Header::ID}),
+                )->ignore($this->header?->{Header::ID}),
             ],
             Header::LOGO => [
                 File::image()

@@ -4,8 +4,10 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\FieldFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Structures\Field;
 use Narsil\Validation\FormRule;
 
@@ -15,14 +17,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldFormRequest implements Contract
+class FieldFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->field)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->field);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Field::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Field::DESCRIPTION => [
@@ -38,7 +53,7 @@ class FieldFormRequest implements Contract
                 FormRule::unique(
                     Field::class,
                     Field::HANDLE,
-                )->ignore($model?->{Field::ID}),
+                )->ignore($this->fields?->{Field::ID}),
             ],
             Field::NAME => [
                 FormRule::REQUIRED,

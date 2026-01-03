@@ -5,11 +5,9 @@ namespace Narsil\Http\Controllers\UserConfigurations;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 use Narsil\Contracts\FormRequests\UserConfigurationFormRequest;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\User;
@@ -26,17 +24,13 @@ class UserConfigurationUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
+     * @param UserConfigurationFormRequest $request
+     *
      * @return RedirectResponse
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(UserConfigurationFormRequest $request): RedirectResponse
     {
-        $data = $request->all();
-
-        $rules = app(UserconfigurationFormRequest::class)
-            ->rules();
-
-        $attributes = Validator::make($data, $rules)
-            ->validated();
+        $attributes = $request->validated();
 
         if ($user = Auth::user())
         {

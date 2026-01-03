@@ -4,9 +4,11 @@ namespace Narsil\Implementations\Requests;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
 use Narsil\Contracts\FormRequests\FooterFormRequest as Contract;
+use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Globals\Footer;
 use Narsil\Validation\FormRule;
 
@@ -16,14 +18,27 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterFormRequest implements Contract
+class FooterFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function rules(?Model $model = null): array
+    public function authorize(): bool
+    {
+        if ($this->footer)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->footer);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Footer::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
     {
         return [
             Footer::ADDRESS_LINE_1 => [
@@ -51,7 +66,7 @@ class FooterFormRequest implements Contract
                 FormRule::unique(
                     Footer::class,
                     Footer::HANDLE,
-                )->ignore($model?->{Footer::ID}),
+                )->ignore($this->footer?->{Footer::ID}),
             ],
             Footer::LOGO => [
                 File::image()
