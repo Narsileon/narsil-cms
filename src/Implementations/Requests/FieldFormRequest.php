@@ -53,7 +53,7 @@ class FieldFormRequest extends AbstractFormRequest implements Contract
                 FormRule::unique(
                     Field::class,
                     Field::HANDLE,
-                )->ignore($this->fields?->{Field::ID}),
+                )->ignore($this->field?->{Field::ID}),
             ],
             Field::NAME => [
                 FormRule::REQUIRED,
