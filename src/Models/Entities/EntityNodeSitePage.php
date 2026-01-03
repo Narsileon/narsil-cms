@@ -6,7 +6,6 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Sites\SitePage;
 
 #endregion
@@ -15,7 +14,7 @@ use Narsil\Models\Sites\SitePage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityNodeSitePage extends Pivot
+class EntityNodeSitePage extends AbstractEntityNodeRelation
 {
     use HasUuids;
 
@@ -27,13 +26,6 @@ class EntityNodeSitePage extends Pivot
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
-        $this->timestamps = false;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -52,36 +44,15 @@ class EntityNodeSitePage extends Pivot
     #region • COLUMNS
 
     /**
-     * The name of the "entity uuid" column.
-     *
-     * @var string
-     */
-    final public const ENTITY_NODE_UUID = 'entity_node_uuid';
-
-    /**
      * The name of the "site page id" column.
      *
      * @var string
      */
     final public const SITE_PAGE_ID = 'site_page_id';
 
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
-
     #endregion
 
     #region • RELATIONS
-
-    /**
-     * The name of the "entity field" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY_NODE = 'entity_node';
 
     /**
      * The name of the "site page" relation.
@@ -97,21 +68,6 @@ class EntityNodeSitePage extends Pivot
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
-
-    /**
-     * Get the associated entity field.
-     *
-     * @return BelongsTo
-     */
-    final public function entity_node(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                EntityNode::class,
-                self::ENTITY_NODE_UUID,
-                EntityNode::UUID,
-            );
-    }
 
     /**
      * Get the associated site page.
