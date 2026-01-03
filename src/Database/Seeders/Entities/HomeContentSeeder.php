@@ -12,7 +12,6 @@ use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Template;
-use Narsil\Services\CollectionService;
 
 #endregion
 
@@ -60,7 +59,8 @@ class HomeContentSeeder extends EntitySeeder
      */
     protected function template(): Template
     {
-        return CollectionService::getTemplate('contents');
+        return Template::query()
+            ->firstWhere(Template::HANDLE, '=', 'contents');
     }
 
     #endregion

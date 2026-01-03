@@ -13,7 +13,6 @@ use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Template;
-use Narsil\Services\CollectionService;
 
 #endregion
 
@@ -58,7 +57,8 @@ class ContactContentSeeder extends EntitySeeder
      */
     protected function template(): Template
     {
-        return CollectionService::getTemplate('contents');
+        return Template::query()
+            ->firstWhere(Template::HANDLE, '=', 'contents');
     }
 
     #endregion

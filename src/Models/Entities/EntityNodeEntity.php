@@ -30,10 +30,6 @@ class EntityNodeEntity extends Pivot
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
-        $this->with = [
-            self::RELATION_TARGET,
-        ];
-
         $this->mergeGuarded([
             self::UUID,
         ]);

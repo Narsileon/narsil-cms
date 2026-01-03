@@ -7,9 +7,7 @@ namespace Narsil\Implementations\Requests;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
-use Narsil\Services\CollectionService;
 use Narsil\Validation\FormRule;
 
 #endregion
@@ -50,8 +48,6 @@ class EntityFormRequest implements Contract
      */
     public function rules(?Model $model = null): array
     {
-        $fieldElements = CollectionService::getFieldElements($this->template);
-
         $rules = [
             Entity::PUBLISHED_FROM => [
                 FormRule::DATE,
@@ -68,11 +64,6 @@ class EntityFormRequest implements Contract
                 FormRule::REQUIRED,
             ],
         ];
-
-        foreach ($fieldElements as $fieldElement)
-        {
-            $rules[$fieldElement->{Field::HANDLE}] = [];
-        }
 
         return $rules;
     }

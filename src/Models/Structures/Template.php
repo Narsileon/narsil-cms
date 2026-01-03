@@ -5,6 +5,8 @@ namespace Narsil\Models\Structures;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
@@ -189,6 +191,29 @@ class Template extends Model
                 self::ID,
             )
             ->orderBy(TemplateTab::POSITION);
+    }
+
+    #endregion
+
+    #region • SCOPES
+
+    /**
+     * @param Builder $query
+     * @param integer|string $value
+     *
+     * @return void
+     */
+    #[Scope]
+    protected function byIdOrHandle(Builder $query, int|string $value): void
+    {
+        if (is_numeric($value))
+        {
+            $query->where(self::ID, $value);
+        }
+        else
+        {
+            $query->where(self::HANDLE, $value);
+        }
     }
 
     #endregion

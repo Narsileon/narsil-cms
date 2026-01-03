@@ -47,10 +47,6 @@ class Entity extends Model
             self::SLUG,
         ];
 
-        $this->with = [
-            self::RELATION_NODES,
-        ];
-
         parent::__construct($attributes);
     }
 

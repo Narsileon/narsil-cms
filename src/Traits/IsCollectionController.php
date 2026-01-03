@@ -5,7 +5,6 @@ namespace Narsil\Traits;
 #region USE
 
 use Narsil\Models\Structures\Template;
-use Narsil\Services\CollectionService;
 
 #endregion
 
@@ -24,7 +23,8 @@ trait IsCollectionController
     {
         $collection = request()->route('collection');
 
-        $template = CollectionService::getTemplate($collection);
+        $template = Template::query()
+            ->firstWhere(Template::HANDLE, '=', $collection);
 
         if ($template)
         {
