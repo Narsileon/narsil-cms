@@ -308,7 +308,7 @@ class EntityNode extends Model
                 Entity::class,
                 EntityNodeEntity::TABLE,
                 EntityNodeEntity::ENTITY_NODE_UUID,
-                EntityNodeEntity::ENTITY_UUID,
+                EntityNodeEntity::TARGET_UUID,
             )
             ->using(EntityNodeEntity::class);
     }

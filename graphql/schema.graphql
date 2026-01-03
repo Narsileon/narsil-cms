@@ -5,15 +5,15 @@ scalar JSON @scalar(class: "Narsil\\GraphQL\\Scalars\\JSON")
 extend type Query {
   block(id: ID! @eq): Block @find
   blocks: [Block!]! @all
-	entity(id: ID! @eq): Entity @find
+  entity(id: ID! @eq): Entity @find
   entities: [Entity!]! @all
   field(id: ID! @eq): Field @find
   fields: [Field!]! @all
-	fieldset(id: ID! @eq): Fieldset @find
+  fieldset(id: ID! @eq): Fieldset @find
   fieldsets: [Fieldset!]! @all
-	form(id: ID! @eq): Form @find
+  form(id: ID! @eq): Form @find
   forms: [Form!]! @all
-	input(id: ID! @eq): Input @find
+  input(id: ID! @eq): Input @find
   inputs: [Input!]! @all
   permission(id: ID! @eq): Permission @find
   permissions: [Permission!]! @all
@@ -51,10 +51,10 @@ type BlockElement @model(class: "Narsil\\Models\\Structures\\BlockElement") {
   required: Boolean!
   translatable: Boolean!
   width: Int!
-	owner: Block! @belongsTo
   block: Block! @belongsTo
   conditions: [BlockElementCondition!]! @hasMany
   field: Field! @belongsTo
+  owner: Block! @belongsTo
 }
 
 type BlockElementCondition @model(class: "Narsil\\Models\\Structures\\BlockElementCondition") {
@@ -63,46 +63,48 @@ type BlockElementCondition @model(class: "Narsil\\Models\\Structures\\BlockEleme
   handle: String!
   operator: String!
   value: String
-	block_element: BlockElement! @belongsTo
+  block_element: BlockElement! @belongsTo
 }
 
 type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
   uuid: String!
   id: ID!
-	published_from: DateTime
-	published_to: DateTime
-	published: Boolean!
-	revision: Int!
-	slug: String!
-	template_id: ID!
+  published_from: DateTime
+  published_to: DateTime
+  published: Boolean!
+  revision: Int!
+  slug: String!
   target_uuid: String!
-	created_at: DateTime!
-	updated_at: DateTime!
-	deleted_at: DateTime
-	template: Template! @belongsTo
+  template_id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+  template: Template! @belongsTo
 }
 
 type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
   uuid: String!
-	element_type: String!
-	entity_block_uuid: String
-	entity_uuid: String!
-	value: String!
   element_id: String!
-	blocks: [EntityNode!]! @hasMany
-	element: HasElement! @morphTo
-	entities: [Entity!]! @belongsToMany
-	entity_block: EntityNode! @belongsTo
-	entity: Entity! @belongsTo
-	form: [Form!]! @belongsToMany
+  element_type: String!
+  entity_block_uuid: String
+  entity_uuid: String!
+  value: String!
+  blocks: [EntityNode!]! @hasMany
+  element: HasElement! @morphTo
+  entities: [Entity!]! @belongsToMany
+  entity_block: EntityNode! @belongsTo
+  entity: Entity! @belongsTo
+  form: [Form!]! @belongsToMany
 }
 
 type EntityNodeEntity @model(class: "Narsil\\Models\\Entities\\EntityNodeEntity") {
   uuid: String!
-  entity_uuid: String!
   entity_node_uuid: String!
-	entity: Entity! @belongsTo
+  owner_uuid: String!
+  target_uuid: String!
   entity_node: EntityNode! @belongsTo
+  owner: Entity! @belongsTo
+  target: Entity! @belongsTo
 }
 
 type EntityNodeForm @model(class: "Narsil\\Models\\Entities\\EntityNodeForm") {
@@ -115,28 +117,28 @@ type EntityNodeForm @model(class: "Narsil\\Models\\Entities\\EntityNodeForm") {
 
 type Field @model(class: "Narsil\\Models\\Structures\\Field") {
   id: ID!
-	class_name: String
-	required: Boolean!
-	type: String!
+  class_name: String
   description: String
   handle: String!
   name: String!
+  required: Boolean!
   settings: String
   translatable: Boolean!
+  type: String!
   type: String!
   created_at: DateTime!
   updated_at: DateTime!
   blocks: [Block!]! @belongsToMany
   options: [FieldOption!]! @hasMany
-	validation_rules: [ValidationRule!]! @belongsToMany
+  validation_rules: [ValidationRule!]! @belongsToMany
 }
 
 type FieldBlock @model(class: "Narsil\\Models\\Structures\\FieldBlock") {
   uuid: String!
-	block_id: ID!
+  block_id: ID!
   field_id: ID!
   block: Block! @belongsTo
-	field: Field! @belongsTo
+  field: Field! @belongsTo
 }
 
 type FieldOption @model(class: "Narsil\\Models\\Structures\\FieldOption") {
@@ -147,7 +149,7 @@ type FieldOption @model(class: "Narsil\\Models\\Structures\\FieldOption") {
   value: String!
   created_at: DateTime!
   updated_at: DateTime!
-	field: Field! @belongsTo
+  field: Field! @belongsTo
 }
 
 
@@ -175,10 +177,10 @@ type FieldsetElement @model(class: "Narsil\\Models\\Forms\\FieldsetElement") {
   position: Int!
   required: Boolean!
   width: Int!
-	owner: Fieldset! @belongsTo
   conditions: [FieldsetElementCondition!]! @hasMany
   fieldset: Fieldset! @belongsTo
   input: Input! @belongsTo
+  owner: Fieldset! @belongsTo
 }
 
 type FieldsetElementCondition @model(class: "Narsil\\Models\\Forms\\FieldsetElementCondition") {
@@ -187,22 +189,22 @@ type FieldsetElementCondition @model(class: "Narsil\\Models\\Forms\\FieldsetElem
   handle: String!
   operator: String!
   value: String
-	fieldset_element: FieldsetElement! @belongsTo
+  fieldset_element: FieldsetElement! @belongsTo
 }
 
 type FieldValidationRule @model(class: "Narsil\\Models\\Structures\\FieldValidationRule") {
   uuid: ID!
   field_id: ID!
   validarion_rule_id: ID!
-	field: Field! @belongsTo
+  field: Field! @belongsTo
   validation_rule: ValidationRule! @belongsTo
 }
 
 type Form @model(class: "Narsil\\Models\\Forms\\Form") {
   id: ID!
-	title: String!
   description: String!
   handle: String!
+  title: String!
   created_at: DateTime!
   updated_at: DateTime!
 }
@@ -215,10 +217,10 @@ type FormTab @model(class: "Narsil\\Models\\Forms\\FormTab") {
   position: Int!
   created_at: DateTime!
   updated_at: DateTime!
-  fieldsets: [Fieldset!]! @morphToMany
   elements: [TemplateTabElement!]! @hasMany
-  inputs: [Input!]! @morphToMany
+  fieldsets: [Fieldset!]! @morphToMany
   form: Form! @belongsTo
+  inputs: [Input!]! @morphToMany
 }
 
 type FormTabElement @model(class: "Narsil\\Models\\Forms\\FormTabElement") {
@@ -234,10 +236,10 @@ type FormTabElement @model(class: "Narsil\\Models\\Forms\\FormTabElement") {
   position: Int!
   required: Boolean!
   width: Int!
-	owner: FormTab! @belongsTo
   conditions: [FormTabElementCondition!]! @hasMany
   fieldset: Fieldset! @belongsTo
   input: Input! @belongsTo
+  owner: FormTab! @belongsTo
 }
 
 type FormTabElementCondition @model(class: "Narsil\\Models\\Forms\\FormTabElementCondition") {
@@ -246,22 +248,21 @@ type FormTabElementCondition @model(class: "Narsil\\Models\\Forms\\FormTabElemen
   handle: String!
   operator: String!
   value: String
-	form_tab_element: FormTabElement! @belongsTo
+  form_tab_element: FormTabElement! @belongsTo
 }
 
 type Input @model(class: "Narsil\\Models\\Forms\\Input") {
   id: ID!
-	required: Boolean!
-	type: String!
   description: String
   handle: String!
   name: String!
+  required: Boolean!
   settings: String
   type: String!
   created_at: DateTime!
   updated_at: DateTime!
   options: [InputOption!]! @hasMany
-	validation_rules: [ValidationRule!]! @belongsToMany
+  validation_rules: [ValidationRule!]! @belongsToMany
 }
 
 type InputOption @model(class: "Narsil\\Models\\Forms\\InputOption") {
@@ -272,14 +273,14 @@ type InputOption @model(class: "Narsil\\Models\\Forms\\InputOption") {
   value: String!
   created_at: DateTime!
   updated_at: DateTime!
-	input: Input! @belongsTo
+  input: Input! @belongsTo
 }
 
 type InputValidationRule @model(class: "Narsil\\Models\\Forms\\InputValidationRule") {
   uuid: ID!
   input_id: ID!
   validarion_rule_id: ID!
-	input: Input! @belongsTo
+  input: Input! @belongsTo
   validation_rule: ValidationRule! @belongsTo
 }
 
@@ -294,7 +295,7 @@ type Permission @model(class: "Narsil\\Models\\Policies\\Permission") {
 
 type Role @model(class: "Narsil\\Models\\Policies\\Role") {
   id: ID!
-	handle: String!
+  handle: String!
   name: String!
   created_at: DateTime!
   updated_at: DateTime!
@@ -303,16 +304,16 @@ type Role @model(class: "Narsil\\Models\\Policies\\Role") {
 
 type RolePermission @model(class: "Narsil\\Models\\Policies\\RolePermission") {
   uuid: String!
-	permission_id: ID!
+  permission_id: ID!
   role_id: ID!
   permission: Permission! @belongsTo
-	role: Role! @belongsTo
+  role: Role! @belongsTo
 }
 
 type Template @model(class: "Narsil\\Models\\Structures\\Template") {
   id: ID!
   handle: String!
-	plural: String!
+  plural: String!
   singular: String!
   created_at: DateTime!
   updated_at: DateTime!
@@ -346,28 +347,28 @@ type TemplateTabElement @model(class: "Narsil\\Models\\Structures\\TemplateTabEl
   required: Boolean!
   translatable: Boolean!
   width: Int!
-	owner: TemplateTab! @belongsTo
   block: Block! @belongsTo
   conditions: [TemplateTabElementCondition!]! @hasMany
   field: Field! @belongsTo
+  owner: TemplateTab! @belongsTo
 }
 
 type TemplateTabElementCondition @model(class: "Narsil\\Models\\Structures\\TemplateTabElementCondition") {
   uuid: String!
-  template_tab_element_uuid: String!
   handle: String!
   operator: String!
+  template_tab_element_uuid: String!
   value: String
-	template_tab_element: TemplateTabElement! @belongsTo
+  template_tab_element: TemplateTabElement! @belongsTo
 }
 
 type User @model(class: "Narsil\\Models\\User") {
   id: ID!
   avatar: String
+  email: String!
   first_name: String
   full_name: String
   last_name: String
-  email: String!
   created_at: DateTime!
   updated_at: DateTime!
   permissions: [Permission!]! @belongsToMany

@@ -148,7 +148,11 @@ return new class extends Migration
                 ->constrained(EntityNode::TABLE, EntityNode::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(EntityNodeEntity::ENTITY_UUID)
+                ->foreignUuid(EntityNodeEntity::OWNER_UUID)
+                ->constrained(Entity::TABLE, Entity::UUID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->foreignUuid(EntityNodeEntity::TARGET_UUID)
                 ->constrained(Entity::TABLE, Entity::UUID)
                 ->cascadeOnDelete();
         });

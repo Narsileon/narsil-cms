@@ -31,7 +31,7 @@ class EntityNodeEntity extends Pivot
         $this->timestamps = false;
 
         $this->with = [
-            self::RELATION_ENTITY,
+            self::RELATION_TARGET,
         ];
 
         $this->mergeGuarded([
@@ -55,18 +55,25 @@ class EntityNodeEntity extends Pivot
     #region • COLUMNS
 
     /**
-     * The name of the "entity uuid" column.
-     *
-     * @var string
-     */
-    final public const ENTITY_UUID = 'entity_uuid';
-
-    /**
      * The name of the "entity field uuid" column.
      *
      * @var string
      */
     final public const ENTITY_NODE_UUID = 'entity_node_uuid';
+
+    /**
+     * The name of the "owner uuid" column.
+     *
+     * @var string
+     */
+    final public const OWNER_UUID = 'owner_uuid';
+
+    /**
+     * The name of the "target uuid" column.
+     *
+     * @var string
+     */
+    final public const TARGET_UUID = 'target_uuid';
 
     /**
      * The name of the "uuid" column.
@@ -80,18 +87,25 @@ class EntityNodeEntity extends Pivot
     #region • RELATIONS
 
     /**
-     * The name of the "entity" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY = 'entity';
-
-    /**
      * The name of the "entity field" relation.
      *
      * @var string
      */
     final public const RELATION_ENTITY_NODE = 'entity_node';
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
+
+    /**
+     * The name of the "target" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TARGET = 'target';
 
     #endregion
 
@@ -100,21 +114,6 @@ class EntityNodeEntity extends Pivot
     #region PUBLIC METHODS
 
     #region • RELATIONSHIPS
-
-    /**
-     * Get the associated entity.
-     *
-     * @return BelongsTo
-     */
-    final public function entity(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Entity::class,
-                self::ENTITY_UUID,
-                Entity::UUID,
-            );
-    }
 
     /**
      * Get the associated entity field.
@@ -128,6 +127,36 @@ class EntityNodeEntity extends Pivot
                 EntityNode::class,
                 self::ENTITY_NODE_UUID,
                 EntityNode::UUID,
+            );
+    }
+
+    /**
+     * Get the associated owner.
+     *
+     * @return BelongsTo
+     */
+    final public function owner(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Entity::class,
+                self::OWNER_UUID,
+                Entity::UUID,
+            );
+    }
+
+    /**
+     * Get the associated target.
+     *
+     * @return BelongsTo
+     */
+    final public function target(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Entity::class,
+                self::TARGET_UUID,
+                Entity::UUID,
             );
     }
 
