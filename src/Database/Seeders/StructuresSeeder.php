@@ -100,6 +100,7 @@ abstract class StructuresSeeder extends Seeder
         $model = Field::create([
             Field::HANDLE => $field->{Field::HANDLE},
             Field::NAME => $field->{Field::NAME},
+            Field::REQUIRED => $field->{Field::REQUIRED} ?? false,
             Field::SETTINGS => $field->{Field::SETTINGS},
             Field::TRANSLATABLE => $field->{Field::TRANSLATABLE} ?? false,
             Field::TYPE => $field->{Field::TYPE},
