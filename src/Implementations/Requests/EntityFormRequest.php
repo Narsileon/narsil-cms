@@ -77,7 +77,6 @@ class EntityFormRequest implements Contract
             $this->populateRules($rules, $templateTab->{TemplateTab::RELATION_ELEMENTS});
         }
 
-        dd($rules);
         return $rules;
     }
 
@@ -94,9 +93,10 @@ class EntityFormRequest implements Contract
      */
     protected function populateRules(array &$rules, Collection $elements, ?string $path = null): void
     {
-        foreach ($elements as $position => $element)
+        foreach ($elements as $element)
         {
             $handle = $element->{IStructureHasElement::HANDLE};
+
             $key = $path ? "$path.$handle" : $handle;
 
             if ($element->{IStructureHasElement::ELEMENT_TYPE} === Field::TABLE)
@@ -130,24 +130,6 @@ class EntityFormRequest implements Contract
                 $this->populateRules($rules, $block->{Block::RELATION_ELEMENTS}, $nextPath);
             }
         }
-    }
-
-    /**
-     * Map field type to Laravel validation rules
-     *
-     * @param Field $field
-     * @return array
-     */
-    protected function getFieldRules(Field $field): array
-    {
-        return match ($field->{Field::TYPE})
-        {
-            'string' => [FormRule::STRING, FormRule::REQUIRED],
-            'text' => [FormRule::STRING, FormRule::NULLABLE],
-            'integer' => [FormRule::INTEGER, FormRule::REQUIRED],
-            BuilderField::class => [FormRule::ARRAY],
-            default => [FormRule::NULLABLE],
-        };
     }
 
     #endregion
