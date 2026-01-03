@@ -124,10 +124,10 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->boolean(BlockElement::REQUIRED)
-                ->nullable();
+                ->default(false);
             $blueprint
                 ->boolean(BlockElement::TRANSLATABLE)
-                ->nullable();
+                ->default(false);
             $blueprint
                 ->integer(BlockElement::POSITION)
                 ->default(0);

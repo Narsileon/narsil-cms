@@ -71,6 +71,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                     ]),
                 ]),
                 new BlockElement([
+                    BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::HEADLINE_LEVEL,
@@ -83,6 +84,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                     ]),
                 ]),
                 new BlockElement([
+                    BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::HEADLINE_STYLE,

@@ -72,8 +72,8 @@ abstract class StructuresSeeder extends Seeder
                 BlockElement::NAME => $element->{BlockElement::NAME},
                 BlockElement::OWNER_ID => $model->getKey(),
                 BlockElement::POSITION => $position,
-                BlockElement::REQUIRED => $templateTabElement->{BlockElement::REQUIRED} ?? $element->{BlockElement::REQUIRED},
-                BlockElement::TRANSLATABLE => $templateTabElement->{BlockElement::TRANSLATABLE} ?? $element->{BlockElement::TRANSLATABLE},
+                BlockElement::REQUIRED => $blockElement->{BlockElement::REQUIRED} ?? $element->{BlockElement::REQUIRED} ?? false,
+                BlockElement::TRANSLATABLE => $blockElement->{BlockElement::TRANSLATABLE} ?? $element->{BlockElement::TRANSLATABLE} ?? false,
                 BlockElement::WIDTH => $blockElement->{BlockElement::WIDTH} ?? 100,
             ]);
         }
@@ -205,13 +205,13 @@ abstract class StructuresSeeder extends Seeder
                 TemplateTabElement::create([
                     TemplateTabElement::ELEMENT_ID => $element->getKey(),
                     TemplateTabElement::ELEMENT_TYPE => $element->getTable(),
-                    TemplateTabElement::HANDLE => $blockElement->{TemplateTabElement::HANDLE} ?? $element->{TemplateTabElement::HANDLE},
+                    TemplateTabElement::HANDLE => $templateTabModel->{TemplateTabElement::HANDLE} ?? $element->{TemplateTabElement::HANDLE},
                     TemplateTabElement::NAME => $element->{TemplateTabElement::NAME},
                     TemplateTabElement::OWNER_UUID => $templateTabModel->getKey(),
                     TemplateTabElement::POSITION => $position,
-                    TemplateTabElement::REQUIRED => $templateTabElement->{TemplateTabElement::REQUIRED} ?? $element->{TemplateTabElement::REQUIRED},
-                    TemplateTabElement::TRANSLATABLE => $templateTabElement->{TemplateTabElement::TRANSLATABLE} ?? $element->{TemplateTabElement::TRANSLATABLE},
-                    TemplateTabElement::WIDTH => $blockElement->{TemplateTabElement::WIDTH} ?? 100,
+                    TemplateTabElement::REQUIRED => $templateTabElement->{TemplateTabElement::REQUIRED} ?? $element->{TemplateTabElement::REQUIRED} ?? false,
+                    TemplateTabElement::TRANSLATABLE => $templateTabElement->{TemplateTabElement::TRANSLATABLE} ?? $element->{TemplateTabElement::TRANSLATABLE} ?? false,
+                    TemplateTabElement::WIDTH => $templateTabModel->{TemplateTabElement::WIDTH} ?? 100,
                 ]);
             }
         }

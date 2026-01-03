@@ -162,7 +162,7 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->boolean(FieldsetElement::REQUIRED)
-                ->nullable();
+                ->default(false);
             $blueprint
                 ->integer(FieldsetElement::POSITION)
                 ->default(0);
@@ -267,7 +267,7 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->boolean(FormTabElement::REQUIRED)
-                ->nullable();
+                ->default(false);
             $blueprint
                 ->integer(FormTabElement::POSITION)
                 ->default(0);

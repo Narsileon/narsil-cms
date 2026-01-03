@@ -42,10 +42,10 @@ class LinkBlockSeeder extends BlockSeeder
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::REQUIRED => true,
-                    BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::LINK,
                         Field::NAME => 'Link',
+                        Field::REQUIRED => true,
                         Field::TYPE => LinkField::class,
                     ]),
                 ]),

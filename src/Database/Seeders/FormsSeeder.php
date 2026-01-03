@@ -71,7 +71,7 @@ abstract class FormsSeeder extends Seeder
                 FieldsetElement::NAME => $element->{FieldsetElement::NAME},
                 FieldsetElement::OWNER_ID => $model->getKey(),
                 FieldsetElement::POSITION => $position,
-                FieldsetElement::REQUIRED => $formTabElement->{FieldsetElement::REQUIRED} ?? $element->{FieldsetElement::REQUIRED},
+                FieldsetElement::REQUIRED => $fieldsetElement->{FieldsetElement::REQUIRED} ?? $element->{FieldsetElement::REQUIRED},
                 FieldsetElement::WIDTH => $fieldsetElement->{FieldsetElement::WIDTH} ?? 100,
             ]);
         }
@@ -189,12 +189,12 @@ abstract class FormsSeeder extends Seeder
                 FormTabElement::create([
                     FormTabElement::ELEMENT_ID => $element->getKey(),
                     FormTabElement::ELEMENT_TYPE => $element->getTable(),
-                    FormTabElement::HANDLE => $fieldsetElement->{FormTabElement::HANDLE} ?? $element->{FormTabElement::HANDLE},
+                    FormTabElement::HANDLE => $formTabElement->{FormTabElement::HANDLE} ?? $element->{FormTabElement::HANDLE},
                     FormTabElement::NAME => $element->{FormTabElement::NAME},
                     FormTabElement::OWNER_UUID => $formTabModel->getKey(),
                     FormTabElement::POSITION => $position,
                     FormTabElement::REQUIRED => $formTabElement->{FormTabElement::REQUIRED} ?? $element->{FormTabElement::REQUIRED},
-                    FormTabElement::WIDTH => $fieldsetElement->{FormTabElement::WIDTH} ?? 100,
+                    FormTabElement::WIDTH => $formTabElement->{FormTabElement::WIDTH} ?? 100,
                 ]);
             }
         }

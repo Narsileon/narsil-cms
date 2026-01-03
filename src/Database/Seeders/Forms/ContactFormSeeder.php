@@ -35,25 +35,31 @@ class ContactFormSeeder extends FormSeeder
                     FormTab::NAME => 'contact',
                     FormTab::RELATION_ELEMENTS => [
                         new FormTabElement([
+                            FormTabElement::REQUIRED => true,
                             FormTabElement::WIDTH => 50,
                             FormTabElement::RELATION_ELEMENT => new Input([
                                 Input::HANDLE => 'first_name',
                                 Input::NAME => 'First name',
+                                Input::REQUIRED => true,
                                 Input::TYPE => TextField::class,
                             ]),
                         ]),
                         new FormTabElement([
+                            FormTabElement::REQUIRED => true,
                             FormTabElement::WIDTH => 50,
                             FormTabElement::RELATION_ELEMENT => new Input([
                                 Input::HANDLE => 'last_name',
                                 Input::NAME => 'Last name',
+                                Input::REQUIRED => true,
                                 Input::TYPE => TextField::class,
                             ]),
                         ]),
                         new FormTabElement([
+                            FormTabElement::REQUIRED => true,
                             FormTabElement::RELATION_ELEMENT => new Input([
                                 Input::HANDLE => 'email',
                                 Input::NAME => 'Email',
+                                Input::REQUIRED => true,
                                 Input::TYPE => EmailField::class,
                             ]),
                         ]),

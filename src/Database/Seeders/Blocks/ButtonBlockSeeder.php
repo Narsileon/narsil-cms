@@ -43,6 +43,8 @@ class ButtonBlockSeeder extends BlockSeeder
             Block::NAME => 'Button',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
+                    BlockElement::REQUIRED => true,
+                    BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'label',
                         Field::NAME => 'Label',
@@ -52,8 +54,6 @@ class ButtonBlockSeeder extends BlockSeeder
                     ]),
                 ]),
                 new BlockElement([
-                    BlockElement::REQUIRED => true,
-                    BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => $linkBlock,
                 ]),
             ],

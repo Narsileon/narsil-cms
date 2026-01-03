@@ -41,9 +41,11 @@ class FormBlockSeeder extends BlockSeeder
             Block::NAME => 'Form',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
+                    BlockElement::REQUIRED => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::FORM,
                         Field::NAME => 'Form',
+                        Field::REQUIRED => true,
                         Field::TYPE => FormField::class,
                     ]),
                 ]),

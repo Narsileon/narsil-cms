@@ -123,10 +123,10 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->boolean(TemplateTabElement::REQUIRED)
-                ->nullable();
+                ->default(false);
             $blueprint
                 ->boolean(TemplateTabElement::TRANSLATABLE)
-                ->nullable();
+                ->default(false);
             $blueprint
                 ->integer(TemplateTabElement::POSITION)
                 ->default(0);

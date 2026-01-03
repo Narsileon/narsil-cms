@@ -9,7 +9,6 @@ use Narsil\Enums\SEO\ChangeFreqEnum;
 use Narsil\Enums\SEO\OpenGraphTypeEnum;
 use Narsil\Enums\SEO\RobotsEnum;
 use Narsil\Enums\SitePageAdapterEnum;
-use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
