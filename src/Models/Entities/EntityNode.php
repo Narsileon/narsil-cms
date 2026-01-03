@@ -112,6 +112,13 @@ class EntityNode extends Model
     final public const PARENT_UUID = 'parent_uuid';
 
     /**
+     * The name of the "path" column.
+     *
+     * @var string
+     */
+    final public const PATH = 'path';
+
+    /**
      * The name of the "position" column.
      *
      * @var string

@@ -244,6 +244,9 @@ return new class extends Migration
                 ->integer(EntityNode::POSITION)
                 ->default(0);
             $blueprint
+                ->string(EntityNode::PATH)
+                ->nullable();
+            $blueprint
                 ->jsonb(EntityNode::VALUE)
                 ->nullable();
         });

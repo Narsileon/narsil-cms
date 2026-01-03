@@ -91,6 +91,7 @@ abstract class EntityService
                         EntityNode::ELEMENT_TYPE => $element->getTable(),
                         EntityNode::ELEMENT_ID => $element->getKey(),
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
+                        EntityNode::PATH => $key,
                     ]);
 
                     if (!is_array($value))
@@ -104,6 +105,7 @@ abstract class EntityService
                             EntityNode::BLOCK_ID => Arr::get($block, EntityNode::BLOCK_ID),
                             EntityNode::ENTITY_UUID => $entity->{Entity::UUID},
                             EntityNode::PARENT_UUID => $fieldEntityNode->getKey(),
+                            EntityNode::PATH => "$key.$index",
                             EntityNode::POSITION => $index,
                         ]);
 
@@ -123,6 +125,7 @@ abstract class EntityService
                         EntityNode::ELEMENT_TYPE => $element->getTable(),
                         EntityNode::ELEMENT_ID => $element->getKey(),
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
+                        EntityNode::PATH => $key,
                         EntityNode::POSITION => $position,
                         EntityNode::VALUE => $value,
                     ]);
@@ -132,14 +135,6 @@ abstract class EntityService
             {
                 $block = $element->{IStructureHasElement::RELATION_ELEMENT};
 
-                $blockEntityNode = EntityNode::create([
-                    EntityNode::ENTITY_UUID  => $entity->{Entity::UUID},
-                    EntityNode::ELEMENT_TYPE => $element->getTable(),
-                    EntityNode::ELEMENT_ID => $element->getKey(),
-                    EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
-                    EntityNode::POSITION => $position,
-                ]);
-
                 if ($block->{Block::VIRTUAL})
                 {
                     $nextPath = $path;
@@ -148,6 +143,15 @@ abstract class EntityService
                 {
                     $nextPath = $path ? "$path.$handle" : $handle;
                 }
+
+                $blockEntityNode = EntityNode::create([
+                    EntityNode::ENTITY_UUID  => $entity->{Entity::UUID},
+                    EntityNode::ELEMENT_TYPE => $element->getTable(),
+                    EntityNode::ELEMENT_ID => $element->getKey(),
+                    EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
+                    EntityNode::PATH => $nextPath,
+                    EntityNode::POSITION => $position,
+                ]);
 
                 static::syncElements($entity, $block->{Block::RELATION_ELEMENTS}, $attributes, $blockEntityNode, $nextPath);
             }
