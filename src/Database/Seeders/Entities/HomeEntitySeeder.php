@@ -19,7 +19,7 @@ use Narsil\Models\Structures\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HomeContentSeeder extends EntitySeeder
+class HomeEntitySeeder extends EntitySeeder
 {
     #region PROTECTED METHODS
 

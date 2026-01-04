@@ -4,11 +4,15 @@ namespace Narsil\Observers;
 
 #region USE
 
+use Narsil\Database\Seeders\Entities\ContactEntitySeeder;
+use Narsil\Database\Seeders\Entities\HomeEntitySeeder;
+use Narsil\Models\Entities\Entity;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\SitePageEntity;
 
 #endregion
 
@@ -44,6 +48,13 @@ class SiteObserver
 
         if (Site::count() === 1)
         {
+            $entity = new HomeEntitySeeder()->run();
+
+            SitePageEntity::create([
+                SitePageEntity::ENTITY_ID => $entity->{Entity::ID},
+                SitePageEntity::SITE_PAGE_ID => $homePage->{SitePage::ID},
+            ]);
+
             $this->createPages($model, $homePage);
         }
     }
@@ -70,46 +81,15 @@ class SiteObserver
 
     /**
      * @param Site $model
-     *
-     * @return SitePage
-     */
-    protected function createHomePage(Site $model): SitePage
-    {
-        return SitePage::create([
-            SitePage::SITE_ID => $model->{Host::ID},
-            SitePage::SLUG => 'home',
-            SitePage::TITLE => 'Home',
-        ]);
-    }
-
-    /**
-     * @param Site $model
      * @param SitePage $homePage
      *
      * @return void
      */
     protected function createPages(Site $model, SitePage $homePage): void
     {
-        $contactPage = SitePage::create([
-            SitePage::SHOW_IN_MENU => true,
-            SitePage::SITE_ID => $model->{Site::ID},
-            SitePage::SLUG => 'contact',
-            SitePage::TITLE => 'Contact',
-        ]);
-
-        $imprintPage = SitePage::create([
-            SitePage::SHOW_IN_MENU => false,
-            SitePage::SITE_ID => $model->{Site::ID},
-            SitePage::SLUG => 'imprint',
-            SitePage::TITLE => 'Imprint',
-        ]);
-
-        $privacyNoticePage = SitePage::create([
-            SitePage::SHOW_IN_MENU => false,
-            SitePage::SITE_ID => $model->{Site::ID},
-            SitePage::SLUG => 'pricacy-notice',
-            SitePage::TITLE => 'Privacy Notice',
-        ]);
+        $contactPage = $this->createContactPage($model);
+        $imprintPage = $this->createImprintPage($model);
+        $privacyNoticePage = $this->createPrivacyNoticePage($model);
 
         $contactPage->update([
             SitePage::PARENT_ID => $homePage->{SitePage::ID},
@@ -126,16 +106,90 @@ class SiteObserver
             SitePage::PARENT_ID => $homePage->{SitePage::ID},
             SitePage::LEFT_ID => $imprintPage->{SitePage::ID},
         ]);
+    }
 
-        FooterLink::create([
-            FooterLink::FOOTER_ID => $model->{Footer::ID},
-            FooterLink::SITE_PAGE_ID => $imprintPage->{SitePage::ID},
+    /**
+     * @param Site $model
+     *
+     * @return SitePage
+     */
+    protected function createContactPage(Site $model): SitePage
+    {
+        $sitePage = SitePage::create([
+            SitePage::SHOW_IN_MENU => true,
+            SitePage::SITE_ID => $model->{Site::ID},
+            SitePage::SLUG => 'contact',
+            SitePage::TITLE => 'Contact',
+        ]);
+
+        $entity = new ContactEntitySeeder()->run();
+
+        SitePageEntity::create([
+            SitePageEntity::ENTITY_ID => $entity->{Entity::ID},
+            SitePageEntity::SITE_PAGE_ID => $sitePage->{SitePage::ID},
+        ]);
+
+        return $sitePage;
+    }
+
+    /**
+     * @param Site $model
+     *
+     * @return SitePage
+     */
+    protected function createHomePage(Site $model): SitePage
+    {
+        $sitePage = SitePage::create([
+            SitePage::SITE_ID => $model->{Host::ID},
+            SitePage::SLUG => 'home',
+            SitePage::TITLE => 'Home',
+        ]);
+
+        return $sitePage;
+    }
+
+    /**
+     * @param Site $model
+     *
+     * @return SitePage
+     */
+    protected function createImprintPage(Site $model): SitePage
+    {
+        $sitePage = SitePage::create([
+            SitePage::SHOW_IN_MENU => false,
+            SitePage::SITE_ID => $model->{Site::ID},
+            SitePage::SLUG => 'imprint',
+            SitePage::TITLE => 'Imprint',
         ]);
 
         FooterLink::create([
             FooterLink::FOOTER_ID => $model->{Footer::ID},
-            FooterLink::SITE_PAGE_ID => $privacyNoticePage->{SitePage::ID},
+            FooterLink::SITE_PAGE_ID => $sitePage->{SitePage::ID},
         ]);
+
+        return $sitePage;
+    }
+
+    /**
+     * @param Site $model
+     *
+     * @return SitePage
+     */
+    protected function createPrivacyNoticePage(Site $model): SitePage
+    {
+        $sitePage = SitePage::create([
+            SitePage::SHOW_IN_MENU => false,
+            SitePage::SITE_ID => $model->{Site::ID},
+            SitePage::SLUG => 'pricacy-notice',
+            SitePage::TITLE => 'Privacy Notice',
+        ]);
+
+        FooterLink::create([
+            FooterLink::FOOTER_ID => $model->{Footer::ID},
+            FooterLink::SITE_PAGE_ID => $sitePage->{SitePage::ID},
+        ]);
+
+        return $sitePage;
     }
 
     #endregion

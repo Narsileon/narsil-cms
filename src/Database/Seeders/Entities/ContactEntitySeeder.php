@@ -20,7 +20,7 @@ use Narsil\Models\Structures\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ContactContentSeeder extends EntitySeeder
+class ContactEntitySeeder extends EntitySeeder
 {
     #region PROTECTED METHODS
 

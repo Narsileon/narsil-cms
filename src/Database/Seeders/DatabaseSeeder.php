@@ -5,9 +5,6 @@ namespace Narsil\Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Database\Seeders\Entities\ContactContentSeeder;
-use Narsil\Database\Seeders\Entities\HomeContentSeeder;
-use Narsil\Database\Seeders\Forms\ContactFormSeeder;
 use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
 
 #endregion
@@ -26,10 +23,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            ContactFormSeeder::class,
             ContentTemplateSeeder::class,
-            HomeContentSeeder::class,
-            ContactContentSeeder::class,
         ]);
     }
 
