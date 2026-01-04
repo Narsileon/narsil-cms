@@ -4,11 +4,13 @@ namespace Narsil\Observers;
 
 #region USE
 
-use Narsil\Contracts\Fields\RelationsField;
+use Narsil\Contracts\Fields\FormField;
+use Narsil\Contracts\Fields\LinkField;
+use Narsil\Interfaces\IStructureHasElement;
 use Narsil\Models\Structures\Field;
-use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Entities\EntityNodeEntity;
+use Narsil\Models\Entities\EntityNodeForm;
+use Narsil\Models\Entities\EntityNodeSitePage;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\TemplateTabElement;
 
@@ -29,7 +31,10 @@ class EntityNodeObserver
      */
     public function saved(EntityNode $model): void
     {
-        // $this->syncRelations($EntityNode);
+        if ($model->{EntityNode::ELEMENT_TYPE})
+        {
+            $this->syncRelations($model);
+        }
     }
 
     /**
@@ -52,56 +57,38 @@ class EntityNodeObserver
     #region PROTECTED METHODS
 
     /**
-     * @param EntityNode $EntityNode
+     * @param EntityNode $entityNode
      *
      * @return void
      */
-    protected function syncRelations(EntityNode $EntityNode): void
+    protected function syncRelations(EntityNode $entityNode): void
     {
-        $EntityNode->loadMissing([
-            EntityNode::RELATION_ELEMENT . '.' . BlockElement::RELATION_FIELD,
-            EntityNode::RELATION_ENTITY,
+        $entityNode->loadMissing([
+            EntityNode::RELATION_ELEMENT . '.' . IStructureHasElement::RELATION_ELEMENT,
         ]);
 
-        $field = $EntityNode->{EntityNode::RELATION_ELEMENT}->{BlockElement::RELATION_FIELD};
+        $field = $entityNode->{EntityNode::RELATION_ELEMENT}?->{IStructureHasElement::RELATION_ELEMENT};
 
-        if ($field->{Field::TYPE} !== RelationsField::class)
+        if ($field->{Field::TYPE} === FormField::class)
         {
-            return;
-        }
-
-        $entity = $EntityNode->{EntityNode::RELATION_ENTITY};
-
-        if ($field->{Field::TRANSLATABLE})
-        {
-            $translations = $EntityNode->getTranslations(EntityNode::VALUE);
-
-            foreach ($translations as $relations)
+            foreach ($entityNode->getTranslations(EntityNode::VALUE) as $translation)
             {
-                foreach ($relations as $relation)
-                {
-                    [$table, $id] = explode('-', $relation, 2);
-
-                    EntityNodeEntity::firstOrCreate([
-                        EntityNodeEntity::ENTITY_NODE_UUID => $EntityNode->{EntityNode::UUID},
-                        EntityNodeEntity::ENTITY_UUID => $EntityNode->{EntityNode::ENTITY_UUID},
-                        EntityNodeEntity::TARGET_UUID => $entity->{Entity::ID},
-                    ]);
-                }
+                EntityNodeForm::firstOrCreate([
+                    EntityNodeForm::ENTITY_UUID => $entityNode->{EntityNode::ENTITY_UUID},
+                    EntityNodeForm::ENTITY_NODE_UUID => $entityNode->{EntityNode::UUID},
+                    EntityNodeForm::FORM_ID => $translation,
+                ]);
             }
         }
-        else
+
+        if ($field->{Field::TYPE} === LinkField::class)
         {
-            $relations = $EntityNode->{EntityNode::VALUE};
-
-            foreach ($relations as $relation)
+            foreach ($entityNode->getTranslations(EntityNode::VALUE) as $translation)
             {
-                [$table, $id] = explode('-', $relation, 2);
-
-                EntityNodeEntity::firstOrCreate([
-                    EntityNodeEntity::ENTITY_NODE_UUID => $EntityNode->{EntityNode::UUID},
-                    EntityNodeEntity::ENTITY_UUID => $EntityNode->{EntityNode::ENTITY_UUID},
-                    EntityNodeEntity::TARGET_UUID => $entity->{Entity::ID},
+                EntityNodeSitePage::firstOrCreate([
+                    EntityNodeSitePage::ENTITY_UUID => $entityNode->{EntityNode::ENTITY_UUID},
+                    EntityNodeSitePage::ENTITY_NODE_UUID => $entityNode->{EntityNode::UUID},
+                    EntityNodeSitePage::SITE_PAGE_ID => $translation,
                 ]);
             }
         }
