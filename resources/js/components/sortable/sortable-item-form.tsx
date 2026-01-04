@@ -1,5 +1,7 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import {
   DialogBody,
   DialogContent,

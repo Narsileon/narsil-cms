@@ -1,4 +1,4 @@
-import { Button } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { Model } from "@narsil-cms/types";
 import { Header } from "@tanstack/react-table";

@@ -1,4 +1,4 @@
-import { Calendar } from "@narsil-cms/blocks";
+import { Calendar } from "@narsil-cms/blocks/calendar";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {

@@ -1,4 +1,4 @@
-import { Button } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { useEffect, useRef, type ComponentProps } from "react";
 import { DayButton, getDefaultClassNames } from "react-day-picker";

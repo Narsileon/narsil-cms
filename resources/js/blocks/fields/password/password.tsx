@@ -1,4 +1,4 @@
-import { Tooltip } from "@narsil-cms/blocks";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";

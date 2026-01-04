@@ -1,4 +1,4 @@
-import { Tooltip } from "@narsil-cms/blocks";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 

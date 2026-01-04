@@ -1,4 +1,6 @@
-import { Button, Heading, Separator } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Heading } from "@narsil-cms/blocks/heading";
+import { Separator } from "@narsil-cms/blocks/separator";
 import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";

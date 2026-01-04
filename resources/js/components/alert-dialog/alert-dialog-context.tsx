@@ -1,4 +1,4 @@
-import { AlertDialog } from "@narsil-cms/blocks";
+import { AlertDialog } from "@narsil-cms/blocks/alert-dialog";
 import { type ComponentProps, createContext, useContext } from "react";
 
 export type AlertDialogContextProps = {

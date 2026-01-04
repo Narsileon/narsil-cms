@@ -1,4 +1,4 @@
-import { Button } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";

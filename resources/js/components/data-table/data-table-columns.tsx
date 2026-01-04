@@ -6,7 +6,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button, Card } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Card } from "@narsil-cms/blocks/card";
 import { useDataTable } from "@narsil-cms/components/data-table";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {

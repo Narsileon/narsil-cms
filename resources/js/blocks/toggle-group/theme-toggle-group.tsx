@@ -1,9 +1,9 @@
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
 import { themes, useThemeStore } from "@narsil-cms/stores/theme-store";
 import { useRef } from "react";
-import Tooltip from "./tooltip";
 
 type ThemeToggleGroupProps = {
   className?: string;

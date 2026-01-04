@@ -1,4 +1,4 @@
-import { DataTable } from "@narsil-cms/blocks";
+import { DataTable } from "@narsil-cms/blocks/data-table";
 import {
   DataTableProvider,
   getMenuColumn,

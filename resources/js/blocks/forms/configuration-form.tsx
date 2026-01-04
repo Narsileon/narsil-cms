@@ -1,5 +1,5 @@
 import { router } from "@inertiajs/react";
-import { Heading } from "@narsil-cms/blocks";
+import { Heading } from "@narsil-cms/blocks/heading";
 import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";

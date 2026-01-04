@@ -1,4 +1,4 @@
-import { Tooltip } from "@narsil-cms/blocks";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";

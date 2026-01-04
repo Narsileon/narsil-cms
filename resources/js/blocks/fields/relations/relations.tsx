@@ -1,4 +1,7 @@
-import { Badge, Button, DataTable, Spinner } from "@narsil-cms/blocks";
+import { Badge } from "@narsil-cms/blocks/badge";
+import { Button } from "@narsil-cms/blocks/button";
+import { DataTable } from "@narsil-cms/blocks/data-table";
+import { Spinner } from "@narsil-cms/blocks/spinner";
 import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
 import {
   DialogClose,

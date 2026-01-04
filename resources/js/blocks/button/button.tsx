@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import { Tooltip } from "@narsil-cms/blocks";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { ButtonRoot } from "@narsil-cms/components/button";
 import { Icon } from "@narsil-cms/components/icon";
 import { ModalLink } from "@narsil-cms/components/modal";

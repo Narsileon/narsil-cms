@@ -1,4 +1,4 @@
-import { Button } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
 import {
   CardContent,
   CardFooter,

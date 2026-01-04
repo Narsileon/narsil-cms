@@ -1,4 +1,6 @@
-import { Button, Tooltip, VisuallyHidden } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";

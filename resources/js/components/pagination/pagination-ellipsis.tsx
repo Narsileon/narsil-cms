@@ -1,4 +1,4 @@
-import { VisuallyHidden } from "@narsil-cms/blocks";
+import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";

@@ -1,4 +1,7 @@
-import { Button, Heading, RevisionSelect, Status } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Heading } from "@narsil-cms/blocks/heading";
+import { RevisionSelect } from "@narsil-cms/blocks/revision-select";
+import { Status } from "@narsil-cms/blocks/status";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import {
   FormCountry,

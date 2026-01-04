@@ -1,5 +1,5 @@
 import { Link, router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
   DropdownMenuContent,

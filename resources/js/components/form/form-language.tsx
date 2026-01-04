@@ -1,4 +1,4 @@
-import { Badge } from "@narsil-cms/blocks";
+import { Badge } from "@narsil-cms/blocks/badge";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
 import { cn } from "@narsil-cms/lib/utils";

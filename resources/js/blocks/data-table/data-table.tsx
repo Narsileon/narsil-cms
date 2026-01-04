@@ -1,5 +1,6 @@
 import { router } from "@inertiajs/react";
-import { Button, Heading } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Heading } from "@narsil-cms/blocks/heading";
 import {
   DataTableColumns,
   DataTableFilterDropdown,

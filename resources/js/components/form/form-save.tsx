@@ -1,4 +1,6 @@
-import { Button, Kbd, Separator } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Kbd } from "@narsil-cms/blocks/kbd";
+import { Separator } from "@narsil-cms/blocks/separator";
 import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
 import {
   DropdownMenuContent,

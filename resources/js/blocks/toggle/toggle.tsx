@@ -1,6 +1,6 @@
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { ToggleRoot } from "@narsil-cms/components/toggle";
 import { type ComponentProps } from "react";
-import Tooltip from "./tooltip";
 
 type ToggleProps = ComponentProps<typeof ToggleRoot> & {
   tooltip?: string;

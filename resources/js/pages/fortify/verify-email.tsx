@@ -1,4 +1,7 @@
-import { Button, Card, Container, Heading } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Card } from "@narsil-cms/blocks/card";
+import { Container } from "@narsil-cms/blocks/container";
+import { Heading } from "@narsil-cms/blocks/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useEffect, useRef } from "react";

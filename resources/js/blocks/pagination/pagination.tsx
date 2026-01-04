@@ -1,3 +1,7 @@
+import {
+  type LaravelPaginationLinks,
+  type LaravelPaginationMetaLink,
+} from "@narsil-cms/blocks/pagination";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PaginationContent,
@@ -7,30 +11,6 @@ import {
   PaginationRoot,
 } from "@narsil-cms/components/pagination";
 import { type ComponentProps } from "react";
-
-export type LaravelPaginationLinks = {
-  first: string;
-  last: string;
-  next: string | null;
-  prev: string | null;
-};
-
-export type LaravelPaginationMeta = {
-  current_page: number;
-  from: number | null;
-  last_page: number;
-  links: LaravelPaginationMetaLink[];
-  path: string;
-  per_page: number;
-  to: number | null;
-  total: number;
-};
-
-export type LaravelPaginationMetaLink = {
-  active: boolean;
-  label: string;
-  url: string | null;
-};
 
 type PaginationProps = ComponentProps<typeof PaginationRoot> & {
   contentProps?: Partial<ComponentProps<typeof PaginationContent>>;

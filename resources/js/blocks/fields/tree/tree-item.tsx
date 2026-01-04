@@ -1,7 +1,7 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import Badge from "@narsil-cms/blocks/badge";
+import { Badge } from "@narsil-cms/blocks/badge";
 import { CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-cms/components/collapsible";
 import { useLocalization } from "@narsil-cms/components/localization";

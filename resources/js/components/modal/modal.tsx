@@ -1,4 +1,4 @@
-import { VisuallyHidden } from "@narsil-cms/blocks";
+import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import {
   DialogBody,
   DialogContent,

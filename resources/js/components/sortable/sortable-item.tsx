@@ -1,7 +1,9 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button, Tooltip, WidthSelector } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { WidthSelector } from "@narsil-cms/blocks/width-selector";
 import {
   CardContent,
   CardFooter,

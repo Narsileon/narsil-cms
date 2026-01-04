@@ -1,4 +1,6 @@
-import { Button, Separator, Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Separator } from "@narsil-cms/blocks/separator";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import {
   DropdownMenuContent,
   DropdownMenuRoot,

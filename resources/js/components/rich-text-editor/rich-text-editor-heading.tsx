@@ -1,4 +1,4 @@
-import { Toggle } from "@narsil-cms/blocks";
+import { Toggle } from "@narsil-cms/blocks/toggle";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Editor, useEditorState } from "@tiptap/react";

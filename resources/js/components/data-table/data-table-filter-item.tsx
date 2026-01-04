@@ -1,4 +1,4 @@
-import { Badge } from "@narsil-cms/blocks";
+import { Badge } from "@narsil-cms/blocks/badge";
 import { Select } from "@narsil-cms/blocks/fields/select";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {

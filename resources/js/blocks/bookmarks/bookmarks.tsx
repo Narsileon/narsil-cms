@@ -1,5 +1,7 @@
 import { router } from "@inertiajs/react";
-import { Button, Card, Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Card } from "@narsil-cms/blocks/card";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {

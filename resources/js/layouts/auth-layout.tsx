@@ -1,13 +1,11 @@
-import {
-  Bookmarks,
-  Breadcrumb,
-  Button,
-  Separator,
-  Sidebar,
-  ThemeToggleGroup,
-  Toaster,
-  Tooltip,
-} from "@narsil-cms/blocks";
+import { Bookmarks } from "@narsil-cms/blocks/bookmarks";
+import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
+import { Button } from "@narsil-cms/blocks/button";
+import { Separator } from "@narsil-cms/blocks/separator";
+import { Sidebar } from "@narsil-cms/blocks/sidebar";
+import { Toaster } from "@narsil-cms/blocks/toaster";
+import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { AlertDialogProvider } from "@narsil-cms/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
 import { BackgroundRoot } from "@narsil-cms/components/background";

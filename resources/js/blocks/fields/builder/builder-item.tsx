@@ -1,6 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import Button from "@narsil-cms/blocks/button";
+import { Button } from "@narsil-cms/blocks/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import {
   CollapsibleContent,

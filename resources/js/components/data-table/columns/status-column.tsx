@@ -1,4 +1,4 @@
-import { Status } from "@narsil-cms/blocks";
+import { Status } from "@narsil-cms/blocks/status";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Model } from "@narsil-cms/types";
 import { ColumnDef } from "@tanstack/react-table";

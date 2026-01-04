@@ -1,4 +1,9 @@
-import { Button, Container, Logo, ThemeToggleGroup, Toaster, Tooltip } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Container } from "@narsil-cms/blocks/container";
+import { Logo } from "@narsil-cms/blocks/logo";
+import { Toaster } from "@narsil-cms/blocks/toaster";
+import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import {

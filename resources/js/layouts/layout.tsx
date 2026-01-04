@@ -1,4 +1,4 @@
-import { Head } from "@narsil-cms/blocks";
+import { Head } from "@narsil-cms/blocks/head";
 import { LocalizationProvider } from "@narsil-cms/components/localization";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";

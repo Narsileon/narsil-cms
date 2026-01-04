@@ -1,4 +1,4 @@
-import { Heading } from "@narsil-cms/blocks";
+import { Heading } from "@narsil-cms/blocks/heading";
 import {
   AccordionContent,
   AccordionHeader,

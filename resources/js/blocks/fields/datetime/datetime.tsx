@@ -1,4 +1,6 @@
-import { Button, Calendar, Separator } from "@narsil-cms/blocks";
+import { Button } from "@narsil-cms/blocks/button";
+import { Calendar } from "@narsil-cms/blocks/calendar";
+import { Separator } from "@narsil-cms/blocks/separator";
 import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {

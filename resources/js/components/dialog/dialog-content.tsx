@@ -1,4 +1,4 @@
-import { VisuallyHidden } from "@narsil-cms/blocks";
+import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { Dialog } from "radix-ui";
