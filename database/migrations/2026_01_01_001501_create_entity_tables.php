@@ -144,17 +144,17 @@ return new class extends Migration
                 ->uuid(EntityNodeEntity::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(EntityNodeEntity::ENTITY_UUID)
+                ->foreignUuid(EntityNodeEntity::OWNER_UUID)
                 ->constrained(Entity::TABLE, Entity::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(EntityNodeEntity::ENTITY_NODE_UUID)
+                ->foreignUuid(EntityNodeEntity::OWNER_NODE_UUID)
                 ->constrained(EntityNode::TABLE, EntityNode::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(EntityNodeEntity::TARGET_UUID)
-                ->constrained(Entity::TABLE, Entity::UUID)
-                ->cascadeOnDelete();
+                ->string(EntityNodeEntity::LANGUAGE);
+            $blueprint
+                ->morphs(EntityNodeEntity::RELATION_TARGET);
         });
     }
 
@@ -171,13 +171,15 @@ return new class extends Migration
                 ->uuid(EntityNodeForm::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(EntityNodeForm::ENTITY_UUID)
+                ->foreignUuid(EntityNodeForm::OWNER_UUID)
                 ->constrained(Entity::TABLE, Entity::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(EntityNodeForm::ENTITY_NODE_UUID)
+                ->foreignUuid(EntityNodeForm::OWNER_NODE_UUID)
                 ->constrained(EntityNode::TABLE, EntityNode::UUID)
                 ->cascadeOnDelete();
+            $blueprint
+                ->string(EntityNodeEntity::LANGUAGE);
             $blueprint
                 ->foreignId(EntityNodeForm::FORM_ID)
                 ->constrained(Form::TABLE, Form::ID)
@@ -198,13 +200,15 @@ return new class extends Migration
                 ->uuid(EntityNodeSitePage::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(EntityNodeSitePage::ENTITY_UUID)
+                ->foreignUuid(EntityNodeSitePage::OWNER_UUID)
                 ->constrained(Entity::TABLE, Entity::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->foreignUuid(EntityNodeSitePage::ENTITY_NODE_UUID)
+                ->foreignUuid(EntityNodeSitePage::OWNER_NODE_UUID)
                 ->constrained(EntityNode::TABLE, EntityNode::UUID)
                 ->cascadeOnDelete();
+            $blueprint
+                ->string(EntityNodeEntity::LANGUAGE);
             $blueprint
                 ->foreignId(EntityNodeSitePage::SITE_PAGE_ID)
                 ->constrained(SitePage::TABLE, SitePage::ID)
@@ -225,7 +229,7 @@ return new class extends Migration
                 ->uuid(EntityNode::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(EntityNode::ENTITY_UUID)
+                ->foreignUuid(EntityNode::OWNER_UUID)
                 ->constrained(Entity::TABLE, Entity::UUID)
                 ->cascadeOnDelete();
             $blueprint

@@ -12,6 +12,7 @@ use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\SitePageEntity;
 use Narsil\Models\Sites\SiteUrl;
 
 #endregion
@@ -48,7 +49,7 @@ abstract class PageService
         App::setLocale($siteUrl->{SiteUrl::RELATION_HOST_LOCALE_LANGUAGE}->{HostLocaleLanguage::LANGUAGE});
 
         $siteUrl->loadMissing([
-            SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_ENTITIES,
+            SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_ENTITIES . '.' . SitePageEntity::RELATION_TARGET,
             SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_SITE . '.' . Site::RELATION_FOOTER,
             SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_SITE . '.' . Site::RELATION_HEADER,
             SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_URLS . '.' . SiteUrl::RELATION_HOST_LOCALE_LANGUAGE,

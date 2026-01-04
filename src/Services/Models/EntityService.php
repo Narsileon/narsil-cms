@@ -87,9 +87,9 @@ abstract class EntityService
                 if ($field->{Field::TYPE} === BuilderField::class)
                 {
                     $fieldEntityNode = EntityNode::create([
-                        EntityNode::ENTITY_UUID  => $entity->{Entity::UUID},
-                        EntityNode::ELEMENT_TYPE => $element->getTable(),
                         EntityNode::ELEMENT_ID => $element->getKey(),
+                        EntityNode::ELEMENT_TYPE => $element->getTable(),
+                        EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
                         EntityNode::PATH => $key,
                     ]);
@@ -103,7 +103,7 @@ abstract class EntityService
                     {
                         $blockEntityNode = EntityNode::create([
                             EntityNode::BLOCK_ID => Arr::get($block, EntityNode::BLOCK_ID),
-                            EntityNode::ENTITY_UUID => $entity->{Entity::UUID},
+                            EntityNode::OWNER_UUID => $entity->{Entity::UUID},
                             EntityNode::PARENT_UUID => $fieldEntityNode->getKey(),
                             EntityNode::PATH => "$key.$index",
                             EntityNode::POSITION => $index,
@@ -121,9 +121,9 @@ abstract class EntityService
                 else
                 {
                     EntityNode::create([
-                        EntityNode::ENTITY_UUID  => $entity->{Entity::UUID},
-                        EntityNode::ELEMENT_TYPE => $element->getTable(),
                         EntityNode::ELEMENT_ID => $element->getKey(),
+                        EntityNode::ELEMENT_TYPE => $element->getTable(),
+                        EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
                         EntityNode::PATH => $key,
                         EntityNode::POSITION => $position,
@@ -145,9 +145,9 @@ abstract class EntityService
                 }
 
                 $blockEntityNode = EntityNode::create([
-                    EntityNode::ENTITY_UUID  => $entity->{Entity::UUID},
-                    EntityNode::ELEMENT_TYPE => $element->getTable(),
                     EntityNode::ELEMENT_ID => $element->getKey(),
+                    EntityNode::ELEMENT_TYPE => $element->getTable(),
+                    EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
                     EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
                     EntityNode::PATH => $nextPath,
                     EntityNode::POSITION => $position,

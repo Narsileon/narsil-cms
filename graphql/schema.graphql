@@ -84,33 +84,39 @@ type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
 
 type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
   uuid: String!
+  block_element_uuid: String
+  block_id: ID
   element_id: String!
   element_type: String!
-  entity_block_uuid: String
-  entity_uuid: String!
+  owner_uuid: String!
+  parent_uuid: String!
+  path: String!
+  template_tab_element_uuid: String
   value: String!
-  blocks: [EntityNode!]! @hasMany
+  block: Block @belongsTo
+  children: [EntityNode!]! @hasMany
   element: HasElement! @morphTo
-  entities: [Entity!]! @belongsToMany
-  entity_block: EntityNode! @belongsTo
-  entity: Entity! @belongsTo
-  form: [Form!]! @belongsToMany
+  entities: [EntityNodeEntity!]! @hasMany
+  owner: Entity! @belongsTo
+  parent: EntityNode @belongsTo
 }
 
 type EntityNodeEntity @model(class: "Narsil\\Models\\Entities\\EntityNodeEntity") {
   uuid: String!
-  entity_node_uuid: String!
-  entity_uuid: String!
-  target_uuid: String!
+  owner_node_uuid: String!
+  owner_uuid: String!
+  language: String!
+  target_id: ID!
+  target_type: String!
   entity: Entity! @belongsTo
   entity_node: EntityNode! @belongsTo
-  target: Entity! @belongsTo
+  target: Entity! @morphTo
 }
 
 type EntityNodeForm @model(class: "Narsil\\Models\\Entities\\EntityNodeForm") {
   uuid: String!
-  entity_node_uuid: String!
-  entity_uuid: String!
+  owner_node_uuid: String!
+  owner_uuid: String!
   form_id: ID!
   entity: Entity! @belongsTo
   entity_node: EntityNode! @belongsTo

@@ -6,6 +6,7 @@ namespace Narsil\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Structures\Block;
@@ -47,6 +48,7 @@ class RelationServiceProvider extends ServiceProvider
         Relation::enforceMorphMap([
             Block::TABLE => Block::class,
             BlockElement::TABLE => BlockElement::class,
+            Entity::TABLE => Entity::class,
             Field::TABLE => Field::class,
             Fieldset::TABLE => Fieldset::class,
             Input::TABLE => Input::class,

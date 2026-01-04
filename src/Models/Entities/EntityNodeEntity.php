@@ -5,7 +5,7 @@ namespace Narsil\Models\Entities;
 #region USE
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 #endregion
 
@@ -43,11 +43,18 @@ class EntityNodeEntity extends AbstractEntityNodeRelation
     #region • COLUMNS
 
     /**
-     * The name of the "target uuid" column.
+     * The name of the "target id" column.
      *
      * @var string
      */
-    final public const TARGET_UUID = 'target_uuid';
+    final public const TARGET_ID = 'target_id';
+
+    /**
+     * The name of the "target type" column.
+     *
+     * @var string
+     */
+    final public const TARGET_TYPE = 'target_type';
 
     #endregion
 
@@ -71,15 +78,16 @@ class EntityNodeEntity extends AbstractEntityNodeRelation
     /**
      * Get the associated target.
      *
-     * @return BelongsTo
+     * @return MorphTo
      */
-    final public function target(): BelongsTo
+    final public function target(): MorphTo
     {
         return $this
-            ->belongsTo(
-                Entity::class,
-                self::TARGET_UUID,
-                Entity::UUID,
+            ->morphTo(
+                self::RELATION_TARGET,
+                self::TARGET_TYPE,
+                self::TARGET_ID,
+                Entity::ID,
             );
     }
 

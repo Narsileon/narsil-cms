@@ -74,9 +74,9 @@ class EntityNodeObserver
             foreach ($entityNode->getTranslations(EntityNode::VALUE) as $translation)
             {
                 EntityNodeForm::firstOrCreate([
-                    EntityNodeForm::ENTITY_UUID => $entityNode->{EntityNode::ENTITY_UUID},
-                    EntityNodeForm::ENTITY_NODE_UUID => $entityNode->{EntityNode::UUID},
                     EntityNodeForm::FORM_ID => $translation,
+                    EntityNodeForm::OWNER_NODE_UUID => $entityNode->{EntityNode::UUID},
+                    EntityNodeForm::OWNER_UUID => $entityNode->{EntityNode::OWNER_UUID},
                 ]);
             }
         }
@@ -86,8 +86,8 @@ class EntityNodeObserver
             foreach ($entityNode->getTranslations(EntityNode::VALUE) as $translation)
             {
                 EntityNodeSitePage::firstOrCreate([
-                    EntityNodeSitePage::ENTITY_UUID => $entityNode->{EntityNode::ENTITY_UUID},
-                    EntityNodeSitePage::ENTITY_NODE_UUID => $entityNode->{EntityNode::UUID},
+                    EntityNodeSitePage::OWNER_NODE_UUID => $entityNode->{EntityNode::UUID},
+                    EntityNodeSitePage::OWNER_UUID => $entityNode->{EntityNode::OWNER_UUID},
                     EntityNodeSitePage::SITE_PAGE_ID => $translation,
                 ]);
             }

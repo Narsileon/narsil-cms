@@ -98,11 +98,11 @@ class EntityNode extends Model
     final public const ELEMENT_TYPE = 'element_type';
 
     /**
-     * The name of the "entity uuid" column.
+     * The name of the "owner uuid" column.
      *
      * @var string
      */
-    final public const ENTITY_UUID = 'entity_uuid';
+    final public const OWNER_UUID = 'owner_uuid';
 
     /**
      * The name of the "parent uuid" column.
@@ -185,12 +185,6 @@ class EntityNode extends Model
      */
     final public const RELATION_ENTITIES = 'entities';
 
-    /**
-     * The name of the "entity" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY = 'entity';
 
     /**
      * The name of the "forms" relation.
@@ -198,6 +192,13 @@ class EntityNode extends Model
      * @var string
      */
     final public const RELATION_FORMS = 'forms';
+
+    /**
+     * The name of the "owner" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_OWNER = 'owner';
 
     /**
      * The name of the "parent" relation.
@@ -289,35 +290,18 @@ class EntityNode extends Model
     }
 
     /**
-     * Get the associated entity.
-     *
-     * @return BelongsTo
-     */
-    final public function entity(): BelongsTo
-    {
-        return $this
-            ->belongsTo(
-                Entity::class,
-                self::ENTITY_UUID,
-                Entity::UUID,
-            );
-    }
-
-    /**
      * Get the associated entities.
      *
-     * @return BelongsToMany
+     * @return HasMany
      */
-    final public function entities(): BelongsToMany
+    final public function entities(): HasMany
     {
         return $this
-            ->belongsToMany(
-                Entity::class,
-                EntityNodeEntity::TABLE,
-                EntityNodeEntity::ENTITY_NODE_UUID,
-                EntityNodeEntity::TARGET_UUID,
-            )
-            ->using(EntityNodeEntity::class);
+            ->hasMany(
+                EntityNodeEntity::class,
+                EntityNodeEntity::OWNER_NODE_UUID,
+                self::UUID,
+            );
     }
 
     /**
@@ -331,10 +315,25 @@ class EntityNode extends Model
             ->belongsToMany(
                 Form::class,
                 EntityNodeForm::TABLE,
-                EntityNodeForm::ENTITY_NODE_UUID,
+                EntityNodeForm::OWNER_NODE_UUID,
                 EntityNodeForm::FORM_ID,
             )
             ->using(EntityNodeForm::class);
+    }
+
+    /**
+     * Get the associated owner.
+     *
+     * @return BelongsTo
+     */
+    final public function owner(): BelongsTo
+    {
+        return $this
+            ->belongsTo(
+                Entity::class,
+                self::OWNER_UUID,
+                Entity::UUID,
+            );
     }
 
     /**
@@ -363,7 +362,7 @@ class EntityNode extends Model
             ->belongsToMany(
                 SitePage::class,
                 EntityNodeSitePage::TABLE,
-                EntityNodeSitePage::ENTITY_NODE_UUID,
+                EntityNodeSitePage::OWNER_NODE_UUID,
                 EntityNodeSitePage::SITE_PAGE_ID,
             )
             ->using(EntityNodeSitePage::class);

@@ -130,7 +130,7 @@ class Entity extends Model
         return $this
             ->hasMany(
                 EntityNode::class,
-                EntityNode::ENTITY_UUID,
+                EntityNode::OWNER_UUID,
                 self::UUID,
             );
     }

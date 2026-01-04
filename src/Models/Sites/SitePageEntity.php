@@ -6,6 +6,7 @@ namespace Narsil\Models\Sites;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Entities\Entity;
 
@@ -52,11 +53,11 @@ class SitePageEntity extends Pivot
     #region • COLUMNS
 
     /**
-     * The name of the "target id" column.
+     * The name of the "language" column.
      *
      * @var string
      */
-    final public const ENTITY_ID = 'entity_id';
+    final public const LANGUAGE = 'language';
 
     /**
      * The name of the "site page id" column.
@@ -64,6 +65,20 @@ class SitePageEntity extends Pivot
      * @var string
      */
     final public const SITE_PAGE_ID = 'site_page_id';
+
+    /**
+     * The name of the "target id" column.
+     *
+     * @var string
+     */
+    final public const TARGET_ID = 'target_id';
+
+    /**
+     * The name of the "target type" column.
+     *
+     * @var string
+     */
+    final public const TARGET_TYPE = 'target_type';
 
     /**
      * The name of the "uuid" column.
@@ -77,18 +92,18 @@ class SitePageEntity extends Pivot
     #region • RELATIONS
 
     /**
-     * The name of the "entity" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITY = 'entity';
-
-    /**
      * The name of the "site page" relation.
      *
      * @var string
      */
     final public const RELATION_SITE_PAGE = 'site_page';
+
+    /**
+     * The name of the "target" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TARGET = 'target';
 
     #endregion
 
@@ -99,17 +114,18 @@ class SitePageEntity extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated entity.
+     * Get the associated target.
      *
-     * @return BelongsTo
+     * @return MorphTo
      */
-    final public function entity(): BelongsTo
+    final public function target(): MorphTo
     {
         return $this
-            ->belongsTo(
-                Entity::class,
-                self::ENTITY_ID,
-                Entity::ID
+            ->morphTo(
+                self::RELATION_TARGET,
+                self::TARGET_TYPE,
+                self::TARGET_ID,
+                Entity::ID,
             );
     }
 

@@ -51,8 +51,9 @@ class SiteObserver
             $entity = new HomeEntitySeeder()->run();
 
             SitePageEntity::create([
-                SitePageEntity::ENTITY_ID => $entity->{Entity::ID},
                 SitePageEntity::SITE_PAGE_ID => $homePage->{SitePage::ID},
+                SitePageEntity::TARGET_ID => $entity->{Entity::ID},
+                SitePageEntity::TARGET_TYPE => $entity->getTable(),
             ]);
 
             $this->createPages($model, $homePage);
@@ -125,8 +126,9 @@ class SiteObserver
         $entity = new ContactEntitySeeder()->run();
 
         SitePageEntity::create([
-            SitePageEntity::ENTITY_ID => $entity->{Entity::ID},
             SitePageEntity::SITE_PAGE_ID => $sitePage->{SitePage::ID},
+            SitePageEntity::TARGET_ID => $entity->{Entity::ID},
+            SitePageEntity::TARGET_TYPE => $entity->getTable(),
         ]);
 
         return $sitePage;

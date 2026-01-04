@@ -7,12 +7,10 @@ namespace Narsil\Models\Sites;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
-use Narsil\Models\Entities\Entity;
 use Narsil\Models\TreeModel;
 use Narsil\Traits\HasTranslations;
 
@@ -272,20 +270,16 @@ class SitePage extends TreeModel
     /**
      * Get the associated entities.
      *
-     * @return BelongsToMany
+     * @return HasMany
      */
-    final public function entities(): BelongsToMany
+    final public function entities(): HasMany
     {
         return $this
-            ->belongsToMany(
-                Entity::class,
-                SitePageEntity::TABLE,
+            ->hasMany(
+                SitePageEntity::class,
                 SitePageEntity::SITE_PAGE_ID,
-                SitePageEntity::ENTITY_ID,
                 self::ID,
-                Entity::ID,
-            )
-            ->using(SitePageEntity::class);
+            );
     }
 
     /**

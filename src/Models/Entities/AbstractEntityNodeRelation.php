@@ -7,6 +7,7 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Facades\Config;
 
 #endregion
 
@@ -42,18 +43,25 @@ abstract class AbstractEntityNodeRelation extends Pivot
     #region • COLUMNS
 
     /**
-     * The name of the "entity uuid" column.
+     * The name of the "language" column.
      *
      * @var string
      */
-    final public const ENTITY_UUID = 'entity_uuid';
+    final public const LANGUAGE = 'language';
 
     /**
-     * The name of the "entity node uuid" column.
+     * The name of the "owner uuid" column.
      *
      * @var string
      */
-    final public const ENTITY_NODE_UUID = 'entity_node_uuid';
+    final public const OWNER_UUID = 'owner_uuid';
+
+    /**
+     * The name of the "owner node uuid" column.
+     *
+     * @var string
+     */
+    final public const OWNER_NODE_UUID = 'owner_node_uuid';
 
     /**
      * The name of the "uuid" column.
@@ -67,18 +75,18 @@ abstract class AbstractEntityNodeRelation extends Pivot
     #region • RELATIONS
 
     /**
-     * The name of the "entity" relation.
+     * The name of the "owner" relation.
      *
      * @var string
      */
-    final public const RELATION_ENTITY = 'entity';
+    final public const RELATION_OWNER = 'owner';
 
     /**
-     * The name of the "entity field" relation.
+     * The name of the "owner node" relation.
      *
      * @var string
      */
-    final public const RELATION_ENTITY_NODE = 'entity_node';
+    final public const RELATION_OWNER_NODE = 'owner_node';
 
     #endregion
 
@@ -89,36 +97,54 @@ abstract class AbstractEntityNodeRelation extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated entity.
+     * Get the associated owner.
      *
      * @return BelongsTo
      */
-    final public function entity(): BelongsTo
+    final public function owner(): BelongsTo
     {
         return $this
             ->belongsTo(
                 Entity::class,
-                self::ENTITY_UUID,
+                self::OWNER_UUID,
                 Entity::UUID,
             );
     }
 
     /**
-     * Get the associated entity node.
+     * Get the associated owner node.
      *
      * @return BelongsTo
      */
-    final public function entity_node(): BelongsTo
+    final public function owner_node(): BelongsTo
     {
         return $this
             ->belongsTo(
                 EntityNode::class,
-                self::ENTITY_NODE_UUID,
+                self::OWNER_NODE_UUID,
                 EntityNode::UUID,
             );
     }
 
     #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected static function booted(): void
+    {
+        static::saving(function (AbstractEntityNodeRelation $model)
+        {
+            if (!$model->{EntityNodeEntity::LANGUAGE})
+            {
+                $model->{EntityNodeEntity::LANGUAGE} = Config::get('app.locale');
+            }
+        });
+    }
 
     #endregion
 }

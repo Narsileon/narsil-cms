@@ -81,7 +81,9 @@ return new class extends Migration
                 ->constrained(SitePage::TABLE, SitePage::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->bigInteger(SitePageEntity::ENTITY_ID);
+                ->string(SitePageEntity::LANGUAGE);
+            $blueprint
+                ->morphs(SitePageEntity::RELATION_TARGET);
         });
     }
 

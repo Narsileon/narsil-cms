@@ -80,8 +80,9 @@ class SitePageObserver
                 [$table, $id] = explode('-', $relation, 2);
 
                 SitePageEntity::firstOrCreate([
-                    SitePageEntity::ENTITY_ID => $id,
                     SitePageEntity::SITE_PAGE_ID => $model->{SitePage::ID},
+                    SitePageEntity::TARGET_ID => $id,
+                    SitePageEntity::TARGET_TYPE => $table,
                 ]);
             }
         }
