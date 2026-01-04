@@ -13,7 +13,7 @@ export type Model = {
 
 export type Block = {
   collapsible: boolean;
-  elements: HasElement[];
+  elements: StructureHasElement[];
   handle: string;
   icon?: IconName;
   id: number;
@@ -63,11 +63,39 @@ export type FieldOption = {
   value: string;
 } & FieldType;
 
+export type Fieldset = {
+  collapsible: boolean;
+  elements: FormHasElement[];
+  handle: string;
+  icon?: IconName;
+  id: number;
+  identifier: string;
+  name: string;
+};
+
+export type Form = Model & {
+  handle: string;
+  id: number;
+  name: string;
+};
+
+export type FormHasElement = HasElement & {
+  element_type: "Narsil\\Models\\Forms\\Fieldset" | "Narsil\\Models\\Forms\\Input";
+  element: Fieldset | Input;
+};
+
+export type FormTab = Model & {
+  elements?: FormHasElement[];
+  handle: string;
+  icon?: IconName;
+  id: number;
+  identifier: string;
+  name: string;
+};
+
 export type HasElement = Model & {
   conditions?: Condition[];
   element_id: number;
-  element_type: "Narsil\\Models\\Structures\\Block" | "Narsil\\Models\\Structures\\Field";
-  element: Block | Field;
   handle: string;
   id: number;
   name: string;
@@ -87,6 +115,20 @@ export type HostLocaleLanguage = Model & {
   language: string;
 };
 
+export type Input = {
+  blocks: Block[];
+  class_name: string;
+  description: string | null;
+  handle: string;
+  id: number;
+  identifier: string;
+  name: string;
+  placeholder: string;
+  options: FieldOption[];
+  required: boolean;
+  translatable: boolean;
+} & FieldType;
+
 export type SitePage = Model & {
   content: string[];
   entities: Record<string, Entity>;
@@ -104,6 +146,11 @@ export type SiteUrl = Model & {
   url: string;
 };
 
+export type StructureHasElement = HasElement & {
+  element_type: "Narsil\\Models\\Structures\\Block" | "Narsil\\Models\\Structures\\Field";
+  element: Block | Field;
+};
+
 export type Template = Model & {
   handle: string;
   id: number;
@@ -111,7 +158,7 @@ export type Template = Model & {
 };
 
 export type TemplateTab = Model & {
-  elements?: HasElement[];
+  elements?: StructureHasElement[];
   handle: string;
   icon?: IconName;
   id: number;

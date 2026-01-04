@@ -33,13 +33,13 @@ function FormProvider({
 
     elements.map((element) => {
       if ("elements" in element) {
-        element.elements?.map((blockElement) => {
-          const childElement = blockElement.element;
+        element.elements?.map((hasElement) => {
+          const childElement = hasElement.element;
 
           if ("elements" in childElement) {
             Object.assign(receivedValues, flattenValues([childElement]));
           } else if ("type" in childElement) {
-            set(receivedValues, blockElement.handle, getFieldDefaultValue(childElement));
+            set(receivedValues, hasElement.handle, getFieldDefaultValue(childElement));
           }
         });
       } else if ("type" in element) {
