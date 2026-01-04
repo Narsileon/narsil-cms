@@ -9,6 +9,7 @@ use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\FieldsetElement;
 use Narsil\Models\Forms\FieldsetElementCondition;
 use Narsil\Models\Forms\Form;
+use Narsil\Models\Forms\FormSubmission;
 use Narsil\Models\Forms\FormTab;
 use Narsil\Models\Forms\FormTabElement;
 use Narsil\Models\Forms\FormTabElementCondition;
@@ -73,6 +74,10 @@ return new class extends Migration
         {
             $this->createFormTabElementConditionsTable();
         }
+        if (!Schema::hasTable(FormSubmission::TABLE))
+        {
+            $this->createFormSubmissionsTable();
+        }
     }
 
     /**
@@ -90,6 +95,7 @@ return new class extends Migration
         Schema::dropIfExists(FieldsetElement::TABLE);
         Schema::dropIfExists(Fieldset::TABLE);
 
+        Schema::dropIfExists(FormSubmission::TABLE);
         Schema::dropIfExists(FormTabElementCondition::TABLE);
         Schema::dropIfExists(FormTabElement::TABLE);
         Schema::dropIfExists(FormTab::TABLE);
@@ -202,6 +208,29 @@ return new class extends Migration
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
+        });
+    }
+
+    /**
+     * Create the form submissions table.
+     *
+     * @return void
+     */
+    private function createFormSubmissionsTable(): void
+    {
+        Schema::create(FormSubmission::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(FormSubmission::UUID)
+                ->primary();
+            $blueprint
+                ->foreignId(FormSubmission::FORM_ID)
+                ->constrained(Form::TABLE, Form::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->json(FormSubmission::DATA);
+            $blueprint
+                ->timestamps();
         });
     }
 

@@ -12,4 +12,4 @@ use Narsil\Http\Controllers\Sitemaps\SitemapIndexController;
 Route::get('/sitemap_index.xml', SitemapIndexController::class);
 Route::get('/sitemap/{country}.xml', SitemapController::class);
 
-Route::get('/forms/{form}/submit', FormSubmitController::class);
+Route::post('/forms/{form}/submit', FormSubmitController::class);

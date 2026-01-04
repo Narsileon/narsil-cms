@@ -4,7 +4,7 @@ namespace Narsil\Http\Controllers\Forms;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\Form;
@@ -23,9 +23,9 @@ class FormSubmitController extends RedirectController
     /**
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return RedirectResponse
      */
-    public function __invoke(Request $request, Form $form): JsonResponse
+    public function __invoke(Request $request, Form $form): RedirectResponse
     {
         $data = $request->all();
 
@@ -34,9 +34,8 @@ class FormSubmitController extends RedirectController
             FormSubmission::FORM_ID => $form->{Form::ID},
         ]);
 
-        return response()->json([
-            'success' => true,
-        ]);
+        return back()
+            ->with('success', true);
     }
 
     #endregion

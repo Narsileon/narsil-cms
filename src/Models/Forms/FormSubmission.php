@@ -4,6 +4,7 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Traits\Blameable;
@@ -19,6 +20,7 @@ class FormSubmission extends Model
 {
     use Blameable;
     use HasDatetimes;
+    use HasUuids;
 
     #region CONSTRUCTOR
 
@@ -29,8 +31,14 @@ class FormSubmission extends Model
     {
         $this->table = self::TABLE;
 
+        $this->primaryKey = self::UUID;
+
+        $this->mergeCasts([
+            self::DATA => 'array',
+        ]);
+
         $this->mergeGuarded([
-            self::ID,
+            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -64,11 +72,11 @@ class FormSubmission extends Model
     final public const FORM_ID = 'form_id';
 
     /**
-     * The name of the "id" column.
+     * The name of the "uuid" column.
      *
      * @var string
      */
-    final public const ID = 'id';
+    final public const UUID = 'uuid';
 
     #endregion
 
