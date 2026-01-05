@@ -106,7 +106,7 @@ abstract class FormService
         }
 
         $form
-            ->pages()
+            ->tabs()
             ->whereNotIn(FormTab::UUID, $uuids)
             ->delete();
     }

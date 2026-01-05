@@ -175,7 +175,7 @@ class Fieldset extends Model
         return $this
             ->hasMany(
                 FieldsetElement::class,
-                FieldsetElement::FIELDSET_ID,
+                FieldsetElement::OWNER_ID,
                 self::ID,
             )
             ->orderBy(FieldsetElement::POSITION);
