@@ -34,7 +34,7 @@ trait HasIdentifier
      *
      * @return string
      */
-    final public function identifier(): Attribute
+    final protected function identifier(): Attribute
     {
         return Attribute::make(
             get: function ()

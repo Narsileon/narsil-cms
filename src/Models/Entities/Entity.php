@@ -155,7 +155,7 @@ class Entity extends Model
      *
      * @return string
      */
-    public function identifier(): Attribute
+    protected function identifier(): Attribute
     {
         return Attribute::make(
             get: function ()

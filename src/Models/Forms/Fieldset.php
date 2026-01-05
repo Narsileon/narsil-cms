@@ -199,7 +199,7 @@ class Fieldset extends Model
      *
      * @return string
      */
-    public function icon(): Attribute
+    protected function icon(): Attribute
     {
         return Attribute::make(
             get: function ()

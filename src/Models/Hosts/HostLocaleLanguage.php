@@ -159,7 +159,7 @@ class HostLocaleLanguage extends Model
      *
      * @return string
      */
-    public function displayLanguage(): Attribute
+    protected function displayLanguage(): Attribute
     {
         return Attribute::make(
             get: function ()

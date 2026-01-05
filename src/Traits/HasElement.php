@@ -51,7 +51,7 @@ trait HasElement
      *
      * @return string
      */
-    final public function icon(): Attribute
+    final protected function icon(): Attribute
     {
         return Attribute::make(
             get: function ()
@@ -66,7 +66,7 @@ trait HasElement
      *
      * @return string
      */
-    final public function identifier(): Attribute
+    final protected function identifier(): Attribute
     {
         return Attribute::make(
             get: function ()

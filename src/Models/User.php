@@ -332,7 +332,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return string
      */
-    public function fullName(): Attribute
+    protected function fullName(): Attribute
     {
         return Attribute::make(
             get: function ()
