@@ -5,6 +5,7 @@ namespace Narsil\Models;
 #region USE
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -241,20 +242,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     #region PUBLIC METHODS
 
-    #region • ACCESSORS
-
-    /**
-     * Get the full name of the user.
-     *
-     * @return string
-     */
-    public function getFullNameAttribute(): string
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
-
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**
@@ -330,6 +317,29 @@ class User extends Authenticatable implements MustVerifyEmail
                 Session::USER_ID,
                 self::ID
             );
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    #region • ACCESSORS
+
+    /**
+     * Get the "full name" attribute.
+     *
+     * @return string
+     */
+    public function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                return $this->first_name . ' ' . $this->last_name;
+            },
+        );
     }
 
     #endregion

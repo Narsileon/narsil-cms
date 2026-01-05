@@ -4,6 +4,7 @@ namespace Narsil\Traits;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Narsil\Interfaces\IHasElement;
@@ -21,31 +22,6 @@ trait HasElement
 
     #region PUBLIC METHODS
 
-    #region • ACCESSORS
-
-    /**
-     * @return string|null
-     */
-    public function getIconAttribute(): ?string
-    {
-        return $this->{IHasElement::RELATION_ELEMENT}->{IHasElement::ATTRIBUTE_ICON} ?? null;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdentifierAttribute(): string
-    {
-        $element = $this->{IHasElement::RELATION_ELEMENT};
-
-        $key = $element->getKey();
-        $table = $element->getTable();
-
-        return !empty($key) ? "$table-$key" : $table;
-    }
-
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**
@@ -59,6 +35,49 @@ trait HasElement
             IHasElement::RELATION_ELEMENT,
             IHasElement::ELEMENT_TYPE,
             IHasElement::ELEMENT_ID,
+        );
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    #region • ACCESSORS
+
+    /**
+     * Get the "icon" attribute.
+     *
+     * @return string
+     */
+    final public function icon(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                return $this->{IHasElement::RELATION_ELEMENT}->{IHasElement::ATTRIBUTE_ICON} ?? null;
+            },
+        );
+    }
+
+    /**
+     * Get the "identifier" attribute.
+     *
+     * @return string
+     */
+    final public function identifier(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                $element = $this->{IHasElement::RELATION_ELEMENT};
+
+                $key = $element->getKey();
+                $table = $element->getTable();
+
+                return !empty($key) ? "$table-$key" : $table;
+            },
         );
     }
 

@@ -2,6 +2,8 @@
 
 namespace Narsil\Traits;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
@@ -23,21 +25,26 @@ trait HasIdentifier
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region PROTECTED METHODS
 
     #region • ACCESSORS
 
     /**
-     * Get the associated identifier.
+     * Get the "identifier" attribute.
      *
      * @return string
      */
-    final public function getIdentifierAttribute(): string
+    final public function identifier(): Attribute
     {
-        $key = $this->getKey();
-        $table = $this->getTable();
+        return Attribute::make(
+            get: function ()
+            {
+                $key = $this->getKey();
+                $table = $this->getTable();
 
-        return !empty($key) ? "$table-$key" : $table;
+                return !empty($key) ? "$table-$key" : $table;
+            },
+        );
     }
 
     #endregion

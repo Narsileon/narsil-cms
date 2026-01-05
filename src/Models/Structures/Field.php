@@ -4,6 +4,7 @@ namespace Narsil\Models\Structures;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -218,25 +219,6 @@ class Field extends Model
 
     #region PUBLIC METHODS
 
-    #region • ACCESSORS
-
-    /**
-     * Get the icon of the field.
-     *
-     * @return string|null
-     */
-    public function getIconAttribute(): ?string
-    {
-        if ($type = $this->{self::TYPE})
-        {
-            return FieldService::getIcon($type);
-        }
-
-        return null;
-    }
-
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**
@@ -287,6 +269,34 @@ class Field extends Model
                 FieldValidationRule::VALIDATION_RULE_ID,
             )
             ->using(FieldValidationRule::class);
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    #region • ACCESSORS
+
+    /**
+     * Get the "icon" attribute.
+     *
+     * @return string
+     */
+    public function icon(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                if ($type = $this->{self::TYPE})
+                {
+                    return FieldService::getIcon($type);
+                }
+
+                return null;
+            },
+        );
     }
 
     #endregion

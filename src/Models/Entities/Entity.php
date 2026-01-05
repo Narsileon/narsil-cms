@@ -4,6 +4,7 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -101,23 +102,6 @@ class Entity extends Model
 
     #region PUBLIC METHODS
 
-    #region • ACCESSORS
-
-    /**
-     * Get the associated identifier.
-     *
-     * @return string
-     */
-    final public function getIdentifierAttribute(): string
-    {
-        $key = $this->{self::ID};
-        $table = $this->getTable();
-
-        return !empty($key) ? "$table-$key" : $table;
-    }
-
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**
@@ -164,5 +148,26 @@ class Entity extends Model
         return 10;
     }
 
+    #region • ACCESSORS
+
+    /**
+     * Get the "identifier" attribute.
+     *
+     * @return string
+     */
+    public function identifier(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                $key = $this->{self::ID};
+                $table = $this->getTable();
+
+                return !empty($key) ? "$table-$key" : $table;
+            },
+        );
+    }
+
+    #endregion
     #endregion
 }

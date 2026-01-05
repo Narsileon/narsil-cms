@@ -4,6 +4,7 @@ namespace Narsil\Models\Structures;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -177,20 +178,6 @@ class Block extends Model
 
     #region PUBLIC METHODS
 
-    #region • ACCESSORS
-
-    /**
-     * Get the icon of the block.
-     *
-     * @return string
-     */
-    public function getIconAttribute(): string
-    {
-        return 'block';
-    }
-
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**
@@ -243,6 +230,29 @@ class Block extends Model
                 BlockElement::ELEMENT_ID,
             )
             ->using(BlockElement::class);
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    #region • ACCESSORS
+
+    /**
+     * Get the "icon" attribute.
+     *
+     * @return string
+     */
+    public function icon(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                return 'block';
+            },
+        );
     }
 
     #endregion

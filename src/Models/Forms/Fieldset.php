@@ -4,6 +4,7 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -149,20 +150,6 @@ class Fieldset extends Model
 
     #region PUBLIC METHODS
 
-    #region • ACCESSORS
-
-    /**
-     * Get the icon of the fieldset.
-     *
-     * @return string
-     */
-    public function getIconAttribute(): string
-    {
-        return 'fieldset';
-    }
-
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**
@@ -197,6 +184,29 @@ class Fieldset extends Model
                 FieldsetElement::ELEMENT_ID,
             )
             ->using(FieldsetElement::class);
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    #region • ACCESSORS
+
+    /**
+     * Get the "icon" attribute.
+     *
+     * @return string
+     */
+    public function icon(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                return 'fieldset';
+            },
+        );
     }
 
     #endregion

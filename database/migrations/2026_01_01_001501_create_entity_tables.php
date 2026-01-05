@@ -76,7 +76,7 @@ return new class extends Migration
      *
      * @return void
      */
-    protected function createEntitiesTable(): void
+    private function createEntitiesTable(): void
     {
         Schema::create(Entity::TABLE, function (Blueprint $blueprint)
         {
@@ -221,7 +221,7 @@ return new class extends Migration
      *
      * @return void
      */
-    protected function createEntityNodesTable(): void
+    private function createEntityNodesTable(): void
     {
         Schema::create(EntityNode::TABLE, function (Blueprint $blueprint)
         {

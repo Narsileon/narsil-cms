@@ -4,6 +4,7 @@ namespace Narsil\Models\Hosts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -128,20 +129,6 @@ class HostLocaleLanguage extends Model
             ->toArray();
     }
 
-    #region • ACCESSORS
-
-    /**
-     * Get the icon of the block.
-     *
-     * @return string
-     */
-    public function getDisplayLanguageAttribute(): string
-    {
-        return Locale::getDisplayLanguage($this->{self::LANGUAGE}, App::getLocale());
-    }
-
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**
@@ -157,6 +144,29 @@ class HostLocaleLanguage extends Model
                 self::LOCALE_UUID,
                 HostLocale::UUID,
             );
+    }
+
+    #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    #region • ACCESSORS
+
+    /**
+     * Get the "display language" attribute.
+     *
+     * @return string
+     */
+    public function displayLanguage(): Attribute
+    {
+        return Attribute::make(
+            get: function ()
+            {
+                return Locale::getDisplayLanguage($this->{self::LANGUAGE}, App::getLocale());
+            },
+        );
     }
 
     #endregion
