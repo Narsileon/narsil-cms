@@ -4,8 +4,11 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Forms\Form;
+use Narsil\Models\Forms\FormTab;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -42,6 +45,12 @@ class FormTable extends AbstractTable
             ),
             new TableColumn(
                 id: Form::SLUG,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(FormTab::TABLE),
+                id: Form::COUNT_TABS,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

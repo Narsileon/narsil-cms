@@ -6,6 +6,7 @@ use Narsil\Models\Configuration;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
+use Narsil\Models\Forms\FormTab;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
@@ -21,6 +22,7 @@ use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
+use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
@@ -33,21 +35,23 @@ return [
     Configuration::TABLE => 'Einstellungen',
     Entity::TABLE => 'Entitäten',
     Field::TABLE => 'Felder',
+    Fieldset::TABLE => 'Feldgruppen',
     Footer::TABLE => 'Fußzeilen',
     FooterLink::TABLE => 'Links',
     FooterSocialMedium::TABLE => 'Soziale Medien',
     Form::TABLE => 'Formulare',
-    Fieldset::TABLE => 'Feldgruppen',
-    Input::TABLE => 'Eingaben',
+    FormTab::TABLE => 'Tabs',
     Header::TABLE => 'Kopfzeilen',
     Host::TABLE => 'Hosts',
     HostLocale::TABLE => 'Locales',
     HostLocaleLanguage::TABLE => 'Sprachen',
+    Input::TABLE => 'Eingaben',
     Permission::TABLE => 'Berechtigungen',
     Role::TABLE => 'Rollen',
     Site::VIRTUAL_TABLE => 'Webseiten',
     SitePage::TABLE => 'Seiten',
     Template::TABLE => 'Vorlagen',
+    TemplateTab::TABLE => 'Tabs',
     User::TABLE => 'Benutzer',
     UserBookmark::TABLE => 'Lesezeichen',
     UserConfiguration::TABLE => 'Einstellungen',

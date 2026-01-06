@@ -50,7 +50,13 @@ class TemplateIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = Template::query();
+        $query = Template::query()
+            ->with([
+                Template::RELATION_TABS,
+            ])
+            ->withCount([
+                Template::RELATION_TABS,
+            ]);
 
         return new DataTableCollection($query, Template::TABLE);
     }

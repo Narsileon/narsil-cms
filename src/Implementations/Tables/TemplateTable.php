@@ -4,8 +4,11 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Structures\Template;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -50,6 +53,12 @@ class TemplateTable extends AbstractTable
             ),
             new TableColumn(
                 id: Template::PLURAL,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(TemplateTab::TABLE),
+                id: Template::COUNT_TABS,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

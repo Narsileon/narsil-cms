@@ -50,7 +50,13 @@ class FormIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = Form::query();
+        $query = Form::query()
+            ->with([
+                Form::RELATION_TABS,
+            ])
+            ->withCount([
+                Form::RELATION_TABS,
+            ]);
 
         return new DataTableCollection($query, Form::TABLE);
     }

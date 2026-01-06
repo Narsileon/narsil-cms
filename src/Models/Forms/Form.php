@@ -102,6 +102,17 @@ class Form extends Model
 
     #endregion
 
+    #region • COUNTS
+
+    /**
+     * The name of the "tabs" count.
+     *
+     * @var string
+     */
+    final public const COUNT_TABS = 'tabs_count';
+
+    #endregion
+
     #region • RELATIONS
 
     /**
