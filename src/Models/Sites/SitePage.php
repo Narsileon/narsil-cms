@@ -429,7 +429,10 @@ class SitePage extends TreeModel
     protected function leftId(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::LEFT_ID} ?? $value
+            get: function ($value)
+            {
+                return $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::LEFT_ID} ?? $value;
+            }
         );
     }
 
@@ -441,7 +444,10 @@ class SitePage extends TreeModel
     protected function parentId(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::PARENT_ID} ?? $value
+            get: function ($value)
+            {
+                return $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::PARENT_ID} ?? $value;
+            }
         );
     }
 
@@ -453,7 +459,10 @@ class SitePage extends TreeModel
     protected function rightId(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::RIGHT_ID} ?? $value
+            get: function ($value)
+            {
+                return $this->{self::RELATION_OVERRIDE}?->{SitePageOverride::RIGHT_ID} ?? $value;
+            }
         );
     }
 

@@ -124,7 +124,10 @@ class FieldEditController extends RenderController
     {
         $validationRuleIds = $field->{Field::RELATION_VALIDATION_RULES}
             ->pluck(ValidationRule::ID)
-            ->map(fn($id) => (string)$id);
+            ->map(function ($id)
+            {
+                return (string)$id;
+            });
 
         $field->setRelation(Field::RELATION_VALIDATION_RULES, $validationRuleIds);
     }

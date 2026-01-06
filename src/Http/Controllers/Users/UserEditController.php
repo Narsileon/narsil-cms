@@ -121,7 +121,10 @@ class UserEditController extends RenderController
     {
         $roleIds = $user->{User::RELATION_ROLES}
             ->pluck(Role::ID)
-            ->map(fn($id) => (string)$id);
+            ->map(function ($id)
+            {
+                return (string)$id;
+            });
 
         $user->setRelation(User::RELATION_ROLES, $roleIds);
     }

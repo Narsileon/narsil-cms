@@ -124,7 +124,10 @@ class InputEditController extends RenderController
     {
         $validationRuleIds = $input->{Input::RELATION_VALIDATION_RULES}
             ->pluck(ValidationRule::ID)
-            ->map(fn($id) => (string)$id);
+            ->map(function ($id)
+            {
+                return (string)$id;
+            });
 
         $input->setRelation(Input::RELATION_VALIDATION_RULES, $validationRuleIds);
     }

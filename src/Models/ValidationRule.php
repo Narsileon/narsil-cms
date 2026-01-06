@@ -111,7 +111,10 @@ class ValidationRule extends Model
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn() => trans('narsil::validation-rules.' . $this->{self::HANDLE}),
+            get: function ()
+            {
+                return trans('narsil::validation-rules.' . $this->{self::HANDLE});
+            },
         );
     }
 

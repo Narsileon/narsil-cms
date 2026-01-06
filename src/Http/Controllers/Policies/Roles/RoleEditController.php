@@ -117,7 +117,10 @@ class RoleEditController extends RenderController
     {
         $permissionIds = $role->{Role::RELATION_PERMISSIONS}
             ->pluck(Permission::ID)
-            ->map(fn($id) => (string)$id);
+            ->map(function ($id)
+            {
+                return (string)$id;
+            });
 
         $role->setRelation(Role::RELATION_PERMISSIONS, $permissionIds);
     }
