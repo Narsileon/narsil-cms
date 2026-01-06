@@ -50,9 +50,11 @@ class UserIndexController extends RenderController
     {
         $query = User::query()
             ->with([
+                User::RELATION_PERMISSIONS,
                 User::RELATION_ROLES,
             ])
             ->withCount([
+                User::RELATION_PERMISSIONS,
                 User::RELATION_ROLES,
             ]);
 
