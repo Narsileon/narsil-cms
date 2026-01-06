@@ -90,7 +90,7 @@ class FieldForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Field::LABEL,
-                            Field::LABEL => trans('narsil::ui.defaul_label'),
+                            Field::LABEL => trans('narsil::ui.default_label'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
