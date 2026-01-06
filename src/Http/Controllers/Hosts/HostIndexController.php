@@ -6,11 +6,13 @@ namespace Narsil\Http\Controllers\Hosts;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Hosts\Host;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Services\ModelService;
 
 #endregion
@@ -51,7 +53,19 @@ class HostIndexController extends RenderController
     protected function getCollection(): DataTableCollection
     {
         $query = Host::query()
-            ->withCount(Host::RELATION_LOCALES);
+            ->with([
+                Host::RELATION_LANGUAGES,
+                Host::RELATION_LOCALES,
+            ])
+            ->withCount([
+                Host::RELATION_LOCALES,
+                Host::RELATION_LANGUAGES => function ($query)
+                {
+                    $query->select(
+                        DB::raw('COUNT(DISTINCT ' . HostLocaleLanguage::LANGUAGE . ')')
+                    );
+                },
+            ]);
 
         return new DataTableCollection($query, Host::TABLE);
     }

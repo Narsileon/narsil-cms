@@ -8,6 +8,7 @@ use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
@@ -44,16 +45,22 @@ class HostTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Host::NAME,
+                id: Host::HOST,
                 visibility: true,
             ),
             new TableColumn(
-                id: Host::HANDLE,
+                id: Host::LABEL,
                 visibility: true,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(HostLocale::TABLE),
                 id: Host::COUNT_LOCALES,
+                type: DataTypeEnum::INTEGER->value,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(HostLocaleLanguage::TABLE),
+                id: Host::COUNT_LANGUAGES,
                 type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),

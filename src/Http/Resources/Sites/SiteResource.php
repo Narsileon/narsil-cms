@@ -37,10 +37,10 @@ class SiteResource extends JsonResource
         return [
             Site::CREATED_AT => $this->{Site::CREATED_AT},
             Site::FOOTER_ID => $this->{Site::FOOTER_ID},
-            Site::HANDLE => $this->{Site::HANDLE},
+            Site::HOST => $this->{Site::HOST},
             Site::HEADER_ID => $this->{Site::HEADER_ID},
             Site::ID => $this->{Site::ID},
-            Site::NAME => $this->{Site::NAME},
+            Site::LABEL => $this->{Site::LABEL},
             Site::UPDATED_AT => $this->{Site::UPDATED_AT},
 
             Site::RELATION_CREATOR => $this->{Site::RELATION_CREATOR},
@@ -67,7 +67,7 @@ class SiteResource extends JsonResource
 
         $pages = $tree->map(function ($page) use ($request)
         {
-            $resource = new SitePageNestedTreeResource($page, $this->{Site::HANDLE});
+            $resource = new SitePageNestedTreeResource($page, $this->{Site::HOST});
 
             return $resource->toArray($request);
         })->toArray();

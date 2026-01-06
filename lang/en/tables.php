@@ -13,6 +13,7 @@ use Narsil\Models\Globals\FooterSocialMedium;
 use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
@@ -41,6 +42,7 @@ return [
     Header::TABLE => 'headers',
     Host::TABLE => 'hosts',
     HostLocale::TABLE => 'locales',
+    HostLocaleLanguage::TABLE => 'languages',
     Permission::TABLE => 'permissions',
     Role::TABLE => 'roles',
     Site::VIRTUAL_TABLE => 'websites',

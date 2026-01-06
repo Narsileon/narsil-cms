@@ -84,8 +84,8 @@ class MigrationServiceProvider extends ServiceProvider
         $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
 
         Site::factory()->create([
-            Site::HANDLE => $baseUrl,
-            Site::NAME => $baseUrl,
+            Site::HOST => $baseUrl,
+            Site::LABEL => 'Main',
         ]);
     }
 

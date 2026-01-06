@@ -72,7 +72,7 @@ class SiteObserver
     protected function createFooter(Site $model): void
     {
         $footer = Footer::factory()->create([
-            Footer::HANDLE => $model->{Site::HANDLE},
+            Footer::HANDLE => $model->{Site::HOST},
         ]);
 
         $model->fill([

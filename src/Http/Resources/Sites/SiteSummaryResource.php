@@ -24,8 +24,8 @@ class SiteSummaryResource extends SummaryResource
     public function toArray(Request $request): array
     {
         return [
-            self::HREF => route('sites.edit', $this->{Host::HANDLE}),
-            self::NAME => $this->{Host::NAME},
+            self::HREF => route('sites.edit', $this->{Host::HOST}),
+            self::NAME => $this->{Host::LABEL},
         ];
     }
 

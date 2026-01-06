@@ -37,7 +37,7 @@ class SiteSummaryController extends RenderController
         $locale = App::getLocale();
 
         $hosts = Host::query()
-            ->orderBy(Host::NAME . "->$locale", 'asc')
+            ->orderBy(Host::LABEL . "->$locale", 'asc')
             ->get();
 
         $items = SiteSummaryResource::collection($hosts)

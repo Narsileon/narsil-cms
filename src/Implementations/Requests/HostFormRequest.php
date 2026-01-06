@@ -42,16 +42,16 @@ class HostFormRequest extends AbstractFormRequest implements Contract
     public function rules(): array
     {
         return [
-            Host::HANDLE => [
+            Host::HOST => [
                 FormRule::LOWERCASE,
                 FormRule::STRING,
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Host::class,
-                    Host::HANDLE,
+                    Host::HOST,
                 )->ignore($this->host?->{Host::ID}),
             ],
-            Host::NAME => [
+            Host::LABEL => [
                 FormRule::REQUIRED,
             ],
 

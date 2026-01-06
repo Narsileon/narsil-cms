@@ -232,7 +232,7 @@ class Sidebar extends AbstractMenu implements Contract
         $group = trans('narsil::ui.sites');
 
         $sites = Site::query()
-            ->orderBy(Site::NAME)
+            ->orderBy(Site::LABEL)
             ->get();
 
         foreach ($sites as $site)
@@ -241,10 +241,10 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('sites.edit', [
                     'country' => 'default',
-                    'site' => $site->{Site::HANDLE}
+                    'site' => $site->{Site::HOST}
                 ]))
                 ->icon('globe')
-                ->label($site->{Site::NAME}, false)
+                ->label($site->{Site::LABEL}, false)
                 ->permissions([
                     PermissionService::getHandle(Site::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]);

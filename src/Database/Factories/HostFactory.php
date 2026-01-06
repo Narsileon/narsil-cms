@@ -41,8 +41,8 @@ class HostFactory extends Factory
         $domain = $this->faker->domainWord() . '.' .  $baseUrl;
 
         return [
-            Host::HANDLE => $domain,
-            Host::NAME => $domain,
+            Host::HOST => $domain,
+            Host::LABEL => $domain,
         ];
     }
 

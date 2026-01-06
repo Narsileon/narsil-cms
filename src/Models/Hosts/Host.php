@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Narsil\Database\Factories\HostFactory;
 use Narsil\Traits\Blameable;
@@ -40,7 +41,7 @@ class Host extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->mergeGuarded([
@@ -64,11 +65,11 @@ class Host extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "handle" column.
+     * The name of the "host" column.
      *
      * @var string
      */
-    final public const HANDLE = 'handle';
+    final public const HOST = 'host';
 
     /**
      * The name of the "id" column.
@@ -78,15 +79,22 @@ class Host extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "name" column.
+     * The name of the "label" column.
      *
      * @var string
      */
-    final public const NAME = 'name';
+    final public const LABEL = 'label';
 
     #endregion
 
     #region • COUNTS
+
+    /**
+     * The name of the "languages" count.
+     *
+     * @var string
+     */
+    final public const COUNT_LANGUAGES = 'languages_count';
 
     /**
      * The name of the "locales" count.
@@ -110,6 +118,13 @@ class Host extends Model
      * @var string
      */
     final public const RELATION_OTHER_LOCALES = 'other_locales';
+
+    /**
+     * The name of the "locales" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_LANGUAGES = 'languages';
 
     /**
      * The name of the "locales" relation.
@@ -157,6 +172,23 @@ class Host extends Model
             )
             ->where(HostLocale::COUNTRY, '!=', 'default')
             ->orderBy(HostLocale::POSITION);
+    }
+
+    /**
+     * Get the associated languages.
+     *
+     * @return HasManyThrough
+     */
+    final public function languages(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            HostLocaleLanguage::class,
+            HostLocale::class,
+            HostLocale::HOST_ID,
+            HostLocaleLanguage::LOCALE_UUID,
+            self::ID,
+            HostLocale::UUID,
+        );
     }
 
     /**

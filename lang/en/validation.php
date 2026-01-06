@@ -229,6 +229,7 @@ return [
         'group'                   => 'group',
         'handle'                  => 'handle',
         'header_id'               => 'header',
+        'host'                    => 'host',
         'id'                      => 'ID',
         'identifier'              => 'identifier',
         'image'                   => 'image',
