@@ -49,6 +49,15 @@ class FormTabForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
+                    new BlockElement([
+                        BlockElement::RELATION_ELEMENT => new Field([
+                            Field::HANDLE => FormTab::DESCRIPTION,
+                            Field::LABEL => trans('narsil::validation.attributes.description'),
+                            Field::TRANSLATABLE => true,
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ])
+                    ]),
                 ],
             ]),
         ];

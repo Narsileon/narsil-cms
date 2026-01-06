@@ -40,10 +40,6 @@ class FormFormRequest extends AbstractFormRequest implements Contract
     public function rules(): array
     {
         return [
-            Form::DESCRIPTION => [
-                FormRule::ARRAY,
-                FormRule::REQUIRED,
-            ],
             Form::SLUG => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
@@ -54,10 +50,6 @@ class FormFormRequest extends AbstractFormRequest implements Contract
                     Form::class,
                     Form::SLUG,
                 )->ignore($this->form?->{Form::ID}),
-            ],
-            Form::TITLE => [
-                FormRule::ARRAY,
-                FormRule::REQUIRED,
             ],
 
             Form::RELATION_TABS => [

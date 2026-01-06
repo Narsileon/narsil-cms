@@ -327,6 +327,9 @@ return new class extends Migration
             $blueprint
                 ->jsonb(FormTab::LABEL);
             $blueprint
+                ->jsonb(FormTab::DESCRIPTION)
+                ->nullable();
+            $blueprint
                 ->integer(FormTab::POSITION)
                 ->default(0);
             $blueprint
@@ -348,10 +351,6 @@ return new class extends Migration
             $blueprint
                 ->string(Form::SLUG)
                 ->unique();
-            $blueprint
-                ->jsonb(Form::TITLE);
-            $blueprint
-                ->jsonb(Form::DESCRIPTION);
             $blueprint
                 ->timestamp(Form::CREATED_AT);
             $blueprint

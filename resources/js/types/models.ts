@@ -85,6 +85,7 @@ export type FormHasElement = HasElement & {
 };
 
 export type FormTab = Model & {
+  description: string;
   elements?: FormHasElement[];
   handle: string;
   icon?: IconName;

@@ -45,14 +45,6 @@ class FormTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Form::TITLE,
-                visibility: true,
-            ),
-            new TableColumn(
-                id: Form::DESCRIPTION,
-                visibility: true,
-            ),
-            new TableColumn(
                 id: Form::CREATED_AT,
                 visibility: true,
             ),

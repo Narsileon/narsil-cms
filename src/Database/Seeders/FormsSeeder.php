@@ -135,8 +135,6 @@ abstract class FormsSeeder extends Seeder
         }
 
         $formModel = Form::create([
-            Form::DESCRIPTION => $form->{Form::DESCRIPTION},
-            Form::TITLE => $form->{Form::TITLE},
             Form::SLUG => $form->{Form::SLUG},
         ]);
 
@@ -152,6 +150,7 @@ abstract class FormsSeeder extends Seeder
             if (!$formTabModel)
             {
                 $formTabModel = FormTab::create([
+                    FormTab::DESCRIPTION => $formTab->{Form::DESCRIPTION},
                     FormTab::HANDLE => $formTab->{FormTab::HANDLE},
                     FormTab::LABEL => $formTab->{FormTab::LABEL},
                     FormTab::POSITION => $position,

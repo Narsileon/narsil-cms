@@ -71,28 +71,6 @@ class FormForm extends AbstractForm implements Contract
                         ])
                     ]),
                     new TemplateTabElement([
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Form::TITLE,
-                            Field::LABEL => trans('narsil::validation.attributes.title'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Form::DESCRIPTION,
-                            Field::LABEL => trans('narsil::validation.attributes.description'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
-                    new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Form::RELATION_TABS,
                             Field::LABEL => trans('narsil::validation.attributes.tabs'),

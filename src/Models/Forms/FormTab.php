@@ -39,6 +39,7 @@ class FormTab extends Model
         ];
 
         $this->translatable = [
+            self::DESCRIPTION,
             self::LABEL,
         ];
 
@@ -70,6 +71,13 @@ class FormTab extends Model
     final public const TABLE = 'form_tabs';
 
     #region • COLUMNS
+
+    /**
+     * The name of the "description" column.
+     *
+     * @var string
+     */
+    final public const DESCRIPTION = 'description';
 
     /**
      * The name of the "form id" column.
