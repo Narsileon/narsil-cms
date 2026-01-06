@@ -62,7 +62,7 @@ class PermissionTable extends AbstractTable
                 header: ModelService::getTableLabel(User::TABLE),
                 id: Permission::COUNT_USERS,
                 type: DataTypeEnum::INTEGER->value,
-                visibility: true,
+                visibility: false,
             ),
             new TableColumn(
                 id: Permission::CREATED_AT,
