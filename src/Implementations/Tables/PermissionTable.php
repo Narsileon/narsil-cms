@@ -4,8 +4,12 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Policies\Permission;
+use Narsil\Models\Policies\Role;
+use Narsil\Models\User;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -46,6 +50,18 @@ class PermissionTable extends AbstractTable
             ),
             new TableColumn(
                 id: Permission::LABEL,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(Role::TABLE),
+                id: Permission::COUNT_ROLES,
+                type: DataTypeEnum::INTEGER->value,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(User::TABLE),
+                id: Permission::COUNT_USERS,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

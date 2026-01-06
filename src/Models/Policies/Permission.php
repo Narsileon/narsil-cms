@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Cache;
+use Narsil\Models\User;
 use Narsil\Observers\ModelObserver;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
@@ -87,6 +88,28 @@ class Permission extends Model
 
     #endregion
 
+    #region • COUNTS
+
+    /**
+     * The name of the "users" count.
+     *
+     * @var string
+     */
+    final public const COUNT_USERS = 'users_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "users" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_USERS = 'users';
+
+    #endregion
+
     #endregion
 
     #region PUBLIC METHODS
@@ -127,6 +150,23 @@ class Permission extends Model
                 RolePermission::ROLE_ID,
             )
             ->using(RolePermission::class);
+    }
+
+    /**
+     * Get the associated users.
+     *
+     * @return BelongsToMany
+     */
+    final public function users(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                User::class,
+                UserPermission::TABLE,
+                UserPermission::PERMISSION_ID,
+                UserPermission::USER_ID,
+            )
+            ->using(UserPermission::class);
     }
 
     #endregion

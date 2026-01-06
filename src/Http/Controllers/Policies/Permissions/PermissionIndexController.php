@@ -50,7 +50,15 @@ class PermissionIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = Permission::query();
+        $query = Permission::query()
+            ->with([
+                Permission::RELATION_ROLES,
+                Permission::RELATION_USERS,
+            ])
+            ->withCount([
+                Permission::RELATION_ROLES,
+                Permission::RELATION_USERS,
+            ]);
 
         return new DataTableCollection($query, Permission::TABLE);
     }
