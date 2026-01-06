@@ -194,7 +194,7 @@ class Fieldset extends Model
                 Fieldset::class,
                 FieldsetElement::RELATION_ELEMENT,
                 FieldsetElement::TABLE,
-                FieldsetElement::FIELDSET_ID,
+                FieldsetElement::OWNER_ID,
                 FieldsetElement::ELEMENT_ID,
             )
             ->using(FieldsetElement::class);
@@ -213,7 +213,7 @@ class Fieldset extends Model
                 Input::class,
                 FieldsetElement::RELATION_ELEMENT,
                 FieldsetElement::TABLE,
-                FieldsetElement::FIELDSET_ID,
+                FieldsetElement::OWNER_ID,
                 FieldsetElement::ELEMENT_ID,
             )
             ->using(FieldsetElement::class);
