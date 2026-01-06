@@ -54,7 +54,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                   {...childElement}
                   conditions={element.conditions}
                   handle={childHandle}
-                  name={element.label ?? childElement.label}
+                  label={element.label ?? childElement.label}
                   required={element.required ?? childElement.required}
                   translatable={element.translatable ?? childElement.translatable}
                   width={element.width}
@@ -88,7 +88,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                     <FormRenderer
                       {...childElement}
                       handle={element.handle ?? childElement.handle}
-                      name={element.label ?? childElement.label}
+                      label={element.label ?? childElement.label}
                       width={element.width}
                     />
                   </CollapsibleContent>
