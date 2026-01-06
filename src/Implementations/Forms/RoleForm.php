@@ -78,19 +78,19 @@ class RoleForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Role::LABEL,
-                            Field::NAME => trans('narsil::validation.attributes.name'),
+                            Field::HANDLE => Role::SLUG,
+                            Field::NAME => trans('narsil::validation.attributes.slug'),
                             Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Role::SLUG,
-                            Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::HANDLE => Role::LABEL,
+                            Field::NAME => trans('narsil::validation.attributes.label'),
                             Field::REQUIRED => true,
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
