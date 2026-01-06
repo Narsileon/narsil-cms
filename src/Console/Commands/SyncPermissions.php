@@ -73,7 +73,7 @@ class SyncPermissions extends Command
                 }
 
                 Permission::firstOrCreate([
-                    Permission::SLUG => $handle,
+                    Permission::NAME => $handle,
                 ], [
                     Permission::LABEL => $names,
                 ]);

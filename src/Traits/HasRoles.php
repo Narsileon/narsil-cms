@@ -56,7 +56,7 @@ trait HasRoles
 
         if (is_string($roles))
         {
-            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::SLUG, $roles);
+            $hasRole = $this->{self::RELATION_ROLES}->contains(Role::NAME, $roles);
         }
         else if (is_int($roles))
         {

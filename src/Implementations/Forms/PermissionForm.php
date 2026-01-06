@@ -50,8 +50,8 @@ class PermissionForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Permission::SLUG,
-                            Field::NAME => trans('narsil::validation.attributes.slug'),
+                            Field::HANDLE => Permission::NAME,
+                            Field::NAME => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)

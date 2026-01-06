@@ -80,11 +80,11 @@ class Role extends Model
     final public const LABEL = 'label';
 
     /**
-     * The name of the "slug" column.
+     * The name of the "name" column.
      *
      * @var string
      */
-    final public const SLUG = 'slug';
+    final public const NAME = 'name';
 
     #endregion
 

@@ -86,7 +86,7 @@ class TemplateObserver
             ]);
 
             Permission::firstOrCreate([
-                Permission::SLUG => $handle,
+                Permission::NAME => $handle,
             ], [
                 Permission::LABEL => $name,
             ]);

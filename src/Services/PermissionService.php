@@ -58,8 +58,8 @@ abstract class PermissionService
         }
 
         $filteredPermissions = Permission::query()
-            ->whereIn(Permission::SLUG, $permissions)
-            ->pluck(Permission::SLUG)
+            ->whereIn(Permission::NAME, $permissions)
+            ->pluck(Permission::NAME)
             ->toArray();
 
         return $filteredPermissions;

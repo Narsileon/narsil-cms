@@ -29,7 +29,7 @@ abstract class RoleService
 
         $replicated
             ->fill([
-                Role::SLUG => DatabaseService::generateUniqueValue($replicated, Role::SLUG, $role->{Role::SLUG}),
+                Role::NAME => DatabaseService::generateUniqueValue($replicated, Role::NAME, $role->{Role::NAME}),
             ])
             ->save();
 

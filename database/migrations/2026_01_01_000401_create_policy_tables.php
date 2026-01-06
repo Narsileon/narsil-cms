@@ -65,7 +65,7 @@ return new class extends Migration
             $blueprint
                 ->id(Permission::ID);
             $blueprint
-                ->string(Permission::SLUG)
+                ->string(Permission::NAME)
                 ->unique();
             $blueprint
                 ->jsonb(Permission::LABEL);
@@ -98,7 +98,7 @@ return new class extends Migration
             $blueprint
                 ->id(Role::ID);
             $blueprint
-                ->string(Role::SLUG)
+                ->string(Role::NAME)
                 ->unique();
             $blueprint
                 ->jsonb(Role::LABEL);
