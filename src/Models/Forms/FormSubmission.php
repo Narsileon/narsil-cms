@@ -18,7 +18,6 @@ use Narsil\Traits\HasDatetimes;
  */
 class FormSubmission extends Model
 {
-    use Blameable;
     use HasDatetimes;
     use HasUuids;
 
