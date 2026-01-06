@@ -4,8 +4,10 @@ namespace Narsil\Models\Globals;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Database\Factories\HeaderFactory;
 use Narsil\Models\Sites\Site;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
@@ -18,6 +20,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(HeaderFactory::class)]
 class Header extends Model
 {
     use Blameable;

@@ -9,6 +9,7 @@ use Narsil\Database\Seeders\Entities\HomeEntitySeeder;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
+use Narsil\Models\Globals\Header;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
@@ -72,13 +73,30 @@ class SiteObserver
     protected function createFooter(Site $model): void
     {
         $footer = Footer::factory()->create([
-            Footer::SLUG => $model->{Site::HOST},
+            Footer::SLUG => 'main',
         ]);
 
         $model->fill([
             Site::FOOTER_ID => $footer->{Footer::ID},
         ]);
     }
+
+    /**
+     * @param Site $model
+     *
+     * @return void
+     */
+    protected function createHeader(Site $model): void
+    {
+        $header = Header::factory()->create([
+            Header::SLUG => 'main',
+        ]);
+
+        $model->fill([
+            Site::HEADER_ID => $header->{Header::ID},
+        ]);
+    }
+
 
     /**
      * @param Site $model
