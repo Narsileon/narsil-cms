@@ -41,7 +41,7 @@ class HeaderFormRequest extends AbstractFormRequest implements Contract
     public function rules(): array
     {
         return [
-            Header::HANDLE => [
+            Header::SLUG => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
                 FormRule::doesntStartWith('-'),
@@ -49,7 +49,7 @@ class HeaderFormRequest extends AbstractFormRequest implements Contract
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Header::class,
-                    Header::HANDLE,
+                    Header::SLUG,
                 )->ignore($this->header?->{Header::ID}),
             ],
             Header::LOGO => [

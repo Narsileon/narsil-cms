@@ -55,8 +55,8 @@ class FooterForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::HANDLE,
-                            Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::HANDLE => Footer::SLUG,
+                            Field::NAME => trans('narsil::validation.attributes.slug'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),

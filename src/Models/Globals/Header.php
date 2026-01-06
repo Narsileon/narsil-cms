@@ -5,6 +5,8 @@ namespace Narsil\Models\Globals;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Models\Sites\Site;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -53,13 +55,6 @@ class Header extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
      * The name of the "id" column.
      *
      * @var string
@@ -72,6 +67,58 @@ class Header extends Model
      * @var string
      */
     final public const LOGO = 'logo';
+
+    /**
+     * The name of the "slug" column.
+     *
+     * @var string
+     */
+    final public const SLUG = 'slug';
+
+    #endregion
+
+    #region • COUNTS
+
+    /**
+     * The name of the "websites" count.
+     *
+     * @var string
+     */
+    final public const COUNT_WEBSITES = 'websites_count';
+
+    #endregion
+
+    #region • RELATIONS
+
+    /**
+     * The name of the "websites" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_WEBSITES = 'websites';
+
+    #endregion
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    #region • RELATIONSHIPS
+
+    /**
+     * Get the associated websites.
+     *
+     * @return HasMany
+     */
+    final public function websites(): HasMany
+    {
+        return $this
+            ->hasMany(
+                Site::class,
+                Site::HEADER_ID,
+                self::ID,
+            );
+    }
 
     #endregion
 

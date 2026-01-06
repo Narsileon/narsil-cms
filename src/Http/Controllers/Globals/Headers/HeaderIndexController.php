@@ -50,7 +50,13 @@ class HeaderIndexController extends RenderController
      */
     protected function getCollection(): DataTableCollection
     {
-        $query = Header::query();
+        $query = Header::query()
+            ->with([
+                Header::RELATION_WEBSITES,
+            ])
+            ->withCount([
+                Header::RELATION_WEBSITES,
+            ]);
 
         return new DataTableCollection($query, Header::TABLE);
     }

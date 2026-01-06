@@ -82,12 +82,12 @@ class SiteForm extends AbstractForm implements Contract
     protected static function getFooterSelectOptions(): array
     {
         return Footer::query()
-            ->orderBy(Footer::HANDLE)
+            ->orderBy(Footer::SLUG)
             ->get()
             ->map(function (Footer $footer)
             {
                 $option = new SelectOption()
-                    ->optionLabel($footer->{Footer::HANDLE})
+                    ->optionLabel($footer->{Footer::SLUG})
                     ->optionValue((string)$footer->{Footer::ID});
 
                 return $option;
@@ -103,12 +103,12 @@ class SiteForm extends AbstractForm implements Contract
     protected static function getHeaderSelectOptions(): array
     {
         return Header::query()
-            ->orderBy(Header::HANDLE)
+            ->orderBy(Header::SLUG)
             ->get()
             ->map(function (Header $header)
             {
                 $option = new SelectOption()
-                    ->optionLabel($header->{Header::HANDLE})
+                    ->optionLabel($header->{Header::SLUG})
                     ->optionValue((string)$header->{Header::ID});
 
                 return $option;

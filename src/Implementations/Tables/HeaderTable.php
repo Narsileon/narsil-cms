@@ -4,8 +4,12 @@ namespace Narsil\Implementations\Tables;
 
 #region USE
 
+use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
+use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
+use Narsil\Models\Sites\Site;
+use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
 #endregion
@@ -41,7 +45,13 @@ class HeaderTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Header::HANDLE,
+                id: Header::SLUG,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(Site::TABLE),
+                id: Footer::COUNT_WEBSITES,
+                type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

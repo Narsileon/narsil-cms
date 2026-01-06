@@ -28,7 +28,7 @@ abstract class HeaderService
 
         $replicated
             ->fill([
-                Header::HANDLE => DatabaseService::generateUniqueValue($replicated, Header::HANDLE, $header->{Header::HANDLE}),
+                Header::SLUG => DatabaseService::generateUniqueValue($replicated, Header::SLUG, $header->{Header::SLUG}),
             ])
             ->save();
     }

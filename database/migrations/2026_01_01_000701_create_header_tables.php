@@ -53,7 +53,7 @@ return new class extends Migration
             $blueprint
                 ->id(Header::ID);
             $blueprint
-                ->string(Header::HANDLE)
+                ->string(Header::SLUG)
                 ->unique();
             $blueprint
                 ->string(Header::LOGO)

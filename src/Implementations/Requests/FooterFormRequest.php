@@ -57,7 +57,7 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
-            Footer::HANDLE => [
+            Footer::SLUG => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
                 FormRule::doesntStartWith('-'),
@@ -65,7 +65,7 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Footer::class,
-                    Footer::HANDLE,
+                    Footer::SLUG,
                 )->ignore($this->footer?->{Footer::ID}),
             ],
             Footer::LOGO => [

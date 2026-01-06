@@ -39,7 +39,7 @@ class FooterFactory extends Factory
             Footer::ADDRESS_LINE_2 => $this->faker->postcode() . ' ' . $this->faker->city(),
             Footer::COMPANY => $this->faker->company(),
             Footer::EMAIL => $this->faker->unique()->safeEmail(),
-            Footer::HANDLE => $this->faker->slug(1),
+            Footer::SLUG => $this->faker->slug(1),
             Footer::PHONE => $this->faker->phoneNumber(),
         ];
     }

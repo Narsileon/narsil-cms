@@ -7,10 +7,9 @@ namespace Narsil\Models\Globals;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Database\Factories\FooterFactory;
-use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\Site;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -98,13 +97,6 @@ class Footer extends Model
     final public const EMAIL = 'email';
 
     /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
      * The name of the "id" column.
      *
      * @var string
@@ -125,6 +117,13 @@ class Footer extends Model
      */
     final public const PHONE = 'phone';
 
+    /**
+     * The name of the "slug" column.
+     *
+     * @var string
+     */
+    final public const SLUG = 'slug';
+
     #endregion
 
     #region • COUNTS
@@ -143,6 +142,13 @@ class Footer extends Model
      */
     final public const COUNT_SOCIAL_MEDIA = 'social_media_count';
 
+    /**
+     * The name of the "websites" count.
+     *
+     * @var string
+     */
+    final public const COUNT_WEBSITES = 'websites_count';
+
     #endregion
 
     #region • RELATIONS
@@ -160,6 +166,13 @@ class Footer extends Model
      * @var string
      */
     final public const RELATION_SOCIAL_MEDIA = 'social_media';
+
+    /**
+     * The name of the "websites" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_WEBSITES = 'websites';
 
     #endregion
 
@@ -199,6 +212,21 @@ class Footer extends Model
                 self::ID,
             )
             ->orderBy(FooterSocialMedium::POSITION);
+    }
+
+    /**
+     * Get the associated websites.
+     *
+     * @return HasMany
+     */
+    final public function websites(): HasMany
+    {
+        return $this
+            ->hasMany(
+                Site::class,
+                Site::FOOTER_ID,
+                self::ID,
+            );
     }
 
     #endregion

@@ -9,6 +9,7 @@ use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Globals\FooterSocialMedium;
+use Narsil\Models\Sites\Site;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
@@ -45,7 +46,7 @@ class FooterTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Footer::HANDLE,
+                id: Footer::SLUG,
                 visibility: true,
             ),
             new TableColumn(
@@ -67,6 +68,12 @@ class FooterTable extends AbstractTable
             new TableColumn(
                 id: Footer::PHONE,
                 visibility: false,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(Site::TABLE),
+                id: Footer::COUNT_WEBSITES,
+                type: DataTypeEnum::INTEGER->value,
+                visibility: true,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(FooterLink::TABLE),

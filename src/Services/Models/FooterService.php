@@ -30,7 +30,7 @@ abstract class FooterService
 
         $replicated
             ->fill([
-                Footer::HANDLE => DatabaseService::generateUniqueValue($replicated, Footer::HANDLE, $footer->{Footer::HANDLE}),
+                Footer::SLUG => DatabaseService::generateUniqueValue($replicated, Footer::SLUG, $footer->{Footer::SLUG}),
             ])
             ->save();
 
