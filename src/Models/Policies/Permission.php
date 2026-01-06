@@ -41,7 +41,7 @@ class Permission extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->mergeGuarded([
@@ -65,13 +65,6 @@ class Permission extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
      * The name of the "id" column.
      *
      * @var string
@@ -79,11 +72,18 @@ class Permission extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "name" column.
+     * The name of the "label" column.
      *
      * @var string
      */
-    final public const NAME = 'name';
+    final public const LABEL = 'label';
+
+    /**
+     * The name of the "slug" column.
+     *
+     * @var string
+     */
+    final public const SLUG = 'slug';
 
     #endregion
 
@@ -105,7 +105,7 @@ class Permission extends Model
                     ->map(function (Permission $permission)
                     {
                         return (new SelectOption())
-                            ->optionLabel($permission->{self::NAME})
+                            ->optionLabel($permission->{self::LABEL})
                             ->optionValue($permission->{self::ID});
                     })
                     ->all();

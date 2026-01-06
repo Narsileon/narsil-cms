@@ -65,10 +65,10 @@ return new class extends Migration
             $blueprint
                 ->id(Permission::ID);
             $blueprint
-                ->string(Permission::HANDLE)
+                ->string(Permission::SLUG)
                 ->unique();
             $blueprint
-                ->jsonb(Permission::NAME);
+                ->jsonb(Permission::LABEL);
             $blueprint
                 ->timestamp(Permission::CREATED_AT);
             $blueprint
@@ -98,10 +98,10 @@ return new class extends Migration
             $blueprint
                 ->id(Role::ID);
             $blueprint
-                ->string(Role::HANDLE)
+                ->string(Role::SLUG)
                 ->unique();
             $blueprint
-                ->jsonb(Role::NAME);
+                ->jsonb(Role::LABEL);
             $blueprint
                 ->timestamp(Role::CREATED_AT);
             $blueprint

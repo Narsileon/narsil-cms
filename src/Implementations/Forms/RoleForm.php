@@ -78,7 +78,7 @@ class RoleForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Role::NAME,
+                            Field::HANDLE => Role::LABEL,
                             Field::NAME => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
@@ -88,7 +88,7 @@ class RoleForm extends AbstractForm implements Contract
                     ]),
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Role::HANDLE,
+                            Field::HANDLE => Role::SLUG,
                             Field::NAME => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
@@ -114,7 +114,7 @@ class RoleForm extends AbstractForm implements Contract
             ->get()
             ->groupBy(function (Permission $permission)
             {
-                $key = Str::beforeLast($permission->{Permission::HANDLE}, '_');
+                $key = Str::beforeLast($permission->{Permission::SLUG}, '_');
 
                 return ModelService::getTableLabel($key);
             })
@@ -123,7 +123,7 @@ class RoleForm extends AbstractForm implements Contract
                 return $permissions->map(function (Permission $permission)
                 {
                     $option = new SelectOption()
-                        ->optionLabel($permission->{Permission::NAME})
+                        ->optionLabel($permission->{Permission::LABEL})
                         ->optionValue($permission->{Permission::ID});
 
                     return $option;

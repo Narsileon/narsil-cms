@@ -40,7 +40,7 @@ class PermissionFormRequest extends AbstractFormRequest implements Contract
     public function rules(): array
     {
         return [
-            Permission::NAME => [
+            Permission::LABEL => [
                 FormRule::REQUIRED,
             ],
         ];

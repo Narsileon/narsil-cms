@@ -40,7 +40,7 @@ class RoleFormRequest extends FormRequest implements Contract
     public function rules(): array
     {
         return [
-            Role::HANDLE => [
+            Role::SLUG => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
                 FormRule::doesntStartWith('-'),
@@ -48,10 +48,10 @@ class RoleFormRequest extends FormRequest implements Contract
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Role::class,
-                    Role::HANDLE,
+                    Role::SLUG,
                 )->ignore($this?->{Role::ID}),
             ],
-            Role::NAME => [
+            Role::LABEL => [
                 FormRule::REQUIRED,
             ],
 

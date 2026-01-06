@@ -42,7 +42,7 @@ class Role extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->mergeGuarded([
@@ -66,13 +66,6 @@ class Role extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
      * The name of the "id" column.
      *
      * @var string
@@ -80,11 +73,18 @@ class Role extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "name" column.
+     * The name of the "label" column.
      *
      * @var string
      */
-    final public const NAME = 'name';
+    final public const LABEL = 'label';
+
+    /**
+     * The name of the "slug" column.
+     *
+     * @var string
+     */
+    final public const SLUG = 'slug';
 
     #endregion
 
@@ -128,7 +128,7 @@ class Role extends Model
                     ->map(function (Role $role)
                     {
                         return (new SelectOption())
-                            ->optionLabel($role->{self::NAME})
+                            ->optionLabel($role->{self::LABEL})
                             ->optionValue($role->{self::ID});
                     })
                     ->all();

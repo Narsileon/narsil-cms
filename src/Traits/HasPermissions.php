@@ -84,7 +84,7 @@ trait HasPermissions
             return false;
         }
 
-        $roles = $permission->{Permission::RELATION_ROLES}->pluck(Role::HANDLE)->toArray();
+        $roles = $permission->{Permission::RELATION_ROLES}->pluck(Role::SLUG)->toArray();
 
         return $this->hasRole($roles);
     }
@@ -112,7 +112,7 @@ trait HasPermissions
     protected function findPermission(string|int $permission): ?Permission
     {
         return Permission::query()
-            ->where(Permission::HANDLE, $permission)
+            ->where(Permission::SLUG, $permission)
             ->when(is_int($permission), function ($query) use ($permission)
             {
                 $query->orWhere(Permission::ID, $permission);

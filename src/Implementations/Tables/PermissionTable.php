@@ -41,11 +41,11 @@ class PermissionTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Permission::NAME,
+                id: Permission::LABEL,
                 visibility: true,
             ),
             new TableColumn(
-                id: Permission::HANDLE,
+                id: Permission::SLUG,
                 visibility: true,
             ),
             new TableColumn(

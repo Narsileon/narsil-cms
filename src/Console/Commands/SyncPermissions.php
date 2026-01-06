@@ -73,9 +73,9 @@ class SyncPermissions extends Command
                 }
 
                 Permission::firstOrCreate([
-                    Permission::HANDLE => $handle,
+                    Permission::SLUG => $handle,
                 ], [
-                    Permission::NAME => $names,
+                    Permission::LABEL => $names,
                 ]);
 
                 $this->line("The permission '{$handle}' has been created.");
