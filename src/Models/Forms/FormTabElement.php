@@ -38,7 +38,7 @@ class FormTabElement extends MorphPivot implements IFormHasElement
 
         $this->translatable = [
             self::DESCRIPTION,
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->with = [

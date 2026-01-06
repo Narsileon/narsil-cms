@@ -110,7 +110,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             ->addOption(
                                                 identifier: Block::TABLE,
                                                 label: ModelService::getModelLabel(Block::class),
-                                                optionLabel: TemplateTabElement::NAME,
+                                                optionLabel: TemplateTabElement::LABEL,
                                                 optionValue: TemplateTabElement::HANDLE,
                                                 options: $blockSelectOptions,
                                                 routes: RouteService::getNames(Block::TABLE),
@@ -118,7 +118,7 @@ class TemplateForm extends AbstractForm implements Contract
                                             ->addOption(
                                                 identifier: Field::TABLE,
                                                 label: ModelService::getModelLabel(Field::class),
-                                                optionLabel: TemplateTabElement::NAME,
+                                                optionLabel: TemplateTabElement::LABEL,
                                                 optionValue: TemplateTabElement::HANDLE,
                                                 options: $fieldSelectOptions,
                                                 routes: RouteService::getNames(Field::TABLE),

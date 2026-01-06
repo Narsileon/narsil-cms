@@ -118,7 +118,7 @@ return new class extends Migration
             $blueprint
                 ->string(BlockElement::HANDLE);
             $blueprint
-                ->jsonb(BlockElement::NAME);
+                ->jsonb(BlockElement::LABEL);
             $blueprint
                 ->jsonb(BlockElement::DESCRIPTION)
                 ->nullable();

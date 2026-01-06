@@ -113,7 +113,7 @@ class FormForm extends AbstractForm implements Contract
                                             ->addOption(
                                                 identifier: Fieldset::TABLE,
                                                 label: ModelService::getModelLabel(Fieldset::class),
-                                                optionLabel: FormTabElement::NAME,
+                                                optionLabel: FormTabElement::LABEL,
                                                 optionValue: FormTabElement::HANDLE,
                                                 options: $fieldsetSelectOptions,
                                                 routes: RouteService::getNames(Fieldset::TABLE),
@@ -121,7 +121,7 @@ class FormForm extends AbstractForm implements Contract
                                             ->addOption(
                                                 identifier: Input::TABLE,
                                                 label: ModelService::getModelLabel(Input::class),
-                                                optionLabel: FormTabElement::NAME,
+                                                optionLabel: FormTabElement::LABEL,
                                                 optionValue: FormTabElement::HANDLE,
                                                 options: $inputSelectOptions,
                                                 routes: RouteService::getNames(Input::TABLE),

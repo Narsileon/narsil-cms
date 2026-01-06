@@ -60,19 +60,19 @@ class BlockForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Block::LABEL,
-                            Field::LABEL => trans('narsil::ui.default_name'),
+                            Field::HANDLE => Block::HANDLE,
+                            Field::LABEL => trans('narsil::ui.default_handle'),
                             Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Block::HANDLE,
-                            Field::LABEL => trans('narsil::ui.default_handle'),
+                            Field::HANDLE => Block::LABEL,
+                            Field::LABEL => trans('narsil::ui.default_label'),
                             Field::REQUIRED => true,
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
@@ -105,7 +105,7 @@ class BlockForm extends AbstractForm implements Contract
                                 ->addOption(
                                     identifier: Block::TABLE,
                                     label: ModelService::getModelLabel(Block::class),
-                                    optionLabel: BlockElement::NAME,
+                                    optionLabel: BlockElement::LABEL,
                                     optionValue: BlockElement::HANDLE,
                                     options: $blockSelectOptions,
                                     routes: RouteService::getNames(Block::TABLE),
@@ -113,7 +113,7 @@ class BlockForm extends AbstractForm implements Contract
                                 ->addOption(
                                     identifier: Field::TABLE,
                                     label: ModelService::getModelLabel(Field::class),
-                                    optionLabel: BlockElement::NAME,
+                                    optionLabel: BlockElement::LABEL,
                                     optionValue: BlockElement::HANDLE,
                                     options: $fieldSelectOptions,
                                     routes: RouteService::getNames(Field::TABLE),

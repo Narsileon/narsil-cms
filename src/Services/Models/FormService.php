@@ -66,7 +66,7 @@ abstract class FormService
                 FormTabElement::ELEMENT_TYPE => $table,
                 FormTabElement::ELEMENT_ID => $id,
             ], [
-                FormTabElement::NAME => Arr::get($element, FormTabElement::NAME, []),
+                FormTabElement::LABEL => Arr::get($element, FormTabElement::LABEL, []),
                 FormTabElement::POSITION => $position,
                 FormTabElement::WIDTH => Arr::get($element, FormTabElement::WIDTH, 100),
             ]);

@@ -32,19 +32,19 @@ class BlockElementForm extends AbstractForm implements Contract
                 Block::RELATION_ELEMENTS => [
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => BlockElement::NAME,
-                            Field::LABEL => trans('narsil::validation.attributes.name'),
+                            Field::HANDLE => BlockElement::HANDLE,
+                            Field::LABEL => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => BlockElement::HANDLE,
-                            Field::LABEL => trans('narsil::validation.attributes.handle'),
+                            Field::HANDLE => BlockElement::LABEL,
+                            Field::LABEL => trans('narsil::validation.attributes.label'),
                             Field::REQUIRED => true,
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),

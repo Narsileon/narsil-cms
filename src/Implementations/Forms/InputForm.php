@@ -81,19 +81,19 @@ class InputForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Input::LABEL,
-                            Field::LABEL => trans('narsil::ui.default_name'),
+                            Field::HANDLE => Input::HANDLE,
+                            Field::LABEL => trans('narsil::ui.default_handle'),
                             Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Input::HANDLE,
-                            Field::LABEL => trans('narsil::ui.default_handle'),
+                            Field::HANDLE => Input::LABEL,
+                            Field::LABEL => trans('narsil::ui.default_label'),
                             Field::REQUIRED => true,
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),

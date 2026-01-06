@@ -65,7 +65,7 @@ abstract class FieldsetService
                 FieldsetElement::ELEMENT_TYPE => $table,
                 FieldsetElement::ELEMENT_ID => $id,
             ], [
-                FieldsetElement::NAME => Arr::get($element, FieldsetElement::NAME, []),
+                FieldsetElement::LABEL => Arr::get($element, FieldsetElement::LABEL, []),
                 FieldsetElement::POSITION => $position,
                 FieldsetElement::WIDTH => Arr::get($element, FieldsetElement::WIDTH, 100),
             ]);

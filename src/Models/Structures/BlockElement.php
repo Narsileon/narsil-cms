@@ -37,7 +37,7 @@ class BlockElement extends MorphPivot implements IStructureHasElement
 
         $this->translatable = [
             self::DESCRIPTION,
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->with = [

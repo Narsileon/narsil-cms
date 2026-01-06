@@ -162,7 +162,7 @@ return new class extends Migration
             $blueprint
                 ->string(FieldsetElement::HANDLE);
             $blueprint
-                ->jsonb(FieldsetElement::NAME);
+                ->jsonb(FieldsetElement::LABEL);
             $blueprint
                 ->jsonb(FieldsetElement::DESCRIPTION)
                 ->nullable();
@@ -290,7 +290,7 @@ return new class extends Migration
             $blueprint
                 ->string(FormTabElement::HANDLE);
             $blueprint
-                ->jsonb(FormTabElement::NAME);
+                ->jsonb(FormTabElement::LABEL);
             $blueprint
                 ->jsonb(FormTabElement::DESCRIPTION)
                 ->nullable();

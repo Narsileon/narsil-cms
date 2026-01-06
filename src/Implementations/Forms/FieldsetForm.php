@@ -59,19 +59,19 @@ class FieldsetForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Fieldset::LABEL,
-                            Field::LABEL => trans('narsil::ui.default_name'),
+                            Field::HANDLE => Fieldset::HANDLE,
+                            Field::LABEL => trans('narsil::ui.default_handle'),
                             Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Fieldset::HANDLE,
-                            Field::LABEL => trans('narsil::ui.default_handle'),
+                            Field::HANDLE => Fieldset::LABEL,
+                            Field::LABEL => trans('narsil::ui.defaul_label'),
                             Field::REQUIRED => true,
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
@@ -86,7 +86,7 @@ class FieldsetForm extends AbstractForm implements Contract
                                 ->addOption(
                                     identifier: Input::TABLE,
                                     label: ModelService::getModelLabel(Input::class),
-                                    optionLabel: FieldsetElement::NAME,
+                                    optionLabel: FieldsetElement::LABEL,
                                     optionValue: FieldsetElement::HANDLE,
                                     options: $inputSelectOptions,
                                     routes: RouteService::getNames(Input::TABLE),

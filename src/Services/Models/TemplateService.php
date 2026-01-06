@@ -66,7 +66,7 @@ abstract class TemplateService
                 TemplateTabElement::ELEMENT_TYPE => $table,
                 TemplateTabElement::ELEMENT_ID => $id,
             ], [
-                TemplateTabElement::NAME => Arr::get($element, TemplateTabElement::NAME, []),
+                TemplateTabElement::LABEL => Arr::get($element, TemplateTabElement::LABEL, []),
                 TemplateTabElement::POSITION => $position,
                 TemplateTabElement::WIDTH => Arr::get($element, TemplateTabElement::WIDTH, 100),
             ]);

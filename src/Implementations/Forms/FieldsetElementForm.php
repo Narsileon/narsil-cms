@@ -33,19 +33,19 @@ class FieldsetElementForm extends AbstractForm implements Contract
                 Block::RELATION_ELEMENTS => [
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => FieldsetElement::NAME,
-                            Field::LABEL => trans('narsil::validation.attributes.name'),
+                            Field::HANDLE => FieldsetElement::HANDLE,
+                            Field::LABEL => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
                     ]),
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => FieldsetElement::HANDLE,
-                            Field::LABEL => trans('narsil::validation.attributes.handle'),
+                            Field::HANDLE => FieldsetElement::LABEL,
+                            Field::LABEL => trans('narsil::validation.attributes.label'),
                             Field::REQUIRED => true,
+                            Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),

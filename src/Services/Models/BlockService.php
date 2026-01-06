@@ -65,7 +65,7 @@ abstract class BlockService
                 BlockElement::ELEMENT_TYPE => $table,
                 BlockElement::ELEMENT_ID => $id,
             ], [
-                BlockElement::NAME => Arr::get($element, BlockElement::NAME, []),
+                BlockElement::LABEL => Arr::get($element, BlockElement::LABEL, []),
                 BlockElement::POSITION => $position,
                 BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH, 100),
             ]);

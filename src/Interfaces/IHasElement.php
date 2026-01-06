@@ -44,11 +44,11 @@ interface IHasElement
     public const HANDLE = 'handle';
 
     /**
-     * The name of the "name" column.
+     * The name of the "label" column.
      *
      * @var string
      */
-    public const NAME = 'name';
+    public const LABEL = 'label';
 
     /**
      * The name of the "position" column.
