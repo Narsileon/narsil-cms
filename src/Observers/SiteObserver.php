@@ -35,6 +35,7 @@ class SiteObserver
         if (Site::count() === 0)
         {
             $this->createFooter($model);
+            $this->createHeader($model);
         }
     }
 

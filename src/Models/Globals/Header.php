@@ -5,6 +5,7 @@ namespace Narsil\Models\Globals;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Database\Factories\HeaderFactory;
@@ -26,6 +27,7 @@ class Header extends Model
     use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
+    use HasFactory;
     use HasTranslations;
 
     #region CONSTRUCTOR
