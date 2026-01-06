@@ -25,7 +25,7 @@ class CollectionSummaryResource extends SummaryResource
     public function toArray(Request $request): array
     {
         return [
-            self::HREF => route("collections.index", $this->{Template::HANDLE}),
+            self::HREF => route("collections.index", $this->{Template::TABLE_NAME}),
             self::NAME => Str::ucfirst($this->{Template::PLURAL}),
         ];
     }

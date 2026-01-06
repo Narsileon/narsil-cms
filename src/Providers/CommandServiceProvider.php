@@ -5,6 +5,9 @@ namespace Narsil\Providers;
 #region USE
 
 use Illuminate\Support\ServiceProvider;
+use Narsil\Console\Commands\MakeEntityCommand;
+use Narsil\Console\Commands\MakeEntityNodeCommand;
+use Narsil\Console\Commands\MakeEntityNodeRelationCommand;
 use Narsil\Console\Commands\SyncPermissions;
 
 #endregion
@@ -41,6 +44,9 @@ class CommandServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole())
         {
             $this->commands([
+                MakeEntityCommand::class,
+                MakeEntityNodeCommand::class,
+                MakeEntityNodeRelationCommand::class,
                 SyncPermissions::class,
             ]);
         }

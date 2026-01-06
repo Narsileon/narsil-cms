@@ -5,12 +5,10 @@ namespace Narsil\Observers;
 #region USE
 
 use Narsil\Contracts\Fields\FormField;
-use Narsil\Contracts\Fields\LinkField;
 use Narsil\Interfaces\IStructureHasElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Entities\EntityNodeForm;
-use Narsil\Models\Entities\EntityNodeSitePage;
+use Narsil\Models\Entities\EntityNodeRelation;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\TemplateTabElement;
 
@@ -71,24 +69,17 @@ class EntityNodeObserver
 
         if ($field->{Field::TYPE} === FormField::class)
         {
-            foreach ($entityNode->getTranslations(EntityNode::VALUE) as $translation)
-            {
-                EntityNodeForm::firstOrCreate([
-                    EntityNodeForm::FORM_ID => $translation,
-                    EntityNodeForm::OWNER_NODE_UUID => $entityNode->{EntityNode::UUID},
-                    EntityNodeForm::OWNER_UUID => $entityNode->{EntityNode::OWNER_UUID},
-                ]);
-            }
-        }
+            $entityNode->entities()->delete();
 
-        if ($field->{Field::TYPE} === LinkField::class)
-        {
-            foreach ($entityNode->getTranslations(EntityNode::VALUE) as $translation)
+            foreach ($entityNode->getTranslations(EntityNode::VALUE) as $language => $translation)
             {
-                EntityNodeSitePage::firstOrCreate([
-                    EntityNodeSitePage::OWNER_NODE_UUID => $entityNode->{EntityNode::UUID},
-                    EntityNodeSitePage::OWNER_UUID => $entityNode->{EntityNode::OWNER_UUID},
-                    EntityNodeSitePage::SITE_PAGE_ID => $translation,
+                [$table, $id] = explode('-', $translation);
+
+                $entityNode->entities()->create([
+                    EntityNodeRelation::LANGUAGE => $language,
+                    EntityNodeRelation::OWNER_UUID => $entityNode->{EntityNode::OWNER_UUID},
+                    EntityNodeRelation::TARGET_ID  => $id,
+                    EntityNodeRelation::TARGET_TYPE => $table,
                 ]);
             }
         }

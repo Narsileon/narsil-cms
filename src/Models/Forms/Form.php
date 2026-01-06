@@ -12,6 +12,7 @@ use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -25,6 +26,7 @@ class Form extends Model
     use Blameable;
     use HasAuditLogs;
     use HasDatetimes;
+    use HasIdentifier;
     use HasTranslations;
 
     #region CONSTRUCTOR

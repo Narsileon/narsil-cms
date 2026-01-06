@@ -24,7 +24,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityNode extends Model
+abstract class EntityNode extends Model
 {
     use HasTranslations;
     use HasUuids;
@@ -36,7 +36,7 @@ class EntityNode extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = self::TABLE;
+        $this->table = static::TABLE;
 
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
@@ -65,7 +65,7 @@ class EntityNode extends Model
      *
      * @var string
      */
-    final public const TABLE = 'entity_nodes';
+    public const TABLE = 'entity_nodes';
 
     #region • COLUMNS
 
@@ -185,14 +185,6 @@ class EntityNode extends Model
      */
     final public const RELATION_ENTITIES = 'entities';
 
-
-    /**
-     * The name of the "forms" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_FORMS = 'forms';
-
     /**
      * The name of the "owner" relation.
      *
@@ -206,13 +198,6 @@ class EntityNode extends Model
      * @var string
      */
     final public const RELATION_PARENT = 'parent';
-
-    /**
-     * The name of the "site pages" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_SITE_PAGES = 'site_pages';
 
     /**
      * The name of the "template tab element" relation.
@@ -268,7 +253,7 @@ class EntityNode extends Model
     {
         return $this
             ->hasMany(
-                EntityNode::class,
+                static::class,
                 EntityNode::PARENT_UUID,
                 self::UUID,
             );
@@ -298,27 +283,10 @@ class EntityNode extends Model
     {
         return $this
             ->hasMany(
-                EntityNodeEntity::class,
-                EntityNodeEntity::OWNER_NODE_UUID,
+                static::entityNodeRelationClass(),
+                EntityNodeRelation::OWNER_NODE_UUID,
                 self::UUID,
             );
-    }
-
-    /**
-     * Get the associated forms.
-     *
-     * @return BelongsToMany
-     */
-    final public function forms(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Form::class,
-                EntityNodeForm::TABLE,
-                EntityNodeForm::OWNER_NODE_UUID,
-                EntityNodeForm::FORM_ID,
-            )
-            ->using(EntityNodeForm::class);
     }
 
     /**
@@ -352,23 +320,6 @@ class EntityNode extends Model
     }
 
     /**
-     * Get the associated site pages.
-     *
-     * @return BelongsToMany
-     */
-    final public function site_pages(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                SitePage::class,
-                EntityNodeSitePage::TABLE,
-                EntityNodeSitePage::OWNER_NODE_UUID,
-                EntityNodeSitePage::SITE_PAGE_ID,
-            )
-            ->using(EntityNodeSitePage::class);
-    }
-
-    /**
      * Get the associated template tab element.
      *
      * @return BelongsTo
@@ -384,6 +335,30 @@ class EntityNode extends Model
     }
 
     #endregion
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the class of the entity.
+     *
+     * @return string
+     */
+    protected static function entityClass(): string
+    {
+        return preg_replace('/Node$/', '', static::class);
+    }
+
+    /**
+     * Get the class of the entity node relation.
+     *
+     * @return string
+     */
+    protected static function entityNodeRelationClass(): string
+    {
+        return static::class . 'Relation';
+    }
 
     #endregion
 }

@@ -5,8 +5,6 @@ namespace Narsil\Models\Structures;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Attributes\Scope;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
@@ -17,6 +15,7 @@ use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\Templateable;
 
 #endregion
 
@@ -31,6 +30,7 @@ class Template extends Model
     use HasAuditLogs;
     use HasDatetimes;
     use HasTranslations;
+    use Templateable;
 
     #region CONSTRUCTOR
 
@@ -74,13 +74,6 @@ class Template extends Model
     final public const TABLE = 'templates';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
 
     /**
      * The name of the "id" column.
@@ -157,29 +150,6 @@ class Template extends Model
                 self::ID,
             )
             ->orderBy(TemplateTab::POSITION);
-    }
-
-    #endregion
-
-    #region • SCOPES
-
-    /**
-     * @param Builder $query
-     * @param integer|string $value
-     *
-     * @return void
-     */
-    #[Scope]
-    protected function byIdOrHandle(Builder $query, int|string $value): void
-    {
-        if (is_numeric($value))
-        {
-            $query->where(self::ID, $value);
-        }
-        else
-        {
-            $query->where(self::HANDLE, $value);
-        }
     }
 
     #endregion

@@ -140,7 +140,7 @@ trait HasRevisions
      */
     public function pruneRevisions(int $max): void
     {
-        $uuids = self::onlyTrashed()
+        $uuids = static::onlyTrashed()
             ->where(self::ID, $this->{self::ID})
             ->where(self::PUBLISHED, false)
             ->orderByDesc(self::REVISION)
@@ -151,7 +151,7 @@ trait HasRevisions
 
         if (!empty($uuids))
         {
-            self::query()
+            static::query()
                 ->whereIn(self::UUID, $uuids)
                 ->forceDelete();
         }
@@ -168,7 +168,7 @@ trait HasRevisions
     {
         return $this
             ->hasOne(
-                self::class,
+                static::class,
                 self::ID,
                 self::ID,
             )
@@ -184,7 +184,7 @@ trait HasRevisions
     {
         return $this
             ->hasOne(
-                self::class,
+                static::class,
                 self::ID,
                 self::ID,
             )
@@ -277,7 +277,7 @@ trait HasRevisions
         return new Attribute(
             get: function ()
             {
-                $maxRevision = self::query()
+                $maxRevision = static::query()
                     ->where(self::ID, $this->{self::ID})
                     ->orderByDesc(self::REVISION)
                     ->first();

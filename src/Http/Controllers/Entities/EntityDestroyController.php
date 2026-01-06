@@ -34,7 +34,7 @@ class EntityDestroyController extends RedirectController
      */
     public function __invoke(Request $request, int|string $collection, int $id): RedirectResponse
     {
-        $entity = Entity::query()
+        $entity = $this->entityClass::query()
             ->firstWhere([
                 Entity::ID => $id
             ]);

@@ -35,9 +35,9 @@ class EntityReplicateController extends RedirectController
      */
     public function __invoke(Request $request, int|string $collection, int $id): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Entity::class);
+        $this->authorize(PermissionEnum::CREATE, $this->entityClass);
 
-        $entity = Entity::query()
+        $entity = $this->entityClass::query()
             ->firstWhere([
                 Entity::ID => $id
             ]);

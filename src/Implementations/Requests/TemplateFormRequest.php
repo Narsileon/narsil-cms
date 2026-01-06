@@ -40,7 +40,7 @@ class TemplateFormRequest extends AbstractFormRequest implements Contract
     public function rules(): array
     {
         return [
-            Template::HANDLE => [
+            Template::TABLE_NAME => [
                 FormRule::ALPHA_DASH,
                 FormRule::LOWERCASE,
                 FormRule::doesntStartWith('-'),
@@ -48,7 +48,7 @@ class TemplateFormRequest extends AbstractFormRequest implements Contract
                 FormRule::REQUIRED,
                 FormRule::unique(
                     Template::class,
-                    Template::HANDLE,
+                    Template::TABLE_NAME,
                 )->ignore($this->template?->{Template::ID}),
             ],
             Template::PLURAL => [

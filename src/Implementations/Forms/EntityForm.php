@@ -37,7 +37,7 @@ class EntityForm extends AbstractForm implements Contract
         parent::__construct($model);
 
         $this->routes(RouteService::getNames('collections', [
-            'collection' => $template->{Template::HANDLE},
+            'collection' => $template->{Template::TABLE_NAME},
         ]));
     }
 

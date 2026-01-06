@@ -4,7 +4,8 @@ namespace Narsil\Observers;
 
 #region USE
 
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
+use Narsil\Database\Migrations\TemplateMigration;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Policies\Permission;
@@ -27,6 +28,23 @@ class TemplateObserver
      */
     public function created(Template $model): void
     {
+        Artisan::call('make:entity', [
+            'name' => class_basename($model->entityClass()),
+            'template' => $model->{Template::ID},
+        ]);
+
+        Artisan::call('make:entity-node', [
+            'name' => class_basename($model->entityNodeClass()),
+            'template' => $model->{Template::ID},
+        ]);
+
+        Artisan::call('make:entity-node-relation', [
+            'name' => class_basename($model->entityNodeRelationClass()),
+            'template' => $model->{Template::ID},
+        ]);
+
+        new TemplateMigration($model)->up();
+
         $this->createPermissions($model);
     }
 
@@ -37,7 +55,7 @@ class TemplateObserver
      */
     public function deleted(Template $model): void
     {
-        Schema::dropIfExists($model->{Template::HANDLE});
+        new TemplateMigration($model)->down();
     }
 
     #endregion
@@ -60,7 +78,7 @@ class TemplateObserver
 
         foreach ($permissions as $permission)
         {
-            $handle = PermissionService::getHandle($model->{Template::HANDLE}, $permission);
+            $handle = PermissionService::getHandle($model->{Template::TABLE_NAME}, $permission);
 
             $name = trans("narsil::permissions.$permission", [
                 'model' => $model->{Template::SINGULAR},

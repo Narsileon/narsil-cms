@@ -40,7 +40,7 @@ class EntityUpdateController extends RedirectController
      */
     public function __invoke(Request $request, int|string $collection, int $id): RedirectResponse
     {
-        $entities = Entity::query()
+        $entities = $this->entityClass::query()
             ->where([
                 Entity::ID => $id,
             ])
@@ -109,7 +109,9 @@ class EntityUpdateController extends RedirectController
                 Entity::UUID => $uuid,
             ]));
 
-            EntityService::syncNodes($replicated, $this->template, $attributes);
+            $replicated->setRelation(Entity::RELATION_TEMPLATE, $this->template);
+
+            EntityService::syncNodes($replicated, $attributes);
 
             return back();
         }
@@ -119,7 +121,9 @@ class EntityUpdateController extends RedirectController
                 Entity::PUBLISHED => false,
             ]));
 
-            EntityService::syncNodes($replicated, $this->template, $attributes);
+            $replicated->setRelation(Entity::RELATION_TEMPLATE, $this->template);
+
+            EntityService::syncNodes($replicated, $attributes);
 
             $entity->discardChanges();
             $entity->delete();

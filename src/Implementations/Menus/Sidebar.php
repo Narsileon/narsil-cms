@@ -97,7 +97,7 @@ class Sidebar extends AbstractMenu implements Contract
             $menuItems[] = new MenuItem()
                 ->group($group)
                 ->href(route('collections.index', [
-                    'collection' => $template->{Template::HANDLE},
+                    'collection' => $template->{Template::TABLE_NAME},
                 ]))
                 ->icon('layers')
                 ->label($template->{Template::PLURAL})

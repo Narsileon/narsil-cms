@@ -43,14 +43,13 @@ abstract class EntityService
 
     /**
      * @param Entity $entity
-     * @param Template $template
      * @param array $attributes
      *
      * @return void
      */
-    public static function syncNodes(Entity $entity, Template $template, array $attributes): void
+    public static function syncNodes(Entity $entity, array $attributes): void
     {
-        foreach ($template->{Template::RELATION_TABS} as $templateTab)
+        foreach ($entity->{Entity::RELATION_TEMPLATE}->{Template::RELATION_TABS} as $templateTab)
         {
             static::syncElements($entity, $templateTab->{TemplateTab::RELATION_ELEMENTS}, $attributes);
         }
@@ -67,6 +66,8 @@ abstract class EntityService
      */
     public static function syncElements(Entity $entity, Collection $elements, array $attributes, ?EntityNode $parent = null, ?string $path = null): void
     {
+        $entityNodeModel = $entity->{Entity::RELATION_TEMPLATE}->entityNodeClass();
+
         foreach ($elements as $position => $element)
         {
             $handle = $element->{IStructureHasElement::HANDLE};
@@ -86,7 +87,7 @@ abstract class EntityService
 
                 if ($field->{Field::TYPE} === BuilderField::class)
                 {
-                    $fieldEntityNode = EntityNode::create([
+                    $fieldEntityNode = $entityNodeModel::create([
                         EntityNode::ELEMENT_ID => $element->getKey(),
                         EntityNode::ELEMENT_TYPE => $element->getTable(),
                         EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
@@ -101,7 +102,7 @@ abstract class EntityService
 
                     foreach ($value as $index => $block)
                     {
-                        $blockEntityNode = EntityNode::create([
+                        $blockEntityNode = $entityNodeModel::create([
                             EntityNode::BLOCK_ID => Arr::get($block, EntityNode::BLOCK_ID),
                             EntityNode::OWNER_UUID => $entity->{Entity::UUID},
                             EntityNode::PARENT_UUID => $fieldEntityNode->getKey(),
@@ -120,7 +121,7 @@ abstract class EntityService
                 }
                 else
                 {
-                    EntityNode::create([
+                    $entityNodeModel::create([
                         EntityNode::ELEMENT_ID => $element->getKey(),
                         EntityNode::ELEMENT_TYPE => $element->getTable(),
                         EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
@@ -144,7 +145,7 @@ abstract class EntityService
                     $nextPath = $path ? "$path.$handle" : $handle;
                 }
 
-                $blockEntityNode = EntityNode::create([
+                $blockEntityNode = $entityNodeModel::create([
                     EntityNode::ELEMENT_ID => $element->getKey(),
                     EntityNode::ELEMENT_TYPE => $element->getTable(),
                     EntityNode::OWNER_UUID  => $entity->{Entity::UUID},

@@ -96,12 +96,12 @@ type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
   block: Block @belongsTo
   children: [EntityNode!]! @hasMany
   element: HasElement! @morphTo
-  entities: [EntityNodeEntity!]! @hasMany
+  entities: [EntityNodeRelation!]! @hasMany
   owner: Entity! @belongsTo
   parent: EntityNode @belongsTo
 }
 
-type EntityNodeEntity @model(class: "Narsil\\Models\\Entities\\EntityNodeEntity") {
+type EntityNodeRelation @model(class: "Narsil\\Models\\Entities\\EntityNodeRelation") {
   uuid: String!
   owner_node_uuid: String!
   owner_uuid: String!
@@ -111,16 +111,6 @@ type EntityNodeEntity @model(class: "Narsil\\Models\\Entities\\EntityNodeEntity"
   entity: Entity! @belongsTo
   entity_node: EntityNode! @belongsTo
   target: Entity! @morphTo
-}
-
-type EntityNodeForm @model(class: "Narsil\\Models\\Entities\\EntityNodeForm") {
-  uuid: String!
-  owner_node_uuid: String!
-  owner_uuid: String!
-  form_id: ID!
-  entity: Entity! @belongsTo
-  entity_node: EntityNode! @belongsTo
-  form: Form! @belongsTo
 }
 
 type Field @model(class: "Narsil\\Models\\Structures\\Field") {

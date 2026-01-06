@@ -18,18 +18,17 @@ use ReflectionClass;
  */
 class SyncPermissions extends Command
 {
-    #region CONSTRUCTOR
+    #region PROPERTIES
 
     /**
-     * @return void
+     * {@inheritDoc}
      */
-    public function __construct()
-    {
-        $this->signature = 'narsil:sync-permissions';
-        $this->description = 'Generate permissions based on policy methods.';
+    protected $description = 'Generate permissions based on policy methods.';
 
-        parent::__construct();
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected $signature = 'narsil:sync-permissions';
 
     #endregion
 

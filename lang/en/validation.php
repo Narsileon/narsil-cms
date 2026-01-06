@@ -275,6 +275,7 @@ return [
         'social_media'            => 'social media',
         'step'                    => 'step',
         'tab'                     => 'tab',
+        'table_name'              => 'table',
         'tabs'                    => 'tabs',
         'theme'                   => 'theme',
         'title'                   => 'title',

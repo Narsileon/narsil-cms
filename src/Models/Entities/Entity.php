@@ -22,7 +22,7 @@ use Narsil\Traits\SoftDeleteBlameable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Entity extends Model
+abstract class Entity extends Model
 {
     use Blameable;
     use HasAuditLogs;
@@ -38,7 +38,7 @@ class Entity extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = self::TABLE;
+        $this->table = static::TABLE;
 
         $this->primaryKey = self::UUID;
 
@@ -60,7 +60,7 @@ class Entity extends Model
      *
      * @var string
      */
-    final public const TABLE = 'entities';
+    public const TABLE = 'entities';
 
     #region • COLUMNS
 
@@ -113,7 +113,7 @@ class Entity extends Model
     {
         return $this
             ->hasMany(
-                EntityNode::class,
+                static::entityNodeClass(),
                 EntityNode::OWNER_UUID,
                 self::UUID,
             );
@@ -139,6 +139,16 @@ class Entity extends Model
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * Get the class of the entity node.
+     *
+     * @return string
+     */
+    protected static function entityNodeClass(): string
+    {
+        return static::class . 'Node';
+    }
 
     /**
      * {@inheritDoc}
@@ -169,5 +179,6 @@ class Entity extends Model
     }
 
     #endregion
+
     #endregion
 }

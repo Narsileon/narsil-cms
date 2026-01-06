@@ -1,0 +1,26 @@
+<?php
+
+namespace {{ namespace }};
+
+#region USE
+
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Narsil\Models\Entities\EntityNode;
+use Narsil\Observers\EntityNodeObserver;
+
+#endregion
+
+#[ObservedBy([EntityNodeObserver::class])]
+class {{ class }} extends EntityNode
+{
+    #region CONSTANTS
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    public const TABLE = '{{ table }}';
+
+    #endregion
+}

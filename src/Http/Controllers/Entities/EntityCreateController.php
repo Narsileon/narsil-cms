@@ -15,7 +15,6 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Configuration;
 use Narsil\Models\Structures\Template;
-use Narsil\Models\Entities\Entity;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Traits\IsCollectionController;
 
@@ -39,7 +38,7 @@ class EntityCreateController extends RenderController
      */
     public function __invoke(Request $request, int|string $collection): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, Entity::class);
+        $this->authorize(PermissionEnum::CREATE, $this->entityClass);
 
         $form = $this->getForm();
 
@@ -77,7 +76,7 @@ class EntityCreateController extends RenderController
                 'template' => $this->template
             ])
             ->action(route('collections.store', [
-                'collection' => $this->template->{Template::HANDLE}
+                'collection' => $this->template->{Template::TABLE_NAME}
             ]))
             ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())

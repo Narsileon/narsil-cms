@@ -11,7 +11,6 @@ use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Structures\Template;
-use Narsil\Services\ModelService;
 use Narsil\Traits\IsCollectionController;
 
 #endregion
@@ -34,11 +33,11 @@ class EntityDestroyManyController extends RedirectController
      */
     public function __invoke(DestroyManyRequest $request, int|string $collection): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE_ANY, Entity::class);
+        $this->authorize(PermissionEnum::DELETE_ANY, $this->entityClass);
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Entity::query()
+        $this->entityClass::query()
             ->whereIn(Entity::ID, $ids)
             ->forceDelete();
 

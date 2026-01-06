@@ -17,6 +17,27 @@ use Narsil\Services\Models\EntityService;
  */
 abstract class EntitySeeder extends Seeder
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->template = $this->template();
+    }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var Template
+     */
+    protected readonly Template $template;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -55,11 +76,11 @@ abstract class EntitySeeder extends Seeder
      */
     protected function saveEntity(Entity $entity): Entity
     {
-        $template = $this->template();
+        $entityModel = $this->template->entityClass();
 
-        $model = Entity::query()
+        $model = $entityModel::query()
             ->where(Entity::SLUG, $entity->{Entity::SLUG})
-            ->where(Entity::TEMPLATE_ID, $template->{Template::ID})
+            ->where(Entity::TEMPLATE_ID, $this->template->{Template::ID})
             ->first();
 
         if ($model)
@@ -67,14 +88,16 @@ abstract class EntitySeeder extends Seeder
             return $model;
         }
 
-        $model = Entity::create([
+        $model = $entityModel::create([
             Entity::SLUG => $entity->{Entity::SLUG},
-            Entity::TEMPLATE_ID => $template->{Template::ID},
+            Entity::TEMPLATE_ID => $this->template->{Template::ID},
         ]);
 
         $data = $this->data();
 
-        EntityService::syncNodes($model, $template, $data);
+        $model->setRelation(Entity::RELATION_TEMPLATE, $this->template);
+
+        EntityService::syncNodes($model, $data);
 
         return $model;
     }

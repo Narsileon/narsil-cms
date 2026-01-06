@@ -24,11 +24,12 @@ trait IsCollectionController
         $collection = request()->route('collection');
 
         $template = Template::query()
-            ->firstWhere(Template::HANDLE, '=', $collection);
+            ->firstWhere(Template::TABLE_NAME, '=', $collection);
 
         if ($template)
         {
             $this->template = $template;
+            $this->entityClass = $template->entityClass();
         }
         else
         {
@@ -40,7 +41,15 @@ trait IsCollectionController
 
     #region PROPERTIES
 
+    /**
+     * @var Template
+     */
     protected readonly Template $template;
+
+    /**
+     * @var string
+     */
+    protected readonly string $entityClass;
 
     #endregion
 }

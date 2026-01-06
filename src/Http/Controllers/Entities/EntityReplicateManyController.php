@@ -34,11 +34,11 @@ class EntityReplicateManyController extends RedirectController
      */
     public function __invoke(ReplicateManyRequest $request, int|string $collection): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Entity::class);
+        $this->authorize(PermissionEnum::CREATE, $this->entityClass);
 
         $ids = $request->validated(ReplicateManyRequest::IDS);
 
-        $entities = Entity::query()
+        $entities = $this->entityClass::query()
             ->whereIn(Entity::ID, $ids);
 
         foreach ($entities as $entity)

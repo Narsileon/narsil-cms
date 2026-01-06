@@ -6,6 +6,7 @@ namespace Narsil\Models\Entities;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Config;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Config;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractEntityNodeRelation extends Pivot
+class EntityNodeRelation extends Pivot
 {
     use HasUuids;
 
@@ -26,6 +27,8 @@ abstract class AbstractEntityNodeRelation extends Pivot
      */
     public function __construct(array $attributes = [])
     {
+        $this->table = static::TABLE;
+
         $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
@@ -39,6 +42,13 @@ abstract class AbstractEntityNodeRelation extends Pivot
     #endregion
 
     #region CONSTANTS
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    public const TABLE = 'entity_node_relation';
 
     #region • COLUMNS
 
@@ -62,6 +72,20 @@ abstract class AbstractEntityNodeRelation extends Pivot
      * @var string
      */
     final public const OWNER_NODE_UUID = 'owner_node_uuid';
+
+    /**
+     * The name of the "target id" column.
+     *
+     * @var string
+     */
+    final public const TARGET_ID = 'target_id';
+
+    /**
+     * The name of the "target type" column.
+     *
+     * @var string
+     */
+    final public const TARGET_TYPE = 'target_type';
 
     /**
      * The name of the "uuid" column.
@@ -88,6 +112,13 @@ abstract class AbstractEntityNodeRelation extends Pivot
      */
     final public const RELATION_OWNER_NODE = 'owner_node';
 
+    /**
+     * The name of the "target" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_TARGET = 'target';
+
     #endregion
 
     #endregion
@@ -105,7 +136,7 @@ abstract class AbstractEntityNodeRelation extends Pivot
     {
         return $this
             ->belongsTo(
-                Entity::class,
+                static::entityClass(),
                 self::OWNER_UUID,
                 Entity::UUID,
             );
@@ -120,9 +151,25 @@ abstract class AbstractEntityNodeRelation extends Pivot
     {
         return $this
             ->belongsTo(
-                EntityNode::class,
+                static::entityNodeClass(),
                 self::OWNER_NODE_UUID,
                 EntityNode::UUID,
+            );
+    }
+
+    /**
+     * Get the associated target.
+     *
+     * @return MorphTo
+     */
+    final public function target(): MorphTo
+    {
+        return $this
+            ->morphTo(
+                self::RELATION_TARGET,
+                self::TARGET_TYPE,
+                self::TARGET_ID,
+                Entity::ID,
             );
     }
 
@@ -133,18 +180,41 @@ abstract class AbstractEntityNodeRelation extends Pivot
     #region PROTECTED METHODS
 
     /**
+     * Get the class of the entity.
+     *
+     * @return string
+     */
+    protected static function entityClass(): string
+    {
+        return preg_replace('/NodeRelation$/', '', static::class);
+    }
+
+
+    /**
+     * Get the class of the entity node.
+     *
+     * @return string
+     */
+    protected static function entityNodeClass(): string
+    {
+        return preg_replace('/Relation$/', '', static::class);
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected static function booted(): void
     {
-        static::saving(function (AbstractEntityNodeRelation $model)
+        static::saving(function (EntityNodeRelation $model)
         {
-            if (!$model->{EntityNodeEntity::LANGUAGE})
+            if (!$model->{self::LANGUAGE})
             {
-                $model->{EntityNodeEntity::LANGUAGE} = Config::get('app.locale');
+                $model->{self::LANGUAGE} = Config::get('app.locale');
             }
         });
     }
+
+    #endregion
 
     #endregion
 }

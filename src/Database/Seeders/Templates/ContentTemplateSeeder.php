@@ -45,7 +45,7 @@ class ContentTemplateSeeder extends TemplateSeeder
         $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
 
         return new Template([
-            Template::HANDLE => 'contents',
+            Template::TABLE_NAME => 'contents',
             Template::PLURAL => 'contents',
             Template::SINGULAR => 'content',
             Template::RELATION_TABS => [

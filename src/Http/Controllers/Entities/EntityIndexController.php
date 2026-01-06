@@ -35,9 +35,9 @@ class EntityIndexController extends RenderController
      */
     public function __invoke(Request $request, int|string $collection): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
+        $this->authorize(PermissionEnum::VIEW_ANY, $this->entityClass);
 
-        $query = Entity::query()
+        $query = $this->entityClass::query()
             ->with([
                 Entity::RELATION_CREATOR,
                 Entity::RELATION_DRAFT,
@@ -48,7 +48,7 @@ class EntityIndexController extends RenderController
             ->where(Entity::TEMPLATE_ID, $this->template->{Template::ID})
             ->where(Entity::REVISION, '>', 0);
 
-        $collection = new DataTableCollection($query, $this->template->{Template::HANDLE})
+        $collection = new DataTableCollection($query, $this->template->{Template::TABLE_NAME})
             ->setRevisionable(true)
             ->toResponse($request)
             ->getData(true);

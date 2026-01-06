@@ -1,0 +1,23 @@
+<?php
+
+namespace {{ namespace }};
+
+#region USE
+
+use Narsil\Models\Entities\Entity;
+
+#endregion
+
+class {{ class }} extends Entity
+{
+    #region CONSTANTS
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    public const TABLE = '{{ table }}';
+
+    #endregion
+}

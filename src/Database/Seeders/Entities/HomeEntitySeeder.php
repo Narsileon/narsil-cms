@@ -49,7 +49,9 @@ class HomeEntitySeeder extends EntitySeeder
      */
     protected function entity(): Entity
     {
-        return new Entity([
+        $model = $this->template->entityClass();
+
+        return new $model([
             Entity::SLUG => 'home',
         ]);
     }
@@ -60,7 +62,7 @@ class HomeEntitySeeder extends EntitySeeder
     protected function template(): Template
     {
         return Template::query()
-            ->firstWhere(Template::HANDLE, '=', 'contents');
+            ->firstWhere(Template::TABLE_NAME, '=', 'contents');
     }
 
     #endregion

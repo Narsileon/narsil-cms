@@ -32,7 +32,7 @@ abstract class TemplateService
 
         $replicated
             ->fill([
-                Template::HANDLE => DatabaseService::generateUniqueValue($replicated, Template::HANDLE, $template->{Template::HANDLE}),
+                Template::TABLE_NAME => DatabaseService::generateUniqueValue($replicated, Template::TABLE_NAME, $template->{Template::TABLE_NAME}),
             ])
             ->save();
 

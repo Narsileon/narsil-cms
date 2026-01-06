@@ -31,7 +31,7 @@ class EntityUnpublishController extends RedirectController
      */
     public function __invoke(Request $request, int|string $collection, int $id): RedirectResponse
     {
-        Entity::withTrashed()
+        $this->entityClass::withTrashed()
             ->where([
                 Entity::ID => $id,
                 Entity::PUBLISHED => true,

@@ -43,7 +43,7 @@ class EntityEditController extends RenderController
     {
         $entity = $this->getEntity($request, $id);
 
-        $revisions = Entity::query()
+        $revisions = $this->entityClass::query()
             ->revisionOptions($id)
             ->get();
 
@@ -107,14 +107,14 @@ class EntityEditController extends RenderController
     {
         if ($revision = $request->query('revision'))
         {
-            $entity = Entity::withTrashed()
+            $entity = $this->entityClass::withTrashed()
                 ->firstWhere([
                     Entity::UUID => $revision
                 ]);
         }
         else
         {
-            $entity = Entity::query()
+            $entity = $this->entityClass::query()
                 ->with([
                     Entity::RELATION_DRAFT,
                 ])
@@ -148,7 +148,7 @@ class EntityEditController extends RenderController
             ])
             ->action(route('collections.update', [
                 'id' => $entity->{Entity::ID},
-                'collection' => $this->template->{Template::HANDLE},
+                'collection' => $this->template->{Template::TABLE_NAME},
             ]))
             ->autoSave(true)
             ->id($entity->{Entity::UUID})

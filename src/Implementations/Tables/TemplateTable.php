@@ -41,7 +41,7 @@ class TemplateTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Template::HANDLE,
+                id: Template::TABLE_NAME,
                 visibility: true,
             ),
             new TableColumn(

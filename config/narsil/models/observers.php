@@ -11,7 +11,6 @@ return [
     |
     */
 
-    \Narsil\Models\Entities\EntityNode::class => \Narsil\Observers\EntityNodeObserver::class,
     \Narsil\Models\Forms\FieldsetElement::class => \Narsil\Observers\FieldsetElementObserver::class,
     \Narsil\Models\Forms\FormTabElement::class => \Narsil\Observers\FormTabElementObserver::class,
     \Narsil\Models\Hosts\HostLocale::class => \Narsil\Observers\HostLocaleObserver::class,

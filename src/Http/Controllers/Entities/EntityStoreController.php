@@ -37,7 +37,7 @@ class EntityStoreController extends RedirectController
      */
     public function __invoke(Request $request, int|string $collection): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Entity::class);
+        $this->authorize(PermissionEnum::CREATE, $this->entityClass);
 
         $data = $request->all();
 
@@ -48,14 +48,16 @@ class EntityStoreController extends RedirectController
         $attributes = Validator::make($data, $rules)
             ->validated();
 
-        $entity = Entity::create([
+        $entity = $this->entityClass::create([
             Entity::PUBLISHED_FROM => Arr::get($attributes, Entity::PUBLISHED_FROM),
             Entity::PUBLISHED_TO => Arr::get($attributes, Entity::PUBLISHED_TO),
             Entity::SLUG => Arr::get($attributes, Entity::SLUG),
             Entity::TEMPLATE_ID => $this->template->{Template::ID},
         ]);
 
-        EntityService::syncNodes($entity, $this->template, $attributes);
+        $entity->setRelation(Entity::RELATION_TEMPLATE, $this->template);
+
+        EntityService::syncNodes($entity, $attributes);
 
         return $this
             ->redirect(route('collections.index', [

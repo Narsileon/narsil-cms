@@ -143,7 +143,7 @@ abstract class StructuresSeeder extends Seeder
     protected function saveTemplate(Template $template): Template
     {
         $templateModel = Template::query()
-            ->where(Template::HANDLE, $template->{Template::HANDLE})
+            ->where(Template::TABLE_NAME, $template->{Template::TABLE_NAME})
             ->first();
 
         if ($templateModel)
@@ -152,7 +152,7 @@ abstract class StructuresSeeder extends Seeder
         }
 
         $templateModel = Template::create([
-            Template::HANDLE => $template->{Template::HANDLE},
+            Template::TABLE_NAME => $template->{Template::TABLE_NAME},
             Template::PLURAL => $template->{Template::PLURAL},
             Template::SINGULAR => $template->{Template::SINGULAR},
         ]);

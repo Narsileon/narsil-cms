@@ -36,7 +36,7 @@ class ContactEntitySeeder extends EntitySeeder
             ContentTemplateSeeder::CONTENT => [[
                 EntityNode::BLOCK_ID => $formBlock->{Block::ID},
                 EntityNode::RELATION_CHILDREN => [
-                    FormBlockSeeder::FORM => $contactForm->{Form::ID},
+                    FormBlockSeeder::FORM => $contactForm->{Form::ATTRIBUTE_IDENTIFIER},
                 ],
             ]],
         ];
@@ -47,7 +47,9 @@ class ContactEntitySeeder extends EntitySeeder
      */
     protected function entity(): Entity
     {
-        return new Entity([
+        $model = $this->template->entityClass();
+
+        return new $model([
             Entity::SLUG => 'contact',
         ]);
     }
@@ -58,7 +60,7 @@ class ContactEntitySeeder extends EntitySeeder
     protected function template(): Template
     {
         return Template::query()
-            ->firstWhere(Template::HANDLE, '=', 'contents');
+            ->firstWhere(Template::TABLE_NAME, '=', 'contents');
     }
 
     #endregion
