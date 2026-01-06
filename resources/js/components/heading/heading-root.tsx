@@ -5,10 +5,10 @@ import headingRootVariants from "./heading-root-variants";
 
 type HeadingRootProps = ComponentProps<"h1"> &
   VariantProps<typeof headingRootVariants> & {
-    level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   };
 
-function HeadingRoot({ className, level, variant, ...props }: HeadingRootProps) {
+function HeadingRoot({ className, level = "h1", variant = "h6", ...props }: HeadingRootProps) {
   const Comp = level;
 
   return (
