@@ -49,7 +49,7 @@ class HeaderTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: ModelService::getTableLabel(Site::TABLE),
+                header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
                 type: DataTypeEnum::INTEGER->value,
                 visibility: true,

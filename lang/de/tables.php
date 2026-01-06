@@ -46,7 +46,7 @@ return [
     Permission::TABLE => 'Berechtigungen',
     Role::TABLE => 'Rollen',
     Site::VIRTUAL_TABLE => 'Webseiten',
-    SitePage::TABLE => 'Seiten von Webseiten',
+    SitePage::TABLE => 'Seiten',
     Template::TABLE => 'Vorlagen',
     User::TABLE => 'Benutzer',
     UserBookmark::TABLE => 'Lesezeichen',

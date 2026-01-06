@@ -229,7 +229,7 @@ class Sidebar extends AbstractMenu implements Contract
     {
         $menuItems = [];
 
-        $group = trans('narsil::ui.sites');
+        $group = ModelService::getTableLabel(Site::VIRTUAL_TABLE);
 
         $sites = Site::query()
             ->orderBy(Site::LABEL)
