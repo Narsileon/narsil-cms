@@ -44,11 +44,11 @@ class FieldTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Field::NAME,
+                id: Field::HANDLE,
                 visibility: true,
             ),
             new TableColumn(
-                id: Field::HANDLE,
+                id: Field::LABEL,
                 visibility: true,
             ),
             new TableColumn(

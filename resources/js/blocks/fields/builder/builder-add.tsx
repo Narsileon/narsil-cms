@@ -42,7 +42,7 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
               key={index}
             >
               {block.icon ? <Icon name={block.icon} /> : null}
-              <span>{block.name}</span>
+              <span>{block.label}</span>
             </DropdownMenuItem>
           );
         })}

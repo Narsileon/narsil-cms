@@ -54,12 +54,12 @@ class ConfigurationForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => 'frontend',
-                TemplateTab::NAME => trans('narsil::ui.frontend'),
+                TemplateTab::LABEL => trans('narsil::ui.frontend'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                            Field::NAME => trans('narsil::validation.attributes.default_language'),
+                            Field::LABEL => trans('narsil::validation.attributes.default_language'),
                             Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
                             Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($frontendLanguages),
@@ -70,12 +70,12 @@ class ConfigurationForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => 'backend',
-                TemplateTab::NAME => trans('narsil::ui.backend'),
+                TemplateTab::LABEL => trans('narsil::ui.backend'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                            Field::NAME => trans('narsil::validation.attributes.default_language'),
+                            Field::LABEL => trans('narsil::validation.attributes.default_language'),
                             Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
                             Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($backendLanguages),

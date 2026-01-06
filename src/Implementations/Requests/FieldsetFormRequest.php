@@ -52,7 +52,7 @@ class FieldsetFormRequest extends AbstractFormRequest implements Contract
                 )->ignore($this->fieldset?->{Fieldset::ID}),
 
             ],
-            Fieldset::NAME => [
+            Fieldset::LABEL => [
                 FormRule::REQUIRED,
             ],
 

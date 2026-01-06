@@ -47,7 +47,7 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil::validation.attributes.password'),
+                Field::LABEL => trans('narsil::validation.attributes.password'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)

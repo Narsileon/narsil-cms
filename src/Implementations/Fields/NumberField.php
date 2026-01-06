@@ -40,27 +40,27 @@ class NumberField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::NAME => trans('narsil::validation.attributes.default_value'),
+                Field::LABEL => trans('narsil::validation.attributes.default_value'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(Contract::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.min" : 'min',
-                Field::NAME => trans('narsil::validation.attributes.min'),
+                Field::LABEL => trans('narsil::validation.attributes.min'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->defaultValue(0),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max" : 'settings.max',
-                Field::NAME => trans('narsil::validation.attributes.max'),
+                Field::LABEL => trans('narsil::validation.attributes.max'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->defaultValue(999999999),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.step" : 'settings.step',
-                Field::NAME => trans('narsil::validation.attributes.step'),
+                Field::LABEL => trans('narsil::validation.attributes.step'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class)
                     ->min(0)

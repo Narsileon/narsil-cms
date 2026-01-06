@@ -55,7 +55,7 @@ class FieldFormRequest extends AbstractFormRequest implements Contract
                     Field::HANDLE,
                 )->ignore($this->field?->{Field::ID}),
             ],
-            Field::NAME => [
+            Field::LABEL => [
                 FormRule::REQUIRED,
             ],
             Field::PLACEHOLDER => [

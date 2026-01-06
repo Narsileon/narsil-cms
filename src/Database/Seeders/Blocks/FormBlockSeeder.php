@@ -38,13 +38,13 @@ class FormBlockSeeder extends BlockSeeder
     {
         return new Block([
             Block::HANDLE => self::FORM,
-            Block::NAME => 'Form',
+            Block::LABEL => 'Form',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::REQUIRED => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::FORM,
-                        Field::NAME => 'Form',
+                        Field::LABEL => 'Form',
                         Field::REQUIRED => true,
                         Field::TYPE => FormField::class,
                     ]),

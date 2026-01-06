@@ -54,7 +54,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                   {...childElement}
                   conditions={element.conditions}
                   handle={childHandle}
-                  name={element.name ?? childElement.name}
+                  name={element.label ?? childElement.label}
                   required={element.required ?? childElement.required}
                   translatable={element.translatable ?? childElement.translatable}
                   width={element.width}
@@ -76,7 +76,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                       "data-[state=open]:border-b",
                     )}
                   >
-                    <Heading level="h2">{childElement.name}</Heading>
+                    <Heading level="h2">{childElement.label}</Heading>
                     {childElement.collapsible ? (
                       <Icon
                         className={cn("duration-300", "group-data-[state=open]:rotate-180")}
@@ -88,7 +88,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
                     <FormRenderer
                       {...childElement}
                       handle={element.handle ?? childElement.handle}
-                      name={element.name ?? childElement.name}
+                      name={element.label ?? childElement.label}
                       width={element.width}
                     />
                   </CollapsibleContent>
@@ -140,7 +140,7 @@ function FormRenderer({ className, conditions, width, onChange, ...props }: Form
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-1">
-                <FormLabel required={required}>{props.name}</FormLabel>
+                <FormLabel required={required}>{props.label}</FormLabel>
                 {translatable ? (
                   <>
                     <Icon className="size-4" name="globe" />

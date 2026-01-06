@@ -122,7 +122,7 @@ return new class extends Migration
             $blueprint
                 ->string(Field::TYPE);
             $blueprint
-                ->jsonb(Field::NAME);
+                ->jsonb(Field::LABEL);
             $blueprint
                 ->jsonb(Field::DESCRIPTION)
                 ->nullable();

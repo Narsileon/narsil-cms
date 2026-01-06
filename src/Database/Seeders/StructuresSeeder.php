@@ -42,7 +42,7 @@ abstract class StructuresSeeder extends Seeder
 
         $model = Block::create([
             Block::HANDLE => $block->{Block::HANDLE},
-            Block::NAME => $block->{Block::NAME},
+            Block::LABEL => $block->{Block::LABEL},
         ]);
 
         $blockElements = $block->{Block::RELATION_ELEMENTS} ?? [];
@@ -99,7 +99,7 @@ abstract class StructuresSeeder extends Seeder
 
         $model = Field::create([
             Field::HANDLE => $field->{Field::HANDLE},
-            Field::NAME => $field->{Field::NAME},
+            Field::LABEL => $field->{Field::LABEL},
             Field::REQUIRED => $field->{Field::REQUIRED} ?? false,
             Field::SETTINGS => $field->{Field::SETTINGS},
             Field::TRANSLATABLE => $field->{Field::TRANSLATABLE} ?? false,
@@ -170,7 +170,7 @@ abstract class StructuresSeeder extends Seeder
             {
                 $templateTabModel = TemplateTab::create([
                     TemplateTab::HANDLE => $templateTab->{TemplateTab::HANDLE},
-                    TemplateTab::NAME => $templateTab->{TemplateTab::NAME},
+                    TemplateTab::LABEL => $templateTab->{TemplateTab::LABEL},
                     TemplateTab::POSITION => $position,
                     TemplateTab::TEMPLATE_ID => $templateModel->{Template::ID},
                 ]);
@@ -178,7 +178,7 @@ abstract class StructuresSeeder extends Seeder
             else
             {
                 $templateTabModel->update([
-                    TemplateTab::NAME => $templateTab->{TemplateTab::NAME},
+                    TemplateTab::LABEL => $templateTab->{TemplateTab::LABEL},
                     TemplateTab::POSITION => $position,
                 ]);
             }

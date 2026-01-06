@@ -45,7 +45,7 @@ class Input extends Model
 
         $this->translatable = [
             self::DESCRIPTION,
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->with = [
@@ -110,11 +110,11 @@ class Input extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "name" column.
+     * The name of the "label" column.
      *
      * @var string
      */
-    final public const NAME = 'name';
+    final public const LABEL = 'label';
 
     /**
      * The name of the "required" column.

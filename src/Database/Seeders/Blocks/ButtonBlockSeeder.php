@@ -40,14 +40,14 @@ class ButtonBlockSeeder extends BlockSeeder
 
         return new Block([
             Block::HANDLE => 'button',
-            Block::NAME => 'Button',
+            Block::LABEL => 'Button',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => 'label',
-                        Field::NAME => 'Label',
+                        Field::LABEL => 'Label',
                         Field::REQUIRED => true,
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,

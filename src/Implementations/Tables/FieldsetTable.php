@@ -44,12 +44,18 @@ class FieldsetTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Fieldset::NAME,
+                id: Fieldset::HANDLE,
                 visibility: true,
             ),
             new TableColumn(
-                id: Fieldset::HANDLE,
+                id: Fieldset::LABEL,
                 visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(Input::TABLE),
+                id: Fieldset::COUNT_FIELDSETS,
+                type: DataTypeEnum::INTEGER->value,
+                visibility: false,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(Input::TABLE),

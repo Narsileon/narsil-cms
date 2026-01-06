@@ -68,24 +68,24 @@ class AccordionBlockSeeder extends BlockSeeder
     {
         return new Block([
             Block::HANDLE => self::ACCORDION,
-            Block::NAME => 'Accordion',
+            Block::LABEL => 'Accordion',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::ACCORDION_BUILDER,
-                        Field::NAME => 'Items',
+                        Field::LABEL => 'Items',
                         Field::TYPE => BuilderField::class,
                         Field::RELATION_BLOCKS => [
                             new Block([
                                 Block::HANDLE => self::ACCORDION_ITEM,
-                                Block::NAME => 'Accordion Item',
+                                Block::LABEL => 'Accordion Item',
                                 Block::RELATION_ELEMENTS => [
                                     new BlockElement([
                                         BlockElement::REQUIRED => true,
                                         BlockElement::TRANSLATABLE => true,
                                         BlockElement::RELATION_ELEMENT => new Field([
                                             Field::HANDLE => self::ACCORDION_ITEM_TRIGGER,
-                                            Field::NAME => 'Trigger',
+                                            Field::LABEL => 'Trigger',
                                             Field::REQUIRED => true,
                                             Field::TRANSLATABLE => true,
                                             Field::TYPE => TextField::class,
@@ -97,7 +97,7 @@ class AccordionBlockSeeder extends BlockSeeder
                                         BlockElement::TRANSLATABLE => true,
                                         BlockElement::RELATION_ELEMENT => new Field([
                                             Field::HANDLE => self::ACCORDION_ITEM_CONTENT,
-                                            Field::NAME => 'Content',
+                                            Field::LABEL => 'Content',
                                             Field::REQUIRED => true,
                                             Field::TRANSLATABLE => true,
                                             Field::TYPE => RichTextField::class,

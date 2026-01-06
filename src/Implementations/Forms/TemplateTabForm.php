@@ -33,7 +33,7 @@ class TemplateTabForm extends AbstractForm implements Contract
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => TemplateTabElement::NAME,
-                            Field::NAME => trans('narsil::validation.attributes.name'),
+                            Field::LABEL => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -43,7 +43,7 @@ class TemplateTabForm extends AbstractForm implements Contract
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => TemplateTabElement::HANDLE,
-                            Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::LABEL => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),

@@ -41,7 +41,7 @@ abstract class FormsSeeder extends Seeder
 
         $model = Fieldset::create([
             Fieldset::HANDLE => $fieldset->{Fieldset::HANDLE},
-            Fieldset::NAME => $fieldset->{Fieldset::NAME},
+            Fieldset::LABEL => $fieldset->{Fieldset::LABEL},
         ]);
 
         $fieldsetElements = $fieldset->{Fieldset::RELATION_ELEMENTS} ?? [];
@@ -97,7 +97,7 @@ abstract class FormsSeeder extends Seeder
 
         $model = Input::create([
             Input::HANDLE => $input->{Input::HANDLE},
-            Input::NAME => $input->{Input::NAME},
+            Input::LABEL => $input->{Input::LABEL},
             Input::SETTINGS => $input->{Input::SETTINGS},
             Input::TYPE => $input->{Input::TYPE},
         ]);
@@ -153,7 +153,7 @@ abstract class FormsSeeder extends Seeder
             {
                 $formTabModel = FormTab::create([
                     FormTab::HANDLE => $formTab->{FormTab::HANDLE},
-                    FormTab::NAME => $formTab->{FormTab::NAME},
+                    FormTab::LABEL => $formTab->{FormTab::LABEL},
                     FormTab::POSITION => $position,
                     FormTab::FORM_ID => $formModel->{Form::ID},
                 ]);
@@ -161,7 +161,7 @@ abstract class FormsSeeder extends Seeder
             else
             {
                 $formTabModel->update([
-                    FormTab::NAME => $formTab->{FormTab::NAME},
+                    FormTab::LABEL => $formTab->{FormTab::LABEL},
                     FormTab::POSITION => $position,
                 ]);
             }

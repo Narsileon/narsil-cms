@@ -52,9 +52,11 @@ class FieldsetIndexController extends RenderController
     {
         $query = Fieldset::query()
             ->with([
+                Fieldset::RELATION_FIELDSETS,
                 Fieldset::RELATION_INPUTS,
             ])
             ->withCount([
+                Fieldset::RELATION_FIELDSETS,
                 Fieldset::RELATION_INPUTS,
             ]);
 

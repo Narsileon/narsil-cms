@@ -39,7 +39,7 @@ class Block extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->with = [
@@ -98,11 +98,11 @@ class Block extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "name" column.
+     * The name of the "label" column.
      *
      * @var string
      */
-    final public const NAME = 'name';
+    final public const LABEL = 'label';
 
     /**
      * The name of the "virtual" column.

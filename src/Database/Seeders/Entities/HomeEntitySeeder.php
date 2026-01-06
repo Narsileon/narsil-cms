@@ -4,6 +4,7 @@ namespace Narsil\Database\Seeders\Entities;
 
 #region USE
 
+use Narsil\Database\Seeders\Blocks\ButtonBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeadlineBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Database\Seeders\EntitySeeder;
@@ -28,6 +29,7 @@ class HomeEntitySeeder extends EntitySeeder
      */
     protected function data(): array
     {
+        $buttonBlock = new ButtonBlockSeeder()->run();
         $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
 
         return [
@@ -39,6 +41,12 @@ class HomeEntitySeeder extends EntitySeeder
                         HeadlineBlockSeeder::HEADLINE_LEVEL => 'h1',
                         HeadlineBlockSeeder::HEADLINE_STYLE => 'h1',
                     ],
+                    HeroHeaderBlockSeeder::BUTTONS => [[
+                        EntityNode::BLOCK_ID => $buttonBlock->{Block::ID},
+                        EntityNode::RELATION_CHILDREN => [
+                            ButtonBlockSeeder::LABEL => 'Get started',
+                        ],
+                    ]],
                 ],
             ]],
         ];

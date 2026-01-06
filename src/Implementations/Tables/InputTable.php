@@ -44,11 +44,11 @@ class InputTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Input::NAME,
+                id: Input::HANDLE,
                 visibility: true,
             ),
             new TableColumn(
-                id: Input::HANDLE,
+                id: Input::LABEL,
                 visibility: true,
             ),
             new TableColumn(

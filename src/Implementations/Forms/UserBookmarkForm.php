@@ -27,7 +27,7 @@ class UserBookmarkForm extends AbstractForm
         return [
             new Field([
                 Field::HANDLE => UserBookmark::NAME,
-                Field::NAME => trans('narsil::validation.attributes.name'),
+                Field::LABEL => trans('narsil::validation.attributes.name'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class),
             ]),

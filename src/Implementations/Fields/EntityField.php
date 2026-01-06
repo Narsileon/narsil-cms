@@ -38,14 +38,14 @@ class EntityField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::PLACEHOLDER,
-                Field::NAME => trans('narsil::validation.attributes.placeholder'),
+                Field::LABEL => trans('narsil::validation.attributes.placeholder'),
                 Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                Field::NAME => trans('narsil::validation.attributes.multiple'),
+                Field::LABEL => trans('narsil::validation.attributes.multiple'),
                 Field::TYPE => SwitchField::class,
                 Field::SETTINGS => app(SwitchField::class),
             ]),

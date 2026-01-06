@@ -55,7 +55,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
 
         return new Block([
             Block::HANDLE => self::HERO_HEADER,
-            Block::NAME => 'Hero Header',
+            Block::LABEL => 'Hero Header',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => $headlineBlock,
@@ -65,7 +65,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::EXCERPT,
-                        Field::NAME => 'Excerpt',
+                        Field::LABEL => 'Excerpt',
                         Field::REQUIRED => true,
                         Field::TRANSLATABLE => true,
                         Field::TYPE => RichTextField::class,
@@ -74,7 +74,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                 new BlockElement([
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::BUTTONS,
-                        Field::NAME => 'Buttons',
+                        Field::LABEL => 'Buttons',
                         Field::TYPE => BuilderField::class,
                         Field::RELATION_BLOCKS => [
                             new ButtonBlockSeeder()->block(),

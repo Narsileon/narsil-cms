@@ -51,12 +51,12 @@ class FooterForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::SLUG,
-                            Field::NAME => trans('narsil::validation.attributes.slug'),
+                            Field::LABEL => trans('narsil::validation.attributes.slug'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -65,7 +65,7 @@ class FooterForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::LOGO,
-                            Field::NAME => trans('narsil::validation.attributes.logo'),
+                            Field::LABEL => trans('narsil::validation.attributes.logo'),
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
                                 ->accept('image/*')
@@ -75,7 +75,7 @@ class FooterForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::COMPANY,
-                            Field::NAME => trans('narsil::validation.attributes.company'),
+                            Field::LABEL => trans('narsil::validation.attributes.company'),
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
@@ -83,7 +83,7 @@ class FooterForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::ADDRESS_LINE_1,
-                            Field::NAME => trans('narsil::validation.attributes.address_line_1'),
+                            Field::LABEL => trans('narsil::validation.attributes.address_line_1'),
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
@@ -91,7 +91,7 @@ class FooterForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::ADDRESS_LINE_2,
-                            Field::NAME => trans('narsil::validation.attributes.address_line_2'),
+                            Field::LABEL => trans('narsil::validation.attributes.address_line_2'),
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
@@ -99,7 +99,7 @@ class FooterForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::EMAIL,
-                            Field::NAME => trans('narsil::validation.attributes.email'),
+                            Field::LABEL => trans('narsil::validation.attributes.email'),
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -108,7 +108,7 @@ class FooterForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::PHONE,
-                            Field::NAME => trans('narsil::validation.attributes.phone'),
+                            Field::LABEL => trans('narsil::validation.attributes.phone'),
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
@@ -117,25 +117,25 @@ class FooterForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => 'meta_navigation',
-                TemplateTab::NAME => trans('narsil::ui.meta_navigation'),
+                TemplateTab::LABEL => trans('narsil::ui.meta_navigation'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::RELATION_LINKS,
-                            Field::NAME => trans('narsil::ui.links'),
+                            Field::LABEL => trans('narsil::ui.links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
                                     new Field([
                                         Field::HANDLE => FooterLink::LABEL,
-                                        Field::NAME => trans('narsil::validation.attributes.label'),
+                                        Field::LABEL => trans('narsil::validation.attributes.label'),
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextField::class,
                                         Field::SETTINGS => app(TextField::class),
                                     ]),
                                     new Field([
                                         Field::HANDLE => FooterLink::SITE_PAGE_ID,
-                                        Field::NAME => trans('narsil::validation.attributes.site_page_id'),
+                                        Field::LABEL => trans('narsil::validation.attributes.site_page_id'),
                                         Field::REQUIRED => true,
                                         Field::TYPE => SelectField::class,
                                         Field::SETTINGS => app(SelectField::class)
@@ -149,18 +149,18 @@ class FooterForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => 'social_media',
-                TemplateTab::NAME => trans('narsil::ui.social_media'),
+                TemplateTab::LABEL => trans('narsil::ui.social_media'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Footer::RELATION_SOCIAL_MEDIA,
-                            Field::NAME => trans('narsil::ui.links'),
+                            Field::LABEL => trans('narsil::ui.links'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
                                     new Field([
                                         Field::HANDLE => FooterSocialMedium::LABEL,
-                                        Field::NAME => trans('narsil::validation.attributes.label'),
+                                        Field::LABEL => trans('narsil::validation.attributes.label'),
                                         Field::REQUIRED => true,
                                         Field::TRANSLATABLE => true,
                                         Field::TYPE => TextField::class,
@@ -168,7 +168,7 @@ class FooterForm extends AbstractForm implements Contract
                                     ]),
                                     new Field([
                                         Field::HANDLE => FooterSocialMedium::URL,
-                                        Field::NAME => trans('narsil::validation.attributes.url'),
+                                        Field::LABEL => trans('narsil::validation.attributes.url'),
                                         Field::REQUIRED => true,
                                         Field::TYPE => TextField::class,
                                         Field::SETTINGS => app(TextField::class),

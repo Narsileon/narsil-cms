@@ -33,7 +33,7 @@ class BlockElementForm extends AbstractForm implements Contract
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => BlockElement::NAME,
-                            Field::NAME => trans('narsil::validation.attributes.name'),
+                            Field::LABEL => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -43,7 +43,7 @@ class BlockElementForm extends AbstractForm implements Contract
                     new BlockElement([
                         BlockElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => BlockElement::HANDLE,
-                            Field::NAME => trans('narsil::validation.attributes.handle'),
+                            Field::LABEL => trans('narsil::validation.attributes.handle'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -53,7 +53,7 @@ class BlockElementForm extends AbstractForm implements Contract
                         BlockElement::WIDTH => 50,
                         BlockElement::RELATION_ELEMENT =>  new Field([
                             Field::HANDLE => BlockElement::REQUIRED,
-                            Field::NAME => trans('narsil::validation.attributes.required'),
+                            Field::LABEL => trans('narsil::validation.attributes.required'),
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
                         ]),
@@ -62,7 +62,7 @@ class BlockElementForm extends AbstractForm implements Contract
                         BlockElement::WIDTH => 50,
                         BlockElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => BlockElement::TRANSLATABLE,
-                            Field::NAME => trans('narsil::validation.attributes.translatable'),
+                            Field::LABEL => trans('narsil::validation.attributes.translatable'),
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
                         ]),

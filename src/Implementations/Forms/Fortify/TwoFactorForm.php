@@ -56,7 +56,7 @@ class TwoFactorForm extends AbstractForm implements Contract
             new Field([
                 Field::DESCRIPTION => trans('narsil::two-factor.code_description'),
                 Field::HANDLE => 'code',
-                Field::NAME => trans('narsil::validation.attributes.code'),
+                Field::LABEL => trans('narsil::validation.attributes.code'),
                 Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)

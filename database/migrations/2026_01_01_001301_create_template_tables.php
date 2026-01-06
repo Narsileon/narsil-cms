@@ -155,7 +155,7 @@ return new class extends Migration
             $blueprint
                 ->string(TemplateTab::HANDLE);
             $blueprint
-                ->jsonb(TemplateTab::NAME);
+                ->jsonb(TemplateTab::LABEL);
             $blueprint
                 ->integer(TemplateTab::POSITION)
                 ->default(0);

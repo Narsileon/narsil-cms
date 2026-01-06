@@ -193,7 +193,7 @@ return new class extends Migration
                 ->string(Fieldset::HANDLE)
                 ->unique();
             $blueprint
-                ->jsonb(Fieldset::NAME);
+                ->jsonb(Fieldset::LABEL);
             $blueprint
                 ->timestamp(Fieldset::CREATED_AT);
             $blueprint
@@ -325,7 +325,7 @@ return new class extends Migration
             $blueprint
                 ->string(FormTab::HANDLE);
             $blueprint
-                ->jsonb(FormTab::NAME);
+                ->jsonb(FormTab::LABEL);
             $blueprint
                 ->integer(FormTab::POSITION)
                 ->default(0);
@@ -437,7 +437,7 @@ return new class extends Migration
             $blueprint
                 ->string(Input::TYPE);
             $blueprint
-                ->jsonb(Input::NAME);
+                ->jsonb(Input::LABEL);
             $blueprint
                 ->jsonb(Input::DESCRIPTION)
                 ->nullable();

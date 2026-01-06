@@ -40,27 +40,27 @@ class CheckboxField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::NAME => trans('narsil::validation.attributes.default_value'),
+                Field::LABEL => trans('narsil::validation.attributes.default_value'),
                 Field::TYPE => Contract::class,
                 Field::SETTINGS => app(Contract::class),
             ]),
             new Field([
                 Field::HANDLE => Field::RELATION_OPTIONS,
-                Field::NAME => trans('narsil::validation.attributes.options'),
+                Field::LABEL => trans('narsil::validation.attributes.options'),
                 Field::PLACEHOLDER => trans('narsil::ui.add'),
                 Field::TYPE => TableField::class,
                 Field::SETTINGS => app(TableField::class)
                     ->columns([
                         new Field([
                             Field::HANDLE => FieldOption::VALUE,
-                            Field::NAME => trans('narsil::validation.attributes.value'),
+                            Field::LABEL => trans('narsil::validation.attributes.value'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]),
                         new Field([
                             Field::HANDLE => FieldOption::LABEL,
-                            Field::NAME => trans('narsil::validation.attributes.label'),
+                            Field::LABEL => trans('narsil::validation.attributes.label'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),

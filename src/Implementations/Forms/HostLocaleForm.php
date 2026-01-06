@@ -37,7 +37,7 @@ class HostLocaleForm extends AbstractForm implements Contract
 
         return new Field([
             Field::HANDLE => HostLocale::COUNTRY,
-            Field::NAME => trans('narsil::validation.attributes.country'),
+            Field::LABEL => trans('narsil::validation.attributes.country'),
             Field::TYPE => SelectField::class,
             Field::RELATION_OPTIONS => $countrySelectOptions,
             Field::SETTINGS => app(SelectField::class),
@@ -53,14 +53,14 @@ class HostLocaleForm extends AbstractForm implements Contract
 
         return new Field([
             Field::HANDLE => HostLocale::RELATION_LANGUAGES,
-            Field::NAME => trans('narsil::validation.attributes.languages'),
+            Field::LABEL => trans('narsil::validation.attributes.languages'),
             Field::PLACEHOLDER => trans('narsil::ui.add'),
             Field::TYPE => TableField::class,
             Field::SETTINGS => app(TableField::class)
                 ->columns([
                     new Field([
                         Field::HANDLE => HostLocaleLanguage::LANGUAGE,
-                        Field::NAME => trans('narsil::validation.attributes.language'),
+                        Field::LABEL => trans('narsil::validation.attributes.language'),
                         Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $languageSelectOptions,
@@ -77,7 +77,7 @@ class HostLocaleForm extends AbstractForm implements Contract
     {
         return new Field([
             Field::HANDLE => HostLocale::PATTERN,
-            Field::NAME => trans('narsil::validation.attributes.pattern'),
+            Field::LABEL => trans('narsil::validation.attributes.pattern'),
             Field::REQUIRED => true,
             Field::TYPE => TextField::class,
             Field::SETTINGS => app(TextField::class),

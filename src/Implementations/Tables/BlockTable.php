@@ -44,11 +44,11 @@ class BlockTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Block::NAME,
+                id: Block::HANDLE,
                 visibility: true,
             ),
             new TableColumn(
-                id: Block::HANDLE,
+                id: Block::LABEL,
                 visibility: true,
             ),
             new TableColumn(

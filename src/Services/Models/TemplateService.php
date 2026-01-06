@@ -97,7 +97,7 @@ abstract class TemplateService
                 TemplateTab::HANDLE => Arr::get($tab, TemplateTab::HANDLE),
             ], [
                 TemplateTab::POSITION => $key,
-                TemplateTab::NAME => Arr::get($tab, TemplateTab::NAME),
+                TemplateTab::LABEL => Arr::get($tab, TemplateTab::LABEL),
             ]);
 
             static::syncTemplateTabElements($templateTab, Arr::get($tab, TemplateTab::RELATION_ELEMENTS, []));

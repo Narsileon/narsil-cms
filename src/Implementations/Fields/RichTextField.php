@@ -66,14 +66,14 @@ class RichTextField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::PLACEHOLDER,
-                Field::NAME => trans('narsil::validation.attributes.placeholder'),
+                Field::LABEL => trans('narsil::validation.attributes.placeholder'),
                 Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.modules" : 'modules',
-                Field::NAME => trans("narsil::ui.modules"),
+                Field::LABEL => trans("narsil::ui.modules"),
                 Field::TYPE => CheckboxField::class,
                 Field::RELATION_OPTIONS => RichTextEditorEnum::selectOptions(),
                 Field::SETTINGS => app(CheckboxField::class),

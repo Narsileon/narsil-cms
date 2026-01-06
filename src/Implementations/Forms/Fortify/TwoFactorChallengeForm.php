@@ -46,7 +46,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => 'code',
-                Field::NAME => trans('narsil::validation.attributes.code'),
+                Field::LABEL => trans('narsil::validation.attributes.code'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
@@ -54,7 +54,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => 'recovery_code',
-                Field::NAME => trans('narsil::validation.attributes.recovery_code'),
+                Field::LABEL => trans('narsil::validation.attributes.recovery_code'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)

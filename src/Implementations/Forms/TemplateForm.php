@@ -56,12 +56,12 @@ class TemplateForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::TABLE_NAME,
-                            Field::NAME => trans('narsil::validation.attributes.table_name'),
+                            Field::LABEL => trans('narsil::validation.attributes.table_name'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -71,7 +71,7 @@ class TemplateForm extends AbstractForm implements Contract
                         TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::SINGULAR,
-                            Field::NAME => trans('narsil::validation.attributes.singular'),
+                            Field::LABEL => trans('narsil::validation.attributes.singular'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -82,7 +82,7 @@ class TemplateForm extends AbstractForm implements Contract
                         TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::PLURAL,
-                            Field::NAME => trans('narsil::validation.attributes.plural'),
+                            Field::LABEL => trans('narsil::validation.attributes.plural'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -92,18 +92,18 @@ class TemplateForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Template::RELATION_TABS,
-                            Field::NAME => trans('narsil::validation.attributes.tabs'),
+                            Field::LABEL => trans('narsil::validation.attributes.tabs'),
                             Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(TemplateTabForm::class)->jsonSerialize())
                                 ->intermediate(
                                     label: trans('narsil::validation.attributes.tab'),
-                                    optionLabel: TemplateTab::NAME,
+                                    optionLabel: TemplateTab::LABEL,
                                     optionValue: TemplateTab::HANDLE,
                                     relation: new Field([
                                         Field::HANDLE => TemplateTab::RELATION_ELEMENTS,
-                                        Field::NAME => trans('narsil::validation.attributes.elements'),
+                                        Field::LABEL => trans('narsil::validation.attributes.elements'),
                                         Field::TYPE => RelationsField::class,
                                         Field::SETTINGS => app(RelationsField::class)
                                             ->form(app(BlockElementForm::class)->jsonSerialize())
@@ -141,7 +141,7 @@ class TemplateForm extends AbstractForm implements Contract
     protected static function getBlockSelectOptions(): array
     {
         return Block::query()
-            ->orderBy(Block::NAME)
+            ->orderBy(Block::LABEL)
             ->get()
             ->map(function (Block $block)
             {
@@ -149,7 +149,7 @@ class TemplateForm extends AbstractForm implements Contract
                     ->id($block->{Block::ID})
                     ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER})
                     ->optionIcon($block->{Block::ATTRIBUTE_ICON})
-                    ->optionLabel($block->getTranslations(Block::NAME))
+                    ->optionLabel($block->getTranslations(Block::LABEL))
                     ->optionValue($block->{Block::HANDLE});
 
                 return $option;
@@ -165,7 +165,7 @@ class TemplateForm extends AbstractForm implements Contract
     protected static function getFieldSelectOptions(): array
     {
         return Field::query()
-            ->orderBy(Field::NAME)
+            ->orderBy(Field::LABEL)
             ->get()
             ->map(function (Field $field)
             {
@@ -173,7 +173,7 @@ class TemplateForm extends AbstractForm implements Contract
                     ->id($field->{Field::ID})
                     ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER})
                     ->optionIcon($field->{Field::ATTRIBUTE_ICON})
-                    ->optionLabel($field->getTranslations(Field::NAME))
+                    ->optionLabel($field->getTranslations(Field::LABEL))
                     ->optionValue($field->{Field::HANDLE});
             })
             ->toArray();

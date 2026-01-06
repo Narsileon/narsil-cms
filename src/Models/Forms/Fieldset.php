@@ -39,7 +39,7 @@ class Fieldset extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
-            self::NAME,
+            self::LABEL,
         ];
 
         $this->with = [
@@ -91,11 +91,11 @@ class Fieldset extends Model
     final public const ID = 'id';
 
     /**
-     * The name of the "name" column.
+     * The name of the "label" column.
      *
      * @var string
      */
-    final public const NAME = 'name';
+    final public const LABEL = 'label';
 
     #endregion
 
@@ -120,11 +120,18 @@ class Fieldset extends Model
     final public const COUNT_ELEMENTS = 'elements_count';
 
     /**
-     * The name of the "input" count.
+     * The name of the "fieldsets" count.
      *
      * @var string
      */
-    final public const COUNT_INPUTS = 'input_count';
+    final public const COUNT_FIELDSETS = 'fieldsets_count';
+
+    /**
+     * The name of the "inputs" count.
+     *
+     * @var string
+     */
+    final public const COUNT_INPUTS = 'inputs_count';
 
     #endregion
 
@@ -136,6 +143,13 @@ class Fieldset extends Model
      * @var string
      */
     final public const RELATION_ELEMENTS = 'elements';
+
+    /**
+     * The name of the "fieldsets" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_FIELDSETS = 'fieldsets';
 
     /**
      * The name of the "inputs" relation.
@@ -167,6 +181,25 @@ class Fieldset extends Model
             )
             ->orderBy(FieldsetElement::POSITION);
     }
+
+    /**
+     * Get the associated fieldsets.
+     *
+     * @return MorphToMany
+     */
+    final public function fieldsets(): MorphToMany
+    {
+        return $this
+            ->morphedByMany(
+                Fieldset::class,
+                FieldsetElement::RELATION_ELEMENT,
+                FieldsetElement::TABLE,
+                FieldsetElement::FIELDSET_ID,
+                FieldsetElement::ELEMENT_ID,
+            )
+            ->using(FieldsetElement::class);
+    }
+
 
     /**
      * Get the associated inputs.

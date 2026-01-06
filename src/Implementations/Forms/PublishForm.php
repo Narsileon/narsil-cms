@@ -29,14 +29,14 @@ class PublishForm extends AbstractForm implements Contract
             new Field([
                 Field::CLASS_NAME => 'flex-row justify-between',
                 Field::HANDLE => Entity::PUBLISHED_FROM,
-                Field::NAME => trans('narsil::validation.attributes.published_from'),
+                Field::LABEL => trans('narsil::validation.attributes.published_from'),
                 Field::TYPE => DatetimeField::class,
                 Field::SETTINGS => app(DatetimeField::class),
             ]),
             new Field([
                 Field::CLASS_NAME => 'flex-row justify-between',
                 Field::HANDLE => Entity::PUBLISHED_TO,
-                Field::NAME => trans('narsil::validation.attributes.published_to'),
+                Field::LABEL => trans('narsil::validation.attributes.published_to'),
                 Field::TYPE => DatetimeField::class,
                 Field::SETTINGS => app(DatetimeField::class),
             ]),

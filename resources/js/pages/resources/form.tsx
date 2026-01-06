@@ -91,7 +91,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
         {tabs.map((tab, index) => {
           return (
             <TabsTrigger value={tab.handle} key={index}>
-              {tab.name}
+              {tab.label}
             </TabsTrigger>
           );
         })}

@@ -51,7 +51,7 @@ class InputFormRequest extends AbstractFormRequest implements Contract
                     Input::HANDLE,
                 )->ignore($this->input?->{Input::ID}),
             ],
-            Input::NAME => [
+            Input::LABEL => [
                 FormRule::REQUIRED,
             ],
             Input::REQUIRED => [

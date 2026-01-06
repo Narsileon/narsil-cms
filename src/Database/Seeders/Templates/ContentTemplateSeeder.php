@@ -51,12 +51,12 @@ class ContentTemplateSeeder extends TemplateSeeder
             Template::RELATION_TABS => [
                 new TemplateTab([
                     TemplateTab::HANDLE => 'content',
-                    TemplateTab::NAME => 'content',
+                    TemplateTab::LABEL => 'content',
                     TemplateTab::RELATION_ELEMENTS => [
                         new TemplateTabElement([
                             TemplateTabElement::RELATION_ELEMENT => new Field([
                                 Field::HANDLE => self::CONTENT,
-                                Field::NAME => 'content',
+                                Field::LABEL => 'content',
                                 Field::TYPE => BuilderField::class,
                                 Field::RELATION_BLOCKS => [
                                     $accordionBlock,

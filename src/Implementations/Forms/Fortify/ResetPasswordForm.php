@@ -48,7 +48,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::EMAIL,
-                Field::NAME => trans('narsil::validation.attributes.email'),
+                Field::LABEL => trans('narsil::validation.attributes.email'),
                 Field::REQUIRED => true,
                 Field::TYPE => EmailField::class,
                 Field::SETTINGS => app(EmailField::class)
@@ -57,7 +57,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil::validation.attributes.password'),
+                Field::LABEL => trans('narsil::validation.attributes.password'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
@@ -65,7 +65,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
+                Field::LABEL => trans('narsil::validation.attributes.password_confirmation'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)

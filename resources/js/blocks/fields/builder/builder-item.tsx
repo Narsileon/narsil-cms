@@ -72,7 +72,7 @@ function BuilderItem({
               {...listeners}
               tooltip={trans("ui.move")}
             />
-            <CardTitle className="grow justify-self-start font-normal">{block.name}</CardTitle>
+            <CardTitle className="grow justify-self-start font-normal">{block.label}</CardTitle>
             <div className="flex items-center gap-1">
               <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
               <Button
@@ -100,7 +100,7 @@ function BuilderItem({
                 ? (element.translatable ?? childElement.translatable)
                 : undefined;
 
-              const childName = element.name ?? childElement.name;
+              const childName = element.label ?? childElement.label;
               let childHandle = `${baseHandle}.children.${element.handle}`;
 
               if (

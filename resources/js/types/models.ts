@@ -18,7 +18,7 @@ export type Block = {
   icon?: IconName;
   id: number;
   identifier: string;
-  name: string;
+  label: string;
   virtual: boolean;
 };
 
@@ -50,7 +50,7 @@ export type Field = {
   handle: string;
   id: number;
   identifier: string;
-  name: string;
+  label: string;
   placeholder: string;
   options: FieldOption[];
   required: boolean;
@@ -70,7 +70,7 @@ export type Fieldset = {
   icon?: IconName;
   id: number;
   identifier: string;
-  name: string;
+  label: string;
 };
 
 export type Form = Model & {
@@ -90,7 +90,7 @@ export type FormTab = Model & {
   icon?: IconName;
   id: number;
   identifier: string;
-  name: string;
+  label: string;
 };
 
 export type HasElement = Model & {
@@ -98,7 +98,7 @@ export type HasElement = Model & {
   element_id: number;
   handle: string;
   id: number;
-  name: string;
+  label: string;
   position: number;
   required: boolean;
   translatable: boolean;
@@ -122,7 +122,7 @@ export type Input = {
   handle: string;
   id: number;
   identifier: string;
-  name: string;
+  label: string;
   placeholder: string;
   options: FieldOption[];
   required: boolean;
@@ -163,7 +163,7 @@ export type TemplateTab = Model & {
   icon?: IconName;
   id: number;
   identifier: string;
-  name: string;
+  label: string;
 };
 
 export type User = Model & {

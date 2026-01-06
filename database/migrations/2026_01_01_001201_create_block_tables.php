@@ -152,7 +152,7 @@ return new class extends Migration
                 ->string(Block::HANDLE)
                 ->unique();
             $blueprint
-                ->jsonb(Block::NAME);
+                ->jsonb(Block::LABEL);
             $blueprint
                 ->boolean(Block::COLLAPSIBLE)
                 ->default(false);

@@ -50,12 +50,12 @@ class HostForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Host::HOST,
-                            Field::NAME => trans('narsil::validation.attributes.host'),
+                            Field::LABEL => trans('narsil::validation.attributes.host'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -64,7 +64,7 @@ class HostForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Host::LABEL,
-                            Field::NAME => trans('narsil::validation.attributes.label'),
+                            Field::LABEL => trans('narsil::validation.attributes.label'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -76,7 +76,7 @@ class HostForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => 'default_country',
-                TemplateTab::NAME => trans('narsil::ui.default_country'),
+                TemplateTab::LABEL => trans('narsil::ui.default_country'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
@@ -90,12 +90,12 @@ class HostForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => 'other_countries',
-                TemplateTab::NAME => trans('narsil::ui.other_countries'),
+                TemplateTab::LABEL => trans('narsil::ui.other_countries'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Host::RELATION_OTHER_LOCALES,
-                            Field::NAME => trans('narsil::validation.attributes.locales'),
+                            Field::LABEL => trans('narsil::validation.attributes.locales'),
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form($hostLocaleForm->layout)

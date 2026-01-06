@@ -49,7 +49,7 @@ class RegisterForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::EMAIL,
-                Field::NAME => trans('narsil::validation.attributes.email'),
+                Field::LABEL => trans('narsil::validation.attributes.email'),
                 Field::REQUIRED => true,
                 Field::TYPE => EmailField::class,
                 Field::SETTINGS => app(EmailField::class)
@@ -58,7 +58,7 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil::validation.attributes.password'),
+                Field::LABEL => trans('narsil::validation.attributes.password'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
@@ -67,7 +67,7 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
+                Field::LABEL => trans('narsil::validation.attributes.password_confirmation'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
@@ -76,7 +76,7 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::FIRST_NAME,
-                Field::NAME => trans('narsil::validation.attributes.first_name'),
+                Field::LABEL => trans('narsil::validation.attributes.first_name'),
                 Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
@@ -86,7 +86,7 @@ class RegisterForm extends AbstractForm implements Contract
             new Field([
                 Field::CLASS_NAME => 'col-span-6',
                 Field::HANDLE => User::LAST_NAME,
-                Field::NAME => trans('narsil::validation.attributes.last_name'),
+                Field::LABEL => trans('narsil::validation.attributes.last_name'),
                 Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)

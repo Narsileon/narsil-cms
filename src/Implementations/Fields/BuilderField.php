@@ -53,13 +53,13 @@ class BuilderField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::RELATION_BLOCKS,
-                Field::NAME => ModelService::getTableLabel(Block::TABLE),
+                Field::LABEL => ModelService::getTableLabel(Block::TABLE),
                 Field::TYPE => RelationsField::class,
                 Field::SETTINGS => app(RelationsField::class)
                     ->addOption(
                         identifier: Block::TABLE,
                         label: ModelService::getModelLabel(Block::class),
-                        optionLabel: Block::NAME,
+                        optionLabel: Block::LABEL,
                         optionValue: Block::HANDLE,
                         options: $blockSelectOptions,
                         routes: RouteService::getNames(Block::TABLE),
@@ -95,7 +95,7 @@ class BuilderField extends AbstractField implements Contract
     protected static function getBlockSelectOptions(): array
     {
         return Block::query()
-            ->orderBy(Block::NAME)
+            ->orderBy(Block::LABEL)
             ->get()
             ->map(function (Block $block)
             {
@@ -103,7 +103,7 @@ class BuilderField extends AbstractField implements Contract
                     ->id($block->{Block::ID})
                     ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER})
                     ->optionIcon($block->{Block::ATTRIBUTE_ICON})
-                    ->optionLabel($block->getTranslations(Block::NAME))
+                    ->optionLabel($block->getTranslations(Block::LABEL))
                     ->optionValue($block->{Block::HANDLE});
 
                 return $option;

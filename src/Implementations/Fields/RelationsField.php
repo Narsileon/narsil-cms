@@ -53,7 +53,7 @@ class RelationsField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.collections" : 'collections',
-                Field::NAME => trans('narsil::ui.collections'),
+                Field::LABEL => trans('narsil::ui.collections'),
                 Field::TYPE => SelectField::class,
                 Field::RELATION_OPTIONS => Template::selectOptions(),
                 Field::SETTINGS => app(SelectField::class)
@@ -61,7 +61,7 @@ class RelationsField extends AbstractField implements Contract
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                Field::NAME => trans('narsil::validation.attributes.multiple'),
+                Field::LABEL => trans('narsil::validation.attributes.multiple'),
                 Field::TYPE => CheckboxField::class,
                 Field::SETTINGS => app(CheckboxField::class),
             ]),

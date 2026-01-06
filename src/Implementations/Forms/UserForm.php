@@ -53,12 +53,12 @@ class UserForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => 'account',
-                TemplateTab::NAME => trans('narsil::ui.account'),
+                TemplateTab::LABEL => trans('narsil::ui.account'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::EMAIL,
-                            Field::NAME => trans('narsil::validation.attributes.email'),
+                            Field::LABEL => trans('narsil::validation.attributes.email'),
                             Field::REQUIRED => true,
                             Field::TYPE => EmailField::class,
                             Field::SETTINGS => app(EmailField::class)
@@ -68,7 +68,7 @@ class UserForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::PASSWORD,
-                            Field::NAME => trans('narsil::validation.attributes.password'),
+                            Field::LABEL => trans('narsil::validation.attributes.password'),
                             Field::REQUIRED => true,
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
@@ -78,7 +78,7 @@ class UserForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                            Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
+                            Field::LABEL => trans('narsil::validation.attributes.password_confirmation'),
                             Field::REQUIRED => true,
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
@@ -89,12 +89,12 @@ class UserForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => 'profile',
-                TemplateTab::NAME => trans('narsil::ui.profile'),
+                TemplateTab::LABEL => trans('narsil::ui.profile'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::LAST_NAME,
-                            Field::NAME => trans('narsil::validation.attributes.last_name'),
+                            Field::LABEL => trans('narsil::validation.attributes.last_name'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
@@ -105,7 +105,7 @@ class UserForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::FIRST_NAME,
-                            Field::NAME => trans('narsil::validation.attributes.first_name'),
+                            Field::LABEL => trans('narsil::validation.attributes.first_name'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
@@ -116,7 +116,7 @@ class UserForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => User::AVATAR,
-                            Field::NAME => trans('narsil::validation.attributes.avatar'),
+                            Field::LABEL => trans('narsil::validation.attributes.avatar'),
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
                                 ->accept('image/*')
@@ -127,13 +127,13 @@ class UserForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => 'roles',
-                TemplateTab::NAME => ModelService::getTableLabel(Role::TABLE),
+                TemplateTab::LABEL => ModelService::getTableLabel(Role::TABLE),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT =>
                         new Field([
                             Field::HANDLE => User::RELATION_ROLES,
-                            Field::NAME => trans('narsil::validation.attributes.roles'),
+                            Field::LABEL => trans('narsil::validation.attributes.roles'),
                             Field::TYPE => CheckboxField::class,
                             Field::RELATION_OPTIONS => Role::selectOptions(),
                             Field::SETTINGS => app(CheckboxField::class),

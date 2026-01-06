@@ -49,7 +49,7 @@ class ProfileForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::LAST_NAME,
-                Field::NAME => trans('narsil::validation.attributes.last_name'),
+                Field::LABEL => trans('narsil::validation.attributes.last_name'),
                 Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
@@ -58,7 +58,7 @@ class ProfileForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::FIRST_NAME,
-                Field::NAME => trans('narsil::validation.attributes.first_name'),
+                Field::LABEL => trans('narsil::validation.attributes.first_name'),
                 Field::REQUIRED => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
@@ -67,7 +67,7 @@ class ProfileForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::AVATAR,
-                Field::NAME => trans('narsil::validation.attributes.avatar'),
+                Field::LABEL => trans('narsil::validation.attributes.avatar'),
                 Field::TYPE => FileField::class,
                 Field::SETTINGS => app(FileField::class)
                     ->accept('image/*')

@@ -222,7 +222,7 @@ abstract class AbstractForm extends Fluent implements Form
     {
         return new TemplateTab([
             TemplateTab::HANDLE => 'sidebar',
-            TemplateTab::NAME => trans('narsil::ui.sidebar'),
+            TemplateTab::LABEL => trans('narsil::ui.sidebar'),
             TemplateTab::RELATION_ELEMENTS => $elements
         ]);
     }

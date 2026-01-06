@@ -37,12 +37,12 @@ class SiteForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => Site::RELATION_PAGES,
-                TemplateTab::NAME => trans('narsil::ui.navigation'),
+                TemplateTab::LABEL => trans('narsil::ui.navigation'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Site::HEADER_ID,
-                            Field::NAME => trans('narsil::validation.attributes.header_id'),
+                            Field::LABEL => trans('narsil::validation.attributes.header_id'),
                             Field::TYPE => SelectField::class,
                             Field::RELATION_OPTIONS => $headerSelectOptions,
                             Field::SETTINGS => app(SelectField::class),
@@ -51,7 +51,7 @@ class SiteForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Site::FOOTER_ID,
-                            Field::NAME => trans('narsil::validation.attributes.footer_id'),
+                            Field::LABEL => trans('narsil::validation.attributes.footer_id'),
                             Field::TYPE => SelectField::class,
                             Field::RELATION_OPTIONS => $footerSelectOptions,
                             Field::SETTINGS => app(SelectField::class),
@@ -60,7 +60,7 @@ class SiteForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Site::RELATION_PAGES,
-                            Field::NAME => trans('narsil::ui.navigation'),
+                            Field::LABEL => trans('narsil::ui.navigation'),
                             Field::TYPE => TreeField::class,
                             Field::SETTINGS => app(TreeField::class),
                         ]),

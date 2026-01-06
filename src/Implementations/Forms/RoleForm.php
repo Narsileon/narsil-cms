@@ -61,7 +61,7 @@ class RoleForm extends AbstractForm implements Contract
                 return new TemplateTabElement([
                     TemplateTabElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => Role::RELATION_PERMISSIONS,
-                        Field::NAME => $group,
+                        Field::LABEL => $group,
                         Field::TYPE => CheckboxField::class,
                         Field::RELATION_OPTIONS => $options,
                         Field::SETTINGS => app(CheckboxField::class),
@@ -74,12 +74,12 @@ class RoleForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Role::NAME,
-                            Field::NAME => trans('narsil::validation.attributes.name'),
+                            Field::LABEL => trans('narsil::validation.attributes.name'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -88,7 +88,7 @@ class RoleForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Role::LABEL,
-                            Field::NAME => trans('narsil::validation.attributes.label'),
+                            Field::LABEL => trans('narsil::validation.attributes.label'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -99,7 +99,7 @@ class RoleForm extends AbstractForm implements Contract
             ]),
             new TemplateTab([
                 TemplateTab::HANDLE => Role::RELATION_PERMISSIONS,
-                TemplateTab::NAME => ModelService::getTableLabel(Permission::TABLE),
+                TemplateTab::LABEL => ModelService::getTableLabel(Permission::TABLE),
                 TemplateTab::RELATION_ELEMENTS => $permissionElements,
             ]),
         ];

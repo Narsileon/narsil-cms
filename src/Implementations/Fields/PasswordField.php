@@ -45,14 +45,14 @@ class PasswordField extends AbstractField implements Contract
         return [
             new Field([
                 Field::HANDLE => Field::PLACEHOLDER,
-                Field::NAME => trans('narsil::validation.attributes.placeholder'),
+                Field::LABEL => trans('narsil::validation.attributes.placeholder'),
                 Field::TRANSLATABLE => true,
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class),
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
-                Field::NAME => trans('narsil::validation.attributes.min_length'),
+                Field::LABEL => trans('narsil::validation.attributes.min_length'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
                     ->max(255)
@@ -62,7 +62,7 @@ class PasswordField extends AbstractField implements Contract
             ]),
             new Field([
                 Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
-                Field::NAME => trans('narsil::validation.attributes.max_length'),
+                Field::LABEL => trans('narsil::validation.attributes.max_length'),
                 Field::TYPE => NumberField::class,
                 Field::SETTINGS => app(NumberField::class)
                     ->max(255)

@@ -97,7 +97,7 @@ abstract class FormService
                 FormTab::HANDLE => Arr::get($page, FormTab::HANDLE),
             ], [
                 FormTab::POSITION => $key,
-                FormTab::NAME => Arr::get($page, FormTab::NAME),
+                FormTab::LABEL => Arr::get($page, FormTab::LABEL),
             ]);
 
             static::syncFormTabElements($formTab, Arr::get($page, FormTab::RELATION_ELEMENTS, []));

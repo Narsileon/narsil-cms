@@ -56,14 +56,14 @@ class HeadlineBlockSeeder extends BlockSeeder
 
         return new Block([
             Block::HANDLE => self::HEADLINE,
-            Block::NAME => 'Headline',
+            Block::LABEL => 'Headline',
             Block::RELATION_ELEMENTS => [
                 new BlockElement([
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::HEADLINE,
-                        Field::NAME => 'Headline',
+                        Field::LABEL => 'Headline',
                         Field::REQUIRED => true,
                         Field::TRANSLATABLE => true,
                         Field::TYPE => TextField::class,
@@ -75,7 +75,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::HEADLINE_LEVEL,
-                        Field::NAME => 'Level',
+                        Field::LABEL => 'Level',
                         Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $headlineSelectOptions,
@@ -88,7 +88,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::WIDTH => 50,
                     BlockElement::RELATION_ELEMENT => new Field([
                         Field::HANDLE => self::HEADLINE_STYLE,
-                        Field::NAME => 'Style',
+                        Field::LABEL => 'Style',
                         Field::REQUIRED => true,
                         Field::TYPE => SelectField::class,
                         Field::RELATION_OPTIONS => $headlineSelectOptions,

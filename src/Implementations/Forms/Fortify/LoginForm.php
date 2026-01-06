@@ -49,7 +49,7 @@ class LoginForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => User::EMAIL,
-                Field::NAME => trans('narsil::validation.attributes.email'),
+                Field::LABEL => trans('narsil::validation.attributes.email'),
                 Field::PLACEHOLDER => 'email@example.com',
                 Field::REQUIRED => true,
                 Field::TYPE => EmailField::class,
@@ -59,7 +59,7 @@ class LoginForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil::validation.attributes.password'),
+                Field::LABEL => trans('narsil::validation.attributes.password'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
@@ -72,7 +72,7 @@ class LoginForm extends AbstractForm implements Contract
             new Field([
                 Field::CLASS_NAME => 'flex-row-reverse justify-end',
                 Field::HANDLE => User::REMEMBER,
-                Field::NAME => trans('narsil::validation.attributes.remember'),
+                Field::LABEL => trans('narsil::validation.attributes.remember'),
                 Field::TYPE => CheckboxField::class,
                 Field::SETTINGS => app(CheckboxField::class),
             ]),

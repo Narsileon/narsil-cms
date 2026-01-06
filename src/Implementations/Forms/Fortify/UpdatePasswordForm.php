@@ -49,7 +49,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
         return [
             new Field([
                 Field::HANDLE => AutoCompleteEnum::USERNAME->value,
-                Field::NAME => trans('narsil::validation.attributes.email'),
+                Field::LABEL => trans('narsil::validation.attributes.email'),
                 Field::TYPE => TextField::class,
                 Field::SETTINGS => app(TextField::class)
                     ->autoComplete(AutoCompleteEnum::USERNAME->value)
@@ -57,7 +57,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
-                Field::NAME => trans('narsil::validation.attributes.current_password'),
+                Field::LABEL => trans('narsil::validation.attributes.current_password'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
@@ -65,7 +65,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::PASSWORD,
-                Field::NAME => trans('narsil::validation.attributes.password'),
+                Field::LABEL => trans('narsil::validation.attributes.password'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)
@@ -73,7 +73,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             ]),
             new Field([
                 Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::NAME => trans('narsil::validation.attributes.password_confirmation'),
+                Field::LABEL => trans('narsil::validation.attributes.password_confirmation'),
                 Field::REQUIRED => true,
                 Field::TYPE => PasswordField::class,
                 Field::SETTINGS => app(PasswordField::class)

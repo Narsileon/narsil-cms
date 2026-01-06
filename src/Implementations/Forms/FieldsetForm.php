@@ -55,12 +55,12 @@ class FieldsetForm extends AbstractForm implements Contract
         return [
             new TemplateTab([
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::NAME => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Fieldset::NAME,
-                            Field::NAME => trans('narsil::ui.default_name'),
+                            Field::HANDLE => Fieldset::LABEL,
+                            Field::LABEL => trans('narsil::ui.default_name'),
                             Field::REQUIRED => true,
                             Field::TRANSLATABLE => true,
                             Field::TYPE => TextField::class,
@@ -70,7 +70,7 @@ class FieldsetForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Fieldset::HANDLE,
-                            Field::NAME => trans('narsil::ui.default_handle'),
+                            Field::LABEL => trans('narsil::ui.default_handle'),
                             Field::REQUIRED => true,
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -79,7 +79,7 @@ class FieldsetForm extends AbstractForm implements Contract
                     new TemplateTabElement([
                         TemplateTabElement::RELATION_ELEMENT => new Field([
                             Field::HANDLE => Fieldset::RELATION_ELEMENTS,
-                            Field::NAME => trans('narsil::validation.attributes.elements'),
+                            Field::LABEL => trans('narsil::validation.attributes.elements'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(FieldsetElementForm::class)->jsonSerialize())
@@ -107,7 +107,7 @@ class FieldsetForm extends AbstractForm implements Contract
     protected static function getInputSelectOptions(): array
     {
         return Input::query()
-            ->orderBy(Input::NAME)
+            ->orderBy(Input::LABEL)
             ->get()
             ->map(function (Input $input)
             {
@@ -116,7 +116,7 @@ class FieldsetForm extends AbstractForm implements Contract
                     ->id($input->{Input::ID})
                     ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER})
                     ->optionIcon($input->{Input::ATTRIBUTE_ICON})
-                    ->optionLabel($input->getTranslations(Input::NAME))
+                    ->optionLabel($input->getTranslations(Input::LABEL))
                     ->optionValue($input->{Input::HANDLE});
 
                 return $option;

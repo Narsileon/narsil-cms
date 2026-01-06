@@ -55,7 +55,7 @@ class BlockFormRequest extends AbstractFormRequest implements Contract
                 )->ignore($this->block?->{Block::ID}),
 
             ],
-            Block::NAME => [
+            Block::LABEL => [
                 FormRule::REQUIRED,
             ],
             Block::VIRTUAL => [
