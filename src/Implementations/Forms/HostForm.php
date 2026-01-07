@@ -5,7 +5,12 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
+use Locale;
 use Narsil\Contracts\Fields\ArrayField;
+use Narsil\Contracts\Fields\SelectField;
+use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HostForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -14,7 +19,11 @@ use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
+use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Services\RouteService;
+use Narsil\Support\SelectOption;
+use ResourceBundle;
 
 #endregion
 
@@ -45,7 +54,8 @@ class HostForm extends AbstractForm implements Contract
      */
     protected function getTabs(): array
     {
-        $hostLocaleForm = app(HostLocaleForm::class);
+        $countrySelectOptions = $this->getCountrySelectOptions();
+        $languageSelectOptions = $this->getLanguageSelectOptions();
 
         return [
             [
@@ -88,7 +98,24 @@ class HostForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
-                        TemplateTabElement::RELATION_ELEMENT => $hostLocaleForm->getLanguagesField(),
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.languages'),
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::PLACEHOLDER => trans('narsil::ui.add'),
+                            Field::TYPE => TableField::class,
+                            Field::SETTINGS => app(TableField::class)
+                                ->columns([
+                                    [
+                                        BlockElement::HANDLE => HostLocaleLanguage::LANGUAGE,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.language'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => SelectField::class,
+                                            Field::SETTINGS => app(SelectField::class),
+                                            Field::RELATION_OPTIONS => $languageSelectOptions,
+                                        ],
+                                    ],
+                                ]),
+                        ],
                     ],
                 ],
             ],
@@ -102,7 +129,49 @@ class HostForm extends AbstractForm implements Contract
                         TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
-                                ->form($hostLocaleForm->layout)
+                                ->form([
+                                    [
+                                        BlockElement::HANDLE => HostLocale::PATTERN,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.pattern'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => TextField::class,
+                                            Field::SETTINGS => app(TextField::class),
+                                        ],
+                                    ],
+                                    [
+                                        BlockElement::HANDLE => HostLocale::COUNTRY,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.country'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => SelectField::class,
+                                            Field::SETTINGS => app(SelectField::class),
+                                            Field::RELATION_OPTIONS => $countrySelectOptions,
+                                        ],
+                                    ],
+                                    [
+                                        BlockElement::HANDLE => HostLocale::RELATION_LANGUAGES,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.languages'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::PLACEHOLDER => trans('narsil::ui.add'),
+                                            Field::TYPE => TableField::class,
+                                            Field::SETTINGS => app(TableField::class)
+                                                ->columns([
+                                                    [
+                                                        BlockElement::HANDLE => HostLocaleLanguage::LANGUAGE,
+                                                        BlockElement::LABEL => trans('narsil::validation.attributes.language'),
+                                                        BlockElement::REQUIRED => true,
+                                                        BlockElement::RELATION_ELEMENT => [
+                                                            Field::TYPE => SelectField::class,
+                                                            Field::SETTINGS => app(SelectField::class),
+                                                            Field::RELATION_OPTIONS => $languageSelectOptions,
+                                                        ],
+                                                    ],
+                                                ]),
+                                        ],
+                                    ],
+                                ])
                                 ->labelKey(HostLocale::COUNTRY),
                         ],
                     ],
@@ -110,8 +179,6 @@ class HostForm extends AbstractForm implements Contract
             ],
         ];
     }
-
-    #region PROTECTED METHODS
 
     /**
      * Get the country select options.

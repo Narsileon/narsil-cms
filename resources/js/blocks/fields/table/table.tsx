@@ -23,7 +23,7 @@ import {
   TableWrapper,
 } from "@narsil-cms/components/table";
 import { getField } from "@narsil-cms/repositories/fields";
-import type { Field } from "@narsil-cms/types";
+import type { StructureHasElement } from "@narsil-cms/types";
 import { get, set, upperFirst } from "lodash-es";
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -31,7 +31,7 @@ import { type TableElement } from ".";
 import TableItem from "./table-item";
 
 type TableProps = {
-  columns: Field[];
+  columns: StructureHasElement[];
   placeholder?: string;
   rows: TableElement[];
   setRows: (rows: TableElement[]) => void;
@@ -161,24 +161,27 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
                     key={row.uuid}
                   >
                     {columns.map((column, index) => {
-                      const value = get(
-                        row,
-                        column.translatable ? `${column.handle}.${fieldLanguage}` : column.handle,
-                        "value" in column.settings ? column.settings.value : null,
-                      );
+                      if ("type" in column.element) {
+                        const value = get(
+                          row,
+                          column.translatable ? `${column.handle}.${fieldLanguage}` : column.handle,
+                          "value" in column.element.settings ? column.element.settings.value : null,
+                        );
 
-                      return (
-                        <TableCell className="px-0.5 py-0" key={index}>
-                          {getField(column.type, {
-                            id: column.handle,
-                            element: column,
-                            value: value,
-                            setValue: (value) => {
-                              onUpdate(row.uuid, column.handle, value);
-                            },
-                          })}
-                        </TableCell>
-                      );
+                        return (
+                          <TableCell className="px-0.5 py-0" key={index}>
+                            {getField(column.element.type, {
+                              id: column.handle,
+                              field: column.element,
+                              required: column.required,
+                              value: value,
+                              setValue: (value) => {
+                                onUpdate(row.uuid, column.handle, value);
+                              },
+                            })}
+                          </TableCell>
+                        );
+                      }
                     })}
                   </TableItem>
                 );

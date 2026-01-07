@@ -80,8 +80,8 @@ function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
             }}
           />
           {getField(meta.field.type, {
-            element: meta.field,
             id: filter.column,
+            field: meta.field,
             value: filter.value,
             setValue: (value) => dataTableStore.updateFilter(filter.column, { value: value }),
           })}
