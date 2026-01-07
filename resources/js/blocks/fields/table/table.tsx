@@ -142,7 +142,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
                 {columns.map((column, index) => {
                   return (
                     <TableHead className="px-3" key={index}>
-                      {upperFirst(column.name)}
+                      {upperFirst(column.label)}
                     </TableHead>
                   );
                 })}
