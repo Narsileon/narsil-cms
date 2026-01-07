@@ -21,14 +21,7 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type {
-  FormType,
-  Revision,
-  SelectOption,
-  StructureHasElement,
-  TemplateTab,
-  User,
-} from "@narsil-cms/types";
+import type { FormType, Revision, SelectOption, TemplateTab, User } from "@narsil-cms/types";
 import { isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 
@@ -43,7 +36,7 @@ type FormProps = {
   };
   form: FormType;
   modal?: ModalType;
-  publish?: StructureHasElement[];
+  publish?: FormType;
   revisions?: Revision[];
 };
 
@@ -65,7 +58,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     tabs,
   } = form;
 
-  const { sidebar, ...rest } = tabs.reduce(
+  const { sidebar, standardTabs } = tabs.reduce(
     (acc, element) => {
       if (!("elements" in element)) {
         return acc;
@@ -76,7 +69,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
           acc.sidebar = element;
           break;
         default:
-          acc.tabs.push(element);
+          acc.standardTabs.push(element);
           break;
       }
 
@@ -84,11 +77,11 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     },
     {
       sidebar: undefined as TemplateTab | undefined,
-      tabs: [] as TemplateTab[],
+      standardTabs: [] as TemplateTab[],
     },
   );
 
-  const [value, setValue] = useState(tabs[0].handle);
+  const [value, setValue] = useState(standardTabs[0].handle);
 
   const sidebarContent = sidebar ? (
     <>
@@ -99,9 +92,9 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
   ) : null;
 
   const tabsList =
-    tabs.length > 1 ? (
+    standardTabs.length > 1 ? (
       <TabsList className="flex w-full items-center border-b px-4">
-        {tabs.map((tab, index) => {
+        {standardTabs.map((tab, index) => {
           return (
             <TabsTrigger value={tab.handle} key={index}>
               {tab.label}
@@ -111,7 +104,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
       </TabsList>
     ) : null;
 
-  const tabsContent = tabs.map((tab, index) => {
+  const tabsContent = standardTabs.map((tab, index) => {
     return (
       <TabsContent
         className="grid w-full max-w-5xl grid-cols-12 gap-x-4 gap-y-8 place-self-center"
@@ -126,12 +119,12 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
   });
 
   useEffect(() => {
-    const handles = tabs.map((tab) => tab.handle);
+    const handles = standardTabs.map((tab) => tab.handle);
 
     if (!handles.includes(value)) {
-      setValue(tabs[0]?.handle);
+      setValue(standardTabs[0]?.handle);
     }
-  }, [minLg, tabs, value]);
+  }, [minLg, standardTabs, value]);
 
   return (
     <FormProvider
@@ -164,7 +157,11 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
             {modal ? (
               <>
                 <DialogBody className="col-span-full h-full p-0">
-                  <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
+                  <TabsRoot
+                    defaultValue={standardTabs[0].handle}
+                    value={value}
+                    onValueChange={setValue}
+                  >
                     {tabsList}
                     {tabsContent}
                   </TabsRoot>
@@ -189,7 +186,11 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                   )}
                 >
                   <SectionContent>
-                    <TabsRoot defaultValue={tabs[0].handle} value={value} onValueChange={setValue}>
+                    <TabsRoot
+                      defaultValue={standardTabs[0].handle}
+                      value={value}
+                      onValueChange={setValue}
+                    >
                       {tabsList}
                       {tabsContent}
                     </TabsRoot>
@@ -225,7 +226,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                         />
                       ) : null}
                     </div>
-                    {publish ? <FormPublish fields={publish} /> : null}
+                    {publish ? <FormPublish form={publish} /> : null}
                     {data?.created_at ? (
                       <div className="grid items-start gap-4 border-b p-4">
                         {data?.created_at ? (

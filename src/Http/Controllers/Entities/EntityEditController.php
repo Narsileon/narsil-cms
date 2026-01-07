@@ -51,7 +51,7 @@ class EntityEditController extends RenderController
 
         $data = $this->getData($entity);
         $form = $this->getForm($entity);
-        $publish = app(PublishForm::class)->layout;
+        $publish = app(PublishForm::class);
 
         return $this->render('narsil/cms::resources/form', [
             'data' => $data,
@@ -150,7 +150,7 @@ class EntityEditController extends RenderController
                 'id' => $entity->{Entity::ID},
                 'collection' => $this->template->{Template::TABLE_NAME},
             ]))
-            ->autoSave(false)
+            ->autoSave(true)
             ->id($entity->{Entity::UUID})
             ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())

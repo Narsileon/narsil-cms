@@ -1,17 +1,23 @@
 import { cn } from "@narsil-cms/lib/utils";
-import type { Field } from "@narsil-cms/types";
-import { type ComponentProps } from "react";
+import type { FormType } from "@narsil-cms/types";
+import { Fragment, type ComponentProps } from "react";
 import FormElement from "./form-element";
 
 type FormPublishProps = ComponentProps<"div"> & {
-  fields: Field[];
+  form: FormType;
 };
 
-function FormPublish({ className, fields, ...props }: FormPublishProps) {
+function FormPublish({ className, form, ...props }: FormPublishProps) {
   return (
     <div className={cn("grid gap-2 border-b px-4 pt-2 pb-4", className)} {...props}>
-      {fields.map((field) => {
-        return <FormElement key={field.handle} {...field} />;
+      {form.tabs.map((tab, index) => {
+        return (
+          <Fragment key={index}>
+            {tab.elements?.map((element, index) => {
+              return <FormElement {...element} key={index} />;
+            })}
+          </Fragment>
+        );
       })}
     </div>
   );

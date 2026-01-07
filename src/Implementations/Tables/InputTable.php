@@ -52,6 +52,14 @@ class InputTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                id: Input::DESCRIPTION,
+                visibility: false,
+            ),
+            new TableColumn(
+                id: Input::PLACEHOLDER,
+                visibility: false,
+            ),
+            new TableColumn(
                 header: ModelService::getTableLabel(ValidationRule::TABLE),
                 id: Input::COUNT_VALIDATION_RULES,
                 type: DataTypeEnum::INTEGER->value,

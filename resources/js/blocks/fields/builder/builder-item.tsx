@@ -96,9 +96,7 @@ function BuilderItem({
 
               const isField = "type" in childElement;
 
-              const translatable = isField
-                ? (element.translatable ?? childElement.translatable)
-                : undefined;
+              const translatable = isField ? element.translatable : undefined;
 
               const childName = element.label ?? childElement.label;
               let childHandle = `${baseHandle}.children.${element.handle}`;
@@ -111,16 +109,7 @@ function BuilderItem({
                 childHandle = `${childHandle}.en`;
               }
 
-              return (
-                <FormElement
-                  {...childElement}
-                  handle={childHandle}
-                  name={childName}
-                  required={isField ? (element.required ?? childElement.required) : undefined}
-                  translatable={translatable}
-                  key={index}
-                />
-              );
+              return <FormElement {...element} handle={childHandle} name={childName} key={index} />;
             })}
           </CardContent>
         </CollapsibleContent>

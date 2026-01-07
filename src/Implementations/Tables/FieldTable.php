@@ -53,7 +53,11 @@ class FieldTable extends AbstractTable
             ),
             new TableColumn(
                 id: Field::DESCRIPTION,
-                visibility: true,
+                visibility: false,
+            ),
+            new TableColumn(
+                id: Field::PLACEHOLDER,
+                visibility: false,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(ValidationRule::TABLE),

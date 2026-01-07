@@ -42,7 +42,7 @@ class EntityCreateController extends RenderController
 
         $form = $this->getForm();
 
-        $publish = app(PublishForm::class)->layout;
+        $publish = app(PublishForm::class);
 
         return $this->render('narsil/cms::resources/form', [
             'form' => $form,

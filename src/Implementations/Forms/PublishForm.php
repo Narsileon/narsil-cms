@@ -26,7 +26,7 @@ class PublishForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
             [
