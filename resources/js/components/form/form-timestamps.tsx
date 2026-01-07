@@ -13,11 +13,11 @@ function FormTimestamp({ className, date, label, name, ...props }: FormTimestamp
 
   return (
     <div className={cn("flex items-center gap-1", className)} {...props}>
-      <span className="text-foreground/70">{label}</span>
+      <span className="text-muted-foreground">{label}</span>
       <span className="font-medium">{date}</span>
       {name ? (
         <>
-          <span className="text-foreground/70">{trans("datetime.by")}</span>
+          <span className="text-muted-foreground">{trans("datetime.by")}</span>
           <span className="font-medium">{name}</span>
         </>
       ) : null}

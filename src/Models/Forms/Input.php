@@ -46,6 +46,7 @@ class Input extends Model
         $this->translatable = [
             self::DESCRIPTION,
             self::LABEL,
+            self::PLACEHOLDER,
         ];
 
         $this->with = [
@@ -55,11 +56,9 @@ class Input extends Model
 
         $this->mergeAppends([
             self::ATTRIBUTE_ICON,
-            self
-            ::ATTRIBUTE_IDENTIFIER,
+            self::ATTRIBUTE_IDENTIFIER,
         ]);
         $this->mergeCasts([
-            self::REQUIRED => 'boolean',
             self::SETTINGS => JsonCast::class,
         ]);
 
@@ -68,11 +67,6 @@ class Input extends Model
         ]);
 
         parent::__construct($attributes);
-
-        if ($options = Arr::get($attributes, self::RELATION_OPTIONS))
-        {
-            $this->setRelation(self::RELATION_OPTIONS, collect($options));
-        }
     }
 
     #endregion
@@ -117,11 +111,11 @@ class Input extends Model
     final public const LABEL = 'label';
 
     /**
-     * The name of the "required" column.
+     * The name of the "placeholder" column.
      *
      * @var string
      */
-    final public const REQUIRED = 'required';
+    final public const PLACEHOLDER = 'placeholder';
 
     /**
      * The name of the "settings" column.

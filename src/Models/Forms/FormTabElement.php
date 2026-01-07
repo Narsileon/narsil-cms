@@ -60,16 +60,6 @@ class FormTabElement extends MorphPivot implements IFormHasElement
         ]);
 
         parent::__construct($attributes);
-
-        if ($conditions = Arr::get($attributes, self::RELATION_CONDITIONS))
-        {
-            $this->setRelation(self::RELATION_CONDITIONS, collect($conditions));
-        }
-
-        if ($element = Arr::get($attributes, self::RELATION_ELEMENT))
-        {
-            $this->setRelation(self::RELATION_ELEMENT, $element);
-        }
     }
 
     #endregion

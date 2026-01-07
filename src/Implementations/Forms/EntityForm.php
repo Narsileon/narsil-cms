@@ -57,21 +57,21 @@ class EntityForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $templateTabs = $this->template->{Template::RELATION_TABS}->toArray();
 
         $templateTabs[] = static::sidebarTab([
-            new TemplateTabElement([
-                TemplateTabElement::RELATION_ELEMENT => new Field([
-                    Field::HANDLE => Entity::SLUG,
-                    Field::LABEL => trans('narsil::validation.attributes.slug'),
-                    Field::REQUIRED => true,
-                    Field::TRANSLATABLE => true,
+            [
+                TemplateTabElement::HANDLE => Entity::SLUG,
+                TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                TemplateTabElement::REQUIRED => true,
+                TemplateTabElement::TRANSLATABLE => true,
+                TemplateTabElement::RELATION_ELEMENT => [
                     Field::TYPE => TextField::class,
                     Field::SETTINGS => app(TextField::class),
-                ]),
-            ]),
+                ],
+            ],
         ]);
 
         return $templateTabs;

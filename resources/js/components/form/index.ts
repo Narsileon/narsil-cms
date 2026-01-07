@@ -1,6 +1,7 @@
 import useForm from "./form-context";
 import FormCountry from "./form-country";
 import FormDescription from "./form-description";
+import FormElement from "./form-element";
 import FormField from "./form-field";
 import useFormField from "./form-field-context";
 import FormFieldLanguage from "./form-field-language";
@@ -10,7 +11,6 @@ import FormLanguage from "./form-language";
 import FormMenu from "./form-menu";
 import FormMessage from "./form-message";
 import FormProvider from "./form-provider";
-import FormRenderer from "./form-renderer";
 import FormRoot from "./form-root";
 import FormSave from "./form-save";
 import FormTimestamp from "./form-timestamps";
@@ -18,6 +18,7 @@ import FormTimestamp from "./form-timestamps";
 export {
   FormCountry,
   FormDescription,
+  FormElement,
   FormField,
   FormFieldLanguage,
   FormItem,
@@ -26,7 +27,6 @@ export {
   FormMenu,
   FormMessage,
   FormProvider,
-  FormRenderer,
   FormRoot,
   FormSave,
   FormTimestamp,

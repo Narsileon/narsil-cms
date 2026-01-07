@@ -56,33 +56,40 @@ class HeroHeaderBlockSeeder extends BlockSeeder
         return new Block([
             Block::HANDLE => self::HERO_HEADER,
             Block::LABEL => 'Hero Header',
-            Block::RELATION_ELEMENTS => [
+        ])->setRelation(
+            Block::RELATION_ELEMENTS,
+            [
+                new BlockElement([])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    $headlineBlock,
+                ),
                 new BlockElement([
-                    BlockElement::RELATION_ELEMENT => $headlineBlock,
-                ]),
-                new BlockElement([
+                    BlockElement::HANDLE => self::EXCERPT,
+                    BlockElement::LABEL => 'Excerpt',
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::EXCERPT,
-                        Field::LABEL => 'Excerpt',
-                        Field::REQUIRED => true,
-                        Field::TRANSLATABLE => true,
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => RichTextField::class,
                     ]),
-                ]),
+                ),
                 new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::BUTTONS,
-                        Field::LABEL => 'Buttons',
+                    BlockElement::HANDLE => self::BUTTONS,
+                    BlockElement::LABEL => 'Buttons',
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => BuilderField::class,
-                        Field::RELATION_BLOCKS => [
+                    ])->setRelation(
+                        Field::RELATION_BLOCKS,
+                        [
                             new ButtonBlockSeeder()->block(),
                         ],
-                    ]),
-                ]),
+                    ),
+                ),
             ],
-        ]);
+        );
     }
 
     #endregion

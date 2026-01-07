@@ -5,14 +5,14 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\PermissionForm as Contract;
+use Narsil\Contracts\Forms\BlockForm as Contract;
 use Narsil\Implementations\AbstractForm;
+use Narsil\Models\AbstractCondition;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\Structures\TemplateTabElement;
-use Narsil\Models\Policies\Permission;
-use Narsil\Services\RouteService;
 
 #endregion
 
@@ -20,7 +20,7 @@ use Narsil\Services\RouteService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class PermissionForm extends AbstractForm implements Contract
+class ConditionForm extends AbstractForm implements Contract
 {
     #region CONSTRUCTOR
 
@@ -30,8 +30,6 @@ class PermissionForm extends AbstractForm implements Contract
     public function __construct(?Model $model = null)
     {
         parent::__construct($model);
-
-        $this->routes(RouteService::getNames(Permission::TABLE));
     }
 
     #endregion
@@ -45,24 +43,31 @@ class PermissionForm extends AbstractForm implements Contract
     {
         return [
             [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil::ui.definition'),
+                TemplateTab::HANDLE => 'condition',
+                TemplateTab::LABEL => trans('narsil::ui.condition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::HANDLE => Permission::NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.name'),
+                        TemplateTabElement::HANDLE => AbstractCondition::HANDLE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->readOnly(true),
+                            Field::SETTINGS => app(TextField::class),
                         ],
                     ],
                     [
-                        TemplateTabElement::HANDLE => Permission::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::HANDLE => AbstractCondition::OPERATOR,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.operator'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(SelectField::class),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => AbstractCondition::VALUE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.value'),
+                        TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),

@@ -17,6 +17,7 @@ use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Globals\FooterSocialMedium;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Services\RouteService;
 
 #endregion
@@ -46,139 +47,147 @@ class FooterForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::SLUG,
-                            Field::LABEL => trans('narsil::validation.attributes.slug'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Footer::SLUG,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::LOGO,
-                            Field::LABEL => trans('narsil::validation.attributes.logo'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::LOGO,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.logo'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
                                 ->accept('image/*')
                                 ->icon('image'),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::COMPANY,
-                            Field::LABEL => trans('narsil::validation.attributes.company'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::COMPANY,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.company'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::ADDRESS_LINE_1,
-                            Field::LABEL => trans('narsil::validation.attributes.address_line_1'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::ADDRESS_LINE_1,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.address_line_1'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::ADDRESS_LINE_2,
-                            Field::LABEL => trans('narsil::validation.attributes.address_line_2'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::ADDRESS_LINE_2,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.address_line_2'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::EMAIL,
-                            Field::LABEL => trans('narsil::validation.attributes.email'),
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::EMAIL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::PHONE,
-                            Field::LABEL => trans('narsil::validation.attributes.phone'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::PHONE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.phone'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'meta_navigation',
                 TemplateTab::LABEL => trans('narsil::ui.meta_navigation'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::RELATION_LINKS,
-                            Field::LABEL => trans('narsil::ui.links'),
+                    [
+                        TemplateTabElement::HANDLE => Footer::RELATION_LINKS,
+                        TemplateTabElement::LABEL => trans('narsil::ui.links'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
-                                    new Field([
-                                        Field::HANDLE => FooterLink::LABEL,
-                                        Field::LABEL => trans('narsil::validation.attributes.label'),
-                                        Field::TRANSLATABLE => true,
-                                        Field::TYPE => TextField::class,
-                                        Field::SETTINGS => app(TextField::class),
-                                    ]),
-                                    new Field([
-                                        Field::HANDLE => FooterLink::SITE_PAGE_ID,
-                                        Field::LABEL => trans('narsil::validation.attributes.site_page_id'),
-                                        Field::REQUIRED => true,
-                                        Field::TYPE => SelectField::class,
-                                        Field::SETTINGS => app(SelectField::class)
-                                            ->href(route('site-pages.search')),
-                                    ]),
+                                    [
+                                        BlockElement::HANDLE => FooterLink::LABEL,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.label'),
+                                        BlockElement::TRANSLATABLE => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => TextField::class,
+                                            Field::SETTINGS => app(TextField::class),
+                                        ],
+                                    ],
+                                    [
+                                        BlockElement::HANDLE => FooterLink::SITE_PAGE_ID,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.site_page_id'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => SelectField::class,
+                                            Field::SETTINGS => app(SelectField::class)
+                                                ->href(route('site-pages.search')),
+                                        ],
+                                    ],
                                 ])
                                 ->labelKey(FooterLink::LABEL),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'social_media',
                 TemplateTab::LABEL => trans('narsil::ui.social_media'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Footer::RELATION_SOCIAL_MEDIA,
-                            Field::LABEL => trans('narsil::ui.links'),
+                    [
+                        TemplateTabElement::HANDLE => Footer::RELATION_SOCIAL_MEDIA,
+                        TemplateTabElement::LABEL => trans('narsil::ui.links'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
-                                    new Field([
-                                        Field::HANDLE => FooterSocialMedium::LABEL,
-                                        Field::LABEL => trans('narsil::validation.attributes.label'),
-                                        Field::REQUIRED => true,
-                                        Field::TRANSLATABLE => true,
-                                        Field::TYPE => TextField::class,
-                                        Field::SETTINGS => app(TextField::class),
-                                    ]),
-                                    new Field([
-                                        Field::HANDLE => FooterSocialMedium::URL,
-                                        Field::LABEL => trans('narsil::validation.attributes.url'),
-                                        Field::REQUIRED => true,
-                                        Field::TYPE => TextField::class,
-                                        Field::SETTINGS => app(TextField::class),
-                                    ]),
+                                    [
+                                        BlockElement::HANDLE => FooterSocialMedium::LABEL,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.label'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::TRANSLATABLE => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => TextField::class,
+                                            Field::SETTINGS => app(TextField::class),
+                                        ],
+                                    ],
+                                    [
+                                        BlockElement::HANDLE => FooterSocialMedium::URL,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.url'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => TextField::class,
+                                            Field::SETTINGS => app(TextField::class),
+                                        ],
+                                    ],
                                 ])
                                 ->labelKey(FooterSocialMedium::LABEL),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

@@ -16,6 +16,7 @@ use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
+use Narsil\Models\Structures\FieldOption;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -47,7 +48,7 @@ class RoleForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $permissionSelectOptions = static::getPermissionSelectOptions();
 
@@ -58,50 +59,50 @@ class RoleForm extends AbstractForm implements Contract
             })
             ->map(function ($options, $group)
             {
-                return new TemplateTabElement([
-                    TemplateTabElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => Role::RELATION_PERMISSIONS,
-                        Field::LABEL => $group,
+                return [
+                    TemplateTabElement::HANDLE => Role::RELATION_PERMISSIONS,
+                    TemplateTabElement::LABEL => $group,
+                    TemplateTabElement::RELATION_ELEMENT => [
                         Field::TYPE => CheckboxField::class,
-                        Field::RELATION_OPTIONS => $options,
                         Field::SETTINGS => app(CheckboxField::class),
-                    ]),
-                ]);
+                        Field::RELATION_OPTIONS => $options,
+                    ],
+                ];
             })
             ->values()
             ->toArray();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Role::NAME,
-                            Field::LABEL => trans('narsil::validation.attributes.name'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Role::NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Role::LABEL,
-                            Field::LABEL => trans('narsil::validation.attributes.label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Role::LABEL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => Role::RELATION_PERMISSIONS,
                 TemplateTab::LABEL => ModelService::getTableLabel(Permission::TABLE),
                 TemplateTab::RELATION_ELEMENTS => $permissionElements,
-            ]),
+            ],
         ];
     }
 
@@ -122,11 +123,10 @@ class RoleForm extends AbstractForm implements Contract
             {
                 return $permissions->map(function (Permission $permission)
                 {
-                    $option = new SelectOption()
-                        ->optionLabel($permission->{Permission::LABEL})
-                        ->optionValue($permission->{Permission::ID});
-
-                    return $option;
+                    return [
+                        FieldOption::LABEL => $permission->{Permission::LABEL},
+                        FieldOption::VALUE => $permission->{Permission::ID},
+                    ];
                 })->toArray();
             });
     }

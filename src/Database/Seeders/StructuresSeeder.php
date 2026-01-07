@@ -58,7 +58,15 @@ abstract class StructuresSeeder extends Seeder
 
             if ($element instanceof Field)
             {
-                $element = $this->saveField($element);
+                $element->fill([
+                    Field::HANDLE => $blockElement->{BlockElement::HANDLE},
+                    Field::LABEL => $blockElement->{BlockElement::LABEL},
+                ]);
+
+                $element = $this->saveField($element, [
+                    Field::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{BlockElement::HANDLE},
+                    Field::LABEL => $element->{BlockElement::LABEL},
+                ]);
             }
             else if ($element instanceof Block)
             {
@@ -100,9 +108,7 @@ abstract class StructuresSeeder extends Seeder
         $model = Field::create([
             Field::HANDLE => $field->{Field::HANDLE},
             Field::LABEL => $field->{Field::LABEL},
-            Field::REQUIRED => $field->{Field::REQUIRED} ?? false,
             Field::SETTINGS => $field->{Field::SETTINGS},
-            Field::TRANSLATABLE => $field->{Field::TRANSLATABLE} ?? false,
             Field::TYPE => $field->{Field::TYPE},
         ]);
 
@@ -196,6 +202,11 @@ abstract class StructuresSeeder extends Seeder
 
                 if ($element instanceof Field)
                 {
+                    $element->fill([
+                        Field::HANDLE => $templateTabElement->{TemplateTabElement::HANDLE},
+                        Field::LABEL => $templateTabElement->{TemplateTabElement::LABEL},
+                    ]);
+
                     $element = $this->saveField($element);
                 }
                 else if ($element instanceof Block)
@@ -204,14 +215,15 @@ abstract class StructuresSeeder extends Seeder
                 }
 
                 TemplateTabElement::create([
+                    TemplateTabElement::DESCRIPTION => $templateTabModel->{TemplateTabElement::DESCRIPTION},
                     TemplateTabElement::ELEMENT_ID => $element->getKey(),
                     TemplateTabElement::ELEMENT_TYPE => $element->getTable(),
-                    TemplateTabElement::HANDLE => $templateTabModel->{TemplateTabElement::HANDLE} ?? $element->{TemplateTabElement::HANDLE},
+                    TemplateTabElement::HANDLE => $templateTabModel->{TemplateTabElement::HANDLE},
                     TemplateTabElement::LABEL => $element->{TemplateTabElement::LABEL},
                     TemplateTabElement::OWNER_UUID => $templateTabModel->getKey(),
                     TemplateTabElement::POSITION => $position,
-                    TemplateTabElement::REQUIRED => $templateTabElement->{TemplateTabElement::REQUIRED} ?? $element->{TemplateTabElement::REQUIRED} ?? false,
-                    TemplateTabElement::TRANSLATABLE => $templateTabElement->{TemplateTabElement::TRANSLATABLE} ?? $element->{TemplateTabElement::TRANSLATABLE} ?? false,
+                    TemplateTabElement::REQUIRED => $templateTabElement->{TemplateTabElement::REQUIRED} ?? false,
+                    TemplateTabElement::TRANSLATABLE => $templateTabElement->{TemplateTabElement::TRANSLATABLE} ?? false,
                     TemplateTabElement::WIDTH => $templateTabModel->{TemplateTabElement::WIDTH} ?? 100,
                 ]);
             }

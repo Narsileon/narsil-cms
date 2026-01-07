@@ -52,11 +52,7 @@ class FieldTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Field::TRANSLATABLE,
-                visibility: true,
-            ),
-            new TableColumn(
-                id: Field::REQUIRED,
+                id: Field::DESCRIPTION,
                 visibility: true,
             ),
             new TableColumn(

@@ -10,6 +10,8 @@ use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 
 #endregion
 
@@ -41,25 +43,34 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Field([
-                Field::HANDLE => 'code',
-                Field::LABEL => trans('narsil::validation.attributes.code'),
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->icon('circle-check'),
-            ]),
-            new Field([
-                Field::HANDLE => 'recovery_code',
-                Field::LABEL => trans('narsil::validation.attributes.recovery_code'),
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->icon('circle-check'),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => 'code',
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.code'),
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                                ->icon('circle-check'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => 'recovery_code',
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.recovery_code'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                                ->icon('circle-check'),
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Arr;
 use Narsil\Casts\JsonCast;
 use Narsil\Models\ValidationRule;
 use Narsil\Services\Models\FieldService;
@@ -61,9 +60,7 @@ class Field extends Model
         ]);
 
         $this->mergeCasts([
-            self::REQUIRED => 'boolean',
             self::SETTINGS => JsonCast::class,
-            self::TRANSLATABLE => 'boolean',
         ]);
 
         $this->mergeGuarded([
@@ -71,16 +68,6 @@ class Field extends Model
         ]);
 
         parent::__construct($attributes);
-
-        if ($blocks = Arr::get($attributes, self::RELATION_BLOCKS))
-        {
-            $this->setRelation(self::RELATION_BLOCKS, collect($blocks));
-        }
-
-        if ($options = Arr::get($attributes, self::RELATION_OPTIONS))
-        {
-            $this->setRelation(self::RELATION_OPTIONS, collect($options));
-        }
     }
 
     #endregion
@@ -139,25 +126,11 @@ class Field extends Model
     final public const PLACEHOLDER = 'placeholder';
 
     /**
-     * The name of the "required" column.
-     *
-     * @var string
-     */
-    final public const REQUIRED = 'required';
-
-    /**
      * The name of the "settings" column.
      *
      * @var string
      */
     final public const SETTINGS = 'settings';
-
-    /**
-     * The name of the "translatable" column.
-     *
-     * @var string
-     */
-    final public const TRANSLATABLE = 'translatable';
 
     /**
      * The name of the "type" column.

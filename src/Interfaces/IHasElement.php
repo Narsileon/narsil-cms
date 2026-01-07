@@ -16,6 +16,13 @@ interface IHasElement
     #region • COLUMNS
 
     /**
+     * The name of the "class name" column.
+     *
+     * @var string
+     */
+    public const CLASS_NAME = 'class_name';
+
+    /**
      * The name of the "description" column.
      *
      * @var string

@@ -441,8 +441,8 @@ return new class extends Migration
                 ->jsonb(Input::DESCRIPTION)
                 ->nullable();
             $blueprint
-                ->boolean(Input::REQUIRED)
-                ->default(false);
+                ->jsonb(Input::PLACEHOLDER)
+                ->nullable();
             $blueprint
                 ->jsonb(Input::SETTINGS)
                 ->nullable();

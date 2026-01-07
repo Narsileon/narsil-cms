@@ -14,13 +14,13 @@ import {
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Button } from "@narsil-cms/blocks/button";
 import { useLocalization } from "@narsil-cms/components/localization";
-import type { Block, Field } from "@narsil-cms/types";
+import type { StructureHasElement } from "@narsil-cms/types";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrayItem, type ArrayElement } from ".";
 
 type ArrayProps = {
-  form: (Block | Field)[];
+  form: StructureHasElement[];
   id: string;
   items: ArrayElement[];
   labelKey: string;
@@ -115,7 +115,9 @@ function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
         </SortableContext>
         {createPortal(
           <DragOverlay>
-            {active ? <ArrayItem id={active.uuid} item={active} labelKey={labelKey} /> : null}
+            {active ? (
+              <ArrayItem id={active.uuid} form={form} item={active} labelKey={labelKey} />
+            ) : null}
           </DragOverlay>,
           document.body,
         )}

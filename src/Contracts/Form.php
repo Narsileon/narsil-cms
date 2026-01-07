@@ -62,15 +62,6 @@ interface Form extends JsonSerializable
     public function languageOptions(array $locales): static;
 
     /**
-     * Set the layout of the form.
-     *
-     * @param array $layout
-     *
-     * @return static
-     */
-    public function layout(array $layout): static;
-
-    /**
      * Set the "method" attribute of the form.
      *
      * @param string $method
@@ -105,6 +96,15 @@ interface Form extends JsonSerializable
      * @return static
      */
     public function submitLabel(string $submitLabel): static;
+
+    /**
+     * Set the tabs of the form.
+     *
+     * @param array $tabs
+     *
+     * @return static
+     */
+    public function tabs(array $tabs): static;
 
     #endregion
 }

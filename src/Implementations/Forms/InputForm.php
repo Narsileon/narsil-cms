@@ -50,7 +50,7 @@ class InputForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $settings = [];
 
@@ -60,89 +60,82 @@ class InputForm extends AbstractForm implements Contract
         {
             $concrete = Config::get("narsil.bindings.fields.$abstract");
 
-            $elements = $concrete::getForm(Input::SETTINGS);
-
-            foreach ($elements as $element)
-            {
-                $blockElement = new BlockElement([
-                    BlockElement::RELATION_ELEMENT => $element,
-                ]);
-
-                $settings[] = $blockElement;
-            }
+            $settings = $concrete::getForm(Input::SETTINGS);
         }
 
         $typeSelectOptions = static::getTypeSelectOptions();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Input::HANDLE,
-                            Field::LABEL => trans('narsil::ui.default_handle'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Input::HANDLE,
+                        TemplateTabElement::LABEL => trans('narsil::ui.default_handle'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Input::LABEL,
-                            Field::LABEL => trans('narsil::ui.default_label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Input::LABEL,
+                        TemplateTabElement::LABEL => trans('narsil::ui.default_label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Input::TYPE,
-                            Field::LABEL => trans('narsil::validation.attributes.type'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Input::DESCRIPTION,
+                        TemplateTabElement::LABEL => trans('narsil::ui.default_description'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Input::TYPE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.type'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::PLACEHOLDER => trans('narsil::placeholders.search'),
-                            Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => $typeSelectOptions,
                             Field::SETTINGS => app(SelectField::class)
                                 ->reload('form'),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Block([
+                            Field::RELATION_OPTIONS => $typeSelectOptions,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Block::COLLAPSIBLE => true,
                             Block::LABEL => trans('narsil::ui.settings'),
                             Block::RELATION_ELEMENTS =>  $settings,
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'validation',
                 TemplateTab::LABEL => trans('narsil::ui.validation'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Input::REQUIRED,
-                            Field::LABEL => trans('narsil::validation.attributes.required'),
-                            Field::TYPE => SwitchField::class,
-                            Field::SETTINGS => app(SwitchField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Input::RELATION_VALIDATION_RULES,
-                            Field::LABEL => trans("narsil::ui.rules"),
+                    [
+                        TemplateTabElement::HANDLE => Input::RELATION_VALIDATION_RULES,
+                        TemplateTabElement::LABEL => trans("narsil::ui.rules"),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => CheckboxField::class,
-                            Field::RELATION_OPTIONS => ValidationRule::selectOptions(),
                             Field::SETTINGS => app(CheckboxField::class)
                                 ->defaultValue([]),
-                        ]),
-                    ]),
+                            Field::RELATION_OPTIONS => ValidationRule::selectOptions(),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

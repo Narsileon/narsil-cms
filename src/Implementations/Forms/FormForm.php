@@ -19,6 +19,7 @@ use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\FormTab;
 use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
@@ -50,30 +51,30 @@ class FormForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $fieldsetSelectOptions = static::getFieldsetsSelectOptions();
         $inputSelectOptions = static::getInputSelectOptions();
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Form::SLUG,
-                            Field::LABEL => trans('narsil::validation.attributes.slug'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Form::SLUG,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Form::RELATION_TABS,
-                            Field::LABEL => trans('narsil::validation.attributes.tabs'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Form::RELATION_TABS,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.tabs'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
@@ -82,35 +83,37 @@ class FormForm extends AbstractForm implements Contract
                                     label: trans('narsil::ui.page'),
                                     optionLabel: FormTab::LABEL,
                                     optionValue: FormTab::HANDLE,
-                                    relation: new Field([
-                                        Field::HANDLE => FormTab::RELATION_ELEMENTS,
-                                        Field::LABEL => trans('narsil::validation.attributes.elements'),
-                                        Field::TYPE => RelationsField::class,
-                                        Field::SETTINGS => app(RelationsField::class)
-                                            ->form(app(FieldsetElementForm::class)->jsonSerialize())
-                                            ->addOption(
-                                                identifier: Fieldset::TABLE,
-                                                label: ModelService::getModelLabel(Fieldset::class),
-                                                optionLabel: FormTabElement::LABEL,
-                                                optionValue: FormTabElement::HANDLE,
-                                                options: $fieldsetSelectOptions,
-                                                routes: RouteService::getNames(Fieldset::TABLE),
-                                            )
-                                            ->addOption(
-                                                identifier: Input::TABLE,
-                                                label: ModelService::getModelLabel(Input::class),
-                                                optionLabel: FormTabElement::LABEL,
-                                                optionValue: FormTabElement::HANDLE,
-                                                options: $inputSelectOptions,
-                                                routes: RouteService::getNames(Input::TABLE),
-                                            )
-                                            ->widthOptions($widthSelectOptions),
-                                    ])
+                                    relation: [
+                                        BlockElement::HANDLE => FormTab::RELATION_ELEMENTS,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.elements'),
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => RelationsField::class,
+                                            Field::SETTINGS => app(RelationsField::class)
+                                                ->form(app(FieldsetElementForm::class)->jsonSerialize())
+                                                ->addOption(
+                                                    identifier: Fieldset::TABLE,
+                                                    label: ModelService::getModelLabel(Fieldset::class),
+                                                    optionLabel: FormTabElement::LABEL,
+                                                    optionValue: FormTabElement::HANDLE,
+                                                    options: $fieldsetSelectOptions,
+                                                    routes: RouteService::getNames(Fieldset::TABLE),
+                                                )
+                                                ->addOption(
+                                                    identifier: Input::TABLE,
+                                                    label: ModelService::getModelLabel(Input::class),
+                                                    optionLabel: FormTabElement::LABEL,
+                                                    optionValue: FormTabElement::HANDLE,
+                                                    options: $inputSelectOptions,
+                                                    routes: RouteService::getNames(Input::TABLE),
+                                                )
+                                                ->widthOptions($widthSelectOptions),
+                                        ],
+                                    ],
                                 ),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

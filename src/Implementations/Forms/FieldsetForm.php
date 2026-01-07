@@ -47,39 +47,39 @@ class FieldsetForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $inputSelectOptions = static::getInputSelectOptions();
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Fieldset::HANDLE,
-                            Field::LABEL => trans('narsil::ui.default_handle'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Fieldset::HANDLE,
+                        TemplateTabElement::LABEL => trans('narsil::ui.default_handle'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Fieldset::LABEL,
-                            Field::LABEL => trans('narsil::ui.default_label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Fieldset::LABEL,
+                        TemplateTabElement::LABEL => trans('narsil::ui.default_label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Fieldset::RELATION_ELEMENTS,
-                            Field::LABEL => trans('narsil::validation.attributes.elements'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Fieldset::RELATION_ELEMENTS,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.elements'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(FieldsetElementForm::class)->jsonSerialize())
@@ -92,10 +92,10 @@ class FieldsetForm extends AbstractForm implements Contract
                                     routes: RouteService::getNames(Input::TABLE),
                                 )
                                 ->widthOptions($widthSelectOptions),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\LinkField as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 
 #endregion
@@ -36,19 +37,23 @@ class LinkField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => Field::PLACEHOLDER,
-                Field::LABEL => trans('narsil::validation.attributes.placeholder'),
-                Field::TRANSLATABLE => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                Field::LABEL => trans('narsil::validation.attributes.multiple'),
-                Field::TYPE => SwitchField::class,
-                Field::SETTINGS => app(SwitchField::class),
-            ]),
+            [
+                BlockElement::HANDLE => Field::PLACEHOLDER,
+                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::TRANSLATABLE => true,
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => TextField::class,
+                    Field::SETTINGS => app(TextField::class),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
+                BlockElement::LABEL => trans('narsil::validation.attributes.multiple'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => SwitchField::class,
+                    Field::SETTINGS => app(SwitchField::class),
+                ],
+            ],
         ];
     }
 

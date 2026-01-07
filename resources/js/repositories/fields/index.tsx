@@ -24,18 +24,17 @@ import { type ReactNode } from "react";
 import { route } from "ziggy-js";
 
 export type FieldProps = {
-  element: Field;
+  field: Field;
   id: string;
-  placeholder?: string;
   required?: boolean;
   value: any;
   setValue: (value: any) => void;
 };
 
 type Registry = {
-  [K in FieldProps["element"]["type"]]: (
+  [K in FieldProps["field"]["type"]]: (
     props: FieldProps & {
-      element: Extract<FieldProps["element"], { type: K }>;
+      field: Extract<FieldProps["field"], { type: K }>;
     },
   ) => ReactNode;
 };
@@ -44,7 +43,7 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\ArrayField"]: (props) => {
     return (
       <Array
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
         items={props.value ?? []}
         setItems={props.setValue}
@@ -52,14 +51,14 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\BuilderField"]: (props) => {
-    return <Builder {...props.element.settings} blocks={props.element.blocks} name={props.id} />;
+    return <Builder {...props.field.settings} blocks={props.field.blocks} name={props.id} />;
   },
   ["Narsil\\Contracts\\Fields\\CheckboxField"]: (props) => {
-    if (props.element.options?.length > 0) {
+    if (props.field.options?.length > 0) {
       return (
         <Checkboxes
-          {...props.element.settings}
-          options={props.element.options}
+          {...props.field.settings}
+          options={props.field.options}
           values={isArray(props.value) ? props.value : []}
           onChange={props.setValue}
         />
@@ -67,7 +66,7 @@ const defaultRegistry: Registry = {
     } else {
       return (
         <Checkbox
-          {...props.element.settings}
+          {...props.field.settings}
           id={props.id}
           name={props.id}
           checked={[true, "1", "true", 1].includes(props.value)}
@@ -80,10 +79,10 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\DateField"]: (props) => {
     return (
       <Date
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
         name={props.id}
-        placeholder={props.placeholder}
+        placeholder={props.field.placeholder}
         value={props.value}
         onChange={props.setValue}
       />
@@ -92,10 +91,10 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\DatetimeField"]: (props) => {
     return (
       <Datetime
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
         name={props.id}
-        placeholder={props.placeholder}
+        placeholder={props.field.placeholder}
         required={props.required}
         value={props.value}
         onChange={props.setValue}
@@ -105,11 +104,11 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\EntityField"]: (props) => {
     return (
       <Combobox
-        {...props.element.settings}
+        {...props.field.settings}
         href={route("entities.search")}
         id={props.id}
-        options={props.element.options}
-        placeholder={props.placeholder}
+        options={props.field.options}
+        placeholder={props.field.placeholder}
         value={props.value}
         setValue={props.setValue}
       />
@@ -118,16 +117,16 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\FileField"]: (props) => {
     return (
       <File
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
         name={props.id}
-        placeholder={props.placeholder}
+        placeholder={props.field.placeholder}
         value={props.value}
         onChange={props.setValue}
         required={props.required}
       >
-        {props.element.settings.icon ? (
-          <Icon className="opacity-50" name={props.element.settings.icon} />
+        {props.field.settings.icon ? (
+          <Icon className="opacity-50" name={props.field.settings.icon} />
         ) : null}
       </File>
     );
@@ -135,11 +134,11 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\FormField"]: (props) => {
     return (
       <Combobox
-        {...props.element.settings}
+        {...props.field.settings}
         href={route("forms.search")}
         id={props.id}
-        options={props.element.options}
-        placeholder={props.placeholder}
+        options={props.field.options}
+        placeholder={props.field.placeholder}
         value={props.value}
         setValue={props.setValue}
       />
@@ -148,11 +147,11 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\LinkField"]: (props) => {
     return (
       <Combobox
-        {...props.element.settings}
+        {...props.field.settings}
         href={route("site-pages.search")}
         id={props.id}
-        options={props.element.options}
-        placeholder={props.placeholder}
+        options={props.field.options}
+        placeholder={props.field.placeholder}
         value={props.value}
         setValue={props.setValue}
       />
@@ -161,10 +160,10 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\PasswordField"]: (props) => {
     return (
       <Password
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
         name={props.id}
-        placeholder={props.placeholder}
+        placeholder={props.field.placeholder}
         required={props.required}
         value={props.value}
         onChange={(event) => props.setValue(event.target.value)}
@@ -174,7 +173,7 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\RangeField"]: (props) => {
     return (
       <Slider
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
         name={props.id}
         value={isArray(props.value) ? props.value : [props.value]}
@@ -183,19 +182,19 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\RelationsField"]: (props) => {
-    if ("intermediate" in props.element.settings) {
+    if ("intermediate" in props.field.settings) {
       return (
         <SortableGrid
-          {...props.element.settings}
+          {...props.field.settings}
           items={props.value ?? []}
-          placeholder={props.placeholder as string}
+          placeholder={props.field.placeholder as string}
           setItems={props.setValue}
         />
       );
-    } else if ("options" in props.element.settings) {
+    } else if ("options" in props.field.settings) {
       return (
         <SortableList
-          {...props.element.settings}
+          {...props.field.settings}
           items={props.value ?? []}
           setItems={props.setValue}
         />
@@ -203,9 +202,9 @@ const defaultRegistry: Registry = {
     } else {
       return (
         <Relations
-          {...props.element.settings}
+          {...props.field.settings}
           id={props.id}
-          placeholder={props.placeholder}
+          placeholder={props.field.placeholder}
           value={props.value}
           setValue={props.setValue}
         />
@@ -215,9 +214,9 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\RichTextField"]: (props) => {
     return (
       <RichTextEditor
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
-        placeholder={props.placeholder}
+        placeholder={props.field.placeholder}
         value={props.value}
         onChange={props.setValue}
         required={props.required}
@@ -227,10 +226,10 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\SelectField"]: (props) => {
     return (
       <Combobox
-        {...props.element.settings}
+        {...props.field.settings}
         id={props.id}
-        options={props.element.options}
-        placeholder={props.placeholder}
+        options={props.field.options}
+        placeholder={props.field.placeholder}
         value={props.value}
         setValue={props.setValue}
       />
@@ -239,7 +238,7 @@ const defaultRegistry: Registry = {
   ["Narsil\\Contracts\\Fields\\SwitchField"]: (props) => {
     return (
       <Switch
-        {...props.element.settings}
+        {...props.field.settings}
         name={props.id}
         checked={props.value}
         onCheckedChange={props.setValue}
@@ -248,14 +247,14 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\TableField"]: (props) => {
-    return <Table {...props.element.settings} rows={props.value ?? []} setRows={props.setValue} />;
+    return <Table {...props.field.settings} rows={props.value ?? []} setRows={props.setValue} />;
   },
   ["Narsil\\Contracts\\Fields\\TextareaField"]: (props) => {
     return (
       <Textarea
-        {...props.element.settings}
+        {...props.field.settings}
         name={props.id}
-        placeholder={props.placeholder}
+        placeholder={props.field.placeholder}
         value={props.value}
         onChange={(event) => props.setValue(event.target.value)}
         required={props.required}
@@ -266,14 +265,14 @@ const defaultRegistry: Registry = {
     return (
       <InputRoot>
         <InputContent
-          {...props.element.settings}
+          {...props.field.settings}
           id={props.id}
           name={props.id}
           className={cn(
             !props.value && "opacity-50",
             "[&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none",
           )}
-          placeholder={props.placeholder}
+          placeholder={props.field.placeholder}
           required={props.required}
           value={props.value}
           onChange={(event) => props.setValue(event.target.value)}
@@ -283,22 +282,22 @@ const defaultRegistry: Registry = {
     );
   },
   ["Narsil\\Contracts\\Fields\\TreeField"]: (props) => {
-    return <Tree {...props.element.settings} items={props.value ?? []} setItems={props.setValue} />;
+    return <Tree {...props.field.settings} items={props.value ?? []} setItems={props.setValue} />;
   },
   ["default"]: (props) => {
     return (
-      <InputRoot readOnly={props.element.settings.readOnly}>
+      <InputRoot readOnly={props.field.settings.readOnly}>
         <InputContent
-          {...props.element.settings}
+          {...props.field.settings}
           id={props.id}
           name={props.id}
-          placeholder={props.placeholder}
+          placeholder={props.field.placeholder}
           value={props.value}
           onChange={(event) => props.setValue(event.target.value)}
           required={props.required}
         />
-        {props.element.settings.icon ? (
-          <Icon className="opacity-50" name={props.element.settings.icon} />
+        {props.field.settings.icon ? (
+          <Icon className="opacity-50" name={props.field.settings.icon} />
         ) : null}
       </InputRoot>
     );

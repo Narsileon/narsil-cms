@@ -7,7 +7,7 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
-import { FormRenderer } from "@narsil-cms/components/form";
+import { FormElement } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItem, SortableItemMenu } from "@narsil-cms/components/sortable";
@@ -112,7 +112,7 @@ function BuilderItem({
               }
 
               return (
-                <FormRenderer
+                <FormElement
                   {...childElement}
                   handle={childHandle}
                   name={childName}

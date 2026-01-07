@@ -1,11 +1,12 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Heading } from "@narsil-cms/blocks/heading";
 import { Separator } from "@narsil-cms/blocks/separator";
-import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
+import { Fragment } from "react";
 
 type ProfileFormProps = {
   profileForm: FormType;
@@ -22,7 +23,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
       <FormProvider
         id={profileForm.id}
         action={profileForm.action}
-        elements={profileForm.layout}
+        elements={profileForm.tabs}
         method={profileForm.method}
         initialValues={{
           avatar: auth?.avatar,
@@ -40,8 +41,14 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               </SectionHeader>
               <SectionContent>
                 <FormRoot className="grid-cols-12 gap-4">
-                  {profileForm.layout.map((element, index) => {
-                    return <FormRenderer {...element} key={index} />;
+                  {profileForm.tabs.map((tab, index) => {
+                    return (
+                      <Fragment key={index}>
+                        {tab.elements?.map((element, index) => {
+                          return <FormElement {...element} key={index} />;
+                        })}
+                      </Fragment>
+                    );
                   })}
                 </FormRoot>
               </SectionContent>
@@ -53,7 +60,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
       <FormProvider
         id={updatePasswordForm.id}
         action={updatePasswordForm.action}
-        elements={updatePasswordForm.layout}
+        elements={updatePasswordForm.tabs}
         method={updatePasswordForm.method}
         render={({ reset, setDefaults }) => {
           return (
@@ -78,8 +85,14 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                     },
                   }}
                 >
-                  {updatePasswordForm.layout.map((element, index) => {
-                    return <FormRenderer {...element} key={index} />;
+                  {updatePasswordForm.tabs.map((tab, index) => {
+                    return (
+                      <Fragment key={index}>
+                        {tab.elements?.map((element, index) => {
+                          return <FormElement {...element} key={index} />;
+                        })}
+                      </Fragment>
+                    );
                   })}
                 </FormRoot>
               </SectionContent>

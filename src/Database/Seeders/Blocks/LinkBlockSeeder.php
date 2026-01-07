@@ -57,14 +57,23 @@ class LinkBlockSeeder extends BlockSeeder
         return new Block([
             Block::HANDLE => self::LINK,
             Block::LABEL => 'Link',
-            Block::RELATION_ELEMENTS => [
+        ])->setRelation(
+            Block::RELATION_ELEMENTS,
+            [
                 new BlockElement([
+                    BlockElement::HANDLE => self::TYPE,
+                    BlockElement::LABEL => 'Type',
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 25,
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::TYPE,
-                        Field::LABEL => 'Type',
-                        Field::RELATION_OPTIONS => [
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
+                        Field::TYPE => SelectField::class,
+                        Field::SETTINGS => app(SelectField::class)
+                            ->defaultValue('internal'),
+                    ])->setRelation(
+                        Field::RELATION_OPTIONS,
+                        [
                             new FieldOption([
                                 FieldOption::LABEL => 'Internal',
                                 FieldOption::VALUE => 'internal',
@@ -74,48 +83,50 @@ class LinkBlockSeeder extends BlockSeeder
                                 FieldOption::VALUE => 'external',
                             ]),
                         ],
-                        Field::REQUIRED => true,
-                        Field::TYPE => SelectField::class,
-                        Field::SETTINGS => app(SelectField::class)
-                            ->defaultValue('internal')
-                    ]),
-                ]),
+                    ),
+                ),
                 new BlockElement([
+                    BlockElement::HANDLE => self::LINK,
+                    BlockElement::LABEL => 'Page',
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 75,
-                    BlockElement::RELATION_CONDITIONS => [
+                ])->setRelation(
+                    BlockElement::RELATION_CONDITIONS,
+                    [
                         new BlockElementCondition([
                             BlockElementCondition::HANDLE => self::TYPE,
                             BlockElementCondition::OPERATOR => '=',
                             BlockElementCondition::VALUE => 'internal',
                         ]),
                     ],
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::LINK,
-                        Field::LABEL => 'Page',
-                        Field::REQUIRED => true,
+                )->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => LinkField::class,
                     ]),
-                ]),
+                ),
                 new BlockElement([
+                    BlockElement::HANDLE => self::URL,
+                    BlockElement::LABEL => 'URL',
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 75,
-                    BlockElement::RELATION_CONDITIONS => [
+                ])->setRelation(
+                    BlockElement::RELATION_CONDITIONS,
+                    [
                         new BlockElementCondition([
                             BlockElementCondition::HANDLE => self::TYPE,
                             BlockElementCondition::OPERATOR => '=',
                             BlockElementCondition::VALUE => 'external',
                         ]),
                     ],
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::URL,
-                        Field::LABEL => 'URL',
-                        Field::REQUIRED => true,
+                )->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => TextField::class,
                     ]),
-                ]),
+                ),
             ],
-        ]);
+        );
     }
 
     #endregion

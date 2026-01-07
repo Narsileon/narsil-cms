@@ -12,6 +12,7 @@ use Narsil\Contracts\Forms\TemplateForm as Contract;
 use Narsil\Contracts\Forms\TemplateTabForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
 use Narsil\Models\Structures\TemplateTab;
@@ -47,52 +48,52 @@ class TemplateForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $blockSelectOptions = static::getBlockSelectOptions();
         $fieldSelectOptions = static::getFieldSelectOptions();
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Template::TABLE_NAME,
-                            Field::LABEL => trans('narsil::validation.attributes.table_name'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Template::TABLE_NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.table_name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
-                    new TemplateTabElement([
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Template::SINGULAR,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.singular'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Template::SINGULAR,
-                            Field::LABEL => trans('narsil::validation.attributes.singular'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
-                    new TemplateTabElement([
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Template::PLURAL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.plural'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Template::PLURAL,
-                            Field::LABEL => trans('narsil::validation.attributes.plural'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Template::RELATION_TABS,
-                            Field::LABEL => trans('narsil::validation.attributes.tabs'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Template::RELATION_TABS,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.tabs'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
@@ -101,35 +102,37 @@ class TemplateForm extends AbstractForm implements Contract
                                     label: trans('narsil::validation.attributes.tab'),
                                     optionLabel: TemplateTab::LABEL,
                                     optionValue: TemplateTab::HANDLE,
-                                    relation: new Field([
-                                        Field::HANDLE => TemplateTab::RELATION_ELEMENTS,
-                                        Field::LABEL => trans('narsil::validation.attributes.elements'),
-                                        Field::TYPE => RelationsField::class,
-                                        Field::SETTINGS => app(RelationsField::class)
-                                            ->form(app(BlockElementForm::class)->jsonSerialize())
-                                            ->addOption(
-                                                identifier: Block::TABLE,
-                                                label: ModelService::getModelLabel(Block::class),
-                                                optionLabel: TemplateTabElement::LABEL,
-                                                optionValue: TemplateTabElement::HANDLE,
-                                                options: $blockSelectOptions,
-                                                routes: RouteService::getNames(Block::TABLE),
-                                            )
-                                            ->addOption(
-                                                identifier: Field::TABLE,
-                                                label: ModelService::getModelLabel(Field::class),
-                                                optionLabel: TemplateTabElement::LABEL,
-                                                optionValue: TemplateTabElement::HANDLE,
-                                                options: $fieldSelectOptions,
-                                                routes: RouteService::getNames(Field::TABLE),
-                                            )
-                                            ->widthOptions($widthSelectOptions),
-                                    ])
+                                    relation: [
+                                        BlockElement::HANDLE => TemplateTab::RELATION_ELEMENTS,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.elements'),
+                                        BlockElement::RELATION_ELEMENT => [
+                                            Field::TYPE => RelationsField::class,
+                                            Field::SETTINGS => app(RelationsField::class)
+                                                ->form(app(BlockElementForm::class)->jsonSerialize())
+                                                ->addOption(
+                                                    identifier: Block::TABLE,
+                                                    label: ModelService::getModelLabel(Block::class),
+                                                    optionLabel: TemplateTabElement::LABEL,
+                                                    optionValue: TemplateTabElement::HANDLE,
+                                                    options: $blockSelectOptions,
+                                                    routes: RouteService::getNames(Block::TABLE),
+                                                )
+                                                ->addOption(
+                                                    identifier: Field::TABLE,
+                                                    label: ModelService::getModelLabel(Field::class),
+                                                    optionLabel: TemplateTabElement::LABEL,
+                                                    optionValue: TemplateTabElement::HANDLE,
+                                                    options: $fieldSelectOptions,
+                                                    routes: RouteService::getNames(Field::TABLE),
+                                                )
+                                                ->widthOptions($widthSelectOptions),
+                                        ],
+                                    ],
                                 ),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

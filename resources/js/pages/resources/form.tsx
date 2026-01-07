@@ -5,10 +5,10 @@ import { Status } from "@narsil-cms/blocks/status";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import {
   FormCountry,
+  FormElement,
   FormLanguage,
   FormMenu,
   FormProvider,
-  FormRenderer,
   FormRoot,
   FormSave,
   FormTimestamp,
@@ -21,7 +21,14 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type { Field, FormType, Revision, SelectOption, TemplateTab, User } from "@narsil-cms/types";
+import type {
+  FormType,
+  Revision,
+  SelectOption,
+  StructureHasElement,
+  TemplateTab,
+  User,
+} from "@narsil-cms/types";
 import { isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 
@@ -36,7 +43,7 @@ type FormProps = {
   };
   form: FormType;
   modal?: ModalType;
-  publish?: Field[];
+  publish?: StructureHasElement[];
   revisions?: Revision[];
 };
 
@@ -52,13 +59,13 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     defaultLanguage,
     id,
     languageOptions,
-    layout,
     method,
     routes,
     submitLabel,
+    tabs,
   } = form;
 
-  const { sidebar, tabs } = layout.reduce(
+  const { sidebar, ...rest } = tabs.reduce(
     (acc, element) => {
       if (!("elements" in element)) {
         return acc;
@@ -83,7 +90,13 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
 
   const [value, setValue] = useState(tabs[0].handle);
 
-  const sidebarContent = sidebar ? <FormRenderer {...sidebar} /> : null;
+  const sidebarContent = sidebar ? (
+    <>
+      {sidebar.elements?.map((element, index) => {
+        return <FormElement {...element} key={index} />;
+      })}
+    </>
+  ) : null;
 
   const tabsList =
     tabs.length > 1 ? (
@@ -105,7 +118,9 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
         value={tab.handle}
         key={index}
       >
-        <FormRenderer {...tab} />
+        {tab.elements?.map((element, index) => {
+          return <FormElement {...element} key={index} />;
+        })}
       </TabsContent>
     );
   });
@@ -122,7 +137,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     <FormProvider
       id={modal ? `${id}_${modal.id}` : id}
       action={action}
-      elements={layout}
+      elements={tabs}
       defaultLanguage={defaultLanguage}
       languageOptions={languageOptions}
       method={method}

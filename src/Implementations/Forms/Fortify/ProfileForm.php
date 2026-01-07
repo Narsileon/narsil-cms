@@ -11,6 +11,8 @@ use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\User;
 
 #endregion
@@ -44,35 +46,45 @@ class ProfileForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Field([
-                Field::HANDLE => User::LAST_NAME,
-                Field::LABEL => trans('narsil::validation.attributes.last_name'),
-                Field::REQUIRED => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                    ->icon('circle-user'),
-            ]),
-            new Field([
-                Field::HANDLE => User::FIRST_NAME,
-                Field::LABEL => trans('narsil::validation.attributes.first_name'),
-                Field::REQUIRED => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                    ->icon('circle-user'),
-            ]),
-            new Field([
-                Field::HANDLE => User::AVATAR,
-                Field::LABEL => trans('narsil::validation.attributes.avatar'),
-                Field::TYPE => FileField::class,
-                Field::SETTINGS => app(FileField::class)
-                    ->accept('image/*')
-                    ->icon('image'),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => User::LAST_NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                                ->icon('circle-user'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::FIRST_NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                                ->icon('circle-user'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::AVATAR,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.avatar'),
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => FileField::class,
+                            Field::SETTINGS => app(FileField::class)
+                                ->accept('image/*')
+                                ->icon('image'),
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

@@ -16,6 +16,8 @@ use Narsil\Enums\ColorEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Users\UserConfiguration;
 use Narsil\Support\SelectOption;
 use ResourceBundle;
@@ -50,40 +52,50 @@ class UserConfigurationForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $localeSelectOptions = static::getLocaleSelectOptions();
 
         return [
-            new Field([
-                Field::HANDLE => UserConfiguration::LANGUAGE,
-                Field::LABEL => trans('narsil::validation.attributes.language'),
-                Field::REQUIRED => true,
-                Field::TYPE => SelectField::class,
-                Field::RELATION_OPTIONS => $localeSelectOptions,
-                Field::SETTINGS => app(SelectField::class)
-                    ->defaultValue(App::getLocale()),
-            ]),
-            new Field([
-                Field::HANDLE => UserConfiguration::COLOR,
-                Field::LABEL => trans('narsil::validation.attributes.color'),
-                Field::REQUIRED => true,
-                Field::TYPE => SelectField::class,
-                Field::RELATION_OPTIONS => ColorEnum::selectOptions(),
-                Field::SETTINGS => app(SelectField::class)
-                    ->defaultValue(ColorEnum::GRAY->value),
-            ]),
-            new Field([
-                Field::HANDLE => UserConfiguration::RADIUS,
-                Field::LABEL => trans('narsil::validation.attributes.radius'),
-                Field::REQUIRED => true,
-                Field::TYPE => RangeField::class,
-                Field::SETTINGS => app(RangeField::class)
-                    ->defaultValue([0.25])
-                    ->max(1)
-                    ->min(0)
-                    ->step(0.05),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => UserConfiguration::LANGUAGE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.language'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => SelectField::class,
+                            Field::SETTINGS => app(SelectField::class)
+                                ->defaultValue(App::getLocale()),
+                            Field::RELATION_OPTIONS => $localeSelectOptions,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => UserConfiguration::COLOR,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.color'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => SelectField::class,
+                            Field::SETTINGS => app(SelectField::class)
+                                ->defaultValue(ColorEnum::GRAY->value),
+                            Field::RELATION_OPTIONS => ColorEnum::selectOptions(),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => UserConfiguration::RADIUS,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.radius'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => RangeField::class,
+                            Field::SETTINGS => app(RangeField::class)
+                                ->defaultValue([0.25])
+                                ->max(1)
+                                ->min(0)
+                                ->step(0.05),
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

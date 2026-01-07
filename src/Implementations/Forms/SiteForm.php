@@ -29,44 +29,44 @@ class SiteForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $headerSelectOptions = static::getHeaderSelectOptions();
         $footerSelectOptions = static::getFooterSelectOptions();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => Site::RELATION_PAGES,
                 TemplateTab::LABEL => trans('narsil::ui.navigation'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Site::HEADER_ID,
-                            Field::LABEL => trans('narsil::validation.attributes.header_id'),
+                    [
+                        TemplateTabElement::HANDLE => Site::HEADER_ID,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.header_id'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SelectField::class,
+                            Field::SETTINGS => app(SelectField::class),
                             Field::RELATION_OPTIONS => $headerSelectOptions,
-                            Field::SETTINGS => app(SelectField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Site::FOOTER_ID,
-                            Field::LABEL => trans('narsil::validation.attributes.footer_id'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Site::FOOTER_ID,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.footer_id'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => $footerSelectOptions,
                             Field::SETTINGS => app(SelectField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Site::RELATION_PAGES,
-                            Field::LABEL => trans('narsil::ui.navigation'),
+                            Field::RELATION_OPTIONS => $footerSelectOptions,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Site::RELATION_PAGES,
+                        TemplateTabElement::LABEL => trans('narsil::ui.navigation'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TreeField::class,
                             Field::SETTINGS => app(TreeField::class),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

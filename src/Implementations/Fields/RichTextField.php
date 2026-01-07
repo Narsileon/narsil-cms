@@ -9,6 +9,7 @@ use Narsil\Contracts\Fields\RichTextField as Contract;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Enums\Forms\RichTextEditorEnum;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Support\TranslationsBag;
 use Narsil\Support\SelectOption;
@@ -64,20 +65,24 @@ class RichTextField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => Field::PLACEHOLDER,
-                Field::LABEL => trans('narsil::validation.attributes.placeholder'),
-                Field::TRANSLATABLE => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.modules" : 'modules',
-                Field::LABEL => trans("narsil::ui.modules"),
-                Field::TYPE => CheckboxField::class,
-                Field::RELATION_OPTIONS => RichTextEditorEnum::selectOptions(),
-                Field::SETTINGS => app(CheckboxField::class),
-            ]),
+            [
+                BlockElement::HANDLE => Field::PLACEHOLDER,
+                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::TRANSLATABLE => true,
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => TextField::class,
+                    Field::SETTINGS => app(TextField::class),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.modules" : 'modules',
+                BlockElement::LABEL => trans("narsil::ui.modules"),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => CheckboxField::class,
+                    Field::SETTINGS => app(CheckboxField::class),
+                    Field::RELATION_OPTIONS => RichTextEditorEnum::selectOptions(),
+                ],
+            ],
         ];
     }
 

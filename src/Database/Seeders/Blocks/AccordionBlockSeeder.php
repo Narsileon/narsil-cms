@@ -69,47 +69,54 @@ class AccordionBlockSeeder extends BlockSeeder
         return new Block([
             Block::HANDLE => self::ACCORDION,
             Block::LABEL => 'Accordion',
-            Block::RELATION_ELEMENTS => [
+        ])->setRelation(
+            Block::RELATION_ELEMENTS,
+            [
                 new BlockElement([
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::ACCORDION_BUILDER,
-                        Field::LABEL => 'Items',
+                    BlockElement::HANDLE => self::ACCORDION_BUILDER,
+                    BlockElement::LABEL => 'Items',
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => BuilderField::class,
-                        Field::RELATION_BLOCKS => [
+                    ])->setRelation(
+                        Field::RELATION_BLOCKS,
+                        [
                             new Block([
                                 Block::HANDLE => self::ACCORDION_ITEM,
                                 Block::LABEL => 'Accordion Item',
-                                Block::RELATION_ELEMENTS => [
+                            ])->setRelation(
+                                Block::RELATION_ELEMENTS,
+                                [
                                     new BlockElement([
+                                        BlockElement::HANDLE => self::ACCORDION_ITEM_TRIGGER,
+                                        BlockElement::LABEL => 'Trigger',
                                         BlockElement::REQUIRED => true,
                                         BlockElement::TRANSLATABLE => true,
-                                        BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => self::ACCORDION_ITEM_TRIGGER,
-                                            Field::LABEL => 'Trigger',
-                                            Field::REQUIRED => true,
-                                            Field::TRANSLATABLE => true,
+                                    ])->setRelation(
+                                        BlockElement::RELATION_ELEMENT,
+                                        new Field([
                                             Field::TYPE => TextField::class,
-                                            Field::RELATION_BLOCKS => []
                                         ]),
-                                    ]),
+                                    ),
                                     new BlockElement([
+                                        BlockElement::HANDLE => self::ACCORDION_ITEM_CONTENT,
+                                        BlockElement::LABEL => 'Content',
                                         BlockElement::REQUIRED => true,
                                         BlockElement::TRANSLATABLE => true,
-                                        BlockElement::RELATION_ELEMENT => new Field([
-                                            Field::HANDLE => self::ACCORDION_ITEM_CONTENT,
-                                            Field::LABEL => 'Content',
-                                            Field::REQUIRED => true,
-                                            Field::TRANSLATABLE => true,
+                                    ])->setRelation(
+                                        BlockElement::RELATION_ELEMENT,
+                                        new Field([
                                             Field::TYPE => RichTextField::class,
                                         ]),
-                                    ]),
+                                    ),
                                 ],
-                            ]),
+                            ),
                         ],
-                    ]),
-                ]),
+                    ),
+                ),
             ],
-        ]);
+        );
     }
 
     #endregion

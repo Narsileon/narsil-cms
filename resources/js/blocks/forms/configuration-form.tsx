@@ -1,6 +1,6 @@
 import { router } from "@inertiajs/react";
 import { Heading } from "@narsil-cms/blocks/heading";
-import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
@@ -8,6 +8,7 @@ import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import type { FormType } from "@narsil-cms/types";
+import { Fragment } from "react";
 import { route } from "ziggy-js";
 
 type ConfigurationFormProps = {
@@ -57,7 +58,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
         <FormProvider
           id="user-personalization-form"
           action={form.action}
-          elements={form.layout}
+          elements={form.tabs}
           method={form.method}
           initialValues={{
             color: color,
@@ -67,14 +68,13 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
           render={() => {
             return (
               <FormRoot className="gap-4">
-                {form.layout.map((element, index) => {
+                {form.tabs.map((tab, index) => {
                   return (
-                    <FormRenderer
-                      {...element}
-                      className="grid grid-cols-2"
-                      onChange={(value) => handleChange(element.handle, value as number | string)}
-                      key={index}
-                    />
+                    <Fragment key={index}>
+                      {tab.elements?.map((element, index) => {
+                        return <FormElement {...element} key={index} />;
+                      })}
+                    </Fragment>
                   );
                 })}
               </FormRoot>

@@ -7,10 +7,10 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FormTabForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Forms\FormTab;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 
 #endregion
 
@@ -25,41 +25,41 @@ class FormTabForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Block([
-                Block::RELATION_ELEMENTS => [
-                    new BlockElement([
-                        BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => FormTab::HANDLE,
-                            Field::LABEL => trans('narsil::validation.attributes.handle'),
-                            Field::REQUIRED => true,
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => FormTab::HANDLE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new BlockElement([
-                        BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => FormTab::LABEL,
-                            Field::LABEL => trans('narsil::validation.attributes.label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => FormTab::LABEL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new BlockElement([
-                        BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => FormTab::DESCRIPTION,
-                            Field::LABEL => trans('narsil::validation.attributes.description'),
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => FormTab::DESCRIPTION,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
+                        ]
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

@@ -47,58 +47,60 @@ class BlockForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $blockSelectOptions = static::getBlockSelectOptions();
         $fieldSelectOptions = static::getFieldSelectOptions();
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Block::HANDLE,
-                            Field::LABEL => trans('narsil::ui.default_handle'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.block_handle'),
+                        TemplateTabElement::HANDLE => Block::HANDLE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Block::LABEL,
-                            Field::LABEL => trans('narsil::ui.default_label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.block_label'),
+                        TemplateTabElement::HANDLE => Block::LABEL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Block::COLLAPSIBLE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.collapsible'),
                         TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Block::COLLAPSIBLE,
-                            Field::LABEL => trans('narsil::validation.attributes.collapsible'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Block::VIRTUAL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.virtual'),
                         TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Block::VIRTUAL,
-                            Field::LABEL => trans('narsil::validation.attributes.virtual'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Block::RELATION_ELEMENTS,
-                            Field::LABEL => trans('narsil::validation.attributes.elements'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Block::RELATION_ELEMENTS,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.elements'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(BlockElementForm::class)->jsonSerialize())
@@ -119,10 +121,10 @@ class BlockForm extends AbstractForm implements Contract
                                     routes: RouteService::getNames(Field::TABLE),
                                 )
                                 ->widthOptions($widthSelectOptions),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

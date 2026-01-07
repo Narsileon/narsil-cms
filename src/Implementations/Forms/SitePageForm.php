@@ -56,206 +56,206 @@ class SitePageForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $collections = $this->getCollections();
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'main',
                 TemplateTab::LABEL => trans('narsil::ui.main'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::TITLE,
-                            Field::LABEL => trans('narsil::validation.attributes.title'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                    [
+                        TemplateTabElement::HANDLE => SitePage::TITLE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.title'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ])
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::SLUG,
-                            Field::LABEL => trans('narsil::validation.attributes.slug'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => SitePage::SLUG,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->generate(SitePage::TITLE),
-                        ])
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::ADAPTER,
-                            Field::LABEL => trans('narsil::validation.attributes.adapter'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => SitePage::ADAPTER,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.adapter'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => SitePageAdapterEnum::selectOptions(),
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(SitePageAdapterEnum::ENTITY->value),
-                        ])
-                    ]),
-                    new TemplateTabElement([
+                            Field::RELATION_OPTIONS => SitePageAdapterEnum::selectOptions(),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => SitePage::ENTITY,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.entity'),
+                        TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_CONDITIONS => [
-                            new TemplateTabElementCondition([
+                            [
                                 TemplateTabElementCondition::HANDLE => SitePage::ADAPTER,
                                 TemplateTabElementCondition::OPERATOR => '=',
                                 TemplateTabElementCondition::VALUE => SitePageAdapterEnum::ENTITY->value,
-                            ]),
+                            ],
                         ],
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::ENTITY,
-                            Field::LABEL => trans('narsil::validation.attributes.entity'),
-                            Field::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->collections($collections)
                                 ->defaultValue([])
                                 ->multiple(false),
-                        ])
-                    ]),
-                    new TemplateTabElement([
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => SitePage::COLLECTION,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.collection'),
                         TemplateTabElement::RELATION_CONDITIONS => [
-                            new TemplateTabElementCondition([
+                            [
                                 TemplateTabElementCondition::HANDLE => SitePage::ADAPTER,
                                 TemplateTabElementCondition::OPERATOR => '=',
                                 TemplateTabElementCondition::VALUE => SitePageAdapterEnum::COLLECTION->value,
-                            ]),
+                            ],
                         ],
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::COLLECTION,
-                            Field::LABEL => trans('narsil::validation.attributes.collection'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => Template::selectOptions(),
                             Field::SETTINGS => app(SelectField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::SHOW_IN_MENU,
-                            Field::LABEL => trans('narsil::validation.attributes.show_in_menu'),
-                            Field::TRANSLATABLE => true,
+                            Field::RELATION_OPTIONS => Template::selectOptions(),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => SitePage::SHOW_IN_MENU,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.show_in_menu'),
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class)
                                 ->defaultValue(true),
-                        ])
-                    ]),
-                ]
-            ]),
-            new TemplateTab([
+                        ],
+                    ],
+                ],
+            ],
+            [
                 TemplateTab::HANDLE => 'SEO',
                 TemplateTab::LABEL => 'SEO',
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Block([
+                    [
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Block::LABEL => 'Meta',
                             Block::RELATION_ELEMENTS => [
-                                new BlockElement([
-                                    BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => SitePage::META_DESCRIPTION,
-                                        Field::LABEL => trans('narsil::validation.attributes.description'),
-                                        Field::REQUIRED => true,
-                                        Field::TRANSLATABLE => true,
+                                [
+                                    BlockElement::HANDLE => SitePage::META_DESCRIPTION,
+                                    BlockElement::LABEL => trans('narsil::validation.attributes.description'),
+                                    BlockElement::REQUIRED => true,
+                                    BlockElement::TRANSLATABLE => true,
+                                    BlockElement::RELATION_ELEMENT => [
                                         Field::TYPE => TextareaField::class,
                                         Field::SETTINGS => app(TextareaField::class),
-                                    ])
-                                ]),
-                                new BlockElement([
-                                    BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => SitePage::ROBOTS,
-                                        Field::LABEL => trans('narsil::validation.attributes.robots'),
-                                        Field::REQUIRED => true,
+                                    ],
+                                ],
+                                [
+                                    BlockElement::HANDLE => SitePage::ROBOTS,
+                                    BlockElement::LABEL => trans('narsil::validation.attributes.robots'),
+                                    BlockElement::REQUIRED => true,
+                                    BlockElement::RELATION_ELEMENT => [
                                         Field::TYPE => SelectField::class,
-                                        Field::RELATION_OPTIONS => RobotsEnum::selectOptions(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(RobotsEnum::ALL->value)
                                             ->displayValue(false),
-                                    ])
-                                ]),
+                                        Field::RELATION_OPTIONS => RobotsEnum::selectOptions(),
+                                    ],
+                                ],
                             ],
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Block([
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Block::LABEL => 'Open Graph',
                             Block::RELATION_ELEMENTS => [
-                                new BlockElement([
-                                    BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => SitePage::OPEN_GRAPH_TYPE,
-                                        Field::LABEL => trans('narsil::validation.attributes.type'),
-                                        Field::REQUIRED => true,
+                                [
+                                    BlockElement::HANDLE => SitePage::OPEN_GRAPH_TYPE,
+                                    BlockElement::LABEL => trans('narsil::validation.attributes.type'),
+                                    BlockElement::REQUIRED => true,
+                                    BlockElement::RELATION_ELEMENT => [
                                         Field::TYPE => SelectField::class,
-                                        Field::RELATION_OPTIONS => OpenGraphTypeEnum::selectOptions(),
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(OpenGraphTypeEnum::WEBSITE->value)
                                             ->displayValue(false),
-                                    ])
-                                ]),
-                                new BlockElement([
-                                    BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => SitePage::OPEN_GRAPH_TITLE,
-                                        Field::LABEL => trans('narsil::validation.attributes.title'),
-                                        Field::TRANSLATABLE => true,
+                                        Field::RELATION_OPTIONS => OpenGraphTypeEnum::selectOptions(),
+                                    ],
+                                ],
+                                [
+                                    BlockElement::HANDLE => SitePage::OPEN_GRAPH_TITLE,
+                                    BlockElement::LABEL => trans('narsil::validation.attributes.title'),
+                                    BlockElement::TRANSLATABLE => true,
+                                    BlockElement::RELATION_ELEMENT => [
                                         Field::TYPE => TextField::class,
                                         Field::SETTINGS => app(TextField::class),
-                                    ])
-                                ]),
-                                new BlockElement([
-                                    BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => SitePage::OPEN_GRAPH_DESCRIPTION,
-                                        Field::LABEL => trans('narsil::validation.attributes.description'),
-                                        Field::TRANSLATABLE => true,
+                                    ],
+                                ],
+                                [
+                                    BlockElement::HANDLE => SitePage::OPEN_GRAPH_DESCRIPTION,
+                                    BlockElement::LABEL => trans('narsil::validation.attributes.description'),
+                                    BlockElement::TRANSLATABLE => true,
+                                    BlockElement::RELATION_ELEMENT => [
                                         Field::TYPE => TextareaField::class,
                                         Field::SETTINGS => app(TextareaField::class),
-                                    ])
-                                ]),
-                                new BlockElement([
-                                    BlockElement::RELATION_ELEMENT => new Field([
-                                        Field::HANDLE => SitePage::OPEN_GRAPH_IMAGE,
-                                        Field::LABEL => trans('narsil::validation.attributes.image'),
+                                    ],
+                                ],
+                                [
+                                    BlockElement::HANDLE => SitePage::OPEN_GRAPH_IMAGE,
+                                    BlockElement::LABEL => trans('narsil::validation.attributes.image'),
+                                    BlockElement::RELATION_ELEMENT => [
                                         Field::TYPE => FileField::class,
                                         Field::SETTINGS => app(FileField::class)
                                             ->accept('image/*')
                                             ->icon('image'),
-                                    ]),
-                                ]),
+                                    ],
+                                ],
                             ],
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'Sitemap',
                 TemplateTab::LABEL => 'Sitemap',
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::CHANGE_FREQ,
-                            Field::LABEL => trans('narsil::validation.attributes.change_freq'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => SitePage::CHANGE_FREQ,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.change_freq'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => ChangeFreqEnum::selectOptions(),
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ChangeFreqEnum::NEVER->value)
                                 ->displayValue(false),
-                        ])
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => SitePage::PRIORITY,
-                            Field::LABEL => trans('narsil::validation.attributes.priority'),
-                            Field::REQUIRED => true,
+                            Field::RELATION_OPTIONS => ChangeFreqEnum::selectOptions(),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => SitePage::PRIORITY,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.priority'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => RangeField::class,
                             Field::SETTINGS => app(RangeField::class)
                                 ->defaultValue([1.0])
                                 ->max(1)
                                 ->min(0)
                                 ->step(0.05),
-                        ])
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

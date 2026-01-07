@@ -32,70 +32,83 @@ class ContactFormSeeder extends FormSeeder
     {
         return new Form([
             Form::SLUG => 'contact',
-            Form::RELATION_TABS => [
+        ])->setRelation(
+            Form::RELATION_TABS,
+            [
                 new FormTab([
                     FormTab::HANDLE => 'contact_content',
                     FormTab::LABEL => 'How can we help you?',
-                    FormTab::RELATION_ELEMENTS => [
+                ])->setRelation(
+                    FormTab::RELATION_ELEMENTS,
+                    [
                         new FormTabElement([
+                            FormTabElement::HANDLE => 'message',
+                            FormTabElement::LABEL => 'Message',
                             FormTabElement::REQUIRED => true,
-                            FormTabElement::RELATION_ELEMENT => new Input([
-                                Input::HANDLE => 'message',
-                                Input::LABEL => 'Message',
-                                Input::REQUIRED => true,
+                        ])->setRelation(
+                            FormTabElement::RELATION_ELEMENT,
+                            new Input([
                                 Input::TYPE => TextareaField::class,
                             ]),
-                        ]),
+                        ),
                     ],
-                ]),
+                ),
                 new FormTab([
                     FormTab::HANDLE => 'contact_informations',
                     FormTab::LABEL => 'How can we contact you back?',
-                    FormTab::RELATION_ELEMENTS => [
+                ])->setRelation(
+                    FormTab::RELATION_ELEMENTS,
+                    [
                         new FormTabElement([
                             FormTabElement::REQUIRED => true,
                             FormTabElement::WIDTH => 50,
-                            FormTabElement::RELATION_ELEMENT => new Fieldset([
-                                Input::HANDLE => 'personal_information',
-                                Input::LABEL => 'Personal information',
-                                Input::REQUIRED => true,
-                                Fieldset::RELATION_ELEMENTS => [
+                        ])->setRelation(
+                            FormTabElement::RELATION_ELEMENT,
+                            new Fieldset([
+                                Fieldset::HANDLE => 'personal_information',
+                                Fieldset::LABEL => 'Personal information',
+                            ])->setRelation(
+                                Fieldset::RELATION_ELEMENTS,
+                                [
                                     new FieldsetElement([
+                                        FieldsetElement::HANDLE => 'first_name',
+                                        FieldsetElement::LABEL => 'First name',
                                         FieldsetElement::REQUIRED => true,
                                         FieldsetElement::WIDTH => 50,
-                                        FieldsetElement::RELATION_ELEMENT => new Input([
-                                            Input::HANDLE => 'first_name',
-                                            Input::LABEL => 'First name',
-                                            Input::REQUIRED => true,
+                                    ])->setRelation(
+                                        FieldsetElement::RELATION_ELEMENT,
+                                        new Input([
                                             Input::TYPE => TextField::class,
                                         ]),
-                                    ]),
+                                    ),
                                     new FieldsetElement([
+                                        FieldsetElement::HANDLE => 'last_name',
+                                        FieldsetElement::LABEL => 'Last name',
                                         FieldsetElement::REQUIRED => true,
                                         FieldsetElement::WIDTH => 50,
-                                        FieldsetElement::RELATION_ELEMENT => new Input([
-                                            Input::HANDLE => 'last_name',
-                                            Input::LABEL => 'Last name',
-                                            Input::REQUIRED => true,
+                                    ])->setRelation(
+                                        FieldsetElement::RELATION_ELEMENT,
+                                        new Input([
                                             Input::TYPE => TextField::class,
                                         ]),
-                                    ]),
+                                    ),
                                     new FieldsetElement([
+                                        FieldsetElement::HANDLE => 'email',
+                                        FieldsetElement::LABEL => 'Email',
                                         FieldsetElement::REQUIRED => true,
-                                        FieldsetElement::RELATION_ELEMENT => new Input([
-                                            Input::HANDLE => 'email',
-                                            Input::LABEL => 'Email',
-                                            Input::REQUIRED => true,
+                                    ])->setRelation(
+                                        FieldsetElement::RELATION_ELEMENT,
+                                        new Input([
                                             Input::TYPE => EmailField::class,
                                         ]),
-                                    ]),
+                                    ),
                                 ],
-                            ]),
-                        ]),
+                            ),
+                        ),
                     ],
-                ]),
+                ),
             ],
-        ]);
+        );
     }
 
     #endregion

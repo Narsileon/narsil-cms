@@ -8,6 +8,7 @@ use Narsil\Contracts\Fields\SelectField as Contract;
 use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\FieldOption;
 
@@ -39,30 +40,36 @@ class SelectField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => Field::RELATION_OPTIONS,
-                Field::LABEL => trans('narsil::validation.attributes.options'),
-                Field::PLACEHOLDER => trans('narsil::ui.add'),
-                Field::TYPE => TableField::class,
-                Field::SETTINGS => app(TableField::class)
-                    ->columns([
-                        new Field([
-                            Field::HANDLE => FieldOption::VALUE,
-                            Field::LABEL => trans('narsil::validation.attributes.value'),
-                            Field::REQUIRED => true,
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
+            [
+                BlockElement::HANDLE => Field::RELATION_OPTIONS,
+                BlockElement::LABEL => trans('narsil::validation.attributes.options'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::PLACEHOLDER => trans('narsil::ui.add'),
+                    Field::TYPE => TableField::class,
+                    Field::SETTINGS => app(TableField::class)
+                        ->columns([
+                            [
+                                BlockElement::HANDLE => FieldOption::VALUE,
+                                BlockElement::LABEL => trans('narsil::validation.attributes.value'),
+                                BlockElement::REQUIRED => true,
+                                BlockElement::RELATION_ELEMENT => [
+                                    Field::TYPE => TextField::class,
+                                    Field::SETTINGS => app(TextField::class),
+                                ],
+                            ],
+                            [
+                                BlockElement::HANDLE => FieldOption::LABEL,
+                                BlockElement::LABEL => trans('narsil::validation.attributes.label'),
+                                BlockElement::REQUIRED => true,
+                                BlockElement::TRANSLATABLE => true,
+                                BlockElement::RELATION_ELEMENT => [
+                                    Field::TYPE => TextField::class,
+                                    Field::SETTINGS => app(TextField::class),
+                                ],
+                            ],
                         ]),
-                        new Field([
-                            Field::HANDLE => FieldOption::LABEL,
-                            Field::LABEL => trans('narsil::validation.attributes.label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-            ]),
+                ],
+            ],
         ];
     }
 

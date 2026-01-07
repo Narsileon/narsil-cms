@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\DateField as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 
 #endregion
@@ -38,24 +39,30 @@ class DateField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::LABEL => trans('narsil::validation.attributes.default_value'),
-                Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.min" : 'min',
-                Field::LABEL => trans('narsil::validation.attributes.min'),
-                Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
-            ]),
-            new Field([
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
+                BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => Contract::class,
+                    Field::SETTINGS => app(Contract::class),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.min" : 'min',
+                BlockElement::LABEL => trans('narsil::validation.attributes.min'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => Contract::class,
+                    Field::SETTINGS => app(Contract::class),
+                ],
+            ],
+            [
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
                 Field::LABEL => trans('narsil::validation.attributes.max'),
-                Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
-            ]),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => Contract::class,
+                    Field::SETTINGS => app(Contract::class),
+                ],
+            ],
         ];
     }
 

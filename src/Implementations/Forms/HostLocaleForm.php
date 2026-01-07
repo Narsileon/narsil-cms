@@ -15,6 +15,7 @@ use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Support\SelectOption;
 use ResourceBundle;
 
@@ -58,14 +59,16 @@ class HostLocaleForm extends AbstractForm implements Contract
             Field::TYPE => TableField::class,
             Field::SETTINGS => app(TableField::class)
                 ->columns([
-                    new Field([
-                        Field::HANDLE => HostLocaleLanguage::LANGUAGE,
-                        Field::LABEL => trans('narsil::validation.attributes.language'),
-                        Field::REQUIRED => true,
-                        Field::TYPE => SelectField::class,
-                        Field::RELATION_OPTIONS => $languageSelectOptions,
-                        Field::SETTINGS => app(SelectField::class),
-                    ]),
+                    [
+                        BlockElement::HANDLE => HostLocaleLanguage::LANGUAGE,
+                        BlockElement::LABEL => trans('narsil::validation.attributes.language'),
+                        BlockElement::REQUIRED => true,
+                        BlockElement::RELATION_ELEMENT => [
+                            Field::TYPE => SelectField::class,
+                            Field::SETTINGS => app(SelectField::class),
+                            Field::RELATION_OPTIONS => $languageSelectOptions,
+                        ],
+                    ],
                 ]),
         ]);
     }

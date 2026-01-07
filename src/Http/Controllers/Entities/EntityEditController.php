@@ -150,7 +150,7 @@ class EntityEditController extends RenderController
                 'id' => $entity->{Entity::ID},
                 'collection' => $this->template->{Template::TABLE_NAME},
             ]))
-            ->autoSave(true)
+            ->autoSave(false)
             ->id($entity->{Entity::UUID})
             ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())

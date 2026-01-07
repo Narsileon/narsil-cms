@@ -10,6 +10,8 @@ use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\User;
 
 #endregion
@@ -42,17 +44,23 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Field([
-                Field::HANDLE => User::PASSWORD,
-                Field::LABEL => trans('narsil::validation.attributes.password'),
-                Field::REQUIRED => true,
-                Field::TYPE => PasswordField::class,
-                Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => User::PASSWORD,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value),
+                        ],
+                    ],
+                ],
+            ]
         ];
     }
 

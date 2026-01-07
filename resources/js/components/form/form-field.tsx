@@ -1,13 +1,10 @@
-import type { Condition, Field } from "@narsil-cms/types";
+import type { StructureHasElement } from "@narsil-cms/types";
 import { cloneDeep, get, isObject, unset } from "lodash-es";
 import { useEffect, useState } from "react";
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
 
-type FormFieldProps = {
-  conditions?: Condition[];
-  field: Field;
-  id: string;
+type FormFieldProps = StructureHasElement & {
   render: (field: {
     fieldLanguage: string;
     handle: string;
@@ -18,17 +15,24 @@ type FormFieldProps = {
   }) => React.ReactNode;
 };
 
-function FormField({ conditions, field, id, render }: FormFieldProps) {
+function FormField({
+  conditions,
+  element,
+  handle,
+  render,
+  translatable,
+  ...props
+}: FormFieldProps) {
   const { data, defaultLanguage, errors, formLanguage, setData } = useForm();
 
   const [fieldLanguage, setFieldLanguage] = useState<string>("en");
   const [visible, setVisible] = useState<boolean>(true);
 
   function getError() {
-    let error = get(errors, id);
+    let error = get(errors, handle);
 
-    if (!error && field.translatable) {
-      error = get(errors, `${id}.${fieldLanguage}`);
+    if (!error && translatable) {
+      error = get(errors, `${handle}.${fieldLanguage}`);
     }
 
     return error;
@@ -37,8 +41,8 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   function getPlaceholder() {
     let placeholder = undefined;
 
-    if (field.translatable && defaultLanguage) {
-      const value = get(data, id);
+    if (translatable && defaultLanguage) {
+      const value = get(data, handle);
 
       if (isObject(value)) {
         placeholder = get(value, defaultLanguage);
@@ -49,11 +53,11 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   }
 
   function getValue() {
-    const defaultValue = (field.settings as Record<string, unknown>)?.value ?? "";
+    const defaultValue = (element.settings as Record<string, unknown>)?.value ?? "";
 
-    let value = get(data, id, defaultValue);
+    let value = get(data, handle, defaultValue);
 
-    if (field.translatable && isObject(value)) {
+    if (translatable && isObject(value)) {
       value = get(value, fieldLanguage, defaultValue);
     }
 
@@ -61,8 +65,8 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   }
 
   useEffect(() => {
-    if (get(data, id) === undefined) {
-      setData?.(id, getValue());
+    if (get(data, handle) === undefined) {
+      setData?.(handle, getValue());
     }
   }, []);
 
@@ -82,7 +86,7 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
       setData?.((data: Record<string, unknown>) => {
         const newData = cloneDeep(data);
 
-        unset(newData, field.handle);
+        unset(newData, handle);
 
         return newData;
       });
@@ -98,7 +102,7 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   }, [formLanguage]);
 
   const contextValue = {
-    ...field,
+    ...element,
     error: getError(),
     fieldLanguage: fieldLanguage,
     setFieldLanguage: setFieldLanguage,
@@ -107,12 +111,12 @@ function FormField({ conditions, field, id, render }: FormFieldProps) {
   return visible ? (
     <FormFieldContext.Provider value={contextValue}>
       {render({
-        handle: id,
+        handle: handle,
         fieldLanguage: fieldLanguage,
         placeholder: getPlaceholder(),
         value: getValue(),
         onFieldChange: (value) => {
-          const key = field.translatable ? `${id}.${fieldLanguage}` : id;
+          const key = translatable ? `${handle}.${fieldLanguage}` : handle;
 
           setData?.(key, value);
         },

@@ -52,11 +52,6 @@ class Form extends Model
         ];
 
         parent::__construct($attributes);
-
-        if ($tabs = Arr::get($attributes, self::RELATION_TABS))
-        {
-            $this->setRelation(self::RELATION_TABS, collect($tabs));
-        }
     }
 
     #endregion

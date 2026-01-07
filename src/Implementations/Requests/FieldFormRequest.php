@@ -56,22 +56,21 @@ class FieldFormRequest extends AbstractFormRequest implements Contract
                 )->ignore($this->field?->{Field::ID}),
             ],
             Field::LABEL => [
+                FormRule::ARRAY,
                 FormRule::REQUIRED,
+            ],
+            Field::DESCRIPTION => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
             ],
             Field::PLACEHOLDER => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
-            Field::REQUIRED => [
-                FormRule::BOOLEAN,
-            ],
             Field::SETTINGS => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
-            ],
-            Field::TRANSLATABLE => [
-                FormRule::BOOLEAN,
             ],
             Field::TYPE => [
                 FormRule::STRING,

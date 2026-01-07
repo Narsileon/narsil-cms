@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Fields;
 use Narsil\Contracts\Fields\NumberField;
 use Narsil\Contracts\Fields\RangeField as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 
 #endregion
@@ -37,35 +38,43 @@ class RangeField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::LABEL => trans('narsil::validation.attributes.default_value'),
-                Field::TYPE => NumberField::class,
-                Field::SETTINGS => app(NumberField::class)
-                    ->defaultValue(0),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.min" : 'min',
-                Field::LABEL => trans('narsil::validation.attributes.min'),
-                Field::TYPE => NumberField::class,
-                Field::SETTINGS => app(NumberField::class)
-                    ->defaultValue(0),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.max" : 'max',
-                Field::LABEL => trans('narsil::validation.attributes.max'),
-                Field::TYPE => NumberField::class,
-                Field::SETTINGS => app(NumberField::class)
-                    ->defaultValue(100),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.step" : 'step',
-                Field::LABEL => trans('narsil::validation.attributes.step'),
-                Field::TYPE => NumberField::class,
-                Field::SETTINGS => app(NumberField::class)
-                    ->min(0)
-                    ->defaultValue(1),
-            ]),
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
+                BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class)
+                        ->defaultValue(0),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.min" : 'min',
+                BlockElement::LABEL => trans('narsil::validation.attributes.min'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class)
+                        ->defaultValue(0),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.max" : 'max',
+                BlockElement::LABEL => trans('narsil::validation.attributes.max'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class)
+                        ->defaultValue(100),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.step" : 'step',
+                BlockElement::LABEL => trans('narsil::validation.attributes.step'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class)
+                        ->min(0)
+                        ->defaultValue(1),
+                ],
+            ],
         ];
     }
 

@@ -79,7 +79,7 @@ interface RelationsField extends Contract
     /**
      * Set the intermediate attribute.
      *
-     * @param Field $relation
+     * @param array $relation
      * @param string $label
      * @param string $optionLabel
      * @param string $optionValue
@@ -87,7 +87,7 @@ interface RelationsField extends Contract
      * @return static
      */
     public function intermediate(
-        Field $relation,
+        array $relation,
         string $label,
         string $optionLabel,
         string $optionValue,

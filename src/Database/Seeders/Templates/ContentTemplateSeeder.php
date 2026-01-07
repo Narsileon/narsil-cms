@@ -48,27 +48,35 @@ class ContentTemplateSeeder extends TemplateSeeder
             Template::TABLE_NAME => 'contents',
             Template::PLURAL => 'contents',
             Template::SINGULAR => 'content',
-            Template::RELATION_TABS => [
+        ])->setRelation(
+            Template::RELATION_TABS,
+            [
                 new TemplateTab([
                     TemplateTab::HANDLE => 'content',
                     TemplateTab::LABEL => 'content',
-                    TemplateTab::RELATION_ELEMENTS => [
+                ])->setRelation(
+                    TemplateTab::RELATION_ELEMENTS,
+                    [
                         new TemplateTabElement([
-                            TemplateTabElement::RELATION_ELEMENT => new Field([
-                                Field::HANDLE => self::CONTENT,
-                                Field::LABEL => 'content',
+                            TemplateTabElement::HANDLE => self::CONTENT,
+                            TemplateTabElement::LABEL => 'content',
+                        ])->setRelation(
+                            TemplateTabElement::RELATION_ELEMENT,
+                            new Field([
                                 Field::TYPE => BuilderField::class,
-                                Field::RELATION_BLOCKS => [
+                            ])->setRelation(
+                                Field::RELATION_BLOCKS,
+                                [
                                     $accordionBlock,
                                     $formBlock,
                                     $heroHeaderBlock,
                                 ],
-                            ]),
-                        ]),
+                            ),
+                        ),
                     ],
-                ]),
+                ),
             ],
-        ]);
+        );
     }
 
     #endregion

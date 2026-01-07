@@ -10,6 +10,8 @@ use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -50,19 +52,25 @@ class TwoFactorForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Field([
-                Field::DESCRIPTION => trans('narsil::two-factor.code_description'),
-                Field::HANDLE => 'code',
-                Field::LABEL => trans('narsil::validation.attributes.code'),
-                Field::REQUIRED => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
-                    ->icon('circle-check'),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::DESCRIPTION => trans('narsil::two-factor.code_description'),
+                        TemplateTabElement::HANDLE => 'code',
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.code'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
+                                ->icon('circle-check'),
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

@@ -45,16 +45,13 @@ export type EntityNode = Model & {
 
 export type Field = {
   blocks: Block[];
-  class_name: string;
-  description: string | null;
+  description: string;
   handle: string;
   id: number;
   identifier: string;
   label: string;
   placeholder: string;
   options: FieldOption[];
-  required: boolean;
-  translatable: boolean;
 } & FieldType;
 
 export type FieldOption = {
@@ -95,7 +92,9 @@ export type FormTab = Model & {
 };
 
 export type HasElement = Model & {
+  class_name: string;
   conditions?: Condition[];
+  description?: string;
   element_id: number;
   handle: string;
   id: number;
@@ -118,16 +117,13 @@ export type HostLocaleLanguage = Model & {
 
 export type Input = {
   blocks: Block[];
-  class_name: string;
-  description: string | null;
+  description: string;
   handle: string;
   id: number;
   identifier: string;
   label: string;
   placeholder: string;
   options: FieldOption[];
-  required: boolean;
-  translatable: boolean;
 } & FieldType;
 
 export type SitePage = Model & {

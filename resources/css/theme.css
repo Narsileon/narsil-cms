@@ -51,7 +51,7 @@
   --destructive: oklch(57.7% 0.245 27.325);
   --foreground: var(--color-zinc-950);
   --input: var(--color-zinc-300);
-  --muted-foreground: var(--color-zinc-500);
+  --muted-foreground: var(--color-zinc-600);
   --muted: var(--color-zinc-200);
   --popover-foreground: var(--color-zinc-950);
   --popover: var(--color-zinc-50);
@@ -82,7 +82,7 @@
   --card: var(--color-zinc-950);
   --foreground: var(--color-zinc-50);
   --input: var(--color-zinc-700);
-  --muted-foreground: var(--color-zinc-500);
+  --muted-foreground: var(--color-zinc-400);
   --muted: var(--color-zinc-800);
   --popover-foreground: var(--color-zinc-50);
   --popover: var(--color-zinc-950);

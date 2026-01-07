@@ -57,47 +57,55 @@ class HeadlineBlockSeeder extends BlockSeeder
         return new Block([
             Block::HANDLE => self::HEADLINE,
             Block::LABEL => 'Headline',
-            Block::RELATION_ELEMENTS => [
+        ])->setRelation(
+            Block::RELATION_ELEMENTS,
+            [
                 new BlockElement([
+                    BlockElement::HANDLE => self::HEADLINE,
+                    BlockElement::LABEL => 'Headline',
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::HEADLINE,
-                        Field::LABEL => 'Headline',
-                        Field::REQUIRED => true,
-                        Field::TRANSLATABLE => true,
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(SelectField::class),
                     ]),
-                ]),
+                ),
                 new BlockElement([
+                    BlockElement::HANDLE => self::HEADLINE_LEVEL,
+                    BlockElement::LABEL => 'Level',
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::HEADLINE_LEVEL,
-                        Field::LABEL => 'Level',
-                        Field::REQUIRED => true,
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => SelectField::class,
-                        Field::RELATION_OPTIONS => $headlineSelectOptions,
                         Field::SETTINGS => app(SelectField::class)
                             ->defaultValue('h1'),
-                    ]),
-                ]),
+                    ])->setRelation(
+                        Field::RELATION_OPTIONS,
+                        $headlineSelectOptions,
+                    ),
+                ),
                 new BlockElement([
+                    BlockElement::HANDLE => self::HEADLINE_STYLE,
+                    BlockElement::LABEL => 'Style',
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => self::HEADLINE_STYLE,
-                        Field::LABEL => 'Style',
-                        Field::REQUIRED => true,
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => SelectField::class,
-                        Field::RELATION_OPTIONS => $headlineSelectOptions,
                         Field::SETTINGS => app(SelectField::class)
                             ->defaultValue('h6'),
-                    ]),
-                ]),
+                    ])->setRelation(
+                        Field::RELATION_OPTIONS,
+                        $headlineSelectOptions,
+                    ),
+                ),
             ],
-        ]);
+        );
     }
 
     #endregion

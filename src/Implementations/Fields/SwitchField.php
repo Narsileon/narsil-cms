@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\SwitchField as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 
 #endregion
@@ -36,12 +37,14 @@ class SwitchField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.value" : 'value',
-                Field::LABEL => trans('narsil::validation.attributes.default_value'),
-                Field::TYPE => Contract::class,
-                Field::SETTINGS => app(Contract::class),
-            ]),
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
+                BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => Contract::class,
+                    Field::SETTINGS => app(Contract::class),
+                ],
+            ],
         ];
     }
 

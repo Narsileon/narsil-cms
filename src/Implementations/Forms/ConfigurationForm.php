@@ -46,44 +46,44 @@ class ConfigurationForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $frontendLanguages = HostLocaleLanguage::getUniqueLanguages();
         $backendLanguages = Config::get('narsil.locales');
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'frontend',
                 TemplateTab::LABEL => trans('narsil::ui.frontend'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
+                    [
+                        TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.default_language'),
+                        TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                            Field::LABEL => trans('narsil::validation.attributes.default_language'),
-                            Field::REQUIRED => true,
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($frontendLanguages),
                             Field::SETTINGS => app(SelectField::class),
+                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($frontendLanguages),
                         ]),
-                    ]),
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'backend',
                 TemplateTab::LABEL => trans('narsil::ui.backend'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                            Field::LABEL => trans('narsil::validation.attributes.default_language'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.default_language'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SelectField::class,
-                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($backendLanguages),
                             Field::SETTINGS => app(SelectField::class),
-                        ]),
-                    ]),
+                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($backendLanguages),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

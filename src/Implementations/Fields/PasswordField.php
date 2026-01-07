@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\PasswordField as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Support\TranslationsBag;
 
@@ -43,33 +44,40 @@ class PasswordField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => Field::PLACEHOLDER,
-                Field::LABEL => trans('narsil::validation.attributes.placeholder'),
-                Field::TRANSLATABLE => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
-                Field::LABEL => trans('narsil::validation.attributes.min_length'),
-                Field::TYPE => NumberField::class,
-                Field::SETTINGS => app(NumberField::class)
-                    ->max(255)
-                    ->min(0)
-                    ->step(1)
-                    ->defaultValue(0),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
-                Field::LABEL => trans('narsil::validation.attributes.max_length'),
-                Field::TYPE => NumberField::class,
-                Field::SETTINGS => app(NumberField::class)
-                    ->max(255)
-                    ->min(0)
-                    ->step(1)
-                    ->defaultValue(255),
-            ]),
+            [
+                BlockElement::HANDLE => Field::PLACEHOLDER,
+                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::TRANSLATABLE => true,
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => TextField::class,
+                    Field::SETTINGS => app(TextField::class),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
+                BlockElement::LABEL => trans('narsil::validation.attributes.min_length'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class)
+                        ->max(255)
+                        ->min(0)
+                        ->step(1)
+                        ->defaultValue(0),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
+                BlockElement::LABEL => trans('narsil::validation.attributes.max_length'),
+                BlockElement::TRANSLATABLE => true,
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => NumberField::class,
+                    Field::SETTINGS => app(NumberField::class)
+                        ->max(255)
+                        ->min(0)
+                        ->step(1)
+                        ->defaultValue(255),
+                ],
+            ],
         ];
     }
 

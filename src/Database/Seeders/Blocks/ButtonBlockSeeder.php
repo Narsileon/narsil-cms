@@ -41,23 +41,26 @@ class ButtonBlockSeeder extends BlockSeeder
         return new Block([
             Block::HANDLE => 'button',
             Block::LABEL => 'Button',
-            Block::RELATION_ELEMENTS => [
+        ])->setRelation(
+            Block::RELATION_ELEMENTS,
+            [
                 new BlockElement([
+                    BlockElement::HANDLE => 'label',
+                    BlockElement::LABEL => 'Label',
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
-                    BlockElement::RELATION_ELEMENT => new Field([
-                        Field::HANDLE => 'label',
-                        Field::LABEL => 'Label',
-                        Field::REQUIRED => true,
-                        Field::TRANSLATABLE => true,
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    new Field([
                         Field::TYPE => TextField::class,
                     ]),
-                ]),
-                new BlockElement([
-                    BlockElement::RELATION_ELEMENT => $linkBlock,
-                ]),
+                ),
+                new BlockElement([])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    $linkBlock,
+                ),
             ],
-        ]);
+        );
     }
 
     #endregion

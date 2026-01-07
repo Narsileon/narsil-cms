@@ -8,6 +8,7 @@ use Narsil\Contracts\Fields\BuilderField as Contract;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Structures\Block;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
@@ -51,21 +52,23 @@ class BuilderField extends AbstractField implements Contract
         $blockSelectOptions = static::getBlockSelectOptions();
 
         return [
-            new Field([
-                Field::HANDLE => Field::RELATION_BLOCKS,
-                Field::LABEL => ModelService::getTableLabel(Block::TABLE),
-                Field::TYPE => RelationsField::class,
-                Field::SETTINGS => app(RelationsField::class)
-                    ->addOption(
-                        identifier: Block::TABLE,
-                        label: ModelService::getModelLabel(Block::class),
-                        optionLabel: Block::LABEL,
-                        optionValue: Block::HANDLE,
-                        options: $blockSelectOptions,
-                        routes: RouteService::getNames(Block::TABLE),
-                    )
-                    ->unique(true),
-            ]),
+            [
+                BlockElement::HANDLE => Field::RELATION_BLOCKS,
+                BlockElement::LABEL => ModelService::getTableLabel(Block::TABLE),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => RelationsField::class,
+                    Field::SETTINGS => app(RelationsField::class)
+                        ->addOption(
+                            identifier: Block::TABLE,
+                            label: ModelService::getModelLabel(Block::class),
+                            optionLabel: Block::LABEL,
+                            optionValue: Block::HANDLE,
+                            options: $blockSelectOptions,
+                            routes: RouteService::getNames(Block::TABLE),
+                        )
+                        ->unique(true),
+                ],
+            ],
         ];
     }
 

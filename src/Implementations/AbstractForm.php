@@ -37,14 +37,14 @@ abstract class AbstractForm extends Fluent implements Form
         $languageOptions = Config::get('narsil.locales', []);
 
         $id = $this->getDefaultId();
-        $layout = $this->getLayout();
+        $tabs = $this->getTabs();
 
         $this
             ->defaultLanguage($defaultLanguage)
             ->id($id)
             ->languageOptions($languageOptions)
-            ->layout($layout)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil::ui.save'))
+            ->tabs($tabs);
 
         app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
@@ -141,16 +141,6 @@ abstract class AbstractForm extends Fluent implements Form
     /**
      * {@inheritDoc}
      */
-    public function layout(array $layout): static
-    {
-        $this->set('layout', $layout);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function method(string $method): static
     {
         $this->set('method', $method);
@@ -188,6 +178,16 @@ abstract class AbstractForm extends Fluent implements Form
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function tabs(array $tabs): static
+    {
+        $this->set('tabs', $tabs);
+
+        return $this;
+    }
+
     #endregion
 
     #region PROTECTED METHODS
@@ -197,7 +197,7 @@ abstract class AbstractForm extends Fluent implements Form
      *
      * @return array
      */
-    abstract protected function getLayout(): array;
+    abstract protected function getTabs(): array;
 
     /**
      * @param mixed $id

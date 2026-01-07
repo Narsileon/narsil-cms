@@ -8,9 +8,10 @@ use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 
 #endregion
 
@@ -25,50 +26,50 @@ class BlockElementForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Block([
-                Block::RELATION_ELEMENTS => [
-                    new BlockElement([
-                        BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => BlockElement::HANDLE,
-                            Field::LABEL => trans('narsil::validation.attributes.handle'),
-                            Field::REQUIRED => true,
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => BlockElement::HANDLE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new BlockElement([
-                        BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => BlockElement::LABEL,
-                            Field::LABEL => trans('narsil::validation.attributes.label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => BlockElement::LABEL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new BlockElement([
-                        BlockElement::WIDTH => 50,
-                        BlockElement::RELATION_ELEMENT =>  new Field([
-                            Field::HANDLE => BlockElement::REQUIRED,
-                            Field::LABEL => trans('narsil::validation.attributes.required'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => BlockElement::REQUIRED,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.required'),
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
-                        ]),
-                    ]),
-                    new BlockElement([
-                        BlockElement::WIDTH => 50,
-                        BlockElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => BlockElement::TRANSLATABLE,
-                            Field::LABEL => trans('narsil::validation.attributes.translatable'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => BlockElement::TRANSLATABLE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.translatable'),
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

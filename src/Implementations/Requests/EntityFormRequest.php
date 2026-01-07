@@ -119,7 +119,7 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
             {
                 $field = $element->{IStructureHasElement::RELATION_ELEMENT};
 
-                if ($field->{Field::TRANSLATABLE})
+                if ($element->{IStructureHasElement::TRANSLATABLE})
                 {
                     $attributes[$key] = $handle;
                 }
@@ -187,7 +187,7 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
                     $fieldRules[] = FormRule::NULLABLE;
                 }
 
-                if ($field->{Field::TRANSLATABLE})
+                if ($element->{IStructureHasElement::TRANSLATABLE})
                 {
                     $rules[$key] = array_merge([FormRule::ARRAY], $fieldRules);
 

@@ -42,34 +42,34 @@ class HeaderForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Header::SLUG,
-                            Field::LABEL => trans('narsil::validation.attributes.slug'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Header::SLUG,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Header::LOGO,
-                            Field::LABEL => trans('narsil::validation.attributes.logo'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Header::LOGO,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.logo'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
                                 ->accept('image/*')
                                 ->icon('image'),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

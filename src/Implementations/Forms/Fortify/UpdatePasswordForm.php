@@ -11,6 +11,8 @@ use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\User;
 
 #endregion
@@ -44,41 +46,53 @@ class UpdatePasswordForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Field([
-                Field::HANDLE => AutoCompleteEnum::USERNAME->value,
-                Field::LABEL => trans('narsil::validation.attributes.email'),
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::USERNAME->value)
-                    ->type('hidden'),
-            ]),
-            new Field([
-                Field::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
-                Field::LABEL => trans('narsil::validation.attributes.current_password'),
-                Field::REQUIRED => true,
-                Field::TYPE => PasswordField::class,
-                Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value),
-            ]),
-            new Field([
-                Field::HANDLE => User::PASSWORD,
-                Field::LABEL => trans('narsil::validation.attributes.password'),
-                Field::REQUIRED => true,
-                Field::TYPE => PasswordField::class,
-                Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
-            ]),
-            new Field([
-                Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::LABEL => trans('narsil::validation.attributes.password_confirmation'),
-                Field::REQUIRED => true,
-                Field::TYPE => PasswordField::class,
-                Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => AutoCompleteEnum::USERNAME->value,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::USERNAME->value)
+                                ->type('hidden'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.current_password'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::PASSWORD,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

@@ -7,13 +7,13 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
-import { FormRenderer } from "@narsil-cms/components/form";
+import { FormElement } from "@narsil-cms/components/form";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { cn, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
-import type { Block, Field } from "@narsil-cms/types";
+import type { StructureHasElement } from "@narsil-cms/types";
 import { type ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
 
@@ -26,7 +26,7 @@ type ArrayItemProps = Pick<
   index?: number;
   item: ArrayElement;
   labelKey: string;
-  form?: (Block | Field)[];
+  form: StructureHasElement[];
   onItemChange?: (value: ArrayElement) => void;
 };
 
@@ -99,7 +99,7 @@ function ArrayItem({
 
                 const finalHandle = `${handle}.${index}.${defaultHandle}`;
 
-                return <FormRenderer {...item} handle={finalHandle} key={defaultHandle} />;
+                return <FormElement {...item} handle={finalHandle} key={defaultHandle} />;
               })}
             </CardContent>
           </CollapsibleContent>

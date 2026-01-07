@@ -12,6 +12,8 @@ use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\User;
 
 #endregion
@@ -44,55 +46,69 @@ class RegisterForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Field([
-                Field::HANDLE => User::EMAIL,
-                Field::LABEL => trans('narsil::validation.attributes.email'),
-                Field::REQUIRED => true,
-                Field::TYPE => EmailField::class,
-                Field::SETTINGS => app(EmailField::class)
-                    ->icon('email'),
-            ]),
-            new Field([
-                Field::CLASS_NAME => 'col-span-6',
-                Field::HANDLE => User::PASSWORD,
-                Field::LABEL => trans('narsil::validation.attributes.password'),
-                Field::REQUIRED => true,
-                Field::TYPE => PasswordField::class,
-                Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
-            ]),
-            new Field([
-                Field::CLASS_NAME => 'col-span-6',
-                Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                Field::LABEL => trans('narsil::validation.attributes.password_confirmation'),
-                Field::REQUIRED => true,
-                Field::TYPE => PasswordField::class,
-                Field::SETTINGS => app(PasswordField::class)
-                    ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
-            ]),
-            new Field([
-                Field::CLASS_NAME => 'col-span-6',
-                Field::HANDLE => User::FIRST_NAME,
-                Field::LABEL => trans('narsil::validation.attributes.first_name'),
-                Field::REQUIRED => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
-                    ->icon('circle-user'),
-            ]),
-            new Field([
-                Field::CLASS_NAME => 'col-span-6',
-                Field::HANDLE => User::LAST_NAME,
-                Field::LABEL => trans('narsil::validation.attributes.last_name'),
-                Field::REQUIRED => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class)
-                    ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
-                    ->icon('circle-user'),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => User::EMAIL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => EmailField::class,
+                            Field::SETTINGS => app(EmailField::class)
+                                ->icon('email'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::CLASS_NAME => 'col-span-6',
+                        TemplateTabElement::HANDLE => User::PASSWORD,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::CLASS_NAME => 'col-span-6',
+                        TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => PasswordField::class,
+                            Field::SETTINGS => app(PasswordField::class)
+                                ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::CLASS_NAME => 'col-span-6',
+                        TemplateTabElement::HANDLE => User::FIRST_NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
+                                ->icon('circle-user'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::CLASS_NAME => 'col-span-6',
+                        TemplateTabElement::HANDLE => User::LAST_NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class)
+                                ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
+                                ->icon('circle-user'),
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

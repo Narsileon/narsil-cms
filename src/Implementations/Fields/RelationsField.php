@@ -8,10 +8,10 @@ use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField as Contract;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
 use Narsil\Support\TranslationsBag;
-use Narsil\Support\SelectOption;
 
 #endregion
 
@@ -51,20 +51,24 @@ class RelationsField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.collections" : 'collections',
-                Field::LABEL => trans('narsil::ui.collections'),
-                Field::TYPE => SelectField::class,
-                Field::RELATION_OPTIONS => Template::selectOptions(),
-                Field::SETTINGS => app(SelectField::class)
-                    ->multiple(true),
-            ]),
-            new Field([
-                Field::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                Field::LABEL => trans('narsil::validation.attributes.multiple'),
-                Field::TYPE => CheckboxField::class,
-                Field::SETTINGS => app(CheckboxField::class),
-            ]),
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.collections" : 'collections',
+                BlockElement::LABEL => trans('narsil::ui.collections'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => SelectField::class,
+                    Field::SETTINGS => app(SelectField::class)
+                        ->multiple(true),
+                    Field::RELATION_OPTIONS => Template::selectOptions(),
+                ],
+            ],
+            [
+                BlockElement::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
+                BlockElement::LABEL => trans('narsil::validation.attributes.multiple'),
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => CheckboxField::class,
+                    Field::SETTINGS => app(CheckboxField::class),
+                ],
+            ],
         ];
     }
 
@@ -140,7 +144,7 @@ class RelationsField extends AbstractField implements Contract
      * {@inheritDoc}
      */
     final public function intermediate(
-        Field $relation,
+        array $relation,
         string $label,
         string $optionLabel,
         string $optionValue,

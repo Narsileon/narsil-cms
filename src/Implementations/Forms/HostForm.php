@@ -43,68 +43,157 @@ class HostForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         $hostLocaleForm = app(HostLocaleForm::class);
 
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Host::HOST,
-                            Field::LABEL => trans('narsil::validation.attributes.host'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => Host::HOST,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.host'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Host::LABEL,
-                            Field::LABEL => trans('narsil::validation.attributes.label'),
-                            Field::REQUIRED => true,
-                            Field::TRANSLATABLE => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Host::LABEL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
-                        ]),
-                    ]),
-
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'default_country',
                 TemplateTab::LABEL => trans('narsil::ui.default_country'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
+                    [
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
-                        TemplateTabElement::RELATION_ELEMENT => $hostLocaleForm->getPatternField(),
-                    ]),
-                    new TemplateTabElement([
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.pattern'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                    [
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
                         TemplateTabElement::RELATION_ELEMENT => $hostLocaleForm->getLanguagesField(),
-                    ]),
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'other_countries',
                 TemplateTab::LABEL => trans('narsil::ui.other_countries'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => Host::RELATION_OTHER_LOCALES,
-                            Field::LABEL => trans('narsil::validation.attributes.locales'),
+                    [
+                        TemplateTabElement::HANDLE => Host::RELATION_OTHER_LOCALES,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.locales'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form($hostLocaleForm->layout)
                                 ->labelKey(HostLocale::COUNTRY),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
+    }
+
+    #region PROTECTED METHODS
+
+    /**
+     * Get the country select options.
+     *
+     * @return array<SelectOption>
+     */
+    protected function getCountrySelectOptions(): array
+    {
+        $locales = \ResourceBundle::getLocales('');
+
+        $codes = array_filter(array_unique(array_map(function ($locale)
+        {
+            $region = Locale::getRegion($locale);
+
+            if ($region && preg_match('/^[A-Z]{2}$/', $region))
+            {
+                return $region;
+            }
+
+            return null;
+        }, $locales)));
+
+        $options = [];
+
+        foreach ($codes as $code)
+        {
+            $label = Locale::getDisplayRegion('_' . $code, App::getLocale());
+
+            if (!$label || $label === $code)
+            {
+                continue;
+            }
+
+            $options[] = new SelectOption()
+                ->optionLabel(ucfirst($label))
+                ->optionValue($code);
+        }
+
+        usort($options, function (SelectOption $a, SelectOption $b)
+        {
+            return strcasecmp($a->label, $b->label);
+        });
+
+        return array_values($options);
+    }
+
+    /**
+     * Get the language select options.
+     *
+     * @return array<SelectOption>
+     */
+    protected function getLanguageSelectOptions(): array
+    {
+        $locales = ResourceBundle::getLocales('');
+
+        $codes = array_unique(array_map(function ($locale)
+        {
+            return Str::substr($locale, 0, 2);
+        }, $locales));
+
+        $options = [];
+
+        foreach ($codes as $code)
+        {
+            $label = Locale::getDisplayLanguage($code, App::getLocale());
+
+            if (!$label || $label === $code)
+            {
+                continue;
+            }
+
+            $options[] = new SelectOption()
+                ->optionLabel(ucfirst($label))
+                ->optionValue($code);
+        }
+
+        usort($options, function (SelectOption $a, SelectOption $b)
+        {
+            return strcasecmp($a->label, $b->label);
+        });
+
+        return array_values($options);
     }
 
     #endregion

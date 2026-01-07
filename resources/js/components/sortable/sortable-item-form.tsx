@@ -14,11 +14,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
-import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { FormType } from "@narsil-cms/types";
 import { get } from "lodash-es";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { type AnonymousItem } from ".";
 
 type SortableItemFormProps = {
@@ -72,7 +72,7 @@ function SortableItemForm({
           <FormProvider
             id={form.id}
             action={form.action}
-            elements={form.layout}
+            elements={form.tabs}
             method={form.method}
             initialValues={data}
             languageOptions={form.languageOptions}
@@ -84,8 +84,14 @@ function SortableItemForm({
                       <DialogDescription></DialogDescription>
                     </VisuallyHidden>
                     <FormRoot className="grid-cols-12 gap-4">
-                      {form.layout.map((element, index) => {
-                        return <FormRenderer {...element} key={index} />;
+                      {form.tabs.map((tab, index) => {
+                        return (
+                          <Fragment key={index}>
+                            {tab.elements?.map((element, index) => {
+                              return <FormElement {...element} key={index} />;
+                            })}
+                          </Fragment>
+                        );
                       })}
                     </FormRoot>
                   </DialogBody>

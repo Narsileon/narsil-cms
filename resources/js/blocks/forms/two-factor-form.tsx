@@ -2,11 +2,11 @@ import { router } from "@inertiajs/react";
 import { Card } from "@narsil-cms/blocks/card";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Label } from "@narsil-cms/blocks/label";
-import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
@@ -87,7 +87,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
           <FormProvider
             action={form.action}
             id={form.id}
-            elements={form.layout}
+            elements={form.tabs}
             method={form.method}
             render={({ setError }) => {
               return (
@@ -112,8 +112,14 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                     ]}
                     footerProps={{ className: "justify-end border-t" }}
                   >
-                    {form.layout.map((element, index) => {
-                      return <FormRenderer {...element} key={index} />;
+                    {form.tabs.map((tab, index) => {
+                      return (
+                        <Fragment key={index}>
+                          {tab.elements?.map((element, index) => {
+                            return <FormElement {...element} key={index} />;
+                          })}
+                        </Fragment>
+                      );
                     })}
                     <div
                       className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"

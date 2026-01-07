@@ -2,7 +2,7 @@ import { router } from "@inertiajs/react";
 import { Button } from "@narsil-cms/blocks/button";
 import { Card } from "@narsil-cms/blocks/card";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
-import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverContent,
@@ -12,7 +12,7 @@ import {
 } from "@narsil-cms/components/popover";
 import type { Bookmark, FormType } from "@narsil-cms/types";
 import { sortBy } from "lodash-es";
-import { useEffect, useState, type ComponentProps } from "react";
+import { Fragment, useEffect, useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 type BookmarksProps = ComponentProps<typeof PopoverTrigger> & {
@@ -102,7 +102,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
             <FormProvider
               action={route("user-bookmarks.update", bookmark.uuid)}
               id={form.id}
-              elements={form.layout}
+              elements={form.tabs}
               method="patch"
               initialValues={{
                 name: bookmark?.name,
@@ -141,8 +141,14 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                         },
                       }}
                     >
-                      {form.layout.map((element, index) => {
-                        return <FormRenderer {...element} key={index} />;
+                      {form.tabs.map((tab, index) => {
+                        return (
+                          <Fragment key={index}>
+                            {tab.elements?.map((element, index) => {
+                              return <FormElement {...element} key={index} />;
+                            })}
+                          </Fragment>
+                        );
                       })}
                     </FormRoot>
                   </Card>

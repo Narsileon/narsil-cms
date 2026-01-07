@@ -7,6 +7,8 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Field;
+use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Users\UserBookmark;
 
 #endregion
@@ -22,15 +24,22 @@ class UserBookmarkForm extends AbstractForm
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new Field([
-                Field::HANDLE => UserBookmark::NAME,
-                Field::LABEL => trans('narsil::validation.attributes.name'),
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
+            [
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => UserBookmark::NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

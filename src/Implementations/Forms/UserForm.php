@@ -48,99 +48,98 @@ class UserForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getLayout(): array
+    protected function getTabs(): array
     {
         return [
-            new TemplateTab([
+            [
                 TemplateTab::HANDLE => 'account',
                 TemplateTab::LABEL => trans('narsil::ui.account'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => User::EMAIL,
-                            Field::LABEL => trans('narsil::validation.attributes.email'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => User::EMAIL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => EmailField::class,
                             Field::SETTINGS => app(EmailField::class)
                                 ->icon('email'),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => User::PASSWORD,
-                            Field::LABEL => trans('narsil::validation.attributes.password'),
-                            Field::REQUIRED => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::PASSWORD,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                            Field::LABEL => trans('narsil::validation.attributes.password_confirmation'),
-                            Field::REQUIRED => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'profile',
                 TemplateTab::LABEL => trans('narsil::ui.profile'),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => User::LAST_NAME,
-                            Field::LABEL => trans('narsil::validation.attributes.last_name'),
-                            Field::REQUIRED => true,
+                    [
+                        TemplateTabElement::HANDLE => User::LAST_NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
                                 ->icon('circle-user'),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => User::FIRST_NAME,
-                            Field::LABEL => trans('narsil::validation.attributes.first_name'),
-                            Field::REQUIRED => true,
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::FIRST_NAME,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
                                 ->icon('circle-user'),
-                        ]),
-                    ]),
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
-                            Field::HANDLE => User::AVATAR,
-                            Field::LABEL => trans('narsil::validation.attributes.avatar'),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => User::AVATAR,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.avatar'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
                                 ->accept('image/*')
                                 ->icon('image'),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
-            new TemplateTab([
+            ],
+            [
                 TemplateTab::HANDLE => 'roles',
                 TemplateTab::LABEL => ModelService::getTableLabel(Role::TABLE),
                 TemplateTab::RELATION_ELEMENTS => [
-                    new TemplateTabElement([
-                        TemplateTabElement::RELATION_ELEMENT =>
-                        new Field([
-                            Field::HANDLE => User::RELATION_ROLES,
-                            Field::LABEL => trans('narsil::validation.attributes.roles'),
+                    [
+                        TemplateTabElement::HANDLE => User::RELATION_ROLES,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.roles'),
+                        TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => CheckboxField::class,
                             Field::RELATION_OPTIONS => Role::selectOptions(),
                             Field::SETTINGS => app(CheckboxField::class),
-                        ]),
-                    ]),
+                        ],
+                    ],
                 ],
-            ]),
+            ],
         ];
     }
 

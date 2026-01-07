@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Fields;
 
 use Narsil\Contracts\Fields\FormField as Contract;
 use Narsil\Implementations\AbstractField;
+use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
 
 #endregion
@@ -36,13 +37,15 @@ class FormField extends AbstractField implements Contract
     public static function getForm(?string $prefix = null): array
     {
         return [
-            new Field([
-                Field::HANDLE => Field::PLACEHOLDER,
-                Field::LABEL => trans('narsil::validation.attributes.placeholder'),
-                Field::TRANSLATABLE => true,
-                Field::TYPE => TextField::class,
-                Field::SETTINGS => app(TextField::class),
-            ]),
+            [
+                BlockElement::HANDLE => Field::PLACEHOLDER,
+                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::TRANSLATABLE => true,
+                BlockElement::RELATION_ELEMENT => [
+                    Field::TYPE => TextField::class,
+                    Field::SETTINGS => app(TextField::class),
+                ],
+            ],
         ];
     }
 

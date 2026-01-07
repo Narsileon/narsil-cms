@@ -2,11 +2,11 @@ import { Button } from "@narsil-cms/blocks/button";
 import { Card } from "@narsil-cms/blocks/card";
 import { Container } from "@narsil-cms/blocks/container";
 import { Heading } from "@narsil-cms/blocks/heading";
-import { FormProvider, FormRenderer, FormRoot } from "@narsil-cms/components/form";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types";
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { route } from "ziggy-js";
 
@@ -58,14 +58,20 @@ function FortifyForm({ data, form, status }: FortifyFormProps) {
             <FormProvider
               id={form.id}
               action={form.action}
-              elements={form.layout}
+              elements={form.tabs}
               method={form.method}
               initialValues={data}
               render={() => {
                 return (
                   <FormRoot className="grid-cols-12 gap-6">
-                    {form.layout.map((element, index) => {
-                      return <FormRenderer {...element} key={index} />;
+                    {form.tabs.map((tab, index) => {
+                      return (
+                        <Fragment key={index}>
+                          {tab.elements?.map((element, index) => {
+                            return <FormElement {...element} key={index} />;
+                          })}
+                        </Fragment>
+                      );
                     })}
                     <Button className="col-span-12 w-full" form={form.id} type="submit">
                       {form.submitLabel}

@@ -52,10 +52,16 @@ class InputFormRequest extends AbstractFormRequest implements Contract
                 )->ignore($this->input?->{Input::ID}),
             ],
             Input::LABEL => [
+                FormRule::ARRAY,
                 FormRule::REQUIRED,
             ],
-            Input::REQUIRED => [
-                FormRule::BOOLEAN,
+            Input::DESCRIPTION => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+            ],
+            Input::PLACEHOLDER => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
             ],
             Input::SETTINGS => [
                 FormRule::ARRAY,

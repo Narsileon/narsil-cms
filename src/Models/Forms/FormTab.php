@@ -52,11 +52,6 @@ class FormTab extends Model
         ]);
 
         parent::__construct($attributes);
-
-        if ($elements = Arr::get($attributes, self::RELATION_ELEMENTS))
-        {
-            $this->setRelation(self::RELATION_ELEMENTS, collect($elements));
-        }
     }
 
     #endregion

@@ -57,6 +57,11 @@ abstract class FormsSeeder extends Seeder
 
             if ($element instanceof Input)
             {
+                $element->fill([
+                    Input::HANDLE => $fieldsetElement->{FieldsetElement::HANDLE},
+                    Input::LABEL => $fieldsetElement->{FieldsetElement::LABEL},
+                ]);
+
                 $element = $this->saveInput($element);
             }
             else if ($element instanceof Fieldset)
@@ -178,6 +183,11 @@ abstract class FormsSeeder extends Seeder
 
                 if ($element instanceof Input)
                 {
+                    $element->fill([
+                        Input::HANDLE => $formTabElement->{FormTabElement::HANDLE},
+                        Input::LABEL => $formTabElement->{FormTabElement::LABEL},
+                    ]);
+
                     $element = $this->saveInput($element);
                 }
                 else if ($element instanceof Fieldset)
