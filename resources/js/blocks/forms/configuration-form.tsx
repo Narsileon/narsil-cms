@@ -72,7 +72,15 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
                   return (
                     <Fragment key={index}>
                       {tab.elements?.map((element, index) => {
-                        return <FormElement {...element} key={index} />;
+                        return (
+                          <FormElement
+                            {...element}
+                            onChange={(value) =>
+                              handleChange(element.handle, value as number | string)
+                            }
+                            key={index}
+                          />
+                        );
                       })}
                     </Fragment>
                   );
