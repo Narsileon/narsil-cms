@@ -36,11 +36,25 @@ class HeroHeaderBlockSeeder extends BlockSeeder
     const EXCERPT = 'excerpt';
 
     /**
+     * The name of the "headline" handle
+     *
+     * @var string
+     */
+    const HEADLINE = 'headline';
+
+    /**
      * The name of the "hero header" handle
      *
      * @var string
      */
     const HERO_HEADER = 'hero_header';
+
+    /**
+     * The name of the "layout" handle
+     *
+     * @var string
+     */
+    const LAYOUT = 'layout';
 
     #endregion
 
@@ -51,6 +65,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
      */
     protected function block(): Block
     {
+        $buttonBlock = new ButtonBlockSeeder()->block();
         $headlineBlock = new HeadlineBlockSeeder()->block();
         $layoutBlock = new LayoutBlockSeeder()->block();
 
@@ -61,13 +76,16 @@ class HeroHeaderBlockSeeder extends BlockSeeder
             Block::RELATION_ELEMENTS,
             [
                 new BlockElement([
-                    BlockElement::HANDLE => LayoutBlockSeeder::LAYOUT,
+                    BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Padding',
                 ])->setRelation(
                     BlockElement::RELATION_ELEMENT,
                     $layoutBlock,
                 ),
-                new BlockElement([])->setRelation(
+                new BlockElement([
+                    BlockElement::HANDLE => self::HEADLINE,
+                    BlockElement::LABEL => 'Headline',
+                ])->setRelation(
                     BlockElement::RELATION_ELEMENT,
                     $headlineBlock,
                 ),
@@ -92,7 +110,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     ])->setRelation(
                         Field::RELATION_BLOCKS,
                         [
-                            new ButtonBlockSeeder()->block(),
+                            $buttonBlock,
                         ],
                     ),
                 ),

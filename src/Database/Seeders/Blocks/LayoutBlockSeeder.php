@@ -29,6 +29,13 @@ class LayoutBlockSeeder extends BlockSeeder
     const LAYOUT = 'layout';
 
     /**
+     * The name of the "padding" handle
+     *
+     * @var string
+     */
+    const PADDING = 'padding';
+
+    /**
      * The name of the "size" handle
      *
      * @var string

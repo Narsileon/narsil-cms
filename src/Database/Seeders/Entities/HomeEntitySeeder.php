@@ -4,9 +4,14 @@ namespace Narsil\Database\Seeders\Entities;
 
 #region USE
 
+use Faker\Factory;
+use Narsil\Database\Seeders\Blocks\AccordionBlockSeeder;
+use Narsil\Database\Seeders\Blocks\AccordionItemBlockSeeder;
 use Narsil\Database\Seeders\Blocks\ButtonBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeadlineBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
+use Narsil\Database\Seeders\Blocks\LayoutBlockSeeder;
+use Narsil\Database\Seeders\Blocks\PaddingBlockSeeder;
 use Narsil\Database\Seeders\EntitySeeder;
 use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
 use Narsil\Models\Entities\Entity;
@@ -29,26 +34,75 @@ class HomeEntitySeeder extends EntitySeeder
      */
     protected function data(): array
     {
+        $faker = Factory::create();
+
+        $accordionBlock = new AccordionBlockSeeder()->run();
+        $accordionItemBlock = new AccordionItemBlockSeeder()->run();
         $buttonBlock = new ButtonBlockSeeder()->run();
         $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
 
         return [
-            ContentTemplateSeeder::CONTENT => [[
-                EntityNode::BLOCK_ID => $heroHeaderBlock->{Block::ID},
-                EntityNode::RELATION_CHILDREN => [
-                    HeadlineBlockSeeder::HEADLINE => [
-                        HeadlineBlockSeeder::HEADLINE => 'Welcome to Narsil CMS!',
-                        HeadlineBlockSeeder::HEADLINE_LEVEL => 'h1',
-                        HeadlineBlockSeeder::HEADLINE_STYLE => 'h1',
-                    ],
-                    HeroHeaderBlockSeeder::BUTTONS => [[
-                        EntityNode::BLOCK_ID => $buttonBlock->{Block::ID},
-                        EntityNode::RELATION_CHILDREN => [
-                            ButtonBlockSeeder::LABEL => 'Get started',
+            ContentTemplateSeeder::CONTENT => [
+                [
+                    EntityNode::BLOCK_ID => $heroHeaderBlock->{Block::ID},
+                    EntityNode::RELATION_CHILDREN => [
+                        HeroHeaderBlockSeeder::LAYOUT => [
+                            LayoutBlockSeeder::SIZE => 'lg',
+                            LayoutBlockSeeder::PADDING => [
+                                PaddingBlockSeeder::TOP => 'md',
+                                PaddingBlockSeeder::BOTTOM => 'md',
+                            ],
                         ],
-                    ]],
+                        HeroHeaderBlockSeeder::HEADLINE => [
+                            HeadlineBlockSeeder::HEADLINE => 'Welcome to Narsil CMS!',
+                            HeadlineBlockSeeder::HEADLINE_LEVEL => 'h1',
+                            HeadlineBlockSeeder::HEADLINE_STYLE => 'h1',
+                        ],
+                        HeroHeaderBlockSeeder::EXCERPT => '<p>' . $faker->sentences(6, true) . '</p>',
+                        HeroHeaderBlockSeeder::BUTTONS => [[
+                            EntityNode::BLOCK_ID => $buttonBlock->{Block::ID},
+                            EntityNode::RELATION_CHILDREN => [
+                                ButtonBlockSeeder::LABEL => 'Get started',
+                            ],
+                        ]],
+                    ],
                 ],
-            ]],
+                [
+                    EntityNode::BLOCK_ID => $accordionBlock->{Block::ID},
+                    EntityNode::RELATION_CHILDREN => [
+                        AccordionBlockSeeder::LAYOUT => [
+                            LayoutBlockSeeder::SIZE => 'sm',
+                            LayoutBlockSeeder::PADDING => [
+                                PaddingBlockSeeder::TOP => 'none',
+                                PaddingBlockSeeder::BOTTOM => 'md',
+                            ],
+                        ],
+                        AccordionBlockSeeder::ACCORDION_BUILDER => [
+                            [
+                                EntityNode::BLOCK_ID => $accordionItemBlock->{Block::ID},
+                                EntityNode::RELATION_CHILDREN => [
+                                    AccordionItemBlockSeeder::ACCORDION_ITEM_TRIGGER => $faker->sentence(6, true),
+                                    AccordionItemBlockSeeder::ACCORDION_ITEM_CONTENT => $faker->sentences(6, true),
+                                ],
+                            ],
+                            [
+                                EntityNode::BLOCK_ID => $accordionItemBlock->{Block::ID},
+                                EntityNode::RELATION_CHILDREN => [
+                                    AccordionItemBlockSeeder::ACCORDION_ITEM_TRIGGER => $faker->sentence(6, true),
+                                    AccordionItemBlockSeeder::ACCORDION_ITEM_CONTENT => $faker->sentences(6, true),
+                                ],
+                            ],
+                            [
+                                EntityNode::BLOCK_ID => $accordionItemBlock->{Block::ID},
+                                EntityNode::RELATION_CHILDREN => [
+                                    AccordionItemBlockSeeder::ACCORDION_ITEM_TRIGGER => $faker->sentence(6, true),
+                                    AccordionItemBlockSeeder::ACCORDION_ITEM_CONTENT => $faker->sentences(6, true),
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

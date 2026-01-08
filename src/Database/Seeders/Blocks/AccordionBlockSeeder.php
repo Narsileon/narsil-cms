@@ -37,25 +37,11 @@ class AccordionBlockSeeder extends BlockSeeder
     const ACCORDION_BUILDER = 'accordion_builder';
 
     /**
-     * The name of the "accordion item" handle
+     * The name of the "layout" handle
      *
      * @var string
      */
-    const ACCORDION_ITEM = 'accordion_item';
-
-    /**
-     * The name of the "accordion item content" handle
-     *
-     * @var string
-     */
-    const ACCORDION_ITEM_CONTENT = 'accordion_item_content';
-
-    /**
-     * The name of the "accordion item trigger" handle
-     *
-     * @var string
-     */
-    const ACCORDION_ITEM_TRIGGER = 'accordion_item_trigger';
+    const LAYOUT = 'layout';
 
     #endregion
 
@@ -66,6 +52,7 @@ class AccordionBlockSeeder extends BlockSeeder
      */
     protected function block(): Block
     {
+        $accordionItemBlock = new AccordionItemBlockSeeder()->block();
         $layoutBlock = new LayoutBlockSeeder()->block();
 
         return new Block([
@@ -75,7 +62,7 @@ class AccordionBlockSeeder extends BlockSeeder
             Block::RELATION_ELEMENTS,
             [
                 new BlockElement([
-                    BlockElement::HANDLE => LayoutBlockSeeder::LAYOUT,
+                    BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Padding',
                 ])->setRelation(
                     BlockElement::RELATION_ELEMENT,
@@ -91,36 +78,7 @@ class AccordionBlockSeeder extends BlockSeeder
                     ])->setRelation(
                         Field::RELATION_BLOCKS,
                         [
-                            new Block([
-                                Block::HANDLE => self::ACCORDION_ITEM,
-                                Block::LABEL => 'Accordion Item',
-                            ])->setRelation(
-                                Block::RELATION_ELEMENTS,
-                                [
-                                    new BlockElement([
-                                        BlockElement::HANDLE => self::ACCORDION_ITEM_TRIGGER,
-                                        BlockElement::LABEL => 'Trigger',
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::TRANSLATABLE => true,
-                                    ])->setRelation(
-                                        BlockElement::RELATION_ELEMENT,
-                                        new Field([
-                                            Field::TYPE => TextField::class,
-                                        ]),
-                                    ),
-                                    new BlockElement([
-                                        BlockElement::HANDLE => self::ACCORDION_ITEM_CONTENT,
-                                        BlockElement::LABEL => 'Content',
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::TRANSLATABLE => true,
-                                    ])->setRelation(
-                                        BlockElement::RELATION_ELEMENT,
-                                        new Field([
-                                            Field::TYPE => RichTextField::class,
-                                        ]),
-                                    ),
-                                ],
-                            ),
+                            $accordionItemBlock,
                         ],
                     ),
                 ),

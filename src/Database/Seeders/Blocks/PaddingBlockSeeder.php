@@ -73,7 +73,7 @@ class PaddingBlockSeeder extends BlockSeeder
                         Field::LABEL => "Padding",
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
-                            ->defaultValue('md'),
+                            ->defaultValue('none'),
                     ])->setRelation(
                         Field::RELATION_OPTIONS,
                         $paddingFieldOptions,
@@ -91,7 +91,7 @@ class PaddingBlockSeeder extends BlockSeeder
                         Field::LABEL => "Padding",
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
-                            ->defaultValue('md'),
+                            ->defaultValue('none'),
                     ])->setRelation(
                         Field::RELATION_OPTIONS,
                         $paddingFieldOptions,
@@ -113,6 +113,10 @@ class PaddingBlockSeeder extends BlockSeeder
     protected function paddingFieldOptions(): array
     {
         return [
+            new FieldOption([
+                FieldOption::LABEL => "None",
+                FieldOption::VALUE => "none",
+            ]),
             new FieldOption([
                 FieldOption::LABEL => "Small",
                 FieldOption::VALUE => "sm",

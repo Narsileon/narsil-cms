@@ -5,6 +5,8 @@ namespace Narsil\Database\Seeders\Entities;
 #region USE
 
 use Narsil\Database\Seeders\Blocks\FormBlockSeeder;
+use Narsil\Database\Seeders\Blocks\LayoutBlockSeeder;
+use Narsil\Database\Seeders\Blocks\PaddingBlockSeeder;
 use Narsil\Database\Seeders\EntitySeeder;
 use Narsil\Database\Seeders\Forms\ContactFormSeeder;
 use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
@@ -36,6 +38,13 @@ class ContactEntitySeeder extends EntitySeeder
             ContentTemplateSeeder::CONTENT => [[
                 EntityNode::BLOCK_ID => $formBlock->{Block::ID},
                 EntityNode::RELATION_CHILDREN => [
+                    FormBlockSeeder::LAYOUT => [
+                        LayoutBlockSeeder::SIZE => 'sm',
+                        LayoutBlockSeeder::PADDING => [
+                            PaddingBlockSeeder::TOP => 'md',
+                            PaddingBlockSeeder::BOTTOM => 'md',
+                        ],
+                    ],
                     FormBlockSeeder::FORM => $contactForm->{Form::ATTRIBUTE_IDENTIFIER},
                 ],
             ]],

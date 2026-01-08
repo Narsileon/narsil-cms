@@ -27,6 +27,13 @@ class FormBlockSeeder extends BlockSeeder
      */
     const FORM = 'form';
 
+    /**
+     * The name of the "layout" handle
+     *
+     * @var string
+     */
+    const LAYOUT = 'layout';
+
     #endregion
 
     #region PROTECTED METHODS
@@ -45,7 +52,7 @@ class FormBlockSeeder extends BlockSeeder
             Block::RELATION_ELEMENTS,
             [
                 new BlockElement([
-                    BlockElement::HANDLE => LayoutBlockSeeder::LAYOUT,
+                    BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Padding',
                 ])->setRelation(
                     BlockElement::RELATION_ELEMENT,
