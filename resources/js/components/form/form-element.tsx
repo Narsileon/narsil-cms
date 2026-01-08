@@ -58,8 +58,10 @@ function FormElement({ onChange, ...props }: FormElementProps) {
           ) : null}
         </CollapsibleTrigger>
         <CollapsibleContent className="grid grid-cols-12 gap-8 py-4">
-          {element.elements.map((element) => {
-            return <FormElement key={element.handle} {...element} />;
+          {element.elements.map((childElement, index) => {
+            const virtualHandle =
+              element.virtual === false ? `${handle}.${childElement.handle}` : childElement.handle;
+            return <FormElement {...childElement} handle={virtualHandle} key={index} />;
           })}
         </CollapsibleContent>
       </CollapsibleRoot>

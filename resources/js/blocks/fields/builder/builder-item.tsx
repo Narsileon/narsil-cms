@@ -94,22 +94,29 @@ function BuilderItem({
             {block.elements?.map((element, index) => {
               const childElement = element.element;
 
-              const isField = "type" in childElement;
-
-              const translatable = isField ? element.translatable : undefined;
-
-              const childName = element.label ?? childElement.label;
               let childHandle = `${baseHandle}.children.${element.handle}`;
 
-              if (
-                isField &&
-                childElement.type !== "Narsil\\Contracts\\Fields\\BuilderField" &&
-                !translatable
-              ) {
-                childHandle = `${childHandle}.en`;
-              }
+              if ("type" in childElement) {
+                if (
+                  childElement.type !== "Narsil\\Contracts\\Fields\\BuilderField" &&
+                  !element.translatable
+                ) {
+                  childHandle = `${childHandle}.en`;
+                }
 
-              return <FormElement {...element} handle={childHandle} name={childName} key={index} />;
+                return <FormElement {...element} handle={childHandle} key={index} />;
+              } else {
+                childElement.virtual = false;
+
+                return (
+                  <FormElement
+                    {...element}
+                    handle={childHandle}
+                    element={childElement}
+                    key={index}
+                  />
+                );
+              }
             })}
           </CardContent>
         </CollapsibleContent>
