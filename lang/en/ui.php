@@ -32,8 +32,6 @@ return [
     'dashboard'          => 'Dashboard',
     'default'            => 'Default',
     'default_country'    => 'Default country',
-    'default_handle'     => 'Default handle',
-    'default_label'      => 'Default label',
     'default_language'   => 'Default language',
     'definition'         => 'Definition',
     'delete_selected'    => 'Delete selected',

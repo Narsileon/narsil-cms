@@ -71,8 +71,9 @@ class InputForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
+                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.input_handle'),
                         TemplateTabElement::HANDLE => Input::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil::ui.default_handle'),
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_ELEMENT => [
                             Field::TYPE => TextField::class,
@@ -80,8 +81,9 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
+                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.input_label'),
                         TemplateTabElement::HANDLE => Input::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil::ui.default_label'),
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_ELEMENT => [
@@ -90,8 +92,9 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
+                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.input_description'),
                         TemplateTabElement::HANDLE => Input::DESCRIPTION,
-                        TemplateTabElement::LABEL => trans('narsil::ui.default_description'),
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_ELEMENT => [

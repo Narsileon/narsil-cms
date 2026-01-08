@@ -33,7 +33,7 @@ return [
     Form::class => 'formulaire',
     Header::class => 'en-tête',
     Host::class => 'hôte',
-    Input::class => 'champ',
+    Input::class => 'entrée',
     Permission::class => 'permission',
     Role::class => 'rôle',
     Site::class => 'site web',

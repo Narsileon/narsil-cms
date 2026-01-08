@@ -45,7 +45,7 @@ return [
     Host::TABLE => 'hôtes',
     HostLocale::TABLE => 'locales',
     HostLocaleLanguage::TABLE => 'langages',
-    Input::TABLE => 'champs',
+    Input::TABLE => 'entrées',
     Permission::TABLE => 'permissions',
     Role::TABLE => 'rôles',
     Site::VIRTUAL_TABLE => 'sites web',
