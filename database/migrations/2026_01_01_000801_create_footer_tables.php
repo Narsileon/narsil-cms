@@ -147,6 +147,9 @@ return new class extends Migration
                 ->string(Footer::PHONE)
                 ->nullable();
             $blueprint
+                ->jsonb(Footer::COPYRIGHT)
+                ->nullable();
+            $blueprint
                 ->timestamp(Footer::CREATED_AT);
             $blueprint
                 ->foreignId(Footer::CREATED_BY)

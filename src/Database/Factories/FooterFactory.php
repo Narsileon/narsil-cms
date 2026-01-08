@@ -38,6 +38,11 @@ class FooterFactory extends Factory
             Footer::ADDRESS_LINE_1 => $this->faker->buildingNumber() . ' ' . $this->faker->streetName(),
             Footer::ADDRESS_LINE_2 => $this->faker->postcode() . ' ' . $this->faker->city(),
             Footer::COMPANY => $this->faker->company(),
+            Footer::COPYRIGHT => [
+                'en' => 'All rights reserved.',
+                'de' => 'Alle Rechte vorbehalten.',
+                'fr' => 'Tous droits réservés.',
+            ],
             Footer::EMAIL => $this->faker->unique()->safeEmail(),
             Footer::SLUG => $this->faker->slug(1),
             Footer::PHONE => $this->faker->phoneNumber(),

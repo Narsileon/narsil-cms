@@ -208,6 +208,7 @@ return [
         'color'                   => 'color',
         'company'                 => 'company',
         'content'                 => 'content',
+        'copyright'               => 'copyright',
         'country'                 => 'country',
         'created_at'              => 'created at',
         'created_by'              => 'created by',

@@ -40,6 +40,7 @@ class Footer extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
+            self::COPYRIGHT,
             self::EMAIL,
         ];
 
@@ -88,6 +89,13 @@ class Footer extends Model
      * @var string
      */
     final public const COMPANY = 'company';
+
+    /**
+     * The name of the "copyright" column.
+     *
+     * @var string
+     */
+    final public const COPYRIGHT = 'copyright';
 
     /**
      * The name of the "email" column.

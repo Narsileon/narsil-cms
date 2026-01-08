@@ -53,6 +53,10 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
                 FormRule::STRING,
                 FormRule::NULLABLE,
             ],
+            Footer::COPYRIGHT => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+            ],
             Footer::EMAIL => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,

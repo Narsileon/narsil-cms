@@ -114,6 +114,16 @@ class FooterForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(TextField::class),
                         ],
                     ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::COPYRIGHT,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.copyright'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
                 ],
             ],
             [
