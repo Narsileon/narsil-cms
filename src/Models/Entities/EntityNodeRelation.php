@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 #endregion
 
@@ -207,9 +211,35 @@ class EntityNodeRelation extends Pivot
     {
         static::saving(function (EntityNodeRelation $model)
         {
-            if (!$model->{self::LANGUAGE})
+            $model->{self::LANGUAGE} ??= Config::get('app.locale');
+
+            if (!$model->{self::TARGET_TYPE} || !$model->{self::TARGET_ID})
             {
-                $model->{self::LANGUAGE} = Config::get('app.locale');
+                return;
+            }
+
+            $table = $model->{self::TARGET_TYPE};
+            $column = Str::snake(Str::singular($table)) . '_id';
+
+            $model->{$column} = $model->{self::TARGET_ID};
+
+            if (!Schema::hasColumn($model->getTable(), $column))
+            {
+                try
+                {
+                    Schema::table($model->getTable(), function (Blueprint $blueprint) use ($column, $table)
+                    {
+                        $blueprint
+                            ->foreignId($column)
+                            ->nullable()
+                            ->constrained($table, 'id')
+                            ->cascadeOnDelete();
+                    });
+                }
+                catch (QueryException $exception)
+                {
+                    //
+                }
             }
         });
     }
