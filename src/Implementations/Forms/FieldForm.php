@@ -17,6 +17,7 @@ use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\ValidationRule;
 use Narsil\Services\Models\FieldService;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -68,7 +69,7 @@ class FieldForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => array_filter([
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.field_handle'),
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Field::TABLE, Field::HANDLE),
                         TemplateTabElement::HANDLE => Field::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
@@ -78,7 +79,7 @@ class FieldForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.field_label'),
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Field::TABLE, Field::LABEL),
                         TemplateTabElement::HANDLE => Field::LABEL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
@@ -89,8 +90,8 @@ class FieldForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.field_description'),
-                        TemplateTabElement::HANDLE => Field::LABEL,
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Field::TABLE, Field::DESCRIPTION),
+                        TemplateTabElement::HANDLE => Field::DESCRIPTION,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_ELEMENT => [

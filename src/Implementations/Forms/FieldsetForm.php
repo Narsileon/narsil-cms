@@ -58,7 +58,7 @@ class FieldsetForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.fieldset_handle'),
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Fieldset::TABLE, Fieldset::HANDLE),
                         TemplateTabElement::HANDLE => Fieldset::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
@@ -68,7 +68,7 @@ class FieldsetForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.fieldset_label'),
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Fieldset::TABLE, Fieldset::LABEL),
                         TemplateTabElement::HANDLE => Fieldset::LABEL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,

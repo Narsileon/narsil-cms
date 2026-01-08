@@ -18,6 +18,26 @@ abstract class ModelService
     #region PUBLIC METHODS
 
     /**
+     * @param string $table
+     * @param string $attribute
+     *
+     * @return string
+     */
+    public static function getFieldDescription(string $table, string $attribute): string
+    {
+        $key = "narsil::descriptions.$table.$attribute";
+
+        $label = trans($key);
+
+        if ($label === $key)
+        {
+            $label = "";
+        }
+
+        return $label;
+    }
+
+    /**
      * @param string $model
      * @param boolean $ucFirst
      * @param string|null $locale

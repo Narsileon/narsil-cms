@@ -12,6 +12,7 @@ use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Policies\Permission;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 
 #endregion
@@ -49,6 +50,7 @@ class PermissionForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Permission::TABLE, Permission::NAME),
                         TemplateTabElement::HANDLE => Permission::NAME,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.name'),
                         TemplateTabElement::REQUIRED => true,
@@ -59,6 +61,7 @@ class PermissionForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Permission::TABLE, Permission::LABEL),
                         TemplateTabElement::HANDLE => Permission::LABEL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,

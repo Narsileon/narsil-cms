@@ -20,6 +20,7 @@ use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\ValidationRule;
 use Narsil\Services\Models\FieldService;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 
@@ -71,7 +72,7 @@ class InputForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.input_handle'),
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Input::TABLE, Input::HANDLE),
                         TemplateTabElement::HANDLE => Input::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
@@ -81,7 +82,7 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.input_label'),
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Input::TABLE, Input::LABEL),
                         TemplateTabElement::HANDLE => Input::LABEL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
@@ -92,7 +93,7 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::descriptions.input_description'),
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Input::TABLE, Input::DESCRIPTION),
                         TemplateTabElement::HANDLE => Input::DESCRIPTION,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
                         TemplateTabElement::REQUIRED => true,
