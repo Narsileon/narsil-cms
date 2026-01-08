@@ -36,12 +36,21 @@ class FormBlockSeeder extends BlockSeeder
      */
     protected function block(): Block
     {
+        $layoutBlock = new LayoutBlockSeeder()->block();
+
         return new Block([
             Block::HANDLE => self::FORM,
             Block::LABEL => 'Form',
         ])->setRelation(
             Block::RELATION_ELEMENTS,
             [
+                new BlockElement([
+                    BlockElement::HANDLE => LayoutBlockSeeder::LAYOUT,
+                    BlockElement::LABEL => 'Padding',
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    $layoutBlock,
+                ),
                 new BlockElement([
                     BlockElement::HANDLE => self::FORM,
                     BlockElement::LABEL => 'Form',

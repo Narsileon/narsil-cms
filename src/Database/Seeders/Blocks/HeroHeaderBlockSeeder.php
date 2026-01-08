@@ -52,6 +52,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
     protected function block(): Block
     {
         $headlineBlock = new HeadlineBlockSeeder()->block();
+        $layoutBlock = new LayoutBlockSeeder()->block();
 
         return new Block([
             Block::HANDLE => self::HERO_HEADER,
@@ -59,6 +60,13 @@ class HeroHeaderBlockSeeder extends BlockSeeder
         ])->setRelation(
             Block::RELATION_ELEMENTS,
             [
+                new BlockElement([
+                    BlockElement::HANDLE => LayoutBlockSeeder::LAYOUT,
+                    BlockElement::LABEL => 'Padding',
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    $layoutBlock,
+                ),
                 new BlockElement([])->setRelation(
                     BlockElement::RELATION_ELEMENT,
                     $headlineBlock,

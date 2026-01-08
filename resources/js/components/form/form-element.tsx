@@ -148,7 +148,10 @@ function FormElement({ onChange, ...props }: FormElementProps) {
             {description ? <FormDescription>{description}</FormDescription> : null}
             {getField(element.type, {
               id: handle,
-              field: element,
+              field: {
+                ...element,
+                placeholder: placeholder as string,
+              },
               required: required,
               value: value,
               setValue: handleOnChange,

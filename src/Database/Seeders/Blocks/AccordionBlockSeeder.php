@@ -66,12 +66,21 @@ class AccordionBlockSeeder extends BlockSeeder
      */
     protected function block(): Block
     {
+        $layoutBlock = new LayoutBlockSeeder()->block();
+
         return new Block([
             Block::HANDLE => self::ACCORDION,
             Block::LABEL => 'Accordion',
         ])->setRelation(
             Block::RELATION_ELEMENTS,
             [
+                new BlockElement([
+                    BlockElement::HANDLE => LayoutBlockSeeder::LAYOUT,
+                    BlockElement::LABEL => 'Padding',
+                ])->setRelation(
+                    BlockElement::RELATION_ELEMENT,
+                    $layoutBlock,
+                ),
                 new BlockElement([
                     BlockElement::HANDLE => self::ACCORDION_BUILDER,
                     BlockElement::LABEL => 'Items',

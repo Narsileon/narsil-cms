@@ -22,6 +22,19 @@ use Narsil\Models\Structures\TemplateTabElement;
  */
 abstract class StructuresSeeder extends Seeder
 {
+    #region CONSTANTS
+
+    /**
+     * @var array
+     */
+    private const FIELD_FILLABLE_ATTRIBUTES = [
+        Field::HANDLE,
+        Field::LABEL,
+        Field::DESCRIPTION,
+    ];
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -41,6 +54,7 @@ abstract class StructuresSeeder extends Seeder
         }
 
         $model = Block::create([
+            Block::COLLAPSIBLE => $block->{Block::COLLAPSIBLE} ?? false,
             Block::HANDLE => $block->{Block::HANDLE},
             Block::LABEL => $block->{Block::LABEL},
         ]);
@@ -58,10 +72,13 @@ abstract class StructuresSeeder extends Seeder
 
             if ($element instanceof Field)
             {
-                $element->fill([
-                    Field::HANDLE => $blockElement->{BlockElement::HANDLE},
-                    Field::LABEL => $blockElement->{BlockElement::LABEL},
-                ]);
+                foreach (self::FIELD_FILLABLE_ATTRIBUTES as $attribute)
+                {
+                    if (empty($element->getAttribute($attribute)))
+                    {
+                        $element->setAttribute($attribute, $blockElement->{$attribute});
+                    }
+                }
 
                 $element = $this->saveField($element, [
                     Field::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{BlockElement::HANDLE},
@@ -202,10 +219,13 @@ abstract class StructuresSeeder extends Seeder
 
                 if ($element instanceof Field)
                 {
-                    $element->fill([
-                        Field::HANDLE => $templateTabElement->{TemplateTabElement::HANDLE},
-                        Field::LABEL => $templateTabElement->{TemplateTabElement::LABEL},
-                    ]);
+                    foreach (self::FIELD_FILLABLE_ATTRIBUTES as $attribute)
+                    {
+                        if (empty($element->getAttribute($attribute)))
+                        {
+                            $element->setAttribute($attribute, $templateTabElement->{$attribute});
+                        }
+                    }
 
                     $element = $this->saveField($element);
                 }
