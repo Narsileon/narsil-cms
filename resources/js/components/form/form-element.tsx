@@ -34,19 +34,13 @@ function FormElement({ onChange, ...props }: FormElementProps) {
   if ("elements" in element) {
     return (
       <CollapsibleRoot
-        className={cn(
-          "group col-span-full not-first:border-t",
-          "first:-mt-4",
-          "-mb-4",
-          "data-[state=closed]:not-last:border-b",
-        )}
+        className={cn("group col-span-full rounded border")}
         disabled={!element.collapsible}
         defaultOpen={true}
       >
         <CollapsibleTrigger
           className={cn(
-            "flex w-full items-center justify-between py-4 text-center",
-            "data-[state=open]:border-b",
+            "flex w-full items-center justify-between bg-muted px-4 py-2 text-center text-muted-foreground",
           )}
         >
           <Heading level="h2">{label}</Heading>
@@ -57,7 +51,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
             />
           ) : null}
         </CollapsibleTrigger>
-        <CollapsibleContent className="grid grid-cols-12 gap-8 py-4">
+        <CollapsibleContent className="grid grid-cols-12 gap-8 p-4">
           {element.elements.map((childElement, index) => {
             const virtualHandle =
               element.virtual === false ? `${handle}.${childElement.handle}` : childElement.handle;

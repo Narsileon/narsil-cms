@@ -1,5 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
-import { get, isObject, isString } from "lodash-es";
+import { concat, get, initial, isObject, isString, toPath } from "lodash-es";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -40,4 +40,10 @@ export function getTranslatableSelectOption(
   }
 
   return value as string;
+}
+
+export function replaceLastPath(path: string, last: string) {
+  const parts = toPath(path);
+
+  return concat(initial(parts), last).join(".");
 }

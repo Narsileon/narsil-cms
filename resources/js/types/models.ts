@@ -23,7 +23,7 @@ export type Block = {
 };
 
 export type Condition = {
-  handle: number;
+  handle: string;
   operator: string;
   value: string;
 };

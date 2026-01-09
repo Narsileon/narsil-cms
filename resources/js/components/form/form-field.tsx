@@ -1,3 +1,4 @@
+import { replaceLastPath } from "@narsil-cms/lib/utils";
 import type { StructureHasElement } from "@narsil-cms/types";
 import { cloneDeep, get, isObject, unset } from "lodash-es";
 import { useEffect, useState } from "react";
@@ -74,7 +75,7 @@ function FormField({
     let nextVisible = true;
 
     for (const condition of conditions || []) {
-      if (data?.[condition.handle] != condition.value) {
+      if (get(data, replaceLastPath(handle, condition.handle)) !== condition.value) {
         nextVisible = false;
         break;
       }

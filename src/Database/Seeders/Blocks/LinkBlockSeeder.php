@@ -8,9 +8,9 @@ use Narsil\Contracts\Fields\LinkField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Database\Seeders\BlockSeeder;
+use Narsil\Http\Data\ConditionData;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\BlockElementCondition;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\FieldOption;
 
@@ -93,11 +93,11 @@ class LinkBlockSeeder extends BlockSeeder
                 ])->setRelation(
                     BlockElement::RELATION_CONDITIONS,
                     [
-                        new BlockElementCondition([
-                            BlockElementCondition::HANDLE => self::TYPE,
-                            BlockElementCondition::OPERATOR => '=',
-                            BlockElementCondition::VALUE => 'internal',
-                        ]),
+                        new ConditionData(
+                            handle: self::TYPE,
+                            operator: '=',
+                            value: 'internal',
+                        )->toArray(),
                     ],
                 )->setRelation(
                     BlockElement::RELATION_ELEMENT,
@@ -113,11 +113,11 @@ class LinkBlockSeeder extends BlockSeeder
                 ])->setRelation(
                     BlockElement::RELATION_CONDITIONS,
                     [
-                        new BlockElementCondition([
-                            BlockElementCondition::HANDLE => self::TYPE,
-                            BlockElementCondition::OPERATOR => '=',
-                            BlockElementCondition::VALUE => 'external',
-                        ]),
+                        new ConditionData(
+                            handle: self::TYPE,
+                            operator: '=',
+                            value: 'external',
+                        )->toArray(),
                     ],
                 )->setRelation(
                     BlockElement::RELATION_ELEMENT,

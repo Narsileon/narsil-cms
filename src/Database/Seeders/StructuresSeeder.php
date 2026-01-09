@@ -90,7 +90,7 @@ abstract class StructuresSeeder extends Seeder
                 $element = $this->saveBlock($element);
             }
 
-            BlockElement::create([
+            $blockElementModel = BlockElement::create([
                 BlockElement::ELEMENT_ID => $element->getKey(),
                 BlockElement::ELEMENT_TYPE => $element->getTable(),
                 BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{BlockElement::HANDLE},
@@ -101,6 +101,8 @@ abstract class StructuresSeeder extends Seeder
                 BlockElement::TRANSLATABLE => $blockElement->{BlockElement::TRANSLATABLE} ?? $element->{BlockElement::TRANSLATABLE} ?? false,
                 BlockElement::WIDTH => $blockElement->{BlockElement::WIDTH} ?? 100,
             ]);
+
+            $blockElementModel->conditions()->createMany($blockElement->{BlockElement::RELATION_CONDITIONS});
         }
 
         return $model;
@@ -234,7 +236,7 @@ abstract class StructuresSeeder extends Seeder
                     $element = $this->saveBlock($element);
                 }
 
-                TemplateTabElement::create([
+                $templateTabElementModel = TemplateTabElement::create([
                     TemplateTabElement::DESCRIPTION => $templateTabModel->{TemplateTabElement::DESCRIPTION},
                     TemplateTabElement::ELEMENT_ID => $element->getKey(),
                     TemplateTabElement::ELEMENT_TYPE => $element->getTable(),
@@ -246,6 +248,8 @@ abstract class StructuresSeeder extends Seeder
                     TemplateTabElement::TRANSLATABLE => $templateTabElement->{TemplateTabElement::TRANSLATABLE} ?? false,
                     TemplateTabElement::WIDTH => $templateTabModel->{TemplateTabElement::WIDTH} ?? 100,
                 ]);
+
+                $templateTabElementModel->conditions()->createMany($templateTabElement->{TemplateTabElement::RELATION_CONDITIONS});
             }
         }
 
