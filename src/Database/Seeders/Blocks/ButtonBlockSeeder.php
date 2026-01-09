@@ -27,6 +27,13 @@ class ButtonBlockSeeder extends BlockSeeder
      */
     const LABEL = 'label';
 
+    /**
+     * The name of the "link" handle
+     *
+     * @var string
+     */
+    const LINK = 'link';
+
     #endregion
 
     #region PROTECTED METHODS
@@ -55,7 +62,10 @@ class ButtonBlockSeeder extends BlockSeeder
                         Field::TYPE => TextField::class,
                     ]),
                 ),
-                new BlockElement([])->setRelation(
+                new BlockElement([
+                    BlockElement::HANDLE => 'link',
+                    BlockElement::LABEL => 'Link',
+                ])->setRelation(
                     BlockElement::RELATION_ELEMENT,
                     $linkBlock,
                 ),

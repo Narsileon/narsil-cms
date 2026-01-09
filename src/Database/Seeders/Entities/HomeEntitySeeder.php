@@ -11,6 +11,7 @@ use Narsil\Database\Seeders\Blocks\ButtonBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeadlineBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Database\Seeders\Blocks\LayoutBlockSeeder;
+use Narsil\Database\Seeders\Blocks\LinkBlockSeeder;
 use Narsil\Database\Seeders\Blocks\PaddingBlockSeeder;
 use Narsil\Database\Seeders\EntitySeeder;
 use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
@@ -63,6 +64,10 @@ class HomeEntitySeeder extends EntitySeeder
                             EntityNode::BLOCK_ID => $buttonBlock->{Block::ID},
                             EntityNode::RELATION_CHILDREN => [
                                 ButtonBlockSeeder::LABEL => 'Get started',
+                                ButtonBlockSeeder::LINK => [
+                                    LinkBlockSeeder::TYPE => 'external',
+                                    LinkBlockSeeder::URL => '/narsil',
+                                ]
                             ],
                         ]],
                     ],
