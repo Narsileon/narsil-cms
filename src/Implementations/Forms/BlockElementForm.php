@@ -7,6 +7,7 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockElementForm as Contract;
+use Narsil\Contracts\Forms\ConditionForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\Field;
@@ -30,6 +31,8 @@ class BlockElementForm extends AbstractForm implements Contract
     {
         return [
             [
+                TemplateTab::HANDLE => 'definition',
+                TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => BlockElement::HANDLE,
@@ -43,6 +46,16 @@ class BlockElementForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => BlockElement::LABEL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_ELEMENT => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => BlockElement::DESCRIPTION,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_ELEMENT => [
@@ -70,6 +83,7 @@ class BlockElementForm extends AbstractForm implements Contract
                     ],
                 ],
             ],
+            ...app(ConditionForm::class)->tabs,
         ];
     }
 

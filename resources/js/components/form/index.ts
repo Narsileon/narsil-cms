@@ -13,6 +13,7 @@ import FormMessage from "./form-message";
 import FormProvider from "./form-provider";
 import FormRoot from "./form-root";
 import FormSave from "./form-save";
+import FormTabs from "./form-tabs";
 import FormTimestamp from "./form-timestamps";
 
 export {
@@ -29,6 +30,7 @@ export {
   FormProvider,
   FormRoot,
   FormSave,
+  FormTabs,
   FormTimestamp,
   useForm,
   useFormField,

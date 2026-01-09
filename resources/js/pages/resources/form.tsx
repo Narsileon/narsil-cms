@@ -11,19 +11,17 @@ import {
   FormProvider,
   FormRoot,
   FormSave,
+  FormTabs,
   FormTimestamp,
 } from "@narsil-cms/components/form";
 import FormPublish from "@narsil-cms/components/form/form-publish";
 import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
-import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
-import { useMinLg } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import type { FormType, Revision, SelectOption, TemplateTab, User } from "@narsil-cms/types";
 import { isEmpty } from "lodash-es";
-import { useEffect, useState } from "react";
 
 type FormProps = {
   countries?: SelectOption[];
@@ -43,8 +41,6 @@ type FormProps = {
 function ResourceForm({ countries, data, form, modal, publish, revisions }: FormProps) {
   const { trans } = useLocalization();
   const { closeTopModal } = useModalStore();
-
-  const minLg = useMinLg();
 
   const {
     action,
@@ -81,8 +77,6 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     },
   );
 
-  const [value, setValue] = useState(standardTabs[0].handle);
-
   const sidebarContent = sidebar ? (
     <>
       {sidebar.elements?.map((element, index) => {
@@ -90,41 +84,6 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
       })}
     </>
   ) : null;
-
-  const tabsList =
-    standardTabs.length > 1 ? (
-      <TabsList className="flex w-full items-center border-b px-4">
-        {standardTabs.map((tab, index) => {
-          return (
-            <TabsTrigger value={tab.handle} key={index}>
-              {tab.label}
-            </TabsTrigger>
-          );
-        })}
-      </TabsList>
-    ) : null;
-
-  const tabsContent = standardTabs.map((tab, index) => {
-    return (
-      <TabsContent
-        className="grid w-full max-w-5xl grid-cols-12 gap-x-4 gap-y-8 place-self-center"
-        value={tab.handle}
-        key={index}
-      >
-        {tab.elements?.map((element, index) => {
-          return <FormElement {...element} key={index} />;
-        })}
-      </TabsContent>
-    );
-  });
-
-  useEffect(() => {
-    const handles = standardTabs.map((tab) => tab.handle);
-
-    if (!handles.includes(value)) {
-      setValue(standardTabs[0]?.handle);
-    }
-  }, [minLg, standardTabs, value]);
 
   return (
     <FormProvider
@@ -157,14 +116,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
             {modal ? (
               <>
                 <DialogBody className="col-span-full h-full p-0">
-                  <TabsRoot
-                    defaultValue={standardTabs[0].handle}
-                    value={value}
-                    onValueChange={setValue}
-                  >
-                    {tabsList}
-                    {tabsContent}
-                  </TabsRoot>
+                  <FormTabs tabs={standardTabs} />
                 </DialogBody>
                 <DialogFooter className="col-span-full h-fit border-t">
                   <DialogClose asChild={true}>
@@ -186,14 +138,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                   )}
                 >
                   <SectionContent>
-                    <TabsRoot
-                      defaultValue={standardTabs[0].handle}
-                      value={value}
-                      onValueChange={setValue}
-                    >
-                      {tabsList}
-                      {tabsContent}
-                    </TabsRoot>
+                    <FormTabs tabs={standardTabs} />
                   </SectionContent>
                 </SectionRoot>
                 <SectionRoot
