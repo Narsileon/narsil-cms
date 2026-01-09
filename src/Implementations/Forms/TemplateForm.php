@@ -7,8 +7,8 @@ namespace Narsil\Implementations\Forms;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\BlockElementForm;
 use Narsil\Contracts\Forms\TemplateForm as Contract;
+use Narsil\Contracts\Forms\TemplateTabElementForm;
 use Narsil\Contracts\Forms\TemplateTabForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Structures\Block;
@@ -108,7 +108,7 @@ class TemplateForm extends AbstractForm implements Contract
                                         BlockElement::RELATION_ELEMENT => [
                                             Field::TYPE => RelationsField::class,
                                             Field::SETTINGS => app(RelationsField::class)
-                                                ->form(app(BlockElementForm::class)->jsonSerialize())
+                                                ->form(app(TemplateTabElementForm::class)->jsonSerialize())
                                                 ->addOption(
                                                     identifier: Block::TABLE,
                                                     label: ModelService::getModelLabel(Block::class),
