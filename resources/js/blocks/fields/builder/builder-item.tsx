@@ -92,13 +92,13 @@ function BuilderItem({
         <CollapsibleContent>
           <CardContent className="grid-cols-12">
             {block.elements?.map((element, index) => {
-              const childElement = element.element;
+              const child = element.base;
 
               let childHandle = `${baseHandle}.children.${element.handle}`;
 
-              if ("type" in childElement) {
+              if ("type" in child) {
                 if (
-                  childElement.type !== "Narsil\\Contracts\\Fields\\BuilderField" &&
+                  child.type !== "Narsil\\Contracts\\Fields\\BuilderField" &&
                   !element.translatable
                 ) {
                   childHandle = `${childHandle}.en`;
@@ -106,16 +106,9 @@ function BuilderItem({
 
                 return <FormElement {...element} handle={childHandle} key={index} />;
               } else {
-                childElement.virtual = false;
+                child.virtual = false;
 
-                return (
-                  <FormElement
-                    {...element}
-                    handle={childHandle}
-                    element={childElement}
-                    key={index}
-                  />
-                );
+                return <FormElement {...element} base={child} handle={childHandle} key={index} />;
               }
             })}
           </CardContent>

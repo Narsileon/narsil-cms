@@ -66,7 +66,7 @@ class HostForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Host::HOST,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.host'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -76,7 +76,7 @@ class HostForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -91,7 +91,7 @@ class HostForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.pattern'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -99,7 +99,7 @@ class HostForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.languages'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::PLACEHOLDER => trans('narsil::ui.add'),
                             Field::TYPE => TableField::class,
                             Field::SETTINGS => app(TableField::class)
@@ -108,7 +108,7 @@ class HostForm extends AbstractForm implements Contract
                                         BlockElement::HANDLE => HostLocaleLanguage::LANGUAGE,
                                         BlockElement::LABEL => trans('narsil::validation.attributes.language'),
                                         BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_ELEMENT => [
+                                        BlockElement::RELATION_BASE => [
                                             Field::TYPE => SelectField::class,
                                             Field::SETTINGS => app(SelectField::class),
                                             Field::RELATION_OPTIONS => $languageSelectOptions,
@@ -126,7 +126,7 @@ class HostForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Host::RELATION_OTHER_LOCALES,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.locales'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => ArrayField::class,
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
@@ -134,7 +134,7 @@ class HostForm extends AbstractForm implements Contract
                                         BlockElement::HANDLE => HostLocale::PATTERN,
                                         BlockElement::LABEL => trans('narsil::validation.attributes.pattern'),
                                         BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_ELEMENT => [
+                                        BlockElement::RELATION_BASE => [
                                             Field::TYPE => TextField::class,
                                             Field::SETTINGS => app(TextField::class),
                                         ],
@@ -143,7 +143,7 @@ class HostForm extends AbstractForm implements Contract
                                         BlockElement::HANDLE => HostLocale::COUNTRY,
                                         BlockElement::LABEL => trans('narsil::validation.attributes.country'),
                                         BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_ELEMENT => [
+                                        BlockElement::RELATION_BASE => [
                                             Field::TYPE => SelectField::class,
                                             Field::SETTINGS => app(SelectField::class),
                                             Field::RELATION_OPTIONS => $countrySelectOptions,
@@ -153,7 +153,7 @@ class HostForm extends AbstractForm implements Contract
                                         BlockElement::HANDLE => HostLocale::RELATION_LANGUAGES,
                                         BlockElement::LABEL => trans('narsil::validation.attributes.languages'),
                                         BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_ELEMENT => [
+                                        BlockElement::RELATION_BASE => [
                                             Field::PLACEHOLDER => trans('narsil::ui.add'),
                                             Field::TYPE => TableField::class,
                                             Field::SETTINGS => app(TableField::class)
@@ -162,7 +162,7 @@ class HostForm extends AbstractForm implements Contract
                                                         BlockElement::HANDLE => HostLocaleLanguage::LANGUAGE,
                                                         BlockElement::LABEL => trans('narsil::validation.attributes.language'),
                                                         BlockElement::REQUIRED => true,
-                                                        BlockElement::RELATION_ELEMENT => [
+                                                        BlockElement::RELATION_BASE => [
                                                             Field::TYPE => SelectField::class,
                                                             Field::SETTINGS => app(SelectField::class),
                                                             Field::RELATION_OPTIONS => $languageSelectOptions,

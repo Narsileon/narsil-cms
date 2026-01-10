@@ -25,10 +25,10 @@ class TemplateTabElementObserver
      */
     public function saving(TemplateTabElement $model): void
     {
-        match ($model->{TemplateTabElement::ELEMENT_TYPE})
+        match ($model->{TemplateTabElement::BASE_TYPE})
         {
-            Block::TABLE => $model->{TemplateTabElement::BLOCK_ID} = $model->{TemplateTabElement::ELEMENT_ID},
-            Field::TABLE => $model->{TemplateTabElement::FIELD_ID} = $model->{TemplateTabElement::ELEMENT_ID},
+            Block::TABLE => $model->{TemplateTabElement::BLOCK_ID} = $model->{TemplateTabElement::BASE_ID},
+            Field::TABLE => $model->{TemplateTabElement::FIELD_ID} = $model->{TemplateTabElement::BASE_ID},
             default => null,
         };
     }

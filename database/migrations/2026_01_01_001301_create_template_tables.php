@@ -108,7 +108,7 @@ return new class extends Migration
                 ->constrained(TemplateTab::TABLE, TemplateTab::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(TemplateTabElement::RELATION_ELEMENT);
+                ->morphs(TemplateTabElement::RELATION_BASE);
             $blueprint
                 ->foreignId(TemplateTabElement::BLOCK_ID)
                 ->nullable()

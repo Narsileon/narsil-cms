@@ -40,7 +40,7 @@ class SwitchField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
                 BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class),
                 ],

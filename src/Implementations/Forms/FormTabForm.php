@@ -34,7 +34,7 @@ class FormTabForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => FormTab::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -44,7 +44,7 @@ class FormTabForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -53,7 +53,7 @@ class FormTabForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => FormTab::DESCRIPTION,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ]

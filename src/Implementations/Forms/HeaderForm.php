@@ -53,7 +53,7 @@ class HeaderForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Header::SLUG,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -61,7 +61,7 @@ class HeaderForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Header::LOGO,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.logo'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
                                 ->accept('image/*')

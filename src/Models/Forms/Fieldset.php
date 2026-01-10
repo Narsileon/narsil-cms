@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Arr;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -187,10 +186,10 @@ class Fieldset extends Model
         return $this
             ->morphedByMany(
                 Fieldset::class,
-                FieldsetElement::RELATION_ELEMENT,
+                FieldsetElement::RELATION_BASE,
                 FieldsetElement::TABLE,
                 FieldsetElement::OWNER_ID,
-                FieldsetElement::ELEMENT_ID,
+                FieldsetElement::BASE_ID,
             )
             ->using(FieldsetElement::class);
     }
@@ -206,10 +205,10 @@ class Fieldset extends Model
         return $this
             ->morphedByMany(
                 Input::class,
-                FieldsetElement::RELATION_ELEMENT,
+                FieldsetElement::RELATION_BASE,
                 FieldsetElement::TABLE,
                 FieldsetElement::OWNER_ID,
-                FieldsetElement::ELEMENT_ID,
+                FieldsetElement::BASE_ID,
             )
             ->using(FieldsetElement::class);
     }

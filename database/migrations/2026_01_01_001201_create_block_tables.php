@@ -109,7 +109,7 @@ return new class extends Migration
                 ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(BlockElement::RELATION_ELEMENT);
+                ->morphs(BlockElement::RELATION_BASE);
             $blueprint
                 ->foreignId(BlockElement::BLOCK_ID)
                 ->nullable()

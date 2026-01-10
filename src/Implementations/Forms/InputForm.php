@@ -74,7 +74,7 @@ class InputForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Input::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -85,7 +85,7 @@ class InputForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -96,7 +96,7 @@ class InputForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -105,7 +105,7 @@ class InputForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Input::TYPE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.type'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::PLACEHOLDER => trans('narsil::placeholders.search'),
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
@@ -114,7 +114,7 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Block::COLLAPSIBLE => true,
                             Block::LABEL => trans('narsil::ui.settings'),
                             Block::RELATION_ELEMENTS =>  $settings,
@@ -129,7 +129,7 @@ class InputForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Input::RELATION_VALIDATION_RULES,
                         TemplateTabElement::LABEL => trans("narsil::ui.rules"),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class)
                                 ->defaultValue([]),

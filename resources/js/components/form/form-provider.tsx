@@ -28,22 +28,22 @@ function FormProvider({
 }: FormProviderProps) {
   const [formLanguage, setFormLanguage] = useState<string>("en");
 
-  function flattenValues(elements: (Block | Field | TemplateTab)[]): Record<string, unknown> {
+  function flattenValues(bases: (Block | Field | TemplateTab)[]): Record<string, unknown> {
     const receivedValues: Record<string, unknown> = {};
 
-    elements.map((element) => {
-      if ("elements" in element) {
-        element.elements?.map((hasElement) => {
-          const childElement = hasElement.element;
+    bases.map((base) => {
+      if ("elements" in base) {
+        base.elements?.map((element) => {
+          const child = element.base;
 
-          if ("elements" in childElement) {
-            Object.assign(receivedValues, flattenValues([childElement]));
-          } else if ("type" in childElement) {
-            set(receivedValues, hasElement.handle, getFieldDefaultValue(childElement));
+          if ("elements" in child) {
+            Object.assign(receivedValues, flattenValues([child]));
+          } else if ("type" in child) {
+            set(receivedValues, element.handle, getFieldDefaultValue(child));
           }
         });
-      } else if ("type" in element) {
-        set(receivedValues, element.handle, getFieldDefaultValue(element as Field));
+      } else if ("type" in base) {
+        set(receivedValues, base.handle, getFieldDefaultValue(base as Field));
       }
     });
 

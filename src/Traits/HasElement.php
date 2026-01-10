@@ -7,7 +7,7 @@ namespace Narsil\Traits;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Narsil\Interfaces\IHasElement;
+use Narsil\Interfaces\IElement;
 
 #endregion
 
@@ -25,16 +25,16 @@ trait HasElement
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated element.
+     * Get the associated base.
      *
      * @return MorphTo
      */
-    final public function element(): MorphTo
+    final public function base(): MorphTo
     {
         return $this->morphTo(
-            IHasElement::RELATION_ELEMENT,
-            IHasElement::ELEMENT_TYPE,
-            IHasElement::ELEMENT_ID,
+            IElement::RELATION_BASE,
+            IElement::BASE_TYPE,
+            IElement::BASE_ID,
         );
     }
 
@@ -56,7 +56,7 @@ trait HasElement
         return Attribute::make(
             get: function ()
             {
-                return $this->{IHasElement::RELATION_ELEMENT}->{IHasElement::ATTRIBUTE_ICON} ?? null;
+                return $this->{IElement::RELATION_BASE}->{IElement::ATTRIBUTE_ICON} ?? null;
             },
         );
     }
@@ -71,10 +71,10 @@ trait HasElement
         return Attribute::make(
             get: function ()
             {
-                $element = $this->{IHasElement::RELATION_ELEMENT};
+                $base = $this->{IElement::RELATION_BASE};
 
-                $key = $element->getKey();
-                $table = $element->getTable();
+                $key = $base->getKey();
+                $table = $base->getTable();
 
                 return !empty($key) ? "$table-$key" : $table;
             },

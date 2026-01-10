@@ -184,10 +184,10 @@ class Block extends Model
         return $this
             ->morphedByMany(
                 Block::class,
-                BlockElement::RELATION_ELEMENT,
+                BlockElement::RELATION_BASE,
                 BlockElement::TABLE,
                 BlockElement::OWNER_ID,
-                BlockElement::ELEMENT_ID,
+                BlockElement::BASE_ID,
             )
             ->using(BlockElement::class);
     }
@@ -218,10 +218,10 @@ class Block extends Model
         return $this
             ->morphedByMany(
                 Field::class,
-                BlockElement::RELATION_ELEMENT,
+                BlockElement::RELATION_BASE,
                 BlockElement::TABLE,
                 BlockElement::OWNER_ID,
-                BlockElement::ELEMENT_ID,
+                BlockElement::BASE_ID,
             )
             ->using(BlockElement::class);
     }

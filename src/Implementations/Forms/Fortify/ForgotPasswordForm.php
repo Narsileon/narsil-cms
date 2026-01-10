@@ -54,7 +54,7 @@ class ForgotPasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::EMAIL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EmailField::class,
                             Field::SETTINGS => app(EmailField::class)
                                 ->autoComplete(AutoCompleteEnum::EMAIL->value)

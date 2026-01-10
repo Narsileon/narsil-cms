@@ -79,14 +79,14 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Padding',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     $layoutBlock,
                 ),
                 new BlockElement([
                     BlockElement::HANDLE => self::HEADLINE,
                     BlockElement::LABEL => 'Headline',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     $headlineBlock,
                 ),
                 new BlockElement([
@@ -95,7 +95,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => RichTextField::class,
                     ]),
@@ -104,7 +104,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                     BlockElement::HANDLE => self::BUTTONS,
                     BlockElement::LABEL => 'Buttons',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => BuilderField::class,
                     ])->setRelation(

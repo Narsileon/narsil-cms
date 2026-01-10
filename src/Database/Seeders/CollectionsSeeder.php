@@ -59,50 +59,48 @@ abstract class CollectionsSeeder extends Seeder
             Block::LABEL => $block->{Block::LABEL},
         ]);
 
-        $blockElements = $block->{Block::RELATION_ELEMENTS} ?? [];
+        $elements = $block->{Block::RELATION_ELEMENTS} ?? [];
 
-        foreach ($blockElements as $position => $blockElement)
+        foreach ($elements as $position => $element)
         {
-            $element = $blockElement->{BlockElement::RELATION_ELEMENT};
+            $base = $element->{BlockElement::RELATION_BASE};
 
-            if (!$element)
+            if (!$base)
             {
                 continue;
             }
 
-            if ($element instanceof Field)
+            if ($base instanceof Field)
             {
                 foreach (self::FIELD_FILLABLE_ATTRIBUTES as $attribute)
                 {
-                    if (empty($element->getAttribute($attribute)))
+                    if (empty($base->getAttribute($attribute)))
                     {
-                        $element->setAttribute($attribute, $blockElement->{$attribute});
+                        $base->setAttribute($attribute, $element->{$attribute});
                     }
                 }
 
-                $element = $this->saveField($element, [
-                    Field::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{BlockElement::HANDLE},
-                    Field::LABEL => $element->{BlockElement::LABEL},
-                ]);
+                $base = $this->saveField($base);
             }
-            else if ($element instanceof Block)
+            else if ($base instanceof Block)
             {
-                $element = $this->saveBlock($element);
+                $base = $this->saveBlock($base);
             }
 
-            $blockElementModel = BlockElement::create([
-                BlockElement::ELEMENT_ID => $element->getKey(),
-                BlockElement::ELEMENT_TYPE => $element->getTable(),
-                BlockElement::HANDLE => $blockElement->{BlockElement::HANDLE} ?? $element->{BlockElement::HANDLE},
+            $elementModel = BlockElement::create([
+                BlockElement::BASE_ID => $base->getKey(),
+                BlockElement::BASE_TYPE => $base->getTable(),
+                BlockElement::DESCRIPTION => $element->{BlockElement::DESCRIPTION},
+                BlockElement::HANDLE => $element->{BlockElement::HANDLE},
                 BlockElement::LABEL => $element->{BlockElement::LABEL},
                 BlockElement::OWNER_ID => $model->getKey(),
                 BlockElement::POSITION => $position,
-                BlockElement::REQUIRED => $blockElement->{BlockElement::REQUIRED} ?? $element->{BlockElement::REQUIRED} ?? false,
-                BlockElement::TRANSLATABLE => $blockElement->{BlockElement::TRANSLATABLE} ?? $element->{BlockElement::TRANSLATABLE} ?? false,
-                BlockElement::WIDTH => $blockElement->{BlockElement::WIDTH} ?? 100,
+                BlockElement::REQUIRED => $element->{BlockElement::REQUIRED} ?? false,
+                BlockElement::TRANSLATABLE => $element->{BlockElement::TRANSLATABLE} ?? false,
+                BlockElement::WIDTH => $element->{BlockElement::WIDTH} ?? 100,
             ]);
 
-            $blockElementModel->conditions()->createMany($blockElement->{BlockElement::RELATION_CONDITIONS});
+            $elementModel->conditions()->createMany($element->{BlockElement::RELATION_CONDITIONS});
         }
 
         return $model;
@@ -208,48 +206,48 @@ abstract class CollectionsSeeder extends Seeder
                 ]);
             }
 
-            $templateTabElements = $templateTab->{TemplateTab::RELATION_ELEMENTS} ?? [];
+            $elements = $templateTab->{TemplateTab::RELATION_ELEMENTS} ?? [];
 
-            foreach ($templateTabElements as $position => $templateTabElement)
+            foreach ($elements as $position => $element)
             {
-                $element = $templateTabElement->{BlockElement::RELATION_ELEMENT};
+                $base = $element->{BlockElement::RELATION_BASE};
 
-                if (!$element)
+                if (!$base)
                 {
                     continue;
                 }
 
-                if ($element instanceof Field)
+                if ($base instanceof Field)
                 {
                     foreach (self::FIELD_FILLABLE_ATTRIBUTES as $attribute)
                     {
-                        if (empty($element->getAttribute($attribute)))
+                        if (empty($base->getAttribute($attribute)))
                         {
-                            $element->setAttribute($attribute, $templateTabElement->{$attribute});
+                            $base->setAttribute($attribute, $element->{$attribute});
                         }
                     }
 
-                    $element = $this->saveField($element);
+                    $base = $this->saveField($base);
                 }
-                else if ($element instanceof Block)
+                else if ($base instanceof Block)
                 {
-                    $element = $this->saveBlock($element);
+                    $base = $this->saveBlock($base);
                 }
 
-                $templateTabElementModel = TemplateTabElement::create([
-                    TemplateTabElement::DESCRIPTION => $templateTabModel->{TemplateTabElement::DESCRIPTION},
-                    TemplateTabElement::ELEMENT_ID => $element->getKey(),
-                    TemplateTabElement::ELEMENT_TYPE => $element->getTable(),
-                    TemplateTabElement::HANDLE => $templateTabModel->{TemplateTabElement::HANDLE},
+                $elementModel = TemplateTabElement::create([
+                    TemplateTabElement::BASE_ID => $base->getKey(),
+                    TemplateTabElement::BASE_TYPE => $base->getTable(),
+                    TemplateTabElement::DESCRIPTION => $element->{TemplateTabElement::DESCRIPTION},
+                    TemplateTabElement::HANDLE => $element->{TemplateTabElement::HANDLE},
                     TemplateTabElement::LABEL => $element->{TemplateTabElement::LABEL},
                     TemplateTabElement::OWNER_UUID => $templateTabModel->getKey(),
                     TemplateTabElement::POSITION => $position,
-                    TemplateTabElement::REQUIRED => $templateTabElement->{TemplateTabElement::REQUIRED} ?? false,
-                    TemplateTabElement::TRANSLATABLE => $templateTabElement->{TemplateTabElement::TRANSLATABLE} ?? false,
-                    TemplateTabElement::WIDTH => $templateTabModel->{TemplateTabElement::WIDTH} ?? 100,
+                    TemplateTabElement::REQUIRED => $element->{TemplateTabElement::REQUIRED} ?? false,
+                    TemplateTabElement::TRANSLATABLE => $element->{TemplateTabElement::TRANSLATABLE} ?? false,
+                    TemplateTabElement::WIDTH => $element->{TemplateTabElement::WIDTH} ?? 100,
                 ]);
 
-                $templateTabElementModel->conditions()->createMany($templateTabElement->{TemplateTabElement::RELATION_CONDITIONS});
+                $elementModel->conditions()->createMany($element->{TemplateTabElement::RELATION_CONDITIONS});
             }
         }
 

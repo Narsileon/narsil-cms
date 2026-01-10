@@ -37,7 +37,7 @@ class FieldsetEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $fieldset);
 
         $fieldset->loadMissing([
-            Fieldset::RELATION_ELEMENTS . '.' . FieldsetElement::RELATION_ELEMENT,
+            Fieldset::RELATION_ELEMENTS . '.' . FieldsetElement::RELATION_BASE,
         ]);
 
         $data = $this->getData($fieldset);

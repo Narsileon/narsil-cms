@@ -14,13 +14,13 @@ import {
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Button } from "@narsil-cms/blocks/button";
 import { useLocalization } from "@narsil-cms/components/localization";
-import type { StructureHasElement } from "@narsil-cms/types";
+import type { Element } from "@narsil-cms/types";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrayItem, type ArrayElement } from ".";
 
 type ArrayProps = {
-  form: StructureHasElement[];
+  form: Element[];
   id: string;
   items: ArrayElement[];
   labelKey: string;

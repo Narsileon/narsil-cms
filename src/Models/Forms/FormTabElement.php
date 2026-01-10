@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Support\Arr;
-use Narsil\Interfaces\IFormHasElement;
+use Narsil\Interfaces\IFormElement;
 use Narsil\Models\Forms\FormTab;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
@@ -19,7 +19,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormTabElement extends MorphPivot implements IFormHasElement
+class FormTabElement extends MorphPivot implements IFormElement
 {
     use HasElement;
     use HasTranslations;
@@ -42,8 +42,8 @@ class FormTabElement extends MorphPivot implements IFormHasElement
         ];
 
         $this->with = [
+            self::RELATION_BASE,
             self::RELATION_CONDITIONS,
-            self::RELATION_ELEMENT,
         ];
 
         $this->mergeAppends([

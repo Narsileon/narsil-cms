@@ -70,7 +70,7 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.title'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -80,7 +80,7 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->generate(SitePage::TITLE),
@@ -89,7 +89,7 @@ class SitePageForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => SitePage::ADAPTER,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.adapter'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(SitePageAdapterEnum::ENTITY->value),
@@ -107,7 +107,7 @@ class SitePageForm extends AbstractForm implements Contract
                                 TemplateTabElementCondition::VALUE => SitePageAdapterEnum::ENTITY->value,
                             ],
                         ],
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->collections($collections)
@@ -125,7 +125,7 @@ class SitePageForm extends AbstractForm implements Contract
                                 TemplateTabElementCondition::VALUE => SitePageAdapterEnum::COLLECTION->value,
                             ],
                         ],
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class),
                             Field::RELATION_OPTIONS => Template::selectOptions(),
@@ -135,7 +135,7 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => SitePage::SHOW_IN_MENU,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.show_in_menu'),
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class)
                                 ->defaultValue(true),
@@ -148,7 +148,7 @@ class SitePageForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => 'SEO',
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Block::LABEL => 'Meta',
                             Block::RELATION_ELEMENTS => [
                                 [
@@ -156,7 +156,7 @@ class SitePageForm extends AbstractForm implements Contract
                                     BlockElement::LABEL => trans('narsil::validation.attributes.description'),
                                     BlockElement::REQUIRED => true,
                                     BlockElement::TRANSLATABLE => true,
-                                    BlockElement::RELATION_ELEMENT => [
+                                    BlockElement::RELATION_BASE => [
                                         Field::TYPE => TextareaField::class,
                                         Field::SETTINGS => app(TextareaField::class),
                                     ],
@@ -165,7 +165,7 @@ class SitePageForm extends AbstractForm implements Contract
                                     BlockElement::HANDLE => SitePage::ROBOTS,
                                     BlockElement::LABEL => trans('narsil::validation.attributes.robots'),
                                     BlockElement::REQUIRED => true,
-                                    BlockElement::RELATION_ELEMENT => [
+                                    BlockElement::RELATION_BASE => [
                                         Field::TYPE => SelectField::class,
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(RobotsEnum::ALL->value)
@@ -177,14 +177,14 @@ class SitePageForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Block::LABEL => 'Open Graph',
                             Block::RELATION_ELEMENTS => [
                                 [
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_TYPE,
                                     BlockElement::LABEL => trans('narsil::validation.attributes.type'),
                                     BlockElement::REQUIRED => true,
-                                    BlockElement::RELATION_ELEMENT => [
+                                    BlockElement::RELATION_BASE => [
                                         Field::TYPE => SelectField::class,
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(OpenGraphTypeEnum::WEBSITE->value)
@@ -196,7 +196,7 @@ class SitePageForm extends AbstractForm implements Contract
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_TITLE,
                                     BlockElement::LABEL => trans('narsil::validation.attributes.title'),
                                     BlockElement::TRANSLATABLE => true,
-                                    BlockElement::RELATION_ELEMENT => [
+                                    BlockElement::RELATION_BASE => [
                                         Field::TYPE => TextField::class,
                                         Field::SETTINGS => app(TextField::class),
                                     ],
@@ -205,7 +205,7 @@ class SitePageForm extends AbstractForm implements Contract
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_DESCRIPTION,
                                     BlockElement::LABEL => trans('narsil::validation.attributes.description'),
                                     BlockElement::TRANSLATABLE => true,
-                                    BlockElement::RELATION_ELEMENT => [
+                                    BlockElement::RELATION_BASE => [
                                         Field::TYPE => TextareaField::class,
                                         Field::SETTINGS => app(TextareaField::class),
                                     ],
@@ -213,7 +213,7 @@ class SitePageForm extends AbstractForm implements Contract
                                 [
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_IMAGE,
                                     BlockElement::LABEL => trans('narsil::validation.attributes.image'),
-                                    BlockElement::RELATION_ELEMENT => [
+                                    BlockElement::RELATION_BASE => [
                                         Field::TYPE => FileField::class,
                                         Field::SETTINGS => app(FileField::class)
                                             ->accept('image/*')
@@ -233,7 +233,7 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => SitePage::CHANGE_FREQ,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.change_freq'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ChangeFreqEnum::NEVER->value)
@@ -245,7 +245,7 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => SitePage::PRIORITY,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.priority'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => RangeField::class,
                             Field::SETTINGS => app(RangeField::class)
                                 ->defaultValue([1.0])

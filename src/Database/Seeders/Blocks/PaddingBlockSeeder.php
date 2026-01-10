@@ -66,7 +66,7 @@ class PaddingBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::HANDLE => self::PADDING,
                         Field::LABEL => "Padding",
@@ -84,7 +84,7 @@ class PaddingBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::HANDLE => self::PADDING,
                         Field::LABEL => "Padding",

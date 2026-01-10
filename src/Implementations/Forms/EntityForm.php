@@ -67,7 +67,7 @@ class EntityForm extends AbstractForm implements Contract
                 TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
                 TemplateTabElement::REQUIRED => true,
                 TemplateTabElement::TRANSLATABLE => true,
-                TemplateTabElement::RELATION_ELEMENT => [
+                TemplateTabElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
                     Field::SETTINGS => app(TextField::class),
                 ],

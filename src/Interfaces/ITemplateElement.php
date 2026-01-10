@@ -6,7 +6,7 @@ namespace Narsil\Interfaces;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface IStructureHasElement extends IHasElement
+interface ITemplateElement extends IElement
 {
     #region CONSTANTS
 

@@ -17,7 +17,7 @@ import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortab
 import { BackgroundGrid, BackgroundRoot } from "@narsil-cms/components/background";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
-import type { FormType, GroupedSelectOption, StructureHasElement } from "@narsil-cms/types";
+import type { Element, FormType, GroupedSelectOption } from "@narsil-cms/types";
 import { get } from "lodash-es";
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -38,7 +38,7 @@ type SortableGridProps = {
     label: string;
     optionLabel: string;
     optionValue: string;
-    relation: StructureHasElement;
+    relation: Element;
   };
   setItems: (items: AnonymousItem[]) => void;
   cancelDrop?: CancelDrop;
@@ -112,7 +112,7 @@ function SortableGrid({
   }
 
   function getChildGroup(child: AnonymousItem) {
-    const group = intermediate.relation.element.settings.options?.find((option) =>
+    const group = intermediate.relation.base.settings.options?.find((option) =>
       child.identifier.includes(option.identifier),
     ) as GroupedSelectOption;
 
@@ -326,7 +326,7 @@ function SortableGrid({
                 }}
                 footer={
                   <>
-                    {intermediate.relation.element.settings.options?.map((group, index) => {
+                    {intermediate.relation.base.settings.options?.map((group, index) => {
                       return (
                         <SortableAdd
                           ids={items
@@ -354,9 +354,9 @@ function SortableGrid({
                 key={identifier}
               >
                 <SortableListContext
-                  {...intermediate.relation.element.settings}
+                  {...intermediate.relation.base.settings}
                   items={children}
-                  options={intermediate.relation.element.settings.options as GroupedSelectOption[]}
+                  options={intermediate.relation.base.settings.options as GroupedSelectOption[]}
                   setItems={(groupItems) => {
                     const updatedItems = items.map((container) =>
                       getContainerIdentifier(container) === identifier

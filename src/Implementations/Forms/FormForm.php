@@ -66,7 +66,7 @@ class FormForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Form::SLUG,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -74,7 +74,7 @@ class FormForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Form::RELATION_TABS,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.tabs'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
@@ -86,7 +86,7 @@ class FormForm extends AbstractForm implements Contract
                                     relation: [
                                         BlockElement::HANDLE => FormTab::RELATION_ELEMENTS,
                                         BlockElement::LABEL => trans('narsil::validation.attributes.elements'),
-                                        BlockElement::RELATION_ELEMENT => [
+                                        BlockElement::RELATION_BASE => [
                                             Field::TYPE => RelationsField::class,
                                             Field::SETTINGS => app(RelationsField::class)
                                                 ->form(app(FieldsetElementForm::class)->jsonSerialize())

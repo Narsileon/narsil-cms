@@ -37,7 +37,7 @@ class BlockEditController extends RenderController
         $this->authorize(PermissionEnum::UPDATE, $block);
 
         $block->loadMissing([
-            Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_ELEMENT,
+            Block::RELATION_ELEMENTS . '.' . BlockElement::RELATION_BASE,
         ]);
 
         $data = $this->getData($block);

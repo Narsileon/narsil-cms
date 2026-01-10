@@ -63,8 +63,8 @@ abstract class TemplateService
             $templateTabElement = TemplateTabElement::updateOrCreate([
                 TemplateTabElement::OWNER_UUID => $templateTab->{TemplateTab::UUID},
                 TemplateTabElement::HANDLE => Arr::get($element, TemplateTabElement::HANDLE),
-                TemplateTabElement::ELEMENT_TYPE => $table,
-                TemplateTabElement::ELEMENT_ID => $id,
+                TemplateTabElement::BASE_TYPE => $table,
+                TemplateTabElement::BASE_ID => $id,
             ], [
                 TemplateTabElement::DESCRIPTION => Arr::get($element, TemplateTabElement::DESCRIPTION),
                 TemplateTabElement::LABEL => Arr::get($element, TemplateTabElement::LABEL),

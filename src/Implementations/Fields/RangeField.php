@@ -41,7 +41,7 @@ class RangeField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
                 BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
                         ->defaultValue(0),
@@ -50,7 +50,7 @@ class RangeField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.min" : 'min',
                 BlockElement::LABEL => trans('narsil::validation.attributes.min'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
                         ->defaultValue(0),
@@ -59,7 +59,7 @@ class RangeField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.max" : 'max',
                 BlockElement::LABEL => trans('narsil::validation.attributes.max'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
                         ->defaultValue(100),
@@ -68,7 +68,7 @@ class RangeField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.step" : 'step',
                 BlockElement::LABEL => trans('narsil::validation.attributes.step'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
                         ->min(0)

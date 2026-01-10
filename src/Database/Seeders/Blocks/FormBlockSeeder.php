@@ -55,7 +55,7 @@ class FormBlockSeeder extends BlockSeeder
                     BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Padding',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     $layoutBlock,
                 ),
                 new BlockElement([
@@ -64,7 +64,7 @@ class FormBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => FormField::class,
                     ]),

@@ -62,8 +62,8 @@ abstract class BlockService
             $blockElement = BlockElement::updateOrCreate([
                 BlockElement::OWNER_ID => $block->{Block::ID},
                 BlockElement::HANDLE => Arr::get($element, BlockElement::HANDLE),
-                BlockElement::ELEMENT_TYPE => $table,
-                BlockElement::ELEMENT_ID => $id,
+                BlockElement::BASE_TYPE => $table,
+                BlockElement::BASE_ID => $id,
             ], [
                 BlockElement::DESCRIPTION => Arr::get($element, BlockElement::DESCRIPTION),
                 BlockElement::LABEL => Arr::get($element, BlockElement::LABEL),

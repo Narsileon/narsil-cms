@@ -57,7 +57,7 @@ class ButtonBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => TextField::class,
                     ]),
@@ -66,7 +66,7 @@ class ButtonBlockSeeder extends BlockSeeder
                     BlockElement::HANDLE => 'link',
                     BlockElement::LABEL => 'Link',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     $linkBlock,
                 ),
             ],

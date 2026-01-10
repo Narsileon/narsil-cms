@@ -64,7 +64,7 @@ class AccordionItemBlockSeeder extends BlockSeeder
                         BlockElement::REQUIRED => true,
                         BlockElement::TRANSLATABLE => true,
                     ])->setRelation(
-                        BlockElement::RELATION_ELEMENT,
+                        BlockElement::RELATION_BASE,
                         new Field([
                             Field::TYPE => TextField::class,
                         ]),
@@ -75,7 +75,7 @@ class AccordionItemBlockSeeder extends BlockSeeder
                         BlockElement::REQUIRED => true,
                         BlockElement::TRANSLATABLE => true,
                     ])->setRelation(
-                        BlockElement::RELATION_ELEMENT,
+                        BlockElement::RELATION_BASE,
                         new Field([
                             Field::TYPE => RichTextField::class,
                         ]),

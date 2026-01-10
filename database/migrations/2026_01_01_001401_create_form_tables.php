@@ -153,7 +153,7 @@ return new class extends Migration
                 ->constrained(Fieldset::TABLE, Fieldset::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(FieldsetElement::RELATION_ELEMENT);
+                ->morphs(FieldsetElement::RELATION_BASE);
             $blueprint
                 ->foreignId(FieldsetElement::FIELDSET_ID)
                 ->nullable()
@@ -285,7 +285,7 @@ return new class extends Migration
                 ->constrained(FormTab::TABLE, FormTab::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(FormTabElement::RELATION_ELEMENT);
+                ->morphs(FormTabElement::RELATION_BASE);
             $blueprint
                 ->foreignId(FieldsetElement::FIELDSET_ID)
                 ->nullable()

@@ -54,7 +54,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::EMAIL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EmailField::class,
                             Field::SETTINGS => app(EmailField::class)
                                 ->autoComplete(AutoCompleteEnum::EMAIL->value)
@@ -65,7 +65,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::PASSWORD,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
@@ -75,7 +75,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),

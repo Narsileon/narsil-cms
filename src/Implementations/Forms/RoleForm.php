@@ -62,7 +62,7 @@ class RoleForm extends AbstractForm implements Contract
                 return [
                     TemplateTabElement::HANDLE => Role::RELATION_PERMISSIONS,
                     TemplateTabElement::LABEL => $group,
-                    TemplateTabElement::RELATION_ELEMENT => [
+                    TemplateTabElement::RELATION_BASE => [
                         Field::TYPE => CheckboxField::class,
                         Field::SETTINGS => app(CheckboxField::class),
                         Field::RELATION_OPTIONS => $options,
@@ -82,7 +82,7 @@ class RoleForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Role::NAME,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.name'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -93,7 +93,7 @@ class RoleForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],

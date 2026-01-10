@@ -67,7 +67,7 @@ class LinkBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 25,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
@@ -101,7 +101,7 @@ class LinkBlockSeeder extends BlockSeeder
                         )->toArray(),
                     ],
                 )->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => LinkField::class,
                     ]),
@@ -121,7 +121,7 @@ class LinkBlockSeeder extends BlockSeeder
                         )->toArray(),
                     ],
                 )->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => TextField::class,
                     ]),

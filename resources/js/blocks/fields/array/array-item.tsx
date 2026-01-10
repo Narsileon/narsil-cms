@@ -13,7 +13,7 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { cn, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
-import type { StructureHasElement } from "@narsil-cms/types";
+import type { Element } from "@narsil-cms/types";
 import { type ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
 
@@ -26,7 +26,7 @@ type ArrayItemProps = Pick<
   index?: number;
   item: ArrayElement;
   labelKey: string;
-  form: StructureHasElement[];
+  form: Element[];
   onItemChange?: (value: ArrayElement) => void;
 };
 

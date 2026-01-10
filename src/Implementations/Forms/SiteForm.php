@@ -42,7 +42,7 @@ class SiteForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Site::HEADER_ID,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.header_id'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class),
                             Field::RELATION_OPTIONS => $headerSelectOptions,
@@ -51,7 +51,7 @@ class SiteForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Site::FOOTER_ID,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.footer_id'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class),
                             Field::RELATION_OPTIONS => $footerSelectOptions,
@@ -60,7 +60,7 @@ class SiteForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Site::RELATION_PAGES,
                         TemplateTabElement::LABEL => trans('narsil::ui.navigation'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TreeField::class,
                             Field::SETTINGS => app(TreeField::class),
                         ],

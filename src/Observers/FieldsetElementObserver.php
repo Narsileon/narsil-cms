@@ -25,10 +25,10 @@ class FieldsetElementObserver
      */
     public function saving(FieldsetElement $model): void
     {
-        match ($model->{FieldsetElement::ELEMENT_TYPE})
+        match ($model->{FieldsetElement::BASE_TYPE})
         {
-            Fieldset::TABLE => $model->{FieldsetElement::FIELDSET_ID} = $model->{FieldsetElement::ELEMENT_ID},
-            Input::TABLE => $model->{FieldsetElement::INPUT_ID} = $model->{FieldsetElement::ELEMENT_ID},
+            Fieldset::TABLE => $model->{FieldsetElement::FIELDSET_ID} = $model->{FieldsetElement::BASE_ID},
+            Input::TABLE => $model->{FieldsetElement::INPUT_ID} = $model->{FieldsetElement::BASE_ID},
             default => null,
         };
     }

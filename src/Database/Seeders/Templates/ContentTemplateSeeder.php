@@ -61,7 +61,7 @@ class ContentTemplateSeeder extends TemplateSeeder
                             TemplateTabElement::HANDLE => self::CONTENT,
                             TemplateTabElement::LABEL => 'content',
                         ])->setRelation(
-                            TemplateTabElement::RELATION_ELEMENT,
+                            TemplateTabElement::RELATION_BASE,
                             new Field([
                                 Field::TYPE => BuilderField::class,
                             ])->setRelation(

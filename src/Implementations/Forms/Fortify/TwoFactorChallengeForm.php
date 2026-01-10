@@ -51,7 +51,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => 'code',
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.code'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)
@@ -62,7 +62,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => 'recovery_code',
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.recovery_code'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value)

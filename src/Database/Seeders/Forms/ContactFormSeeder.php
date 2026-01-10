@@ -46,7 +46,7 @@ class ContactFormSeeder extends FormSeeder
                             FormTabElement::LABEL => 'Message',
                             FormTabElement::REQUIRED => true,
                         ])->setRelation(
-                            FormTabElement::RELATION_ELEMENT,
+                            FormTabElement::RELATION_BASE,
                             new Input([
                                 Input::TYPE => TextareaField::class,
                             ]),
@@ -60,10 +60,11 @@ class ContactFormSeeder extends FormSeeder
                     FormTab::RELATION_ELEMENTS,
                     [
                         new FormTabElement([
-                            FormTabElement::REQUIRED => true,
+                            FormTabElement::HANDLE => 'personal_information',
+                            FormTabElement::LABEL => 'Personal information',
                             FormTabElement::WIDTH => 50,
                         ])->setRelation(
-                            FormTabElement::RELATION_ELEMENT,
+                            FormTabElement::RELATION_BASE,
                             new Fieldset([
                                 Fieldset::HANDLE => 'personal_information',
                                 Fieldset::LABEL => 'Personal information',
@@ -76,7 +77,7 @@ class ContactFormSeeder extends FormSeeder
                                         FieldsetElement::REQUIRED => true,
                                         FieldsetElement::WIDTH => 50,
                                     ])->setRelation(
-                                        FieldsetElement::RELATION_ELEMENT,
+                                        FieldsetElement::RELATION_BASE,
                                         new Input([
                                             Input::TYPE => TextField::class,
                                         ]),
@@ -87,7 +88,7 @@ class ContactFormSeeder extends FormSeeder
                                         FieldsetElement::REQUIRED => true,
                                         FieldsetElement::WIDTH => 50,
                                     ])->setRelation(
-                                        FieldsetElement::RELATION_ELEMENT,
+                                        FieldsetElement::RELATION_BASE,
                                         new Input([
                                             Input::TYPE => TextField::class,
                                         ]),
@@ -97,7 +98,7 @@ class ContactFormSeeder extends FormSeeder
                                         FieldsetElement::LABEL => 'Email',
                                         FieldsetElement::REQUIRED => true,
                                     ])->setRelation(
-                                        FieldsetElement::RELATION_ELEMENT,
+                                        FieldsetElement::RELATION_BASE,
                                         new Input([
                                             Input::TYPE => EmailField::class,
                                         ]),

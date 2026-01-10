@@ -63,7 +63,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => UserConfiguration::LANGUAGE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.language'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(App::getLocale()),
@@ -74,7 +74,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => UserConfiguration::COLOR,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.color'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ColorEnum::GRAY->value),
@@ -85,7 +85,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => UserConfiguration::RADIUS,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.radius'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => RangeField::class,
                             Field::SETTINGS => app(RangeField::class)
                                 ->defaultValue([0.25])

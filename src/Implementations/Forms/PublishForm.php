@@ -34,7 +34,7 @@ class PublishForm extends AbstractForm implements Contract
                         BlockElement::CLASS_NAME => 'flex-row justify-between',
                         BlockElement::HANDLE => Entity::PUBLISHED_FROM,
                         BlockElement::LABEL => trans('narsil::validation.attributes.published_from'),
-                        BlockElement::RELATION_ELEMENT => [
+                        BlockElement::RELATION_BASE => [
                             Field::TYPE => DatetimeField::class,
                             Field::SETTINGS => app(DatetimeField::class),
                         ],
@@ -43,7 +43,7 @@ class PublishForm extends AbstractForm implements Contract
                         BlockElement::CLASS_NAME => 'flex-row justify-between',
                         BlockElement::HANDLE => Entity::PUBLISHED_TO,
                         BlockElement::LABEL => trans('narsil::validation.attributes.published_to'),
-                        BlockElement::RELATION_ELEMENT => [
+                        BlockElement::RELATION_BASE => [
                             Field::TYPE => DatetimeField::class,
                             Field::SETTINGS => app(DatetimeField::class),
                         ],

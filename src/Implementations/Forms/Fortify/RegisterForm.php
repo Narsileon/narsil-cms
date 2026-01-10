@@ -55,7 +55,7 @@ class RegisterForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::EMAIL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EmailField::class,
                             Field::SETTINGS => app(EmailField::class)
                                 ->icon('email'),
@@ -66,7 +66,7 @@ class RegisterForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::PASSWORD,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
@@ -77,7 +77,7 @@ class RegisterForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
@@ -88,7 +88,7 @@ class RegisterForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::FIRST_NAME,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
@@ -100,7 +100,7 @@ class RegisterForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::LAST_NAME,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)

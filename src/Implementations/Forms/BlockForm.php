@@ -63,7 +63,7 @@ class BlockForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Block::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -74,7 +74,7 @@ class BlockForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
@@ -83,7 +83,7 @@ class BlockForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Block::COLLAPSIBLE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.collapsible'),
                         TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
                         ],
@@ -92,7 +92,7 @@ class BlockForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Block::VIRTUAL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.virtual'),
                         TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SwitchField::class,
                             Field::SETTINGS => app(SwitchField::class),
                         ],
@@ -100,7 +100,7 @@ class BlockForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Block::RELATION_ELEMENTS,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.elements'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(BlockElementForm::class)->jsonSerialize())

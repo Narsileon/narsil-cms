@@ -5,7 +5,7 @@ namespace Narsil\Observers;
 #region USE
 
 use Narsil\Contracts\Fields\FormField;
-use Narsil\Interfaces\IStructureHasElement;
+use Narsil\Interfaces\ITemplateElement;
 use Narsil\Models\Collections\BlockElement;
 use Narsil\Models\Collections\Field;
 use Narsil\Models\Collections\TemplateTabElement;
@@ -62,10 +62,10 @@ class EntityNodeObserver
     protected function syncRelations(EntityNode $entityNode): void
     {
         $entityNode->loadMissing([
-            EntityNode::RELATION_ELEMENT . '.' . IStructureHasElement::RELATION_ELEMENT,
+            EntityNode::RELATION_ELEMENT . '.' . ITemplateElement::RELATION_BASE,
         ]);
 
-        $field = $entityNode->{EntityNode::RELATION_ELEMENT}?->{IStructureHasElement::RELATION_ELEMENT};
+        $field = $entityNode->{EntityNode::RELATION_ELEMENT}?->{ITemplateElement::RELATION_BASE};
 
         if ($field->{Field::TYPE} === FormField::class)
         {

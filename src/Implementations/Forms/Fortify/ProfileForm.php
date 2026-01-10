@@ -55,7 +55,7 @@ class ProfileForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::LAST_NAME,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::FAMILY_NAME->value)
@@ -66,7 +66,7 @@ class ProfileForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::FIRST_NAME,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::GIVEN_NAME->value)
@@ -76,7 +76,7 @@ class ProfileForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => User::AVATAR,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.avatar'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
                                 ->accept('image/*')

@@ -6,7 +6,7 @@ namespace Narsil\Interfaces;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface IFormHasElement extends IHasElement
+interface IFormElement extends IElement
 {
     //
 }

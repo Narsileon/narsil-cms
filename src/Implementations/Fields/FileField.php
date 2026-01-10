@@ -43,7 +43,7 @@ class FileField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.accept" : 'accept',
                 BlockElement::LABEL => trans('narsil::validation.attributes.accept'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
                     Field::SETTINGS => app(TextField::class),
                 ],

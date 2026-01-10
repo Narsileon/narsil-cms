@@ -62,8 +62,8 @@ abstract class FieldsetService
             $fieldsetElement = FieldsetElement::updateOrCreate([
                 FieldsetElement::OWNER_ID => $fieldset->{Fieldset::ID},
                 FieldsetElement::HANDLE => Arr::get($element, FieldsetElement::HANDLE),
-                FieldsetElement::ELEMENT_TYPE => $table,
-                FieldsetElement::ELEMENT_ID => $id,
+                FieldsetElement::BASE_TYPE => $table,
+                FieldsetElement::BASE_ID => $id,
             ], [
                 FieldsetElement::DESCRIPTION => Arr::get($element, FieldsetElement::DESCRIPTION),
                 FieldsetElement::LABEL => Arr::get($element, FieldsetElement::LABEL),

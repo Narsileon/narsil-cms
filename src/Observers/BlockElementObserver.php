@@ -25,10 +25,10 @@ class BlockElementObserver
      */
     public function saving(BlockElement $model): void
     {
-        match ($model->{BlockElement::ELEMENT_TYPE})
+        match ($model->{BlockElement::BASE_TYPE})
         {
-            Block::TABLE => $model->{BlockElement::BLOCK_ID} = $model->{BlockElement::ELEMENT_ID},
-            Field::TABLE => $model->{BlockElement::FIELD_ID} = $model->{BlockElement::ELEMENT_ID},
+            Block::TABLE => $model->{BlockElement::BLOCK_ID} = $model->{BlockElement::BASE_ID},
+            Field::TABLE => $model->{BlockElement::FIELD_ID} = $model->{BlockElement::BASE_ID},
             default => null,
         };
     }

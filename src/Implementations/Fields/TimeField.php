@@ -42,7 +42,7 @@ class TimeField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
                 BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class),
                 ],
@@ -50,7 +50,7 @@ class TimeField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.min" : 'min',
                 BlockElement::LABEL => trans('narsil::validation.attributes.min'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class)
                         ->defaultValue('00:00'),
@@ -59,7 +59,7 @@ class TimeField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.max" : 'max',
                 BlockElement::LABEL => trans('narsil::validation.attributes.max'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class)
                         ->defaultValue('23:59'),

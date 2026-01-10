@@ -1,11 +1,11 @@
 import { replaceLastPath } from "@narsil-cms/lib/utils";
-import type { StructureHasElement } from "@narsil-cms/types";
+import type { Element } from "@narsil-cms/types";
 import { cloneDeep, get, isObject, unset } from "lodash-es";
 import { useEffect, useState } from "react";
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
 
-type FormFieldProps = StructureHasElement & {
+type FormFieldProps = Element & {
   render: (field: {
     fieldLanguage: string;
     handle: string;
@@ -16,14 +16,7 @@ type FormFieldProps = StructureHasElement & {
   }) => React.ReactNode;
 };
 
-function FormField({
-  conditions,
-  element,
-  handle,
-  render,
-  translatable,
-  ...props
-}: FormFieldProps) {
+function FormField({ base, conditions, handle, render, translatable }: FormFieldProps) {
   const { data, defaultLanguage, errors, formLanguage, setData } = useForm();
 
   const [fieldLanguage, setFieldLanguage] = useState<string>("en");
@@ -54,7 +47,7 @@ function FormField({
   }
 
   function getValue() {
-    const defaultValue = (element.settings as Record<string, unknown>)?.value ?? "";
+    const defaultValue = (base.settings as Record<string, unknown>)?.value ?? "";
 
     let value = get(data, handle, defaultValue);
 
@@ -103,7 +96,7 @@ function FormField({
   }, [formLanguage]);
 
   const contextValue = {
-    ...element,
+    ...base,
     error: getError(),
     fieldLanguage: fieldLanguage,
     setFieldLanguage: setFieldLanguage,

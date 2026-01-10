@@ -2,18 +2,36 @@
 
 namespace Narsil\Interfaces;
 
+#region USE
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
+#endregion
 
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-interface IHasElement
+interface IElement
 {
     #region CONSTANTS
 
     #region • COLUMNS
+
+    /**
+     * The name of the "base id" column.
+     *
+     * @var string
+     */
+    public const BASE_ID = 'base_id';
+
+    /**
+     * The name of the "base type" column.
+     *
+     * @var string
+     */
+    public const BASE_TYPE = 'base_type';
 
     /**
      * The name of the "class name" column.
@@ -28,20 +46,6 @@ interface IHasElement
      * @var string
      */
     public const DESCRIPTION = 'description';
-
-    /**
-     * The name of the "element id" column.
-     *
-     * @var string
-     */
-    public const ELEMENT_ID = 'element_id';
-
-    /**
-     * The name of the "element type" column.
-     *
-     * @var string
-     */
-    public const ELEMENT_TYPE = 'element_type';
 
     /**
      * The name of the "handle" column.
@@ -101,18 +105,18 @@ interface IHasElement
     #region • RELATIONS
 
     /**
+     * The name of the "base" relation.
+     *
+     * @var string
+     */
+    public const RELATION_BASE = 'base';
+
+    /**
      * The name of the "conditions" relation.
      *
      * @var string
      */
     public const RELATION_CONDITIONS = 'conditions';
-
-    /**
-     * The name of the "element" relation.
-     *
-     * @var string
-     */
-    public const RELATION_ELEMENT = 'element';
 
     /**
      * The name of the "conditions" relation.

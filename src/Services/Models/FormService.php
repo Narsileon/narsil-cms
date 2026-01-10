@@ -63,8 +63,8 @@ abstract class FormService
             $formTabElement = FormTabElement::updateOrCreate([
                 FormTabElement::OWNER_UUID => $formTab->{FormTab::UUID},
                 FormTabElement::HANDLE => Arr::get($element, FormTabElement::HANDLE),
-                FormTabElement::ELEMENT_TYPE => $table,
-                FormTabElement::ELEMENT_ID => $id,
+                FormTabElement::BASE_TYPE => $table,
+                FormTabElement::BASE_ID => $id,
             ], [
                 FormTabElement::DESCRIPTION => Arr::get($element, FormTabElement::DESCRIPTION),
                 FormTabElement::LABEL => Arr::get($element, FormTabElement::LABEL),

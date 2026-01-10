@@ -175,10 +175,10 @@ class FormTab extends Model
         return $this
             ->morphedByMany(
                 Fieldset::class,
-                FormTabElement::RELATION_ELEMENT,
+                FormTabElement::RELATION_BASE,
                 FormTabElement::TABLE,
                 FormTabElement::OWNER_UUID,
-                FormTabElement::ELEMENT_ID,
+                FormTabElement::BASE_ID,
             )
             ->using(FormTabElement::class);
     }
@@ -193,10 +193,10 @@ class FormTab extends Model
         return $this
             ->morphedByMany(
                 Input::class,
-                FormTabElement::RELATION_ELEMENT,
+                FormTabElement::RELATION_BASE,
                 FormTabElement::TABLE,
                 FormTabElement::OWNER_UUID,
-                FormTabElement::ELEMENT_ID,
+                FormTabElement::BASE_ID,
             )
             ->using(FormTabElement::class);
     }

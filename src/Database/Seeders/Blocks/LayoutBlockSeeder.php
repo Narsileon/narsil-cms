@@ -67,7 +67,7 @@ class LayoutBlockSeeder extends BlockSeeder
                     BlockElement::LABEL => 'Size',
                     BlockElement::REQUIRED => true,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
@@ -81,7 +81,7 @@ class LayoutBlockSeeder extends BlockSeeder
                     BlockElement::HANDLE => PaddingBlockSeeder::PADDING,
                     BlockElement::LABEL => 'Padding',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     $paddingBlock,
                 ),
             ],

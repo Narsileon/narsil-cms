@@ -25,10 +25,10 @@ class FormTabElementObserver
      */
     public function saving(FormTabElement $model): void
     {
-        match ($model->{FormTabElement::ELEMENT_TYPE})
+        match ($model->{FormTabElement::BASE_TYPE})
         {
-            Fieldset::TABLE => $model->{FormTabElement::FIELDSET_ID} = $model->{FormTabElement::ELEMENT_ID},
-            Input::TABLE => $model->{FormTabElement::INPUT_ID} = $model->{FormTabElement::ELEMENT_ID},
+            Fieldset::TABLE => $model->{FormTabElement::FIELDSET_ID} = $model->{FormTabElement::BASE_ID},
+            Input::TABLE => $model->{FormTabElement::INPUT_ID} = $model->{FormTabElement::BASE_ID},
             default => null,
         };
     }

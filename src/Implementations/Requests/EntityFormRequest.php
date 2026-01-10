@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\FormRequests\EntityFormRequest as Contract;
 use Narsil\Implementations\AbstractFormRequest;
-use Narsil\Interfaces\IStructureHasElement;
+use Narsil\Interfaces\ITemplateElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\Field;
@@ -111,15 +111,15 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
     {
         foreach ($elements as $element)
         {
-            $handle = $element->{IStructureHasElement::HANDLE};
+            $handle = $element->{ITemplateElement::HANDLE};
 
             $key = $path ? "$path.$handle" : $handle;
 
-            if ($element->{IStructureHasElement::ELEMENT_TYPE} === Field::TABLE)
+            if ($element->{ITemplateElement::BASE_TYPE} === Field::TABLE)
             {
-                $field = $element->{IStructureHasElement::RELATION_ELEMENT};
+                $field = $element->{ITemplateElement::RELATION_BASE};
 
-                if ($element->{IStructureHasElement::TRANSLATABLE})
+                if ($element->{ITemplateElement::TRANSLATABLE})
                 {
                     $attributes[$key] = $handle;
                 }
@@ -139,7 +139,7 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
             }
             else
             {
-                $block = $element->{IStructureHasElement::RELATION_ELEMENT};
+                $block = $element->{ITemplateElement::RELATION_BASE};
 
                 $nextPath = $block->{Block::VIRTUAL} ? $path : $key;
 
@@ -159,19 +159,19 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
     {
         foreach ($elements as $element)
         {
-            $handle = $element->{IStructureHasElement::HANDLE};
+            $handle = $element->{ITemplateElement::HANDLE};
 
             $key = $path ? "$path.$handle" : $handle;
 
-            if ($element->{IStructureHasElement::ELEMENT_TYPE} === Field::TABLE)
+            if ($element->{ITemplateElement::BASE_TYPE} === Field::TABLE)
             {
-                $field = $element->{IStructureHasElement::RELATION_ELEMENT};
+                $field = $element->{ITemplateElement::RELATION_BASE};
 
                 $fieldValidationRules =  $field->{Field::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
 
                 $fieldRules = [];
 
-                if ($element->{IStructureHasElement::REQUIRED})
+                if ($element->{ITemplateElement::REQUIRED})
                 {
 
                     $fieldRules[] = FormRule::REQUIRED;
@@ -187,7 +187,7 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
                     $fieldRules[] = FormRule::NULLABLE;
                 }
 
-                if ($element->{IStructureHasElement::TRANSLATABLE})
+                if ($element->{ITemplateElement::TRANSLATABLE})
                 {
                     $rules[$key] = array_merge([FormRule::ARRAY], $fieldRules);
 
@@ -209,7 +209,7 @@ class EntityFormRequest extends AbstractFormRequest implements Contract
             }
             else
             {
-                $block = $element->{IStructureHasElement::RELATION_ELEMENT};
+                $block = $element->{ITemplateElement::RELATION_BASE};
 
                 $nextPath = $block->{Block::VIRTUAL} ? $path : $key;
 

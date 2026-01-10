@@ -13,7 +13,7 @@ export type Model = {
 
 export type Block = {
   collapsible: boolean;
-  elements: StructureHasElement[];
+  elements: Element[];
   handle: string;
   icon?: IconName;
   id: number;
@@ -60,42 +60,13 @@ export type FieldOption = {
   value: string;
 } & FieldType;
 
-export type Fieldset = {
-  collapsible: boolean;
-  elements: FormHasElement[];
-  handle: string;
-  icon?: IconName;
-  id: number;
-  identifier: string;
-  label: string;
-};
-
-export type Form = Model & {
-  handle: string;
-  id: number;
-  name: string;
-};
-
-export type FormHasElement = HasElement & {
-  element_type: "Narsil\\Models\\Forms\\Fieldset" | "Narsil\\Models\\Forms\\Input";
-  element: Fieldset | Input;
-};
-
-export type FormTab = Model & {
-  description: string;
-  elements?: FormHasElement[];
-  handle: string;
-  icon?: IconName;
-  id: number;
-  identifier: string;
-  label: string;
-};
-
-export type HasElement = Model & {
+export type Element = Model & {
+  base: Block | Field;
+  base_id: number;
+  base_type: "Narsil\\Models\\Collections\\Block" | "Narsil\\Models\\Collections\\Field";
   class_name: string;
   conditions?: Condition[];
   description?: string;
-  element_id: number;
   handle: string;
   id: number;
   label: string;
@@ -115,17 +86,6 @@ export type HostLocaleLanguage = Model & {
   language: string;
 };
 
-export type Input = {
-  blocks: Block[];
-  description: string;
-  handle: string;
-  id: number;
-  identifier: string;
-  label: string;
-  placeholder: string;
-  options: FieldOption[];
-} & FieldType;
-
 export type SitePage = Model & {
   content: string[];
   entities: Record<string, Entity>;
@@ -142,12 +102,6 @@ export type SiteUrl = Model & {
   host_locale_language: HostLocaleLanguage;
   url: string;
 };
-
-export type StructureHasElement = HasElement & {
-  element_type: "Narsil\\Models\\Collections\\Block" | "Narsil\\Models\\Collections\\Field";
-  element: Block | Field;
-};
-
 export type Template = Model & {
   handle: string;
   id: number;
@@ -155,7 +109,7 @@ export type Template = Model & {
 };
 
 export type TemplateTab = Model & {
-  elements?: StructureHasElement[];
+  elements?: Element[];
   handle: string;
   icon?: IconName;
   id: number;

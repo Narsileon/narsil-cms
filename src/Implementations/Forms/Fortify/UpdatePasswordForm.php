@@ -54,7 +54,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => AutoCompleteEnum::USERNAME->value,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
                                 ->autoComplete(AutoCompleteEnum::USERNAME->value)
@@ -65,7 +65,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.current_password'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value),
@@ -75,7 +75,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::PASSWORD,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),
@@ -85,7 +85,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::NEW_PASSWORD->value),

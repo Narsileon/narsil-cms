@@ -150,10 +150,10 @@ class TemplateTab extends Model
         return $this
             ->morphedByMany(
                 Block::class,
-                TemplateTabElement::RELATION_ELEMENT,
+                TemplateTabElement::RELATION_BASE,
                 TemplateTabElement::TABLE,
                 TemplateTabElement::OWNER_UUID,
-                TemplateTabElement::ELEMENT_ID,
+                TemplateTabElement::BASE_ID,
             )
             ->using(TemplateTabElement::class);
     }
@@ -184,10 +184,10 @@ class TemplateTab extends Model
         return $this
             ->morphedByMany(
                 Field::class,
-                TemplateTabElement::RELATION_ELEMENT,
+                TemplateTabElement::RELATION_BASE,
                 TemplateTabElement::TABLE,
                 TemplateTabElement::OWNER_UUID,
-                TemplateTabElement::ELEMENT_ID,
+                TemplateTabElement::BASE_ID,
             )
             ->using(TemplateTabElement::class);
     }

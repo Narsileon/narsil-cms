@@ -68,7 +68,7 @@ class RichTextField extends AbstractField implements Contract
                 BlockElement::HANDLE => Field::PLACEHOLDER,
                 BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
                     Field::SETTINGS => app(TextField::class),
                 ],
@@ -76,7 +76,7 @@ class RichTextField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.modules" : 'modules',
                 BlockElement::LABEL => trans("narsil::ui.modules"),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => CheckboxField::class,
                     Field::SETTINGS => app(CheckboxField::class),
                     Field::RELATION_OPTIONS => RichTextEditorEnum::selectOptions(),

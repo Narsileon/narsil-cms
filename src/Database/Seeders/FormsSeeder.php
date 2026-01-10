@@ -21,6 +21,19 @@ use Narsil\Models\Forms\InputOption;
  */
 abstract class FormsSeeder extends Seeder
 {
+    #region CONSTANTS
+
+    /**
+     * @var array
+     */
+    private const FIELD_FILLABLE_ATTRIBUTES = [
+        Input::HANDLE,
+        Input::LABEL,
+        Input::DESCRIPTION,
+    ];
+
+    #endregion
+
     #region PROTECTED METHODS
 
     /**
@@ -44,41 +57,47 @@ abstract class FormsSeeder extends Seeder
             Fieldset::LABEL => $fieldset->{Fieldset::LABEL},
         ]);
 
-        $fieldsetElements = $fieldset->{Fieldset::RELATION_ELEMENTS} ?? [];
+        $elements = $fieldset->{Fieldset::RELATION_ELEMENTS} ?? [];
 
-        foreach ($fieldsetElements as $position => $fieldsetElement)
+        foreach ($elements as $position => $element)
         {
-            $element = $fieldsetElement->{FieldsetElement::RELATION_ELEMENT};
+            $base = $element->{FieldsetElement::RELATION_BASE};
 
-            if (!$element)
+            if (!$base)
             {
                 continue;
             }
 
-            if ($element instanceof Input)
+            if ($base instanceof Input)
             {
-                $element->fill([
-                    Input::HANDLE => $fieldsetElement->{FieldsetElement::HANDLE},
-                    Input::LABEL => $fieldsetElement->{FieldsetElement::LABEL},
-                ]);
+                foreach (self::FIELD_FILLABLE_ATTRIBUTES as $attribute)
+                {
+                    if (empty($base->getAttribute($attribute)))
+                    {
+                        $base->setAttribute($attribute, $element->{$attribute});
+                    }
+                }
 
-                $element = $this->saveInput($element);
+                $base = $this->saveInput($base);
             }
-            else if ($element instanceof Fieldset)
+            else if ($base instanceof Fieldset)
             {
-                $element = $this->saveFieldset($element);
+                $base = $this->saveFieldset($base);
             }
 
-            FieldsetElement::create([
-                FieldsetElement::ELEMENT_ID => $element->getKey(),
-                FieldsetElement::ELEMENT_TYPE => $element->getTable(),
-                FieldsetElement::HANDLE => $fieldsetElement->{FieldsetElement::HANDLE} ?? $element->{FieldsetElement::HANDLE},
+            $elementModel = FieldsetElement::create([
+                FieldsetElement::BASE_ID => $base->getKey(),
+                FieldsetElement::BASE_TYPE => $base->getTable(),
+                FieldsetElement::DESCRIPTION => $element->{FieldsetElement::DESCRIPTION},
+                FieldsetElement::HANDLE => $element->{FieldsetElement::HANDLE},
                 FieldsetElement::LABEL => $element->{FieldsetElement::LABEL},
                 FieldsetElement::OWNER_ID => $model->getKey(),
                 FieldsetElement::POSITION => $position,
-                FieldsetElement::REQUIRED => $fieldsetElement->{FieldsetElement::REQUIRED} ?? $element->{FieldsetElement::REQUIRED},
-                FieldsetElement::WIDTH => $fieldsetElement->{FieldsetElement::WIDTH} ?? 100,
+                FieldsetElement::REQUIRED => $element->{FieldsetElement::REQUIRED} ?? false,
+                FieldsetElement::WIDTH => $element->{FieldsetElement::WIDTH} ?? 100,
             ]);
+
+            $elementModel->conditions()->createMany($element->{FieldsetElement::RELATION_CONDITIONS});
         }
 
         return $model;
@@ -170,41 +189,47 @@ abstract class FormsSeeder extends Seeder
                 ]);
             }
 
-            $formTabElements = $formTab->{FormTab::RELATION_ELEMENTS} ?? [];
+            $elements = $formTab->{FormTab::RELATION_ELEMENTS} ?? [];
 
-            foreach ($formTabElements as $position => $formTabElement)
+            foreach ($elements as $position => $element)
             {
-                $element = $formTabElement->{FieldsetElement::RELATION_ELEMENT};
+                $base = $element->{FieldsetElement::RELATION_BASE};
 
-                if (!$element)
+                if (!$base)
                 {
                     continue;
                 }
 
-                if ($element instanceof Input)
+                if ($base instanceof Input)
                 {
-                    $element->fill([
-                        Input::HANDLE => $formTabElement->{FormTabElement::HANDLE},
-                        Input::LABEL => $formTabElement->{FormTabElement::LABEL},
-                    ]);
+                    foreach (self::FIELD_FILLABLE_ATTRIBUTES as $attribute)
+                    {
+                        if (empty($base->getAttribute($attribute)))
+                        {
+                            $base->setAttribute($attribute, $element->{$attribute});
+                        }
+                    }
 
-                    $element = $this->saveInput($element);
+                    $base = $this->saveInput($base);
                 }
-                else if ($element instanceof Fieldset)
+                else if ($base instanceof Fieldset)
                 {
-                    $element = $this->saveFieldset($element);
+                    $base = $this->saveFieldset($base);
                 }
 
-                FormTabElement::create([
-                    FormTabElement::ELEMENT_ID => $element->getKey(),
-                    FormTabElement::ELEMENT_TYPE => $element->getTable(),
-                    FormTabElement::HANDLE => $formTabElement->{FormTabElement::HANDLE} ?? $element->{FormTabElement::HANDLE},
-                    FormTabElement::LABEL => $element->{FormTabElement::LABEL},
+                $elementModel = FormTabElement::create([
+                    FormTabElement::BASE_ID => $base->getKey(),
+                    FormTabElement::BASE_TYPE => $base->getTable(),
+                    FormTabElement::DESCRIPTION => $element->{FormTabElement::DESCRIPTION},
+                    FormTabElement::HANDLE => $element->{FormTabElement::HANDLE},
+                    FormTabElement::LABEL => $base->{FormTabElement::LABEL},
                     FormTabElement::OWNER_UUID => $formTabModel->getKey(),
                     FormTabElement::POSITION => $position,
-                    FormTabElement::REQUIRED => $formTabElement->{FormTabElement::REQUIRED} ?? $element->{FormTabElement::REQUIRED},
-                    FormTabElement::WIDTH => $formTabElement->{FormTabElement::WIDTH} ?? 100,
+                    FormTabElement::REQUIRED => $element->{FormTabElement::REQUIRED} ?? false,
+                    FormTabElement::WIDTH => $element->{FormTabElement::WIDTH} ?? 100,
                 ]);
+
+                $elementModel->conditions()->createMany($element->{FormTabElement::RELATION_CONDITIONS});
             }
         }
 

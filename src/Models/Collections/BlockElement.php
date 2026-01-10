@@ -7,7 +7,7 @@ namespace Narsil\Models\Collections;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
-use Narsil\Interfaces\IStructureHasElement;
+use Narsil\Interfaces\ITemplateElement;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
 
@@ -17,7 +17,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockElement extends MorphPivot implements IStructureHasElement
+class BlockElement extends MorphPivot implements ITemplateElement
 {
     use HasElement;
     use HasTranslations;
@@ -40,8 +40,8 @@ class BlockElement extends MorphPivot implements IStructureHasElement
         ];
 
         $this->with = [
+            self::RELATION_BASE,
             self::RELATION_CONDITIONS,
-            self::RELATION_ELEMENT,
         ];
 
         $this->mergeAppends([

@@ -55,7 +55,7 @@ class LoginForm extends AbstractForm implements Contract
                         BlockElement::HANDLE => User::EMAIL,
                         BlockElement::LABEL => trans('narsil::validation.attributes.email'),
                         BlockElement::REQUIRED => true,
-                        BlockElement::RELATION_ELEMENT => [
+                        BlockElement::RELATION_BASE => [
                             Field::PLACEHOLDER => 'email@example.com',
                             Field::TYPE => EmailField::class,
                             Field::SETTINGS => app(EmailField::class)
@@ -67,7 +67,7 @@ class LoginForm extends AbstractForm implements Contract
                         BlockElement::HANDLE => User::PASSWORD,
                         BlockElement::LABEL => trans('narsil::validation.attributes.password'),
                         BlockElement::REQUIRED => true,
-                        BlockElement::RELATION_ELEMENT => [
+                        BlockElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->append(view('narsil::components.link', [
@@ -81,7 +81,7 @@ class LoginForm extends AbstractForm implements Contract
                         BlockElement::CLASS_NAME => 'flex-row-reverse justify-end',
                         BlockElement::HANDLE => User::REMEMBER,
                         BlockElement::LABEL => trans('narsil::validation.attributes.remember'),
-                        BlockElement::RELATION_ELEMENT => [
+                        BlockElement::RELATION_BASE => [
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class),
                         ],

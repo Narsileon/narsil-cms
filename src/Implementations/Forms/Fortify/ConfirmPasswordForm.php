@@ -53,7 +53,7 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => User::PASSWORD,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
                                 ->autoComplete(AutoCompleteEnum::ONE_TIME_CODE->value),

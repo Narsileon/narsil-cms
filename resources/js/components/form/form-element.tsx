@@ -10,7 +10,7 @@ import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { getField } from "@narsil-cms/repositories/fields";
-import type { StructureHasElement } from "@narsil-cms/types";
+import type { Element } from "@narsil-cms/types";
 import parse from "html-react-parser";
 import { get, kebabCase } from "lodash-es";
 import useForm from "./form-context";
@@ -21,21 +21,21 @@ import FormItem from "./form-item";
 import FormLabel from "./form-label";
 import FormMessage from "./form-message";
 
-type FormElementProps = StructureHasElement & {
+type FormElementProps = Element & {
   onChange?: (value: unknown) => void;
 };
 
 function FormElement({ onChange, ...props }: FormElementProps) {
-  const { class_name, description, element, handle, label, required, translatable, width } = props;
+  const { base, class_name, description, handle, label, required, translatable, width } = props;
 
   const { data } = useForm();
   const { trans } = useLocalization();
 
-  if ("elements" in element) {
+  if ("elements" in base) {
     return (
       <CollapsibleRoot
         className={cn("group col-span-full rounded border")}
-        disabled={!element.collapsible}
+        disabled={!base.collapsible}
         defaultOpen={true}
       >
         <CollapsibleTrigger
@@ -44,7 +44,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
           )}
         >
           <Heading level="h2">{label}</Heading>
-          {element.collapsible ? (
+          {base.collapsible ? (
             <Icon
               className={cn("duration-300", "group-data-[state=open]:rotate-180")}
               name="chevron-down"
@@ -52,10 +52,10 @@ function FormElement({ onChange, ...props }: FormElementProps) {
           ) : null}
         </CollapsibleTrigger>
         <CollapsibleContent className="grid grid-cols-12 gap-8 p-4">
-          {element.elements.map((childElement, index) => {
+          {base.elements.map((element, index) => {
             const virtualHandle =
-              element.virtual === false ? `${handle}.${childElement.handle}` : childElement.handle;
-            return <FormElement {...childElement} handle={virtualHandle} key={index} />;
+              base.virtual === false ? `${handle}.${element.handle}` : element.handle;
+            return <FormElement {...element} handle={virtualHandle} key={index} />;
           })}
         </CollapsibleContent>
       </CollapsibleRoot>
@@ -73,7 +73,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
 
         return (
           <FormItem
-            className={cn(element.settings.type === "hidden" && "hidden", class_name)}
+            className={cn(base.settings.type === "hidden" && "hidden", class_name)}
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
@@ -98,7 +98,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
                   </>
                 ) : null}
               </div>
-              {element.settings.generate ? (
+              {base.settings.generate ? (
                 <Button
                   className="text-muted-foreground"
                   iconProps={{
@@ -110,11 +110,11 @@ function FormElement({ onChange, ...props }: FormElementProps) {
                   onClick={() => {
                     let original = get(
                       data,
-                      `${element.settings.generate}.${fieldLanguage}`,
+                      `${base.settings.generate}.${fieldLanguage}`,
                     ) as string;
 
                     if (!original) {
-                      original = get(data, `${element.settings.generate}`, "") as string;
+                      original = get(data, `${base.settings.generate}`, "") as string;
                     }
 
                     handleOnChange?.(kebabCase(original));
@@ -123,8 +123,8 @@ function FormElement({ onChange, ...props }: FormElementProps) {
                   {trans("ui.generate")}
                 </Button>
               ) : null}
-              {"append" in element.settings
-                ? parse(element.settings.append, {
+              {"append" in base.settings
+                ? parse(base.settings.append, {
                     replace: (domNode) => {
                       if (domNode.type === "tag" && domNode.name === "a") {
                         return (
@@ -140,10 +140,10 @@ function FormElement({ onChange, ...props }: FormElementProps) {
                 : null}
             </div>
             {description ? <FormDescription>{description}</FormDescription> : null}
-            {getField(element.type, {
+            {getField(base.type, {
               id: handle,
               field: {
-                ...element,
+                ...base,
                 placeholder: placeholder as string,
               },
               required: required,

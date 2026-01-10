@@ -60,7 +60,7 @@ class ConfigurationForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.default_language'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => new Field([
+                        TemplateTabElement::RELATION_BASE => new Field([
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class),
                             Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($frontendLanguages),
@@ -76,7 +76,7 @@ class ConfigurationForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.default_language'),
                         TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_ELEMENT => [
+                        TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class),
                             Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($backendLanguages),

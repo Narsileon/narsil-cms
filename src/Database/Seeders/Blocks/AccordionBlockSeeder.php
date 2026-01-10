@@ -63,14 +63,14 @@ class AccordionBlockSeeder extends BlockSeeder
                     BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Padding',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     $layoutBlock,
                 ),
                 new BlockElement([
                     BlockElement::HANDLE => self::ACCORDION_BUILDER,
                     BlockElement::LABEL => 'Items',
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => BuilderField::class,
                     ])->setRelation(

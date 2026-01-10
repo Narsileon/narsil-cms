@@ -55,7 +55,7 @@ class BuilderField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => Field::RELATION_BLOCKS,
                 BlockElement::LABEL => ModelService::getTableLabel(Block::TABLE),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::TYPE => RelationsField::class,
                     Field::SETTINGS => app(RelationsField::class)
                         ->addOption(

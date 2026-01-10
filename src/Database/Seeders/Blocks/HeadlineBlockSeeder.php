@@ -66,7 +66,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => TextField::class,
                         Field::SETTINGS => app(SelectField::class),
@@ -78,7 +78,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)
@@ -94,7 +94,7 @@ class HeadlineBlockSeeder extends BlockSeeder
                     BlockElement::REQUIRED => true,
                     BlockElement::WIDTH => 50,
                 ])->setRelation(
-                    BlockElement::RELATION_ELEMENT,
+                    BlockElement::RELATION_BASE,
                     new Field([
                         Field::TYPE => SelectField::class,
                         Field::SETTINGS => app(SelectField::class)

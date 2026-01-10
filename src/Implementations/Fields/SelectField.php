@@ -43,7 +43,7 @@ class SelectField extends AbstractField implements Contract
             [
                 BlockElement::HANDLE => Field::RELATION_OPTIONS,
                 BlockElement::LABEL => trans('narsil::validation.attributes.options'),
-                BlockElement::RELATION_ELEMENT => [
+                BlockElement::RELATION_BASE => [
                     Field::PLACEHOLDER => trans('narsil::ui.add'),
                     Field::TYPE => TableField::class,
                     Field::SETTINGS => app(TableField::class)
@@ -52,7 +52,7 @@ class SelectField extends AbstractField implements Contract
                                 BlockElement::HANDLE => FieldOption::VALUE,
                                 BlockElement::LABEL => trans('narsil::validation.attributes.value'),
                                 BlockElement::REQUIRED => true,
-                                BlockElement::RELATION_ELEMENT => [
+                                BlockElement::RELATION_BASE => [
                                     Field::TYPE => TextField::class,
                                     Field::SETTINGS => app(TextField::class),
                                 ],
@@ -62,7 +62,7 @@ class SelectField extends AbstractField implements Contract
                                 BlockElement::LABEL => trans('narsil::validation.attributes.label'),
                                 BlockElement::REQUIRED => true,
                                 BlockElement::TRANSLATABLE => true,
-                                BlockElement::RELATION_ELEMENT => [
+                                BlockElement::RELATION_BASE => [
                                     Field::TYPE => TextField::class,
                                     Field::SETTINGS => app(TextField::class),
                                 ],

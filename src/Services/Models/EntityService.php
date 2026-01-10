@@ -7,7 +7,7 @@ namespace Narsil\Services\Models;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Narsil\Contracts\Fields\BuilderField;
-use Narsil\Interfaces\IStructureHasElement;
+use Narsil\Interfaces\ITemplateElement;
 use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\Field;
 use Narsil\Models\Collections\Template;
@@ -70,11 +70,11 @@ abstract class EntityService
 
         foreach ($elements as $position => $element)
         {
-            $handle = $element->{IStructureHasElement::HANDLE};
+            $handle = $element->{ITemplateElement::HANDLE};
 
-            if ($element->{IStructureHasElement::ELEMENT_TYPE} === Field::TABLE)
+            if ($element->{ITemplateElement::BASE_TYPE} === Field::TABLE)
             {
-                $field = $element->{IStructureHasElement::RELATION_ELEMENT};
+                $field = $element->{ITemplateElement::RELATION_BASE};
 
                 $key = $path ? "$path.$handle" : $handle;
 
@@ -134,7 +134,7 @@ abstract class EntityService
             }
             else
             {
-                $block = $element->{IStructureHasElement::RELATION_ELEMENT};
+                $block = $element->{ITemplateElement::RELATION_BASE};
 
                 if ($block->{Block::VIRTUAL})
                 {
