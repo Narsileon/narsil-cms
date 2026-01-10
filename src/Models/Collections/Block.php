@@ -5,14 +5,8 @@ namespace Narsil\Models\Collections;
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasIdentifier;
-use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -20,14 +14,8 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Block extends Model
+class Block extends BaseElement
 {
-    use Blameable;
-    use HasAuditLogs;
-    use HasDatetimes;
-    use HasIdentifier;
-    use HasTranslations;
-
     #region CONSTRUCTOR
 
     /**
@@ -38,6 +26,7 @@ class Block extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
+            self::DESCRIPTION,
             self::LABEL,
         ];
 
@@ -78,43 +67,11 @@ class Block extends Model
     final public const COLLAPSIBLE = 'collapsible';
 
     /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
-     * The name of the "label" column.
-     *
-     * @var string
-     */
-    final public const LABEL = 'label';
-
-    /**
      * The name of the "virtual" column.
      *
      * @var string
      */
     final public const VIRTUAL = 'virtual';
-
-    #endregion
-
-    #region • ATTRIBUTES
-
-    /**
-     * The name of the "icon" attribute.
-     *
-     * @var string
-     */
-    final public const ATTRIBUTE_ICON = 'icon';
 
     #endregion
 

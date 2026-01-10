@@ -5,18 +5,12 @@ namespace Narsil\Models\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Arr;
 use Narsil\Casts\JsonCast;
+use Narsil\Models\Collections\BaseElement;
 use Narsil\Models\ValidationRule;
 use Narsil\Services\Models\FieldService;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasIdentifier;
-use Narsil\Traits\HasTranslations;
 use Narsil\Traits\HasValidationRules;
 
 #endregion
@@ -25,13 +19,8 @@ use Narsil\Traits\HasValidationRules;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Input extends Model
+class Input extends BaseElement
 {
-    use Blameable;
-    use HasAuditLogs;
-    use HasDatetimes;
-    use HasIdentifier;
-    use HasTranslations;
     use HasValidationRules;
 
     #region CONSTRUCTOR
@@ -83,34 +72,6 @@ class Input extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "description" column.
-     *
-     * @var string
-     */
-    final public const DESCRIPTION = 'description';
-
-    /**
-     * The name of the "handle" column.
-     *
-     * @var string
-     */
-    final public const HANDLE = 'handle';
-
-    /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
-     * The name of the "label" column.
-     *
-     * @var string
-     */
-    final public const LABEL = 'label';
-
-    /**
      * The name of the "placeholder" column.
      *
      * @var string
@@ -130,17 +91,6 @@ class Input extends Model
      * @var string
      */
     final public const TYPE = 'type';
-
-    #endregion
-
-    #region • ATTRIBUTES
-
-    /**
-     * The name of the "icon" attribute.
-     *
-     * @var string
-     */
-    final public const ATTRIBUTE_ICON = 'icon';
 
     #endregion
 
