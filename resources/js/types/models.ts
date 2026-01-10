@@ -144,7 +144,7 @@ export type SiteUrl = Model & {
 };
 
 export type StructureHasElement = HasElement & {
-  element_type: "Narsil\\Models\\Structures\\Block" | "Narsil\\Models\\Structures\\Field";
+  element_type: "Narsil\\Models\\Collections\\Block" | "Narsil\\Models\\Collections\\Field";
   element: Block | Field;
 };
 

@@ -4,7 +4,7 @@ namespace Narsil\Traits;
 
 #region USE
 
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\Template;
 
 #endregion
 

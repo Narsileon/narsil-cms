@@ -9,8 +9,8 @@ use Narsil\Enums\ModelEventEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\DestroyManyRequest;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Structures\Template;
 use Narsil\Traits\IsCollectionController;
 
 #endregion

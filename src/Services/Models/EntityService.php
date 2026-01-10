@@ -8,12 +8,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Interfaces\IStructureHasElement;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\Template;
+use Narsil\Models\Collections\TemplateTab;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateTab;
 
 #endregion
 

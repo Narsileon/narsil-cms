@@ -2,6 +2,10 @@
 
 #region USE
 
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\Template;
+use Narsil\Models\Collections\TemplateTab;
 use Narsil\Models\Configuration;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Fieldset;
@@ -19,10 +23,6 @@ use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateTab;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;

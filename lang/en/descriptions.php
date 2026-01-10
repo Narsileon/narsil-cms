@@ -2,12 +2,12 @@
 
 #region USE
 
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Field;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
 
 #endregion
 

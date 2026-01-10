@@ -7,8 +7,8 @@ namespace Narsil\Implementations\Fields;
 use Narsil\Contracts\Fields\NumberField;
 use Narsil\Contracts\Fields\RangeField as Contract;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
 
 #endregion
 

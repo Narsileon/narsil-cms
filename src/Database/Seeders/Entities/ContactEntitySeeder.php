@@ -10,11 +10,11 @@ use Narsil\Database\Seeders\Blocks\PaddingBlockSeeder;
 use Narsil\Database\Seeders\EntitySeeder;
 use Narsil\Database\Seeders\Forms\ContactFormSeeder;
 use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Template;
 
 #endregion
 

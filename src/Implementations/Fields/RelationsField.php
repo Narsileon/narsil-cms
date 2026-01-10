@@ -8,9 +8,9 @@ use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField as Contract;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\Template;
 use Narsil\Support\TranslationsBag;
 
 #endregion

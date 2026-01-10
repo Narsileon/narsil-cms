@@ -11,6 +11,9 @@ return [
     |
     */
 
+    \Narsil\Models\Collections\Block::class => \Narsil\Policies\BlockPolicy::class,
+    \Narsil\Models\Collections\Field::class => \Narsil\Policies\FieldPolicy::class,
+    \Narsil\Models\Collections\Template::class => \Narsil\Policies\TemplatePolicy::class,
     \Narsil\Models\Configuration::class => \Narsil\Policies\ConfigurationPolicy::class,
     \Narsil\Models\Entities\Entity::class => \Narsil\Policies\EntityPolicy::class,
     \Narsil\Models\Forms\Fieldset::class => \Narsil\Policies\FieldsetPolicy::class,
@@ -23,8 +26,5 @@ return [
     \Narsil\Models\Policies\Role::class => \Narsil\Policies\RolePolicy::class,
     \Narsil\Models\Sites\Site::class => \Narsil\Policies\SitePolicy::class,
     \Narsil\Models\Sites\SitePage::class => \Narsil\Policies\SitePagePolicy::class,
-    \Narsil\Models\Structures\Block::class => \Narsil\Policies\BlockPolicy::class,
-    \Narsil\Models\Structures\Field::class => \Narsil\Policies\FieldPolicy::class,
-    \Narsil\Models\Structures\Template::class => \Narsil\Policies\TemplatePolicy::class,
     \Narsil\Models\User::class => \Narsil\Policies\UserPolicy::class,
 ];

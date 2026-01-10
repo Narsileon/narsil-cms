@@ -4,7 +4,7 @@ namespace Narsil\Database\Seeders;
 
 #region USE
 
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\Template;
 
 #endregion
 
@@ -12,7 +12,7 @@ use Narsil\Models\Structures\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class TemplateSeeder extends StructuresSeeder
+abstract class TemplateSeeder extends CollectionsSeeder
 {
     #region PUBLIC METHODS
 

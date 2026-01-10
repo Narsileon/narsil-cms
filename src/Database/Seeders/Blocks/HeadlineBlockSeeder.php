@@ -7,10 +7,10 @@ namespace Narsil\Database\Seeders\Blocks;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Database\Seeders\BlockSeeder;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\FieldOption;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\FieldOption;
 
 #endregion
 

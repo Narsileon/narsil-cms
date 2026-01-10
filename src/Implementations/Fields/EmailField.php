@@ -8,8 +8,8 @@ use Narsil\Contracts\Fields\EmailField as Contract;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
 
 #endregion
 

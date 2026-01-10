@@ -14,10 +14,10 @@ use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Interfaces\IHasElement;
 use Narsil\Models\AbstractCondition;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateTab;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\TemplateTab;
+use Narsil\Models\Collections\TemplateTabElement;
 
 #endregion
 

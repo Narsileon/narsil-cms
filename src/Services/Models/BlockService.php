@@ -6,8 +6,8 @@ namespace Narsil\Services\Models;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\BlockElement;
 use Narsil\Services\DatabaseService;
 
 #endregion

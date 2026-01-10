@@ -9,9 +9,9 @@ use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\HeaderForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateTab;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\TemplateTab;
+use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Models\Globals\Header;
 use Narsil\Services\RouteService;
 

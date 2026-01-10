@@ -7,7 +7,7 @@ namespace Narsil\Observers;
 use Illuminate\Support\Facades\Artisan;
 use Narsil\Database\Migrations\TemplateMigration;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Policies\Permission;
 use Narsil\Services\PermissionService;
 

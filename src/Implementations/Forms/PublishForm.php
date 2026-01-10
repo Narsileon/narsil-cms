@@ -7,11 +7,10 @@ namespace Narsil\Implementations\Forms;
 use Narsil\Contracts\Fields\DatetimeField;
 use Narsil\Contracts\Forms\PermissionForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\TemplateTab;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\TemplateTab;
 
 #endregion
 

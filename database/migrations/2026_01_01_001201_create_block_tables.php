@@ -6,11 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Enums\Database\OperatorEnum;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\BlockElementCondition;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\FieldBlock;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\BlockElementCondition;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\FieldBlock;
 use Narsil\Models\User;
 
 #endregion

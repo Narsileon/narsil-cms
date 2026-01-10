@@ -6,9 +6,9 @@ namespace Narsil\Services\Models;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateTab;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\Template;
+use Narsil\Models\Collections\TemplateTab;
+use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Services\DatabaseService;
 
 #endregion

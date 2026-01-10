@@ -6,7 +6,7 @@ namespace Narsil\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\Template;
 
 #endregion
 

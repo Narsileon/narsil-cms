@@ -5,13 +5,7 @@ namespace Narsil\Services\Models;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Narsil\Models\AbstractCondition;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\BlockElementCondition;
-use Narsil\Services\DatabaseService;
 
 #endregion
 

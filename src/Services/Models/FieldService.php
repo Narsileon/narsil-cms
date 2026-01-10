@@ -5,8 +5,8 @@ namespace Narsil\Services\Models;
 #region USE
 
 use Illuminate\Support\Str;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\FieldOption;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\FieldOption;
 use Narsil\Models\ValidationRule;
 use Narsil\Services\DatabaseService;
 

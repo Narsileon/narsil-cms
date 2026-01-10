@@ -5,7 +5,7 @@ namespace Narsil\Policies;
 #region USE
 
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\Field;
 use Narsil\Models\User;
 use Narsil\Services\PermissionService;
 

@@ -6,11 +6,11 @@ namespace Narsil\Observers;
 
 use Narsil\Contracts\Fields\FormField;
 use Narsil\Interfaces\IStructureHasElement;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Entities\EntityNodeRelation;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\TemplateTabElement;
 
 #endregion
 

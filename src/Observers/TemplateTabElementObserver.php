@@ -4,9 +4,9 @@ namespace Narsil\Observers;
 
 #region USE
 
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\TemplateTabElement;
 
 #endregion
 

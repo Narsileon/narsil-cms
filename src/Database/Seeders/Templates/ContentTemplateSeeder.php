@@ -9,10 +9,10 @@ use Narsil\Database\Seeders\Blocks\AccordionBlockSeeder;
 use Narsil\Database\Seeders\Blocks\FormBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Database\Seeders\TemplateSeeder;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateTab;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\Template;
+use Narsil\Models\Collections\TemplateTab;
+use Narsil\Models\Collections\TemplateTabElement;
 
 #endregion
 

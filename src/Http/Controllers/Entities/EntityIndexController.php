@@ -11,7 +11,7 @@ use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Traits\IsCollectionController;
 

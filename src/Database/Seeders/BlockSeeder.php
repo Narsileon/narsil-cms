@@ -4,7 +4,7 @@ namespace Narsil\Database\Seeders;
 
 #region USE
 
-use Narsil\Models\Structures\Block;
+use Narsil\Models\Collections\Block;
 
 #endregion
 
@@ -12,7 +12,7 @@ use Narsil\Models\Structures\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class BlockSeeder extends StructuresSeeder
+abstract class BlockSeeder extends CollectionsSeeder
 {
     #region PUBLIC METHODS
 

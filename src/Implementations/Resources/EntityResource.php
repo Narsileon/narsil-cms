@@ -13,8 +13,8 @@ use Narsil\Implementations\AbstractResource;
 use Narsil\Interfaces\IStructureHasElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Field;
 
 #endregion
 

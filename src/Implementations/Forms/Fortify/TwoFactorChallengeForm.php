@@ -9,9 +9,9 @@ use Narsil\Contracts\Forms\Fortify\TwoFactorChallengeForm as Contract;
 use Narsil\Enums\Forms\AutoCompleteEnum;
 use Narsil\Enums\RequestMethodEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateTab;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\TemplateTab;
+use Narsil\Models\Collections\TemplateTabElement;
 
 #endregion
 

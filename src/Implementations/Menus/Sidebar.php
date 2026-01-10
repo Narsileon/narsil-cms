@@ -4,14 +4,13 @@ namespace Narsil\Implementations\Menus;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Contracts\Menus\Sidebar as Contract;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Implementations\AbstractMenu;
 use Narsil\Models\Configuration;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\Fieldset;
@@ -67,7 +66,7 @@ class Sidebar extends AbstractMenu implements Contract
             ],
             $this->getSiteGroup(),
             $this->getGlobalsGroup(),
-            $this->getCollectionGroup(),
+            $this->getCollectionsGroup(),
             $this->getFormsGroup(),
             $this->getStructuresGroup(),
             $this->getManagementGroup(),
@@ -82,7 +81,7 @@ class Sidebar extends AbstractMenu implements Contract
     /**
      * @return array<MenuItem>
      */
-    protected function getCollectionGroup(): array
+    protected function getCollectionsGroup(): array
     {
         $menuItems = [];
 

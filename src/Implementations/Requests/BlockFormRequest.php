@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Narsil\Contracts\FormRequests\BlockFormRequest as Contract;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Implementations\AbstractFormRequest;
-use Narsil\Models\Structures\Block;
+use Narsil\Models\Collections\Block;
 use Narsil\Validation\FormRule;
 
 #endregion

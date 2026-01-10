@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Narsil\Casts\JsonCast;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Traits\HasTranslations;
 
 #endregion

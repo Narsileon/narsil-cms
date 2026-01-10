@@ -10,11 +10,11 @@ use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Contracts\Forms\EntityForm;
 use Narsil\Contracts\Forms\PublishForm;
-use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Http\Controllers\RenderController;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Configuration;
-use Narsil\Models\Structures\Template;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Traits\IsCollectionController;
 

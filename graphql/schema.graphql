@@ -25,7 +25,7 @@ extend type Query {
   users: [User!]! @all
 }
 
-type Block @model(class: "Narsil\\Models\\Structures\\Block") {
+type Block @model(class: "Narsil\\Models\\Collections\\Block") {
   id: ID!
   collapsible: Boolean!
   handle: String!
@@ -37,7 +37,7 @@ type Block @model(class: "Narsil\\Models\\Structures\\Block") {
   fields: [Field!]! @morphToMany
 }
 
-type BlockElement @model(class: "Narsil\\Models\\Structures\\BlockElement") {
+type BlockElement @model(class: "Narsil\\Models\\Collections\\BlockElement") {
   uuid: String!
   block_id: ID!
   description: String
@@ -57,7 +57,7 @@ type BlockElement @model(class: "Narsil\\Models\\Structures\\BlockElement") {
   owner: Block! @belongsTo
 }
 
-type BlockElementCondition @model(class: "Narsil\\Models\\Structures\\BlockElementCondition") {
+type BlockElementCondition @model(class: "Narsil\\Models\\Collections\\BlockElementCondition") {
   uuid: String!
   block_element_uuid: String!
   handle: String!
@@ -113,7 +113,7 @@ type EntityNodeRelation @model(class: "Narsil\\Models\\Entities\\EntityNodeRelat
   target: Entity! @morphTo
 }
 
-type Field @model(class: "Narsil\\Models\\Structures\\Field") {
+type Field @model(class: "Narsil\\Models\\Collections\\Field") {
   id: ID!
   class_name: String
   description: String
@@ -131,7 +131,7 @@ type Field @model(class: "Narsil\\Models\\Structures\\Field") {
   validation_rules: [ValidationRule!]! @belongsToMany
 }
 
-type FieldBlock @model(class: "Narsil\\Models\\Structures\\FieldBlock") {
+type FieldBlock @model(class: "Narsil\\Models\\Collections\\FieldBlock") {
   uuid: String!
   block_id: ID!
   field_id: ID!
@@ -139,7 +139,7 @@ type FieldBlock @model(class: "Narsil\\Models\\Structures\\FieldBlock") {
   field: Field! @belongsTo
 }
 
-type FieldOption @model(class: "Narsil\\Models\\Structures\\FieldOption") {
+type FieldOption @model(class: "Narsil\\Models\\Collections\\FieldOption") {
   uuid: String!
   field_id: ID!
   label: String!
@@ -190,7 +190,7 @@ type FieldsetElementCondition @model(class: "Narsil\\Models\\Forms\\FieldsetElem
   fieldset_element: FieldsetElement! @belongsTo
 }
 
-type FieldValidationRule @model(class: "Narsil\\Models\\Structures\\FieldValidationRule") {
+type FieldValidationRule @model(class: "Narsil\\Models\\Collections\\FieldValidationRule") {
   uuid: ID!
   field_id: ID!
   validarion_rule_id: ID!
@@ -308,7 +308,7 @@ type RolePermission @model(class: "Narsil\\Models\\Policies\\RolePermission") {
   role: Role! @belongsTo
 }
 
-type Template @model(class: "Narsil\\Models\\Structures\\Template") {
+type Template @model(class: "Narsil\\Models\\Collections\\Template") {
   id: ID!
   handle: String!
   plural: String!
@@ -317,7 +317,7 @@ type Template @model(class: "Narsil\\Models\\Structures\\Template") {
   updated_at: DateTime!
 }
 
-type TemplateTab @model(class: "Narsil\\Models\\Structures\\TemplateTab") {
+type TemplateTab @model(class: "Narsil\\Models\\Collections\\TemplateTab") {
   uuid: ID!
   handle: String!
   name: String!
@@ -331,7 +331,7 @@ type TemplateTab @model(class: "Narsil\\Models\\Structures\\TemplateTab") {
   template: Template! @belongsTo
 }
 
-type TemplateTabElement @model(class: "Narsil\\Models\\Structures\\TemplateTabElement") {
+type TemplateTabElement @model(class: "Narsil\\Models\\Collections\\TemplateTabElement") {
   uuid: String!
   block_id: ID!
   description: String
@@ -351,7 +351,7 @@ type TemplateTabElement @model(class: "Narsil\\Models\\Structures\\TemplateTabEl
   owner: TemplateTab! @belongsTo
 }
 
-type TemplateTabElementCondition @model(class: "Narsil\\Models\\Structures\\TemplateTabElementCondition") {
+type TemplateTabElementCondition @model(class: "Narsil\\Models\\Collections\\TemplateTabElementCondition") {
   uuid: String!
   handle: String!
   operator: String!

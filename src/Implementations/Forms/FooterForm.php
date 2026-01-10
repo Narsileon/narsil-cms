@@ -11,13 +11,13 @@ use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FooterForm as Contract;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\TemplateTab;
-use Narsil\Models\Structures\TemplateTabElement;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\TemplateTab;
+use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Globals\FooterSocialMedium;
-use Narsil\Models\Structures\BlockElement;
 use Narsil\Services\RouteService;
 
 #endregion

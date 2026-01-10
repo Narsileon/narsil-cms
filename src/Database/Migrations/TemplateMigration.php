@@ -7,13 +7,13 @@ namespace Narsil\Database\Migrations;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Template;
+use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Entities\EntityNodeRelation;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\BlockElement;
-use Narsil\Models\Structures\Template;
-use Narsil\Models\Structures\TemplateTabElement;
 use Narsil\Models\User;
 
 #endregion

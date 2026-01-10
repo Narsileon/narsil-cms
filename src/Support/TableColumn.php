@@ -10,7 +10,7 @@ use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Fields\TimeField;
 use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Enums\DataTypeEnum;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\Field;
 
 #endregion
 

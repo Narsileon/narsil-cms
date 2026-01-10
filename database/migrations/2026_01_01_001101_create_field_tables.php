@@ -5,9 +5,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Structures\Field;
-use Narsil\Models\Structures\FieldOption;
-use Narsil\Models\Structures\FieldValidationRule;
+use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\FieldOption;
+use Narsil\Models\Collections\FieldValidationRule;
 use Narsil\Models\User;
 use Narsil\Models\ValidationRule;
 

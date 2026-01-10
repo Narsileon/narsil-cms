@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Models\Structures\Template;
+use Narsil\Models\Collections\Template;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasIdentifier;

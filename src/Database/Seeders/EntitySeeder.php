@@ -5,8 +5,8 @@ namespace Narsil\Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
-use Narsil\Models\Structures\Template;
 use Narsil\Services\Models\EntityService;
 
 #endregion

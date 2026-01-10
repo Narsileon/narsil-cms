@@ -11,7 +11,7 @@ use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Locale;
 use Narsil\Contracts\Form;
-use Narsil\Models\Structures\TemplateTab;
+use Narsil\Models\Collections\TemplateTab;
 use Narsil\Support\SelectOption;
 use Narsil\Support\TranslationsBag;
 use ReflectionClass;

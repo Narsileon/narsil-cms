@@ -6,8 +6,8 @@ namespace Narsil\Implementations\Tables;
 
 use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Structures\Block;
-use Narsil\Models\Structures\Field;
+use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Field;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
