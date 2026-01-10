@@ -65,10 +65,14 @@ abstract class FieldsetService
                 FieldsetElement::ELEMENT_TYPE => $table,
                 FieldsetElement::ELEMENT_ID => $id,
             ], [
-                FieldsetElement::LABEL => Arr::get($element, FieldsetElement::LABEL, []),
+                FieldsetElement::DESCRIPTION => Arr::get($element, FieldsetElement::DESCRIPTION),
+                FieldsetElement::LABEL => Arr::get($element, FieldsetElement::LABEL),
                 FieldsetElement::POSITION => $position,
+                FieldsetElement::REQUIRED => Arr::get($element, FieldsetElement::REQUIRED, false),
                 FieldsetElement::WIDTH => Arr::get($element, FieldsetElement::WIDTH, 100),
             ]);
+
+            ElementService::syncConditions($fieldsetElement, Arr::get($element, FieldsetElement::RELATION_CONDITIONS, []));
 
             $uuids[] = $fieldsetElement->{FieldsetElement::UUID};
         }

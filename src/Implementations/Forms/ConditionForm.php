@@ -10,6 +10,7 @@ use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockForm as Contract;
+use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Interfaces\IHasElement;
 use Narsil\Models\AbstractCondition;
@@ -74,6 +75,14 @@ class ConditionForm extends AbstractForm implements Contract
                                         BlockElement::RELATION_ELEMENT => [
                                             Field::TYPE => SelectField::class,
                                             Field::SETTINGS => app(SelectField::class),
+                                            Field::RELATION_OPTIONS => [
+                                                OperatorEnum::selectOption(OperatorEnum::EQUALS),
+                                                OperatorEnum::selectOption(OperatorEnum::NOT_EQUALS),
+                                                OperatorEnum::selectOption(OperatorEnum::GREATER_THAN),
+                                                OperatorEnum::selectOption(OperatorEnum::GREATER_THAN_OR_EQUAL),
+                                                OperatorEnum::selectOption(OperatorEnum::LESS_THAN),
+                                                OperatorEnum::selectOption(OperatorEnum::LESS_THAN_OR_EQUAL),
+                                            ],
                                         ],
                                     ],
                                     [

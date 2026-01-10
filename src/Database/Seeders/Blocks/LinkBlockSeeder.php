@@ -8,6 +8,7 @@ use Narsil\Contracts\Fields\LinkField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Database\Seeders\BlockSeeder;
+use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Http\Data\ConditionData;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
@@ -95,7 +96,7 @@ class LinkBlockSeeder extends BlockSeeder
                     [
                         new ConditionData(
                             handle: self::TYPE,
-                            operator: '=',
+                            operator: OperatorEnum::EQUALS->value,
                             value: 'internal',
                         )->toArray(),
                     ],
@@ -115,7 +116,7 @@ class LinkBlockSeeder extends BlockSeeder
                     [
                         new ConditionData(
                             handle: self::TYPE,
-                            operator: '=',
+                            operator: OperatorEnum::EQUALS->value,
                             value: 'external',
                         )->toArray(),
                     ],

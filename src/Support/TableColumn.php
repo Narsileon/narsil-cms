@@ -163,8 +163,8 @@ class TableColumn
         {
             case DataTypeEnum::BOOLEAN->value:
                 $operators = [
-                    OperatorEnum::EQUALS->value,
-                    OperatorEnum::NOT_EQUALS->value,
+                    OperatorEnum::selectOption(OperatorEnum::EQUALS),
+                    OperatorEnum::selectOption(OperatorEnum::NOT_EQUALS),
                 ];
                 break;
             case DataTypeEnum::DATE->value:
@@ -172,12 +172,12 @@ class TableColumn
             case DataTypeEnum::TIMESTAMP->value:
             case DataTypeEnum::TIME->value:
                 $operators = [
-                    OperatorEnum::EQUALS->value,
-                    OperatorEnum::NOT_EQUALS->value,
-                    OperatorEnum::BEFORE->value,
-                    OperatorEnum::BEFORE_OR_EQUAL->value,
-                    OperatorEnum::AFTER->value,
-                    OperatorEnum::AFTER_OR_EQUAL->value,
+                    OperatorEnum::selectOption(OperatorEnum::EQUALS),
+                    OperatorEnum::selectOption(OperatorEnum::NOT_EQUALS),
+                    OperatorEnum::selectOption(OperatorEnum::BEFORE),
+                    OperatorEnum::selectOption(OperatorEnum::BEFORE_OR_EQUAL),
+                    OperatorEnum::selectOption(OperatorEnum::AFTER),
+                    OperatorEnum::selectOption(OperatorEnum::AFTER_OR_EQUAL),
                 ];
                 break;
             case DataTypeEnum::INTEGER->value:
@@ -187,12 +187,12 @@ class TableColumn
             case DataTypeEnum::FLOAT->value:
             case DataTypeEnum::DOUBLE->value:
                 $operators = [
-                    OperatorEnum::EQUALS->value,
-                    OperatorEnum::NOT_EQUALS->value,
-                    OperatorEnum::GREATER_THAN->value,
-                    OperatorEnum::GREATER_THAN_OR_EQUAL->value,
-                    OperatorEnum::LESS_THAN->value,
-                    OperatorEnum::LESS_THAN_OR_EQUAL->value,
+                    OperatorEnum::selectOption(OperatorEnum::EQUALS),
+                    OperatorEnum::selectOption(OperatorEnum::NOT_EQUALS),
+                    OperatorEnum::selectOption(OperatorEnum::GREATER_THAN),
+                    OperatorEnum::selectOption(OperatorEnum::GREATER_THAN_OR_EQUAL),
+                    OperatorEnum::selectOption(OperatorEnum::LESS_THAN),
+                    OperatorEnum::selectOption(OperatorEnum::LESS_THAN_OR_EQUAL),
 
                 ];
                 break;
@@ -202,14 +202,14 @@ class TableColumn
             case DataTypeEnum::UUID->value:
             default:
                 $operators = [
-                    OperatorEnum::EQUALS->value,
-                    OperatorEnum::NOT_EQUALS->value,
-                    OperatorEnum::CONTAINS->value,
-                    OperatorEnum::NOT_CONTAINS->value,
-                    OperatorEnum::STARTS_WITH->value,
-                    OperatorEnum::ENDS_WITH->value,
-                    OperatorEnum::DOESNT_START_WITH->value,
-                    OperatorEnum::DOESNT_END_WITH->value,
+                    OperatorEnum::selectOption(OperatorEnum::EQUALS),
+                    OperatorEnum::selectOption(OperatorEnum::NOT_EQUALS),
+                    OperatorEnum::selectOption(OperatorEnum::CONTAINS),
+                    OperatorEnum::selectOption(OperatorEnum::NOT_CONTAINS),
+                    OperatorEnum::selectOption(OperatorEnum::STARTS_WITH),
+                    OperatorEnum::selectOption(OperatorEnum::ENDS_WITH),
+                    OperatorEnum::selectOption(OperatorEnum::DOESNT_START_WITH),
+                    OperatorEnum::selectOption(OperatorEnum::DOESNT_END_WITH),
                 ];
                 break;
         };

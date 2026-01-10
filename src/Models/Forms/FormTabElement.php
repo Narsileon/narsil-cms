@@ -132,7 +132,8 @@ class FormTabElement extends MorphPivot implements IFormHasElement
                 FormTabElementCondition::class,
                 FormTabElementCondition::FORM_TAB_ELEMENT_UUID,
                 self::UUID,
-            );
+            )
+            ->orderBy(FormTabElementCondition::POSITION);
     }
 
     /**

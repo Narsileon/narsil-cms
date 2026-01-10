@@ -126,7 +126,8 @@ class SitePageEntity extends Pivot
                 self::TARGET_TYPE,
                 self::TARGET_ID,
                 Entity::ID,
-            );
+            )
+            ->where(Entity::REVISION, '>', 0);
     }
 
     /**

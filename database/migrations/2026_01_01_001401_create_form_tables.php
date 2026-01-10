@@ -5,6 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\FieldsetElement;
 use Narsil\Models\Forms\FieldsetElementCondition;
@@ -123,9 +124,13 @@ return new class extends Migration
                 ->constrained(FieldsetElement::TABLE, FieldsetElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
+                ->integer(FieldsetElementCondition::POSITION)
+                ->default(0);
+            $blueprint
                 ->string(FieldsetElementCondition::HANDLE);
             $blueprint
-                ->string(FieldsetElementCondition::OPERATOR);
+                ->enum(FieldsetElementCondition::OPERATOR, OperatorEnum::values())
+                ->default(OperatorEnum::EQUALS);
             $blueprint
                 ->string(FieldsetElementCondition::VALUE);
         });
@@ -251,9 +256,13 @@ return new class extends Migration
                 ->constrained(FormTabElement::TABLE, FormTabElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
+                ->integer(FieldsetElementCondition::POSITION)
+                ->default(0);
+            $blueprint
                 ->string(FormTabElementCondition::HANDLE);
             $blueprint
-                ->string(FormTabElementCondition::OPERATOR);
+                ->enum(FormTabElementCondition::OPERATOR, OperatorEnum::values())
+                ->default(OperatorEnum::EQUALS);
             $blueprint
                 ->string(FormTabElementCondition::VALUE);
         });

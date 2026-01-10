@@ -66,10 +66,14 @@ abstract class FormService
                 FormTabElement::ELEMENT_TYPE => $table,
                 FormTabElement::ELEMENT_ID => $id,
             ], [
-                FormTabElement::LABEL => Arr::get($element, FormTabElement::LABEL, []),
+                FormTabElement::DESCRIPTION => Arr::get($element, FormTabElement::DESCRIPTION),
+                FormTabElement::LABEL => Arr::get($element, FormTabElement::LABEL),
                 FormTabElement::POSITION => $position,
+                FormTabElement::REQUIRED => Arr::get($element, FormTabElement::REQUIRED, false),
                 FormTabElement::WIDTH => Arr::get($element, FormTabElement::WIDTH, 100),
             ]);
+
+            ElementService::syncConditions($formTabElement, Arr::get($element, FormTabElement::RELATION_CONDITIONS, []));
 
             $uuids[] = $formTabElement->{FormTabElement::UUID};
         }

@@ -5,6 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\BlockElement;
 use Narsil\Models\Structures\BlockElementCondition;
@@ -79,9 +80,13 @@ return new class extends Migration
                 ->constrained(BlockElement::TABLE, BlockElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
+                ->integer(BlockElementCondition::POSITION)
+                ->default(0);
+            $blueprint
                 ->string(BlockElementCondition::HANDLE);
             $blueprint
-                ->string(BlockElementCondition::OPERATOR);
+                ->enum(BlockElementCondition::OPERATOR, OperatorEnum::values())
+                ->default(OperatorEnum::EQUALS);
             $blueprint
                 ->string(BlockElementCondition::VALUE);
         });

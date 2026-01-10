@@ -66,10 +66,15 @@ abstract class TemplateService
                 TemplateTabElement::ELEMENT_TYPE => $table,
                 TemplateTabElement::ELEMENT_ID => $id,
             ], [
-                TemplateTabElement::LABEL => Arr::get($element, TemplateTabElement::LABEL, []),
+                TemplateTabElement::DESCRIPTION => Arr::get($element, TemplateTabElement::DESCRIPTION),
+                TemplateTabElement::LABEL => Arr::get($element, TemplateTabElement::LABEL),
                 TemplateTabElement::POSITION => $position,
+                TemplateTabElement::REQUIRED => Arr::get($element, TemplateTabElement::REQUIRED, false),
+                TemplateTabElement::TRANSLATABLE => Arr::get($element, TemplateTabElement::TRANSLATABLE, false),
                 TemplateTabElement::WIDTH => Arr::get($element, TemplateTabElement::WIDTH, 100),
             ]);
+
+            ElementService::syncConditions($templateTabElement, Arr::get($element, TemplateTabElement::RELATION_CONDITIONS, []));
 
             $uuids[] = $templateTabElement->{TemplateTabElement::UUID};
         }

@@ -147,7 +147,8 @@ class BlockElement extends MorphPivot implements IStructureHasElement
                 BlockElementCondition::class,
                 BlockElementCondition::BLOCK_ELEMENT_UUID,
                 self::UUID,
-            );
+            )
+            ->orderBy(BlockElementCondition::POSITION);
     }
 
     /**

@@ -149,7 +149,8 @@ class TemplateTabElement extends MorphPivot implements IStructureHasElement
                 TemplateTabElementCondition::class,
                 TemplateTabElementCondition::TEMPLATE_TAB_ELEMENT_UUID,
                 self::UUID,
-            );
+            )
+            ->orderBy(TemplateTabElementCondition::POSITION);
     }
 
     /**

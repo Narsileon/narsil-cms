@@ -36,16 +36,16 @@ class ConditionData extends Data
     #region PUBLIC METHODS
 
     /**
-     * @param AbstractCondition $condition
+     * @param AbstractCondition $model
      *
      * @return static
      */
-    public static function fromModel(AbstractCondition $condition): self
+    public static function fromModel(AbstractCondition $model): self
     {
         return new static(
-            handle: $condition->{AbstractCondition::HANDLE},
-            operator: $condition->{AbstractCondition::OPERATOR},
-            value: $condition->{AbstractCondition::VALUE},
+            handle: $model->{AbstractCondition::HANDLE},
+            operator: $model->{AbstractCondition::OPERATOR},
+            value: $model->{AbstractCondition::VALUE},
         );
     }
 

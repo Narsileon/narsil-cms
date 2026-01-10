@@ -7,7 +7,6 @@ namespace Narsil\Models\Forms;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
-use Illuminate\Support\Arr;
 use Narsil\Interfaces\IFormHasElement;
 use Narsil\Traits\HasElement;
 use Narsil\Traits\HasTranslations;
@@ -131,7 +130,8 @@ class FieldsetElement extends MorphPivot implements IFormHasElement
                 FieldsetElementCondition::class,
                 FieldsetElementCondition::FIELDSET_ELEMENT_UUID,
                 self::UUID,
-            );
+            )
+            ->orderBy(FieldsetElementCondition::POSITION);
     }
 
     /**

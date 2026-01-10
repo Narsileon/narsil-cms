@@ -5,6 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Models\Structures\Block;
 use Narsil\Models\Structures\Field;
 use Narsil\Models\Structures\Template;
@@ -78,9 +79,13 @@ return new class extends Migration
                 ->constrained(TemplateTabElement::TABLE, TemplateTabElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
+                ->integer(TemplateTabElementCondition::POSITION)
+                ->default(0);
+            $blueprint
                 ->string(TemplateTabElementCondition::HANDLE);
             $blueprint
-                ->string(TemplateTabElementCondition::OPERATOR);
+                ->enum(TemplateTabElementCondition::OPERATOR, OperatorEnum::values())
+                ->default(OperatorEnum::EQUALS);
             $blueprint
                 ->string(TemplateTabElementCondition::VALUE);
         });

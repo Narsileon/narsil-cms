@@ -65,10 +65,15 @@ abstract class BlockService
                 BlockElement::ELEMENT_TYPE => $table,
                 BlockElement::ELEMENT_ID => $id,
             ], [
-                BlockElement::LABEL => Arr::get($element, BlockElement::LABEL, []),
+                BlockElement::DESCRIPTION => Arr::get($element, BlockElement::DESCRIPTION),
+                BlockElement::LABEL => Arr::get($element, BlockElement::LABEL),
                 BlockElement::POSITION => $position,
+                BlockElement::REQUIRED => Arr::get($element, BlockElement::REQUIRED, false),
+                BlockElement::TRANSLATABLE => Arr::get($element, BlockElement::TRANSLATABLE, false),
                 BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH, 100),
             ]);
+
+            ElementService::syncConditions($blockElement, Arr::get($element, BlockElement::RELATION_CONDITIONS, []));
 
             $uuids[] = $blockElement->{BlockElement::UUID};
         }

@@ -4,6 +4,7 @@ namespace Narsil\Enums\Database;
 
 #region USE
 
+use Narsil\Support\SelectOption;
 use Narsil\Traits\Enumerable;
 
 #endregion
@@ -32,4 +33,22 @@ enum OperatorEnum: string
     case NOT_CONTAINS = 'not_contains';
     case NOT_EQUALS = 'not_equals';
     case STARTS_WITH = 'starts_with';
+
+    #region PUBLIC METHODS
+
+    /**
+     * Get the enum value as a select option.
+     *
+     * @param OperatorEnum $case
+     *
+     * @return SelectOption
+     */
+    public static function selectOption(OperatorEnum $case): SelectOption
+    {
+        return new SelectOption()
+            ->optionLabel(trans('narsil::operators.' . $case->value))
+            ->optionValue($case->value);
+    }
+
+    #endregion
 }

@@ -55,6 +55,13 @@ abstract class AbstractCondition extends Model
     final public const OPERATOR = 'operator';
 
     /**
+     * The name of the "position" column.
+     *
+     * @var string
+     */
+    final public const POSITION = 'position';
+
+    /**
      * The name of the "value" column.
      *
      * @var string

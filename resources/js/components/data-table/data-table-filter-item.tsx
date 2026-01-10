@@ -1,6 +1,5 @@
 import { Badge } from "@narsil-cms/blocks/badge";
 import { Select } from "@narsil-cms/blocks/fields/select";
-import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverContent,
   PopoverPortal,
@@ -8,7 +7,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { getField } from "@narsil-cms/repositories/fields";
-import type { Field } from "@narsil-cms/types";
+import type { Field, SelectOption } from "@narsil-cms/types";
 import { isEmpty } from "lodash-es";
 import { useEffect, useState, type ComponentProps } from "react";
 import { type ColumnFilter } from ".";
@@ -20,7 +19,6 @@ type DataTableFilterItemProps = ComponentProps<typeof PopoverTrigger> & {
 
 function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
   const { dataTable, dataTableStore } = useDataTable();
-  const { trans } = useLocalization();
 
   const [open, onOpenChange] = useState(false);
 
@@ -32,20 +30,13 @@ function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
 
   const meta = column.columnDef.meta as {
     field: Field;
-    operators: string[];
+    operators: SelectOption[];
   };
-
-  const operatorOptions = meta.operators.map((operator) => {
-    return {
-      label: trans(`operators.${operator}`),
-      value: operator,
-    };
-  });
 
   useEffect(() => {
     if (isEmpty(filter.operator)) {
       dataTableStore.updateFilter(filter.column, {
-        operator: meta.operators[0],
+        operator: meta.operators[0].value as string,
       });
 
       onOpenChange(true);
@@ -73,7 +64,7 @@ function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
             triggerProps={{
               className: "w-full text-left",
             }}
-            options={operatorOptions}
+            options={meta.operators}
             value={filter.operator}
             onValueChange={(value) => {
               dataTableStore.updateFilter(filter.column, { operator: value });
