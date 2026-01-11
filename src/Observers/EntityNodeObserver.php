@@ -69,13 +69,13 @@ class EntityNodeObserver
 
         if (in_array($field->{Field::TYPE}, Config::get('narsil.relations', [])))
         {
-            $entityNode->entities()->delete();
+            $entityNode->relations()->delete();
 
             foreach ($entityNode->getTranslations(EntityNode::VALUE) as $language => $translation)
             {
                 [$table, $id] = explode('-', $translation);
 
-                $entityNode->entities()->create([
+                $entityNode->relations()->create([
                     EntityNodeRelation::LANGUAGE => $language,
                     EntityNodeRelation::OWNER_UUID => $entityNode->{EntityNode::OWNER_UUID},
                     EntityNodeRelation::TARGET_ID  => $id,

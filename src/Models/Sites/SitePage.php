@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\TreeModel;
 use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasTranslations;
@@ -47,6 +49,7 @@ class SitePage extends TreeModel
         $this->with = [
             self::RELATION_ENTITIES,
             self::RELATION_OVERRIDE,
+            self::RELATION_URL,
         ];
 
         $this->mergeCasts([
@@ -218,6 +221,13 @@ class SitePage extends TreeModel
     final public const RELATION_SITE = 'site';
 
     /**
+     * The name of the "url" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_URL = 'url';
+
+    /**
      * The name of the "urls" relation.
      *
      * @var string
@@ -329,6 +339,27 @@ class SitePage extends TreeModel
                 self::SITE_ID,
                 Site::ID
             );
+    }
+
+    /**
+     * Get the associated url.
+     *
+     * @return HasOne
+     */
+    final public function url(): HasOne
+    {
+        $locale = App::getLocale();
+
+        return $this
+            ->hasOne(
+                SiteUrl::class,
+                SiteUrl::PAGE_ID,
+                self::ID,
+            )
+            ->whereHas(SiteUrl::RELATION_HOST_LOCALE_LANGUAGE, function ($query) use ($locale)
+            {
+                $query->where(HostLocaleLanguage::LANGUAGE, $locale);
+            });
     }
 
     /**

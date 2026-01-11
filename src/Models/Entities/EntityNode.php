@@ -7,12 +7,9 @@ namespace Narsil\Models\Entities;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Narsil\Casts\JsonCast;
-use Narsil\Models\Forms\Form;
-use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\BlockElement;
 use Narsil\Models\Collections\TemplateTabElement;
@@ -179,13 +176,6 @@ abstract class EntityNode extends Model
     final public const RELATION_ELEMENT = 'element';
 
     /**
-     * The name of the "entities" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_ENTITIES = 'entities';
-
-    /**
      * The name of the "owner" relation.
      *
      * @var string
@@ -198,6 +188,13 @@ abstract class EntityNode extends Model
      * @var string
      */
     final public const RELATION_PARENT = 'parent';
+
+    /**
+     * The name of the "relations" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_RELATIONS = 'relations';
 
     /**
      * The name of the "template tab element" relation.
@@ -275,21 +272,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated entities.
-     *
-     * @return HasMany
-     */
-    final public function entities(): HasMany
-    {
-        return $this
-            ->hasMany(
-                static::entityNodeRelationClass(),
-                EntityNodeRelation::OWNER_NODE_UUID,
-                self::UUID,
-            );
-    }
-
-    /**
      * Get the associated owner.
      *
      * @return BelongsTo
@@ -316,6 +298,21 @@ abstract class EntityNode extends Model
                 EntityNode::class,
                 self::PARENT_UUID,
                 EntityNode::UUID,
+            );
+    }
+
+    /**
+     * Get the associated relations.
+     *
+     * @return HasMany
+     */
+    final public function relations(): HasMany
+    {
+        return $this
+            ->hasMany(
+                static::entityNodeRelationClass(),
+                EntityNodeRelation::OWNER_NODE_UUID,
+                self::UUID,
             );
     }
 
