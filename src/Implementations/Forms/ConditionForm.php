@@ -12,9 +12,9 @@ use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\BlockForm as Contract;
 use Narsil\Enums\Database\OperatorEnum;
 use Narsil\Implementations\AbstractForm;
-use Narsil\Interfaces\IElement;
 use Narsil\Models\AbstractCondition;
 use Narsil\Models\Collections\BlockElement;
+use Narsil\Models\Collections\Element;
 use Narsil\Models\Collections\Field;
 use Narsil\Models\Collections\TemplateTab;
 use Narsil\Models\Collections\TemplateTabElement;
@@ -52,7 +52,7 @@ class ConditionForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => Str::ucfirst(trans('narsil::validation.attributes.conditions')),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::HANDLE => IElement::RELATION_CONDITIONS,
+                        TemplateTabElement::HANDLE => Element::RELATION_CONDITIONS,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.conditions'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::PLACEHOLDER => trans('narsil::ui.add'),

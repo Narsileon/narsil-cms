@@ -6,10 +6,6 @@ namespace Narsil\Models\Collections;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphPivot;
-use Narsil\Interfaces\ITemplateElement;
-use Narsil\Traits\HasElement;
-use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -17,11 +13,8 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TemplateTabElement extends MorphPivot implements ITemplateElement
+class TemplateTabElement extends Element
 {
-    use HasElement;
-    use HasTranslations;
-
     #region CONSTRUCTOR
 
     /**

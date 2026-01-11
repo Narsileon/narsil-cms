@@ -10,10 +10,10 @@ use Illuminate\Support\Collection;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Contracts\Resources\EntityResource as Contract;
 use Narsil\Implementations\AbstractResource;
-use Narsil\Interfaces\ITemplateElement;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
 use Narsil\Models\Collections\Block;
+use Narsil\Models\Collections\Element;
 use Narsil\Models\Collections\Field;
 
 #endregion
@@ -100,11 +100,11 @@ class EntityResource extends AbstractResource implements Contract
         {
             $element = $node->{EntityNode::RELATION_ELEMENT};
 
-            $handle = $element->{ITemplateElement::HANDLE};
+            $handle = $element->{Element::HANDLE};
 
-            if ($element->{ITemplateElement::BASE_TYPE} === Field::TABLE)
+            if ($element->{Element::BASE_TYPE} === Field::TABLE)
             {
-                $field = $element->{ITemplateElement::RELATION_BASE};
+                $field = $element->{Element::RELATION_BASE};
 
                 $key = $path ? "$path.$handle" : $handle;
 
@@ -126,7 +126,7 @@ class EntityResource extends AbstractResource implements Contract
                 }
                 else
                 {
-                    if ($element->{ITemplateElement::TRANSLATABLE})
+                    if ($element->{Element::TRANSLATABLE})
                     {
                         $value = $node->getTranslations(EntityNode::VALUE);
 
@@ -145,7 +145,7 @@ class EntityResource extends AbstractResource implements Contract
             }
             else
             {
-                $block = $element->{ITemplateElement::RELATION_BASE};
+                $block = $element->{Element::RELATION_BASE};
 
                 if ($block->{Block::VIRTUAL})
                 {

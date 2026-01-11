@@ -95,7 +95,7 @@ type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
   value: String!
   block: Block @belongsTo
   children: [EntityNode!]! @hasMany
-  element: HasElement! @morphTo
+  element: Element! @morphTo
   entities: [EntityNodeRelation!]! @hasMany
   owner: Entity! @belongsTo
   parent: EntityNode @belongsTo
@@ -378,6 +378,4 @@ type ValidationRule @model(class: "Narsil\\Models\\User") {
   handle: String!
 }
 
-union Element = Block | Field | Fieldset | Input
-
-union HasElement = BlockElement | TemplateTabElement
+union Element = BlockElement | TemplateTabElement

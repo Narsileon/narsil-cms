@@ -6,12 +6,7 @@ namespace Narsil\Models\Forms;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphPivot;
-use Illuminate\Support\Arr;
-use Narsil\Interfaces\IFormElement;
 use Narsil\Models\Forms\FormTab;
-use Narsil\Traits\HasElement;
-use Narsil\Traits\HasTranslations;
 
 #endregion
 
@@ -19,11 +14,8 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormTabElement extends MorphPivot implements IFormElement
+class FormTabElement extends Element
 {
-    use HasElement;
-    use HasTranslations;
-
     #region CONSTRUCTOR
 
     /**
