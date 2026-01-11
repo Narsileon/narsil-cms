@@ -1,17 +1,15 @@
 <?php
 
-namespace Narsil\Http\Data;
+namespace Narsil\Support\Models;
 
 #region USE
 
+use Illuminate\Support\Fluent;
 use Narsil\Models\AbstractCondition;
-use Spatie\LaravelData\Data;
-use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #endregion
 
-#[TypeScript]
-class ConditionData extends Data
+class ConditionData extends Fluent
 {
     #region CONSTRUCTOR
 
@@ -23,15 +21,19 @@ class ConditionData extends Data
      * @return void
      */
     public function __construct(
-        public string $handle,
-        public string $operator,
-        public string $value,
+        string $handle,
+        string $operator,
+        string $value,
     )
     {
-        //
+        $this->set('handle', $handle);
+        $this->set('operator', $operator);
+        $this->set('value', $value);
     }
 
     #endregion
+
+    #region PROPERTIES
 
     #region PUBLIC METHODS
 
