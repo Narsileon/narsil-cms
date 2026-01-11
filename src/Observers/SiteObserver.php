@@ -50,6 +50,8 @@ class SiteObserver
 
         if (Site::count() === 1)
         {
+            $this->createPages($model, $homePage);
+
             $entity = new HomeEntitySeeder()->run();
 
             SitePageEntity::create([
@@ -57,8 +59,6 @@ class SiteObserver
                 SitePageEntity::TARGET_ID => $entity->{Entity::ID},
                 SitePageEntity::TARGET_TYPE => $entity->getTable(),
             ]);
-
-            $this->createPages($model, $homePage);
         }
     }
 

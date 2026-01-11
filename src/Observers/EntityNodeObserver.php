@@ -4,7 +4,7 @@ namespace Narsil\Observers;
 
 #region USE
 
-use Narsil\Contracts\Fields\FormField;
+use Illuminate\Support\Facades\Config;
 use Narsil\Models\Collections\BlockElement;
 use Narsil\Models\Collections\Element;
 use Narsil\Models\Collections\Field;
@@ -67,7 +67,7 @@ class EntityNodeObserver
 
         $field = $entityNode->{EntityNode::RELATION_ELEMENT}?->{Element::RELATION_BASE};
 
-        if ($field->{Field::TYPE} === FormField::class)
+        if (in_array($field->{Field::TYPE}, Config::get('narsil.relations', [])))
         {
             $entityNode->entities()->delete();
 

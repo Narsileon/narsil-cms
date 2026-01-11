@@ -20,6 +20,7 @@ use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Entities\EntityNode;
+use Narsil\Models\Sites\SitePage;
 
 #endregion
 
@@ -43,6 +44,10 @@ class HomeEntitySeeder extends EntitySeeder
         $buttonBlock = new ButtonBlockSeeder()->run();
         $callToActionBlock = new CallToActionBlockSeeder()->run();
         $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
+
+        $contactPage = SitePage::query()
+            ->where(SitePage::SLUG . '->en', '=', 'contact')
+            ->first();
 
         return [
             ContentTemplateSeeder::CONTENT => [
@@ -122,7 +127,7 @@ class HomeEntitySeeder extends EntitySeeder
                         CallToActionBlockSeeder::LABEL => 'Contact us',
                         CallToActionBlockSeeder::LINK => [
                             LinkBlockSeeder::TYPE => 'internal',
-                            LinkBlockSeeder::URL => '/narsil',
+                            LinkBlockSeeder::LINK => $contactPage?->{SitePage::ATTRIBUTE_IDENTIFIER},
                         ]
                     ],
                 ],

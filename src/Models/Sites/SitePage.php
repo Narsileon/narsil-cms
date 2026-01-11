@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Narsil\Models\TreeModel;
+use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasTranslations;
 
 #endregion
@@ -22,6 +23,7 @@ use Narsil\Traits\HasTranslations;
  */
 class SitePage extends TreeModel
 {
+    use HasIdentifier;
     use HasTranslations;
 
     #region CONSTRUCTOR
