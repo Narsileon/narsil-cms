@@ -105,6 +105,9 @@ const defaultRegistry: Registry = {
     return (
       <Combobox
         {...props.field.settings}
+        extraQuery={{
+          collections: props.field.settings.collections as number[],
+        }}
         href={route("entities.search")}
         id={props.id}
         options={props.field.options}

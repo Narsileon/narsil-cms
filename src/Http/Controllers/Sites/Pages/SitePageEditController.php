@@ -12,6 +12,7 @@ use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Sites\SitePageEntity;
 use Narsil\Services\ModelService;
 
 #endregion
@@ -33,6 +34,8 @@ class SitePageEditController extends RenderController
     public function __invoke(Request $request, string $site, SitePage $sitePage): JsonResponse|Response
     {
         $this->authorize(PermissionEnum::UPDATE, $sitePage);
+
+        $this->transformEntities($sitePage);
 
         $data = $this->getData($sitePage);
         $form = $this->getForm($site, $sitePage);
@@ -97,6 +100,26 @@ class SitePageEditController extends RenderController
     protected function getTitle(): string
     {
         return ModelService::getModelLabel(SitePage::class);
+    }
+
+    /**
+     * Transform the entities for the form.
+     *
+     * @param SitePage $sitePage
+     *
+     * @return void
+     */
+    protected function transformEntities(SitePage $sitePage): void
+    {
+        $entities = $sitePage->{SitePage::RELATION_ENTITIES}
+            ->mapWithKeys(function ($entity)
+            {
+                return [
+                    $entity->{SitePageEntity::LANGUAGE} => $entity->{SitePageEntity::TARGET_TYPE} . '-' . $entity->{SitePageEntity::TARGET_ID},
+                ];
+            });
+
+        $sitePage->setRelation(SitePage::RELATION_ENTITIES, $entities);
     }
 
     #endregion

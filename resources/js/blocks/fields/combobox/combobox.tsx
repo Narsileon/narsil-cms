@@ -33,6 +33,7 @@ type ComboboxProps = {
   collection?: string;
   disabled?: boolean;
   displayValue?: boolean;
+  extraQuery?: Record<string, unknown>;
   href?: string;
   id: string;
   labelPath?: string;
@@ -52,6 +53,7 @@ function Combobox({
   clearable = false,
   disabled,
   displayValue = true,
+  extraQuery,
   href,
   id,
   labelPath = "label",
@@ -93,7 +95,23 @@ function Combobox({
         setLoading(true);
 
         try {
-          const response = await fetch(`${href}?search=${encodeURIComponent(query)}`);
+          const url = new URL(href, window.location.origin);
+
+          url.searchParams.set("search", query);
+
+          if (extraQuery) {
+            Object.entries(extraQuery).forEach(([key, value]) => {
+              if (Array.isArray(value)) {
+                value.forEach((item) => {
+                  url.searchParams.append(`${key}[]`, String(item));
+                });
+              } else {
+                url.searchParams.set(key, String(value));
+              }
+            });
+          }
+
+          const response = await fetch(url.toString());
 
           if (!response.ok) {
             throw new Error("Failed to fetch options");

@@ -24,7 +24,6 @@ return [
     \Narsil\Contracts\Fields\NumberField::class,
     \Narsil\Contracts\Fields\PasswordField::class,
     \Narsil\Contracts\Fields\RangeField::class,
-    \Narsil\Contracts\Fields\RelationsField::class,
     \Narsil\Contracts\Fields\RichTextField::class,
     \Narsil\Contracts\Fields\SelectField::class,
     \Narsil\Contracts\Fields\SwitchField::class,

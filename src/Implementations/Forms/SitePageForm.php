@@ -5,9 +5,9 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Contracts\Fields\EntityField;
 use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\RangeField;
-use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextareaField;
@@ -97,7 +97,7 @@ class SitePageForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::HANDLE => SitePage::ENTITY,
+                        TemplateTabElement::HANDLE => SitePage::RELATION_ENTITIES,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.entity'),
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_CONDITIONS => [
@@ -108,11 +108,9 @@ class SitePageForm extends AbstractForm implements Contract
                             ],
                         ],
                         TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => RelationsField::class,
-                            Field::SETTINGS => app(RelationsField::class)
-                                ->collections($collections)
-                                ->defaultValue([])
-                                ->multiple(false),
+                            Field::TYPE => EntityField::class,
+                            Field::SETTINGS => app(EntityField::class)
+                                ->collections(Template::all()->pluck(Template::ID)->toArray()),
                         ],
                     ],
                     [

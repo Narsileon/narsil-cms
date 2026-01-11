@@ -41,15 +41,6 @@ interface RelationsField extends Contract
     ): static;
 
     /**
-     * Set the collections.
-     *
-     * @param array $value
-     *
-     * @return static
-     */
-    public function collections(array $collections): static;
-
-    /**
      * Set the columns.
      *
      * @param int $columns

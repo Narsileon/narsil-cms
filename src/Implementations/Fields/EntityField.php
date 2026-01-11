@@ -5,9 +5,11 @@ namespace Narsil\Implementations\Fields;
 #region USE
 
 use Narsil\Contracts\Fields\EntityField as Contract;
+use Narsil\Contracts\Fields\SelectField;
 use Narsil\Implementations\AbstractField;
 use Narsil\Models\Collections\BlockElement;
 use Narsil\Models\Collections\Field;
+use Narsil\Models\Collections\Template;
 
 #endregion
 
@@ -38,6 +40,16 @@ class EntityField extends AbstractField implements Contract
     {
         return [
             [
+                BlockElement::HANDLE => $prefix ? "$prefix.collections" : 'collections',
+                BlockElement::LABEL => trans('narsil::ui.collections'),
+                BlockElement::RELATION_BASE => [
+                    Field::TYPE => SelectField::class,
+                    Field::SETTINGS => app(SelectField::class)
+                        ->multiple(true),
+                    Field::RELATION_OPTIONS => Template::selectOptions(),
+                ],
+            ],
+            [
                 BlockElement::HANDLE => Field::PLACEHOLDER,
                 BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
@@ -58,6 +70,16 @@ class EntityField extends AbstractField implements Contract
     }
 
     #region • FLUENT
+
+    /**
+     * {@inheritDoc}
+     */
+    final public function collections(array $collections): static
+    {
+        $this->set('collections', $collections);
+
+        return $this;
+    }
 
     /**
      * {@inheritDoc}

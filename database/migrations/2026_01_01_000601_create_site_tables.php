@@ -161,9 +161,6 @@ return new class extends Migration
                 ->enum(SitePage::ADAPTER, SitePageAdapterEnum::values())
                 ->default(SitePageAdapterEnum::ENTITY->value);
             $blueprint
-                ->jsonb(SitePage::ENTITY)
-                ->nullable();
-            $blueprint
                 ->string(SitePage::COLLECTION)
                 ->nullable();
             $blueprint

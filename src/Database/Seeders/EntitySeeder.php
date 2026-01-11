@@ -5,6 +5,7 @@ namespace Narsil\Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Services\Models\EntityService;
@@ -78,8 +79,10 @@ abstract class EntitySeeder extends Seeder
     {
         $entityModel = $this->template->entityClass();
 
+        $locale = Config::get('app.locale');
+
         $model = $entityModel::query()
-            ->where(Entity::SLUG, $entity->{Entity::SLUG})
+            ->where(Entity::SLUG . '->' . $locale, $entity->{Entity::SLUG})
             ->where(Entity::TEMPLATE_ID, $this->template->{Template::ID})
             ->first();
 

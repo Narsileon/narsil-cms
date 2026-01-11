@@ -41,7 +41,7 @@ class FormSearchController extends RedirectController
             {
                 return (new SelectOption())
                     ->optionLabel($form->{Form::SLUG})
-                    ->optionValue($form->{Form::ID});
+                    ->optionValue($form->{Form::ATTRIBUTE_IDENTIFIER});
             })
             ->all();
 

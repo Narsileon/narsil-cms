@@ -19,6 +19,15 @@ interface EntityField extends Contract
     #region PUBLIC METHODS
 
     /**
+     * Set the collections.
+     *
+     * @param array $value
+     *
+     * @return static
+     */
+    public function collections(array $collections): static;
+
+    /**
      * Set the default value.
      *
      * @param string $value

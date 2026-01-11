@@ -51,10 +51,6 @@ class SitePageFormRequest extends AbstractFormRequest implements Contract
                 FormRule::STRING,
                 FormRule::NULLABLE,
             ],
-            SitePage::ENTITY => [
-                FormRule::ARRAY,
-                FormRule::NULLABLE,
-            ],
             SitePage::META_DESCRIPTION => [
                 FormRule::ARRAY,
             ],
@@ -98,6 +94,11 @@ class SitePageFormRequest extends AbstractFormRequest implements Contract
             SitePage::TITLE => [
                 FormRule::ARRAY,
                 FormRule::REQUIRED,
+            ],
+
+            SitePage::RELATION_ENTITIES => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
             ],
         ];
 

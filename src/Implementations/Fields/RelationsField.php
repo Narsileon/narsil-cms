@@ -4,13 +4,8 @@ namespace Narsil\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\CheckboxField;
 use Narsil\Contracts\Fields\RelationsField as Contract;
-use Narsil\Contracts\Fields\SelectField;
 use Narsil\Implementations\AbstractField;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\Template;
 use Narsil\Support\TranslationsBag;
 
 #endregion
@@ -50,26 +45,7 @@ class RelationsField extends AbstractField implements Contract
      */
     public static function getForm(?string $prefix = null): array
     {
-        return [
-            [
-                BlockElement::HANDLE => $prefix ? "$prefix.collections" : 'collections',
-                BlockElement::LABEL => trans('narsil::ui.collections'),
-                BlockElement::RELATION_BASE => [
-                    Field::TYPE => SelectField::class,
-                    Field::SETTINGS => app(SelectField::class)
-                        ->multiple(true),
-                    Field::RELATION_OPTIONS => Template::selectOptions(),
-                ],
-            ],
-            [
-                BlockElement::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                BlockElement::LABEL => trans('narsil::validation.attributes.multiple'),
-                BlockElement::RELATION_BASE => [
-                    Field::TYPE => CheckboxField::class,
-                    Field::SETTINGS => app(CheckboxField::class),
-                ],
-            ],
-        ];
+        return [];
     }
 
     #region • FLUENT
@@ -96,16 +72,6 @@ class RelationsField extends AbstractField implements Contract
         ];
 
         $this->set('options', array_merge($this->get('options', []), [$option]));
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    final public function collections(array $collections): static
-    {
-        $this->set('collections', $collections);
 
         return $this;
     }

@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Http\Requests\SearchRequest;
+use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
 use Narsil\Support\SelectOption;
 
@@ -19,6 +20,15 @@ use Narsil\Support\SelectOption;
  */
 class EntitySearchController extends RedirectController
 {
+    #region CONSTANTS
+
+    /**
+     * @var string
+     */
+    private const COLLECTIONS = 'collections';
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -33,23 +43,40 @@ class EntitySearchController extends RedirectController
 
         $search = $request->validated(SearchRequest::SEARCH);
 
-        $selectOptions = Entity::query()
-            ->when($search, function ($query) use ($locale, $search)
+        $collections = $request->get(self::COLLECTIONS);
+
+        $templates = Template::query()
+            ->when($collections, function ($query) use ($collections)
             {
                 return $query
-                    ->where(Entity::SLUG . '->' . $locale, 'like', "%$search%");
+                    ->whereIn(Template::ID, $collections);
             })
-            ->get()
-            ->map(function (Entity $entity)
+            ->get();
+
+        $results = collect();
+
+        foreach ($templates as $template)
+        {
+            $model = $template->entityClass();
+
+            $models = $model::query()
+                ->when($search, function ($query) use ($locale, $search)
+                {
+                    return $query
+                        ->where(Entity::SLUG . '->' . $locale, 'like', "%$search%");
+                })
+                ->get();
+
+            $results = $results->merge($models->map(function ($entity)
             {
-                return (new SelectOption())
+                return new SelectOption()
                     ->optionLabel($entity->{Entity::SLUG})
-                    ->optionValue($entity->{Entity::ID});
-            })
-            ->all();
+                    ->optionValue($entity->{Entity::ATTRIBUTE_IDENTIFIER});
+            }));
+        }
 
         return response()
-            ->json($selectOptions);
+            ->json($results);
     }
 
     #endregion

@@ -124,7 +124,7 @@ class TemplateMigration extends Migration
                 ->constrained(Template::TABLE, Template::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(Entity::SLUG);
+                ->jsonb(Entity::SLUG);
             $blueprint
                 ->bigInteger(Entity::REVISION)
                 ->default(1)

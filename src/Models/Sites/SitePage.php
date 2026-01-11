@@ -43,6 +43,7 @@ class SitePage extends TreeModel
         ];
 
         $this->with = [
+            self::RELATION_ENTITIES,
             self::RELATION_OVERRIDE,
         ];
 
