@@ -8,6 +8,7 @@ use Faker\Factory;
 use Narsil\Database\Seeders\Blocks\AccordionBlockSeeder;
 use Narsil\Database\Seeders\Blocks\AccordionItemBlockSeeder;
 use Narsil\Database\Seeders\Blocks\ButtonBlockSeeder;
+use Narsil\Database\Seeders\Blocks\CallToActionBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeadlineBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Database\Seeders\Blocks\LayoutBlockSeeder;
@@ -40,6 +41,7 @@ class HomeEntitySeeder extends EntitySeeder
         $accordionBlock = new AccordionBlockSeeder()->run();
         $accordionItemBlock = new AccordionItemBlockSeeder()->run();
         $buttonBlock = new ButtonBlockSeeder()->run();
+        $callToActionBlock = new CallToActionBlockSeeder()->run();
         $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
 
         return [
@@ -105,6 +107,23 @@ class HomeEntitySeeder extends EntitySeeder
                                 ],
                             ],
                         ],
+                    ],
+                ],
+                [
+                    EntityNode::BLOCK_ID => $callToActionBlock->{Block::ID},
+                    EntityNode::RELATION_CHILDREN => [
+                        CallToActionBlockSeeder::LAYOUT => [
+                            LayoutBlockSeeder::SIZE => 'sm',
+                            LayoutBlockSeeder::PADDING => [
+                                PaddingBlockSeeder::TOP => 'none',
+                                PaddingBlockSeeder::BOTTOM => 'md',
+                            ],
+                        ],
+                        CallToActionBlockSeeder::LABEL => 'Contact us',
+                        CallToActionBlockSeeder::LINK => [
+                            LinkBlockSeeder::TYPE => 'internal',
+                            LinkBlockSeeder::URL => '/narsil',
+                        ]
                     ],
                 ],
             ],
