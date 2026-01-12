@@ -4,6 +4,7 @@ namespace Narsil\Providers;
 
 #region USE
 
+use Exception;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
@@ -47,8 +48,14 @@ class RelationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->bootMorphMap();
-        $this->bootTemplateMorphMap();
+        try
+        {
+            $this->bootMorphMap();
+            $this->bootTemplateMorphMap();
+        }
+        catch (Exception $exception)
+        {
+        }
     }
 
     #endregion
