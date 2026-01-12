@@ -41,15 +41,12 @@ class CommandServiceProvider extends ServiceProvider
      */
     protected function bootCommands(): void
     {
-        if ($this->app->runningInConsole())
-        {
-            $this->commands([
-                MakeEntityCommand::class,
-                MakeEntityNodeCommand::class,
-                MakeEntityNodeRelationCommand::class,
-                SyncPermissions::class,
-            ]);
-        }
+        $this->commands([
+            MakeEntityCommand::class,
+            MakeEntityNodeCommand::class,
+            MakeEntityNodeRelationCommand::class,
+            SyncPermissions::class,
+        ]);
     }
 
     #endregion
