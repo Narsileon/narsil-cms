@@ -162,11 +162,11 @@ class Form extends Model
     {
         return $this
             ->hasMany(
-                FormTab::class,
-                FormTab::FORM_ID,
+                FormStep::class,
+                FormStep::FORM_ID,
                 self::ID,
             )
-            ->orderBy(FormTab::POSITION);
+            ->orderBy(FormStep::POSITION);
     }
 
     /**

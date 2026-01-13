@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
-import { FormProvider, FormRoot, FormTabs } from "@narsil-cms/components/form";
+import { FormProvider, FormRoot, FormSteps } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { FormType } from "@narsil-cms/types";
@@ -85,7 +85,7 @@ function SortableItemForm({
                       <DialogDescription></DialogDescription>
                     </VisuallyHidden>
                     <FormRoot className="grid-cols-12 gap-4">
-                      <FormTabs tabs={form.tabs} />
+                      <FormSteps tabs={form.tabs} />
                     </FormRoot>
                   </DialogBody>
                   <DialogFooter className="border-t">

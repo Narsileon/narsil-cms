@@ -34,7 +34,7 @@ class FormStoreController extends RedirectController
 
         $form = Form::create($attributes);
 
-        FormService::syncFormTabs($form, Arr::get($attributes, Form::RELATION_TABS, []));
+        FormService::syncFormSteps($form, Arr::get($attributes, Form::RELATION_TABS, []));
 
         return $this
             ->redirect(route('forms.index'))

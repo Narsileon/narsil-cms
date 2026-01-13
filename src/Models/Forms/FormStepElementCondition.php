@@ -13,7 +13,7 @@ use Narsil\Models\AbstractCondition;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormTabElementCondition extends AbstractCondition
+class FormStepElementCondition extends AbstractCondition
 {
     #region CONSTRUCTOR
 
@@ -36,27 +36,27 @@ class FormTabElementCondition extends AbstractCondition
      *
      * @var string
      */
-    final public const TABLE = 'form_tab_element_conditions';
+    final public const TABLE = 'form_step_element_conditions';
 
     #region • COLUMNS
 
     /**
-     * The name of the "form tab element uuid" column.
+     * The name of the "form step element uuid" column.
      *
      * @var string
      */
-    final public const FORM_TAB_ELEMENT_UUID = 'form_tab_element_uuid';
+    final public const FORM_STEP_ELEMENT_UUID = 'form_step_element_uuid';
 
     #endregion
 
     #region • RELATIONS
 
     /**
-     * The name of the "form tab element" relation.
+     * The name of the "form step element" relation.
      *
      * @var string
      */
-    final public const RELATION_FORM_TAB_ELEMENT = 'form_tab_element';
+    final public const RELATION_FORM_STEP_ELEMENT = 'form_step_element';
 
     #endregion
 
@@ -67,17 +67,17 @@ class FormTabElementCondition extends AbstractCondition
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated form tab element.
+     * Get the associated form step element.
      *
      * @return BelongsTo
      */
-    final public function form_tab_element(): BelongsTo
+    final public function form_step_element(): BelongsTo
     {
         return $this
             ->belongsTo(
-                FormTabElement::class,
-                self::FORM_TAB_ELEMENT_UUID,
-                FormTabElement::UUID,
+                FormStepElement::class,
+                self::FORM_STEP_ELEMENT_UUID,
+                FormStepElement::UUID,
             );
     }
 

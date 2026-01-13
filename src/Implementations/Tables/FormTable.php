@@ -7,7 +7,7 @@ namespace Narsil\Implementations\Tables;
 use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormTab;
+use Narsil\Models\Forms\FormStep;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
@@ -17,7 +17,7 @@ use Narsil\Support\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormTable extends AbstractTable
+class FormSteple extends AbstractTable
 {
     #region CONSTRUCTOR
 
@@ -48,7 +48,7 @@ class FormTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                header: ModelService::getTableLabel(FormTab::TABLE),
+                header: ModelService::getTableLabel(FormStep::TABLE),
                 id: Form::COUNT_TABS,
                 type: DataTypeEnum::INTEGER->value,
                 visibility: true,

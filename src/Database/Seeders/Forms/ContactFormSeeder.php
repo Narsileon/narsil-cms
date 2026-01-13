@@ -11,8 +11,8 @@ use Narsil\Database\Seeders\FormSeeder;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\FieldsetElement;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormTab;
-use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormStepElement;
 use Narsil\Models\Forms\Input;
 
 #endregion
@@ -35,36 +35,36 @@ class ContactFormSeeder extends FormSeeder
         ])->setRelation(
             Form::RELATION_TABS,
             [
-                new FormTab([
-                    FormTab::HANDLE => 'contact_content',
-                    FormTab::LABEL => 'How can we help you?',
+                new FormStep([
+                    FormStep::HANDLE => 'contact_content',
+                    FormStep::LABEL => 'How can we help you?',
                 ])->setRelation(
-                    FormTab::RELATION_ELEMENTS,
+                    FormStep::RELATION_ELEMENTS,
                     [
-                        new FormTabElement([
-                            FormTabElement::HANDLE => 'message',
-                            FormTabElement::LABEL => 'Message',
-                            FormTabElement::REQUIRED => true,
+                        new FormStepElement([
+                            FormStepElement::HANDLE => 'message',
+                            FormStepElement::LABEL => 'Message',
+                            FormStepElement::REQUIRED => true,
                         ])->setRelation(
-                            FormTabElement::RELATION_BASE,
+                            FormStepElement::RELATION_BASE,
                             new Input([
                                 Input::TYPE => TextareaField::class,
                             ]),
                         ),
                     ],
                 ),
-                new FormTab([
-                    FormTab::HANDLE => 'contact_informations',
-                    FormTab::LABEL => 'How can we contact you back?',
+                new FormStep([
+                    FormStep::HANDLE => 'contact_informations',
+                    FormStep::LABEL => 'How can we contact you back?',
                 ])->setRelation(
-                    FormTab::RELATION_ELEMENTS,
+                    FormStep::RELATION_ELEMENTS,
                     [
-                        new FormTabElement([
-                            FormTabElement::HANDLE => 'personal_information',
-                            FormTabElement::LABEL => 'Personal information',
-                            FormTabElement::WIDTH => 50,
+                        new FormStepElement([
+                            FormStepElement::HANDLE => 'personal_information',
+                            FormStepElement::LABEL => 'Personal information',
+                            FormStepElement::WIDTH => 50,
                         ])->setRelation(
-                            FormTabElement::RELATION_BASE,
+                            FormStepElement::RELATION_BASE,
                             new Fieldset([
                                 Fieldset::HANDLE => 'personal_information',
                                 Fieldset::LABEL => 'Personal information',

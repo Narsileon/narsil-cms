@@ -18,8 +18,8 @@ use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\FieldsetElement;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormTab;
-use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormStepElement;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\Header;
@@ -78,8 +78,8 @@ class RelationServiceProvider extends ServiceProvider
             FieldsetElement::TABLE => FieldsetElement::class,
             Footer::TABLE => Footer::class,
             Form::TABLE => Form::class,
-            FormTab::TABLE => FormTab::class,
-            FormTabElement::TABLE => FormTabElement::class,
+            FormStep::TABLE => FormStep::class,
+            FormStepElement::TABLE => FormStepElement::class,
             Header::TABLE => Header::class,
             Host::TABLE => Host::class,
             HostLocale::TABLE => HostLocale::class,

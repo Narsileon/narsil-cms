@@ -11,7 +11,7 @@ import {
   FormProvider,
   FormRoot,
   FormSave,
-  FormTabs,
+  FormSteps,
   FormTimestamp,
 } from "@narsil-cms/components/form";
 import FormPublish from "@narsil-cms/components/form/form-publish";
@@ -116,7 +116,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
             {modal ? (
               <>
                 <DialogBody className="col-span-full h-full p-0">
-                  <FormTabs tabs={standardTabs} />
+                  <FormSteps tabs={standardTabs} />
                 </DialogBody>
                 <DialogFooter className="col-span-full h-fit border-t">
                   <DialogClose asChild={true}>
@@ -138,7 +138,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                   )}
                 >
                   <SectionContent>
-                    <FormTabs tabs={standardTabs} />
+                    <FormSteps tabs={standardTabs} />
                   </SectionContent>
                 </SectionRoot>
                 <SectionRoot

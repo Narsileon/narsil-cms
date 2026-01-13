@@ -6,7 +6,7 @@ namespace Narsil\Models\Forms;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Models\Forms\FormTab;
+use Narsil\Models\Forms\FormStep;
 
 #endregion
 
@@ -14,7 +14,7 @@ use Narsil\Models\Forms\FormTab;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormTabElement extends Element
+class FormStepElement extends Element
 {
     #region CONSTRUCTOR
 
@@ -63,7 +63,7 @@ class FormTabElement extends Element
      *
      * @var string
      */
-    final public const TABLE = 'form_tab_element';
+    final public const TABLE = 'form_step_element';
 
     #region • COLUMNS
 
@@ -121,11 +121,11 @@ class FormTabElement extends Element
     {
         return $this
             ->hasMany(
-                FormTabElementCondition::class,
-                FormTabElementCondition::FORM_TAB_ELEMENT_UUID,
+                FormStepElementCondition::class,
+                FormStepElementCondition::FORM_STEP_ELEMENT_UUID,
                 self::UUID,
             )
-            ->orderBy(FormTabElementCondition::POSITION);
+            ->orderBy(FormStepElementCondition::POSITION);
     }
 
     /**
@@ -165,9 +165,9 @@ class FormTabElement extends Element
     {
         return $this
             ->belongsTo(
-                FormTab::class,
+                FormStep::class,
                 self::OWNER_UUID,
-                FormTab::UUID,
+                FormStep::UUID,
             );
     }
 

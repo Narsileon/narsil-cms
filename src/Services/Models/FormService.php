@@ -7,8 +7,8 @@ namespace Narsil\Services\Models;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormTab;
-use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormStepElement;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -36,22 +36,22 @@ abstract class FormService
             ])
             ->save();
 
-        static::syncFormTabs($replicated, $form->pages()->get()->toArray());
+        static::syncFormSteps($replicated, $form->pages()->get()->toArray());
     }
 
     /**
-     * @param FormTab $formTab
+     * @param FormStep $formStep
      * @param array $elements
      *
      * @return void
      */
-    public static function syncFormTabElements(FormTab $formTab, array $elements): void
+    public static function syncFormStepElements(FormStep $formStep, array $elements): void
     {
         $uuids = [];
 
         foreach ($elements as $position => $element)
         {
-            $identifier = Arr::get($element, FormTabElement::ATTRIBUTE_IDENTIFIER);
+            $identifier = Arr::get($element, FormStepElement::ATTRIBUTE_IDENTIFIER);
 
             if (!$identifier || ! Str::contains($identifier, '-'))
             {
@@ -60,27 +60,27 @@ abstract class FormService
 
             [$table, $id] = explode('-', $identifier);
 
-            $formTabElement = FormTabElement::updateOrCreate([
-                FormTabElement::OWNER_UUID => $formTab->{FormTab::UUID},
-                FormTabElement::HANDLE => Arr::get($element, FormTabElement::HANDLE),
-                FormTabElement::BASE_TYPE => $table,
-                FormTabElement::BASE_ID => $id,
+            $formStepElement = FormStepElement::updateOrCreate([
+                FormStepElement::OWNER_UUID => $formStep->{FormStep::UUID},
+                FormStepElement::HANDLE => Arr::get($element, FormStepElement::HANDLE),
+                FormStepElement::BASE_TYPE => $table,
+                FormStepElement::BASE_ID => $id,
             ], [
-                FormTabElement::DESCRIPTION => Arr::get($element, FormTabElement::DESCRIPTION),
-                FormTabElement::LABEL => Arr::get($element, FormTabElement::LABEL),
-                FormTabElement::POSITION => $position,
-                FormTabElement::REQUIRED => Arr::get($element, FormTabElement::REQUIRED, false),
-                FormTabElement::WIDTH => Arr::get($element, FormTabElement::WIDTH, 100),
+                FormStepElement::DESCRIPTION => Arr::get($element, FormStepElement::DESCRIPTION),
+                FormStepElement::LABEL => Arr::get($element, FormStepElement::LABEL),
+                FormStepElement::POSITION => $position,
+                FormStepElement::REQUIRED => Arr::get($element, FormStepElement::REQUIRED, false),
+                FormStepElement::WIDTH => Arr::get($element, FormStepElement::WIDTH, 100),
             ]);
 
-            ElementService::syncConditions($formTabElement, Arr::get($element, FormTabElement::RELATION_CONDITIONS, []));
+            ElementService::syncConditions($formStepElement, Arr::get($element, FormStepElement::RELATION_CONDITIONS, []));
 
-            $uuids[] = $formTabElement->{FormTabElement::UUID};
+            $uuids[] = $formStepElement->{FormStepElement::UUID};
         }
 
-        $formTab
+        $formStep
             ->elements()
-            ->whereNotIn(FormTabElement::UUID, $uuids)
+            ->whereNotIn(FormStepElement::UUID, $uuids)
             ->delete();
     }
 
@@ -90,28 +90,28 @@ abstract class FormService
      *
      * @return void
      */
-    public static function syncFormTabs(Form $form, array $pages): void
+    public static function syncFormSteps(Form $form, array $pages): void
     {
         $uuids = [];
 
         foreach ($pages as $key => $page)
         {
-            $formTab = FormTab::updateOrCreate([
-                FormTab::FORM_ID => $form->{Form::ID},
-                FormTab::HANDLE => Arr::get($page, FormTab::HANDLE),
+            $formStep = FormStep::updateOrCreate([
+                FormStep::FORM_ID => $form->{Form::ID},
+                FormStep::HANDLE => Arr::get($page, FormStep::HANDLE),
             ], [
-                FormTab::POSITION => $key,
-                FormTab::LABEL => Arr::get($page, FormTab::LABEL),
+                FormStep::POSITION => $key,
+                FormStep::LABEL => Arr::get($page, FormStep::LABEL),
             ]);
 
-            static::syncFormTabElements($formTab, Arr::get($page, FormTab::RELATION_ELEMENTS, []));
+            static::syncFormStepElements($formStep, Arr::get($page, FormStep::RELATION_ELEMENTS, []));
 
-            $uuids[] = $formTab->{FormTab::UUID};
+            $uuids[] = $formStep->{FormStep::UUID};
         }
 
         $form
             ->tabs()
-            ->whereNotIn(FormTab::UUID, $uuids)
+            ->whereNotIn(FormStep::UUID, $uuids)
             ->delete();
     }
 

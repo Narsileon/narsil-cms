@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Narsil\Models\Forms\FieldsetElement;
-use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Forms\FormStepElement;
 use Narsil\Traits\Blameable;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasDatetimes;
@@ -84,11 +84,11 @@ abstract class BaseElement extends Model
     final public const RELATION_FIELDSET_ELEMENTS = 'fieldset_elements';
 
     /**
-     * The name of the "form tab elements" relation.
+     * The name of the "form step elements" relation.
      *
      * @var string
      */
-    final public const RELATION_FORM_TAB_ELEMENTS = 'form_tab_elements';
+    final public const RELATION_FORM_STEP_ELEMENTS = 'form_step_elements';
 
     #endregion
 
@@ -115,17 +115,17 @@ abstract class BaseElement extends Model
     }
 
     /**
-     * Get the associated form tab elements.
+     * Get the associated form step elements.
      *
      * @return MorphMany
      */
-    final public function form_tab_elements(): MorphMany
+    final public function form_step_elements(): MorphMany
     {
         return $this->morphMany(
-            FormTabElement::class,
-            FormTabElement::RELATION_BASE,
-            FormTabElement::BASE_TYPE,
-            FormTabElement::BASE_ID,
+            FormStepElement::class,
+            FormStepElement::RELATION_BASE,
+            FormStepElement::BASE_TYPE,
+            FormStepElement::BASE_ID,
             self::ID
         );
     }

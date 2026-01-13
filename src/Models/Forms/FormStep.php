@@ -18,7 +18,7 @@ use Narsil\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormTab extends Model
+class FormStep extends Model
 {
     use HasTranslations;
     use HasUuids;
@@ -63,7 +63,7 @@ class FormTab extends Model
      *
      * @var string
      */
-    final public const TABLE = 'form_tabs';
+    final public const TABLE = 'form_steps';
 
     #region • COLUMNS
 
@@ -158,11 +158,11 @@ class FormTab extends Model
     {
         return $this
             ->hasMany(
-                FormTabElement::class,
-                FormTabElement::OWNER_UUID,
+                FormStepElement::class,
+                FormStepElement::OWNER_UUID,
                 self::UUID,
             )
-            ->orderBy(FormTabElement::POSITION);
+            ->orderBy(FormStepElement::POSITION);
     }
 
     /**
@@ -175,12 +175,12 @@ class FormTab extends Model
         return $this
             ->morphedByMany(
                 Fieldset::class,
-                FormTabElement::RELATION_BASE,
-                FormTabElement::TABLE,
-                FormTabElement::OWNER_UUID,
-                FormTabElement::BASE_ID,
+                FormStepElement::RELATION_BASE,
+                FormStepElement::TABLE,
+                FormStepElement::OWNER_UUID,
+                FormStepElement::BASE_ID,
             )
-            ->using(FormTabElement::class);
+            ->using(FormStepElement::class);
     }
 
     /**
@@ -193,12 +193,12 @@ class FormTab extends Model
         return $this
             ->morphedByMany(
                 Input::class,
-                FormTabElement::RELATION_BASE,
-                FormTabElement::TABLE,
-                FormTabElement::OWNER_UUID,
-                FormTabElement::BASE_ID,
+                FormStepElement::RELATION_BASE,
+                FormStepElement::TABLE,
+                FormStepElement::OWNER_UUID,
+                FormStepElement::BASE_ID,
             )
-            ->using(FormTabElement::class);
+            ->using(FormStepElement::class);
     }
 
     /**

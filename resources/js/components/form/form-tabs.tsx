@@ -3,11 +3,11 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/compon
 import type { TemplateTab } from "@narsil-cms/types";
 import { useState } from "react";
 
-type FormTabsProps = {
+type FormStepsProps = {
   tabs: TemplateTab[];
 };
 
-function FormTabs({ tabs }: FormTabsProps) {
+function FormSteps({ tabs }: FormStepsProps) {
   const [value, setValue] = useState(tabs[0].handle);
 
   const tabsList =
@@ -50,4 +50,4 @@ function FormTabs({ tabs }: FormTabsProps) {
   );
 }
 
-export default FormTabs;
+export default FormSteps;

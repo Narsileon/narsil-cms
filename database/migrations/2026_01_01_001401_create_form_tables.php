@@ -11,9 +11,9 @@ use Narsil\Models\Forms\FieldsetElement;
 use Narsil\Models\Forms\FieldsetElementCondition;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormSubmission;
-use Narsil\Models\Forms\FormTab;
-use Narsil\Models\Forms\FormTabElement;
-use Narsil\Models\Forms\FormTabElementCondition;
+use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormStepElement;
+use Narsil\Models\Forms\FormStepElementCondition;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\InputOption;
 use Narsil\Models\Forms\InputValidationRule;
@@ -63,17 +63,17 @@ return new class extends Migration
         {
             $this->createFormsTable();
         }
-        if (!Schema::hasTable(FormTab::TABLE))
+        if (!Schema::hasTable(FormStep::TABLE))
         {
-            $this->createFormTabsTable();
+            $this->createFormStepsTable();
         }
-        if (!Schema::hasTable(FormTabElement::TABLE))
+        if (!Schema::hasTable(FormStepElement::TABLE))
         {
-            $this->createFormTabElementTable();
+            $this->createFormStepElementTable();
         }
-        if (!Schema::hasTable(FormTabElementCondition::TABLE))
+        if (!Schema::hasTable(FormStepElementCondition::TABLE))
         {
-            $this->createFormTabElementConditionsTable();
+            $this->createFormStepElementConditionsTable();
         }
         if (!Schema::hasTable(FormSubmission::TABLE))
         {
@@ -97,9 +97,9 @@ return new class extends Migration
         Schema::dropIfExists(Fieldset::TABLE);
 
         Schema::dropIfExists(FormSubmission::TABLE);
-        Schema::dropIfExists(FormTabElementCondition::TABLE);
-        Schema::dropIfExists(FormTabElement::TABLE);
-        Schema::dropIfExists(FormTab::TABLE);
+        Schema::dropIfExists(FormStepElementCondition::TABLE);
+        Schema::dropIfExists(FormStepElement::TABLE);
+        Schema::dropIfExists(FormStep::TABLE);
         Schema::dropIfExists(Form::TABLE);
     }
 
@@ -240,52 +240,52 @@ return new class extends Migration
     }
 
     /**
-     * Create the form tab element conditions table.
+     * Create the form step element conditions table.
      *
      * @return void
      */
-    private function createFormTabElementConditionsTable(): void
+    private function createFormStepElementConditionsTable(): void
     {
-        Schema::create(FormTabElementCondition::TABLE, function (Blueprint $blueprint)
+        Schema::create(FormStepElementCondition::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FormTabElementCondition::UUID)
+                ->uuid(FormStepElementCondition::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(FormTabElementCondition::FORM_TAB_ELEMENT_UUID)
-                ->constrained(FormTabElement::TABLE, FormTabElement::UUID)
+                ->foreignUuid(FormStepElementCondition::FORM_STEP_ELEMENT_UUID)
+                ->constrained(FormStepElement::TABLE, FormStepElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(FieldsetElementCondition::POSITION)
                 ->default(0);
             $blueprint
-                ->string(FormTabElementCondition::HANDLE);
+                ->string(FormStepElementCondition::HANDLE);
             $blueprint
-                ->enum(FormTabElementCondition::OPERATOR, OperatorEnum::values())
+                ->enum(FormStepElementCondition::OPERATOR, OperatorEnum::values())
                 ->default(OperatorEnum::EQUALS);
             $blueprint
-                ->string(FormTabElementCondition::VALUE);
+                ->string(FormStepElementCondition::VALUE);
         });
     }
 
     /**
-     * Create the form tab elements table.
+     * Create the form step elements table.
      *
      * @return void
      */
-    private function createFormTabElementTable(): void
+    private function createFormStepElementTable(): void
     {
-        Schema::create(FormTabElement::TABLE, function (Blueprint $blueprint)
+        Schema::create(FormStepElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FormTabElement::UUID)
+                ->uuid(FormStepElement::UUID)
                 ->primary();
             $blueprint
-                ->foreignUuid(FormTabElement::OWNER_UUID)
-                ->constrained(FormTab::TABLE, FormTab::UUID)
+                ->foreignUuid(FormStepElement::OWNER_UUID)
+                ->constrained(FormStep::TABLE, FormStep::UUID)
                 ->cascadeOnDelete();
             $blueprint
-                ->morphs(FormTabElement::RELATION_BASE);
+                ->morphs(FormStepElement::RELATION_BASE);
             $blueprint
                 ->foreignId(FieldsetElement::FIELDSET_ID)
                 ->nullable()
@@ -297,49 +297,49 @@ return new class extends Migration
                 ->constrained(Input::TABLE, Input::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(FormTabElement::HANDLE);
+                ->string(FormStepElement::HANDLE);
             $blueprint
-                ->jsonb(FormTabElement::LABEL);
+                ->jsonb(FormStepElement::LABEL);
             $blueprint
-                ->jsonb(FormTabElement::DESCRIPTION)
+                ->jsonb(FormStepElement::DESCRIPTION)
                 ->nullable();
             $blueprint
-                ->boolean(FormTabElement::REQUIRED)
+                ->boolean(FormStepElement::REQUIRED)
                 ->default(false);
             $blueprint
-                ->integer(FormTabElement::POSITION)
+                ->integer(FormStepElement::POSITION)
                 ->default(0);
             $blueprint
-                ->smallInteger(FormTabElement::WIDTH)
+                ->smallInteger(FormStepElement::WIDTH)
                 ->default(100);
         });
     }
 
     /**
-     * Create the form tabs table.
+     * Create the form steps table.
      *
      * @return void
      */
-    private function createFormTabsTable(): void
+    private function createFormStepsTable(): void
     {
-        Schema::create(FormTab::TABLE, function (Blueprint $blueprint)
+        Schema::create(FormStep::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(FormTab::UUID)
+                ->uuid(FormStep::UUID)
                 ->primary();
             $blueprint
-                ->foreignId(FormTab::FORM_ID)
+                ->foreignId(FormStep::FORM_ID)
                 ->constrained(Form::TABLE, Form::ID)
                 ->cascadeOnDelete();
             $blueprint
-                ->string(FormTab::HANDLE);
+                ->string(FormStep::HANDLE);
             $blueprint
-                ->jsonb(FormTab::LABEL);
+                ->jsonb(FormStep::LABEL);
             $blueprint
-                ->jsonb(FormTab::DESCRIPTION)
+                ->jsonb(FormStep::DESCRIPTION)
                 ->nullable();
             $blueprint
-                ->integer(FormTab::POSITION)
+                ->integer(FormStep::POSITION)
                 ->default(0);
             $blueprint
                 ->timestamps();

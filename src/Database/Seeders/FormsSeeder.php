@@ -8,8 +8,8 @@ use Illuminate\Database\Seeder;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\FieldsetElement;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormTab;
-use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormStepElement;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\InputOption;
 
@@ -162,34 +162,34 @@ abstract class FormsSeeder extends Seeder
             Form::SLUG => $form->{Form::SLUG},
         ]);
 
-        $formTabs = $form->{Form::RELATION_TABS} ?? [];
+        $formSteps = $form->{Form::RELATION_TABS} ?? [];
 
-        foreach ($formTabs as $position => $formTab)
+        foreach ($formSteps as $position => $formStep)
         {
-            $formTabModel = FormTab::query()
-                ->where(FormTab::FORM_ID, $formModel->{Form::ID})
-                ->where(FormTab::HANDLE, $formTab->{FormTab::HANDLE})
+            $formStepModel = FormStep::query()
+                ->where(FormStep::FORM_ID, $formModel->{Form::ID})
+                ->where(FormStep::HANDLE, $formStep->{FormStep::HANDLE})
                 ->first();
 
-            if (!$formTabModel)
+            if (!$formStepModel)
             {
-                $formTabModel = FormTab::create([
-                    FormTab::DESCRIPTION => $formTab->{Form::DESCRIPTION},
-                    FormTab::HANDLE => $formTab->{FormTab::HANDLE},
-                    FormTab::LABEL => $formTab->{FormTab::LABEL},
-                    FormTab::POSITION => $position,
-                    FormTab::FORM_ID => $formModel->{Form::ID},
+                $formStepModel = FormStep::create([
+                    FormStep::DESCRIPTION => $formStep->{Form::DESCRIPTION},
+                    FormStep::HANDLE => $formStep->{FormStep::HANDLE},
+                    FormStep::LABEL => $formStep->{FormStep::LABEL},
+                    FormStep::POSITION => $position,
+                    FormStep::FORM_ID => $formModel->{Form::ID},
                 ]);
             }
             else
             {
-                $formTabModel->update([
-                    FormTab::LABEL => $formTab->{FormTab::LABEL},
-                    FormTab::POSITION => $position,
+                $formStepModel->update([
+                    FormStep::LABEL => $formStep->{FormStep::LABEL},
+                    FormStep::POSITION => $position,
                 ]);
             }
 
-            $elements = $formTab->{FormTab::RELATION_ELEMENTS} ?? [];
+            $elements = $formStep->{FormStep::RELATION_ELEMENTS} ?? [];
 
             foreach ($elements as $position => $element)
             {
@@ -217,19 +217,19 @@ abstract class FormsSeeder extends Seeder
                     $base = $this->saveFieldset($base);
                 }
 
-                $elementModel = FormTabElement::create([
-                    FormTabElement::BASE_ID => $base->getKey(),
-                    FormTabElement::BASE_TYPE => $base->getTable(),
-                    FormTabElement::DESCRIPTION => $element->{FormTabElement::DESCRIPTION},
-                    FormTabElement::HANDLE => $element->{FormTabElement::HANDLE},
-                    FormTabElement::LABEL => $base->{FormTabElement::LABEL},
-                    FormTabElement::OWNER_UUID => $formTabModel->getKey(),
-                    FormTabElement::POSITION => $position,
-                    FormTabElement::REQUIRED => $element->{FormTabElement::REQUIRED} ?? false,
-                    FormTabElement::WIDTH => $element->{FormTabElement::WIDTH} ?? 100,
+                $elementModel = FormStepElement::create([
+                    FormStepElement::BASE_ID => $base->getKey(),
+                    FormStepElement::BASE_TYPE => $base->getTable(),
+                    FormStepElement::DESCRIPTION => $element->{FormStepElement::DESCRIPTION},
+                    FormStepElement::HANDLE => $element->{FormStepElement::HANDLE},
+                    FormStepElement::LABEL => $base->{FormStepElement::LABEL},
+                    FormStepElement::OWNER_UUID => $formStepModel->getKey(),
+                    FormStepElement::POSITION => $position,
+                    FormStepElement::REQUIRED => $element->{FormStepElement::REQUIRED} ?? false,
+                    FormStepElement::WIDTH => $element->{FormStepElement::WIDTH} ?? 100,
                 ]);
 
-                $elementModel->conditions()->createMany($element->{FormTabElement::RELATION_CONDITIONS});
+                $elementModel->conditions()->createMany($element->{FormStepElement::RELATION_CONDITIONS});
             }
         }
 

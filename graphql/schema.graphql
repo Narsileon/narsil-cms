@@ -207,7 +207,7 @@ type Form @model(class: "Narsil\\Models\\Forms\\Form") {
   updated_at: DateTime!
 }
 
-type FormTab @model(class: "Narsil\\Models\\Forms\\FormTab") {
+type FormStep @model(class: "Narsil\\Models\\Forms\\FormStep") {
   uuid: ID!
   form_id: ID!
   handle: String!
@@ -221,7 +221,7 @@ type FormTab @model(class: "Narsil\\Models\\Forms\\FormTab") {
   inputs: [Input!]! @morphToMany
 }
 
-type FormTabElement @model(class: "Narsil\\Models\\Forms\\FormTabElement") {
+type FormStepElement @model(class: "Narsil\\Models\\Forms\\FormStepElement") {
   uuid: String!
   description: String
   element_id: ID!
@@ -234,19 +234,19 @@ type FormTabElement @model(class: "Narsil\\Models\\Forms\\FormTabElement") {
   position: Int!
   required: Boolean!
   width: Int!
-  conditions: [FormTabElementCondition!]! @hasMany
+  conditions: [FormStepElementCondition!]! @hasMany
   fieldset: Fieldset! @belongsTo
   input: Input! @belongsTo
-  owner: FormTab! @belongsTo
+  owner: FormStep! @belongsTo
 }
 
-type FormTabElementCondition @model(class: "Narsil\\Models\\Forms\\FormTabElementCondition") {
+type FormStepElementCondition @model(class: "Narsil\\Models\\Forms\\FormStepElementCondition") {
   uuid: String!
-  form_tab_element_uuid: String!
+  form_step_element_uuid: String!
   handle: String!
   operator: String!
   value: String
-  form_tab_element: FormTabElement! @belongsTo
+  form_step_element: FormStepElement! @belongsTo
 }
 
 type Input @model(class: "Narsil\\Models\\Forms\\Input") {

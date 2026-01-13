@@ -10,7 +10,7 @@ use Narsil\Models\Configuration;
 use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormTab;
+use Narsil\Models\Forms\FormStep;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
@@ -40,7 +40,7 @@ return [
     FooterLink::TABLE => 'links',
     FooterSocialMedium::TABLE => 'social media',
     Form::TABLE => 'forms',
-    FormTab::TABLE => 'tabs',
+    FormStep::TABLE => 'tabs',
     Header::TABLE => 'headers',
     Host::TABLE => 'hosts',
     HostLocale::TABLE => 'locales',

@@ -9,7 +9,7 @@ use Narsil\Contracts\Fields\RelationsField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FieldsetElementForm;
 use Narsil\Contracts\Forms\FormForm as Contract;
-use Narsil\Contracts\Forms\FormTabForm;
+use Narsil\Contracts\Forms\FormStepForm;
 use Narsil\Implementations\AbstractForm;
 use Narsil\Models\Collections\BlockElement;
 use Narsil\Models\Collections\Field;
@@ -17,8 +17,8 @@ use Narsil\Models\Collections\TemplateTab;
 use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormTab;
-use Narsil\Models\Forms\FormTabElement;
+use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormStepElement;
 use Narsil\Models\Forms\Input;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
@@ -78,13 +78,13 @@ class FormForm extends AbstractForm implements Contract
                             Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
-                                ->form(app(FormTabForm::class)->jsonSerialize())
+                                ->form(app(FormStepForm::class)->jsonSerialize())
                                 ->intermediate(
                                     label: trans('narsil::ui.page'),
-                                    optionLabel: FormTab::LABEL,
-                                    optionValue: FormTab::HANDLE,
+                                    optionLabel: FormStep::LABEL,
+                                    optionValue: FormStep::HANDLE,
                                     relation: [
-                                        BlockElement::HANDLE => FormTab::RELATION_ELEMENTS,
+                                        BlockElement::HANDLE => FormStep::RELATION_ELEMENTS,
                                         BlockElement::LABEL => trans('narsil::validation.attributes.elements'),
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => RelationsField::class,
@@ -93,16 +93,16 @@ class FormForm extends AbstractForm implements Contract
                                                 ->addOption(
                                                     identifier: Fieldset::TABLE,
                                                     label: ModelService::getModelLabel(Fieldset::class),
-                                                    optionLabel: FormTabElement::LABEL,
-                                                    optionValue: FormTabElement::HANDLE,
+                                                    optionLabel: FormStepElement::LABEL,
+                                                    optionValue: FormStepElement::HANDLE,
                                                     options: $fieldsetSelectOptions,
                                                     routes: RouteService::getNames(Fieldset::TABLE),
                                                 )
                                                 ->addOption(
                                                     identifier: Input::TABLE,
                                                     label: ModelService::getModelLabel(Input::class),
-                                                    optionLabel: FormTabElement::LABEL,
-                                                    optionValue: FormTabElement::HANDLE,
+                                                    optionLabel: FormStepElement::LABEL,
+                                                    optionValue: FormStepElement::HANDLE,
                                                     options: $inputSelectOptions,
                                                     routes: RouteService::getNames(Input::TABLE),
                                                 )
