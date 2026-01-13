@@ -77,7 +77,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
             [
                 new BlockElement([
                     BlockElement::HANDLE => self::LAYOUT,
-                    BlockElement::LABEL => 'Padding',
+                    BlockElement::LABEL => 'Layout',
                 ])->setRelation(
                     BlockElement::RELATION_BASE,
                     $layoutBlock,

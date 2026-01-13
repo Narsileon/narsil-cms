@@ -6,6 +6,7 @@ namespace Narsil\Database\Seeders\Templates;
 
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Database\Seeders\Blocks\AccordionBlockSeeder;
+use Narsil\Database\Seeders\Blocks\CallToActionBlockSeeder;
 use Narsil\Database\Seeders\Blocks\FormBlockSeeder;
 use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Database\Seeders\TemplateSeeder;
@@ -41,6 +42,7 @@ class ContentTemplateSeeder extends TemplateSeeder
     protected function template(): Template
     {
         $accordionBlock = new AccordionBlockSeeder()->run();
+        $callToActionBlock = new CallToActionBlockSeeder()->run();
         $formBlock = new FormBlockSeeder()->run();
         $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
 
@@ -68,6 +70,7 @@ class ContentTemplateSeeder extends TemplateSeeder
                                 Field::RELATION_BLOCKS,
                                 [
                                     $accordionBlock,
+                                    $callToActionBlock,
                                     $formBlock,
                                     $heroHeaderBlock,
                                 ],
