@@ -4,11 +4,15 @@ namespace Narsil\Http\Controllers\Forms;
 
 #region USE
 
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormSubmission;
+use Narsil\Models\Forms\FormWebhook;
 
 #endregion
 
@@ -33,6 +37,28 @@ class FormSubmitController extends RedirectController
             FormSubmission::DATA => $data,
             FormSubmission::FORM_ID => $form->{Form::ID},
         ]);
+
+        $form->loadMissing([
+            Form::RELATION_WEBHOOKS,
+        ]);
+
+        foreach ($form->{Form::RELATION_WEBHOOKS} as $webhook)
+        {
+            $url = $webhook->{FormWebhook::URL};
+            try
+            {
+                Http::post($url, [
+                    Form::SLUG => $form->{Form::SLUG},
+                    FormSubmission::DATA => $data,
+                ]);
+            }
+            catch (Exception $exception)
+            {
+                Log::error("Webhook failed: $url", [
+                    'error' => $exception->getMessage(),
+                ]);
+            }
+        }
 
         return back()
             ->with('success', true);
