@@ -18,6 +18,7 @@ use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
 use Narsil\Models\Globals\FooterSocialMedium;
+use Narsil\Services\LocaleService;
 use Narsil\Services\RouteService;
 
 #endregion
@@ -100,6 +101,7 @@ class FooterForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Footer::CITY,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.city'),
+                        TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -109,8 +111,9 @@ class FooterForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Footer::COUNTRY,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.country'),
                         TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
+                            Field::TYPE => SelectField::class,
+                            Field::SETTINGS => app(SelectField::class),
+                            Field::RELATION_OPTIONS => LocaleService::countrySelectOptions(),
                         ],
                     ],
                     [

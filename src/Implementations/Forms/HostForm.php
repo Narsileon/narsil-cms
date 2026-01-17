@@ -21,6 +21,7 @@ use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Services\LocaleService;
 use Narsil\Services\RouteService;
 use Narsil\Support\SelectOption;
 use ResourceBundle;
@@ -54,8 +55,8 @@ class HostForm extends AbstractForm implements Contract
      */
     protected function getTabs(): array
     {
-        $countrySelectOptions = $this->getCountrySelectOptions();
-        $languageSelectOptions = $this->getLanguageSelectOptions();
+        $countrySelectOptions = LocaleService::countrySelectOptions();
+        $languageSelectOptions = LocaleService::languageSelectOptions();
 
         return [
             [
@@ -178,89 +179,6 @@ class HostForm extends AbstractForm implements Contract
                 ],
             ],
         ];
-    }
-
-    /**
-     * Get the country select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected function getCountrySelectOptions(): array
-    {
-        $locales = \ResourceBundle::getLocales('');
-
-        $codes = array_filter(array_unique(array_map(function ($locale)
-        {
-            $region = Locale::getRegion($locale);
-
-            if ($region && preg_match('/^[A-Z]{2}$/', $region))
-            {
-                return $region;
-            }
-
-            return null;
-        }, $locales)));
-
-        $options = [];
-
-        foreach ($codes as $code)
-        {
-            $label = Locale::getDisplayRegion('_' . $code, App::getLocale());
-
-            if (!$label || $label === $code)
-            {
-                continue;
-            }
-
-            $options[] = new SelectOption()
-                ->optionLabel(ucfirst($label))
-                ->optionValue($code);
-        }
-
-        usort($options, function (SelectOption $a, SelectOption $b)
-        {
-            return strcasecmp($a->label, $b->label);
-        });
-
-        return array_values($options);
-    }
-
-    /**
-     * Get the language select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected function getLanguageSelectOptions(): array
-    {
-        $locales = ResourceBundle::getLocales('');
-
-        $codes = array_unique(array_map(function ($locale)
-        {
-            return Str::substr($locale, 0, 2);
-        }, $locales));
-
-        $options = [];
-
-        foreach ($codes as $code)
-        {
-            $label = Locale::getDisplayLanguage($code, App::getLocale());
-
-            if (!$label || $label === $code)
-            {
-                continue;
-            }
-
-            $options[] = new SelectOption()
-                ->optionLabel(ucfirst($label))
-                ->optionValue($code);
-        }
-
-        usort($options, function (SelectOption $a, SelectOption $b)
-        {
-            return strcasecmp($a->label, $b->label);
-        });
-
-        return array_values($options);
     }
 
     #endregion
