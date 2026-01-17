@@ -280,6 +280,7 @@ return [
         'slug'                    => 'slug',
         'social_media'            => 'social media',
         'step'                    => 'step',
+        'steps'                   => 'steps',
         'street'                  => 'street',
         'tab'                     => 'tab',
         'table_name'              => 'table',

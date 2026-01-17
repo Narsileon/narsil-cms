@@ -6,7 +6,6 @@ namespace Narsil\Models\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Arr;
 use Narsil\Models\Caches\Cache;
 use Narsil\Support\SelectOption;
 use Narsil\Traits\Blameable;
@@ -48,7 +47,7 @@ class Form extends Model
         ];
 
         $this->with = [
-            self::RELATION_TABS,
+            self::RELATION_STEPS,
         ];
 
         parent::__construct($attributes);
@@ -106,9 +105,23 @@ class Form extends Model
      */
     final public const COUNT_TABS = 'tabs_count';
 
+    /**
+     * The name of the "webhooks" count.
+     *
+     * @var string
+     */
+    final public const COUNT_WEBHOOKS = 'webhooks_count';
+
     #endregion
 
     #region • RELATIONS
+
+    /**
+     * The name of the "steps" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_STEPS = 'steps';
 
     /**
      * The name of the "submissions" relation.
@@ -118,11 +131,11 @@ class Form extends Model
     final public const RELATION_SUBMISSIONS = 'submissions';
 
     /**
-     * The name of the "tabs" relation.
+     * The name of the "webhooks" relation.
      *
      * @var string
      */
-    final public const RELATION_TABS = 'tabs';
+    final public const RELATION_WEBHOOKS = 'webhooks';
 
     #endregion
 
@@ -154,11 +167,11 @@ class Form extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated tabs.
+     * Get the associated steps.
      *
      * @return HasMany
      */
-    final public function tabs(): HasMany
+    final public function steps(): HasMany
     {
         return $this
             ->hasMany(
@@ -182,6 +195,22 @@ class Form extends Model
                 FormSubmission::FORM_ID,
                 self::ID,
             );
+    }
+
+    /**
+     * Get the associated webhooks.
+     *
+     * @return HasMany
+     */
+    final public function webhooks(): HasMany
+    {
+        return $this
+            ->hasMany(
+                FormWebhook::class,
+                FormWebhook::FORM_ID,
+                self::ID,
+            )
+            ->orderBy(FormWebhook::POSITION);
     }
 
     #endregion

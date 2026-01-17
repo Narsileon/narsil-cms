@@ -11,6 +11,7 @@ use Narsil\Models\Entities\Entity;
 use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormWebhook;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Globals\Footer;
 use Narsil\Models\Globals\FooterLink;
@@ -41,6 +42,7 @@ return [
     FooterSocialMedium::TABLE => 'réseaux sociaux',
     Form::TABLE => 'formulaires',
     FormStep::TABLE => 'onglets',
+    FormWebhook::TABLE => 'webhooks',
     Header::TABLE => 'en-têtes',
     Host::TABLE => 'hôtes',
     HostLocale::TABLE => 'locales',

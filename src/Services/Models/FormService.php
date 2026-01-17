@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormStep;
 use Narsil\Models\Forms\FormStepElement;
+use Narsil\Models\Forms\FormWebhook;
 use Narsil\Services\DatabaseService;
 
 #endregion
@@ -86,25 +87,25 @@ abstract class FormService
 
     /**
      * @param Form $form
-     * @param array $pages
+     * @param array $steps
      *
      * @return void
      */
-    public static function syncFormSteps(Form $form, array $pages): void
+    public static function syncFormSteps(Form $form, array $steps): void
     {
         $uuids = [];
 
-        foreach ($pages as $key => $page)
+        foreach ($steps as $key => $step)
         {
             $formStep = FormStep::updateOrCreate([
                 FormStep::FORM_ID => $form->{Form::ID},
-                FormStep::HANDLE => Arr::get($page, FormStep::HANDLE),
+                FormStep::HANDLE => Arr::get($step, FormStep::HANDLE),
             ], [
                 FormStep::POSITION => $key,
-                FormStep::LABEL => Arr::get($page, FormStep::LABEL),
+                FormStep::LABEL => Arr::get($step, FormStep::LABEL),
             ]);
 
-            static::syncFormStepElements($formStep, Arr::get($page, FormStep::RELATION_ELEMENTS, []));
+            static::syncFormStepElements($formStep, Arr::get($step, FormStep::RELATION_ELEMENTS, []));
 
             $uuids[] = $formStep->{FormStep::UUID};
         }
@@ -112,6 +113,34 @@ abstract class FormService
         $form
             ->tabs()
             ->whereNotIn(FormStep::UUID, $uuids)
+            ->delete();
+    }
+
+    /**
+     * @param Form $form
+     * @param array $webhooks
+     *
+     * @return void
+     */
+    public static function syncFormWebhooks(Form $form, array $webhooks): void
+    {
+        $uuids = [];
+
+        foreach ($webhooks as $key => $webhook)
+        {
+            $formWebhook = FormWebhook::updateOrCreate([
+                FormWebhook::FORM_ID => $form->{Form::ID},
+                FormWebhook::URL => Arr::get($webhook, FormWebhook::URL),
+            ], [
+                FormWebhook::POSITION => $key,
+            ]);
+
+            $uuids[] = $formWebhook->{FormWebhook::UUID};
+        }
+
+        $form
+            ->webhooks()
+            ->whereNotIn(FormWebhook::UUID, $uuids)
             ->delete();
     }
 

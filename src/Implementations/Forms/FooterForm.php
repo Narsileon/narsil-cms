@@ -158,7 +158,7 @@ class FooterForm extends AbstractForm implements Contract
                                 ->form([
                                     [
                                         BlockElement::HANDLE => FooterLink::LABEL,
-                                        BlockElement::LABEL => trans('narsil::validation.attributes.label'),
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.url'),
                                         BlockElement::TRANSLATABLE => true,
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => TextField::class,

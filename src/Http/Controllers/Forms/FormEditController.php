@@ -59,6 +59,10 @@ class FormEditController extends RenderController
     {
         $form->loadMissingCreatorAndEditor();
 
+        $form->loadMissing([
+            Form::RELATION_WEBHOOKS,
+        ]);
+
         $form->mergeCasts([
             Form::CREATED_AT => HumanDatetimeCast::class,
             Form::UPDATED_AT => HumanDatetimeCast::class,

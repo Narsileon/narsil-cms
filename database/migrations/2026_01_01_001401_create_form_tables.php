@@ -14,6 +14,7 @@ use Narsil\Models\Forms\FormSubmission;
 use Narsil\Models\Forms\FormStep;
 use Narsil\Models\Forms\FormStepElement;
 use Narsil\Models\Forms\FormStepElementCondition;
+use Narsil\Models\Forms\FormWebhook;
 use Narsil\Models\Forms\Input;
 use Narsil\Models\Forms\InputOption;
 use Narsil\Models\Forms\InputValidationRule;
@@ -79,6 +80,10 @@ return new class extends Migration
         {
             $this->createFormSubmissionsTable();
         }
+        if (!Schema::hasTable(FormWebhook::TABLE))
+        {
+            $this->createFormWebhooksTable();
+        }
     }
 
     /**
@@ -96,6 +101,7 @@ return new class extends Migration
         Schema::dropIfExists(FieldsetElement::TABLE);
         Schema::dropIfExists(Fieldset::TABLE);
 
+        Schema::dropIfExists(FormWebhook::TABLE);
         Schema::dropIfExists(FormSubmission::TABLE);
         Schema::dropIfExists(FormStepElementCondition::TABLE);
         Schema::dropIfExists(FormStepElement::TABLE);
@@ -374,6 +380,30 @@ return new class extends Migration
                 ->nullable()
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
+        });
+    }
+
+    /**
+     * Create the form webhooks table.
+     *
+     * @return void
+     */
+    private function createFormWebhooksTable(): void
+    {
+        Schema::create(FormWebhook::TABLE, function (Blueprint $blueprint)
+        {
+            $blueprint
+                ->uuid(FormWebhook::UUID)
+                ->primary();
+            $blueprint
+                ->foreignId(FormWebhook::FORM_ID)
+                ->constrained(Form::TABLE, Form::ID)
+                ->cascadeOnDelete();
+            $blueprint
+                ->integer(FormWebhook::POSITION)
+                ->default(0);
+            $blueprint
+                ->string(FormWebhook::URL);
         });
     }
 

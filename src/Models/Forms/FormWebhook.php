@@ -15,7 +15,7 @@ use Narsil\Traits\HasDatetimes;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormSubmission extends Model
+class FormWebhook extends Model
 {
     use HasDatetimes;
     use HasUuids;
@@ -30,10 +30,7 @@ class FormSubmission extends Model
         $this->table = self::TABLE;
 
         $this->primaryKey = self::UUID;
-
-        $this->mergeCasts([
-            self::DATA => 'array',
-        ]);
+        $this->timestamps = false;
 
         $this->mergeGuarded([
             self::UUID,
@@ -51,16 +48,9 @@ class FormSubmission extends Model
      *
      * @var string
      */
-    final public const TABLE = 'form_submissions';
+    final public const TABLE = 'form_webhooks';
 
     #region • COLUMNS
-
-    /**
-     * The name of the "data" column.
-     *
-     * @var string
-     */
-    final public const DATA = 'data';
 
     /**
      * The name of the "form id" column.
@@ -68,6 +58,20 @@ class FormSubmission extends Model
      * @var string
      */
     final public const FORM_ID = 'form_id';
+
+    /**
+     * The name of the "position" column.
+     *
+     * @var string
+     */
+    final public const POSITION = 'position';
+
+    /**
+     * The name of the "url" column.
+     *
+     * @var string
+     */
+    final public const URL = 'url';
 
     /**
      * The name of the "uuid" column.

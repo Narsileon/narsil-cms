@@ -6,6 +6,7 @@ namespace Narsil\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\RelationsField;
+use Narsil\Contracts\Fields\TableField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FieldsetElementForm;
 use Narsil\Contracts\Forms\FormForm as Contract;
@@ -19,6 +20,7 @@ use Narsil\Models\Forms\Fieldset;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormStep;
 use Narsil\Models\Forms\FormStepElement;
+use Narsil\Models\Forms\FormWebhook;
 use Narsil\Models\Forms\Input;
 use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
@@ -72,8 +74,28 @@ class FormForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::HANDLE => Form::RELATION_TABS,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.tabs'),
+                        TemplateTabElement::HANDLE => Form::RELATION_WEBHOOKS,
+                        TemplateTabElement::LABEL => ModelService::getTableLabel(FormWebhook::TABLE),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::RELATION_BASE => [
+                            Field::TYPE => TableField::class,
+                            Field::SETTINGS => app(TableField::class)
+                                ->columns([
+                                    [
+                                        BlockElement::HANDLE => FormWebhook::URL,
+                                        BlockElement::LABEL => trans('narsil::validation.attributes.url'),
+                                        BlockElement::REQUIRED => true,
+                                        BlockElement::RELATION_BASE => [
+                                            Field::TYPE => TextField::class,
+                                            Field::SETTINGS => app(TextField::class),
+                                        ],
+                                    ],
+                                ]),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Form::RELATION_STEPS,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.steps'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
                             Field::TYPE => RelationsField::class,

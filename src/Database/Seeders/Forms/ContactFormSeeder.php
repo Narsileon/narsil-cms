@@ -33,7 +33,7 @@ class ContactFormSeeder extends FormSeeder
         return new Form([
             Form::SLUG => 'contact',
         ])->setRelation(
-            Form::RELATION_TABS,
+            Form::RELATION_STEPS,
             [
                 new FormStep([
                     FormStep::HANDLE => 'contact_content',

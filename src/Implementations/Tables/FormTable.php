@@ -8,6 +8,7 @@ use Narsil\Enums\DataTypeEnum;
 use Narsil\Implementations\AbstractTable;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormStep;
+use Narsil\Models\Forms\FormWebhook;
 use Narsil\Services\ModelService;
 use Narsil\Support\TableColumn;
 
@@ -17,7 +18,7 @@ use Narsil\Support\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormSteple extends AbstractTable
+class FormTable extends AbstractTable
 {
     #region CONSTRUCTOR
 
@@ -50,6 +51,12 @@ class FormSteple extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(FormStep::TABLE),
                 id: Form::COUNT_TABS,
+                type: DataTypeEnum::INTEGER->value,
+                visibility: true,
+            ),
+            new TableColumn(
+                header: ModelService::getTableLabel(FormWebhook::TABLE),
+                id: Form::COUNT_WEBHOOKS,
                 type: DataTypeEnum::INTEGER->value,
                 visibility: true,
             ),

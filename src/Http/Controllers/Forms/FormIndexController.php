@@ -52,10 +52,12 @@ class FormIndexController extends RenderController
     {
         $query = Form::query()
             ->with([
-                Form::RELATION_TABS,
+                Form::RELATION_STEPS,
+                Form::RELATION_WEBHOOKS,
             ])
             ->withCount([
-                Form::RELATION_TABS,
+                Form::RELATION_STEPS,
+                Form::RELATION_WEBHOOKS,
             ]);
 
         return new DataTableCollection($query, Form::TABLE);

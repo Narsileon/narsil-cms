@@ -162,7 +162,7 @@ abstract class FormsSeeder extends Seeder
             Form::SLUG => $form->{Form::SLUG},
         ]);
 
-        $formSteps = $form->{Form::RELATION_TABS} ?? [];
+        $formSteps = $form->{Form::RELATION_STEPS} ?? [];
 
         foreach ($formSteps as $position => $formStep)
         {

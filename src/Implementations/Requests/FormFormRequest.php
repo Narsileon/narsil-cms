@@ -52,9 +52,13 @@ class FormFormRequest extends AbstractFormRequest implements Contract
                 )->ignore($this->form?->{Form::ID}),
             ],
 
-            Form::RELATION_TABS => [
+            Form::RELATION_STEPS => [
                 FormRule::ARRAY,
                 FormRule::SOMETIMES,
+                FormRule::NULLABLE,
+            ],
+            Form::RELATION_WEBHOOKS => [
+                FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
         ];
