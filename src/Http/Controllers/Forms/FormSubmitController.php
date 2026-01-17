@@ -45,6 +45,7 @@ class FormSubmitController extends RedirectController
         foreach ($form->{Form::RELATION_WEBHOOKS} as $webhook)
         {
             $url = $webhook->{FormWebhook::URL};
+
             try
             {
                 Http::post($url, [
