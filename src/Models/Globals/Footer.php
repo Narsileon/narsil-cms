@@ -40,6 +40,7 @@ class Footer extends Model
         $this->table = self::TABLE;
 
         $this->translatable = [
+            self::CITY,
             self::COPYRIGHT,
             self::EMAIL,
         ];
@@ -70,18 +71,11 @@ class Footer extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "address line 1" column.
+     * The name of the "city" column.
      *
      * @var string
      */
-    final public const ADDRESS_LINE_1 = 'address_line_1';
-
-    /**
-     * The name of the "address line 2" column.
-     *
-     * @var string
-     */
-    final public const ADDRESS_LINE_2 = 'address_line_2';
+    final public const CITY = 'city';
 
     /**
      * The name of the "company" column.
@@ -96,6 +90,13 @@ class Footer extends Model
      * @var string
      */
     final public const COPYRIGHT = 'copyright';
+
+    /**
+     * The name of the "country" column.
+     *
+     * @var string
+     */
+    final public const COUNTRY = 'country';
 
     /**
      * The name of the "email" column.
@@ -126,11 +127,25 @@ class Footer extends Model
     final public const PHONE = 'phone';
 
     /**
+     * The name of the "postal code" column.
+     *
+     * @var string
+     */
+    final public const POSTAL_CODE = 'postal_code';
+
+    /**
      * The name of the "slug" column.
      *
      * @var string
      */
     final public const SLUG = 'slug';
+
+    /**
+     * The name of the "street" column.
+     *
+     * @var string
+     */
+    final public const STREET = 'street';
 
     #endregion
 

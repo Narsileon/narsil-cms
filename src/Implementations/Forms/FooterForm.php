@@ -82,16 +82,32 @@ class FooterForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::HANDLE => Footer::ADDRESS_LINE_1,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.address_line_1'),
+                        TemplateTabElement::HANDLE => Footer::STREET,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.street'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
                         ],
                     ],
                     [
-                        TemplateTabElement::HANDLE => Footer::ADDRESS_LINE_2,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.address_line_2'),
+                        TemplateTabElement::HANDLE => Footer::POSTAL_CODE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.postal_code'),
+                        TemplateTabElement::RELATION_BASE => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::CITY,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.city'),
+                        TemplateTabElement::RELATION_BASE => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::COUNTRY,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.country'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),

@@ -35,17 +35,19 @@ class FooterFactory extends Factory
     public function definition(): array
     {
         return [
-            Footer::ADDRESS_LINE_1 => $this->faker->buildingNumber() . ' ' . $this->faker->streetName(),
-            Footer::ADDRESS_LINE_2 => $this->faker->postcode() . ' ' . $this->faker->city(),
+            Footer::CITY => $this->faker->city(),
             Footer::COMPANY => $this->faker->company(),
             Footer::COPYRIGHT => [
                 'en' => 'All rights reserved.',
                 'de' => 'Alle Rechte vorbehalten.',
                 'fr' => 'Tous droits réservés.',
             ],
+            Footer::COUNTRY => $this->faker->countryCode(),
             Footer::EMAIL => $this->faker->unique()->safeEmail(),
             Footer::SLUG => $this->faker->slug(1),
             Footer::PHONE => $this->faker->phoneNumber(),
+            Footer::POSTAL_CODE => $this->faker->postcode(),
+            Footer::STREET => $this->faker->buildingNumber() . ' ' . $this->faker->streetName(),
         ];
     }
 

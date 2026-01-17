@@ -41,12 +41,8 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
     public function rules(): array
     {
         return [
-            Footer::ADDRESS_LINE_1 => [
-                FormRule::STRING,
-                FormRule::NULLABLE,
-            ],
-            Footer::ADDRESS_LINE_2 => [
-                FormRule::STRING,
+            Footer::CITY => [
+                FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
             Footer::COMPANY => [
@@ -57,8 +53,16 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
+            Footer::COUNTRY => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
             Footer::EMAIL => [
                 FormRule::ARRAY,
+                FormRule::NULLABLE,
+            ],
+            Footer::POSTAL_CODE => [
+                FormRule::STRING,
                 FormRule::NULLABLE,
             ],
             Footer::SLUG => [
@@ -71,6 +75,10 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
                     Footer::class,
                     Footer::SLUG,
                 )->ignore($this->footer?->{Footer::ID}),
+            ],
+            Footer::STREET => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
             ],
             Footer::LOGO => [
                 File::image()

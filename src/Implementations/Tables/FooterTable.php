@@ -50,15 +50,23 @@ class FooterTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Footer::ADDRESS_LINE_1,
-                visibility: false,
-            ),
-            new TableColumn(
-                id: Footer::ADDRESS_LINE_2,
-                visibility: false,
-            ),
-            new TableColumn(
                 id: Footer::COMPANY,
+                visibility: false,
+            ),
+            new TableColumn(
+                id: Footer::STREET,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Footer::POSTAL_CODE,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Footer::CITY,
+                visibility: true,
+            ),
+            new TableColumn(
+                id: Footer::COUNTRY,
                 visibility: false,
             ),
             new TableColumn(

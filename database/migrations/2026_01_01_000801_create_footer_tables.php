@@ -135,10 +135,16 @@ return new class extends Migration
                 ->string(Footer::COMPANY)
                 ->nullable();
             $blueprint
-                ->string(Footer::ADDRESS_LINE_1)
+                ->string(Footer::STREET)
                 ->nullable();
             $blueprint
-                ->string(Footer::ADDRESS_LINE_2)
+                ->string(Footer::POSTAL_CODE)
+                ->nullable();
+            $blueprint
+                ->jsonb(Footer::CITY)
+                ->nullable();
+            $blueprint
+                ->string(Footer::COUNTRY)
                 ->nullable();
             $blueprint
                 ->jsonb(Footer::EMAIL)
