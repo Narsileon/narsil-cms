@@ -6,7 +6,7 @@ namespace Narsil\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-use Narsil\Contracts\FormRequests\FormSubmitFormRequest as Contract;
+use Narsil\Contracts\FormRequests\FormSubmissionDataFormRequest as Contract;
 use Narsil\Implementations\AbstractFormRequest;
 use Narsil\Models\Forms\Element;
 use Narsil\Models\Forms\Fieldset;
@@ -22,17 +22,17 @@ use Narsil\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormSubmitFormRequest extends AbstractFormRequest implements Contract
+class FormSubmissionDataFormRequest extends AbstractFormRequest implements Contract
 {
     #region CONSTRUCTOR
 
     /**
      * @param Form $form
-     * @param integer|null $step
+     * @param integer $step
      *
      * @return void
      */
-    public function __construct(Form $form, ?int $step = null)
+    public function __construct(Form $form, int $step)
     {
         $this->form = $form;
         $this->step = $step;
@@ -50,7 +50,7 @@ class FormSubmitFormRequest extends AbstractFormRequest implements Contract
     /**
      * @var integer
      */
-    protected readonly ?int $step;
+    protected readonly int $step;
 
     #endregion
 
@@ -80,7 +80,7 @@ class FormSubmitFormRequest extends AbstractFormRequest implements Contract
 
         foreach ($this->form->{Form::RELATION_STEPS} as $key => $formStep)
         {
-            if ($this->step !== null && $key > $this->step)
+            if ($key > $this->step)
             {
                 continue;
             }

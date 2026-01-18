@@ -14,7 +14,7 @@ use Narsil\Contracts\FormRequest;
  *
  * @see vendor/narsil/cms/config/narsil/bindings/form-requests.php
  */
-interface FormSubmitFormRequest extends FormRequest
+interface FormSubmissionFormRequest extends FormRequest
 {
     #region CONSTANTS
 
@@ -22,6 +22,11 @@ interface FormSubmitFormRequest extends FormRequest
      * @var string
      */
     public const STEP = '_step';
+
+    /**
+     * @var string
+     */
+    public const UUID = '_uuid';
 
     #endregion
 }

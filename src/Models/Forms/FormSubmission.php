@@ -31,12 +31,10 @@ class FormSubmission extends Model
 
         $this->primaryKey = self::UUID;
 
+        $this->guarded = [];
+
         $this->mergeCasts([
             self::DATA => 'array',
-        ]);
-
-        $this->mergeGuarded([
-            self::UUID,
         ]);
 
         parent::__construct($attributes);
