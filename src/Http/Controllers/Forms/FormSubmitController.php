@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Narsil\Contracts\FormRequests\FormSubmitFormRequest;
 use Narsil\Http\Controllers\RedirectController;
 use Narsil\Models\Forms\Form;
 use Narsil\Models\Forms\FormSubmission;
@@ -33,8 +35,15 @@ class FormSubmitController extends RedirectController
     {
         $data = $request->all();
 
+        $rules = app(FormSubmitFormRequest::class, [
+            'form' => $form,
+        ])->rules();
+
+        $attributes = Validator::make($data, $rules)
+            ->validated();
+
         FormSubmission::create([
-            FormSubmission::DATA => $data,
+            FormSubmission::DATA => $attributes,
             FormSubmission::FORM_ID => $form->{Form::ID},
         ]);
 
@@ -50,7 +59,7 @@ class FormSubmitController extends RedirectController
             {
                 Http::post($url, [
                     Form::SLUG => $form->{Form::SLUG},
-                    FormSubmission::DATA => $data,
+                    FormSubmission::DATA => $attributes,
                 ]);
             }
             catch (Exception $exception)

@@ -18,6 +18,7 @@ return [
     \Narsil\Contracts\FormRequests\FieldsetFormRequest::class => \Narsil\Implementations\Requests\FieldsetFormRequest::class,
     \Narsil\Contracts\FormRequests\FooterFormRequest::class => \Narsil\Implementations\Requests\FooterFormRequest::class,
     \Narsil\Contracts\FormRequests\FormFormRequest::class => \Narsil\Implementations\Requests\FormFormRequest::class,
+    \Narsil\Contracts\FormRequests\FormSubmitFormRequest::class => \Narsil\Implementations\Requests\FormSubmitFormRequest::class,
     \Narsil\Contracts\FormRequests\HeaderFormRequest::class => \Narsil\Implementations\Requests\HeaderFormRequest::class,
     \Narsil\Contracts\FormRequests\HostFormRequest::class => \Narsil\Implementations\Requests\HostFormRequest::class,
     \Narsil\Contracts\FormRequests\InputFormRequest::class => \Narsil\Implementations\Requests\InputFormRequest::class,
