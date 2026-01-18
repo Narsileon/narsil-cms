@@ -16,5 +16,12 @@ use Narsil\Contracts\FormRequest;
  */
 interface FormSubmitFormRequest extends FormRequest
 {
-    //
+    #region CONSTANTS
+
+    /**
+     * @var string
+     */
+    public const STEP = '_step';
+
+    #endregion
 }

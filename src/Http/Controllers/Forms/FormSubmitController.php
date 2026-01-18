@@ -7,6 +7,7 @@ namespace Narsil\Http\Controllers\Forms;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -35,8 +36,11 @@ class FormSubmitController extends RedirectController
     {
         $data = $request->all();
 
+        $step = Arr::get($data, FormSubmitFormRequest::STEP, null);
+
         $rules = app(FormSubmitFormRequest::class, [
             'form' => $form,
+            'step' => $step,
         ])->rules();
 
         $attributes = Validator::make($data, $rules)

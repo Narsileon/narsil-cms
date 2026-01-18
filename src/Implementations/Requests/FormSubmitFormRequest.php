@@ -28,12 +28,14 @@ class FormSubmitFormRequest extends AbstractFormRequest implements Contract
 
     /**
      * @param Form $form
+     * @param integer|null $step
      *
      * @return void
      */
-    public function __construct(Form $form)
+    public function __construct(Form $form, ?int $step = null)
     {
         $this->form = $form;
+        $this->step = $step;
     }
 
     #endregion
@@ -44,6 +46,11 @@ class FormSubmitFormRequest extends AbstractFormRequest implements Contract
      * @var Form
      */
     protected readonly Form $form;
+
+    /**
+     * @var integer
+     */
+    protected readonly ?int $step;
 
     #endregion
 
@@ -71,8 +78,13 @@ class FormSubmitFormRequest extends AbstractFormRequest implements Contract
     {
         $rules = [];
 
-        foreach ($this->form->{Form::RELATION_STEPS} as $formStep)
+        foreach ($this->form->{Form::RELATION_STEPS} as $key => $formStep)
         {
+            if ($this->step !== null && $key > $this->step)
+            {
+                continue;
+            }
+
             $this->populateRules($rules, $formStep->{FormStep::RELATION_ELEMENTS});
         }
 
