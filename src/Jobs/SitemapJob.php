@@ -43,9 +43,7 @@ class SitemapJob extends AbstractJob
     #region PUBLIC METHODS
 
     /**
-     * Execute the job.
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function handle(): void
     {

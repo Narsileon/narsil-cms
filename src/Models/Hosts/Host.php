@@ -120,7 +120,7 @@ class Host extends Model
     final public const RELATION_OTHER_LOCALES = 'other_locales';
 
     /**
-     * The name of the "locales" relation.
+     * The name of the "languages" relation.
      *
      * @var string
      */
