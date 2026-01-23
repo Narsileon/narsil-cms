@@ -32,6 +32,9 @@ function DataTableFooter({ collection }: DataTableProps) {
           <span className="truncate">{trans("pagination.pagination")}</span>
           <Select
             options={["10", "25", "50", "100"]}
+            triggerProps={{
+              "aria-label": trans("pagination.pagination"),
+            }}
             value={dataTableStore.pageSize.toString()}
             onValueChange={(value) => dataTableStore.setPageSize(Number(value))}
           />

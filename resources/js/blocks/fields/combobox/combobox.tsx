@@ -236,7 +236,7 @@ function Combobox({
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen} modal>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild={true} aria-label={id}>
         <InputRoot
           id={id}
           className={cn("data-[state=open]:border-shine", className)}

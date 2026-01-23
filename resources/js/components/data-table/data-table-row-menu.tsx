@@ -36,15 +36,13 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
     <DropdownMenuRoot>
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
         <DropdownMenuTrigger asChild={true} {...props}>
-          <div className="flex items-center justify-end">
-            <Button
-              aria-label={trans("accessibility.toggle_row_menu")}
-              icon="more-horizontal"
-              size="icon-sm"
-              variant="ghost-secondary"
-              onClick={(event) => event.stopPropagation()}
-            />
-          </div>
+          <Button
+            aria-label={trans("accessibility.toggle_row_menu")}
+            icon="more-horizontal"
+            size="icon-sm"
+            variant="ghost-secondary"
+            onClick={(event) => event.stopPropagation()}
+          />
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent align="end" onClick={(event) => event.stopPropagation()}>
