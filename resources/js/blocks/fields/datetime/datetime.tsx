@@ -1,7 +1,7 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Calendar } from "@narsil-cms/blocks/calendar";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Separator } from "@narsil-cms/blocks/separator";
-import { Icon } from "@narsil-cms/components/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
   PopoverContent,

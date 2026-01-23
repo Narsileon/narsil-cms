@@ -1,5 +1,6 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Heading } from "@narsil-cms/blocks/heading";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { RevisionSelect } from "@narsil-cms/blocks/revision-select";
 import { Status } from "@narsil-cms/blocks/status";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
@@ -15,7 +16,6 @@ import {
   FormTimestamp,
 } from "@narsil-cms/components/form";
 import FormPublish from "@narsil-cms/components/form/form-publish";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
 import { cn } from "@narsil-cms/lib/utils";

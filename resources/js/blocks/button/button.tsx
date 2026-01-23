@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { ButtonRoot } from "@narsil-cms/components/button";
-import { Icon } from "@narsil-cms/components/icon";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type IconName } from "@narsil-cms/repositories/icons";
 import { omit } from "lodash-es";

@@ -1,5 +1,6 @@
 import { router } from "@inertiajs/react";
 import { Badge } from "@narsil-cms/blocks/badge";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import {
   CommandEmpty,
@@ -10,7 +11,6 @@ import {
   CommandRoot,
 } from "@narsil-cms/components/command";
 import CommandInputWrapper from "@narsil-cms/components/command/command-input-wrapper";
-import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {

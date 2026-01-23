@@ -1,4 +1,4 @@
-import { Icon } from "@narsil-cms/components/icon";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { Menubar } from "radix-ui";
 import { type ComponentProps } from "react";

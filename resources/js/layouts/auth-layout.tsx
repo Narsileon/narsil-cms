@@ -1,6 +1,7 @@
 import { Bookmarks } from "@narsil-cms/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
 import { Button } from "@narsil-cms/blocks/button";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Separator } from "@narsil-cms/blocks/separator";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { Toaster } from "@narsil-cms/blocks/toaster";
@@ -17,7 +18,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";

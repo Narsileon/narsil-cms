@@ -1,5 +1,5 @@
+import { Icon } from "@narsil-cms/blocks/icon";
 import { CheckboxIndicator, CheckboxRoot } from "@narsil-cms/components/checkbox";
-import { Icon } from "@narsil-cms/components/icon";
 import { type IconName } from "@narsil-cms/repositories/icons";
 import { type ComponentProps } from "react";
 

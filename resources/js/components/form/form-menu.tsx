@@ -1,5 +1,6 @@
 import { Link, router } from "@inertiajs/react";
 import { Button } from "@narsil-cms/blocks/button";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
   DropdownMenuContent,
@@ -9,7 +10,6 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { RouteNames } from "@narsil-cms/types";
 import { type ComponentProps } from "react";

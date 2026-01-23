@@ -3,16 +3,16 @@ import { getIcon, IconName } from "@narsil-cms/repositories/icons";
 import { startCase } from "lodash-es";
 import { type ComponentProps } from "react";
 
-type IconProps = ComponentProps<"svg"> & {
+type IconRootProps = ComponentProps<"svg"> & {
   name: IconName;
 };
 
-function Icon({ className, name, ...props }: IconProps) {
+function IconRoot({ className, name, ...props }: IconRootProps) {
   const Comp = getIcon(name);
 
   return (
     <Comp
-      data-slot="icon"
+      data-slot="icon-root"
       className={cn("size-5 text-primary", className)}
       aria-label={startCase(name)}
       {...props}
@@ -20,4 +20,4 @@ function Icon({ className, name, ...props }: IconProps) {
   );
 }
 
-export default Icon;
+export default IconRoot;

@@ -1,4 +1,4 @@
-import { Icon } from "@narsil-cms/components/icon";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";

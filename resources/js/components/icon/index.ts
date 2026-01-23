@@ -1,3 +1,3 @@
-import Icon from "./icon";
+import IconRoot from "./icon-root";
 
-export { Icon };
+export { IconRoot };

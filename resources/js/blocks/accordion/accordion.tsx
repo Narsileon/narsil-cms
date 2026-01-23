@@ -1,4 +1,5 @@
 import { Heading } from "@narsil-cms/blocks/heading";
+import { Icon } from "@narsil-cms/blocks/icon";
 import {
   AccordionContent,
   AccordionHeader,
@@ -6,7 +7,6 @@ import {
   AccordionRoot,
   AccordionTrigger,
 } from "@narsil-cms/components/accordion";
-import { Icon } from "@narsil-cms/components/icon";
 import { type ComponentProps, type ReactNode } from "react";
 
 type AccordionElement = {

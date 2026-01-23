@@ -1,5 +1,5 @@
 import { Calendar } from "@narsil-cms/blocks/calendar";
-import { Icon } from "@narsil-cms/components/icon";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
   PopoverContent,

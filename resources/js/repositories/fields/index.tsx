@@ -14,7 +14,7 @@ import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
 import { Textarea } from "@narsil-cms/blocks/fields/textarea";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
-import { Icon } from "@narsil-cms/components/icon";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";

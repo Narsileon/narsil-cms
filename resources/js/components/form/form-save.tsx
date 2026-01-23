@@ -1,4 +1,5 @@
 import { Button } from "@narsil-cms/blocks/button";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Kbd } from "@narsil-cms/blocks/kbd";
 import { Separator } from "@narsil-cms/blocks/separator";
 import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
@@ -10,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { RouteNames } from "@narsil-cms/types";
 import { useEffect, type ComponentProps } from "react";

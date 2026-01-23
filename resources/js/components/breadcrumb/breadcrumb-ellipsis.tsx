@@ -1,5 +1,5 @@
+import { Icon } from "@narsil-cms/blocks/icon";
 import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
-import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 

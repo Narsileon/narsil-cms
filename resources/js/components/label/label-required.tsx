@@ -10,7 +10,7 @@ function LabelRequired({ className }: LabelRequiredProps) {
 
   return (
     <Tooltip tooltip={trans("accessibility.required")}>
-      <span className={cn(className, "text-red-500")}>*</span>
+      <span className={cn(className, "text-destructive")}>*</span>
     </Tooltip>
   );
 }
