@@ -78,13 +78,6 @@ class Footer extends Model
     final public const CITY = 'city';
 
     /**
-     * The name of the "company" column.
-     *
-     * @var string
-     */
-    final public const COMPANY = 'company';
-
-    /**
      * The name of the "copyright" column.
      *
      * @var string
@@ -118,6 +111,20 @@ class Footer extends Model
      * @var string
      */
     final public const LOGO = 'logo';
+
+    /**
+     * The name of the "organization" column.
+     *
+     * @var string
+     */
+    final public const ORGANIZATION = 'organization';
+
+    /**
+     * The name of the "organization schema" column.
+     *
+     * @var string
+     */
+    final public const ORGANIZATION_SCHEMA = 'organization_schema';
 
     /**
      * The name of the "phone" column.

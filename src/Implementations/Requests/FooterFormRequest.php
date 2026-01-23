@@ -45,10 +45,6 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
             ],
-            Footer::COMPANY => [
-                FormRule::STRING,
-                FormRule::NULLABLE,
-            ],
             Footer::COPYRIGHT => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
@@ -60,6 +56,13 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
             Footer::EMAIL => [
                 FormRule::ARRAY,
                 FormRule::NULLABLE,
+            ],
+            Footer::ORGANIZATION => [
+                FormRule::STRING,
+                FormRule::NULLABLE,
+            ],
+            Footer::ORGANIZATION_SCHEMA => [
+                FormRule::BOOLEAN,
             ],
             Footer::POSTAL_CODE => [
                 FormRule::STRING,

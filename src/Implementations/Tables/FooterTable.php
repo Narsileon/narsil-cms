@@ -50,7 +50,15 @@ class FooterTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Footer::COMPANY,
+                id: Footer::ORGANIZATION,
+                visibility: false,
+            ),
+            new TableColumn(
+                id: Footer::EMAIL,
+                visibility: false,
+            ),
+            new TableColumn(
+                id: Footer::PHONE,
                 visibility: false,
             ),
             new TableColumn(
@@ -70,11 +78,7 @@ class FooterTable extends AbstractTable
                 visibility: false,
             ),
             new TableColumn(
-                id: Footer::EMAIL,
-                visibility: false,
-            ),
-            new TableColumn(
-                id: Footer::PHONE,
+                id: Footer::ORGANIZATION_SCHEMA,
                 visibility: false,
             ),
             new TableColumn(

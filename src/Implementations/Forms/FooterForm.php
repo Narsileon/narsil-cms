@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Narsil\Contracts\Fields\ArrayField;
 use Narsil\Contracts\Fields\FileField;
 use Narsil\Contracts\Fields\SelectField;
+use Narsil\Contracts\Fields\SwitchField;
 use Narsil\Contracts\Fields\TextField;
 use Narsil\Contracts\Forms\FooterForm as Contract;
 use Narsil\Implementations\AbstractForm;
@@ -75,8 +76,43 @@ class FooterForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::HANDLE => Footer::COMPANY,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.company'),
+                        TemplateTabElement::HANDLE => Footer::COPYRIGHT,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.copyright'),
+                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::RELATION_BASE => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                ],
+            ],
+            [
+                TemplateTab::HANDLE => 'organization',
+                TemplateTab::LABEL => trans('narsil::ui.organization'),
+                TemplateTab::RELATION_ELEMENTS => [
+                    [
+                        TemplateTabElement::HANDLE => Footer::ORGANIZATION,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.organization'),
+                        TemplateTabElement::RELATION_BASE => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::EMAIL,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::WIDTH => 50,
+                        TemplateTabElement::RELATION_BASE => [
+                            Field::TYPE => TextField::class,
+                            Field::SETTINGS => app(TextField::class),
+                        ],
+                    ],
+                    [
+                        TemplateTabElement::HANDLE => Footer::PHONE,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.phone'),
+                        TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -93,6 +129,7 @@ class FooterForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => Footer::POSTAL_CODE,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.postal_code'),
+                        TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -102,6 +139,7 @@ class FooterForm extends AbstractForm implements Contract
                         TemplateTabElement::HANDLE => Footer::CITY,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.city'),
                         TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class),
@@ -117,30 +155,13 @@ class FooterForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::HANDLE => Footer::EMAIL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
-                        TemplateTabElement::TRANSLATABLE => true,
+                        TemplateTabElement::HANDLE => Footer::ORGANIZATION_SCHEMA,
+                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.organization_schema'),
                         TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::PHONE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.phone'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::COPYRIGHT,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.copyright'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
+                            Field::TYPE => SwitchField::class,
+                            Field::SETTINGS => app(SwitchField::class)
+                                ->defaultValue(true),
+
                         ],
                     ],
                 ],

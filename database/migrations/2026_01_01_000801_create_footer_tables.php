@@ -132,7 +132,16 @@ return new class extends Migration
                 ->string(Footer::LOGO)
                 ->nullable();
             $blueprint
-                ->string(Footer::COMPANY)
+                ->jsonb(Footer::COPYRIGHT)
+                ->nullable();
+            $blueprint
+                ->string(Footer::ORGANIZATION)
+                ->nullable();
+            $blueprint
+                ->jsonb(Footer::EMAIL)
+                ->nullable();
+            $blueprint
+                ->string(Footer::PHONE)
                 ->nullable();
             $blueprint
                 ->string(Footer::STREET)
@@ -147,14 +156,8 @@ return new class extends Migration
                 ->string(Footer::COUNTRY)
                 ->nullable();
             $blueprint
-                ->jsonb(Footer::EMAIL)
-                ->nullable();
-            $blueprint
-                ->string(Footer::PHONE)
-                ->nullable();
-            $blueprint
-                ->jsonb(Footer::COPYRIGHT)
-                ->nullable();
+                ->boolean(Footer::ORGANIZATION_SCHEMA)
+                ->default(true);
             $blueprint
                 ->timestamp(Footer::CREATED_AT);
             $blueprint

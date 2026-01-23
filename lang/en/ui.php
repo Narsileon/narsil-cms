@@ -69,6 +69,7 @@ return [
     'move_down'          => 'Move down',
     'move_up'            => 'Move up',
     'navigation'         => 'Navigation',
+    'organization'       => 'Organization',
     'other_countries'    => 'Other countries',
     'password'           => 'Password',
     'personalization'    => 'Personalization',

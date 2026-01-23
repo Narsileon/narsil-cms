@@ -36,7 +36,6 @@ class FooterFactory extends Factory
     {
         return [
             Footer::CITY => $this->faker->city(),
-            Footer::COMPANY => $this->faker->company(),
             Footer::COPYRIGHT => [
                 'en' => 'All rights reserved.',
                 'de' => 'Alle Rechte vorbehalten.',
@@ -44,6 +43,7 @@ class FooterFactory extends Factory
             ],
             Footer::COUNTRY => $this->faker->countryCode(),
             Footer::EMAIL => $this->faker->unique()->safeEmail(),
+            Footer::ORGANIZATION => $this->faker->company(),
             Footer::SLUG => $this->faker->slug(1),
             Footer::PHONE => $this->faker->phoneNumber(),
             Footer::POSTAL_CODE => $this->faker->postcode(),
