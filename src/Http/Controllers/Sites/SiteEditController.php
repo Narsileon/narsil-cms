@@ -17,6 +17,7 @@ use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Http\Resources\Sites\SiteResource;
 use Narsil\Models\Hosts\HostLocale;
+use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Models\Sites\Site;
 use Narsil\Services\ModelService;
@@ -150,7 +151,7 @@ class SiteEditController extends RenderController
         $form = app(SiteForm::class)
             ->action(route('sites.update', $site->{Site::HOSTNAME}))
             ->id($site->{Site::ID})
-            ->languageOptions([])
+            ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 
