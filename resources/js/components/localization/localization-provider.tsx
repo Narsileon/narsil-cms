@@ -1,9 +1,9 @@
 import { get } from "lodash-es";
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { LocalizationContext } from "./localization-context";
 
 type LocalizationProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   translations: Record<string, string>;
 };
 

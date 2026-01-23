@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@narsil-cms/components/dialog";
 import { cn } from "@narsil-cms/lib/utils";
-import { type ComponentProps } from "react";
+import { type CSSProperties, type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 
 type SidebarRootProps = ComponentProps<"div"> & {
@@ -58,7 +58,7 @@ function SidebarRoot({
             style={
               {
                 "--sidebar-width": mobileWidth,
-              } as React.CSSProperties
+              } as CSSProperties
             }
             variant="left"
           >

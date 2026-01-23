@@ -1,5 +1,12 @@
 import { cn } from "@narsil-cms/lib/utils";
-import { useCallback, useEffect, useMemo, useState, type ComponentProps } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ComponentProps,
+  type CSSProperties,
+} from "react";
 import { SidebarContext, type SidebarContextProps } from "./sidebar-context";
 
 type SidebarProviderProps = ComponentProps<"div"> & {
@@ -99,7 +106,7 @@ function SidebarProvider({
             "--sidebar-width": width,
             "--sidebar-width-icon": iconWidth,
             ...style,
-          } as React.CSSProperties
+          } as CSSProperties
         }
         {...props}
       >

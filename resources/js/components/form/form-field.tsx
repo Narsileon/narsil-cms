@@ -1,7 +1,7 @@
 import { replaceLastPath } from "@narsil-cms/lib/utils";
 import type { Element } from "@narsil-cms/types";
 import { cloneDeep, get, isObject, unset } from "lodash-es";
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import useForm from "./form-context";
 import { FormFieldContext } from "./form-field-context";
 
@@ -13,7 +13,7 @@ type FormFieldProps = Element & {
     value: unknown;
     onFieldChange: (value: unknown) => void;
     setFieldLanguage: (value: string) => void;
-  }) => React.ReactNode;
+  }) => ReactNode;
 };
 
 function FormField({ base, conditions, handle, render, translatable }: FormFieldProps) {

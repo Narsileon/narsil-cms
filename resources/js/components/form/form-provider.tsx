@@ -2,7 +2,7 @@ import { useForm } from "@inertiajs/react";
 import { getFieldDefaultValue } from "@narsil-cms/lib/field";
 import type { Block, Field, SelectOption, TemplateTab } from "@narsil-cms/types";
 import { set } from "lodash-es";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { FormContext, type FormContextProps } from "./form-context";
 
 type FormProviderProps = {
@@ -13,7 +13,7 @@ type FormProviderProps = {
   initialValues?: Record<string, unknown>;
   languageOptions?: SelectOption[];
   method: string;
-  render: (props: FormContextProps) => React.ReactNode;
+  render: (props: FormContextProps) => ReactNode;
 };
 
 function FormProvider({

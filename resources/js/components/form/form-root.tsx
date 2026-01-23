@@ -1,7 +1,7 @@
 import { VisitOptions } from "@inertiajs/core";
 import { cn } from "@narsil-cms/lib/utils";
 import { debounce } from "lodash-es";
-import { useCallback, useEffect, useRef, type ComponentProps } from "react";
+import { useCallback, useEffect, useRef, type ComponentProps, type FormEvent } from "react";
 import useForm from "./form-context";
 
 type FormRootProps = Omit<ComponentProps<"form">, "autoSave"> & {
@@ -15,7 +15,7 @@ function FormRoot({ autoSave, className, options, ...props }: FormRootProps) {
   const isInitialized = useRef(false);
 
   const onSubmit = useCallback(
-    (event?: React.FormEvent, autoSave?: boolean) => {
+    (event?: FormEvent, autoSave?: boolean) => {
       event?.preventDefault();
 
       const submitOptions: VisitOptions = {

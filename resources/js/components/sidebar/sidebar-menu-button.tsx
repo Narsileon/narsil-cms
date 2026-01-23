@@ -2,7 +2,7 @@ import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
-import { type ComponentProps } from "react";
+import { type ComponentProps, type ReactNode } from "react";
 import useSidebar from "./sidebar-context";
 
 const sidebarMenuButtonVariants = cva(
@@ -45,7 +45,7 @@ type SidebarMenuButtonProps = ComponentProps<"button"> &
   VariantProps<typeof sidebarMenuButtonVariants> & {
     asChild?: boolean;
     isActive?: boolean;
-    tooltip?: string | React.ReactNode;
+    tooltip?: string | ReactNode;
   };
 
 function SidebarMenuButton({

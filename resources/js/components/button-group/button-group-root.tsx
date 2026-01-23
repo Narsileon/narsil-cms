@@ -1,9 +1,9 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
+import { type ComponentProps } from "react";
 import buttonGroupRootVariants from "./button-group-root-variants";
 
-type ButtonGroupRootProps = React.ComponentProps<"div"> &
-  VariantProps<typeof buttonGroupRootVariants>;
+type ButtonGroupRootProps = ComponentProps<"div"> & VariantProps<typeof buttonGroupRootVariants>;
 
 function ButtonGroupRoot({ className, orientation, ...props }: ButtonGroupRootProps) {
   return (

@@ -17,10 +17,10 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { groupBy } from "lodash-es";
-import { Fragment, useRef } from "react";
+import { Fragment, type ReactNode, useRef } from "react";
 
 type GuestLayoutProps = {
-  children: React.ReactNode & {
+  children: ReactNode & {
     props: GlobalProps;
   };
 };

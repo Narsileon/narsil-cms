@@ -1,9 +1,9 @@
 import { AlertDialog } from "@narsil-cms/blocks/alert-dialog";
-import { useState, type ComponentProps } from "react";
+import { useState, type ComponentProps, type ReactNode } from "react";
 import { AlertDialogContext } from "./alert-dialog-context";
 
 type AlertDialogProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function AlertDialogProvider({ children }: AlertDialogProviderProps) {
@@ -15,15 +15,10 @@ function AlertDialogProvider({ children }: AlertDialogProviderProps) {
       {alertDialog ? (
         <AlertDialog
           open={!!alertDialog}
-          actionLabel={alertDialog.actionLabel}
+          buttons={alertDialog.buttons}
           cancelLabel={alertDialog.cancelLabel}
           description={alertDialog.description}
           title={alertDialog.title}
-          actionClick={(event) => {
-            alertDialog.actionClick?.(event);
-
-            setAlertDialog(null);
-          }}
           cancelClick={(event) => {
             alertDialog.cancelClick?.(event);
 

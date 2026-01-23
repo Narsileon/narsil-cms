@@ -8,6 +8,7 @@ import {
   TableWrapper,
 } from "@narsil-cms/components/table";
 import type { GroupedSelectOption, SelectOption, UniqueIdentifier } from "@narsil-cms/types";
+import { type ReactNode } from "react";
 
 type CheckboxesProps = {
   options: (GroupedSelectOption | SelectOption)[];
@@ -26,7 +27,7 @@ function Checkboxes({ options = [], values, onChange }: CheckboxesProps) {
     }
   }
 
-  function renderCheckboxes(options: (GroupedSelectOption | SelectOption)[]): React.ReactNode {
+  function renderCheckboxes(options: (GroupedSelectOption | SelectOption)[]): ReactNode {
     const checkboxes = options.flatMap((option) => option.value) as UniqueIdentifier[];
 
     const checkedCheckboxes = checkboxes.filter((value) =>

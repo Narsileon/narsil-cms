@@ -21,7 +21,7 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { IconName } from "@narsil-cms/repositories/icons";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
-import { useState, type ComponentProps } from "react";
+import { useState, type ComponentProps, type ReactNode } from "react";
 import { type AnonymousItem } from ".";
 import SortableHandle from "./sortable-handle";
 import SortableItemForm from "./sortable-item-form";
@@ -30,7 +30,7 @@ type SortableItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> & {
   collapsed?: boolean;
   collapsible?: boolean;
   disabled?: boolean;
-  footer?: React.ReactNode;
+  footer?: ReactNode;
   form?: FormType;
   group?: GroupedSelectOption;
   id: UniqueIdentifier;

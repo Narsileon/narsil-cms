@@ -11,7 +11,7 @@ import {
 } from "@narsil-cms/components/dialog";
 import { LocalizationProvider } from "@narsil-cms/components/localization";
 import { type ModalType } from "@narsil-cms/stores/modal-store";
-import { useEffect, useState, type ComponentProps } from "react";
+import { useEffect, useState, type ComponentProps, type ReactNode } from "react";
 
 type ModalProps = ComponentProps<typeof DialogContent> & {
   modal: ModalType;
@@ -19,7 +19,7 @@ type ModalProps = ComponentProps<typeof DialogContent> & {
 };
 
 function Modal({ modal, onClose, ...props }: ModalProps) {
-  const [Component, setComponent] = useState<React.ReactNode | null>(null);
+  const [Component, setComponent] = useState<ReactNode>(null);
 
   useEffect(() => {
     const load = async () => {

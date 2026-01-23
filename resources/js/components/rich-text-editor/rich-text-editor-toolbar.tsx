@@ -9,6 +9,7 @@ import {
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { useCurrentEditor } from "@tiptap/react";
+import { ComponentProps } from "react";
 import RichTextEditorBold from "./rich-text-editor-bold";
 import RichTextEditorBulletList from "./rich-text-editor-bullet-list";
 import RichTextEditorHeading from "./rich-text-editor-heading";
@@ -22,7 +23,7 @@ import RichTextEditorTextAlign from "./rich-text-editor-text-align";
 import RichTextEditorUnderline from "./rich-text-editor-underline";
 import RichTextEditorUndo from "./rich-text-editor-undo";
 
-type RichTextEditorToolbarProps = React.HTMLAttributes<HTMLDivElement> & {
+type RichTextEditorToolbarProps = ComponentProps<"div"> & {
   modules: string[];
 };
 

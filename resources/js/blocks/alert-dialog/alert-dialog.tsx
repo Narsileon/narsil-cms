@@ -1,3 +1,4 @@
+import { Button } from "@/blocks/button";
 import {
   AlertDialogAction,
   AlertDialogCancel,
@@ -10,29 +11,29 @@ import {
   AlertDialogRoot,
   AlertDialogTitle,
   AlertDialogTrigger,
+  useAlertDialog,
 } from "@narsil-cms/components/alert-dialog";
 import { useLocalization } from "@narsil-cms/components/localization";
-import React, { type ComponentProps, type MouseEventHandler } from "react";
+import { type ComponentProps, type MouseEventHandler } from "react";
 
 type AlertDialogProps = ComponentProps<typeof AlertDialogRoot> & {
-  actionLabel?: React.ReactNode;
   cancelLabel?: string;
   description?: string;
   title?: string;
-  actionClick?: MouseEventHandler<HTMLButtonElement>;
+  buttons?: ComponentProps<typeof Button>[];
   cancelClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 function AlertDialog({
-  actionLabel,
+  buttons,
   cancelLabel,
   children,
   description,
   title,
-  actionClick,
   cancelClick,
   ...props
 }: AlertDialogProps) {
+  const { setAlertDialog } = useAlertDialog();
   const { trans } = useLocalization();
 
   return (
@@ -51,9 +52,20 @@ function AlertDialog({
             <AlertDialogCancel onClick={cancelClick}>
               {cancelLabel ?? trans("ui.cancel")}
             </AlertDialogCancel>
-            <AlertDialogAction onClick={actionClick}>
-              {actionLabel ?? trans("ui.confirm")}
-            </AlertDialogAction>
+            {buttons?.map((button, index) => {
+              return (
+                <AlertDialogAction
+                  onClick={(event) => {
+                    button.onClick?.(event);
+
+                    setAlertDialog(null);
+                  }}
+                  key={index}
+                >
+                  {button.label ?? trans("ui.confirm")}
+                </AlertDialogAction>
+              );
+            })}
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialogPortal>

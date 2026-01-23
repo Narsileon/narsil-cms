@@ -75,7 +75,7 @@ function Combobox({
     value = value.toString();
   }
 
-  const parentRef = useRef<HTMLDivElement | null>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   const [fetchedOptions, setFetchedOptions] = useState<SelectOption[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

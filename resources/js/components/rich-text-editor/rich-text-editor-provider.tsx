@@ -5,10 +5,10 @@ import TextAlign from "@tiptap/extension-text-align";
 import { Placeholder } from "@tiptap/extensions";
 import { EditorContext, EditorOptions, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useEffect, useMemo } from "react";
+import { type ReactNode, useEffect, useMemo } from "react";
 
 type RichTextEditorRootProps = Partial<EditorOptions> & {
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   placeholder?: string;
   value: string;

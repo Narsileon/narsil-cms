@@ -46,9 +46,13 @@ function TreeItemMenu({ disabled, item, ...props }: TreeItemMenuProps) {
               setAlertDialog({
                 title: trans("dialogs.titles.delete"),
                 description: trans("dialogs.descriptions.delete"),
-                actionClick: () => {
-                  router.delete(item.destroy_url as string);
-                },
+                buttons: [
+                  {
+                    onClick: () => {
+                      router.delete(item.destroy_url as string);
+                    },
+                  },
+                ],
               });
             }}
           >

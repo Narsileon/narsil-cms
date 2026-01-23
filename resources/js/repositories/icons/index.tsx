@@ -105,8 +105,9 @@ import {
   UsersIcon,
   XIcon,
 } from "lucide-react";
+import { type ComponentType, type SVGProps } from "react";
 
-type RegistryItem = LucideIcon | React.ComponentType<React.SVGProps<SVGSVGElement>>;
+type RegistryItem = LucideIcon | ComponentType<SVGProps<SVGSVGElement>>;
 
 type Registry = Record<string, RegistryItem>;
 

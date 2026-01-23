@@ -5,13 +5,13 @@ import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
 import { isEmpty } from "lodash-es";
-import { useEffect } from "react";
+import { type ReactNode, useEffect } from "react";
 import { toast } from "sonner";
 import AuthLayout from "./auth-layout";
 import GuestLayout from "./guest-layout";
 
 type LayoutProps = {
-  children: React.ReactNode & {
+  children: ReactNode & {
     props: GlobalProps;
   };
 };

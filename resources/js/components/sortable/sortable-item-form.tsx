@@ -19,11 +19,11 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { FormType } from "@narsil-cms/types";
 import { get } from "lodash-es";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { type AnonymousItem } from ".";
 
 type SortableItemFormProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   form: FormType;
   ids: UniqueIdentifier[];
   item?: Record<string, unknown>;

@@ -27,10 +27,10 @@ import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
 import { groupBy } from "lodash-es";
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, type ReactNode, useEffect, useRef } from "react";
 
 type AuthLayoutProps = {
-  children: React.ReactNode & {
+  children: ReactNode & {
     props: GlobalProps;
   };
 };

@@ -59,9 +59,13 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
               setAlertDialog({
                 title: trans("dialogs.titles.delete"),
                 description: trans("dialogs.descriptions.delete"),
-                actionClick: () => {
-                  router.delete(href);
-                },
+                buttons: [
+                  {
+                    onClick: () => {
+                      router.delete(href);
+                    },
+                  },
+                ],
               });
             }}
           >

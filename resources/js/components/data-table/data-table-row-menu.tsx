@@ -101,13 +101,17 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                   setAlertDialog({
                     title: trans("dialogs.titles.delete"),
                     description: trans("dialogs.descriptions.delete"),
-                    actionClick: () => {
-                      router.delete(href, {
-                        data: {
-                          _back: true,
+                    buttons: [
+                      {
+                        onClick: () => {
+                          router.delete(href, {
+                            data: {
+                              _back: true,
+                            },
+                          });
                         },
-                      });
-                    },
+                      },
+                    ],
                   });
                 }}
               >
@@ -158,13 +162,17 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                     setAlertDialog({
                       title: trans("dialogs.titles.delete"),
                       description: trans("dialogs.descriptions.delete"),
-                      actionClick: () => {
-                        router.delete(href, {
-                          data: {
-                            _back: true,
+                      buttons: [
+                        {
+                          onClick: () => {
+                            router.delete(href, {
+                              data: {
+                                _back: true,
+                              },
+                            });
                           },
-                        });
-                      },
+                        },
+                      ],
                     });
                   }}
                 >

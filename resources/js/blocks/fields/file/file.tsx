@@ -1,5 +1,5 @@
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
-import { useEffect, useState, type ComponentProps } from "react";
+import { useEffect, useState, type ChangeEvent, type ComponentProps } from "react";
 
 type FileProps = Omit<ComponentProps<typeof InputContent>, "onChange"> & {
   value: File | string | undefined;
@@ -36,7 +36,7 @@ function File({ accept, children, value, onChange, ...props }: FileProps) {
     setPreview(null);
   }, [value]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       onChange(event.target.files[0]);
     }
