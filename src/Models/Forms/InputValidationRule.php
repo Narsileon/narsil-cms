@@ -4,10 +4,10 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\ValidationRule;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Models\ValidationRule;
  */
 class InputValidationRule extends Pivot
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -28,12 +28,7 @@ class InputValidationRule extends Pivot
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -64,13 +59,6 @@ class InputValidationRule extends Pivot
      * @var string
      */
     final public const VALIDATION_RULE_ID = 'validation_rule_id';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

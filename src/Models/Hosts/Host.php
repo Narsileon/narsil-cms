@@ -65,11 +65,11 @@ class Host extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "host" column.
+     * The name of the "hostname" column.
      *
      * @var string
      */
-    final public const HOST = 'host';
+    final public const HOSTNAME = 'hostname';
 
     /**
      * The name of the "id" column.

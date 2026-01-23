@@ -28,7 +28,7 @@ return [
         Fieldset::LABEL => 'The default label. The value can be overridden by forms and fieldsets that implement this fieldset.',
     ],
     Host::TABLE => [
-        Host::HOST => 'The host of the website, e.g. \'domain.com\' or \'subdomain.domain.com\'.',
+        Host::HOSTNAME => 'The hostname of the website, e.g. \'domain.com\' or \'subdomain.domain.com\'.',
         Host::LABEL => 'The display label shown in the sidebar.',
     ],
     HostLocale::TABLE => [

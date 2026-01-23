@@ -53,7 +53,7 @@ class SiteEditController extends RenderController
                         ]);
                 }
             ])
-            ->where(Site::HOST, $site)
+            ->where(Site::HOSTNAME, $site)
             ->first();
 
         if (!$site)
@@ -148,7 +148,7 @@ class SiteEditController extends RenderController
     protected function getForm(Site $site): SiteForm
     {
         $form = app(SiteForm::class)
-            ->action(route('sites.update', $site->{Site::HOST}))
+            ->action(route('sites.update', $site->{Site::HOSTNAME}))
             ->id($site->{Site::ID})
             ->languageOptions([])
             ->method(RequestMethodEnum::PATCH->value)

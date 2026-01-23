@@ -4,10 +4,10 @@ namespace Narsil\Models\Users;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\User;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Models\User;
  */
 class UserBookmark extends Model
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -27,12 +27,6 @@ class UserBookmark extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -70,13 +64,6 @@ class UserBookmark extends Model
      * @var string
      */
     final public const USER_ID = 'user_id';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

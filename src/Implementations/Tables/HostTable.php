@@ -45,7 +45,7 @@ class HostTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
-                id: Host::HOST,
+                id: Host::HOSTNAME,
                 visibility: true,
             ),
             new TableColumn(

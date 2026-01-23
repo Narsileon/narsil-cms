@@ -4,10 +4,10 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\Hosts\HostLocaleLanguage;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,8 +17,7 @@ use Narsil\Models\Hosts\HostLocaleLanguage;
  */
 class SiteUrl extends Model
 {
-    use HasUuids;
-
+    use HasUuidKey;
     #region CONSTRUCTOR
 
     /**
@@ -27,12 +26,6 @@ class SiteUrl extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -70,13 +63,6 @@ class SiteUrl extends Model
      * @var string
      */
     final public const URL = 'url';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

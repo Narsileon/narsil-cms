@@ -4,11 +4,11 @@ namespace Narsil\Models\Globals;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -19,7 +19,7 @@ use Narsil\Traits\HasTranslations;
 class FooterLink extends Pivot
 {
     use HasTranslations;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -30,16 +30,11 @@ class FooterLink extends Pivot
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->translatable = [
             self::LABEL,
         ];
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -84,13 +79,6 @@ class FooterLink extends Pivot
      * @var string
      */
     final public const POSITION = 'position';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

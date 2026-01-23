@@ -54,8 +54,10 @@ return new class extends Migration
         Schema::create(UserConfiguration::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
+                ->uuid(UserConfiguration::UUID)
+                ->primary();
+            $blueprint
                 ->foreignId(UserConfiguration::USER_ID)
-                ->primary()
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
             $blueprint

@@ -4,9 +4,9 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class SitePageOverride extends Model
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -26,12 +26,6 @@ class SitePageOverride extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -83,13 +77,6 @@ class SitePageOverride extends Model
      * @var string
      */
     final public const SITE_PAGE_ID = 'site_page_id';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

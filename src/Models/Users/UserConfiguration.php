@@ -7,6 +7,7 @@ namespace Narsil\Models\Users;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Models\User;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -16,6 +17,8 @@ use Narsil\Models\User;
  */
 class UserConfiguration extends Model
 {
+    use HasUuidKey;
+
     #region CONSTRUCTOR
 
     /**
@@ -26,11 +29,6 @@ class UserConfiguration extends Model
         $this->table = self::TABLE;
 
         $this->incrementing = false;
-        $this->primaryKey = 'user_id';
-
-        $this->mergeGuarded([
-            self::USER_ID,
-        ]);
 
         parent::__construct($attributes);
     }

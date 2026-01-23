@@ -4,11 +4,11 @@ namespace Narsil\Models\Policies;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\User;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Models\User;
  */
 class UserPermission extends Pivot
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -29,12 +29,7 @@ class UserPermission extends Pivot
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -65,13 +60,6 @@ class UserPermission extends Pivot
      * @var string
      */
     final public const USER_ID = 'user_id';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

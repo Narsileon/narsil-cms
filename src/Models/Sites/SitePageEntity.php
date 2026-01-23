@@ -4,11 +4,11 @@ namespace Narsil\Models\Sites;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Entities\Entity;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Models\Entities\Entity;
  */
 class SitePageEntity extends Pivot
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -29,12 +29,7 @@ class SitePageEntity extends Pivot
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -79,13 +74,6 @@ class SitePageEntity extends Pivot
      * @var string
      */
     final public const TARGET_TYPE = 'target_type';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

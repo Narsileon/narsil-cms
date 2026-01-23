@@ -4,13 +4,12 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Arr;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -21,7 +20,7 @@ use Narsil\Traits\HasTranslations;
 class FormStep extends Model
 {
     use HasTranslations;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -31,8 +30,6 @@ class FormStep extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
 
         $this->touches = [
             self::RELATION_FORM,
@@ -46,10 +43,6 @@ class FormStep extends Model
         $this->with = [
             self::RELATION_ELEMENTS,
         ];
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -101,13 +94,6 @@ class FormStep extends Model
      * @var string
      */
     final public const POSITION = 'position';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

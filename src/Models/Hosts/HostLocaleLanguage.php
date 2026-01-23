@@ -5,12 +5,12 @@ namespace Narsil\Models\Hosts;
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 use Locale;
 use Narsil\Traits\HasAuditLogs;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -21,7 +21,7 @@ use Narsil\Traits\HasAuditLogs;
 class HostLocaleLanguage extends Model
 {
     use HasAuditLogs;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -32,14 +32,8 @@ class HostLocaleLanguage extends Model
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
-
         $this->mergeAppends([
             self::ATTRIBUTE_DISPLAY_LANGUAGE,
-        ]);
-
-        $this->mergeGuarded([
-            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -78,13 +72,6 @@ class HostLocaleLanguage extends Model
      * @var string
      */
     final public const POSITION = 'position';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

@@ -30,7 +30,7 @@ abstract class HostService
 
         $replicated
             ->fill([
-                Host::HOST => DatabaseService::generateUniqueValue($replicated, Host::HOST, $host->{Host::HOST}),
+                Host::HOSTNAME => DatabaseService::generateUniqueValue($replicated, Host::HOSTNAME, $host->{Host::HOSTNAME}),
             ])
             ->save();
 

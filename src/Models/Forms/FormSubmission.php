@@ -4,10 +4,10 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Traits\HasDatetimes;
 class FormSubmission extends Model
 {
     use HasDatetimes;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -28,8 +28,6 @@ class FormSubmission extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
 
         $this->guarded = [];
 
@@ -66,13 +64,6 @@ class FormSubmission extends Model
      * @var string
      */
     final public const FORM_ID = 'form_id';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

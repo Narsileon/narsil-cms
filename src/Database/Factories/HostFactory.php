@@ -38,11 +38,11 @@ class HostFactory extends Factory
     {
         $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
 
-        $domain = $this->faker->domainWord() . '.' .  $baseUrl;
+        $hostname = $this->faker->domainWord() . '.' .  $baseUrl;
 
         return [
-            Host::HOST => $domain,
-            Host::LABEL => $domain,
+            Host::HOSTNAME => $hostname,
+            Host::LABEL => $hostname,
         ];
     }
 

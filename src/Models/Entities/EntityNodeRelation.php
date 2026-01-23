@@ -4,7 +4,6 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -13,6 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -22,7 +22,7 @@ use Illuminate\Support\Str;
  */
 class EntityNodeRelation extends Pivot
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -33,12 +33,7 @@ class EntityNodeRelation extends Pivot
     {
         $this->table = static::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -90,13 +85,6 @@ class EntityNodeRelation extends Pivot
      * @var string
      */
     final public const TARGET_TYPE = 'target_type';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

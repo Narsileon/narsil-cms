@@ -4,12 +4,12 @@ namespace Narsil\Models\Collections;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -20,7 +20,7 @@ use Narsil\Traits\HasTranslations;
 class TemplateTab extends Model
 {
     use HasTranslations;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -30,8 +30,6 @@ class TemplateTab extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
 
         $this->touches = [
             self::RELATION_TEMPLATE,
@@ -44,10 +42,6 @@ class TemplateTab extends Model
         $this->with = [
             self::RELATION_ELEMENTS,
         ];
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -92,13 +86,6 @@ class TemplateTab extends Model
      * @var string
      */
     final public const TEMPLATE_ID = 'template_id';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

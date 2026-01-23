@@ -24,7 +24,6 @@ class BlockElement extends Element
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->translatable = [
@@ -45,10 +44,6 @@ class BlockElement extends Element
         $this->mergeCasts([
             self::TRANSLATABLE => 'boolean',
             self::REQUIRED => 'boolean',
-        ]);
-
-        $this->mergeGuarded([
-            self::UUID,
         ]);
 
         parent::__construct($attributes);

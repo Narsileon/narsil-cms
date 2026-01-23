@@ -60,8 +60,8 @@ class HostForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Host::TABLE, Host::HOST),
-                        TemplateTabElement::HANDLE => Host::HOST,
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Host::TABLE, Host::HOSTNAME),
+                        TemplateTabElement::HANDLE => Host::HOSTNAME,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.host'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [

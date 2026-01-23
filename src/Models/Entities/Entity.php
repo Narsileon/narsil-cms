@@ -40,8 +40,6 @@ abstract class Entity extends Model
     {
         $this->table = static::TABLE;
 
-        $this->primaryKey = self::UUID;
-
         $this->guarded = [];
 
         $this->translatable = [

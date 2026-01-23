@@ -5,13 +5,13 @@ namespace Narsil\Models\Collections;
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Narsil\Traits\HasIdentifier;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -23,7 +23,7 @@ abstract class Element extends MorphPivot
 {
     use HasIdentifier;
     use HasTranslations;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTANTS
 
@@ -91,13 +91,6 @@ abstract class Element extends MorphPivot
      * @var string
      */
     final public const TRANSLATABLE = 'translatable';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     /**
      * The name of the "width" column.

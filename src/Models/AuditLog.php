@@ -4,10 +4,10 @@ namespace Narsil\Models;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class AuditLog extends Model
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -29,8 +29,6 @@ class AuditLog extends Model
     public function __construct(array $attributes = [])
     {
         $this->table = self::TABLE;
-
-        $this->primaryKey = self::UUID;
 
         $this->guarded = [];
 
@@ -94,13 +92,6 @@ class AuditLog extends Model
      * @var string
      */
     final public const USER_ID = 'user_id';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

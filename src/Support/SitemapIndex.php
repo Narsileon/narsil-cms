@@ -151,7 +151,7 @@ class SitemapIndex
      */
     protected function getLocation(HostLocale $hostLocale): string
     {
-        $host = $this->host->{Host::HOST};
+        $host = $this->host->{Host::HOSTNAME};
 
         $country = Str::lower($hostLocale->{HostLocale::COUNTRY});
 
@@ -167,7 +167,7 @@ class SitemapIndex
      */
     protected function saveDocument(string $path): void
     {
-        $host = $this->host->{Host::HOST};
+        $host = $this->host->{Host::HOSTNAME};
 
         Storage::disk('public')
             ->put(

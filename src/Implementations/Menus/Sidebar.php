@@ -240,7 +240,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('sites.edit', [
                     'country' => 'default',
-                    'site' => $site->{Site::HOST}
+                    'site' => $site->{Site::HOSTNAME},
                 ]))
                 ->icon('globe')
                 ->label($site->{Site::LABEL}, false)

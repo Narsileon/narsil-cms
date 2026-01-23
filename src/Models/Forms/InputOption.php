@@ -4,10 +4,10 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Traits\HasTranslations;
 class InputOption extends Model
 {
     use HasTranslations;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -29,15 +29,9 @@ class InputOption extends Model
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
-
         $this->translatable = [
             self::LABEL,
         ];
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -75,13 +69,6 @@ class InputOption extends Model
      * @var string
      */
     final public const POSITION = 'position';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     /**
      * The name of the "value" column.

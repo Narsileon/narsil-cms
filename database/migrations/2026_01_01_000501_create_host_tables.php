@@ -123,7 +123,7 @@ return new class extends Migration
             $blueprint
                 ->id(Host::ID);
             $blueprint
-                ->string(Host::HOST)
+                ->string(Host::HOSTNAME)
                 ->unique();
             $blueprint
                 ->jsonb(Host::LABEL);

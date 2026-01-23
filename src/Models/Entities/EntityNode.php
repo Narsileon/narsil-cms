@@ -4,7 +4,6 @@ namespace Narsil\Models\Entities;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,6 +13,7 @@ use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\BlockElement;
 use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Traits\HasTranslations;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -24,7 +24,7 @@ use Narsil\Traits\HasTranslations;
 abstract class EntityNode extends Model
 {
     use HasTranslations;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -35,7 +35,6 @@ abstract class EntityNode extends Model
     {
         $this->table = static::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->translatable = [
@@ -44,10 +43,6 @@ abstract class EntityNode extends Model
 
         $this->mergeCasts([
             self::VALUE => JsonCast::class,
-        ]);
-
-        $this->mergeGuarded([
-            self::UUID,
         ]);
 
         parent::__construct($attributes);
@@ -128,13 +123,6 @@ abstract class EntityNode extends Model
      * @var string
      */
     final public const TEMPLATE_TAB_ELEMENT_UUID = 'template_tab_element_uuid';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     /**
      * The name of the "value" column.

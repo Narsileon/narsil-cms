@@ -262,7 +262,7 @@ class Sitemap
 
             $url = $pattern;
 
-            $url = Str::replace('{host}', $this->host->{Host::HOST}, $url);
+            $url = Str::replace('{host}', $this->host->{Host::HOSTNAME}, $url);
             $url = Str::replace('{country}', $this->hostLocale->{HostLocale::COUNTRY}, $url);
             $url = Str::replace('{language}', $language, $url);
 
@@ -317,7 +317,7 @@ class Sitemap
      */
     protected function saveDocument(string $path): void
     {
-        $host = $this->host->{Host::HOST};
+        $host = $this->host->{Host::HOSTNAME};
 
         Storage::disk('public')
             ->put(

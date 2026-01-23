@@ -6,6 +6,7 @@ namespace Narsil\Providers;
 
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
@@ -47,6 +48,8 @@ class MigrationServiceProvider extends ServiceProvider
     {
         Event::listen(MigrationsEnded::class, function ()
         {
+            Cache::flush();
+
             $this->syncPermissions();
 
             if (!Site::exists())
@@ -84,7 +87,7 @@ class MigrationServiceProvider extends ServiceProvider
         $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
 
         Site::factory()->create([
-            Site::HOST => $baseUrl,
+            Site::HOSTNAME => $baseUrl,
             Site::LABEL => 'Main',
         ]);
     }

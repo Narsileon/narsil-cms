@@ -4,10 +4,10 @@ namespace Narsil\Models\Forms;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Traits\HasDatetimes;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Traits\HasDatetimes;
 class FormWebhook extends Model
 {
     use HasDatetimes;
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -29,7 +29,6 @@ class FormWebhook extends Model
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->mergeGuarded([
@@ -72,13 +71,6 @@ class FormWebhook extends Model
      * @var string
      */
     final public const URL = 'url';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

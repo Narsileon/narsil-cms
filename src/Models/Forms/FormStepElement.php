@@ -25,7 +25,6 @@ class FormStepElement extends Element
     {
         $this->table = self::TABLE;
 
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
 
         $this->translatable = [
@@ -45,10 +44,6 @@ class FormStepElement extends Element
 
         $this->mergeCasts([
             self::REQUIRED => 'boolean',
-        ]);
-
-        $this->mergeGuarded([
-            self::UUID,
         ]);
 
         parent::__construct($attributes);

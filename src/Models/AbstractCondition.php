@@ -4,8 +4,8 @@ namespace Narsil\Models;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Traits\HasUuidKey;
 
 #endregion
 
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 abstract class AbstractCondition extends Model
 {
-    use HasUuids;
+    use HasUuidKey;
 
     #region CONSTRUCTOR
 
@@ -24,12 +24,7 @@ abstract class AbstractCondition extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->primaryKey = self::UUID;
         $this->timestamps = false;
-
-        $this->mergeGuarded([
-            self::UUID,
-        ]);
 
         parent::__construct($attributes);
     }
@@ -67,13 +62,6 @@ abstract class AbstractCondition extends Model
      * @var string
      */
     final public const VALUE = 'value';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 

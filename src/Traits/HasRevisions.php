@@ -7,7 +7,6 @@ namespace Narsil\Traits;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -23,7 +22,7 @@ use Narsil\Traits\HasDatetimes;
 trait HasRevisions
 {
     use HasDatetimes;
-    use HasUuids;
+    use HasUuidKey;
     use Publisheable;
     use SoftDeletes;
 
@@ -58,13 +57,6 @@ trait HasRevisions
      * @var string
      */
     final public const REVISION = 'revision';
-
-    /**
-     * The name of the "uuid" column.
-     *
-     * @var string
-     */
-    final public const UUID = 'uuid';
 
     #endregion
 
