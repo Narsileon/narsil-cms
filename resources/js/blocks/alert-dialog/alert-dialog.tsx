@@ -1,4 +1,3 @@
-import { Button } from "@/blocks/button";
 import {
   AlertDialogAction,
   AlertDialogCancel,
@@ -20,7 +19,7 @@ type AlertDialogProps = ComponentProps<typeof AlertDialogRoot> & {
   cancelLabel?: string;
   description?: string;
   title?: string;
-  buttons?: ComponentProps<typeof Button>[];
+  buttons?: ComponentProps<typeof AlertDialogAction>[];
   cancelClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -62,7 +61,7 @@ function AlertDialog({
                   }}
                   key={index}
                 >
-                  {button.label ?? trans("ui.confirm")}
+                  {button.children ?? trans("ui.confirm")}
                 </AlertDialogAction>
               );
             })}
