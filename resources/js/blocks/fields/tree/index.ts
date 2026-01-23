@@ -22,7 +22,7 @@ type NestedNode = {
   children: NestedNode[];
   data?: Record<string, unknown>;
   id: number | string;
-  label: string;
+  label: string | string[];
   type?: string;
 };
 

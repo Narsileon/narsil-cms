@@ -4,9 +4,11 @@ import { CSS } from "@dnd-kit/utilities";
 import { Badge } from "@narsil-cms/blocks/badge";
 import { CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-cms/components/collapsible";
+import { useForm } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { SortableHandle } from "@narsil-cms/components/sortable";
+import getModelTranslation from "@narsil-cms/lib/get-model-translation";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 import { FlatNode, TreeItemMenu } from ".";
@@ -28,6 +30,7 @@ function TreeItem({
   onMoveUp,
   ...props
 }: TreeItemProps) {
+  const { formLanguage } = useForm();
   const { trans } = useLocalization();
 
   const {
@@ -44,7 +47,11 @@ function TreeItem({
 
   const content = (
     <div className="flex grow items-center justify-start gap-2">
-      {item.label ? <CardTitle className="font-normal">{item.label}</CardTitle> : null}
+      {item.label ? (
+        <CardTitle className="font-normal">
+          {`${getModelTranslation(item.label, formLanguage, "en")} (id: ${item.id})`}
+        </CardTitle>
+      ) : null}
       {item.badge ? <Badge variant="secondary">{item.badge}</Badge> : null}
     </div>
   );

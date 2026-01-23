@@ -52,6 +52,13 @@ class NestedTreeResource extends JsonResource
      *
      * @var string
      */
+    final public const ID = 'id';
+
+    /**
+     * The name of the "label" property.
+     *
+     * @var string
+     */
     final public const LABEL = 'label';
 
     #endregion

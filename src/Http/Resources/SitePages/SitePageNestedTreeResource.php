@@ -59,6 +59,7 @@ class SitePageNestedTreeResource extends NestedTreeResource
             self::CREATE_URL => $this->getCreateUrl(),
             self::DESTROY_URL => $this->getDestroyUrl(),
             self::EDIT_URL => $this->getEditUrl(),
+            self::ID => $this->{SitePage::ID},
             self::LABEL => $this->getLabel(),
         ];
     }
@@ -134,11 +135,11 @@ class SitePageNestedTreeResource extends NestedTreeResource
     /**
      * Get the label.
      *
-     * @return string
+     * @return array|string
      */
-    protected function getLabel(): string
+    protected function getLabel(): array|string
     {
-        return $this->{SitePage::TITLE} . ' [' . $this->{SitePage::ID} . ']';
+        return $this->getTranslations(SitePage::TITLE);
     }
 
     #endregion
