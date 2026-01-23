@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Traits\HasTranslations;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -19,6 +20,7 @@ class FooterSocialMedium extends Model
 {
     use HasTranslations;
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -71,13 +73,6 @@ class FooterSocialMedium extends Model
      * @var string
      */
     final public const LABEL = 'label';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     /**
      * The name of the "url" column.

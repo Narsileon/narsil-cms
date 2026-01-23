@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Models\Sites\SitePage;
 use Narsil\Traits\HasTranslations;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -20,6 +21,7 @@ class FooterLink extends Pivot
 {
     use HasTranslations;
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -72,13 +74,6 @@ class FooterLink extends Pivot
      * @var string
      */
     final public const SITE_PAGE_ID = 'site_page_id';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     #endregion
 

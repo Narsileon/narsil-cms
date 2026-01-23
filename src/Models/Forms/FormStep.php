@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Narsil\Traits\HasTranslations;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -21,6 +22,7 @@ class FormStep extends Model
 {
     use HasTranslations;
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -87,13 +89,6 @@ class FormStep extends Model
      * @var string
      */
     final public const LABEL = 'label';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     #endregion
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Traits\HasDatetimes;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -19,6 +20,7 @@ class FormWebhook extends Model
 {
     use HasDatetimes;
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -57,13 +59,6 @@ class FormWebhook extends Model
      * @var string
      */
     final public const FORM_ID = 'form_id';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     /**
      * The name of the "url" column.

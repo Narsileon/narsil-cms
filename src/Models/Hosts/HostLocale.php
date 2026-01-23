@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Models\Hosts\Host;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -21,6 +22,7 @@ class HostLocale extends Model
 {
     use HasAuditLogs;
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -71,13 +73,6 @@ class HostLocale extends Model
      * @var string
      */
     final public const PATTERN = 'pattern';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     /**
      * The name of the "regex" column.

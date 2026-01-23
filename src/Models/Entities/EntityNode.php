@@ -14,6 +14,7 @@ use Narsil\Models\Collections\BlockElement;
 use Narsil\Models\Collections\TemplateTabElement;
 use Narsil\Traits\HasTranslations;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -25,6 +26,7 @@ abstract class EntityNode extends Model
 {
     use HasTranslations;
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -109,13 +111,6 @@ abstract class EntityNode extends Model
      * @var string
      */
     final public const PATH = 'path';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     /**
      * The name of the "template tab element uuid" column.

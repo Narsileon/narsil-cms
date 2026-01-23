@@ -6,6 +6,7 @@ namespace Narsil\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -16,6 +17,7 @@ use Narsil\Traits\HasUuidKey;
 abstract class AbstractCondition extends Model
 {
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -48,13 +50,6 @@ abstract class AbstractCondition extends Model
      * @var string
      */
     final public const OPERATOR = 'operator';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     /**
      * The name of the "value" column.

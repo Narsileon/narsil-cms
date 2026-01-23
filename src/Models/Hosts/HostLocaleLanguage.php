@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\App;
 use Locale;
 use Narsil\Traits\HasAuditLogs;
 use Narsil\Traits\HasUuidKey;
+use Narsil\Traits\IsOrderable;
 
 #endregion
 
@@ -22,6 +23,7 @@ class HostLocaleLanguage extends Model
 {
     use HasAuditLogs;
     use HasUuidKey;
+    use IsOrderable;
 
     #region CONSTRUCTOR
 
@@ -65,13 +67,6 @@ class HostLocaleLanguage extends Model
      * @var string
      */
     final public const LOCALE_UUID = 'locale_uuid';
-
-    /**
-     * The name of the "position" column.
-     *
-     * @var string
-     */
-    final public const POSITION = 'position';
 
     #endregion
 
