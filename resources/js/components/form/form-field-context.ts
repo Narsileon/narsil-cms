@@ -1,15 +1,16 @@
-import type { Field } from "@narsil-cms/types";
 import { createContext, useContext } from "react";
 
-export type FormFieldContextProps = Field & {
+export type FormFieldContextProps = {
   error: string | undefined;
   fieldLanguage: string;
+  handle: string;
   setFieldLanguage: (value: string) => void;
 };
 
 export const FormFieldContext = createContext<FormFieldContextProps>({
   error: undefined,
   fieldLanguage: "en",
+  handle: "",
 } as FormFieldContextProps);
 
 function useFormField() {

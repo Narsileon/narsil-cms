@@ -14,9 +14,10 @@ type FortifyFormProps = {
   data?: Record<string, unknown>;
   form: FormType;
   status?: string;
+  title: string;
 };
 
-function FortifyForm({ data, form, status }: FortifyFormProps) {
+function FortifyForm({ data, form, status, title }: FortifyFormProps) {
   const { trans } = useLocalization();
 
   const hasStatus = useRef<boolean>(false);
@@ -31,10 +32,10 @@ function FortifyForm({ data, form, status }: FortifyFormProps) {
 
   return (
     <Container className="gap-6 overflow-hidden" asChild={true} variant="centered">
-      <SectionRoot className="animate-in py-4 fade-in-0 slide-in-from-bottom-10">
+      <SectionRoot className="animate-in gap-3 py-4 fade-in-0 slide-in-from-bottom-10">
         <SectionHeader>
           <Heading level="h1" variant="h4">
-            {form.title}
+            {title}
           </Heading>
         </SectionHeader>
         <SectionContent>

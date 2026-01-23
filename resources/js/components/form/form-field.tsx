@@ -98,6 +98,7 @@ function FormField({ base, conditions, handle, render, translatable }: FormField
   const contextValue = {
     ...base,
     error: getError(),
+    handle: handle,
     fieldLanguage: fieldLanguage,
     setFieldLanguage: setFieldLanguage,
   };
