@@ -20,14 +20,15 @@ abstract class ModelService
     /**
      * @param string $table
      * @param string $attribute
+     * @param array $replace
      *
      * @return string
      */
-    public static function getFieldDescription(string $table, string $attribute): string
+    public static function getFieldDescription(string $table, string $attribute, array $replace = []): string
     {
         $key = "narsil::descriptions.$table.$attribute";
 
-        $label = trans($key);
+        $label = trans($key, $replace);
 
         if ($label === $key)
         {

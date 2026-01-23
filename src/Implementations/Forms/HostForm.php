@@ -5,9 +5,6 @@ namespace Narsil\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
-use Locale;
 use Narsil\Contracts\Fields\ArrayField;
 use Narsil\Contracts\Fields\SelectField;
 use Narsil\Contracts\Fields\TableField;
@@ -22,9 +19,8 @@ use Narsil\Models\Hosts\Host;
 use Narsil\Models\Hosts\HostLocale;
 use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Services\LocaleService;
+use Narsil\Services\ModelService;
 use Narsil\Services\RouteService;
-use Narsil\Support\SelectOption;
-use ResourceBundle;
 
 #endregion
 
@@ -64,6 +60,7 @@ class HostForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Host::TABLE, Host::HOST),
                         TemplateTabElement::HANDLE => Host::HOST,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.host'),
                         TemplateTabElement::REQUIRED => true,
@@ -73,6 +70,7 @@ class HostForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Host::TABLE, Host::LABEL),
                         TemplateTabElement::HANDLE => Host::LABEL,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
@@ -89,12 +87,16 @@ class HostForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil::ui.default_country'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
+                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(HostLocale::TABLE, HostLocale::PATTERN, [
+                            'example' => 'https://{host}/{language}'
+                        ]),
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.pattern'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
+                            Field::SETTINGS => app(TextField::class)
+                                ->defaultvalue('https://{host}/{language}'),
                         ],
                     ],
                     [
@@ -132,12 +134,16 @@ class HostForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
                                     [
+                                        BlockElement::DESCRIPTION => ModelService::getFieldDescription(HostLocale::TABLE, HostLocale::PATTERN, [
+                                            'example' => 'https://{host}/{language}-{country}'
+                                        ]),
                                         BlockElement::HANDLE => HostLocale::PATTERN,
                                         BlockElement::LABEL => trans('narsil::validation.attributes.pattern'),
                                         BlockElement::REQUIRED => true,
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class),
+                                            Field::SETTINGS => app(TextField::class)
+                                                ->defaultvalue('https://{host}/{language}-{country}'),
                                         ],
                                     ],
                                     [
