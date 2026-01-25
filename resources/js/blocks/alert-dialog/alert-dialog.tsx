@@ -51,20 +51,22 @@ function AlertDialog({
             <AlertDialogCancel onClick={cancelClick}>
               {cancelLabel ?? trans("ui.cancel")}
             </AlertDialogCancel>
-            {buttons?.map((button, index) => {
-              return (
-                <AlertDialogAction
-                  onClick={(event) => {
-                    button.onClick?.(event);
+            <div className="flex items-center gap-2">
+              {buttons?.map((button, index) => {
+                return (
+                  <AlertDialogAction
+                    onClick={(event) => {
+                      button.onClick?.(event);
 
-                    setAlertDialog(null);
-                  }}
-                  key={index}
-                >
-                  {button.children ?? trans("ui.confirm")}
-                </AlertDialogAction>
-              );
-            })}
+                      setAlertDialog(null);
+                    }}
+                    key={index}
+                  >
+                    {button.children ?? trans("ui.confirm")}
+                  </AlertDialogAction>
+                );
+              })}
+            </div>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialogPortal>

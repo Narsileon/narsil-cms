@@ -91,17 +91,19 @@ function BuilderItem({
               }
               onCheckedChange={(value) => {
                 setAlertDialog({
-                  title: trans("dialogs.titles.delete"),
-                  description: trans("dialogs.descriptions.delete"),
+                  title: trans(`dialogs.titles.${value ? "activation" : "deactivation"}`),
+                  description: trans(
+                    `dialogs.descriptions.${value ? "activation" : "deactivation"}`,
+                  ),
                   buttons: [
                     {
-                      children: "language",
+                      children: trans("dialogs.buttons.this_language"),
                       onClick: () => {
                         setData?.(`${activeHandle}.${formLanguage}`, value);
                       },
                     },
                     {
-                      children: "global",
+                      children: trans("dialogs.buttons.all_languages"),
                       onClick: () => {
                         setData?.(activeHandle, {
                           en: value,

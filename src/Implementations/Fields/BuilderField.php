@@ -45,6 +45,12 @@ class BuilderField extends AbstractField implements Contract
     public static function bootTranslations(): void
     {
         app(TranslationsBag::class)
+            ->add('narsil::dialogs.buttons.all_languages')
+            ->add('narsil::dialogs.buttons.this_language')
+            ->add('narsil::dialogs.descriptions.activation')
+            ->add('narsil::dialogs.descriptions.deactivation')
+            ->add('narsil::dialogs.titles.activation')
+            ->add('narsil::dialogs.titles.deactivation')
             ->add('narsil::ui.collapse')
             ->add('narsil::ui.expand')
             ->add('narsil::ui.move_down')
