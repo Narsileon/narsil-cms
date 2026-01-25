@@ -23,18 +23,26 @@ class ArrayField extends AbstractField implements Contract
      */
     public function __construct()
     {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up')
-            ->add('narsil::ui.remove');
-
         $this->defaultValue([]);
+
+        parent::__construct();
     }
 
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
+        app(TranslationsBag::class)
+            ->add('narsil::ui.add')
+            ->add('narsil::ui.move_down')
+            ->add('narsil::ui.move_up')
+            ->add('narsil::ui.remove');
+    }
 
     /**
      * {@inheritDoc}

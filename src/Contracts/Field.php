@@ -11,6 +11,11 @@ interface Field
     #region PUBLIC METHODS
 
     /**
+     * @return void
+     */
+    public static function bootTranslations(): void;
+
+    /**
      * @param string|null $prefix
      *
      * @return array

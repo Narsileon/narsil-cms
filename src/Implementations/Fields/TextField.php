@@ -28,6 +28,8 @@ class TextField extends AbstractField implements Contract
     {
         $this->defaultValue('');
         $this->type('text');
+
+        parent::__construct();
     }
 
     #endregion

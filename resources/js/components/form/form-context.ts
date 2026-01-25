@@ -2,7 +2,7 @@ import { type InertiaFormProps } from "@inertiajs/react";
 import { SelectOption } from "@narsil-cms/types";
 import { createContext, useContext } from "react";
 
-export type FormContextProps = Partial<InertiaFormProps<Record<string, unknown>>> & {
+export type FormContextProps = Partial<InertiaFormProps<Record<string, any>>> & {
   action: string;
   defaultLanguage?: string;
   formLanguage: string;

@@ -27,6 +27,8 @@ class NumberField extends AbstractField implements Contract
         $this->set('type', 'number');
 
         $this->defaultValue(0);
+
+        parent::__construct();
     }
 
     #endregion

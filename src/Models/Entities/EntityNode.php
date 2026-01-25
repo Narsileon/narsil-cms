@@ -40,6 +40,7 @@ abstract class EntityNode extends Model
         $this->timestamps = false;
 
         $this->translatable = [
+            self::ACTIVE,
             self::VALUE,
         ];
 
@@ -62,6 +63,13 @@ abstract class EntityNode extends Model
     public const TABLE = 'entity_nodes';
 
     #region • COLUMNS
+
+    /**
+     * The name of the "active" column.
+     *
+     * @var string
+     */
+    final public const ACTIVE = 'active';
 
     /**
      * The name of the "block id" column.

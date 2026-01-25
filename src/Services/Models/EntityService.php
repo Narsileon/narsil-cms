@@ -6,6 +6,7 @@ namespace Narsil\Services\Models;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use Narsil\Contracts\Fields\BuilderField;
 use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\Element;
@@ -103,6 +104,9 @@ abstract class EntityService
                     foreach ($value as $index => $block)
                     {
                         $blockEntityNode = $entityNodeModel::create([
+                            EntityNode::ACTIVE => Arr::get($block, EntityNode::ACTIVE, [
+                                Config::get('app.locale') => true,
+                            ]),
                             EntityNode::BLOCK_ID => Arr::get($block, EntityNode::BLOCK_ID),
                             EntityNode::OWNER_UUID => $entity->{Entity::UUID},
                             EntityNode::PARENT_UUID => $fieldEntityNode->getKey(),

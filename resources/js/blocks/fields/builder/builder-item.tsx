@@ -1,18 +1,21 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Button } from "@narsil-cms/blocks/button";
+import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import {
   CollapsibleContent,
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
-import { FormElement } from "@narsil-cms/components/form";
+import { FormElement, useForm } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItem, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
+import { get } from "lodash-es";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
 
@@ -36,6 +39,8 @@ function BuilderItem({
   onRemove,
   ...props
 }: BuilderItemProps) {
+  const { setAlertDialog } = useAlertDialog();
+  const { data, defaultLanguage, formLanguage, setData } = useForm();
   const { trans } = useLocalization();
 
   const [open, setCollapsed] = useState<boolean>(!collapsed);
@@ -51,6 +56,8 @@ function BuilderItem({
   } = useSortable({
     id: id,
   });
+
+  const activeHandle = `${baseHandle}.active`;
 
   return (
     <CollapsibleRoot
@@ -73,6 +80,38 @@ function BuilderItem({
               tooltip={trans("ui.move")}
             />
             <CardTitle className="grow justify-self-start font-normal">{block.label}</CardTitle>
+            <Switch
+              name={`${baseHandle}.active`}
+              checked={
+                get(
+                  data,
+                  `${activeHandle}.${formLanguage}`,
+                  get(data, `${activeHandle}.${defaultLanguage}`, false),
+                ) as boolean
+              }
+              onCheckedChange={(value) => {
+                setAlertDialog({
+                  title: trans("dialogs.titles.delete"),
+                  description: trans("dialogs.descriptions.delete"),
+                  buttons: [
+                    {
+                      children: "language",
+                      onClick: () => {
+                        setData?.(`${activeHandle}.${formLanguage}`, value);
+                      },
+                    },
+                    {
+                      children: "global",
+                      onClick: () => {
+                        setData?.(activeHandle, {
+                          en: value,
+                        });
+                      },
+                    },
+                  ],
+                });
+              }}
+            />
             <div className="flex items-center gap-1">
               <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
               <Button

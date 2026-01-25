@@ -11,7 +11,9 @@ return [
     |
     */
 
+    \Narsil\Models\Collections\Block::class => \Narsil\Observers\BlockObserver::class,
     \Narsil\Models\Collections\BlockElement::class => \Narsil\Observers\BlockElementObserver::class,
+    \Narsil\Models\Collections\Field::class => \Narsil\Observers\FieldObserver::class,
     \Narsil\Models\Collections\Template::class => \Narsil\Observers\TemplateObserver::class,
     \Narsil\Models\Collections\TemplateTabElement::class => \Narsil\Observers\TemplateTabElementObserver::class,
     \Narsil\Models\Forms\FieldsetElement::class => \Narsil\Observers\FieldsetElementObserver::class,

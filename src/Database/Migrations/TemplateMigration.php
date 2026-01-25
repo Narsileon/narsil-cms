@@ -231,6 +231,9 @@ class TemplateMigration extends Migration
                 ->integer(EntityNode::POSITION)
                 ->default(0);
             $blueprint
+                ->jsonb(EntityNode::ACTIVE)
+                ->nullable();
+            $blueprint
                 ->string(EntityNode::PATH)
                 ->nullable();
             $blueprint

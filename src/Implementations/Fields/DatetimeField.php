@@ -27,6 +27,8 @@ class DatetimeField extends AbstractField implements Contract
         $this->set('type', 'datetime-local');
 
         $this->defaultValue('');
+
+        parent::__construct();
     }
 
     #endregion

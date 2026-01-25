@@ -26,6 +26,8 @@ class TextareaField extends AbstractField implements Contract
     public function __construct()
     {
         $this->defaultValue('');
+
+        parent::__construct();
     }
 
     #endregion

@@ -26,6 +26,8 @@ class RangeField extends AbstractField implements Contract
     public function __construct()
     {
         $this->defaultValue([0]);
+
+        parent::__construct();
     }
 
     #endregion

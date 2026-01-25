@@ -25,16 +25,24 @@ class TableField extends AbstractField implements Contract
     {
         $this->defaultValue([]);
 
+        parent::__construct();
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
         app(TranslationsBag::class)
             ->add('narsil::ui.move')
             ->add('narsil::ui.move_down')
             ->add('narsil::ui.move_up')
             ->add('narsil::ui.remove');
     }
-
-    #endregion
-
-    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}

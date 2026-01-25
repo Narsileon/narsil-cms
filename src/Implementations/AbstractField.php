@@ -15,7 +15,29 @@ use Narsil\Contracts\Field;
  */
 abstract class AbstractField extends Fluent implements Field
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->bootTranslations(false);
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
+        //
+    }
+
+    #region • FLUENT
 
     /**
      * {@inheritDoc}
@@ -36,6 +58,8 @@ abstract class AbstractField extends Fluent implements Field
 
         return $this;
     }
+
+    #endregion
 
     #endregion
 }

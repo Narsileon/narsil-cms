@@ -106,7 +106,7 @@ class InputForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil::validation.attributes.type'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil::placeholders.search'),
+                            Field::PLACEHOLDER => trans('narsil::field-placeholders.search'),
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->reload('form'),

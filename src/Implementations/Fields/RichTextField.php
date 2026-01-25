@@ -30,6 +30,18 @@ class RichTextField extends AbstractField implements Contract
     {
         $this->defaultValue('');
 
+        parent::__construct();
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
         app(TranslationsBag::class)
             ->add('narsil::rich-text-editor.align_center')
             ->add('narsil::rich-text-editor.align_justify')
@@ -53,10 +65,6 @@ class RichTextField extends AbstractField implements Contract
             ->add('narsil::rich-text-editor.underline')
             ->add('narsil::rich-text-editor.undo');
     }
-
-    #endregion
-
-    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}

@@ -23,6 +23,20 @@ class RelationsField extends AbstractField implements Contract
      */
     public function __construct()
     {
+        $this->defaultValue([]);
+
+        parent::__construct();
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
         app(TranslationsBag::class)
             ->add('narsil::ui.cancel')
             ->add('narsil::ui.confirm')
@@ -32,13 +46,7 @@ class RelationsField extends AbstractField implements Contract
             ->add('narsil::validation.unique', [
                 'attribute' => trans('narsil::validation.attributes.identifier'),
             ]);
-
-        $this->defaultValue([]);
     }
-
-    #endregion
-
-    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}

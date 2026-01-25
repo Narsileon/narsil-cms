@@ -29,14 +29,22 @@ class PasswordField extends AbstractField implements Contract
 
         $this->defaultValue('');
 
-        app(TranslationsBag::class)
-            ->add('narsil::accessibility.hide_password')
-            ->add('narsil::accessibility.show_password');
+        parent::__construct();
     }
 
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
+        app(TranslationsBag::class)
+            ->add('narsil::accessibility.hide_password')
+            ->add('narsil::accessibility.show_password');
+    }
 
     /**
      * {@inheritDoc}

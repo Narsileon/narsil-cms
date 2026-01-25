@@ -27,6 +27,8 @@ class TimeField extends AbstractField implements Contract
         $this->set('type', 'time');
 
         $this->defaultValue('');
+
+        parent::__construct();
     }
 
     #endregion

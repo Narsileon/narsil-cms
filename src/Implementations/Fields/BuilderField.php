@@ -32,6 +32,18 @@ class BuilderField extends AbstractField implements Contract
     {
         $this->defaultValue([]);
 
+        parent::__construct();
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
         app(TranslationsBag::class)
             ->add('narsil::ui.collapse')
             ->add('narsil::ui.expand')
@@ -39,10 +51,6 @@ class BuilderField extends AbstractField implements Contract
             ->add('narsil::ui.move_up')
             ->add('narsil::ui.remove');
     }
-
-    #endregion
-
-    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}

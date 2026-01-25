@@ -25,6 +25,8 @@ class SwitchField extends AbstractField implements Contract
     public function __construct()
     {
         $this->defaultValue(false);
+
+        parent::__construct();
     }
 
     #endregion

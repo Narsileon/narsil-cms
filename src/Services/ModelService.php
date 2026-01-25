@@ -26,7 +26,7 @@ abstract class ModelService
      */
     public static function getFieldDescription(string $table, string $attribute, array $replace = []): string
     {
-        $key = "narsil::descriptions.$table.$attribute";
+        $key = "narsil::field-descriptions.$table.$attribute";
 
         $label = trans($key, $replace);
 

@@ -25,6 +25,18 @@ class TreeField extends AbstractField implements Contract
     {
         $this->defaultValue([]);
 
+        parent::__construct();
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function bootTranslations(): void
+    {
         app(TranslationsBag::class)
             ->add('narsil::ui.add_child')
             ->add('narsil::ui.edit')
@@ -32,10 +44,6 @@ class TreeField extends AbstractField implements Contract
             ->add('narsil::ui.move_up')
             ->add('narsil::ui.delete');
     }
-
-    #endregion
-
-    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}

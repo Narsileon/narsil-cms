@@ -28,6 +28,8 @@ class FileField extends AbstractField implements Contract
         $this->set('type', 'file');
 
         $this->defaultValue('');
+
+        parent::__construct();
     }
 
     #endregion

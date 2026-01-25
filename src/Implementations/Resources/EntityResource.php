@@ -115,6 +115,7 @@ class EntityResource extends AbstractResource implements Contract
                     foreach ($blockNodes as $index => $blockNode)
                     {
                         Arr::set($this->data, "$key.$index", [
+                            EntityNode::ACTIVE => $blockNode->getTranslations(EntityNode::ACTIVE),
                             EntityNode::BLOCK_ID => $blockNode->{EntityNode::BLOCK_ID},
                             EntityNode::UUID => $blockNode->{EntityNode::UUID},
                         ]);

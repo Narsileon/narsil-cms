@@ -29,6 +29,8 @@ class EmailField extends AbstractField implements Contract
         $this->set('type', 'email');
 
         $this->defaultvalue('');
+
+        parent::__construct();
     }
 
     #endregion

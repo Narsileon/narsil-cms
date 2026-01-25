@@ -27,6 +27,8 @@ class DateField extends AbstractField implements Contract
         $this->set('type', 'date');
 
         $this->defaultValue('');
+
+        parent::__construct();
     }
 
     #endregion
