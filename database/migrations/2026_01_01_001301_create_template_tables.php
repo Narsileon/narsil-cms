@@ -80,7 +80,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(TemplateTabElementCondition::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->string(TemplateTabElementCondition::HANDLE);
             $blueprint
@@ -134,7 +135,8 @@ return new class extends Migration
                 ->default(false);
             $blueprint
                 ->integer(TemplateTabElement::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->smallInteger(TemplateTabElement::WIDTH)
                 ->default(100);
@@ -163,7 +165,8 @@ return new class extends Migration
                 ->jsonb(TemplateTab::LABEL);
             $blueprint
                 ->integer(TemplateTab::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->timestamps();
         });

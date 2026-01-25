@@ -114,7 +114,8 @@ abstract class Entity extends Model
                 static::entityNodeClass(),
                 EntityNode::OWNER_UUID,
                 self::UUID,
-            );
+            )
+            ->orderBy(EntityNode::POSITION);
     }
 
     /**

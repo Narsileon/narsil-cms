@@ -79,7 +79,8 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->integer(FooterLink::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
         });
     }
 
@@ -110,7 +111,8 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->integer(FooterSocialMedium::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
         });
     }
 

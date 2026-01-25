@@ -229,7 +229,8 @@ class TemplateMigration extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(EntityNode::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->jsonb(EntityNode::ACTIVE)
                 ->nullable();

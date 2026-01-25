@@ -76,7 +76,8 @@ return new class extends Migration
                 ->jsonb(FieldOption::LABEL);
             $blueprint
                 ->integer(FieldOption::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->timestamps();
         });

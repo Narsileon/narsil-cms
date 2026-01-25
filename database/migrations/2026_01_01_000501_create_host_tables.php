@@ -73,7 +73,9 @@ return new class extends Migration
             $blueprint
                 ->string(HostLocaleLanguage::LANGUAGE);
             $blueprint
-                ->integer(HostLocaleLanguage::POSITION);
+                ->integer(HostLocaleLanguage::POSITION)
+                ->default(0)
+                ->index();
             $blueprint
                 ->timestamps();
         });
@@ -101,7 +103,8 @@ return new class extends Migration
                 ->default('default');
             $blueprint
                 ->integer(HostLocale::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->string(HostLocale::PATTERN);
             $blueprint

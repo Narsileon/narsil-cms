@@ -131,7 +131,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(FieldsetElementCondition::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->string(FieldsetElementCondition::HANDLE);
             $blueprint
@@ -182,7 +183,8 @@ return new class extends Migration
                 ->default(false);
             $blueprint
                 ->integer(FieldsetElement::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->smallInteger(FieldsetElement::WIDTH)
                 ->default(100);
@@ -263,7 +265,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(FieldsetElementCondition::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->string(FormStepElementCondition::HANDLE);
             $blueprint
@@ -314,7 +317,8 @@ return new class extends Migration
                 ->default(false);
             $blueprint
                 ->integer(FormStepElement::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->smallInteger(FormStepElement::WIDTH)
                 ->default(100);
@@ -346,7 +350,8 @@ return new class extends Migration
                 ->nullable();
             $blueprint
                 ->integer(FormStep::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->timestamps();
         });
@@ -401,7 +406,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(FormWebhook::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->string(FormWebhook::URL);
         });
@@ -429,7 +435,8 @@ return new class extends Migration
                 ->jsonb(InputOption::LABEL);
             $blueprint
                 ->integer(InputOption::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->timestamps();
         });

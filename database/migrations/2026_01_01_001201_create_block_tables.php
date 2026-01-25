@@ -81,7 +81,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(BlockElementCondition::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->string(BlockElementCondition::HANDLE);
             $blueprint
@@ -135,7 +136,8 @@ return new class extends Migration
                 ->default(false);
             $blueprint
                 ->integer(BlockElement::POSITION)
-                ->default(0);
+                ->default(0)
+                ->index();
             $blueprint
                 ->smallInteger(BlockElement::WIDTH)
                 ->default(100);
