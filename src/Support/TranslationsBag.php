@@ -17,9 +17,9 @@ final class TranslationsBag
     #region PROPERTIES
 
     /**
-     * @var array<string,string>
+     * @var array<string,array{key:string,replace:array}>
      */
-    protected array $translations = [];
+    protected array $data = [];
 
     #endregion
 
@@ -30,7 +30,14 @@ final class TranslationsBag
      */
     public function get(): array
     {
-        return $this->translations;
+        $translations = [];
+
+        foreach ($this->data as $translation => $data)
+        {
+            $translations[$translation] = trans($data['key'], $data['replace']);
+        }
+
+        return $translations;
     }
 
     #region • FLUENT METHODS
@@ -45,7 +52,10 @@ final class TranslationsBag
     {
         $translation = Str::contains($key, '::') ? explode('::', $key)[1] : $key;
 
-        $this->translations[$translation] = trans($key, $replace);
+        $this->data[$translation] = [
+            'key' => $key,
+            'replace' => $replace
+        ];
 
         return $this;
     }

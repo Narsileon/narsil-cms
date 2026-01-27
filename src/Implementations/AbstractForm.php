@@ -46,6 +46,11 @@ abstract class AbstractForm extends Fluent implements Form
             ->submitLabel(trans('narsil::ui.save'))
             ->tabs($tabs);
 
+        foreach (Config::get('narsil.fields', []) as $field)
+        {
+            app($field)::bootTranslations();
+        }
+
         app(TranslationsBag::class)
             ->add('narsil::accessibility.required')
             ->add('narsil::datetime.by')
