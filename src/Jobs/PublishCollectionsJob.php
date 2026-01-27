@@ -25,8 +25,11 @@ class PublishCollectionsJob extends AbstractJob
      */
     public function handle(): void
     {
-        $templates = Template::all();
-
+        $templates = Template::query()
+            ->without([
+                Template::RELATION_TABS,
+            ])
+            ->get();
 
         $jobs = $templates->map(function ($template)
         {

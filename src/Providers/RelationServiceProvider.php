@@ -7,6 +7,7 @@ namespace Narsil\Providers;
 use Exception;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\BlockElement;
@@ -55,6 +56,7 @@ class RelationServiceProvider extends ServiceProvider
         }
         catch (Exception $exception)
         {
+            Log::error($exception);
         }
     }
 
@@ -101,17 +103,23 @@ class RelationServiceProvider extends ServiceProvider
      */
     protected function bootTemplateMorphMap(): void
     {
-        Cache::tags([Template::TABLE])->rememberForever('morph_map', function ()
+        $map = Cache::tags([Template::TABLE])->rememberForever('morph_map', function ()
         {
-            $templates = Template::all();
+            $templates = Template::query()
+                ->without([Template::RELATION_TABS])
+                ->get();
+
+            $map = [];
 
             foreach ($templates as $template)
             {
-                Relation::enforceMorphMap([
-                    $template->entityTable() => $template->entityClass(),
-                ]);
+                $map[$template->entityTable()] = $template->entityClass();
             }
+
+            return $map;
         });
+
+        Relation::enforceMorphMap($map);
     }
 
     #endregion

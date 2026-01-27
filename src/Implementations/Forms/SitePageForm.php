@@ -110,7 +110,7 @@ class SitePageForm extends AbstractForm implements Contract
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EntityField::class,
                             Field::SETTINGS => app(EntityField::class)
-                                ->collections(Template::all()->pluck(Template::ID)->toArray()),
+                                ->collections($collections),
                         ],
                     ],
                     [
@@ -263,6 +263,9 @@ class SitePageForm extends AbstractForm implements Contract
     protected function getCollections(): array
     {
         return Template::query()
+            ->without([
+                Template::RELATION_TABS,
+            ])
             ->pluck(Template::ID)
             ->toArray();
     }
