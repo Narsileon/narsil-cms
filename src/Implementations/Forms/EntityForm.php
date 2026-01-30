@@ -25,10 +25,9 @@ class EntityForm extends AbstractForm implements Contract
     #region CONSTRUCTOR
 
     /**
-     * @param Template $template
-     * @param Model|null $model
+     * {@inheritDoc}
      *
-     * @return void
+     * @param Template $template
      */
     public function __construct(Template $template, ?Model $model = null)
     {

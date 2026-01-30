@@ -37,7 +37,6 @@ return [
     'delete_selected'    => 'Delete selected',
     'delete'             => 'Delete',
     'deselect_all'       => 'Deselect all',
-    'documents'          => 'Documents',
     'duplicate_selected' => 'Duplicate selected',
     'duplicate'          => 'Duplicate',
     'edit'               => 'Edit',
@@ -56,7 +55,6 @@ return [
     'globals'            => 'Globals',
     'hide'               => 'Hide',
     'home'               => 'Home',
-    'images'             => 'Images',
     'information'        => 'Information',
     'links'              => 'Links',
     'localization'       => 'Localization',
@@ -112,5 +110,4 @@ return [
     'unpublish'          => 'Unpublish',
     'update'             => 'Update',
     'validation'         => 'Validation',
-    'videos'             => 'Videos',
 ];

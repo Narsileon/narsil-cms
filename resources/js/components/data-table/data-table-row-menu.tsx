@@ -18,7 +18,7 @@ import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 type DataTableRowMenuProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "id"> & {
-  id?: number;
+  id?: number | string;
   modal?: boolean;
   routes: RouteNames;
   table?: Table<Model>;

@@ -7,8 +7,10 @@ namespace Narsil\Http\Controllers\Storages;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Contracts\Forms\HostForm;
+use Narsil\Contracts\Forms\MediaForm;
+use Narsil\Enums\RequestMethodEnum;
 use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Collections\DataTableCollection;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Models\Storages\Media;
 use Narsil\Services\ModelService;
@@ -19,7 +21,7 @@ use Narsil\Services\ModelService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaIndexController extends RenderController
+class MediaCreateController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -31,12 +33,12 @@ class MediaIndexController extends RenderController
      */
     public function __invoke(Request $request, string $disk): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Media::class);
+        $this->authorize(PermissionEnum::CREATE, Media::class);
 
-        $collection = $this->getCollection();
+        $form = $this->getForm();
 
-        return $this->render('narsil/cms::resources/index', [
-            'collection' => $collection,
+        return $this->render('narsil/cms::resources/form', [
+            'form' => $form,
         ]);
     }
 
@@ -45,30 +47,34 @@ class MediaIndexController extends RenderController
     #region PROTECTED METHODS
 
     /**
-     * Get the associated collection.
-     *
-     * @param string $disk
-     *
-     * @return DataTableCollection
-     */
-    protected function getCollection(): DataTableCollection
-    {
-        $disk = request('disk');
-
-        $query = Media::query()
-            ->where(Media::DISK, $disk);
-
-        return new DataTableCollection($query, Media::TABLE);
-    }
-
-    /**
      * {@inheritDoc}
      */
     protected function getDescription(): string
     {
         $disk = request('disk');
 
-        return ModelService::getTableLabel($disk);
+        return ModelService::getModelLabel($disk);
+    }
+
+    /**
+     * Get the associated form.
+     *
+     * @return MediaForm
+     */
+    protected function getForm(): MediaForm
+    {
+        $disk = request('disk');
+
+        $form = app(MediaForm::class, [
+            'disk' => $disk,
+        ])
+            ->action(route('media.store', [
+                'disk' => $disk,
+            ]))
+            ->method(RequestMethodEnum::POST->value)
+            ->submitLabel(trans('narsil::ui.save'));
+
+        return $form;
     }
 
     /**
@@ -78,7 +84,7 @@ class MediaIndexController extends RenderController
     {
         $disk = request('disk');
 
-        return ModelService::getTableLabel($disk);
+        return ModelService::getModelLabel($disk);
     }
 
     #endregion

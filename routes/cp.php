@@ -121,7 +121,14 @@ use Narsil\Http\Controllers\Sites\Pages\SitePageUpdateController;
 use Narsil\Http\Controllers\Sites\SiteEditController;
 use Narsil\Http\Controllers\Sites\SiteSummaryController;
 use Narsil\Http\Controllers\Sites\SiteUpdateController;
+use Narsil\Http\Controllers\Storages\MediaCreateController;
+use Narsil\Http\Controllers\Storages\MediaDestroyController;
+use Narsil\Http\Controllers\Storages\MediaDestroyManyController;
+use Narsil\Http\Controllers\Storages\MediaEditController;
 use Narsil\Http\Controllers\Storages\MediaIndexController;
+use Narsil\Http\Controllers\Storages\MediaStoreController;
+use Narsil\Http\Controllers\Storages\MediaSummaryController;
+use Narsil\Http\Controllers\Storages\MediaUpdateController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkDestroyController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkIndexController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkStoreController;
@@ -352,21 +359,21 @@ Route::middleware([
 
         Route::prefix(Str::slug(Media::TABLE))->name(Str::slug(Media::TABLE) . '.')->group(function ()
         {
-            Route::get('/', MediaIndexController::class)
+            Route::get('/', MediaSummaryController::class)
                 ->name('summary');
             Route::get('/{disk}', MediaIndexController::class)
                 ->name('index');
-            Route::get('/{disk}/create', MediaIndexController::class)
+            Route::get('/{disk}/create', MediaCreateController::class)
                 ->name('create');
-            Route::post('/{disk}', MediaIndexController::class)
+            Route::post('/{disk}', MediaStoreController::class)
                 ->name('store');
-            Route::get('/{disk}/{id}/edit', MediaIndexController::class)
+            Route::get('/{disk}/{id}/edit', MediaEditController::class)
                 ->name('edit');
-            Route::patch('/{disk}/{id}', MediaIndexController::class)
+            Route::patch('/{disk}/{id}', MediaUpdateController::class)
                 ->name('update');
-            Route::delete('/{disk}/{id}', MediaIndexController::class)
+            Route::delete('/{disk}/{id}', MediaDestroyController::class)
                 ->name('destroy');
-            Route::delete('/{disk}', MediaIndexController::class)
+            Route::delete('/{disk}', MediaDestroyManyController::class)
                 ->name('destroy-many');
         });
 

@@ -26,6 +26,7 @@ return [
     \Narsil\Contracts\Forms\HeaderForm::class => \Narsil\Implementations\Forms\HeaderForm::class,
     \Narsil\Contracts\Forms\HostForm::class => \Narsil\Implementations\Forms\HostForm::class,
     \Narsil\Contracts\Forms\InputForm::class => \Narsil\Implementations\Forms\InputForm::class,
+    \Narsil\Contracts\Forms\MediaForm::class => \Narsil\Implementations\Forms\MediaForm::class,
     \Narsil\Contracts\Forms\PermissionForm::class => \Narsil\Implementations\Forms\PermissionForm::class,
     \Narsil\Contracts\Forms\PublishForm::class => \Narsil\Implementations\Forms\PublishForm::class,
     \Narsil\Contracts\Forms\RoleForm::class => \Narsil\Implementations\Forms\RoleForm::class,

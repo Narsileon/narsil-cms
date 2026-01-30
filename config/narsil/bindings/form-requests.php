@@ -23,6 +23,7 @@ return [
     \Narsil\Contracts\FormRequests\HeaderFormRequest::class => \Narsil\Implementations\Requests\HeaderFormRequest::class,
     \Narsil\Contracts\FormRequests\HostFormRequest::class => \Narsil\Implementations\Requests\HostFormRequest::class,
     \Narsil\Contracts\FormRequests\InputFormRequest::class => \Narsil\Implementations\Requests\InputFormRequest::class,
+    \Narsil\Contracts\FormRequests\MediaFormRequest::class => \Narsil\Implementations\Requests\MediaFormRequest::class,
     \Narsil\Contracts\FormRequests\PermissionFormRequest::class => \Narsil\Implementations\Requests\PermissionFormRequest::class,
     \Narsil\Contracts\FormRequests\RoleFormRequest::class => \Narsil\Implementations\Requests\RoleFormRequest::class,
     \Narsil\Contracts\FormRequests\SitePageFormRequest::class => \Narsil\Implementations\Requests\SitePageFormRequest::class,

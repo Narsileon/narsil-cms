@@ -52,9 +52,11 @@ return new class extends Migration
                 ->uuid(Media::UUID)
                 ->primary();
             $blueprint
-                ->string(Media::DISK);
+                ->string(Media::DISK)
+                ->index();
             $blueprint
-                ->string(Media::PATH);
+                ->string(Media::PATH)
+                ->index();
             $blueprint
                 ->jsonb(Media::ALT)
                 ->nullable();

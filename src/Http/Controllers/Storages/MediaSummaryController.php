@@ -1,18 +1,19 @@
 <?php
 
-namespace Narsil\Http\Controllers\Sites;
+namespace Narsil\Http\Controllers\Storages;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 use Inertia\Response;
+use Narsil\Enums\DiskEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
 use Narsil\Http\Data\SummaryData;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Sites\Site;
+use Narsil\Models\Storages\Media;
+use Narsil\Services\ModelService;
 
 #endregion
 
@@ -20,7 +21,7 @@ use Narsil\Models\Sites\Site;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteSummaryController extends RenderController
+class MediaSummaryController extends RenderController
 {
     #region PUBLIC METHODS
 
@@ -32,21 +33,19 @@ class SiteSummaryController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Site::class);
+        $this->authorize(PermissionEnum::VIEW_ANY, Media::class);
 
-        $locale = App::getLocale();
+        $items = [];
 
-        $hosts = Host::query()
-            ->orderBy(Host::LABEL . "->$locale", 'asc')
-            ->get();
-
-        $items = $hosts->map(function ($host)
+        foreach (DiskEnum::cases() as $case)
         {
-            return new SummaryData(
-                href: route('sites.edit', $host->{Host::HOSTNAME}),
-                name: $host->{Host::LABEL},
+            $items[] = new SummaryData(
+                href: route('media.index', [
+                    'disk' => $case->value,
+                ]),
+                name: Str::ucfirst(trans(ModelService::getTableLabel($case->value))),
             );
-        });
+        }
 
         return $this->render('narsil/cms::summary/index', [
             'items' => $items,
@@ -62,7 +61,7 @@ class SiteSummaryController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.sites');
+        return trans(ModelService::getTableLabel(Media::TABLE));
     }
 
     /**
@@ -70,7 +69,7 @@ class SiteSummaryController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.sites');
+        return trans(ModelService::getTableLabel(Media::TABLE));
     }
 
     #endregion

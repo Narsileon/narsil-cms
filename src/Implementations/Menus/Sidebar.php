@@ -5,6 +5,7 @@ namespace Narsil\Implementations\Menus;
 #region USE
 
 use Narsil\Contracts\Menus\Sidebar as Contract;
+use Narsil\Enums\DiskEnum;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Implementations\AbstractMenu;
 use Narsil\Models\Configuration;
@@ -121,30 +122,30 @@ class Sidebar extends AbstractMenu implements Contract
             new MenuItem()
                 ->group($group)
                 ->href(route('media.index', [
-                    'disk' => 'documents',
+                    'disk' => DiskEnum::DOCUMENTS->value,
                 ]))
                 ->icon('file')
-                ->label(trans('narsil::ui.documents'))
+                ->label(ModelService::getTableLabel(DiskEnum::DOCUMENTS->value))
                 ->permissions([
                     PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('media.index', [
-                    'disk' => 'images',
+                    'disk' => DiskEnum::IMAGES->value,
                 ]))
                 ->icon('image')
-                ->label(trans('narsil::ui.images'))
+                ->label(ModelService::getTableLabel(DiskEnum::IMAGES->value))
                 ->permissions([
                     PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),
             new MenuItem()
                 ->group($group)
                 ->href(route('media.index', [
-                    'disk' => 'videos',
+                    'disk' => DiskEnum::VIDEOS->value,
                 ]))
                 ->icon('video')
-                ->label(trans('narsil::ui.videos'))
+                ->label(ModelService::getTableLabel(DiskEnum::VIDEOS->value))
                 ->permissions([
                     PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]),

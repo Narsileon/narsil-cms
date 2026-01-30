@@ -17,7 +17,7 @@ function getMenuColumn(routes: RouteNames): ColumnDef<Model> {
       );
     },
     cell: ({ row }) => {
-      return <DataTableRowMenu id={row.original.id} routes={routes} />;
+      return <DataTableRowMenu id={row.original.id ?? row.original.uuid} routes={routes} />;
     },
     enableHiding: false,
     enableSorting: false,

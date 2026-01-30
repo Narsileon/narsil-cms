@@ -2,6 +2,7 @@
 
 #region USE
 
+use Narsil\Enums\DiskEnum;
 use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\Field;
 use Narsil\Models\Collections\Template;
@@ -17,6 +18,7 @@ use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Storages\Media;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
@@ -34,6 +36,7 @@ return [
     Input::class => 'input',
     Header::class => 'header',
     Host::class => 'host',
+    Media::class => 'file',
     Permission::class => 'permission',
     Role::class => 'role',
     Site::class => 'website',
@@ -42,4 +45,8 @@ return [
     User::class => 'user',
     UserBookmark::class => 'bookmark',
     UserConfiguration::class => 'settings',
+
+    DiskEnum::DOCUMENTS->value => 'document',
+    DiskEnum::IMAGES->value => 'image',
+    DiskEnum::VIDEOS->value => 'video',
 ];

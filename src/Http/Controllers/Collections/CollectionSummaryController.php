@@ -7,10 +7,11 @@ namespace Narsil\Http\Controllers\Collections;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Narsil\Enums\Policies\PermissionEnum;
 use Narsil\Http\Controllers\RenderController;
-use Narsil\Http\Resources\Collections\CollectionSummaryResource;
+use Narsil\Http\Data\SummaryData;
 use Narsil\Models\Collections\Template;
 use Narsil\Models\Entities\Entity;
 
@@ -41,8 +42,13 @@ class CollectionSummaryController extends RenderController
             ->orderBy(Template::PLURAL . "->$locale", 'asc')
             ->get();
 
-        $items = CollectionSummaryResource::collection($templates)
-            ->resolve($request);
+        $items = $templates->map(function ($template)
+        {
+            return new SummaryData(
+                href: route("collections.index", $template->{Template::TABLE_NAME}),
+                name: Str::ucfirst($template->{Template::PLURAL}),
+            );
+        });
 
         return $this->render('narsil/cms::summary/index', [
             'items' => $items,

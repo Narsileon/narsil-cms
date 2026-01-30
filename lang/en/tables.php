@@ -2,6 +2,7 @@
 
 #region USE
 
+use Narsil\Enums\DiskEnum;
 use Narsil\Models\Collections\Block;
 use Narsil\Models\Collections\Field;
 use Narsil\Models\Collections\Template;
@@ -60,4 +61,8 @@ return [
     UserBookmark::TABLE => 'bookmarks',
     UserConfiguration::TABLE => 'settings',
     ValidationRule::TABLE => 'validation rules',
+
+    DiskEnum::DOCUMENTS->value => 'documents',
+    DiskEnum::IMAGES->value => 'images',
+    DiskEnum::VIDEOS->value => 'videos',
 ];
