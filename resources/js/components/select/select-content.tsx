@@ -4,21 +4,29 @@ import { type ComponentProps } from "react";
 
 type SelectContentProps = ComponentProps<typeof Select.Content>;
 
-function SelectContent({ className, position = "popper", ...props }: SelectContentProps) {
+function SelectContent({
+  align = "center",
+  className,
+  position = "item-aligned",
+  ...props
+}: SelectContentProps) {
   return (
     <Select.Content
       data-slot="select-content"
+      data-align-trigger={position === "item-aligned"}
       className={cn(
-        "relative z-50 overflow-x-hidden overflow-y-auto rounded-xl border bg-popover text-popover-foreground shadow-md",
-        "data-[state=closed]:animate-out data-[state=open]:animate-in",
-        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+        "relative z-50 overflow-x-hidden overflow-y-auto rounded-xl border bg-popover text-popover-foreground shadow-md will-change-transform",
+        "data-[align-trigger=true]:animate-none",
         "data-[side=bottom]:slide-in-from-top-2",
+        "data-[side=inline-end]:slide-in-from-left-2",
+        "data-[side=inline-start]:slide-in-from-right-2",
         "data-[side=left]:slide-in-from-right-2",
         "data-[side=right]:slide-in-from-left-2",
         "data-[side=top]:slide-in-from-bottom-2",
+        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
         "max-h-(--radix-select-content-available-height)",
-        "origin-(--radix-select-content-transform-origin) will-change-transform",
+        "origin-(--radix-select-content-transform-origin)",
         position === "popper" &&
           cn(
             "data-[side=bottom]:translate-y-1",
@@ -28,6 +36,7 @@ function SelectContent({ className, position = "popper", ...props }: SelectConte
           ),
         className,
       )}
+      align={align}
       position={position}
       {...props}
     />
