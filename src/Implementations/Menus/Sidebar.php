@@ -21,6 +21,7 @@ use Narsil\Models\Hosts\Host;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
+use Narsil\Models\Storages\Media;
 use Narsil\Models\User;
 use Narsil\Services\ModelService;
 use Narsil\Services\PermissionService;
@@ -67,6 +68,7 @@ class Sidebar extends AbstractMenu implements Contract
             $this->getSiteGroup(),
             $this->getGlobalsGroup(),
             $this->getCollectionsGroup(),
+            $this->getFilesGroup(),
             $this->getFormsGroup(),
             $this->getStructuresGroup(),
             $this->getManagementGroup(),
@@ -106,6 +108,47 @@ class Sidebar extends AbstractMenu implements Contract
         }
 
         return $menuItems;
+    }
+
+    /**
+     * @return array<MenuItem>
+     */
+    protected function getFilesGroup(): array
+    {
+        $group = trans(ModelService::getTableLabel(Media::TABLE));
+
+        return [
+            new MenuItem()
+                ->group($group)
+                ->href(route('media.index', [
+                    'disk' => 'documents',
+                ]))
+                ->icon('file')
+                ->label(trans('narsil::ui.documents'))
+                ->permissions([
+                    PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]),
+            new MenuItem()
+                ->group($group)
+                ->href(route('media.index', [
+                    'disk' => 'images',
+                ]))
+                ->icon('image')
+                ->label(trans('narsil::ui.images'))
+                ->permissions([
+                    PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]),
+            new MenuItem()
+                ->group($group)
+                ->href(route('media.index', [
+                    'disk' => 'videos',
+                ]))
+                ->icon('video')
+                ->label(trans('narsil::ui.videos'))
+                ->permissions([
+                    PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]),
+        ];
     }
 
     /**

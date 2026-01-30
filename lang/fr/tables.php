@@ -24,6 +24,7 @@ use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Storages\Media;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
@@ -48,6 +49,7 @@ return [
     HostLocale::TABLE => 'locales',
     HostLocaleLanguage::TABLE => 'langages',
     Input::TABLE => 'entrées',
+    Media::TABLE => 'médias',
     Permission::TABLE => 'permissions',
     Role::TABLE => 'rôles',
     Site::VIRTUAL_TABLE => 'sites web',

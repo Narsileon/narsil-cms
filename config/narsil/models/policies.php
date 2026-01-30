@@ -26,5 +26,6 @@ return [
     \Narsil\Models\Policies\Role::class => \Narsil\Policies\RolePolicy::class,
     \Narsil\Models\Sites\Site::class => \Narsil\Policies\SitePolicy::class,
     \Narsil\Models\Sites\SitePage::class => \Narsil\Policies\SitePagePolicy::class,
+    \Narsil\Models\Storages\Media::class => \Narsil\Policies\MediaPolicy::class,
     \Narsil\Models\User::class => \Narsil\Policies\UserPolicy::class,
 ];

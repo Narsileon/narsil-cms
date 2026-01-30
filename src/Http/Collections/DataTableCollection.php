@@ -196,7 +196,7 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::accessibility.toggle_row_menu')
             ->add('narsil::dialogs.descriptions.delete')
             ->add('narsil::dialogs.titles.delete')
-            ->add('narsil::field-placeholders.search')
+            ->add('narsil::placeholders.search')
             ->add('narsil::pagination.pages_count')
             ->add('narsil::pagination.pages_empty')
             ->add('narsil::pagination.pagination')

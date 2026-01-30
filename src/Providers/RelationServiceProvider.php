@@ -30,6 +30,7 @@ use Narsil\Models\Hosts\HostLocaleLanguage;
 use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Storages\Media;
 use Narsil\Models\User;
 
 #endregion
@@ -87,6 +88,7 @@ class RelationServiceProvider extends ServiceProvider
             HostLocale::TABLE => HostLocale::class,
             HostLocaleLanguage::TABLE => HostLocaleLanguage::class,
             Input::TABLE => Input::class,
+            Media::TABLE => Media::class,
             Permission::TABLE => Permission::class,
             Role::TABLE => Role::class,
             SitePage::TABLE => SitePage::class,

@@ -121,6 +121,7 @@ use Narsil\Http\Controllers\Sites\Pages\SitePageUpdateController;
 use Narsil\Http\Controllers\Sites\SiteEditController;
 use Narsil\Http\Controllers\Sites\SiteSummaryController;
 use Narsil\Http\Controllers\Sites\SiteUpdateController;
+use Narsil\Http\Controllers\Storages\MediaIndexController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkDestroyController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkIndexController;
 use Narsil\Http\Controllers\UserBookmarks\UserBookmarkStoreController;
@@ -149,6 +150,7 @@ use Narsil\Models\Policies\Permission;
 use Narsil\Models\Policies\Role;
 use Narsil\Models\Sites\Site;
 use Narsil\Models\Sites\SitePage;
+use Narsil\Models\Storages\Media;
 use Narsil\Models\User;
 use Narsil\Models\Users\UserBookmark;
 use Narsil\Models\Users\UserConfiguration;
@@ -346,6 +348,26 @@ Route::middleware([
                 ->name('replicate');
             Route::post('/replicate-many', InputReplicateManyController::class)
                 ->name('replicate-many');
+        });
+
+        Route::prefix(Str::slug(Media::TABLE))->name(Str::slug(Media::TABLE) . '.')->group(function ()
+        {
+            Route::get('/', MediaIndexController::class)
+                ->name('summary');
+            Route::get('/{disk}', MediaIndexController::class)
+                ->name('index');
+            Route::get('/{disk}/create', MediaIndexController::class)
+                ->name('create');
+            Route::post('/{disk}', MediaIndexController::class)
+                ->name('store');
+            Route::get('/{disk}/{id}/edit', MediaIndexController::class)
+                ->name('edit');
+            Route::patch('/{disk}/{id}', MediaIndexController::class)
+                ->name('update');
+            Route::delete('/{disk}/{id}', MediaIndexController::class)
+                ->name('destroy');
+            Route::delete('/{disk}', MediaIndexController::class)
+                ->name('destroy-many');
         });
 
         Route::prefix(Str::slug(Permission::TABLE))->name(Str::slug(Permission::TABLE) . '.')->group(function ()

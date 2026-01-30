@@ -23,5 +23,6 @@ return [
     \Narsil\Models\Hosts\Host::TABLE => \Narsil\Implementations\Tables\HostTable::class,
     \Narsil\Models\Policies\Permission::TABLE => \Narsil\Implementations\Tables\PermissionTable::class,
     \Narsil\Models\Policies\Role::TABLE => \Narsil\Implementations\Tables\RoleTable::class,
+    \Narsil\Models\Storages\Media::TABLE => \Narsil\Implementations\Tables\MediaTable::class,
     \Narsil\Models\User::TABLE => \Narsil\Implementations\Tables\UserTable::class,
 ];

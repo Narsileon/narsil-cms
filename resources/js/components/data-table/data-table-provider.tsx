@@ -160,7 +160,7 @@ function DataTableProvider({
       ...state,
     },
     getCoreRowModel: getCoreRowModel(),
-    getRowId: (row) => row.id.toString(),
+    getRowId: (row) => row.id?.toString() ?? row.uuid,
     onColumnOrderChange: handleColumnOrderChange,
     onColumnSizingChange: handleColumnSizingChange,
     onColumnVisibilityChange: handleColumnVisibilityChange,

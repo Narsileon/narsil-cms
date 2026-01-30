@@ -103,6 +103,7 @@ import {
   UserIcon,
   UserPenIcon,
   UsersIcon,
+  VideoIcon,
   XIcon,
 } from "lucide-react";
 import { type ComponentType, type SVGProps } from "react";
@@ -219,6 +220,7 @@ const defaultRegistry: Registry = {
   ["undo"]: UndoIcon,
   ["user-edit"]: UserPenIcon,
   ["user"]: UserIcon,
+  ["video"]: VideoIcon,
   ["x"]: XIcon,
 };
 
