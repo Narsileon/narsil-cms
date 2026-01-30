@@ -1,16 +1,18 @@
-// https://www.radix-ui.com/primitives/docs/components/tooltip
+// https://base-ui.com/react/components/tooltip
 
 import TooltipArrow from "./tooltip-arrow";
-import TooltipContent from "./tooltip-content";
+import TooltipPopup from "./tooltip-popup";
 import TooltipPortal from "./tooltip-portal";
+import TooltipPositioner from "./tooltip-positioner";
 import TooltipProvider from "./tooltip-provider";
 import TooltipRoot from "./tooltip-root";
 import TooltipTrigger from "./tooltip-trigger";
 
 export {
   TooltipArrow,
-  TooltipContent,
+  TooltipPopup,
   TooltipPortal,
+  TooltipPositioner,
   TooltipProvider,
   TooltipRoot,
   TooltipTrigger,

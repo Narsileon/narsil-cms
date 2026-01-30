@@ -1,7 +1,8 @@
 import {
   TooltipArrow,
-  TooltipContent,
+  TooltipPopup,
   TooltipPortal,
+  TooltipPositioner,
   TooltipProvider,
   TooltipRoot,
   TooltipTrigger,
@@ -10,16 +11,19 @@ import { type ComponentProps, type ReactNode } from "react";
 
 type TooltipProps = ComponentProps<typeof TooltipRoot> & {
   arrowProps?: Partial<ComponentProps<typeof TooltipArrow>>;
-  contentProps?: Partial<ComponentProps<typeof TooltipContent>>;
+  popupProps?: Partial<ComponentProps<typeof TooltipPopup>>;
   portalProps?: Partial<ComponentProps<typeof TooltipPortal>>;
+  positionerProps?: Partial<ComponentProps<typeof TooltipPositioner>>;
   triggerProps?: Partial<ComponentProps<typeof TooltipTrigger>>;
   tooltip: string | ReactNode;
+} & {
+  children: ReactNode;
 };
 
 function Tooltip({
   arrowProps,
   children,
-  contentProps,
+  popupProps,
   portalProps,
   tooltip,
   triggerProps,
@@ -30,10 +34,12 @@ function Tooltip({
       <TooltipRoot {...props}>
         <TooltipTrigger {...triggerProps}>{children}</TooltipTrigger>
         <TooltipPortal {...portalProps}>
-          <TooltipContent {...contentProps}>
-            {tooltip}
-            <TooltipArrow {...arrowProps} />
-          </TooltipContent>
+          <TooltipPositioner>
+            <TooltipPopup {...popupProps}>
+              {tooltip}
+              <TooltipArrow {...arrowProps} />
+            </TooltipPopup>
+          </TooltipPositioner>
         </TooltipPortal>
       </TooltipRoot>
     </TooltipProvider>

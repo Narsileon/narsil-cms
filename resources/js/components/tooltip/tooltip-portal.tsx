@@ -1,9 +1,6 @@
-import { Tooltip } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Tooltip } from "@base-ui/react/tooltip";
 
-type TooltipPortalProps = ComponentProps<typeof Tooltip.Portal>;
-
-function TooltipPortal({ ...props }: TooltipPortalProps) {
+function TooltipPortal({ ...props }: Tooltip.Portal.Props) {
   return <Tooltip.Portal data-slot="tooltip-portal" {...props} />;
 }
 

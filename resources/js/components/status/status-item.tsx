@@ -10,7 +10,7 @@ function StatusItem({ className, tooltip, ...props }: StatusItemProps) {
   return (
     <Tooltip
       tooltip={tooltip}
-      contentProps={{
+      popupProps={{
         className: "pointer-events-none",
       }}
     >

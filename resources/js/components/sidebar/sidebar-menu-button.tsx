@@ -84,12 +84,14 @@ function SidebarMenuButton({
 
   return (
     <Tooltip
-      contentProps={{
-        align: "center",
+      tooltip={tooltip}
+      popupProps={{
         hidden: state !== "collapsed" || isMobile,
+      }}
+      positionerProps={{
+        align: "center",
         side: "right",
       }}
-      tooltip={tooltip}
     >
       {button}
     </Tooltip>
