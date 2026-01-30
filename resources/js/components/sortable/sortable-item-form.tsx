@@ -1,7 +1,6 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { Button } from "@narsil-cms/blocks/button";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
-import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import {
   DialogBody,
   DialogContent,
@@ -81,9 +80,7 @@ function SortableItemForm({
               return (
                 <>
                   <DialogBody className={cn(form.tabs.length > 1 && "p-0")}>
-                    <VisuallyHidden>
-                      <DialogDescription></DialogDescription>
-                    </VisuallyHidden>
+                    <DialogDescription className="sr-only"></DialogDescription>
                     <FormRoot className="grid-cols-12 gap-4">
                       <FormSteps tabs={form.tabs} />
                     </FormRoot>

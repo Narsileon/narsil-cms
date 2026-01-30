@@ -1,4 +1,3 @@
-import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import {
   DialogBody,
   DialogContent,
@@ -63,10 +62,9 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
           <DialogHeader className="border-b">
             <DialogTitle>{modal.componentProps.title}</DialogTitle>
           </DialogHeader>
-          <VisuallyHidden asChild={true}>
-            <DialogDescription>{modal.componentProps.description}</DialogDescription>
-          </VisuallyHidden>
-
+          <DialogDescription className="sr-only">
+            {modal.componentProps.description}
+          </DialogDescription>
           <LocalizationProvider translations={modal.componentProps.translations}>
             <DialogBody className="p-0">
               {Component ? <Component modal={modal} {...modal.componentProps} /> : null}

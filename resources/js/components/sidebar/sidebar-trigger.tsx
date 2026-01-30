@@ -1,14 +1,11 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
-import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 
-type SidebarTriggerProps = ComponentProps<typeof Button>;
-
-function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
+function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof Button>) {
   const { trans } = useLocalization();
   const { toggleSidebar } = useSidebar();
 
@@ -30,7 +27,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
         }}
         {...props}
       >
-        <VisuallyHidden>{tooltip}</VisuallyHidden>
+        <span className="sr-only">{tooltip}</span>
       </Button>
     </Tooltip>
   );

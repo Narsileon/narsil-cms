@@ -1,17 +1,18 @@
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
-import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/repositories/icons";
 import { Dialog } from "radix-ui";
 import { type ComponentProps } from "react";
 
-type DialogCloseButtonProps = ComponentProps<typeof Dialog.Close> & {
+function DialogCloseButton({
+  className,
+  icon = "x",
+  ...props
+}: ComponentProps<typeof Dialog.Close> & {
   icon?: IconName;
-};
-
-function DialogCloseButton({ className, icon = "x", ...props }: DialogCloseButtonProps) {
+}) {
   const { trans } = useLocalization();
 
   const tooltip = trans("accessibility.close_dialog");
@@ -32,7 +33,7 @@ function DialogCloseButton({ className, icon = "x", ...props }: DialogCloseButto
         {...props}
       >
         <Icon name={icon} />
-        <VisuallyHidden>{tooltip}</VisuallyHidden>
+        <span className="sr-only">{tooltip}</span>
       </Dialog.Close>
     </Tooltip>
   );

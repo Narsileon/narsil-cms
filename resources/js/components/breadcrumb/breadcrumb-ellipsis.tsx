@@ -1,13 +1,14 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { VisuallyHidden } from "@narsil-cms/blocks/visually-hidden";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type BreadcrumbEllipsisProps = ComponentProps<"span"> & {
+function BreadcrumbEllipsis({
+  className,
+  ellipsisLabel,
+  ...props
+}: ComponentProps<"span"> & {
   ellipsisLabel?: string;
-};
-
-function BreadcrumbEllipsis({ className, ellipsisLabel, ...props }: BreadcrumbEllipsisProps) {
+}) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"
@@ -17,7 +18,7 @@ function BreadcrumbEllipsis({ className, ellipsisLabel, ...props }: BreadcrumbEl
       {...props}
     >
       <Icon className="size-4" name="more-horizontal" />
-      <VisuallyHidden>{ellipsisLabel ?? "More links"}</VisuallyHidden>
+      <span className="sr-only">{ellipsisLabel ?? "More links"}</span>
     </span>
   );
 }
