@@ -1,8 +1,9 @@
-// https://www.radix-ui.com/primitives/docs/components/slider
+// https://base-ui.com/react/components/slider
 
-import SliderRange from "./slider-range";
+import SliderControl from "./slider-control";
+import SliderIndicator from "./slider-indicator";
 import SliderRoot from "./slider-root";
 import SliderThumb from "./slider-thumb";
 import SliderTrack from "./slider-track";
 
-export { SliderRange, SliderRoot, SliderThumb, SliderTrack };
+export { SliderControl, SliderIndicator, SliderRoot, SliderThumb, SliderTrack };

@@ -1,4 +1,10 @@
-import { SliderRange, SliderRoot, SliderThumb, SliderTrack } from "@narsil-cms/components/slider";
+import {
+  SliderControl,
+  SliderIndicator,
+  SliderRoot,
+  SliderThumb,
+  SliderTrack,
+} from "@narsil-cms/components/slider";
 import { useMemo, type ComponentProps } from "react";
 
 type SliderProps = ComponentProps<typeof SliderRoot>;
@@ -10,12 +16,14 @@ function Slider({ defaultValue, value, min = 0, max = 100, ...props }: SliderPro
 
   return (
     <SliderRoot defaultValue={defaultValue} value={value} min={min} max={max} {...props}>
-      <SliderTrack>
-        <SliderRange />
-      </SliderTrack>
-      {Array.from({ length: computedValue.length }, (_, index) => {
-        return <SliderThumb key={index} />;
-      })}
+      <SliderControl>
+        <SliderTrack>
+          <SliderIndicator />
+        </SliderTrack>
+        {Array.from({ length: computedValue.length }, (_, index) => {
+          return <SliderThumb key={index} />;
+        })}
+      </SliderControl>
     </SliderRoot>
   );
 }

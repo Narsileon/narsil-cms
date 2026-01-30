@@ -180,7 +180,7 @@ const defaultRegistry: Registry = {
         id={props.id}
         name={props.id}
         value={isArray(props.value) ? props.value : [props.value]}
-        onValueChange={([value]) => props.setValue(value)}
+        onValueChange={(value) => props.setValue(value)}
       />
     );
   },
