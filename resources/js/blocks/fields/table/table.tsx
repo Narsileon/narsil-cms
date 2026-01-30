@@ -1,4 +1,3 @@
-import { Label } from "@/blocks/label";
 import {
   closestCenter,
   DndContext,
@@ -13,8 +12,8 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { Label } from "@narsil-cms/blocks/label";
 import { useFormField } from "@narsil-cms/components/form";
-import { LabelRequired } from "@narsil-cms/components/label";
 import {
   TableBody,
   TableCell,
@@ -144,10 +143,7 @@ function Table({ columns, placeholder, rows, setRows }: TableProps) {
                 {columns.map((column, index) => {
                   return (
                     <TableHead className="px-3" key={index}>
-                      <Label>
-                        {upperFirst(column.label)}
-                        {column.required && <LabelRequired />}
-                      </Label>
+                      <Label required={column.required}>{upperFirst(column.label)}</Label>
                     </TableHead>
                   );
                 })}

@@ -1,18 +1,14 @@
 import { cn } from "@narsil-cms/lib/utils";
-import { Label } from "radix-ui";
 import { type ComponentProps } from "react";
 
-type LabelRootProps = ComponentProps<typeof Label.Root>;
-
-function LabelRoot({ className, ...props }: LabelRootProps) {
+function LabelRoot({ className, ...props }: ComponentProps<"label">) {
   return (
-    <Label.Root
+    <label
       data-slot="label-root"
       className={cn(
-        "flex items-start leading-none font-medium select-none",
+        "flex items-center leading-none font-medium select-none",
         "group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50",
         "peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
-        "[&>svg:first-child]:mr-1",
         className,
       )}
       {...props}

@@ -1,14 +1,9 @@
 import { Label } from "@narsil-cms/blocks/label";
-import { LabelRequired } from "@narsil-cms/components/label";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 import useFormField from "./form-field-context";
 
-type FormLabelProps = ComponentProps<typeof Label> & {
-  required?: boolean;
-};
-
-function FormLabel({ children, className, required = false, ...props }: FormLabelProps) {
+function FormLabel({ children, className, ...props }: ComponentProps<typeof Label>) {
   const { error, handle } = useFormField();
 
   return (
@@ -20,7 +15,6 @@ function FormLabel({ children, className, required = false, ...props }: FormLabe
       {...props}
     >
       <span className="first-letter:uppercase">{children}</span>
-      {required && <LabelRequired />}
     </Label>
   );
 }

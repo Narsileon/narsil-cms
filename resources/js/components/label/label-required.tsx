@@ -1,17 +1,11 @@
-import { Tooltip } from "@/blocks/tooltip";
-import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type LabelRequiredProps = ComponentProps<"span"> & {};
-
-function LabelRequired({ className }: LabelRequiredProps) {
-  const { trans } = useLocalization();
-
+function LabelRequired({ className, ...props }: ComponentProps<"span">) {
   return (
-    <Tooltip tooltip={trans("accessibility.required")}>
-      <span className={cn(className, "text-destructive")}>*</span>
-    </Tooltip>
+    <span data-slot="label-required" className={cn("text-destructive", className)} {...props}>
+      *
+    </span>
   );
 }
 
