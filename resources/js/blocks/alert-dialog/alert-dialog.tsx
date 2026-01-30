@@ -1,11 +1,11 @@
 import {
   AlertDialogAction,
+  AlertDialogBackdrop,
   AlertDialogCancel,
-  AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogOverlay,
+  AlertDialogPopup,
   AlertDialogPortal,
   AlertDialogRoot,
   AlertDialogTitle,
@@ -17,6 +17,7 @@ import { type ComponentProps, type MouseEventHandler } from "react";
 
 type AlertDialogProps = ComponentProps<typeof AlertDialogRoot> & {
   cancelLabel?: string;
+  children: React.ReactNode;
   description?: string;
   title?: string;
   buttons?: ComponentProps<typeof AlertDialogAction>[];
@@ -37,10 +38,10 @@ function AlertDialog({
 
   return (
     <AlertDialogRoot {...props}>
-      <AlertDialogTrigger asChild={true}>{children}</AlertDialogTrigger>
+      <AlertDialogTrigger>{children}</AlertDialogTrigger>
       <AlertDialogPortal>
-        <AlertDialogOverlay />
-        <AlertDialogContent>
+        <AlertDialogBackdrop />
+        <AlertDialogPopup>
           <AlertDialogHeader>
             <AlertDialogTitle>{title ?? trans("dialogs.titles.default")}</AlertDialogTitle>
             <AlertDialogDescription>
@@ -68,7 +69,7 @@ function AlertDialog({
               })}
             </div>
           </AlertDialogFooter>
-        </AlertDialogContent>
+        </AlertDialogPopup>
       </AlertDialogPortal>
     </AlertDialogRoot>
   );

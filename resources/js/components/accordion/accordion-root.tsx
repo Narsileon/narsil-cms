@@ -1,10 +1,14 @@
-import { Accordion } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Accordion } from "@base-ui/react/accordion";
+import { cn } from "@narsil-cms/lib/utils";
 
-type AccordionRootProps = ComponentProps<typeof Accordion.Root>;
-
-function AccordionRoot({ ...props }: AccordionRootProps) {
-  return <Accordion.Root data-slot="accordion-root" {...props} />;
+function AccordionRoot({ className, ...props }: Accordion.Root.Props) {
+  return (
+    <Accordion.Root
+      data-slot="accordion-root"
+      className={cn("flex w-full flex-col", className)}
+      {...props}
+    />
+  );
 }
 
 export default AccordionRoot;

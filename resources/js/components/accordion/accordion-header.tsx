@@ -1,10 +1,7 @@
+import { Accordion } from "@base-ui/react/accordion";
 import { cn } from "@narsil-cms/lib/utils";
-import { Accordion } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type AccordionHeaderProps = ComponentProps<typeof Accordion.Header>;
-
-function AccordionHeader({ className, ...props }: AccordionHeaderProps) {
+function AccordionHeader({ className, ...props }: Accordion.Header.Props) {
   return (
     <Accordion.Header data-slot="accordion-header" className={cn("flex", className)} {...props} />
   );

@@ -1,14 +1,11 @@
+import { Accordion } from "@base-ui/react/accordion";
 import { cn } from "@narsil-cms/lib/utils";
-import { Accordion } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type AccordionItemProps = ComponentProps<typeof Accordion.Item>;
-
-function AccordionItem({ className, ...props }: AccordionItemProps) {
+function AccordionItem({ className, ...props }: Accordion.Item.Props) {
   return (
     <Accordion.Item
       data-slot="accordion-item"
-      className={cn("border-b", "last:border-b-0", className)}
+      className={cn("not-last:border-b", className)}
       {...props}
     />
   );

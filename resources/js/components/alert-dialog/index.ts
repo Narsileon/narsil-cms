@@ -1,13 +1,14 @@
-// https://www.radix-ui.com/primitives/docs/components/alert-dialog
+// https://base-ui.com/react/components/alert-dialog
 
 import AlertDialogAction from "./alert-dialog-action";
+import AlertDialogBackdrop from "./alert-dialog-backdrop";
 import AlertDialogCancel from "./alert-dialog-cancel";
-import AlertDialogContent from "./alert-dialog-content";
 import useAlertDialog from "./alert-dialog-context";
 import AlertDialogDescription from "./alert-dialog-description";
 import AlertDialogFooter from "./alert-dialog-footer";
 import AlertDialogHeader from "./alert-dialog-header";
-import AlertDialogOverlay from "./alert-dialog-overlay";
+import AlertDialogMedia from "./alert-dialog-media";
+import AlertDialogPopup from "./alert-dialog-popup";
 import AlertDialogPortal from "./alert-dialog-portal";
 import AlertDialogProvider from "./alert-dialog-provider";
 import AlertDialogRoot from "./alert-dialog-root";
@@ -16,12 +17,13 @@ import AlertDialogTrigger from "./alert-dialog-trigger";
 
 export {
   AlertDialogAction,
+  AlertDialogBackdrop,
   AlertDialogCancel,
-  AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogOverlay,
+  AlertDialogMedia,
+  AlertDialogPopup,
   AlertDialogPortal,
   AlertDialogProvider,
   AlertDialogRoot,

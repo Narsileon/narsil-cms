@@ -1,22 +1,8 @@
-import { buttonRootVariants } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
-import { AlertDialog } from "radix-ui";
+import { ButtonRoot } from "@/components/button";
 import { type ComponentProps } from "react";
 
-type AlertDialogActionProps = ComponentProps<typeof AlertDialog.Action>;
-
-function AlertDialogAction({ className, ...props }: AlertDialogActionProps) {
-  return (
-    <AlertDialog.Action
-      className={cn(
-        buttonRootVariants({
-          className: className,
-          variant: "primary",
-        }),
-      )}
-      {...props}
-    />
-  );
+function AlertDialogAction({ ...props }: ComponentProps<typeof ButtonRoot>) {
+  return <ButtonRoot data-slot="alert-dialog-action" {...props} />;
 }
 
 export default AlertDialogAction;

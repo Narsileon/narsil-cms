@@ -1,19 +1,15 @@
-import { buttonRootVariants } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
-import { AlertDialog } from "radix-ui";
-import { type ComponentProps } from "react";
+import { ButtonRoot } from "@/components/button";
+import { AlertDialog } from "@base-ui/react/alert-dialog";
 
-type AlertDialogCancelProps = ComponentProps<typeof AlertDialog.Cancel>;
-
-function AlertDialogCancel({ className, ...props }: AlertDialogCancelProps) {
+function AlertDialogCancel({
+  size,
+  variant,
+  ...props
+}: AlertDialog.Close.Props & Pick<React.ComponentProps<typeof ButtonRoot>, "variant" | "size">) {
   return (
-    <AlertDialog.Cancel
-      className={cn(
-        buttonRootVariants({
-          className: className,
-          variant: "outline",
-        }),
-      )}
+    <AlertDialog.Close
+      data-slot="alert-dialog-cancel"
+      render={<ButtonRoot variant={variant} size={size} />}
       {...props}
     />
   );

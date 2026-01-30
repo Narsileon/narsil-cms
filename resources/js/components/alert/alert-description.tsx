@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type AlertDescriptionProps = ComponentProps<"div">;
-
-function AlertDescription({ className, ...props }: AlertDescriptionProps) {
+function AlertDescription({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-description"

@@ -1,17 +1,14 @@
+import { Accordion } from "@base-ui/react/accordion";
 import { cn } from "@narsil-cms/lib/utils";
-import { Accordion } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type AccordionTriggerProps = ComponentProps<typeof Accordion.Trigger>;
-
-function AccordionTrigger({ className, ...props }: AccordionTriggerProps) {
+function AccordionTrigger({ className, ...props }: Accordion.Trigger.Props) {
   return (
     <Accordion.Trigger
       data-slot="accordion-trigger"
       className={cn(
-        "group flex flex-1 cursor-pointer items-start justify-between gap-4 rounded-md py-4 text-left transition-all outline-none",
+        "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none",
         "disabled:pointer-events-none disabled:opacity-50",
-        "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50",
+        "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:after:border-ring",
         "hover:underline",
         className,
       )}

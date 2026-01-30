@@ -1,8 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
-type AlertTitleProps = ComponentProps<"div">;
 
-function AlertTitle({ className, ...props }: AlertTitleProps) {
+function AlertTitle({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-title"
