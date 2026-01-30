@@ -49,9 +49,6 @@ function AlertDialog({
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={cancelClick}>
-              {cancelLabel ?? trans("ui.cancel")}
-            </AlertDialogCancel>
             <div className="flex items-center gap-2">
               {buttons?.map((button, index) => {
                 return (
@@ -68,6 +65,9 @@ function AlertDialog({
                 );
               })}
             </div>
+            <AlertDialogCancel onClick={cancelClick}>
+              {cancelLabel ?? trans("ui.cancel")}
+            </AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogPopup>
       </AlertDialogPortal>

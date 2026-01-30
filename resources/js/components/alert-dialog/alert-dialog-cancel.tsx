@@ -1,5 +1,5 @@
-import { ButtonRoot } from "@/components/button";
 import { AlertDialog } from "@base-ui/react/alert-dialog";
+import { ButtonRoot } from "@narsil-cms/components/button";
 
 function AlertDialogCancel({
   size,

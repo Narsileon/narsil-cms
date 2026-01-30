@@ -1,4 +1,4 @@
-import { ButtonRoot } from "@/components/button";
+import { ButtonRoot } from "@narsil-cms/components/button";
 import { type ComponentProps } from "react";
 
 function AlertDialogAction({ ...props }: ComponentProps<typeof ButtonRoot>) {
