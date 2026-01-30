@@ -1,17 +1,11 @@
+import { Progress } from "@base-ui/react/progress";
 import { cn } from "@narsil-cms/lib/utils";
-import { Progress } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type ProgressIndicatorProps = ComponentProps<typeof Progress.Indicator>;
-
-function ProgressIndicator({ className, ...props }: ProgressIndicatorProps) {
+function ProgressIndicator({ className, ...props }: Progress.Indicator.Props) {
   return (
     <Progress.Indicator
       data-slot="progress-indicator"
-      className={cn(
-        "h-full w-full flex-1 bg-primary transition-all will-change-transform",
-        className,
-      )}
+      className={cn("h-full bg-primary transition-all", className)}
       {...props}
     />
   );

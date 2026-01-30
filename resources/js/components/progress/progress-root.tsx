@@ -1,14 +1,11 @@
+import { Progress } from "@base-ui/react/progress";
 import { cn } from "@narsil-cms/lib/utils";
-import { Progress } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type ProgressRootProps = ComponentProps<typeof Progress.Root>;
-
-function ProgressRoot({ className, ...props }: ProgressRootProps) {
+function ProgressRoot({ className, ...props }: Progress.Root.Props) {
   return (
     <Progress.Root
       data-slot="progress-root"
-      className={cn("relative h-2 w-full overflow-hidden rounded-full bg-primary/20", className)}
+      className={cn("flex flex-wrap gap-3", className)}
       {...props}
     />
   );
