@@ -1,17 +1,17 @@
-import { Tooltip } from "@base-ui/react/tooltip";
+import { PreviewCard } from "@base-ui/react/preview-card";
 import { cn } from "@narsil-cms/lib/utils";
 
-function TooltipPositioner({
+function PreviewCardPositioner({
   className,
   align = "center",
-  alignOffset = 0,
-  side = "top",
+  alignOffset = 4,
+  side = "bottom",
   sideOffset = 4,
   ...props
-}: Tooltip.Positioner.Props) {
+}: PreviewCard.Positioner.Props) {
   return (
-    <Tooltip.Positioner
-      data-slot="tooltip-positioner"
+    <PreviewCard.Positioner
+      data-slot="preview-card-positioner"
       className={cn("isolate z-50", className)}
       align={align}
       alignOffset={alignOffset}
@@ -22,4 +22,4 @@ function TooltipPositioner({
   );
 }
 
-export default TooltipPositioner;
+export default PreviewCardPositioner;
