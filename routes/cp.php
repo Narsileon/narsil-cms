@@ -416,7 +416,7 @@ Route::middleware([
             Route::get('/{site}/edit', SiteEditController::class)
                 ->middleware(CountryMiddleware::class)
                 ->name('edit');
-            Route::patch('/{site:handle}', SiteUpdateController::class)
+            Route::patch('/{site:hostname}', SiteUpdateController::class)
                 ->name('update');
 
             Route::name('pages.')->group(function ()
