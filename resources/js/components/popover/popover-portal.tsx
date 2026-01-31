@@ -1,9 +1,6 @@
-import { Popover } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Popover } from "@base-ui/react/popover";
 
-type PopoverPortalProps = ComponentProps<typeof Popover.Portal>;
-
-function PopoverPortal({ ...props }: PopoverPortalProps) {
+function PopoverPortal({ ...props }: Popover.Portal.Props) {
   return <Popover.Portal data-slot="popover-portal" {...props} />;
 }
 
