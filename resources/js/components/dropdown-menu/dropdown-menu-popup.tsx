@@ -6,7 +6,7 @@ function DropdownMenuPopup({ className, ...props }: Menu.Popup.Props) {
     <Menu.Popup
       data-slot="dropdown-menu-popup"
       className={cn(
-        "z-50 min-w-32 overflow-x-hidden overflow-y-auto rounded-lg bg-popover p-1 text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 outline-none",
+        "z-50 min-w-fit overflow-x-hidden overflow-y-auto rounded-lg bg-popover p-1 text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 outline-none",
         "data-[side=bottom]:slide-in-from-top-2",
         "data-[side=inline-end]:slide-in-from-left-2",
         "data-[side=inline-start]:slide-in-from-right-2",

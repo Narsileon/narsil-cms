@@ -19,7 +19,7 @@ function DropdownMenuItem({
       data-variant={variant}
       className={cn(
         "group/menu-item",
-        "relative flex w-full cursor-default items-center justify-start gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none",
+        "relative flex min-h-9 w-full cursor-default items-center justify-start gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none",
         "[&_svg:not([class*='size-'])]:size-4",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "dark:data-[variant=destructive]:focus:bg-destructive/20",

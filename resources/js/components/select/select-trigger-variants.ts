@@ -9,7 +9,6 @@ const selectTriggerVariants = cva(
     "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5",
     "aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20",
     "dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
-    "dark:bg-input/30",
     "dark:hover:bg-input/50",
     "data-[size=default]:h-8 data-[size=sm]:h-7",
     "data-[size=sm]:rounded-[min(var(--radius-md),10px)]",
@@ -31,7 +30,9 @@ const selectTriggerVariants = cva(
           "hover:bg-secondary",
           "data-[state=open]:border-shine",
         ),
-        inline: cn("focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"),
+        inline: cn(
+          "px-1 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        ),
       },
     },
     defaultVariants: {
