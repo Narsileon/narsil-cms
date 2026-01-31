@@ -68,7 +68,7 @@ class InputForm extends AbstractForm implements Contract
             [
                 TemplateTab::HANDLE => 'definition',
                 TemplateTab::LABEL => trans('narsil::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [
+                TemplateTab::RELATION_ELEMENTS => array_filter([
                     [
                         TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Input::TABLE, Input::HANDLE),
                         TemplateTabElement::HANDLE => Input::HANDLE,
@@ -113,14 +113,14 @@ class InputForm extends AbstractForm implements Contract
                             Field::RELATION_OPTIONS => $typeSelectOptions,
                         ],
                     ],
-                    [
+                    !empty($settings) ? [
+                        TemplateTabElement::LABEL => trans('narsil::ui.settings'),
                         TemplateTabElement::RELATION_BASE => [
                             Block::COLLAPSIBLE => true,
-                            Block::LABEL => trans('narsil::ui.settings'),
                             Block::RELATION_ELEMENTS =>  $settings,
                         ],
-                    ],
-                ],
+                    ] : null,
+                ]),
             ],
             [
                 TemplateTab::HANDLE => 'validation',
