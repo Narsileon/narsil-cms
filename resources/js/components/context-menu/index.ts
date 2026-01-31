@@ -1,4 +1,5 @@
-// https://www.radix-ui.com/primitives/docs/components/context-menu
+// https://ui.shadcn.com/docs/components/base/context-menu
+// https://base-ui.com/react/components/context-menu
 
 import ContextMenuCheckboxItem from "./context-menu-checkbox-item";
 import ContextMenuContent from "./context-menu-content";

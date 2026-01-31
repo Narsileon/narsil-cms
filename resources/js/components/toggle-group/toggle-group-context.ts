@@ -4,11 +4,13 @@ import { createContext, useContext } from "react";
 
 type ToggleGroupContextProps = VariantProps<typeof toggleRootVariants> & {
   orientation: "horizontal" | "vertical";
+  spacing?: number;
 };
 
 export const ToggleGroupContext = createContext<ToggleGroupContextProps>({
   orientation: "horizontal",
   size: "default",
+  spacing: 0,
   variant: "default",
 });
 

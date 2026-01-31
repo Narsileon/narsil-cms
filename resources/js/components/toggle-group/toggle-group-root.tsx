@@ -1,46 +1,48 @@
+import { ToggleGroup } from "@base-ui/react/toggle-group";
 import { toggleRootVariants } from "@narsil-cms/components/toggle";
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
-import { ToggleGroup } from "radix-ui";
-import { type ComponentProps } from "react";
 import { ToggleGroupContext } from "./toggle-group-context";
 
-type ToggleGroupRootProps = ComponentProps<typeof ToggleGroup.Root> &
-  VariantProps<typeof toggleRootVariants>;
+type ToggleGroupRootProps = ToggleGroup.Props &
+  VariantProps<typeof toggleRootVariants> & {
+    orientation?: "horizontal" | "vertical";
+    spacing?: number;
+  };
 
 function ToggleGroupRoot({
   children,
   className,
   orientation = "horizontal",
   size,
+  spacing = 0,
   variant,
   ...props
 }: ToggleGroupRootProps) {
   return (
-    <ToggleGroup.Root
-      data-slot="toggle-group"
-      data-orientation={orientation}
-      data-size={size}
+    <ToggleGroup
+      data-slot="toggle-group-root"
       data-variant={variant}
+      data-size={size}
+      data-spacing={spacing}
+      data-orientation={orientation}
+      style={{ "--gap": spacing } as React.CSSProperties}
       className={cn(
-        "group/toggle-group flex w-fit items-center rounded-md",
-        "data-[variant=outline]:shadow-sm",
-        orientation === "vertical" && "w-full flex-col gap-1",
-        orientation === "horizontal" && "w-fit flex-row",
+        "group/toggle-group",
+        "flex w-fit flex-row items-center rounded-lg",
+        "gap-[--spacing(var(--gap))]",
+        "data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch",
+        "data-[size=sm]:rounded-[min(var(--radius-md),10px)]",
         className,
       )}
       {...props}
     >
       <ToggleGroupContext.Provider
-        value={{
-          orientation: orientation,
-          size: size,
-          variant: variant,
-        }}
+        value={{ orientation: orientation, spacing: spacing, size: size, variant: variant }}
       >
         {children}
       </ToggleGroupContext.Provider>
-    </ToggleGroup.Root>
+    </ToggleGroup>
   );
 }
 
