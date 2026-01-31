@@ -1,12 +1,10 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SectionRootProps = ComponentProps<"section">;
-
-const SectionRoot = ({ className, ...props }: SectionRootProps) => {
+function SectionRoot({ className, ...props }: ComponentProps<"section">) {
   return (
     <section data-slot="section-root" className={cn("flex flex-col gap-4", className)} {...props} />
   );
-};
+}
 
 export default SectionRoot;

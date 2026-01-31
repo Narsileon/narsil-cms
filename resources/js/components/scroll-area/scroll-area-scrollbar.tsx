@@ -1,27 +1,25 @@
+import { ScrollArea } from "@base-ui/react/scroll-area";
 import { cn } from "@narsil-cms/lib/utils";
-import { ScrollArea } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type ScrollAreaScrollbarProp = ComponentProps<typeof ScrollArea.ScrollAreaScrollbar>;
-
-const ScrollAreaScrollBar = ({
+function ScrollAreaScrollBar({
   className,
   orientation = "vertical",
   ...props
-}: ScrollAreaScrollbarProp) => {
+}: ScrollArea.Scrollbar.Props) {
   return (
-    <ScrollArea.ScrollAreaScrollbar
+    <ScrollArea.Scrollbar
       data-slot="scroll-area-scrollbar"
+      data-orientation={orientation}
       className={cn(
         "flex touch-none p-px transition-colors select-none",
-        orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent",
-        orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent",
+        "data-horizontal:h-2.5 data-horizontal:flex-col data-horizontal:border-t data-horizontal:border-t-transparent",
+        "data-vertical:h-full data-vertical:w-2.5 data-vertical:border-l data-vertical:border-l-transparent",
         className,
       )}
       orientation={orientation}
       {...props}
     />
   );
-};
+}
 
 export default ScrollAreaScrollBar;

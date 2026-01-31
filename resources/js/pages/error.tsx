@@ -6,7 +6,7 @@ type ErrorProps = {
   title: string;
 };
 
-const Error = ({ description, title }: ErrorProps) => {
+function Error({ description, title }: ErrorProps) {
   return (
     <Container className="flex h-full items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-4">
@@ -17,6 +17,6 @@ const Error = ({ description, title }: ErrorProps) => {
       </div>
     </Container>
   );
-};
+}
 
 export default Error;

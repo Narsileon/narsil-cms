@@ -14,14 +14,14 @@ type ScrollAreaProps = ComponentProps<typeof ScrollAreaRoot> & {
   viewportProps?: Partial<ComponentProps<typeof ScrollAreaViewport>>;
 };
 
-const ScrollArea = ({
+function ScrollArea({
   children,
   cornerProps,
   scrollbarProps,
   thumbProps,
   viewportProps,
   ...props
-}: ScrollAreaProps) => {
+}: ScrollAreaProps) {
   return (
     <ScrollAreaRoot {...props}>
       <ScrollAreaViewport {...viewportProps}>{children}</ScrollAreaViewport>
@@ -31,6 +31,6 @@ const ScrollArea = ({
       <ScrollAreaCorner {...cornerProps} />
     </ScrollAreaRoot>
   );
-};
+}
 
 export default ScrollArea;

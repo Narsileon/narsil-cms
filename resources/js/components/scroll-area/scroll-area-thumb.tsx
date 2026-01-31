@@ -1,17 +1,14 @@
+import { ScrollArea } from "@base-ui/react/scroll-area";
 import { cn } from "@narsil-cms/lib/utils";
-import { ScrollArea } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type ScrollAreaThumbProps = ComponentProps<typeof ScrollArea.ScrollAreaThumb>;
-
-const ScrollAreaThumb = ({ className, ...props }: ScrollAreaThumbProps) => {
+function ScrollAreaThumb({ className, ...props }: ScrollArea.Thumb.Props) {
   return (
-    <ScrollArea.ScrollAreaThumb
+    <ScrollArea.Thumb
       data-slot="scroll-area-thumb"
       className={cn("relative flex-1 rounded-full bg-border", className)}
       {...props}
     />
   );
-};
+}
 
 export default ScrollAreaThumb;

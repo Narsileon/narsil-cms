@@ -7,10 +7,10 @@ type LocalizationProviderProps = {
   translations: Record<string, string>;
 };
 
-const LocalizationProvider = ({
+function LocalizationProvider({
   children,
   translations: initialTranslations,
-}: LocalizationProviderProps) => {
+}: LocalizationProviderProps) {
   const [translations, setTranslations] = useState<Record<string, string>>(initialTranslations);
 
   useEffect(() => {
@@ -47,6 +47,6 @@ const LocalizationProvider = ({
       {children}
     </LocalizationContext.Provider>
   );
-};
+}
 
 export default LocalizationProvider;

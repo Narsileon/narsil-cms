@@ -1,25 +1,18 @@
+import { ScrollArea } from "@base-ui/react/scroll-area";
 import { cn } from "@narsil-cms/lib/utils";
-import { ScrollArea } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type ScrollAreaViewportProps = ComponentProps<typeof ScrollArea.Viewport> & {
-  orientation?: ComponentProps<typeof ScrollArea.Viewport>;
-};
-
-const ScrollAreaViewport = ({ asChild = false, className, ...props }: ScrollAreaViewportProps) => {
+function ScrollAreaViewport({ className, ...props }: ScrollArea.Viewport.Props) {
   return (
     <ScrollArea.Viewport
       data-slot="scroll-area-viewport"
       className={cn(
-        "size-full rounded-[inherit] transition-[color,box-shadow] outline-none",
-        "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-1",
-        asChild && "block!",
+        "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px]",
+        "focus-visible:ring-ring/50 focus-visible:outline-1",
         className,
       )}
-      asChild={asChild}
       {...props}
     />
   );
-};
+}
 
 export default ScrollAreaViewport;
