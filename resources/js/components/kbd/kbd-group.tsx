@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type KbdGroupProps = ComponentProps<"div">;
-
-function KbdGroup({ className, ...props }: KbdGroupProps) {
+function KbdGroup({ className, ...props }: ComponentProps<"div">) {
   return (
     <kbd
       data-slot="kbd-group"

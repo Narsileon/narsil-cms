@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type KbdRootProps = ComponentProps<"kbd">;
-
-function KbdRoot({ className, ...props }: KbdRootProps) {
+function KbdRoot({ className, ...props }: ComponentProps<"kbd">) {
   return (
     <kbd
       data-slot="kbd-root"

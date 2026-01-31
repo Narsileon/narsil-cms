@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type TextareaRootProps = ComponentProps<"textarea">;
-
-function TextareaRoot({ className, ...props }: TextareaRootProps) {
+function TextareaRoot({ className, ...props }: ComponentProps<"textarea">) {
   return (
     <textarea
       data-slot="textarea-root"
