@@ -1,14 +1,19 @@
+import { Avatar } from "@base-ui/react/avatar";
 import { cn } from "@narsil-cms/lib/utils";
-import { Avatar } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type AvatarRootProps = ComponentProps<typeof Avatar.Root>;
-
-function AvatarRoot({ className, ...props }: AvatarRootProps) {
+function AvatarRoot({ className, ...props }: Avatar.Root.Props) {
   return (
     <Avatar.Root
       data-slot="avatar-root"
-      className={cn("relative flex size-9 shrink-0 overflow-hidden rounded-full", className)}
+      className={cn(
+        "group/avatar",
+        "relative flex size-8 shrink-0 rounded-full select-none",
+        "after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken",
+        "dark:after:mix-blend-lighten",
+        "data-[size=lg]:size-10",
+        "data-[size=sm]:size-6",
+        className,
+      )}
       {...props}
     />
   );

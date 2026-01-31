@@ -1,3 +1,4 @@
+// https://ui.shadcn.com/docs/components/base/slider
 // https://base-ui.com/react/components/slider
 
 import SliderControl from "./slider-control";

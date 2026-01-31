@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/textarea
+// https://ui.shadcn.com/docs/components/base/textarea
 
 import TextareaRoot from "./textarea-root";
 

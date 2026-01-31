@@ -6,7 +6,7 @@ function AccordionPanel({ children, className, ...props }: Accordion.Panel.Props
     <Accordion.Panel
       data-slot="accordion-panel"
       className={cn(
-        "overflow-hidden",
+        "overflow-hidden text-sm",
         "data-open:animate-accordion-down",
         "data-closed:animate-accordion-up",
       )}

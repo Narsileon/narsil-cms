@@ -1,3 +1,4 @@
+// https://ui.shadcn.com/docs/components/base/scroll-area
 // https://base-ui.com/react/components/scroll-area
 
 import ScrollAreaCorner from "./scroll-area-corner";

@@ -5,7 +5,7 @@ function ProgressLabel({ className, ...props }: Progress.Label.Props) {
   return (
     <Progress.Label
       data-slot="progress-label"
-      className={cn("font-medium", className)}
+      className={cn("text-sm font-medium", className)}
       {...props}
     />
   );

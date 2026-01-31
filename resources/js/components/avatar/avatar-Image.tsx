@@ -1,14 +1,11 @@
+import { Avatar } from "@base-ui/react/avatar";
 import { cn } from "@narsil-cms/lib/utils";
-import { Avatar } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type AvatarImageProps = ComponentProps<typeof Avatar.Image>;
-
-function AvatarImage({ className, ...props }: AvatarImageProps) {
+function AvatarImage({ className, ...props }: Avatar.Image.Props) {
   return (
     <Avatar.Image
       data-slot="avatar-image"
-      className={cn("aspect-square size-full", className)}
+      className={cn("aspect-square size-full rounded-full object-cover", className)}
       {...props}
     />
   );
