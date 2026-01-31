@@ -1,14 +1,11 @@
+import { RadioGroup } from "@base-ui/react/radio-group";
 import { cn } from "@narsil-cms/lib/utils";
-import { RadioGroup } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type RadioGroupRootProps = ComponentProps<typeof RadioGroup.Root>;
-
-function RadioGroupRoot({ className, ...props }: RadioGroupRootProps) {
+function RadioGroupRoot({ className, ...props }: RadioGroup.Props) {
   return (
-    <RadioGroup.Root
+    <RadioGroup
       data-slot="radio-group-root"
-      className={cn("grid gap-3", className)}
+      className={cn("grid w-full gap-2", className)}
       {...props}
     />
   );

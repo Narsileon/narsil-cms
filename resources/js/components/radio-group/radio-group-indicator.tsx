@@ -1,22 +1,22 @@
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Radio } from "@base-ui/react/radio";
 import { cn } from "@narsil-cms/lib/utils";
-import { RadioGroup } from "radix-ui";
-import { type ComponentProps } from "react";
+import { CircleIcon } from "lucide-react";
 
-type RadioGroupIndicatorProps = ComponentProps<typeof RadioGroup.Indicator>;
-
-function RadioGroupIndicator({ className, ...props }: RadioGroupIndicatorProps) {
+function RadioGroupIndicator({ className, children, ...props }: Radio.Indicator.Props) {
   return (
-    <RadioGroup.Indicator
+    <Radio.Indicator
       data-slot="radio-group-indicator"
-      className={cn("relative flex items-center justify-center", className)}
+      className={cn(
+        "flex size-4 items-center justify-center text-primary",
+        "group-aria-invalid/radio-group-item:text-destructive",
+        className,
+      )}
       {...props}
     >
-      <Icon
-        className="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-primary"
-        name="circle"
-      />
-    </RadioGroup.Indicator>
+      {children ?? (
+        <CircleIcon className="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-current" />
+      )}
+    </Radio.Indicator>
   );
 }
 
