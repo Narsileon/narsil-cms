@@ -7,7 +7,7 @@ function AspectRatioRoot({ className, ratio, ...props }: AspectRatioRootProps) {
   return (
     <div
       data-slot="aspect-ratio"
-      className={cn("relative aspect-(--ratio)", className)}
+      className={cn("relative", "aspect-(--ratio)", className)}
       style={
         {
           "--ratio": ratio,

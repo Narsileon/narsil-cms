@@ -1,9 +1,9 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Heading } from "@narsil-cms/blocks/heading";
-import { Separator } from "@narsil-cms/blocks/separator";
 import { DialogClose } from "@narsil-cms/components/dialog";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
+import { Separator } from "@narsil-cms/components/separator";
 import type { FormType } from "@narsil-cms/types";
 import { route } from "ziggy-js";
 import TwoFactorForm from "./two-factor-form";

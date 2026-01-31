@@ -2,8 +2,10 @@ import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import {
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -29,43 +31,50 @@ function SortableItemMenu({
   return (
     <DropdownMenuRoot>
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
-        <DropdownMenuTrigger asChild={true} {...props}>
-          <div className="flex items-center justify-end">
-            <Button
-              aria-label={trans("accessibility.toggle_row_menu")}
-              icon="more-horizontal"
-              size="icon-sm"
-              variant="ghost-secondary"
-              onClick={(event) => event.stopPropagation()}
-            />
-          </div>
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger
+          {...props}
+          render={
+            <div className="flex items-center justify-end">
+              <Button
+                aria-label={trans("accessibility.toggle_row_menu")}
+                icon="more-horizontal"
+                size="icon-sm"
+                variant="ghost-secondary"
+                onClick={(event) => event.stopPropagation()}
+              />
+            </div>
+          }
+        />
       </Tooltip>
-      <DropdownMenuContent align="end" onClick={(event) => event.stopPropagation()}>
-        <DropdownMenuItem disabled={!onMoveUp} onClick={onMoveUp}>
-          <Icon name="move-up" />
-          {trans("ui.move_up")}
-        </DropdownMenuItem>
-        <DropdownMenuItem disabled={!onMoveDown} onClick={onMoveDown}>
-          <Icon name="move-down" />
-          {trans("ui.move_down")}
-        </DropdownMenuItem>
-        {onRemove ? (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={onRemove}>
-              <Icon name="trash" />
-              {trans("ui.remove")}
+      <DropdownMenuPortal>
+        <DropdownMenuPositioner align="end">
+          <DropdownMenuPopup onClick={(event) => event.stopPropagation()}>
+            <DropdownMenuItem disabled={!onMoveUp} onClick={onMoveUp}>
+              <Icon name="move-up" />
+              {trans("ui.move_up")}
             </DropdownMenuItem>
-          </>
-        ) : null}
-        {children ? (
-          <>
-            <DropdownMenuSeparator />
-            {children}
-          </>
-        ) : null}
-      </DropdownMenuContent>
+            <DropdownMenuItem disabled={!onMoveDown} onClick={onMoveDown}>
+              <Icon name="move-down" />
+              {trans("ui.move_down")}
+            </DropdownMenuItem>
+            {onRemove ? (
+              <>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={onRemove}>
+                  <Icon name="trash" />
+                  {trans("ui.remove")}
+                </DropdownMenuItem>
+              </>
+            ) : null}
+            {children ? (
+              <>
+                <DropdownMenuSeparator />
+                {children}
+              </>
+            ) : null}
+          </DropdownMenuPopup>
+        </DropdownMenuPositioner>
+      </DropdownMenuPortal>
     </DropdownMenuRoot>
   );
 }

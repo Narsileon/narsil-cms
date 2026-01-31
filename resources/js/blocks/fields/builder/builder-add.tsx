@@ -2,8 +2,10 @@ import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import {
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
@@ -26,27 +28,34 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
   return (
     <DropdownMenuRoot open={open} onOpenChange={onOpenChange}>
       <Tooltip tooltip={trans("ui.add")}>
-        <DropdownMenuTrigger asChild {...props}>
-          <Button className={cn("rounded-full")} icon="plus" size="icon-sm" variant="ghost" />
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger
+          {...props}
+          render={
+            <Button className={cn("rounded-full")} icon="plus" size="icon-sm" variant="ghost" />
+          }
+        />
       </Tooltip>
-      <DropdownMenuContent>
-        {blocks.map((block, index) => {
-          return (
-            <DropdownMenuItem
-              onClick={() => {
-                const node = { uuid: crypto.randomUUID(), block_id: block.id, children: {} };
+      <DropdownMenuPortal>
+        <DropdownMenuPositioner>
+          <DropdownMenuPopup>
+            {blocks.map((block, index) => {
+              return (
+                <DropdownMenuItem
+                  onClick={() => {
+                    const node = { uuid: crypto.randomUUID(), block_id: block.id, children: {} };
 
-                onAdd(node as BuilderElement);
-              }}
-              key={index}
-            >
-              {block.icon ? <Icon name={block.icon} /> : null}
-              <span>{block.label}</span>
-            </DropdownMenuItem>
-          );
-        })}
-      </DropdownMenuContent>
+                    onAdd(node as BuilderElement);
+                  }}
+                  key={index}
+                >
+                  {block.icon ? <Icon name={block.icon} /> : null}
+                  <span>{block.label}</span>
+                </DropdownMenuItem>
+              );
+            })}
+          </DropdownMenuPopup>
+        </DropdownMenuPositioner>
+      </DropdownMenuPortal>
     </DropdownMenuRoot>
   );
 }

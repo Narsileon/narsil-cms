@@ -1,17 +1,14 @@
+import { Menu } from "@base-ui/react/menu";
 import { cn } from "@narsil-cms/lib/utils";
-import { Menubar } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type MenubarTriggerProps = ComponentProps<typeof Menubar.Trigger>;
-
-function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
+function MenubarTrigger({ className, ...props }: Menu.Trigger.Props) {
   return (
-    <Menubar.Trigger
+    <Menu.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "flex items-center rounded-md px-2 py-1 font-medium outline-hidden select-none",
-        "focus:bg-accent focus:text-accent-foreground",
-        "data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
+        "flex cursor-pointer items-center rounded-sm px-1.5 py-0.5 text-sm font-medium outline-hidden select-none",
+        "hover:bg-muted",
+        "aria-expanded:bg-muted",
         className,
       )}
       {...props}

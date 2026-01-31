@@ -15,7 +15,7 @@ type ButtonProps = ComponentProps<typeof ButtonRoot> & {
     modal?: boolean;
   };
   tooltip?: string;
-  tooltipProps?: ComponentProps<typeof Tooltip>;
+  tooltipProps?: Partial<ComponentProps<typeof Tooltip>>;
 };
 
 function Button({

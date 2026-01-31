@@ -1,6 +1,6 @@
-// https://www.radix-ui.com/primitives/docs/components/separator
+// https://ui.shadcn.com/docs/components/base/separator
+// https://base-ui.com/react/components/separator
 
-import SeparatorRoot from "./separator-root";
-import separatorRootVariants from "./separator-root-variants";
+import Separator from "./separator";
 
-export { SeparatorRoot, separatorRootVariants };
+export { Separator };

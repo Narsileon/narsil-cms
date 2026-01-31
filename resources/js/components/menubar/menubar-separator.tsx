@@ -1,15 +1,11 @@
-import { separatorRootVariants } from "@narsil-cms/components/separator";
+import { Menu } from "@base-ui/react/menu";
 import { cn } from "@narsil-cms/lib/utils";
-import { Menubar } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type MenubarSeparatorProps = ComponentProps<typeof Menubar.Separator>;
-
-function MenubarSeparator({ className, ...props }: MenubarSeparatorProps) {
+function MenubarSeparator({ className, ...props }: Menu.Separator.Props) {
   return (
-    <Menubar.Separator
+    <Menu.Separator
       data-slot="menubar-separator"
-      className={cn(separatorRootVariants({ variant: "menu" }), className)}
+      className={cn("-mx-1 my-1 h-px bg-border", className)}
       {...props}
     />
   );

@@ -1,12 +1,14 @@
 import { Button } from "@narsil-cms/blocks/button";
-import { Separator } from "@narsil-cms/blocks/separator";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import {
-  DropdownMenuContent,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Separator } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 import { useCurrentEditor } from "@tiptap/react";
 import { ComponentProps } from "react";
@@ -83,22 +85,28 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
           <Separator orientation="vertical" />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans("rich-text-editor.headings")}>
-              <DropdownMenuTrigger asChild={true}>
-                <Button
-                  icon="heading"
-                  size="icon"
-                  tooltip={trans("rich-text-editor.headings")}
-                  variant="ghost"
-                />
-              </DropdownMenuTrigger>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    icon="heading"
+                    size="icon"
+                    tooltip={trans("rich-text-editor.headings")}
+                    variant="ghost"
+                  />
+                }
+              />
             </Tooltip>
-            <DropdownMenuContent className="min-w-9">
-              {headings
-                .filter((level) => hasModule(`heading_${level}`) !== false)
-                .map((level) => {
-                  return <RichTextEditorHeading editor={editor} level={level} key={level} />;
-                })}
-            </DropdownMenuContent>
+            <DropdownMenuPortal>
+              <DropdownMenuPositioner>
+                <DropdownMenuPopup className="min-w-9">
+                  {headings
+                    .filter((level) => hasModule(`heading_${level}`) !== false)
+                    .map((level) => {
+                      return <RichTextEditorHeading editor={editor} level={level} key={level} />;
+                    })}
+                </DropdownMenuPopup>
+              </DropdownMenuPositioner>
+            </DropdownMenuPortal>
           </DropdownMenuRoot>
         </>
       )}

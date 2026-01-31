@@ -40,7 +40,7 @@ function Sidebar({ ...props }: SidebarProps) {
         <SidebarMenuButton className="truncate" asChild={true}>
           <Link href={route("dashboard")}>
             <svg width={20} height={20}>
-              <use href="/favicon.svg" width={20} height={20}></use>
+              <use href="/favicon.svg" width={20} height={20} />
             </svg>
             CMS
           </Link>

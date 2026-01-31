@@ -1,7 +1,6 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Calendar } from "@narsil-cms/blocks/calendar";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Separator } from "@narsil-cms/blocks/separator";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
   PopoverContent,
@@ -9,6 +8,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
+import { Separator } from "@narsil-cms/components/separator";
 import { cn } from "@narsil-cms/lib/utils";
 import { useMemo, useState, type ComponentProps, type WheelEvent } from "react";
 

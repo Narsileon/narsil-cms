@@ -1,17 +1,20 @@
+import { ContextMenu } from "@base-ui/react/context-menu";
 import { cn } from "@narsil-cms/lib/utils";
-import { ContextMenu } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type ContextMenuLabelProps = ComponentProps<typeof ContextMenu.Label> & {
+type ContextMenuLabelProps = ContextMenu.GroupLabel.Props & {
   inset?: boolean;
 };
 
 function ContextMenuLabel({ className, inset, ...props }: ContextMenuLabelProps) {
   return (
-    <ContextMenu.Label
-      data-slot="context-menu-label"
+    <ContextMenu.GroupLabel
+      data-slot="context-menu-group-label"
       data-inset={inset}
-      className={cn("px-2 py-1.5 font-medium text-foreground", "data-inset:pl-8", className)}
+      className={cn(
+        "px-1.5 py-1 text-xs font-medium text-muted-foreground",
+        "data-inset:pl-8",
+        className,
+      )}
       {...props}
     />
   );

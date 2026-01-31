@@ -4,8 +4,10 @@ import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -35,155 +37,168 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
   return (
     <DropdownMenuRoot>
       <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
-        <DropdownMenuTrigger asChild={true} {...props}>
-          <Button
-            aria-label={trans("accessibility.toggle_row_menu")}
-            icon="more-horizontal"
-            size="icon-sm"
-            variant="ghost-secondary"
-            onClick={(event) => event.stopPropagation()}
-          />
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger
+          {...props}
+          render={
+            <Button
+              aria-label={trans("accessibility.toggle_row_menu")}
+              icon="more-horizontal"
+              size="icon-sm"
+              variant="ghost-secondary"
+              onClick={(event) => event.stopPropagation()}
+            />
+          }
+        />
       </Tooltip>
-      <DropdownMenuContent align="end" onClick={(event) => event.stopPropagation()}>
-        {id ? (
-          <>
-            {routes.edit ? (
-              <DropdownMenuItem asChild={true}>
-                {modal ? (
-                  <ModalLink
-                    href={route(routes.edit, {
-                      ...routes.params,
-                      id: id,
-                    })}
-                  >
-                    <Icon name="edit" />
-                    {trans("ui.edit")}
-                  </ModalLink>
-                ) : (
-                  <Link
-                    as="button"
-                    href={route(routes.edit, {
-                      ...routes.params,
-                      id: id,
-                    })}
-                  >
-                    <Icon name="edit" />
-                    {trans("ui.edit")}
-                  </Link>
-                )}
-              </DropdownMenuItem>
-            ) : null}
-            {routes.replicate ? (
-              <DropdownMenuItem asChild={true}>
-                <Link
-                  as="button"
-                  href={route(routes.replicate, {
-                    ...routes.params,
-                    id: id,
-                  })}
-                  method="post"
-                >
-                  <Icon name="copy" />
-                  {trans("ui.duplicate")}
-                </Link>
-              </DropdownMenuItem>
-            ) : null}
-            <DropdownMenuSeparator />
-            {routes.destroy ? (
-              <DropdownMenuItem
-                onClick={() => {
-                  const href = route(routes.destroy as string, {
-                    ...routes.params,
-                    id: id,
-                  });
-
-                  setAlertDialog({
-                    title: trans("dialogs.titles.delete"),
-                    description: trans("dialogs.descriptions.delete"),
-                    buttons: [
-                      {
-                        onClick: () => {
-                          router.delete(href, {
-                            data: {
-                              _back: true,
-                            },
-                          });
-                        },
-                      },
-                    ],
-                  });
-                }}
-              >
-                <Icon name="trash" />
-                {trans("ui.delete")}
-              </DropdownMenuItem>
-            ) : null}
-          </>
-        ) : (
-          <>
-            <DropdownMenuItem
-              onClick={() => {
-                table?.resetRowSelection();
-              }}
-            >
-              <Icon name="x" />
-              {trans("ui.deselect_all")}
-            </DropdownMenuItem>
-            {routes.replicateMany ? (
-              <DropdownMenuItem asChild={true}>
-                <Link
-                  as="button"
-                  href={route(routes.replicateMany, {
-                    ...routes.params,
-                    ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
-                  })}
-                  method="post"
-                  data={{
-                    _back: true,
-                  }}
-                >
-                  <Icon name="trash" />
-                  {trans("ui.duplicate_selected")}
-                </Link>
-              </DropdownMenuItem>
-            ) : null}
-
-            {routes.destroyMany ? (
+      <DropdownMenuPortal>
+        <DropdownMenuPositioner align="end">
+          <DropdownMenuPopup onClick={(event) => event.stopPropagation()}>
+            {id ? (
               <>
+                {routes.edit ? (
+                  <DropdownMenuItem
+                    render={
+                      modal ? (
+                        <ModalLink
+                          href={route(routes.edit, {
+                            ...routes.params,
+                            id: id,
+                          })}
+                        >
+                          <Icon name="edit" />
+                          {trans("ui.edit")}
+                        </ModalLink>
+                      ) : (
+                        <Link
+                          as="button"
+                          href={route(routes.edit, {
+                            ...routes.params,
+                            id: id,
+                          })}
+                        >
+                          <Icon name="edit" />
+                          {trans("ui.edit")}
+                        </Link>
+                      )
+                    }
+                  />
+                ) : null}
+                {routes.replicate ? (
+                  <DropdownMenuItem
+                    render={
+                      <Link
+                        as="button"
+                        href={route(routes.replicate, {
+                          ...routes.params,
+                          id: id,
+                        })}
+                        method="post"
+                      >
+                        <Icon name="copy" />
+                        {trans("ui.duplicate")}
+                      </Link>
+                    }
+                  />
+                ) : null}
                 <DropdownMenuSeparator />
+                {routes.destroy ? (
+                  <DropdownMenuItem
+                    onClick={() => {
+                      const href = route(routes.destroy as string, {
+                        ...routes.params,
+                        id: id,
+                      });
+
+                      setAlertDialog({
+                        title: trans("dialogs.titles.delete"),
+                        description: trans("dialogs.descriptions.delete"),
+                        buttons: [
+                          {
+                            onClick: () => {
+                              router.delete(href, {
+                                data: {
+                                  _back: true,
+                                },
+                              });
+                            },
+                          },
+                        ],
+                      });
+                    }}
+                  >
+                    <Icon name="trash" />
+                    {trans("ui.delete")}
+                  </DropdownMenuItem>
+                ) : null}
+              </>
+            ) : (
+              <>
                 <DropdownMenuItem
                   onClick={() => {
-                    const href = route(routes.destroyMany as string, {
-                      ...routes.params,
-                      ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
-                    });
-
-                    setAlertDialog({
-                      title: trans("dialogs.titles.delete"),
-                      description: trans("dialogs.descriptions.delete"),
-                      buttons: [
-                        {
-                          onClick: () => {
-                            router.delete(href, {
-                              data: {
-                                _back: true,
-                              },
-                            });
-                          },
-                        },
-                      ],
-                    });
+                    table?.resetRowSelection();
                   }}
                 >
-                  <Icon name="trash" />
-                  {trans("ui.delete_selected")}
+                  <Icon name="x" />
+                  {trans("ui.deselect_all")}
                 </DropdownMenuItem>
+                {routes.replicateMany ? (
+                  <DropdownMenuItem
+                    render={
+                      <Link
+                        as="button"
+                        href={route(routes.replicateMany, {
+                          ...routes.params,
+                          ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
+                        })}
+                        method="post"
+                        data={{
+                          _back: true,
+                        }}
+                      >
+                        <Icon name="trash" />
+                        {trans("ui.duplicate_selected")}
+                      </Link>
+                    }
+                  />
+                ) : null}
+
+                {routes.destroyMany ? (
+                  <>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onClick={() => {
+                        const href = route(routes.destroyMany as string, {
+                          ...routes.params,
+                          ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
+                        });
+
+                        setAlertDialog({
+                          title: trans("dialogs.titles.delete"),
+                          description: trans("dialogs.descriptions.delete"),
+                          buttons: [
+                            {
+                              onClick: () => {
+                                router.delete(href, {
+                                  data: {
+                                    _back: true,
+                                  },
+                                });
+                              },
+                            },
+                          ],
+                        });
+                      }}
+                    >
+                      <Icon name="trash" />
+                      {trans("ui.delete_selected")}
+                    </DropdownMenuItem>
+                  </>
+                ) : null}
               </>
-            ) : null}
-          </>
-        )}
-      </DropdownMenuContent>
+            )}
+          </DropdownMenuPopup>
+        </DropdownMenuPositioner>
+      </DropdownMenuPortal>
     </DropdownMenuRoot>
   );
 }

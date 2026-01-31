@@ -1,10 +1,7 @@
-import { DropdownMenu } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Menu } from "@base-ui/react/menu";
 
-type DropdownMenuRootProps = ComponentProps<typeof DropdownMenu.Root>;
-
-function DropdownMenuRoot({ modal = false, ...props }: DropdownMenuRootProps) {
-  return <DropdownMenu.Root data-slot="dropdown-menu-root" modal={modal} {...props} />;
+function DropdownMenuRoot({ ...props }: Menu.Root.Props) {
+  return <Menu.Root data-slot="dropdown-menu-root" {...props} />;
 }
 
 export default DropdownMenuRoot;

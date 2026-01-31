@@ -1,9 +1,6 @@
-import { Select } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Select } from "@base-ui/react/select";
 
-type SelectPortalProps = ComponentProps<typeof Select.Portal>;
-
-function SelectPortal({ ...props }: SelectPortalProps) {
+function SelectPortal({ ...props }: Select.Portal.Props) {
   return <Select.Portal data-slot="select-portal" {...props} />;
 }
 

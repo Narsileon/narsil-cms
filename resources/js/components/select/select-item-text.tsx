@@ -1,10 +1,14 @@
-import { Select } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Select } from "@base-ui/react/select";
+import { cn } from "@narsil-cms/lib/utils";
 
-type SelectItemTextProps = ComponentProps<typeof Select.ItemText>;
-
-function SelectItemText({ ...props }: SelectItemTextProps) {
-  return <Select.ItemText {...props} />;
+function SelectItemText({ className, ...props }: Select.ItemText.Props) {
+  return (
+    <Select.ItemText
+      data-slot="select-item-text"
+      className={cn("flex flex-1 shrink-0 gap-2 whitespace-nowrap", className)}
+      {...props}
+    />
+  );
 }
 
 export default SelectItemText;

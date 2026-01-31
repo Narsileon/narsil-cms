@@ -2,7 +2,6 @@ import { Bookmarks } from "@narsil-cms/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
 import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Separator } from "@narsil-cms/blocks/separator";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { Toaster } from "@narsil-cms/blocks/toaster";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
@@ -12,14 +11,17 @@ import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import {
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalRenderer } from "@narsil-cms/components/modal";
+import { Separator } from "@narsil-cms/components/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
@@ -91,35 +93,42 @@ function AuthLayout({ children }: AuthLayoutProps) {
                   </AvatarRoot>
                 </DropdownMenuTrigger>
               </Tooltip>
-              <DropdownMenuContent align="end">
-                {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
-                  return (
-                    <Fragment key={group}>
-                      {groupIndex > 0 && <DropdownMenuSeparator />}
-                      {items.map((item, index) => {
-                        return (
-                          <DropdownMenuItem asChild={true} key={index}>
-                            <Button
-                              icon={item.icon}
-                              linkProps={{
-                                href: item.href,
-                                method: item.method,
-                                modal: item.modal,
-                              }}
-                              size="sm"
-                              variant="ghost"
-                            >
-                              {item.label}
-                            </Button>
-                          </DropdownMenuItem>
-                        );
-                      })}
-                    </Fragment>
-                  );
-                })}
-                <DropdownMenuSeparator />
-                <ThemeToggleGroup className="w-full" />
-              </DropdownMenuContent>
+              <DropdownMenuPortal>
+                <DropdownMenuPositioner align="end">
+                  <DropdownMenuPopup>
+                    {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
+                      return (
+                        <Fragment key={group}>
+                          {groupIndex > 0 && <DropdownMenuSeparator />}
+                          {items.map((item, index) => {
+                            return (
+                              <DropdownMenuItem
+                                key={index}
+                                render={
+                                  <Button
+                                    icon={item.icon}
+                                    linkProps={{
+                                      href: item.href,
+                                      method: item.method,
+                                      modal: item.modal,
+                                    }}
+                                    size="sm"
+                                    variant="ghost"
+                                  >
+                                    {item.label}
+                                  </Button>
+                                }
+                              />
+                            );
+                          })}
+                        </Fragment>
+                      );
+                    })}
+                    <DropdownMenuSeparator />
+                    <ThemeToggleGroup className="w-full" />
+                  </DropdownMenuPopup>
+                </DropdownMenuPositioner>
+              </DropdownMenuPortal>
             </DropdownMenuRoot>
           </header>
           <div ref={mainRef} className="relative h-[calc(100vh-3.25rem)] overflow-y-auto">

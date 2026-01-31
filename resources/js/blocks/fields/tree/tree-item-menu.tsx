@@ -22,21 +22,27 @@ function TreeItemMenu({ disabled, item, ...props }: TreeItemMenuProps) {
   return (
     <SortableItemMenu {...props}>
       {item.create_url ? (
-        <DropdownMenuItem asChild={true} disabled={isDirty}>
-          <ModalLink href={item.create_url as string} variant="right">
-            <Icon name="plus" />
-            {trans("ui.add_child")}
-          </ModalLink>
-        </DropdownMenuItem>
+        <DropdownMenuItem
+          disabled={isDirty}
+          render={
+            <ModalLink href={item.create_url as string} variant="right">
+              <Icon name="plus" />
+              {trans("ui.add_child")}
+            </ModalLink>
+          }
+        />
       ) : null}
 
       {item.edit_url ? (
-        <DropdownMenuItem asChild={true} disabled={isDirty}>
-          <ModalLink href={item.edit_url as string} variant="right">
-            <Icon name="edit" />
-            {trans("ui.edit")}
-          </ModalLink>
-        </DropdownMenuItem>
+        <DropdownMenuItem
+          disabled={isDirty}
+          render={
+            <ModalLink href={item.edit_url as string} variant="right">
+              <Icon name="edit" />
+              {trans("ui.edit")}
+            </ModalLink>
+          }
+        />
       ) : null}
       {item.destroy_url && !disabled ? (
         <>

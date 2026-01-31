@@ -1,9 +1,9 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Heading } from "@narsil-cms/blocks/heading";
-import { Separator } from "@narsil-cms/blocks/separator";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
+import { Separator } from "@narsil-cms/components/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
 import { Fragment } from "react";

@@ -80,7 +80,7 @@ function SortableItemForm({
               return (
                 <>
                   <DialogBody className={cn(form.tabs.length > 1 && "p-0")}>
-                    <DialogDescription className="sr-only"></DialogDescription>
+                    <DialogDescription className="sr-only" />
                     <FormRoot className="grid-cols-12 gap-4">
                       <FormSteps tabs={form.tabs} />
                     </FormRoot>

@@ -75,7 +75,7 @@ function DataTable({ collection, title }: DataTableProps) {
             icon="eye"
             size={isDesktop ? "default" : "icon"}
             tooltipProps={{
-              contentProps: { hidden: isDesktop },
+              popupProps: { hidden: isDesktop },
               tooltip: columnsLabel,
             }}
             variant="secondary"
@@ -83,19 +83,21 @@ function DataTable({ collection, title }: DataTableProps) {
             {isDesktop ? columnsLabel : undefined}
           </Button>
         </DataTableColumns>
-        <DataTableFilterDropdown>
-          <Button
-            icon="filter"
-            size={isDesktop ? "default" : "icon"}
-            tooltipProps={{
-              contentProps: { hidden: isDesktop },
-              tooltip: filterLabel,
-            }}
-            variant="secondary"
-          >
-            {isDesktop ? filterLabel : undefined}
-          </Button>
-        </DataTableFilterDropdown>
+        <DataTableFilterDropdown
+          render={
+            <Button
+              icon="filter"
+              size={isDesktop ? "default" : "icon"}
+              tooltipProps={{
+                popupProps: { hidden: isDesktop },
+                tooltip: filterLabel,
+              }}
+              variant="secondary"
+            >
+              {isDesktop ? filterLabel : undefined}
+            </Button>
+          }
+        />
         {collection.meta.routes.create ? (
           <Button
             icon="plus"
@@ -104,7 +106,7 @@ function DataTable({ collection, title }: DataTableProps) {
             }}
             size={isDesktop ? "default" : "icon"}
             tooltipProps={{
-              contentProps: { hidden: isDesktop },
+              popupProps: { hidden: isDesktop },
               tooltip: createLabel,
             }}
           >

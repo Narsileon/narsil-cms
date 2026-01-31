@@ -1,6 +1,8 @@
 import {
   DropdownMenuCheckboxItem,
-  DropdownMenuContent,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
@@ -19,35 +21,37 @@ function DataTableFilterDropdown({ children, ...props }: DataTableFilterDropdown
 
   return (
     <DropdownMenuRoot>
-      <DropdownMenuTrigger asChild={true} {...props}>
-        {children}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {dataTable
-          .getAllColumns()
-          .filter((column) => column.getCanHide())
-          .map((column) => {
-            if (!isString(column.columnDef.header)) {
-              return null;
-            }
+      <DropdownMenuTrigger {...props}>{children}</DropdownMenuTrigger>
+      <DropdownMenuPortal>
+        <DropdownMenuPositioner>
+          <DropdownMenuPopup>
+            {dataTable
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                if (!isString(column.columnDef.header)) {
+                  return null;
+                }
 
-            return (
-              <DropdownMenuCheckboxItem
-                checked={filteredColumns.includes(column.id)}
-                onCheckedChange={(checked) => {
-                  if (checked) {
-                    dataTableStore.addFilter(column.id);
-                  } else {
-                    dataTableStore.removeFilter(column.id);
-                  }
-                }}
-                key={column.id}
-              >
-                {column.columnDef.header}
-              </DropdownMenuCheckboxItem>
-            );
-          })}
-      </DropdownMenuContent>
+                return (
+                  <DropdownMenuCheckboxItem
+                    checked={filteredColumns.includes(column.id)}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        dataTableStore.addFilter(column.id);
+                      } else {
+                        dataTableStore.removeFilter(column.id);
+                      }
+                    }}
+                    key={column.id}
+                  >
+                    {column.columnDef.header}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
+          </DropdownMenuPopup>
+        </DropdownMenuPositioner>
+      </DropdownMenuPortal>
     </DropdownMenuRoot>
   );
 }

@@ -7,8 +7,10 @@ import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import {
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -41,39 +43,44 @@ function GuestLayout({ children }: GuestLayoutProps) {
           <Logo />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
-              <DropdownMenuTrigger asChild={true}>
-                <Button icon="menu" size="icon" variant="ghost" />
-              </DropdownMenuTrigger>
+              <DropdownMenuTrigger render={<Button icon="menu" size="icon" variant="ghost" />} />
             </Tooltip>
-            <DropdownMenuContent align="end">
-              {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
-                return (
-                  <Fragment key={group}>
-                    {groupIndex > 0 && <DropdownMenuSeparator />}
-                    {items.map((item, index) => {
-                      return (
-                        <DropdownMenuItem asChild={true} key={index}>
-                          <Button
-                            icon={item.icon}
-                            linkProps={{
-                              href: item.href,
-                              method: item.method,
-                              modal: item.modal,
-                            }}
-                            size="sm"
-                            variant="ghost"
-                          >
-                            {item.label}
-                          </Button>
-                        </DropdownMenuItem>
-                      );
-                    })}
-                  </Fragment>
-                );
-              })}
-              <DropdownMenuSeparator />
-              <ThemeToggleGroup className="w-full" />
-            </DropdownMenuContent>
+            <DropdownMenuPortal>
+              <DropdownMenuPositioner align="end">
+                <DropdownMenuPopup>
+                  {Object.entries(groupedMenu).map(([group, items], groupIndex) => {
+                    return (
+                      <Fragment key={group}>
+                        {groupIndex > 0 && <DropdownMenuSeparator />}
+                        {items.map((item, index) => {
+                          return (
+                            <DropdownMenuItem
+                              key={index}
+                              render={
+                                <Button
+                                  icon={item.icon}
+                                  linkProps={{
+                                    href: item.href,
+                                    method: item.method,
+                                    modal: item.modal,
+                                  }}
+                                  size="sm"
+                                  variant="ghost"
+                                >
+                                  {item.label}
+                                </Button>
+                              }
+                            />
+                          );
+                        })}
+                      </Fragment>
+                    );
+                  })}
+                  <DropdownMenuSeparator />
+                  <ThemeToggleGroup className="w-full" />
+                </DropdownMenuPopup>
+              </DropdownMenuPositioner>
+            </DropdownMenuPortal>
           </DropdownMenuRoot>
         </Container>
       </header>

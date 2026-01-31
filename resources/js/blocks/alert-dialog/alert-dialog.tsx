@@ -17,7 +17,7 @@ import { type ComponentProps, type MouseEventHandler } from "react";
 
 type AlertDialogProps = ComponentProps<typeof AlertDialogRoot> & {
   cancelLabel?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   description?: string;
   title?: string;
   buttons?: ComponentProps<typeof AlertDialogAction>[];

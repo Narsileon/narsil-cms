@@ -1,17 +1,19 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Kbd } from "@narsil-cms/blocks/kbd";
-import { Separator } from "@narsil-cms/blocks/separator";
 import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
 import {
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Separator } from "@narsil-cms/components/separator";
 import type { RouteNames } from "@narsil-cms/types";
 import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
@@ -123,40 +125,42 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
       </Button>
       <Separator orientation="vertical" />
       <DropdownMenuRoot>
-        <DropdownMenuTrigger asChild={true}>
-          <Button className="w-8" icon="chevron-down" size="icon" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {routes?.unpublish ? (
-            <DropdownMenuItem onClick={saveAndPublish}>
-              <Icon name="eye" />
-              {`${submitLabel} & ${trans("ui.publish")}`}
-              <Kbd className="ml-auto" elements={["Ctrl", "P"]} />
-            </DropdownMenuItem>
-          ) : null}
-          <DropdownMenuItem onClick={saveAndContinue}>
-            <Icon name="save-and-continue" />
-            {`${submitLabel} & ${trans("ui.continue")}`}
-            <Kbd className="ml-auto" elements={["Ctrl", "S"]} />
-          </DropdownMenuItem>
-          {routes?.create ? (
-            <DropdownMenuItem onClick={saveAndAdd}>
-              <Icon name="save-and-add" />
-              {`${submitLabel} & ${trans("ui.add_another")}`}
-              <Kbd className="ml-auto" elements={["Ctrl", "Shift", "S"]} />
-            </DropdownMenuItem>
-          ) : null}
-          {routes?.store && data?.id ? (
-            <>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={saveAsNew}>
-                <Icon name="plus" />
-                {trans("ui.save_as_new")}
-                <Kbd className="ml-auto" elements={["Ctrl", "D"]} />
+        <DropdownMenuTrigger render={<Button className="w-8" icon="chevron-down" size="icon" />} />
+        <DropdownMenuPortal>
+          <DropdownMenuPositioner>
+            <DropdownMenuPopup>
+              {routes?.unpublish ? (
+                <DropdownMenuItem onClick={saveAndPublish}>
+                  <Icon name="eye" />
+                  {`${submitLabel} & ${trans("ui.publish")}`}
+                  <Kbd className="ml-auto" elements={["Ctrl", "P"]} />
+                </DropdownMenuItem>
+              ) : null}
+              <DropdownMenuItem onClick={saveAndContinue}>
+                <Icon name="save-and-continue" />
+                {`${submitLabel} & ${trans("ui.continue")}`}
+                <Kbd className="ml-auto" elements={["Ctrl", "S"]} />
               </DropdownMenuItem>
-            </>
-          ) : null}
-        </DropdownMenuContent>
+              {routes?.create ? (
+                <DropdownMenuItem onClick={saveAndAdd}>
+                  <Icon name="save-and-add" />
+                  {`${submitLabel} & ${trans("ui.add_another")}`}
+                  <Kbd className="ml-auto" elements={["Ctrl", "Shift", "S"]} />
+                </DropdownMenuItem>
+              ) : null}
+              {routes?.store && data?.id ? (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={saveAsNew}>
+                    <Icon name="plus" />
+                    {trans("ui.save_as_new")}
+                    <Kbd className="ml-auto" elements={["Ctrl", "D"]} />
+                  </DropdownMenuItem>
+                </>
+              ) : null}
+            </DropdownMenuPopup>
+          </DropdownMenuPositioner>
+        </DropdownMenuPortal>
       </DropdownMenuRoot>
     </ButtonGroupRoot>
   );

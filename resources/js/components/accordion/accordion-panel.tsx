@@ -14,11 +14,12 @@ function AccordionPanel({ children, className, ...props }: Accordion.Panel.Props
     >
       <div
         className={cn(
-          "h-(--accordion-panel-height) pt-0 pb-2.5",
+          "pt-0 pb-2.5",
           "[&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
           "[&_p:not(:last-child)]:mb-4",
           "data-ending-style:h-0",
           "data-starting-style:h-0",
+          "h-(--accordion-panel-height)",
           className,
         )}
       >

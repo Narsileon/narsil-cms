@@ -1,10 +1,7 @@
-import { Menubar } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Menu } from "@base-ui/react/menu";
 
-type MenubarRadioGroupProps = ComponentProps<typeof Menubar.RadioGroup>;
-
-function MenubarRadioGroup({ ...props }: MenubarRadioGroupProps) {
-  return <Menubar.RadioGroup data-slot="menubar-radio-group" {...props} />;
+function MenubarRadioGroup({ ...props }: Menu.RadioGroup.Props) {
+  return <Menu.RadioGroup data-slot="menubar-radio-group" {...props} />;
 }
 
 export default MenubarRadioGroup;

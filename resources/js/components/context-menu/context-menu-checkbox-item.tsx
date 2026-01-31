@@ -1,36 +1,19 @@
-import { Icon } from "@narsil-cms/blocks/icon";
+import { ContextMenu } from "@base-ui/react/context-menu";
 import { cn } from "@narsil-cms/lib/utils";
-import { ContextMenu } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type ContextMenuCheckboxItemProps = ComponentProps<typeof ContextMenu.CheckboxItem>;
-
-function ContextMenuCheckboxItem({
-  checked,
-  children,
-  className,
-  ...props
-}: ContextMenuCheckboxItemProps) {
+function ContextMenuCheckboxItem({ className, ...props }: ContextMenu.CheckboxItem.Props) {
   return (
     <ContextMenu.CheckboxItem
       data-slot="context-menu-checkbox-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 rounded-md py-1.5 pr-2 pl-8 outline-hidden select-none",
-        "focus:bg-accent focus:text-accent-foreground",
+        "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none",
+        "[&_svg:not([class*='size-'])]:size-4",
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
+        "focus:bg-accent focus:text-accent-foreground",
       )}
-      checked={checked}
       {...props}
-    >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ContextMenu.ItemIndicator>
-          <Icon className="size-4" name="check" />
-        </ContextMenu.ItemIndicator>
-      </span>
-      {children}
-    </ContextMenu.CheckboxItem>
+    />
   );
 }
 

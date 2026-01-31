@@ -1,11 +1,12 @@
+import { Select } from "@base-ui/react/select";
 import { cn } from "@narsil-cms/lib/utils";
-import { type VariantProps } from "class-variance-authority";
-import { Select } from "radix-ui";
-import { type ComponentProps } from "react";
+import { VariantProps } from "class-variance-authority";
 import selectTriggerVariants from "./select-trigger-variants";
 
-type SelectTriggerProps = ComponentProps<typeof Select.Trigger> &
-  VariantProps<typeof selectTriggerVariants>;
+type SelectTriggerProps = Select.Trigger.Props &
+  VariantProps<typeof selectTriggerVariants> & {
+    size?: "sm" | "default";
+  };
 
 function SelectTrigger({ className, size = "default", variant, ...props }: SelectTriggerProps) {
   return (
@@ -15,7 +16,6 @@ function SelectTrigger({ className, size = "default", variant, ...props }: Selec
       className={cn(
         selectTriggerVariants({
           className: className,
-          size: size,
           variant: variant,
         }),
       )}

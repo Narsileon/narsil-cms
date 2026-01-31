@@ -1,9 +1,6 @@
-import { ContextMenu } from "radix-ui";
-import { type ComponentProps } from "react";
+import { ContextMenu } from "@base-ui/react/context-menu";
 
-type ContextMenuPortalProps = ComponentProps<typeof ContextMenu.Portal>;
-
-function ContextMenuPortal({ ...props }: ContextMenuPortalProps) {
+function ContextMenuPortal({ ...props }: ContextMenu.Portal.Props) {
   return <ContextMenu.Portal data-slot="context-menu-portal" {...props} />;
 }
 

@@ -1,53 +1,53 @@
 import {
-  SelectContent,
   SelectIcon,
   SelectItem,
   SelectItemIndicator,
   SelectItemText,
+  SelectPopup,
   SelectPortal,
+  SelectPositioner,
   SelectRoot,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
+  SelectScrollDownArrow,
+  SelectScrollUpArrow,
   SelectTrigger,
   SelectValue,
-  SelectViewport,
 } from "@narsil-cms/components/select";
+import SelectList from "@narsil-cms/components/select/select-list";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import { SelectOption } from "@narsil-cms/types";
 import { type ComponentProps } from "react";
 
 type SelectProps = ComponentProps<typeof SelectRoot> & {
-  contentProps?: Partial<ComponentProps<typeof SelectContent>>;
   iconProps?: Partial<ComponentProps<typeof SelectIcon>>;
-  itemProps?: Partial<ComponentProps<typeof SelectItem>>;
   itemIndicatorProps?: Partial<ComponentProps<typeof SelectItemIndicator>>;
+  itemProps?: Partial<ComponentProps<typeof SelectItem>>;
   itemTextProps?: Partial<ComponentProps<typeof SelectItemText>>;
   options?: (string | SelectOption)[];
+  popupProps?: Partial<ComponentProps<typeof SelectPopup>>;
+  positionerProps?: Partial<ComponentProps<typeof SelectPositioner>>;
   portalProps?: Partial<ComponentProps<typeof SelectPortal>>;
-  scrollDownButtonProps?: Partial<ComponentProps<typeof SelectScrollDownButton>>;
-  scrollUpButtonProps?: Partial<ComponentProps<typeof SelectScrollUpButton>>;
+  scrollDownArrowProps?: Partial<ComponentProps<typeof SelectScrollDownArrow>>;
+  scrollUpArrowProps?: Partial<ComponentProps<typeof SelectScrollUpArrow>>;
   showIcon?: boolean;
   triggerProps?: Partial<ComponentProps<typeof SelectTrigger>>;
   valueProps?: Partial<ComponentProps<typeof SelectValue>>;
-  viewportProps?: Partial<ComponentProps<typeof SelectViewport>>;
 };
 
 function Select({
-  children,
-  contentProps,
+  popupProps,
   iconProps,
   itemIndicatorProps,
   itemProps,
   itemTextProps,
   options,
+  positionerProps,
   portalProps,
-  scrollDownButtonProps,
-  scrollUpButtonProps,
   showIcon = true,
+  scrollDownArrowProps,
+  scrollUpArrowProps,
   triggerProps,
   valueProps,
-  viewportProps,
   ...props
 }: SelectProps) {
   const { locale } = useLocale();
@@ -59,23 +59,24 @@ function Select({
         {showIcon ? <SelectIcon {...iconProps} /> : null}
       </SelectTrigger>
       <SelectPortal {...portalProps}>
-        <SelectContent {...contentProps}>
-          <SelectScrollUpButton {...scrollUpButtonProps} />
-          <SelectViewport {...viewportProps}>
-            {children}
-            {options?.map((option, index) => {
-              return (
-                <SelectItem {...itemProps} value={getSelectOption(option, "value")} key={index}>
-                  <SelectItemText {...itemTextProps}>
-                    {getTranslatableSelectOption(option, "label", locale)}
-                  </SelectItemText>
-                  <SelectItemIndicator {...itemIndicatorProps} />
-                </SelectItem>
-              );
-            })}
-          </SelectViewport>
-          <SelectScrollDownButton {...scrollDownButtonProps} />
-        </SelectContent>
+        <SelectPositioner {...positionerProps}>
+          <SelectPopup {...popupProps}>
+            <SelectScrollUpArrow {...scrollUpArrowProps} />
+            <SelectList>
+              {options?.map((option, index) => {
+                return (
+                  <SelectItem {...itemProps} value={getSelectOption(option, "value")} key={index}>
+                    <SelectItemText {...itemTextProps}>
+                      {getTranslatableSelectOption(option, "label", locale)}
+                    </SelectItemText>
+                    <SelectItemIndicator {...itemIndicatorProps} />
+                  </SelectItem>
+                );
+              })}
+            </SelectList>
+            <SelectScrollDownArrow {...scrollDownArrowProps} />
+          </SelectPopup>
+        </SelectPositioner>
       </SelectPortal>
     </SelectRoot>
   );

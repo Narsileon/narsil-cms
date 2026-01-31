@@ -1,10 +1,7 @@
-import { Menubar } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Menu } from "@base-ui/react/menu";
 
-type MenubarMenuProps = ComponentProps<typeof Menubar.Menu>;
-
-function MenubarMenu({ ...props }: MenubarMenuProps) {
-  return <Menubar.Menu data-slot="menubar-menu" {...props} />;
+function MenubarMenu({ ...props }: Menu.Root.Props) {
+  return <Menu.Root data-slot="menubar-menu" {...props} />;
 }
 
 export default MenubarMenu;

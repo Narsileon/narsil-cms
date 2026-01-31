@@ -1,9 +1,6 @@
-import { ContextMenu } from "radix-ui";
-import { type ComponentProps } from "react";
+import { ContextMenu } from "@base-ui/react/context-menu";
 
-type ContextMenuRootProps = ComponentProps<typeof ContextMenu.Root>;
-
-function ContextMenuRoot({ ...props }: ContextMenuRootProps) {
+function ContextMenuRoot({ ...props }: ContextMenu.Root.Props) {
   return <ContextMenu.Root data-slot="context-menu-root" {...props} />;
 }
 

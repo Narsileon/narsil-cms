@@ -3,8 +3,10 @@ import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -26,54 +28,60 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
 
   return (
     <DropdownMenuRoot>
-      <DropdownMenuTrigger asChild={true}>
-        <Button icon="more-vertical" size="icon" variant="outline" {...props} />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {routes?.unpublish && data?.id ? (
-          <>
-            <DropdownMenuItem asChild={true}>
-              <Link
-                as="button"
-                href={route(routes.unpublish, {
-                  ...routes.params,
-                  id: data?.id,
-                })}
-                method="post"
-              >
-                <Icon name="eye-off" />
-                {trans("ui.unpublish")}
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-          </>
-        ) : null}
-        {routes?.destroy && data?.id ? (
-          <DropdownMenuItem
-            onClick={() => {
-              const href = route(routes.destroy as string, {
-                ...routes.params,
-                id: data.id,
-              });
+      <DropdownMenuTrigger
+        render={<Button icon="more-vertical" size="icon" variant="outline" {...props} />}
+      />
+      <DropdownMenuPortal>
+        <DropdownMenuPositioner>
+          <DropdownMenuPopup>
+            {routes?.unpublish && data?.id ? (
+              <>
+                <DropdownMenuItem
+                  render={
+                    <Link
+                      as="button"
+                      href={route(routes.unpublish, {
+                        ...routes.params,
+                        id: data?.id,
+                      })}
+                      method="post"
+                    >
+                      <Icon name="eye-off" />
+                      {trans("ui.unpublish")}
+                    </Link>
+                  }
+                />
+                <DropdownMenuSeparator />
+              </>
+            ) : null}
+            {routes?.destroy && data?.id ? (
+              <DropdownMenuItem
+                onClick={() => {
+                  const href = route(routes.destroy as string, {
+                    ...routes.params,
+                    id: data.id,
+                  });
 
-              setAlertDialog({
-                title: trans("dialogs.titles.delete"),
-                description: trans("dialogs.descriptions.delete"),
-                buttons: [
-                  {
-                    onClick: () => {
-                      router.delete(href);
-                    },
-                  },
-                ],
-              });
-            }}
-          >
-            <Icon name="trash" />
-            {trans("ui.delete")}
-          </DropdownMenuItem>
-        ) : null}
-      </DropdownMenuContent>
+                  setAlertDialog({
+                    title: trans("dialogs.titles.delete"),
+                    description: trans("dialogs.descriptions.delete"),
+                    buttons: [
+                      {
+                        onClick: () => {
+                          router.delete(href);
+                        },
+                      },
+                    ],
+                  });
+                }}
+              >
+                <Icon name="trash" />
+                {trans("ui.delete")}
+              </DropdownMenuItem>
+            ) : null}
+          </DropdownMenuPopup>
+        </DropdownMenuPositioner>
+      </DropdownMenuPortal>
     </DropdownMenuRoot>
   );
 }

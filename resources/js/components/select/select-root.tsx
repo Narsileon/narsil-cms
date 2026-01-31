@@ -1,9 +1,6 @@
-import { Select } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Select } from "@base-ui/react/select";
 
-type SelectRootProps = ComponentProps<typeof Select.Root>;
-
-function SelectRoot({ ...props }: SelectRootProps) {
+function SelectRoot({ ...props }: Select.Root.Props<unknown>) {
   return <Select.Root data-slot="select-root" {...props} />;
 }
 

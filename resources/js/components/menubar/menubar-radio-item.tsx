@@ -1,30 +1,21 @@
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Menu } from "@base-ui/react/menu";
 import { cn } from "@narsil-cms/lib/utils";
-import { Menubar } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type MenubarRadioItemProps = ComponentProps<typeof Menubar.RadioItem>;
-
-function MenubarRadioItem({ children, className, ...props }: MenubarRadioItemProps) {
+function MenubarRadioItem({ className, ...props }: Menu.RadioItem.Props) {
   return (
-    <Menubar.RadioItem
+    <Menu.RadioItem
       data-slot="menubar-radio-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 rounded-md py-1.5 pr-2 pl-8 outline-hidden select-none",
-        "focus:bg-accent focus:text-accent-foreground",
+        "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm outline-hidden select-none",
+        "[&_svg:not([class*='size-'])]:size-4",
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "focus:**:text-accent-foreground",
+        "focus:bg-accent focus:text-accent-foreground",
         className,
       )}
       {...props}
-    >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <Menubar.ItemIndicator>
-          <Icon className="size-2 fill-current" name="circle" />
-        </Menubar.ItemIndicator>
-      </span>
-      {children}
-    </Menubar.RadioItem>
+    />
   );
 }
 
