@@ -1,22 +1,19 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorOrderedListProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
-  icon?: IconName;
+  label?: string;
 };
 
 function RichTextEditorOrderedList({
   editor,
-  icon = "list-ordered",
+  label = "Ordered list",
   ...props
 }: RichTextEditorOrderedListProps) {
-  const { trans } = useLocalization();
-
   const { isOrderedList } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -26,18 +23,18 @@ function RichTextEditorOrderedList({
     },
   });
 
-  const tooltip = trans("rich-text-editor.ordered_list");
-
   return (
-    <Toggle
-      pressed={isOrderedList}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => editor.chain().focus().toggleOrderedList().run()}
-      {...props}
-    >
-      <Icon name={icon} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        pressed={isOrderedList}
+        size="icon"
+        onClick={() => editor.chain().focus().toggleOrderedList().run()}
+        {...props}
+      >
+        <Icon name="list-ordered" />
+      </Toggle>
+    </Tooltip>
   );
 }
 

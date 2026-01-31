@@ -1,5 +1,5 @@
 import { FormElement } from "@narsil-cms/components/form";
-import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
+import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-cms/components/tabs";
 import type { TemplateTab } from "@narsil-cms/types";
 import { useState } from "react";
 
@@ -15,17 +15,17 @@ function FormSteps({ tabs }: FormStepsProps) {
       <TabsList className="flex w-full items-center border-b px-4">
         {tabs.map((tab, index) => {
           return (
-            <TabsTrigger value={tab.handle} key={index}>
+            <TabsTab value={tab.handle} key={index}>
               {tab.label}
-            </TabsTrigger>
+            </TabsTab>
           );
         })}
       </TabsList>
     ) : null;
 
-  const tabsContent = tabs.map((tab, index) => {
+  const tabsPanels = tabs.map((tab, index) => {
     return (
-      <TabsContent
+      <TabsPanel
         className="grid w-full max-w-5xl grid-cols-12 gap-x-4 gap-y-8 place-self-center"
         value={tab.handle}
         key={index}
@@ -33,7 +33,7 @@ function FormSteps({ tabs }: FormStepsProps) {
         {tab.elements?.map((element, index) => {
           return <FormElement {...element} key={index} />;
         })}
-      </TabsContent>
+      </TabsPanel>
     );
   });
 
@@ -45,7 +45,7 @@ function FormSteps({ tabs }: FormStepsProps) {
       onValueChange={setValue}
     >
       {tabsList}
-      {tabsContent}
+      {tabsPanels}
     </TabsRoot>
   );
 }

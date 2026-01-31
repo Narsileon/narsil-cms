@@ -1,22 +1,19 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorBulletListProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
-  icon?: IconName;
+  label?: string;
 };
 
 function RichTextEditorBulletList({
   editor,
-  icon = "list-bullet",
+  label = "Bullet list",
   ...props
 }: RichTextEditorBulletListProps) {
-  const { trans } = useLocalization();
-
   const { isBulletList } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -26,18 +23,18 @@ function RichTextEditorBulletList({
     },
   });
 
-  const tooltip = trans("rich-text-editor.bullet_list");
-
   return (
-    <Toggle
-      pressed={isBulletList}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => editor.chain().focus().toggleBulletList().run()}
-      {...props}
-    >
-      <Icon name={icon} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        pressed={isBulletList}
+        size="icon"
+        onClick={() => editor.chain().focus().toggleBulletList().run()}
+        {...props}
+      >
+        <Icon name="list-bullet" />
+      </Toggle>
+    </Tooltip>
   );
 }
 

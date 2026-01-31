@@ -1,15 +1,15 @@
 import { Button } from "@narsil-cms/blocks/button";
-import { useLocalization } from "@narsil-cms/components/localization";
+import { Icon } from "@narsil-cms/blocks/icon";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorRedoProps = ComponentProps<typeof Button> & {
   editor: Editor;
+  label?: string;
 };
 
-function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
-  const { trans } = useLocalization();
-
+function RichTextEditorRedo({ editor, label = "Redo", ...props }: RichTextEditorRedoProps) {
   const { canRedo } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -19,18 +19,19 @@ function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
     },
   });
 
-  const tooltip = trans("rich-text-editor.redo");
-
   return (
-    <Button
-      disabled={!canRedo}
-      icon="redo"
-      size="icon"
-      tooltip={tooltip}
-      variant="ghost"
-      onClick={() => editor.chain().focus().redo().run()}
-      {...props}
-    />
+    <Tooltip tooltip={label}>
+      <Button
+        aria-label={label}
+        disabled={!canRedo}
+        size="icon"
+        variant="ghost"
+        onClick={() => editor.chain().focus().redo().run()}
+        {...props}
+      >
+        <Icon name="redo" />
+      </Button>
+    </Tooltip>
   );
 }
 

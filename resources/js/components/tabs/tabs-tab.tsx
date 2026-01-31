@@ -1,12 +1,9 @@
+import { Tabs } from "@base-ui/react/tabs";
 import { cn } from "@narsil-cms/lib/utils";
-import { Tabs } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type TabsTriggerProps = ComponentProps<typeof Tabs.Trigger>;
-
-function TabsTrigger({ className, ...props }: TabsTriggerProps) {
+function TabsTab({ className, ...props }: Tabs.Tab.Props) {
   return (
-    <Tabs.Trigger
+    <Tabs.Tab
       data-slot="tabs-trigger"
       className={cn(
         "inline-flex h-9 shrink-0 cursor-pointer items-center gap-2 rounded-md border border-transparent px-3 py-2 whitespace-nowrap text-foreground transition-[color,box-shadow]",
@@ -24,4 +21,4 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
   );
 }
 
-export default TabsTrigger;
+export default TabsTab;

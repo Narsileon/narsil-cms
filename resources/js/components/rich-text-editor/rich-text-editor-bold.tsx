@@ -1,18 +1,15 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorBoldProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
-  icon?: IconName;
+  label?: string;
 };
 
-function RichTextEditorBold({ editor, icon = "bold", ...props }: RichTextEditorBoldProps) {
-  const { trans } = useLocalization();
-
+function RichTextEditorBold({ editor, label = "Bold", ...props }: RichTextEditorBoldProps) {
   const { canBold, isBold } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -23,19 +20,19 @@ function RichTextEditorBold({ editor, icon = "bold", ...props }: RichTextEditorB
     },
   });
 
-  const tooltip = trans("rich-text-editor.bold");
-
   return (
-    <Toggle
-      disabled={!canBold}
-      pressed={isBold}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => editor.chain().focus().toggleBold().run()}
-      {...props}
-    >
-      <Icon name={icon} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        disabled={!canBold}
+        pressed={isBold}
+        size="icon"
+        onClick={() => editor.chain().focus().toggleBold().run()}
+        {...props}
+      >
+        <Icon name="bold" />
+      </Toggle>
+    </Tooltip>
   );
 }
 

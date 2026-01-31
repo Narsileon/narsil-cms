@@ -1,6 +1,7 @@
-// https://www.radix-ui.com/primitives/docs/components/toggle
+// https://ui.shadcn.com/docs/components/base/toggle
+// https://base-ui.com/react/components/toggle
 
-import ToggleRoot from "./toggle-root";
-import toggleRootVariants from "./toggle-root-variants";
+import Toggle from "./toggle";
+import toggleVariants from "./toggle-variants";
 
-export { ToggleRoot, toggleRootVariants };
+export { Toggle, toggleVariants };

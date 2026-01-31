@@ -1,8 +1,8 @@
 // https://www.radix-ui.com/primitives/docs/components/tabs
 
-import TabsContent from "./tabs-content";
 import TabsList from "./tabs-list";
+import TabsPanel from "./tabs-panel";
 import TabsRoot from "./tabs-root";
-import TabsTrigger from "./tabs-trigger";
+import TabsTab from "./tabs-tab";
 
-export { TabsContent, TabsList, TabsRoot, TabsTrigger };
+export { TabsList, TabsPanel, TabsRoot, TabsTab };

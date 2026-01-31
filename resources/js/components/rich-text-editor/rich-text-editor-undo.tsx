@@ -1,15 +1,15 @@
 import { Button } from "@narsil-cms/blocks/button";
-import { useLocalization } from "@narsil-cms/components/localization";
+import { Icon } from "@narsil-cms/blocks/icon";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorUndoProps = ComponentProps<typeof Button> & {
   editor: Editor;
+  label?: string;
 };
 
-function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
-  const { trans } = useLocalization();
-
+function RichTextEditorUndo({ editor, label = "Undo", ...props }: RichTextEditorUndoProps) {
   const { canUndo } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -19,18 +19,19 @@ function RichTextEditorUndo({ editor, ...props }: RichTextEditorUndoProps) {
     },
   });
 
-  const tooltip = trans("rich-text-editor.undo");
-
   return (
-    <Button
-      disabled={!canUndo}
-      icon="undo"
-      size="icon"
-      tooltip={tooltip}
-      variant="ghost"
-      onClick={() => editor.chain().focus().undo().run()}
-      {...props}
-    />
+    <Tooltip tooltip={label}>
+      <Button
+        aria-label={label}
+        disabled={!canUndo}
+        size="icon"
+        variant="ghost"
+        onClick={() => editor.chain().focus().undo().run()}
+        {...props}
+      >
+        <Icon name="undo" />
+      </Button>
+    </Tooltip>
   );
 }
 

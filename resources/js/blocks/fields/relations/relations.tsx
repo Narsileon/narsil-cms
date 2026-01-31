@@ -17,7 +17,7 @@ import {
 } from "@narsil-cms/components/dialog";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "@narsil-cms/components/tabs";
+import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-cms/components/tabs";
 import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
 import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
@@ -172,9 +172,9 @@ function Relations({
               <TabsList>
                 {Object.keys(dataTables).map((id) => {
                   return (
-                    <TabsTrigger value={id} key={id}>
+                    <TabsTab value={id} key={id}>
                       {id}
-                    </TabsTrigger>
+                    </TabsTab>
                   );
                 })}
               </TabsList>
@@ -184,7 +184,7 @@ function Relations({
                 const finalColumnOrder = ["_select", ...collection.columnOrder];
 
                 return (
-                  <TabsContent className="p-0" value={id} key={id}>
+                  <TabsPanel className="p-0" value={id} key={id}>
                     <DataTableProvider
                       id={collection.meta.id}
                       columns={finalColumns}
@@ -213,7 +213,7 @@ function Relations({
                     >
                       <DataTable collection={collection} title={id} />
                     </DataTableProvider>
-                  </TabsContent>
+                  </TabsPanel>
                 );
               })}
             </TabsRoot>

@@ -1,10 +1,7 @@
+import { Tabs } from "@base-ui/react/tabs";
 import { cn } from "@narsil-cms/lib/utils";
-import { Tabs } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type TabsListProps = ComponentProps<typeof Tabs.List>;
-
-function TabsList({ className, ...props }: TabsListProps) {
+function TabsList({ className, ...props }: Tabs.List.Props) {
   return (
     <Tabs.List
       data-slot="tabs-list"

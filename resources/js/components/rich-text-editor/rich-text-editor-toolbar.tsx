@@ -64,18 +64,33 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
       {...props}
     >
       {/* Basic styles */}
-      {hasModule("bold") && <RichTextEditorBold editor={editor} />}
-      {hasModule("italic") && <RichTextEditorItalic editor={editor} />}
-      {hasModule("underline") && <RichTextEditorUnderline editor={editor} />}
-      {hasModule("strike") && <RichTextEditorStrike editor={editor} />}
+      {hasModule("bold") && (
+        <RichTextEditorBold editor={editor} label={trans("rich-text-editor.bold")} />
+      )}
+      {hasModule("italic") && (
+        <RichTextEditorItalic editor={editor} label={trans("rich-text-editor.italic")} />
+      )}
+      {hasModule("underline") && (
+        <RichTextEditorUnderline editor={editor} label={trans("rich-text-editor.underline")} />
+      )}
+      {hasModule("strike") && (
+        <RichTextEditorStrike editor={editor} label={trans("rich-text-editor.strike")} />
+      )}
 
       {/* Advanced styles */}
       {hasModules(["superscript", "subscript"]) && (
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("superscript") !== false && <RichTextEditorSuperscript editor={editor} />}
-          {hasModule("subscript") !== false && <RichTextEditorSubscript editor={editor} />}
+          {hasModule("superscript") && (
+            <RichTextEditorSuperscript
+              editor={editor}
+              label={trans("rich-text-editor.superscript")}
+            />
+          )}
+          {hasModule("subscript") && (
+            <RichTextEditorSubscript editor={editor} label={trans("rich-text-editor.subscript")} />
+          )}
         </>
       )}
 
@@ -102,7 +117,14 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
                   {headings
                     .filter((level) => hasModule(`heading_${level}`) !== false)
                     .map((level) => {
-                      return <RichTextEditorHeading editor={editor} level={level} key={level} />;
+                      return (
+                        <RichTextEditorHeading
+                          editor={editor}
+                          label={trans(`rich-text-editor.heading_${level}`)}
+                          level={level}
+                          key={level}
+                        />
+                      );
                     })}
                 </DropdownMenuPopup>
               </DropdownMenuPositioner>
@@ -116,17 +138,33 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("align_left") !== false && (
-            <RichTextEditorTextAlign alignment="left" editor={editor} />
+          {hasModule("align_left") && (
+            <RichTextEditorTextAlign
+              alignment="left"
+              editor={editor}
+              label={trans(`rich-text-editor.align_left`)}
+            />
           )}
-          {hasModule("align_center") !== false && (
-            <RichTextEditorTextAlign alignment="center" editor={editor} />
+          {hasModule("align_center") && (
+            <RichTextEditorTextAlign
+              alignment="center"
+              editor={editor}
+              label={trans(`rich-text-editor.align_center`)}
+            />
           )}
-          {hasModule("align_right") !== false && (
-            <RichTextEditorTextAlign alignment="right" editor={editor} />
+          {hasModule("align_right") && (
+            <RichTextEditorTextAlign
+              alignment="right"
+              editor={editor}
+              label={trans(`rich-text-editor.align_right`)}
+            />
           )}
-          {hasModule("align_justify") !== false && (
-            <RichTextEditorTextAlign alignment="justify" editor={editor} />
+          {hasModule("align_justify") && (
+            <RichTextEditorTextAlign
+              alignment="justify"
+              editor={editor}
+              label={trans(`rich-text-editor.align_justify`)}
+            />
           )}
         </>
       )}
@@ -136,8 +174,18 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("bullet_list") && <RichTextEditorBulletList editor={editor} />}
-          {hasModule("ordered_list") && <RichTextEditorOrderedList editor={editor} />}
+          {hasModule("bullet_list") && (
+            <RichTextEditorBulletList
+              editor={editor}
+              label={trans("rich-text-editor.bullet_list")}
+            />
+          )}
+          {hasModule("ordered_list") && (
+            <RichTextEditorOrderedList
+              editor={editor}
+              label={trans("rich-text-editor.ordered_list")}
+            />
+          )}
         </>
       )}
 
@@ -146,8 +194,12 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("undo") && <RichTextEditorUndo editor={editor} />}
-          {hasModule("redo") && <RichTextEditorRedo editor={editor} />}
+          {hasModule("undo") && (
+            <RichTextEditorUndo editor={editor} label={trans("rich-text-editor.redo")} />
+          )}
+          {hasModule("redo") && (
+            <RichTextEditorRedo editor={editor} label={trans("rich-text-editor.undo")} />
+          )}
         </>
       )}
     </div>

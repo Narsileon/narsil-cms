@@ -1,10 +1,10 @@
 import { Toggle } from "@base-ui/react/toggle";
-import { toggleRootVariants } from "@narsil-cms/components/toggle";
+import { toggleVariants } from "@narsil-cms/components/toggle";
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import useToggleGroup from "./toggle-group-context";
 
-type ToggleGroupItemProps = Toggle.Props & VariantProps<typeof toggleRootVariants>;
+type ToggleGroupItemProps = Toggle.Props & VariantProps<typeof toggleVariants>;
 
 function ToggleGroupItem({ className, size, variant, ...props }: ToggleGroupItemProps) {
   const context = useToggleGroup();
@@ -29,7 +29,7 @@ function ToggleGroupItem({ className, size, variant, ...props }: ToggleGroupItem
         "group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t",
         "group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg",
         "group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg",
-        toggleRootVariants({
+        toggleVariants({
           size: context.size || size,
           variant: context.variant || variant,
         }),

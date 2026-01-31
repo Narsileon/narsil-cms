@@ -14,8 +14,9 @@ type TooltipProps = ComponentProps<typeof TooltipRoot> & {
   popupProps?: Partial<ComponentProps<typeof TooltipPopup>>;
   portalProps?: Partial<ComponentProps<typeof TooltipPortal>>;
   positionerProps?: Partial<ComponentProps<typeof TooltipPositioner>>;
-  triggerProps?: Partial<ComponentProps<typeof TooltipTrigger>>;
+  providerProps?: Partial<ComponentProps<typeof TooltipProvider>>;
   tooltip: string | ReactElement;
+  triggerProps?: Partial<ComponentProps<typeof TooltipTrigger>>;
 } & {
   children: ReactElement;
 };
@@ -25,16 +26,18 @@ function Tooltip({
   children,
   popupProps,
   portalProps,
+  positionerProps,
+  providerProps,
   tooltip,
   triggerProps,
   ...props
 }: TooltipProps) {
   return (
-    <TooltipProvider>
+    <TooltipProvider {...providerProps}>
       <TooltipRoot {...props}>
         <TooltipTrigger render={children} {...triggerProps} />
         <TooltipPortal {...portalProps}>
-          <TooltipPositioner>
+          <TooltipPositioner {...positionerProps}>
             <TooltipPopup {...popupProps}>
               {tooltip}
               <TooltipArrow {...arrowProps} />

@@ -1,22 +1,15 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorStrikeProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
-  icon?: IconName;
+  label?: string;
 };
 
-function RichTextEditorStrike({
-  editor,
-  icon = "strikethrough",
-  ...props
-}: RichTextEditorStrikeProps) {
-  const { trans } = useLocalization();
-
+function RichTextEditorStrike({ editor, label = "Strike", ...props }: RichTextEditorStrikeProps) {
   const { canStrike, isStrike } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -27,19 +20,19 @@ function RichTextEditorStrike({
     },
   });
 
-  const tooltip = trans("rich-text-editor.strike");
-
   return (
-    <Toggle
-      disabled={!canStrike}
-      pressed={isStrike}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => editor.chain().focus().toggleStrike().run()}
-      {...props}
-    >
-      <Icon name={icon} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        disabled={!canStrike}
+        pressed={isStrike}
+        size="icon"
+        onClick={() => editor.chain().focus().toggleStrike().run()}
+        {...props}
+      >
+        <Icon name="strikethrough" />
+      </Toggle>
+    </Tooltip>
   );
 }
 

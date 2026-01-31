@@ -1,29 +1,50 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorTextAlignProps = ComponentProps<typeof Toggle> & {
   alignment: "left" | "center" | "right" | "justify";
   editor: Editor;
+  label?: string;
 };
 
-function RichTextEditorTextAlign({ alignment, editor, ...props }: RichTextEditorTextAlignProps) {
-  const { trans } = useLocalization();
-
-  const tooltip = trans(`rich-text-editor.align_${alignment}`);
+function RichTextEditorTextAlign({
+  alignment,
+  editor,
+  label,
+  ...props
+}: RichTextEditorTextAlignProps) {
+  if (!label) {
+    switch (alignment) {
+      case "left":
+        label = "Align left";
+        break;
+      case "center":
+        label = "Align center";
+        break;
+      case "right":
+        label = "Align right";
+        break;
+      case "justify":
+        label = "Justify";
+        break;
+    }
+  }
 
   return (
-    <Toggle
-      pressed={editor.isActive({ textAlign: alignment })}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => editor.chain().focus().setTextAlign(alignment).run()}
-      {...props}
-    >
-      <Icon name={`align-${alignment}`} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        pressed={editor.isActive({ textAlign: alignment })}
+        size="icon"
+        onClick={() => editor.chain().focus().setTextAlign(alignment).run()}
+        {...props}
+      >
+        <Icon name={`align-${alignment}`} />
+      </Toggle>
+    </Tooltip>
   );
 }
 

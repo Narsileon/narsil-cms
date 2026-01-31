@@ -11,7 +11,11 @@ function SliderRoot({
   return (
     <Slider.Root
       data-slot="slider-root"
-      className={cn("data-horizontal:w-full data-vertical:h-full", className)}
+      className={cn(
+        "flex h-6 flex-col justify-center",
+        "data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full",
+        className,
+      )}
       min={min}
       max={max}
       thumbAlignment={thumbAlignment}

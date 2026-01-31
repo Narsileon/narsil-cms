@@ -1,22 +1,19 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorSuperscriptProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
-  icon?: IconName;
+  label?: string;
 };
 
 function RichTextEditorSuperscript({
   editor,
-  icon = "superscript",
+  label = "Superscript",
   ...props
 }: RichTextEditorSuperscriptProps) {
-  const { trans } = useLocalization();
-
   const { canSuperscript, isSuperscript } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -27,22 +24,22 @@ function RichTextEditorSuperscript({
     },
   });
 
-  const tooltip = trans("rich-text-editor.superscript");
-
   return (
-    <Toggle
-      disabled={!canSuperscript}
-      pressed={isSuperscript}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => {
-        editor.chain().focus().unsetSubscript().run();
-        editor.chain().focus().toggleSuperscript().run();
-      }}
-      {...props}
-    >
-      <Icon name={icon} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        disabled={!canSuperscript}
+        pressed={isSuperscript}
+        size="icon"
+        onClick={() => {
+          editor.chain().focus().unsetSubscript().run();
+          editor.chain().focus().toggleSuperscript().run();
+        }}
+        {...props}
+      >
+        <Icon name="superscript" />
+      </Toggle>
+    </Tooltip>
   );
 }
 

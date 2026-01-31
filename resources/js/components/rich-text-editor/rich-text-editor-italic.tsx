@@ -1,18 +1,15 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorItalicProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
-  icon?: IconName;
+  label?: string;
 };
 
-function RichTextEditorItalic({ editor, icon = "italic", ...props }: RichTextEditorItalicProps) {
-  const { trans } = useLocalization();
-
+function RichTextEditorItalic({ editor, label = "Italic", ...props }: RichTextEditorItalicProps) {
   const { canItalic, isItalic } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -23,19 +20,19 @@ function RichTextEditorItalic({ editor, icon = "italic", ...props }: RichTextEdi
     },
   });
 
-  const tooltip = trans("rich-text-editor.italic");
-
   return (
-    <Toggle
-      disabled={!canItalic}
-      pressed={isItalic}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => editor.chain().focus().toggleItalic().run()}
-      {...props}
-    >
-      <Icon name={icon} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        disabled={!canItalic}
+        pressed={isItalic}
+        size="icon"
+        onClick={() => editor.chain().focus().toggleItalic().run()}
+        {...props}
+      >
+        <Icon name="italic" />
+      </Toggle>
+    </Tooltip>
   );
 }
 

@@ -7,8 +7,8 @@ function SliderIndicator({ className, ...props }: Slider.Indicator.Props) {
       data-slot="slider-indicator"
       className={cn(
         "bg-primary select-none",
-        "data-horizontal:h-full",
-        "data-vertical:w-full",
+        "data-[orientation=horizontal]:h-full",
+        "data-[orientation=vertical]:w-full",
         className,
       )}
       {...props}

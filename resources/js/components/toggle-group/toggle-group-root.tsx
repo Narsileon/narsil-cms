@@ -1,11 +1,11 @@
 import { ToggleGroup } from "@base-ui/react/toggle-group";
-import { toggleRootVariants } from "@narsil-cms/components/toggle";
+import { toggleVariants } from "@narsil-cms/components/toggle";
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { ToggleGroupContext } from "./toggle-group-context";
 
 type ToggleGroupRootProps = ToggleGroup.Props &
-  VariantProps<typeof toggleRootVariants> & {
+  VariantProps<typeof toggleVariants> & {
     orientation?: "horizontal" | "vertical";
     spacing?: number;
   };

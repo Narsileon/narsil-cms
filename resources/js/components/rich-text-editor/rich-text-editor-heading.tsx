@@ -1,17 +1,16 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Toggle } from "@narsil-cms/blocks/toggle";
-import { useLocalization } from "@narsil-cms/components/localization";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Toggle } from "@narsil-cms/components/toggle";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 
 type RichTextEditorHeadingProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
+  label?: string;
   level: 1 | 2 | 3 | 4 | 5 | 6;
 };
 
-function RichTextEditorHeading({ editor, level, ...props }: RichTextEditorHeadingProps) {
-  const { trans } = useLocalization();
-
+function RichTextEditorHeading({ editor, label, level, ...props }: RichTextEditorHeadingProps) {
   const { isHeading } = useEditorState({
     editor,
     selector: (ctx) => {
@@ -21,18 +20,22 @@ function RichTextEditorHeading({ editor, level, ...props }: RichTextEditorHeadin
     },
   });
 
-  const tooltip = trans(`rich-text-editor.heading_${level}`);
+  if (!label) {
+    label = `Heading ${level}`;
+  }
 
   return (
-    <Toggle
-      pressed={isHeading}
-      size="icon"
-      tooltip={tooltip}
-      onClick={() => editor.chain().focus().toggleHeading({ level: level }).run()}
-      {...props}
-    >
-      <Icon className="stroke-foreground" name={`heading-${level}`} />
-    </Toggle>
+    <Tooltip tooltip={label}>
+      <Toggle
+        aria-label={label}
+        pressed={isHeading}
+        size="icon"
+        onClick={() => editor.chain().focus().toggleHeading({ level: level }).run()}
+        {...props}
+      >
+        <Icon className="stroke-foreground" name={`heading-${level}`} />
+      </Toggle>
+    </Tooltip>
   );
 }
 

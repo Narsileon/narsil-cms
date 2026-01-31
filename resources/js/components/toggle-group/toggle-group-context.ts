@@ -1,8 +1,8 @@
-import { toggleRootVariants } from "@narsil-cms/components/toggle";
+import { toggleVariants } from "@narsil-cms/components/toggle";
 import { type VariantProps } from "class-variance-authority";
 import { createContext, useContext } from "react";
 
-type ToggleGroupContextProps = VariantProps<typeof toggleRootVariants> & {
+type ToggleGroupContextProps = VariantProps<typeof toggleVariants> & {
   orientation: "horizontal" | "vertical";
   spacing?: number;
 };

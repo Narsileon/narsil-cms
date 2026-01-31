@@ -8,7 +8,7 @@ function SliderControl({ className, ...props }: Slider.Control.Props) {
       className={cn(
         "relative flex w-full touch-none items-center select-none",
         "data-disabled:opacity-50",
-        "data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col",
+        "data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
       )}
       {...props}
     />
