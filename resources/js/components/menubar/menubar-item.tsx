@@ -24,7 +24,6 @@ function MenubarItem({ className, inset, variant = "default", ...props }: Menuba
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "data-inset:pl-8",
         "focus:bg-accent focus:text-accent-foreground",
-        "not-data-[variant=destructive]:focus:**:text-accent-foreground",
         className,
       )}
       {...props}

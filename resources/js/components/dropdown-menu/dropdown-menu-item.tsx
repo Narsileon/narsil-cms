@@ -1,12 +1,17 @@
 import { Menu } from "@base-ui/react/menu";
 import { cn } from "@narsil-cms/lib/utils";
 
-type MenuItemProps = Menu.Item.Props & {
+type DropdownMenuItemProps = Menu.Item.Props & {
   inset?: boolean;
   variant?: "default" | "destructive";
 };
 
-function DropdownMenuItem({ className, inset, variant = "default", ...props }: MenuItemProps) {
+function DropdownMenuItem({
+  className,
+  inset,
+  variant = "default",
+  ...props
+}: DropdownMenuItemProps) {
   return (
     <Menu.Item
       data-slot="dropdown-menu-item"
@@ -14,7 +19,7 @@ function DropdownMenuItem({ className, inset, variant = "default", ...props }: M
       data-variant={variant}
       className={cn(
         "group/menu-item",
-        "relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none",
+        "relative flex w-full cursor-default items-center justify-start gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none",
         "[&_svg:not([class*='size-'])]:size-4",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "dark:data-[variant=destructive]:focus:bg-destructive/20",
@@ -24,7 +29,6 @@ function DropdownMenuItem({ className, inset, variant = "default", ...props }: M
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "data-inset:pl-8",
         "focus:bg-accent focus:text-accent-foreground",
-        "not-data-[variant=destructive]:focus:**:text-accent-foreground",
         className,
       )}
       {...props}

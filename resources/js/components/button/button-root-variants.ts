@@ -21,7 +21,6 @@ const buttonRootVariants = cva(
           "focus-visible:bg-accent focus-visible:text-accent-foreground",
           "hover:bg-accent hover:text-accent-foreground",
         ),
-
         outline: cn(
           "border border-input bg-background shadow-sm",
           "focus-visible:border-shine",

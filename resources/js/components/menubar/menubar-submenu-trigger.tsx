@@ -18,7 +18,6 @@ function MenubarSubmenuTrigger({ className, inset, ...props }: MenubarSubmenuTri
         "data-open:bg-accent data-open:text-accent-foreground",
         "data-popup-open:bg-accent data-popup-open:text-accent-foreground",
         "focus:bg-accent focus:text-accent-foreground",
-        "not-data-[variant=destructive]:focus:**:text-accent-foreground",
         className,
       )}
       {...props}

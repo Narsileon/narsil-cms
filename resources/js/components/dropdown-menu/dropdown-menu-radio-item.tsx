@@ -10,7 +10,6 @@ function DropdownMenuRadioItem({ className, ...props }: Menu.RadioItem.Props) {
         "[&_svg:not([class*='size-'])]:size-4",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
-        "focus:**:text-accent-foreground",
         "focus:bg-accent focus:text-accent-foreground",
         className,
       )}

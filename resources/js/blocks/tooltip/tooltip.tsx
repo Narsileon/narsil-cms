@@ -7,7 +7,7 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from "@narsil-cms/components/tooltip";
-import { type ComponentProps, type ReactNode } from "react";
+import { type ComponentProps, type ReactElement } from "react";
 
 type TooltipProps = ComponentProps<typeof TooltipRoot> & {
   arrowProps?: Partial<ComponentProps<typeof TooltipArrow>>;
@@ -15,9 +15,9 @@ type TooltipProps = ComponentProps<typeof TooltipRoot> & {
   portalProps?: Partial<ComponentProps<typeof TooltipPortal>>;
   positionerProps?: Partial<ComponentProps<typeof TooltipPositioner>>;
   triggerProps?: Partial<ComponentProps<typeof TooltipTrigger>>;
-  tooltip: string | ReactNode;
+  tooltip: string | ReactElement;
 } & {
-  children: ReactNode;
+  children: ReactElement;
 };
 
 function Tooltip({
@@ -32,7 +32,7 @@ function Tooltip({
   return (
     <TooltipProvider>
       <TooltipRoot {...props}>
-        <TooltipTrigger {...triggerProps}>{children}</TooltipTrigger>
+        <TooltipTrigger render={children} {...triggerProps} />
         <TooltipPortal {...portalProps}>
           <TooltipPositioner>
             <TooltipPopup {...popupProps}>
