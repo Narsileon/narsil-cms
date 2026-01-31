@@ -82,6 +82,7 @@ function BuilderItem({
             <CardTitle className="grow justify-self-start font-normal">{block.label}</CardTitle>
             <Switch
               name={`${baseHandle}.active`}
+              size="sm"
               checked={
                 get(
                   data,

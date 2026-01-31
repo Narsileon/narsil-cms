@@ -1,11 +1,9 @@
 import { AlertDialog } from "@base-ui/react/alert-dialog";
 import { cn } from "@narsil-cms/lib/utils";
 
-function AlertDialogContent({
-  className,
-  size = "default",
-  ...props
-}: AlertDialog.Popup.Props & { size?: "default" | "sm" }) {
+type AlertDialogPopupProps = AlertDialog.Popup.Props & { size?: "default" | "sm" };
+
+function AlertDialogPopup({ className, size = "default", ...props }: AlertDialogPopupProps) {
   return (
     <AlertDialog.Popup
       data-slot="alert-dialog-popup"
@@ -24,4 +22,4 @@ function AlertDialogContent({
   );
 }
 
-export default AlertDialogContent;
+export default AlertDialogPopup;

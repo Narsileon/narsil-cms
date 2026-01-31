@@ -1,16 +1,20 @@
+import { Switch } from "@base-ui/react/switch";
 import { cn } from "@narsil-cms/lib/utils";
-import { Switch } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type SwitchThumbProps = ComponentProps<typeof Switch.Thumb>;
-
-function SwitchThumb({ className, ...props }: SwitchThumbProps) {
+function SwitchThumb({ className, ...props }: Switch.Thumb.Props) {
   return (
     <Switch.Thumb
       data-slot="switch-thumb"
       className={cn(
-        "pointer-events-none block size-4 rounded-full bg-constructive-foreground ring-0 transition-transform will-change-transform",
-        "data-[state=checked]:translate-x-[calc(100%)] data-[state=unchecked]:translate-x-0",
+        "pointer-events-none block rounded-full bg-background ring-0 transition-transform will-change-transform",
+        "dark:data-checked:bg-foreground",
+        "dark:data-unchecked:bg-foreground",
+        "group-data-[size=default]/switch:data-checked:translate-x-[calc(100%)]",
+        "group-data-[size=default]/switch:data-unchecked:translate-x-0",
+        "group-data-[size=default]/switch:size-4",
+        "group-data-[size=sm]/switch:data-checked:translate-x-[calc(100%)]",
+        "group-data-[size=sm]/switch:data-unchecked:translate-x-0",
+        "group-data-[size=sm]/switch:size-3",
         className,
       )}
       {...props}

@@ -1,11 +1,10 @@
 import { AlertDialog } from "@base-ui/react/alert-dialog";
 import { ButtonRoot } from "@narsil-cms/components/button";
 
-function AlertDialogCancel({
-  size,
-  variant,
-  ...props
-}: AlertDialog.Close.Props & Pick<React.ComponentProps<typeof ButtonRoot>, "variant" | "size">) {
+type AlertDialogCancelProps = AlertDialog.Close.Props &
+  Pick<React.ComponentProps<typeof ButtonRoot>, "variant" | "size">;
+
+function AlertDialogCancel({ size, variant, ...props }: AlertDialogCancelProps) {
   return (
     <AlertDialog.Close
       data-slot="alert-dialog-cancel"
