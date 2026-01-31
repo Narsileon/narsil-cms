@@ -2,8 +2,9 @@ import { Calendar } from "@narsil-cms/blocks/calendar";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import {
-  PopoverContent,
+  PopoverPopup,
   PopoverPortal,
+  PopoverPositioner,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -22,32 +23,37 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className="relative" asChild>
-        <InputRoot className={cn(open && "border-shine")} variant="button">
-          <InputContent
-            className={cn(!value && "opacity-50")}
-            type="date"
-            value={value}
-            onChange={(event) => onChange(event.target.value)}
-            {...props}
-          />
-          <Icon className="opacity-50" name="calendar" />
-        </InputRoot>
-      </PopoverTrigger>
+      <PopoverTrigger
+        className="relative"
+        render={
+          <InputRoot className={cn(open && "border-shine")} variant="button">
+            <InputContent
+              className={cn(!value && "opacity-50")}
+              type="date"
+              value={value}
+              onChange={(event) => onChange(event.target.value)}
+              {...props}
+            />
+            <Icon className="opacity-50" name="calendar" />
+          </InputRoot>
+        }
+      />
       <PopoverPortal>
-        <PopoverContent className="w-auto overflow-hidden p-0" align="start">
-          <Calendar
-            captionLayout="dropdown"
-            mode="single"
-            defaultMonth={date}
-            selected={date}
-            onSelect={(selected) => {
-              const newValue = selected ? selected.toLocaleDateString("en-CA") : undefined;
-              onChange?.(newValue);
-              setOpen(false);
-            }}
-          />
-        </PopoverContent>
+        <PopoverPositioner align="start">
+          <PopoverPopup className="w-auto overflow-hidden p-0">
+            <Calendar
+              captionLayout="dropdown"
+              mode="single"
+              defaultMonth={date}
+              selected={date}
+              onSelect={(selected) => {
+                const newValue = selected ? selected.toLocaleDateString("en-CA") : undefined;
+                onChange?.(newValue);
+                setOpen(false);
+              }}
+            />
+          </PopoverPopup>
+        </PopoverPositioner>
       </PopoverPortal>
     </PopoverRoot>
   );

@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { Card } from "@narsil-cms/blocks/card";
-import { Heading } from "@narsil-cms/blocks/heading";
+import { Heading } from "@narsil-cms/components/heading";
 import { useMinLg, useMinMd, useMinSm, useMinXl } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
 

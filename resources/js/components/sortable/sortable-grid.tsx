@@ -386,15 +386,16 @@ function SortableGrid({
                   },
                 ]);
               }}
-            >
-              <SortableItem
-                id={PLACEHOLDER_ID}
-                placeholder={true}
-                item={{ id: PLACEHOLDER_ID, identifier: PLACEHOLDER_ID }}
-              >
-                {placeholder}
-              </SortableItem>
-            </SortableItemForm>
+              render={
+                <SortableItem
+                  id={PLACEHOLDER_ID}
+                  placeholder={true}
+                  item={{ id: PLACEHOLDER_ID, identifier: PLACEHOLDER_ID }}
+                >
+                  {placeholder}
+                </SortableItem>
+              }
+            />
           ) : null}
         </SortableContext>
         <BackgroundRoot>

@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type BackgroundRootProps = ComponentProps<"div">;
-
-function BackgroundRoot({ className, ...props }: BackgroundRootProps) {
+function BackgroundRoot({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="background-root"

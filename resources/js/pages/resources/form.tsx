@@ -1,5 +1,4 @@
 import { Button } from "@narsil-cms/blocks/button";
-import { Heading } from "@narsil-cms/blocks/heading";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { RevisionSelect } from "@narsil-cms/blocks/revision-select";
 import { Status } from "@narsil-cms/blocks/status";
@@ -16,6 +15,7 @@ import {
   FormTimestamp,
 } from "@narsil-cms/components/form";
 import FormPublish from "@narsil-cms/components/form/form-publish";
+import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
 import { cn } from "@narsil-cms/lib/utils";
@@ -119,9 +119,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                   <FormSteps tabs={standardTabs} />
                 </DialogBody>
                 <DialogFooter className="col-span-full h-fit border-t">
-                  <DialogClose asChild={true}>
-                    <Button variant="ghost">{trans("ui.cancel")}</Button>
-                  </DialogClose>
+                  <DialogClose render={<Button variant="ghost">{trans("ui.cancel")}</Button>} />
                   <Button form={`${id}_${modal.id}`} type="submit">
                     {isEmpty(submitLabel) ? trans("ui.save") : submitLabel}
                   </Button>

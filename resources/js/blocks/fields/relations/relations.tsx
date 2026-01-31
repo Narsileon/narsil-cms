@@ -2,14 +2,13 @@ import { Badge } from "@narsil-cms/blocks/badge";
 import { Button } from "@narsil-cms/blocks/button";
 import { DataTable } from "@narsil-cms/blocks/data-table";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Spinner } from "@narsil-cms/blocks/spinner";
 import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
 import {
+  DialogBackdrop,
   DialogClose,
-  DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogOverlay,
+  DialogPopup,
   DialogPortal,
   DialogRoot,
   DialogTitle,
@@ -17,6 +16,7 @@ import {
 } from "@narsil-cms/components/dialog";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Spinner } from "@narsil-cms/components/spinner";
 import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-cms/components/tabs";
 import { cn } from "@narsil-cms/lib/utils";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
@@ -129,37 +129,39 @@ function Relations({
 
   return (
     <DialogRoot open={open} onOpenChange={setOpen} modal={true}>
-      <DialogTrigger asChild={true}>
-        <InputRoot
-          id={id}
-          className={cn(className)}
-          aria-expanded={open}
-          aria-disabled={disabled}
-          role="combobox"
-          variant="button"
-        >
-          {value.length > 0 ? (
-            <div className="-ml-1 flex flex-wrap gap-1">
-              {value?.map((item, index) => {
-                return (
-                  <Badge
-                    onClose={() => setValue((value as string[]).filter((x) => x !== item))}
-                    key={index}
-                  >
-                    {item}
-                  </Badge>
-                );
-              })}
-            </div>
-          ) : (
-            (placeholder ?? trans("placeholders.search"))
-          )}
-          <Icon className={cn("ml-2 shrink-0 duration-300")} name="chevron-down" />
-        </InputRoot>
-      </DialogTrigger>
+      <DialogTrigger
+        render={
+          <InputRoot
+            id={id}
+            className={cn(className)}
+            aria-expanded={open}
+            aria-disabled={disabled}
+            role="combobox"
+            variant="button"
+          >
+            {value.length > 0 ? (
+              <div className="-ml-1 flex flex-wrap gap-1">
+                {value?.map((item, index) => {
+                  return (
+                    <Badge
+                      onClose={() => setValue((value as string[]).filter((x) => x !== item))}
+                      key={index}
+                    >
+                      {item}
+                    </Badge>
+                  );
+                })}
+              </div>
+            ) : (
+              (placeholder ?? trans("placeholders.search"))
+            )}
+            <Icon className={cn("ml-2 shrink-0 duration-300")} name="chevron-down" />
+          </InputRoot>
+        }
+      />
       <DialogPortal>
-        <DialogOverlay />
-        <DialogContent className="sm:max-w-full" variant="right">
+        <DialogBackdrop />
+        <DialogPopup className="sm:max-w-full" variant="right">
           <DialogHeader className="border-b">
             <DialogTitle>Relations</DialogTitle>
           </DialogHeader>
@@ -221,22 +223,22 @@ function Relations({
             <Spinner />
           )}
           <DialogFooter className="border-t">
-            <DialogClose asChild={true}>
-              <Button variant="ghost">{trans("ui.cancel")}</Button>
-            </DialogClose>
-            <DialogClose asChild={true}>
-              <Button
-                onClick={() => {
-                  const value = getValueFromSelectedRows(selectedRows);
+            <DialogClose render={<Button variant="ghost">{trans("ui.cancel")}</Button>} />
+            <DialogClose
+              render={
+                <Button
+                  onClick={() => {
+                    const value = getValueFromSelectedRows(selectedRows);
 
-                  setValue(value);
-                }}
-              >
-                {trans("ui.confirm")}
-              </Button>
-            </DialogClose>
+                    setValue(value);
+                  }}
+                >
+                  {trans("ui.confirm")}
+                </Button>
+              }
+            />
           </DialogFooter>
-        </DialogContent>
+        </DialogPopup>
       </DialogPortal>
     </DialogRoot>
   );

@@ -93,7 +93,7 @@ function ArrayItem({
               </div>
             </CardHeader>
           }
-        ></CollapsibleTrigger>
+        />
         {form ? (
           <CollapsiblePanel>
             <CardContent className="grow">

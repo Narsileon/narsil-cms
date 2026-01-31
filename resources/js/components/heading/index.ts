@@ -1,4 +1,4 @@
-import HeadingRoot from "./heading-root";
-import headingRootVariants from "./heading-root-variants";
+import Heading from "./heading";
+import headingVariants from "./heading-variants";
 
-export { HeadingRoot, headingRootVariants };
+export { Heading, headingVariants };

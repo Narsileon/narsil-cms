@@ -1,6 +1,5 @@
 import { router } from "@inertiajs/react";
 import { Button } from "@narsil-cms/blocks/button";
-import { Heading } from "@narsil-cms/blocks/heading";
 import { Icon } from "@narsil-cms/blocks/icon";
 import {
   DataTableColumns,
@@ -12,6 +11,7 @@ import {
   DataTableRow,
   useDataTable,
 } from "@narsil-cms/components/data-table";
+import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import {
@@ -70,19 +70,21 @@ function DataTable({ collection, title }: DataTableProps) {
           {title}
         </Heading>
         <DataTableInput className="grow" />
-        <DataTableColumns>
-          <Button
-            icon="eye"
-            size={isDesktop ? "default" : "icon"}
-            tooltipProps={{
-              popupProps: { hidden: isDesktop },
-              tooltip: columnsLabel,
-            }}
-            variant="secondary"
-          >
-            {isDesktop ? columnsLabel : undefined}
-          </Button>
-        </DataTableColumns>
+        <DataTableColumns
+          render={
+            <Button
+              icon="eye"
+              size={isDesktop ? "default" : "icon"}
+              tooltipProps={{
+                popupProps: { hidden: isDesktop },
+                tooltip: columnsLabel,
+              }}
+              variant="secondary"
+            >
+              {isDesktop ? columnsLabel : undefined}
+            </Button>
+          }
+        />
         <DataTableFilterDropdown
           render={
             <Button

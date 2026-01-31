@@ -1,15 +1,13 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type BackgroundGridProps = ComponentProps<"svg"> & {};
-
 function BackgroundGrid({
   className,
   id = "grid",
   height = 16,
   width = 16,
   ...props
-}: BackgroundGridProps) {
+}: ComponentProps<"svg">) {
   return (
     <svg
       data-slot="background-grid"

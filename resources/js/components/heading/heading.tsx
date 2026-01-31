@@ -1,21 +1,21 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import { type ComponentProps } from "react";
-import headingRootVariants from "./heading-root-variants";
+import headingVariants from "./heading-variants";
 
-type HeadingRootProps = ComponentProps<"h1"> &
-  VariantProps<typeof headingRootVariants> & {
+type HeadingProps = ComponentProps<"h1"> &
+  VariantProps<typeof headingVariants> & {
     level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   };
 
-function HeadingRoot({ className, level = "h1", variant = "h6", ...props }: HeadingRootProps) {
+function Heading({ className, level = "h1", variant = "h6", ...props }: HeadingProps) {
   const Comp = level;
 
   return (
     <Comp
-      data-slot="heading-root"
+      data-slot="heading"
       className={cn(
-        headingRootVariants({
+        headingVariants({
           className: className,
           variant: variant,
         }),
@@ -25,4 +25,4 @@ function HeadingRoot({ className, level = "h1", variant = "h6", ...props }: Head
   );
 }
 
-export default HeadingRoot;
+export default Heading;

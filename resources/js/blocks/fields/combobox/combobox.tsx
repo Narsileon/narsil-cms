@@ -14,8 +14,9 @@ import CommandInputWrapper from "@narsil-cms/components/command/command-input-wr
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
-  PopoverContent,
+  PopoverPopup,
   PopoverPortal,
+  PopoverPositioner,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -236,124 +237,133 @@ function Combobox({
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen} modal>
-      <PopoverTrigger asChild={true} aria-label={id}>
-        <InputRoot
-          id={id}
-          className={cn("data-[state=open]:border-shine", className)}
-          aria-expanded={open}
-          aria-disabled={disabled}
-          role="combobox"
-          variant="button"
-        >
-          {selectedOptions.length > 0 ? (
-            multiple ? (
-              <div className="-ml-1 flex flex-wrap gap-1">
-                {selectedOptions.map((option, index) => {
-                  const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
-                  const optionValue = getSelectOption(option, valuePath);
-
-                  return (
-                    <Badge
-                      onClose={() => setValue((value as string[]).filter((x) => x !== optionValue))}
-                      key={index}
-                    >
-                      {optionLabel}
-                    </Badge>
-                  );
-                })}
-              </div>
-            ) : (
-              parse(getTranslatableSelectOption(selectedOptions[0], labelPath, locale))
-            )
-          ) : placeholder ? (
-            placeholder
-          ) : (
-            trans("placeholders.search")
-          )}
-          {clearable && value ? (
-            <Icon
-              className={cn("ml-2 shrink-0")}
-              name="x"
-              onClick={() => {
-                setValue("");
-              }}
-            />
-          ) : (
-            <Icon
-              className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
-              name="chevron-down"
-            />
-          )}
-        </InputRoot>
-      </PopoverTrigger>
-      <PopoverPortal>
-        <PopoverContent className="p-0">
-          <CommandRoot shouldFilter={false}>
-            {searchable ? (
-              <CommandInputWrapper>
-                <Icon className="size-4 shrink-0 opacity-50" name="search" />
-                <CommandInput
-                  value={input}
-                  onValueChange={onValueChange}
-                  placeholder={placeholder ?? trans("placeholders.search")}
-                />
-              </CommandInputWrapper>
-            ) : null}
-            <CommandList ref={parentRef}>
-              <CommandEmpty>
-                {loading ? trans("ui.loading") : trans("pagination.pages_empty")}
-              </CommandEmpty>
-              <CommandGroup>
-                <div
-                  className="relative w-full"
-                  style={{
-                    height: `${virtualizer.getTotalSize()}px`,
-                  }}
-                >
-                  {virtualizer.getVirtualItems().map(({ index, key, size, start }) => {
-                    const option = filteredOptions[index];
-
+      <PopoverTrigger
+        aria-label={id}
+        render={
+          <InputRoot
+            id={id}
+            className={cn("data-[state=open]:border-shine", className)}
+            aria-expanded={open}
+            aria-disabled={disabled}
+            role="combobox"
+            variant="button"
+          >
+            {selectedOptions.length > 0 ? (
+              multiple ? (
+                <div className="-ml-1 flex flex-wrap gap-1">
+                  {selectedOptions.map((option, index) => {
                     const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
                     const optionValue = getSelectOption(option, valuePath);
 
-                    const isSelected = Array.isArray(value)
-                      ? value.includes(optionValue)
-                      : value === optionValue;
-
                     return (
-                      <CommandItem
-                        className={cn("absolute top-0 left-0 h-9 w-full will-change-transform")}
-                        value={optionValue.toString()}
-                        onSelect={onSelect}
-                        style={{
-                          height: `${size}px`,
-                          transform: `translateY(${start}px)`,
-                        }}
-                        key={key}
+                      <Badge
+                        onClose={() =>
+                          setValue((value as string[]).filter((x) => x !== optionValue))
+                        }
+                        key={index}
                       >
-                        <Icon
-                          className={cn("size-4", isSelected ? "opacity-100" : "opacity-0")}
-                          name="check"
-                        />
-                        {!isString(option) && option.icon ? (
-                          <Icon className="size-4" name={option.icon} />
-                        ) : null}
-                        <div className="flex w-full items-center justify-between gap-2 truncate">
-                          <div className="min-w-1/2 grow truncate">{parse(optionLabel)}</div>
-                          {displayValue && (
-                            <Tooltip tooltip={optionValue}>
-                              <span className="truncate text-muted-foreground">{optionValue}</span>
-                            </Tooltip>
-                          )}
-                        </div>
-                      </CommandItem>
+                        {optionLabel}
+                      </Badge>
                     );
                   })}
                 </div>
-              </CommandGroup>
-            </CommandList>
-          </CommandRoot>
-        </PopoverContent>
+              ) : (
+                parse(getTranslatableSelectOption(selectedOptions[0], labelPath, locale))
+              )
+            ) : placeholder ? (
+              placeholder
+            ) : (
+              trans("placeholders.search")
+            )}
+            {clearable && value ? (
+              <Icon
+                className={cn("ml-2 shrink-0")}
+                name="x"
+                onClick={() => {
+                  setValue("");
+                }}
+              />
+            ) : (
+              <Icon
+                className={cn("ml-2 shrink-0 duration-300", open && "rotate-180")}
+                name="chevron-down"
+              />
+            )}
+          </InputRoot>
+        }
+      />
+      <PopoverPortal>
+        <PopoverPositioner>
+          <PopoverPopup className="p-0">
+            <CommandRoot shouldFilter={false}>
+              {searchable ? (
+                <CommandInputWrapper>
+                  <Icon className="size-4 shrink-0 opacity-50" name="search" />
+                  <CommandInput
+                    value={input}
+                    onValueChange={onValueChange}
+                    placeholder={placeholder ?? trans("placeholders.search")}
+                  />
+                </CommandInputWrapper>
+              ) : null}
+              <CommandList ref={parentRef}>
+                <CommandEmpty>
+                  {loading ? trans("ui.loading") : trans("pagination.pages_empty")}
+                </CommandEmpty>
+                <CommandGroup>
+                  <div
+                    className="relative w-full"
+                    style={{
+                      height: `${virtualizer.getTotalSize()}px`,
+                    }}
+                  >
+                    {virtualizer.getVirtualItems().map(({ index, key, size, start }) => {
+                      const option = filteredOptions[index];
+
+                      const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
+                      const optionValue = getSelectOption(option, valuePath);
+
+                      const isSelected = Array.isArray(value)
+                        ? value.includes(optionValue)
+                        : value === optionValue;
+
+                      return (
+                        <CommandItem
+                          className={cn("absolute top-0 left-0 h-9 w-full will-change-transform")}
+                          value={optionValue.toString()}
+                          onSelect={onSelect}
+                          style={{
+                            height: `${size}px`,
+                            transform: `translateY(${start}px)`,
+                          }}
+                          key={key}
+                        >
+                          <Icon
+                            className={cn("size-4", isSelected ? "opacity-100" : "opacity-0")}
+                            name="check"
+                          />
+                          {!isString(option) && option.icon ? (
+                            <Icon className="size-4" name={option.icon} />
+                          ) : null}
+                          <div className="flex w-full items-center justify-between gap-2 truncate">
+                            <div className="min-w-1/2 grow truncate">{parse(optionLabel)}</div>
+                            {displayValue && (
+                              <Tooltip tooltip={optionValue}>
+                                <span className="truncate text-muted-foreground">
+                                  {optionValue}
+                                </span>
+                              </Tooltip>
+                            )}
+                          </div>
+                        </CommandItem>
+                      );
+                    })}
+                  </div>
+                </CommandGroup>
+              </CommandList>
+            </CommandRoot>
+          </PopoverPopup>
+        </PopoverPositioner>
       </PopoverPortal>
     </PopoverRoot>
   );

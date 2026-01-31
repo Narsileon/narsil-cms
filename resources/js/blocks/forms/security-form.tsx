@@ -1,6 +1,6 @@
 import { Button } from "@narsil-cms/blocks/button";
-import { Heading } from "@narsil-cms/blocks/heading";
 import { DialogClose } from "@narsil-cms/components/dialog";
+import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { Separator } from "@narsil-cms/components/separator";
@@ -32,19 +32,21 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
         </SectionHeader>
         <SectionContent className="grid gap-4">
           <p>{trans("sessions.sign_out_current_description")}</p>
-          <DialogClose asChild={true}>
-            <Button
-              linkProps={{
-                href: route("sessions.delete", {
-                  type: "current",
-                }),
-                method: "delete",
-              }}
-              variant="outline"
-            >
-              {trans("sessions.sign_out_current")}
-            </Button>
-          </DialogClose>
+          <DialogClose
+            render={
+              <Button
+                linkProps={{
+                  href: route("sessions.delete", {
+                    type: "current",
+                  }),
+                  method: "delete",
+                }}
+                variant="outline"
+              >
+                {trans("sessions.sign_out_current")}
+              </Button>
+            }
+          />
           <Separator />
           <p>{trans("sessions.sign_out_elsewhere_description")}</p>
           <Button
@@ -61,20 +63,22 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
           </Button>
           <Separator />
           <p>{trans("sessions.sign_out_everywhere_description")}</p>
-          <DialogClose asChild={true}>
-            <Button
-              linkProps={{
-                href: route("sessions.delete", {
-                  type: "all",
-                }),
-                method: "delete",
-                preserveState: true,
-              }}
-              variant="outline"
-            >
-              {trans("sessions.sign_out_everywhere")}
-            </Button>
-          </DialogClose>
+          <DialogClose
+            render={
+              <Button
+                linkProps={{
+                  href: route("sessions.delete", {
+                    type: "all",
+                  }),
+                  method: "delete",
+                  preserveState: true,
+                }}
+                variant="outline"
+              >
+                {trans("sessions.sign_out_everywhere")}
+              </Button>
+            }
+          />
         </SectionContent>
       </SectionRoot>
     </>

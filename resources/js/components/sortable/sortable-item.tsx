@@ -150,9 +150,8 @@ function SortableItem({
                         item={item}
                         optionValue={optionValue}
                         onItemChange={onItemChange}
-                      >
-                        <Button icon="edit" size="icon-sm" variant="ghost" />
-                      </SortableItemForm>
+                        render={<Button icon="edit" size="icon-sm" variant="ghost" />}
+                      />
                     ) : null}
                     {onItemRemove ? (
                       <Button
@@ -166,7 +165,7 @@ function SortableItem({
                   </div>
                 </CardHeader>
               }
-            ></CollapsibleTrigger>
+            />
             <CollapsiblePanel>
               {children ? <CardContent className="grow">{children}</CardContent> : null}
               {footer ? (

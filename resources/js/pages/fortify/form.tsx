@@ -1,8 +1,8 @@
 import { Button } from "@narsil-cms/blocks/button";
 import { Card } from "@narsil-cms/blocks/card";
 import { Container } from "@narsil-cms/blocks/container";
-import { Heading } from "@narsil-cms/blocks/heading";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
+import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types";

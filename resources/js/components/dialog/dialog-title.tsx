@@ -1,14 +1,11 @@
+import { Dialog } from "@base-ui/react/dialog";
 import { cn } from "@narsil-cms/lib/utils";
-import { Dialog } from "radix-ui";
-import { type ComponentProps } from "react";
 
-type DialogTitleProps = ComponentProps<typeof Dialog.Title>;
-
-function DialogTitle({ className, ...props }: DialogTitleProps) {
+function DialogTitle({ className, ...props }: Dialog.Title.Props) {
   return (
     <Dialog.Title
       data-slot="dialog-title"
-      className={cn("text-lg leading-9 font-semibold", className)}
+      className={cn("text-base leading-none font-medium", className)}
       {...props}
     />
   );

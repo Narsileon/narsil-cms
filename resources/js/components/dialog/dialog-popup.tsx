@@ -1,25 +1,25 @@
+import { Dialog } from "@base-ui/react/dialog";
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
-import { Dialog } from "radix-ui";
 import { type ComponentProps } from "react";
 import DialogCloseButton from "./dialog-close-button";
-import dialogContentVariants from "./dialog-content-variants";
+import dialogPopupVariants from "./dialog-popup-variants";
 
-function DialogContent({
+function DialogPopup({
   className,
   children,
   showCloseButton = true,
   variant = "default",
   ...props
-}: ComponentProps<typeof Dialog.Content> &
-  VariantProps<typeof dialogContentVariants> & {
+}: ComponentProps<typeof Dialog.Popup> &
+  VariantProps<typeof dialogPopupVariants> & {
     showCloseButton?: boolean;
   }) {
   return (
-    <Dialog.Content
-      data-slot="dialog-content"
+    <Dialog.Popup
+      data-slot="dialog-popup"
       className={cn(
-        dialogContentVariants({
+        dialogPopupVariants({
           className: className,
           variant: variant,
         }),
@@ -31,8 +31,8 @@ function DialogContent({
       </span>
       {children}
       {showCloseButton ? <DialogCloseButton className="absolute top-4 right-4" /> : null}
-    </Dialog.Content>
+    </Dialog.Popup>
   );
 }
 
-export default DialogContent;
+export default DialogPopup;

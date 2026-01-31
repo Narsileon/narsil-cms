@@ -1,9 +1,6 @@
-import { Dialog } from "radix-ui";
-import { type ComponentProps } from "react";
+import { Dialog } from "@base-ui/react/dialog";
 
-type DialogRootProps = ComponentProps<typeof Dialog.Root>;
-
-function DialogRoot({ ...props }: DialogRootProps) {
+function DialogRoot({ ...props }: Dialog.Root.Props) {
   return <Dialog.Root data-slot="dialog-root" {...props} />;
 }
 

@@ -1,8 +1,8 @@
 import {
-  DialogContent,
+  DialogBackdrop,
   DialogDescription,
   DialogHeader,
-  DialogOverlay,
+  DialogPopup,
   DialogPortal,
   DialogRoot,
   DialogTitle,
@@ -46,8 +46,8 @@ function SidebarRoot({
     return (
       <DialogRoot open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <DialogPortal>
-          <DialogOverlay />
-          <DialogContent
+          <DialogBackdrop />
+          <DialogPopup
             data-slot="sidebar"
             data-mobile="true"
             data-sidebar="sidebar"
@@ -67,7 +67,7 @@ function SidebarRoot({
               <DialogDescription>Displays the mobile sidebar.</DialogDescription>
             </DialogHeader>
             <div className="flex h-full w-full flex-col">{children}</div>
-          </DialogContent>
+          </DialogPopup>
         </DialogPortal>
       </DialogRoot>
     );

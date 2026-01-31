@@ -2,12 +2,12 @@ import { type UniqueIdentifier } from "@dnd-kit/core";
 import { Button } from "@narsil-cms/blocks/button";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import {
+  DialogBackdrop,
   DialogBody,
-  DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogOverlay,
+  DialogPopup,
   DialogPortal,
   DialogRoot,
   DialogTitle,
@@ -18,10 +18,10 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import type { FormType } from "@narsil-cms/types";
 import { get } from "lodash-es";
-import { type ReactNode, useState } from "react";
+import { type ComponentProps, type ReactNode, useState } from "react";
 import { type AnonymousItem } from ".";
 
-type SortableItemFormProps = {
+type SortableItemFormProps = ComponentProps<typeof DialogTrigger> & {
   children: ReactNode;
   form: FormType;
   ids: UniqueIdentifier[];
@@ -58,13 +58,11 @@ function SortableItemForm({
   return (
     <DialogRoot open={open} onOpenChange={onOpenChange}>
       <Tooltip tooltip={trans("ui.edit")}>
-        <DialogTrigger asChild={true} {...props}>
-          {children}
-        </DialogTrigger>
+        <DialogTrigger {...props} />
       </Tooltip>
       <DialogPortal>
-        <DialogOverlay />
-        <DialogContent>
+        <DialogBackdrop />
+        <DialogPopup>
           <DialogHeader className="border-b">
             <DialogTitle>{data?.handle as string}</DialogTitle>
           </DialogHeader>
@@ -120,7 +118,7 @@ function SortableItemForm({
               );
             }}
           />
-        </DialogContent>
+        </DialogPopup>
       </DialogPortal>
     </DialogRoot>
   );

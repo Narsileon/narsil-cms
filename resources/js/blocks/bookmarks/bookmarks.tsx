@@ -5,8 +5,9 @@ import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
-  PopoverContent,
+  PopoverPopup,
   PopoverPortal,
+  PopoverPositioner,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -84,157 +85,162 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
   return (
     <PopoverRoot open={open} onOpenChange={onOpenChange}>
       <Tooltip tooltip={trans("bookmarks.tooltip")}>
-        <PopoverTrigger asChild={true} {...props}>
-          <Button
-            aria-label={trans("bookmarks.tooltip")}
-            iconProps={{
-              fill: "currentColor",
-              name: "star",
-            }}
-            size="icon"
-            variant="ghost"
-          />
-        </PopoverTrigger>
+        <PopoverTrigger
+          {...props}
+          render={
+            <Button
+              aria-label={trans("bookmarks.tooltip")}
+              iconProps={{
+                fill: "currentColor",
+                name: "star",
+              }}
+              size="icon"
+              variant="ghost"
+            />
+          }
+        />
       </Tooltip>
       <PopoverPortal>
-        <PopoverContent className="border-none p-0">
-          {bookmark && form ? (
-            <FormProvider
-              action={route("user-bookmarks.update", bookmark.uuid)}
-              id={form.id}
-              elements={form.tabs}
-              method="patch"
-              initialValues={{
-                name: bookmark?.name,
-              }}
-              render={() => {
-                return (
-                  <Card
-                    footerButtons={[
-                      {
-                        label: translations["ui.cancel"],
-                        size: "sm",
-                        variant: "secondary",
-                        onClick: () => setBookmark(null),
-                      },
-                      {
-                        form: form.id,
-                        label: form.submitLabel,
-                        size: "sm",
-                        type: "submit",
-                      },
-                    ]}
-                    footerProps={{
-                      className: "border-t justify-between",
-                    }}
-                    headerProps={{
-                      className: "border-b",
-                    }}
-                    title={form.title}
-                  >
-                    <FormRoot
-                      className="grid-cols-12 gap-4"
-                      options={{
-                        onSuccess: () => {
-                          fetchBookmarks();
-                          setBookmark(null);
+        <PopoverPositioner>
+          <PopoverPopup className="border-none p-0">
+            {bookmark && form ? (
+              <FormProvider
+                action={route("user-bookmarks.update", bookmark.uuid)}
+                id={form.id}
+                elements={form.tabs}
+                method="patch"
+                initialValues={{
+                  name: bookmark?.name,
+                }}
+                render={() => {
+                  return (
+                    <Card
+                      footerButtons={[
+                        {
+                          label: translations["ui.cancel"],
+                          size: "sm",
+                          variant: "secondary",
+                          onClick: () => setBookmark(null),
                         },
+                        {
+                          form: form.id,
+                          label: form.submitLabel,
+                          size: "sm",
+                          type: "submit",
+                        },
+                      ]}
+                      footerProps={{
+                        className: "border-t justify-between",
                       }}
+                      headerProps={{
+                        className: "border-b",
+                      }}
+                      title={form.title}
                     >
-                      {form.tabs.map((tab, index) => {
-                        return (
-                          <Fragment key={index}>
-                            {tab.elements?.map((element, index) => {
-                              return <FormElement {...element} key={index} />;
-                            })}
-                          </Fragment>
-                        );
-                      })}
-                    </FormRoot>
-                  </Card>
-                );
-              }}
-            />
-          ) : (
-            <Card
-              headerButtons={[
-                {
-                  className: "-my-2 size-8",
-                  iconProps: {
-                    fill: currentBookmark ? "currentColor" : "none",
-                    name: "star",
+                      <FormRoot
+                        className="grid-cols-12 gap-4"
+                        options={{
+                          onSuccess: () => {
+                            fetchBookmarks();
+                            setBookmark(null);
+                          },
+                        }}
+                      >
+                        {form.tabs.map((tab, index) => {
+                          return (
+                            <Fragment key={index}>
+                              {tab.elements?.map((element, index) => {
+                                return <FormElement {...element} key={index} />;
+                              })}
+                            </Fragment>
+                          );
+                        })}
+                      </FormRoot>
+                    </Card>
+                  );
+                }}
+              />
+            ) : (
+              <Card
+                headerButtons={[
+                  {
+                    className: "-my-2 size-8",
+                    iconProps: {
+                      fill: currentBookmark ? "currentColor" : "none",
+                      name: "star",
+                    },
+                    size: "icon",
+                    tooltip: currentBookmark ? translations["ui.remove"] : translations["ui.add"],
+                    variant: "ghost",
+                    onClick: () => {
+                      if (currentBookmark) {
+                        onDelete(currentBookmark.uuid);
+                      } else {
+                        onAdd();
+                      }
+                    },
                   },
-                  size: "icon",
-                  tooltip: currentBookmark ? translations["ui.remove"] : translations["ui.add"],
-                  variant: "ghost",
-                  onClick: () => {
-                    if (currentBookmark) {
-                      onDelete(currentBookmark.uuid);
-                    } else {
-                      onAdd();
-                    }
-                  },
-                },
-              ]}
-              headerProps={{
-                className: "flex items-center justify-between border-b",
-              }}
-              title={translations["ui.bookmarks"]}
-            >
-              {bookmarks.length > 0 ? (
-                <ul className="-my-2 flex flex-col gap-1">
-                  {bookmarks.map((bookmark) => {
-                    return (
-                      <li className="flex items-center justify-between" key={bookmark.uuid}>
-                        <Button
-                          className="font-normal text-foreground"
-                          linkProps={{
-                            href: bookmark.url,
-                          }}
-                          size="link"
-                          variant="link"
-                          onClick={() => onOpenChange(false)}
-                        >
-                          {bookmark.name}
-                        </Button>
-                        <div className="flex items-center justify-between gap-1">
+                ]}
+                headerProps={{
+                  className: "flex items-center justify-between border-b",
+                }}
+                title={translations["ui.bookmarks"]}
+              >
+                {bookmarks.length > 0 ? (
+                  <ul className="-my-2 flex flex-col gap-1">
+                    {bookmarks.map((bookmark) => {
+                      return (
+                        <li className="flex items-center justify-between" key={bookmark.uuid}>
                           <Button
-                            className="size-8"
-                            iconProps={{
-                              className: "size-4",
-                              name: "edit",
+                            className="font-normal text-foreground"
+                            linkProps={{
+                              href: bookmark.url,
                             }}
-                            size="icon"
-                            tooltip={translations["ui.edit"]}
-                            variant="ghost"
-                            onClick={() => {
-                              setBookmark(bookmark);
-                            }}
-                          />
-                          <Button
-                            className="size-8"
-                            iconProps={{
-                              className: "size-4",
-                              name: "star-off",
-                            }}
-                            size="icon"
-                            tooltip={translations["ui.remove"]}
-                            variant="ghost"
-                            onClick={() => {
-                              onDelete(bookmark.uuid);
-                            }}
-                          />
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                <p className="text-muted-foreground">{translations["bookmarks.instruction"]}</p>
-              )}
-            </Card>
-          )}
-        </PopoverContent>
+                            size="link"
+                            variant="link"
+                            onClick={() => onOpenChange(false)}
+                          >
+                            {bookmark.name}
+                          </Button>
+                          <div className="flex items-center justify-between gap-1">
+                            <Button
+                              className="size-8"
+                              iconProps={{
+                                className: "size-4",
+                                name: "edit",
+                              }}
+                              size="icon"
+                              tooltip={translations["ui.edit"]}
+                              variant="ghost"
+                              onClick={() => {
+                                setBookmark(bookmark);
+                              }}
+                            />
+                            <Button
+                              className="size-8"
+                              iconProps={{
+                                className: "size-4",
+                                name: "star-off",
+                              }}
+                              size="icon"
+                              tooltip={translations["ui.remove"]}
+                              variant="ghost"
+                              onClick={() => {
+                                onDelete(bookmark.uuid);
+                              }}
+                            />
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground">{translations["bookmarks.instruction"]}</p>
+                )}
+              </Card>
+            )}
+          </PopoverPopup>
+        </PopoverPositioner>
       </PopoverPortal>
     </PopoverRoot>
   );

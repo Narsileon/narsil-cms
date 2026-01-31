@@ -1,9 +1,9 @@
 import {
+  DialogBackdrop,
   DialogBody,
-  DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogOverlay,
+  DialogPopup,
   DialogPortal,
   DialogRoot,
   DialogTitle,
@@ -12,7 +12,7 @@ import { LocalizationProvider } from "@narsil-cms/components/localization";
 import { type ModalType } from "@narsil-cms/stores/modal-store";
 import { useEffect, useState, type ComponentProps, type ReactNode } from "react";
 
-type ModalProps = ComponentProps<typeof DialogContent> & {
+type ModalProps = ComponentProps<typeof DialogPopup> & {
   modal: ModalType;
   onClose: () => void;
 };
@@ -57,8 +57,8 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
   return (
     <DialogRoot open={true} onOpenChange={(open) => !open && onClose()}>
       <DialogPortal>
-        <DialogOverlay />
-        <DialogContent className="overflow-hidden" variant={modal.variant} {...props}>
+        <DialogBackdrop />
+        <DialogPopup className="overflow-hidden" variant={modal.variant} {...props}>
           <DialogHeader className="border-b">
             <DialogTitle>{modal.componentProps.title}</DialogTitle>
           </DialogHeader>
@@ -70,7 +70,7 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
               {Component ? <Component modal={modal} {...modal.componentProps} /> : null}
             </DialogBody>
           </LocalizationProvider>
-        </DialogContent>
+        </DialogPopup>
       </DialogPortal>
     </DialogRoot>
   );

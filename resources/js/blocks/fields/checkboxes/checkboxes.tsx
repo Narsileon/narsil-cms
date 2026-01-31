@@ -51,7 +51,8 @@ function Checkboxes({ options = [], values, onChange }: CheckboxesProps) {
           <TableCell>
             <div className="flex items-center justify-start gap-2">
               <Checkbox
-                checked={allChecked ? true : someChecked ? "indeterminate" : false}
+                checked={allChecked}
+                indeterminate={someChecked}
                 onCheckedChange={toggleAll}
               />
               <label>{trans("ui.all")}</label>

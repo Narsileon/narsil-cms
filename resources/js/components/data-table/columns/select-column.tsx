@@ -17,7 +17,8 @@ function getSelectColumn(): ColumnDef<Model> {
       return table.options.data.length > 0 ? (
         <Checkbox
           aria-label={label}
-          checked={checked || (indeterminate && "indeterminate")}
+          checked={checked}
+          indeterminate={indeterminate}
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         />
       ) : null;

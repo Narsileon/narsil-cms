@@ -3,10 +3,10 @@ import { cva } from "class-variance-authority";
 
 const dialogContentVariants = cva(
   cn(
-    "@container/dialog-content",
+    "@container/dialog-popup",
     "fixed z-50 flex flex-col overflow-hidden bg-background transition ease-in-out",
-    "data-[state=closed]:animate-out data-[state=closed]:duration-300",
-    "data-[state=open]:animate-in data-[state=open]:duration-300",
+    "data-closed:animate-out data-closed:duration-300",
+    "data-open:animate-in data-open:duration-200",
   ),
   {
     variants: {
@@ -14,28 +14,28 @@ const dialogContentVariants = cva(
         default: cn(
           "top-[50%] left-[50%] max-h-3/4 translate-x-[-50%] translate-y-[-50%] border md:max-h-1/2",
           "w-full max-w-[calc(100%-2rem)] rounded-xl shadow-lg md:max-w-lg",
-          "data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
-          "data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+          "data-closed:fade-out-0 data-closed:zoom-out-95",
+          "data-open:fade-in-0 data-open:zoom-in-95",
         ),
         bottom: cn(
           "inset-x-0 bottom-0 h-auto border-t",
-          "data-[state=closed]:slide-out-to-bottom",
-          "data-[state=open]:slide-in-from-bottom",
+          "data-closed:slide-out-to-bottom",
+          "data-open:slide-in-from-bottom",
         ),
         left: cn(
           "inset-y-0 left-0 h-full min-w-3/4 border-r sm:max-w-sm",
-          "data-[state=closed]:slide-out-to-left",
-          "data-[state=open]:slide-in-from-left",
+          "data-closed:slide-out-to-left",
+          "data-open:slide-in-from-left",
         ),
         right: cn(
           "inset-y-0 right-0 h-full min-w-3/4 border-l sm:max-w-sm",
-          "data-[state=closed]:slide-out-to-right",
-          "data-[state=open]:slide-in-from-right",
+          "data-closed:slide-out-to-right",
+          "data-open:slide-in-from-right",
         ),
         top: cn(
           "inset-x-0 top-0 h-auto border-b",
-          "data-[state=closed]:slide-out-to-top",
-          "data-[state=open]:slide-in-from-top",
+          "data-closed:slide-out-to-top",
+          "data-open:slide-in-from-top",
         ),
       },
     },

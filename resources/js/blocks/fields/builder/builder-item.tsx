@@ -133,7 +133,7 @@ function BuilderItem({
               </div>
             </CardHeader>
           }
-        ></CollapsibleTrigger>
+        />
         <CollapsiblePanel>
           <CardContent className="grid-cols-12">
             {block.elements?.map((element, index) => {

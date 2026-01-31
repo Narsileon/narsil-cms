@@ -1,8 +1,9 @@
 import { Badge } from "@narsil-cms/blocks/badge";
 import { Select } from "@narsil-cms/blocks/fields/select";
 import {
-  PopoverContent,
+  PopoverPopup,
   PopoverPortal,
+  PopoverPositioner,
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
@@ -45,7 +46,7 @@ function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
 
   return (
     <PopoverRoot open={open} onOpenChange={onOpenChange} modal={true}>
-      <PopoverTrigger asChild={true} {...props}>
+      <PopoverTrigger {...props}>
         <li>
           <Badge
             className="cursor-pointer"
@@ -56,27 +57,29 @@ function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
         </li>
       </PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent className="flex flex-col gap-4">
-          <Select
-            iconProps={{
-              icon: "filter",
-            }}
-            triggerProps={{
-              className: "w-full text-left",
-            }}
-            options={meta.operators}
-            value={filter.operator}
-            onValueChange={(value) => {
-              dataTableStore.updateFilter(filter.column, { operator: value });
-            }}
-          />
-          {getField(meta.field.type, {
-            id: filter.column,
-            field: meta.field,
-            value: filter.value,
-            setValue: (value) => dataTableStore.updateFilter(filter.column, { value: value }),
-          })}
-        </PopoverContent>
+        <PopoverPositioner>
+          <PopoverPopup className="flex flex-col gap-4">
+            <Select
+              iconProps={{
+                icon: "filter",
+              }}
+              triggerProps={{
+                className: "w-full text-left",
+              }}
+              options={meta.operators}
+              value={filter.operator}
+              onValueChange={(value) => {
+                dataTableStore.updateFilter(filter.column, { operator: value });
+              }}
+            />
+            {getField(meta.field.type, {
+              id: filter.column,
+              field: meta.field,
+              value: filter.value,
+              setValue: (value) => dataTableStore.updateFilter(filter.column, { value: value }),
+            })}
+          </PopoverPopup>
+        </PopoverPositioner>
       </PopoverPortal>
     </PopoverRoot>
   );
