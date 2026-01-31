@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type DialogHeaderProps = ComponentProps<"div">;
-
-function DialogHeader({ className, ...props }: DialogHeaderProps) {
+function DialogHeader({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-header"

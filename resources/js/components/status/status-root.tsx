@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type StatusRootProps = ComponentProps<"ul">;
-
-function StatusRoot({ className, ...props }: StatusRootProps) {
+function StatusRoot({ className, ...props }: ComponentProps<"ul">) {
   return (
     <ul
       className={cn(

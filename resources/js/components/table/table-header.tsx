@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type TableHeaderProps = ComponentProps<"thead">;
-
-function TableHeader({ className, ...props }: TableHeaderProps) {
+function TableHeader({ className, ...props }: ComponentProps<"thead">) {
   return (
     <thead data-slot="table-header" className={cn("[&_tr]:border-b-2", className)} {...props} />
   );

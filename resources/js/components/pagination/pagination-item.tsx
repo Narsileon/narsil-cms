@@ -1,8 +1,6 @@
 import { type ComponentProps } from "react";
 
-type PaginationItemProps = ComponentProps<"li">;
-
-function PaginationItem({ ...props }: PaginationItemProps) {
+function PaginationItem({ ...props }: ComponentProps<"li">) {
   return <li data-slot="pagination-item" {...props} />;
 }
 

@@ -2,9 +2,7 @@ import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type BreadcrumbSeparatorProps = ComponentProps<"li">;
-
-function BreadcrumbSeparator({ children, className, ...props }: BreadcrumbSeparatorProps) {
+function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<"li">) {
   return (
     <li
       data-slot="breadcrumb-separator"

@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type BackgroundPaperProps = ComponentProps<"svg">;
-
-function BackgroundPaper({ className, id = "paper", ...props }: BackgroundPaperProps) {
+function BackgroundPaper({ className, id = "paper", ...props }: ComponentProps<"svg">) {
   return (
     <svg data-slot="background-paper" className={cn("absolute size-0", className)} {...props}>
       <filter id={id} x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">

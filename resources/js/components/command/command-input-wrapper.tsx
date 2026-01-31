@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type CommandInputWrapperProps = ComponentProps<"div">;
-
-function CommandInputWrapper({ className, ...props }: CommandInputWrapperProps) {
+function CommandInputWrapper({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="command-input-wrapper"

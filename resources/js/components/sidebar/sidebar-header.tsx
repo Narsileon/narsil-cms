@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SidebarHeaderProps = ComponentProps<"div">;
-
-function SidebarHeader({ className, ...props }: SidebarHeaderProps) {
+function SidebarHeader({ className, ...props }: ComponentProps<"div">) {
   return (
     <nav
       data-slot="sidebar-header"

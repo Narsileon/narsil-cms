@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SectionFooterProps = ComponentProps<"div">;
-
-function SectionFooter({ className, ...props }: SectionFooterProps) {
+function SectionFooter({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="section-footer"

@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type CardTitleProps = ComponentProps<"div">;
-
-function CardTitle({ className, ...props }: CardTitleProps) {
+function CardTitle({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="card-title"

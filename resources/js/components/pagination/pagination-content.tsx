@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type PaginationContentProps = ComponentProps<"ul">;
-
-function PaginationContent({ className, ...props }: PaginationContentProps) {
+function PaginationContent({ className, ...props }: ComponentProps<"ul">) {
   return (
     <ul
       data-slot="pagination-content"

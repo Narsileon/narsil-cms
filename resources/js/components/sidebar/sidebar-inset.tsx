@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SidebarInsetProps = ComponentProps<"main">;
-
-function SidebarInset({ className, ...props }: SidebarInsetProps) {
+function SidebarInset({ className, ...props }: ComponentProps<"main">) {
   return (
     <main
       data-slot="sidebar-inset"

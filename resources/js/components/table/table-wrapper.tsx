@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type TableWrapperProps = ComponentProps<"div">;
-
-function TableWrapper({ className, ...props }: TableWrapperProps) {
+function TableWrapper({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="table-wrapper"

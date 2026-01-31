@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SidebarContentProps = ComponentProps<"div">;
-
-function SidebarContent({ className, ...props }: SidebarContentProps) {
+function SidebarContent({ className, ...props }: ComponentProps<"div">) {
   return (
     <nav
       data-slot="sidebar-content"

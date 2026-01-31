@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SkeletonRootProps = ComponentProps<"div">;
-
-function SkeletonRoot({ className, ...props }: SkeletonRootProps) {
+function SkeletonRoot({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="skeleton-root"

@@ -2,9 +2,7 @@ import { DataTableFilterItem, useDataTable } from "@narsil-cms/components/data-t
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type DataTableFilterListProps = ComponentProps<"ul">;
-
-function DataTableFilterList({ className, ...props }: DataTableFilterListProps) {
+function DataTableFilterList({ className, ...props }: ComponentProps<"ul">) {
   const { dataTableStore } = useDataTable();
 
   return dataTableStore.filters.length > 0 ? (

@@ -1,8 +1,6 @@
 import { type ComponentProps } from "react";
 
-type PaginationRootProps = ComponentProps<"nav">;
-
-function PaginationRoot({ ...props }: PaginationRootProps) {
+function PaginationRoot({ ...props }: ComponentProps<"nav">) {
   return <nav data-slot="pagination-root" aria-label="Pagination" role="navigation" {...props} />;
 }
 

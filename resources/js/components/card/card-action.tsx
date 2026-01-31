@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type CardActionProps = ComponentProps<"div">;
-
-function CardAction({ className, ...props }: CardActionProps) {
+function CardAction({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="card-action"

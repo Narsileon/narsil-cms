@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type TableBodyProps = ComponentProps<"tbody">;
-
-function TableBody({ className, ...props }: TableBodyProps) {
+function TableBody({ className, ...props }: ComponentProps<"tbody">) {
   return (
     <tbody
       data-slot="table-body"

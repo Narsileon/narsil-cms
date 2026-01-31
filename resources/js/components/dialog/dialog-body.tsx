@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type DialogBodyProps = ComponentProps<"div">;
-
-function DialogBody({ className, ...props }: DialogBodyProps) {
+function DialogBody({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-body"

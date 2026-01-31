@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type CardRootProps = ComponentProps<"div">;
-
-function CardRoot({ className, ...props }: CardRootProps) {
+function CardRoot({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="card-root"

@@ -1,8 +1,6 @@
 import { type ComponentProps } from "react";
 
-type BreadcrumbRootProps = ComponentProps<"nav">;
-
-function BreadcrumbRoot({ ...props }: BreadcrumbRootProps) {
+function BreadcrumbRoot({ ...props }: ComponentProps<"nav">) {
   return <nav data-slot="breadcrumb-root" aria-label="Breadcrumb" role="navigation" {...props} />;
 }
 

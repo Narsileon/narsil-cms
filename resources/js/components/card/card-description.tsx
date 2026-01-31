@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type CardDescriptionProps = ComponentProps<"div">;
-
-function CardDescription({ className, ...props }: CardDescriptionProps) {
+function CardDescription({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"

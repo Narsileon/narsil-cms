@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SectionHeaderProps = ComponentProps<"div">;
-
-function SectionHeader({ className, ...props }: SectionHeaderProps) {
+function SectionHeader({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="section-header"

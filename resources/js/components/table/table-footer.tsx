@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type TableFooterProps = ComponentProps<"tfoot">;
-
-function TableFooter({ className, ...props }: TableFooterProps) {
+function TableFooter({ className, ...props }: ComponentProps<"tfoot">) {
   return (
     <tfoot
       data-slot="table-footer"

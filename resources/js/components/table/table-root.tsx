@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type TableRootProps = ComponentProps<"table">;
-
-function TableRoot({ className, ...props }: TableRootProps) {
+function TableRoot({ className, ...props }: ComponentProps<"table">) {
   return (
     <table
       data-slot="table-root"

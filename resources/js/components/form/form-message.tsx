@@ -2,9 +2,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 import useFormField from "./form-field-context";
 
-type FormMessageProps = ComponentProps<"p">;
-
-function FormMessage({ className, ...props }: FormMessageProps) {
+function FormMessage({ className, ...props }: ComponentProps<"p">) {
   const { error } = useFormField();
 
   return error ? (

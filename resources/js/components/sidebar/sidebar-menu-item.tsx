@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SidebarMenuItemProps = ComponentProps<"li">;
-
-function SidebarMenuItem({ className, ...props }: SidebarMenuItemProps) {
+function SidebarMenuItem({ className, ...props }: ComponentProps<"li">) {
   return (
     <li
       data-slot="sidebar-menu-item"

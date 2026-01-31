@@ -1,8 +1,6 @@
 import { type ComponentProps } from "react";
 
-type SectionContentProps = ComponentProps<"div">;
-
-function SectionContent({ ...props }: SectionContentProps) {
+function SectionContent({ ...props }: ComponentProps<"div">) {
   return <div data-slot="section-content" {...props} />;
 }
 

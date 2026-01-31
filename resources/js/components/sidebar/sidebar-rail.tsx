@@ -2,9 +2,7 @@ import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 
-type SidebarRailProps = ComponentProps<"button">;
-
-function SidebarRail({ className, ...props }: SidebarRailProps) {
+function SidebarRail({ className, ...props }: ComponentProps<"button">) {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -17,7 +15,7 @@ function SidebarRail({ className, ...props }: SidebarRailProps) {
       title="Toggle Sidebar"
       className={cn(
         "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear sm:flex",
-        "after:absolute after:inset-y-0 after:left-1/2 after:w-[2px]",
+        "after:absolute after:inset-y-0 after:left-1/2 after:w-0.5",
         "group-data-[collapsible=offcanvas]:after:left-full",
         "group-data-[collapsible=offcanvas]:translate-x-0",
         "group-data-[side=left]:-right-4",

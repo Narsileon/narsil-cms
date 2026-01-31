@@ -1,9 +1,7 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type BreadcrumbListProps = ComponentProps<"ol">;
-
-function BreadcrumbList({ className, ...props }: BreadcrumbListProps) {
+function BreadcrumbList({ className, ...props }: ComponentProps<"ol">) {
   return (
     <ol
       data-slot="breadcrumb-list"
