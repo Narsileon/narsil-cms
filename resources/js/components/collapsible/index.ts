@@ -1,7 +1,8 @@
-// https://www.radix-ui.com/primitives/docs/components/collapsible
+// https://ui.shadcn.com/docs/components/base/collapsible
+// https://base-ui.com/react/components/collapsible
 
-import CollapsibleContent from "./collapsible-content";
+import CollapsiblePanel from "./collapsible-panel";
 import CollapsibleRoot from "./collapsible-root";
 import CollapsibleTrigger from "./collapsible-trigger";
 
-export { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger };
+export { CollapsiblePanel, CollapsibleRoot, CollapsibleTrigger };

@@ -1,5 +1,5 @@
-// https://ui.shadcn.com/docs/components/skeleton
+// https://ui.shadcn.com/docs/components/base/skeleton
 
-import SkeletonRoot from "./skeleton-root";
+import Skeleton from "./skeleton";
 
-export { SkeletonRoot };
+export { Skeleton };

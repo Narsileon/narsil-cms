@@ -1,5 +1,5 @@
-// https://ui.shadcn.com/docs/components/spinner
+// https://ui.shadcn.com/docs/components/base/spinner
 
-import SpinnerRoot from "./spinner-root";
+import Spinner from "./spinner";
 
-export { SpinnerRoot };
+export { Spinner };

@@ -3,7 +3,7 @@ import { Button } from "@narsil-cms/blocks/button";
 import { Heading } from "@narsil-cms/blocks/heading";
 import { Icon } from "@narsil-cms/blocks/icon";
 import {
-  CollapsibleContent,
+  CollapsiblePanel,
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
@@ -51,13 +51,13 @@ function FormElement({ onChange, ...props }: FormElementProps) {
             />
           ) : null}
         </CollapsibleTrigger>
-        <CollapsibleContent className="grid grid-cols-12 gap-8 p-4">
+        <CollapsiblePanel className="grid grid-cols-12 gap-8 p-4">
           {base.elements.map((element, index) => {
             const virtualHandle =
               base.virtual === false ? `${handle}.${element.handle}` : element.handle;
             return <FormElement {...element} handle={virtualHandle} key={index} />;
           })}
-        </CollapsibleContent>
+        </CollapsiblePanel>
       </CollapsibleRoot>
     );
   }

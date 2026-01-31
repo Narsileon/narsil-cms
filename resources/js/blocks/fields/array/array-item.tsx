@@ -4,7 +4,7 @@ import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { CardContent, CardHeader, CardRoot } from "@narsil-cms/components/card";
 import {
-  CollapsibleContent,
+  CollapsiblePanel,
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
@@ -71,28 +71,31 @@ function ArrayItem({
       }}
     >
       <CardRoot>
-        <CollapsibleTrigger className={cn(open && "border-b")} asChild={true}>
-          <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
-            <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
-            <span className="grow text-start">{title ? title : index}</span>
-            <div className="flex items-center gap-1">
-              <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
-              <Button
-                size="icon-sm"
-                tooltip={open ? trans("ui.collapse") : trans("ui.expand")}
-                variant="ghost"
-                onClick={() => setCollapsed(!open)}
-              >
-                <Icon
-                  className={cn("duration-300", open ? "rotate-90" : "rotate-0")}
-                  name="chevron-right"
-                />
-              </Button>
-            </div>
-          </CardHeader>
-        </CollapsibleTrigger>
+        <CollapsibleTrigger
+          className={cn(open && "border-b")}
+          render={
+            <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
+              <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
+              <span className="grow text-start">{title ? title : index}</span>
+              <div className="flex items-center gap-1">
+                <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
+                <Button
+                  size="icon-sm"
+                  tooltip={open ? trans("ui.collapse") : trans("ui.expand")}
+                  variant="ghost"
+                  onClick={() => setCollapsed(!open)}
+                >
+                  <Icon
+                    className={cn("duration-300", open ? "rotate-90" : "rotate-0")}
+                    name="chevron-right"
+                  />
+                </Button>
+              </div>
+            </CardHeader>
+          }
+        ></CollapsibleTrigger>
         {form ? (
-          <CollapsibleContent>
+          <CollapsiblePanel>
             <CardContent className="grow">
               {form?.map((item) => {
                 const defaultHandle = item.handle;
@@ -102,7 +105,7 @@ function ArrayItem({
                 return <FormElement {...item} handle={finalHandle} key={defaultHandle} />;
               })}
             </CardContent>
-          </CollapsibleContent>
+          </CollapsiblePanel>
         ) : null}
       </CardRoot>
     </CollapsibleRoot>

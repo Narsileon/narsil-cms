@@ -6,7 +6,7 @@ import { Icon } from "@narsil-cms/blocks/icon";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import {
-  CollapsibleContent,
+  CollapsiblePanel,
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
@@ -71,67 +71,70 @@ function BuilderItem({
       }}
     >
       <CardRoot {...props}>
-        <CollapsibleTrigger className={cn(open && "border-b")} asChild={true}>
-          <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
-            <SortableHandle
-              ref={setActivatorNodeRef}
-              {...attributes}
-              {...listeners}
-              tooltip={trans("ui.move")}
-            />
-            <CardTitle className="grow justify-self-start font-normal">{block.label}</CardTitle>
-            <Switch
-              name={`${baseHandle}.active`}
-              size="sm"
-              checked={
-                get(
-                  data,
-                  `${activeHandle}.${formLanguage}`,
-                  get(data, `${activeHandle}.${defaultLanguage}`, false),
-                ) as boolean
-              }
-              onCheckedChange={(value) => {
-                setAlertDialog({
-                  title: trans(`dialogs.titles.${value ? "activation" : "deactivation"}`),
-                  description: trans(
-                    `dialogs.descriptions.${value ? "activation" : "deactivation"}`,
-                  ),
-                  buttons: [
-                    {
-                      children: trans("dialogs.buttons.this_language"),
-                      onClick: () => {
-                        setData?.(`${activeHandle}.${formLanguage}`, value);
+        <CollapsibleTrigger
+          className={cn(open && "border-b")}
+          render={
+            <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
+              <SortableHandle
+                ref={setActivatorNodeRef}
+                {...attributes}
+                {...listeners}
+                tooltip={trans("ui.move")}
+              />
+              <CardTitle className="grow justify-self-start font-normal">{block.label}</CardTitle>
+              <Switch
+                name={`${baseHandle}.active`}
+                size="sm"
+                checked={
+                  get(
+                    data,
+                    `${activeHandle}.${formLanguage}`,
+                    get(data, `${activeHandle}.${defaultLanguage}`, false),
+                  ) as boolean
+                }
+                onCheckedChange={(value) => {
+                  setAlertDialog({
+                    title: trans(`dialogs.titles.${value ? "activation" : "deactivation"}`),
+                    description: trans(
+                      `dialogs.descriptions.${value ? "activation" : "deactivation"}`,
+                    ),
+                    buttons: [
+                      {
+                        children: trans("dialogs.buttons.this_language"),
+                        onClick: () => {
+                          setData?.(`${activeHandle}.${formLanguage}`, value);
+                        },
                       },
-                    },
-                    {
-                      children: trans("dialogs.buttons.all_languages"),
-                      onClick: () => {
-                        setData?.(activeHandle, {
-                          en: value,
-                        });
+                      {
+                        children: trans("dialogs.buttons.all_languages"),
+                        onClick: () => {
+                          setData?.(activeHandle, {
+                            en: value,
+                          });
+                        },
                       },
-                    },
-                  ],
-                });
-              }}
-            />
-            <div className="flex items-center gap-1">
-              <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
-              <Button
-                size="icon-sm"
-                tooltip={open ? trans("ui.collapse") : trans("ui.expand")}
-                variant="ghost"
-                onClick={() => setCollapsed(!open)}
-              >
-                <Icon
-                  className={cn("duration-300", open ? "rotate-0" : "rotate-180")}
-                  name="chevron-down"
-                />
-              </Button>
-            </div>
-          </CardHeader>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
+                    ],
+                  });
+                }}
+              />
+              <div className="flex items-center gap-1">
+                <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
+                <Button
+                  size="icon-sm"
+                  tooltip={open ? trans("ui.collapse") : trans("ui.expand")}
+                  variant="ghost"
+                  onClick={() => setCollapsed(!open)}
+                >
+                  <Icon
+                    className={cn("duration-300", open ? "rotate-0" : "rotate-180")}
+                    name="chevron-down"
+                  />
+                </Button>
+              </div>
+            </CardHeader>
+          }
+        ></CollapsibleTrigger>
+        <CollapsiblePanel>
           <CardContent className="grid-cols-12">
             {block.elements?.map((element, index) => {
               const child = element.base;
@@ -154,7 +157,7 @@ function BuilderItem({
               }
             })}
           </CardContent>
-        </CollapsibleContent>
+        </CollapsiblePanel>
       </CardRoot>
     </CollapsibleRoot>
   );

@@ -1,4 +1,5 @@
-// https://www.radix-ui.com/primitives/docs/components/tabs
+// https://ui.shadcn.com/docs/components/base/tabs
+// https://base-ui.com/react/components/tabs
 
 import TabsList from "./tabs-list";
 import TabsPanel from "./tabs-panel";

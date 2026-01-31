@@ -2,12 +2,11 @@ import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-type SpinnerRootProps = Omit<ComponentProps<typeof Icon>, "name">;
-
-function SpinnerRoot({ className, ...props }: SpinnerRootProps) {
+function Spinner({ className, ...props }: Omit<ComponentProps<typeof Icon>, "name">) {
   return (
     <Icon
-      data-slot="spinner-root"
+      aria-label="Loading"
+      data-slot="spinner"
       className={cn("animate-spin", className)}
       name="loader-circle"
       role="status"
@@ -16,4 +15,4 @@ function SpinnerRoot({ className, ...props }: SpinnerRootProps) {
   );
 }
 
-export default SpinnerRoot;
+export default Spinner;
