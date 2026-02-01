@@ -1,6 +1,7 @@
 import { Calendar } from "@narsil-cms/blocks/calendar";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { InputContent, InputRoot } from "@narsil-cms/components/input";
+import { InputContent } from "@narsil-cms/components/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
 import {
   PopoverPopup,
   PopoverPortal,
@@ -26,16 +27,18 @@ function Datetime({ value, onChange, ...props }: DatetimeProps) {
       <PopoverTrigger
         className="relative"
         render={
-          <InputRoot className={cn(open && "border-shine")} variant="button">
-            <InputContent
+          <InputGroup className={cn(open && "border-shine")}>
+            <InputGroupInput
               className={cn(!value && "opacity-50")}
               type="date"
               value={value}
               onChange={(event) => onChange(event.target.value)}
               {...props}
             />
-            <Icon className="opacity-50" name="calendar" />
-          </InputRoot>
+            <InputGroupAddon align="inline-end">
+              <Icon className="opacity-50" name="calendar" />
+            </InputGroupAddon>
+          </InputGroup>
         }
       />
       <PopoverPortal>

@@ -1,4 +1,5 @@
-import { InputContent, InputRoot } from "@narsil-cms/components/input";
+import { InputContent } from "@narsil-cms/components/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
 import { useEffect, useState, type ChangeEvent, type ComponentProps } from "react";
 
 type FileProps = Omit<ComponentProps<typeof InputContent>, "onChange"> & {
@@ -43,10 +44,16 @@ function File({ accept, children, value, onChange, ...props }: FileProps) {
   };
 
   return (
-    <InputRoot>
-      <InputContent accept={accept} type="file" onChange={handleChange} {...props} />
-      {value && preview ? <img src={preview} className="size-5 rounded" /> : children}
-    </InputRoot>
+    <InputGroup>
+      <InputGroupInput accept={accept} type="file" onChange={handleChange} {...props} />
+      {value && preview ? (
+        <InputGroupAddon align="inline-end">
+          <img src={preview} className="size-5 rounded" />
+        </InputGroupAddon>
+      ) : (
+        <InputGroupAddon align="inline-end">{children}</InputGroupAddon>
+      )}
+    </InputGroup>
   );
 }
 

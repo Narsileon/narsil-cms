@@ -1,10 +1,10 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-function TextareaRoot({ className, ...props }: ComponentProps<"textarea">) {
+function Textarea({ className, ...props }: ComponentProps<"textarea">) {
   return (
     <textarea
-      data-slot="textarea-root"
+      data-slot="textarea"
       className={cn(
         "flex field-sizing-content min-h-16 w-full rounded-md border border-input bg-transparent px-3 py-2 shadow-sm transition-[color,box-shadow] outline-none placeholder:text-muted-foreground",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
@@ -18,4 +18,4 @@ function TextareaRoot({ className, ...props }: ComponentProps<"textarea">) {
   );
 }
 
-export default TextareaRoot;
+export default Textarea;

@@ -14,15 +14,6 @@
     @apply bg-background text-sm text-foreground;
   }
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:active,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:hover {
-    -webkit-text-fill-color: var(--foreground) !important;
-    background-color: transparent !important;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
   * {
     scrollbar-color: var(--color-gray-500) transparent;
     scrollbar-width: thin;

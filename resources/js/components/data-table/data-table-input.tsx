@@ -1,8 +1,8 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { InputContent, InputRoot } from "@narsil-cms/components/input";
+import { InputContent } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "../input-group";
 import useDataTable from "./data-table-context";
 
 type DataTableInputProps = ComponentProps<typeof InputContent>;
@@ -13,20 +13,22 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
   const { dataTableStore } = useDataTable();
 
   return (
-    <div className={cn("relative", className)}>
-      <InputRoot>
+    <InputGroup>
+      <InputGroupAddon>
         <Icon name="search" />
-        <InputContent
-          placeholder={trans("placeholders.search")}
-          value={dataTableStore.search ?? ""}
-          onChange={(event) => dataTableStore.setSearch(event.target.value)}
-          {...props}
-        />
-        {dataTableStore.search ? (
+      </InputGroupAddon>
+      <InputGroupInput
+        placeholder={trans("placeholders.search")}
+        value={dataTableStore.search ?? ""}
+        onChange={(event) => dataTableStore.setSearch(event.target.value)}
+        {...props}
+      />
+      {dataTableStore.search ? (
+        <InputGroupAddon align="inline-end">
           <Icon name="x" onClick={() => dataTableStore.setSearch(null)} />
-        ) : null}
-      </InputRoot>
-    </div>
+        </InputGroupAddon>
+      ) : null}
+    </InputGroup>
   );
 }
 

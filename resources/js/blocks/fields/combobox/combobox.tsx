@@ -1,15 +1,6 @@
 import { router } from "@inertiajs/react";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Badge } from "@narsil-cms/components/badge";
-import {
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandRoot,
-} from "@narsil-cms/components/command";
-import CommandInputWrapper from "@narsil-cms/components/command/command-input-wrapper";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
@@ -67,6 +58,7 @@ function Combobox({
   valuePath = "value",
   setValue,
 }: ComboboxProps) {
+  return null;
   const { locale } = useLocale();
   const { trans } = useLocalization();
 

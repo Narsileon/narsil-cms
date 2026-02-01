@@ -12,11 +12,11 @@ import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Slider } from "@narsil-cms/blocks/fields/slider";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
-import { Textarea } from "@narsil-cms/blocks/fields/textarea";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { InputContent, InputRoot } from "@narsil-cms/components/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
+import { Textarea } from "@narsil-cms/components/textarea";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Field } from "@narsil-cms/types";
 import { isArray } from "lodash-es";
@@ -266,8 +266,8 @@ const defaultRegistry: Registry = {
   },
   ["Narsil\\Contracts\\Fields\\TimeField"]: (props) => {
     return (
-      <InputRoot>
-        <InputContent
+      <InputGroup>
+        <InputGroupInput
           {...props.field.settings}
           id={props.id}
           name={props.id}
@@ -280,8 +280,10 @@ const defaultRegistry: Registry = {
           value={props.value}
           onChange={(event) => props.setValue(event.target.value)}
         />
-        <Icon className="opacity-50" name="clock" />
-      </InputRoot>
+        <InputGroupAddon align="inline-end">
+          <Icon className="opacity-50" name="clock" />
+        </InputGroupAddon>
+      </InputGroup>
     );
   },
   ["Narsil\\Contracts\\Fields\\TreeField"]: (props) => {
@@ -289,8 +291,8 @@ const defaultRegistry: Registry = {
   },
   ["default"]: (props) => {
     return (
-      <InputRoot readOnly={props.field.settings.readOnly}>
-        <InputContent
+      <InputGroup>
+        <InputGroupInput
           {...props.field.settings}
           id={props.id}
           name={props.id}
@@ -300,9 +302,11 @@ const defaultRegistry: Registry = {
           required={props.required}
         />
         {props.field.settings.icon ? (
-          <Icon className="opacity-50" name={props.field.settings.icon} />
+          <InputGroupAddon align="inline-end">
+            <Icon className="opacity-50" name={props.field.settings.icon} />
+          </InputGroupAddon>
         ) : null}
-      </InputRoot>
+      </InputGroup>
     );
   },
 };
