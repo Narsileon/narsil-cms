@@ -33,11 +33,13 @@ const buttonVariants = cva(
           "bg-primary/80 text-primary-foreground",
           "focus-visible:bg-primary",
           "hover:bg-primary",
+          "[&_svg]:text-primary-foreground",
         ),
         secondary: cn(
           "bg-secondary/80 text-secondary-foreground",
           "focus-visible:bg-secondary",
           "hover:bg-secondary",
+          "[&_svg]:text-secondary-foreground",
         ),
         sidebar: cn(
           "peer/menu-button w-full justify-start truncate rounded-md p-2 text-left ring-sidebar-ring outline-hidden transition-[width,height,padding]",
