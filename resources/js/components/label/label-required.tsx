@@ -5,7 +5,11 @@ type LabelRequiredProps = ComponentProps<"span"> & {
   label?: string;
 };
 
-function LabelRequired({ className, label = "Required", ...props }: LabelRequiredProps) {
+function LabelRequired({
+  className,
+  label = "This field is required",
+  ...props
+}: LabelRequiredProps) {
   return (
     <span
       data-slot="label-required"

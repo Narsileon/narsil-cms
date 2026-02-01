@@ -7,7 +7,12 @@ type LabelProps = ComponentProps<typeof LabelRoot> & {
   requiredLabel?: string;
 };
 
-function Label({ children, required = false, requiredLabel = "Required", ...props }: LabelProps) {
+function Label({
+  children,
+  required = false,
+  requiredLabel = "This field is required",
+  ...props
+}: LabelProps) {
   return (
     <LabelRoot {...props}>
       {children}
