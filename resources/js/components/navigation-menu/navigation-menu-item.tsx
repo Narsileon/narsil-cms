@@ -10,7 +10,7 @@ function NavigationMenuItem({
     <NavigationMenu.Item
       data-slot="navigation-menu-item"
       className={cn(
-        "relative bg-linear-to-r from-transparent to-transparent transition-colors duration-300 hover:text-primary",
+        "relative bg-linear-to-r from-transparent to-transparent transition-colors duration-300",
         className,
       )}
       {...props}

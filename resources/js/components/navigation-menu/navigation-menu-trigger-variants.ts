@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 const navigationMenuTriggerVariants = cva(
   cn(
     "group/navigation-menu-trigger",
-    "inline-flex h-9 w-max items-center justify-center rounded-lg bg-background px-2.5 py-1.5 text-sm font-medium transition-all outline-none",
+    "inline-flex h-9 w-max items-center justify-center rounded-lg bg-background px-2.5 py-1.5 font-medium transition-all outline-none",
     "data-open:bg-muted/50",
     "data-open:focus:bg-muted",
     "data-open:hover:bg-muted",
