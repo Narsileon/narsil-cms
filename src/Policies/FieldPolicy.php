@@ -4,10 +4,10 @@ namespace Narsil\Policies;
 
 #region USE
 
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\User;
-use Narsil\Services\PermissionService;
+use Narsil\Traits\Policies\CreatableTrait;
+use Narsil\Traits\Policies\DeletableTrait;
+use Narsil\Traits\Policies\UpdatableTrait;
+use Narsil\Traits\Policies\ViewableTrait;
 
 #endregion
 
@@ -17,94 +17,8 @@ use Narsil\Services\PermissionService;
  */
 class FieldPolicy
 {
-    #region PUBLIC METHODS
-
-    /**
-     * Determine whether the user can create fields.
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function create(User $user): bool
-    {
-        $permission = PermissionService::getHandle(Field::TABLE, PermissionEnum::CREATE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can delete the field.
-     *
-     * @param User $user
-     * @param Field $model
-     *
-     * @return boolean
-     */
-    public function delete(User $user, Field $model): bool
-    {
-        $permission = PermissionService::getHandle(Field::TABLE, PermissionEnum::DELETE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can delete fields.
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function deleteAny(User $user): bool
-    {
-        $permission = PermissionService::getHandle(Field::TABLE, PermissionEnum::DELETE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can update the field.
-     *
-     * @param User $user
-     * @param Field $model
-     *
-     * @return boolean
-     */
-    public function update(User $user, Field $model): bool
-    {
-        $permission = PermissionService::getHandle(Field::TABLE, PermissionEnum::UPDATE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can view the field.
-     *
-     * @param User $user
-     * @param Field $model
-     *
-     * @return boolean
-     */
-    public function view(User $user, Field $model): bool
-    {
-        $permission = PermissionService::getHandle(Field::TABLE, PermissionEnum::VIEW->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can view fields.
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function viewAny(User $user): bool
-    {
-        $permission = PermissionService::getHandle(Field::TABLE, PermissionEnum::VIEW->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    #endregion
+    use CreatableTrait;
+    use DeletableTrait;
+    use UpdatableTrait;
+    use ViewableTrait;
 }

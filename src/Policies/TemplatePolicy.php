@@ -4,10 +4,10 @@ namespace Narsil\Policies;
 
 #region USE
 
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\User;
-use Narsil\Services\PermissionService;
+use Narsil\Traits\Policies\CreatableTrait;
+use Narsil\Traits\Policies\DeletableTrait;
+use Narsil\Traits\Policies\UpdatableTrait;
+use Narsil\Traits\Policies\ViewableTrait;
 
 #endregion
 
@@ -17,94 +17,8 @@ use Narsil\Services\PermissionService;
  */
 class TemplatePolicy
 {
-    #region PUBLIC METHODS
-
-    /**
-     * Determine whether the user can create templates.
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function create(User $user): bool
-    {
-        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::CREATE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can delete the template.
-     *
-     * @param User $user
-     * @param Template $model
-     *
-     * @return boolean
-     */
-    public function delete(User $user, Template $model): bool
-    {
-        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::DELETE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can delete templates.
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function deleteAny(User $user): bool
-    {
-        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::DELETE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can update the template.
-     *
-     * @param User $user
-     * @param Template $model
-     *
-     * @return boolean
-     */
-    public function update(User $user, Template $model): bool
-    {
-        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::UPDATE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can view the template.
-     *
-     * @param User $user
-     * @param Template $model
-     *
-     * @return boolean
-     */
-    public function view(User $user, Template $model): bool
-    {
-        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can view templates.
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function viewAny(User $user): bool
-    {
-        $permission = PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    #endregion
+    use CreatableTrait;
+    use DeletableTrait;
+    use UpdatableTrait;
+    use ViewableTrait;
 }

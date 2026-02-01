@@ -4,10 +4,8 @@ namespace Narsil\Policies;
 
 #region USE
 
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\User;
-use Narsil\Services\PermissionService;
+use Narsil\Traits\Policies\UpdatableTrait;
+use Narsil\Traits\Policies\ViewableTrait;
 
 #endregion
 
@@ -17,51 +15,6 @@ use Narsil\Services\PermissionService;
  */
 class PermissionPolicy
 {
-    #region PUBLIC METHODS
-
-    /**
-     * Determine whether the user can update the permission.
-     *
-     * @param User $user
-     * @param Permission $model
-     *
-     * @return boolean
-     */
-    public function update(User $user, Permission $model): bool
-    {
-        $permission = PermissionService::getHandle(Permission::TABLE, PermissionEnum::UPDATE->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can view the permission.
-     *
-     * @param User $user
-     * @param Permission $model
-     *
-     * @return boolean
-     */
-    public function view(User $user, Permission $model): bool
-    {
-        $permission = PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    /**
-     * Determine whether the user can view permissions.
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function viewAny(User $user): bool
-    {
-        $permission = PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW->value);
-
-        return $user->hasPermission($permission);
-    }
-
-    #endregion
+    use UpdatableTrait;
+    use ViewableTrait;
 }
