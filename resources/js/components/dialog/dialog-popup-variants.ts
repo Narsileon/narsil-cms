@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 const dialogContentVariants = cva(
   cn(
     "@container/dialog-popup",
-    "fixed z-50 flex flex-col overflow-hidden bg-background transition ease-in-out",
+    "fixed z-50 flex flex-col overflow-hidden bg-background text-sm transition ease-in-out",
     "data-closed:animate-out data-closed:duration-300",
     "data-open:animate-in data-open:duration-200",
   ),
@@ -12,7 +12,7 @@ const dialogContentVariants = cva(
     variants: {
       variant: {
         default: cn(
-          "top-[50%] left-[50%] max-h-3/4 translate-x-[-50%] translate-y-[-50%] border md:max-h-1/2",
+          "top-1/2 left-1/2 max-h-3/4 -translate-x-1/2 -translate-y-1/2 border md:max-h-1/2",
           "w-full max-w-[calc(100%-2rem)] rounded-xl shadow-lg md:max-w-lg",
           "data-closed:fade-out-0 data-closed:zoom-out-95",
           "data-open:fade-in-0 data-open:zoom-in-95",

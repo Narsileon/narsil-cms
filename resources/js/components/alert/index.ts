@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/alert
+// https://ui.shadcn.com/docs/components/base/alert
 
 import AlertDescription from "./alert-description";
 import AlertRoot from "./alert-root";

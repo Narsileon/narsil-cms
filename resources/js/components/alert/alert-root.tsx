@@ -3,11 +3,9 @@ import { type VariantProps } from "class-variance-authority";
 import { type ComponentProps } from "react";
 import alertRootVariants from "./alert-root-variants";
 
-function AlertRoot({
-  className,
-  variant,
-  ...props
-}: ComponentProps<"div"> & VariantProps<typeof alertRootVariants>) {
+type AlertRootProps = ComponentProps<"div"> & VariantProps<typeof alertRootVariants>;
+
+function AlertRoot({ className, variant, ...props }: AlertRootProps) {
   return (
     <div
       data-slot="alert-root"
