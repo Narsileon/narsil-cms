@@ -71,9 +71,9 @@ function DataTable({ collection, title }: DataTableProps) {
           {title}
         </Heading>
         <DataTableInput className="grow" />
-        <DataTableColumns
-          render={
-            <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
+        <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
+          <DataTableColumns
+            render={
               <Button
                 aria-label={columnsLabel}
                 size={isDesktop ? "default" : "icon"}
@@ -82,12 +82,12 @@ function DataTable({ collection, title }: DataTableProps) {
                 <Icon name="eye" />
                 {isDesktop ? columnsLabel : undefined}
               </Button>
-            </Tooltip>
-          }
-        />
-        <DataTableFilterDropdown
-          render={
-            <Tooltip hidden={isDesktop} tooltip={filterLabel}>
+            }
+          />
+        </Tooltip>
+        <Tooltip hidden={isDesktop} tooltip={filterLabel}>
+          <DataTableFilterDropdown
+            render={
               <Button
                 aria-label={filterLabel}
                 size={isDesktop ? "default" : "icon"}
@@ -96,9 +96,9 @@ function DataTable({ collection, title }: DataTableProps) {
                 <Icon name="filter" />
                 {isDesktop ? filterLabel : undefined}
               </Button>
-            </Tooltip>
-          }
-        />
+            }
+          />
+        </Tooltip>
         {collection.meta.routes.create ? (
           <Tooltip hidden={isDesktop} tooltip={createLabel}>
             <Button
