@@ -37,7 +37,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               <SectionHeader className="border-b">
                 <Heading level="h2">{trans("ui.account")}</Heading>
                 <Button form={profileForm.id} type="submit">
-                  <Icon name={profileForm.submitIcon} />
+                  {profileForm.submitIcon && <Icon name={profileForm.submitIcon} />}
                   {profileForm.submitLabel}
                 </Button>
               </SectionHeader>
@@ -70,7 +70,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               <SectionHeader className="border-b">
                 <Heading level="h2">{trans("ui.password")}</Heading>
                 <Button form={updatePasswordForm.id} type="submit">
-                  <Icon name={updatePasswordForm.submitIcon} />
+                  {updatePasswordForm.submitIcon && <Icon name={updatePasswordForm.submitIcon} />}
                   {updatePasswordForm.submitLabel}
                 </Button>
               </SectionHeader>

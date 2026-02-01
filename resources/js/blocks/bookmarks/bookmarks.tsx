@@ -117,7 +117,7 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                   return (
                     <CardRoot>
                       <CardHeader className="border-b">
-                        <CardTitle>{form.title}</CardTitle>
+                        <CardTitle>{translations["ui.bookmarks"]}</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <FormRoot
