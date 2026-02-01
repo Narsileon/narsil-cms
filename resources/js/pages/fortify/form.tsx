@@ -63,7 +63,7 @@ function FortifyForm({ data, form, status, title }: FortifyFormProps) {
                             </Fragment>
                           );
                         })}
-                        <Button className="col-span-12 w-full" form={form.id} type="submit">
+                        <Button className="col-span-full w-full" form={form.id} type="submit">
                           {form.submitLabel}
                         </Button>
                       </FormRoot>
