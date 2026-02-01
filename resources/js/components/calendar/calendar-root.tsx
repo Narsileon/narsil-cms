@@ -1,12 +1,12 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { ButtonRoot, buttonRootVariants } from "@narsil-cms/components/button";
+import { Button, buttonVariants } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import CalendarDayButton from "./calendar-day-button";
 
 type CalendarRootProps = ComponentProps<typeof DayPicker> & {
-  buttonVariant?: ComponentProps<typeof ButtonRoot>["variant"];
+  buttonVariant?: ComponentProps<typeof Button>["variant"];
 };
 
 function CalendarRoot({
@@ -33,14 +33,14 @@ function CalendarRoot({
       )}
       classNames={{
         button_next: cn(
-          buttonRootVariants({
+          buttonVariants({
             variant: buttonVariant,
           }),
           "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",
           defaultClassNames.button_next,
         ),
         button_previous: cn(
-          buttonRootVariants({
+          buttonVariants({
             variant: buttonVariant,
           }),
           "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",

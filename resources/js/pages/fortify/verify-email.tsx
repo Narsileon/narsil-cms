@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
-import { Container } from "@narsil-cms/blocks/container";
 import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardRoot } from "@narsil-cms/components/card";
+import { Container } from "@narsil-cms/components/container";
 import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
@@ -28,30 +28,34 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
   }, [status]);
 
   return (
-    <Container className="gap-6" asChild={true} variant="centered">
-      <SectionRoot className="animate-in py-4 fade-in-0 slide-in-from-bottom-10">
-        <SectionHeader>
-          <Heading level="h1" variant="h4">
-            {title}
-          </Heading>
-        </SectionHeader>
-        <SectionContent>
-          <CardRoot>
-            <CardContent>
-              <p>{trans("verify-email.instruction")}</p>
-              <p>{trans("verify-email.prompt")}</p>
-              <Button
-                render={
-                  <Link href={route("verification.send")} method="post">
-                    {trans("ui.send_again")}
-                  </Link>
-                }
-              />
-            </CardContent>
-          </CardRoot>
-        </SectionContent>
-      </SectionRoot>
-    </Container>
+    <Container
+      className="h-[inherit] min-h-[inherit] justify-center"
+      variant="sm"
+      render={
+        <SectionRoot className="animate-in py-4 fade-in-0 slide-in-from-bottom-10">
+          <SectionHeader>
+            <Heading level="h1" variant="h4">
+              {title}
+            </Heading>
+          </SectionHeader>
+          <SectionContent>
+            <CardRoot className="max-w-sm">
+              <CardContent>
+                <p>{trans("verify-email.instruction")}</p>
+                <p>{trans("verify-email.prompt")}</p>
+                <Button
+                  render={
+                    <Link href={route("verification.send")} method="post">
+                      {trans("ui.send_again")}
+                    </Link>
+                  }
+                />
+              </CardContent>
+            </CardRoot>
+          </SectionContent>
+        </SectionRoot>
+      }
+    />
   );
 }
 

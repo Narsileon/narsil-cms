@@ -1,6 +1,6 @@
 import { router } from "@inertiajs/react";
-import { Badge } from "@narsil-cms/blocks/badge";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Badge } from "@narsil-cms/components/badge";
 import {
   CommandEmpty,
   CommandGroup,

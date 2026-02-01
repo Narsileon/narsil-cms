@@ -1,16 +1,16 @@
 import { mergeProps, useRender } from "@base-ui/react";
 import { cn } from "@narsil-cms/lib/utils";
 import { type VariantProps } from "class-variance-authority";
-import badgeRootVariants from "./badge-variants";
+import badgeVariants from "./badge-variants";
 
-type BadgeProps = useRender.ComponentProps<"span"> & VariantProps<typeof badgeRootVariants>;
+type BadgeProps = useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants>;
 
 function Badge({ className, render, variant, ...props }: BadgeProps) {
   return useRender({
     defaultTagName: "span",
     props: mergeProps<"span">(
       {
-        className: cn(badgeRootVariants({ className, variant })),
+        className: cn(badgeVariants({ className, variant })),
       },
       props,
     ),

@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
-import { Container } from "@narsil-cms/blocks/container";
 import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
+import { Container } from "@narsil-cms/components/container";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -32,55 +32,59 @@ function FortifyForm({ data, form, status, title }: FortifyFormProps) {
   }, [status]);
 
   return (
-    <Container className="gap-6 overflow-hidden" asChild={true} variant="centered">
-      <SectionRoot className="animate-in gap-3 py-4 fade-in-0 slide-in-from-bottom-10">
-        <SectionHeader>
-          <Heading level="h1" variant="h4">
-            {title}
-          </Heading>
-        </SectionHeader>
-        <SectionContent>
-          <CardRoot>
-            <CardContent className="p-6">
-              <FormProvider
-                id={form.id}
-                action={form.action}
-                elements={form.tabs}
-                method={form.method}
-                initialValues={data}
-                render={() => {
-                  return (
-                    <FormRoot className="grid-cols-12 gap-6">
-                      {form.tabs.map((tab, index) => {
-                        return (
-                          <Fragment key={index}>
-                            {tab.elements?.map((element, index) => {
-                              return <FormElement {...element} key={index} />;
-                            })}
-                          </Fragment>
-                        );
-                      })}
-                      <Button className="col-span-12 w-full" form={form.id} type="submit">
-                        {form.submitLabel}
-                      </Button>
-                    </FormRoot>
-                  );
-                }}
-              />
-            </CardContent>
-            {form.id === "forgot-password-form" && (
-              <CardFooter className="border-t px-6">
-                <Button
-                  className="w-full"
-                  variant="secondary"
-                  render={<Link href={route("login")}>{trans("ui.back")}</Link>}
+    <Container
+      className="h-[inherit] min-h-[inherit] justify-center"
+      variant="sm"
+      render={
+        <SectionRoot className="animate-in gap-3 py-4 fade-in-0 slide-in-from-bottom-10">
+          <SectionHeader>
+            <Heading level="h1" variant="h4">
+              {title}
+            </Heading>
+          </SectionHeader>
+          <SectionContent>
+            <CardRoot className="max-w-sm">
+              <CardContent className="p-6">
+                <FormProvider
+                  id={form.id}
+                  action={form.action}
+                  elements={form.tabs}
+                  method={form.method}
+                  initialValues={data}
+                  render={() => {
+                    return (
+                      <FormRoot className="grid-cols-12 gap-6">
+                        {form.tabs.map((tab, index) => {
+                          return (
+                            <Fragment key={index}>
+                              {tab.elements?.map((element, index) => {
+                                return <FormElement {...element} key={index} />;
+                              })}
+                            </Fragment>
+                          );
+                        })}
+                        <Button className="col-span-12 w-full" form={form.id} type="submit">
+                          {form.submitLabel}
+                        </Button>
+                      </FormRoot>
+                    );
+                  }}
                 />
-              </CardFooter>
-            )}
-          </CardRoot>
-        </SectionContent>
-      </SectionRoot>
-    </Container>
+              </CardContent>
+              {form.id === "forgot-password-form" && (
+                <CardFooter className="border-t px-6">
+                  <Button
+                    className="w-full"
+                    variant="secondary"
+                    render={<Link href={route("login")}>{trans("ui.back")}</Link>}
+                  />
+                </CardFooter>
+              )}
+            </CardRoot>
+          </SectionContent>
+        </SectionRoot>
+      }
+    />
   );
 }
 

@@ -1,3 +1,4 @@
-import ContainerRoot from "./container-root";
+import Container from "./container";
+import containerVariants from "./container-variants";
 
-export { ContainerRoot };
+export { Container, containerVariants };

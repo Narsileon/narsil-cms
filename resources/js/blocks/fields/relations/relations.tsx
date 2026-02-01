@@ -1,6 +1,6 @@
-import { Badge } from "@narsil-cms/blocks/badge";
 import { DataTable } from "@narsil-cms/blocks/data-table";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Badge } from "@narsil-cms/components/badge";
 import { Button } from "@narsil-cms/components/button";
 import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
 import {

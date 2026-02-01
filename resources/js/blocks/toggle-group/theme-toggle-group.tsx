@@ -15,7 +15,7 @@ function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
   const { theme: currentTheme, setTheme } = useThemeStore();
 
   return (
-    <ToggleGroupRoot type="single" value={currentTheme} {...props}>
+    <ToggleGroupRoot multiple={false} value={[currentTheme]} {...props}>
       {themes.map((theme) => {
         const ref = useRef<HTMLButtonElement>(null);
 
@@ -33,20 +33,18 @@ function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
         };
 
         return (
-          <ToggleGroupItem
-            ref={ref}
-            size="icon"
-            variant="outline"
-            value={theme}
-            onClick={handleClick}
-            key={theme}
-          >
-            <Tooltip tooltip={trans(`themes.${theme}`)}>
-              <div className="flex size-full items-center justify-center">
-                <Icon name={theme === "light" ? "sun" : theme === "dark" ? "moon" : "sun-moon"} />
-              </div>
-            </Tooltip>
-          </ToggleGroupItem>
+          <Tooltip tooltip={trans(`themes.${theme}`)}>
+            <ToggleGroupItem
+              ref={ref}
+              size="icon"
+              variant="outline"
+              value={theme}
+              onClick={handleClick}
+              key={theme}
+            >
+              <Icon name={theme === "light" ? "sun" : theme === "dark" ? "moon" : "sun-moon"} />
+            </ToggleGroupItem>
+          </Tooltip>
         );
       })}
     </ToggleGroupRoot>

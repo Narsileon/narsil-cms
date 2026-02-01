@@ -1,5 +1,4 @@
 import { Link } from "@inertiajs/react";
-import { Container } from "@narsil-cms/blocks/container";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Logo } from "@narsil-cms/blocks/logo";
 import { Toaster } from "@narsil-cms/blocks/toaster";
@@ -7,6 +6,7 @@ import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import { Button } from "@narsil-cms/components/button";
+import { Container } from "@narsil-cms/components/container";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -41,7 +41,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
   return (
     <>
       <header className="sticky top-0 z-10 h-13 border-b bg-sidebar shadow">
-        <Container className="flex items-center justify-between gap-4">
+        <Container className="h-full flex-row justify-between">
           <Logo />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
@@ -61,6 +61,13 @@ function GuestLayout({ children }: GuestLayoutProps) {
                       <Fragment key={group}>
                         {groupIndex > 0 && <DropdownMenuSeparator />}
                         {items.map((item, index) => {
+                          const itemContent = (
+                            <>
+                              {item.icon ? <Icon name={item.icon} /> : null}
+                              {item.label}
+                            </>
+                          );
+
                           return (
                             <DropdownMenuItem
                               key={index}
@@ -71,13 +78,11 @@ function GuestLayout({ children }: GuestLayoutProps) {
                                   render={
                                     item.modal ? (
                                       <ModalLink href={item.href} method={item.method}>
-                                        <Icon name={item.icon} />
-                                        {item.label}
+                                        {itemContent}
                                       </ModalLink>
                                     ) : (
                                       <Link href={item.href} method={item.method}>
-                                        <Icon name={item.icon} />
-                                        {item.label}
+                                        {itemContent}
                                       </Link>
                                     )
                                   }
