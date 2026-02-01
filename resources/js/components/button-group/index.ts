@@ -1,6 +1,6 @@
-// https://ui.shadcn.com/docs/components/button-group
+// https://ui.shadcn.com/docs/components/base/button-group
 
-import ButtonGroupRoot from "./button-group-root";
-import buttonGroupRootVariants from "./button-group-root-variants";
+import ButtonGroup from "./button-group";
+import buttonGroupVariants from "./button-group-variants";
 
-export { ButtonGroupRoot, buttonGroupRootVariants };
+export { ButtonGroup, buttonGroupVariants };

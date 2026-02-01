@@ -10,8 +10,8 @@ function InputGroupAddon({ align = "inline-start", className, ...props }: InputG
     <div
       data-slot="input-group-addon"
       data-align={align}
-      className={cn(inputGroupAddonVariants({ align }), className)}
       role="group"
+      className={cn(inputGroupAddonVariants({ align }), className)}
       onClick={(event) => {
         if ((event.target as HTMLElement).closest("button")) {
           return;

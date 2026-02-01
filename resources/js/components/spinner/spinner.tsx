@@ -5,11 +5,11 @@ import { type ComponentProps } from "react";
 function Spinner({ className, ...props }: Omit<ComponentProps<typeof Icon>, "name">) {
   return (
     <Icon
-      aria-label="Loading"
       data-slot="spinner"
-      className={cn("animate-spin", className)}
-      name="loader-circle"
       role="status"
+      className={cn("animate-spin", className)}
+      aria-label="Loading"
+      name="loader-circle"
       {...props}
     />
   );

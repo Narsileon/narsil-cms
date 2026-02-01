@@ -1,6 +1,6 @@
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
-import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
+import { ButtonGroup } from "@narsil-cms/components/button-group";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -11,14 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
-import { Kbd } from "@narsil-cms/components/kbd";
+import { Kbd, KbdGroup } from "@narsil-cms/components/kbd";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Separator } from "@narsil-cms/components/separator";
 import type { RouteNames } from "@narsil-cms/types";
 import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
-type FormSaveProps = ComponentProps<typeof ButtonGroupRoot> & {
+type FormSaveProps = ComponentProps<typeof ButtonGroup> & {
   routes?: RouteNames;
   submitLabel: string;
 };
@@ -119,7 +119,7 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
   }, [saveAndAdd, saveAndContinue, saveAsNew]);
 
   return (
-    <ButtonGroupRoot {...props}>
+    <ButtonGroup {...props}>
       <Button form={id} type="submit">
         {submitLabel}
       </Button>
@@ -139,19 +139,29 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
                 <DropdownMenuItem onClick={saveAndPublish}>
                   <Icon name="eye" />
                   {`${submitLabel} & ${trans("ui.publish")}`}
-                  <Kbd className="ml-auto" elements={["Ctrl", "P"]} />
+                  <KbdGroup className="ml-auto">
+                    <Kbd>Ctrl</Kbd>
+                    <Kbd>P</Kbd>
+                  </KbdGroup>
                 </DropdownMenuItem>
               ) : null}
               <DropdownMenuItem onClick={saveAndContinue}>
                 <Icon name="save-and-continue" />
                 {`${submitLabel} & ${trans("ui.continue")}`}
-                <Kbd className="ml-auto" elements={["Ctrl", "S"]} />
+                <KbdGroup className="ml-auto">
+                  <Kbd>Ctrl</Kbd>
+                  <Kbd>S</Kbd>
+                </KbdGroup>
               </DropdownMenuItem>
               {routes?.create ? (
                 <DropdownMenuItem onClick={saveAndAdd}>
                   <Icon name="save-and-add" />
                   {`${submitLabel} & ${trans("ui.add_another")}`}
-                  <Kbd className="ml-auto" elements={["Ctrl", "Shift", "S"]} />
+                  <KbdGroup className="ml-auto">
+                    <Kbd>Ctrl</Kbd>
+                    <Kbd>Shift</Kbd>
+                    <Kbd>S</Kbd>
+                  </KbdGroup>
                 </DropdownMenuItem>
               ) : null}
               {routes?.store && data?.id ? (
@@ -160,7 +170,10 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
                   <DropdownMenuItem onClick={saveAsNew}>
                     <Icon name="plus" />
                     {trans("ui.save_as_new")}
-                    <Kbd className="ml-auto" elements={["Ctrl", "D"]} />
+                    <KbdGroup className="ml-auto">
+                      <Kbd>Ctrl</Kbd>
+                      <Kbd>D</Kbd>
+                    </KbdGroup>
                   </DropdownMenuItem>
                 </>
               ) : null}
@@ -168,7 +181,7 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
           </DropdownMenuPositioner>
         </DropdownMenuPortal>
       </DropdownMenuRoot>
-    </ButtonGroupRoot>
+    </ButtonGroup>
   );
 }
 

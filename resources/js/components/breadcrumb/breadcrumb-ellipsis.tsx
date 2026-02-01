@@ -15,9 +15,9 @@ function BreadcrumbEllipsis({
   return (
     <span
       data-slot="breadcrumb-ellipsis"
+      role="presentation"
       className={cn("flex size-5 items-center justify-center [&>svg]:size-4", className)}
       aria-hidden="true"
-      role="presentation"
       {...props}
     >
       {children ?? <MoreHorizontalIcon />}

@@ -6,9 +6,9 @@ function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<"
   return (
     <li
       data-slot="breadcrumb-separator"
+      role="presentation"
       className={cn("[&>svg]:size-3.5", className)}
       aria-hidden="true"
-      role="presentation"
       {...props}
     >
       {children ?? <ChevronRightIcon name="chevron-right" />}

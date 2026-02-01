@@ -5,6 +5,7 @@ function InputGroup({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       data-slot="input-group"
+      role="group"
       className={cn(
         "group/input-group",
         "relative flex h-9 w-full min-w-0 items-center rounded-md border border-input transition-colors outline-none dark:bg-input/30",
@@ -21,7 +22,6 @@ function InputGroup({ className, ...props }: ComponentProps<"div">) {
         "in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0",
         className,
       )}
-      role="group"
       {...props}
     />
   );

@@ -9,13 +9,13 @@ function AlertRoot({ className, variant, ...props }: AlertRootProps) {
   return (
     <div
       data-slot="alert-root"
+      role="alert"
       className={cn(
         alertRootVariants({
           className: className,
           variant: variant,
         }),
       )}
-      role="alert"
       {...props}
     />
   );
