@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/sidebar
+// https://ui.shadcn.com/docs/components/base/sidebar
 
 import SidebarContent from "./sidebar-content";
 import useSidebar from "./sidebar-context";
@@ -9,7 +9,6 @@ import SidebarGroupLabel from "./sidebar-group-label";
 import SidebarHeader from "./sidebar-header";
 import SidebarInset from "./sidebar-inset";
 import SidebarMenu from "./sidebar-menu";
-import SidebarMenuButton from "./sidebar-menu-button";
 import SidebarMenuItem from "./sidebar-menu-item";
 import SidebarProvider from "./sidebar-provider";
 import SidebarRail from "./sidebar-rail";
@@ -25,7 +24,6 @@ export {
   SidebarHeader,
   SidebarInset,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
   SidebarRail,
