@@ -1,7 +1,7 @@
 import { Badge } from "@narsil-cms/blocks/badge";
-import { Button } from "@narsil-cms/blocks/button";
 import { DataTable } from "@narsil-cms/blocks/data-table";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Button } from "@narsil-cms/components/button";
 import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
 import {
   DialogBackdrop,

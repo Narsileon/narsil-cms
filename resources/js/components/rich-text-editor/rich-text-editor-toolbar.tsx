@@ -1,5 +1,6 @@
-import { Button } from "@narsil-cms/blocks/button";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuPopup,
   DropdownMenuPortal,
@@ -99,18 +100,19 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
         <>
           <Separator orientation="vertical" />
           <DropdownMenuRoot>
-            <Tooltip tooltip={trans("rich-text-editor.headings")}>
-              <DropdownMenuTrigger
-                render={
+            <DropdownMenuTrigger
+              render={
+                <Tooltip tooltip={trans("rich-text-editor.headings")}>
                   <Button
-                    icon="heading"
+                    aria-label={trans("rich-text-editor.headings")}
                     size="icon"
-                    tooltip={trans("rich-text-editor.headings")}
                     variant="ghost"
-                  />
-                }
-              />
-            </Tooltip>
+                  >
+                    <Icon name="heading" />
+                  </Button>
+                </Tooltip>
+              }
+            />
             <DropdownMenuPortal>
               <DropdownMenuPositioner>
                 <DropdownMenuPopup className="min-w-9">

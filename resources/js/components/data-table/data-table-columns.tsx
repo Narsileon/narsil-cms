@@ -6,8 +6,10 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "@narsil-cms/blocks/button";
-import { Card } from "@narsil-cms/blocks/card";
+import { Icon } from "@narsil-cms/blocks/icon";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
+import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { useDataTable } from "@narsil-cms/components/data-table";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
@@ -92,51 +94,54 @@ function DataTableColumns({ ...props }: DataTableColumnsProps) {
       <PopoverPortal>
         <PopoverPositioner>
           <PopoverPopup className="grid max-h-96 min-w-fit border-collapse grid-cols-2 overflow-y-scroll p-0">
-            <Card
-              className="rounded-none border-0"
-              contentProps={{ className: "gap-y-1" }}
-              headerProps={{ className: "border-b" }}
-              title={trans("ui.available_columns")}
-            >
-              {availableColumns.map((column) => {
-                const columnLabel = upperFirst(column.columnDef.header as string);
+            <CardRoot className="rounded-none border-0">
+              <CardHeader className="border-b">
+                <CardTitle>{trans("ui.available_columns")}</CardTitle>
+              </CardHeader>
+              <CardContent className="gap-y-1">
+                {availableColumns.map((column) => {
+                  const columnLabel = upperFirst(column.columnDef.header as string);
+                  const label = `${trans("ui.show")} '${columnLabel}'`;
 
-                return (
-                  <Button
-                    className="justify-start font-normal"
-                    tooltip={`${trans("ui.show")} '${columnLabel}'`}
-                    variant="outline"
-                    onClick={() => handleActivate(column)}
-                    key={column.id}
-                  >
-                    {upperFirst(column.columnDef.header as string)}
-                  </Button>
-                );
-              })}
-            </Card>
-            <Card
-              className="rounded-none border-y-0"
-              contentProps={{ className: "gap-y-1" }}
-              headerProps={{ className: "border-b" }}
-              title={trans("ui.active_columns")}
-            >
-              <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                <SortableContext
-                  items={activeColumns.map((column) => column.id)}
-                  strategy={verticalListSortingStrategy}
-                >
-                  {activeColumns.map((column) => {
-                    return (
-                      <SortableItem
+                  return (
+                    <Tooltip tooltip={label}>
+                      <Button
+                        aria-label={label}
+                        className="justify-start font-normal"
+                        variant="outline"
+                        onClick={() => handleActivate(column)}
                         key={column.id}
-                        column={column}
-                        onRemove={() => handleDeactivate(column)}
-                      />
-                    );
-                  })}
-                </SortableContext>
-              </DndContext>
-            </Card>
+                      >
+                        {upperFirst(column.columnDef.header as string)}
+                      </Button>
+                    </Tooltip>
+                  );
+                })}
+              </CardContent>
+            </CardRoot>
+            <CardRoot className="rounded-none border-y-0">
+              <CardHeader className="border-b">
+                <CardTitle>{trans("ui.active_columns")}</CardTitle>
+              </CardHeader>
+              <CardContent className="gap-y-1">
+                <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                  <SortableContext
+                    items={activeColumns.map((column) => column.id)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {activeColumns.map((column) => {
+                      return (
+                        <SortableItem
+                          key={column.id}
+                          column={column}
+                          onRemove={() => handleDeactivate(column)}
+                        />
+                      );
+                    })}
+                  </SortableContext>
+                </DndContext>
+              </CardContent>
+            </CardRoot>
           </PopoverPopup>
         </PopoverPositioner>
       </PopoverPortal>
@@ -176,24 +181,19 @@ function SortableItem({ column, onRemove }: SortableItemProps) {
         {...attributes}
         {...listeners}
         isDragging={isDragging}
-        tooltipProps={{
-          popupProps: {
-            hidden: isDragging,
-          },
-          tooltip: moveColumnLabel,
-        }}
+        label={moveColumnLabel}
       />
       <span className="grow">{columnLabel}</span>
-      <Button
-        iconProps={{
-          className: "size-4",
-          name: "x",
-        }}
-        size="icon-sm"
-        tooltip={hideColumnLabel}
-        variant="ghost"
-        onClick={() => onRemove(column)}
-      />
+      <Tooltip tooltip={hideColumnLabel}>
+        <Button
+          aria-label={hideColumnLabel}
+          size="icon-sm"
+          variant="ghost"
+          onClick={() => onRemove(column)}
+        >
+          <Icon className="size-4" name="x" />
+        </Button>
+      </Tooltip>
     </div>
   );
 }

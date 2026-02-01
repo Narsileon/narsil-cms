@@ -1,4 +1,5 @@
-import { Button } from "@narsil-cms/blocks/button";
+import { Link } from "@inertiajs/react";
+import { Button } from "@narsil-cms/components/button";
 import { DialogClose } from "@narsil-cms/components/dialog";
 import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -34,48 +35,45 @@ function SecurityForm({ twoFactorForm }: SecurityFormProps) {
           <p>{trans("sessions.sign_out_current_description")}</p>
           <DialogClose
             render={
-              <Button
-                linkProps={{
-                  href: route("sessions.delete", {
+              <Button variant="outline">
+                <Link
+                  href={route("sessions.delete", {
                     type: "current",
-                  }),
-                  method: "delete",
-                }}
-                variant="outline"
-              >
-                {trans("sessions.sign_out_current")}
+                  })}
+                  method="delete"
+                >
+                  {trans("sessions.sign_out_current")}
+                </Link>
               </Button>
             }
           />
           <Separator />
           <p>{trans("sessions.sign_out_elsewhere_description")}</p>
-          <Button
-            linkProps={{
-              href: route("sessions.delete", {
+          <Button variant="outline">
+            <Link
+              href={route("sessions.delete", {
                 type: "others",
-              }),
-              method: "delete",
-              preserveState: true,
-            }}
-            variant="outline"
-          >
-            {trans("sessions.sign_out_elsewhere")}
+              })}
+              method="delete"
+              preserveState={true}
+            >
+              {trans("sessions.sign_out_elsewhere")}
+            </Link>
           </Button>
           <Separator />
           <p>{trans("sessions.sign_out_everywhere_description")}</p>
           <DialogClose
             render={
-              <Button
-                linkProps={{
-                  href: route("sessions.delete", {
+              <Button variant="outline">
+                <Link
+                  href={route("sessions.delete", {
                     type: "all",
-                  }),
-                  method: "delete",
-                  preserveState: true,
-                }}
-                variant="outline"
-              >
-                {trans("sessions.sign_out_everywhere")}
+                  })}
+                  method="delete"
+                  preserveState={true}
+                >
+                  {trans("sessions.sign_out_everywhere")}
+                </Link>
               </Button>
             }
           />

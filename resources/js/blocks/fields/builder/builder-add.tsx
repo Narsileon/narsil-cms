@@ -1,6 +1,6 @@
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -31,7 +31,9 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
         <DropdownMenuTrigger
           {...props}
           render={
-            <Button className={cn("rounded-full")} icon="plus" size="icon-sm" variant="ghost" />
+            <Button className={cn("rounded-full")} size="icon-sm" variant="ghost">
+              <Icon name="plus" />
+            </Button>
           }
         />
       </Tooltip>

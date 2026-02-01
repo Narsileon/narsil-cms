@@ -1,6 +1,7 @@
-import { Button } from "@narsil-cms/blocks/button";
-import { Card } from "@narsil-cms/blocks/card";
+import { Link } from "@inertiajs/react";
 import { Container } from "@narsil-cms/blocks/container";
+import { Button } from "@narsil-cms/components/button";
+import { CardContent, CardRoot } from "@narsil-cms/components/card";
 import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
@@ -35,18 +36,19 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
           </Heading>
         </SectionHeader>
         <SectionContent>
-          <Card>
-            <p>{trans("verify-email.instruction")}</p>
-            <p>{trans("verify-email.prompt")}</p>
-            <Button
-              linkProps={{
-                href: route("verification.send"),
-                method: "post",
-              }}
-            >
-              {trans("ui.send_again")}
-            </Button>
-          </Card>
+          <CardRoot>
+            <CardContent>
+              <p>{trans("verify-email.instruction")}</p>
+              <p>{trans("verify-email.prompt")}</p>
+              <Button
+                render={
+                  <Link href={route("verification.send")} method="post">
+                    {trans("ui.send_again")}
+                  </Link>
+                }
+              />
+            </CardContent>
+          </CardRoot>
         </SectionContent>
       </SectionRoot>
     </Container>

@@ -1,6 +1,7 @@
-import { Button } from "@narsil-cms/blocks/button";
-import { Card } from "@narsil-cms/blocks/card";
+import { Link } from "@inertiajs/react";
 import { Container } from "@narsil-cms/blocks/container";
+import { Button } from "@narsil-cms/components/button";
+import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -39,49 +40,44 @@ function FortifyForm({ data, form, status, title }: FortifyFormProps) {
           </Heading>
         </SectionHeader>
         <SectionContent>
-          <Card
-            className="max-w-md"
-            contentProps={{ className: "p-6" }}
-            footerButtons={
-              form.id === "forgot-password-form"
-                ? [
-                    {
-                      className: "w-full",
-                      label: trans("ui.back"),
-                      linkProps: { href: route("login") },
-                      variant: "secondary",
-                    },
-                  ]
-                : undefined
-            }
-            footerProps={{ className: "border-t px-6" }}
-          >
-            <FormProvider
-              id={form.id}
-              action={form.action}
-              elements={form.tabs}
-              method={form.method}
-              initialValues={data}
-              render={() => {
-                return (
-                  <FormRoot className="grid-cols-12 gap-6">
-                    {form.tabs.map((tab, index) => {
-                      return (
-                        <Fragment key={index}>
-                          {tab.elements?.map((element, index) => {
-                            return <FormElement {...element} key={index} />;
-                          })}
-                        </Fragment>
-                      );
-                    })}
-                    <Button className="col-span-12 w-full" form={form.id} type="submit">
-                      {form.submitLabel}
-                    </Button>
-                  </FormRoot>
-                );
-              }}
-            />
-          </Card>
+          <CardRoot>
+            <CardContent className="p-6">
+              <FormProvider
+                id={form.id}
+                action={form.action}
+                elements={form.tabs}
+                method={form.method}
+                initialValues={data}
+                render={() => {
+                  return (
+                    <FormRoot className="grid-cols-12 gap-6">
+                      {form.tabs.map((tab, index) => {
+                        return (
+                          <Fragment key={index}>
+                            {tab.elements?.map((element, index) => {
+                              return <FormElement {...element} key={index} />;
+                            })}
+                          </Fragment>
+                        );
+                      })}
+                      <Button className="col-span-12 w-full" form={form.id} type="submit">
+                        {form.submitLabel}
+                      </Button>
+                    </FormRoot>
+                  );
+                }}
+              />
+            </CardContent>
+            {form.id === "forgot-password-form" && (
+              <CardFooter className="border-t px-6">
+                <Button
+                  className="w-full"
+                  variant="secondary"
+                  render={<Link href={route("login")}>{trans("ui.back")}</Link>}
+                />
+              </CardFooter>
+            )}
+          </CardRoot>
         </SectionContent>
       </SectionRoot>
     </Container>

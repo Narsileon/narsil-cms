@@ -1,11 +1,13 @@
-import { Button } from "@narsil-cms/blocks/button";
+import { Link } from "@inertiajs/react";
 import { Container } from "@narsil-cms/blocks/container";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Logo } from "@narsil-cms/blocks/logo";
 import { Toaster } from "@narsil-cms/blocks/toaster";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -16,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { ModalRenderer } from "@narsil-cms/components/modal";
+import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useRef } from "react";
@@ -43,7 +45,13 @@ function GuestLayout({ children }: GuestLayoutProps) {
           <Logo />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
-              <DropdownMenuTrigger render={<Button icon="menu" size="icon" variant="ghost" />} />
+              <DropdownMenuTrigger
+                render={
+                  <Button size="icon" variant="ghost">
+                    <Icon name="menu" />
+                  </Button>
+                }
+              />
             </Tooltip>
             <DropdownMenuPortal>
               <DropdownMenuPositioner align="end">
@@ -58,17 +66,22 @@ function GuestLayout({ children }: GuestLayoutProps) {
                               key={index}
                               render={
                                 <Button
-                                  icon={item.icon}
-                                  linkProps={{
-                                    href: item.href,
-                                    method: item.method,
-                                    modal: item.modal,
-                                  }}
                                   size="sm"
                                   variant="ghost"
-                                >
-                                  {item.label}
-                                </Button>
+                                  render={
+                                    item.modal ? (
+                                      <ModalLink href={item.href} method={item.method}>
+                                        <Icon name={item.icon} />
+                                        {item.label}
+                                      </ModalLink>
+                                    ) : (
+                                      <Link href={item.href} method={item.method}>
+                                        <Icon name={item.icon} />
+                                        {item.label}
+                                      </Link>
+                                    )
+                                  }
+                                />
                               }
                             />
                           );

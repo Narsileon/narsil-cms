@@ -1,5 +1,6 @@
-import { Button } from "@narsil-cms/blocks/button";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
@@ -17,7 +18,6 @@ function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof 
         data-slot="sidebar-trigger"
         data-sidebar="trigger"
         className={cn("size-8", className)}
-        icon="menu"
         size="icon"
         variant="ghost"
         onClick={(event) => {
@@ -27,6 +27,7 @@ function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof 
         }}
         {...props}
       >
+        <Icon name="menu" />
         <span className="sr-only">{tooltip}</span>
       </Button>
     </Tooltip>

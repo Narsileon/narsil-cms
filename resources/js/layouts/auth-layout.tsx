@@ -1,6 +1,6 @@
+import { Link } from "@inertiajs/react";
 import { Bookmarks } from "@narsil-cms/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { Toaster } from "@narsil-cms/blocks/toaster";
@@ -10,6 +10,7 @@ import { AlertDialogProvider } from "@narsil-cms/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -20,7 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
-import { ModalRenderer } from "@narsil-cms/components/modal";
+import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
 import { Separator } from "@narsil-cms/components/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
@@ -106,17 +107,22 @@ function AuthLayout({ children }: AuthLayoutProps) {
                                 key={index}
                                 render={
                                   <Button
-                                    icon={item.icon}
-                                    linkProps={{
-                                      href: item.href,
-                                      method: item.method,
-                                      modal: item.modal,
-                                    }}
                                     size="sm"
                                     variant="ghost"
-                                  >
-                                    {item.label}
-                                  </Button>
+                                    render={
+                                      item.modal ? (
+                                        <ModalLink href={item.href} method={item.method}>
+                                          <Icon name={item.icon} />
+                                          {item.label}
+                                        </ModalLink>
+                                      ) : (
+                                        <Link href={item.href} method={item.method}>
+                                          <Icon name={item.icon} />
+                                          {item.label}
+                                        </Link>
+                                      )
+                                    }
+                                  />
                                 }
                               />
                             );

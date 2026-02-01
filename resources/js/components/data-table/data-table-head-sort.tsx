@@ -1,4 +1,6 @@
-import { Button } from "@narsil-cms/blocks/button";
+import { Icon } from "@narsil-cms/blocks/icon";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { Model } from "@narsil-cms/types";
 import { Header } from "@tanstack/react-table";
@@ -22,21 +24,21 @@ function DataTableHeadSort({ className, header, ...props }: DataTableHeadSortPro
     }
   }
 
-  const tooltip = trans("accessibility.sort_column");
+  const label = trans("accessibility.sort_column");
 
   return (
-    <Button
-      className={className}
-      iconProps={{
-        className: "size-4",
-        name: getIconName(),
-      }}
-      size="icon"
-      tooltip={tooltip}
-      variant="ghost-secondary"
-      onClick={header.column.getToggleSortingHandler()}
-      {...props}
-    />
+    <Tooltip tooltip={label}>
+      <Button
+        aria-label={label}
+        className={className}
+        size="icon"
+        variant="ghost-secondary"
+        onClick={header.column.getToggleSortingHandler()}
+        {...props}
+      >
+        <Icon className="size-4" name={getIconName()} />
+      </Button>
+    </Tooltip>
   );
 }
 

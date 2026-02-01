@@ -1,7 +1,8 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardHeader, CardRoot } from "@narsil-cms/components/card";
 import {
   CollapsiblePanel,
@@ -59,6 +60,7 @@ function ArrayItem({
   });
 
   const title = getTranslatableSelectOption(item, labelKey, locale);
+  const label = open ? trans("ui.collapse") : trans("ui.expand");
 
   return (
     <CollapsibleRoot
@@ -79,17 +81,19 @@ function ArrayItem({
               <span className="grow text-start">{title ? title : index}</span>
               <div className="flex items-center gap-1">
                 <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
-                <Button
-                  size="icon-sm"
-                  tooltip={open ? trans("ui.collapse") : trans("ui.expand")}
-                  variant="ghost"
-                  onClick={() => setCollapsed(!open)}
-                >
-                  <Icon
-                    className={cn("duration-300", open ? "rotate-90" : "rotate-0")}
-                    name="chevron-right"
-                  />
-                </Button>
+                <Tooltip tooltip={label}>
+                  <Button
+                    aria-label={label}
+                    size="icon-sm"
+                    variant="ghost"
+                    onClick={() => setCollapsed(!open)}
+                  >
+                    <Icon
+                      className={cn("duration-300", open ? "rotate-90" : "rotate-0")}
+                      name="chevron-right"
+                    />
+                  </Button>
+                </Tooltip>
               </div>
             </CardHeader>
           }

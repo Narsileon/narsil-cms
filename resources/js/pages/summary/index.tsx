@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import { Card } from "@narsil-cms/blocks/card";
+import { CardContent, CardRoot } from "@narsil-cms/components/card";
 import { Heading } from "@narsil-cms/components/heading";
 import { useMinLg, useMinMd, useMinSm, useMinXl } from "@narsil-cms/hooks/use-breakpoints";
 import { cn } from "@narsil-cms/lib/utils";
@@ -44,23 +44,18 @@ function Collections({ items }: CollectionsProps) {
       >
         {items.map((item, index) => {
           return (
-            <Card
-              className="aspect-square h-48 w-48 cursor-pointer shadow-lg"
-              contentProps={{
-                className:
-                  "p-0 h-full w-full hover:bg-accent hover:text-accent-foreground transition-all ",
-              }}
-              key={index}
-            >
-              <Link
-                className="flex h-full w-full items-center justify-center text-center"
-                href={item.href}
-              >
-                <Heading level="h2" variant="h5">
-                  {item.name}
-                </Heading>
-              </Link>
-            </Card>
+            <CardRoot className="aspect-square h-48 w-48 cursor-pointer shadow-lg" key={index}>
+              <CardContent className="h-full w-full p-0 transition-all hover:bg-accent hover:text-accent-foreground">
+                <Link
+                  className="flex h-full w-full items-center justify-center text-center"
+                  href={item.href}
+                >
+                  <Heading level="h2" variant="h5">
+                    {item.name}
+                  </Heading>
+                </Link>
+              </CardContent>
+            </CardRoot>
           );
         })}
       </div>

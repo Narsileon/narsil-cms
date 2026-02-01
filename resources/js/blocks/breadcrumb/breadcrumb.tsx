@@ -28,9 +28,7 @@ function Breadcrumb({ ...props }: BreadcrumbProps) {
           ) : item.href ? (
             <Fragment key={index}>
               <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={item.href}>{item.label}</Link>
-                </BreadcrumbLink>
+                <BreadcrumbLink render={<Link href={item.href}>{item.label}</Link>} />
               </BreadcrumbItem>
               <BreadcrumbSeparator />
             </Fragment>

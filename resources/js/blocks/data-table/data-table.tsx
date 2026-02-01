@@ -1,6 +1,7 @@
-import { router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/blocks/button";
+import { Link, router } from "@inertiajs/react";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import {
   DataTableColumns,
   DataTableFilterDropdown,
@@ -72,48 +73,45 @@ function DataTable({ collection, title }: DataTableProps) {
         <DataTableInput className="grow" />
         <DataTableColumns
           render={
-            <Button
-              icon="eye"
-              size={isDesktop ? "default" : "icon"}
-              tooltipProps={{
-                popupProps: { hidden: isDesktop },
-                tooltip: columnsLabel,
-              }}
-              variant="secondary"
-            >
-              {isDesktop ? columnsLabel : undefined}
-            </Button>
+            <Tooltip popupProps={{ hidden: isDesktop }} tooltip={columnsLabel}>
+              <Button
+                aria-label={columnsLabel}
+                size={isDesktop ? "default" : "icon"}
+                variant="secondary"
+              >
+                <Icon name="eye" />
+                {isDesktop ? columnsLabel : undefined}
+              </Button>
+            </Tooltip>
           }
         />
         <DataTableFilterDropdown
           render={
-            <Button
-              icon="filter"
-              size={isDesktop ? "default" : "icon"}
-              tooltipProps={{
-                popupProps: { hidden: isDesktop },
-                tooltip: filterLabel,
-              }}
-              variant="secondary"
-            >
-              {isDesktop ? filterLabel : undefined}
-            </Button>
+            <Tooltip popupProps={{ hidden: isDesktop }} tooltip={filterLabel}>
+              <Button
+                aria-label={filterLabel}
+                size={isDesktop ? "default" : "icon"}
+                variant="secondary"
+              >
+                <Icon name="filter" />
+                {isDesktop ? filterLabel : undefined}
+              </Button>
+            </Tooltip>
           }
         />
         {collection.meta.routes.create ? (
-          <Button
-            icon="plus"
-            linkProps={{
-              href: route(collection.meta.routes.create, collection.meta.routes.params),
-            }}
-            size={isDesktop ? "default" : "icon"}
-            tooltipProps={{
-              popupProps: { hidden: isDesktop },
-              tooltip: createLabel,
-            }}
-          >
-            {isDesktop ? createLabel : undefined}
-          </Button>
+          <Tooltip popupProps={{ hidden: isDesktop }} tooltip={createLabel}>
+            <Button
+              aria-label={createLabel}
+              size={isDesktop ? "default" : "icon"}
+              render={
+                <Link href={route(collection.meta.routes.create, collection.meta.routes.params)}>
+                  <Icon name="plus" />
+                  {isDesktop ? createLabel : undefined}
+                </Link>
+              }
+            />
+          </Tooltip>
         ) : null}
       </SectionHeader>
       <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">

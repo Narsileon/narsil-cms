@@ -1,24 +1,27 @@
-import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
+import { MoreHorizontalIcon } from "lucide-react";
 import { type ComponentProps } from "react";
 
+type BreadcrumbEllipsisProps = ComponentProps<"span"> & {
+  label?: string;
+};
+
 function BreadcrumbEllipsis({
+  children,
   className,
-  ellipsisLabel,
+  label = "More",
   ...props
-}: ComponentProps<"span"> & {
-  ellipsisLabel?: string;
-}) {
+}: BreadcrumbEllipsisProps) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn("flex size-5 items-center justify-center [&>svg]:size-4", className)}
       aria-hidden="true"
       role="presentation"
       {...props}
     >
-      <Icon className="size-4" name="more-horizontal" />
-      <span className="sr-only">{ellipsisLabel ?? "More links"}</span>
+      {children ?? <MoreHorizontalIcon />}
+      <span className="sr-only">{label}</span>
     </span>
   );
 }

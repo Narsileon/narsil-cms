@@ -1,7 +1,14 @@
-import { router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/blocks/button";
-import { Card } from "@narsil-cms/blocks/card";
+import { Link, router } from "@inertiajs/react";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
+import {
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardRoot,
+  CardTitle,
+} from "@narsil-cms/components/card";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
@@ -88,15 +95,9 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
         <PopoverTrigger
           {...props}
           render={
-            <Button
-              aria-label={trans("bookmarks.tooltip")}
-              iconProps={{
-                fill: "currentColor",
-                name: "star",
-              }}
-              size="icon"
-              variant="ghost"
-            />
+            <Button aria-label={trans("bookmarks.tooltip")} size="icon" variant="ghost">
+              <Icon fill="currentColor" name="star" />
+            </Button>
           }
         />
       </Tooltip>
@@ -114,130 +115,119 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                 }}
                 render={() => {
                   return (
-                    <Card
-                      footerButtons={[
-                        {
-                          label: translations["ui.cancel"],
-                          size: "sm",
-                          variant: "secondary",
-                          onClick: () => setBookmark(null),
-                        },
-                        {
-                          form: form.id,
-                          label: form.submitLabel,
-                          size: "sm",
-                          type: "submit",
-                        },
-                      ]}
-                      footerProps={{
-                        className: "border-t justify-between",
-                      }}
-                      headerProps={{
-                        className: "border-b",
-                      }}
-                      title={form.title}
-                    >
-                      <FormRoot
-                        className="grid-cols-12 gap-4"
-                        options={{
-                          onSuccess: () => {
-                            fetchBookmarks();
-                            setBookmark(null);
-                          },
-                        }}
-                      >
-                        {form.tabs.map((tab, index) => {
-                          return (
-                            <Fragment key={index}>
-                              {tab.elements?.map((element, index) => {
-                                return <FormElement {...element} key={index} />;
-                              })}
-                            </Fragment>
-                          );
-                        })}
-                      </FormRoot>
-                    </Card>
+                    <CardRoot>
+                      <CardHeader className="border-b">
+                        <CardTitle>{form.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <FormRoot
+                          className="grid-cols-12 gap-4"
+                          options={{
+                            onSuccess: () => {
+                              fetchBookmarks();
+                              setBookmark(null);
+                            },
+                          }}
+                        >
+                          {form.tabs.map((tab, index) => {
+                            return (
+                              <Fragment key={index}>
+                                {tab.elements?.map((element, index) => {
+                                  return <FormElement {...element} key={index} />;
+                                })}
+                              </Fragment>
+                            );
+                          })}
+                        </FormRoot>
+                      </CardContent>
+                      <CardFooter className="justify-between border-t">
+                        <Button size="sm" variant="secondary" onClick={() => setBookmark(null)}>
+                          {translations["ui.cancel"]}
+                        </Button>
+                        <Button form={form.id} size="sm" type="submit">
+                          {form.submitLabel}
+                        </Button>
+                      </CardFooter>
+                    </CardRoot>
                   );
                 }}
               />
             ) : (
-              <Card
-                headerButtons={[
-                  {
-                    className: "-my-2 size-8",
-                    iconProps: {
-                      fill: currentBookmark ? "currentColor" : "none",
-                      name: "star",
-                    },
-                    size: "icon",
-                    tooltip: currentBookmark ? translations["ui.remove"] : translations["ui.add"],
-                    variant: "ghost",
-                    onClick: () => {
-                      if (currentBookmark) {
-                        onDelete(currentBookmark.uuid);
-                      } else {
-                        onAdd();
+              <CardRoot>
+                <CardHeader className="flex items-center justify-between border-b">
+                  <CardTitle>{translations["ui.bookmarks"]}</CardTitle>
+                  <Tooltip
+                    tooltip={currentBookmark ? translations["ui.remove"] : translations["ui.add"]}
+                  >
+                    <Button
+                      className="-my-2 size-8"
+                      aria-label={
+                        currentBookmark ? translations["ui.remove"] : translations["ui.add"]
                       }
-                    },
-                  },
-                ]}
-                headerProps={{
-                  className: "flex items-center justify-between border-b",
-                }}
-                title={translations["ui.bookmarks"]}
-              >
-                {bookmarks.length > 0 ? (
-                  <ul className="-my-2 flex flex-col gap-1">
-                    {bookmarks.map((bookmark) => {
-                      return (
-                        <li className="flex items-center justify-between" key={bookmark.uuid}>
-                          <Button
-                            className="font-normal text-foreground"
-                            linkProps={{
-                              href: bookmark.url,
-                            }}
-                            size="link"
-                            variant="link"
-                            onClick={() => onOpenChange(false)}
-                          >
-                            {bookmark.name}
-                          </Button>
-                          <div className="flex items-center justify-between gap-1">
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => {
+                        if (currentBookmark) {
+                          onDelete(currentBookmark.uuid);
+                        } else {
+                          onAdd();
+                        }
+                      }}
+                    >
+                      <Icon fill={currentBookmark ? "currentColor" : "none"} name="star" />
+                    </Button>
+                  </Tooltip>
+                </CardHeader>
+                <CardContent>
+                  {bookmarks.length > 0 ? (
+                    <ul className="-my-2 flex flex-col gap-1">
+                      {bookmarks.map((bookmark) => {
+                        return (
+                          <li className="flex items-center justify-between" key={bookmark.uuid}>
                             <Button
-                              className="size-8"
-                              iconProps={{
-                                className: "size-4",
-                                name: "edit",
-                              }}
-                              size="icon"
-                              tooltip={translations["ui.edit"]}
-                              variant="ghost"
-                              onClick={() => {
-                                setBookmark(bookmark);
-                              }}
+                              className="font-normal text-foreground"
+                              size="link"
+                              variant="link"
+                              onClick={() => onOpenChange(false)}
+                              render={<Link href={bookmark.url}>{bookmark.name}</Link>}
                             />
-                            <Button
-                              className="size-8"
-                              iconProps={{
-                                className: "size-4",
-                                name: "star-off",
-                              }}
-                              size="icon"
-                              tooltip={translations["ui.remove"]}
-                              variant="ghost"
-                              onClick={() => {
-                                onDelete(bookmark.uuid);
-                              }}
-                            />
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ) : (
-                  <p className="text-muted-foreground">{translations["bookmarks.instruction"]}</p>
-                )}
-              </Card>
+                            <div className="flex items-center justify-between gap-1">
+                              <Tooltip tooltip={translations["ui.edit"]}>
+                                <Button
+                                  aria-label={translations["ui.edit"]}
+                                  className="size-8"
+                                  size="icon"
+                                  variant="ghost"
+                                  onClick={() => {
+                                    setBookmark(bookmark);
+                                  }}
+                                >
+                                  <Icon className="size-4" name="edit" />
+                                </Button>
+                              </Tooltip>
+                              <Tooltip tooltip={translations["ui.remove"]}>
+                                <Button
+                                  aria-label={translations["ui.remove"]}
+                                  className="size-8"
+                                  size="icon"
+                                  variant="ghost"
+                                  onClick={() => {
+                                    onDelete(bookmark.uuid);
+                                  }}
+                                >
+                                  <Icon className="size-4" name="star-off" />
+                                </Button>
+                              </Tooltip>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    <p className="text-muted-foreground">{translations["bookmarks.instruction"]}</p>
+                  )}
+                </CardContent>
+              </CardRoot>
             )}
           </PopoverPopup>
         </PopoverPositioner>

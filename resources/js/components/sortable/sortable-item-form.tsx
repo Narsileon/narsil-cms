@@ -1,6 +1,6 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { Button } from "@narsil-cms/blocks/button";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import {
   DialogBackdrop,
   DialogBody,

@@ -1,5 +1,5 @@
-import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
+import { ChevronRightIcon } from "lucide-react";
 import { type ComponentProps } from "react";
 
 function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<"li">) {
@@ -11,7 +11,7 @@ function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<"
       role="presentation"
       {...props}
     >
-      {children ?? <Icon name="chevron-right" />}
+      {children ?? <ChevronRightIcon name="chevron-right" />}
     </li>
   );
 }

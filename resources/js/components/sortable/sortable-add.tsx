@@ -1,7 +1,8 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { Button } from "@narsil-cms/blocks/button";
 import { Combobox } from "@narsil-cms/blocks/fields/combobox";
+import { Button } from "@narsil-cms/components/button";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { ModalLink } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { cn } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
@@ -107,25 +108,25 @@ function SortableAdd({
       {group.routes?.create ? (
         <Button
           className="justify-self-end"
-          asChild={true}
-          linkProps={{
-            href: route(group.routes.create, group.routes.params),
-            modal: true,
-            onSuccess: (response) => {
-              const props = response?.props?.redirect as GlobalProps["redirect"];
+          render={
+            <ModalLink
+              href={route(group.routes.create, group.routes.params)}
+              onSuccess={(response) => {
+                const props = response?.props?.redirect as GlobalProps["redirect"];
 
-              if (!props.data) {
-                return;
-              }
+                if (!props.data) {
+                  return;
+                }
 
-              const option = transformItemToOption(props.data as AnonymousItem);
+                const option = transformItemToOption(props.data as AnonymousItem);
 
-              setOptions([...options, option]);
-            },
-          }}
-        >
-          {trans("ui.create")}
-        </Button>
+                setOptions([...options, option]);
+              }}
+            >
+              {trans("ui.create")}
+            </ModalLink>
+          }
+        />
       ) : null}
     </div>
   ) : (

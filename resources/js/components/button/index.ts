@@ -1,6 +1,7 @@
-// https://ui.shadcn.com/docs/components/button
+// https://ui.shadcn.com/docs/components/base/button
+// https://base-ui.com/react/components/button
 
-import ButtonRoot from "./button-root";
-import buttonRootVariants from "./button-root-variants";
+import Button from "./button";
+import buttonVariants from "./button-variants";
 
-export { ButtonRoot, buttonRootVariants };
+export { Button, buttonVariants };

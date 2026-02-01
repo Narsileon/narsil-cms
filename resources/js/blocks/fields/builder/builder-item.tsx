@@ -1,9 +1,10 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "@narsil-cms/blocks/button";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
+import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import {
   CollapsiblePanel,
@@ -59,6 +60,8 @@ function BuilderItem({
 
   const activeHandle = `${baseHandle}.active`;
 
+  const label = open ? trans("ui.collapse") : trans("ui.expand");
+
   return (
     <CollapsibleRoot
       ref={setNodeRef}
@@ -79,7 +82,7 @@ function BuilderItem({
                 ref={setActivatorNodeRef}
                 {...attributes}
                 {...listeners}
-                tooltip={trans("ui.move")}
+                label={trans("ui.move")}
               />
               <CardTitle className="grow justify-self-start font-normal">{block.label}</CardTitle>
               <Switch
@@ -119,17 +122,19 @@ function BuilderItem({
               />
               <div className="flex items-center gap-1">
                 <SortableItemMenu onMoveDown={onMoveDown} onMoveUp={onMoveUp} onRemove={onRemove} />
-                <Button
-                  size="icon-sm"
-                  tooltip={open ? trans("ui.collapse") : trans("ui.expand")}
-                  variant="ghost"
-                  onClick={() => setCollapsed(!open)}
-                >
-                  <Icon
-                    className={cn("duration-300", open ? "rotate-0" : "rotate-180")}
-                    name="chevron-down"
-                  />
-                </Button>
+                <Tooltip tooltip={label}>
+                  <Button
+                    aria-label={label}
+                    size="icon-sm"
+                    variant="ghost"
+                    onClick={() => setCollapsed(!open)}
+                  >
+                    <Icon
+                      className={cn("duration-300", open ? "rotate-0" : "rotate-180")}
+                      name="chevron-down"
+                    />
+                  </Button>
+                </Tooltip>
               </div>
             </CardHeader>
           }

@@ -1,6 +1,6 @@
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -37,11 +37,12 @@ function SortableItemMenu({
             <div className="flex items-center justify-end">
               <Button
                 aria-label={trans("accessibility.toggle_row_menu")}
-                icon="more-horizontal"
                 size="icon-sm"
                 variant="ghost-secondary"
                 onClick={(event) => event.stopPropagation()}
-              />
+              >
+                <Icon name="more-horizontal" />
+              </Button>
             </div>
           }
         />

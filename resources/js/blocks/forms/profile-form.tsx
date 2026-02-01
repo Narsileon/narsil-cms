@@ -1,4 +1,5 @@
-import { Button } from "@narsil-cms/blocks/button";
+import { Icon } from "@narsil-cms/blocks/icon";
+import { Button } from "@narsil-cms/components/button";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
@@ -35,7 +36,8 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             <SectionRoot>
               <SectionHeader className="border-b">
                 <Heading level="h2">{trans("ui.account")}</Heading>
-                <Button form={profileForm.id} icon={profileForm.submitIcon} type="submit">
+                <Button form={profileForm.id} type="submit">
+                  <Icon name={profileForm.submitIcon} />
                   {profileForm.submitLabel}
                 </Button>
               </SectionHeader>
@@ -67,11 +69,8 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
             <SectionRoot>
               <SectionHeader className="border-b">
                 <Heading level="h2">{trans("ui.password")}</Heading>
-                <Button
-                  form={updatePasswordForm.id}
-                  icon={updatePasswordForm.submitIcon}
-                  type="submit"
-                >
+                <Button form={updatePasswordForm.id} type="submit">
+                  <Icon name={updatePasswordForm.submitIcon} />
                   {updatePasswordForm.submitLabel}
                 </Button>
               </SectionHeader>

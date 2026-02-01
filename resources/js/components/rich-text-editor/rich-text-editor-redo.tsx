@@ -1,6 +1,6 @@
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
 import { Editor, useEditorState } from "@tiptap/react";
 import { type ComponentProps } from "react";
 

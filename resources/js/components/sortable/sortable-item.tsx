@@ -1,10 +1,10 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { WidthSelector } from "@narsil-cms/blocks/width-selector";
+import { Button } from "@narsil-cms/components/button";
 import {
   CardContent,
   CardFooter,
@@ -124,15 +124,12 @@ function SortableItem({
                       <CardTitle className="grow justify-self-start font-normal">{label}</CardTitle>
                     ) : null}
                     {collapsible ? (
-                      <Button
-                        iconProps={{
-                          className: cn("duration-300", open && "rotate-180"),
-                          name: "chevron-down",
-                        }}
-                        size="icon-sm"
-                        variant="ghost"
-                        onClick={() => setCollapsed(!open)}
-                      />
+                      <Button size="icon-sm" variant="ghost" onClick={() => setCollapsed(!open)}>
+                        <Icon
+                          className={cn("duration-300", open && "rotate-180")}
+                          name="chevron-down"
+                        />
+                      </Button>
                     ) : null}
                   </div>
                   <div className="flex items-center justify-between gap-1 justify-self-end">
@@ -150,17 +147,22 @@ function SortableItem({
                         item={item}
                         optionValue={optionValue}
                         onItemChange={onItemChange}
-                        render={<Button icon="edit" size="icon-sm" variant="ghost" />}
+                        render={
+                          <Button size="icon-sm" variant="ghost">
+                            <Icon name="edit" />
+                          </Button>
+                        }
                       />
                     ) : null}
                     {onItemRemove ? (
                       <Button
-                        icon="trash"
                         size="icon-sm"
                         tooltip={trans("ui.remove")}
                         variant="ghost"
                         onClick={onItemRemove}
-                      />
+                      >
+                        <Icon name="trash" />
+                      </Button>
                     ) : null}
                   </div>
                 </CardHeader>

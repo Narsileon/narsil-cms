@@ -1,8 +1,8 @@
 import { Link, router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -42,11 +42,12 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
           render={
             <Button
               aria-label={trans("accessibility.toggle_row_menu")}
-              icon="more-horizontal"
               size="icon-sm"
               variant="ghost-secondary"
               onClick={(event) => event.stopPropagation()}
-            />
+            >
+              <Icon name="more-horizontal" />
+            </Button>
           }
         />
       </Tooltip>

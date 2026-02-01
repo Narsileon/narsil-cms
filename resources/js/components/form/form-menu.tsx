@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
+import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -29,7 +29,11 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
   return (
     <DropdownMenuRoot>
       <DropdownMenuTrigger
-        render={<Button icon="more-vertical" size="icon" variant="outline" {...props} />}
+        render={
+          <Button size="icon" variant="outline" {...props}>
+            <Icon name="more-vertical" />
+          </Button>
+        }
       />
       <DropdownMenuPortal>
         <DropdownMenuPositioner>

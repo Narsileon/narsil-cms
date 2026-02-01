@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Button } from "@narsil-cms/components/button";
 import {
   CollapsiblePanel,
   CollapsibleRoot,
@@ -101,10 +101,6 @@ function FormElement({ onChange, ...props }: FormElementProps) {
               {base.settings.generate ? (
                 <Button
                   className="text-muted-foreground"
-                  iconProps={{
-                    className: "text-muted-foreground",
-                    name: "refresh",
-                  }}
                   size="sm"
                   variant="ghost"
                   onClick={() => {
@@ -120,6 +116,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
                     handleOnChange?.(kebabCase(original));
                   }}
                 >
+                  <Icon className="text-muted-foreground" name="refresh" />
                   {trans("ui.generate")}
                 </Button>
               ) : null}

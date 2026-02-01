@@ -1,6 +1,6 @@
-import { Button } from "@narsil-cms/blocks/button";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Kbd } from "@narsil-cms/blocks/kbd";
+import { Button } from "@narsil-cms/components/button";
 import { ButtonGroupRoot } from "@narsil-cms/components/button-group";
 import {
   DropdownMenuItem,
@@ -125,7 +125,13 @@ function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
       </Button>
       <Separator orientation="vertical" />
       <DropdownMenuRoot>
-        <DropdownMenuTrigger render={<Button className="w-8" icon="chevron-down" size="icon" />} />
+        <DropdownMenuTrigger
+          render={
+            <Button className="w-8" size="icon">
+              <Icon name="chevron-down" />
+            </Button>
+          }
+        />
         <DropdownMenuPortal>
           <DropdownMenuPositioner>
             <DropdownMenuPopup>

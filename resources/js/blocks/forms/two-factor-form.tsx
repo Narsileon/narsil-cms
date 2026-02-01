@@ -1,7 +1,16 @@
 import { router } from "@inertiajs/react";
-import { Card } from "@narsil-cms/blocks/card";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Label } from "@narsil-cms/blocks/label";
+import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Button } from "@narsil-cms/components/button";
+import {
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardRoot,
+  CardTitle,
+} from "@narsil-cms/components/card";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { useAuth } from "@narsil-cms/hooks/use-props";
@@ -101,67 +110,64 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                     },
                   }}
                 >
-                  <Card
-                    contentProps={{ className: "grid-cols-12" }}
-                    footerButtons={[
-                      {
-                        form: form.id,
-                        label: form.submitLabel,
-                        type: "submit",
-                      },
-                    ]}
-                    footerProps={{ className: "justify-end border-t" }}
-                  >
-                    {form.tabs.map((tab, index) => {
-                      return (
-                        <Fragment key={index}>
-                          {tab.elements?.map((element, index) => {
-                            return <FormElement {...element} key={index} />;
-                          })}
-                        </Fragment>
-                      );
-                    })}
-                    <div
-                      className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
-                      dangerouslySetInnerHTML={{
-                        __html: qrCode,
-                      }}
-                    />
-                  </Card>
+                  <CardRoot>
+                    <CardContent className="grid-cols-12">
+                      {form.tabs.map((tab, index) => {
+                        return (
+                          <Fragment key={index}>
+                            {tab.elements?.map((element, index) => {
+                              return <FormElement {...element} key={index} />;
+                            })}
+                          </Fragment>
+                        );
+                      })}
+                      <div
+                        className="col-span-full max-h-48 max-w-48 place-self-center [&>svg]:h-auto [&>svg]:w-full"
+                        dangerouslySetInnerHTML={{
+                          __html: qrCode,
+                        }}
+                      />
+                    </CardContent>
+                    <CardFooter className="justify-end border-t">
+                      <Button form={form.id} type="submit">
+                        {form.submitLabel}
+                      </Button>
+                    </CardFooter>
+                  </CardRoot>
                 </FormRoot>
               );
             }}
           />
         ) : null}
         {!active && enabled && recoveryCodes ? (
-          <Card
-            contentProps={{ className: "gap-4" }}
-            headerButtons={[
-              {
-                className: "place-self-end",
-                iconProps: {
-                  name: "copy",
-                },
-                size: "icon",
-                tooltip: trans("ui.copy_clipboard"),
-                variant: "outline",
-                onClick: () => {
-                  navigator.clipboard.writeText(recoveryCodes.join("\n"));
+          <CardRoot>
+            <CardHeader className="grid-cols-2 items-center border-b">
+              <CardTitle>{trans("two-factor.recovery_codes_title")}</CardTitle>
+              <Tooltip tooltip={trans("ui.copy_clipboard")}>
+                <Button
+                  aria-label={trans("ui.copy_clipboard")}
+                  className="place-self-end"
+                  size="icon"
+                  variant="outline"
+                  onClick={() => {
+                    navigator.clipboard.writeText(recoveryCodes.join("\n"));
 
-                  toast.success(trans("two-factor.recovery_codes_copied"));
-                },
-              },
-            ]}
-            headerProps={{ className: "grid-cols-2 items-center border-b" }}
-            title={trans("two-factor.recovery_codes_title")}
-          >
-            <p>{trans("two-factor.recovery_codes_description")}</p>
-            <ul className="ml-6 list-disc">
-              {recoveryCodes?.map((recoveryCode, index) => {
-                return <li key={index}>{recoveryCode}</li>;
-              })}
-            </ul>
-          </Card>
+                    toast.success(trans("two-factor.recovery_codes_copied"));
+                  }}
+                >
+                  <Icon name="copy" />
+                </Button>
+              </Tooltip>
+            </CardHeader>
+            <CardContent className="gap-4">
+              <p>{trans("two-factor.recovery_codes_description")}</p>
+              <ul className="ml-6 list-disc">
+                {recoveryCodes?.map((recoveryCode, index) => {
+                  return <li key={index}>{recoveryCode}</li>;
+                })}
+              </ul>
+            </CardContent>
+          </CardRoot>
         ) : null}
       </div>
     </>
