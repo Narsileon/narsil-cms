@@ -89,7 +89,6 @@ function FormElement({ onChange, ...props }: FormElementProps) {
                         variant: "inline",
                       }}
                       valueProps={{
-                        asChild: true,
                         children: <span className="uppercase">{fieldLanguage}</span>,
                       }}
                       value={fieldLanguage}
