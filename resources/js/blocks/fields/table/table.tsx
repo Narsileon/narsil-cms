@@ -12,8 +12,8 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { Label } from "@narsil-cms/blocks/label";
 import { useFormField } from "@narsil-cms/components/form";
+import { Label } from "@narsil-cms/components/label";
 import {
   TableBody,
   TableCell,

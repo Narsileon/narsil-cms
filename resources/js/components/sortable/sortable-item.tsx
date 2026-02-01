@@ -2,7 +2,6 @@ import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { WidthSelector } from "@narsil-cms/blocks/width-selector";
 import { Button } from "@narsil-cms/components/button";
 import {
@@ -18,6 +17,7 @@ import {
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { IconName } from "@narsil-cms/repositories/icons";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
@@ -113,7 +113,7 @@ function SortableItem({
                       {...attributes}
                       {...listeners}
                       disabled={disabled}
-                      tooltip={trans("ui.move")}
+                      label={trans("ui.move")}
                     />
                     {item?.icon ? (
                       <Tooltip tooltip={group?.label as string}>

@@ -1,6 +1,5 @@
 import { Link, router } from "@inertiajs/react";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { Button } from "@narsil-cms/components/button";
 import {
@@ -14,6 +13,7 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink } from "@narsil-cms/components/modal";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import type { Model, RouteNames } from "@narsil-cms/types";
 import { type Table } from "@tanstack/react-table";
 import { type ComponentProps } from "react";

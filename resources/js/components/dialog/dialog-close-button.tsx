@@ -1,7 +1,7 @@
 import { Dialog } from "@base-ui/react/dialog";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { type IconName } from "@narsil-cms/repositories/icons";
 import { type ComponentProps } from "react";

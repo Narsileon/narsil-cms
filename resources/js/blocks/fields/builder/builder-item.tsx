@@ -2,7 +2,6 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
@@ -14,6 +13,7 @@ import {
 import { FormElement, useForm } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItem, SortableItemMenu } from "@narsil-cms/components/sortable";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import type { Block } from "@narsil-cms/types";
 import { get } from "lodash-es";

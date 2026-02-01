@@ -1,4 +1,4 @@
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
@@ -8,12 +8,7 @@ type StatusItemProps = ComponentProps<"li"> & {
 
 function StatusItem({ className, tooltip, ...props }: StatusItemProps) {
   return (
-    <Tooltip
-      tooltip={tooltip}
-      popupProps={{
-        className: "pointer-events-none",
-      }}
-    >
+    <Tooltip tooltip={tooltip}>
       <li
         className={cn("size-3 shrink-0 rounded-full delay-100 duration-300", className)}
         {...props}

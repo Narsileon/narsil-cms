@@ -1,8 +1,6 @@
 import { router } from "@inertiajs/react";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Label } from "@narsil-cms/blocks/label";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Button } from "@narsil-cms/components/button";
 import {
   CardContent,
@@ -12,7 +10,9 @@ import {
   CardTitle,
 } from "@narsil-cms/components/card";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
+import { Label } from "@narsil-cms/components/label";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
 import { Fragment, useState } from "react";

@@ -1,5 +1,4 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuPopup,
@@ -10,6 +9,7 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Separator } from "@narsil-cms/components/separator";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { useCurrentEditor } from "@tiptap/react";
 import { ComponentProps } from "react";

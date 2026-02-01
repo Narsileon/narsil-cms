@@ -7,7 +7,6 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { useDataTable } from "@narsil-cms/components/data-table";
@@ -20,6 +19,7 @@ import {
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
 import { SortableHandle } from "@narsil-cms/components/sortable";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import type { Model } from "@narsil-cms/types";
 import { type Column } from "@tanstack/react-table";
 import { concat, upperFirst } from "lodash-es";

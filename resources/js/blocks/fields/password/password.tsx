@@ -1,7 +1,7 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { InputContent, InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { useState, type ComponentProps } from "react";
 
 type PasswordProps = Omit<ComponentProps<typeof InputContent>, "children">;

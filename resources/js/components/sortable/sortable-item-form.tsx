@@ -1,5 +1,4 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Button } from "@narsil-cms/components/button";
 import {
   DialogBackdrop,
@@ -15,6 +14,7 @@ import {
 } from "@narsil-cms/components/dialog";
 import { FormProvider, FormRoot, FormSteps } from "@narsil-cms/components/form";
 import { useLocalization } from "@narsil-cms/components/localization";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import type { FormType } from "@narsil-cms/types";
 import { get } from "lodash-es";

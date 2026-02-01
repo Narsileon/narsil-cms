@@ -1,7 +1,7 @@
-// https://ui.shadcn.com/docs/components/badge
+// https://ui.shadcn.com/docs/components/base/badge
 
+import Badge from "./badge";
 import BadgeClose from "./badge-close";
-import BadgeRoot from "./badge-root";
-import badgeRootVariants from "./badge-root-variants";
+import badgeVariants from "./badge-variants";
 
-export { BadgeClose, BadgeRoot, badgeRootVariants };
+export { Badge, BadgeClose, badgeVariants };

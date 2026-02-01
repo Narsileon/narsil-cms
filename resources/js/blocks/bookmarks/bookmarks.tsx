@@ -1,6 +1,5 @@
 import { Link, router } from "@inertiajs/react";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Button } from "@narsil-cms/components/button";
 import {
   CardContent,
@@ -18,6 +17,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import type { Bookmark, FormType } from "@narsil-cms/types";
 import { sortBy } from "lodash-es";
 import { Fragment, useEffect, useState, type ComponentProps } from "react";

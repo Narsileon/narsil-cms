@@ -4,7 +4,6 @@ import { Icon } from "@narsil-cms/blocks/icon";
 import { Logo } from "@narsil-cms/blocks/logo";
 import { Toaster } from "@narsil-cms/blocks/toaster";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
 import { Button } from "@narsil-cms/components/button";
@@ -19,6 +18,7 @@ import {
 } from "@narsil-cms/components/dropdown-menu";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useRef } from "react";

@@ -3,7 +3,7 @@ import { type ComponentProps } from "react";
 
 function KbdGroup({ className, ...props }: ComponentProps<"div">) {
   return (
-    <kbd
+    <div
       data-slot="kbd-group"
       className={cn("inline-flex items-center gap-1", className)}
       {...props}

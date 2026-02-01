@@ -4,7 +4,6 @@ import {
   type LaravelPaginationLinks,
   type LaravelPaginationMetaLink,
 } from "@narsil-cms/blocks/pagination";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PaginationContent,
@@ -13,6 +12,7 @@ import {
   PaginationLink,
   PaginationRoot,
 } from "@narsil-cms/components/pagination";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { type ComponentProps } from "react";
 
 type PaginationProps = ComponentProps<typeof PaginationRoot> & {

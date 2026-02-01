@@ -1,4 +1,4 @@
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
@@ -84,14 +84,10 @@ function SidebarMenuButton({
 
   return (
     <Tooltip
+      align="center"
+      hidden={state !== "collapsed" || isMobile}
+      side="right"
       tooltip={tooltip}
-      popupProps={{
-        hidden: state !== "collapsed" || isMobile,
-      }}
-      positionerProps={{
-        align: "center",
-        side: "right",
-      }}
     >
       {button}
     </Tooltip>

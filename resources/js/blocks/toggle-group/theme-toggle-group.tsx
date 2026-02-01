@@ -1,7 +1,7 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { themes, useThemeStore } from "@narsil-cms/stores/theme-store";
 import { useRef } from "react";
 

@@ -1,6 +1,6 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Toggle } from "@narsil-cms/components/toggle";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
 

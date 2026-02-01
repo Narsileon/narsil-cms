@@ -1,7 +1,6 @@
 import { router } from "@inertiajs/react";
 import { Badge } from "@narsil-cms/blocks/badge";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import {
   CommandEmpty,
   CommandGroup,
@@ -20,6 +19,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@narsil-cms/components/popover";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types";

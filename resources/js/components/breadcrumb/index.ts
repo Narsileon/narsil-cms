@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/breadcrumb
+// https://ui.shadcn.com/docs/components/base/breadcrumb
 
 import BreadcrumbEllipsis from "./breadcrumb-ellipsis";
 import BreadcrumbItem from "./breadcrumb-item";

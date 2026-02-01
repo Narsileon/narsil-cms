@@ -1,7 +1,7 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Badge } from "@narsil-cms/blocks/badge";
+import { Badge } from "@narsil-cms/components/badge";
 import { CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-cms/components/collapsible";
 import { useForm } from "@narsil-cms/components/form";
@@ -67,35 +67,38 @@ function TreeItem({
       }}
     >
       <CardRoot {...props}>
-        <CollapsibleTrigger className={cn(disabled && "cursor-default")} asChild={true}>
-          <CardHeader className="flex min-h-9 items-center justify-start gap-2 py-0 pr-1 pl-0">
-            <SortableHandle
-              ref={setActivatorNodeRef}
-              {...attributes}
-              {...listeners}
-              disabled={disabled}
-              tooltip={trans("ui.move")}
-            />
-            {item.edit_url ? (
-              <ModalLink
-                className="grow cursor-pointer"
-                href={item.edit_url as string}
-                variant="right"
-              >
-                {content}
-              </ModalLink>
-            ) : (
-              content
-            )}
-            <TreeItemMenu
-              className="justify-end"
-              disabled={disabled}
-              item={item}
-              onMoveDown={onMoveDown}
-              onMoveUp={onMoveUp}
-            />
-          </CardHeader>
-        </CollapsibleTrigger>
+        <CollapsibleTrigger
+          className={cn(disabled && "cursor-default")}
+          render={
+            <CardHeader className="flex min-h-9 items-center justify-start gap-2 py-0 pr-1 pl-0">
+              <SortableHandle
+                ref={setActivatorNodeRef}
+                {...attributes}
+                {...listeners}
+                disabled={disabled}
+                label={trans("ui.move")}
+              />
+              {item.edit_url ? (
+                <ModalLink
+                  className="grow cursor-pointer"
+                  href={item.edit_url as string}
+                  variant="right"
+                >
+                  {content}
+                </ModalLink>
+              ) : (
+                content
+              )}
+              <TreeItemMenu
+                className="justify-end"
+                disabled={disabled}
+                item={item}
+                onMoveDown={onMoveDown}
+                onMoveUp={onMoveUp}
+              />
+            </CardHeader>
+          }
+        />
       </CardRoot>
     </CollapsibleRoot>
   );

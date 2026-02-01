@@ -1,6 +1,5 @@
 import { Link, router } from "@inertiajs/react";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Button } from "@narsil-cms/components/button";
 import {
   DataTableColumns,
@@ -22,6 +21,7 @@ import {
   TableRoot,
   TableWrapper,
 } from "@narsil-cms/components/table";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
 import type { DataTableCollection } from "@narsil-cms/types";
 import { flexRender } from "@tanstack/react-table";
@@ -73,7 +73,7 @@ function DataTable({ collection, title }: DataTableProps) {
         <DataTableInput className="grow" />
         <DataTableColumns
           render={
-            <Tooltip popupProps={{ hidden: isDesktop }} tooltip={columnsLabel}>
+            <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
               <Button
                 aria-label={columnsLabel}
                 size={isDesktop ? "default" : "icon"}
@@ -87,7 +87,7 @@ function DataTable({ collection, title }: DataTableProps) {
         />
         <DataTableFilterDropdown
           render={
-            <Tooltip popupProps={{ hidden: isDesktop }} tooltip={filterLabel}>
+            <Tooltip hidden={isDesktop} tooltip={filterLabel}>
               <Button
                 aria-label={filterLabel}
                 size={isDesktop ? "default" : "icon"}
@@ -100,7 +100,7 @@ function DataTable({ collection, title }: DataTableProps) {
           }
         />
         {collection.meta.routes.create ? (
-          <Tooltip popupProps={{ hidden: isDesktop }} tooltip={createLabel}>
+          <Tooltip hidden={isDesktop} tooltip={createLabel}>
             <Button
               aria-label={createLabel}
               size={isDesktop ? "default" : "icon"}

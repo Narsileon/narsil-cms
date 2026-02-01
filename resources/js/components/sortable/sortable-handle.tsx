@@ -1,6 +1,6 @@
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Tooltip } from "@narsil-cms/blocks/tooltip";
 import { Button } from "@narsil-cms/components/button";
+import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
@@ -16,12 +16,7 @@ function SortableHandle({
   ...props
 }: SortableHandleProps) {
   return (
-    <Tooltip
-      tooltip={label}
-      popupProps={{
-        hidden: isDragging,
-      }}
-    >
+    <Tooltip hidden={isDragging} tooltip={label}>
       <Button
         aria-label={label}
         className={cn(

@@ -67,9 +67,9 @@ function TableItem({
           <SortableHandle
             ref={setActivatorNodeRef}
             className="rounded-md bg-transparent"
-            tooltip={trans("ui.move")}
             {...attributes}
             {...listeners}
+            label={trans("ui.move")}
           />
         ) : null}
       </TableCell>

@@ -1,9 +1,18 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 
-function LabelRequired({ className, ...props }: ComponentProps<"span">) {
+type LabelRequiredProps = ComponentProps<"span"> & {
+  label?: string;
+};
+
+function LabelRequired({ className, label = "Required", ...props }: LabelRequiredProps) {
   return (
-    <span data-slot="label-required" className={cn("text-destructive", className)} {...props}>
+    <span
+      data-slot="label-required"
+      className={cn("text-destructive", className)}
+      aria-label={label}
+      {...props}
+    >
       *
     </span>
   );
