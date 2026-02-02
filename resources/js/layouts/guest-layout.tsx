@@ -1,6 +1,5 @@
 import { Link } from "@inertiajs/react";
 import { Icon } from "@narsil-cms/blocks/icon";
-import { Logo } from "@narsil-cms/blocks/logo";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
@@ -41,7 +40,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
     <>
       <header className="sticky top-0 z-10 h-13 border-b bg-sidebar shadow">
         <Container className="h-full flex-row justify-between">
-          <Logo />
+          <Icon name="narsil" />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
               <DropdownMenuTrigger

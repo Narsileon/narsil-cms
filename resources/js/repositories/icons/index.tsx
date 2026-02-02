@@ -1,3 +1,4 @@
+import NarsilIcon from "@narsil-cms/components/icon/icons/narsil-icon";
 import {
   ActivityIcon,
   AlignCenterIcon,
@@ -183,6 +184,7 @@ const defaultRegistry: Registry = {
   ["more-vertical"]: MoreVerticalIcon,
   ["move-down"]: MoveDownIcon,
   ["move-up"]: MoveUpIcon,
+  ["narsil"]: NarsilIcon,
   ["number"]: HashIcon,
   ["password"]: LockIcon,
   ["permission"]: KeyRoundIcon,

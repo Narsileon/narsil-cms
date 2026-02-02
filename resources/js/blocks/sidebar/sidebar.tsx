@@ -43,9 +43,7 @@ function Sidebar({ ...props }: SidebarProps) {
           variant="sidebar"
           render={
             <Link href={route("dashboard")}>
-              <svg width={20} height={20}>
-                <use href="/favicon.svg" width={20} height={20} />
-              </svg>
+              <Icon name="narsil" />
               CMS
             </Link>
           }
