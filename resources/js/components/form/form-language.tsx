@@ -28,9 +28,10 @@ function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLang
 
   return (
     <ToggleGroupRoot
-      defaultValue={currentOption.value as string}
+      defaultValue={[currentOption.value as string]}
+      multiple={false}
       orientation="vertical"
-      type="single"
+      spacing={1}
       {...props}
     >
       {orderedOptions.map((option, index) => (

@@ -29,7 +29,7 @@ function ToggleGroupRoot({
       style={{ "--gap": spacing } as React.CSSProperties}
       className={cn(
         "group/toggle-group",
-        "flex w-fit flex-row items-center rounded-lg",
+        "flex w-full items-center justify-center rounded-lg",
         "gap-[--spacing(var(--gap))]",
         "data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch",
         "data-[size=sm]:rounded-[min(var(--radius-md),10px)]",

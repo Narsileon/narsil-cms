@@ -30,17 +30,20 @@ function FormCountry({ countries, ...props }: FormCountryProps) {
 
   return (
     <ToggleGroupRoot
-      defaultValue={countries[0].value as string}
+      defaultValue={[countries[0].value as string]}
+      multiple={false}
       orientation="vertical"
-      value={value as string}
-      type="single"
-      onValueChange={(value) => onValueChange(value as string)}
+      spacing={1}
+      value={[value as string]}
       {...props}
     >
       {countries.map((option) => (
         <ToggleGroupItem
           className="flex w-full items-center justify-between pr-2"
           value={option.value as string}
+          onClick={() => {
+            onValueChange(option.value as string);
+          }}
           key={option.value}
         >
           <span

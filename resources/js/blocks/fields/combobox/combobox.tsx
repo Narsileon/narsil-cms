@@ -16,28 +16,24 @@ import ComboboxClear from "@narsil-cms/components/combobox/combobox-clear";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
-import { debounce, isArray, isNumber, lowerCase } from "lodash-es";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { isArray, isNumber, lowerCase } from "lodash-es";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 type ComboboxProps = {
   className?: string;
   clearable?: boolean;
-  collection?: string;
   disabled?: boolean;
   displayValue?: boolean;
-  extraQuery?: Record<string, unknown>;
-  href?: string;
   id: string;
   labelPath?: string;
   multiple?: boolean;
   options: SelectOption[] | string[];
   placeholder?: string;
   reload?: string;
-  route?: string;
   searchable?: boolean;
   value: string | string[];
   valuePath?: string;
@@ -49,8 +45,6 @@ function Combobox({
   clearable = false,
   disabled,
   displayValue = true,
-  extraQuery,
-  href,
   id,
   labelPath = "label",
   multiple = false,
@@ -73,112 +67,30 @@ function Combobox({
 
   const scrollElementRef = useRef<HTMLDivElement>(null);
 
-  const [fetchedOptions, setFetchedOptions] = useState<SelectOption[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
-  const [input, setInput] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const resolvedOptions = href ? fetchedOptions : options;
-
-  const debouncedSetFetchedOptions = useMemo(
-    () =>
-      debounce(async (query: string) => {
-        if (!href || query.length < 3) {
-          return;
-        }
-
-        setLoading(true);
-
-        try {
-          const url = new URL(href, window.location.origin);
-
-          url.searchParams.set("search", query);
-
-          if (extraQuery) {
-            Object.entries(extraQuery).forEach(([key, value]) => {
-              if (Array.isArray(value)) {
-                value.forEach((item) => {
-                  url.searchParams.append(`${key}[]`, String(item));
-                });
-              } else {
-                url.searchParams.set(key, String(value));
-              }
-            });
-          }
-
-          const response = await fetch(url.toString());
-
-          if (!response.ok) {
-            throw new Error("Failed to fetch options");
-          }
-
-          const data = await response.json();
-
-          setFetchedOptions(data);
-        } catch (error) {
-          console.error(error);
-        } finally {
-          setLoading(false);
-        }
-      }, 400),
-    [href],
-  );
-
-  const debouncedSetSearch = useMemo(
-    () => debounce((value: string) => setSearchValue(value), 300),
-    [],
-  );
-  function onValueChange(value: string) {
-    setInput(value);
-    debouncedSetSearch(value);
-
-    if (href && value.length >= 3) {
-      debouncedSetFetchedOptions(value);
-    }
-  }
-
   const filteredItems = useMemo(() => {
-    if (href) {
-      return resolvedOptions;
-    }
-
     if (!searchValue) {
-      return resolvedOptions;
+      return options;
     }
 
     const searchedLabel = lowerCase(searchValue);
 
-    return resolvedOptions.filter((option) => {
+    return options.filter((option) => {
       const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
 
       return lowerCase(optionLabel).includes(searchedLabel);
     });
-  }, [locale, href, resolvedOptions, searchValue]);
+  }, [locale, options, searchValue]);
 
   const selectedValues = useMemo<string[]>(() => {
     return multiple ? (value as string[]) : value ? [value as string] : [];
   }, [value, multiple]);
 
   const selectedOptions = useMemo(() => {
-    return resolvedOptions.filter((option) =>
-      selectedValues.includes(getSelectOption(option, valuePath)),
-    );
-  }, [resolvedOptions, selectedValues, valuePath]);
-
-  const option = resolvedOptions.find((option) => {
-    const optionValue = getSelectOption(option, valuePath);
-
-    return optionValue == value;
-  });
-
-  const optionIndex = useMemo(() => {
-    if (!option) {
-      return -1;
-    }
-
-    return filteredItems.indexOf(option);
-  }, [filteredItems, option]);
+    return options.filter((option) => selectedValues.includes(getSelectOption(option, valuePath)));
+  }, [options, selectedValues, valuePath]);
 
   const virtualizer = useVirtualizer({
     count: filteredItems.length,
@@ -193,6 +105,10 @@ function Combobox({
   });
 
   function onSelect(selectedValue: string) {
+    if (!selectedValue) {
+      return;
+    }
+
     if (multiple) {
       if (selectedValues.includes(selectedValue)) {
         setValue(selectedValues.filter((x) => x !== selectedValue));
@@ -219,13 +135,6 @@ function Combobox({
     setOpen(false);
   }
 
-  useEffect(() => {
-    return () => {
-      debouncedSetFetchedOptions.cancel();
-      debouncedSetSearch.cancel();
-    };
-  }, []);
-
   const handleScrollElementRef = useCallback(
     (element: HTMLDivElement | null) => {
       scrollElementRef.current = element;
@@ -243,18 +152,22 @@ function Combobox({
       filteredItems={filteredItems}
       inputValue={searchValue}
       items={options}
-      open={open}
-      onOpenChange={setOpen}
-      itemToStringLabel={(item) => getTranslatableSelectOption(item, labelPath, locale)}
-      itemtoStringValue={(item) => getSelectOption(item, valuePath)}
+      itemToStringLabel={(item) =>
+        getTranslatableSelectOption(item as SelectOption, labelPath, locale)
+      }
+      itemToStringValue={(item) => getSelectOption(item as SelectOption, valuePath)}
       onInputValueChange={setSearchValue}
-      onValueChange={onValueChange}
+      onOpenChange={setOpen}
+      open={open}
+      onValueChange={(value) => {
+        onSelect(value as string);
+      }}
       value={value}
       virtualized={true}
     >
       <ComboboxTrigger
         render={
-          <Button variant="outline" className="justify-between font-normal">
+          <Button variant="outline" className={cn("w-full justify-between font-normal", className)}>
             <ComboboxValue />
           </Button>
         }
@@ -273,9 +186,7 @@ function Combobox({
                 </InputGroupAddon>
               </InputGroup>
             )}
-            <ComboboxEmpty>
-              {loading ? trans("ui.loading") : trans("pagination.pages_empty")}
-            </ComboboxEmpty>
+            <ComboboxEmpty>{trans("pagination.pages_empty")}</ComboboxEmpty>
             <ComboboxList
               ref={handleScrollElementRef}
               role="presentation"
