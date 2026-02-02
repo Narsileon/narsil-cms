@@ -29,12 +29,15 @@ function getSelectColumn(): ColumnDef<Model> {
       const label = checked ? trans("Deselect row") : trans("Select row");
 
       return (
-        <Checkbox
-          aria-label={label}
-          checked={checked}
-          onClick={(event) => event.stopPropagation()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-        />
+        <div onClick={(event) => event.stopPropagation()}>
+          <Checkbox
+            aria-label={label}
+            checked={checked}
+            onCheckedChange={(value) => {
+              row.toggleSelected(!!value);
+            }}
+          />
+        </div>
       );
     },
     enableHiding: false,
