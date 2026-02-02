@@ -133,10 +133,10 @@ function Relations({
         render={
           <InputRoot
             id={id}
+            role="combobox"
             className={cn(className)}
             aria-expanded={open}
             aria-disabled={disabled}
-            role="combobox"
             variant="button"
           >
             {value.length > 0 ? (

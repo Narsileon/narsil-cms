@@ -1,3 +1,4 @@
+import { Toast } from "@base-ui/react/toast";
 import { router } from "@inertiajs/react";
 import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Icon } from "@narsil-cms/blocks/icon";
@@ -16,7 +17,6 @@ import { Tooltip } from "@narsil-cms/components/tooltip";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
 import { Fragment, useState } from "react";
-import { toast } from "sonner";
 import { route } from "ziggy-js";
 
 type TwoFactorFormProps = {
@@ -24,6 +24,7 @@ type TwoFactorFormProps = {
 };
 
 function TwoFactorForm({ form }: TwoFactorFormProps) {
+  const { add } = Toast.useToastManager();
   const { trans } = useLocalization();
 
   const { two_factor_confirmed_at } = useAuth() ?? {};
@@ -152,7 +153,9 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                   onClick={() => {
                     navigator.clipboard.writeText(recoveryCodes.join("\n"));
 
-                    toast.success(trans("two-factor.recovery_codes_copied"));
+                    add({
+                      description: trans("two-factor.recovery_codes_copied"),
+                    });
                   }}
                 >
                   <Icon name="copy" />

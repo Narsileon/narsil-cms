@@ -1,8 +1,12 @@
 import { Menu } from "@base-ui/react/menu";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
-import { CheckIcon } from "lucide-react";
 
-function MenubarRadioItemIndicator({ className, render, ...props }: Menu.RadioItemIndicator.Props) {
+function MenubarRadioItemIndicator({
+  children,
+  className,
+  ...props
+}: Menu.RadioItemIndicator.Props) {
   return (
     <Menu.RadioItemIndicator
       data-slot="menubar-radio-item-indicator"
@@ -11,9 +15,10 @@ function MenubarRadioItemIndicator({ className, render, ...props }: Menu.RadioIt
         "[&_svg:not([class*='size-'])]:size-4",
         className,
       )}
-      render={render ?? <CheckIcon />}
       {...props}
-    />
+    >
+      {children ?? <Icon name="check" />}
+    </Menu.RadioItemIndicator>
   );
 }
 

@@ -3,7 +3,6 @@ import { Bookmarks } from "@narsil-cms/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
-import { Toaster } from "@narsil-cms/blocks/toaster";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { AlertDialogProvider } from "@narsil-cms/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
@@ -143,7 +142,6 @@ function AuthLayout({ children }: AuthLayoutProps) {
             </BackgroundRoot>
             <ModalRenderer container={mainRef.current} />
             {children}
-            <Toaster />
           </div>
         </SidebarInset>
       </SidebarProvider>

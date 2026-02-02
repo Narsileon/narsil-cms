@@ -1,7 +1,7 @@
 import { Combobox } from "@base-ui/react";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { InputGroupButton } from "@narsil-cms/components/input-group";
 import { cn } from "@narsil-cms/lib/utils";
-import { XIcon } from "lucide-react";
 
 function ComboboxClear({ className, render, ...props }: Combobox.Clear.Props) {
   return (
@@ -12,7 +12,7 @@ function ComboboxClear({ className, render, ...props }: Combobox.Clear.Props) {
       render={
         render ?? (
           <InputGroupButton variant="ghost" size="icon-xs">
-            <XIcon className="pointer-events-none" />
+            <Icon className="pointer-events-none" name="x" />
           </InputGroupButton>
         )
       }

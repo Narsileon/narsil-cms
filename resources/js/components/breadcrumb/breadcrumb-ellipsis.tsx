@@ -1,5 +1,5 @@
+import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
-import { MoreHorizontalIcon } from "lucide-react";
 import { type ComponentProps } from "react";
 
 type BreadcrumbEllipsisProps = ComponentProps<"span"> & {
@@ -20,7 +20,7 @@ function BreadcrumbEllipsis({
       aria-hidden="true"
       {...props}
     >
-      {children ?? <MoreHorizontalIcon />}
+      {children ?? <Icon name="more-horizontal" />}
       <span className="sr-only">{label}</span>
     </span>
   );

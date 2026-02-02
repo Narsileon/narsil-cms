@@ -1,3 +1,4 @@
+import { Toast } from "@base-ui/react/toast";
 import { Link } from "@inertiajs/react";
 import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardRoot } from "@narsil-cms/components/card";
@@ -6,7 +7,6 @@ import { Heading } from "@narsil-cms/components/heading";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useEffect, useRef } from "react";
-import { toast } from "sonner";
 import { route } from "ziggy-js";
 
 type VerifyEmailProps = {
@@ -15,13 +15,16 @@ type VerifyEmailProps = {
 };
 
 function VerifyEmail({ status, title }: VerifyEmailProps) {
+  const { add } = Toast.useToastManager();
   const { trans } = useLocalization();
 
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
     if (status && !hasStatus.current) {
-      toast.success(trans("verify-email.sent"));
+      add({
+        description: trans("verify-email.sent"),
+      });
 
       hasStatus.current = true;
     }

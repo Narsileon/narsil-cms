@@ -1,3 +1,4 @@
+import { Toast } from "@base-ui/react/toast";
 import { Link } from "@inertiajs/react";
 import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
@@ -8,7 +9,6 @@ import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types";
 import { Fragment, useEffect, useRef } from "react";
-import { toast } from "sonner";
 import { route } from "ziggy-js";
 
 type FortifyFormProps = {
@@ -19,13 +19,16 @@ type FortifyFormProps = {
 };
 
 function FortifyForm({ data, form, status, title }: FortifyFormProps) {
+  const { add } = Toast.useToastManager();
   const { trans } = useLocalization();
 
   const hasStatus = useRef<boolean>(false);
 
   useEffect(() => {
     if (status && !hasStatus.current) {
-      toast.success(status);
+      add({
+        description: status,
+      });
 
       hasStatus.current = true;
     }

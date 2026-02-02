@@ -1,7 +1,7 @@
 import { Combobox } from "@base-ui/react";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import { cn } from "@narsil-cms/lib/utils";
-import { XIcon } from "lucide-react";
 
 function ComboboxChipRemove({
   className,
@@ -17,7 +17,7 @@ function ComboboxChipRemove({
       render={
         render ?? (
           <Button variant="ghost" size="icon-sm">
-            <XIcon className="pointer-events-none" />
+            <Icon className="pointer-events-none" name="x" />
           </Button>
         )
       }

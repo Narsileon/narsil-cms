@@ -1,10 +1,10 @@
 import { Menu } from "@base-ui/react/menu";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
-import { CheckIcon } from "lucide-react";
 
 function MenubarCheckboxItemIndicator({
+  children,
   className,
-  render,
   ...props
 }: Menu.CheckboxItemIndicator.Props) {
   return (
@@ -15,9 +15,10 @@ function MenubarCheckboxItemIndicator({
         "[&_svg:not([class*='size-'])]:size-4",
         className,
       )}
-      render={render ?? <CheckIcon />}
       {...props}
-    />
+    >
+      {children ?? <Icon name="check" />}
+    </Menu.CheckboxItemIndicator>
   );
 }
 

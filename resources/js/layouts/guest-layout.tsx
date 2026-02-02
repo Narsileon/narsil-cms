@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { Icon } from "@narsil-cms/blocks/icon";
 import { Logo } from "@narsil-cms/blocks/logo";
-import { Toaster } from "@narsil-cms/blocks/toaster";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
@@ -108,7 +107,6 @@ function GuestLayout({ children }: GuestLayoutProps) {
         </BackgroundRoot>
         <ModalRenderer container={mainRef.current} />
         {children}
-        <Toaster />
       </main>
     </>
   );

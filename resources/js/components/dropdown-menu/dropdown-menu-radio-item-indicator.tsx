@@ -1,10 +1,10 @@
 import { Menu } from "@base-ui/react/menu";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
-import { CheckIcon } from "lucide-react";
 
 function DropdownMenuRadioItemIndicator({
+  children,
   className,
-  render,
   ...props
 }: Menu.RadioItemIndicator.Props) {
   return (
@@ -14,9 +14,10 @@ function DropdownMenuRadioItemIndicator({
         "pointer-events-none absolute right-2 flex items-center justify-center",
         className,
       )}
-      render={render ?? <CheckIcon />}
       {...props}
-    />
+    >
+      {children ?? <Icon name="check" />}
+    </Menu.RadioItemIndicator>
   );
 }
 

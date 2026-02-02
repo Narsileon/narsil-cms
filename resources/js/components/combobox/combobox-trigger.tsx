@@ -1,6 +1,6 @@
 import { Combobox } from "@base-ui/react";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
-import { ChevronDownIcon } from "lucide-react";
 
 function ComboboxTrigger({ children, className, ...props }: Combobox.Trigger.Props) {
   return (
@@ -10,7 +10,7 @@ function ComboboxTrigger({ children, className, ...props }: Combobox.Trigger.Pro
       {...props}
     >
       {children}
-      <ChevronDownIcon className="pointer-events-none size-4 text-muted-foreground" />
+      <Icon className="pointer-events-none size-4 text-muted-foreground" name="chevron-down" />
     </Combobox.Trigger>
   );
 }

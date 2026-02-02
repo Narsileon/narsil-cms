@@ -1,19 +1,20 @@
 import { ContextMenu } from "@base-ui/react/context-menu";
+import { Icon } from "@narsil-cms/blocks/icon";
 import { cn } from "@narsil-cms/lib/utils";
-import { CheckIcon } from "lucide-react";
 
 function ContextMenuRadioItemIndicator({
+  children,
   className,
-  render,
   ...props
 }: ContextMenu.RadioItemIndicator.Props) {
   return (
     <ContextMenu.RadioItemIndicator
       data-slot="context-menu-radio-item-indicator"
       className={cn("pointer-events-none absolute right-2", className)}
-      render={render ?? <CheckIcon />}
       {...props}
-    />
+    >
+      {children ?? <Icon name="check" />}
+    </ContextMenu.RadioItemIndicator>
   );
 }
 
