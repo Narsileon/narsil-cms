@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 const toggleVariants = cva(
   cn(
     "group/toggle",
-    "inline-flex items-center justify-center gap-1 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none",
+    "inline-flex items-center justify-center gap-1 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none",
     "[&_svg:not([class*='size-'])]:size-4",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
