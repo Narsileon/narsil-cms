@@ -12,7 +12,7 @@ function TabsTab({ className, ...props }: Tabs.Tab.Props) {
         "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         "data-[orientation=horizontal]:justify-center data-[orientation=vertical]:justify-start",
         "data-[orientation=vertical]:w-full",
-        "data-[state=active]:bg-sidebar-accent",
+        "data-active:bg-sidebar-accent",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}

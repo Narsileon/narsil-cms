@@ -6,7 +6,8 @@ function TabsList({ className, ...props }: Tabs.List.Props) {
     <Tabs.List
       data-slot="tabs-list"
       className={cn(
-        "inline-flex justify-start gap-2",
+        "group/tabs-list",
+        "inline-flex justify-start gap-2 text-muted-foreground",
         "data-[orientation=vertical]:border-r",
         "data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col",
         "data-[orientation=horizontal]:h-13",
