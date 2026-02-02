@@ -1,4 +1,4 @@
-import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
+import { Checkbox } from "@narsil-cms/components/checkbox";
 import { useLocalization } from "@narsil-cms/components/localization";
 import type { Model } from "@narsil-cms/types";
 import { ColumnDef } from "@tanstack/react-table";

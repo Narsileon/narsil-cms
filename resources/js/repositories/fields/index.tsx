@@ -1,6 +1,5 @@
 import { Array } from "@narsil-cms/blocks/fields/array";
 import { Builder } from "@narsil-cms/blocks/fields/builder";
-import { Checkbox } from "@narsil-cms/blocks/fields/checkbox";
 import { Checkboxes } from "@narsil-cms/blocks/fields/checkboxes";
 import { Combobox } from "@narsil-cms/blocks/fields/combobox";
 import { Date } from "@narsil-cms/blocks/fields/date";
@@ -14,6 +13,7 @@ import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { Icon } from "@narsil-cms/blocks/icon";
+import { Checkbox } from "@narsil-cms/components/checkbox";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import { Textarea } from "@narsil-cms/components/textarea";
