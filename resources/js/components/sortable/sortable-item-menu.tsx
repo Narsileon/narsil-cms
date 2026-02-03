@@ -1,4 +1,3 @@
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import {
   DropdownMenuItem,
@@ -9,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Tooltip } from "@narsil-cms/components/tooltip";
 import { type ComponentProps } from "react";

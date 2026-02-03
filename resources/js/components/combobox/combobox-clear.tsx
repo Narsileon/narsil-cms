@@ -1,5 +1,5 @@
 import { Combobox } from "@base-ui/react";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { InputGroupButton } from "@narsil-cms/components/input-group";
 import { cn } from "@narsil-cms/lib/utils";
 

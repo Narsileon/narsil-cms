@@ -1,6 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
 import { TableCell, TableRow } from "@narsil-cms/components/table";

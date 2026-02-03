@@ -6,10 +6,10 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
 import { useDataTable } from "@narsil-cms/components/data-table";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverPopup,

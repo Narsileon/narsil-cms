@@ -1,6 +1,6 @@
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Link } from "@narsil-cms/blocks/link";
 import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   SidebarContent,

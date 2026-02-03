@@ -1,4 +1,4 @@
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
 import { Tooltip } from "@narsil-cms/components/tooltip";

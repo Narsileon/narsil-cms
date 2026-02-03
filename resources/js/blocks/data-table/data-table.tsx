@@ -1,5 +1,4 @@
 import { Link, router } from "@inertiajs/react";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import {
   DataTableColumns,
@@ -12,6 +11,7 @@ import {
   useDataTable,
 } from "@narsil-cms/components/data-table";
 import { Heading } from "@narsil-cms/components/heading";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import {

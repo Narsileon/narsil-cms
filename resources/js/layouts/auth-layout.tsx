@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { Bookmarks } from "@narsil-cms/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { AlertDialogProvider } from "@narsil-cms/components/alert-dialog";
@@ -18,6 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
 import { Separator } from "@narsil-cms/components/separator";

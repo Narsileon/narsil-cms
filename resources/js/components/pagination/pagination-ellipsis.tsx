@@ -1,4 +1,4 @@
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";

@@ -1,5 +1,4 @@
 import { Link, router } from "@inertiajs/react";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import {
   CardContent,
@@ -9,6 +8,7 @@ import {
   CardTitle,
 } from "@narsil-cms/components/card";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PopoverPopup,

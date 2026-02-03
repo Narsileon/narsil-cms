@@ -1,5 +1,5 @@
 import { Toast } from "@base-ui/react/toast";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 
 function ToastClose({ children, className, ...props }: Toast.Close.Props) {
   return (

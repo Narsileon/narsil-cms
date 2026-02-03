@@ -1,5 +1,5 @@
 // https://ui.shadcn.com/docs/components/base/aspect-ratio
 
-import AspectRatioRoot from "./aspect-ratio-root";
+import AspectRatio from "./aspect-ratio";
 
-export { AspectRatioRoot };
+export { AspectRatio };

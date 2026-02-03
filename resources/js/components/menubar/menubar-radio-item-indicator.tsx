@@ -1,5 +1,5 @@
 import { Menu } from "@base-ui/react/menu";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 function MenubarRadioItemIndicator({

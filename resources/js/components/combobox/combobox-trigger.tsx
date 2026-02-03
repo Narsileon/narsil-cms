@@ -1,5 +1,5 @@
 import { Combobox } from "@base-ui/react";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 function ComboboxTrigger({ children, className, ...props }: Combobox.Trigger.Props) {

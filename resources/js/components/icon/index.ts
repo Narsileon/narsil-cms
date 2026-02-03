@@ -1,3 +1,4 @@
-import IconRoot from "./icon-root";
+import type { IconName } from "@narsil-cms/registries/icons";
+import Icon from "./icon";
 
-export { IconRoot };
+export { Icon, IconName };

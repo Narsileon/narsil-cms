@@ -1,5 +1,5 @@
 import { Radio } from "@base-ui/react/radio";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 function RadioGroupIndicator({ className, children, ...props }: Radio.Indicator.Props) {

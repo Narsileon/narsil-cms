@@ -8,14 +8,14 @@ import { Password } from "@narsil-cms/blocks/fields/password";
 import { Relations } from "@narsil-cms/blocks/fields/relations";
 import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Slider } from "@narsil-cms/blocks/fields/slider";
-import { Switch } from "@narsil-cms/blocks/fields/switch";
 import { Table } from "@narsil-cms/blocks/fields/table";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { Checkbox } from "@narsil-cms/components/checkbox";
 import { InputContent } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
+import { Switch } from "@narsil-cms/components/switch";
 import { Textarea } from "@narsil-cms/components/textarea";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { type IconName } from "@narsil-cms/registries/icons";
 import { type ComponentProps } from "react";
 
 type DefaultField = {

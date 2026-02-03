@@ -1,4 +1,4 @@
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { Toggle } from "@narsil-cms/components/toggle";
 import { Tooltip } from "@narsil-cms/components/tooltip";
 import { Editor } from "@tiptap/react";

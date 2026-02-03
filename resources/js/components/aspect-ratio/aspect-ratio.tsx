@@ -1,12 +1,12 @@
 import { cn } from "@narsil-cms/lib/utils";
 import { type CSSProperties, type ComponentProps } from "react";
 
-type AspectRatioRootProps = ComponentProps<"div"> & { ratio: number };
+type AspectRatioProps = ComponentProps<"div"> & { ratio: number };
 
-function AspectRatioRoot({ className, ratio, ...props }: AspectRatioRootProps) {
+function AspectRatio({ className, ratio, ...props }: AspectRatioProps) {
   return (
     <div
-      data-slot="aspect-ratio"
+      data-slot="aspect"
       className={cn("relative", "aspect-(--ratio)", className)}
       style={
         {
@@ -18,4 +18,4 @@ function AspectRatioRoot({ className, ratio, ...props }: AspectRatioRootProps) {
   );
 }
 
-export default AspectRatioRoot;
+export default AspectRatio;

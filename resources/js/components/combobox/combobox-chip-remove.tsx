@@ -1,6 +1,6 @@
 import { Combobox } from "@base-ui/react";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 function ComboboxChipRemove({

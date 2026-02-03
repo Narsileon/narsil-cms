@@ -1,5 +1,5 @@
 import { Select } from "@base-ui/react/select";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 function SelectItemIndicator({ className, render, ...props }: Select.ItemIndicator.Props) {

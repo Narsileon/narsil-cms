@@ -1,4 +1,3 @@
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import { ButtonGroup } from "@narsil-cms/components/button-group";
 import {
@@ -11,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
 import { useForm } from "@narsil-cms/components/form";
+import { Icon } from "@narsil-cms/components/icon";
 import { Kbd, KbdGroup } from "@narsil-cms/components/kbd";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Separator } from "@narsil-cms/components/separator";

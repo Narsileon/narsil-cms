@@ -1,6 +1,6 @@
 import { Calendar } from "@narsil-cms/blocks/calendar";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { InputContent } from "@narsil-cms/components/input";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
 import {

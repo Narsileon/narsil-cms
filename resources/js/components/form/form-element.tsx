@@ -1,5 +1,4 @@
 import { Link } from "@inertiajs/react";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import {
   CollapsiblePanel,
@@ -7,9 +6,10 @@ import {
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
 import { Heading } from "@narsil-cms/components/heading";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { cn } from "@narsil-cms/lib/utils";
-import { getField } from "@narsil-cms/repositories/fields";
+import { getField } from "@narsil-cms/registries/fields";
 import type { Element } from "@narsil-cms/types";
 import parse from "html-react-parser";
 import { get, kebabCase } from "lodash-es";

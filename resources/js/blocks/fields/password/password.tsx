@@ -1,4 +1,4 @@
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { InputContent } from "@narsil-cms/components/input";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
 import { useLocalization } from "@narsil-cms/components/localization";

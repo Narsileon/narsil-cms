@@ -1,7 +1,7 @@
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button } from "@narsil-cms/components/button";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { Heading } from "@narsil-cms/components/heading";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { Separator } from "@narsil-cms/components/separator";

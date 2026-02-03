@@ -1,9 +1,9 @@
 import { Link } from "@inertiajs/react";
-import { Icon } from "@narsil-cms/blocks/icon";
 import {
   type LaravelPaginationLinks,
   type LaravelPaginationMetaLink,
 } from "@narsil-cms/blocks/pagination";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import {
   PaginationContent,

@@ -1,5 +1,4 @@
 import { DataTable } from "@narsil-cms/blocks/data-table";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Badge } from "@narsil-cms/components/badge";
 import { Button } from "@narsil-cms/components/button";
 import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
@@ -14,6 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-cms/components/dialog";
+import { Icon } from "@narsil-cms/components/icon";
 import { InputRoot } from "@narsil-cms/components/input";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Spinner } from "@narsil-cms/components/spinner";

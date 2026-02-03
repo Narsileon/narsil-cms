@@ -1,4 +1,4 @@
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { type IconName } from "@narsil-cms/registries/icons";
 import type { FieldType } from "@narsil-cms/types";
 
 export type Model = {

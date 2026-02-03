@@ -1,5 +1,4 @@
 import { Link } from "@inertiajs/react";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { BackgroundRoot } from "@narsil-cms/components/background";
 import BackgroundPaper from "@narsil-cms/components/background/background-paper";
@@ -14,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-cms/components/dropdown-menu";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
 import { Tooltip } from "@narsil-cms/components/tooltip";

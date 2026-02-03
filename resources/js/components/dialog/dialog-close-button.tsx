@@ -1,9 +1,9 @@
 import { Dialog } from "@base-ui/react/dialog";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
-import { type IconName } from "@narsil-cms/repositories/icons";
+import { type IconName } from "@narsil-cms/registries/icons";
 import { type ComponentProps } from "react";
 
 function DialogCloseButton({

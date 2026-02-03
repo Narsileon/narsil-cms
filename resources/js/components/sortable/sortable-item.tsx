@@ -1,7 +1,6 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Icon } from "@narsil-cms/blocks/icon";
 import { WidthSelector } from "@narsil-cms/blocks/width-selector";
 import { Button } from "@narsil-cms/components/button";
 import {
@@ -16,10 +15,11 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-cms/components/collapsible";
+import { Icon } from "@narsil-cms/components/icon";
 import { useLocalization } from "@narsil-cms/components/localization";
 import { Tooltip } from "@narsil-cms/components/tooltip";
 import { cn } from "@narsil-cms/lib/utils";
-import { IconName } from "@narsil-cms/repositories/icons";
+import { IconName } from "@narsil-cms/registries/icons";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { useState, type ComponentProps, type ReactNode } from "react";
 import { type AnonymousItem } from ".";

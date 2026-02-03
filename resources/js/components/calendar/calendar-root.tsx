@@ -1,5 +1,5 @@
-import { Icon } from "@narsil-cms/blocks/icon";
 import { Button, buttonVariants } from "@narsil-cms/components/button";
+import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 import { type ComponentProps } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";

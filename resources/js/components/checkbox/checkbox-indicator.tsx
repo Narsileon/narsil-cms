@@ -1,5 +1,5 @@
 import { Checkbox } from "@base-ui/react/checkbox";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 import { cn } from "@narsil-cms/lib/utils";
 
 function CheckboxIndicator({ className, children, ...props }: Checkbox.Indicator.Props) {

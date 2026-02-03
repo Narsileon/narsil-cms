@@ -1,5 +1,5 @@
 import { Select } from "@base-ui/react/select";
-import { Icon } from "@narsil-cms/blocks/icon";
+import { Icon } from "@narsil-cms/components/icon";
 
 function SelectIcon({ children, render, ...props }: Select.Icon.Props) {
   return (
