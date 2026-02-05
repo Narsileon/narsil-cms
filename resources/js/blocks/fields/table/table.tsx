@@ -13,7 +13,9 @@ import {
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useFormField } from "@narsil-cms/components/form";
-import { Label } from "@narsil-cms/components/label";
+import { getField } from "@narsil-cms/registries/fields";
+import type { Element } from "@narsil-cms/types";
+import { Label } from "@narsil-ui/components/label";
 import {
   TableBody,
   TableCell,
@@ -22,9 +24,7 @@ import {
   TableRoot,
   TableRow,
   TableWrapper,
-} from "@narsil-cms/components/table";
-import { getField } from "@narsil-cms/registries/fields";
-import type { Element } from "@narsil-cms/types";
+} from "@narsil-ui/components/table";
 import { get, set, upperFirst } from "lodash-es";
 import { useState } from "react";
 import { createPortal } from "react-dom";

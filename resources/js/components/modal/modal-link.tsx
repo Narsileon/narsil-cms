@@ -1,10 +1,10 @@
 import { Link } from "@inertiajs/react";
-import { DialogContent } from "@narsil-cms/components/dialog";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
+import { DialogPopup } from "@narsil-ui/components/dialog";
 import { type ComponentProps, type MouseEvent } from "react";
 
 type ModalLinkProps = ComponentProps<typeof Link> & {
-  variant?: ComponentProps<typeof DialogContent>["variant"];
+  variant?: ComponentProps<typeof DialogPopup>["variant"];
 };
 
 function ModalLink({ as = "button", variant = "default", onClick, ...props }: ModalLinkProps) {

@@ -1,13 +1,13 @@
 import { Toast } from "@base-ui/react/toast";
 import { Link } from "@inertiajs/react";
-import { Button } from "@narsil-cms/components/button";
-import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
-import { Container } from "@narsil-cms/components/container";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import { Heading } from "@narsil-cms/components/heading";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import type { FormType } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { CardContent, CardFooter, CardRoot } from "@narsil-ui/components/card";
+import { Container } from "@narsil-ui/components/container";
+import { Heading } from "@narsil-ui/components/heading";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { Fragment, useEffect, useRef } from "react";
 import { route } from "ziggy-js";
 

@@ -1,17 +1,17 @@
 import { Calendar } from "@narsil-cms/blocks/calendar";
-import { Button } from "@narsil-cms/components/button";
-import { Icon } from "@narsil-cms/components/icon";
-import { InputContent } from "@narsil-cms/components/input";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
+import { Button } from "@narsil-ui/components/button";
+import { Icon } from "@narsil-ui/components/icon";
+import { InputContent } from "@narsil-ui/components/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
 import {
   PopoverPopup,
   PopoverPortal,
   PopoverPositioner,
   PopoverRoot,
   PopoverTrigger,
-} from "@narsil-cms/components/popover";
-import { Separator } from "@narsil-cms/components/separator";
-import { cn } from "@narsil-cms/lib/utils";
+} from "@narsil-ui/components/popover";
+import { Separator } from "@narsil-ui/components/separator";
+import { cn } from "@narsil-ui/lib/utils";
 import { useMemo, useState, type ComponentProps, type WheelEvent } from "react";
 
 type DatetimeProps = Omit<ComponentProps<typeof InputContent>, "value"> & {

@@ -1,8 +1,8 @@
-import { Icon } from "@narsil-cms/components/icon";
-import { InputContent } from "@narsil-cms/components/input";
-import { useLocalization } from "@narsil-cms/components/localization";
+import { Icon } from "@narsil-ui/components/icon";
+import { InputContent } from "@narsil-ui/components/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
+import { useLocalization } from "@narsil-ui/components/localization";
 import { type ComponentProps } from "react";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "../input-group";
 import useDataTable from "./data-table-context";
 
 type DataTableInputProps = ComponentProps<typeof InputContent>;

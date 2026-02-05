@@ -1,24 +1,24 @@
 import { Link, router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/components/button";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
+import type { Bookmark, FormType } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
 import {
   CardContent,
   CardFooter,
   CardHeader,
   CardRoot,
   CardTitle,
-} from "@narsil-cms/components/card";
-import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
+} from "@narsil-ui/components/card";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
 import {
   PopoverPopup,
   PopoverPortal,
   PopoverPositioner,
   PopoverRoot,
   PopoverTrigger,
-} from "@narsil-cms/components/popover";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import type { Bookmark, FormType } from "@narsil-cms/types";
+} from "@narsil-ui/components/popover";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { sortBy } from "lodash-es";
 import { Fragment, useEffect, useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";

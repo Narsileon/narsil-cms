@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import { DialogContent } from "@narsil-cms/components/dialog";
+import { DialogContent } from "@narsil-ui/components/dialog";
 import { type ComponentProps } from "react";
 import { create } from "zustand";
 

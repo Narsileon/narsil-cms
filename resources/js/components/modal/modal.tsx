@@ -1,3 +1,4 @@
+import { type ModalType } from "@narsil-cms/stores/modal-store";
 import {
   DialogBackdrop,
   DialogBody,
@@ -7,9 +8,8 @@ import {
   DialogPortal,
   DialogRoot,
   DialogTitle,
-} from "@narsil-cms/components/dialog";
-import { LocalizationProvider } from "@narsil-cms/components/localization";
-import { type ModalType } from "@narsil-cms/stores/modal-store";
+} from "@narsil-ui/components/dialog";
+import { LocalizationProvider } from "@narsil-ui/components/localization";
 import { useEffect, useState, type ComponentProps, type ReactNode } from "react";
 
 type ModalProps = ComponentProps<typeof DialogPopup> & {

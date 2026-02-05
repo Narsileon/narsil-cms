@@ -1,6 +1,6 @@
 import { FormElement } from "@narsil-cms/components/form";
-import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-cms/components/tabs";
 import type { TemplateTab } from "@narsil-cms/types";
+import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-ui/components/tabs";
 import { useState } from "react";
 
 type FormStepsProps = {

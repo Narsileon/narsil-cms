@@ -4,10 +4,16 @@ import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { AlertDialogProvider } from "@narsil-cms/components/alert-dialog";
-import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-cms/components/avatar";
-import { BackgroundRoot } from "@narsil-cms/components/background";
-import BackgroundPaper from "@narsil-cms/components/background/background-paper";
-import { Button } from "@narsil-cms/components/button";
+import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
+import { GlobalProps } from "@narsil-cms/hooks/use-props";
+import { useColorStore } from "@narsil-cms/stores/color-store";
+import { useRadiusStore } from "@narsil-cms/stores/radius-store";
+import { useThemeStore } from "@narsil-cms/stores/theme-store";
+import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-ui/components/avatar";
+import { BackgroundRoot } from "@narsil-ui/components/background";
+import BackgroundPaper from "@narsil-ui/components/background/background-paper";
+import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -16,18 +22,12 @@ import {
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/dropdown-menu";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
-import { Separator } from "@narsil-cms/components/separator";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import { useMaxLg } from "@narsil-cms/hooks/use-breakpoints";
-import { GlobalProps } from "@narsil-cms/hooks/use-props";
-import { useColorStore } from "@narsil-cms/stores/color-store";
-import { useRadiusStore } from "@narsil-cms/stores/radius-store";
-import { useThemeStore } from "@narsil-cms/stores/theme-store";
+} from "@narsil-ui/components/dropdown-menu";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Separator } from "@narsil-ui/components/separator";
+import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useMaxLg } from "@narsil-ui/hooks/use-breakpoints";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useEffect, useRef } from "react";
 

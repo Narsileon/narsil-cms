@@ -14,10 +14,11 @@ import {
   type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
-import { BackgroundGrid, BackgroundRoot } from "@narsil-cms/components/background";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { Element, FormType, GroupedSelectOption } from "@narsil-cms/types";
+import { BackgroundGrid, BackgroundRoot } from "@narsil-ui/components/background";
+import { cn } from "@narsil-ui/lib/utils";
 import { get } from "lodash-es";
 import { useState } from "react";
 import { createPortal } from "react-dom";

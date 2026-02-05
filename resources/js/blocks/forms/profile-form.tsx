@@ -1,12 +1,12 @@
-import { Button } from "@narsil-cms/components/button";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import { Heading } from "@narsil-cms/components/heading";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
-import { Separator } from "@narsil-cms/components/separator";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { Heading } from "@narsil-ui/components/heading";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
+import { Separator } from "@narsil-ui/components/separator";
 import { Fragment } from "react";
 
 type ProfileFormProps = {

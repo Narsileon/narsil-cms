@@ -1,5 +1,5 @@
-import { useLocalization } from "@narsil-cms/components/localization";
-import { cn } from "@narsil-cms/lib/utils";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
 type FormTimestampProps = ComponentProps<"div"> & {

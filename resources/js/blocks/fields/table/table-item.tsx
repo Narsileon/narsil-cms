@@ -1,10 +1,11 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
-import { TableCell, TableRow } from "@narsil-cms/components/table";
-import { cn } from "@narsil-cms/lib/utils";
+import { SortableItemMenu } from "@narsil-cms/components/sortable";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SortableHandle } from "@narsil-ui/components/sortable";
+import { TableCell, TableRow } from "@narsil-ui/components/table";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
 type TableItemProps = Omit<ComponentProps<typeof TableRow>, "id"> &

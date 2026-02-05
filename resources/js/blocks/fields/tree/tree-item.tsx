@@ -1,15 +1,15 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Badge } from "@narsil-cms/components/badge";
-import { CardHeader, CardRoot, CardTitle } from "@narsil-cms/components/card";
-import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-cms/components/collapsible";
 import { useForm } from "@narsil-cms/components/form";
-import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink } from "@narsil-cms/components/modal";
-import { SortableHandle } from "@narsil-cms/components/sortable";
 import getModelTranslation from "@narsil-cms/lib/get-model-translation";
-import { cn } from "@narsil-cms/lib/utils";
+import { Badge } from "@narsil-ui/components/badge";
+import { CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
+import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-ui/components/collapsible";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SortableHandle } from "@narsil-ui/components/sortable";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 import { FlatNode, TreeItemMenu } from ".";
 

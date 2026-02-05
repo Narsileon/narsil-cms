@@ -1,5 +1,5 @@
-import { useLocalization } from "@narsil-cms/components/localization";
-import { StatusItem, StatusRoot } from "@narsil-cms/components/status";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { StatusItem, StatusRoot } from "@narsil-ui/components/status";
 import { type ComponentProps } from "react";
 
 type StatusProps = ComponentProps<typeof StatusRoot> & {

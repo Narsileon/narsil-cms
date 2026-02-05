@@ -3,7 +3,7 @@ import {
   RichTextEditorProvider,
   RichTextEditorRoot,
   RichTextEditorToolbar,
-} from "@narsil-cms/components/rich-text-editor";
+} from "@narsil-ui/components/rich-text-editor";
 import { type ComponentProps } from "react";
 
 type RichTextEditorProps = ComponentProps<typeof RichTextEditorProvider> &

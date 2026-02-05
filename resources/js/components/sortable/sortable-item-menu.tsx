@@ -1,4 +1,4 @@
-import { Button } from "@narsil-cms/components/button";
+import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -7,10 +7,10 @@ import {
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/dropdown-menu";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Tooltip } from "@narsil-cms/components/tooltip";
+} from "@narsil-ui/components/dropdown-menu";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { type ComponentProps } from "react";
 
 type SortableItemMenuProps = ComponentProps<typeof DropdownMenuTrigger> & {

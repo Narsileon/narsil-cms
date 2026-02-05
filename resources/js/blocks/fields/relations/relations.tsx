@@ -1,7 +1,8 @@
 import { DataTable } from "@narsil-cms/blocks/data-table";
-import { Badge } from "@narsil-cms/components/badge";
-import { Button } from "@narsil-cms/components/button";
 import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
+import type { DataTableCollection, Model } from "@narsil-cms/types";
+import { Badge } from "@narsil-ui/components/badge";
+import { Button } from "@narsil-ui/components/button";
 import {
   DialogBackdrop,
   DialogClose,
@@ -12,14 +13,13 @@ import {
   DialogRoot,
   DialogTitle,
   DialogTrigger,
-} from "@narsil-cms/components/dialog";
-import { Icon } from "@narsil-cms/components/icon";
-import { InputRoot } from "@narsil-cms/components/input";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Spinner } from "@narsil-cms/components/spinner";
-import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-cms/components/tabs";
-import { cn } from "@narsil-cms/lib/utils";
-import type { DataTableCollection, Model } from "@narsil-cms/types";
+} from "@narsil-ui/components/dialog";
+import { Icon } from "@narsil-ui/components/icon";
+import { InputRoot } from "@narsil-ui/components/input";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Spinner } from "@narsil-ui/components/spinner";
+import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-ui/components/tabs";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
 import { flatMap, isArray, isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";

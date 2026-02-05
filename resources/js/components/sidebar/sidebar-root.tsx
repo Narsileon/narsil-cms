@@ -6,8 +6,8 @@ import {
   DialogPortal,
   DialogRoot,
   DialogTitle,
-} from "@narsil-cms/components/dialog";
-import { cn } from "@narsil-cms/lib/utils";
+} from "@narsil-ui/components/dialog";
+import { cn } from "@narsil-ui/lib/utils";
 import { type CSSProperties, type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 

@@ -1,5 +1,4 @@
 import { Link, router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/components/button";
 import {
   DataTableColumns,
   DataTableFilterDropdown,
@@ -10,20 +9,21 @@ import {
   DataTableRow,
   useDataTable,
 } from "@narsil-cms/components/data-table";
-import { Heading } from "@narsil-cms/components/heading";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
+import type { DataTableCollection } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { Heading } from "@narsil-ui/components/heading";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import {
   TableBody,
   TableCell,
   TableHeader,
   TableRoot,
   TableWrapper,
-} from "@narsil-cms/components/table";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import { useMinSm } from "@narsil-cms/hooks/use-breakpoints";
-import type { DataTableCollection } from "@narsil-cms/types";
+} from "@narsil-ui/components/table";
+import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useMinSm } from "@narsil-ui/hooks/use-breakpoints";
 import { flexRender } from "@tanstack/react-table";
 import { route } from "ziggy-js";
 

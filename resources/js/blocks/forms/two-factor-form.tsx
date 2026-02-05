@@ -1,21 +1,21 @@
 import { Toast } from "@base-ui/react/toast";
 import { router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/components/button";
+import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
+import { useAuth } from "@narsil-cms/hooks/use-props";
+import type { FormType } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
 import {
   CardContent,
   CardFooter,
   CardHeader,
   CardRoot,
   CardTitle,
-} from "@narsil-cms/components/card";
-import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
-import { Label } from "@narsil-cms/components/label";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Switch } from "@narsil-cms/components/switch";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import { useAuth } from "@narsil-cms/hooks/use-props";
-import type { FormType } from "@narsil-cms/types";
+} from "@narsil-ui/components/card";
+import { Icon } from "@narsil-ui/components/icon";
+import { Label } from "@narsil-ui/components/label";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Switch } from "@narsil-ui/components/switch";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { Fragment, useState } from "react";
 import { route } from "ziggy-js";
 

@@ -1,7 +1,7 @@
 import { router } from "@inertiajs/react";
-import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-cms/components/toggle-group";
-import { cn } from "@narsil-cms/lib/utils";
 import { SelectOption } from "@narsil-cms/types";
+import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-ui/components/toggle-group";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
 type FormCountryProps = Omit<

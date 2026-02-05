@@ -1,7 +1,5 @@
 import { RevisionSelect } from "@narsil-cms/blocks/revision-select";
 import { Status } from "@narsil-cms/blocks/status";
-import { Button } from "@narsil-cms/components/button";
-import { DialogBody, DialogClose, DialogFooter } from "@narsil-cms/components/dialog";
 import {
   FormCountry,
   FormElement,
@@ -14,13 +12,15 @@ import {
   FormTimestamp,
 } from "@narsil-cms/components/form";
 import FormPublish from "@narsil-cms/components/form/form-publish";
-import { Heading } from "@narsil-cms/components/heading";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SectionContent, SectionRoot } from "@narsil-cms/components/section";
-import { cn } from "@narsil-cms/lib/utils";
 import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
 import type { FormType, Revision, SelectOption, TemplateTab, User } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { DialogBody, DialogClose, DialogFooter } from "@narsil-ui/components/dialog";
+import { Heading } from "@narsil-ui/components/heading";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SectionContent, SectionRoot } from "@narsil-ui/components/section";
+import { cn } from "@narsil-ui/lib/utils";
 import { isEmpty } from "lodash-es";
 
 type FormProps = {

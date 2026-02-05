@@ -1,10 +1,4 @@
-import { clsx, type ClassValue } from "clsx";
 import { concat, get, initial, isObject, isString, toPath } from "lodash-es";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export function getSelectOption(
   option: string | Record<string, unknown> | string,

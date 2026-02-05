@@ -1,3 +1,4 @@
+import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import {
   AlertDialogAction,
   AlertDialogBackdrop,
@@ -10,9 +11,8 @@ import {
   AlertDialogRoot,
   AlertDialogTitle,
   AlertDialogTrigger,
-  useAlertDialog,
-} from "@narsil-cms/components/alert-dialog";
-import { useLocalization } from "@narsil-cms/components/localization";
+} from "@narsil-ui/components/alert-dialog";
+import { useLocalization } from "@narsil-ui/components/localization";
 import { type ComponentProps, type MouseEventHandler } from "react";
 
 type AlertDialogProps = ComponentProps<typeof AlertDialogRoot> & {

@@ -1,13 +1,13 @@
 import { router } from "@inertiajs/react";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import { Heading } from "@narsil-cms/components/heading";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import type { FormType } from "@narsil-cms/types";
+import { Heading } from "@narsil-ui/components/heading";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { Fragment } from "react";
 import { route } from "ziggy-js";
 

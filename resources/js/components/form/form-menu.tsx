@@ -1,6 +1,8 @@
 import { Link, router } from "@inertiajs/react";
 import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
-import { Button } from "@narsil-cms/components/button";
+import { useForm } from "@narsil-cms/components/form";
+import type { RouteNames } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -9,11 +11,9 @@ import {
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/dropdown-menu";
-import { useForm } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import type { RouteNames } from "@narsil-cms/types";
+} from "@narsil-ui/components/dropdown-menu";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 

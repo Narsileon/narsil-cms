@@ -1,4 +1,5 @@
-import { Button } from "@narsil-cms/components/button";
+import type { Block } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -6,12 +7,11 @@ import {
   DropdownMenuPositioner,
   DropdownMenuRoot,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/dropdown-menu";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import { cn } from "@narsil-cms/lib/utils";
-import type { Block } from "@narsil-cms/types";
+} from "@narsil-ui/components/dropdown-menu";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Tooltip } from "@narsil-ui/components/tooltip";
+import { cn } from "@narsil-ui/lib/utils";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
 

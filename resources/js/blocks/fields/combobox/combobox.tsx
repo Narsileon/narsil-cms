@@ -1,5 +1,8 @@
 import { router } from "@inertiajs/react";
-import { Button } from "@narsil-cms/components/button";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import type { SelectOption } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
 import {
   ComboboxEmpty,
   ComboboxInput,
@@ -11,13 +14,11 @@ import {
   ComboboxRoot,
   ComboboxTrigger,
   ComboboxValue,
-} from "@narsil-cms/components/combobox";
-import ComboboxClear from "@narsil-cms/components/combobox/combobox-clear";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { useLocale } from "@narsil-cms/hooks/use-props";
-import { cn, getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
-import type { SelectOption } from "@narsil-cms/types";
+} from "@narsil-ui/components/combobox";
+import ComboboxClear from "@narsil-ui/components/combobox/combobox-clear";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { cn } from "@narsil-ui/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
 import { isArray, isNumber, lowerCase } from "lodash-es";

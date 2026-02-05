@@ -1,8 +1,8 @@
-import { Button } from "@narsil-cms/components/button";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import { cn } from "@narsil-cms/lib/utils";
+import { Button } from "@narsil-ui/components/button";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Tooltip } from "@narsil-ui/components/tooltip";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 import useSidebar from "./sidebar-context";
 

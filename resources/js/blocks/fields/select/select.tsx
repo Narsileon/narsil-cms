@@ -1,3 +1,6 @@
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import { SelectOption } from "@narsil-cms/types";
 import {
   SelectIcon,
   SelectItem,
@@ -11,11 +14,8 @@ import {
   SelectScrollUpArrow,
   SelectTrigger,
   SelectValue,
-} from "@narsil-cms/components/select";
-import SelectList from "@narsil-cms/components/select/select-list";
-import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
-import { SelectOption } from "@narsil-cms/types";
+} from "@narsil-ui/components/select";
+import SelectList from "@narsil-ui/components/select/select-list";
 import { type ComponentProps } from "react";
 
 type SelectProps = ComponentProps<typeof SelectRoot> & {

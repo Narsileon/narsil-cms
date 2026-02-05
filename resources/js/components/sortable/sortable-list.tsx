@@ -12,12 +12,12 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { BackgroundGrid, BackgroundRoot } from "@narsil-cms/components/background";
-import { CardContent, CardFooter, CardRoot } from "@narsil-cms/components/card";
 import { SortableAdd, SortableItem, SortableListContext } from "@narsil-cms/components/sortable";
 import { useLocale } from "@narsil-cms/hooks/use-props";
 import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption } from "@narsil-cms/types";
+import { BackgroundGrid, BackgroundRoot } from "@narsil-ui/components/background";
+import { CardContent, CardFooter, CardRoot } from "@narsil-ui/components/card";
 import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { type AnonymousItem } from ".";

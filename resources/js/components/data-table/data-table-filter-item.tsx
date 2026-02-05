@@ -1,14 +1,14 @@
 import { Select } from "@narsil-cms/blocks/fields/select";
-import { Badge } from "@narsil-cms/components/badge";
+import { getField } from "@narsil-cms/registries/fields";
+import type { Field, SelectOption } from "@narsil-cms/types";
+import { Badge } from "@narsil-ui/components/badge";
 import {
   PopoverPopup,
   PopoverPortal,
   PopoverPositioner,
   PopoverRoot,
   PopoverTrigger,
-} from "@narsil-cms/components/popover";
-import { getField } from "@narsil-cms/registries/fields";
-import type { Field, SelectOption } from "@narsil-cms/types";
+} from "@narsil-ui/components/popover";
 import { isEmpty } from "lodash-es";
 import { useEffect, useState, type ComponentProps } from "react";
 import { type ColumnFilter } from ".";

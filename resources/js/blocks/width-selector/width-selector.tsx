@@ -1,6 +1,6 @@
-import { Button } from "@narsil-cms/components/button";
-import { cn } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { cn } from "@narsil-ui/lib/utils";
 import { useState, type ComponentProps } from "react";
 
 type WidthSelectorProps = Omit<ComponentProps<"div">, "defaultValue"> & {

@@ -10,12 +10,12 @@ import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Slider } from "@narsil-cms/blocks/fields/slider";
 import { Table } from "@narsil-cms/blocks/fields/table";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
-import { Checkbox } from "@narsil-cms/components/checkbox";
-import { InputContent } from "@narsil-cms/components/input";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
-import { Switch } from "@narsil-cms/components/switch";
-import { Textarea } from "@narsil-cms/components/textarea";
 import { type IconName } from "@narsil-cms/registries/icons";
+import { Checkbox } from "@narsil-ui/components/checkbox";
+import { InputContent } from "@narsil-ui/components/input";
+import { Switch } from "@narsil-ui/components/switch";
+import { Textarea } from "@narsil-ui/components/textarea";
 import { type ComponentProps } from "react";
 
 type DefaultField = {

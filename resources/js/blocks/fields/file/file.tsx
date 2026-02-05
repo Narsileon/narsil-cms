@@ -1,5 +1,5 @@
-import { InputContent } from "@narsil-cms/components/input";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
+import { InputContent } from "@narsil-ui/components/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
 import { useEffect, useState, type ChangeEvent, type ComponentProps } from "react";
 
 type FileProps = Omit<ComponentProps<typeof InputContent>, "onChange"> & {

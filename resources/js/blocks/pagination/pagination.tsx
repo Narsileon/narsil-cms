@@ -3,16 +3,16 @@ import {
   type LaravelPaginationLinks,
   type LaravelPaginationMetaLink,
 } from "@narsil-cms/blocks/pagination";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
 import {
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationRoot,
-} from "@narsil-cms/components/pagination";
-import { Tooltip } from "@narsil-cms/components/tooltip";
+} from "@narsil-ui/components/pagination";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { type ComponentProps } from "react";
 
 type PaginationProps = ComponentProps<typeof PaginationRoot> & {
@@ -81,7 +81,11 @@ function Pagination({ contentProps, links, metaLinks, ...props }: PaginationProp
           ) : (
             <PaginationItem>
               <PaginationLink className="rounded-none" disabled={true}>
-                <PaginationEllipsis className="border bg-accent" key={index} />
+                <PaginationEllipsis
+                  className="border bg-accent"
+                  label={trans("accessibility.more_pages")}
+                  key={index}
+                />
               </PaginationLink>
             </PaginationItem>
           );

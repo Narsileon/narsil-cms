@@ -12,10 +12,10 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { BackgroundRoot } from "@narsil-cms/components/background";
-import BackgroundGrid from "@narsil-cms/components/background/background-grid";
 import { useForm } from "@narsil-cms/components/form";
 import type { Block } from "@narsil-cms/types";
+import { BackgroundRoot } from "@narsil-ui/components/background";
+import BackgroundGrid from "@narsil-ui/components/background/background-grid";
 import { get, isEmpty } from "lodash-es";
 import { Fragment, useState } from "react";
 import { type BuilderElement } from ".";

@@ -1,8 +1,8 @@
-import { Icon } from "@narsil-cms/components/icon";
-import { InputContent } from "@narsil-cms/components/input";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-cms/components/input-group";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Tooltip } from "@narsil-cms/components/tooltip";
+import { Icon } from "@narsil-ui/components/icon";
+import { InputContent } from "@narsil-ui/components/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useState, type ComponentProps } from "react";
 
 type PasswordProps = Omit<ComponentProps<typeof InputContent>, "children">;

@@ -1,8 +1,8 @@
-import { Button } from "@narsil-cms/components/button";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Tooltip } from "@narsil-cms/components/tooltip";
 import type { Model } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { Header } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
 

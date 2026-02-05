@@ -1,11 +1,11 @@
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import { Head } from "@narsil-cms/blocks/head";
-import { LocalizationProvider } from "@narsil-cms/components/localization";
-import { Toast } from "@narsil-cms/components/toast";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
+import { LocalizationProvider } from "@narsil-ui/components/localization";
+import { Toast } from "@narsil-ui/components/toast";
 import { isEmpty } from "lodash-es";
 import { type ReactNode, useEffect } from "react";
 import AuthLayout from "./auth-layout";
@@ -43,7 +43,14 @@ function Layout({ children }: LayoutProps) {
         ) : (
           <AuthLayout>{children}</AuthLayout>
         )}
-        <Toast error={error} info={info} success={success} warning={warning} />
+        <Toast
+          options={[
+            ...(error ? [{ description: error }] : []),
+            ...(info ? [{ description: info }] : []),
+            ...(success ? [{ description: success }] : []),
+            ...(warning ? [{ description: warning }] : []),
+          ]}
+        />
       </LocalizationProvider>
     </ToastPrimitive.Provider>
   );

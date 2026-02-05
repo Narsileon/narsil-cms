@@ -1,5 +1,5 @@
-import { TableRow } from "@narsil-cms/components/table";
-import { cn } from "@narsil-cms/lib/utils";
+import { TableRow } from "@narsil-ui/components/table";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
 type DataTableRowProps = ComponentProps<typeof TableRow> & {

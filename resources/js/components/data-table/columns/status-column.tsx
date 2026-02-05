@@ -1,6 +1,6 @@
 import { Status } from "@narsil-cms/blocks/status";
-import { cn } from "@narsil-cms/lib/utils";
 import type { Model } from "@narsil-cms/types";
+import { cn } from "@narsil-ui/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 
 function getStatusColumn(): ColumnDef<Model> {

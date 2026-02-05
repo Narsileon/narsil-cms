@@ -1,8 +1,8 @@
 import { Link } from "@inertiajs/react";
-import { CardContent, CardRoot } from "@narsil-cms/components/card";
-import { Heading } from "@narsil-cms/components/heading";
-import { useMinLg, useMinMd, useMinSm, useMinXl } from "@narsil-cms/hooks/use-breakpoints";
-import { cn } from "@narsil-cms/lib/utils";
+import { CardContent, CardRoot } from "@narsil-ui/components/card";
+import { Heading } from "@narsil-ui/components/heading";
+import { useMinLg, useMinMd, useMinSm, useMinXl } from "@narsil-ui/hooks/use-breakpoints";
+import { cn } from "@narsil-ui/lib/utils";
 
 type Item = {
   href: string;

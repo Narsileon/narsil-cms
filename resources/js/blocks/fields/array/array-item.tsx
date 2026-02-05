@@ -1,20 +1,22 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "@narsil-cms/components/button";
-import { CardContent, CardHeader, CardRoot } from "@narsil-cms/components/card";
+import { FormElement } from "@narsil-cms/components/form";
+import { SortableItemMenu } from "@narsil-cms/components/sortable";
+import { useLocale } from "@narsil-cms/hooks/use-props";
+import { getTranslatableSelectOption } from "@narsil-cms/lib/utils";
+import type { Element } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { CardContent, CardHeader, CardRoot } from "@narsil-ui/components/card";
 import {
   CollapsiblePanel,
   CollapsibleRoot,
   CollapsibleTrigger,
-} from "@narsil-cms/components/collapsible";
-import { FormElement } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SortableHandle, SortableItemMenu } from "@narsil-cms/components/sortable";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import { useLocale } from "@narsil-cms/hooks/use-props";
-import { cn, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
-import type { Element } from "@narsil-cms/types";
+} from "@narsil-ui/components/collapsible";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SortableHandle } from "@narsil-ui/components/sortable";
+import { Tooltip } from "@narsil-ui/components/tooltip";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
 

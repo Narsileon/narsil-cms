@@ -12,9 +12,9 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { Button } from "@narsil-cms/components/button";
-import { useLocalization } from "@narsil-cms/components/localization";
 import type { Element } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { useLocalization } from "@narsil-ui/components/localization";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrayItem, type ArrayElement } from ".";

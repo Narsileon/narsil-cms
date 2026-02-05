@@ -3,7 +3,7 @@ import {
   RadioGroupIndicator,
   RadioGroupItem,
   RadioGroupRoot,
-} from "@narsil-cms/components/radio-group";
+} from "@narsil-ui/components/radio-group";
 import { get, isString } from "lodash-es";
 import { type ComponentProps } from "react";
 

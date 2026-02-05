@@ -1,5 +1,5 @@
-import { cn } from "@narsil-cms/lib/utils";
 import type { FormType } from "@narsil-cms/types";
+import { cn } from "@narsil-ui/lib/utils";
 import { Fragment, type ComponentProps } from "react";
 import FormElement from "./form-element";
 

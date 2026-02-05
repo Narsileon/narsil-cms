@@ -1,4 +1,4 @@
-import NarsilIcon from "@narsil-cms/components/icon/icons/narsil-icon";
+import NarsilIcon from "@narsil-ui/components/icon/icons/narsil-icon";
 import {
   ActivityIcon,
   AlignCenterIcon,

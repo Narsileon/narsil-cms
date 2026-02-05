@@ -1,5 +1,7 @@
-import { Button } from "@narsil-cms/components/button";
-import { ButtonGroup } from "@narsil-cms/components/button-group";
+import { useForm } from "@narsil-cms/components/form";
+import type { RouteNames } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { ButtonGroup } from "@narsil-ui/components/button-group";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -8,13 +10,11 @@ import {
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/dropdown-menu";
-import { useForm } from "@narsil-cms/components/form";
-import { Icon } from "@narsil-cms/components/icon";
-import { Kbd, KbdGroup } from "@narsil-cms/components/kbd";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { Separator } from "@narsil-cms/components/separator";
-import type { RouteNames } from "@narsil-cms/types";
+} from "@narsil-ui/components/dropdown-menu";
+import { Icon } from "@narsil-ui/components/icon";
+import { Kbd, KbdGroup } from "@narsil-ui/components/kbd";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Separator } from "@narsil-ui/components/separator";
 import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 

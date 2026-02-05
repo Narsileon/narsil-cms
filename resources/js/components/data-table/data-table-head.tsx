@@ -1,6 +1,6 @@
-import { TableHead } from "@narsil-cms/components/table";
-import { cn } from "@narsil-cms/lib/utils";
 import type { Model } from "@narsil-cms/types";
+import { TableHead } from "@narsil-ui/components/table";
+import { cn } from "@narsil-ui/lib/utils";
 import { flexRender, Header } from "@tanstack/react-table";
 import { upperFirst } from "lodash-es";
 import { type ComponentProps } from "react";

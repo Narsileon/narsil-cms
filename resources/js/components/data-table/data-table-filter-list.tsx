@@ -1,5 +1,5 @@
 import { DataTableFilterItem, useDataTable } from "@narsil-cms/components/data-table";
-import { cn } from "@narsil-cms/lib/utils";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
 function DataTableFilterList({ className, ...props }: ComponentProps<"ul">) {

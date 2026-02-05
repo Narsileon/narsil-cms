@@ -1,11 +1,11 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { Combobox } from "@narsil-cms/blocks/fields/combobox";
-import { Button } from "@narsil-cms/components/button";
-import { useLocalization } from "@narsil-cms/components/localization";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
-import { cn } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { cn } from "@narsil-ui/lib/utils";
 import { isNumber } from "lodash-es";
 import { useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";

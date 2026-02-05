@@ -1,9 +1,11 @@
 import { Link } from "@inertiajs/react";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
-import { BackgroundRoot } from "@narsil-cms/components/background";
-import BackgroundPaper from "@narsil-cms/components/background/background-paper";
-import { Button } from "@narsil-cms/components/button";
-import { Container } from "@narsil-cms/components/container";
+import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
+import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+import { BackgroundRoot } from "@narsil-ui/components/background";
+import BackgroundPaper from "@narsil-ui/components/background/background-paper";
+import { Button } from "@narsil-ui/components/button";
+import { Container } from "@narsil-ui/components/container";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -12,12 +14,10 @@ import {
   DropdownMenuRoot,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@narsil-cms/components/dropdown-menu";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
-import { Tooltip } from "@narsil-cms/components/tooltip";
-import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+} from "@narsil-ui/components/dropdown-menu";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useRef } from "react";
 

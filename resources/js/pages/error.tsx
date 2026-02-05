@@ -1,5 +1,5 @@
-import { Container } from "@narsil-cms/components/container";
-import { Heading } from "@narsil-cms/components/heading";
+import { Container } from "@narsil-ui/components/container";
+import { Heading } from "@narsil-ui/components/heading";
 
 type ErrorProps = {
   description: string;

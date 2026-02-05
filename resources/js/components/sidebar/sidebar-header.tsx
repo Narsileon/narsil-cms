@@ -1,4 +1,4 @@
-import { cn } from "@narsil-cms/lib/utils";
+import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
 function SidebarHeader({ className, ...props }: ComponentProps<"div">) {

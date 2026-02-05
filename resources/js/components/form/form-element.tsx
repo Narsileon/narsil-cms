@@ -1,16 +1,16 @@
 import { Link } from "@inertiajs/react";
-import { Button } from "@narsil-cms/components/button";
+import { getField } from "@narsil-cms/registries/fields";
+import type { Element } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
 import {
   CollapsiblePanel,
   CollapsibleRoot,
   CollapsibleTrigger,
-} from "@narsil-cms/components/collapsible";
-import { Heading } from "@narsil-cms/components/heading";
-import { Icon } from "@narsil-cms/components/icon";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { cn } from "@narsil-cms/lib/utils";
-import { getField } from "@narsil-cms/registries/fields";
-import type { Element } from "@narsil-cms/types";
+} from "@narsil-ui/components/collapsible";
+import { Heading } from "@narsil-ui/components/heading";
+import { Icon } from "@narsil-ui/components/icon";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { cn } from "@narsil-ui/lib/utils";
 import parse from "html-react-parser";
 import { get, kebabCase } from "lodash-es";
 import useForm from "./form-context";

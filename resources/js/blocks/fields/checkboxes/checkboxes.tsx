@@ -1,13 +1,13 @@
-import { Checkbox } from "@narsil-cms/components/checkbox";
-import { useLocalization } from "@narsil-cms/components/localization";
+import type { GroupedSelectOption, SelectOption, UniqueIdentifier } from "@narsil-cms/types";
+import { Checkbox } from "@narsil-ui/components/checkbox";
+import { useLocalization } from "@narsil-ui/components/localization";
 import {
   TableBody,
   TableCell,
   TableRoot,
   TableRow,
   TableWrapper,
-} from "@narsil-cms/components/table";
-import type { GroupedSelectOption, SelectOption, UniqueIdentifier } from "@narsil-cms/types";
+} from "@narsil-ui/components/table";
 import { type ReactNode } from "react";
 
 type CheckboxesProps = {

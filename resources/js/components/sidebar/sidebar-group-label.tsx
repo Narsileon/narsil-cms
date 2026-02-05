@@ -1,5 +1,5 @@
 import { mergeProps, useRender } from "@base-ui/react";
-import { cn } from "@narsil-cms/lib/utils";
+import { cn } from "@narsil-ui/lib/utils";
 
 function SidebarGroupLabel({ className, render, ...props }: useRender.ComponentProps<"div">) {
   return useRender({

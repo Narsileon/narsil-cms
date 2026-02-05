@@ -1,11 +1,11 @@
 import { Link } from "@inertiajs/react";
-import { Button } from "@narsil-cms/components/button";
-import { DialogClose } from "@narsil-cms/components/dialog";
-import { Heading } from "@narsil-cms/components/heading";
-import { useLocalization } from "@narsil-cms/components/localization";
-import { SectionContent, SectionHeader, SectionRoot } from "@narsil-cms/components/section";
-import { Separator } from "@narsil-cms/components/separator";
 import type { FormType } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { DialogClose } from "@narsil-ui/components/dialog";
+import { Heading } from "@narsil-ui/components/heading";
+import { useLocalization } from "@narsil-ui/components/localization";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
+import { Separator } from "@narsil-ui/components/separator";
 import { route } from "ziggy-js";
 import TwoFactorForm from "./two-factor-form";
 

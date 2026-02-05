@@ -1,8 +1,8 @@
 import { Select } from "@narsil-cms/blocks/fields/select";
 import { Pagination } from "@narsil-cms/blocks/pagination";
 import { useDataTable } from "@narsil-cms/components/data-table";
-import { useLocalization } from "@narsil-cms/components/localization";
 import type { DataTableCollection } from "@narsil-cms/types";
+import { useLocalization } from "@narsil-ui/components/localization";
 
 type DataTableProps = {
   collection: DataTableCollection;
