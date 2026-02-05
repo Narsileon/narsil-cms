@@ -1,6 +1,6 @@
+import type { Model } from "@narsil-cms/types";
 import { Checkbox } from "@narsil-ui/components/checkbox";
 import { useLocalization } from "@narsil-ui/components/localization";
-import type { Model } from "@narsil-ui/types";
 import { ColumnDef } from "@tanstack/react-table";
 
 function getSelectColumn(): ColumnDef<Model> {
