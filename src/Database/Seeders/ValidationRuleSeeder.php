@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Database\Seeders;
+namespace Narsil\Cms\Database\Seeders;
 
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Enums\ValidationRuleEnum;
-use Narsil\Models\ValidationRule;
+use Narsil\Cms\Enums\ValidationRuleEnum;
+use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 

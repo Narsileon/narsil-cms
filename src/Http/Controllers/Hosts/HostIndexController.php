@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Hosts;
+namespace Narsil\Cms\Http\Controllers\Hosts;
 
 #region USE
 
@@ -8,12 +8,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Response;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Collections\DataTableCollection;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

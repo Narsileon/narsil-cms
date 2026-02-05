@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Cms\Services;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterLink;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Sites\SitePageEntity;
-use Narsil\Models\Sites\SiteUrl;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\FooterLink;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\Sites\SitePageEntity;
+use Narsil\Cms\Models\Sites\SiteUrl;
 
 #endregion
 

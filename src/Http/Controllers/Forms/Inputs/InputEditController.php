@@ -1,20 +1,20 @@
 <?php
 
-namespace Narsil\Http\Controllers\Forms\Inputs;
+namespace Narsil\Cms\Http\Controllers\Forms\Inputs;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Casts\HumanDatetimeCast;
-use Narsil\Contracts\Forms\InputForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Forms\Input;
-use Narsil\Models\ValidationRule;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Cms\Contracts\Forms\InputForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Forms\Input;
+use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

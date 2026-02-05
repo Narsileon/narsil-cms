@@ -11,6 +11,6 @@ return [
     |
     */
 
-    \Narsil\Contracts\Resources\EntityResource::class => \Narsil\Implementations\Resources\EntityResource::class,
-    \Narsil\Contracts\Resources\UserResource::class => \Narsil\Implementations\Resources\UserResource::class,
+    \Narsil\Cms\Contracts\Resources\EntityResource::class => \Narsil\Cms\Implementations\Resources\EntityResource::class,
+    \Narsil\Cms\Contracts\Resources\UserResource::class => \Narsil\Cms\Implementations\Resources\UserResource::class,
 ];

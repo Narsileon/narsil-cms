@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Http\Requests;
+namespace Narsil\Cms\Http\Requests;
 
 #region USE
 
-use Narsil\Enums\Database\SessionEnum;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Enums\Database\SessionEnum;
+use Narsil\Cms\Validation\FormRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 #endregion

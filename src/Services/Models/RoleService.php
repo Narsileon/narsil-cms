@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Services\Models;
+namespace Narsil\Cms\Services\Models;
 
 #region USE
 
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\Policies\Role;
-use Narsil\Services\DatabaseService;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

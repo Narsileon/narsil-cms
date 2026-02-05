@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Policies;
+namespace Narsil\Cms\Policies;
 
 #region USE
 
-use Narsil\Traits\Policies\CreatableTrait;
-use Narsil\Traits\Policies\DeletableTrait;
-use Narsil\Traits\Policies\UpdatableTrait;
-use Narsil\Traits\Policies\ViewableTrait;
+use Narsil\Cms\Traits\Policies\CreatableTrait;
+use Narsil\Cms\Traits\Policies\DeletableTrait;
+use Narsil\Cms\Traits\Policies\UpdatableTrait;
+use Narsil\Cms\Traits\Policies\ViewableTrait;
 
 #endregion
 

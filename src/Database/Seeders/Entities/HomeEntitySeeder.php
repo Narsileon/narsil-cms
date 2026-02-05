@@ -1,26 +1,26 @@
 <?php
 
-namespace Narsil\Database\Seeders\Entities;
+namespace Narsil\Cms\Database\Seeders\Entities;
 
 #region USE
 
 use Faker\Factory;
-use Narsil\Database\Seeders\Blocks\AccordionBlockSeeder;
-use Narsil\Database\Seeders\Blocks\AccordionItemBlockSeeder;
-use Narsil\Database\Seeders\Blocks\ButtonBlockSeeder;
-use Narsil\Database\Seeders\Blocks\CallToActionBlockSeeder;
-use Narsil\Database\Seeders\Blocks\HeadlineBlockSeeder;
-use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
-use Narsil\Database\Seeders\Blocks\LayoutBlockSeeder;
-use Narsil\Database\Seeders\Blocks\LinkBlockSeeder;
-use Narsil\Database\Seeders\Blocks\PaddingBlockSeeder;
-use Narsil\Database\Seeders\EntitySeeder;
-use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Sites\SitePage;
+use Narsil\Cms\Database\Seeders\Blocks\AccordionBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\AccordionItemBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\ButtonBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\CallToActionBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\HeadlineBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\LayoutBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\LinkBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\PaddingBlockSeeder;
+use Narsil\Cms\Database\Seeders\EntitySeeder;
+use Narsil\Cms\Database\Seeders\Templates\ContentTemplateSeeder;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\EntityNode;
+use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 

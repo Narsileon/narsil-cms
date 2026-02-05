@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Http\Controllers\Globals\Headers;
+namespace Narsil\Cms\Http\Controllers\Globals\Headers;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\DestroyManyRequest;
-use Narsil\Models\Globals\Header;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Http\Requests\DestroyManyRequest;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

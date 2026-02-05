@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 #region USE
 
-use Narsil\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 

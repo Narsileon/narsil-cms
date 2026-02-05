@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Database\Seeders\Forms;
+namespace Narsil\Cms\Database\Seeders\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\EmailField;
-use Narsil\Contracts\Fields\TextareaField;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Database\Seeders\FormSeeder;
-use Narsil\Models\Forms\Fieldset;
-use Narsil\Models\Forms\FieldsetElement;
-use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormStep;
-use Narsil\Models\Forms\FormStepElement;
-use Narsil\Models\Forms\Input;
+use Narsil\Cms\Contracts\Fields\EmailField;
+use Narsil\Cms\Contracts\Fields\TextareaField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Database\Seeders\FormSeeder;
+use Narsil\Cms\Models\Forms\Fieldset;
+use Narsil\Cms\Models\Forms\FieldsetElement;
+use Narsil\Cms\Models\Forms\Form;
+use Narsil\Cms\Models\Forms\FormStep;
+use Narsil\Cms\Models\Forms\FormStepElement;
+use Narsil\Cms\Models\Forms\Input;
 
 #endregion
 

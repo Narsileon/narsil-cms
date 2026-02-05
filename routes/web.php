@@ -3,9 +3,9 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
-use Narsil\Http\Controllers\Forms\FormSubmitController;
-use Narsil\Http\Controllers\Sitemaps\SitemapController;
-use Narsil\Http\Controllers\Sitemaps\SitemapIndexController;
+use Narsil\Cms\Http\Controllers\Forms\FormSubmitController;
+use Narsil\Cms\Http\Controllers\Sitemaps\SitemapController;
+use Narsil\Cms\Http\Controllers\Sitemaps\SitemapIndexController;
 
 #endregion
 

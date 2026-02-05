@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Collections;
+namespace Narsil\Cms\Http\Controllers\Collections;
 
 #region USE
 
@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Inertia\Response;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Http\Data\SummaryData;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Http\Data\SummaryData;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 

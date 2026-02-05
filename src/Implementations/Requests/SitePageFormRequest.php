@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Requests;
+namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
 use Illuminate\Support\Facades\Gate;
-use Narsil\Contracts\FormRequests\SitePageFormRequest as Contract;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Enums\SitePageAdapterEnum;
-use Narsil\Implementations\AbstractFormRequest;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Contracts\FormRequests\SitePageFormRequest as Contract;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Enums\SitePageAdapterEnum;
+use Narsil\Cms\Implementations\AbstractFormRequest;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

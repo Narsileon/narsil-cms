@@ -1,33 +1,33 @@
 <?php
 
-namespace Narsil\Implementations\Menus;
+namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
-use Narsil\Contracts\Menus\Sidebar as Contract;
-use Narsil\Enums\DiskEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Implementations\AbstractMenu;
-use Narsil\Models\Configuration;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\Fieldset;
-use Narsil\Models\Forms\Input;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\Header;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\Policies\Role;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Storages\Media;
-use Narsil\Models\User;
-use Narsil\Services\ModelService;
-use Narsil\Services\PermissionService;
-use Narsil\Support\TranslationsBag;
-use Narsil\Support\MenuItem;
+use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
+use Narsil\Cms\Enums\DiskEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Implementations\AbstractMenu;
+use Narsil\Cms\Models\Configuration;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Forms\Form;
+use Narsil\Cms\Models\Forms\Fieldset;
+use Narsil\Cms\Models\Forms\Input;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Services\PermissionService;
+use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Cms\Support\MenuItem;
 
 #endregion
 

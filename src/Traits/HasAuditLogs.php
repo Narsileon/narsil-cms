@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 #region USE
 
@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Models\AuditLog;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Models\AuditLog;
 use ReflectionClass;
 
 #endregion

@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\GraphQL\Directives;
+namespace Narsil\Cms\GraphQL\Directives;
 
 #region USE
 
 use Illuminate\Support\Str;
-use Narsil\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\Entity;
 use Nuwave\Lighthouse\Execution\ResolveInfo;
 use Nuwave\Lighthouse\Schema\Directives\BaseDirective;
 use Nuwave\Lighthouse\Schema\Values\FieldValue;

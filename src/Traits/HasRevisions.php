@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 #region USE
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Narsil\Traits\HasDatetimes;
+use Narsil\Cms\Traits\HasDatetimes;
 
 #endregion
 

@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Database\Seeders;
+namespace Narsil\Cms\Database\Seeders;
 
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\FieldBlock;
-use Narsil\Models\Collections\FieldOption;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\FieldBlock;
+use Narsil\Cms\Models\Collections\FieldOption;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 

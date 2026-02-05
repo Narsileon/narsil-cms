@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
 use Illuminate\Support\Facades\Artisan;
-use Narsil\Database\Migrations\TemplateMigration;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Policies\Permission;
-use Narsil\Services\PermissionService;
+use Narsil\Cms\Database\Migrations\TemplateMigration;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Services\PermissionService;
 
 #endregion
 

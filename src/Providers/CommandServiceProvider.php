@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Providers;
+namespace Narsil\Cms\Providers;
 
 #region USE
 
 use Illuminate\Support\ServiceProvider;
-use Narsil\Console\Commands\MakeEntityCommand;
-use Narsil\Console\Commands\MakeEntityNodeCommand;
-use Narsil\Console\Commands\MakeEntityNodeRelationCommand;
-use Narsil\Console\Commands\SyncPermissions;
+use Narsil\Cms\Console\Commands\MakeEntityCommand;
+use Narsil\Cms\Console\Commands\MakeEntityNodeCommand;
+use Narsil\Cms\Console\Commands\MakeEntityNodeRelationCommand;
+use Narsil\Cms\Console\Commands\SyncPermissions;
 
 #endregion
 

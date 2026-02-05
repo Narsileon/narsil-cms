@@ -40,7 +40,7 @@ type Registry = {
 };
 
 const defaultRegistry: Registry = {
-  ["Narsil\\Contracts\\Fields\\ArrayField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\ArrayField"]: (props) => {
     return (
       <Array
         {...props.field.settings}
@@ -50,10 +50,10 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\BuilderField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\BuilderField"]: (props) => {
     return <Builder {...props.field.settings} blocks={props.field.blocks} name={props.id} />;
   },
-  ["Narsil\\Contracts\\Fields\\CheckboxField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\CheckboxField"]: (props) => {
     if (props.field.options?.length > 0) {
       return (
         <Checkboxes
@@ -76,7 +76,7 @@ const defaultRegistry: Registry = {
       );
     }
   },
-  ["Narsil\\Contracts\\Fields\\DateField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\DateField"]: (props) => {
     return (
       <Date
         {...props.field.settings}
@@ -88,7 +88,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\DatetimeField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\DatetimeField"]: (props) => {
     return (
       <Datetime
         {...props.field.settings}
@@ -101,7 +101,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\EntityField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\EntityField"]: (props) => {
     return (
       <Combobox
         {...props.field.settings}
@@ -117,7 +117,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\FileField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\FileField"]: (props) => {
     return (
       <File
         {...props.field.settings}
@@ -134,7 +134,7 @@ const defaultRegistry: Registry = {
       </File>
     );
   },
-  ["Narsil\\Contracts\\Fields\\FormField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\FormField"]: (props) => {
     return (
       <Combobox
         {...props.field.settings}
@@ -147,7 +147,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\LinkField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\LinkField"]: (props) => {
     return (
       <Combobox
         {...props.field.settings}
@@ -160,7 +160,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\PasswordField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\PasswordField"]: (props) => {
     return (
       <Password
         {...props.field.settings}
@@ -173,7 +173,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\RangeField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\RangeField"]: (props) => {
     return (
       <Slider
         {...props.field.settings}
@@ -184,7 +184,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\RelationsField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\RelationsField"]: (props) => {
     if ("intermediate" in props.field.settings) {
       return (
         <SortableGrid
@@ -214,7 +214,7 @@ const defaultRegistry: Registry = {
       );
     }
   },
-  ["Narsil\\Contracts\\Fields\\RichTextField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\RichTextField"]: (props) => {
     return (
       <RichTextEditor
         {...props.field.settings}
@@ -226,7 +226,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\SelectField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\SelectField"]: (props) => {
     return (
       <Combobox
         {...props.field.settings}
@@ -238,7 +238,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\SwitchField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\SwitchField"]: (props) => {
     return (
       <Switch
         {...props.field.settings}
@@ -249,10 +249,10 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\TableField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\TableField"]: (props) => {
     return <Table {...props.field.settings} rows={props.value ?? []} setRows={props.setValue} />;
   },
-  ["Narsil\\Contracts\\Fields\\TextareaField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\TextareaField"]: (props) => {
     return (
       <Textarea
         {...props.field.settings}
@@ -264,7 +264,7 @@ const defaultRegistry: Registry = {
       />
     );
   },
-  ["Narsil\\Contracts\\Fields\\TimeField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\TimeField"]: (props) => {
     return (
       <InputGroup>
         <InputGroupInput
@@ -286,7 +286,7 @@ const defaultRegistry: Registry = {
       </InputGroup>
     );
   },
-  ["Narsil\\Contracts\\Fields\\TreeField"]: (props) => {
+  ["Narsil\\Cms\\Contracts\\Fields\\TreeField"]: (props) => {
     return <Tree {...props.field.settings} items={props.value ?? []} setItems={props.setValue} />;
   },
   ["default"]: (props) => {

@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\Forms\Inputs;
+namespace Narsil\Cms\Http\Controllers\Forms\Inputs;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Forms\Input;
-use Narsil\Services\Models\InputService;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Forms\Input;
+use Narsil\Cms\Services\Models\InputService;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

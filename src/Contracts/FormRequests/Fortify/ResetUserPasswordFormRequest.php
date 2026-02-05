@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Contracts\FormRequests\Fortify;
+namespace Narsil\Cms\Contracts\FormRequests\Fortify;
 
 #region USE
 
-use Narsil\Contracts\FormRequest;
+use Narsil\Cms\Contracts\FormRequest;
 
 #endregion
 

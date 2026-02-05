@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Http\Collections;
+namespace Narsil\Cms\Http\Collections;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use JsonSerializable;
-use Narsil\Implementations\Forms\UserBookmarkForm;
-use Narsil\Models\Users\UserBookmark;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Implementations\Forms\UserBookmarkForm;
+use Narsil\Cms\Models\Users\UserBookmark;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

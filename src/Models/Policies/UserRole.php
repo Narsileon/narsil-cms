@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Models\Policies;
+namespace Narsil\Cms\Models\Policies;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Policies\Role;
-use Narsil\Models\User;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

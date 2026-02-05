@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Http\Controllers;
+namespace Narsil\Cms\Http\Controllers;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Http\Controllers\RenderController;
+use Narsil\Cms\Http\Controllers\RenderController;
 
 #endregion
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Http\Controllers\Policies\Permissions;
+namespace Narsil\Cms\Http\Controllers\Policies\Permissions;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Contracts\FormRequests\PermissionFormRequest;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Policies\Permission;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\FormRequests\PermissionFormRequest;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

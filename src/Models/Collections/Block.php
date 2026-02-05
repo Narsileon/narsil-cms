@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Collections;
+namespace Narsil\Cms\Models\Collections;
 
 #region USE
 

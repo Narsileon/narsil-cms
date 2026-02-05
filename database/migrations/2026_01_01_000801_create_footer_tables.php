@@ -5,11 +5,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterLink;
-use Narsil\Models\Globals\FooterSocialMedium;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\User;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\FooterLink;
+use Narsil\Cms\Models\Globals\FooterSocialMedium;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\User;
 
 #endregion
 

@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\Collections\Fields;
+namespace Narsil\Cms\Http\Controllers\Collections\Fields;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Collections\Field;
-use Narsil\Services\Models\FieldService;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Services\Models\FieldService;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

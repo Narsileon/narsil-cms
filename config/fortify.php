@@ -3,7 +3,7 @@
 #region USE
 
 use Laravel\Fortify\Features;
-use Narsil\Models\User;
+use Narsil\Cms\Models\User;
 
 #endregion
 

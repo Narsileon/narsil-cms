@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Http\Controllers\Entities;
+namespace Narsil\Cms\Http\Controllers\Entities;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Entities\Entity;
-use Narsil\Traits\IsCollectionController;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 

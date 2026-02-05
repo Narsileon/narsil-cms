@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Entities;
+namespace Narsil\Cms\Http\Controllers\Entities;
 
 #region USE
 
@@ -8,15 +8,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
-use Narsil\Contracts\Forms\EntityForm;
-use Narsil\Contracts\Forms\PublishForm;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Configuration;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Traits\IsCollectionController;
+use Narsil\Cms\Contracts\Forms\EntityForm;
+use Narsil\Cms\Contracts\Forms\PublishForm;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Configuration;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Http\Controllers\UserBookmarks;
+namespace Narsil\Cms\Http\Controllers\UserBookmarks;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Narsil\Http\Collections\UserBookmarkCollection;
-use Narsil\Models\User;
+use Narsil\Cms\Http\Collections\UserBookmarkCollection;
+use Narsil\Cms\Models\User;
 
 #endregion
 

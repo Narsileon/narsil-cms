@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Database\Seeders;
+namespace Narsil\Cms\Database\Seeders;
 
 #region USE
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Config;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Services\Models\EntityService;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Services\Models\EntityService;
 
 #endregion
 

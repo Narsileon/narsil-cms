@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Services\Models;
+namespace Narsil\Cms\Services\Models;
 
 #region USE
 
-use Narsil\Models\Forms\Input;
-use Narsil\Models\Forms\InputOption;
-use Narsil\Models\ValidationRule;
-use Narsil\Services\DatabaseService;
+use Narsil\Cms\Models\Forms\Input;
+use Narsil\Cms\Models\Forms\InputOption;
+use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

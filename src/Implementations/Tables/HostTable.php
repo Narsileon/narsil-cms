@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Tables;
+namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\DataTypeEnum;
-use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostLocale;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Services\ModelService;
-use Narsil\Support\TableColumn;
+use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Cms\Implementations\AbstractTable;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocale;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Support\TableColumn;
 
 #endregion
 

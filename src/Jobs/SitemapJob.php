@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Jobs;
+namespace Narsil\Cms\Jobs;
 
 #region USE
 
-use Narsil\Models\Hosts\Host;
-use Narsil\Support\SitemapIndex;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Support\SitemapIndex;
 
 #endregion
 

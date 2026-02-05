@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Http\Controllers;
+namespace Narsil\Cms\Http\Controllers;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Narsil\Enums\Database\SessionEnum;
-use Narsil\Http\Requests\SessionFormRequest;
-use Narsil\Models\User;
-use Narsil\Models\Users\Session;
+use Narsil\Cms\Enums\Database\SessionEnum;
+use Narsil\Cms\Http\Requests\SessionFormRequest;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Models\Users\Session;
 
 #endregion
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Enums;
+namespace Narsil\Cms\Enums;
 
 #region USE
 
-use Narsil\Support\SelectOption;
-use Narsil\Traits\Enumerable;
+use Narsil\Cms\Support\SelectOption;
+use Narsil\Cms\Traits\Enumerable;
 
 #endregion
 

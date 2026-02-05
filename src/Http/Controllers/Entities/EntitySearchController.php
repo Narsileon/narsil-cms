@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Http\Controllers\Entities;
+namespace Narsil\Cms\Http\Controllers\Entities;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\SearchRequest;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Support\SelectOption;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Http\Requests\SearchRequest;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Support\SelectOption;
 
 #endregion
 

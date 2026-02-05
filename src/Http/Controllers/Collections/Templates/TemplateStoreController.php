@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\Collections\Templates;
+namespace Narsil\Cms\Http\Controllers\Collections\Templates;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Narsil\Contracts\FormRequests\TemplateFormRequest;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Collections\Template;
-use Narsil\Services\Models\TemplateService;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\FormRequests\TemplateFormRequest;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Services\Models\TemplateService;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

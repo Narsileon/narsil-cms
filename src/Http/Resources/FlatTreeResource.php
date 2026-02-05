@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Http\Resources;
+namespace Narsil\Cms\Http\Resources;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Narsil\Models\TreeModel;
+use Narsil\Cms\Models\TreeModel;
 
 #endregion
 

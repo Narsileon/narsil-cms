@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Middleware;
+namespace Narsil\Cms\Http\Middleware;
 
 #region USE
 

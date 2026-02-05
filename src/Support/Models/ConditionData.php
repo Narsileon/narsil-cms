@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Support\Models;
+namespace Narsil\Cms\Support\Models;
 
 #region USE
 
 use Illuminate\Support\Fluent;
-use Narsil\Models\AbstractCondition;
+use Narsil\Cms\Models\AbstractCondition;
 
 #endregion
 

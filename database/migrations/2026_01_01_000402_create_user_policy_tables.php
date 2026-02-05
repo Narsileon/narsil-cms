@@ -5,11 +5,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\Policies\Role;
-use Narsil\Models\Policies\UserPermission;
-use Narsil\Models\Policies\UserRole;
-use Narsil\Models\User;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Models\Policies\UserPermission;
+use Narsil\Cms\Models\Policies\UserRole;
+use Narsil\Cms\Models\User;
 
 #endregion
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Implementations;
+namespace Narsil\Cms\Implementations;
 
 #region USE
 
 use Illuminate\Support\Fluent;
-use Narsil\Contracts\Field;
+use Narsil\Cms\Contracts\Field;
 
 #endregion
 

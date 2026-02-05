@@ -63,7 +63,7 @@ export type FieldOption = {
 export type Element = Model & {
   base: Block | Field;
   base_id: number;
-  base_type: "Narsil\\Models\\Collections\\Block" | "Narsil\\Models\\Collections\\Field";
+  base_type: "Narsil\\Cms\\Models\\Collections\\Block" | "Narsil\\Cms\\Models\\Collections\\Field";
   class_name: string;
   conditions?: Condition[];
   description?: string;

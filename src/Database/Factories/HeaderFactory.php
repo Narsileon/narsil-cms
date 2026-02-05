@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Database\Factories;
+namespace Narsil\Cms\Database\Factories;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Narsil\Models\Globals\Header;
+use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 

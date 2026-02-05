@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Http\Controllers\Sites\Pages;
+namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\SearchRequest;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Support\SelectOption;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Http\Requests\SearchRequest;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Support\SelectOption;
 
 #endregion
 

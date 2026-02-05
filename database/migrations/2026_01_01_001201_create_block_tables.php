@@ -5,13 +5,13 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\Database\OperatorEnum;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\BlockElementCondition;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\FieldBlock;
-use Narsil\Models\User;
+use Narsil\Cms\Enums\Database\OperatorEnum;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\BlockElementCondition;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\FieldBlock;
+use Narsil\Cms\Models\User;
 
 #endregion
 

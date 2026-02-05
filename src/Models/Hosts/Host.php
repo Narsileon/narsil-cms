@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Hosts;
+namespace Narsil\Cms\Models\Hosts;
 
 #region USE
 
@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Narsil\Database\Factories\HostFactory;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasTranslations;
+use Narsil\Cms\Database\Factories\HostFactory;
+use Narsil\Cms\Traits\Blameable;
+use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Cms\Traits\HasDatetimes;
+use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

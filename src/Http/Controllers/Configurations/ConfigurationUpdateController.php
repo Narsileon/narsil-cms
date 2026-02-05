@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Http\Controllers\Configurations;
+namespace Narsil\Cms\Http\Controllers\Configurations;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Contracts\FormRequests\ConfigurationFormRequest;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Configuration;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\FormRequests\ConfigurationFormRequest;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Configuration;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

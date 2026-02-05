@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Models\Globals;
+namespace Narsil\Cms\Models\Globals;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Traits\HasTranslations;
-use Narsil\Traits\HasUuidKey;
-use Narsil\Traits\IsOrderable;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 

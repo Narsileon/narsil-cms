@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\Policies\Role;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Models\Policies\Role;
 
 #endregion
 

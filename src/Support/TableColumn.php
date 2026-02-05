@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Support;
+namespace Narsil\Cms\Support;
 
 #region USE
 
-use Narsil\Contracts\Fields\DateField;
-use Narsil\Contracts\Fields\NumberField;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Fields\TimeField;
-use Narsil\Enums\Database\OperatorEnum;
-use Narsil\Enums\DataTypeEnum;
-use Narsil\Models\Collections\Field;
+use Narsil\Cms\Contracts\Fields\DateField;
+use Narsil\Cms\Contracts\Fields\NumberField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Fields\TimeField;
+use Narsil\Cms\Enums\Database\OperatorEnum;
+use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 

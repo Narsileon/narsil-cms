@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Requests;
+namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
-use Narsil\Contracts\FormRequests\FooterFormRequest as Contract;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Implementations\AbstractFormRequest;
-use Narsil\Models\Globals\Footer;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Contracts\FormRequests\FooterFormRequest as Contract;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Implementations\AbstractFormRequest;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

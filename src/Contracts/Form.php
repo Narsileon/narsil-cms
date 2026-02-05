@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Contracts;
+namespace Narsil\Cms\Contracts;
 
 #region USE
 

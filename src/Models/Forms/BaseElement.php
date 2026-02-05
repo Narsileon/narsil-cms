@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Models\Collections;
+namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Narsil\Models\Forms\FieldsetElement;
-use Narsil\Models\Forms\FormStepElement;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasIdentifier;
-use Narsil\Traits\HasTranslations;
+use Narsil\Cms\Models\Forms\FieldsetElement;
+use Narsil\Cms\Models\Forms\FormStepElement;
+use Narsil\Cms\Traits\Blameable;
+use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Cms\Traits\HasDatetimes;
+use Narsil\Cms\Traits\HasIdentifier;
+use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

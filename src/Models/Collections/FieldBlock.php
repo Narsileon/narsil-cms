@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Models\Collections;
+namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

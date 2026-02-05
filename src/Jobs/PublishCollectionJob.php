@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Jobs;
+namespace Narsil\Cms\Jobs;
 
 #region USE
 
 use Carbon\Carbon;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
@@ -20,7 +20,7 @@ class PublishCollectionJob extends AbstractJob
 
     /**
      * @param Template $template
-     * 
+     *
      * @return void
      */
     public function __construct(Template $template)

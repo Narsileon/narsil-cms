@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Models\Sites;
+namespace Narsil\Cms\Models\Sites;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Database\Factories\SiteFactory;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\Header;
-use Narsil\Models\Hosts\Host;
+use Narsil\Cms\Database\Factories\SiteFactory;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Models\Hosts\Host;
 
 #endregion
 

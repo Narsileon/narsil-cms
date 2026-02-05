@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Database\Seeders\Templates;
+namespace Narsil\Cms\Database\Seeders\Templates;
 
 #region USE
 
-use Narsil\Contracts\Fields\BuilderField;
-use Narsil\Database\Seeders\Blocks\AccordionBlockSeeder;
-use Narsil\Database\Seeders\Blocks\CallToActionBlockSeeder;
-use Narsil\Database\Seeders\Blocks\FormBlockSeeder;
-use Narsil\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
-use Narsil\Database\Seeders\TemplateSeeder;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Contracts\Fields\BuilderField;
+use Narsil\Cms\Database\Seeders\Blocks\AccordionBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\CallToActionBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\FormBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
+use Narsil\Cms\Database\Seeders\TemplateSeeder;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 

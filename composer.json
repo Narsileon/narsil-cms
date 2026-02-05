@@ -27,9 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Narsil\\": "src/",
-      "Database\\Factories\\": "database/factories/",
-      "Database\\Seeders\\": "database/seeders/"
+      "Narsil\\Cms\\": "src/"
     }
   },
   "autoload-dev": {
@@ -65,7 +63,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Narsil\\NarsilServiceProvider"
+        "Narsil\\Cms\\NarsilServiceProvider"
       ]
     }
   },

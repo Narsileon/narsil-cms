@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Console\Commands;
+namespace Narsil\Cms\Console\Commands;
 
 #region USE
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
-use Narsil\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 

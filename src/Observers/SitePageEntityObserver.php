@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
 use Illuminate\Support\Facades\Config;
-use Narsil\Models\Sites\SitePageEntity;
+use Narsil\Cms\Models\Sites\SitePageEntity;
 
 #endregion
 

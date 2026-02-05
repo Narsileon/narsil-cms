@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\GraphQL\Resolvers;
+namespace Narsil\Cms\GraphQL\Resolvers;
 
 #region USE
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Narsil\Models\Entities\Relation;
+use Narsil\Cms\Models\Entities\Relation;
 
 #endregion
 

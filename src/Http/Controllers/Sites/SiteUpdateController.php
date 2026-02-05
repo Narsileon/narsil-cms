@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Http\Controllers\Sites;
+namespace Narsil\Cms\Http\Controllers\Sites;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Implementations\Requests\SiteFormRequest;
-use Narsil\Jobs\SitemapJob;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Implementations\Requests\SiteFormRequest;
+use Narsil\Cms\Jobs\SitemapJob;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

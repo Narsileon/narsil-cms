@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Collections;
+namespace Narsil\Cms\Http\Collections;
 
 #region USE
 
@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Str;
 use JsonSerializable;
-use Narsil\Contracts\Table;
-use Narsil\Http\Requests\QueryRequest;
-use Narsil\Services\QueryService;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Contracts\Table;
+use Narsil\Cms\Http\Requests\QueryRequest;
+use Narsil\Cms\Services\QueryService;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

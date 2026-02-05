@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Http\Controllers\Storages;
+namespace Narsil\Cms\Http\Controllers\Storages;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\Forms\HostForm;
-use Narsil\Contracts\Forms\MediaForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Storages\Media;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\Forms\HostForm;
+use Narsil\Cms\Contracts\Forms\MediaForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

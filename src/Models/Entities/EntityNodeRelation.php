@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Entities;
+namespace Narsil\Cms\Models\Entities;
 
 #region USE
 
@@ -12,7 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

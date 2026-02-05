@@ -1,20 +1,20 @@
 <?php
 
-namespace Narsil\Database\Migrations;
+namespace Narsil\Cms\Database\Migrations;
 
 #region USE
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Entities\EntityNodeRelation;
-use Narsil\Models\User;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\EntityNode;
+use Narsil\Cms\Models\Entities\EntityNodeRelation;
+use Narsil\Cms\Models\User;
 
 #endregion
 

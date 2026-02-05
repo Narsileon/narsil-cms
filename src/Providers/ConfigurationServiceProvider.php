@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Providers;
+namespace Narsil\Cms\Providers;
 
 #region USE
 
@@ -21,8 +21,8 @@ class ConfigurationServiceProvider extends ServiceProvider
 
     /**
      * The configuration path.
-     * 
-     * @var string    
+     *
+     * @var string
      */
     protected const CONFIGURATION_PATH = __DIR__ . '/../../config';
 
@@ -89,7 +89,7 @@ class ConfigurationServiceProvider extends ServiceProvider
 
     /**
      * @param string $path
-     * 
+     *
      * @return string
      */
     protected function getConfigurationKey(string $path): string
@@ -102,7 +102,7 @@ class ConfigurationServiceProvider extends ServiceProvider
 
     /**
      * @param string $path
-     * 
+     *
      * @return iterable
      */
     protected function getConfigurationFiles(string $path): iterable

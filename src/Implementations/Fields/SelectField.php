@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Fields;
+namespace Narsil\Cms\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\SelectField as Contract;
-use Narsil\Contracts\Fields\TableField;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Implementations\AbstractField;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\FieldOption;
+use Narsil\Cms\Contracts\Fields\SelectField as Contract;
+use Narsil\Cms\Contracts\Fields\TableField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Implementations\AbstractField;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\FieldOption;
 
 #endregion
 

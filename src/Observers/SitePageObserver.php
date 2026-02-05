@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Jobs\SitemapJob;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Sites\SitePageEntity;
+use Narsil\Cms\Jobs\SitemapJob;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\Sites\SitePageEntity;
 
 #endregion
 

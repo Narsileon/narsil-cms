@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Models\Forms;
+namespace Narsil\Cms\Models\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Models\Forms\FormStep;
+use Narsil\Cms\Models\Forms\FormStep;
 
 #endregion
 

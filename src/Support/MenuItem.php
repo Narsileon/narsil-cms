@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Support;
+namespace Narsil\Cms\Support;
 
 #region USE
 

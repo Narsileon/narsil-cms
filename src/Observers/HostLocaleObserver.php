@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Models\Hosts\HostLocale;
+use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Entities;
+namespace Narsil\Cms\Models\Entities;
 
 #region USE
 
@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Models\Collections\Template;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasIdentifier;
-use Narsil\Traits\HasRevisions;
-use Narsil\Traits\HasTranslations;
-use Narsil\Traits\SoftDeleteBlameable;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Traits\Blameable;
+use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Cms\Traits\HasIdentifier;
+use Narsil\Cms\Traits\HasRevisions;
+use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Cms\Traits\SoftDeleteBlameable;
 
 #endregion
 

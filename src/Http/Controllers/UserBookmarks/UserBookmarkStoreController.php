@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Http\Controllers\UserBookmarks;
+namespace Narsil\Cms\Http\Controllers\UserBookmarks;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\UserBookmarkRequest;
-use Narsil\Models\Users\UserBookmark;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Http\Requests\UserBookmarkRequest;
+use Narsil\Cms\Models\Users\UserBookmark;
 
 #endregion
 

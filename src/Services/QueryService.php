@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Cms\Services;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
-use Narsil\Enums\Database\OperatorEnum;
-use Narsil\Enums\DataTypeEnum;
+use Narsil\Cms\Enums\Database\OperatorEnum;
+use Narsil\Cms\Enums\DataTypeEnum;
 
 #endregion
 

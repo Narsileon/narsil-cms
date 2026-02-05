@@ -27,84 +27,84 @@ type DefaultField = {
 };
 
 type ArrayField = {
-  type: "Narsil\\Contracts\\Fields\\ArrayField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\ArrayField";
   settings: ComponentProps<typeof Array>;
 };
 type BuilderField = {
-  type: "Narsil\\Contracts\\Fields\\BuilderField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\BuilderField";
   settings: ComponentProps<typeof Builder>;
 };
 type CheckboxField = {
-  type: "Narsil\\Contracts\\Fields\\CheckboxField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\CheckboxField";
   settings: ComponentProps<typeof Checkbox> | ComponentProps<typeof Checkboxes>;
 };
 type DateField = {
-  type: "Narsil\\Contracts\\Fields\\DateField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\DateField";
   settings: ComponentProps<typeof Datetime>;
 };
 type DatetimeField = {
-  type: "Narsil\\Contracts\\Fields\\DatetimeField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\DatetimeField";
   settings: ComponentProps<typeof Datetime>;
 };
 type EntityField = {
-  type: "Narsil\\Contracts\\Fields\\EntityField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\EntityField";
   settings: ComponentProps<typeof Combobox>;
 };
 type FileField = {
-  type: "Narsil\\Contracts\\Fields\\FileField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\FileField";
   settings: ComponentProps<typeof File> & {
     icon?: IconName;
   };
 };
 type FormField = {
-  type: "Narsil\\Contracts\\Fields\\FormField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\FormField";
   settings: ComponentProps<typeof Combobox>;
 };
 type LinkField = {
-  type: "Narsil\\Contracts\\Fields\\LinkField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\LinkField";
   settings: ComponentProps<typeof Combobox>;
 };
 type PasswordField = {
-  type: "Narsil\\Contracts\\Fields\\PasswordField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\PasswordField";
   settings: ComponentProps<typeof Password>;
 };
 type RangeField = {
-  type: "Narsil\\Contracts\\Fields\\RangeField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\RangeField";
   settings: ComponentProps<typeof Slider>;
 };
 type RelationsField = {
-  type: "Narsil\\Contracts\\Fields\\RelationsField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\RelationsField";
   settings:
     | ComponentProps<typeof SortableGrid>
     | ComponentProps<typeof SortableList>
     | ComponentProps<typeof Relations>;
 };
 type RichTextField = {
-  type: "Narsil\\Contracts\\Fields\\RichTextField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\RichTextField";
   settings: ComponentProps<typeof RichTextEditor>;
 };
 type SelectField = {
-  type: "Narsil\\Contracts\\Fields\\SelectField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\SelectField";
   settings: ComponentProps<typeof Combobox>;
 };
 type SwitchField = {
-  type: "Narsil\\Contracts\\Fields\\SwitchField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\SwitchField";
   settings: ComponentProps<typeof Switch>;
 };
 type TableField = {
-  type: "Narsil\\Contracts\\Fields\\TableField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\TableField";
   settings: ComponentProps<typeof Table>;
 };
 type TextareaField = {
-  type: "Narsil\\Contracts\\Fields\\TextareaField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\TextareaField";
   settings: ComponentProps<typeof Textarea>;
 };
 type TimeField = {
-  type: "Narsil\\Contracts\\Fields\\TimeField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\TimeField";
   settings: ComponentProps<typeof InputContent> & { icon?: string };
 };
 type TreeField = {
-  type: "Narsil\\Contracts\\Fields\\TreeField";
+  type: "Narsil\\Cms\\Contracts\\Fields\\TreeField";
   settings: ComponentProps<typeof Tree> & { icon?: string };
 };
 

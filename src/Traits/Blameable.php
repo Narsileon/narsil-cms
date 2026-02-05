@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
-use Narsil\Models\User;
+use Narsil\Cms\Models\User;
 
 #endregion
 

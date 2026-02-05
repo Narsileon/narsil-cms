@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Services\Models;
+namespace Narsil\Cms\Services\Models;
 
 #region USE
 
-use Narsil\Models\Globals\Header;
-use Narsil\Services\DatabaseService;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

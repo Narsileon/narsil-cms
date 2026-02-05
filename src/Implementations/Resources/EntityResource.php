@@ -1,20 +1,20 @@
 <?php
 
-namespace Narsil\Implementations\Resources;
+namespace Narsil\Cms\Implementations\Resources;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Narsil\Contracts\Fields\BuilderField;
-use Narsil\Contracts\Resources\EntityResource as Contract;
-use Narsil\Implementations\AbstractResource;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\Element;
-use Narsil\Models\Collections\Field;
+use Narsil\Cms\Contracts\Fields\BuilderField;
+use Narsil\Cms\Contracts\Resources\EntityResource as Contract;
+use Narsil\Cms\Implementations\AbstractResource;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\EntityNode;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Element;
+use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 

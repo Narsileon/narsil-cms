@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Services\Models;
+namespace Narsil\Cms\Services\Models;
 
 #region USE
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Services\DatabaseService;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

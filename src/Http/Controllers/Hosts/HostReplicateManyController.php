@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Http\Controllers\Hosts;
+namespace Narsil\Cms\Http\Controllers\Hosts;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\ReplicateManyRequest;
-use Narsil\Models\Hosts\Host;
-use Narsil\Services\Models\HostService;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Http\Requests\ReplicateManyRequest;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Services\Models\HostService;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

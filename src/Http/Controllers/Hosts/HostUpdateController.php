@@ -1,20 +1,20 @@
 <?php
 
-namespace Narsil\Http\Controllers\Hosts;
+namespace Narsil\Cms\Http\Controllers\Hosts;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Narsil\Contracts\FormRequests\HostFormRequest;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Jobs\SitemapJob;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostLocale;
-use Narsil\Services\Models\HostLocaleService;
-use Narsil\Services\Models\HostService;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\FormRequests\HostFormRequest;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Jobs\SitemapJob;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocale;
+use Narsil\Cms\Services\Models\HostLocaleService;
+use Narsil\Cms\Services\Models\HostService;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

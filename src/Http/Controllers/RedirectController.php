@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers;
+namespace Narsil\Cms\Http\Controllers;
 
 #region USE
 

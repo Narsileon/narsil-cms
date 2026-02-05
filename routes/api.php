@@ -3,7 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
-use Narsil\Http\Controllers\Entities\EntityIndexController;
+use Narsil\Cms\Http\Controllers\Entities\EntityIndexController;
 
 #endregion
 

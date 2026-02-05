@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Database\Seeders;
+namespace Narsil\Cms\Database\Seeders;
 
 #region USE
 
-use Narsil\Models\Forms\Form;
+use Narsil\Cms\Models\Forms\Form;
 
 #endregion
 

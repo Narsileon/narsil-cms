@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Forms;
+namespace Narsil\Cms\Models\Forms;
 
 #region USE
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Http\Controllers\Globals\Headers;
+namespace Narsil\Cms\Http\Controllers\Globals\Headers;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Contracts\FormRequests\HeaderFormRequest;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Globals\Header;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\FormRequests\HeaderFormRequest;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Models;
+namespace Narsil\Cms\Models;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Traits\HasUuidKey;
-use Narsil\Traits\IsOrderable;
+use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 

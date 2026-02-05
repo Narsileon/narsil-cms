@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Implementations;
+namespace Narsil\Cms\Implementations;
 
 #region USE
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Narsil\Contracts\Resource;
+use Narsil\Cms\Contracts\Resource;
 
 #endregion
 

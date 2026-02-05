@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Entities;
+namespace Narsil\Cms\Models\Entities;
 
 #region USE
 
@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Narsil\Casts\JsonCast;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Traits\HasTranslations;
-use Narsil\Traits\HasUuidKey;
-use Narsil\Traits\IsOrderable;
+use Narsil\Cms\Casts\JsonCast;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 

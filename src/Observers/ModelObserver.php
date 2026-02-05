@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 

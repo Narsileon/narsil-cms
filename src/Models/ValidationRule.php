@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Models;
+namespace Narsil\Cms\Models;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Support\SelectOption;
+use Narsil\Cms\Support\SelectOption;
 
 #endregion
 

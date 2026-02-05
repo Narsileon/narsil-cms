@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Http\Controllers\Entities;
+namespace Narsil\Cms\Http\Controllers\Entities;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Http\Requests\ReplicateManyRequest;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Services\Models\EntityService;
-use Narsil\Traits\IsCollectionController;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Http\Requests\ReplicateManyRequest;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Services\Models\EntityService;
+use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 

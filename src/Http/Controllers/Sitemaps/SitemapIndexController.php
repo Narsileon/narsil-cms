@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Sitemaps;
+namespace Narsil\Cms\Http\Controllers\Sitemaps;
 
 #region
 

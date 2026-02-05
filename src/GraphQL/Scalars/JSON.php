@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\GraphQL\Scalars;
+namespace Narsil\Cms\GraphQL\Scalars;
 
 #region USE
 

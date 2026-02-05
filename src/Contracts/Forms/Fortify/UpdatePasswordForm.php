@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Contracts\Forms\Fortify;
+namespace Narsil\Cms\Contracts\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Form;
+use Narsil\Cms\Contracts\Form;
 
 #endregion
 

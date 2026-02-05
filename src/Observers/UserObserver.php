@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Models\User;
+use Narsil\Cms\Models\User;
 
 #endregion
 

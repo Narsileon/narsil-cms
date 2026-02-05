@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Http\Controllers\Fortify;
+namespace Narsil\Cms\Http\Controllers\Fortify;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

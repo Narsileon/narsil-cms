@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Traits\Policies;
+namespace Narsil\Cms\Traits\Policies;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\User;
-use Narsil\Services\PermissionService;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Services\PermissionService;
 
 #endregion
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Database\Seeders\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Contracts\Fields\SelectField;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Database\Seeders\BlockSeeder;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\FieldOption;
+use Narsil\Cms\Contracts\Fields\SelectField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Database\Seeders\BlockSeeder;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\FieldOption;
 
 #endregion
 

@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Database\Seeders;
+namespace Narsil\Cms\Database\Seeders;
 
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Models\Forms\Fieldset;
-use Narsil\Models\Forms\FieldsetElement;
-use Narsil\Models\Forms\Form;
-use Narsil\Models\Forms\FormStep;
-use Narsil\Models\Forms\FormStepElement;
-use Narsil\Models\Forms\Input;
-use Narsil\Models\Forms\InputOption;
+use Narsil\Cms\Models\Forms\Fieldset;
+use Narsil\Cms\Models\Forms\FieldsetElement;
+use Narsil\Cms\Models\Forms\Form;
+use Narsil\Cms\Models\Forms\FormStep;
+use Narsil\Cms\Models\Forms\FormStepElement;
+use Narsil\Cms\Models\Forms\Input;
+use Narsil\Cms\Models\Forms\InputOption;
 
 #endregion
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Implementations\Fields;
+namespace Narsil\Cms\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\EmailField as Contract;
-use Narsil\Contracts\Fields\SwitchField;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Implementations\AbstractField;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
+use Narsil\Cms\Contracts\Fields\EmailField as Contract;
+use Narsil\Cms\Contracts\Fields\SwitchField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Implementations\AbstractField;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Cms\Services;
 
 #region USE
 
 use Illuminate\Support\Facades\App;
 use Locale;
-use Narsil\Support\SelectOption;
+use Narsil\Cms\Support\SelectOption;
 use ResourceBundle;
 
 #endregion

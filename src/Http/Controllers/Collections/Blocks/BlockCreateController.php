@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Http\Controllers\Collections\Blocks;
+namespace Narsil\Cms\Http\Controllers\Collections\Blocks;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\Forms\BlockForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Collections\Block;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\Forms\BlockForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

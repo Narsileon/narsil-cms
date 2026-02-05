@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Services\Models;
+namespace Narsil\Cms\Services\Models;
 
 #region USE
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Models\Forms\Fieldset;
-use Narsil\Models\Forms\FieldsetElement;
-use Narsil\Services\DatabaseService;
+use Narsil\Cms\Models\Forms\Fieldset;
+use Narsil\Cms\Models\Forms\FieldsetElement;
+use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

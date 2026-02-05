@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Models\Forms;
+namespace Narsil\Cms\Models\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Narsil\Models\Collections\BaseElement;
+use Narsil\Cms\Models\Collections\BaseElement;
 
 #endregion
 

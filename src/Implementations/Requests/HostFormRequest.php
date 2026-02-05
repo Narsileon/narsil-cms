@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Implementations\Requests;
+namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
 use Illuminate\Support\Facades\Gate;
-use Narsil\Contracts\FormRequests\HostFormRequest as Contract;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Implementations\AbstractFormRequest;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostLocale;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Contracts\FormRequests\HostFormRequest as Contract;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Implementations\AbstractFormRequest;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocale;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

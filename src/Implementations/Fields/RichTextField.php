@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Implementations\Fields;
+namespace Narsil\Cms\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\CheckboxField;
-use Narsil\Contracts\Fields\RichTextField as Contract;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Enums\Forms\RichTextEditorEnum;
-use Narsil\Implementations\AbstractField;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Contracts\Fields\CheckboxField;
+use Narsil\Cms\Contracts\Fields\RichTextField as Contract;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Enums\Forms\RichTextEditorEnum;
+use Narsil\Cms\Implementations\AbstractField;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

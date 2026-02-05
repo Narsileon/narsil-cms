@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\FormStepForm as Contract;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Forms\FormStep;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Forms\FormStepForm as Contract;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Forms\FormStep;
 
 #endregion
 

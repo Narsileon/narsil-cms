@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Support;
+namespace Narsil\Cms\Support;
 
 #region USE
 
 use Illuminate\Support\Collection;
-use Narsil\Models\TreeModel;
+use Narsil\Cms\Models\TreeModel;
 
 #endregion
 

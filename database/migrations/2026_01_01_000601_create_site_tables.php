@@ -5,16 +5,16 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\SEO\ChangeFreqEnum;
-use Narsil\Enums\SEO\OpenGraphTypeEnum;
-use Narsil\Enums\SEO\RobotsEnum;
-use Narsil\Enums\SitePageAdapterEnum;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Sites\SitePageEntity;
-use Narsil\Models\Sites\SitePageOverride;
-use Narsil\Models\Sites\SiteUrl;
+use Narsil\Cms\Enums\SEO\ChangeFreqEnum;
+use Narsil\Cms\Enums\SEO\OpenGraphTypeEnum;
+use Narsil\Cms\Enums\SEO\RobotsEnum;
+use Narsil\Cms\Enums\SitePageAdapterEnum;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\Sites\SitePageEntity;
+use Narsil\Cms\Models\Sites\SitePageOverride;
+use Narsil\Cms\Models\Sites\SiteUrl;
 
 #endregion
 

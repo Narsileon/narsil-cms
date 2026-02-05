@@ -1,26 +1,26 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\Fields\ArrayField;
-use Narsil\Contracts\Fields\FileField;
-use Narsil\Contracts\Fields\SelectField;
-use Narsil\Contracts\Fields\SwitchField;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\FooterForm as Contract;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterLink;
-use Narsil\Models\Globals\FooterSocialMedium;
-use Narsil\Services\LocaleService;
-use Narsil\Services\RouteService;
+use Narsil\Cms\Contracts\Fields\ArrayField;
+use Narsil\Cms\Contracts\Fields\FileField;
+use Narsil\Cms\Contracts\Fields\SelectField;
+use Narsil\Cms\Contracts\Fields\SwitchField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Forms\FooterForm as Contract;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\FooterLink;
+use Narsil\Cms\Models\Globals\FooterSocialMedium;
+use Narsil\Cms\Services\LocaleService;
+use Narsil\Cms\Services\RouteService;
 
 #endregion
 

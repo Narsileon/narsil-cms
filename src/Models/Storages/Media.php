@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Models\Storages;
+namespace Narsil\Cms\Models\Storages;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Narsil\Traits\HasIdentifier;
-use Narsil\Traits\HasTranslations;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Traits\HasIdentifier;
+use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

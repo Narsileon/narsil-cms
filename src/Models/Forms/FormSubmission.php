@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Models\Forms;
+namespace Narsil\Cms\Models\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Traits\HasDatetimes;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

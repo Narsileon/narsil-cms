@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Http\Controllers\Policies\Roles;
+namespace Narsil\Cms\Http\Controllers\Policies\Roles;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Narsil\Contracts\FormRequests\RoleFormRequest;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Policies\Role;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\FormRequests\RoleFormRequest;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

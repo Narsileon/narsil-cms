@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Caches;
+namespace Narsil\Cms\Models\Caches;
 
 #region USE
 

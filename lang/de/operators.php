@@ -2,7 +2,7 @@
 
 #region USE
 
-use Narsil\Enums\Database\OperatorEnum;
+use Narsil\Cms\Enums\Database\OperatorEnum;
 
 #endregion
 

@@ -1,30 +1,30 @@
 <?php
 
-namespace Narsil;
+namespace Narsil\Cms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Providers\CommandServiceProvider;
-use Narsil\Providers\ConfigurationServiceProvider;
-use Narsil\Providers\FieldServiceProvider;
-use Narsil\Providers\FormRequestServiceProvider;
-use Narsil\Providers\FormServiceProvider;
-use Narsil\Providers\FortifyServiceProvider;
-use Narsil\Providers\HorizonServiceProvider;
-use Narsil\Providers\LocalizationServiceProvider;
-use Narsil\Providers\MenuServiceProvider;
-use Narsil\Providers\MiddlewareServiceProvider;
-use Narsil\Providers\MigrationServiceProvider;
-use Narsil\Providers\ObserverServiceProvider;
-use Narsil\Providers\PolicyServiceProvider;
-use Narsil\Providers\RelationServiceProvider;
-use Narsil\Providers\ResourceServiceProvider;
-use Narsil\Providers\RouteServiceProvider;
-use Narsil\Providers\TableServiceProvider;
-use Narsil\Providers\ViewServiceProvider;
+use Narsil\Cms\Providers\CommandServiceProvider;
+use Narsil\Cms\Providers\ConfigurationServiceProvider;
+use Narsil\Cms\Providers\FieldServiceProvider;
+use Narsil\Cms\Providers\FormRequestServiceProvider;
+use Narsil\Cms\Providers\FormServiceProvider;
+use Narsil\Cms\Providers\FortifyServiceProvider;
+use Narsil\Cms\Providers\HorizonServiceProvider;
+use Narsil\Cms\Providers\LocalizationServiceProvider;
+use Narsil\Cms\Providers\MenuServiceProvider;
+use Narsil\Cms\Providers\MiddlewareServiceProvider;
+use Narsil\Cms\Providers\MigrationServiceProvider;
+use Narsil\Cms\Providers\ObserverServiceProvider;
+use Narsil\Cms\Providers\PolicyServiceProvider;
+use Narsil\Cms\Providers\RelationServiceProvider;
+use Narsil\Cms\Providers\ResourceServiceProvider;
+use Narsil\Cms\Providers\RouteServiceProvider;
+use Narsil\Cms\Providers\TableServiceProvider;
+use Narsil\Cms\Providers\ViewServiceProvider;
 use Nuwave\Lighthouse\LighthouseServiceProvider;
 
 #endregion

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Storages;
+namespace Narsil\Cms\Http\Controllers\Storages;
 
 #region USE
 
@@ -8,12 +8,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
-use Narsil\Enums\DiskEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Http\Data\SummaryData;
-use Narsil\Models\Storages\Media;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\DiskEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Http\Data\SummaryData;
+use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

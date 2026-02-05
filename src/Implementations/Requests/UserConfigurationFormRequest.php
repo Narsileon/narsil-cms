@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Implementations\Requests;
+namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
-use Narsil\Contracts\FormRequests\UserConfigurationFormRequest as Contract;
-use Narsil\Implementations\AbstractFormRequest;
-use Narsil\Models\Users\UserConfiguration;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Contracts\FormRequests\UserConfigurationFormRequest as Contract;
+use Narsil\Cms\Implementations\AbstractFormRequest;
+use Narsil\Cms\Models\Users\UserConfiguration;
+use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

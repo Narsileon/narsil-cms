@@ -5,8 +5,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\User;
-use Narsil\Models\Users\UserBookmark;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Models\Users\UserBookmark;
 
 #endregion
 

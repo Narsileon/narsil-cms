@@ -11,15 +11,15 @@ return [
     |
     */
 
-    \Narsil\Contracts\Fields\CheckboxField::class,
-    \Narsil\Contracts\Fields\DateField::class,
-    \Narsil\Contracts\Fields\DatetimeField::class,
-    \Narsil\Contracts\Fields\EmailField::class,
-    \Narsil\Contracts\Fields\FileField::class,
-    \Narsil\Contracts\Fields\NumberField::class,
-    \Narsil\Contracts\Fields\SelectField::class,
-    \Narsil\Contracts\Fields\SwitchField::class,
-    \Narsil\Contracts\Fields\TextField::class,
-    \Narsil\Contracts\Fields\TextareaField::class,
-    \Narsil\Contracts\Fields\TimeField::class,
+    \Narsil\Cms\Contracts\Fields\CheckboxField::class,
+    \Narsil\Cms\Contracts\Fields\DateField::class,
+    \Narsil\Cms\Contracts\Fields\DatetimeField::class,
+    \Narsil\Cms\Contracts\Fields\EmailField::class,
+    \Narsil\Cms\Contracts\Fields\FileField::class,
+    \Narsil\Cms\Contracts\Fields\NumberField::class,
+    \Narsil\Cms\Contracts\Fields\SelectField::class,
+    \Narsil\Cms\Contracts\Fields\SwitchField::class,
+    \Narsil\Cms\Contracts\Fields\TextField::class,
+    \Narsil\Cms\Contracts\Fields\TextareaField::class,
+    \Narsil\Cms\Contracts\Fields\TimeField::class,
 ];

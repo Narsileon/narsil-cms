@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 #region USE
 
-use Narsil\Support\SelectOption;
+use Narsil\Cms\Support\SelectOption;
 
 #endregion
 

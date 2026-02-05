@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Database\Seeders\Entities\ContactEntitySeeder;
-use Narsil\Database\Seeders\Entities\HomeEntitySeeder;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterLink;
-use Narsil\Models\Globals\Header;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Sites\Site;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Sites\SitePageEntity;
+use Narsil\Cms\Database\Seeders\Entities\ContactEntitySeeder;
+use Narsil\Cms\Database\Seeders\Entities\HomeEntitySeeder;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\FooterLink;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\Sites\SitePageEntity;
 
 #endregion
 

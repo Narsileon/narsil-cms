@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Implementations\Forms\Fortify;
+namespace Narsil\Cms\Implementations\Forms\Fortify;
 
 #region USE
 
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\Fortify\TwoFactorForm as Contract;
-use Narsil\Enums\Forms\AutoCompleteEnum;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Forms\Fortify\TwoFactorForm as Contract;
+use Narsil\Cms\Enums\Forms\AutoCompleteEnum;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

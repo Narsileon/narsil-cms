@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Tables;
+namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Enums\DataTypeEnum;
-use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\Header;
-use Narsil\Models\Sites\Site;
-use Narsil\Services\ModelService;
-use Narsil\Support\TableColumn;
+use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Cms\Implementations\AbstractTable;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Support\TableColumn;
 
 #endregion
 

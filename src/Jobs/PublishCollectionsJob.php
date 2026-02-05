@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Jobs;
+namespace Narsil\Cms\Jobs;
 
 #region USE
 
 use Illuminate\Bus\Batch;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Log;
-use Narsil\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\Template;
 use Throwable;
 
 #endregion

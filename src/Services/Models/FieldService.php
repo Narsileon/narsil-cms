@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Services\Models;
+namespace Narsil\Cms\Services\Models;
 
 #region USE
 
 use Illuminate\Support\Str;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\FieldOption;
-use Narsil\Models\ValidationRule;
-use Narsil\Services\DatabaseService;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\FieldOption;
+use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

@@ -1,6 +1,6 @@
 scalar DateTime
   @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-scalar JSON @scalar(class: "Narsil\\GraphQL\\Scalars\\JSON")
+scalar JSON @scalar(class: "Narsil\\Cms\\GraphQL\\Scalars\\JSON")
 
 extend type Query {
   block(id: ID! @eq): Block @find
@@ -25,7 +25,7 @@ extend type Query {
   users: [User!]! @all
 }
 
-type Block @model(class: "Narsil\\Models\\Collections\\Block") {
+type Block @model(class: "Narsil\\Cms\\Models\\Collections\\Block") {
   id: ID!
   collapsible: Boolean!
   handle: String!
@@ -37,7 +37,7 @@ type Block @model(class: "Narsil\\Models\\Collections\\Block") {
   fields: [Field!]! @morphToMany
 }
 
-type BlockElement @model(class: "Narsil\\Models\\Collections\\BlockElement") {
+type BlockElement @model(class: "Narsil\\Cms\\Models\\Collections\\BlockElement") {
   uuid: String!
   block_id: ID!
   description: String
@@ -57,7 +57,7 @@ type BlockElement @model(class: "Narsil\\Models\\Collections\\BlockElement") {
   owner: Block! @belongsTo
 }
 
-type BlockElementCondition @model(class: "Narsil\\Models\\Collections\\BlockElementCondition") {
+type BlockElementCondition @model(class: "Narsil\\Cms\\Models\\Collections\\BlockElementCondition") {
   uuid: String!
   block_element_uuid: String!
   handle: String!
@@ -66,7 +66,7 @@ type BlockElementCondition @model(class: "Narsil\\Models\\Collections\\BlockElem
   block_element: BlockElement! @belongsTo
 }
 
-type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
+type Entity @model(class: "Narsil\\Cms\\Models\\Entities\\Entity") {
   uuid: String!
   id: ID!
   published_from: DateTime
@@ -82,7 +82,7 @@ type Entity @model(class: "Narsil\\Models\\Entities\\Entity") {
   template: Template! @belongsTo
 }
 
-type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
+type EntityNode @model(class: "Narsil\\Cms\\Models\\Entities\\EntityNode") {
   uuid: String!
   block_element_uuid: String
   block_id: ID
@@ -101,7 +101,7 @@ type EntityNode @model(class: "Narsil\\Models\\Entities\\EntityNode") {
   parent: EntityNode @belongsTo
 }
 
-type EntityNodeRelation @model(class: "Narsil\\Models\\Entities\\EntityNodeRelation") {
+type EntityNodeRelation @model(class: "Narsil\\Cms\\Models\\Entities\\EntityNodeRelation") {
   uuid: String!
   owner_node_uuid: String!
   owner_uuid: String!
@@ -113,7 +113,7 @@ type EntityNodeRelation @model(class: "Narsil\\Models\\Entities\\EntityNodeRelat
   target: Entity! @morphTo
 }
 
-type Field @model(class: "Narsil\\Models\\Collections\\Field") {
+type Field @model(class: "Narsil\\Cms\\Models\\Collections\\Field") {
   id: ID!
   class_name: String
   description: String
@@ -131,7 +131,7 @@ type Field @model(class: "Narsil\\Models\\Collections\\Field") {
   validation_rules: [ValidationRule!]! @belongsToMany
 }
 
-type FieldBlock @model(class: "Narsil\\Models\\Collections\\FieldBlock") {
+type FieldBlock @model(class: "Narsil\\Cms\\Models\\Collections\\FieldBlock") {
   uuid: String!
   block_id: ID!
   field_id: ID!
@@ -139,7 +139,7 @@ type FieldBlock @model(class: "Narsil\\Models\\Collections\\FieldBlock") {
   field: Field! @belongsTo
 }
 
-type FieldOption @model(class: "Narsil\\Models\\Collections\\FieldOption") {
+type FieldOption @model(class: "Narsil\\Cms\\Models\\Collections\\FieldOption") {
   uuid: String!
   field_id: ID!
   label: String!
@@ -151,7 +151,7 @@ type FieldOption @model(class: "Narsil\\Models\\Collections\\FieldOption") {
 }
 
 
-type Fieldset @model(class: "Narsil\\Models\\Forms\\Fieldset") {
+type Fieldset @model(class: "Narsil\\Cms\\Models\\Forms\\Fieldset") {
   id: ID!
   handle: String!
   name: String!
@@ -162,7 +162,7 @@ type Fieldset @model(class: "Narsil\\Models\\Forms\\Fieldset") {
   inputs: [Input!]! @morphToMany
 }
 
-type FieldsetElement @model(class: "Narsil\\Models\\Forms\\FieldsetElement") {
+type FieldsetElement @model(class: "Narsil\\Cms\\Models\\Forms\\FieldsetElement") {
   uuid: String!
   description: String
   element_id: ID!
@@ -181,7 +181,7 @@ type FieldsetElement @model(class: "Narsil\\Models\\Forms\\FieldsetElement") {
   owner: Fieldset! @belongsTo
 }
 
-type FieldsetElementCondition @model(class: "Narsil\\Models\\Forms\\FieldsetElementCondition") {
+type FieldsetElementCondition @model(class: "Narsil\\Cms\\Models\\Forms\\FieldsetElementCondition") {
   uuid: String!
   fieldset_element_uuid: String!
   handle: String!
@@ -190,7 +190,7 @@ type FieldsetElementCondition @model(class: "Narsil\\Models\\Forms\\FieldsetElem
   fieldset_element: FieldsetElement! @belongsTo
 }
 
-type FieldValidationRule @model(class: "Narsil\\Models\\Collections\\FieldValidationRule") {
+type FieldValidationRule @model(class: "Narsil\\Cms\\Models\\Collections\\FieldValidationRule") {
   uuid: ID!
   field_id: ID!
   validarion_rule_id: ID!
@@ -198,7 +198,7 @@ type FieldValidationRule @model(class: "Narsil\\Models\\Collections\\FieldValida
   validation_rule: ValidationRule! @belongsTo
 }
 
-type Form @model(class: "Narsil\\Models\\Forms\\Form") {
+type Form @model(class: "Narsil\\Cms\\Models\\Forms\\Form") {
   id: ID!
   description: String!
   handle: String!
@@ -207,7 +207,7 @@ type Form @model(class: "Narsil\\Models\\Forms\\Form") {
   updated_at: DateTime!
 }
 
-type FormStep @model(class: "Narsil\\Models\\Forms\\FormStep") {
+type FormStep @model(class: "Narsil\\Cms\\Models\\Forms\\FormStep") {
   uuid: ID!
   form_id: ID!
   handle: String!
@@ -221,7 +221,7 @@ type FormStep @model(class: "Narsil\\Models\\Forms\\FormStep") {
   inputs: [Input!]! @morphToMany
 }
 
-type FormStepElement @model(class: "Narsil\\Models\\Forms\\FormStepElement") {
+type FormStepElement @model(class: "Narsil\\Cms\\Models\\Forms\\FormStepElement") {
   uuid: String!
   description: String
   element_id: ID!
@@ -240,7 +240,7 @@ type FormStepElement @model(class: "Narsil\\Models\\Forms\\FormStepElement") {
   owner: FormStep! @belongsTo
 }
 
-type FormStepElementCondition @model(class: "Narsil\\Models\\Forms\\FormStepElementCondition") {
+type FormStepElementCondition @model(class: "Narsil\\Cms\\Models\\Forms\\FormStepElementCondition") {
   uuid: String!
   form_step_element_uuid: String!
   handle: String!
@@ -249,7 +249,7 @@ type FormStepElementCondition @model(class: "Narsil\\Models\\Forms\\FormStepElem
   form_step_element: FormStepElement! @belongsTo
 }
 
-type Input @model(class: "Narsil\\Models\\Forms\\Input") {
+type Input @model(class: "Narsil\\Cms\\Models\\Forms\\Input") {
   id: ID!
   description: String
   handle: String!
@@ -263,7 +263,7 @@ type Input @model(class: "Narsil\\Models\\Forms\\Input") {
   validation_rules: [ValidationRule!]! @belongsToMany
 }
 
-type InputOption @model(class: "Narsil\\Models\\Forms\\InputOption") {
+type InputOption @model(class: "Narsil\\Cms\\Models\\Forms\\InputOption") {
   uuid: String!
   input_id: ID!
   label: String!
@@ -274,7 +274,7 @@ type InputOption @model(class: "Narsil\\Models\\Forms\\InputOption") {
   input: Input! @belongsTo
 }
 
-type InputValidationRule @model(class: "Narsil\\Models\\Forms\\InputValidationRule") {
+type InputValidationRule @model(class: "Narsil\\Cms\\Models\\Forms\\InputValidationRule") {
   uuid: ID!
   input_id: ID!
   validarion_rule_id: ID!
@@ -282,7 +282,7 @@ type InputValidationRule @model(class: "Narsil\\Models\\Forms\\InputValidationRu
   validation_rule: ValidationRule! @belongsTo
 }
 
-type Permission @model(class: "Narsil\\Models\\Policies\\Permission") {
+type Permission @model(class: "Narsil\\Cms\\Models\\Policies\\Permission") {
   id: ID!
   handle: String!
   name: String!
@@ -291,7 +291,7 @@ type Permission @model(class: "Narsil\\Models\\Policies\\Permission") {
   roles: [Role!]! @belongsToMany
 }
 
-type Role @model(class: "Narsil\\Models\\Policies\\Role") {
+type Role @model(class: "Narsil\\Cms\\Models\\Policies\\Role") {
   id: ID!
   handle: String!
   name: String!
@@ -300,7 +300,7 @@ type Role @model(class: "Narsil\\Models\\Policies\\Role") {
   permissions: [Permission!]! @belongsToMany
 }
 
-type RolePermission @model(class: "Narsil\\Models\\Policies\\RolePermission") {
+type RolePermission @model(class: "Narsil\\Cms\\Models\\Policies\\RolePermission") {
   uuid: String!
   permission_id: ID!
   role_id: ID!
@@ -308,7 +308,7 @@ type RolePermission @model(class: "Narsil\\Models\\Policies\\RolePermission") {
   role: Role! @belongsTo
 }
 
-type Template @model(class: "Narsil\\Models\\Collections\\Template") {
+type Template @model(class: "Narsil\\Cms\\Models\\Collections\\Template") {
   id: ID!
   handle: String!
   plural: String!
@@ -317,7 +317,7 @@ type Template @model(class: "Narsil\\Models\\Collections\\Template") {
   updated_at: DateTime!
 }
 
-type TemplateTab @model(class: "Narsil\\Models\\Collections\\TemplateTab") {
+type TemplateTab @model(class: "Narsil\\Cms\\Models\\Collections\\TemplateTab") {
   uuid: ID!
   handle: String!
   name: String!
@@ -331,7 +331,7 @@ type TemplateTab @model(class: "Narsil\\Models\\Collections\\TemplateTab") {
   template: Template! @belongsTo
 }
 
-type TemplateTabElement @model(class: "Narsil\\Models\\Collections\\TemplateTabElement") {
+type TemplateTabElement @model(class: "Narsil\\Cms\\Models\\Collections\\TemplateTabElement") {
   uuid: String!
   block_id: ID!
   description: String
@@ -351,7 +351,7 @@ type TemplateTabElement @model(class: "Narsil\\Models\\Collections\\TemplateTabE
   owner: TemplateTab! @belongsTo
 }
 
-type TemplateTabElementCondition @model(class: "Narsil\\Models\\Collections\\TemplateTabElementCondition") {
+type TemplateTabElementCondition @model(class: "Narsil\\Cms\\Models\\Collections\\TemplateTabElementCondition") {
   uuid: String!
   handle: String!
   operator: String!
@@ -360,7 +360,7 @@ type TemplateTabElementCondition @model(class: "Narsil\\Models\\Collections\\Tem
   template_tab_element: TemplateTabElement! @belongsTo
 }
 
-type User @model(class: "Narsil\\Models\\User") {
+type User @model(class: "Narsil\\Cms\\Models\\User") {
   id: ID!
   avatar: String
   email: String!
@@ -373,7 +373,7 @@ type User @model(class: "Narsil\\Models\\User") {
   roles: [Role!]! @belongsToMany
 }
 
-type ValidationRule @model(class: "Narsil\\Models\\User") {
+type ValidationRule @model(class: "Narsil\\Cms\\Models\\User") {
   id: ID!
   handle: String!
 }

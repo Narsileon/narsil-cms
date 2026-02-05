@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Contracts\Fields;
+namespace Narsil\Cms\Contracts\Fields;
 
 #region USE
 
-use Narsil\Contracts\Field as Contract;
+use Narsil\Cms\Contracts\Field as Contract;
 
 #endregion
 

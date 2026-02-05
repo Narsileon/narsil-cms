@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Jobs;
+namespace Narsil\Cms\Jobs;
 
 #region USE
 

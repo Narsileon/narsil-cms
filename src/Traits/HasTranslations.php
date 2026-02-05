@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 #region USE
 
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
-use Narsil\Casts\JsonCast;
+use Narsil\Cms\Casts\JsonCast;
 
 #endregion
 

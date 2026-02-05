@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Database\Factories;
+namespace Narsil\Cms\Database\Factories;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterSocialMedium;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\FooterSocialMedium;
 
 #endregion
 

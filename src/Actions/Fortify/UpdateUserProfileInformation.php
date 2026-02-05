@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Actions\Fortify;
+namespace Narsil\Cms\Actions\Fortify;
 
 #region USE
 
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
-use Narsil\Contracts\FormRequests\Fortify\UpdateUserProfileInformationFormRequest;
-use Narsil\Models\User;
+use Narsil\Cms\Contracts\FormRequests\Fortify\UpdateUserProfileInformationFormRequest;
+use Narsil\Cms\Models\User;
 
 #endregion
 

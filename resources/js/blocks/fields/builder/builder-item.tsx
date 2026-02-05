@@ -149,7 +149,7 @@ function BuilderItem({
 
               if ("type" in child) {
                 if (
-                  child.type !== "Narsil\\Contracts\\Fields\\BuilderField" &&
+                  child.type !== "Narsil\\Cms\\Contracts\\Fields\\BuilderField" &&
                   !element.translatable
                 ) {
                   childHandle = `${childHandle}.en`;

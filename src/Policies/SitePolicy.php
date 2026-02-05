@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Policies;
+namespace Narsil\Cms\Policies;
 
 #region USE
 
-use Narsil\Traits\Policies\UpdatableTrait;
-use Narsil\Traits\Policies\ViewableTrait;
+use Narsil\Cms\Traits\Policies\UpdatableTrait;
+use Narsil\Cms\Traits\Policies\ViewableTrait;
 
 #endregion
 

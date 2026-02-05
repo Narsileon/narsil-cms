@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Sites;
+namespace Narsil\Cms\Http\Controllers\Sites;
 
 #region USE
 
@@ -10,19 +10,19 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Inertia\Response;
 use Locale;
-use Narsil\Casts\HumanDatetimeCast;
-use Narsil\Contracts\Forms\SiteForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Http\Resources\Sites\SiteResource;
-use Narsil\Models\Hosts\HostLocale;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Sites\Site;
-use Narsil\Services\ModelService;
-use Narsil\Support\SelectOption;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Cms\Contracts\Forms\SiteForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Http\Resources\Sites\SiteResource;
+use Narsil\Cms\Models\Hosts\HostLocale;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Support\SelectOption;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

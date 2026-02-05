@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Models\Sites;
+namespace Narsil\Cms\Models\Sites;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\Entities\Entity;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

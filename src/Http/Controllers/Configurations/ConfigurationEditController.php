@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\Configurations;
+namespace Narsil\Cms\Http\Controllers\Configurations;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Casts\HumanDatetimeCast;
-use Narsil\Contracts\Forms\ConfigurationForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Configuration;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Cms\Contracts\Forms\ConfigurationForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Configuration;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

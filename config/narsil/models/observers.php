@@ -11,14 +11,14 @@ return [
     |
     */
 
-    \Narsil\Models\Collections\BlockElement::class => \Narsil\Observers\BlockElementObserver::class,
-    \Narsil\Models\Collections\Template::class => \Narsil\Observers\TemplateObserver::class,
-    \Narsil\Models\Collections\TemplateTabElement::class => \Narsil\Observers\TemplateTabElementObserver::class,
-    \Narsil\Models\Forms\FieldsetElement::class => \Narsil\Observers\FieldsetElementObserver::class,
-    \Narsil\Models\Forms\FormStepElement::class => \Narsil\Observers\FormStepElementObserver::class,
-    \Narsil\Models\Hosts\HostLocale::class => \Narsil\Observers\HostLocaleObserver::class,
-    \Narsil\Models\Sites\Site::class => \Narsil\Observers\SiteObserver::class,
-    \Narsil\Models\Sites\SitePage::class => \Narsil\Observers\SitePageObserver::class,
-    \Narsil\Models\Sites\SitePageEntity::class => \Narsil\Observers\SitePageEntityObserver::class,
-    \Narsil\Models\User::class => \Narsil\Observers\UserObserver::class,
+    \Narsil\Cms\Models\Collections\BlockElement::class => \Narsil\Cms\Observers\BlockElementObserver::class,
+    \Narsil\Cms\Models\Collections\Template::class => \Narsil\Cms\Observers\TemplateObserver::class,
+    \Narsil\Cms\Models\Collections\TemplateTabElement::class => \Narsil\Cms\Observers\TemplateTabElementObserver::class,
+    \Narsil\Cms\Models\Forms\FieldsetElement::class => \Narsil\Cms\Observers\FieldsetElementObserver::class,
+    \Narsil\Cms\Models\Forms\FormStepElement::class => \Narsil\Cms\Observers\FormStepElementObserver::class,
+    \Narsil\Cms\Models\Hosts\HostLocale::class => \Narsil\Cms\Observers\HostLocaleObserver::class,
+    \Narsil\Cms\Models\Sites\Site::class => \Narsil\Cms\Observers\SiteObserver::class,
+    \Narsil\Cms\Models\Sites\SitePage::class => \Narsil\Cms\Observers\SitePageObserver::class,
+    \Narsil\Cms\Models\Sites\SitePageEntity::class => \Narsil\Cms\Observers\SitePageEntityObserver::class,
+    \Narsil\Cms\Models\User::class => \Narsil\Cms\Observers\UserObserver::class,
 ];

@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\Forms\MediaForm as Contract;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Policies\Role;
-use Narsil\Services\RouteService;
+use Narsil\Cms\Contracts\Forms\MediaForm as Contract;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Services\RouteService;
 
 #endregion
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Http\Middleware;
+namespace Narsil\Cms\Http\Middleware;
 
 #region USE
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Narsil\Models\Hosts\HostLocale;
+use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 

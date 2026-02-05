@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Http\Requests;
+namespace Narsil\Cms\Http\Requests;
 
 #region USE
 
 use Illuminate\Foundation\Http\FormRequest;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

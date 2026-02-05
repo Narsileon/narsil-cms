@@ -5,10 +5,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\Header;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Sites\Site;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 

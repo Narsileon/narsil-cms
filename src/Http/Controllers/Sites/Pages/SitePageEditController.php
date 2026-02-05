@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Http\Controllers\Sites\Pages;
+namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\Forms\SitePageForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Sites\SitePage;
-use Narsil\Models\Sites\SitePageEntity;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\Forms\SitePageForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\Sites\SitePageEntity;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

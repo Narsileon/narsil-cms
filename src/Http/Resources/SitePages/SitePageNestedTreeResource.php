@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Http\Resources\SitePages;
+namespace Narsil\Cms\Http\Resources\SitePages;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Narsil\Http\Resources\NestedTreeResource;
-use Narsil\Models\Sites\SitePage;
+use Narsil\Cms\Http\Resources\NestedTreeResource;
+use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 

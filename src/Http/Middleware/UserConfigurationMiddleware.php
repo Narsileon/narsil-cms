@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Http\Middleware;
+namespace Narsil\Cms\Http\Middleware;
 
 #region USE
 
-use Narsil\Models\User;
-use Narsil\Models\Users\UserConfiguration;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Models\Users\UserConfiguration;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

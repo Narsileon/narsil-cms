@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models;
+namespace Narsil\Cms\Models;
 
 #region USE
 
@@ -12,19 +12,19 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Narsil\Casts\ImageCast;
-use Narsil\Models\Policies\Permission;
-use Narsil\Models\Policies\Role;
-use Narsil\Models\Policies\UserPermission;
-use Narsil\Models\Policies\UserRole;
-use Narsil\Models\Users\Session;
-use Narsil\Models\Users\UserBookmark;
-use Narsil\Models\Users\UserConfiguration;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasPermissions;
-use Narsil\Traits\HasRoles;
+use Narsil\Cms\Casts\ImageCast;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Models\Policies\UserPermission;
+use Narsil\Cms\Models\Policies\UserRole;
+use Narsil\Cms\Models\Users\Session;
+use Narsil\Cms\Models\Users\UserBookmark;
+use Narsil\Cms\Models\Users\UserConfiguration;
+use Narsil\Cms\Traits\Blameable;
+use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Cms\Traits\HasDatetimes;
+use Narsil\Cms\Traits\HasPermissions;
+use Narsil\Cms\Traits\HasRoles;
 
 #endregion
 

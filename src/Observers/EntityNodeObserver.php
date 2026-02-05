@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
 use Illuminate\Support\Facades\Config;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Element;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Entities\EntityNodeRelation;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Element;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Entities\EntityNode;
+use Narsil\Cms\Models\Entities\EntityNodeRelation;
 
 #endregion
 

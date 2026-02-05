@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Cms\Services;
 
 #region USE
 
@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Narsil\Support\DatabaseColumn;
+use Narsil\Cms\Support\DatabaseColumn;
 
 #endregion
 

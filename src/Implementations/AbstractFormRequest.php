@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Implementations;
+namespace Narsil\Cms\Implementations;
 
 #region USE
 
 use Illuminate\Foundation\Http\FormRequest;
-use Narsil\Contracts\FormRequest as Contract;
+use Narsil\Cms\Contracts\FormRequest as Contract;
 
 #endregion
 

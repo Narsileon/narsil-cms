@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Models;
+namespace Narsil\Cms\Models;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasTranslations;
+use Narsil\Cms\Traits\Blameable;
+use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Cms\Traits\HasDatetimes;
+use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

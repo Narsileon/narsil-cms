@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Enums\Fields;
+namespace Narsil\Cms\Enums\Fields;
 
 #region USE
 
-use Narsil\Traits\Enumerable;
+use Narsil\Cms\Traits\Enumerable;
 
 #endregion
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Implementations\Tables;
+namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Storages\Media;
-use Narsil\Services\RouteService;
-use Narsil\Support\TableColumn;
+use Narsil\Cms\Implementations\AbstractTable;
+use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Services\RouteService;
+use Narsil\Cms\Support\TableColumn;
 
 #endregion
 

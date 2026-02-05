@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Models\Sites;
+namespace Narsil\Cms\Models\Sites;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

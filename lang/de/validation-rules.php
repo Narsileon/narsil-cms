@@ -2,7 +2,7 @@
 
 #region USE
 
-use Narsil\Enums\ValidationRuleEnum;
+use Narsil\Cms\Enums\ValidationRuleEnum;
 
 #endregion
 

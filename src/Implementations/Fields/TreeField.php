@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Implementations\Fields;
+namespace Narsil\Cms\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\TreeField as Contract;
-use Narsil\Implementations\AbstractField;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Contracts\Fields\TreeField as Contract;
+use Narsil\Cms\Implementations\AbstractField;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Providers;
+namespace Narsil\Cms\Providers;
 
 #region USE
 
@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Database\Seeders\DatabaseSeeder;
-use Narsil\Database\Seeders\ValidationRuleSeeder;
-use Narsil\Models\Sites\Site;
+use Narsil\Cms\Database\Seeders\DatabaseSeeder;
+use Narsil\Cms\Database\Seeders\ValidationRuleSeeder;
+use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 

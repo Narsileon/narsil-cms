@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Implementations\Resources;
+namespace Narsil\Cms\Implementations\Resources;
 
 #region USE
 
 use Illuminate\Http\Request;
-use Narsil\Contracts\Resources\UserResource as Contract;
-use Narsil\Implementations\AbstractResource;
-use Narsil\Models\User;
+use Narsil\Cms\Contracts\Resources\UserResource as Contract;
+use Narsil\Cms\Implementations\AbstractResource;
+use Narsil\Cms\Models\User;
 
 #endregion
 

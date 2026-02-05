@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Http\Resources\Sites;
+namespace Narsil\Cms\Http\Resources\Sites;
 
 #region USE
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Narsil\Http\Resources\SitePages\SitePageNestedTreeResource;
-use Narsil\Models\Sites\Site;
-use Narsil\Support\Tree;
+use Narsil\Cms\Http\Resources\SitePages\SitePageNestedTreeResource;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Support\Tree;
 
 #endregion
 

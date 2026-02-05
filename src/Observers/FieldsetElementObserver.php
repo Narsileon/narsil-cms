@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Models\Forms\Fieldset;
-use Narsil\Models\Forms\FieldsetElement;
-use Narsil\Models\Forms\Input;
+use Narsil\Cms\Models\Forms\Fieldset;
+use Narsil\Cms\Models\Forms\FieldsetElement;
+use Narsil\Cms\Models\Forms\Input;
 
 #endregion
 

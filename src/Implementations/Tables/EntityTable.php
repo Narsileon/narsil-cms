@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Implementations\Tables;
+namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\DataTypeEnum;
-use Narsil\Implementations\AbstractTable;
-use Narsil\Models\Entities\Entity;
-use Narsil\Services\RouteService;
-use Narsil\Support\TableColumn;
+use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Cms\Implementations\AbstractTable;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Services\RouteService;
+use Narsil\Cms\Support\TableColumn;
 
 #endregion
 

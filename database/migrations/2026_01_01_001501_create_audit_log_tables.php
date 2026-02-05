@@ -5,9 +5,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Models\AuditLog;
-use Narsil\Models\User;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Models\AuditLog;
+use Narsil\Cms\Models\User;
 
 #endregion
 

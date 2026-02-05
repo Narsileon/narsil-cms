@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Console\Commands;
+namespace Narsil\Cms\Console\Commands;
 
 #region USE
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
-use Narsil\Models\Policies\Permission;
-use Narsil\Services\PermissionService;
+use Narsil\Cms\Models\Policies\Permission;
+use Narsil\Cms\Services\PermissionService;
 use ReflectionClass;
 
 #endregion

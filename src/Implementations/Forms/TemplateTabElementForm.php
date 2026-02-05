@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\SwitchField;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\ConditionForm;
-use Narsil\Contracts\Forms\TemplateTabElementForm as Contract;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Contracts\Fields\SwitchField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Forms\ConditionForm;
+use Narsil\Cms\Contracts\Forms\TemplateTabElementForm as Contract;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 

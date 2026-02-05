@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Collections;
+namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Narsil\Traits\HasTranslations;
-use Narsil\Traits\HasUuidKey;
-use Narsil\Traits\IsOrderable;
+use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 

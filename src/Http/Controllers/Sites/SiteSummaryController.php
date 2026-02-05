@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Sites;
+namespace Narsil\Cms\Http\Controllers\Sites;
 
 #region USE
 
@@ -8,11 +8,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Response;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Http\Data\SummaryData;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Sites\Site;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Http\Data\SummaryData;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 

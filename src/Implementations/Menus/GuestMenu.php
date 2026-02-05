@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Menus;
+namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
-use Narsil\Contracts\Menus\GuestMenu as Contract;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Implementations\AbstractMenu;
-use Narsil\Models\Users\UserConfiguration;
-use Narsil\Services\ModelService;
-use Narsil\Support\TranslationsBag;
-use Narsil\Support\MenuItem;
+use Narsil\Cms\Contracts\Menus\GuestMenu as Contract;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Implementations\AbstractMenu;
+use Narsil\Cms\Models\Users\UserConfiguration;
+use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Cms\Support\MenuItem;
 
 #endregion
 

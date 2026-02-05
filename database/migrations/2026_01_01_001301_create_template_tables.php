@@ -5,14 +5,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Enums\Database\OperatorEnum;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Collections\TemplateTabElementCondition;
-use Narsil\Models\User;
+use Narsil\Cms\Enums\Database\OperatorEnum;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Collections\TemplateTabElementCondition;
+use Narsil\Cms\Models\User;
 
 #endregion
 

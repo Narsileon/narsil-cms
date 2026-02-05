@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Database\Factories;
+namespace Narsil\Cms\Database\Factories;
 
 /**
  * @version 1.0.0

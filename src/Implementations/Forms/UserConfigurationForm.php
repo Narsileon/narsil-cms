@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
@@ -9,17 +9,17 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Locale;
-use Narsil\Contracts\Fields\RangeField;
-use Narsil\Contracts\Fields\SelectField;
-use Narsil\Contracts\Forms\UserConfigurationForm as Contract;
-use Narsil\Enums\ColorEnum;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Users\UserConfiguration;
-use Narsil\Support\SelectOption;
+use Narsil\Cms\Contracts\Fields\RangeField;
+use Narsil\Cms\Contracts\Fields\SelectField;
+use Narsil\Cms\Contracts\Forms\UserConfigurationForm as Contract;
+use Narsil\Cms\Enums\ColorEnum;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Users\UserConfiguration;
+use Narsil\Cms\Support\SelectOption;
 use ResourceBundle;
 
 #endregion

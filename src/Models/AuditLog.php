@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Models;
+namespace Narsil\Cms\Models;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

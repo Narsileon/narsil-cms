@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Support;
+namespace Narsil\Cms\Support;
 
 #region USE
 
@@ -8,8 +8,8 @@ use DOMDocument;
 use DOMElement;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Narsil\Models\Hosts\Host;
-use Narsil\Models\Hosts\HostLocale;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 

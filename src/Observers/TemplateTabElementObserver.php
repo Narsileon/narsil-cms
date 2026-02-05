@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Observers;
+namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Hosts;
+namespace Narsil\Cms\Models\Hosts;
 
 #region USE
 
@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 use Locale;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasUuidKey;
-use Narsil\Traits\IsOrderable;
+use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 

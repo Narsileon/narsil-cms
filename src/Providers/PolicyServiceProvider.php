@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Providers;
+namespace Narsil\Cms\Providers;
 
 #region USE
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Models\User;
+use Narsil\Cms\Models\User;
 
 #endregion
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\Entities;
+namespace Narsil\Cms\Http\Controllers\Entities;
 
 #region USE
 
@@ -8,12 +8,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Collections\DataTableCollection;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Traits\IsCollectionController;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Collections\DataTableCollection;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 

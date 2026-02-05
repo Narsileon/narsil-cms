@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Http\Controllers\Users;
+namespace Narsil\Cms\Http\Controllers\Users;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Contracts\Forms\UserForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\User;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\Forms\UserForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

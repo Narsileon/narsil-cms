@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Contracts\Menus;
+namespace Narsil\Cms\Contracts\Menus;
 
 #region USE
 
-use Narsil\Contracts\Menu;
+use Narsil\Cms\Contracts\Menu;
 
 #endregion
 

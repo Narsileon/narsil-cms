@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Models\Forms;
+namespace Narsil\Cms\Models\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Traits\HasTranslations;
-use Narsil\Traits\HasUuidKey;
-use Narsil\Traits\IsOrderable;
+use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
-use Narsil\Contracts\Fields\DatetimeField;
-use Narsil\Contracts\Forms\PermissionForm as Contract;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Entities\Entity;
+use Narsil\Cms\Contracts\Fields\DatetimeField;
+use Narsil\Cms\Contracts\Forms\PermissionForm as Contract;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 

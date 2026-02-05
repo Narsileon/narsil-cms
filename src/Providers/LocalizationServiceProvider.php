@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Providers;
+namespace Narsil\Cms\Providers;
 
 #region USE
 
 use Illuminate\Support\ServiceProvider;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

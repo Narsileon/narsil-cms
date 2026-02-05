@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Models\Collections;
+namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Models\AbstractCondition;
-use Narsil\Models\Collections\BlockElement;
+use Narsil\Cms\Models\AbstractCondition;
+use Narsil\Cms\Models\Collections\BlockElement;
 
 #endregion
 

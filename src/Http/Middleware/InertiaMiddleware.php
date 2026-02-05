@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Middleware;
+namespace Narsil\Cms\Http\Middleware;
 
 #region USE
 
@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
-use Narsil\Contracts\Menus\AuthMenu;
-use Narsil\Contracts\Menus\GuestMenu;
-use Narsil\Contracts\Menus\Sidebar;
-use Narsil\Contracts\Resources\UserResource;
-use Narsil\Models\Users\UserConfiguration;
-use Narsil\Services\BreadcrumbService;
+use Narsil\Cms\Contracts\Menus\AuthMenu;
+use Narsil\Cms\Contracts\Menus\GuestMenu;
+use Narsil\Cms\Contracts\Menus\Sidebar;
+use Narsil\Cms\Contracts\Resources\UserResource;
+use Narsil\Cms\Models\Users\UserConfiguration;
+use Narsil\Cms\Services\BreadcrumbService;
 
 #endregions
 

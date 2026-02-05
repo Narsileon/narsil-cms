@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers;
+namespace Narsil\Cms\Http\Controllers;
 
 #region USE
 
@@ -9,8 +9,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\Response;
-use Narsil\Http\Requests\QueryRequest;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Http\Requests\QueryRequest;
+use Narsil\Cms\Support\TranslationsBag;
 
 #endregion
 

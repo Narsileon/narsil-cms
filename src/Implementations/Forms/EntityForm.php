@@ -1,18 +1,18 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\Fields\TextField;
-use Narsil\Contracts\Forms\EntityForm as Contract;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Entities\Entity;
-use Narsil\Services\RouteService;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Forms\EntityForm as Contract;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Services\RouteService;
 
 #endregion
 

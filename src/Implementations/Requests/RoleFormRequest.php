@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Implementations\Requests;
+namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
-use Narsil\Contracts\FormRequests\RoleFormRequest as Contract;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Policies\Role;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Contracts\FormRequests\RoleFormRequest as Contract;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

@@ -2,7 +2,7 @@
 
 #region USE
 
-use Narsil\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
 
 #endregion
 

@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Models\Forms;
+namespace Narsil\Cms\Models\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Casts\JsonCast;
-use Narsil\Models\Collections\BaseElement;
-use Narsil\Models\ValidationRule;
-use Narsil\Services\Models\FieldService;
-use Narsil\Traits\HasValidationRules;
+use Narsil\Cms\Casts\JsonCast;
+use Narsil\Cms\Models\Collections\BaseElement;
+use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Services\Models\FieldService;
+use Narsil\Cms\Traits\HasValidationRules;
 
 #endregion
 

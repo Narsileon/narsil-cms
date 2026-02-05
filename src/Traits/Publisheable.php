@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Traits;
+namespace Narsil\Cms\Traits;
 
 /**
  * @version 1.0.0

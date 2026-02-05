@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Console\Commands;
+namespace Narsil\Cms\Console\Commands;
 
 /**
  * @version 1.0.0

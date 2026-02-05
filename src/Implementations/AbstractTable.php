@@ -1,12 +1,12 @@
 <?php
 
-namespace Narsil\Implementations;
+namespace Narsil\Cms\Implementations;
 
 #region USE
 
-use Narsil\Contracts\Table;
-use Narsil\Services\RouteService;
-use Narsil\Services\TableService;
+use Narsil\Cms\Contracts\Table;
+use Narsil\Cms\Services\RouteService;
+use Narsil\Cms\Services\TableService;
 
 #endregion
 

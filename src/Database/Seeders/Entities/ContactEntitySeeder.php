@@ -1,20 +1,20 @@
 <?php
 
-namespace Narsil\Database\Seeders\Entities;
+namespace Narsil\Cms\Database\Seeders\Entities;
 
 #region USE
 
-use Narsil\Database\Seeders\Blocks\FormBlockSeeder;
-use Narsil\Database\Seeders\Blocks\LayoutBlockSeeder;
-use Narsil\Database\Seeders\Blocks\PaddingBlockSeeder;
-use Narsil\Database\Seeders\EntitySeeder;
-use Narsil\Database\Seeders\Forms\ContactFormSeeder;
-use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
-use Narsil\Models\Collections\Block;
-use Narsil\Models\Collections\Template;
-use Narsil\Models\Entities\Entity;
-use Narsil\Models\Entities\EntityNode;
-use Narsil\Models\Forms\Form;
+use Narsil\Cms\Database\Seeders\Blocks\FormBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\LayoutBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\PaddingBlockSeeder;
+use Narsil\Cms\Database\Seeders\EntitySeeder;
+use Narsil\Cms\Database\Seeders\Forms\ContactFormSeeder;
+use Narsil\Cms\Database\Seeders\Templates\ContentTemplateSeeder;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\EntityNode;
+use Narsil\Cms\Models\Forms\Form;
 
 #endregion
 

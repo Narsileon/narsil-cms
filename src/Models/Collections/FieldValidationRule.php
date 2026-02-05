@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Models\Collections;
+namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Models\ValidationRule;
-use Narsil\Traits\HasUuidKey;
+use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Traits\HasUuidKey;
 
 #endregion
 

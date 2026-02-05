@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Implementations\Forms;
+namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Locale;
-use Narsil\Contracts\Fields\SelectField;
-use Narsil\Contracts\Forms\ConfigurationForm as Contract;
-use Narsil\Implementations\AbstractForm;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Models\Collections\TemplateTabElement;
-use Narsil\Models\Configuration;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Services\RouteService;
-use Narsil\Support\SelectOption;
+use Narsil\Cms\Contracts\Fields\SelectField;
+use Narsil\Cms\Contracts\Forms\ConfigurationForm as Contract;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\Configuration;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Services\RouteService;
+use Narsil\Cms\Support\SelectOption;
 
 #endregion
 

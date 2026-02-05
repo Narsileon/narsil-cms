@@ -1,19 +1,19 @@
 <?php
 
-namespace Narsil\Http\Controllers\Globals\Footers;
+namespace Narsil\Cms\Http\Controllers\Globals\Footers;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Casts\HumanDatetimeCast;
-use Narsil\Contracts\Forms\FooterForm;
-use Narsil\Enums\RequestMethodEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RenderController;
-use Narsil\Models\Globals\Footer;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Cms\Contracts\Forms\FooterForm;
+use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

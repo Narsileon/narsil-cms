@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\Collections\Blocks;
+namespace Narsil\Cms\Http\Controllers\Collections\Blocks;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Narsil\Contracts\FormRequests\BlockFormRequest;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Collections\Block;
-use Narsil\Services\Models\BlockService;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Contracts\FormRequests\BlockFormRequest;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Services\Models\BlockService;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Sites;
+namespace Narsil\Cms\Models\Sites;
 
 #region USE
 
@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Narsil\Models\Hosts\HostLocaleLanguage;
-use Narsil\Models\TreeModel;
-use Narsil\Traits\HasIdentifier;
-use Narsil\Traits\HasTranslations;
+use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
+use Narsil\Cms\Models\TreeModel;
+use Narsil\Cms\Traits\HasIdentifier;
+use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

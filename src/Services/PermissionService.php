@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Cms\Services;
 
 #region USE
 
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Models\Policies\Permission;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Models\Policies\Permission;
 
 #endregion
 

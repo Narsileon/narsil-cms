@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Models\Globals;
+namespace Narsil\Cms\Models\Globals;
 
 #region USE
 
@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Database\Factories\FooterFactory;
-use Narsil\Models\Sites\Site;
-use Narsil\Traits\Blameable;
-use Narsil\Traits\HasAuditLogs;
-use Narsil\Traits\HasDatetimes;
-use Narsil\Traits\HasTranslations;
+use Narsil\Cms\Database\Factories\FooterFactory;
+use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Traits\Blameable;
+use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Cms\Traits\HasDatetimes;
+use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

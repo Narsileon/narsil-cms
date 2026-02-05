@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Services\Models;
+namespace Narsil\Cms\Services\Models;
 
 #region USE
 
-use Narsil\Models\Globals\Footer;
-use Narsil\Models\Globals\FooterLink;
-use Narsil\Models\Globals\FooterSocialMedium;
-use Narsil\Services\DatabaseService;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Models\Globals\FooterLink;
+use Narsil\Cms\Models\Globals\FooterSocialMedium;
+use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

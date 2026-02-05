@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Contracts\FormRequests;
+namespace Narsil\Cms\Contracts\FormRequests;
 
 #region USE
 
-use Narsil\Contracts\FormRequest;
+use Narsil\Cms\Contracts\FormRequest;
 
 #endregion
 

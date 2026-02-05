@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Providers;
+namespace Narsil\Cms\Providers;
 
 #region USE
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Http\Middleware\InertiaMiddleware;
-use Narsil\Http\Middleware\LocaleMiddleware;
-use Narsil\Http\Middleware\UserConfigurationMiddleware;
-use Narsil\Http\Middleware\WithoutSsr;
+use Narsil\Cms\Http\Middleware\InertiaMiddleware;
+use Narsil\Cms\Http\Middleware\LocaleMiddleware;
+use Narsil\Cms\Http\Middleware\UserConfigurationMiddleware;
+use Narsil\Cms\Http\Middleware\WithoutSsr;
 
 #endregion
 

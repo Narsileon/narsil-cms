@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Implementations;
+namespace Narsil\Cms\Implementations;
 
 #region USE
 
@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Locale;
-use Narsil\Contracts\Form;
-use Narsil\Models\Collections\TemplateTab;
-use Narsil\Support\SelectOption;
-use Narsil\Support\TranslationsBag;
+use Narsil\Cms\Contracts\Form;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Support\SelectOption;
+use Narsil\Cms\Support\TranslationsBag;
 use ReflectionClass;
 
 #endregion

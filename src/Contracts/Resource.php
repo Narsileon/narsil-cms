@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Contracts;
+namespace Narsil\Cms\Contracts;
 
 #region USE
 
@@ -22,7 +22,7 @@ interface Resource
      * Transform the resource into an array.
      *
      * @param Request  $request
-     * 
+     *
      * @return array|Arrayable|JsonSerializable
      */
     public function toArray(Request $request);

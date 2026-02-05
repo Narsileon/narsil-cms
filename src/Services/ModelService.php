@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Services;
+namespace Narsil\Cms\Services;
 
 #region USE
 
 use Illuminate\Support\Str;
-use Narsil\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\ModelEventEnum;
 
 #endregion
 

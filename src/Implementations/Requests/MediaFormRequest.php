@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Implementations\Requests;
+namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
-use Narsil\Contracts\FormRequests\MediaFormRequest as Contract;
-use Narsil\Implementations\AbstractFormRequest;
+use Narsil\Cms\Contracts\FormRequests\MediaFormRequest as Contract;
+use Narsil\Cms\Implementations\AbstractFormRequest;
 
 #endregion
 

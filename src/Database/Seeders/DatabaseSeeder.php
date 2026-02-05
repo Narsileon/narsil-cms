@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Database\Seeders;
+namespace Narsil\Cms\Database\Seeders;
 
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Database\Seeders\Templates\ContentTemplateSeeder;
+use Narsil\Cms\Database\Seeders\Templates\ContentTemplateSeeder;
 
 #endregion
 

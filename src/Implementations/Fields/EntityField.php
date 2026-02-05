@@ -1,15 +1,15 @@
 <?php
 
-namespace Narsil\Implementations\Fields;
+namespace Narsil\Cms\Implementations\Fields;
 
 #region USE
 
-use Narsil\Contracts\Fields\EntityField as Contract;
-use Narsil\Contracts\Fields\SelectField;
-use Narsil\Implementations\AbstractField;
-use Narsil\Models\Collections\BlockElement;
-use Narsil\Models\Collections\Field;
-use Narsil\Models\Collections\Template;
+use Narsil\Cms\Contracts\Fields\EntityField as Contract;
+use Narsil\Cms\Contracts\Fields\SelectField;
+use Narsil\Cms\Implementations\AbstractField;
+use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 

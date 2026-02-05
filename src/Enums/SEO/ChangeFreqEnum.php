@@ -1,10 +1,10 @@
 <?php
 
-namespace Narsil\Enums\SEO;
+namespace Narsil\Cms\Enums\SEO;
 
 #region USE
 
-use Narsil\Traits\Enumerable;
+use Narsil\Cms\Traits\Enumerable;
 
 #endregion
 

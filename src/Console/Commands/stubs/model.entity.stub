@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 #region USE
 
-use Narsil\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 

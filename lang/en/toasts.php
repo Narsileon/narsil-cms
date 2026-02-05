@@ -2,7 +2,7 @@
 
 #region USE
 
-use Narsil\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\ModelEventEnum;
 
 #endregion
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Http\Controllers\UserConfigurations;
+namespace Narsil\Cms\Http\Controllers\UserConfigurations;
 
 #region USE
 
@@ -8,10 +8,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Narsil\Contracts\FormRequests\UserConfigurationFormRequest;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\User;
-use Narsil\Models\Users\UserConfiguration;
+use Narsil\Cms\Contracts\FormRequests\UserConfigurationFormRequest;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Models\Users\UserConfiguration;
 
 #endregion
 

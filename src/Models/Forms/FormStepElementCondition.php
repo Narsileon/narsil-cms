@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Models\Forms;
+namespace Narsil\Cms\Models\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Models\AbstractCondition;
+use Narsil\Cms\Models\AbstractCondition;
 
 #endregion
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Validation;
+namespace Narsil\Cms\Validation;
 
 #region USE
 
 use Illuminate\Validation\Rule;
-use Narsil\Enums\ValidationRuleEnum;
+use Narsil\Cms\Enums\ValidationRuleEnum;
 
 #endregion
 

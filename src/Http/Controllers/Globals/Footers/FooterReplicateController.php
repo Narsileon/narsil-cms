@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Http\Controllers\Globals\Footers;
+namespace Narsil\Cms\Http\Controllers\Globals\Footers;
 
 #region USE
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Enums\ModelEventEnum;
-use Narsil\Enums\Policies\PermissionEnum;
-use Narsil\Http\Controllers\RedirectController;
-use Narsil\Models\Globals\Footer;
-use Narsil\Services\Models\FooterService;
-use Narsil\Services\ModelService;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Services\Models\FooterService;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

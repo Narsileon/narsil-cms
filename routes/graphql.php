@@ -3,7 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
-use Narsil\Http\Controllers\GraphQL\GraphiQLController;
+use Narsil\Cms\Http\Controllers\GraphQL\GraphiQLController;
 
 #endregion
 

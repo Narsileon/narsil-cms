@@ -1,13 +1,13 @@
 <?php
 
-namespace Narsil\Implementations\Requests\Fortify;
+namespace Narsil\Cms\Implementations\Requests\Fortify;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Contracts\FormRequests\Fortify\UpdateUserPasswordFormRequest as Contract;
-use Narsil\Models\User;
-use Narsil\Validation\FormRule;
+use Narsil\Cms\Contracts\FormRequests\Fortify\UpdateUserPasswordFormRequest as Contract;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Validation\FormRule;
 
 #endregion
 
