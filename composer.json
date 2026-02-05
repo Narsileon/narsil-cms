@@ -63,7 +63,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Narsil\\Cms\\NarsilServiceProvider"
+        "Narsil\\Cms\\ServiceProvider"
       ]
     }
   },

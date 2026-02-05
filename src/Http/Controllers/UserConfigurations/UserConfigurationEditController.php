@@ -14,7 +14,7 @@ use Narsil\Cms\Contracts\Forms\UserConfigurationForm;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

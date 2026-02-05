@@ -6,7 +6,7 @@ namespace Narsil\Cms\Implementations\Fields;
 
 use Narsil\Cms\Contracts\Fields\RelationsField as Contract;
 use Narsil\Cms\Implementations\AbstractField;
-use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

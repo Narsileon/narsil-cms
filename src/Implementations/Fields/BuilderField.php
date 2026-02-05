@@ -13,7 +13,7 @@ use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Services\RouteService;
 use Narsil\Cms\Support\SelectOption;
-use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

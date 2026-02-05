@@ -22,7 +22,7 @@ use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Support\SelectOption;
-use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

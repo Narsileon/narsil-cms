@@ -6,7 +6,7 @@ namespace Narsil\Cms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Narsil\Cms\Providers\CommandServiceProvider;
 use Narsil\Cms\Providers\ConfigurationServiceProvider;
 use Narsil\Cms\Providers\FieldServiceProvider;
@@ -33,7 +33,7 @@ use Nuwave\Lighthouse\LighthouseServiceProvider;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class NarsilServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     #region PUBLIC METHODS
 

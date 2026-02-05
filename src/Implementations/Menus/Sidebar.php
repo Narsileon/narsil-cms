@@ -26,8 +26,8 @@ use Narsil\Cms\Models\Storages\Media;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Services\PermissionService;
-use Narsil\Cms\Support\TranslationsBag;
 use Narsil\Cms\Support\MenuItem;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

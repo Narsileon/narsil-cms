@@ -9,7 +9,7 @@ use Narsil\Cms\Contracts\Fields\TextField as Contract;
 use Narsil\Cms\Implementations\AbstractField;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

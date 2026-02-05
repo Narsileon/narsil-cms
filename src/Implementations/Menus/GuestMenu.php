@@ -9,8 +9,8 @@ use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Implementations\AbstractMenu;
 use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TranslationsBag;
 use Narsil\Cms\Support\MenuItem;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

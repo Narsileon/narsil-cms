@@ -12,7 +12,7 @@ use JsonSerializable;
 use Narsil\Cms\Contracts\Table;
 use Narsil\Cms\Http\Requests\QueryRequest;
 use Narsil\Cms\Services\QueryService;
-use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

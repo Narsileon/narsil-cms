@@ -13,7 +13,7 @@ use Locale;
 use Narsil\Cms\Contracts\Form;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Support\SelectOption;
-use Narsil\Cms\Support\TranslationsBag;
+use Narsil\Ui\Support\TranslationsBag;
 use ReflectionClass;
 
 #endregion
