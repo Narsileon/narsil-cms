@@ -1,4 +1,4 @@
-// https://ui.shadcn.com/docs/components/data-table
+// https://ui.shadcn.com/docs/components/base/data-table
 
 import getMenuColumn from "./columns/menu-column";
 import getSelectColumn from "./columns/select-column";
