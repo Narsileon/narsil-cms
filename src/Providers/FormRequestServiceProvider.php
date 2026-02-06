@@ -36,7 +36,7 @@ class FormRequestServiceProvider extends ServiceProvider
      */
     protected function registerFormRequests(): void
     {
-        $config = Config::get('narsil.bindings.form-requests', []);
+        $config = Config::get('narsil.bindings.requests', []);
 
         foreach ($config as $abstract => $concrete)
         {

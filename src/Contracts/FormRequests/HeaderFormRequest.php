@@ -12,7 +12,7 @@ use Narsil\Cms\Contracts\FormRequest;
  * @version 1.0.0
  * @author Jonathan Rigaux
  *
- * @see vendor/narsil/cms/config/narsil/bindings/form-requests.php
+ * @see vendor/narsil/cms/config/narsil/bindings/requests.php
  */
 interface HeaderFormRequest extends FormRequest
 {
