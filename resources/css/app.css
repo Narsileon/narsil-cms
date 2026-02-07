@@ -1,4 +1,3 @@
-@import "./font.css";
 @import "@narsil-ui/../css/colors.css";
 @import "@narsil-ui/../css/theme.css";
 @import "@narsil-ui/../css/utilities.css";
@@ -23,3 +22,8 @@
     scrollbar-color: var(--color-gray-500) transparent;
   }
 }
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+}
+
