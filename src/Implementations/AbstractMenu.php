@@ -31,23 +31,6 @@ abstract class AbstractMenu implements Menu
     /**
      * {@inheritDoc}
      */
-    public function jsonSerialize(): mixed
-    {
-        return $this->content();
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * @return array
-     */
-    abstract protected function content(): array;
-
-    /**
-     * {@inheritDoc}
-     */
     public function add(MenuItem $menuItem): self
     {
         $this->menuItems[] = $menuItem;
@@ -58,9 +41,36 @@ abstract class AbstractMenu implements Menu
     /**
      * {@inheritDoc}
      */
+    public function jsonSerialize(): mixed
+    {
+        return $this->content();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function remove(string $id): self
     {
+        $this->menuItems = array_values(array_filter($this->menuItems, function (MenuItem $menuItem) use ($id)
+        {
+            return $menuItem->get('id') !== $id;
+        }));
+
         return $this;
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * @return array
+     */
+    protected function content(): array
+    {
+        $filteredMenuItems = MenuItem::filterByPermissions(collect($this->menuItems));
+
+        return $filteredMenuItems->all();
     }
 
     #endregion

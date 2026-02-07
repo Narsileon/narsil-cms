@@ -23,8 +23,9 @@ class MenuItem extends Fluent
     /**
      * @return void
      */
-    public function __construct()
+    public function __construct(string $id)
     {
+        $this->id($id);
         $this->method(RequestMethodEnum::GET->value);
     }
 
@@ -102,6 +103,20 @@ class MenuItem extends Fluent
     final public function icon(string $icon): static
     {
         $this->set('icon', $icon);
+
+        return $this;
+    }
+
+    /**
+     * Set the id of the menu item.
+     *
+     * @param string $id
+     *
+     * @return static
+     */
+    final public function id(string $id): static
+    {
+        $this->set('id', $id);
 
         return $this;
     }

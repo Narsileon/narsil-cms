@@ -43,7 +43,7 @@ class Sidebar extends AbstractMenu implements Contract
     {
         $this
             ->add(
-                new MenuItem()
+                new MenuItem('dashboard')
                     ->icon('chart-pie')
                     ->label(trans('narsil-cms::ui.dashboard'))
                     ->route('dashboard')
@@ -68,16 +68,6 @@ class Sidebar extends AbstractMenu implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritDoc}
-     */
-    protected function content(): array
-    {
-        $filteredMenuItems = MenuItem::filterByPermissions(collect($this->menuItems));
-
-        return $filteredMenuItems->all();
-    }
-
-    /**
      * @return void
      */
     protected function addCollectionsGroup(): void
@@ -90,7 +80,7 @@ class Sidebar extends AbstractMenu implements Contract
 
         foreach ($templates as $template)
         {
-            $this->add(new MenuItem()
+            $this->add(new MenuItem($template->{Template::TABLE_NAME})
                 ->group($group)
                 ->icon('layers')
                 ->label($template->{Template::PLURAL})
@@ -113,7 +103,7 @@ class Sidebar extends AbstractMenu implements Contract
 
         $this
             ->add(
-                new MenuItem()
+                new MenuItem(DiskEnum::DOCUMENTS->value)
                     ->group($group)
                     ->icon('file')
                     ->label(ModelService::getTableLabel(DiskEnum::DOCUMENTS->value))
@@ -126,7 +116,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(DiskEnum::IMAGES->value)
                     ->group($group)
                     ->icon('image')
                     ->label(ModelService::getTableLabel(DiskEnum::IMAGES->value))
@@ -139,7 +129,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(DiskEnum::VIDEOS->value)
                     ->group($group)
                     ->icon('video')
                     ->label(ModelService::getTableLabel(DiskEnum::VIDEOS->value))
@@ -161,7 +151,7 @@ class Sidebar extends AbstractMenu implements Contract
         $group = trans('narsil-cms::ui.globals');
 
         $this
-            ->add(new MenuItem()
+            ->add(new MenuItem(Header::TABLE)
                 ->group($group)
                 ->icon('header')
                 ->label(ModelService::getTableLabel(Header::TABLE))
@@ -169,7 +159,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->permissions([
                     PermissionService::getHandle(Header::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]))
-            ->add(new MenuItem()
+            ->add(new MenuItem(Footer::TABLE)
                 ->group($group)
                 ->icon('footer')
                 ->label(ModelService::getTableLabel(Footer::TABLE))
@@ -188,7 +178,7 @@ class Sidebar extends AbstractMenu implements Contract
 
         $this
             ->add(
-                new MenuItem()
+                new MenuItem(Host::TABLE)
                     ->group($group)
                     ->icon('server')
                     ->label(ModelService::getTableLabel(Host::TABLE))
@@ -198,7 +188,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(User::TABLE)
                     ->group($group)
                     ->icon('user')
                     ->label(ModelService::getTableLabel(User::TABLE))
@@ -208,7 +198,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(Role::TABLE)
                     ->group($group)
                     ->icon('role')
                     ->label(ModelService::getTableLabel(Role::TABLE))
@@ -218,7 +208,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(Permission::TABLE)
                     ->group($group)
                     ->icon('permission')
                     ->label(ModelService::getTableLabel(Permission::TABLE))
@@ -228,7 +218,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(Configuration::TABLE)
                     ->group($group)
                     ->icon('settings')
                     ->label(ModelService::getTableLabel(Configuration::TABLE))
@@ -253,7 +243,7 @@ class Sidebar extends AbstractMenu implements Contract
         foreach ($sites as $site)
         {
             $this->add(
-                new MenuItem()
+                new MenuItem($site->{Site::HOSTNAME})
                     ->group($group)
                     ->icon('globe')
                     ->label($site->{Site::LABEL}, false)
@@ -278,7 +268,7 @@ class Sidebar extends AbstractMenu implements Contract
 
         $this
             ->add(
-                new MenuItem()
+                new MenuItem(Template::TABLE)
                     ->group($group)
                     ->icon('template')
                     ->label(ModelService::getTableLabel(Template::TABLE))
@@ -288,7 +278,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(Block::TABLE)
                     ->group($group)
                     ->icon('block')
                     ->label(ModelService::getTableLabel(Block::TABLE))
@@ -298,7 +288,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ])
             )
             ->add(
-                new MenuItem()
+                new MenuItem(Field::TABLE)
                     ->group($group)
                     ->icon('field')
                     ->label(ModelService::getTableLabel(Field::TABLE))
@@ -318,7 +308,7 @@ class Sidebar extends AbstractMenu implements Contract
 
         $this
             ->add(
-                new MenuItem()
+                new MenuItem('graphiql')
                     ->group($group)
                     ->icon('graph-ql')
                     ->label('GraphQL')
@@ -326,7 +316,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->target('_blank')
             )
             ->add(
-                new MenuItem()
+                new MenuItem('horizon')
                     ->group($group)
                     ->icon('horizon')
                     ->label('Horizon')

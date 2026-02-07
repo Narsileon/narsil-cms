@@ -27,61 +27,28 @@ class AuthMenu extends AbstractMenu implements Contract
      */
     public function __construct()
     {
+        $this
+            ->add(
+                new MenuItem('settings')
+                    ->icon('settings')
+                    ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
+                    ->route('user-configurations.edit')
+                    ->modal(true),
+            )
+            ->add(
+                new MenuItem('logout')
+                    ->icon('log-out')
+                    ->label(trans('narsil-cms::ui.log_out'))
+                    ->route('logout')
+                    ->method(RequestMethodEnum::POST->value),
+            );
+
         app(TranslationsBag::class)
             ->add('narsil-cms::accessibility.toggle_user_menu')
             ->add('narsil-cms::bookmarks.tooltip')
             ->add('narsil-cms::themes.dark')
             ->add('narsil-cms::themes.light')
             ->add('narsil-cms::themes.system');
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function content(): array
-    {
-        return array_merge(
-            $this->getSettingsGroup(),
-            $this->getLogoutGroup(),
-        );
-    }
-
-    /**
-     * @return array<MenuItem>
-     */
-    protected function getLogoutGroup(): array
-    {
-        $group = 'logout-group';
-
-        return [
-            new MenuItem()
-                ->group($group)
-                ->icon('log-out')
-                ->label(trans('narsil-cms::ui.log_out'))
-                ->route('logout')
-                ->method(RequestMethodEnum::POST->value),
-        ];
-    }
-
-    /**
-     * @return array<MenuItem>
-     */
-    protected function getSettingsGroup(): array
-    {
-        $group = 'settings-group';
-
-        return [
-            new MenuItem()
-                ->group($group)
-                ->icon('settings')
-                ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
-                ->route('user-configurations.edit')
-                ->modal(true),
-        ];
     }
 
     #endregion
