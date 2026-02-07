@@ -2,6 +2,8 @@ import { Select } from "@narsil-cms/blocks/fields/select";
 import { getField } from "@narsil-cms/registries/fields";
 import type { Field, SelectOption } from "@narsil-cms/types";
 import { Badge } from "@narsil-ui/components/badge";
+import { Button } from "@narsil-ui/components/button";
+import { Icon } from "@narsil-ui/components/icon";
 import {
   PopoverPopup,
   PopoverPortal,
@@ -46,16 +48,23 @@ function DataTableFilterItem({ filter, ...props }: DataTableFilterItemProps) {
 
   return (
     <PopoverRoot open={open} onOpenChange={onOpenChange} modal={true}>
-      <PopoverTrigger {...props}>
-        <li>
-          <Badge
-            className="cursor-pointer"
-            onClose={() => dataTableStore.removeFilter(filter.column)}
-          >
-            {column.columnDef.header as string}
-          </Badge>
-        </li>
-      </PopoverTrigger>
+      <PopoverTrigger
+        {...props}
+        render={
+          <li>
+            <Badge className="cursor-pointer pr-0">
+              {column.columnDef.header as string}
+              <Button
+                variant="ghost-secondary"
+                size="icon-xs"
+                onClick={() => dataTableStore.removeFilter(filter.column)}
+              >
+                <Icon className="text-primary-foreground" name="x" />
+              </Button>
+            </Badge>
+          </li>
+        }
+      ></PopoverTrigger>
       <PopoverPortal>
         <PopoverPositioner>
           <PopoverPopup className="flex flex-col gap-4">

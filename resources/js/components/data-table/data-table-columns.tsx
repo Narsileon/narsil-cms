@@ -186,12 +186,13 @@ function SortableItem({ column, onRemove }: SortableItemProps) {
       <span className="grow">{columnLabel}</span>
       <Tooltip tooltip={hideColumnLabel}>
         <Button
+          className="rounded-full"
           aria-label={hideColumnLabel}
           size="icon-sm"
           variant="ghost"
           onClick={() => onRemove(column)}
         >
-          <Icon className="size-4" name="x" />
+          <Icon name="x" />
         </Button>
       </Tooltip>
     </div>
