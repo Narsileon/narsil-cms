@@ -43,7 +43,6 @@ class ContentTemplateSeeder extends TemplateSeeder
     {
         $accordionBlock = new AccordionBlockSeeder()->run();
         $callToActionBlock = new CallToActionBlockSeeder()->run();
-        $formBlock = new FormBlockSeeder()->run();
         $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
 
         return new Template([
@@ -71,7 +70,6 @@ class ContentTemplateSeeder extends TemplateSeeder
                                 [
                                     $accordionBlock,
                                     $callToActionBlock,
-                                    $formBlock,
                                     $heroHeaderBlock,
                                 ],
                             ),
