@@ -3,8 +3,8 @@ import {
   type LaravelPaginationLinks,
   type LaravelPaginationMeta,
 } from "@narsil-cms/blocks/pagination";
-import { type IconName } from "@narsil-cms/registries/icons";
 import type { Model, TemplateTab } from "@narsil-cms/types";
+import { type IconName } from "@narsil-ui/registries/icons";
 import {
   type ColumnDef,
   type ColumnOrderState,

@@ -1,5 +1,5 @@
-import { type IconName } from "@narsil-cms/registries/icons";
 import type { FieldType } from "@narsil-cms/types";
+import { type IconName } from "@narsil-ui/registries/icons";
 
 export type Model = {
   created_at?: string;

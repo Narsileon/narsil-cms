@@ -7,15 +7,15 @@ import { File } from "@narsil-cms/blocks/fields/file";
 import { Password } from "@narsil-cms/blocks/fields/password";
 import { Relations } from "@narsil-cms/blocks/fields/relations";
 import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
-import { Slider } from "@narsil-cms/blocks/fields/slider";
 import { Table } from "@narsil-cms/blocks/fields/table";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
-import { type IconName } from "@narsil-cms/registries/icons";
 import { Checkbox } from "@narsil-ui/components/checkbox";
 import { InputContent } from "@narsil-ui/components/input";
+import { Slider } from "@narsil-ui/components/slider";
 import { Switch } from "@narsil-ui/components/switch";
 import { Textarea } from "@narsil-ui/components/textarea";
+import { type IconName } from "@narsil-ui/registries/icons";
 import { type ComponentProps } from "react";
 
 type DefaultField = {

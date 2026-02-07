@@ -2,7 +2,6 @@ import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { WidthSelector } from "@narsil-cms/blocks/width-selector";
-import { IconName } from "@narsil-cms/registries/icons";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
@@ -22,6 +21,7 @@ import { useLocalization } from "@narsil-ui/components/localization";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { cn } from "@narsil-ui/lib/utils";
+import { IconName } from "@narsil-ui/registries/icons";
 import { useState, type ComponentProps, type ReactNode } from "react";
 import { type AnonymousItem } from ".";
 import SortableItemForm from "./sortable-item-form";
