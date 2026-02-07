@@ -9,8 +9,8 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
@@ -21,7 +21,7 @@ type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
 };
 
 function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [open, onOpenChange] = useState<boolean>(false);
 

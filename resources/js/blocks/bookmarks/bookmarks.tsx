@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@narsil-ui/components/card";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import {
   PopoverPopup,
   PopoverPortal,
@@ -19,6 +18,7 @@ import {
   PopoverTrigger,
 } from "@narsil-ui/components/popover";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { sortBy } from "lodash-es";
 import { Fragment, useEffect, useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
@@ -31,7 +31,7 @@ type BookmarksProps = ComponentProps<typeof PopoverTrigger> & {
 };
 
 function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [bookmark, setBookmark] = useState<Bookmark | null>(null);
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);

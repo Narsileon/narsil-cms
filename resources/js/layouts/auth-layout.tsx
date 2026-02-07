@@ -24,9 +24,9 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Separator } from "@narsil-ui/components/separator";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { useMaxLg } from "@narsil-ui/hooks/use-breakpoints";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useEffect, useRef } from "react";
@@ -39,7 +39,7 @@ type AuthLayoutProps = {
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);

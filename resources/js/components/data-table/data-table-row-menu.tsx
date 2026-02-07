@@ -13,8 +13,8 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type Table } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
@@ -28,7 +28,7 @@ type DataTableRowMenuProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "i
 
 function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTableRowMenuProps) {
   const { setAlertDialog } = useAlertDialog();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   if (!routes.edit && !routes.destroy) {
     return null;

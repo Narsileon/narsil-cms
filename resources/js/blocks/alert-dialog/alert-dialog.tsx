@@ -12,7 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@narsil-ui/components/alert-dialog";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps, type MouseEventHandler } from "react";
 
 type AlertDialogProps = ComponentProps<typeof AlertDialogRoot> & {
@@ -34,7 +34,7 @@ function AlertDialog({
   ...props
 }: AlertDialogProps) {
   const { setAlertDialog } = useAlertDialog();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   return (
     <AlertDialogRoot {...props}>

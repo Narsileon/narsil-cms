@@ -5,7 +5,6 @@ import type { SelectOption } from "@narsil-cms/types";
 import { Badge } from "@narsil-ui/components/badge";
 import { Icon } from "@narsil-ui/components/icon";
 import { InputRoot } from "@narsil-ui/components/input";
-import { useLocalization } from "@narsil-ui/components/localization";
 import {
   PopoverPopup,
   PopoverPortal,
@@ -14,6 +13,7 @@ import {
   PopoverTrigger,
 } from "@narsil-ui/components/popover";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
@@ -60,7 +60,7 @@ function Combobox({
   setValue,
 }: ComboboxProps) {
   const { locale } = useLocale();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   if (multiple && !isArray(value)) {
     value = value ? [value] : [];

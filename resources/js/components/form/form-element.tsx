@@ -9,7 +9,7 @@ import {
 } from "@narsil-ui/components/collapsible";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import parse from "html-react-parser";
 import { get, kebabCase } from "lodash-es";
@@ -29,7 +29,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
   const { base, class_name, description, handle, label, required, translatable, width } = props;
 
   const { data } = useForm();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   if ("elements" in base) {
     return (

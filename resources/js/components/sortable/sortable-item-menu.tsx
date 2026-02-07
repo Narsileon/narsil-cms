@@ -9,8 +9,8 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 
 type SortableItemMenuProps = ComponentProps<typeof DropdownMenuTrigger> & {
@@ -26,7 +26,7 @@ function SortableItemMenu({
   onRemove,
   ...props
 }: SortableItemMenuProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   return (
     <DropdownMenuRoot>

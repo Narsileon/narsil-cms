@@ -16,8 +16,8 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useRef } from "react";
 import { route } from "ziggy-js";
@@ -29,7 +29,7 @@ type GuestLayoutProps = {
 };
 
 function GuestLayout({ children }: GuestLayoutProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const mainRef = useRef<HTMLDivElement>(null);
 

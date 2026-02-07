@@ -13,9 +13,9 @@ import {
 } from "@narsil-ui/components/card";
 import { Icon } from "@narsil-ui/components/icon";
 import { Label } from "@narsil-ui/components/label";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Switch } from "@narsil-ui/components/switch";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { Fragment, useState } from "react";
 import { route } from "ziggy-js";
 
@@ -25,7 +25,7 @@ type TwoFactorFormProps = {
 
 function TwoFactorForm({ form }: TwoFactorFormProps) {
   const { add } = Toast.useToastManager();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { two_factor_confirmed_at } = useAuth() ?? {};
 

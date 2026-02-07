@@ -14,7 +14,7 @@ import {
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import type { Element } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrayItem, type ArrayElement } from ".";
@@ -28,7 +28,7 @@ type ArrayProps = {
 };
 
 function Array({ form, id, items, labelKey, setItems }: ArrayProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [active, setActive] = useState<ArrayElement | null>(null);
 

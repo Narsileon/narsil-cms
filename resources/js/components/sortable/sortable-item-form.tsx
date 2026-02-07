@@ -14,8 +14,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-ui/components/dialog";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { get } from "lodash-es";
 import { type ComponentProps, type ReactNode, useState } from "react";
@@ -39,7 +39,7 @@ function SortableItemForm({
   onItemChange,
   ...props
 }: SortableItemFormProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [data, setData] = useState<Record<string, unknown>>(item);
   const [error, setError] = useState<string | null>(null);

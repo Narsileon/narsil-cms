@@ -1,14 +1,14 @@
 import { Icon } from "@narsil-ui/components/icon";
 import { InputContent } from "@narsil-ui/components/input";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { useState, type ComponentProps } from "react";
 
 type PasswordProps = Omit<ComponentProps<typeof InputContent>, "children">;
 
 function Password({ type, ...props }: PasswordProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [show, setShow] = useState(false);
 

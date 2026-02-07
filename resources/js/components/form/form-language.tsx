@@ -1,6 +1,6 @@
 import { Badge } from "@narsil-ui/components/badge";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-ui/components/toggle-group";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { useMemo, type ComponentProps } from "react";
 import useForm from "./form-context";
@@ -12,7 +12,7 @@ type FormLanguageProps = Omit<ComponentProps<typeof ToggleGroupRoot>, "type"> & 
 
 function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLanguageProps) {
   const { defaultLanguage, languageOptions } = useForm();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const orderedOptions = useMemo(() => {
     const defaultOption = languageOptions.filter((o) => o.value === defaultLanguage);
@@ -47,9 +47,9 @@ function FormLanguage({ defaultValue, value, onValueChange, ...props }: FormLang
             className={cn(
               "relative pl-5 font-normal",
               "before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2",
-              "before:bg-constructive before:size-1.5 before:rounded-full",
+              "before:size-1.5 before:rounded-full before:bg-constructive",
               option.value === value
-                ? "before:bg-constructive before:animate-pulse"
+                ? "before:animate-pulse before:bg-constructive"
                 : "before:bg-foreground",
             )}
           >

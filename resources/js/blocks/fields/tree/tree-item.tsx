@@ -7,8 +7,8 @@ import getModelTranslation from "@narsil-cms/lib/get-model-translation";
 import { Badge } from "@narsil-ui/components/badge";
 import { CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
 import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-ui/components/collapsible";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SortableHandle } from "@narsil-ui/components/sortable";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 import { FlatNode, TreeItemMenu } from ".";
@@ -31,7 +31,7 @@ function TreeItem({
   ...props
 }: TreeItemProps) {
   const { formLanguage } = useForm();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const {
     attributes,

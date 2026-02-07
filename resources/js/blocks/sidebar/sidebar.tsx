@@ -15,8 +15,8 @@ import {
 import { useNavigation } from "@narsil-cms/hooks/use-props";
 import { Button } from "@narsil-ui/components/button";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { groupBy } from "lodash-es";
 import { type ComponentProps } from "react";
@@ -25,7 +25,7 @@ import { route } from "ziggy-js";
 type SidebarProps = ComponentProps<typeof SidebarRoot>;
 
 function Sidebar({ ...props }: SidebarProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { open, setOpenMobile, toggleSidebar } = useSidebar();
 

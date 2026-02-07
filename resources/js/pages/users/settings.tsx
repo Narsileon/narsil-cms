@@ -2,7 +2,7 @@ import { ConfigurationForm, ProfileForm, SecurityForm } from "@narsil-cms/blocks
 import { Tabs } from "@narsil-cms/blocks/tabs";
 import { useAuth } from "@narsil-cms/hooks/use-props";
 import type { FormType } from "@narsil-cms/types";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 
 type UserSettingsProps = {
@@ -18,7 +18,7 @@ function UserSettings({
   updatePasswordForm,
   userConfigurationForm,
 }: UserSettingsProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const auth = useAuth();
 

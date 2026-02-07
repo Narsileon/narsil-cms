@@ -18,8 +18,8 @@ import { Button } from "@narsil-ui/components/button";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-ui/components/dialog";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SectionContent, SectionRoot } from "@narsil-ui/components/section";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { isEmpty } from "lodash-es";
 
@@ -39,7 +39,7 @@ type FormProps = {
 };
 
 function ResourceForm({ countries, data, form, modal, publish, revisions }: FormProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
   const { closeTopModal } = useModalStore();
 
   const {

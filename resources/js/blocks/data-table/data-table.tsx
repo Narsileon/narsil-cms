@@ -13,7 +13,6 @@ import type { DataTableCollection } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import {
   TableBody,
@@ -23,6 +22,7 @@ import {
   TableWrapper,
 } from "@narsil-ui/components/table";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { useMinSm } from "@narsil-ui/hooks/use-breakpoints";
 import { flexRender } from "@tanstack/react-table";
 import { route } from "ziggy-js";
@@ -33,7 +33,7 @@ type DataTableProps = {
 };
 
 function DataTable({ collection, title }: DataTableProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { dataTable } = useDataTable();
 

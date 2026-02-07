@@ -1,10 +1,10 @@
 import type { Model } from "@narsil-cms/types";
 import { Checkbox } from "@narsil-ui/components/checkbox";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { ColumnDef } from "@tanstack/react-table";
 
 function getSelectColumn(): ColumnDef<Model> {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   return {
     id: "_select",

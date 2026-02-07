@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
@@ -23,7 +23,7 @@ type FormMenuProps = ComponentProps<typeof Button> & {
 
 function FormMenu({ routes, ...props }: FormMenuProps) {
   const { setAlertDialog } = useAlertDialog();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
   const { data } = useForm();
 
   return (

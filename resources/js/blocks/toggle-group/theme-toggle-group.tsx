@@ -1,8 +1,8 @@
 import { themes, useThemeStore } from "@narsil-cms/stores/theme-store";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-ui/components/toggle-group";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { useRef } from "react";
 
 type ThemeToggleGroupProps = {
@@ -10,7 +10,7 @@ type ThemeToggleGroupProps = {
 };
 
 function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { theme: currentTheme, setTheme } = useThemeStore();
 

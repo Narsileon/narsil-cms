@@ -4,9 +4,9 @@ import type { FormType } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { Separator } from "@narsil-ui/components/separator";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { Fragment } from "react";
 
 type ProfileFormProps = {
@@ -15,7 +15,7 @@ type ProfileFormProps = {
 };
 
 function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const auth = useAuth();
 

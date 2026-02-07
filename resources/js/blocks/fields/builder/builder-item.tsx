@@ -12,10 +12,10 @@ import {
   CollapsibleTrigger,
 } from "@narsil-ui/components/collapsible";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { Switch } from "@narsil-ui/components/switch";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { get } from "lodash-es";
 import { useState, type ComponentProps } from "react";
@@ -43,7 +43,7 @@ function BuilderItem({
 }: BuilderItemProps) {
   const { setAlertDialog } = useAlertDialog();
   const { data, defaultLanguage, formLanguage, setData } = useForm();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [open, setCollapsed] = useState<boolean>(!collapsed);
 

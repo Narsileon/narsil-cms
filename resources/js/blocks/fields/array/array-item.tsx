@@ -13,9 +13,9 @@ import {
   CollapsibleTrigger,
 } from "@narsil-ui/components/collapsible";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
@@ -45,7 +45,7 @@ function ArrayItem({
   onRemove,
 }: ArrayItemProps) {
   const { locale } = useLocale();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [open, setCollapsed] = useState<boolean>(true);
 

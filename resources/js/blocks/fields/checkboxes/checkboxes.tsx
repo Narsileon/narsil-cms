@@ -1,6 +1,5 @@
 import type { GroupedSelectOption, SelectOption, UniqueIdentifier } from "@narsil-cms/types";
 import { Checkbox } from "@narsil-ui/components/checkbox";
-import { useLocalization } from "@narsil-ui/components/localization";
 import {
   TableBody,
   TableCell,
@@ -8,6 +7,7 @@ import {
   TableRow,
   TableWrapper,
 } from "@narsil-ui/components/table";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type ReactNode } from "react";
 
 type CheckboxesProps = {
@@ -17,7 +17,7 @@ type CheckboxesProps = {
 };
 
 function Checkboxes({ options = [], values, onChange }: CheckboxesProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   function toggleValue(value: UniqueIdentifier) {
     if (values.includes(value)) {

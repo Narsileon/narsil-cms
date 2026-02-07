@@ -6,8 +6,8 @@ import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardFooter, CardRoot } from "@narsil-ui/components/card";
 import { Container } from "@narsil-ui/components/container";
 import { Heading } from "@narsil-ui/components/heading";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { Fragment, useEffect, useRef } from "react";
 import { route } from "ziggy-js";
 
@@ -20,7 +20,7 @@ type FortifyFormProps = {
 
 function FortifyForm({ data, form, status, title }: FortifyFormProps) {
   const { add } = Toast.useToastManager();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const hasStatus = useRef<boolean>(false);
 

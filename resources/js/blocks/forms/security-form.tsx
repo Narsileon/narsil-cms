@@ -3,9 +3,9 @@ import type { FormType } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { DialogClose } from "@narsil-ui/components/dialog";
 import { Heading } from "@narsil-ui/components/heading";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { Separator } from "@narsil-ui/components/separator";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { route } from "ziggy-js";
 import TwoFactorForm from "./two-factor-form";
 
@@ -14,7 +14,7 @@ type SecurityFormProps = {
 };
 
 function SecurityForm({ twoFactorForm }: SecurityFormProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   return (
     <>

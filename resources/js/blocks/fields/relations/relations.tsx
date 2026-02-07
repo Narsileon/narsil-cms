@@ -16,9 +16,9 @@ import {
 } from "@narsil-ui/components/dialog";
 import { Icon } from "@narsil-ui/components/icon";
 import { InputRoot } from "@narsil-ui/components/input";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Spinner } from "@narsil-ui/components/spinner";
 import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-ui/components/tabs";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
 import { flatMap, isArray, isEmpty } from "lodash-es";
@@ -71,7 +71,7 @@ function Relations({
   value,
   setValue,
 }: RelationsProps) {
-  const { addTranslations, trans } = useLocalization();
+  const { addTranslations, trans } = useTranslator();
 
   if (!isArray(value)) {
     value = !isEmpty(value) ? [value] : [];

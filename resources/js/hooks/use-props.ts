@@ -51,7 +51,7 @@ export function useAuth() {
   return isEmpty(auth) ? null : auth;
 }
 
-export function useLocalization() {
+export function useTranslator() {
   return usePage<GlobalProps>().props.localization ?? {};
 }
 

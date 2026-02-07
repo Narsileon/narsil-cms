@@ -4,7 +4,6 @@ import {
   type LaravelPaginationMetaLink,
 } from "@narsil-cms/blocks/pagination";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import {
   PaginationContent,
   PaginationEllipsis,
@@ -13,6 +12,7 @@ import {
   PaginationRoot,
 } from "@narsil-ui/components/pagination";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 
 type PaginationProps = ComponentProps<typeof PaginationRoot> & {
@@ -22,7 +22,7 @@ type PaginationProps = ComponentProps<typeof PaginationRoot> & {
 };
 
 function Pagination({ contentProps, links, metaLinks, ...props }: PaginationProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const firstPageLabel = trans("accessibility.first_page");
   const prevPageLabel = trans("accessibility.previous_page");

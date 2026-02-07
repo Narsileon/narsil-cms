@@ -13,8 +13,8 @@ import {
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
 import { Kbd, KbdGroup } from "@narsil-ui/components/kbd";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Separator } from "@narsil-ui/components/separator";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { useEffect, type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
@@ -24,7 +24,7 @@ type FormSaveProps = ComponentProps<typeof ButtonGroup> & {
 };
 
 function FormSave({ routes, submitLabel, ...props }: FormSaveProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
   const { action, data, id, isDirty, method, post, reset, transform } = useForm();
 
   function saveAndAdd() {

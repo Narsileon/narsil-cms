@@ -2,9 +2,9 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { SortableItemMenu } from "@narsil-cms/components/sortable";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { TableCell, TableRow } from "@narsil-ui/components/table";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
@@ -30,7 +30,7 @@ function TableItem({
   onRemove,
   ...props
 }: TableItemProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const {
     attributes,

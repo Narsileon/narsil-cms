@@ -5,7 +5,7 @@ import { ModalLink } from "@narsil-cms/components/modal";
 import { SortableItemMenu } from "@narsil-cms/components/sortable";
 import { DropdownMenuItem, DropdownMenuSeparator } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 import { FlatNode } from ".";
 
@@ -17,7 +17,7 @@ type TreeItemMenuProps = ComponentProps<typeof SortableItemMenu> & {
 function TreeItemMenu({ disabled, item, ...props }: TreeItemMenuProps) {
   const { setAlertDialog } = useAlertDialog();
   const { isDirty } = useForm();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   return (
     <SortableItemMenu {...props}>

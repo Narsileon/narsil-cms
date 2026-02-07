@@ -17,7 +17,7 @@ import {
 } from "@narsil-ui/components/combobox";
 import ComboboxClear from "@narsil-ui/components/combobox/combobox-clear";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
@@ -58,7 +58,7 @@ function Combobox({
   setValue,
 }: ComboboxProps) {
   const { locale } = useLocale();
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   if (multiple && !isArray(value)) {
     value = value ? [value] : [];

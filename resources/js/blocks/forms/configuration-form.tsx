@@ -6,8 +6,8 @@ import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import type { FormType } from "@narsil-cms/types";
 import { Heading } from "@narsil-ui/components/heading";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { Fragment } from "react";
 import { route } from "ziggy-js";
 
@@ -16,7 +16,7 @@ type ConfigurationFormProps = {
 };
 
 function ConfigurationForm({ form }: ConfigurationFormProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { locale } = useLocale();
 

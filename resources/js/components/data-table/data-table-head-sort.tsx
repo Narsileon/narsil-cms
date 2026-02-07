@@ -1,8 +1,8 @@
 import type { Model } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { Header } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
 
@@ -11,7 +11,7 @@ type DataTableHeadSortProps = ComponentProps<typeof Button> & {
 };
 
 function DataTableHeadSort({ className, header, ...props }: DataTableHeadSortProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   function getIconName() {
     switch (header.column.getIsSorted()) {

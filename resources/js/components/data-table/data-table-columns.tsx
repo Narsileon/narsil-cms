@@ -11,7 +11,6 @@ import type { Model } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
 import { Icon } from "@narsil-ui/components/icon";
-import { useLocalization } from "@narsil-ui/components/localization";
 import {
   PopoverPopup,
   PopoverPortal,
@@ -21,6 +20,7 @@ import {
 } from "@narsil-ui/components/popover";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { Tooltip } from "@narsil-ui/components/tooltip";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { type Column } from "@tanstack/react-table";
 import { concat, upperFirst } from "lodash-es";
 import { type ComponentProps } from "react";
@@ -28,7 +28,7 @@ import { type ComponentProps } from "react";
 type DataTableColumnsProps = ComponentProps<typeof PopoverTrigger>;
 
 function DataTableColumns({ ...props }: DataTableColumnsProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { dataTable } = useDataTable();
 
@@ -157,7 +157,7 @@ type SortableItemProps = {
 };
 
 function SortableItem({ column, onRemove }: SortableItemProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({
     id: column.id,

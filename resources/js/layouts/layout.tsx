@@ -4,8 +4,8 @@ import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
-import { LocalizationProvider } from "@narsil-ui/components/localization";
 import { Toast } from "@narsil-ui/components/toast";
+import { TranslatorProvider } from "@narsil-ui/components/translator";
 import { isEmpty } from "lodash-es";
 import { type ReactNode, useEffect } from "react";
 import AuthLayout from "./auth-layout";
@@ -34,7 +34,7 @@ function Layout({ children }: LayoutProps) {
 
   return (
     <ToastPrimitive.Provider>
-      <LocalizationProvider translations={translations}>
+      <TranslatorProvider translations={translations}>
         <Head description={description} follow={false} index={false} title={title} />
         {window.location.pathname === "/narsil/graphiql" ? (
           <main className="h-screen w-screen">{children}</main>
@@ -51,7 +51,7 @@ function Layout({ children }: LayoutProps) {
             ...(warning ? [{ description: warning }] : []),
           ]}
         />
-      </LocalizationProvider>
+      </TranslatorProvider>
     </ToastPrimitive.Provider>
   );
 }

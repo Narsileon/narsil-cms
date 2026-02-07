@@ -2,14 +2,14 @@ import { Select } from "@narsil-cms/blocks/fields/select";
 import { Pagination } from "@narsil-cms/blocks/pagination";
 import { useDataTable } from "@narsil-cms/components/data-table";
 import type { DataTableCollection } from "@narsil-cms/types";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 
 type DataTableProps = {
   collection: DataTableCollection;
 };
 
 function DataTableFooter({ collection }: DataTableProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const { dataTable, dataTableStore } = useDataTable();
 

@@ -1,4 +1,4 @@
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
@@ -9,7 +9,7 @@ type FormTimestampProps = ComponentProps<"div"> & {
 };
 
 function FormTimestamp({ className, date, label, name, ...props }: FormTimestampProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   return (
     <div className={cn("flex items-center gap-1", className)} {...props}>

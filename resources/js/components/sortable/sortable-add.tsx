@@ -4,7 +4,7 @@ import { ModalLink } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
-import { useLocalization } from "@narsil-ui/components/localization";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { isNumber } from "lodash-es";
 import { useState, type ComponentProps } from "react";
@@ -28,7 +28,7 @@ function SortableAdd({
   setItems,
   ...props
 }: SortableAddProps) {
-  const { trans } = useLocalization();
+  const { trans } = useTranslator();
 
   const [options, setOptions] = useState(group.options);
 
