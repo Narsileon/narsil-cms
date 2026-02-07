@@ -25,6 +25,13 @@ interface Menu extends JsonSerializable
     public function add(MenuItem $menuItem): self;
 
     /**
+     * @param callable $callback
+     *
+     * @return self
+     */
+    public function extend(callable $callback): void;
+
+    /**
      * @param string $id
      *
      * @return self

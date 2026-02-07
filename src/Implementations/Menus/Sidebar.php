@@ -41,6 +41,21 @@ class Sidebar extends AbstractMenu implements Contract
      */
     public function __construct()
     {
+        app(TranslationsBag::class)
+            ->add('narsil-cms::accessibility.close_sidebar')
+            ->add('narsil-cms::accessibility.open_sidebar')
+            ->add('narsil-cms::accessibility.toggle_sidebar');
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function content(): array
+    {
         $this
             ->add(
                 new MenuItem('dashboard')
@@ -61,11 +76,9 @@ class Sidebar extends AbstractMenu implements Contract
             ->add('narsil-cms::accessibility.close_sidebar')
             ->add('narsil-cms::accessibility.open_sidebar')
             ->add('narsil-cms::accessibility.toggle_sidebar');
+
+        return parent::content();
     }
-
-    #endregion
-
-    #region PROTECTED METHODS
 
     /**
      * @return void

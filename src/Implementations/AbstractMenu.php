@@ -18,6 +18,13 @@ abstract class AbstractMenu implements Menu
     #region PROPERTIES
 
     /**
+     * The registred extend callbacks.
+     *
+     * @var callable[]
+     */
+    protected array $extends = [];
+
+    /**
      * The registred menu items.
      *
      * @var MenuItem[]
@@ -36,6 +43,11 @@ abstract class AbstractMenu implements Menu
         $this->menuItems[] = $menuItem;
 
         return $this;
+    }
+
+    public function extend(callable $callback): void
+    {
+        $this->extends[] = $callback;
     }
 
     /**
@@ -68,6 +80,11 @@ abstract class AbstractMenu implements Menu
      */
     protected function content(): array
     {
+        foreach ($this->extends as $extend)
+        {
+            $extend($this);
+        }
+
         $filteredMenuItems = MenuItem::filterByPermissions(collect($this->menuItems));
 
         return $filteredMenuItems->all();

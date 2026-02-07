@@ -27,6 +27,23 @@ class AuthMenu extends AbstractMenu implements Contract
      */
     public function __construct()
     {
+        app(TranslationsBag::class)
+            ->add('narsil-cms::accessibility.toggle_user_menu')
+            ->add('narsil-cms::bookmarks.tooltip')
+            ->add('narsil-cms::themes.dark')
+            ->add('narsil-cms::themes.light')
+            ->add('narsil-cms::themes.system');
+    }
+
+    #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function content(): array
+    {
         $this
             ->add(
                 new MenuItem('settings')
@@ -43,12 +60,7 @@ class AuthMenu extends AbstractMenu implements Contract
                     ->method(RequestMethodEnum::POST->value),
             );
 
-        app(TranslationsBag::class)
-            ->add('narsil-cms::accessibility.toggle_user_menu')
-            ->add('narsil-cms::bookmarks.tooltip')
-            ->add('narsil-cms::themes.dark')
-            ->add('narsil-cms::themes.light')
-            ->add('narsil-cms::themes.system');
+        return parent::content();
     }
 
     #endregion
