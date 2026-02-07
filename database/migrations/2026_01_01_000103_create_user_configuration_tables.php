@@ -6,10 +6,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Cms\Enums\ColorEnum;
-use Narsil\Cms\Enums\ThemeEnum;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Models\Users\UserConfiguration;
+use Narsil\Ui\Enums\ColorEnum;
+use Narsil\UI\Enums\ThemeEnum;
 
 #endregion
 

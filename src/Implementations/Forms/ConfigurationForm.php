@@ -90,7 +90,7 @@ class ConfigurationForm extends AbstractForm implements Contract
     /**
      * Get the language select options.
      *
-     * @param array<string> $languages
+     * @param string[] $languages
      *
      * @return array<SelectOption>
      */

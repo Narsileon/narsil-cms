@@ -1,7 +1,7 @@
 @import "./font.css";
-@import "./theme.css";
-@import "./colors.css";
-@import "./utilities.css";
+@import "@narsil-ui/../css/colors.css";
+@import "@narsil-ui/../css/theme.css";
+@import "@narsil-ui/../css/utilities.css";
 
 @source inline("{col-span-{3,4,6,8,9}}");
 @source inline("{flex-{col,row}-reverse}");

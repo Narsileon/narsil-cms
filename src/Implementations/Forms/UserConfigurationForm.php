@@ -12,7 +12,6 @@ use Locale;
 use Narsil\Cms\Contracts\Fields\RangeField;
 use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Forms\UserConfigurationForm as Contract;
-use Narsil\Cms\Enums\ColorEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\Collections\Field;
@@ -20,6 +19,7 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Support\SelectOption;
+use Narsil\Ui\Enums\ColorEnum;
 use ResourceBundle;
 
 #endregion
@@ -78,7 +78,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ColorEnum::GRAY->value),
-                            Field::RELATION_OPTIONS => ColorEnum::selectOptions(),
+                            Field::RELATION_OPTIONS => ColorEnum::options(),
                         ],
                     ],
                     [

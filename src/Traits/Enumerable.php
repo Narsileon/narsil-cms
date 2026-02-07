@@ -38,7 +38,7 @@ trait Enumerable
     /**
      * Get the values of the enum.
      *
-     * @return array<string>
+     * @return string[]
      */
     public static function values(): array
     {

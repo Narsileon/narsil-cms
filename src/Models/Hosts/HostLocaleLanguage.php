@@ -99,7 +99,7 @@ class HostLocaleLanguage extends Model
     /**
      * Get unique languages.
      *
-     * @return array<string>
+     * @return string[]
      */
     final public static function getUniqueLanguages(): array
     {

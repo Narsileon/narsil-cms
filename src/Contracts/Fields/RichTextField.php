@@ -30,7 +30,7 @@ interface RichTextField extends Contract
     /**
      * Set the modules attribute.
      *
-     * @param array<string> $modules
+     * @param string[] $modules
      *
      * @return static
      */

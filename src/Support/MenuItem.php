@@ -195,7 +195,7 @@ class MenuItem extends Fluent
     /**
      * Set the associated permissions.
      *
-     * @param array<string> $permissions
+     * @param string[] $permissions
      *
      * @return static
      */

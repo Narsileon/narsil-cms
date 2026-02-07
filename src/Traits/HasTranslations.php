@@ -22,7 +22,7 @@ trait HasTranslations
     #region PROPERTIES
 
     /**
-     * @var array<string>
+     * @var string[]
      */
     final protected array $translatable = [];
 
