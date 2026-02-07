@@ -57,11 +57,13 @@ function Sidebar({ ...props }: SidebarProps) {
                 <Tooltip tooltip={items[0].label}>
                   <Button
                     aria-label={items[0].label}
-                    data-active={items[0].href?.endsWith(window.location.pathname)}
+                    data-active={route(items[0].route, items[0].parameters).endsWith(
+                      window.location.pathname,
+                    )}
                     variant="sidebar"
                     render={
                       <Link
-                        href={items[0].href}
+                        href={route(items[0].route, items[0].parameters)}
                         target={items[0].target}
                         onSuccess={() => setOpenMobile(false)}
                       >
@@ -82,11 +84,13 @@ function Sidebar({ ...props }: SidebarProps) {
                         <Tooltip tooltip={item.label}>
                           <Button
                             aria-label={item.label}
-                            data-active={item.href.endsWith(window.location.pathname)}
+                            data-active={route(item.route, item.parameters).endsWith(
+                              window.location.pathname,
+                            )}
                             variant="sidebar"
                             render={
                               <Link
-                                href={item.href}
+                                href={route(item.route, item.parameters)}
                                 target={item.target}
                                 {...(item.target !== "_blank"
                                   ? { onSuccess: () => setOpenMobile(false) }

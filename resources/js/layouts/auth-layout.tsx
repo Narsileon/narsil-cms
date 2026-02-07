@@ -30,6 +30,7 @@ import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useMaxLg } from "@narsil-ui/hooks/use-breakpoints";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useEffect, useRef } from "react";
+import { route } from "ziggy-js";
 
 type AuthLayoutProps = {
   children: ReactNode & {
@@ -110,12 +111,18 @@ function AuthLayout({ children }: AuthLayoutProps) {
                                     variant="ghost"
                                     render={
                                       item.modal ? (
-                                        <ModalLink href={item.href} method={item.method}>
+                                        <ModalLink
+                                          href={route(item.route, item.parameters)}
+                                          method={item.method}
+                                        >
                                           <Icon name={item.icon} />
                                           {item.label}
                                         </ModalLink>
                                       ) : (
-                                        <Link href={item.href} method={item.method}>
+                                        <Link
+                                          href={route(item.route, item.parameters)}
+                                          method={item.method}
+                                        >
                                           <Icon name={item.icon} />
                                           {item.label}
                                         </Link>

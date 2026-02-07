@@ -2,7 +2,12 @@
 
 namespace Narsil\Cms\Contracts;
 
+#region USE
+
 use JsonSerializable;
+use Narsil\Cms\Support\MenuItem;
+
+#endregion
 
 /**
  * @version 1.0.0
@@ -10,5 +15,21 @@ use JsonSerializable;
  */
 interface Menu extends JsonSerializable
 {
-    //
+    #region PUBLIC METHODS
+
+    /**
+     * @param MenuItem $menuItem
+     *
+     * @return self
+     */
+    public function add(MenuItem $menuItem): self;
+
+    /**
+     * @param string $id
+     *
+     * @return self
+     */
+    public function remove(string $id): self;
+
+    #endregion
 }

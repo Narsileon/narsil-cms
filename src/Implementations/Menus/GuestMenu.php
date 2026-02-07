@@ -59,10 +59,9 @@ class GuestMenu extends AbstractMenu implements Contract
         return [
             new MenuItem()
                 ->group($group)
-                ->href(route('login'))
                 ->icon('log-in')
                 ->label(trans('narsil-cms::ui.log_in'))
-                ->method(RequestMethodEnum::GET->value),
+                ->route('login'),
         ];
     }
 
@@ -76,10 +75,9 @@ class GuestMenu extends AbstractMenu implements Contract
         return [
             new MenuItem()
                 ->group($group)
-                ->href(route('user-configurations.edit'))
                 ->icon('settings')
                 ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
-                ->method(RequestMethodEnum::GET->value)
+                ->route('user-configurations.edit')
                 ->modal(true),
         ];
     }

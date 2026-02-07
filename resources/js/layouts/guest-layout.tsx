@@ -20,6 +20,7 @@ import { useLocalization } from "@narsil-ui/components/localization";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useRef } from "react";
+import { route } from "ziggy-js";
 
 type GuestLayoutProps = {
   children: ReactNode & {
@@ -75,11 +76,17 @@ function GuestLayout({ children }: GuestLayoutProps) {
                                   variant="ghost"
                                   render={
                                     item.modal ? (
-                                      <ModalLink href={item.href} method={item.method}>
+                                      <ModalLink
+                                        href={route(item.route, item.parameters)}
+                                        method={item.method}
+                                      >
                                         {itemContent}
                                       </ModalLink>
                                     ) : (
-                                      <Link href={item.href} method={item.method}>
+                                      <Link
+                                        href={route(item.route, item.parameters)}
+                                        method={item.method}
+                                      >
                                         {itemContent}
                                       </Link>
                                     )

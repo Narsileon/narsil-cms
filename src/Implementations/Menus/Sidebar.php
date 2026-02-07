@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Form\Models\Fieldset;
-use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
@@ -44,6 +41,22 @@ class Sidebar extends AbstractMenu implements Contract
      */
     public function __construct()
     {
+        $this
+            ->add(
+                new MenuItem()
+                    ->icon('chart-pie')
+                    ->label(trans('narsil-cms::ui.dashboard'))
+                    ->route('dashboard')
+            );
+
+        $this->addSiteGroup();
+        $this->addGlobalsGroup();
+        $this->addCollectionsGroup();
+        $this->addFilesGroup();
+        $this->addStructuresGroup();
+        $this->addManagementGroup();
+        $this->addToolsGroup();
+
         app(TranslationsBag::class)
             ->add('narsil-cms::accessibility.close_sidebar')
             ->add('narsil-cms::accessibility.open_sidebar')
@@ -59,35 +72,16 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function content(): array
     {
-        $menuItems = array_merge(
-            [
-                new MenuItem()
-                    ->href(route('dashboard'))
-                    ->icon('chart-pie')
-                    ->label(trans('narsil-cms::ui.dashboard')),
-            ],
-            $this->getSiteGroup(),
-            $this->getGlobalsGroup(),
-            $this->getCollectionsGroup(),
-            $this->getFilesGroup(),
-            $this->getFormsGroup(),
-            $this->getStructuresGroup(),
-            $this->getManagementGroup(),
-            $this->getToolsGroup(),
-        );
-
-        $filteredMenuItems = MenuItem::filterByPermissions(collect($menuItems));
+        $filteredMenuItems = MenuItem::filterByPermissions(collect($this->menuItems));
 
         return $filteredMenuItems->all();
     }
 
     /**
-     * @return array<MenuItem>
+     * @return void
      */
-    protected function getCollectionsGroup(): array
+    protected function addCollectionsGroup(): void
     {
-        $menuItems = [];
-
         $group = trans('narsil-cms::ui.collections');
 
         $templates = Template::query()
@@ -96,182 +90,160 @@ class Sidebar extends AbstractMenu implements Contract
 
         foreach ($templates as $template)
         {
-            $menuItems[] = new MenuItem()
+            $this->add(new MenuItem()
                 ->group($group)
-                ->href(route('collections.index', [
-                    'collection' => $template->{Template::TABLE_NAME},
-                ]))
                 ->icon('layers')
                 ->label($template->{Template::PLURAL})
+                ->route('collections.index')
+                ->parameters([
+                    'collection' => $template->{Template::TABLE_NAME},
+                ])
                 ->permissions([
                     PermissionService::getHandle(Entity::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]);
+                ]));
         }
-
-        return $menuItems;
     }
 
     /**
-     * @return array<MenuItem>
+     * @return void
      */
-    protected function getFilesGroup(): array
+    protected function addFilesGroup(): void
     {
         $group = trans(ModelService::getTableLabel(Media::TABLE));
 
-        return [
-            new MenuItem()
-                ->group($group)
-                ->href(route('media.index', [
-                    'disk' => DiskEnum::DOCUMENTS->value,
-                ]))
-                ->icon('file')
-                ->label(ModelService::getTableLabel(DiskEnum::DOCUMENTS->value))
-                ->permissions([
-                    PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('media.index', [
-                    'disk' => DiskEnum::IMAGES->value,
-                ]))
-                ->icon('image')
-                ->label(ModelService::getTableLabel(DiskEnum::IMAGES->value))
-                ->permissions([
-                    PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('media.index', [
-                    'disk' => DiskEnum::VIDEOS->value,
-                ]))
-                ->icon('video')
-                ->label(ModelService::getTableLabel(DiskEnum::VIDEOS->value))
-                ->permissions([
-                    PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-        ];
+        $this
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('file')
+                    ->label(ModelService::getTableLabel(DiskEnum::DOCUMENTS->value))
+                    ->route('media.index')
+                    ->parameters([
+                        'disk' => DiskEnum::DOCUMENTS->value
+                    ])
+                    ->permissions([
+                        PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('image')
+                    ->label(ModelService::getTableLabel(DiskEnum::IMAGES->value))
+                    ->route('media.index')
+                    ->parameters([
+                        'disk' => DiskEnum::IMAGES->value
+                    ])
+                    ->permissions([
+                        PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('video')
+                    ->label(ModelService::getTableLabel(DiskEnum::VIDEOS->value))
+                    ->route('media.index')
+                    ->parameters([
+                        'disk' => DiskEnum::VIDEOS->value
+                    ])
+                    ->permissions([
+                        PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            );
     }
 
     /**
-     * @return array<MenuItem>
+     * @return void
      */
-    protected function getFormsGroup(): array
-    {
-        $group = trans('narsil-cms::ui.forms');
-
-        return [
-            new MenuItem()
-                ->group($group)
-                ->href(route('forms.index'))
-                ->icon('form')
-                ->label(ModelService::getTableLabel(Form::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Form::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('fieldsets.index'))
-                ->icon('fieldset')
-                ->label(ModelService::getTableLabel(Fieldset::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Fieldset::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('inputs.index'))
-                ->icon('input')
-                ->label(ModelService::getTableLabel(Input::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Input::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-        ];
-    }
-
-    /**
-     * @return array<MenuItem>
-     */
-    protected function getGlobalsGroup(): array
+    protected function addGlobalsGroup(): void
     {
         $group = trans('narsil-cms::ui.globals');
 
-        return [
-            new MenuItem()
+        $this
+            ->add(new MenuItem()
                 ->group($group)
-                ->href(route('headers.index'))
                 ->icon('header')
                 ->label(ModelService::getTableLabel(Header::TABLE))
+                ->route('headers.index')
                 ->permissions([
                     PermissionService::getHandle(Header::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
+                ]))
+            ->add(new MenuItem()
                 ->group($group)
-                ->href(route('footers.index'))
                 ->icon('footer')
                 ->label(ModelService::getTableLabel(Footer::TABLE))
+                ->route('footers.index')
                 ->permissions([
                     PermissionService::getHandle(Footer::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-        ];
+                ]));
     }
 
     /**
-     * @return array<MenuItem>
+     * @return void
      */
-    protected function getManagementGroup(): array
+    protected function addManagementGroup(): void
     {
         $group = trans('narsil-cms::ui.management');
 
-        return [
-            new MenuItem()
-                ->group($group)
-                ->href(route('hosts.index'))
-                ->icon('server')
-                ->label(ModelService::getTableLabel(Host::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Host::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('users.index'))
-                ->icon('user')
-                ->label(ModelService::getTableLabel(User::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(User::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('roles.index'))
-                ->icon('role')
-                ->label(ModelService::getTableLabel(Role::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Role::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('permissions.index'))
-                ->icon('permission')
-                ->label(ModelService::getTableLabel(Permission::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('settings.edit'))
-                ->icon('settings')
-                ->label(ModelService::getTableLabel(Configuration::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Configuration::TABLE, PermissionEnum::UPDATE->value)
-                ]),
-        ];
+        $this
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('server')
+                    ->label(ModelService::getTableLabel(Host::TABLE))
+                    ->route('hosts.index')
+                    ->permissions([
+                        PermissionService::getHandle(Host::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('user')
+                    ->label(ModelService::getTableLabel(User::TABLE))
+                    ->route('users.index')
+                    ->permissions([
+                        PermissionService::getHandle(User::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('role')
+                    ->label(ModelService::getTableLabel(Role::TABLE))
+                    ->route('roles.index')
+                    ->permissions([
+                        PermissionService::getHandle(Role::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('permission')
+                    ->label(ModelService::getTableLabel(Permission::TABLE))
+                    ->route('permissions.index')
+                    ->permissions([
+                        PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('settings')
+                    ->label(ModelService::getTableLabel(Configuration::TABLE))
+                    ->route('settings.edit')
+                    ->permissions([
+                        PermissionService::getHandle(Configuration::TABLE, PermissionEnum::UPDATE->value)
+                    ])
+            );
     }
 
     /**
-     * @return array<MenuItem>
+     * @return void
      */
-    protected function getSiteGroup(): array
+    protected function addSiteGroup(): void
     {
-        $menuItems = [];
-
         $group = ModelService::getTableLabel(Site::VIRTUAL_TABLE);
 
         $sites = Site::query()
@@ -280,78 +252,87 @@ class Sidebar extends AbstractMenu implements Contract
 
         foreach ($sites as $site)
         {
-            $menuItems[] = new MenuItem()
-                ->group($group)
-                ->href(route('sites.edit', [
-                    'country' => 'default',
-                    'site' => $site->{Site::HOSTNAME},
-                ]))
-                ->icon('globe')
-                ->label($site->{Site::LABEL}, false)
-                ->permissions([
-                    PermissionService::getHandle(Site::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]);
+            $this->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('globe')
+                    ->label($site->{Site::LABEL}, false)
+                    ->route('sites.edit')
+                    ->parameters([
+                        'country' => 'default',
+                        'site' => $site->{Site::HOSTNAME},
+                    ])
+                    ->permissions([
+                        PermissionService::getHandle(Site::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            );
         }
-
-        return $menuItems;
     }
 
     /**
-     * @return array<MenuItem>
+     * @return void
      */
-    protected function getStructuresGroup(): array
+    protected function addStructuresGroup(): void
     {
         $group = trans('narsil-cms::ui.structures');
 
-        return [
-            new MenuItem()
-                ->group($group)
-                ->href(route('templates.index'))
-                ->icon('template')
-                ->label(ModelService::getTableLabel(Template::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('blocks.index'))
-                ->icon('block')
-                ->label(ModelService::getTableLabel(Block::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Block::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-            new MenuItem()
-                ->group($group)
-                ->href(route('fields.index'))
-                ->icon('field')
-                ->label(ModelService::getTableLabel(Field::TABLE))
-                ->permissions([
-                    PermissionService::getHandle(Field::TABLE, PermissionEnum::VIEW_ANY->value)
-                ]),
-        ];
+        $this
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('template')
+                    ->label(ModelService::getTableLabel(Template::TABLE))
+                    ->route('templates.index')
+                    ->permissions([
+                        PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('block')
+                    ->label(ModelService::getTableLabel(Block::TABLE))
+                    ->route('blocks.index')
+                    ->permissions([
+                        PermissionService::getHandle(Block::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('field')
+                    ->label(ModelService::getTableLabel(Field::TABLE))
+                    ->route('fields.index')
+                    ->permissions([
+                        PermissionService::getHandle(Field::TABLE, PermissionEnum::VIEW_ANY->value)
+                    ])
+            );
     }
 
     /**
-     * @return array<MenuItem>
+     * @return void
      */
-    protected function getToolsGroup(): array
+    protected function addToolsGroup(): void
     {
         $group = trans('narsil-cms::ui.tools');
 
-        return [
-            new MenuItem()
-                ->group($group)
-                ->href(route('graphiql'))
-                ->icon('graph-ql')
-                ->label('GraphQL')
-                ->target('_blank'),
-            new MenuItem()
-                ->group($group)
-                ->href(route('horizon.index'))
-                ->icon('horizon')
-                ->label('Horizon')
-                ->target('_blank'),
-        ];
+        $this
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('graph-ql')
+                    ->label('GraphQL')
+                    ->route('graphiql')
+                    ->target('_blank')
+            )
+            ->add(
+                new MenuItem()
+                    ->group($group)
+                    ->icon('horizon')
+                    ->label('Horizon')
+                    ->route('horizon.index')
+                    ->target('_blank')
+            );
     }
 
     #endregion

@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Narsil\Cms\Enums\RequestMethodEnum;
 
 #endregion
 
@@ -17,6 +18,18 @@ use Illuminate\Support\Str;
  */
 class MenuItem extends Fluent
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->method(RequestMethodEnum::GET->value);
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -80,20 +93,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the href of the anchor.
-     *
-     * @param string $href
-     *
-     * @return static
-     */
-    final public function href(string $href): static
-    {
-        $this->set('href', $href);
-
-        return $this;
-    }
-
-    /**
      * Set the icon of the menu item.
      *
      * @param string $icon
@@ -150,6 +149,20 @@ class MenuItem extends Fluent
     }
 
     /**
+     * Set the parameters of the menu items.
+     *
+     * @param array $parameters
+     *
+     * @return static
+     */
+    final public function parameters(array $parameters): static
+    {
+        $this->set('parameters', $parameters);
+
+        return $this;
+    }
+
+    /**
      * Set the associated permissions.
      *
      * @param array<string> $permissions
@@ -159,6 +172,20 @@ class MenuItem extends Fluent
     final public function permissions(array $permissions): static
     {
         $this->set('permissions', $permissions);
+
+        return $this;
+    }
+
+    /**
+     * Set the route of the menu items.
+     *
+     * @param string $route
+     *
+     * @return static
+     */
+    final public function route(string $route): static
+    {
+        $this->set('route', $route);
 
         return $this;
     }
