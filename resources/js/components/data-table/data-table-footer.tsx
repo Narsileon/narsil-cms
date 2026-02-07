@@ -1,7 +1,7 @@
 import { Select } from "@narsil-cms/blocks/fields/select";
-import { Pagination } from "@narsil-cms/blocks/pagination";
 import { useDataTable } from "@narsil-cms/components/data-table";
 import type { DataTableCollection } from "@narsil-cms/types";
+import { Pagination } from "@narsil-ui/components/pagination";
 import { useTranslator } from "@narsil-ui/components/translator";
 
 type DataTableProps = {

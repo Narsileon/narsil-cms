@@ -186,22 +186,17 @@ class DataTableCollection extends ResourceCollection
     protected function registerLabels(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil-cms::accessibility.first_page')
-            ->add('narsil-cms::accessibility.last_page')
-            ->add('narsil-cms::accessibility.more_pages')
             ->add('narsil-cms::accessibility.move_column')
-            ->add('narsil-cms::accessibility.next_page')
-            ->add('narsil-cms::accessibility.previous_page')
             ->add('narsil-cms::accessibility.sort_column')
             ->add('narsil-cms::accessibility.toggle_row_menu')
             ->add('narsil-cms::dialogs.descriptions.delete')
             ->add('narsil-cms::dialogs.titles.delete')
-            ->add('narsil-cms::placeholders.search')
             ->add('narsil-cms::pagination.pages_count')
             ->add('narsil-cms::pagination.pages_empty')
             ->add('narsil-cms::pagination.pagination')
             ->add('narsil-cms::pagination.selected_count')
             ->add('narsil-cms::pagination.selected_empty')
+            ->add('narsil-cms::placeholders.search')
             ->add('narsil-cms::ui.active_columns')
             ->add('narsil-cms::ui.available_columns')
             ->add('narsil-cms::ui.cancel')
@@ -217,7 +212,12 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil-cms::ui.filters')
             ->add('narsil-cms::ui.hide')
             ->add('narsil-cms::ui.move')
-            ->add('narsil-cms::ui.show');
+            ->add('narsil-cms::ui.show')
+            ->add('narsil-ui::pagination.first_page')
+            ->add('narsil-ui::pagination.last_page')
+            ->add('narsil-ui::pagination.more')
+            ->add('narsil-ui::pagination.next_page')
+            ->add('narsil-ui::pagination.previous_page');
     }
 
     #endregion
