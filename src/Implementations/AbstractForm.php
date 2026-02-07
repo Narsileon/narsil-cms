@@ -52,7 +52,6 @@ abstract class AbstractForm extends Fluent implements Form
         }
 
         app(TranslationsBag::class)
-            ->add('narsil-cms::accessibility.required')
             ->add('narsil-cms::datetime.by')
             ->add('narsil-cms::datetime.created')
             ->add('narsil-cms::datetime.updated')
@@ -75,7 +74,8 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil-cms::ui.save_as_new')
             ->add('narsil-cms::ui.save')
             ->add('narsil-cms::ui.translations')
-            ->add('narsil-cms::ui.unpublish');
+            ->add('narsil-cms::ui.unpublish')
+            ->add('narsil-ui::tooltip.required');
     }
 
     #endregion

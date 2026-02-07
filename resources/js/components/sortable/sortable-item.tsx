@@ -113,7 +113,6 @@ function SortableItem({
                       {...attributes}
                       {...listeners}
                       disabled={disabled}
-                      label={trans("ui.move")}
                     />
                     {item?.icon ? (
                       <Tooltip tooltip={group?.label as string}>

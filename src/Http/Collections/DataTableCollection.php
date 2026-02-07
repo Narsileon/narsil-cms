@@ -211,13 +211,13 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil-cms::ui.edit')
             ->add('narsil-cms::ui.filters')
             ->add('narsil-cms::ui.hide')
-            ->add('narsil-cms::ui.move')
             ->add('narsil-cms::ui.show')
             ->add('narsil-ui::pagination.first_page')
             ->add('narsil-ui::pagination.last_page')
             ->add('narsil-ui::pagination.more')
             ->add('narsil-ui::pagination.next_page')
-            ->add('narsil-ui::pagination.previous_page');
+            ->add('narsil-ui::pagination.previous_page')
+            ->add('narsil-ui::tooltip.move');
     }
 
     #endregion

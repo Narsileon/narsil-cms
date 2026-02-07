@@ -79,12 +79,7 @@ function BuilderItem({
           className={cn(open && "border-b")}
           render={
             <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
-              <SortableHandle
-                ref={setActivatorNodeRef}
-                {...attributes}
-                {...listeners}
-                label={trans("ui.move")}
-              />
+              <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
               <CardTitle className="grow justify-self-start font-normal">{block.label}</CardTitle>
               <Switch
                 name={`${baseHandle}.active`}

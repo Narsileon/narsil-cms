@@ -67,7 +67,6 @@ return [
     'modules'            => 'Modules',
     'move_down'          => 'Move down',
     'move_up'            => 'Move up',
-    'move'               => 'Move',
     'navigation'         => 'Navigation',
     'organization'       => 'Organization',
     'other_countries'    => 'Other countries',

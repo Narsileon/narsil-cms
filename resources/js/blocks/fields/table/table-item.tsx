@@ -70,7 +70,6 @@ function TableItem({
             className="rounded-md bg-transparent"
             {...attributes}
             {...listeners}
-            label={trans("ui.move")}
           />
         ) : null}
       </TableCell>

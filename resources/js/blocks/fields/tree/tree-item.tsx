@@ -76,7 +76,6 @@ function TreeItem({
                 {...attributes}
                 {...listeners}
                 disabled={disabled}
-                label={trans("ui.move")}
               />
               {item.edit_url ? (
                 <ModalLink
