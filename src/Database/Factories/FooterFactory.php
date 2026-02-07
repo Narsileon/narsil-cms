@@ -16,6 +16,38 @@ use Narsil\Cms\Models\Globals\FooterSocialMedium;
  */
 class FooterFactory extends Factory
 {
+    #region CONSTANTS
+
+    protected const SOCIAL_MEDIA = [
+        [
+            FooterSocialMedium::ICON => 'facebook',
+            FooterSocialMedium::LABEL => 'Facebook',
+            FooterSocialMedium::URL => 'https://www.facebook.com/'
+        ],
+        [
+            FooterSocialMedium::ICON => 'instagram',
+            FooterSocialMedium::LABEL => 'Instagram',
+            FooterSocialMedium::URL => 'https://instagram.com'
+        ],
+        [
+            FooterSocialMedium::ICON => 'linkedin',
+            FooterSocialMedium::LABEL => 'LinkedIn',
+            FooterSocialMedium::URL => 'https://linkedin.com'
+        ],
+        [
+            FooterSocialMedium::ICON => 'tiktok',
+            FooterSocialMedium::LABEL => 'TikTok',
+            FooterSocialMedium::URL => 'https://www.tiktok.com'
+        ],
+        [
+            FooterSocialMedium::ICON => 'youtube',
+            FooterSocialMedium::LABEL => 'Youtube',
+            FooterSocialMedium::URL => 'https://www.youtube.com/'
+        ],
+    ];
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
@@ -62,15 +94,10 @@ class FooterFactory extends Factory
      */
     protected function createSocialMedia(Footer $footer): void
     {
-        $socialMedia = [[
-            FooterSocialMedium::ICON => 'linkedin',
-            FooterSocialMedium::LABEL => 'LinkedIn',
-            FooterSocialMedium::URL => 'https://linkedin.com'
-        ], [
-            FooterSocialMedium::ICON => 'instagram',
-            FooterSocialMedium::LABEL => 'Instagram',
-            FooterSocialMedium::URL => 'https://instagram.com'
-        ]];
+        $socialMedia = collect(self::SOCIAL_MEDIA)
+            ->shuffle()
+            ->take(3)
+            ->values();
 
         foreach ($socialMedia as $key => $socialMedium)
         {
