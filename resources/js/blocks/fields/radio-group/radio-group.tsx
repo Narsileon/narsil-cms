@@ -1,4 +1,4 @@
-import { FormLabel } from "@narsil-cms/components/form";
+import { Label } from "@narsil-ui/components/label";
 import {
   RadioGroupIndicator,
   RadioGroupItem,
@@ -48,7 +48,7 @@ function RadioGroup({ options, ...props }: RadioGroupProps) {
             <RadioGroupItem value={optionValue} id={id}>
               <RadioGroupIndicator />
             </RadioGroupItem>
-            <FormLabel htmlFor={id}>{optionLabel}</FormLabel>
+            <Label htmlFor={id}>{optionLabel}</Label>
           </div>
         );
       })}

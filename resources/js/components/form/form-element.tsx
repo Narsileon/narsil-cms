@@ -7,6 +7,7 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from "@narsil-ui/components/collapsible";
+import { FieldDescription, FieldError, FieldLabel, FieldRoot } from "@narsil-ui/components/field";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { useTranslator } from "@narsil-ui/components/translator";
@@ -14,12 +15,8 @@ import { cn } from "@narsil-ui/lib/utils";
 import parse from "html-react-parser";
 import { get, kebabCase } from "lodash-es";
 import useForm from "./form-context";
-import FormDescription from "./form-description";
 import FormField from "./form-field";
 import FormFieldLanguage from "./form-field-language";
-import FormItem from "./form-item";
-import FormLabel from "./form-label";
-import FormMessage from "./form-message";
 
 type FormElementProps = Element & {
   onChange?: (value: unknown) => void;
@@ -65,20 +62,20 @@ function FormElement({ onChange, ...props }: FormElementProps) {
   return (
     <FormField
       {...props}
-      render={({ fieldLanguage, placeholder, value, onFieldChange, setFieldLanguage }) => {
+      render={({ error, fieldLanguage, placeholder, value, onFieldChange, setFieldLanguage }) => {
         function handleOnChange(value: unknown) {
           onChange?.(value);
           onFieldChange(value);
         }
 
         return (
-          <FormItem
+          <FieldRoot
             className={cn(base.settings.type === "hidden" && "hidden", class_name)}
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-1">
-                <FormLabel required={required}>{props.label}</FormLabel>
+                <FieldLabel required={required}>{props.label}</FieldLabel>
                 {translatable ? (
                   <>
                     <Icon className="size-4" name="globe" />
@@ -135,7 +132,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
                   })
                 : null}
             </div>
-            {description ? <FormDescription>{description}</FormDescription> : null}
+            {description ? <FieldDescription>{description}</FieldDescription> : null}
             {getField(base.type, {
               id: handle,
               field: {
@@ -146,8 +143,8 @@ function FormElement({ onChange, ...props }: FormElementProps) {
               value: value,
               setValue: handleOnChange,
             })}
-            <FormMessage />
-          </FormItem>
+            <FieldError>{error}</FieldError>
+          </FieldRoot>
         );
       }}
     />

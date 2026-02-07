@@ -7,6 +7,7 @@ import { FormFieldContext } from "./form-field-context";
 
 type FormFieldProps = Element & {
   render: (field: {
+    error: string | undefined;
     fieldLanguage: string;
     handle: string;
     placeholder?: string;
@@ -107,6 +108,7 @@ function FormField({ base, conditions, handle, render, translatable }: FormField
     <FormFieldContext.Provider value={contextValue}>
       {render({
         handle: handle,
+        error: getError(),
         fieldLanguage: fieldLanguage,
         placeholder: getPlaceholder(),
         value: getValue(),
