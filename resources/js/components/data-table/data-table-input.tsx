@@ -1,6 +1,11 @@
 import { Icon } from "@narsil-ui/components/icon";
 import { InputContent } from "@narsil-ui/components/input";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@narsil-ui/components/input-group";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 import useDataTable from "./data-table-context";
@@ -25,7 +30,9 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
       />
       {dataTableStore.search ? (
         <InputGroupAddon align="inline-end">
-          <Icon name="x" onClick={() => dataTableStore.setSearch(null)} />
+          <InputGroupButton size="icon-sm">
+            <Icon name="x" onClick={() => dataTableStore.setSearch(null)} />
+          </InputGroupButton>
         </InputGroupAddon>
       ) : null}
     </InputGroup>
