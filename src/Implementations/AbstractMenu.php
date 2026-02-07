@@ -52,10 +52,8 @@ abstract class AbstractMenu implements Menu
                 }
             }
         }
-        else
-        {
-            $this->menuItems[] = $menuItem;
-        }
+
+        $this->menuItems[] = $menuItem;
 
         return $this;
     }
