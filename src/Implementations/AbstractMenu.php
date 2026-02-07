@@ -40,7 +40,22 @@ abstract class AbstractMenu implements Menu
      */
     public function add(MenuItem $menuItem): self
     {
-        $this->menuItems[] = $menuItem;
+        if ($before = $menuItem->before)
+        {
+            foreach ($this->menuItems as $index => $item)
+            {
+                if ($item->id === $before)
+                {
+                    array_splice($this->menuItems, $index, 0, [$menuItem]);
+
+                    return $this;
+                }
+            }
+        }
+        else
+        {
+            $this->menuItems[] = $menuItem;
+        }
 
         return $this;
     }

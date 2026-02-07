@@ -80,6 +80,21 @@ class MenuItem extends Fluent
     }
 
     /**
+     * Set the position of the menu item.
+     *
+     * @param string $before
+     *
+     * @return static
+     */
+    final public function before(string $before): static
+    {
+        $this->set('before', $before);
+
+        return $this;
+    }
+
+
+    /**
      * Set the group of the menu item.
      *
      * @param string $group
