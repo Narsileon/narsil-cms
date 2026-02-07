@@ -7,16 +7,17 @@ import {
   ComboboxEmpty,
   ComboboxInput,
   ComboboxItem,
+  ComboboxItemIndicator,
   ComboboxList,
   ComboboxPopup,
   ComboboxPortal,
   ComboboxPositioner,
   ComboboxRoot,
   ComboboxTrigger,
-  ComboboxValue,
 } from "@narsil-ui/components/combobox";
 import ComboboxClear from "@narsil-ui/components/combobox/combobox-clear";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
+import { ItemContent, ItemDescription, ItemRoot, ItemTitle } from "@narsil-ui/components/item";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
@@ -97,10 +98,10 @@ function Combobox({
     count: filteredItems.length,
     enabled: open,
     overscan: 20,
-    paddingEnd: 8,
-    paddingStart: 8,
-    scrollPaddingEnd: 8,
-    scrollPaddingStart: 8,
+    paddingEnd: 6,
+    paddingStart: 6,
+    scrollPaddingEnd: 6,
+    scrollPaddingStart: 6,
     estimateSize: () => 32,
     getScrollElement: () => scrollElementRef.current,
   });
@@ -169,7 +170,11 @@ function Combobox({
       <ComboboxTrigger
         render={
           <Button variant="outline" className={cn("w-full justify-between font-normal", className)}>
-            <ComboboxValue />
+            {parse(
+              getTranslatableSelectOption(selectedOptions[0], labelPath, locale) ||
+                placeholder ||
+                trans("placeholders.choose"),
+            )}
           </Button>
         }
       />
@@ -177,57 +182,73 @@ function Combobox({
         <ComboboxPositioner>
           <ComboboxPopup>
             {searchable && (
-              <InputGroup>
+              <InputGroup className="m-0">
                 <ComboboxInput
                   placeholder={placeholder ?? trans("placeholders.search")}
                   render={<InputGroupInput disabled={disabled} />}
                 />
-                <InputGroupAddon align="inline-end">
-                  {clearable && <ComboboxClear disabled={disabled} />}
-                </InputGroupAddon>
+                {clearable ? (
+                  <InputGroupAddon align="inline-end">
+                    <ComboboxClear disabled={disabled} />
+                  </InputGroupAddon>
+                ) : null}
               </InputGroup>
             )}
             <ComboboxEmpty>{trans("pagination.pages_empty")}</ComboboxEmpty>
-            <ComboboxList
-              ref={handleScrollElementRef}
-              role="presentation"
-              className="h-[min(22rem,var(--total-size))] max-h-(--available-height) overflow-auto overscroll-contain"
-              style={{ "--total-size": `${totalSize}px` } as React.CSSProperties}
-            >
+            <ComboboxList>
               {filteredItems.length > 0 && (
-                <div role="presentation" className="relative w-full" style={{ height: totalSize }}>
-                  {virtualizer.getVirtualItems().map((virtualItem) => {
-                    const item = filteredItems[virtualItem.index];
+                <div
+                  ref={handleScrollElementRef}
+                  role="presentation"
+                  className="h-[inherit] max-h-[inherit] scroll-p-2 overflow-auto overscroll-contain"
+                  style={{ "--total-size": `${totalSize}px` } as React.CSSProperties}
+                >
+                  <div
+                    role="presentation"
+                    className="relative w-full"
+                    style={{ height: totalSize }}
+                  >
+                    {virtualizer.getVirtualItems().map((virtualItem) => {
+                      const item = filteredItems[virtualItem.index];
 
-                    if (!item) {
-                      return null;
-                    }
+                      if (!item) {
+                        return null;
+                      }
 
-                    const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
-                    const optionValue = getSelectOption(item, valuePath);
+                      const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
+                      const optionValue = getSelectOption(item, valuePath);
 
-                    return (
-                      <ComboboxItem
-                        ref={virtualizer.measureElement}
-                        index={virtualItem.index}
-                        data-index={virtualItem.index}
-                        value={optionValue}
-                        aria-setsize={filteredItems.length}
-                        aria-posinset={virtualItem.index + 1}
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          width: "100%",
-                          height: virtualItem.size,
-                          transform: `translateY(${virtualItem.start}px)`,
-                        }}
-                        key={virtualItem.key}
-                      >
-                        {parse(optionLabel)}
-                      </ComboboxItem>
-                    );
-                  })}
+                      return (
+                        <ComboboxItem
+                          ref={virtualizer.measureElement}
+                          index={virtualItem.index}
+                          data-index={virtualItem.index}
+                          value={optionValue}
+                          aria-setsize={filteredItems.length}
+                          aria-posinset={virtualItem.index + 1}
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: virtualItem.size,
+                            transform: `translateY(${virtualItem.start}px)`,
+                          }}
+                          key={virtualItem.key}
+                        >
+                          <ItemRoot size="xs" className="p-0">
+                            <ItemContent className="flex flex-row items-center justify-between">
+                              <ItemTitle className="font-normal whitespace-nowrap">
+                                {parse(optionLabel)}
+                              </ItemTitle>
+                              {displayValue && <ItemDescription>{optionValue}</ItemDescription>}
+                            </ItemContent>
+                          </ItemRoot>
+                          <ComboboxItemIndicator />
+                        </ComboboxItem>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </ComboboxList>
