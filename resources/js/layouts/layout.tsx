@@ -45,10 +45,10 @@ function Layout({ children }: LayoutProps) {
         )}
         <Toast
           options={[
-            ...(error ? [{ description: error }] : []),
-            ...(info ? [{ description: info }] : []),
-            ...(success ? [{ description: success }] : []),
-            ...(warning ? [{ description: warning }] : []),
+            ...(error ? [{ description: error, type: "error" }] : []),
+            ...(info ? [{ description: info, type: "info" }] : []),
+            ...(success ? [{ description: success, type: "success" }] : []),
+            ...(warning ? [{ description: warning, type: "warning" }] : []),
           ]}
         />
       </TranslatorProvider>
