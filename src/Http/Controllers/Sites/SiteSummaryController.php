@@ -62,7 +62,7 @@ class SiteSummaryController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.sites');
+        return trans('narsil-cms::ui.sites');
     }
 
     /**
@@ -70,7 +70,7 @@ class SiteSummaryController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.sites');
+        return trans('narsil-cms::ui.sites');
     }
 
     #endregion

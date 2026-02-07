@@ -57,11 +57,11 @@ class TemplateForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => Template::TABLE_NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.table_name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.table_name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -70,7 +70,7 @@ class TemplateForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Template::SINGULAR,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.singular'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.singular'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::WIDTH => 50,
@@ -81,7 +81,7 @@ class TemplateForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Template::PLURAL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.plural'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.plural'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::WIDTH => 50,
@@ -92,19 +92,19 @@ class TemplateForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Template::RELATION_TABS,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.tabs'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.tabs'),
                         TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
+                            Field::PLACEHOLDER => trans('narsil-cms::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(TemplateTabForm::class)->jsonSerialize())
                                 ->intermediate(
-                                    label: trans('narsil::validation.attributes.tab'),
+                                    label: trans('narsil-cms::validation.attributes.tab'),
                                     optionLabel: TemplateTab::LABEL,
                                     optionValue: TemplateTab::HANDLE,
                                     relation: [
                                         BlockElement::HANDLE => TemplateTab::RELATION_ELEMENTS,
-                                        BlockElement::LABEL => trans('narsil::validation.attributes.elements'),
+                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.elements'),
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => RelationsField::class,
                                             Field::SETTINGS => app(RelationsField::class)

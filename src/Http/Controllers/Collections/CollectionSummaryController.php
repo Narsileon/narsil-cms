@@ -64,7 +64,7 @@ class CollectionSummaryController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.collections');
+        return trans('narsil-cms::ui.collections');
     }
 
     /**
@@ -72,7 +72,7 @@ class CollectionSummaryController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.collections');
+        return trans('narsil-cms::ui.collections');
     }
 
     #endregion

@@ -38,11 +38,11 @@ class TreeField extends AbstractField implements Contract
     public static function bootTranslations(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil::ui.add_child')
-            ->add('narsil::ui.edit')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up')
-            ->add('narsil::ui.delete');
+            ->add('narsil-cms::ui.add_child')
+            ->add('narsil-cms::ui.edit')
+            ->add('narsil-cms::ui.move_down')
+            ->add('narsil-cms::ui.move_up')
+            ->add('narsil-cms::ui.delete');
     }
 
     /**

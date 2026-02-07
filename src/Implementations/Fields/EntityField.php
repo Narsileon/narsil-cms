@@ -43,7 +43,7 @@ class EntityField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.collections" : 'collections',
-                BlockElement::LABEL => trans('narsil::ui.collections'),
+                BlockElement::LABEL => trans('narsil-cms::ui.collections'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => SelectField::class,
                     Field::SETTINGS => app(SelectField::class)
@@ -53,7 +53,7 @@ class EntityField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => Field::PLACEHOLDER,
-                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
@@ -62,7 +62,7 @@ class EntityField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                BlockElement::LABEL => trans('narsil::validation.attributes.multiple'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.multiple'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => SwitchField::class,
                     Field::SETTINGS => app(SwitchField::class),

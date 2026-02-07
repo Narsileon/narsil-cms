@@ -4,10 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Narsil - Form Bindings
+    | Form Bindings
     |--------------------------------------------------------------------------
     |
-    | Mapping between form contracts and their concrete implementations.
+    | Mapping between form contracts and their implementations.
     |
     */
 
@@ -17,15 +17,9 @@ return [
     \Narsil\Cms\Contracts\Forms\ConfigurationForm::class => \Narsil\Cms\Implementations\Forms\ConfigurationForm::class,
     \Narsil\Cms\Contracts\Forms\EntityForm::class => \Narsil\Cms\Implementations\Forms\EntityForm::class,
     \Narsil\Cms\Contracts\Forms\FieldForm::class => \Narsil\Cms\Implementations\Forms\FieldForm::class,
-    \Narsil\Cms\Contracts\Forms\FieldsetElementForm::class => \Narsil\Cms\Implementations\Forms\FieldsetElementForm::class,
-    \Narsil\Cms\Contracts\Forms\FieldsetForm::class => \Narsil\Cms\Implementations\Forms\FieldsetForm::class,
     \Narsil\Cms\Contracts\Forms\FooterForm::class => \Narsil\Cms\Implementations\Forms\FooterForm::class,
-    \Narsil\Cms\Contracts\Forms\FormForm::class => \Narsil\Cms\Implementations\Forms\FormForm::class,
-    \Narsil\Cms\Contracts\Forms\FormStepElementForm::class => \Narsil\Cms\Implementations\Forms\FormStepElementForm::class,
-    \Narsil\Cms\Contracts\Forms\FormStepForm::class => \Narsil\Cms\Implementations\Forms\FormStepForm::class,
     \Narsil\Cms\Contracts\Forms\HeaderForm::class => \Narsil\Cms\Implementations\Forms\HeaderForm::class,
     \Narsil\Cms\Contracts\Forms\HostForm::class => \Narsil\Cms\Implementations\Forms\HostForm::class,
-    \Narsil\Cms\Contracts\Forms\InputForm::class => \Narsil\Cms\Implementations\Forms\InputForm::class,
     \Narsil\Cms\Contracts\Forms\MediaForm::class => \Narsil\Cms\Implementations\Forms\MediaForm::class,
     \Narsil\Cms\Contracts\Forms\PermissionForm::class => \Narsil\Cms\Implementations\Forms\PermissionForm::class,
     \Narsil\Cms\Contracts\Forms\PublishForm::class => \Narsil\Cms\Implementations\Forms\PublishForm::class,
@@ -40,10 +34,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fortify - Form Bindings
+    | Fortify
     |--------------------------------------------------------------------------
     |
-    | Mapping between form contracts and their concrete implementations.
+    | Mapping between form contracts and their implementations.
     |
     */
 

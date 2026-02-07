@@ -14,8 +14,6 @@ return [
     \Narsil\Cms\Models\Collections\BlockElement::class => \Narsil\Cms\Observers\BlockElementObserver::class,
     \Narsil\Cms\Models\Collections\Template::class => \Narsil\Cms\Observers\TemplateObserver::class,
     \Narsil\Cms\Models\Collections\TemplateTabElement::class => \Narsil\Cms\Observers\TemplateTabElementObserver::class,
-    \Narsil\Cms\Models\Forms\FieldsetElement::class => \Narsil\Cms\Observers\FieldsetElementObserver::class,
-    \Narsil\Cms\Models\Forms\FormStepElement::class => \Narsil\Cms\Observers\FormStepElementObserver::class,
     \Narsil\Cms\Models\Hosts\HostLocale::class => \Narsil\Cms\Observers\HostLocaleObserver::class,
     \Narsil\Cms\Models\Sites\Site::class => \Narsil\Cms\Observers\SiteObserver::class,
     \Narsil\Cms\Models\Sites\SitePage::class => \Narsil\Cms\Observers\SitePageObserver::class,

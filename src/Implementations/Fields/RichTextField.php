@@ -43,27 +43,27 @@ class RichTextField extends AbstractField implements Contract
     public static function bootTranslations(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil::rich-text-editor.align_center')
-            ->add('narsil::rich-text-editor.align_justify')
-            ->add('narsil::rich-text-editor.align_left')
-            ->add('narsil::rich-text-editor.align_right')
-            ->add('narsil::rich-text-editor.bold')
-            ->add('narsil::rich-text-editor.bullet_list')
-            ->add('narsil::rich-text-editor.heading_1')
-            ->add('narsil::rich-text-editor.heading_2')
-            ->add('narsil::rich-text-editor.heading_3')
-            ->add('narsil::rich-text-editor.heading_4')
-            ->add('narsil::rich-text-editor.heading_5')
-            ->add('narsil::rich-text-editor.heading_6')
-            ->add('narsil::rich-text-editor.headings')
-            ->add('narsil::rich-text-editor.italic')
-            ->add('narsil::rich-text-editor.ordered_list')
-            ->add('narsil::rich-text-editor.redo')
-            ->add('narsil::rich-text-editor.strike')
-            ->add('narsil::rich-text-editor.subscript')
-            ->add('narsil::rich-text-editor.superscript')
-            ->add('narsil::rich-text-editor.underline')
-            ->add('narsil::rich-text-editor.undo');
+            ->add('narsil-cms::rich-text-editor.align_center')
+            ->add('narsil-cms::rich-text-editor.align_justify')
+            ->add('narsil-cms::rich-text-editor.align_left')
+            ->add('narsil-cms::rich-text-editor.align_right')
+            ->add('narsil-cms::rich-text-editor.bold')
+            ->add('narsil-cms::rich-text-editor.bullet_list')
+            ->add('narsil-cms::rich-text-editor.heading_1')
+            ->add('narsil-cms::rich-text-editor.heading_2')
+            ->add('narsil-cms::rich-text-editor.heading_3')
+            ->add('narsil-cms::rich-text-editor.heading_4')
+            ->add('narsil-cms::rich-text-editor.heading_5')
+            ->add('narsil-cms::rich-text-editor.heading_6')
+            ->add('narsil-cms::rich-text-editor.headings')
+            ->add('narsil-cms::rich-text-editor.italic')
+            ->add('narsil-cms::rich-text-editor.ordered_list')
+            ->add('narsil-cms::rich-text-editor.redo')
+            ->add('narsil-cms::rich-text-editor.strike')
+            ->add('narsil-cms::rich-text-editor.subscript')
+            ->add('narsil-cms::rich-text-editor.superscript')
+            ->add('narsil-cms::rich-text-editor.underline')
+            ->add('narsil-cms::rich-text-editor.undo');
     }
 
     /**
@@ -74,7 +74,7 @@ class RichTextField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => Field::PLACEHOLDER,
-                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
@@ -83,7 +83,7 @@ class RichTextField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.modules" : 'modules',
-                BlockElement::LABEL => trans("narsil::ui.modules"),
+                BlockElement::LABEL => trans('narsil-cms::ui.modules'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => CheckboxField::class,
                     Field::SETTINGS => app(CheckboxField::class),

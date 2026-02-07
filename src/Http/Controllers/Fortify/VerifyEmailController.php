@@ -25,10 +25,10 @@ class VerifyEmailController extends RenderController
     public function __construct()
     {
         app(TranslationsBag::class)
-            ->add('narsil::ui.send_again')
-            ->add('narsil::verify-email.instruction')
-            ->add('narsil::verify-email.prompt')
-            ->add('narsil::verify-email.sent');
+            ->add('narsil-cms::ui.send_again')
+            ->add('narsil-cms::verify-email.instruction')
+            ->add('narsil-cms::verify-email.prompt')
+            ->add('narsil-cms::verify-email.sent');
     }
 
     #endregion
@@ -56,7 +56,7 @@ class VerifyEmailController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.email_verify');
+        return trans('narsil-cms::ui.email_verify');
     }
 
     /**
@@ -64,7 +64,7 @@ class VerifyEmailController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.email_verify');
+        return trans('narsil-cms::ui.email_verify');
     }
 
     #endregion

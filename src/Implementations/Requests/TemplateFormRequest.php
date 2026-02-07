@@ -5,7 +5,7 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
-use Narsil\Cms\Contracts\FormRequests\TemplateFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\TemplateFormRequest as Contract;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Collections\Template;

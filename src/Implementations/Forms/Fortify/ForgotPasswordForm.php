@@ -34,7 +34,7 @@ class ForgotPasswordForm extends AbstractForm implements Contract
         $this
             ->action(route('password.email'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.send'));
+            ->submitLabel(trans('narsil-cms::ui.send'));
     }
 
     #endregion
@@ -50,9 +50,9 @@ class ForgotPasswordForm extends AbstractForm implements Contract
             [
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::passwords.instruction'),
+                        TemplateTabElement::DESCRIPTION => trans('narsil-cms::passwords.instruction'),
                         TemplateTabElement::HANDLE => User::EMAIL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.email'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EmailField::class,

@@ -47,12 +47,12 @@ class PermissionForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Permission::TABLE, Permission::NAME),
                         TemplateTabElement::HANDLE => Permission::NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -63,7 +63,7 @@ class PermissionForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Permission::TABLE, Permission::LABEL),
                         TemplateTabElement::HANDLE => Permission::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [

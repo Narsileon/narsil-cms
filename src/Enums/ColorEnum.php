@@ -51,9 +51,9 @@ enum ColorEnum: string
 
         foreach (self::cases() as $case)
         {
-            $label = view('narsil::components.bullet-label', [
+            $label = view('narsil-cms::components.bullet-label', [
                 'color' => $case->value,
-                'label' => trans("narsil::colors.$case->value"),
+                'label' => trans("narsil-cms::colors.$case->value"),
             ])->render();
 
             $option = new SelectOption()

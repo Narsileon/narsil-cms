@@ -28,11 +28,11 @@ class AuthMenu extends AbstractMenu implements Contract
     public function __construct()
     {
         app(TranslationsBag::class)
-            ->add('narsil::accessibility.toggle_user_menu')
-            ->add('narsil::bookmarks.tooltip')
-            ->add('narsil::themes.dark')
-            ->add('narsil::themes.light')
-            ->add('narsil::themes.system');
+            ->add('narsil-cms::accessibility.toggle_user_menu')
+            ->add('narsil-cms::bookmarks.tooltip')
+            ->add('narsil-cms::themes.dark')
+            ->add('narsil-cms::themes.light')
+            ->add('narsil-cms::themes.system');
     }
 
     #endregion
@@ -62,7 +62,7 @@ class AuthMenu extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('logout'))
                 ->icon('log-out')
-                ->label(trans('narsil::ui.log_out'))
+                ->label(trans('narsil-cms::ui.log_out'))
                 ->method(RequestMethodEnum::POST->value),
         ];
     }

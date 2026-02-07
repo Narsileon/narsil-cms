@@ -42,7 +42,7 @@ class TwoFactorChallengeController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.two_factor_authentication');
+        return trans('narsil-cms::ui.two_factor_authentication');
     }
 
     /**
@@ -62,7 +62,7 @@ class TwoFactorChallengeController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.two_factor_authentication');
+        return trans('narsil-cms::ui.two_factor_authentication');
     }
 
     #endregion

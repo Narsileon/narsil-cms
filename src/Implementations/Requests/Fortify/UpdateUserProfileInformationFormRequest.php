@@ -6,7 +6,7 @@ namespace Narsil\Cms\Implementations\Requests\Fortify;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rules\File;
-use Narsil\Cms\Contracts\FormRequests\Fortify\UpdateUserProfileInformationFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\Fortify\UpdateUserProfileInformationFormRequest as Contract;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Validation\FormRule;
 

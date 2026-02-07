@@ -97,7 +97,7 @@ class UserEditController extends RenderController
             ->action(route('users.update', $user->{User::ID}))
             ->id($user->{User::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

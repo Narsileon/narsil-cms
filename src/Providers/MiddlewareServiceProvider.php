@@ -17,7 +17,7 @@ use Narsil\Cms\Http\Middleware\WithoutSsr;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MiddlewareServiceProvider extends ServiceProvider
+final class MiddlewareServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 
@@ -44,7 +44,7 @@ class MiddlewareServiceProvider extends ServiceProvider
     {
         $router = $this->app->make(Router::class);
 
-        $router->middlewareGroup('narsil-web', [
+        $router->middlewareGroup('narsil-cms', [
             WithoutSsr::class,
             UserConfigurationMiddleware::class,
             LocaleMiddleware::class,

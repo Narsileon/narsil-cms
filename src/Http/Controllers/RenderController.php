@@ -73,8 +73,8 @@ abstract class RenderController
         if (request()->boolean('_modal'))
         {
             $translations = $translationsBag
-                ->add('narsil::accessibility.close_dialog')
-                ->add('narsil::ui.cancel')
+                ->add('narsil-cms::accessibility.close_dialog')
+                ->add('narsil-cms::ui.cancel')
                 ->get();
 
             return response()->json([

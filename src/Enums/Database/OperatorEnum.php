@@ -46,7 +46,7 @@ enum OperatorEnum: string
     public static function selectOption(OperatorEnum $case): SelectOption
     {
         return new SelectOption()
-            ->optionLabel(trans('narsil::operators.' . $case->value))
+            ->optionLabel(trans('narsil-cms::operators.' . $case->value))
             ->optionValue($case->value);
     }
 

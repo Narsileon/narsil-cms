@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ViewServiceProvider extends ServiceProvider
+final class ViewServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 
@@ -39,7 +39,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom([
             __DIR__ . '/../../resources/views',
-        ], 'narsil');
+        ], 'narsil-cms');
     }
 
     #endregion

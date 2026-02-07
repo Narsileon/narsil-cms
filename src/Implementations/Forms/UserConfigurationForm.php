@@ -42,7 +42,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
         $this
             ->action(route('user-configurations.update'))
             ->method(RequestMethodEnum::PUT->value)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
     }
 
     #endregion
@@ -61,7 +61,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => UserConfiguration::LANGUAGE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.language'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.language'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
@@ -72,7 +72,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => UserConfiguration::COLOR,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.color'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.color'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
@@ -83,7 +83,7 @@ class UserConfigurationForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => UserConfiguration::RADIUS,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.radius'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.radius'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => RangeField::class,

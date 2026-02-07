@@ -63,11 +63,11 @@ class SitePageForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'main',
-                TemplateTab::LABEL => trans('narsil::ui.main'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.main'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => SitePage::TITLE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.title'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.title'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
@@ -77,7 +77,7 @@ class SitePageForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => SitePage::SLUG,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.slug'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
@@ -88,7 +88,7 @@ class SitePageForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => SitePage::ADAPTER,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.adapter'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.adapter'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
@@ -98,7 +98,7 @@ class SitePageForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => SitePage::RELATION_ENTITIES,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.entity'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.entity'),
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_CONDITIONS => [
                             [
@@ -115,7 +115,7 @@ class SitePageForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => SitePage::COLLECTION,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.collection'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.collection'),
                         TemplateTabElement::RELATION_CONDITIONS => [
                             [
                                 TemplateTabElementCondition::HANDLE => SitePage::ADAPTER,
@@ -131,7 +131,7 @@ class SitePageForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => SitePage::SHOW_IN_MENU,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.show_in_menu'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.show_in_menu'),
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SwitchField::class,
@@ -151,7 +151,7 @@ class SitePageForm extends AbstractForm implements Contract
                             Block::RELATION_ELEMENTS => [
                                 [
                                     BlockElement::HANDLE => SitePage::META_DESCRIPTION,
-                                    BlockElement::LABEL => trans('narsil::validation.attributes.description'),
+                                    BlockElement::LABEL => trans('narsil-cms::validation.attributes.description'),
                                     BlockElement::REQUIRED => true,
                                     BlockElement::TRANSLATABLE => true,
                                     BlockElement::RELATION_BASE => [
@@ -161,7 +161,7 @@ class SitePageForm extends AbstractForm implements Contract
                                 ],
                                 [
                                     BlockElement::HANDLE => SitePage::ROBOTS,
-                                    BlockElement::LABEL => trans('narsil::validation.attributes.robots'),
+                                    BlockElement::LABEL => trans('narsil-cms::validation.attributes.robots'),
                                     BlockElement::REQUIRED => true,
                                     BlockElement::RELATION_BASE => [
                                         Field::TYPE => SelectField::class,
@@ -180,7 +180,7 @@ class SitePageForm extends AbstractForm implements Contract
                             Block::RELATION_ELEMENTS => [
                                 [
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_TYPE,
-                                    BlockElement::LABEL => trans('narsil::validation.attributes.type'),
+                                    BlockElement::LABEL => trans('narsil-cms::validation.attributes.type'),
                                     BlockElement::REQUIRED => true,
                                     BlockElement::RELATION_BASE => [
                                         Field::TYPE => SelectField::class,
@@ -192,7 +192,7 @@ class SitePageForm extends AbstractForm implements Contract
                                 ],
                                 [
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_TITLE,
-                                    BlockElement::LABEL => trans('narsil::validation.attributes.title'),
+                                    BlockElement::LABEL => trans('narsil-cms::validation.attributes.title'),
                                     BlockElement::TRANSLATABLE => true,
                                     BlockElement::RELATION_BASE => [
                                         Field::TYPE => TextField::class,
@@ -201,7 +201,7 @@ class SitePageForm extends AbstractForm implements Contract
                                 ],
                                 [
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_DESCRIPTION,
-                                    BlockElement::LABEL => trans('narsil::validation.attributes.description'),
+                                    BlockElement::LABEL => trans('narsil-cms::validation.attributes.description'),
                                     BlockElement::TRANSLATABLE => true,
                                     BlockElement::RELATION_BASE => [
                                         Field::TYPE => TextareaField::class,
@@ -210,7 +210,7 @@ class SitePageForm extends AbstractForm implements Contract
                                 ],
                                 [
                                     BlockElement::HANDLE => SitePage::OPEN_GRAPH_IMAGE,
-                                    BlockElement::LABEL => trans('narsil::validation.attributes.image'),
+                                    BlockElement::LABEL => trans('narsil-cms::validation.attributes.image'),
                                     BlockElement::RELATION_BASE => [
                                         Field::TYPE => FileField::class,
                                         Field::SETTINGS => app(FileField::class)
@@ -229,7 +229,7 @@ class SitePageForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => SitePage::CHANGE_FREQ,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.change_freq'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.change_freq'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
@@ -241,7 +241,7 @@ class SitePageForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => SitePage::PRIORITY,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.priority'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.priority'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => RangeField::class,

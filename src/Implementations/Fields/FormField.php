@@ -41,7 +41,7 @@ class FormField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => Field::PLACEHOLDER,
-                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,

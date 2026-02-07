@@ -43,7 +43,7 @@ class ForgotPasswordController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.reset_password');
+        return trans('narsil-cms::ui.reset_password');
     }
 
     /**
@@ -63,7 +63,7 @@ class ForgotPasswordController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.reset_password');
+        return trans('narsil-cms::ui.reset_password');
     }
 
     #endregion

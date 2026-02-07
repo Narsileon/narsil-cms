@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Narsil\Cms\Contracts\FormRequests\EntityFormRequest;
+use Narsil\Cms\Contracts\Requests\EntityFormRequest;
 use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
@@ -137,7 +137,7 @@ class EntityUpdateController extends RedirectController
                 ->redirect(route('collections.index', [
                     'collection' => $collection
                 ]), $entity)
-                ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::UPDATED->value, [
+                ->with('success', trans('narsil-cms::toasts.success.' . ModelEventEnum::UPDATED->value, [
                     'model' => $this->template->{Template::SINGULAR},
                     'table' => $this->template->{Template::PLURAL},
                 ]));

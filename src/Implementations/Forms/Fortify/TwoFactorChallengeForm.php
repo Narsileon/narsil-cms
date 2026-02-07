@@ -33,7 +33,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
         $this
             ->action(route('two-factor.login'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.confirm'));
+            ->submitLabel(trans('narsil-cms::ui.confirm'));
     }
 
     #endregion
@@ -50,7 +50,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => 'code',
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.code'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.code'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
@@ -60,7 +60,7 @@ class TwoFactorChallengeForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => 'recovery_code',
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.recovery_code'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.recovery_code'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,

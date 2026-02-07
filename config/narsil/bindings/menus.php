@@ -7,7 +7,7 @@ return [
     | Menu Bindings
     |--------------------------------------------------------------------------
     |
-    | Mapping between component contracts and their concrete implementations.
+    | Mapping between menu contracts and their implementations.
     |
     */
 

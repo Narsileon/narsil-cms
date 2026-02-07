@@ -5,7 +5,7 @@ namespace Narsil\Cms\Http\Controllers\Storages;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Cms\Contracts\FormRequests\MediaFormRequest;
+use Narsil\Cms\Contracts\Requests\MediaFormRequest;
 use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Storages\Media;

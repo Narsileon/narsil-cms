@@ -44,7 +44,7 @@ class TextField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => Field::PLACEHOLDER,
-                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
@@ -53,7 +53,7 @@ class TextField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
-                BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.default_value'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class),
@@ -61,7 +61,7 @@ class TextField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
-                BlockElement::LABEL => trans('narsil::validation.attributes.min_length'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.min_length'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
@@ -73,7 +73,7 @@ class TextField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
-                BlockElement::LABEL => trans('narsil::validation.attributes.max_length'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.max_length'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
@@ -117,7 +117,7 @@ class TextField extends AbstractField implements Contract
         $this->set('generate', $value);
 
         app(TranslationsBag::class)
-            ->add('narsil::ui.generate');
+            ->add('narsil-cms::ui.generate');
 
         return $this;
     }

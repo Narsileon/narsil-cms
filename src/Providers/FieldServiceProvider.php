@@ -13,7 +13,7 @@ use Illuminate\Support\ServiceProvider;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldServiceProvider extends ServiceProvider
+final class FieldServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 

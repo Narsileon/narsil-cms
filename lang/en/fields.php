@@ -26,8 +26,6 @@ use Narsil\Cms\Contracts\Fields\TimeField;
 use Narsil\Cms\Contracts\Fields\TreeField;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Forms\Fieldset;
-use Narsil\Cms\Models\Forms\Input;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Policies\Permission;
@@ -69,21 +67,12 @@ return [
             Field::HANDLE => 'The default handle. The value can be overridden by templates and blocks that implement this field.',
             Field::LABEL => 'The default label. The value can be overridden by templates and blocks that implement this field.',
         ],
-        Fieldset::TABLE => [
-            Fieldset::HANDLE => 'The default handle. The value can be overridden by forms and fieldsets that implement this fieldset.',
-            Fieldset::LABEL => 'The default label. The value can be overridden by forms and fieldsets that implement this fieldset.',
-        ],
         Host::TABLE => [
             Host::HOSTNAME => 'The hostname of the website, e.g. \'domain.com\' or \'subdomain.domain.com\'.',
             Host::LABEL => 'The display label shown in the sidebar.',
         ],
         HostLocale::TABLE => [
             HostLocale::PATTERN => 'The pattern of the URLs, e.g. \':example\'.',
-        ],
-        Input::TABLE => [
-            Input::DESCRIPTION => 'The default description. The value can be overridden by forms and fieldsets that implement this input.',
-            Input::HANDLE => 'The default handle. The value can be overridden by forms and fieldsets that implement this input.',
-            Input::LABEL => 'The default label. The value can be overridden by forms and fieldsets that implement this input.',
         ],
         Permission::TABLE => [
             Permission::LABEL => 'The display label shown to users.',

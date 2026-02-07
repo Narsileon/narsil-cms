@@ -36,7 +36,7 @@ class LoginForm extends AbstractForm implements Contract
         $this
             ->action(route('login'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.log_in'));
+            ->submitLabel(trans('narsil-cms::ui.log_in'));
     }
 
     #endregion
@@ -53,7 +53,7 @@ class LoginForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         BlockElement::HANDLE => User::EMAIL,
-                        BlockElement::LABEL => trans('narsil::validation.attributes.email'),
+                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.email'),
                         BlockElement::REQUIRED => true,
                         BlockElement::RELATION_BASE => [
                             Field::PLACEHOLDER => 'email@example.com',
@@ -65,14 +65,14 @@ class LoginForm extends AbstractForm implements Contract
                     ],
                     [
                         BlockElement::HANDLE => User::PASSWORD,
-                        BlockElement::LABEL => trans('narsil::validation.attributes.password'),
+                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.password'),
                         BlockElement::REQUIRED => true,
                         BlockElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
-                                ->append(view('narsil::components.link', [
-                                    'label' => trans("narsil::passwords.link"),
-                                    'route' => route("password.request"),
+                                ->append(view('narsil-cms::components.link', [
+                                    'label' => trans('narsil-cms::passwords.link'),
+                                    'route' => route('password.request'),
                                 ])->render())
                                 ->autoComplete(AutoCompleteEnum::CURRENT_PASSWORD->value),
                         ],
@@ -80,7 +80,7 @@ class LoginForm extends AbstractForm implements Contract
                     [
                         BlockElement::CLASS_NAME => 'flex-row-reverse justify-end',
                         BlockElement::HANDLE => User::REMEMBER,
-                        BlockElement::LABEL => trans('narsil::validation.attributes.remember'),
+                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.remember'),
                         BlockElement::RELATION_BASE => [
                             Field::TYPE => CheckboxField::class,
                             Field::SETTINGS => app(CheckboxField::class),

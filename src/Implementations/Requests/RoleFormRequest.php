@@ -6,7 +6,7 @@ namespace Narsil\Cms\Implementations\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
-use Narsil\Cms\Contracts\FormRequests\RoleFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\RoleFormRequest as Contract;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Validation\FormRule;

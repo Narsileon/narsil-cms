@@ -49,19 +49,19 @@ class ConditionForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'condition',
-                TemplateTab::LABEL => Str::ucfirst(trans('narsil::validation.attributes.conditions')),
+                TemplateTab::LABEL => Str::ucfirst(trans('narsil-cms::validation.attributes.conditions')),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => Element::RELATION_CONDITIONS,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.conditions'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.conditions'),
                         TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil::ui.add'),
+                            Field::PLACEHOLDER => trans('narsil-cms::ui.add'),
                             Field::TYPE => TableField::class,
                             Field::SETTINGS => app(TableField::class)
                                 ->columns([
                                     [
                                         BlockElement::HANDLE => AbstractCondition::HANDLE,
-                                        BlockElement::LABEL => trans('narsil::validation.attributes.handle'),
+                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
                                         BlockElement::REQUIRED => true,
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => TextField::class,
@@ -70,7 +70,7 @@ class ConditionForm extends AbstractForm implements Contract
                                     ],
                                     [
                                         BlockElement::HANDLE => AbstractCondition::OPERATOR,
-                                        BlockElement::LABEL => trans('narsil::validation.attributes.operator'),
+                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.operator'),
                                         BlockElement::REQUIRED => true,
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => SelectField::class,
@@ -87,7 +87,7 @@ class ConditionForm extends AbstractForm implements Contract
                                     ],
                                     [
                                         BlockElement::HANDLE => AbstractCondition::VALUE,
-                                        BlockElement::LABEL => trans('narsil::validation.attributes.value'),
+                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.value'),
                                         BlockElement::REQUIRED => true,
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => TextField::class,

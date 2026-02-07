@@ -6,6 +6,7 @@ namespace Narsil\Cms\Services;
 
 use Illuminate\Support\Str;
 use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Helpers\Translation;
 
 #endregion
 
@@ -26,16 +27,7 @@ abstract class ModelService
      */
     public static function getFieldDescription(string $table, string $attribute, array $replace = []): string
     {
-        $key = "narsil::fields.descriptions.$table.$attribute";
-
-        $label = trans($key, $replace);
-
-        if ($label === $key)
-        {
-            $label = "";
-        }
-
-        return $label;
+        return Translation::get("fields.descriptions.$table.$attribute", $replace);
     }
 
     /**
@@ -47,9 +39,9 @@ abstract class ModelService
      */
     public static function getModelLabel(string $model, bool $ucFirst = true, ?string $locale = null): string
     {
-        $key = "narsil::models.$model";
+        $key = "models.$model";
 
-        $label = trans($key, [], $locale);
+        $label = Translation::get($key, [], $locale);
 
         if ($label === $key)
         {
@@ -75,7 +67,7 @@ abstract class ModelService
         $modelLabel = static::getModelLabel($model, false);
         $tableLabel = static::getTableLabel($model::TABLE, false);
 
-        return trans("narsil::toasts.success.$event->value", [
+        return Translation::get("toasts.success.$event->value", [
             'model' => $modelLabel,
             'table' => $tableLabel,
         ]);
@@ -90,9 +82,9 @@ abstract class ModelService
      */
     public static function getTableLabel(string $table, bool $ucFirst = true, ?string $locale = null): string
     {
-        $key = "narsil::tables.$table";
+        $key = "tables.$table";
 
-        $label = trans($key, [], $locale);
+        $label = Translation::get($key, [], $locale);
 
         if ($label === $key)
         {

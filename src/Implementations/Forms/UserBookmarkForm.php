@@ -31,7 +31,7 @@ class UserBookmarkForm extends AbstractForm
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => UserBookmark::NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,

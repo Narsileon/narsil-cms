@@ -62,7 +62,7 @@ class FieldCreateController extends RenderController
         $form = app(FieldForm::class)
             ->action(route('fields.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
 
         return $form;
     }

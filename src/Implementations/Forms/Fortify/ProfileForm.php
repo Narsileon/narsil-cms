@@ -36,7 +36,7 @@ class ProfileForm extends AbstractForm implements Contract
             ->action(route('user-profile-information.update'))
             ->method(RequestMethodEnum::PUT->value)
             ->submitIcon('save')
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
     }
 
     #endregion
@@ -53,7 +53,7 @@ class ProfileForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => User::LAST_NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.last_name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -64,7 +64,7 @@ class ProfileForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::FIRST_NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.first_name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -75,7 +75,7 @@ class ProfileForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::AVATAR,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.avatar'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.avatar'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)

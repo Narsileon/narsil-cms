@@ -5,13 +5,13 @@ namespace Narsil\Cms\Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Cms\Models\Forms\Fieldset;
-use Narsil\Cms\Models\Forms\FieldsetElement;
-use Narsil\Cms\Models\Forms\Form;
-use Narsil\Cms\Models\Forms\FormStep;
-use Narsil\Cms\Models\Forms\FormStepElement;
-use Narsil\Cms\Models\Forms\Input;
-use Narsil\Cms\Models\Forms\InputOption;
+use Narsil\Cms\Form\Models\Fieldset;
+use Narsil\Cms\Form\Models\FieldsetElement;
+use Narsil\Cms\Form\Models\Form;
+use Narsil\Cms\Form\Models\FormStep;
+use Narsil\Cms\Form\Models\FormStepElement;
+use Narsil\Cms\Form\Models\Input;
+use Narsil\Cms\Form\Models\InputOption;
 
 #endregion
 

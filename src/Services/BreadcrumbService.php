@@ -55,7 +55,7 @@ abstract class BreadcrumbService
 
                 if (Str::contains($label, '::'))
                 {
-                    $label = trans('narsil::ui.' . $key);
+                    $label = trans('narsil-cms::ui.' . $key);
                 }
 
                 if (Str::contains($label, '::'))

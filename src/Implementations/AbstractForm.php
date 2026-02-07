@@ -43,7 +43,7 @@ abstract class AbstractForm extends Fluent implements Form
             ->defaultLanguage($defaultLanguage)
             ->id($id)
             ->languageOptions($languageOptions)
-            ->submitLabel(trans('narsil::ui.save'))
+            ->submitLabel(trans('narsil-cms::ui.save'))
             ->tabs($tabs);
 
         foreach (Config::get('narsil.fields', []) as $field)
@@ -52,30 +52,30 @@ abstract class AbstractForm extends Fluent implements Form
         }
 
         app(TranslationsBag::class)
-            ->add('narsil::accessibility.required')
-            ->add('narsil::datetime.by')
-            ->add('narsil::datetime.created')
-            ->add('narsil::datetime.updated')
-            ->add('narsil::dialogs.descriptions.delete')
-            ->add('narsil::dialogs.titles.delete')
-            ->add('narsil::placeholders.choose')
-            ->add('narsil::placeholders.search')
-            ->add('narsil::pagination.pages_empty')
-            ->add('narsil::ui.add_another')
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.all')
-            ->add('narsil::ui.back')
-            ->add('narsil::ui.cancel')
-            ->add('narsil::ui.confirm')
-            ->add('narsil::ui.continue')
-            ->add('narsil::ui.create')
-            ->add('narsil::ui.default_language')
-            ->add('narsil::ui.delete')
-            ->add('narsil::ui.publish')
-            ->add('narsil::ui.save_as_new')
-            ->add('narsil::ui.save')
-            ->add('narsil::ui.translations')
-            ->add('narsil::ui.unpublish');
+            ->add('narsil-cms::accessibility.required')
+            ->add('narsil-cms::datetime.by')
+            ->add('narsil-cms::datetime.created')
+            ->add('narsil-cms::datetime.updated')
+            ->add('narsil-cms::dialogs.descriptions.delete')
+            ->add('narsil-cms::dialogs.titles.delete')
+            ->add('narsil-cms::placeholders.choose')
+            ->add('narsil-cms::placeholders.search')
+            ->add('narsil-cms::pagination.pages_empty')
+            ->add('narsil-cms::ui.add_another')
+            ->add('narsil-cms::ui.add')
+            ->add('narsil-cms::ui.all')
+            ->add('narsil-cms::ui.back')
+            ->add('narsil-cms::ui.cancel')
+            ->add('narsil-cms::ui.confirm')
+            ->add('narsil-cms::ui.continue')
+            ->add('narsil-cms::ui.create')
+            ->add('narsil-cms::ui.default_language')
+            ->add('narsil-cms::ui.delete')
+            ->add('narsil-cms::ui.publish')
+            ->add('narsil-cms::ui.save_as_new')
+            ->add('narsil-cms::ui.save')
+            ->add('narsil-cms::ui.translations')
+            ->add('narsil-cms::ui.unpublish');
     }
 
     #endregion
@@ -227,7 +227,7 @@ abstract class AbstractForm extends Fluent implements Form
     {
         return new TemplateTab([
             TemplateTab::HANDLE => 'sidebar',
-            TemplateTab::LABEL => trans('narsil::ui.sidebar'),
+            TemplateTab::LABEL => trans('narsil-cms::ui.sidebar'),
             TemplateTab::RELATION_ELEMENTS => $elements
         ]);
     }

@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Narsil\Cms\Contracts\FormRequests\UserConfigurationFormRequest;
+use Narsil\Cms\Contracts\Requests\UserConfigurationFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Models\Users\UserConfiguration;

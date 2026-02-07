@@ -35,7 +35,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
         $this
             ->action(route('password.update'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.reset'));
+            ->submitLabel(trans('narsil-cms::ui.reset'));
     }
 
     #endregion
@@ -52,7 +52,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => User::EMAIL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.email'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EmailField::class,
@@ -63,7 +63,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::PASSWORD,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
@@ -73,7 +73,7 @@ class ResetPasswordForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password_confirmation'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,

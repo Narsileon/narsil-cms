@@ -92,7 +92,7 @@ class MediaEditController extends RenderController
             ]))
             ->id($media->{Media::UUID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

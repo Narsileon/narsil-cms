@@ -8,9 +8,6 @@ use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Models\Forms\Fieldset;
-use Narsil\Cms\Models\Forms\Form;
-use Narsil\Cms\Models\Forms\Input;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
@@ -31,9 +28,6 @@ return [
     Entity::class => 'entity',
     Field::class => 'field',
     Footer::class => 'footer',
-    Form::class => 'form',
-    Fieldset::class => 'fieldset',
-    Input::class => 'input',
     Header::class => 'header',
     Host::class => 'host',
     Media::class => 'file',

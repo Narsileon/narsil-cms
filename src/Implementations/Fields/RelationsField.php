@@ -38,13 +38,13 @@ class RelationsField extends AbstractField implements Contract
     public static function bootTranslations(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil::ui.cancel')
-            ->add('narsil::ui.confirm')
-            ->add('narsil::ui.edit')
-            ->add('narsil::ui.remove')
-            ->add('narsil::ui.save')
-            ->add('narsil::validation.unique', [
-                'attribute' => trans('narsil::validation.attributes.identifier'),
+            ->add('narsil-cms::ui.cancel')
+            ->add('narsil-cms::ui.confirm')
+            ->add('narsil-cms::ui.edit')
+            ->add('narsil-cms::ui.remove')
+            ->add('narsil-cms::ui.save')
+            ->add('narsil-cms::validation.unique', [
+                'attribute' => trans('narsil-cms::validation.attributes.identifier'),
             ]);
     }
 

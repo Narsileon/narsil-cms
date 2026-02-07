@@ -7,7 +7,7 @@ namespace Narsil\Cms\Implementations\Requests;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use Narsil\Cms\Contracts\Fields\BuilderField;
-use Narsil\Cms\Contracts\FormRequests\EntityFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\EntityFormRequest as Contract;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Collections\Block;

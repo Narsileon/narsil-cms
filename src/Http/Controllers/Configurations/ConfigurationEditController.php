@@ -87,7 +87,7 @@ class ConfigurationEditController extends RenderController
             ->action(route('settings.update', $configuration->{Configuration::ID}))
             ->id($configuration->{Configuration::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

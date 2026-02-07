@@ -7,7 +7,7 @@ return [
     | Field Bindings
     |--------------------------------------------------------------------------
     |
-    | Mapping between field contracts and their concrete implementations.
+    | Mapping between field contracts and their implementations.
     |
     */
 

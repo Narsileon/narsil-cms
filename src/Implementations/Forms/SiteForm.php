@@ -37,11 +37,11 @@ class SiteForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => Site::RELATION_PAGES,
-                TemplateTab::LABEL => trans('narsil::ui.navigation'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.navigation'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => Site::HEADER_ID,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.header_id'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.header_id'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class),
@@ -50,7 +50,7 @@ class SiteForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Site::FOOTER_ID,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.footer_id'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.footer_id'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class),
@@ -59,7 +59,7 @@ class SiteForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Site::RELATION_PAGES,
-                        TemplateTabElement::LABEL => trans('narsil::ui.navigation'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::ui.navigation'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TreeField::class,
                             Field::SETTINGS => app(TreeField::class),

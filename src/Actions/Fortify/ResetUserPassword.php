@@ -6,7 +6,7 @@ namespace Narsil\Cms\Actions\Fortify;
 
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
-use Narsil\Cms\Contracts\FormRequests\Fortify\ResetUserPasswordFormRequest;
+use Narsil\Cms\Contracts\Requests\Fortify\ResetUserPasswordFormRequest;
 use Narsil\Cms\Models\User;
 
 #endregion

@@ -108,7 +108,7 @@ return [
 
     'middleware' => [
         'web',
-        'narsil-web',
+        'narsil-cms',
     ],
 
     /*

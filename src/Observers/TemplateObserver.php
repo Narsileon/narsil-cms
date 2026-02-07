@@ -80,7 +80,7 @@ class TemplateObserver
         {
             $handle = PermissionService::getHandle($model->{Template::TABLE_NAME}, $permission);
 
-            $name = trans("narsil::permissions.$permission", [
+            $name = trans("narsil-cms::permissions.$permission", [
                 'model' => $model->{Template::SINGULAR},
                 'table' => $model->{Template::PLURAL},
             ]);

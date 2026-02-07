@@ -7,7 +7,7 @@ return [
     | Available Fields
     |--------------------------------------------------------------------------
     |
-    | Field contracts available as Fields.
+    | Field contracts available in cms.
     |
     */
 

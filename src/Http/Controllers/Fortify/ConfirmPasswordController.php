@@ -42,7 +42,7 @@ class ConfirmPasswordController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.confirm_password');
+        return trans('narsil-cms::ui.confirm_password');
     }
 
     /**
@@ -62,7 +62,7 @@ class ConfirmPasswordController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.confirm_password');
+        return trans('narsil-cms::ui.confirm_password');
     }
 
     #endregion

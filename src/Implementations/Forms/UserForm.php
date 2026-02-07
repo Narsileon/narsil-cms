@@ -53,11 +53,11 @@ class UserForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'account',
-                TemplateTab::LABEL => trans('narsil::ui.account'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.account'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => User::EMAIL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.email'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EmailField::class,
@@ -67,7 +67,7 @@ class UserForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::PASSWORD,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
@@ -77,7 +77,7 @@ class UserForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password_confirmation'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
@@ -89,11 +89,11 @@ class UserForm extends AbstractForm implements Contract
             ],
             [
                 TemplateTab::HANDLE => 'profile',
-                TemplateTab::LABEL => trans('narsil::ui.profile'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.profile'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => User::LAST_NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.last_name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -104,7 +104,7 @@ class UserForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::FIRST_NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.first_name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -115,7 +115,7 @@ class UserForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::AVATAR,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.avatar'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.avatar'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)
@@ -131,7 +131,7 @@ class UserForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => User::RELATION_ROLES,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.roles'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.roles'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => CheckboxField::class,
                             Field::RELATION_OPTIONS => Role::selectOptions(),

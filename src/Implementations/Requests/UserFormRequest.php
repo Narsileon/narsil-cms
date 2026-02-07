@@ -6,7 +6,7 @@ namespace Narsil\Cms\Implementations\Requests;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
-use Narsil\Cms\Contracts\FormRequests\UserFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\UserFormRequest as Contract;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\User;

@@ -8,9 +8,6 @@ use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Configuration;
-use Narsil\Cms\Models\Forms\Fieldset;
-use Narsil\Cms\Models\Forms\Form;
-use Narsil\Cms\Models\Forms\Input;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
@@ -30,12 +27,9 @@ return [
     Configuration::class => 'paramètres',
     Entity::class => 'entité',
     Field::class => 'champ',
-    Fieldset::class => 'ensemble de champs',
     Footer::class => 'pied de page',
-    Form::class => 'formulaire',
     Header::class => 'en-tête',
     Host::class => 'hôte',
-    Input::class => 'entrée',
     Media::class => 'fichier',
     Permission::class => 'permission',
     Role::class => 'rôle',

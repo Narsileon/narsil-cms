@@ -26,7 +26,7 @@ class LoginController extends RenderController
     public function __construct()
     {
         app(TranslationsBag::class)
-            ->add('narsil::passwords.link');
+            ->add('narsil-cms::passwords.link');
     }
 
     #endregion
@@ -57,7 +57,7 @@ class LoginController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.connection');
+        return trans('narsil-cms::ui.connection');
     }
 
     /**
@@ -77,7 +77,7 @@ class LoginController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.connection');
+        return trans('narsil-cms::ui.connection');
     }
 
     #endregion

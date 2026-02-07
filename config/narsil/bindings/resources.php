@@ -7,7 +7,7 @@ return [
     | Resource Bindings
     |--------------------------------------------------------------------------
     |
-    | Mapping between models and their resources.
+    | Mapping between resource contracts and their implementations.
     |
     */
 

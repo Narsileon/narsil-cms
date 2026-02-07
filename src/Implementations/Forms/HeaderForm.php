@@ -47,11 +47,11 @@ class HeaderForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => Header::SLUG,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.slug'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -60,7 +60,7 @@ class HeaderForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Header::LOGO,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.logo'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.logo'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => FileField::class,
                             Field::SETTINGS => app(FileField::class)

@@ -13,7 +13,7 @@ use Illuminate\Support\ServiceProvider;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class TableServiceProvider extends ServiceProvider
+final class TableServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 

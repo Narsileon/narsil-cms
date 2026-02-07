@@ -63,7 +63,7 @@ class EntityForm extends AbstractForm implements Contract
         $templateTabs[] = static::sidebarTab([
             [
                 TemplateTabElement::HANDLE => Entity::SLUG,
-                TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.slug'),
                 TemplateTabElement::REQUIRED => true,
                 TemplateTabElement::TRANSLATABLE => true,
                 TemplateTabElement::RELATION_BASE => [

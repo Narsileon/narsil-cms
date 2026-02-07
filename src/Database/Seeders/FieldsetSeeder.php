@@ -4,7 +4,7 @@ namespace Narsil\Cms\Database\Seeders;
 
 #region USE
 
-use Narsil\Cms\Models\Forms\Fieldset;
+use Narsil\Cms\Form\Models\Fieldset;
 
 #endregion
 

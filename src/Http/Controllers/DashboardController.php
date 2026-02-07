@@ -37,7 +37,7 @@ class DashboardController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.dashboard');
+        return trans('narsil-cms::ui.dashboard');
     }
 
     /**
@@ -45,7 +45,7 @@ class DashboardController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.dashboard');
+        return trans('narsil-cms::ui.dashboard');
     }
 
     #endregion

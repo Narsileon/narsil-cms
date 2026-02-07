@@ -34,7 +34,7 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
         $this
             ->action(route('password.confirm'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.confirm'));
+            ->submitLabel(trans('narsil-cms::ui.confirm'));
     }
 
     #endregion
@@ -51,7 +51,7 @@ class ConfirmPasswordForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => User::PASSWORD,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,

@@ -49,16 +49,16 @@ class ConfigurationForm extends AbstractForm implements Contract
     protected function getTabs(): array
     {
         $frontendLanguages = HostLocaleLanguage::getUniqueLanguages();
-        $backendLanguages = Config::get('narsil.locales');
+        $backendLanguages = Config::get('narsil.locales', []);
 
         return [
             [
                 TemplateTab::HANDLE => 'frontend',
-                TemplateTab::LABEL => trans('narsil::ui.frontend'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.frontend'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.default_language'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.default_language'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => new Field([
                             Field::TYPE => SelectField::class,
@@ -70,11 +70,11 @@ class ConfigurationForm extends AbstractForm implements Contract
             ],
             [
                 TemplateTab::HANDLE => 'backend',
-                TemplateTab::LABEL => trans('narsil::ui.backend'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.backend'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.default_language'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.default_language'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SelectField::class,

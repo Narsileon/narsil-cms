@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
-use Narsil\Cms\Contracts\FormRequests\MediaFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\MediaFormRequest as Contract;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 
 #endregion

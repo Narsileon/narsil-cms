@@ -42,8 +42,8 @@ class PasswordField extends AbstractField implements Contract
     public static function bootTranslations(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil::accessibility.hide_password')
-            ->add('narsil::accessibility.show_password');
+            ->add('narsil-cms::accessibility.hide_password')
+            ->add('narsil-cms::accessibility.show_password');
     }
 
     /**
@@ -54,7 +54,7 @@ class PasswordField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => Field::PLACEHOLDER,
-                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
@@ -63,7 +63,7 @@ class PasswordField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.min_length" : 'min_length',
-                BlockElement::LABEL => trans('narsil::validation.attributes.min_length'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.min_length'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
@@ -75,7 +75,7 @@ class PasswordField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.max_length" : 'max_length',
-                BlockElement::LABEL => trans('narsil::validation.attributes.max_length'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.max_length'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,

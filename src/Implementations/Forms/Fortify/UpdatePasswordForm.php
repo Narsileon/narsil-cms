@@ -36,7 +36,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
             ->action(route('user-password.update'))
             ->method(RequestMethodEnum::PUT->value)
             ->submitIcon('save')
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
     }
 
     #endregion
@@ -53,7 +53,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => AutoCompleteEnum::USERNAME->value,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.email'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
                             Field::SETTINGS => app(TextField::class)
@@ -63,7 +63,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_CURRENT_PASSWORD,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.current_password'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.current_password'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
@@ -73,7 +73,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::PASSWORD,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
@@ -83,7 +83,7 @@ class UpdatePasswordForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password_confirmation'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,

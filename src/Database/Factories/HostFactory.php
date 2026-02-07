@@ -74,7 +74,7 @@ class HostFactory extends Factory
      */
     protected function createHostLocaleLanguages(HostLocale $hostLocale): void
     {
-        $languages = Config::get('narsil.locales');
+        $languages = Config::get('narsil.locales', []);
 
         foreach ($languages as $position => $language)
         {

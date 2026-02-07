@@ -13,9 +13,9 @@ use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Models\Forms\Form;
-use Narsil\Cms\Models\Forms\Fieldset;
-use Narsil\Cms\Models\Forms\Input;
+use Narsil\Cms\Form\Models\Form;
+use Narsil\Cms\Form\Models\Fieldset;
+use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
@@ -45,9 +45,9 @@ class Sidebar extends AbstractMenu implements Contract
     public function __construct()
     {
         app(TranslationsBag::class)
-            ->add('narsil::accessibility.close_sidebar')
-            ->add('narsil::accessibility.open_sidebar')
-            ->add('narsil::accessibility.toggle_sidebar');
+            ->add('narsil-cms::accessibility.close_sidebar')
+            ->add('narsil-cms::accessibility.open_sidebar')
+            ->add('narsil-cms::accessibility.toggle_sidebar');
     }
 
     #endregion
@@ -64,7 +64,7 @@ class Sidebar extends AbstractMenu implements Contract
                 new MenuItem()
                     ->href(route('dashboard'))
                     ->icon('chart-pie')
-                    ->label(trans('narsil::ui.dashboard')),
+                    ->label(trans('narsil-cms::ui.dashboard')),
             ],
             $this->getSiteGroup(),
             $this->getGlobalsGroup(),
@@ -88,7 +88,7 @@ class Sidebar extends AbstractMenu implements Contract
     {
         $menuItems = [];
 
-        $group = trans('narsil::ui.collections');
+        $group = trans('narsil-cms::ui.collections');
 
         $templates = Template::query()
             ->orderBy(Template::PLURAL)
@@ -157,7 +157,7 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function getFormsGroup(): array
     {
-        $group = trans('narsil::ui.forms');
+        $group = trans('narsil-cms::ui.forms');
 
         return [
             new MenuItem()
@@ -192,7 +192,7 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function getGlobalsGroup(): array
     {
-        $group = trans('narsil::ui.globals');
+        $group = trans('narsil-cms::ui.globals');
 
         return [
             new MenuItem()
@@ -219,7 +219,7 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function getManagementGroup(): array
     {
-        $group = trans('narsil::ui.management');
+        $group = trans('narsil-cms::ui.management');
 
         return [
             new MenuItem()
@@ -301,7 +301,7 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function getStructuresGroup(): array
     {
-        $group = trans('narsil::ui.structures');
+        $group = trans('narsil-cms::ui.structures');
 
         return [
             new MenuItem()
@@ -336,7 +336,7 @@ class Sidebar extends AbstractMenu implements Contract
      */
     protected function getToolsGroup(): array
     {
-        $group = trans('narsil::ui.tools');
+        $group = trans('narsil-cms::ui.tools');
 
         return [
             new MenuItem()

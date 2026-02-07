@@ -62,7 +62,7 @@ class TemplateCreateController extends RenderController
         $form = app(TemplateForm::class)
             ->action(route('templates.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
 
         return $form;
     }

@@ -45,7 +45,7 @@ class EntityDestroyManyController extends RedirectController
             ->redirect(route('collections.index', [
                 'collection' => $collection,
             ]))
-            ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::DELETED_MANY->value, [
+            ->with('success', trans('narsil-cms::toasts.success.' . ModelEventEnum::DELETED_MANY->value, [
                 'model' => $this->template->{Template::SINGULAR},
                 'table' => $this->template->{Template::PLURAL},
             ]));

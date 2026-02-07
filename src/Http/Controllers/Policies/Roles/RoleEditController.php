@@ -93,7 +93,7 @@ class RoleEditController extends RenderController
             ->action(route('roles.update', $role->{Role::ID}))
             ->id($role->{Role::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

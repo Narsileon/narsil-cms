@@ -36,7 +36,7 @@ class RegisterForm extends AbstractForm implements Contract
         $this
             ->action(route('register'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.register'));
+            ->submitLabel(trans('narsil-cms::ui.register'));
     }
 
     #endregion
@@ -53,7 +53,7 @@ class RegisterForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => User::EMAIL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.email'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.email'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => EmailField::class,
@@ -64,7 +64,7 @@ class RegisterForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::CLASS_NAME => 'col-span-6',
                         TemplateTabElement::HANDLE => User::PASSWORD,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
@@ -75,7 +75,7 @@ class RegisterForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::CLASS_NAME => 'col-span-6',
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.password_confirmation'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password_confirmation'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
@@ -86,7 +86,7 @@ class RegisterForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::CLASS_NAME => 'col-span-6',
                         TemplateTabElement::HANDLE => User::FIRST_NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.first_name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.first_name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -98,7 +98,7 @@ class RegisterForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::CLASS_NAME => 'col-span-6',
                         TemplateTabElement::HANDLE => User::LAST_NAME,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.last_name'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.last_name'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,

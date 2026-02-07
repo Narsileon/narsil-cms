@@ -90,7 +90,7 @@ class FooterEditController extends RenderController
             ->action(route('footers.update', $footer->{Footer::ID}))
             ->id($footer->{Footer::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

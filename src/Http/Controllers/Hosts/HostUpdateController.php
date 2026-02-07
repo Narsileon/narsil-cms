@@ -6,7 +6,7 @@ namespace Narsil\Cms\Http\Controllers\Hosts;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Narsil\Cms\Contracts\FormRequests\HostFormRequest;
+use Narsil\Cms\Contracts\Requests\HostFormRequest;
 use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Jobs\SitemapJob;

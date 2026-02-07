@@ -5,7 +5,7 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
-use Narsil\Cms\Contracts\FormRequests\SitePageFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\SitePageFormRequest as Contract;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Enums\SitePageAdapterEnum;
 use Narsil\Cms\Implementations\AbstractFormRequest;

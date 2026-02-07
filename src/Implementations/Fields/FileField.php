@@ -44,7 +44,7 @@ class FileField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.accept" : 'accept',
-                BlockElement::LABEL => trans('narsil::validation.attributes.accept'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.accept'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
                     Field::SETTINGS => app(TextField::class),

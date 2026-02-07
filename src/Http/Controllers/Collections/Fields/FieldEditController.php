@@ -100,7 +100,7 @@ class FieldEditController extends RenderController
             ->action(route('fields.update', $field->{Field::ID}))
             ->id($field->{Field::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

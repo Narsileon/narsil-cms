@@ -13,7 +13,7 @@ use Illuminate\Support\ServiceProvider;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ObserverServiceProvider extends ServiceProvider
+final class ObserverServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 

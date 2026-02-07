@@ -28,10 +28,10 @@ class GuestMenu extends AbstractMenu implements Contract
     public function __construct()
     {
         app(TranslationsBag::class)
-            ->add('narsil::accessibility.toggle_user_menu')
-            ->add('narsil::themes.dark')
-            ->add('narsil::themes.light')
-            ->add('narsil::themes.system');
+            ->add('narsil-cms::accessibility.toggle_user_menu')
+            ->add('narsil-cms::themes.dark')
+            ->add('narsil-cms::themes.light')
+            ->add('narsil-cms::themes.system');
     }
 
     #endregion
@@ -61,7 +61,7 @@ class GuestMenu extends AbstractMenu implements Contract
                 ->group($group)
                 ->href(route('login'))
                 ->icon('log-in')
-                ->label(trans('narsil::ui.log_in'))
+                ->label(trans('narsil-cms::ui.log_in'))
                 ->method(RequestMethodEnum::GET->value),
         ];
     }

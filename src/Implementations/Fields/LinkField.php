@@ -41,7 +41,7 @@ class LinkField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => Field::PLACEHOLDER,
-                BlockElement::LABEL => trans('narsil::validation.attributes.placeholder'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.placeholder'),
                 BlockElement::TRANSLATABLE => true,
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => TextField::class,
@@ -50,7 +50,7 @@ class LinkField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.multiple" : 'multiple',
-                BlockElement::LABEL => trans('narsil::validation.attributes.multiple'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.multiple'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => SwitchField::class,
                     Field::SETTINGS => app(SwitchField::class),

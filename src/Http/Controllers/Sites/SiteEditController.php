@@ -70,7 +70,7 @@ class SiteEditController extends RenderController
         $countries = $this->getCountrySelectOptions($site);
 
         app(TranslationsBag::class)
-            ->add('narsil::ui.countries');
+            ->add('narsil-cms::ui.countries');
 
         return $this->render('narsil/cms::resources/form', [
             'countries' => $countries,
@@ -94,7 +94,7 @@ class SiteEditController extends RenderController
     {
         $options = [
             new SelectOption()
-                ->optionLabel(trans('narsil::ui.default'))
+                ->optionLabel(trans('narsil-cms::ui.default'))
                 ->optionValue('default')
         ];
 
@@ -153,7 +153,7 @@ class SiteEditController extends RenderController
             ->id($site->{Site::ID})
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

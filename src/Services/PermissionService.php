@@ -37,7 +37,7 @@ abstract class PermissionService
      */
     public static function getName(string $model, string $permission, ?string $locale = null): string
     {
-        return trans("narsil::permissions.$permission", [
+        return trans("narsil-cms::permissions.$permission", [
             'model' => ModelService::getModelLabel($model, false, $locale),
             'table' => ModelService::getTableLabel($model::TABLE, false, $locale),
         ], $locale);

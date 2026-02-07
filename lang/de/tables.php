@@ -9,11 +9,6 @@ use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Models\Forms\Fieldset;
-use Narsil\Cms\Models\Forms\Form;
-use Narsil\Cms\Models\Forms\FormStep;
-use Narsil\Cms\Models\Forms\FormWebhook;
-use Narsil\Cms\Models\Forms\Input;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
@@ -38,18 +33,13 @@ return [
     Configuration::TABLE => 'Einstellungen',
     Entity::TABLE => 'Entitäten',
     Field::TABLE => 'Felder',
-    Fieldset::TABLE => 'Feldgruppen',
     Footer::TABLE => 'Fußzeilen',
     FooterLink::TABLE => 'Links',
     FooterSocialMedium::TABLE => 'Soziale Medien',
-    Form::TABLE => 'Formulare',
-    FormStep::TABLE => 'Tabs',
-    FormWebhook::TABLE => 'Webhooks',
     Header::TABLE => 'Kopfzeilen',
     Host::TABLE => 'Hosts',
     HostLocale::TABLE => 'Locales',
     HostLocaleLanguage::TABLE => 'Sprachen',
-    Input::TABLE => 'Eingaben',
     Media::TABLE => 'Medien',
     Permission::TABLE => 'Berechtigungen',
     Role::TABLE => 'Rollen',

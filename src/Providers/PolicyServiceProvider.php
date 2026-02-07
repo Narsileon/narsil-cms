@@ -15,7 +15,7 @@ use Narsil\Cms\Models\User;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class PolicyServiceProvider extends ServiceProvider
+final class PolicyServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 

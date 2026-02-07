@@ -62,7 +62,7 @@ class HeaderCreateController extends RenderController
         $form = app(HeaderForm::class)
             ->action(route('headers.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
 
         return $form;
     }

@@ -20,7 +20,7 @@ use Narsil\Cms\Models\Sites\Site;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MigrationServiceProvider extends ServiceProvider
+final class MigrationServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 

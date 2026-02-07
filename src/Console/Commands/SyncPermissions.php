@@ -39,7 +39,7 @@ class SyncPermissions extends Command
      */
     public function handle(): void
     {
-        $config = Config::get('narsil.models.policies');
+        $config = Config::get('narsil.models.policies', []);
 
         foreach ($config as $model => $policy)
         {

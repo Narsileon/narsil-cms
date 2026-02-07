@@ -37,17 +37,17 @@ class UserConfigurationEditController extends RenderController
         $userConfigurationForm = app(UserConfigurationForm::class);
 
         app(TranslationsBag::class)
-            ->add('narsil::sessions.sign_out_current_description')
-            ->add('narsil::sessions.sign_out_current')
-            ->add('narsil::sessions.sign_out_elsewhere_description')
-            ->add('narsil::sessions.sign_out_elsewhere')
-            ->add('narsil::sessions.sign_out_everywhere_description')
-            ->add('narsil::sessions.sign_out_everywhere')
-            ->add('narsil::ui.account')
-            ->add('narsil::ui.password')
-            ->add('narsil::ui.personalization')
-            ->add('narsil::ui.security')
-            ->add('narsil::ui.sessions');
+            ->add('narsil-cms::sessions.sign_out_current_description')
+            ->add('narsil-cms::sessions.sign_out_current')
+            ->add('narsil-cms::sessions.sign_out_elsewhere_description')
+            ->add('narsil-cms::sessions.sign_out_elsewhere')
+            ->add('narsil-cms::sessions.sign_out_everywhere_description')
+            ->add('narsil-cms::sessions.sign_out_everywhere')
+            ->add('narsil-cms::ui.account')
+            ->add('narsil-cms::ui.password')
+            ->add('narsil-cms::ui.personalization')
+            ->add('narsil-cms::ui.security')
+            ->add('narsil-cms::ui.sessions');
 
         return $this->render('narsil/cms::users/settings', [
             'profileForm' => $profileForm,

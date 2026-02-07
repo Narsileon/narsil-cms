@@ -45,7 +45,7 @@ class EntityReplicateController extends RedirectController
         EntityService::replicate($entity);
 
         return back()
-            ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::REPLICATED->value, [
+            ->with('success', trans('narsil-cms::toasts.success.' . ModelEventEnum::REPLICATED->value, [
                 'model' => $this->template->{Template::SINGULAR},
                 'table' => $this->template->{Template::PLURAL},
             ]));

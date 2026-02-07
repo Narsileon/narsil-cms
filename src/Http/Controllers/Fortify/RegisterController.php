@@ -42,7 +42,7 @@ class RegisterController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil::ui.registration');
+        return trans('narsil-cms::ui.registration');
     }
 
     /**
@@ -62,7 +62,7 @@ class RegisterController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil::ui.registration');
+        return trans('narsil-cms::ui.registration');
     }
 
     #endregion

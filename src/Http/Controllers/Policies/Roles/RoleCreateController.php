@@ -62,7 +62,7 @@ class RoleCreateController extends RenderController
         $form = app(RoleForm::class)
             ->action(route('roles.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
 
         return $form;
     }

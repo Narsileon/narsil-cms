@@ -34,15 +34,15 @@ class TwoFactorForm extends AbstractForm implements Contract
         $this
             ->action(route('two-factor.confirm'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.confirm'));
+            ->submitLabel(trans('narsil-cms::ui.confirm'));
 
         app(TranslationsBag::class)
             ->add('validation.custom.code.invalid')
-            ->add('narsil::two-factor.recovery_codes_copied')
-            ->add('narsil::two-factor.recovery_codes_description')
-            ->add('narsil::two-factor.recovery_codes_title')
-            ->add('narsil::two-factor.two_factor_authentication')
-            ->add('narsil::ui.copy_clipboard');
+            ->add('narsil-cms::two-factor.recovery_codes_copied')
+            ->add('narsil-cms::two-factor.recovery_codes_description')
+            ->add('narsil-cms::two-factor.recovery_codes_title')
+            ->add('narsil-cms::two-factor.two_factor_authentication')
+            ->add('narsil-cms::ui.copy_clipboard');
     }
 
     #endregion
@@ -58,9 +58,9 @@ class TwoFactorForm extends AbstractForm implements Contract
             [
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => trans('narsil::two-factor.code_description'),
+                        TemplateTabElement::DESCRIPTION => trans('narsil-cms::two-factor.code_description'),
                         TemplateTabElement::HANDLE => 'code',
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.code'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.code'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,

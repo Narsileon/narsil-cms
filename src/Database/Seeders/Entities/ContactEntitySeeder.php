@@ -14,7 +14,7 @@ use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Entities\EntityNode;
-use Narsil\Cms\Models\Forms\Form;
+use Narsil\Cms\Form\Models\Form;
 
 #endregion
 
@@ -31,6 +31,8 @@ class ContactEntitySeeder extends EntitySeeder
      */
     protected function data(): array
     {
+        return [];
+
         $formBlock = new FormBlockSeeder()->run();
         $contactForm = new ContactFormSeeder()->run();
 

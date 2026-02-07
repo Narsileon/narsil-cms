@@ -43,7 +43,7 @@ class DatetimeField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
-                BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.default_value'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class),
@@ -51,7 +51,7 @@ class DatetimeField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.min" : 'min',
-                BlockElement::LABEL => trans('narsil::validation.attributes.min'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.min'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class),
@@ -59,7 +59,7 @@ class DatetimeField extends AbstractField implements Contract
             ],
             [
                 Field::HANDLE => $prefix ? "$prefix.max" : 'max',
-                Field::LABEL => trans('narsil::validation.attributes.max'),
+                Field::LABEL => trans('narsil-cms::validation.attributes.max'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => Contract::class,
                     Field::SETTINGS => app(Contract::class),

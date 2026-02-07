@@ -38,10 +38,10 @@ class ArrayField extends AbstractField implements Contract
     public static function bootTranslations(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up')
-            ->add('narsil::ui.remove');
+            ->add('narsil-cms::ui.add')
+            ->add('narsil-cms::ui.move_down')
+            ->add('narsil-cms::ui.move_up')
+            ->add('narsil-cms::ui.remove');
     }
 
     /**

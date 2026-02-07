@@ -90,7 +90,7 @@ class PermissionEditController extends RenderController
             ->action(route('permissions.update', $permission->{Permission::ID}))
             ->id($permission->{Permission::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms::ui.update'));
 
         return $form;
     }

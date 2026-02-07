@@ -13,7 +13,7 @@ use Laravel\Horizon\HorizonApplicationServiceProvider;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HorizonServiceProvider extends HorizonApplicationServiceProvider
+final class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
     #region PUBLIC METHODS
 

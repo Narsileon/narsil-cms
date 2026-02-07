@@ -6,7 +6,7 @@ namespace Narsil\Cms\Actions\Fortify;
 
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
-use Narsil\Cms\Contracts\FormRequests\Fortify\UpdateUserProfileInformationFormRequest;
+use Narsil\Cms\Contracts\Requests\Fortify\UpdateUserProfileInformationFormRequest;
 use Narsil\Cms\Models\User;
 
 #endregion

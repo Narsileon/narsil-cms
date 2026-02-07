@@ -42,7 +42,7 @@ class RangeField extends AbstractField implements Contract
         return [
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.value" : 'value',
-                BlockElement::LABEL => trans('narsil::validation.attributes.default_value'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.default_value'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
@@ -51,7 +51,7 @@ class RangeField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.min" : 'min',
-                BlockElement::LABEL => trans('narsil::validation.attributes.min'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.min'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
@@ -60,7 +60,7 @@ class RangeField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.max" : 'max',
-                BlockElement::LABEL => trans('narsil::validation.attributes.max'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.max'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)
@@ -69,7 +69,7 @@ class RangeField extends AbstractField implements Contract
             ],
             [
                 BlockElement::HANDLE => $prefix ? "$prefix.step" : 'step',
-                BlockElement::LABEL => trans('narsil::validation.attributes.step'),
+                BlockElement::LABEL => trans('narsil-cms::validation.attributes.step'),
                 BlockElement::RELATION_BASE => [
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class)

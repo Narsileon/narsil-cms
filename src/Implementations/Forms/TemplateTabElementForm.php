@@ -31,11 +31,11 @@ class TemplateTabElementForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => TemplateTabElement::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -44,7 +44,7 @@ class TemplateTabElementForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => TemplateTabElement::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
@@ -54,7 +54,7 @@ class TemplateTabElementForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => TemplateTabElement::DESCRIPTION,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.description'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
@@ -64,7 +64,7 @@ class TemplateTabElementForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => TemplateTabElement::REQUIRED,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.required'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.required'),
                         TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SwitchField::class,
@@ -73,7 +73,7 @@ class TemplateTabElementForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => TemplateTabElement::TRANSLATABLE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.translatable'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.translatable'),
                         TemplateTabElement::WIDTH => 50,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => SwitchField::class,
