@@ -4,10 +4,10 @@ namespace Narsil\Cms\Policies;
 
 #region USE
 
-use Narsil\Cms\Traits\Policies\CreatableTrait;
-use Narsil\Cms\Traits\Policies\DeletableTrait;
-use Narsil\Cms\Traits\Policies\UpdatableTrait;
-use Narsil\Cms\Traits\Policies\ViewableTrait;
+use Narsil\Cms\Traits\Policies\IsCreatable;
+use Narsil\Cms\Traits\Policies\IsDeletable;
+use Narsil\Cms\Traits\Policies\IsUpdatable;
+use Narsil\Cms\Traits\Policies\IsViewable;
 
 #endregion
 
@@ -17,8 +17,8 @@ use Narsil\Cms\Traits\Policies\ViewableTrait;
  */
 class HostPolicy
 {
-    use CreatableTrait;
-    use DeletableTrait;
-    use UpdatableTrait;
-    use ViewableTrait;
+    use IsCreatable;
+    use IsDeletable;
+    use IsUpdatable;
+    use IsViewable;
 }

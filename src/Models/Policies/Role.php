@@ -14,7 +14,7 @@ use Narsil\Cms\Support\SelectOption;
 use Narsil\Cms\Traits\Blameable;
 use Narsil\Cms\Traits\HasAuditLogs;
 use Narsil\Cms\Traits\HasDatetimes;
-use Narsil\Cms\Traits\HasPermissions;
+use Narsil\Cms\Traits\Policies\HasPermissions;
 use Narsil\Cms\Traits\HasTranslations;
 
 #endregion

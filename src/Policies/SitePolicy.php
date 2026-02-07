@@ -4,8 +4,8 @@ namespace Narsil\Cms\Policies;
 
 #region USE
 
-use Narsil\Cms\Traits\Policies\UpdatableTrait;
-use Narsil\Cms\Traits\Policies\ViewableTrait;
+use Narsil\Cms\Traits\Policies\IsUpdatable;
+use Narsil\Cms\Traits\Policies\IsViewable;
 
 #endregion
 
@@ -15,6 +15,6 @@ use Narsil\Cms\Traits\Policies\ViewableTrait;
  */
 class SitePolicy
 {
-    use UpdatableTrait;
-    use ViewableTrait;
+    use IsUpdatable;
+    use IsViewable;
 }

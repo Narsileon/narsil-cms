@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Traits;
+namespace Narsil\Cms\Traits\Policies;
 
 #region USE
 

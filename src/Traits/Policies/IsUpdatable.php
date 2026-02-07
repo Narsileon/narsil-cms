@@ -15,7 +15,7 @@ use Narsil\Cms\Services\PermissionService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-trait UpdatableTrait
+trait IsUpdatable
 {
     #region PUBLIC METHODS
 

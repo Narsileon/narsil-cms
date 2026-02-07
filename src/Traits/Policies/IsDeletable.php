@@ -15,36 +15,36 @@ use Narsil\Cms\Services\PermissionService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-trait ViewableTrait
+trait IsDeletable
 {
     #region PUBLIC METHODS
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can delete the model.
      *
      * @param User $user
      * @param Model $model
      *
      * @return boolean
      */
-    public function view(User $user, Model $model): bool
+    public function delete(User $user, Model $model): bool
     {
-        $permission = PermissionService::getHandle($model->getTable(), PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle($model->getTable(), PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
 
     /**
-     * Determine whether the user can view models.
+     * Determine whether the user can delete models.
      *
      * @param User $user
      * @param string $model
      *
      * @return boolean
      */
-    public function viewAny(User $user, string $model): bool
+    public function deleteAny(User $user, string $model): bool
     {
-        $permission = PermissionService::getHandle($model::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle($model::TABLE, PermissionEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }

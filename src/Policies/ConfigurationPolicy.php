@@ -4,7 +4,7 @@ namespace Narsil\Cms\Policies;
 
 #region USE
 
-use Narsil\Cms\Traits\Policies\UpdatableTrait;
+use Narsil\Cms\Traits\Policies\IsUpdatable;
 
 #endregion
 
@@ -14,5 +14,5 @@ use Narsil\Cms\Traits\Policies\UpdatableTrait;
  */
 class ConfigurationPolicy
 {
-    use UpdatableTrait;
+    use IsUpdatable;
 }

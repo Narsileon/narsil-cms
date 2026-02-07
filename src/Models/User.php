@@ -23,8 +23,8 @@ use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Traits\Blameable;
 use Narsil\Cms\Traits\HasAuditLogs;
 use Narsil\Cms\Traits\HasDatetimes;
-use Narsil\Cms\Traits\HasPermissions;
-use Narsil\Cms\Traits\HasRoles;
+use Narsil\Cms\Traits\Policies\HasPermissions;
+use Narsil\Cms\Traits\Policies\HasRoles;
 
 #endregion
 

@@ -14,7 +14,7 @@ use Narsil\Cms\Services\PermissionService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-trait CreatableTrait
+trait IsCreatable
 {
     #region PUBLIC METHODS
 
