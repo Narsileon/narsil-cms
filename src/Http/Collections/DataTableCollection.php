@@ -187,7 +187,6 @@ class DataTableCollection extends ResourceCollection
     {
         app(TranslationsBag::class)
             ->add('narsil-cms::accessibility.move_column')
-            ->add('narsil-cms::accessibility.sort_column')
             ->add('narsil-cms::accessibility.toggle_row_menu')
             ->add('narsil-cms::dialogs.descriptions.delete')
             ->add('narsil-cms::dialogs.titles.delete')
@@ -217,7 +216,8 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil-ui::pagination.more')
             ->add('narsil-ui::pagination.next_page')
             ->add('narsil-ui::pagination.previous_page')
-            ->add('narsil-ui::tooltip.move');
+            ->add('narsil-ui::tooltip.move')
+            ->add('narsil-ui::tooltip.sort');
     }
 
     #endregion

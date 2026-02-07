@@ -9,7 +9,6 @@ return [
     'move_column'           => 'Move column',
     'open_sidebar'          => 'Open sidebar',
     'show_password'         => 'Show password',
-    'sort_column'           => 'Sort column',
     'toggle_row_menu'       => 'Toggle row menu',
     'toggle_sidebar'        => 'Toggle sidebar',
     'toggle_user_menu'      => 'Toggle user menu',
