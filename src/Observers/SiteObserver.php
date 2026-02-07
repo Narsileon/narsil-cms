@@ -4,7 +4,6 @@ namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Cms\Database\Seeders\Entities\ContactEntitySeeder;
 use Narsil\Cms\Database\Seeders\Entities\HomeEntitySeeder;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Globals\Footer;
@@ -107,17 +106,10 @@ class SiteObserver
      */
     protected function createPages(Site $model, SitePage $homePage): void
     {
-        $contactPage = $this->createContactPage($model);
         $imprintPage = $this->createImprintPage($model);
         $privacyNoticePage = $this->createPrivacyNoticePage($model);
 
-        $contactPage->update([
-            SitePage::PARENT_ID => $homePage->{SitePage::ID},
-            SitePage::RIGHT_ID => $imprintPage->{SitePage::ID},
-        ]);
-
         $imprintPage->update([
-            SitePage::LEFT_ID => $contactPage->{SitePage::ID},
             SitePage::PARENT_ID => $homePage->{SitePage::ID},
             SitePage::RIGHT_ID => $privacyNoticePage->{SitePage::ID},
         ]);
@@ -126,31 +118,6 @@ class SiteObserver
             SitePage::PARENT_ID => $homePage->{SitePage::ID},
             SitePage::LEFT_ID => $imprintPage->{SitePage::ID},
         ]);
-    }
-
-    /**
-     * @param Site $model
-     *
-     * @return SitePage
-     */
-    protected function createContactPage(Site $model): SitePage
-    {
-        $sitePage = SitePage::create([
-            SitePage::SHOW_IN_MENU => true,
-            SitePage::SITE_ID => $model->{Site::ID},
-            SitePage::SLUG => 'contact',
-            SitePage::TITLE => 'Contact',
-        ]);
-
-        $entity = new ContactEntitySeeder()->run();
-
-        SitePageEntity::create([
-            SitePageEntity::SITE_PAGE_ID => $sitePage->{SitePage::ID},
-            SitePageEntity::TARGET_ID => $entity->{Entity::ID},
-            SitePageEntity::TARGET_TYPE => $entity->getTable(),
-        ]);
-
-        return $sitePage;
     }
 
     /**
