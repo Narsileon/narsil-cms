@@ -9,11 +9,8 @@ import DataTableFilterDropdown from "./data-table-filter-dropdown";
 import DataTableFilterItem from "./data-table-filter-item";
 import DataTableFilterList from "./data-table-filter-list";
 import DataTableFooter from "./data-table-footer";
-import DataTableHead from "./data-table-head";
-import DataTableHeadSort from "./data-table-head-sort";
 import DataTableInput from "./data-table-input";
 import DataTableProvider from "./data-table-provider";
-import DataTableRow from "./data-table-row";
 import DataTableRowMenu from "./data-table-row-menu";
 
 export type ColumnFilter = {
@@ -28,11 +25,8 @@ export {
   DataTableFilterItem,
   DataTableFilterList,
   DataTableFooter,
-  DataTableHead,
-  DataTableHeadSort,
   DataTableInput,
   DataTableProvider,
-  DataTableRow,
   DataTableRowMenu,
   getMenuColumn,
   getSelectColumn,

@@ -4,13 +4,12 @@ import {
   DataTableFilterDropdown,
   DataTableFilterList,
   DataTableFooter,
-  DataTableHead,
   DataTableInput,
-  DataTableRow,
   useDataTable,
 } from "@narsil-cms/components/data-table";
 import type { DataTableCollection } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
+import { DataTableHead, DataTableRow } from "@narsil-ui/components/data-table";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
