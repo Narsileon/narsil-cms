@@ -71,6 +71,11 @@ function FormElement({ onChange, ...props }: FormElementProps) {
         return (
           <FieldRoot
             className={cn(base.settings.type === "hidden" && "hidden", class_name)}
+            orientation={
+              base.type === "Narsil\\Cms\\Contracts\\Fields\\CheckboxField"
+                ? "horizontal"
+                : "vertical"
+            }
             width={width}
           >
             <div className="flex items-center justify-between gap-3">
