@@ -63,6 +63,8 @@ function Combobox({
   const { locale } = useLocale();
   const { trans } = useTranslator();
 
+  const virtualized = options.length > 50;
+
   if (multiple && !isArray(value)) {
     value = value ? [value] : [];
   } else if (isNumber(value)) {
@@ -171,7 +173,7 @@ function Combobox({
         onSelect(value as string);
       }}
       value={value}
-      virtualized={true}
+      virtualized={virtualized}
     >
       {multiple ? (
         <ComboboxChips ref={anchor}>
@@ -234,10 +236,26 @@ function Combobox({
             )}
             <ComboboxEmpty>{trans("pagination.pages_empty")}</ComboboxEmpty>
             <ComboboxList>
-              <ComboboxVirtualList
-                enabled={open}
-                filteredItems={filteredItems}
-                render={({ item, ...props }: any) => {
+              {virtualized ? (
+                <ComboboxVirtualList
+                  enabled={open}
+                  filteredItems={filteredItems}
+                  render={({ item, ...props }: any) => {
+                    const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
+                    const optionValue = getSelectOption(item, valuePath);
+
+                    return (
+                      <ComboboxListItem
+                        displayValue={displayValue}
+                        label={optionLabel}
+                        value={optionValue}
+                        {...props}
+                      />
+                    );
+                  }}
+                />
+              ) : (
+                (item) => {
                   const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
                   const optionValue = getSelectOption(item, valuePath);
 
@@ -246,11 +264,11 @@ function Combobox({
                       displayValue={displayValue}
                       label={optionLabel}
                       value={optionValue}
-                      {...props}
+                      key={item.value}
                     />
                   );
-                }}
-              />
+                }
+              )}
             </ComboboxList>
           </ComboboxPopup>
         </ComboboxPositioner>
