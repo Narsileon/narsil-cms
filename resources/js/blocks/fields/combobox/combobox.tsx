@@ -1,5 +1,4 @@
 import { router } from "@inertiajs/react";
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import type { SelectOption } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
@@ -60,8 +59,7 @@ function Combobox({
   valuePath = "value",
   setValue,
 }: ComboboxProps) {
-  const { locale } = useLocale();
-  const { trans } = useTranslator();
+  const { locale, trans } = useTranslator();
 
   const virtualized = options.length > 50;
 

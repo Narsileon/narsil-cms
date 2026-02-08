@@ -14,9 +14,9 @@ import {
   type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import type { Element, FormType, GroupedSelectOption } from "@narsil-cms/types";
 import { BackgroundGrid, BackgroundRoot } from "@narsil-ui/components/background";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { cn } from "@narsil-ui/lib/utils";
 import { get } from "lodash-es";
@@ -56,7 +56,7 @@ function SortableGrid({
   cancelDrop,
   setItems,
 }: SortableGridProps) {
-  const { locale } = useLocale();
+  const { locale } = useTranslator();
 
   const sensors = useSensors(
     useSensor(MouseSensor),

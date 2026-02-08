@@ -1,5 +1,4 @@
 import { router } from "@inertiajs/react";
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import type { SelectOption } from "@narsil-cms/types";
 import { Badge } from "@narsil-ui/components/badge";
 import { Icon } from "@narsil-ui/components/icon";
@@ -59,8 +58,7 @@ function Combobox({
   valuePath = "value",
   setValue,
 }: ComboboxProps) {
-  const { locale } = useLocale();
-  const { trans } = useTranslator();
+  const { locale, trans } = useTranslator();
 
   if (multiple && !isArray(value)) {
     value = value ? [value] : [];

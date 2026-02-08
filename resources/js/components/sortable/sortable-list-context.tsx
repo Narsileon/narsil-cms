@@ -3,8 +3,8 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { type AnonymousItem } from ".";
 import SortableItem from "./sortable-item";
@@ -28,7 +28,7 @@ function SortableListContext({
   widthOptions,
   setItems,
 }: SortableListContextProps) {
-  const { locale } = useLocale();
+  const { locale } = useTranslator();
 
   function getGroup(item: AnonymousItem) {
     const group = options.find((x) =>

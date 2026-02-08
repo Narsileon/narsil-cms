@@ -1,4 +1,3 @@
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import { SelectOption } from "@narsil-cms/types";
 import {
   SelectIcon,
@@ -15,6 +14,7 @@ import {
   SelectValue,
 } from "@narsil-ui/components/select";
 import SelectList from "@narsil-ui/components/select/select-list";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { type ComponentProps } from "react";
 
@@ -50,7 +50,7 @@ function Select({
   valueProps,
   ...props
 }: SelectProps) {
-  const { locale } = useLocale();
+  const { locale } = useTranslator();
 
   return (
     <SelectRoot {...props}>

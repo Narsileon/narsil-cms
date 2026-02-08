@@ -13,10 +13,10 @@ import {
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { SortableAdd, SortableItem, SortableListContext } from "@narsil-cms/components/sortable";
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import type { GroupedSelectOption } from "@narsil-cms/types";
 import { BackgroundGrid, BackgroundRoot } from "@narsil-ui/components/background";
 import { CardContent, CardFooter, CardRoot } from "@narsil-ui/components/card";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
@@ -25,7 +25,7 @@ import { type AnonymousItem } from ".";
 type SortableProps = ComponentProps<typeof SortableListContext>;
 
 function Sortable({ items, options, unique, setItems, ...props }: SortableProps) {
-  const { locale } = useLocale();
+  const { locale } = useTranslator();
 
   const [active, setActive] = useState<AnonymousItem | null>(null);
 

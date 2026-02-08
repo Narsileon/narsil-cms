@@ -6,7 +6,6 @@ import { isEmpty } from "lodash-es";
 export type GlobalProps = {
   auth: AuthProps;
   description: string;
-  locale: string;
   navigation: {
     breadcrumb: {
       href: string;
@@ -33,6 +32,7 @@ type AuthProps = {
 
 type SessionProps = {
   color: string;
+  locale: string;
   radius: number;
   theme: Theme;
 };
@@ -51,16 +51,6 @@ export function useAuth() {
   return isEmpty(auth) ? null : auth;
 }
 
-export function useTranslator() {
-  return usePage<GlobalProps>().props.localization ?? {};
-}
-
-export function useLocale() {
-  const locale = usePage<GlobalProps>().props.locale ?? "en";
-
-  return { locale };
-}
-
 export function useNavigation() {
   return usePage<GlobalProps>().props.navigation ?? {};
 }
@@ -69,8 +59,4 @@ export function useProps() {
   const { props } = usePage<GlobalProps>();
 
   return props;
-}
-
-export function useRedirect() {
-  return usePage<GlobalProps>().props.redirect ?? {};
 }

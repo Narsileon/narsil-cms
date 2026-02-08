@@ -2,7 +2,6 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FormElement } from "@narsil-cms/components/form";
 import { SortableItemMenu } from "@narsil-cms/components/sortable";
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import type { Element } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot } from "@narsil-ui/components/card";
@@ -44,8 +43,7 @@ function ArrayItem({
   onMoveUp,
   onRemove,
 }: ArrayItemProps) {
-  const { locale } = useLocale();
-  const { trans } = useTranslator();
+  const { locale, trans } = useTranslator();
 
   const [open, setCollapsed] = useState<boolean>(true);
 

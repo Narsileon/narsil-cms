@@ -1,14 +1,15 @@
 import { Link } from "@inertiajs/react";
-import { DialogContent } from "@narsil-ui/components/dialog";
+import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+import { DialogPopup } from "@narsil-ui/components/dialog";
 import { type ComponentProps } from "react";
 import { create } from "zustand";
 
 type LinkProps = ComponentProps<typeof Link>;
-type ModalVariant = ComponentProps<typeof DialogContent>["variant"];
+type ModalVariant = ComponentProps<typeof DialogPopup>["variant"];
 
 type ModalType = {
   component: string;
-  componentProps: Record<string, unknown>;
+  componentProps: GlobalProps;
   id: string;
   linkProps: LinkProps;
   variant: ModalVariant;

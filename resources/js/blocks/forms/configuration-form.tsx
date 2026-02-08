@@ -1,6 +1,5 @@
 import { router } from "@inertiajs/react";
 import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import { useLocale } from "@narsil-cms/hooks/use-props";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
@@ -16,13 +15,10 @@ type ConfigurationFormProps = {
 };
 
 function ConfigurationForm({ form }: ConfigurationFormProps) {
-  const { trans } = useTranslator();
-
-  const { locale } = useLocale();
-
   const { color, setColor } = useColorStore();
   const { reloadTopModal } = useModalStore();
   const { radius, setRadius } = useRadiusStore();
+  const { locale, trans } = useTranslator();
 
   function handleChange(id: string, value: number | string) {
     switch (id) {

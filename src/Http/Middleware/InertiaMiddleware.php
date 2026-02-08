@@ -58,7 +58,7 @@ class InertiaMiddleware extends Middleware
      */
     public function share(Request $request): array
     {
-        $locale = App::getLocale();
+
         $user = Auth::user();
 
         $auth = $user ? app(UserResource::class, [
@@ -73,7 +73,6 @@ class InertiaMiddleware extends Middleware
             ...parent::share($request),
             'auth' => $auth,
             'navigation' => $navigation,
-            'locale' => $locale,
             'redirect' => $redirect,
             'session' => $session,
         ];
@@ -120,7 +119,11 @@ class InertiaMiddleware extends Middleware
      */
     protected function getSession(Request $request): array
     {
+        $locale = App::getLocale();
+
         return [
+            'locale' => $locale,
+
             UserConfiguration::COLOR => Session::get(UserConfiguration::COLOR),
             UserConfiguration::RADIUS => Session::get(UserConfiguration::RADIUS),
             UserConfiguration::THEME => Session::get(UserConfiguration::THEME),

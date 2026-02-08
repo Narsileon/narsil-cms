@@ -18,7 +18,7 @@ type LayoutProps = {
 };
 
 function Layout({ children }: LayoutProps) {
-  const { auth, description, redirect, translations, title } = children?.props;
+  const { auth, description, redirect, session, translations, title } = children?.props;
 
   const colorStore = useColorStore();
   const radiusStore = useRadiusStore();
@@ -34,7 +34,7 @@ function Layout({ children }: LayoutProps) {
 
   return (
     <ToastPrimitive.Provider>
-      <TranslatorProvider translations={translations}>
+      <TranslatorProvider locale={session.locale} translations={translations}>
         <Head description={description} follow={false} index={false} title={title} />
         {window.location.pathname === "/narsil/graphiql" ? (
           <main className="h-screen w-screen">{children}</main>

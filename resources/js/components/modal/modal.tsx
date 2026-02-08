@@ -9,7 +9,7 @@ import {
   DialogRoot,
   DialogTitle,
 } from "@narsil-ui/components/dialog";
-import { TranslatorProvider } from "@narsil-ui/components/translator";
+import { useTranslator } from "@narsil-ui/components/translator";
 import { useEffect, useState, type ComponentProps, type ReactNode } from "react";
 
 type ModalProps = ComponentProps<typeof DialogPopup> & {
@@ -18,7 +18,13 @@ type ModalProps = ComponentProps<typeof DialogPopup> & {
 };
 
 function Modal({ modal, onClose, ...props }: ModalProps) {
+  const { addTranslations } = useTranslator();
+
   const [Component, setComponent] = useState<ReactNode>(null);
+
+  useEffect(() => {
+    addTranslations(modal.componentProps.translations);
+  }, [modal.componentProps.translations]);
 
   useEffect(() => {
     const load = async () => {
@@ -65,11 +71,9 @@ function Modal({ modal, onClose, ...props }: ModalProps) {
           <DialogDescription className="sr-only">
             {modal.componentProps.description}
           </DialogDescription>
-          <TranslatorProvider translations={modal.componentProps.translations}>
-            <DialogBody className="p-0">
-              {Component ? <Component modal={modal} {...modal.componentProps} /> : null}
-            </DialogBody>
-          </TranslatorProvider>
+          <DialogBody className="p-0">
+            {Component ? <Component modal={modal} {...modal.componentProps} /> : null}
+          </DialogBody>
         </DialogPopup>
       </DialogPortal>
     </DialogRoot>
