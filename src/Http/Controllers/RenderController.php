@@ -74,7 +74,7 @@ abstract class RenderController
         {
             $translations = $translationsBag
                 ->add('narsil-cms::accessibility.close_dialog')
-                ->add('narsil-cms::ui.cancel')
+                ->add('narsil-ui::ui.cancel')
                 ->get();
 
             return response()->json([

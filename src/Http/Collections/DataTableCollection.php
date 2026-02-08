@@ -197,9 +197,7 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil-cms::pagination.selected_empty')
             ->add('narsil-cms::ui.active_columns')
             ->add('narsil-cms::ui.available_columns')
-            ->add('narsil-cms::ui.cancel')
             ->add('narsil-cms::ui.columns')
-            ->add('narsil-cms::ui.confirm')
             ->add('narsil-cms::ui.create')
             ->add('narsil-cms::ui.delete_selected')
             ->add('narsil-cms::ui.delete')
@@ -217,7 +215,9 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil-ui::pagination.previous_page')
             ->add('narsil-ui::placeholders.search')
             ->add('narsil-ui::tooltips.move')
-            ->add('narsil-ui::tooltips.sort');
+            ->add('narsil-ui::tooltips.sort')
+            ->add('narsil-ui::ui.cancel')
+            ->add('narsil-ui::ui.confirm');
     }
 
     #endregion

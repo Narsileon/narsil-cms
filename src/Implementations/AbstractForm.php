@@ -62,8 +62,6 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil-cms::ui.add')
             ->add('narsil-cms::ui.all')
             ->add('narsil-cms::ui.back')
-            ->add('narsil-cms::ui.cancel')
-            ->add('narsil-cms::ui.confirm')
             ->add('narsil-cms::ui.continue')
             ->add('narsil-cms::ui.create')
             ->add('narsil-cms::ui.default_language')
@@ -75,7 +73,9 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil-cms::ui.unpublish')
             ->add('narsil-ui::placeholders.choose')
             ->add('narsil-ui::placeholders.search')
-            ->add('narsil-ui::tooltips.required');
+            ->add('narsil-ui::tooltips.required')
+            ->add('narsil-ui::ui.cancel')
+            ->add('narsil-ui::ui.confirm');
     }
 
     #endregion

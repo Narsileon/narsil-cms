@@ -46,7 +46,7 @@ type ComboboxProps = {
 
 function Combobox({
   className,
-  clearable = true,
+  clearable = false,
   disabled,
   displayValue = true,
   id,

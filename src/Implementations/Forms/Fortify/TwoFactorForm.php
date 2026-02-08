@@ -34,7 +34,7 @@ class TwoFactorForm extends AbstractForm implements Contract
         $this
             ->action(route('two-factor.confirm'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil-cms::ui.confirm'));
+            ->submitLabel(trans('narsil-ui::ui.confirm'));
 
         app(TranslationsBag::class)
             ->add('validation.custom.code.invalid')
