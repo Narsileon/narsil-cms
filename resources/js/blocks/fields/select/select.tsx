@@ -1,5 +1,4 @@
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import { SelectOption } from "@narsil-cms/types";
 import {
   SelectIcon,
@@ -16,6 +15,7 @@ import {
   SelectValue,
 } from "@narsil-ui/components/select";
 import SelectList from "@narsil-ui/components/select/select-list";
+import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { type ComponentProps } from "react";
 
 type SelectProps = ComponentProps<typeof SelectRoot> & {
@@ -65,9 +65,13 @@ function Select({
             <SelectList>
               {options?.map((option, index) => {
                 return (
-                  <SelectItem {...itemProps} value={getSelectOption(option, "value")} key={index}>
+                  <SelectItem
+                    {...itemProps}
+                    value={getUntranslatableData(option, "value")}
+                    key={index}
+                  >
                     <SelectItemText {...itemTextProps}>
-                      {getTranslatableSelectOption(option, "label", locale)}
+                      {getTranslatableData(option, "label", locale)}
                     </SelectItemText>
                     <SelectItemIndicator {...itemIndicatorProps} />
                   </SelectItem>

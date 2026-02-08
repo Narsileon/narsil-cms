@@ -4,8 +4,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
+import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { type AnonymousItem } from ".";
 import SortableItem from "./sortable-item";
 
@@ -41,8 +41,8 @@ function SortableListContext({
   function getFormattedLabel(item: AnonymousItem) {
     const group = getGroup(item);
 
-    const label = getTranslatableSelectOption(item, group.optionLabel, locale);
-    const value = getSelectOption(item, group.optionValue);
+    const label = getTranslatableData(item, group.optionLabel, locale);
+    const value = getUntranslatableData(item, group.optionValue);
 
     return unique ? label : `${label} (${value})`;
   }
@@ -50,7 +50,7 @@ function SortableListContext({
   function getUniqueIdentifier(item: AnonymousItem) {
     const group = getGroup(item);
 
-    return getSelectOption(item, group.optionValue);
+    return getUntranslatableData(item, group.optionValue);
   }
 
   return (

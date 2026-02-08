@@ -1,40 +1,13 @@
-import { concat, get, initial, isObject, isString, toPath } from "lodash-es";
+import { concat, initial, toPath } from "lodash-es";
 
-export function getSelectOption(
-  option: string | Record<string, unknown> | string,
-  key: string,
-): string {
-  const value = isString(option) ? option : get(option, key);
-
-  return value as string;
-}
-
-export function getTranslatableSelectOption(
-  option: string | Record<string, unknown>,
-  key: string,
-  language: string,
-  fallbackLanguage?: string,
-): string {
-  let value = isString(option) ? option : get(option, key);
-
-  if (isObject(value)) {
-    let translatedValue = get(value, language);
-
-    if (!translatedValue && fallbackLanguage) {
-      translatedValue = get(value, fallbackLanguage);
-    }
-
-    if (!translatedValue) {
-      const firstKey = Object.keys(value)[0];
-
-      translatedValue = get(value, firstKey, "");
-    }
-
-    value = translatedValue;
-  }
-
-  return value as string;
-}
+/**
+ * Replace the last part of a path with a new value
+ *
+ * @param {string} path - the path to replace the last part of
+ * @param {string} last - the new value to replace the last part of the path with
+ *
+ * @returns {string} the modified path
+ */
 
 export function replaceLastPath(path: string, last: string) {
   const parts = toPath(path);

@@ -3,7 +3,6 @@ import { CSS } from "@dnd-kit/utilities";
 import { FormElement } from "@narsil-cms/components/form";
 import { SortableItemMenu } from "@narsil-cms/components/sortable";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { Element } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot } from "@narsil-ui/components/card";
@@ -16,6 +15,7 @@ import { Icon } from "@narsil-ui/components/icon";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
+import { getTranslatableData } from "@narsil-ui/lib/data";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps, useState } from "react";
 import { type ArrayElement } from ".";
@@ -61,7 +61,7 @@ function ArrayItem({
     id: id,
   });
 
-  const title = getTranslatableSelectOption(item, labelKey, locale);
+  const title = getTranslatableData(item, labelKey, locale);
   const label = open ? trans("ui.collapse") : trans("ui.expand");
 
   return (

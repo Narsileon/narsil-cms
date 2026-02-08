@@ -1,6 +1,5 @@
 import { router } from "@inertiajs/react";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
@@ -23,6 +22,7 @@ import {
 import ComboboxClear from "@narsil-ui/components/combobox/combobox-clear";
 import { InputGroupInput } from "@narsil-ui/components/input-group";
 import { useTranslator } from "@narsil-ui/components/translator";
+import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { cn } from "@narsil-ui/lib/utils";
 import parse from "html-react-parser";
 import { isArray, isEmpty, isNumber, lowerCase } from "lodash-es";
@@ -84,7 +84,7 @@ function Combobox({
     const searchedLabel = lowerCase(searchValue);
 
     return options.filter((option) => {
-      const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
+      const optionLabel = getTranslatableData(option, labelPath, locale);
 
       return lowerCase(optionLabel).includes(searchedLabel);
     });
@@ -95,7 +95,9 @@ function Combobox({
   }, [value, multiple]);
 
   const selectedOptions = useMemo(() => {
-    return options.filter((option) => selectedValues.includes(getSelectOption(option, valuePath)));
+    return options.filter((option) =>
+      selectedValues.includes(getUntranslatableData(option, valuePath)),
+    );
   }, [options, selectedValues, valuePath]);
 
   function onSelect(selectedValue: string) {
@@ -132,7 +134,7 @@ function Combobox({
   }
 
   function findOptionByValue(value: string) {
-    return options.find((option) => getSelectOption(option, valuePath) === value);
+    return options.find((option) => getUntranslatableData(option, valuePath) === value);
   }
 
   return (
@@ -149,7 +151,7 @@ function Combobox({
                 return item as string;
               }
 
-              return getTranslatableSelectOption(option as SelectOption, labelPath, locale);
+              return getTranslatableData(option as SelectOption, labelPath, locale);
             }
       }
       itemToStringValue={
@@ -162,7 +164,7 @@ function Combobox({
                 return item as string;
               }
 
-              return getSelectOption(option, valuePath);
+              return getUntranslatableData(option, valuePath);
             }
       }
       multiple={multiple ? undefined : false}
@@ -182,13 +184,13 @@ function Combobox({
               <Fragment>
                 {value.map((item: string) => {
                   const option = selectedOptions.find(
-                    (option) => getSelectOption(option, valuePath) === item,
+                    (option) => getUntranslatableData(option, valuePath) === item,
                   );
 
                   if (!option) {
                     return null;
                   }
-                  const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
+                  const optionLabel = getTranslatableData(option, labelPath, locale);
 
                   return (
                     <ComboboxChip key={item}>
@@ -217,7 +219,7 @@ function Combobox({
               className={cn("w-full justify-between font-normal", className)}
             >
               {parse(
-                getTranslatableSelectOption(selectedOptions[0], labelPath, locale) ||
+                getTranslatableData(selectedOptions[0], labelPath, locale) ||
                   placeholder ||
                   trans("placeholders.choose"),
               )}
@@ -241,8 +243,8 @@ function Combobox({
                   enabled={open}
                   filteredItems={filteredItems}
                   render={({ item, ...props }: any) => {
-                    const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
-                    const optionValue = getSelectOption(item, valuePath);
+                    const optionLabel = getTranslatableData(item, labelPath, locale);
+                    const optionValue = getUntranslatableData(item, valuePath);
 
                     return (
                       <ComboboxListItem
@@ -256,8 +258,8 @@ function Combobox({
                 />
               ) : (
                 (item) => {
-                  const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
-                  const optionValue = getSelectOption(item, valuePath);
+                  const optionLabel = getTranslatableData(item, labelPath, locale);
+                  const optionValue = getUntranslatableData(item, valuePath);
 
                   return (
                     <ComboboxListItem

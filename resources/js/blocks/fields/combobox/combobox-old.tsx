@@ -1,6 +1,5 @@
 import { router } from "@inertiajs/react";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { SelectOption } from "@narsil-cms/types";
 import { Badge } from "@narsil-ui/components/badge";
 import { Icon } from "@narsil-ui/components/icon";
@@ -14,6 +13,7 @@ import {
 } from "@narsil-ui/components/popover";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
+import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { cn } from "@narsil-ui/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
@@ -145,7 +145,7 @@ function Combobox({
     const searchedLabel = lowerCase(search);
 
     return resolvedOptions.filter((option) => {
-      const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
+      const optionLabel = getTranslatableData(option, labelPath, locale);
 
       return lowerCase(optionLabel).includes(searchedLabel);
     });
@@ -157,12 +157,12 @@ function Combobox({
 
   const selectedOptions = useMemo(() => {
     return resolvedOptions.filter((option) =>
-      selectedValues.includes(getSelectOption(option, valuePath)),
+      selectedValues.includes(getUntranslatableData(option, valuePath)),
     );
   }, [resolvedOptions, selectedValues, valuePath]);
 
   const option = resolvedOptions.find((option) => {
-    const optionValue = getSelectOption(option, valuePath);
+    const optionValue = getUntranslatableData(option, valuePath);
 
     return optionValue == value;
   });
@@ -244,8 +244,8 @@ function Combobox({
               multiple ? (
                 <div className="-ml-1 flex flex-wrap gap-1">
                   {selectedOptions.map((option, index) => {
-                    const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
-                    const optionValue = getSelectOption(option, valuePath);
+                    const optionLabel = getTranslatableData(option, labelPath, locale);
+                    const optionValue = getUntranslatableData(option, valuePath);
 
                     return (
                       <Badge
@@ -260,7 +260,7 @@ function Combobox({
                   })}
                 </div>
               ) : (
-                parse(getTranslatableSelectOption(selectedOptions[0], labelPath, locale))
+                parse(getTranslatableData(selectedOptions[0], labelPath, locale))
               )
             ) : placeholder ? (
               placeholder
@@ -312,8 +312,8 @@ function Combobox({
                     {virtualizer.getVirtualItems().map(({ index, key, size, start }) => {
                       const option = filteredOptions[index];
 
-                      const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
-                      const optionValue = getSelectOption(option, valuePath);
+                      const optionLabel = getTranslatableData(option, labelPath, locale);
+                      const optionValue = getUntranslatableData(option, valuePath);
 
                       const isSelected = Array.isArray(value)
                         ? value.includes(optionValue)

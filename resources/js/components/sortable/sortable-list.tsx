@@ -14,10 +14,10 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 import { SortableAdd, SortableItem, SortableListContext } from "@narsil-cms/components/sortable";
 import { useLocale } from "@narsil-cms/hooks/use-props";
-import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/utils";
 import type { GroupedSelectOption } from "@narsil-cms/types";
 import { BackgroundGrid, BackgroundRoot } from "@narsil-ui/components/background";
 import { CardContent, CardFooter, CardRoot } from "@narsil-ui/components/card";
+import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { type AnonymousItem } from ".";
@@ -69,8 +69,8 @@ function Sortable({ items, options, unique, setItems, ...props }: SortableProps)
   function getFormattedLabel(item: AnonymousItem) {
     const group = getGroup(item);
 
-    const label = getTranslatableSelectOption(item, group.optionLabel, locale);
-    const value = getSelectOption(item, group.optionValue);
+    const label = getTranslatableData(item, group.optionLabel, locale);
+    const value = getUntranslatableData(item, group.optionValue);
 
     return unique ? label : `${label} (${value})`;
   }
@@ -78,7 +78,7 @@ function Sortable({ items, options, unique, setItems, ...props }: SortableProps)
   function getUniqueIdentifier(item: AnonymousItem) {
     const group = getGroup(item);
 
-    return getSelectOption(item, group.optionValue);
+    return getUntranslatableData(item, group.optionValue);
   }
 
   return (
