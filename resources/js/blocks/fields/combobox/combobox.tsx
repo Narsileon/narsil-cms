@@ -4,6 +4,9 @@ import { getSelectOption, getTranslatableSelectOption } from "@narsil-cms/lib/ut
 import type { SelectOption } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
+  ComboboxChip,
+  ComboboxChipRemove,
+  ComboboxChips,
   ComboboxEmpty,
   ComboboxInput,
   ComboboxItem,
@@ -14,6 +17,7 @@ import {
   ComboboxPositioner,
   ComboboxRoot,
   ComboboxTrigger,
+  ComboboxValue,
 } from "@narsil-ui/components/combobox";
 import ComboboxClear from "@narsil-ui/components/combobox/combobox-clear";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
@@ -23,7 +27,7 @@ import { cn } from "@narsil-ui/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
 import { isArray, isNumber, lowerCase } from "lodash-es";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { Fragment, useCallback, useMemo, useRef, useState } from "react";
 
 type ComboboxProps = {
   className?: string;
@@ -67,6 +71,7 @@ function Combobox({
     value = value.toString();
   }
 
+  const anchor = useRef<HTMLDivElement>(null);
   const scrollElementRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState<boolean>(false);
@@ -112,7 +117,9 @@ function Combobox({
     }
 
     if (multiple) {
-      if (selectedValues.includes(selectedValue)) {
+      if (Array.isArray(selectedValue)) {
+        setValue(selectedValue);
+      } else if (selectedValues.includes(selectedValue)) {
         setValue(selectedValues.filter((x) => x !== selectedValue));
       } else {
         setValue([...selectedValues, selectedValue]);
@@ -158,6 +165,7 @@ function Combobox({
         getTranslatableSelectOption(item as SelectOption, labelPath, locale)
       }
       itemToStringValue={(item) => getSelectOption(item as SelectOption, valuePath)}
+      multiple={multiple ? undefined : false}
       onInputValueChange={setSearchValue}
       onOpenChange={setOpen}
       open={open}
@@ -167,19 +175,50 @@ function Combobox({
       value={value}
       virtualized={true}
     >
-      <ComboboxTrigger
-        render={
-          <Button variant="outline" className={cn("w-full justify-between font-normal", className)}>
-            {parse(
-              getTranslatableSelectOption(selectedOptions[0], labelPath, locale) ||
-                placeholder ||
-                trans("placeholders.choose"),
+      {multiple ? (
+        <ComboboxChips ref={anchor} onClick={() => setOpen(!open)}>
+          <ComboboxValue>
+            {(value) => (
+              <Fragment>
+                {value.map((item: string) => {
+                  const option = selectedOptions.find(
+                    (option) => getSelectOption(option, valuePath) === item,
+                  );
+
+                  if (!option) {
+                    return null;
+                  }
+                  const optionLabel = getTranslatableSelectOption(option, labelPath, locale);
+
+                  return (
+                    <ComboboxChip key={item}>
+                      {parse(optionLabel)}
+                      <ComboboxChipRemove />
+                    </ComboboxChip>
+                  );
+                })}
+              </Fragment>
             )}
-          </Button>
-        }
-      />
+          </ComboboxValue>
+        </ComboboxChips>
+      ) : (
+        <ComboboxTrigger
+          render={
+            <Button
+              variant="outline"
+              className={cn("w-full justify-between font-normal", className)}
+            >
+              {parse(
+                getTranslatableSelectOption(selectedOptions[0], labelPath, locale) ||
+                  placeholder ||
+                  trans("placeholders.choose"),
+              )}
+            </Button>
+          }
+        />
+      )}
       <ComboboxPortal>
-        <ComboboxPositioner>
+        <ComboboxPositioner anchor={anchor}>
           <ComboboxPopup>
             {searchable && (
               <InputGroup className="m-0">
