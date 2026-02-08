@@ -1,9 +1,9 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { FormElement, useForm } from "@narsil-cms/components/form";
 import { SortableItem, SortableItemMenu } from "@narsil-cms/components/sortable";
 import type { Block } from "@narsil-cms/types";
+import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
 import {
@@ -97,7 +97,7 @@ function BuilderItem({
                     description: trans(
                       `dialogs.descriptions.${value ? "activation" : "deactivation"}`,
                     ),
-                    buttons: [
+                    actions: [
                       {
                         children: trans("dialogs.buttons.this_language"),
                         onClick: () => {

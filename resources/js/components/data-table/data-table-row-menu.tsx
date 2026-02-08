@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
-import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { ModalLink } from "@narsil-cms/components/modal";
 import type { Model, RouteNames } from "@narsil-cms/types";
+import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
@@ -113,7 +113,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                       setAlertDialog({
                         title: trans("dialogs.titles.delete"),
                         description: trans("dialogs.descriptions.delete"),
-                        buttons: [
+                        actions: [
                           {
                             onClick: () => {
                               router.delete(href, {
@@ -176,7 +176,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                         setAlertDialog({
                           title: trans("dialogs.titles.delete"),
                           description: trans("dialogs.descriptions.delete"),
-                          buttons: [
+                          actions: [
                             {
                               onClick: () => {
                                 router.delete(href, {

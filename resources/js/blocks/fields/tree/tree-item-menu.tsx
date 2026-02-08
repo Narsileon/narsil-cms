@@ -1,8 +1,8 @@
 import { router } from "@inertiajs/react";
-import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { useForm } from "@narsil-cms/components/form";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { SortableItemMenu } from "@narsil-cms/components/sortable";
+import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { DropdownMenuItem, DropdownMenuSeparator } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
 import { useTranslator } from "@narsil-ui/components/translator";
@@ -52,7 +52,7 @@ function TreeItemMenu({ disabled, item, ...props }: TreeItemMenuProps) {
               setAlertDialog({
                 title: trans("dialogs.titles.delete"),
                 description: trans("dialogs.descriptions.delete"),
-                buttons: [
+                actions: [
                   {
                     onClick: () => {
                       router.delete(item.destroy_url as string);

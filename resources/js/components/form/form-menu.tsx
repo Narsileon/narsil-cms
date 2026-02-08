@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
-import { useAlertDialog } from "@narsil-cms/components/alert-dialog";
 import { useForm } from "@narsil-cms/components/form";
 import type { RouteNames } from "@narsil-cms/types";
+import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
@@ -69,7 +69,7 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
                   setAlertDialog({
                     title: trans("dialogs.titles.delete"),
                     description: trans("dialogs.descriptions.delete"),
-                    buttons: [
+                    actions: [
                       {
                         onClick: () => {
                           router.delete(href);
