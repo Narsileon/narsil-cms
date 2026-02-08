@@ -57,8 +57,6 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil-cms::datetime.updated')
             ->add('narsil-cms::dialogs.descriptions.delete')
             ->add('narsil-cms::dialogs.titles.delete')
-            ->add('narsil-cms::placeholders.choose')
-            ->add('narsil-cms::placeholders.search')
             ->add('narsil-cms::pagination.pages_empty')
             ->add('narsil-cms::ui.add_another')
             ->add('narsil-cms::ui.add')
@@ -75,7 +73,9 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil-cms::ui.save')
             ->add('narsil-cms::ui.translations')
             ->add('narsil-cms::ui.unpublish')
-            ->add('narsil-ui::tooltip.required');
+            ->add('narsil-ui::placeholders.choose')
+            ->add('narsil-ui::placeholders.search')
+            ->add('narsil-ui::tooltips.required');
     }
 
     #endregion

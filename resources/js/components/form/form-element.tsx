@@ -72,7 +72,7 @@ function FormElement({ onChange, ...props }: FormElementProps) {
           <FieldRoot
             className={cn(base.settings.type === "hidden" && "hidden", class_name)}
             orientation={
-              base.type === "Narsil\\Cms\\Contracts\\Fields\\CheckboxField"
+              base.type === "Narsil\\Cms\\Contracts\\Fields\\CheckboxField" && !base.options
                 ? "horizontal"
                 : "vertical"
             }

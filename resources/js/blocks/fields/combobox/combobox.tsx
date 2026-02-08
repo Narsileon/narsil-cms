@@ -10,24 +10,24 @@ import {
   ComboboxEmpty,
   ComboboxInput,
   ComboboxItem,
-  ComboboxItemIndicator,
   ComboboxList,
+  ComboboxListItem,
   ComboboxPopup,
+  ComboboxPopupInput,
   ComboboxPortal,
   ComboboxPositioner,
   ComboboxRoot,
   ComboboxTrigger,
   ComboboxValue,
+  ComboboxVirtualList,
 } from "@narsil-ui/components/combobox";
 import ComboboxClear from "@narsil-ui/components/combobox/combobox-clear";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
-import { ItemContent, ItemDescription, ItemRoot, ItemTitle } from "@narsil-ui/components/item";
+import { InputGroupInput } from "@narsil-ui/components/input-group";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
-import { useVirtualizer } from "@tanstack/react-virtual";
 import parse from "html-react-parser";
-import { isArray, isNumber, lowerCase } from "lodash-es";
-import { Fragment, useCallback, useMemo, useRef, useState } from "react";
+import { isArray, isEmpty, isNumber, lowerCase } from "lodash-es";
+import { Fragment, useMemo, useRef, useState } from "react";
 
 type ComboboxProps = {
   className?: string;
@@ -48,7 +48,7 @@ type ComboboxProps = {
 
 function Combobox({
   className,
-  clearable = false,
+  clearable = true,
   disabled,
   displayValue = true,
   id,
@@ -57,7 +57,6 @@ function Combobox({
   options = [],
   placeholder,
   reload,
-  searchable = true,
   value,
   valuePath = "value",
   setValue,
@@ -72,7 +71,6 @@ function Combobox({
   }
 
   const anchor = useRef<HTMLDivElement>(null);
-  const scrollElementRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -98,18 +96,6 @@ function Combobox({
   const selectedOptions = useMemo(() => {
     return options.filter((option) => selectedValues.includes(getSelectOption(option, valuePath)));
   }, [options, selectedValues, valuePath]);
-
-  const virtualizer = useVirtualizer({
-    count: filteredItems.length,
-    enabled: open,
-    overscan: 20,
-    paddingEnd: 6,
-    paddingStart: 6,
-    scrollPaddingEnd: 6,
-    scrollPaddingStart: 6,
-    estimateSize: () => 32,
-    getScrollElement: () => scrollElementRef.current,
-  });
 
   function onSelect(selectedValue: string) {
     if (!selectedValue) {
@@ -144,27 +130,40 @@ function Combobox({
     setOpen(false);
   }
 
-  const handleScrollElementRef = useCallback(
-    (element: HTMLDivElement | null) => {
-      scrollElementRef.current = element;
-      if (element) {
-        virtualizer.measure();
-      }
-    },
-    [virtualizer],
-  );
-
-  const totalSize = virtualizer.getTotalSize();
+  function findOptionByValue(value: string) {
+    return options.find((option) => getSelectOption(option, valuePath) === value);
+  }
 
   return (
     <ComboboxRoot
       filteredItems={filteredItems}
-      inputValue={searchValue}
       items={options}
-      itemToStringLabel={(item) =>
-        getTranslatableSelectOption(item as SelectOption, labelPath, locale)
+      itemToStringLabel={
+        multiple
+          ? () => ""
+          : (item) => {
+              const option = findOptionByValue(item as string);
+
+              if (!option) {
+                return item as string;
+              }
+
+              return getTranslatableSelectOption(option as SelectOption, labelPath, locale);
+            }
       }
-      itemToStringValue={(item) => getSelectOption(item as SelectOption, valuePath)}
+      itemToStringValue={
+        multiple
+          ? () => ""
+          : (item) => {
+              const option = findOptionByValue(item as string);
+
+              if (!option) {
+                return item as string;
+              }
+
+              return getSelectOption(option, valuePath);
+            }
+      }
       multiple={multiple ? undefined : false}
       onInputValueChange={setSearchValue}
       onOpenChange={setOpen}
@@ -176,7 +175,7 @@ function Combobox({
       virtualized={true}
     >
       {multiple ? (
-        <ComboboxChips ref={anchor} onClick={() => setOpen(!open)}>
+        <ComboboxChips ref={anchor}>
           <ComboboxValue>
             {(value) => (
               <Fragment>
@@ -197,6 +196,14 @@ function Combobox({
                     </ComboboxChip>
                   );
                 })}
+                <ComboboxInput
+                  className="h-7 p-0"
+                  placeholder={
+                    isEmpty(value) ? (placeholder ?? trans("placeholders.search")) : undefined
+                  }
+                  render={<InputGroupInput disabled={disabled} />}
+                />
+                {clearable && !isEmpty(value) ? <ComboboxClear disabled={disabled} /> : null}
               </Fragment>
             )}
           </ComboboxValue>
@@ -220,76 +227,35 @@ function Combobox({
       <ComboboxPortal>
         <ComboboxPositioner anchor={anchor}>
           <ComboboxPopup>
-            {searchable && (
-              <InputGroup className="m-0">
-                <ComboboxInput
-                  placeholder={placeholder ?? trans("placeholders.search")}
-                  render={<InputGroupInput disabled={disabled} />}
-                />
-                {clearable ? (
-                  <InputGroupAddon align="inline-end">
-                    <ComboboxClear disabled={disabled} />
-                  </InputGroupAddon>
-                ) : null}
-              </InputGroup>
+            {!multiple && (
+              <ComboboxPopupInput
+                clearable={clearable && !isEmpty(searchValue)}
+                disabled={disabled}
+              />
             )}
             <ComboboxEmpty>{trans("pagination.pages_empty")}</ComboboxEmpty>
             <ComboboxList>
-              {filteredItems.length > 0 && (
-                <div
-                  ref={handleScrollElementRef}
-                  role="presentation"
-                  className="h-[inherit] max-h-[inherit] scroll-p-2 overflow-auto overscroll-contain"
-                  style={{ "--total-size": `${totalSize}px` } as React.CSSProperties}
-                >
-                  <div
-                    role="presentation"
-                    className="relative w-full"
-                    style={{ height: totalSize }}
-                  >
-                    {virtualizer.getVirtualItems().map((virtualItem) => {
-                      const item = filteredItems[virtualItem.index];
-
-                      if (!item) {
-                        return null;
-                      }
-
-                      const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
-                      const optionValue = getSelectOption(item, valuePath);
-
-                      return (
-                        <ComboboxItem
-                          ref={virtualizer.measureElement}
-                          index={virtualItem.index}
-                          data-index={virtualItem.index}
+              <ComboboxVirtualList
+                enabled={open}
+                filteredItems={filteredItems}
+                render={({ item, ...props }: any) => {
+                  const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
+                  const optionValue = getSelectOption(item, valuePath);
+                  return (
+                    <ComboboxItem
+                      value={optionValue}
+                      render={
+                        <ComboboxListItem
+                          displayValue={displayValue}
+                          label={optionLabel}
                           value={optionValue}
-                          aria-setsize={filteredItems.length}
-                          aria-posinset={virtualItem.index + 1}
-                          style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "100%",
-                            height: virtualItem.size,
-                            transform: `translateY(${virtualItem.start}px)`,
-                          }}
-                          key={virtualItem.key}
-                        >
-                          <ItemRoot size="xs" className="p-0">
-                            <ItemContent className="flex flex-row items-center justify-between">
-                              <ItemTitle className="font-normal whitespace-nowrap">
-                                {parse(optionLabel)}
-                              </ItemTitle>
-                              {displayValue && <ItemDescription>{optionValue}</ItemDescription>}
-                            </ItemContent>
-                          </ItemRoot>
-                          <ComboboxItemIndicator />
-                        </ComboboxItem>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
+                        />
+                      }
+                      {...props}
+                    />
+                  );
+                }}
+              />
             </ComboboxList>
           </ComboboxPopup>
         </ComboboxPositioner>

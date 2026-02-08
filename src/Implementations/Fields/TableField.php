@@ -41,7 +41,7 @@ class TableField extends AbstractField implements Contract
             ->add('narsil-cms::ui.move_down')
             ->add('narsil-cms::ui.move_up')
             ->add('narsil-cms::ui.remove')
-            ->add('narsil-ui::tooltip.move');
+            ->add('narsil-ui::tooltips.move');
     }
 
     /**
