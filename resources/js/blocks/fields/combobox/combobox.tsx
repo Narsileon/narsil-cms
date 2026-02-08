@@ -9,7 +9,6 @@ import {
   ComboboxChips,
   ComboboxEmpty,
   ComboboxInput,
-  ComboboxItem,
   ComboboxList,
   ComboboxListItem,
   ComboboxPopup,
@@ -241,16 +240,12 @@ function Combobox({
                 render={({ item, ...props }: any) => {
                   const optionLabel = getTranslatableSelectOption(item, labelPath, locale);
                   const optionValue = getSelectOption(item, valuePath);
+
                   return (
-                    <ComboboxItem
+                    <ComboboxListItem
+                      displayValue={displayValue}
+                      label={optionLabel}
                       value={optionValue}
-                      render={
-                        <ComboboxListItem
-                          displayValue={displayValue}
-                          label={optionLabel}
-                          value={optionValue}
-                        />
-                      }
                       {...props}
                     />
                   );
