@@ -5,7 +5,6 @@ namespace Narsil\Cms\Implementations\Requests\Fortify;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
 use Narsil\Cms\Contracts\Requests\Fortify\UpdateUserProfileInformationFormRequest as Contract;
 use Narsil\Cms\Models\User;
@@ -17,7 +16,7 @@ use Narsil\Cms\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UpdateUserProfileInformationFormRequest extends FormRequest implements Contract
+class UpdateUserProfileInformationFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

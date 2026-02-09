@@ -5,7 +5,6 @@ namespace Narsil\Cms\Implementations\Requests\Fortify;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Http\FormRequest;
 use Narsil\Cms\Contracts\Requests\Fortify\CreateNewUserFormRequest as Contract;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Validation\FormRule;
@@ -16,7 +15,7 @@ use Narsil\Cms\Validation\FormRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class CreateNewUserFormRequest extends FormRequest implements Contract
+class CreateNewUserFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

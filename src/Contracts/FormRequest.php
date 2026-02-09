@@ -23,15 +23,5 @@ interface FormRequest
      */
     public function rules(): array;
 
-    /**
-     * Get the validated data from the request.
-     *
-     * @param array|int|string|null $key
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    public function validated($key = null, $default = null);
-
     #endregion
 }

@@ -42,7 +42,7 @@ function VerifyEmail({ status, title }: VerifyEmailProps) {
             </Heading>
           </SectionHeader>
           <SectionContent>
-            <CardRoot className="max-w-sm">
+            <CardRoot className="max-w-md">
               <CardContent>
                 <p>{trans("verify-email.instruction")}</p>
                 <p>{trans("verify-email.prompt")}</p>
