@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Ui\Enums\ColorEnum;
-use Narsil\UI\Enums\ThemeEnum;
+use Narsil\Ui\Enums\ThemeEnum;
 
 #endregion
 
