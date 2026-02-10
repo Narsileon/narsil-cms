@@ -5,7 +5,7 @@ namespace Narsil\Cms\Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Cms\Enums\ValidationRuleEnum;
+use Narsil\Base\Enums\RuleEnum;
 use Narsil\Cms\Models\ValidationRule;
 
 #endregion
@@ -35,7 +35,7 @@ class ValidationRuleSeeder extends Seeder
      */
     protected function syncValidationRules(): void
     {
-        foreach (ValidationRuleEnum::cases() as $case)
+        foreach (RuleEnum::cases() as $case)
         {
             ValidationRule::firstOrCreate([
                 ValidationRule::HANDLE => $case->value,

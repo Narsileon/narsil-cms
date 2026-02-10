@@ -4,9 +4,9 @@ namespace Narsil\Cms\Http\Requests;
 
 #region USE
 
-use Narsil\Cms\Enums\Database\SessionEnum;
-use Narsil\Cms\Validation\FormRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Narsil\Base\Validation\FormRule;
+use Narsil\Cms\Enums\Database\SessionEnum;
 
 #endregion
 

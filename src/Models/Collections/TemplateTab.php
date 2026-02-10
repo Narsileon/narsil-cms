@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidKey;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion

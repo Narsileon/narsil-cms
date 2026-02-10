@@ -5,13 +5,13 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\HostFormRequest as Contract;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

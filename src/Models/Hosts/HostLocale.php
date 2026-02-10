@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Traits\HasAuditLogs;
-use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidKey;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion

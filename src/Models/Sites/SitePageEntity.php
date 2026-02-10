@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 

@@ -4,10 +4,10 @@ namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\UserConfigurationFormRequest as Contract;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Users\UserConfiguration;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

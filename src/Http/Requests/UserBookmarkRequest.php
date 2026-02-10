@@ -5,8 +5,8 @@ namespace Narsil\Cms\Http\Requests;
 #region USE
 
 use Illuminate\Foundation\Http\FormRequest;
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Models\Users\UserBookmark;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

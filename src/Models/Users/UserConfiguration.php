@@ -7,7 +7,7 @@ namespace Narsil\Cms\Models\Users;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Cms\Models\User;
-use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 

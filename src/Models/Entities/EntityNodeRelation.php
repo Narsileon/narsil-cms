@@ -12,7 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Narsil\Cms\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 

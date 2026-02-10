@@ -5,9 +5,9 @@ namespace Narsil\Cms\Implementations\Requests\Ui;
 #region USE
 
 use Narsil\Base\Models\TanStackTable;
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest as Contract;
 use Narsil\Cms\Implementations\AbstractFormRequest;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

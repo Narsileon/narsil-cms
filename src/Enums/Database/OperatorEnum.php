@@ -4,8 +4,8 @@ namespace Narsil\Cms\Enums\Database;
 
 #region USE
 
-use Narsil\Cms\Support\SelectOption;
-use Narsil\Cms\Traits\Enumerable;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
@@ -37,17 +37,18 @@ enum OperatorEnum: string
     #region PUBLIC METHODS
 
     /**
-     * Get the enum value as a select option.
+     * Get the enum value as an option.
      *
      * @param OperatorEnum $case
      *
-     * @return SelectOption
+     * @return OptionData
      */
-    public static function selectOption(OperatorEnum $case): SelectOption
+    public static function option(OperatorEnum $case): OptionData
     {
-        return new SelectOption()
-            ->optionLabel(trans('narsil-cms::operators.' . $case->value))
-            ->optionValue($case->value);
+        return new OptionData(
+            label: trans('narsil-cms::operators.' . $case->value),
+            value: $case->value
+        );
     }
 
     #endregion

@@ -6,17 +6,17 @@ namespace Narsil\Cms\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Fields\BuilderField;
 use Narsil\Cms\Contracts\Requests\EntityFormRequest as Contract;
 use Narsil\Cms\Implementations\AbstractFormRequest;
-use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

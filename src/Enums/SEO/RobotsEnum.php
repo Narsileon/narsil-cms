@@ -4,7 +4,7 @@ namespace Narsil\Cms\Enums\SEO;
 
 #region USE
 
-use Narsil\Cms\Traits\Enumerable;
+use Narsil\Base\Traits\Enumerable;
 
 #endregion
 

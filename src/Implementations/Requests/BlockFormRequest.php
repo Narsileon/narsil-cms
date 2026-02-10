@@ -5,11 +5,11 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest as Contract;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Collections\Block;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

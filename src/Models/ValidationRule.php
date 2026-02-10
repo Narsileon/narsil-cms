@@ -113,7 +113,7 @@ class ValidationRule extends Model
         return Attribute::make(
             get: function ()
             {
-                return trans('narsil-cms::validation-rules.' . $this->{self::HANDLE});
+                return trans('narsil-ui::rules.' . $this->{self::HANDLE});
             },
         );
     }

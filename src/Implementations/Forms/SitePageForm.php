@@ -93,7 +93,7 @@ class SitePageForm extends AbstractForm implements Contract
                             Field::TYPE => SelectField::class,
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(SitePageAdapterEnum::ENTITY->value),
-                            Field::RELATION_OPTIONS => SitePageAdapterEnum::selectOptions(),
+                            Field::RELATION_OPTIONS => SitePageAdapterEnum::options(),
                         ],
                     ],
                     [
@@ -168,7 +168,7 @@ class SitePageForm extends AbstractForm implements Contract
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(RobotsEnum::ALL->value)
                                             ->displayValue(false),
-                                        Field::RELATION_OPTIONS => RobotsEnum::selectOptions(),
+                                        Field::RELATION_OPTIONS => RobotsEnum::options(),
                                     ],
                                 ],
                             ],
@@ -187,7 +187,7 @@ class SitePageForm extends AbstractForm implements Contract
                                         Field::SETTINGS => app(SelectField::class)
                                             ->defaultValue(OpenGraphTypeEnum::WEBSITE->value)
                                             ->displayValue(false),
-                                        Field::RELATION_OPTIONS => OpenGraphTypeEnum::selectOptions(),
+                                        Field::RELATION_OPTIONS => OpenGraphTypeEnum::options(),
                                     ],
                                 ],
                                 [
@@ -236,7 +236,7 @@ class SitePageForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(SelectField::class)
                                 ->defaultValue(ChangeFreqEnum::NEVER->value)
                                 ->displayValue(false),
-                            Field::RELATION_OPTIONS => ChangeFreqEnum::selectOptions(),
+                            Field::RELATION_OPTIONS => ChangeFreqEnum::options(),
                         ],
                     ],
                     [

@@ -5,7 +5,7 @@ namespace Narsil\Cms\Http\Requests;
 #region USE
 
 use Illuminate\Foundation\Http\FormRequest;
-use Narsil\Cms\Validation\FormRule;
+use Narsil\Base\Validation\FormRule;
 
 #endregion
 
