@@ -1,26 +1,11 @@
-import { createGraphiQLFetcher } from "@graphiql/toolkit";
-import { useThemeStore } from "@narsil-cms/stores/theme-store";
-import { GraphiQL } from "graphiql";
+import { dynamic } from "@narsil-ui/lib/dynamic";
 
-import "graphiql/style.css";
+const LazyGraphiQLPage = dynamic(() => import("@narsil-cms/blocks/graphiql"), {
+  loading: () => <div>Loading GraphiQL...</div>,
+});
 
-function GraphiQLPage() {
-  const { theme } = useThemeStore();
-
-  const fetcher = createGraphiQLFetcher({
-    url: "/narsil/graphql",
-  });
-
-  return (
-    <GraphiQL
-      editorTheme={{
-        dark: "vs-dark",
-        light: "vs",
-      }}
-      fetcher={fetcher}
-      forcedTheme={theme}
-    />
-  );
+function Index() {
+  return <LazyGraphiQLPage />;
 }
 
-export default GraphiQLPage;
+export default Index;
