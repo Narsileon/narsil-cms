@@ -1,12 +1,13 @@
 <?php
 
-namespace Narsil\Cms\Http\Controllers\UserConfigurations;
+namespace Narsil\Cms\Http\Controllers\Users\Configurations;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Forms\Fortify\ProfileForm;
 use Narsil\Cms\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Cms\Contracts\Forms\Fortify\UpdatePasswordForm;
@@ -14,7 +15,6 @@ use Narsil\Cms\Contracts\Forms\UserConfigurationForm;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

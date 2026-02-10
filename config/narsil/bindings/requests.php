@@ -39,4 +39,15 @@ return [
     \Narsil\Cms\Contracts\Requests\Fortify\ResetUserPasswordFormRequest::class => \Narsil\Cms\Implementations\Requests\Fortify\ResetUserPasswordFormRequest::class,
     \Narsil\Cms\Contracts\Requests\Fortify\UpdateUserPasswordFormRequest::class => \Narsil\Cms\Implementations\Requests\Fortify\UpdateUserPasswordFormRequest::class,
     \Narsil\Cms\Contracts\Requests\Fortify\UpdateUserProfileInformationFormRequest::class => \Narsil\Cms\Implementations\Requests\Fortify\UpdateUserProfileInformationFormRequest::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | UI
+    |--------------------------------------------------------------------------
+    |
+    | Mapping between request contracts and their implementations.
+    |
+    */
+
+    \Narsil\Cms\Contracts\Requests\Ui\TanStackTableFormRequest::class => \Narsil\Cms\Implementations\Requests\Ui\TanStackTableFormRequest::class,
 ];

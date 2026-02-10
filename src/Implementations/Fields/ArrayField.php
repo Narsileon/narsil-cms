@@ -4,9 +4,9 @@ namespace Narsil\Cms\Implementations\Fields;
 
 #region USE
 
+use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Fields\ArrayField as Contract;
 use Narsil\Cms\Implementations\AbstractField;
-use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

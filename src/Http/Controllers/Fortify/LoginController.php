@@ -6,9 +6,9 @@ namespace Narsil\Cms\Http\Controllers\Fortify;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Forms\Fortify\LoginForm;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

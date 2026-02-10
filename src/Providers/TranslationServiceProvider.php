@@ -5,7 +5,7 @@ namespace Narsil\Cms\Providers;
 #region USE
 
 use Illuminate\Support\ServiceProvider;
-use Narsil\Ui\Support\TranslationsBag;
+use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 

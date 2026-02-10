@@ -4,12 +4,12 @@ namespace Narsil\Cms\Implementations\Fields;
 
 #region USE
 
+use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Fields\NumberField;
 use Narsil\Cms\Contracts\Fields\TextField as Contract;
 use Narsil\Cms\Implementations\AbstractField;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

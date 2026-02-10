@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Http\Controllers\UserBookmarks;
+namespace Narsil\Cms\Http\Controllers\Users\Bookmarks;
 
 #region USE
 

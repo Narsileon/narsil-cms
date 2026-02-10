@@ -9,8 +9,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Http\Requests\QueryRequest;
-use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

@@ -4,14 +4,15 @@ namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
+use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
 use Narsil\Cms\Enums\DiskEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Implementations\AbstractMenu;
-use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
@@ -24,7 +25,6 @@ use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Services\PermissionService;
 use Narsil\Cms\Support\MenuItem;
-use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 

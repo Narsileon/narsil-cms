@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Http\Controllers\UserBookmarks;
+namespace Narsil\Cms\Http\Controllers\Users\Bookmarks;
 
 #region USE
 
@@ -16,22 +16,26 @@ use Narsil\Cms\Models\Users\UserBookmark;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserBookmarkStoreController extends RedirectController
+class UserBookmarkUpdateController extends RedirectController
 {
     #region PUBLIC METHODS
 
     /**
      * @param UserBookmarkRequest $request
+     * @param UserBookmark $template
      *
      * @return RedirectResponse
      */
-    public function __invoke(UserBookmarkRequest $request): RedirectResponse
+    public function __invoke(UserBookmarkRequest $request, UserBookmark $userBookmark): RedirectResponse
     {
+        if ($userBookmark->user_id !== Auth::id())
+        {
+            abort(403);
+        }
+
         $attributes = $request->validated();
 
-        UserBookmark::firstOrCreate(array_merge($attributes, [
-            UserBookmark::USER_ID => Auth::id(),
-        ]));
+        $userBookmark->update($attributes);
 
         return back();
     }

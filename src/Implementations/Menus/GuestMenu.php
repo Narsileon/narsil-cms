@@ -4,12 +4,12 @@ namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
+use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\GuestMenu as Contract;
 use Narsil\Cms\Implementations\AbstractMenu;
 use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Support\MenuItem;
-use Narsil\Ui\Support\TranslationsBag;
 
 #endregion
 
