@@ -131,7 +131,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ]))
             ->add(new MenuItem(Asset::TABLE)
                 ->group($group)
-                ->icon('file')
+                ->icon('cloud')
                 ->label(ModelService::getTableLabel(Asset::TABLE))
                 ->route('assets.index')
                 ->permissions([
