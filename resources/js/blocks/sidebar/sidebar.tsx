@@ -25,11 +25,9 @@ import { route } from "ziggy-js";
 type SidebarProps = ComponentProps<typeof SidebarRoot>;
 
 function Sidebar({ ...props }: SidebarProps) {
-  const { trans } = useTranslator();
-
-  const { open, setOpenMobile, toggleSidebar } = useSidebar();
-
   const { sidebar } = useNavigation();
+  const { open, setOpenMobile, toggleSidebar } = useSidebar();
+  const { trans } = useTranslator();
 
   const groupedMenu = groupBy(sidebar, (item) => {
     return item.group ?? `_${item.label}`;
@@ -54,7 +52,7 @@ function Sidebar({ ...props }: SidebarProps) {
           {Object.entries(groupedMenu)?.map(([group, items], groupIndex) => {
             return group.startsWith("_") ? (
               <SidebarMenuItem key={groupIndex}>
-                <Tooltip tooltip={items[0].label}>
+                <Tooltip hidden={open} tooltip={items[0].label}>
                   <Button
                     aria-label={items[0].label}
                     data-active={route(items[0].route, items[0].parameters).endsWith(
@@ -81,7 +79,7 @@ function Sidebar({ ...props }: SidebarProps) {
                   {items.map((item, itemIndex) => {
                     return (
                       <SidebarMenuItem key={itemIndex}>
-                        <Tooltip tooltip={item.label}>
+                        <Tooltip hidden={open} tooltip={item.label}>
                           <Button
                             aria-label={item.label}
                             data-active={route(item.route, item.parameters).endsWith(
@@ -112,7 +110,7 @@ function Sidebar({ ...props }: SidebarProps) {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="h-13 border-t">
-        <Tooltip tooltip={trans("accessibility.toggle_sidebar")}>
+        <Tooltip hidden={open} tooltip={trans("accessibility.toggle_sidebar")}>
           <Button onClick={toggleSidebar} variant="sidebar">
             <Icon className={cn("duration-300", open && "rotate-180")} name="chevron-left" />
             {open && trans("accessibility.close_sidebar")}
