@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Hosts;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
-use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;

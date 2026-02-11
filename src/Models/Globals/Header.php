@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Cms\Database\Factories\HeaderFactory;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Traits\Blameable;
-use Narsil\Cms\Traits\HasAuditLogs;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasTranslations;
 
@@ -25,7 +25,7 @@ use Narsil\Cms\Traits\HasTranslations;
 class Header extends Model
 {
     use Blameable;
-    use HasAuditLogs;
+    use AuditLoggable;
     use HasDatetimes;
     use HasFactory;
     use HasTranslations;

@@ -5,8 +5,8 @@ namespace Narsil\Cms\Http\Controllers\Globals\Headers;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\HeaderFormRequest;
-use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Services\ModelService;

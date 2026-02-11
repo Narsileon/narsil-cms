@@ -6,10 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Globals\Footers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\FooterFormRequest;
-use Narsil\Cms\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Services\Models\FooterService;

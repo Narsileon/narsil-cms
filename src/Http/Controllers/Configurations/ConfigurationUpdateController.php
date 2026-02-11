@@ -5,8 +5,8 @@ namespace Narsil\Cms\Http\Controllers\Configurations;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\ConfigurationFormRequest;
-use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Configuration;

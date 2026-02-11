@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 use Locale;
-use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\HasUuidKey;
 use Narsil\Cms\Traits\IsOrderable;
 
@@ -21,7 +21,7 @@ use Narsil\Cms\Traits\IsOrderable;
  */
 class HostLocaleLanguage extends Model
 {
-    use HasAuditLogs;
+    use AuditLoggable;
     use HasUuidKey;
     use IsOrderable;
 

@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Collections\Blocks;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest;
-use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Services\Models\BlockService;

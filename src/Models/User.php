@@ -7,6 +7,7 @@ namespace Narsil\Cms\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Models\User as BaseUser;
+use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Cms\Casts\ImageCast;
 use Narsil\Cms\Models\Policies\Permission;
 use Narsil\Cms\Models\Policies\Role;
@@ -14,7 +15,6 @@ use Narsil\Cms\Models\Policies\UserPermission;
 use Narsil\Cms\Models\Policies\UserRole;
 use Narsil\Cms\Models\Users\UserBookmark;
 use Narsil\Cms\Traits\Blameable;
-use Narsil\Cms\Traits\HasAuditLogs;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\Policies\HasPermissions;
 use Narsil\Cms\Traits\Policies\HasRoles;
@@ -28,7 +28,7 @@ use Narsil\Cms\Traits\Policies\HasRoles;
 class User extends BaseUser
 {
     use Blameable;
-    use HasAuditLogs;
+    use AuditLoggable;
     use HasDatetimes;
     use HasPermissions;
     use HasRoles;

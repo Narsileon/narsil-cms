@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Cms\Observers\ModelObserver;
 use Narsil\Cms\Support\SelectOption;
 use Narsil\Cms\Traits\Blameable;
-use Narsil\Cms\Traits\HasAuditLogs;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasTranslations;
 
@@ -26,7 +26,7 @@ use Narsil\Cms\Traits\HasTranslations;
 class Template extends Model
 {
     use Blameable;
-    use HasAuditLogs;
+    use AuditLoggable;
     use HasDatetimes;
     use HasTranslations;
 

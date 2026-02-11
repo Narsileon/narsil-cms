@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Cache;
+use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Observers\ModelObserver;
 use Narsil\Cms\Support\SelectOption;
 use Narsil\Cms\Traits\Blameable;
-use Narsil\Cms\Traits\HasAuditLogs;
 use Narsil\Cms\Traits\HasDatetimes;
-use Narsil\Cms\Traits\Policies\HasPermissions;
 use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Cms\Traits\Policies\HasPermissions;
 
 #endregion
 
@@ -27,7 +27,7 @@ use Narsil\Cms\Traits\HasTranslations;
 class Role extends Model
 {
     use Blameable;
-    use HasAuditLogs;
+    use AuditLoggable;
     use HasDatetimes;
     use HasPermissions;
     use HasTranslations;

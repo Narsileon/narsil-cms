@@ -5,8 +5,8 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\SitePageFormRequest;
-use Narsil\Cms\Enums\ModelEventEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Services\ModelService;

@@ -7,9 +7,9 @@ namespace Narsil\Cms\Models\Hosts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Traits\HasAuditLogs;
+use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\HasUuidKey;
+use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
@@ -20,7 +20,7 @@ use Narsil\Cms\Traits\IsOrderable;
  */
 class HostLocale extends Model
 {
-    use HasAuditLogs;
+    use AuditLoggable;
     use HasUuidKey;
     use IsOrderable;
 

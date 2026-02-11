@@ -5,7 +5,7 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\DestroyManyRequest;

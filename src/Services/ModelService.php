@@ -5,7 +5,7 @@ namespace Narsil\Cms\Services;
 #region USE
 
 use Illuminate\Support\Str;
-use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Helpers\Translation;
 
 #endregion
