@@ -4,6 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockCreateController;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockDestroyController;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockDestroyManyController;
@@ -129,7 +130,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\Storages\Media;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Models\Users\UserBookmark;
-use Narsil\Cms\Models\Users\UserConfiguration;
 
 #endregion
 

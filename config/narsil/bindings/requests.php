@@ -49,5 +49,5 @@ return [
     |
     */
 
-    \Narsil\Cms\Contracts\Requests\Ui\TanStackTableFormRequest::class => \Narsil\Cms\Implementations\Requests\Ui\TanStackTableFormRequest::class,
+    \Narsil\Cms\Contracts\Requests\Base\TanStackTableFormRequest::class => \Narsil\Base\Http\Requests\TanStackTableFormRequest::class,
 ];

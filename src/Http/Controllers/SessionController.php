@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Narsil\Base\Models\Users\Session;
 use Narsil\Cms\Enums\Database\SessionEnum;
 use Narsil\Cms\Http\Requests\SessionFormRequest;
 use Narsil\Cms\Models\User;
-use Narsil\Cms\Models\Users\Session;
 
 #endregion
 

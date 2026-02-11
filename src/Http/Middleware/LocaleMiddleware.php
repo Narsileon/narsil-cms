@@ -4,11 +4,11 @@ namespace Narsil\Cms\Http\Middleware;
 
 #region USE
 
-use Narsil\Cms\Models\Users\UserConfiguration;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Narsil\Base\Models\Users\UserConfiguration;
 
 #endregion
 

@@ -2,6 +2,7 @@
 
 #region USE
 
+use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Cms\Enums\DiskEnum;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
@@ -18,7 +19,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\Storages\Media;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Models\Users\UserBookmark;
-use Narsil\Cms\Models\Users\UserConfiguration;
 
 #endregion
 

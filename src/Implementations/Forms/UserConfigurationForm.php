@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Locale;
 use Narsil\Base\Enums\ColorEnum;
+use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Cms\Contracts\Fields\RangeField;
 use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Forms\UserConfigurationForm as Contract;
@@ -18,7 +19,6 @@ use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
-use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Support\SelectOption;
 use ResourceBundle;
 

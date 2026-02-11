@@ -4,11 +4,11 @@ namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
+use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\AuthMenu as Contract;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Implementations\AbstractMenu;
-use Narsil\Cms\Models\Users\UserConfiguration;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Support\MenuItem;
 
